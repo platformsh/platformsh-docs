@@ -29,4 +29,4 @@ Getting started
   
 Once the build is finished, the HTML pages should be in _build/html.
 
-![http://creativecommons.org/licenses/by-sa/4.0/](CC-BY-SA.png)
+![http://creativecommons.org/licenses/by-sa/4.0/](images/CC-BY-SA.png)
