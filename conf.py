@@ -28,7 +28,7 @@ source_encoding = 'utf-8-sig'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Documentation Center'
+project = u'Platform.sh'
 copyright = u'2014, Commerce Guys'
 
 # The version info for the project you're documenting, acts as replacement for

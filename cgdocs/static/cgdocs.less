@@ -402,15 +402,11 @@ table.field-list {
   li {
     padding: 2px 2px 2px 32px;
     margin-bottom: 3px;
-    &:hover {
-      background: transparent url("images/bullet-hover.png") no-repeat 16px 6px;
-    }
   }
 }
 // Special styles for the Platform index page - make 1st level look like an H2.
 
-#platform-documentation,
-#platform-index {
+.platform-main-index {
   .toctree-l1 {
     background: none;
     padding-left: 0;
@@ -420,9 +416,6 @@ table.field-list {
       margin: 30px 0 20px;
     }
   }
-}
-#platform-documentation,
-#platform-index {
   > h2 {
     display: none;
   }
@@ -710,8 +703,7 @@ dl.glossary {
   .bs-sidenav.affix {
     position: relative;
   }
-  #platform-documentation,
-  #platform-index {
+  .platform-main-index {
     .toctree-wrapper {
       float: none;
       width: 100%;

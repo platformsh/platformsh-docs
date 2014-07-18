@@ -389,34 +389,25 @@ table.field-list {
   padding: 2px 2px 2px 32px;
   margin-bottom: 3px;
 }
-.toctree-wrapper ul li:hover,
-.localtoc-block ul li:hover {
-  background: transparent url("images/bullet-hover.png") no-repeat 16px 6px;
-}
-#platform-documentation .toctree-l1,
-#platform-index .toctree-l1 {
+.platform-main-index .toctree-l1 {
   background: none;
   padding-left: 0;
 }
-#platform-documentation .toctree-l1 > a,
-#platform-index .toctree-l1 > a {
+.platform-main-index .toctree-l1 > a {
   font-size: 26px;
   font-weight: 400;
   margin: 30px 0 20px;
 }
-#platform-documentation > h2,
-#platform-index > h2 {
+.platform-main-index > h2 {
   display: none;
 }
-#platform-documentation > .toctree-wrapper,
-#platform-index > .toctree-wrapper {
+.platform-main-index > .toctree-wrapper {
   float: left;
   padding: 10px;
   width: 45%;
   margin: 0 2.5%;
 }
-#platform-documentation hr,
-#platform-index hr {
+.platform-main-index hr {
   border-top: none;
 }
 ul.simple li.link-list {
@@ -684,14 +675,12 @@ dl.glossary dd {
   .bs-sidenav.affix {
     position: relative;
   }
-  #platform-documentation .toctree-wrapper,
-  #platform-index .toctree-wrapper {
+  .platform-main-index .toctree-wrapper {
     float: none;
     width: 100%;
     margin: 0 0 30px;
   }
-  #platform-documentation .toctree-wrapper:nth-child(2n+1),
-  #platform-index .toctree-wrapper:nth-child(2n+1) {
+  .platform-main-index .toctree-wrapper:nth-child(2n+1) {
     clear: left;
   }
 }

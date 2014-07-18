@@ -1,13 +1,7 @@
-Welcome to the Documentation Center!
+.. rst-class:: platform-main-index
+
+Platform.sh documentation
 ====================================
-
-.. image:: cgdocs/static/images/logo-platform.png
-
-.. toctree::
-   :hidden:
-
-   glossary
-
 
 `Platform.sh <https://platform.sh>`_ is a cloud based hosting solution for development. This describes how to use (and benefit from) `Platform.sh <https://platform.sh>`_.
 
@@ -42,3 +36,8 @@ Welcome to the Documentation Center!
   :glob:
 
   reference/index
+
+.. toctree::
+   :hidden:
+
+   glossary
