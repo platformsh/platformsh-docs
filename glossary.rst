@@ -5,6 +5,9 @@ Glossary
 
 .. glossary::
   :sorted:
+  
+  Application
+    Your application regroups all your code and configuration files that you want to deploy.
 
   Commerce Marketplace
     A marketplace of services that extend Drupal Commerce.
@@ -26,7 +29,7 @@ Glossary
     demanding ecommerce projects. (see https://drupal.org/project/commerce for more information).
 
   Drush
-    .. todo:: Platform team to write description.
+    Drush is a command-line shell and scripting interface for Drupal.
 
   Environment variables
   Environment variable
