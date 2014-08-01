@@ -71,8 +71,6 @@ You can administer the Settings, Variables, Routes, and Users specifically for e
 
 --------
 
-.. _branch-an-environment:
-
 Branch an Environment
 ---------------------
 When you :term:`branch` an :term:`environment`, you create a new :term:`environment` which is an exact copy of its parent (*including files, database and services*).
@@ -84,11 +82,10 @@ To :term:`branch` an environment, click the `Branch` icon on the top right of th
 .. seealso::
   * :doc:`/using-platform/001-best-practices`
 
--------------------------------------
-Make a Local Copy of Your Environment
--------------------------------------
+Clone the codebase with Git
+---------------------------
 
-You might not need to *run* a copy of your :term:`environment` locally, but you will most likely want to be able to add some modules, themes, libraries or some custom code. To do that, you need to clone a copy of the codebase for your :term:`environment` down to your local system using Git. If you *do* want to run a copy of your environment locally, you will probably want to do so with a copy of the database from this :term:`environment`.
+You might not need to *run* a copy of your :term:`environment` locally, but you will most likely want to be able to add code to your project. To do that, you need to clone a copy of the codebase for your :term:`environment` down to your local system using Git. If you *do* want to run a copy of your environment locally, you will probably want to do so with a copy of the database from this :term:`environment`.
 
 .. note::
    Make sure you have Git installed and you have uploaded your public SSH key prior to running this command. See the :doc:`/introduction/002-technical-requirements` for more information.
@@ -96,8 +93,6 @@ You might not need to *run* a copy of your :term:`environment` locally, but you 
 .. seealso::
    `Push changes to an environment </quick-start-guide/002-mastering-the-basics.html#push-changes-to-an-environment>`_
 
-Clone the codebase with Git
----------------------------
 
 One of the first elements you'll see at the top of the Platform interface is a "PULL | CLONE" text widget. You can use the commands listed there to clone the branch you are currently viewing.
 
@@ -122,41 +117,7 @@ In your terminal, paste the command you copied and add a name for the folder at 
 
    $ git clone --branch [branch-name] [project-id]@git.eu1.c-g.io:[project-id].git project-folder-name
 
-Once you have cloned the branch locally, you can see the files that are contained in the Git repository:
-
-.. code-block:: console
-
-   $ cd project-folder-name
-   $ ls
-      project.make
-
-If you selected an option other than 'From scratch' during your Platform setup, you'll see that Platform initialized your Git repository with a single :term:`make file`. Platform uses a :term:`make file` to build your site. In the :term:`make file`, you can add any contributed modules, themes or libraries you need. You can also add your custom code within specific folders (``modules/``, ``themes/`` or ``libraries/``) in the repository, like you would for any Drupal site.
+Once you have cloned the branch locally, you can see the files that are contained in the Git repository.
 
 .. note::
-   A couple of things you should know:
-
-   * Platform was built with many best practices in mind. That's why instead of storing a complete copy of the Drupal files, we actually advise you to only commit a :term:`make file`, which will contain the list of the contributed projects you want to use on your site. To learn more about those best practices, have a look at :doc:`../using-platform/001-best-practices`.
-
    * Make sure you copy your commands from the Platform interface. Bonus points if you have your platform id memorized.
-
-Copy the database using drush
------------------------------
-
-Need to get a copy of your site's database locally? The easiest way to do that is to use Drush and the sql-sync command. You'll need to have :ref:`Drush aliases <create-drush-aliases>` setup for both your Platform site and your local site. If you are using the `Platform CLI <https://github.com/commerceguys/platform-cli>`_ and you've run ``platform get [platform_id]`` for a project, then your Platform aliases have already been setup.
-
-With the :ref:`Drush aliases <create-drush-aliases>` (depending on how yours are set up), you could use a command similar to this:
-
-.. code-block:: console
-
-   $ drush sql-sync @platform.master @platform.local
-
-With the *Platform CLI* you can run this command from the branch that you wish to synchronize.
-
-.. code-block:: console
-
-  $ platform environment:synchronize
-
-.. seealso::
-  * :doc:`/platform-components/platform-interaction-methods/003-drush`
-  * :ref:`create-drush-aliases`
-  * :doc:`/platform-components/platform-interaction-methods/002-command-line-interface`
