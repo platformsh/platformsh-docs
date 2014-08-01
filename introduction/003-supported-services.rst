@@ -8,6 +8,7 @@ Supports PHP 5.3 and 5.4, the APC and ZO+ opcode caches, and all major PHP exten
 
 MySQL
 -----
+
 MariaDB with the XtraDB storage engine (equivalent to MySQL with InnoDB)
 
 | **host:** database.internal
@@ -25,6 +26,7 @@ You can also use Drush:
 
 Redis
 -----
+
 Provides the in-memory object cache for your application.
 
 | **host:** redis.internal
@@ -33,6 +35,7 @@ Provides the in-memory object cache for your application.
 
 Solr
 ----
+
 Solr search with generic schemas provided. Custom schemas are supported.
 
 | **host:** solr.internal
@@ -41,4 +44,5 @@ Solr search with generic schemas provided. Custom schemas are supported.
 
 Other
 -----
+
 Additional services will be available soon...
