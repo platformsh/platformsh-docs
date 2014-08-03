@@ -76,7 +76,7 @@ How do I use Solr with Platform?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. todo::
-	This should go somewhere to the **services** section.
+    This should go somewhere to the **services** section.
 
 ssh into your env and do: cat /etc/hosts (is there solr there?)
 
@@ -84,7 +84,7 @@ How do I import a database in an environment without drush aliases?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. todo::
-	This should go somewhere to the **import existing site** section.
+    This should go somewhere to the **import existing site** section.
 
 .. code-block:: console
 
