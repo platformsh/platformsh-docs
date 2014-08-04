@@ -112,16 +112,16 @@ In your new alias file, you can create aliases for your various Platform project
   <?php
   // Platform environment
   $aliases['master'] = array(
-    'uri' => 'master-[project-id].eu1.c-g.io',
-    'root' => '.',
-    'remote-host' => 'ssh.eu1.c-g.io',
+    'uri' => 'master-[project-id].eu.platform.sh',
+    'root' => '/app/public',
+    'remote-host' => 'ssh.eu.platform.sh',
     'remote-user' => '[project-id]-master',
   );
   // Platform branch environment
   $aliases['BRANCHNAME'] = array(
-    'uri' => 'BRANCHNAME-[project-id].eu1.c-g.io',
-    'root' => '.',
-    'remote-host' => 'ssh.eu1.c-g.io',
+    'uri' => 'BRANCHNAME-[project-id].eu.platform.sh',
+    'root' => '/app/public',
+    'remote-host' => 'ssh.eu.platform.sh',
     'remote-user' => '[project-id]-BRANCHNAME',
   );
   // Platform local environment
