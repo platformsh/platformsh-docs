@@ -12,11 +12,11 @@ In order to copy your project locally, you'll need to know its' project id. The 
 
    ~/htdocs $ platform projects
      Your projects are:
-     +---------------+----------------------------+---------------------------------------------+
-     | ID            | Name                       | URL                                         |
-     +---------------+----------------------------+---------------------------------------------+
-     | [project-id]  | New Platform Project       | https://eu1.c-g.io/#/projects/[project-id]  |
-     +---------------+----------------------------+---------------------------------------------+
+     +---------------+----------------------------+------------------------------------------------+
+     | ID            | Name                       | URL                                            |
+     +---------------+----------------------------+------------------------------------------------+
+     | [project-id]  | New Platform Project       | https://eu.platform.sh/#/projects/[project-id] |
+     +---------------+----------------------------+------------------------------------------------+
 
      Get a project by running platform get [id].
      Delete a project by running platform project:delete [id].

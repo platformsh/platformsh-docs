@@ -120,7 +120,7 @@ In your terminal, paste the command you copied and add a name for the folder at 
 
 .. code-block:: console
 
-   $ git clone --branch [branch-name] [project-id]@git.eu1.c-g.io:[project-id].git project-folder-name
+   $ git clone --branch [branch-name] [project-id]@git.eu.platform.sh:[project-id].git project-folder-name
 
 Once you have cloned the branch locally, you can see the files that are contained in the Git repository:
 
