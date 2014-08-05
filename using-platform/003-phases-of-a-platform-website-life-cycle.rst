@@ -1,7 +1,6 @@
 Phases of a Platform Website Life Cycle
 =======================================
 
-
 Development Workflow
 --------------------
 

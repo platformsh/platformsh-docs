@@ -13,7 +13,7 @@ Create Hierarchical environments
 When you :term:`Branch` an :term:`environment`, this creates a child of this :term:`environment`. Each child :term:`environment` can :term:`Sync` code and/or data from his parent and :term:`merge` code to his parent.
 
 .. seealso::
-  * :doc:`/using-platform/001-best-practices`
+  * :ref:`best_practices`
 
 User permissions
 ----------------
@@ -25,7 +25,7 @@ Permissions on hierarchical environments are inherited from the first parent. Ad
    **NOTE:** Permissions in a hierarchy can be inherited.
 
 .. seealso::
-  * :doc:`/using-platform/007-getting-help`
+  * :ref:`getting_help`
 
 Pull code from private Git repositories
 ---------------------------------------
@@ -40,7 +40,7 @@ Platform allows you to get code that is stored in a private Git repository, dire
 
 To grant Platform access to your private Git repository, you need to add the project public SSH key in the deploy keys of your Git repository. If your private repository is on Github, go to the target repository's settings page. Go to *Deploy Keys* and click *Add deploy key*. Paste the public SSH key in and submit.
 
-Once you're set, edit your :term:`make file` to add your module:
+If you're using Drupal for example, you can now use your private module by adding it to your :term:`make file`:
 
 .. code-block:: ini
 

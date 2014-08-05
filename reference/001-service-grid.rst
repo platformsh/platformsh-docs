@@ -1,3 +1,5 @@
+.. _service_grid:
+
 Introduction to the service grid
 ================================
 
