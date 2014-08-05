@@ -21,7 +21,7 @@ Importing Data Into Platform
 
 If you want to migrate your existing site into Platform, you have 3 things you need to import: *code base*, *database* and *files*.
 
-.. note:: This documentation supposes you're use to work with a terminal.
+.. note:: This documentation supposes you're used to work with a terminal.
 
 Import your code base
 ^^^^^^^^^^^^^^^^^^^^^

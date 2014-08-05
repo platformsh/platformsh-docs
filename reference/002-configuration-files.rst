@@ -92,9 +92,6 @@ Services
 .. note::
   The ``services.yaml`` file should be included into a ``.platform`` folder at the root of you Git repository.
 
-.. warning::
-   * Configuration of the Services Grid is not fully supported, yet. Content and naming may change.
-
 Platform allows you to completely define and configure the topology and services you want to use at the :term:`environment` level.
 
 A sample ``services.yaml`` file would look like this:
