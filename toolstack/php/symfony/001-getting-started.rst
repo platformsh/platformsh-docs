@@ -6,8 +6,11 @@ Prerequisites
 
 .. rubric:: Composer
 
-.. todo::
-    Need to write composer introduction.
+Composer is a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you.
+
+.. seealso::
+  * `Install Composer <https://getcomposer.org/download/>`_
+  * :ref:`best_practices`
 
 Configure your app
 ------------------
@@ -28,10 +31,9 @@ A Drupal specific ``.platform.app.yaml`` file would look like this:
     mounts:
         "/app/cache": "shared:files/cache"
         "/app/logs": "shared:files/logs"
-        "/app/sessions": "shared:files/sessions"
 
     hooks:
         build: "./app/console cache:warmup"
 
 .. seealso::
-  * :doc:`/reference/002-configuration-files`
+  * :ref:`configuration_files`

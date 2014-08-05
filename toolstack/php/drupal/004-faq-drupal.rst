@@ -1,5 +1,5 @@
-Drupal Frequently Asked Questions (FAQ)
----------------------------------------
+Frequently Asked Questions (FAQ)
+--------------------------------
 
 How should I name my make files?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -9,7 +9,7 @@ In order for Platform to automatically detect your make file, you need to call i
 You can also have a **specific make file for Drupal core** called **\`project-core.make\`**
 
 .. seealso::
-   * :doc:`/using-platform/001-best-practices`
+   * :ref:`best_practices`
 
 Can I run Drupal 8 in Platform?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -42,11 +42,11 @@ You need to push your ``settings.php`` and make sure you include the settings.lo
    }
 
 .. seealso::
-   * :doc:`/reference/004-environment-variables`
+   * :ref:`environment_variables`
 
 When I push a make file with a new module version, does Platform runs the update?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After a push, Platform will rebuild your environment and download all the modules that are in your make file.
 
-If an update function (hook_update) needs to run, you'll have to manually trigger it by going to ``/update.php`` or use the :doc:`/reference/003-deployment-hooks` to automatically run the updates.
+If an update function (hook_update) needs to run, you'll have to manually trigger it by going to ``/update.php`` or use the :ref:`deployment hooks <deployment_hooks>` to automatically run the updates.
