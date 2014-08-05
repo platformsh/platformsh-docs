@@ -44,7 +44,7 @@ On a terminal, go to your Git project folder and add **platform** as a remote.
 .. code-block:: console
 
    $ cd ~/Sites/platform
-   $ git remote add platform [project-id]@git.eu1.c-g.io:[project-id].git
+   $ git remote add platform [project-id]@git.eu.platform.sh:[project-id].git
 
 .. note:: You can get the Git URL from the Platform UI under the Git icon.
 
@@ -67,7 +67,7 @@ On a terminal, go to your project folder, initiate the Git repository, and add a
 
    $ cd ~/Sites/mysite
    $ git init
-   $ git remote add platform [project-id]@git.eu1.c-g.io:[project-id].git
+   $ git remote add platform [project-id]@git.eu.platform.sh:[project-id].git
 
 .. note:: You can get the Git URL from the Platform UI under the Git icon.
 
@@ -112,16 +112,16 @@ In your new alias file, you can create aliases for your various Platform project
   <?php
   // Platform environment
   $aliases['master'] = array(
-    'uri' => 'master-[project-id].eu1.c-g.io',
-    'root' => '.',
-    'remote-host' => 'ssh.eu1.c-g.io',
+    'uri' => 'master-[project-id].eu.platform.sh',
+    'root' => '/app/public',
+    'remote-host' => 'ssh.eu.platform.sh',
     'remote-user' => '[project-id]-master',
   );
   // Platform branch environment
   $aliases['BRANCHNAME'] = array(
-    'uri' => 'BRANCHNAME-[project-id].eu1.c-g.io',
-    'root' => '.',
-    'remote-host' => 'ssh.eu1.c-g.io',
+    'uri' => 'BRANCHNAME-[project-id].eu.platform.sh',
+    'root' => '/app/public',
+    'remote-host' => 'ssh.eu.platform.sh',
     'remote-user' => '[project-id]-BRANCHNAME',
   );
   // Platform local environment
@@ -138,7 +138,7 @@ Then test your settings to make sure they work.
 
    $ drush @platform.master status
    Drupal version                  :  7.24
-   Site URI                        :  master-[project-id].eu1.c-g.io
+   Site URI                        :  master-[project-id].eu.platform.sh
    Database driver                 :  mysql
    Database username               :
    Database name                   :  main
@@ -179,7 +179,7 @@ We use *drush alias* to import your existing local files.
 .. code-block:: console
 
    $ drush rsync @platform.local:%files @platform.master:%files
-   You will destroy data from [project-id]-master@ssh.eu1.c-g.io:././sites/default/files and replace with data from ~/Sites/platform/sites/default/files/
+   You will destroy data from [project-id]-master@ssh.eu.platform.sh:././sites/default/files and replace with data from ~/Sites/platform/sites/default/files/
    Do you really want to continue? (y/n): y
 
 .. note:: Drush will verify that you are copying and over-writing the proper files folders, so double-check that information before you type ``y`` to continue.
