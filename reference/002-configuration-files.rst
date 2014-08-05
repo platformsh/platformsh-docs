@@ -1,3 +1,5 @@
+.. _configuration_files:
+
 Configuration files
 ===================
 
@@ -59,6 +61,8 @@ For example with Drupal, you'll want your `sites/default/files`` to be mounted u
 .. rubric:: Crons
 
 The ``Crons`` define when to run crons. 
+
+.. _deployment_hooks:
 
 .. rubric:: Hooks
 
