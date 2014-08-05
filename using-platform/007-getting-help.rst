@@ -3,14 +3,13 @@ Getting Help
 
 Known Issues
 ------------
+
 "No Application Configured"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you see the ``No Application Configured`` when accessing your site within a browser, this means that the environment you’re trying to access is not completely ready yet.
 
 Make sure it's completely built. The latest environment status on your Platform activity stream should be marked as **Success**.
-
-
 
 Frequently Asked Questions (FAQ)
 --------------------------------
@@ -46,23 +45,6 @@ If you see the "File not found" when accessing your site within a browser, this 
 
 Make sure your repository contains an *index.php* file as the root, or that your make files are properly named.
 
-How should I name my make files?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-In order for Platform to automatically detect your make file, you need to call it **\`project.make\`**.
-
-You can also have a **specific make file for Drupal core** called **\`project-core.make\`**
-
-.. seealso::
-   * :doc:`/using-platform/001-best-practices`
-
-Can I run Drupal 8 in Platform?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Drush 7 is required to build Drupal 8, so you won't be able to build a Drupal 8 make file.
-
-But you can still commit Drupal 8 as a complete project (commit the whole core directory) and it'll work fine.
-
 What happens if I push a local branch to my project?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -79,32 +61,6 @@ How do I use Solr with Platform?
     This should go somewhere to the **services** section.
 
 ssh into your env and do: cat /etc/hosts (is there solr there?)
-
-How do I import a database in an environment without drush aliases?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. todo::
-    This should go somewhere to the **import existing site** section.
-
-.. code-block:: console
-
-  $ scp LOCAL_DB.sql REMOTE_PHP_SERVER:/tmp
-  $ mysql -h database.internal main < /tmp/LOCAL_DB.sql
-
-How do I add variables to my settings.php?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You need to push your ``settings.php`` and make sure you include the settings.local.php that Platform will create for you on each environment.
-
-.. code-block:: console
-
-   $local_settings = dirname(__FILE__) . '/settings.local.php';
-   if (file_exists($local_settings)) {
-     require_once($local_settings);
-   }
-
-.. seealso::
-   * :doc:`/reference/004-environment-variables`
 
 How does Master scale?
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -127,13 +83,6 @@ What do I see when I push code?
 We try to make the log as self-explanatory as possible, so you should see the Git output and also output from the drush make...
 
 You can also find it back by clicking on the status of the activity in the :term:`Platform UI`.
-
-When I push a make file with a new module version, does Platform runs the update?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-After a push, Platform will rebuild your environment and download all the modules that are in your make file.
-
-If an update function (hook_update) needs to run, you'll have to manually trigger it by going to ``/update.php`` or use the :doc:`/reference/003-deployment-hooks` to automatically run the updates.
 
 What Linux distribution is Platform using?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

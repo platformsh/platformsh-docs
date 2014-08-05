@@ -15,9 +15,13 @@ Hierarchy
 
 * :term:`Environment variables` are resolved following the environment hierarchy. If a variable is not defined in an environment, it takes the value of its parent.
 
-Drupal $conf
-------------
+Toolstack
+---------
 
-* :term:`Environment variables` prefixed by ``drupal:`` are special-cased by our ``settings.local.php``: they are directly added to ``$conf``.
+You can define variables based on the :term:`toolstack` you're working with.
 
-For example, you can set ``drupal:site_name`` which will directly set the site name.
+For example with Drupal, you would prefix your :term:`Environment variables` with ``drupal:``.
+
+Those variables will then be special-cased by our ``settings.local.php`` and directly added to ``$conf``.
+
+An example will be: ``drupal:site_name`` which will directly set the site name of your Drupal site.

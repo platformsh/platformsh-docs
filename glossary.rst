@@ -109,3 +109,7 @@ Glossary
 
   Sync
     The act of updating an environment with code and data from a parent environment.
+
+  Toolstack
+    A specific set of tools that you're project is built with. It can be a CMS (Drupal), a framework (Symfony)...
+
