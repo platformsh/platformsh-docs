@@ -1,8 +1,10 @@
+.. _drupal_faq:
+
 Frequently Asked Questions (FAQ)
---------------------------------
+================================
 
 How should I name my make files?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
 In order for Platform to automatically detect your make file, you need to call it **\`project.make\`**.
 
@@ -12,14 +14,14 @@ You can also have a **specific make file for Drupal core** called **\`project-co
    * :ref:`best_practices`
 
 Can I run Drupal 8 in Platform?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------
 
 Drush 7 is required to build Drupal 8, so you won't be able to build a Drupal 8 make file.
 
 But you can still commit Drupal 8 as a complete project (commit the whole core directory) and it'll work fine.
 
 How do I import a database in an environment without drush aliases?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------------------------------
 
 .. todo::
     This should go somewhere to the **import existing site** section.
@@ -30,7 +32,7 @@ How do I import a database in an environment without drush aliases?
   $ mysql -h database.internal main < /tmp/LOCAL_DB.sql
 
 How do I add variables to my settings.php?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------
 
 You need to push your ``settings.php`` and make sure you include the settings.local.php that Platform will create for you on each environment.
 
@@ -45,7 +47,7 @@ You need to push your ``settings.php`` and make sure you include the settings.lo
    * :ref:`environment_variables`
 
 When I push a make file with a new module version, does Platform runs the update?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------------------------------------------
 
 After a push, Platform will rebuild your environment and download all the modules that are in your make file.
 

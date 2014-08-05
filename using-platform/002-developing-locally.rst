@@ -22,7 +22,6 @@ In order to copy your project locally, you'll need to know its' project id. The 
      Delete a project by running platform project:delete [id].
      List a project's environments by running platform environments.
 
-
 Once you know the project id you need to use, copying the project to your local system is pretty simple. Navigate to the folder you want to copy the project to and then run ``platform get [project-id] [folder-name]``. You'll have to choose which branch you want to pull down to start with.
 
 .. code-block:: none
@@ -38,7 +37,6 @@ Once you know the project id you need to use, copying the project to your local 
      Receiving objects: 100% (11/11), 1.36 KiB | 0 bytes/s, done.
      Checking connectivity... done.
 
-
 You should now have a folder, based on what you used for *[folder-name]* in the platform get command above. Inside this folder, there are a couple directories and a file. They are:
 
   - **.platform-project** - This JSON file stores information about your project for use by the Platform CLI.
@@ -51,7 +49,6 @@ You should now have a folder, based on what you used for *[folder-name]* in the 
 
   - **www** - This folder is a symlink to the currently active build in the builds folder.
 
-
 .. code-block:: none
 
    ~/htdocs/my-project ]$ ls
@@ -59,7 +56,6 @@ You should now have a folder, based on what you used for *[folder-name]* in the 
      builds
      repository
      shared
-
 
 Now that you have a copy of your project locally, you can run ``platform build`` to pull it all together. Explain a bit about what platform build actually does.
 
@@ -85,16 +81,6 @@ Now that you have a copy of your project locally, you can run ``platform build``
 
 Synchronizing Data
 ------------------
-
-The easiest way to do that is to use Drush and the sql-sync command. You'll need to have :ref:`Drush aliases <create-drush-aliases>` setup for both your Platform site and your local site. If you are using the `Platform CLI <https://github.com/commerceguys/platform-cli>`_ and you've run ``platform get [platform_id]`` for a project, then your Platform aliases have already been setup.
-
-With the :ref:`Drush aliases <create-drush-aliases>` (depending on how yours are set up), you could use a command similar to this:
-
-.. code-block:: console
-
-   $ drush sql-sync @platform.master @platform.local
-
-..
 
 With the *Platform CLI* you can run this command from the branch that you wish to synchronize.
 

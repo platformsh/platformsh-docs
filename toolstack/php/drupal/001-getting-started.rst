@@ -48,4 +48,4 @@ A Drupal specific ``.platform.app.yaml`` file would look like this:
         deploy: "cd /app/public ; drush -y updatedb"
 
 .. seealso::
-  * :doc:`/reference/002-configuration-files`
+  * :ref:`configuration_files`

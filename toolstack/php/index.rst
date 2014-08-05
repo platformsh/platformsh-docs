@@ -5,12 +5,6 @@ PHP
   :maxdepth: 2
   :glob:
 
-  vanilla/index
-
-.. toctree::
-  :maxdepth: 2
-  :glob:
-
   drupal/index
 
 .. toctree::

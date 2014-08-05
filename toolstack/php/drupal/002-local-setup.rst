@@ -1,7 +1,7 @@
 Local setup
 ===========
 
-There are 3 ways you can structure your files depending on how you're building your site.
+There are 3 ways you can structure your files depending on how you're building your site with Drupal.
 
 File Structure
 --------------
@@ -117,3 +117,63 @@ Here is a sample make file which includes Drupal core with a patch applied to it
 
 .. note::
    You can also have a specific make file for Drupal core: ``project-core.make``. This is useful if you're building your site as an installation profile.
+
+.. _create-drush-aliases:
+
+Create Drush Aliases
+^^^^^^^^^^^^^^^^^^^^
+
+.. note:: Platform CLI generates Drush aliases for you automatically, when you  \`platform get [platform_id]\` your project.
+
+Platform utilizes `drush aliases`_ to make it easy to use Drush to manage your development websites. Here's an example of a `drush alias file`_.
+
+.. _drush aliases: https://drupal.org/node/670460
+.. _drush alias file: http://drush.ws/examples/example.aliases.drushrc.php
+
+Navigate to your ``.drush`` folder and create a new file called ``platform.aliases.drushrc.php``.
+
+.. code-block:: console
+
+   $ cd ~/.drush
+   $ sudo vi platform.aliases.drushrc.php
+
+In your new alias file, you can create aliases for your various Platform projects. For example:
+
+.. code-block:: php
+
+  <?php
+  // Platform environment
+  $aliases['master'] = array(
+    'uri' => 'master-[project-id].eu.platform.sh',
+    'root' => '/app/public',
+    'remote-host' => 'ssh.eu.platform.sh',
+    'remote-user' => '[project-id]-master',
+  );
+  // Platform branch environment
+  $aliases['BRANCHNAME'] = array(
+    'uri' => 'BRANCHNAME-[project-id].eu.platform.sh',
+    'root' => '/app/public',
+    'remote-host' => 'ssh.eu.platform.sh',
+    'remote-user' => '[project-id]-BRANCHNAME',
+  );
+  // Platform local environment
+  $aliases['local'] = array(
+    'site' => 'platform',
+    'env' => 'local',
+    'uri' => 'platform',
+    'root' => '~/Sites/platform',
+  );
+
+Then test your settings to make sure they work.
+
+.. code-block:: console
+
+   $ drush @platform.master status
+   Drupal version                  :  7.24
+   Site URI                        :  master-[project-id].eu.platform.sh
+   Database driver                 :  mysql
+   Database username               :
+   Database name                   :  main
+   Database                        :  Connected
+   Drupal bootstrap                :  Successful
+   etc...

@@ -9,7 +9,7 @@ Install Kickstart / Drupal / Empty Git
 .. figure:: /quick-start-guide/images/ui-setup.png
   :alt: Platform Setup
 
-  The first time you access the :doc:`/platform-components/platform-interaction-methods/001-platform-web-ui`, you'll see the project setup wizard which helps you to configure your project.
+  The first time you access the :ref:`platform_ui`, you'll see the project setup wizard which helps you to configure your project.
 
 Choose a name for your project (this could be the domain of the site you are working on) and then choose a starting point:
 
@@ -22,9 +22,6 @@ Once you’re done, Platform will build your project and provide you a default :
 .. note::
    Choosing either 'Commerce Kickstart' or 'Drupal 7' will cause Platform to generate a :term:`make file` in the root of your repository. This :term:`make file` will be used to build your site.
 
-.. seealso::
-   * :doc:`/using-platform/003-migrating-an-existing-site`
-
 First look at Platform
 ----------------------
 
@@ -36,7 +33,7 @@ First look at Platform
   1. **Project selection and configuration -** Switch between projects, or manage the configurations of the current project. Changing the project here will update everything below it to the current project.
   2. **Account administration, support, and documentation-** Use these quick access links to documentation resources, support options, or your current user account information.
   3. **Environment indicator, access information, and configuration-** This will tell you which environment (or branch) you are currently working in. The configuration icon and website link will apply specifically to this environment.
-  4. **Git branch, synchronize, merge, and backups-** These primary actions are used for your regular development workflow for the specific environment. Read more about these actions in the :doc:`/platform-components/platform-interaction-methods/001-platform-web-ui` section.
+  4. **Git branch, synchronize, merge, and backups-** These primary actions are used for your regular development workflow for the specific environment. Read more about these actions in the :ref:`platform_ui` section.
   5. **Environment selector-** Switch between environment contexts. When you create a new branch by clicking the branch action link, those environemtns will appear here. Selecting an environment here will change everything to the right of this to that environment's context.
   6. **Environment activity stream-** Follow the latest activity for the current environment.
 
@@ -52,7 +49,7 @@ The **configuration icon** is a contextual link. It will direct you to the confi
 --------
 
 .. seealso::
-  * :doc:`/platform-components/platform-interaction-methods/001-platform-web-ui`
+  * :ref:`platform_ui`
 
 Access Your Site
 ----------------
@@ -80,7 +77,7 @@ During a :term:`branch` operation, Platform freezes the parent :term:`environmen
 To :term:`branch` an environment, click the `Branch` icon on the top right of the :term:`Platform UI` and give it a name (for example: *Sprint1*).
 
 .. seealso::
-  * :doc:`/using-platform/001-best-practices`
+  * :ref:`best_practices`
 
 Clone the codebase with Git
 ---------------------------
@@ -88,7 +85,7 @@ Clone the codebase with Git
 You might not need to *run* a copy of your :term:`environment` locally, but you will most likely want to be able to add code to your project. To do that, you need to clone a copy of the codebase for your :term:`environment` down to your local system using Git. If you *do* want to run a copy of your environment locally, you will probably want to do so with a copy of the database from this :term:`environment`.
 
 .. note::
-   Make sure you have Git installed and you have uploaded your public SSH key prior to running this command. See the :doc:`/introduction/002-technical-requirements` for more information.
+   Make sure you have Git installed and you have uploaded your public SSH key prior to running this command. See the :ref:`technical_requirements` for more information.
 
 .. seealso::
    `Push changes to an environment </quick-start-guide/002-mastering-the-basics.html#push-changes-to-an-environment>`_

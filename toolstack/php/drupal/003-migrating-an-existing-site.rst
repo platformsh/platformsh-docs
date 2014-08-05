@@ -16,23 +16,17 @@ You can use the ``--destination`` or ``--no-core`` options for this command to c
 
 Be sure to get your website working on your local machine before following the steps below to import that website into Platform.
 
-.. note::
-
-  You may prefer to use some of the :ref:`Drush alias <create-drush-aliases>` techniques described below to export your existing website.
-
 Importing Data Into Platform
 ----------------------------
 
-If you want to import your existing site into Platform, you need to start with the **from scratch** option on the second step of the *Setting up your project* wizard. In that case, Platform will create an empty Git repository for you.
+If you want to migrate your existing site into Platform, you have 3 things you need to import: *code base*, *database* and *files*.
 
-You have 3 things you need to import: *code base*, *database* and *files*.
-
-.. note:: This documentation supposes you're familiar with working with a terminal.
+.. note:: This documentation supposes you're use to work with a terminal.
 
 Import your code base
 ^^^^^^^^^^^^^^^^^^^^^
 
-This will depend wether you already have Git set up for your project or not.
+This will depend wether you have Git already set up for your project or not.
 
 Your project already uses Git
 *****************************
@@ -123,4 +117,25 @@ We use *drush alias* to import your existing local files.
 
 This step may take some time, but when the process completes, you can visit the url of your development environment and test that the files have properly been imported.
 
-**Congratulations, your existing Drupal site is now running on Platform !**
+
+Copy the database using drush
+-----------------------------
+
+Need to get a copy of your site's database locally? The easiest way to do that is to use Drush and the sql-sync command. You'll need to have :ref:`create-drush-aliases` setup for both your Platform site and your local site. If you are using the `Platform CLI <https://github.com/commerceguys/platform-cli>`_ and you've run ``platform get [platform_id]`` for a project, then your Platform aliases have already been setup.
+
+With the :ref:`create-drush-aliases` (depending on how yours are set up), you could use a command similar to this:
+
+.. code-block:: console
+
+   $ drush sql-sync @platform.master @platform.local
+
+With the *Platform CLI* you can run this command from the branch that you wish to synchronize.
+
+.. code-block:: console
+
+  $ platform environment:synchronize
+
+.. seealso::
+  * :ref:`Drush <drush>`
+  * :ref:`create-drush-aliases`
+  * :ref:`cli`

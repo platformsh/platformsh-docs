@@ -1,3 +1,5 @@
+.. _technical_requirements:
+
 Technical Requirements & Recommendations
 ========================================
 

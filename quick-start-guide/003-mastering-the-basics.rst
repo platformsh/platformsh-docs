@@ -13,7 +13,7 @@ Create Hierarchical environments
 When you :term:`Branch` an :term:`environment`, this creates a child of this :term:`environment`. Each child :term:`environment` can :term:`Sync` code and/or data from his parent and :term:`merge` code to his parent.
 
 .. seealso::
-  * :doc:`/using-platform/001-best-practices`
+  * :ref:`best_practices`
 
 User permissions
 ----------------
@@ -25,7 +25,7 @@ Permissions on hierarchical environments are inherited from the first parent. Ad
    **NOTE:** Permissions in a hierarchy can be inherited.
 
 .. seealso::
-  * :doc:`/using-platform/007-getting-help`
+  * :ref:`getting_help`
 
 Pull code from private Git repositories
 ---------------------------------------
