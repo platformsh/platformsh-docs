@@ -18,7 +18,7 @@ Platform.sh documentation
   quick-start-guide/index
   
 .. toctree::
-  :maxdepth: 4
+  :maxdepth: 3
   :glob:
 
   toolstack/index
