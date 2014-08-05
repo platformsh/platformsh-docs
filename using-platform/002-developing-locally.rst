@@ -6,7 +6,7 @@ Using the CLI to Build Your Site
 
 Use the :term:`Platform CLI` to get a copy of your project, so that you can start working locally.
 
-In order to copy your project locally, you'll need to know its' project id. The command ``platform projects`` will list all of the active projects on your account.
+In order to copy your project locally, you'll need to know its' project id. The command ``platform`` will list all of the active projects on your account.
 
 .. code-block:: none
 
@@ -27,7 +27,7 @@ Once you know the project id you need to use, copying the project to your local 
 
 .. code-block:: none
 
-   ~/htdocs $ platform get [project-id] platform
+   ~/htdocs $ platform get [project-id] my-project
      Enter a number to choose which environment to checkout:
      [0] : Master
      [1] : Sprint1
@@ -43,7 +43,7 @@ You should now have a folder, based on what you used for *[folder-name]* in the 
 
   - **.platform-project** - This JSON file stores information about your project for use by the Platform CLI.
 
-  - **builds** - This folder contains the current and previous builds. Each time you run \`platform build\` (see below) a build is generated in this folder.
+  - **builds** - This folder contains the current and previous builds. Each time you run ``platform build` (see below) a build is generated in this folder.
 
   - **repository** - This folder contains all of the files that are in your Platform repository.
 
@@ -54,31 +54,31 @@ You should now have a folder, based on what you used for *[folder-name]* in the 
 
 .. code-block:: none
 
-   ~/htdocs/platform ]$ ls
+   ~/htdocs/my-project ]$ ls
      .platform-project
      builds
      repository
      shared
 
 
-Now that you have a copy of your project locally, you can run \`platform build\` to pull it all together. Explain a bit about what platform build actually does.
+Now that you have a copy of your project locally, you can run ``platform build`` to pull it all together. Explain a bit about what platform build actually does.
 
 .. code-block:: none
 
-   ~/htdocs/platform $ platform build
-     Beginning to build ~/htdocs/platform/repository/project.make.                          [ok]
+   ~/htdocs/my-project $ platform build
+     Beginning to build ~/htdocs/my-project/repository/project.make.                          [ok]
      commerce_kickstart-7.x-2.14 downloaded.                                                [ok]
      commerce_bundle-7.x-1.x-dev downloaded.                                                [ok]
 
 
 .. code-block:: none
 
-   ~/htdocs/platform ]$ ls
+   ~/htdocs/my-project ]$ ls
      .platform-project
      builds
      repository
      shared
-     www -> ~/htdocs/platform/builds/2014-05-19--16-22-46--sprint1
+     www -> ~/htdocs/my-project/builds/2014-05-19--16-22-46--sprint1
 
 .. seealso::
    * `Installing Platform CLI <https://github.com/commerceguys/platform-cli>`_
@@ -103,7 +103,7 @@ With the *Platform CLI* you can run this command from the branch that you wish t
   $ platform environment:synchronize
 
 .. seealso::
-  * :doc:`/platform-components/platform-interaction-methods/003-drush`
+  * :ref:`Drush <drush>`
   * :ref:`create-drush-aliases`
-  * :doc:`/platform-components/platform-interaction-methods/002-command-line-interface`
+  * :ref:`cli`
 
