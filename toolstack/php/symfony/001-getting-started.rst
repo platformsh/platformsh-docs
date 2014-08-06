@@ -15,7 +15,7 @@ Composer is a tool for dependency management in PHP. It allows you to declare th
 Configure your app
 ------------------
 
-Make sure your ``.platform.application.yaml`` is specific to :term:`Symfony`.
+Make sure your ``.platform.app.yaml`` is specific to :term:`Symfony`.
 
 A Drupal specific ``.platform.app.yaml`` file would look like this:
 
