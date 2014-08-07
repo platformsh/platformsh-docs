@@ -1,4 +1,4 @@
-.. _drupal_redis:
+.. _drupal_solr:
 
 Using Solr with Drupal 7.x
 ==========================
@@ -28,6 +28,5 @@ Give the server a name and description
 * Solr port: ``8080``
 * Solr path: ``/solr``
 
-Apache Solr Module
-------------------
-
+.. todo::
+   Apache Solr Module
