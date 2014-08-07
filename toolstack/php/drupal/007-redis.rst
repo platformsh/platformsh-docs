@@ -34,7 +34,7 @@ The advantage to using platform variables is that these won't be used on your lo
 
 ``drupal:cache_backends``
 
-.. code-block:: consol
+.. code-block:: console
 
    [
       "sites/all/modules/redis/redis.autoload.inc",
@@ -44,31 +44,31 @@ Remember to tick the JSON Value box
 
 ``drupal:lock_inc``
 
-.. code-block:: consol
+.. code-block:: console
 
    sites/all/modules/redis/redis.lock.inc
    
 ``drupal:path_inc``
 
-.. code-block:: consol
+.. code-block:: console
 
    sites/all/modules/redis/redis.path.inc
 
 ``drupal:redis_client_host``
 
-.. code-block:: consol
+.. code-block:: console
 
    redis.internal
    
 ``drupal:redis_client_interface``
 
-.. code-block:: consol
+.. code-block:: console
 
    Predis
    
 ``drupal:cache_default_class``
 
-.. code-block:: consol
+.. code-block:: console
 
    Redis_Cache
    
@@ -106,7 +106,7 @@ Platform Variables
 
 Add the cache backends for Authcache
 
-.. code-block:: consol
+.. code-block:: console
 
    [
       "sites/all/modules/redis/redis.autoload.inc",
