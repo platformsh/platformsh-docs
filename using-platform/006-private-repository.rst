@@ -1,25 +1,12 @@
-Mastering the Basics - Part 3
-=============================
+Use private Git repository
+==========================
 
-Now that you know how to push your code and test it on specific :term:`environment`, let's discover some other great features that Platform offers.
-
-Create Hierarchical environments
---------------------------------
-.. figure:: images/clone-hierarchy.png
-   :alt: Understand hierarchical environments.
-
-   Platform allows you to organize and structure your :term:`environments <environment>` as you want.
-
-When you :term:`Branch` an :term:`environment`, this creates a child of this :term:`environment`. Each child :term:`environment` can :term:`Sync` code and/or data from his parent and :term:`merge` code to his parent.
-
-.. seealso::
-  * :ref:`best_practices`
-
-Pull code from private Git repositories
+Pull code from a private Git repository
 ---------------------------------------
+
 Let's say you're building a module (*or theme, library...*) which is stored in a private Git repository that you have access to and want to use it on your project.
 
-Platform allows you to get code that is stored in a private Git repository, directly from your :term:`make file`.
+Platform allows you to get code that is stored in private Git repository (from your :term:`make file`, or ``composer file``).
 
 .. figure:: images/ssh-key.png
    :alt: Get the project public SSH key.
@@ -38,3 +25,12 @@ If you're using Drupal for example, you can now use your private module by addin
   projects[module_private][download][type] = git
   projects[module_private][download][branch] = dev
   projects[module_private][download][url] = "git@github.com:guguss/module_private.git"
+
+Using multiple private Git repositories
+---------------------------------------
+
+Github only allow you to use a deploy key to a single repository. More complex projects may have many repositories to pull to the same server.
+
+If your project needs to access multiple repositories, you can choose to attach an SSH key to an automated user account. Since this account won’t be used by a human, it’s called a machine user. You can then add the machine account as collaborator or add the machine user to a team with access to the repositories it needs to manipulate.
+
+More information about this on `Github <https://developer.github.com/guides/managing-deploy-keys/#machine-users>`_.

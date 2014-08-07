@@ -5,8 +5,20 @@ Best Practices in Platform
 
 Here are some things you might want to know about the best practices you should follow to fully utilize the power of Platform.
 
-Environment Naming
-------------------
+Create hierarchical environments
+--------------------------------
+
+.. figure:: images/clone-hierarchy.png
+   :alt: Understand hierarchical environments.
+
+   Platform allows you to organize and structure your :term:`environments <environment>` as you want.
+
+When you :term:`Branch` an :term:`environment`, this creates a child of this :term:`environment`. 
+
+Each child :term:`environment` can :term:`sync` code and/or data from his parent and :term:`merge` code to his parent.
+
+Name your environments
+----------------------
 
 To improve readability and productivity, it’s important to properly name your environment.
 
