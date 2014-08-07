@@ -21,7 +21,7 @@ Platform's :ref:`cli` requires **Drush 6 or greater**.
 Configure your app
 ------------------
 
-Make sure your ``.platform.application.yaml`` is specific to :term:`Drupal`.
+Make sure your ``.platform.app.yaml`` is specific to :term:`Drupal`.
 
 A Drupal specific ``.platform.app.yaml`` file would look like this:
 
