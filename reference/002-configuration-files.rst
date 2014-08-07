@@ -70,8 +70,8 @@ The ``hooks`` (also called: :term:`deployment hooks`) define the command you wan
 
 The possible values are:
 
-* deploy
-* build
+* **build**: triggered during the build of the application. No other services are accessible at that time since the application has not been deployed yet.
+* **deploy**: triggered at the end of the deployment process. You can access other services to interact on them (MySQL, SOLR...).
 
 After a push, you can see the results of the deployment hooks in the ``/var/log/deploy.log`` file when logging to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
 
