@@ -15,18 +15,6 @@ When you :term:`Branch` an :term:`environment`, this creates a child of this :te
 .. seealso::
   * :ref:`best_practices`
 
-User permissions
-----------------
-Permissions on hierarchical environments are inherited from the first parent. Additionally, in the project editing interface you can select specific roles on a per-environment basis.
-
-.. figure:: images/clone-hierarchy-permissions.png
-   :alt: Permissions in a hierarchy.
-
-   **NOTE:** Permissions in a hierarchy can be inherited.
-
-.. seealso::
-  * :ref:`getting_help`
-
 Pull code from private Git repositories
 ---------------------------------------
 Let's say you're building a module (*or theme, library...*) which is stored in a private Git repository that you have access to and want to use it on your project.
