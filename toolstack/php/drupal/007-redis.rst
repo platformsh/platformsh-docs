@@ -30,6 +30,8 @@ To make use of the Redis cache you will need to set some Drupal Variables. You c
 Platform Variables
 ^^^^^^^^^^^^^^^^^^
 
+The advantage to using platform variables is that these won't be used on your local build using Platform CLI where you might not have Redis installed.
+
 ``drupal:cache_backends``
 
 .. code-block:: consol
@@ -73,6 +75,15 @@ Remember to tick the JSON Value box
 Settings.php
 ^^^^^^^^^^^^
 
+.. code-block:: php
+
+   $conf['redis_client_interface'] = 'Predis';
+   $conf['redis_client_host']      = 'redis.internal';
+   $conf['lock_inc']               = 'sites/all/modules/redis/redis.lock.inc';
+   $conf['path_inc']               = 'sites/all/modules/redis/redis.path.inc';
+   $conf['cache_backends'][]       = 'sites/all/modules/redis/redis.autoload.inc';
+   $conf['cache_default_class']    = 'Redis_Cache';
+
 Adding Entity Cache and Auth Cache
 ==================================
 
@@ -103,5 +114,12 @@ Add the cache backends for Authcache
       "sites/all/modules/authcache/modules/authcache_builtin/authcache_builtin.cache.inc"
    ]
 
+Settings.php
+^^^^^^^^^^^^
 
+.. code-block:: php
+
+   $conf['cache_backends'][] = 'sites/all/modules/authcache/authcache.cache.inc';
+   $conf['cache_backends'][] = 'sites/all/modules/authcache/modules/authcache_builtin/authcache_builtin.cache.inc';
+   
 
