@@ -22,6 +22,9 @@ If you're project is using Drupal Commerce, you can also add the `Commerce Entit
    projects[commerce_entitycache][version] = 1.1
    projects[commerce_authcache][version] = 1.x-dev
 
+.. seealso::
+  * :ref:`drush_make`
+
 Configuration
 -------------
 
