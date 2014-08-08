@@ -3,10 +3,12 @@
 Using Redis with Drupal 7.x
 ===========================
 
-Module and Library
-------------------
+Requirements
+------------
 
-You will need to add the module and the library to your make file to make use of Redis
+You will need to add the `Redis <https://www.drupal.org/project/redis>`_ module and `Predis <http://github.com/nrk/predis>`_ library to your project.
+
+If you are using a make file, you can add those lines to your ``project.make``:
 
 .. code-block:: ini
 
@@ -18,19 +20,23 @@ You will need to add the module and the library to your make file to make use of
    libraries[predis][download][url] = http://github.com/nrk/predis/archive/v0.8.5.tar.gz
    libraries[predis][directory_name] = predis
    libraries[predis][destination] = libraries
-   
-Variables
----------
-
-To make use of the Redis cache you will need to set some Drupal Variables. You can either do this in your settings.php file or using the Platform Variables.
 
 .. seealso::
-   * `Module README.txt <http://cgit.drupalcode.org/redis/tree/README.txt>`_
+  * :ref:`drush_make`
    
-Platform Variables
-^^^^^^^^^^^^^^^^^^
+Configuration
+-------------
 
-The advantage to using platform variables is that these won't be used on your local build using Platform CLI where you might not have Redis installed.
+To make use of the Redis cache you will need to set some Drupal Variables. You can either do this in your ``settings.php`` file or using the Platform Variables directly via the UI.
+
+.. seealso::
+   * `Redis README.txt <http://cgit.drupalcode.org/redis/tree/README.txt>`_
+   * :ref:`environment_variables`
+   
+Variables
+^^^^^^^^^
+
+The advantage to using :term:`environment variables` is that these won't be used on your local build using Platform CLI where you might not have Redis installed.
 
 ``drupal:cache_backends``
 
