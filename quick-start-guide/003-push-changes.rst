@@ -45,6 +45,3 @@ Once you've got a Git branch with some changes, you'll want to be able to push t
   :alt: Merge your changes.
 
   Just click on the ``Merge`` button and all of the commits you made on your branch will be merged into the master environment.
-
-.. seealso::
-    `Branch an environment <platform/platform-quick-start-guide/001-mastering-the-basics.html#branch-an-environment>`_
