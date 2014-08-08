@@ -1,5 +1,5 @@
-Mastering the Basics - Part 2
-=============================
+Push your changes
+=================
 
 Push changes to an environment
 ------------------------------
