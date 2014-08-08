@@ -93,11 +93,7 @@ Drush .make Files
 
 Platform can automatically build your site using make files. This allows you to easily test specific versions, apply patches and keep your site up to date. It also keeps your working directory much cleaner, since it only contains your custom code.
 
-Simply name your make file:
-
-.. code-block:: console
-
-    project.make
+Simply name your make file: ``project.make``.
 
 And place all the contributed projects (modules, libraries, themes, etc...) you need on your site. 
 
