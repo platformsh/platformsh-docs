@@ -38,6 +38,8 @@ Variables
 
 The advantage to using :term:`environment variables` is that these won't be used on your local build using Platform CLI where you might not have Redis installed.
 
+Add the following :term:`environment variables` on Platform UI.
+
 ``drupal:cache_backends``
 
 .. code-block:: console
@@ -46,7 +48,8 @@ The advantage to using :term:`environment variables` is that these won't be used
       "sites/all/modules/redis/redis.autoload.inc",
    ]
    
-Remember to tick the JSON Value box
+.. note::
+   Remember to tick the JSON Value box.
 
 ``drupal:lock_inc``
 
@@ -81,6 +84,8 @@ Remember to tick the JSON Value box
 Settings.php
 ^^^^^^^^^^^^
 
+If you prefer commit those variables to your ``settings.php``, here are the lines to add:
+
 .. code-block:: php
 
    $conf['redis_client_interface'] = 'Predis';
@@ -89,43 +94,3 @@ Settings.php
    $conf['path_inc']               = 'sites/all/modules/redis/redis.path.inc';
    $conf['cache_backends'][]       = 'sites/all/modules/redis/redis.autoload.inc';
    $conf['cache_default_class']    = 'Redis_Cache';
-
-Adding Entity Cache and Auth Cache
-==================================
-
-Adding both these modules can further improve your perfomance
-
-Modules
--------
-
-.. code-block:: ini
-
-   projects[entitycache][version] = 1.2
-   projects[commerce_entitycache][version] = 1.1
-   projects[authcache][version] = 2.0-beta3
-   projects[commerce_authcache][version] = 1.x-dev
-
-Platform Variables
-^^^^^^^^^^^^^^^^^^
-
-``drupal:cache_backends``
-
-Add the cache backends for Authcache
-
-.. code-block:: console
-
-   [
-      "sites/all/modules/redis/redis.autoload.inc",
-      "sites/all/modules/authcache/authcache.cache.inc",
-      "sites/all/modules/authcache/modules/authcache_builtin/authcache_builtin.cache.inc"
-   ]
-
-Settings.php
-^^^^^^^^^^^^
-
-.. code-block:: php
-
-   $conf['cache_backends'][] = 'sites/all/modules/authcache/authcache.cache.inc';
-   $conf['cache_backends'][] = 'sites/all/modules/authcache/modules/authcache_builtin/authcache_builtin.cache.inc';
-   
-
