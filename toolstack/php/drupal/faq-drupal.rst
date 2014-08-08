@@ -52,3 +52,34 @@ When I push a make file with a new module version, does Platform runs the update
 After a push, Platform will rebuild your environment and download all the modules that are in your make file.
 
 If an update function (hook_update) needs to run, you'll have to manually trigger it by going to ``/update.php`` or use the :ref:`deployment hooks <deployment_hooks>` to automatically run the updates.
+
+How can I override the default robots.txt?
+------------------------------------------
+
+If your project is using a make file, you will end up with the default ``robots.txt`` provided by Drupal.
+
+On your Development environments, Platform.sh automatically overrides your ``robots.txt`` file with:
+
+.. code-block:: console
+
+    User-agent: *
+    Disallow: /
+
+On the Master environment, you can still override it using a :ref:`deployment hook <deployment_hooks>`.
+
+Simply commit your custom ``robots.txt`` at the root of your repository, and add this line to your ``.platform.app.yaml``:
+
+.. code-block:: console
+
+    hooks:
+        build: "cp public/sites/default/robots.txt public/robots.txt"
+
+After you push, you should see this line on your logs:
+
+.. code-block:: console
+
+    Executing post-build hook: cp public/sites/default/robots.txt public/robots.txt
+
+.. seealso::
+   * :ref:`deployment hooks <deployment_hooks>`
+   

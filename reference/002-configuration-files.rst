@@ -15,8 +15,7 @@ Your :term:`application` topology is defined into a file called ``.platform.app.
 
 A sample ``.platform.app.yaml`` file would look like this:
 
-.. code-block::
-    console
+.. code-block:: console
 
     toolstack: "php:drupal"
 
@@ -96,8 +95,7 @@ Platform allows you to completely define and configure the topology and services
 
 A sample ``services.yaml`` file would look like this:
 
-.. code-block::
-    console
+.. code-block:: console
 
     php:
       type: php
