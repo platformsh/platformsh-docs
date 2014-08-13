@@ -122,11 +122,14 @@ A sample ``services.yaml`` file would look like this:
       size: M
       disk: 1024
 
+.. todo::
+    Need to document the possible values.
+
 Routes
 ------
 
 .. note::
-  The ``services.yaml`` file should be included into a ``.platform`` folder at the root of you Git repository.
+  The ``routes.yaml`` file should be included into a ``.platform`` folder at the root of you Git repository.
 
 Platform allows you to define the routes that will serve your project at the :term:`environment` level.
 
@@ -147,3 +150,6 @@ A sample ``routes.yaml`` file would look like this:
         enabled: true
       type: upstream
       upstream: php:php
+
+.. todo::
+    Need to document the possible values.
