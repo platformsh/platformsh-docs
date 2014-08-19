@@ -177,7 +177,7 @@ Then test your settings to make sure they work.
 Create a local running version of your Drupal site
 --------------------------------------------------
 
-Now that you have a local platform build script, let's get a copy of your site up and running. We're going to use our drush aliases to make this a litter easier.
+Now that you have a local platform build script, let's get a copy of your site up and running. We're going to use our drush aliases to make this a little easier.
 
 Step 1: Setup your local environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
