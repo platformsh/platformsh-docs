@@ -87,7 +87,7 @@ Once you've checked with your registrar about where to change your DNS settings,
 For example: master-k4ywtmwigmmgc.eu.platform.sh
 
 .. note::
-  This will **not** work for a naked domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (aka an ALIAS record) and use the IP addresses of your Platform Master environment.
+  This will **not** work for a naked domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (aka an ALIAS record).
 
 .. _ssl:
 
