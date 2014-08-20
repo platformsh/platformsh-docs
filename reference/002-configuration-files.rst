@@ -125,6 +125,9 @@ A sample ``services.yaml`` file would look like this:
 .. todo::
     Need to document the possible values.
 
+.. warning::
+  It is **not** possible to decrease the disk space of a service once it has been deployed.
+
 Routes
 ------
 
