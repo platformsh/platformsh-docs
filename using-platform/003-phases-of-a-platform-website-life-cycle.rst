@@ -56,12 +56,16 @@ If you need to resize your live environement, add additional users, or increase 
 
 To do this, click on the top-most *Configure* icon next to the project name in the navigation bar. Select the **Subscription** tab and adjust the size, number of environments, and storage options.
 
-Launch
-------
+.. _launch:
+
+Going live
+----------
 
 When you are ready to launch your website, there are couple of steps that you must do to point your own domain to your Platform site.
 
-  Add the domain to your Project.
+.. rubric:: Add the domain to your Project
+
+First, you need to make sure that your domain has been added to Platform.
 
   .. image:: /quick-start-guide/images/icon-configure.png
     :alt: Configure icon
@@ -71,22 +75,54 @@ When you are ready to launch your website, there are couple of steps that you mu
   | Add your domain and save it (check wildcard if you would like all subdomains to default here).
 
 .. note::
-  If you're running on a Development environment, you need to upgrade it to a live included plan (Standard or more).
+  If you're running on a Development plan, you will need to upgrade it to a live included plan (Standard or more).
 
-----
+.. _dns:
 
-  Configure DNS provider to point your domain name to Platform.
+.. rubric:: Configure DNS
 
-  | You will need to check with your registrar about where exactly to change your DNS settings.
-  | On your domain, add a CNAME record to the environment hostname: ``<environment>-<project>.<cluster>.platform.sh``
-  | For example: master-k4ywtmwigmmgc.eu.platform.sh
+Configure DNS provider to point your domain to your Platform Master environment.
+
+Once you've checked with your registrar about where to change your DNS settings, simply add a CNAME record to the environment hostname: ``<environment>-<project>.<cluster>.platform.sh``
+For example: master-k4ywtmwigmmgc.eu.platform.sh
 
 .. note::
-  This will not work for a naked domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (aka an ALIAS record).
+  This will **not** work for a naked domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (aka an ALIAS record) and use the IP addresses of your Platform Master environment.
 
-----
+.. _ssl:
 
-  Upload your SSL certificate.
+.. rubric:: Add your SSL certificate.
+
+If you want to serve your website with HTTPS, you'll need to upload your SSL certificate and tell Platform to use it.
 
   .. warning::
-    It's currently not supported in the Platform UI so you need to send us a support request.
+    It is currently not supported in the Platform UI so you need to send us a support request.
+
+Once your certificate has been uploaded, you need to update the routes of your project within the Platform UI.
+
+.. figure:: /using-platform/images/routes-setup.png
+  :alt: Routes Setup with SSL
+
+  This is an example configuration which will serve ``https://`` with PHP and redirect all request starting with ``http://www` and ``http://`` to ``https://``.
+
+You can also update the routes directly by editing the ``routes.yaml`` :ref:`configuration_files`. 
+
+The output of the configuration above would be:
+
+.. code-block:: console
+
+  http://www.{default}/:
+    to: https://{default}/
+    type: redirect
+  http://{default}/:
+    to: https://{default}/
+    type: redirect
+  https://{default}/:
+    cache:
+      enabled: true
+    rewrite:
+      type: drupal
+    ssi:
+      enabled: true
+    type: upstream
+    upstream: php:php
