@@ -105,7 +105,9 @@ h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .head
   .navbar-brand {
     color: #FFF;
     font-weight: 300;
-    font-size: 24px;
+    font-size: 22px;
+    padding-top: 5px;
+    padding-left: 180px;
   }
 
   .navbar-nav {
@@ -113,12 +115,13 @@ h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .head
   }
 
   .navbar-nav>li>a {
-    color: #00a6e4;
+    color: #fff;
     font-weight: 700;
     text-shadow: none;
     &:hover {
       background: #333;
       text-shadow: none;
+      color: #00a6e4;
     }
   }
 
@@ -126,6 +129,10 @@ h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .head
     border-radius: 0;
   }
   .navbar-nav>.dropdown>a .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+  }
+  .navbar-nav>.dropdown> a:hover .caret {
     border-top-color: #00a6e4;
     border-bottom-color: #00a6e4;
   }
@@ -234,7 +241,9 @@ table.field-list {
 }
 
 .copyright {
-  padding-top: 10px;
+  background: transparent url("images/cg-logo.png") no-repeat 0 0;
+  margin-top: 15px;
+  padding-top: 46px;
 }
 
 /* The code below is based on the bootstrap website sidebar */

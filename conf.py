@@ -28,7 +28,7 @@ source_encoding = 'utf-8-sig'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Platform.sh'
+project = u'Documentation'
 copyright = u'2014, Commerce Guys'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -99,14 +99,14 @@ html_theme_options = {
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-#html_title = None
+html_title = 'Platform.sh Documentation'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = u'Platform'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = 'images/logo2.png'
+html_logo = 'images/platform-logo.png'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32

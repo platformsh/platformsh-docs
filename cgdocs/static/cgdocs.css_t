@@ -130,24 +130,31 @@ h6:hover .headerlink {
 .navbar-inverse .navbar-brand {
   color: #FFF;
   font-weight: 300;
-  font-size: 24px;
+  font-size: 22px;
+  padding-top: 5px;
+  padding-left: 180px;
 }
 .navbar-inverse .navbar-nav {
   float: right;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #00a6e4;
+  color: #fff;
   font-weight: 700;
   text-shadow: none;
 }
 .navbar-inverse .navbar-nav > li > a:hover {
   background: #333;
+  color: #00a6e4;
   text-shadow: none;
 }
 .navbar-inverse .navbar-nav > li > .dropdown-menu {
   border-radius: 0;
 }
 .navbar-inverse .navbar-nav > .dropdown > a .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+.navbar-inverse .navbar-nav > .dropdown > a:hover .caret {
   border-top-color: #00a6e4;
   border-bottom-color: #00a6e4;
 }
@@ -244,7 +251,9 @@ table.field-list {
   color: #00aeef;
 }
 .copyright {
-  padding-top: 10px;
+  background: transparent url("images/cg-logo.png") no-repeat 0 0;
+  margin-top: 15px;
+  padding-top: 46px;
 }
 /* The code below is based on the bootstrap website sidebar */
 .bs-sidenav.affix {
