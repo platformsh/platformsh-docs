@@ -20,7 +20,7 @@ Each child :term:`environment` can :term:`sync` code and/or data from his parent
 Environment conventions
 -----------------------
 
-Platform provides a huge flexibility on the way you can organize and work with your development environments. To improve readability and productivity, it’s important to think carefully about how to name and structure those environments.
+Platform provides great flexibility on the way you can organize and work with your development environments. To improve readability and productivity, it’s important to think carefully about how to name and structure those environments.
 
 Naming
 ^^^^^^
