@@ -173,3 +173,86 @@ Then test your settings to make sure they work.
    Database                        :  Connected
    Drupal bootstrap                :  Successful
    etc...
+   
+Create a local running version of your Drupal site
+--------------------------------------------------
+
+Now that you have a local platform build script, let's get a copy of your site up and running. We're going to use our drush aliases to make this a little easier.
+
+Step 1: Setup your local environment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+First, you'll need an empty database and a development environment that runs PHP and MySQL. After you have a copy of your platform built (see above) and once you have noted your new database name and credentials, you will be able to create a new site alias for your platform.
+
+.. code-block:: console
+
+   $ sudo vi ~/.drush/platform.aliases.drushrc.php
+
+The command above would need to have the word "platform" to be replaced by your platform name. You'll need to take a quick look at your local environment settings and modify any of the settings that will help drush understand your local setup.
+   
+.. code-block:: php
+
+   <?php
+   // Platform local environment
+   $aliases['local'] = array(
+     'site' => 'platform',
+     'env' => 'local',
+     'uri' => 'platform',
+     'root' => '~/Sites/platform/www', // This will need to point to the most recent build, which is aliased to the www folder
+   );
+
+Step 2: Connect your local database
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In step one, we had you create a local database. Now we need to add that to your local build. There is a folder that the Platform CLI will use for local builds that require database credentials: ``shared/settings.local.php``
+
+.. code-block:: php
+
+   <?php
+   // Database configuration.
+   $databases['default']['default'] = array(
+     'driver' => 'mysql',
+     'host' => 'localhost',
+     'username' => '',
+     'password' => '',
+     'database' => '',
+     'prefix' => '',
+   );
+
+Step 3: Sync your Database and Files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We are going to use the drush command ``sql-sync`` which accepts drush aliases @from and @to. 
+
+.. code-block:: console
+
+   $ drush sql-sync @platform.master @platform.local
+   You will destroy data in db and replace with data from ssh.eu.platform.sh/main.
+   You might want to make a backup first, using the sql-dump command.
+   Do you really want to continue? (y/n): y
+   
+.. note::
+   
+   If you get an error like this one: ``Error: no database record could be found for target @platform.local``, then you can add the ``db-url`` to your local alias by opening up the drush alias file (see step 1) and adding this line: ``'db-url' => 'mysql://un:pw@localhost:8889/dbname',`` to the ``$aliases['local']`` array.
+   
+Finally, we need to bring in an up-to-date copy of the files to your local site (``drush rsync @from @to``):
+
+.. code-block:: console
+
+   $ drush rsync @platform.master:%files @platform.local:%files
+   
+.. note::
+ 
+   If you get an error like ``Could not evaluate source path @platform.master%file`` you'll want to make sure you have a colon between the drush-alias and the file folder declaration. Or if you get an error like ``rsync: mkdir "~/Sites/platform/www/sites/default/files" failed: No such file or directory (2)`` then you'll want to make sure your ``'root' =>`` in your drush alias is pointing to a non-relative directory.
+   
+Step 4: Access your newly local running site!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Congratulations! You now have a local version of your platform all setup. To synchronize from your chosen branch to your local, run these four commands from your ``platform/repository`` folder:
+
+.. code-block:: console
+
+   $ git pull
+   $ platform build
+   $ drush sql-sync @platform.master @platform.local
+   $ drush rsync @platform.master:%files @platform.local:%files
