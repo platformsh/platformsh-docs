@@ -88,8 +88,11 @@ In any other case, Platform builds your project as-is. In that case, you are exp
 
 .. _drush_make:
 
-Drush .make Files
+Drush .make files
 -----------------
+
+Using make file
+^^^^^^^^^^^^^^^
 
 Platform can automatically build your site using make files. This allows you to easily test specific versions, apply patches and keep your site up to date. It also keeps your working directory much cleaner, since it only contains your custom code.
 
@@ -114,9 +117,17 @@ Here is a sample make file which includes Drupal core with a patch applied to it
 .. note::
    You can also have a specific make file for Drupal core: ``project-core.make``. This is useful if you're building your site as an installation profile.
 
+Generating make file
+^^^^^^^^^^^^^^^^^^^^
+
+If you want to generate a make file for your existing site, you can use the ``drush make-generate`` command.
+
+Drush aliases
+-------------
+
 .. _create-drush-aliases:
 
-Create Drush Aliases
+Create Drush aliases
 ^^^^^^^^^^^^^^^^^^^^
 
 .. note:: Platform CLI generates Drush aliases for you automatically, when you  \`platform get [platform_id]\` your project.
