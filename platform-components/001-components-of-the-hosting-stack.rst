@@ -24,7 +24,7 @@ PHP Service
 
 Supports PHP 5.3 and 5.4, the APC and ZO+ opcode caches, and all major PHP extensions, rewriting, and mapping.
 
-Database Service (MariaDb)
+Database Service (MariaDB)
 --------------------------
 
 Transactional data storage. Based on MariaDB, supporting the XtraDB storage engine (equivalent to MySQL with InnoDB).
