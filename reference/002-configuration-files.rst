@@ -41,7 +41,6 @@ A sample ``.platform.app.yaml`` file would look like this:
 The ``Toolstack`` defines what and how Platform will deploy your application.
 
 The possible values are:
-
 * php:drupal
 * php:symfony
 
@@ -125,7 +124,7 @@ A sample ``services.yaml`` file would look like this:
 .. todo::
     Need to document the possible values.
 
-  .. warning::
+.. warning::
   It is **not** possible to decrease the disk space of a service once it has been deployed.
 
 Routes
