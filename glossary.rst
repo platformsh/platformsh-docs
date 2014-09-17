@@ -24,6 +24,10 @@ Glossary
   Container
     .. todo:: Platform team to write description.
 
+  CLI
+  Command Line Interface
+    The official tool to use and manage your Platform projects directly from within your terminal. Anything you can do in the Platform UI, you can do in your terminal with Platform CLI.
+
   Deployment hooks
     Allows you to run various actions during the deployment of your environment.
 
