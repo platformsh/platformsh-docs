@@ -48,7 +48,11 @@ The possible values are:
 
 The ``Web`` defines where your :term:`application` is being deployed. This allow you to have multiple application inside your :term:`project`.
 
-The ``passthru`` is relative to the ``document_root`` variable.
+Here are the variables you can define:
+
+* ``document_root``: The path of your application root.
+* ``passthru``:  Should be relative to your ``document_root``.
+* ``whitelist``: Add the extensions you want to load directly. Write it as an array: [ "html", "js" ].
 
 .. rubric:: Mounts
 
