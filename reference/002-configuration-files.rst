@@ -71,12 +71,12 @@ The ``Crons`` define when to run crons.
 
 .. rubric:: Hooks
 
-The ``hooks`` (also called: :term:`deployment hooks`) define the command you want to run during a deployment process.
+The ``hooks`` (also called: :term:`deployment hooks`) let you define shell commands to run during the deployment process.
 
 The possible values are:
 
-* **build**: triggered during the build of the application. No other services are accessible at that time since the application has not been deployed yet.
-* **deploy**: triggered at the end of the deployment process. You can access other services to interact on them (MySQL, SOLR...).
+* **build**: triggered during the build of the application. No other services are accessible at this time since the application has not been deployed yet.
+* **deploy**: triggered at the end of the deployment process. You can access other services at this stage (MySQL, Solr, Redis...).
 
 After a push, you can see the results of the deployment hooks in the ``/var/log/deploy.log`` file when logging to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
 
