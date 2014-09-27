@@ -16,7 +16,7 @@ To :term:`branch` an environment, click the `Branch` icon on the top right of th
 Get the Platform CLI
 --------------------
 
-The best way to interact with Platform.sh is with the [Platform Command Line Interface (CLI)](https://github.com/platformsh/platformsh-cli) tool. After following the installation instructions on the Github page, you can set up your local development environment with just a couple commands:
+The best way to interact with Platform.sh is with the [Platform Command Line Interface](https://github.com/platformsh/platformsh-cli "Link to Github page of Platform CLI") tool. After following the installation instructions on the Github page, you can set up your local development environment with just a couple commands:
 
 .. code-block:: console
 
