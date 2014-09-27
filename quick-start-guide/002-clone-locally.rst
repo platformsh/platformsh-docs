@@ -1,8 +1,21 @@
 Clone the codebase locally
 ==========================
 
+Get the Platform CLI
+--------------------
+
+The best way to interact with Platform.sh is with the [Platform Command Line Interface](https://github.com/platformsh/platformsh-cli "Link to Github page of Platform CLI") tool. After following the installation instructions on the Github page, you can set up your local development environment with just a couple commands:
+
+.. code-block:: console
+
+   $ platform // this will authenticate you and list your projects
+   $ platform get *[project id]* // this will check out the code and build the project locally
+
+
 Branch an Environment
 ---------------------
+
+Branching can be done using the Platform.sh UI as well as with the Platform CLI. 
 
 When you :term:`branch` an :term:`environment`, you create a new :term:`environment` which is an exact copy of its parent (*including files, database and services*).
 
@@ -13,16 +26,6 @@ To :term:`branch` an environment, click the `Branch` icon on the top right of th
 .. seealso::
   * :ref:`best_practices`
   
-Get the Platform CLI
---------------------
-
-The best way to interact with Platform.sh is with the [Platform Command Line Interface](https://github.com/platformsh/platformsh-cli "Link to Github page of Platform CLI") tool. After following the installation instructions on the Github page, you can set up your local development environment with just a couple commands:
-
-.. code-block:: console
-
-   $ platform // this will authenticate you and list your projects
-   $ platform get [project hash]
-
 
 Clone the codebase with Git
 ---------------------------
