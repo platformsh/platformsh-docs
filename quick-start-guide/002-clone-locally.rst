@@ -12,9 +12,22 @@ To :term:`branch` an environment, click the `Branch` icon on the top right of th
 
 .. seealso::
   * :ref:`best_practices`
+  
+Get the Platform CLI
+--------------------
+
+The best way to interact with Platform.sh is with the [Platform Command Line Interface (CLI)](https://github.com/platformsh/platformsh-cli) tool. After following the installation instructions on the Github page, you can set up your local development environment with just a couple commands:
+
+.. code-block:: console
+
+   $ platform // this will authenticate you and list your projects
+   $ platform get [project hash]
+
 
 Clone the codebase with Git
 ---------------------------
+
+Only clone the codebase with Git directly if you do not use the Platform CLI. Otherwise, the Platform CLI is the tool you're looking for!
 
 You might not need to *run* a copy of your :term:`environment` locally, but you will most likely want to be able to add code to your project. To do that, you need to clone a copy of the codebase for your :term:`environment` down to your local system using Git. If you *do* want to run a copy of your environment locally, you will probably want to do so with a copy of the database from this :term:`environment`.
 
