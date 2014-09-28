@@ -53,7 +53,7 @@ If you prefer splitting your environments per developer and having a specific en
       ...
 
 Changing name
-^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 You can rename an :term:`environment` by clicking its name on the Platform UI. 
 

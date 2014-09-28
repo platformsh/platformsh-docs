@@ -84,7 +84,7 @@ When you're ready, import your database to your remote Platform environment.
 
 .. code-block:: console
 
-   $ drush sql-cli @platform.local @platform.master
+   $ drush sql-sync @platform.local @platform.master
 
 When the process completes, you can visit the URL of your development environment and test that the database has been properly imported.
 

@@ -2,6 +2,7 @@
 
 import sys, os
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '_ext'))
 
 # -- General configuration -----------------------------------------------------
 
@@ -10,7 +11,7 @@ import sys, os
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.viewcode', 'sphinx.ext.todo']
+extensions = ['sphinx.ext.viewcode', 'sphinx.ext.todo', 'github']
 
 # Set this to False if you don't want to display the todo.
 todo_include_todos = False
@@ -30,6 +31,9 @@ master_doc = 'index'
 # General information about the project.
 project = u'Documentation'
 copyright = u'2014, Commerce Guys'
+
+github_project = 'platformsh/platformsh-docs'
+github_branch = 'dev'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -128,7 +132,7 @@ html_static_path = ['_static']
 
 # Custom sidebar templates, maps document names to template names.
 html_sidebars = {
-  '**': ['searchbox.html', 'localtoc.html', 'support.html'],
+  '**': ['searchbox.html', 'localtoc.html', 'support.html', 'sourcelink.html'],
 }
 
 # Additional templates that should be rendered to pages, maps page names to
@@ -145,7 +149,7 @@ html_sidebars = {
 #html_split_index = False
 
 # If true, links to the reST sources are added to the pages.
-html_show_sourcelink = False
+html_show_sourcelink = True
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
 html_show_sphinx = False

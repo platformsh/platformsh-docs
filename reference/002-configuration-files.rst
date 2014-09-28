@@ -41,7 +41,6 @@ A sample ``.platform.app.yaml`` file would look like this:
 The ``Toolstack`` defines what and how Platform will deploy your application.
 
 The possible values are:
-
 * php:drupal
 * php:symfony
 
@@ -49,7 +48,14 @@ The possible values are:
 
 The ``Web`` defines where your :term:`application` is being deployed. This allow you to have multiple application inside your :term:`project`.
 
-The ``passthru`` is relative to the ``document_root`` variable.
+Here are the variables you can define:
+
+* ``document_root``: The path of your application root.
+* ``passthru``:  Should be relative to your ``document_root``.
+* ``whitelist``: Extend the whitelisted extensions. It should be formatted as an array: [ "html" ].
+
+.. note::
+  To extend the whitelisted extensions, you should override the default listing and only keep the extensions you need: [ "css", "js", "gif", "jpeg", "jpg", "png", "tiff", "wbmp", "ico", "jng", "bmp", "svgz", "midi", "mpega", "mp2", "mp3", "m4a", "ra", "weba", "3gpp", "mp4", "mpeg", "mpe", "ogv", "mov", "webm", "flv", "mng", "asx", "asf", "wmv", "avi", "ogx", "swf", "jar", "ttf", "eot", "woff", "otf", "txt" ].
 
 .. rubric:: Mounts
 
@@ -65,12 +71,12 @@ The ``Crons`` define when to run crons.
 
 .. rubric:: Hooks
 
-The ``hooks`` (also called: :term:`deployment hooks`) define the command you want to run during a deployment process.
+The ``hooks`` (also called: :term:`deployment hooks`) let you define shell commands to run during the deployment process.
 
 The possible values are:
 
-* **build**: triggered during the build of the application. No other services are accessible at that time since the application has not been deployed yet.
-* **deploy**: triggered at the end of the deployment process. You can access other services to interact on them (MySQL, SOLR...).
+* **build**: triggered during the build of the application. No other services are accessible at this time since the application has not been deployed yet.
+* **deploy**: triggered at the end of the deployment process. You can access other services at this stage (MySQL, Solr, Redis...).
 
 After a push, you can see the results of the deployment hooks in the ``/var/log/deploy.log`` file when logging to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
 
@@ -125,7 +131,7 @@ A sample ``services.yaml`` file would look like this:
 .. todo::
     Need to document the possible values.
 
-  .. warning::
+.. warning::
   It is **not** possible to decrease the disk space of a service once it has been deployed.
 
 Routes

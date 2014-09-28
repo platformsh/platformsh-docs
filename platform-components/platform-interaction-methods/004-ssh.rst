@@ -3,17 +3,45 @@
 SSH
 ###
 
-Platform uses SSH for authentication. You will need to have a public / private keypair in order to interact with your project(s) codebase and to be able to SSH into your :term:`environments <environment>` web servers.
+
+One of the ways `Platform <https://platform.sh/>`_ keeps things secure is by using :ref:`SSH` behind the scenes. Users connect to their Platform :ref:`git` repo and to their Platform :term:`CLI` using SSH. 
+
+a public-private keypair
+**************************
+
+SSH requires two keys to get started - a private key kept secret by the user, and a public key stored with the `Platform <https://platform.sh/>`_ account. These keys are called "the public-private keypair" and usually look like random lines of characters, like this. 
+
+a private key ::
+
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEowIBAAKCAQEAtpw0S4DwDVj2q04mhiIMkhvrYU7Z6hRiNbTFsqg3X7x/uYS/
+    dcNrSvT82j/jSeYQP3Dsod9GERW+dmOuLaFNeiqOStZi6jRSWo41hCOWOFbpBum3
+    ra1n6nUO1wa/7O5wbgzhUOfnim77oOK0UgkqPArBCNXiNFTUJAvRyVmCtvJOyrqz
+    ...(20 more lines of this garbage)...
+    cPjJ/wKBgGd3eZIBK6Ak92u65HYXgY9EcX3vBNP4NsF087uxV4YfrM18KlGf5I87
+    QGerp3VKaGe0St3ot57GlwCAQUJAf1mit8qDTi0I8MhBe7q2lstXkBvde7GY1gKx
+    Kng4ohG6xHZ/OvC9tq7/THwAvleaxgLZN5GyXfAqNylDdZ0LtSjl
+    -----END RSA PRIVATE KEY-----
+
+a public key (yes, it's one very long line) ::
+
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2nDRLgPANWParTiaGIgySG+thTtnqFGI1tMWyqDdfvH+5hL91w2tK9PzaP+NJ5hA/cOyh30YRFb52Y64toU16Ko5K1mLqNFJajjWEI5Y4VukG6betrWfqdQ7XBr/s7nBuDOFQ5+eKbvug4rRSCSo8CsEI1eI0VNQkC9HJWYK28k7KurMdTN7X/Z/4vknM4/Rm2bnMk2idoORQgomeZS1p3GkG8dQs/c0j/b4H7azxnqdcCaR4ahbytX3d49BN0WwE84C+ItsnkCt1g5tVADPrab+Ywsm/FTnGY3cJKKdOAHt7Ls5lfpyyug2hNAFeiZF0MoCekjDZ2GH2xdFc7AX/ your_email_address@example.com
+
+As a Platform user, you need a public-private keypair like these to work with your :term:`environments <environment>`. 
 
 .. todo::
    Add screenshots and text for all of the below...
 
 .. _ssh_genkeypair:
 
-Generate your Public / Private Keypair
+Find your Public-Private Keypair
 **************************************
 
-1. You might already have existing SSH keys on your computer. Open up a command prompt and run the following commands. ::
+These files often already exist on Linux computers. The private key is usually in a file named ``id_rsa`` and the public key in ``id_rsa.pub``, 
+
+Search for a public key file. 
+1. Open up a command prompt.
+2. run the following commands. ::
 
     $ cd ~/.ssh
     $ ls -a
@@ -22,9 +50,17 @@ Generate your Public / Private Keypair
     known_hosts
     authorized_keys
 
-   If you have a file named either ``id_rsa.pub`` or ``id_dsa.pub``, you already have SSH key on your computer and you don't need to perform the actions outlined in step 2.
+If you find a file named either ``id_rsa.pub`` or ``id_dsa.pub``, 
+you can use it with Platform. 
 
-2. If you arrived at this step and don't have SSH keys, this step will walk you through creating them. The following command will initiate that process. ::
+Create a New Public-Private Keypair
+**************************************
+
+If you found your keypair, you can skip this step. 
+
+If you don't have SSH keys, this step walks you through creating them. 
+
+3. Create a public-private keypair. ::
 
      $ ssh-keygen -t rsa -C "your_email_address@example.com"
 
@@ -62,22 +98,113 @@ You have your SSH keys (if not, take a look at the section above), but you need 
 
 4. Paste the key that you copied earlier into the 'Key' text box and you can add a title, if you like (it will be auto-generated, if you don't add one).
 
-5. Click 'Save'. That's it! You're all set. Now you'll be able to use :ref:`Git <git>` on Platform, as well as, be able to SSH into one of your :term:`environments <environment>` web servers, if you need too.
+5. Click 'Save'. 
+
+That's it! You're all set. Now you'll be able to use :ref:`Git <git>` on Platform, and able to SSH into one of your :term:`environments <environment>` web servers.
 
 .. image:: /platform-components/platform-interaction-methods/images/ssh-addkeytomarketplace.png
    :alt: Add SSH key to Marketplace
 
 .. _ssh_towebservers:
 
-SSH into Web Servers
-********************
+SSH to your Web Server
+**********************
 
-Just under the Environment indicator, in the Platform UI, there is a link to the access information for that :term:`environment`. Click on this link to view access information about this :term:`environment`.
+Just under the Environment indicator, in the Platform UI, there is a link to the access information for that :term:`environment`. 
 
-You can copy the SSH command (shown in the figure below) and paste it into your terminal to SSH into the web server for this :term:`environment`.
+1. Open your platform web UI. 
+2. Click on this link to view access information about this :term:`environment`.
+3. Copy the SSH command 
 
 .. figure:: /platform-components/platform-interaction-methods/images/ssh-access-information.png
    :alt: SSH access information
 
    The SSH user name is the concatenation of the your platforms unique id and the environment id. The ssh hostname is 'ssh.' prepended onto the server clusters hostname your platform is hosted on. I.E.: [project-id]-[environment-id]@ssh.[server-cluster-hostname].
 
+4. Open a terminal. 
+5. paste the link into your terminal to SSH into the web server for this :term:`environment`.
+
+You should see something like this. ::
+
+    $ ssh wk5fqz6qoo123-master@ssh.eu.platform.sh
+
+       ___ _      _    __ 
+      | _ \ |__ _| |_ / _|___ _ _ _ __ 
+      |  _/ / _` |  _|  _/ _ \ '_| '  \
+      |_| |_\__,_|\__|_| \___/_| |_|_|_|
+
+     Welcome to Platform.
+
+     This is environment master
+     of project wk5fqz6qoo123.
+
+    web@wk5fqz6qoo123-master--php:~$ 
+
+
+
+Troubleshoot SSH 
+****************
+
+This is bad. ::
+
+    $ ssh wk5fqz6qoo123-master@ssh.eu.platform.sh
+    Permission denied (publickey).
+    $ 
+
+Don't panic. It's a common problem. A Permissions denied message like this can happen for two reasons.
+* your environment is inactive 
+* your ssh private key is not added into the ssh-agent
+
+Check your private key. 
+-----------------------
+
+Check that your key is properly added to your SSH agent.
+This is an authentication agent that manages your private key. 
+
+1. Check your SSH agent. Run the command "ssh-add -l" in your terminal. :: 
+
+    $ ssh-add -l
+    2048 12:b0:13:83:7f:56:18:9b:78:ca:54:90:a7:ff:12:69 /Users/nick/.ssh/id_rsa (RSA)
+    $ 
+
+2. Check that file name on the right. Does it match your private key file?
+3. If you don't see your private key file, add your private key. ::
+
+    ssh-add path-to-your-key
+
+4. Try again. 
+
+
+Check your public key. 
+----------------------
+
+If you still have no luck, check the public key (see 
+:ref:`ssh_addkeytoaccount`).
+
+Generate some SSH debug information. 
+------------------------------------
+
+If your private key and public key both look OK, it's time to get heavy. 
+
+1. Run the SSH command with the -v option, like this. ::
+
+    $ ssh -v wk5fqz6qoo123-master@ssh.eu.platform.sh 
+    OpenSSH_6.7.8, OpenSSL 1.2.3 1 Sep 2014 
+    debug1: Connecting to ssh.eu.platform.sh [54.32.10.98] port 22. 
+    debug1: Connection established. 
+    debug1: identity file /Users/nick/.ssh/id_rsa type 1
+    ...(30 more lines of this light reading)...
+    debug1: Offering RSA public key: /Users/nick/.ssh/id_rsa
+    debug1: Authentications that can continue: publickey
+    debug1: No more authentication methods to try. 
+    Permission denied (publickey).
+    $
+
+You can use this information to make one last check of the private key file.
+
+If you are still stuck, raise a ticket with Commerce Guys. 
+
+
+
+
+last update: |today|
