@@ -1,17 +1,28 @@
 User Administration
 ===================
 
+Everyone who uses platform has an account in Marketplace and one or more user roles. The marketplace account stores all the user profile information, like password, SSH key and e-mail address. A role defines how much a user can do on Platform. 
+
 User Roles
 ----------
-Roles are used to allow flexibility in managing how users interact with your project. A user can be granted a role on either the project level or on an environment level. Currently, there are three different roles with specific kinds of permissions.
+Every Platform user has a role. A role is a security idea - different roles are authorized to do different things with projects, environments and users. You can use your collection of Roles to manage how users interact with Platform. 
 
 .. todo:: Define the roles better.
 
-* **Admin** - An administrator has access to all environments and can change environment settings for all environments. *This role can be granted on either the project level or an environment level.*
-* **Contributor** - A contributor has access to push code updates to a particular environment. *This role can only be granted on an environment level.*
-* **Reader** - A reader has access to view a specific environment or the whole project. *This role can be granted on either the project level or an environment level.*
+* **Project Administrator** - A project administrator can change settings for all environments. 
+* **Project Reader** - A project reader has view all environments in a project. 
+* **Environment Administrator** - An environment administrator can change settings for an environment. 
+* **Environment Contributor** - A contributor has access to push code updates to an environment. 
+* **Environment Reader** - A reader has access to view an environment. 
 
-There is great flexibility here. For example, if you wanted your users to be able to see everything (Reader), but only commit to a specific branch, change their permission level on that branch to "Contributor".
+One user can have many roles. A project reader can be an admin on some environments and a contributor on other environments. 
+
+When a development team works on a project, the team leader can be the project admin and decide which roles to give her team members. One team member can contribute to one environment, another member can administer a different environment and the customer can be a reader of the master environment. 
+
+If you want your users to be able to see everything (Reader), but only commit to a specific branch, change their permission level on that branch to "Contributor".
+
+A project owner - the person licensed to use Platform - doesn't have special powers. A project owner usually has a project admin role. 
+
 
 ----
 
