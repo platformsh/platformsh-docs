@@ -9,8 +9,8 @@ Getting started
 1. Clone the repository
 
   ```
-  $ git clone git@github.com:platformsh/docs.git
-  $ cd docs
+  $ git clone git@github.com:platformsh/platformsh-docs.git
+  $ cd platformsh-docs
   ```
 
 2. Install Sphinx
