@@ -116,4 +116,3 @@ Glossary
 
   Toolstack
     A specific set of tools that you're project is built with. It can be a CMS (Drupal), a framework (Symfony)...
-
