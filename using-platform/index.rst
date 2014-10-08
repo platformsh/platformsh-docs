@@ -1,5 +1,5 @@
-Using Platform
-==============
+Use Platform.sh
+===============
 
 .. toctree::
   :maxdepth: 2
