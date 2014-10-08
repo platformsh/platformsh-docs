@@ -41,7 +41,7 @@ You should now have a folder, based on what you used for *[folder-name]* in the 
 
   - **.platform-project** - This JSON file stores information about your project for use by the Platform CLI.
 
-  - **builds** - This folder contains the current and previous builds. Each time you run ``platform build` (see below) a build is generated in this folder.
+  - **builds** - This folder contains the current and previous builds. Each time you run ``platform build`` (see below) a build is generated in this folder.
 
   - **repository** - This folder contains all of the files that are in your Platform repository.
 
