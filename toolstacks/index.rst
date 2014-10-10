@@ -1,5 +1,5 @@
-Toolstack
-=================
+Toolstacks
+==========
 
 .. toctree::
   :maxdepth: 2
