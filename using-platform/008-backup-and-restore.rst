@@ -32,7 +32,7 @@ Platform.sh will automatically create a snapshot backup of the Master environmen
 
 .. rubric:: Platform.sh Enterprise
 
-If your site it running on Platform.sh Enterprise, then backups are run daily. Backups are retained for a month.
+Platform.sh Enterprise backups are run daily. Backups are retained for a month.
 
 In parallel we run EBS snapshots every four hours. Those snapshots are kept for seven days.
 
