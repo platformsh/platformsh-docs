@@ -1,15 +1,19 @@
 Local setup
 ===========
 
-There are 3 ways you can structure your files depending on how you're building your site with Drupal.
+Platform.sh supports three modes for organizing the code in your repository.
 
-File Structure
---------------
+* **Profile**. Platform.sh builds your project like Drupal.org does for distributions.
+* **Project**. Platform.sh takes you project.make file and hands it over to *drush make*. You don't need all Drupal core and contributed modules in your repository.
+* **Vanilla** for legacy code bases. If you *git push* all your code (Drupal and contributed modules) to the master branch in your repository, Platform.sh assumes you want to use this mode.
 
-Profile
-^^^^^^^
+These modes use different layouts for files. 
 
-If your project contains a profile file: ``*.profile``, Platform builds your project in profile mode. This is similar to what Drupal.org does to build distributions. Everything you have in your repository will be copied to your ``profile/[name]`` folder.
+
+Profile mode
+------------
+
+Platform.sh looks for a file name ending in ``.profile``. If your project contains a profile Platform.sh builds your project in profile mode. This is similar to what Drupal.org does to build distributions. Everything you have in your repository will be copied to your ``profile/[name]`` folder.
 
 .. code-block:: console
 
@@ -37,8 +41,9 @@ If your project contains a profile file: ``*.profile``, Platform builds your pro
     translations/
       ...
 
-Project
-^^^^^^^
+
+Project mode
+------------
 
 If your project doesn’t contain a profile file, but contains a make file: ``project.make``, Platform builds your project using Drush make. Everything you have in your repository will be copied to your ``sites/default`` folder.
 
@@ -64,35 +69,9 @@ If your project doesn’t contain a profile file, but contains a make file: ``pr
     translations/
       ...
 
-Vanilla
-^^^^^^^
 
-In any other case, Platform builds your project as-is. In that case, you are expected to have a ``index.php`` at the root of your repository.
-
-.. code-block:: console
-
-    .git/
-    index.php
-    ... (Drupal files)
-    includes/
-    profiles/
-    modules/
-      contrib/
-      custom/
-    themes/
-      contrib/
-      custom/
-    libraries
-      contrib/
-      custom/
-
-.. _drush_make:
-
-Drush .make files
------------------
-
-Using make file
-^^^^^^^^^^^^^^^
+a make file
+^^^^^^^^^^^
 
 Platform can automatically build your site using make files. This allows you to easily test specific versions, apply patches and keep your site up to date. It also keeps your working directory much cleaner, since it only contains your custom code.
 
@@ -117,10 +96,38 @@ Here is a sample make file which includes Drupal core with a patch applied to it
 .. note::
    You can also have a specific make file for Drupal core: ``project-core.make``. This is useful if you're building your site as an installation profile.
 
-Generating make file
+Generate a make file
 ^^^^^^^^^^^^^^^^^^^^
 
 If you want to generate a make file for your existing site, you can use the ``drush make-generate`` command.
+
+
+Vanilla mode
+------------
+
+Platform.sh accepts your project's files. You are expected to have an ``index.php`` file at the root of your repository.
+
+.. code-block:: console
+
+    .git/
+    index.php
+    ... (Drupal files)
+    includes/
+    profiles/
+    modules/
+      contrib/
+      custom/
+    themes/
+      contrib/
+      custom/
+    libraries
+      contrib/
+      custom/
+
+.. _drush_make:
+
+
+
 
 Drush aliases
 -------------
@@ -183,4 +190,4 @@ Then test your settings to make sure they work.
    Database name                   :  main
    Database                        :  Connected
    Drupal bootstrap                :  Successful
-   etc...
+   ...
