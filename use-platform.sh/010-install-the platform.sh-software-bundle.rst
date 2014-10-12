@@ -1,7 +1,5 @@
 
 
-https://docs.platform.sh/platform-components/platform-interaction-methods/002-command-line-interface.html
-
 install the Platform.sh software bundle
 =======================================
 
@@ -97,7 +95,7 @@ install drush, the drupal CLI tool
 ----------------------------------
 
 `Drush <http://www.drush.org/>`_ is a tool for Drupal developers. 
-Composer installs the drush tool in the same place as platform, in *~/.composer/vendor/bin/*. 
+Composer installs the drush tool in the same place as *platform*, in *~/.composer/vendor/bin/*. 
 
 Install drush. ::
 
