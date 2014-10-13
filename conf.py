@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '_ext'))
 extensions = ['sphinx.ext.viewcode', 'sphinx.ext.todo', 'github']
 
 # Set this to False if you don't want to display the todo.
-todo_include_todos = False
+todo_include_todos = os.environ.get("INCLUDE_TODOS", "").lower() == "yes"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
