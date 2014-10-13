@@ -36,7 +36,6 @@ PHP Service
 
 Supports PHP 5.3 and 5.4, the APC and ZO+ opcode caches, and all major PHP extensions, rewriting, and mapping.
 
-
 Database Service (MariaDB)
 --------------------------
 
@@ -54,7 +53,6 @@ To access the MariaDB database directly, ssh into the web server and use the fol
 
 You can also use Drush:
 ``drush sql-cli``
-
 
 File System
 -----------

@@ -6,7 +6,7 @@ Once you've purchased a Platform package, you will be automatically redirected t
 Install Kickstart / Drupal / Empty Git
 --------------------------------------
 
-.. figure:: /quick-start-guide/images/ui-setup.png
+.. figure:: /use-platform.sh/getting-started/images/ui-setup.png
   :alt: Platform Setup
 
   The first time you access the :ref:`platform_ui`, you'll see the project setup wizard which helps you to configure your project.
@@ -25,7 +25,7 @@ Once you’re done, Platform will build your project and provide you a default :
 First look at Platform
 ----------------------
 
-.. figure:: /quick-start-guide/images/ui-intro.png
+.. figure:: /use-platform.sh/getting-started/images/ui-intro.png
   :alt: Platform UI
 
   Once you've completed your project setup, you will be sent to your new project page. Now you can start working with Platform!
@@ -40,7 +40,7 @@ First look at Platform
 
 ---------
 
-.. image:: /quick-start-guide/images/icon-configure.png
+.. image:: /use-platform.sh/getting-started/images/icon-configure.png
   :alt: Configure icon
   :align: left
 
@@ -61,7 +61,7 @@ Each :term:`environment` has its own URL that you can access by clicking *View t
 
 ---------
 
-.. image:: /quick-start-guide/images/icon-configure.png
+.. image:: /use-platform.sh/getting-started/images/icon-configure.png
   :alt: Configure icon
   :align: left
 

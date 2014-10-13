@@ -1,10 +1,11 @@
 Overview
 ========
 
-What is Platform?
------------------
+What is Platform.sh?
+--------------------
 
 Platform is a **cloud-based hosting environment** tuned for eCommerce, but suitable for any Drupal project.
+
 
 How does it work?
 -----------------
@@ -19,8 +20,9 @@ In addition, Platform’s functionality solves many of the issues that plague co
 
 * Platform **reduces system administration costs**. With the ability to quickly create, destroy, and easily manage new environments, System Administrators focus less on maintenance and more on developing and moving business forward.
 
-What's unique about Platform?
------------------------------
+
+How is it different?
+--------------------
 
 Platform is **built around a Continuous Integration model**, so features and fixes can be integrated quickly and easily, rather than forcing delays waiting for scheduled batch deployments. That means less waiting for code changes to go live, whether they be tiny tweaks or brand new functionality.
 

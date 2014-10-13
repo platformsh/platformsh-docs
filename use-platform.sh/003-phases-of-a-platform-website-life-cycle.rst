@@ -50,7 +50,7 @@ If you need to resize your live environement, add additional users, or increase 
 
 ---------
 
-.. image:: /quick-start-guide/images/icon-configure.png
+.. image:: /use-platform.sh/getting-started/images/icon-configure.png
   :alt: Configure icon
   :align: left
 
@@ -67,7 +67,7 @@ When you are ready to launch your website, there are couple of steps that you mu
 
 First, you need to make sure that your domain has been added to Platform.
 
-  .. image:: /quick-start-guide/images/icon-configure.png
+  .. image:: /use-platform.sh/getting-started/images/icon-configure.png
     :alt: Configure icon
     :align: left
 
