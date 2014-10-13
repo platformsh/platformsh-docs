@@ -1,6 +1,6 @@
 
 
-install the Platform.sh software bundle
+Install the Platform.sh software bundle
 =======================================
 
 `Platform.sh <https://platform.sh>`_  comes with a CLI tool called 
