@@ -41,7 +41,17 @@ Platform.sh looks for a file name ending in ``.profile``. If your project contai
     translations/
       ...
 
+.. note::
+   When building as a profile, you need a specific make file for Drupal core called: ``project-core.make``.
 
+.. code-block:: console
+
+    api = 2
+    core = 7.x
+
+    projects[drupal][type] = core
+    projects[drupal][patch][] = "https://drupal.org/files/issues/install-redirect-on-empty-database-728702-36.patch"
+    
 Project mode
 ------------
 
@@ -70,7 +80,7 @@ If your project doesn’t contain a profile file, but contains a make file: ``pr
       ...
 
 
-a make file
+A make file
 ^^^^^^^^^^^
 
 Platform can automatically build your site using make files. This allows you to easily test specific versions, apply patches and keep your site up to date. It also keeps your working directory much cleaner, since it only contains your custom code.
@@ -92,9 +102,6 @@ Here is a sample make file which includes Drupal core with a patch applied to it
     ; Platform indicator module.
     projects[platform][version] = "1.2"
     projects[platform][subdir] = "contrib"
-
-.. note::
-   You can also have a specific make file for Drupal core: ``project-core.make``. This is useful if you're building your site as an installation profile.
 
 Generate a make file
 ^^^^^^^^^^^^^^^^^^^^
