@@ -18,7 +18,7 @@ For more details, see Composer's own installation instructions on their
 `getting started <https://getcomposer.org/doc/00-intro.md>`_ page.  
 
 
-install composer on OS X 
+Install composer on OS X 
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Open a CLI. 
@@ -30,7 +30,7 @@ Run these homebrew commands. ::
  brew install composer
 
 
-install composer on Linux 
+Install composer on Linux 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Download the composer PHAR (PHP Archive). ::
@@ -64,7 +64,7 @@ Run composer. ::
  composer about
 
 
-install platform, the Platform.sh CLI tool
+Install platform, the Platform.sh CLI tool
 ------------------------------------------
 
 This procedure installs the `platform <https://github.com/platformsh/platformsh-cli>`_ in the 
@@ -91,7 +91,7 @@ You are prompted for your Marketplace e-mail address and password.
 Enter your details. A list of your projects appears, along with some tips for getting started. 
 
 
-install drush, the drupal CLI tool
+Install drush, the drupal CLI tool
 ----------------------------------
 
 `Drush <http://www.drush.org/>`_ is a tool for Drupal developers. 
