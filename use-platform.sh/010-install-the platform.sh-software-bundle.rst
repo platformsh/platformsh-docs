@@ -47,7 +47,7 @@ Move the archive to my command folder. ::
  sudo mv composer.phar /usr/local/bin/composer
 
 
-install composer on Windows 
+Install composer on Windows 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Download and run `Composer-Setup.exe <Composer-Setup.exe>`_.
