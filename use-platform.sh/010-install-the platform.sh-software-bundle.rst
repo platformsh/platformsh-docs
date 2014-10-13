@@ -10,7 +10,7 @@ Use the *platform* tool to manage your Platform projects from a terminal on your
 The `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_ is an open source project hosted on `Github <https://github.com/>`_. You can find help for *platform* problems in the `issue queue <https://github.com/platformsh/platformsh-cli/issues>`_.
 
 
-install composer, the PHP dependency manager
+Install composer, the PHP dependency manager
 --------------------------------------------
 
 `Composer <https://getcomposer.org/>`_ is a dependency manager for `PHP <http://php.net/>`_. 
