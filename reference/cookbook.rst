@@ -379,3 +379,49 @@ Unfortunately, because we don't support git submodules yet, your use case of wor
 
 
 
+extend the files whitelist in .platform.app.yaml
+------------------------------------------------
+
+By default, requests for safe files are allowed and requests for unsafe files - such as script that can be used for XSS attacks, are not allowed. 
+
+You can change this whitelist by adding a ``whitelist`` attribute to your file *.platform.app.yaml*. 
+
+This is the  default list of file types. The list is formatted as an array: [ "html" ]. 
+[ "css", "js", "gif", "jpeg", "jpg", "png", "tiff", "wbmp", "ico", "jng", "bmp", "svgz", "midi", "mpega", "mp2", "mp3", "m4a", "ra", "weba", "3gpp", "mp4", "mpeg", "mpe", "ogv", "mov", "webm", "flv", "mng", "asx", "asf", "wmv", "avi", "ogx", "swf", "jar", "ttf", "eot", "woff", "otf", "txt" ].
+
+Add your own list and only keep the extensions you need. ::
+
+ web:
+     # my file whitelist
+     whitelist: [ "css", "js", "png", "mp3", "mov", "jar", "txt" ]
+
+
+add a deployment hook
+---------------------
+
+.. _deployment_hooks:
+
+The ``hooks`` in your *.platform.app.yaml* file (also called: :term:`deployment hooks`) let you define shell commands to run during the deployment process.
+
+The possible values are:
+
+* **build**: triggered during the build of the application. No other services are accessible at this time since the application has not been deployed yet.
+* **deploy**: triggered at the end of the deployment process. You can access other services at this stage (MySQL, Solr, Redis...).
+
+After a push, you can see the results of the deployment hooks in the ``/var/log/deploy.log`` file when logging to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
+
+.. code-block::
+    console
+
+    [2014-07-03 10:03:51.100476] Launching hook 'cd /app/public ; drush -y updatedb'.
+
+    My_custom_profile  7001  Update 7001: Enable the Platform module.
+    Do you wish to run all pending updates? (y/n): y
+    Performed update: my_custom_profile_update_7001
+    'all' cache was cleared.
+    Finished performing updates.
+
+
+
+
+
