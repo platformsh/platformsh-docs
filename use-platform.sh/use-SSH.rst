@@ -75,7 +75,7 @@ You have your SSH keys (if not, take a look at the section above), but you need 
 
 That's it! You're all set. Now you'll be able to use :ref:`Git <git>` on Platform, and able to SSH into one of your :term:`environments <environment>` web servers.
 
-.. image:: /overview/platform-interaction-methods/images/ssh-addkeytomarketplace.png
+.. image:: /overview/images/ssh-addkeytomarketplace.png
    :alt: Add SSH key to Marketplace
 
 
@@ -90,7 +90,7 @@ Just under the Environment indicator, in the Platform UI, there is a link to the
 2. Click on this link to view access information about this :term:`environment`.
 3. Copy the SSH command 
 
-.. figure:: /overview/platform-interaction-methods/images/ssh-access-information.png
+.. figure:: /overview/images/ssh-access-information.png
    :alt: SSH access information
 
    The SSH user name is the concatenation of the your platforms unique id and the environment id. The ssh hostname is 'ssh.' prepended onto the server clusters hostname your platform is hosted on. I.E.: [project-id]-[environment-id]@ssh.[server-cluster-hostname].
