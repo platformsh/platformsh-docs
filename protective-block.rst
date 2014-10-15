@@ -22,7 +22,7 @@ We analyze the code of your application:
 * When you push new code to Git
 * Regularly when new vulnerabilities are added to our database
 
-If a vulnerability deemed as criticial is detected in your application, Platform.sh is going to reject the push, and will block the 
+If a vulnerability deemed as criticial is detected in your application, `Platform.sh <https://platform.sh>`_ is going to reject the push, and will block the 
 
 We run two types of blocks:
 
@@ -32,15 +32,13 @@ For development websites, we run complete blocks, and the error message gives yo
 
 Unblocking is automated upon resolution of the security risk. The block is removed soon after a customer applies a security upgrade and removes the vulnerability.
 
-When it makes sense for Platform.sh to deploy a security block.
-
 
 Opting out of the protective block
 -----------------------------------------------
 
-The protective block is there to protect you against known vulnerability in the software you deploy on Platform.sh.
+The protective block is there to protect you against known vulnerability in the software you deploy on `Platform.sh <https://platform.sh>`_.
 
-If nonetheless you want to opt out of the protective block, you simply need to specify it in your `.platform.app.yaml` like this. ::
+If nonetheless you want to opt out of the protective block, you simply need to specify it in your ``.platform.app.yaml`` like this. ::
 
  preflight:
     enabled: false
