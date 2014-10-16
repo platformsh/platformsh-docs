@@ -1,8 +1,9 @@
-Developing Locally
-==================
 
-Using the CLI to Build Your Site
---------------------------------
+Set Up your Local Development Environment
+=========================================
+
+Use the CLI
+-----------
 
 Use the :term:`Platform CLI` to get a copy of your project, so that you can start working locally.
 
@@ -22,6 +23,10 @@ In order to copy your project locally, you'll need to know its' project id. The 
      Delete a project by running platform project:delete [id].
      List a project's environments by running platform environments.
 
+
+Download an environment
+-----------------------
+
 Once you know the project id you need to use, copying the project to your local system is pretty simple. Navigate to the folder you want to copy the project to and then run ``platform get [project-id] [folder-name]``. You'll have to choose which branch you want to pull down to start with.
 
 .. code-block:: none
@@ -37,7 +42,13 @@ Once you know the project id you need to use, copying the project to your local 
      Receiving objects: 100% (11/11), 1.36 KiB | 0 bytes/s, done.
      Checking connectivity... done.
 
-You should now have a folder, based on what you used for *[folder-name]* in the platform get command above. Inside this folder, there are a couple directories and a file. They are:
+You should now have a folder, based on what you used for *[folder-name]* in the ``platform get`` command above. 
+
+
+Local Site Structure
+^^^^^^^^^^^^^^^^^^^^
+
+Inside the new folder, there are a couple directories and a file. They are:
 
   - **.platform-project** - This JSON file stores information about your project for use by the Platform CLI.
 
@@ -56,6 +67,9 @@ You should now have a folder, based on what you used for *[folder-name]* in the 
      builds
      repository
      shared
+
+Build the Local Site
+--------------------
 
 Now that you have a copy of your project locally, you can run ``platform build`` to pull it all together. Explain a bit about what platform build actually does.
 
@@ -79,8 +93,9 @@ Now that you have a copy of your project locally, you can run ``platform build``
 .. seealso::
    * `Installing Platform CLI <https://github.com/commerceguys/platform-cli>`_
 
-Synchronizing Data
-------------------
+
+Synchronize Data
+----------------
 
 With the *Platform CLI* you can run this command from the branch that you wish to synchronize.
 
@@ -92,4 +107,5 @@ With the *Platform CLI* you can run this command from the branch that you wish t
   * :ref:`Drush <drush>`
   * :ref:`create-drush-aliases`
   * :ref:`cli`
+
 

@@ -10,3 +10,5 @@ Reference
   environment-variables
   cookbook
   upgrade
+  known-issues
+  

@@ -10,8 +10,22 @@ Platform.sh environments
 The `platform <https://github.com/platformsh/platformsh-cli>`_ tool helps you manage your local environment, copy code, data and resources between your local environment and remote Platform.sh environments. 
 
 
+
+Hierarchical environments
+-------------------------
+
+.. figure:: images/clone-hierarchy.png
+   :alt: Understand hierarchical environments.
+
+   Platform allows you to organize and structure your :term:`environments <environment>` as you want.
+
+When you :term:`Branch` an :term:`environment`, this creates a child of this :term:`environment`. 
+
+Each child :term:`environment` can :term:`sync` code and/or data from his parent and :term:`merge` code to his parent.
+
+
 parents and children
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 Platform.sh allows the user to organize :term:`environments <environment>` in different ways. A developer can :term:`Branch` an :term:`environment` to create a child of this :term:`environment`. One environment can be used for production and the other for testing. An agile web development team may create a more complex hierarchy to fit their working style. 
 
@@ -38,19 +52,100 @@ a local development environment
 
 In addition to these environments on Platform.sh, you also have one more - your local development environment. You connect your local environment to to Platform.sh. 
 
-If you are a web developer, chances are you are already running a local hosting environment on your workstation. You edit the code and configure the database, your application engine obeys your commands and your web server hands over the resources. 
-
-One big benefit is the ability to work offline - you don’t need to be connected to the Internet to get stuff done. You can work on the train and push your changes to Platform.sh later. 
-
-When you are online, you can download an environment to your workstation, do your work and, when ready, upload to Platform.sh.
-
 
 workflows and environments
 --------------------------
+
+Platform gives you the flexibility to create your own workflows. 
 
 There are no rules you must follow when branching the master environment. You can use a style that best fits your workflow.
 * *agile* - one master parent, branch a few children to use for sprints, and branch each sprint to make stories for feature development. 
 * *developer-centric* - one production master, one QA environment and a few development environments - one per coder. 
 * *testing* - one production master, an operational test environment, a user test environment and a few unit test environments. 
 * *fix* - one master parent and two children - one for testing bug fixes and one for security updates.
+
+
+Here is an example of an agile workflow.
+
+.. image:: /use-platform.sh/images/branches.png
+  :alt: Create Branches
+  :align: left
+
+The administrator creates a sprint environment and gives each of the developers permission to create new feature environments. Another approach is that the administrator could create an environment for each developer.
+
+----
+
+.. image:: /use-platform.sh/images/merge.png
+  :alt: Merge a feature
+  :align: left
+
+As a feature is completed, the adimistrator can review the work by accessing the website of the feature environment. When they are satisfied, they can merge the new feature back into the Sprint environment.
+
+----
+
+.. image:: /use-platform.sh/images/sync.png
+  :alt: Sync the update to other features
+  :align: left
+
+The remaining features will sync with the Sprint environment to ensure their working environment is up-to-date with the latest code.
+
+----
+
+.. image:: /use-platform.sh/images/merge-live.png
+  :alt: Merge to Live
+  :align: left
+
+When the objectives of the sprint are complete, the administrator can then make a backup of the live site, then merge the sprint environment into the live environment.
+
+----
+
+The adminstrator can then Sync the live site with any existing Sprint environments to repeat the process and continue the development process.
+
+.. note::
+
+  When using `Drupal <http://drupal.org>`_, it's recommended to have a site-specific module. This will allow you to enable other modules and update configurations in an update function so the necessary changes can be applied upstream when you merge an environment up.
+
+
+Continuous Integration and Automated Testing
+--------------------------------------------
+
+Continuous integration a software development practice where team members frequently integrate their work into the main base. It is often combined with automated testing - which is a series of triggered tests that detects integration errors quickly and check that new work does not negatively effect the existing state of the software.
+
+The flexible, mulit-user development processes that are enabled by Platform compliment continuous integration. Each branch has it's own :term:`environment` for quick review and testing both before and after merging work at each step along the process.
+
+Environment conventions
+-----------------------
+
+Platform provides great flexibility on the way you can organize and work with your development environments. To improve readability and productivity, it’s important to think carefully about how to name and structure those environments.
+
+Naming
+^^^^^^
+
+The name should represent the purpose of the environment. Is it a Staging site to show to your client? Is it an implementation of a new feature? Is it a hot fix?
+
+If you’re working Agile, for example, you could use hierarchical environments and name them like this:
+
+.. code-block:: console
+
+    Sprint1
+      Feature1
+      Feature2
+      Feature3
+    Sprint2
+      Feature1
+      Feature2
+    ...
+
+If you prefer splitting your environments per developer and having a specific environment per task or per ticket, you could use something like this:
+
+.. code-block:: console
+
+    Staging
+      Developer1
+        Ticket-526
+        Ticket-593
+      Developer2
+        Ticket-395
+      ...
+
 
