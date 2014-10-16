@@ -131,4 +131,4 @@ Go to your files folder on your local machine and synchronise them to your remot
 
 .. code-block:: console
 
-   $ rsync -r files/. [project-id]-master@ssh.eu.platform.sh:/public/sites/default/files/
+   $ rsync -r files/. [project-id]-master@ssh.eu.platform.sh:public/sites/default/files/

@@ -17,7 +17,7 @@ Configure your app
 
 Make sure your ``.platform.app.yaml`` is specific to :term:`Symfony`.
 
-A Drupal specific ``.platform.app.yaml`` file would look like this:
+A Symfony specific ``.platform.app.yaml`` file would look like this:
 
 .. code-block::
     console
