@@ -8,7 +8,6 @@ Reference
   service-grid
   configuration-files
   environment-variables
-  cookbook
   upgrade
   known-issues
   

@@ -12,6 +12,5 @@ Overview
   command-line-interface
   git
   ssh
-  Platform.sh-environments
   local-development
   getting-help

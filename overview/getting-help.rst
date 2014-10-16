@@ -1,17 +1,8 @@
+
 .. _getting_help:
 
 Getting Help
 ============
-
-Known Issues
-------------
-
-"No Application Configured"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you see the ``No Application Configured`` when accessing your site within a browser, this means that the environment you’re trying to access is not completely ready yet.
-
-Make sure it's completely built. The latest environment status on your Platform activity stream should be marked as **Success**.
 
 Frequently Asked Questions (FAQ)
 --------------------------------
@@ -28,7 +19,7 @@ An environment is a standalone copy of your live site (the Master environment) w
 Do you support MySQL?
 ^^^^^^^^^^^^^^^^^^^^^
 
-Platform uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
+`Platform.sh <https://platform.sh>`_ uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
 
 Do you support other database services?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -56,8 +47,8 @@ This means there won't be any services attached to this branch.
 
 You are able to convert an :term:`inactive environment` into an :term:`active environment` and vice versa back from the environment configuration page.
 
-How do I use Solr with Platform?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+How do I use Solr with Platform.sh?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. todo::
     This should go somewhere to the **services** section.
@@ -95,16 +86,6 @@ Glossary
 --------
 
 In the :ref:`glossary-label` you can find explained terminology.
-
-How do I submit a help request?
--------------------------------
-
-.. image:: images/submit_ticket.png
-   :alt: Submit a ticket
-   :align: left
-
-In the upper right corner of any Platform project page, there is a **Support** menu. Use the **Submit ticket** menu item to navigate to the Platform support form. Try to provide as much information as possible on the support form.
-
 
 If I choose the Development plan, can I use that plan for production?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

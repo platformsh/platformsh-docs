@@ -3,14 +3,18 @@
 Command Line Interface (CLI)
 ============================
 
-What is Platform CLI?
----------------------
-The Platform CLI is the official tool to use and manage your Platform projects directly from within your terminal. Anything you can do in the Platform UI, you can do in your terminal with Platform CLI.
+
+What is the Platform.sh CLI?
+----------------------------
+
+The `Platform.sh <https://platform.sh>`_ CLI is the official tool to use and manage your Platform projects directly from within your terminal. Anything you can do in the Platform UI, you can do in your terminal with Platform CLI.
+
 
 Where do I get it?
 ------------------
 
 Platform CLI is hosted on `Github <https://github.com/commerceguys/platform-cli>`_.
+
 
 What can I do with Platform CLI?
 --------------------------------

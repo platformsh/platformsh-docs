@@ -24,6 +24,12 @@ To fully benefit from `Platform.sh <https://platform.sh>`_, it's recommended to 
   :maxdepth: 3
   :glob:
 
+  cookbook/index
+
+.. toctree::
+  :maxdepth: 3
+  :glob:
+
   toolstacks/index
 
 .. toctree::
