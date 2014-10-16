@@ -5,9 +5,10 @@ Reference
   :maxdepth: 2
   :glob:
 
-  service-grid
+  architecture
   configuration-files
   environment-variables
   upgrade
   known-issues
-  
+  service-grid
+  rest-api

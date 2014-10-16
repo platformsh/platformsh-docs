@@ -4,5 +4,5 @@ Symfony
 .. toctree::
   :glob:
 
-  getting-started
-  faq-symfony
+  symfony-getting-started
+  symfony-faq

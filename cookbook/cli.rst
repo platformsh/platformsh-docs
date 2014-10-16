@@ -5,7 +5,7 @@ CLI
 
 
 find the Platform.sh CLI
-------------
+------------------------
 
 Platform CLI is hosted on `Github <https://github.com/commerceguys/platform-cli>`_.
 
@@ -154,7 +154,9 @@ Certificates can now be uploaded with the latest version of the Platform CLI cli
 
  platform domain:add example.com --cert="/etc/ssl/certs/example.crt" --key="/etc/ssl/private/example.key" --chain="/etc/ssl/certs/gd_intermediate.crt"
 
-The paths shown are the local shell paths to your certificate+key+chain files. This command will upload the cert and companion files as part of adding the domain to your platform project. Any of your routes which point to https://example.com would then serve that certificate rather than the *.us.platform.sh wildcard.
+The paths shown are the local shell paths to your certificate, key and chain files. 
+This command will upload the cert and companion files as part of adding the domain to your platform project. 
+Any of your routes which point to https://example.com would then serve that certificate rather than the *.us.platform.sh wildcard.
 
 
 
@@ -258,32 +260,14 @@ Take a look at document_root setting in the documentation. For example, let say 
  ├── drupal_root
  └── important_files
 
-What you need to do is to add and commit a file named ``.platform.app.yaml`` in the root of your repository containing something like this:
+These are defined by the mounts section in the file named 
+`.platform.app.yaml <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_  in the root of your repository. ::
 
-(!!! THIS FORMAT MAY BE OUT OF DATE)
-
-# The toolstack used to build the application.
-toolstack: "php:drupal"
-
-# The configuration of HTTP access to the app.
-web:
-    # The public directory of the app, relative to its root.
-    document_root: "/drupal_root"
-    # The front-controller script to send non-static requests to.
-    passthru: "/index.php"
-
-# The mounts that will be performed when the package is deployed.
-mounts:
-    "/public/sites/default/files": "shared:files/files"
-    "/tmp": "shared:files/tmp"
-    "/private": "shared:files/private"
-
-# Scheduled execution.
-crons:
-    drupal:
-        spec: "*/20 * * * *"
-        cmd: "cd public ; drush core-cron"
-
+ # The mounts that will be performed when the package is deployed.
+ mounts:
+     "/public/sites/default/files": "shared:files/files"
+     "/tmp": "shared:files/tmp"
+     "/private": "shared:files/private"
 
 
 
@@ -292,7 +276,7 @@ crons:
 schedule scripts in a crontab
 -----------------------------
 
-Find these lines in your `.platform.app.yaml <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml#L41>`_ file. ::
+Find these lines in your `.platform.app.yaml <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_ file. ::
 
  # The configuration of scheduled execution.
  crons:
@@ -303,7 +287,7 @@ Find these lines in your `.platform.app.yaml <https://github.com/platformsh/plat
 
 
 
-.. _platform_app_yaml:
+.. _platform_app_yaml_edit:
 
 edit the .platform.app.yaml configuration file
 ----------------------------------------------
@@ -318,7 +302,8 @@ extend the files whitelist in .platform.app.yaml
 
 By default, requests for safe files are allowed and requests for unsafe files - such as script that can be used for XSS attacks, are not allowed. 
 
-You can change this whitelist by adding a ``whitelist`` attribute to your file *.platform.app.yaml*. 
+You can change this whitelist by adding a ``whitelist`` attribute to your file 
+`.platform.app.yaml <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_. 
 
 This is the  default list of file types. The list is formatted as an array: [ "html" ]. 
 [ "css", "js", "gif", "jpeg", "jpg", "png", "tiff", "wbmp", "ico", "jng", "bmp", "svgz", "midi", "mpega", "mp2", "mp3", "m4a", "ra", "weba", "3gpp", "mp4", "mpeg", "mpe", "ogv", "mov", "webm", "flv", "mng", "asx", "asf", "wmv", "avi", "ogx", "swf", "jar", "ttf", "eot", "woff", "otf", "txt" ].
@@ -336,7 +321,9 @@ Add your own list and only keep the extensions you need. ::
 add a deployment hook to .platform.app.yaml
 -------------------------------------------
 
-The ``hooks`` in your *.platform.app.yaml* file (also called: :term:`deployment hooks`) let you define shell commands to run during the deployment process.
+The ``hooks`` in your 
+`.platform.app.yaml <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_  
+file (also called: :term:`deployment hooks`) let you define shell commands to run during the deployment process.
 
 The possible values are:
 
@@ -431,7 +418,7 @@ find your outgoing IP address
 
 find out your outgoing IP address using ``curl ifconfig.me/ip``.
 
-SSH into your environment and run this command. 
+SSH into your environment and run this command. ::
 
  $ platform ssh --project 123fqz6qoo123 --environment mybranch
  

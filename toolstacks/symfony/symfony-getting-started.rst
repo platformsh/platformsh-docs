@@ -10,7 +10,7 @@ Composer is a tool for dependency management in PHP. It allows you to declare th
 
 .. seealso::
   * `Install Composer <https://getcomposer.org/download/>`_
-  * :ref:`best_practices`
+
 
 Configure your app
 ------------------

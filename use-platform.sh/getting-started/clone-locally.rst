@@ -22,9 +22,6 @@ When you :term:`branch` an :term:`environment`, you create a new :term:`environm
 During a :term:`branch` operation, Platform freezes the parent :term:`environment` and takes a snapshot. Then the parent :term:`environment` is released and the child :term:`environment` is built using the snapshot.
 
 To :term:`branch` an environment, click the `Branch` icon on the top right of the :term:`Platform UI` and give it a name (for example: *Sprint1*).
-
-.. seealso::
-  * :ref:`best_practices`
   
 
 Clone the codebase with Git

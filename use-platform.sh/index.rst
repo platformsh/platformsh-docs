@@ -18,5 +18,4 @@ Use Platform.sh
   private-repository
   backup-and-restore
 
-  continuous-integration-automated-testing
   install-drush

@@ -10,8 +10,7 @@ In order for Platform to automatically detect your make file, you need to call i
 
 You can also have a **specific make file for Drupal core** called **\`project-core.make\`**
 
-.. seealso::
-   * :ref:`best_practices`
+
 
 Can I run Drupal 8 in Platform?
 -------------------------------

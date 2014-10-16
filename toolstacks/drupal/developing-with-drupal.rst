@@ -23,8 +23,7 @@ There are three common ways you will be making code changes to Platform:
 2. Create custom code (*modules, themes, profiles, libraries*) and commit them to your Platform codebase
 3. Modify the services grid configuration
 
-.. seealso::
-   * :ref:`best_practices`
+
 
 Add contributed projects
 ^^^^^^^^^^^^^^^^^^^^^^^^

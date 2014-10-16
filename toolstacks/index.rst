@@ -5,4 +5,5 @@ Toolstacks
   :maxdepth: 2
   :glob:
 
-  php/index
+  drupal/index
+  symfony/index

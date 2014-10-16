@@ -16,7 +16,7 @@ Platform's :ref:`cli` requires **Drush 6 or greater**.
 
 .. seealso::
   * `Install Drush <https://github.com/drush-ops/drush>`_
-  * :ref:`best_practices`
+
 
 Configure your app
 ------------------
