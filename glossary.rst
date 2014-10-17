@@ -31,6 +31,9 @@ Glossary
   Deployment hooks
     Allows you to run various actions during the deployment of your environment.
 
+  Domain name
+    Domain names are managed by Registrars (such as Namecheap.com) and you are responsible for using appropriate DNS tools for pointing domains to your Platform.sh Master environment. 
+
   Drupal
   Drupal 7
     A powerful open source software package that allows you to easily organize, manage, and publish your content with an endless variety of customization (see https://drupal.org/drupal-7.0 for more information).
