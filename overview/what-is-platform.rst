@@ -1,22 +1,14 @@
 What is Platform.sh?
 ========
 
-Platform.sh is a **cloud-based hosting environment** tuned for eCommerce, but suitable for any Drupal project.
-
+Platform.sh is a groundbreaking hosting and development tool for web applications. It extends a branch-merge workflow to infrastructure so that every branch can be tested as if it were in production, and scales for the largest sites.
 
 How does it work?
 -----------------
 
-Platform-as-a-Service (PaaS) provides an accelerated and highly automated environment within which Drupal-centric projects are developed, tested and delivered into production, including non-LAMP stack components and custom services. This is both a significant value and paradigm shift for developers, offering optimized site infrastructure and requiring 25% less system administration effort. As the size and complexity of a site on Platform.sh scales up, so do the savings.
+Platform.sh operates on the idea that you as a web developer will manage your application code in Git. From there, Platform.sh can provision each Git branch with a full application stack to run your application, online, with a synchronized copy of the applications data (DB, uploaded files, Solr index, etc.) 
 
-In addition, Platform's functionality solves many of the issues that plague common hosting environments:
-
-* Automated environment management provides a Git-driven development process that **reduces the amount of developer effort required**. With this functionality, users can branch and merge at will to develop even the smallest feature, or test an urgent security fix, all against a cloned (identical) copy of the upstream/live environment.
-
-* Platform's infrastructure **eliminates issues resulting from inconsistencies between environments** by allowing developers to work with site clones.
-
-* Platform.sh **reduces system administration costs**. With the ability to quickly create, destroy, and easily manage new environments, System Administrators focus less on maintenance and more on developing and moving business forward.
-
+This means that you now can work with your application infrastructure the same way you work with Git: branching and merging is cheap and fast, and you are no longer responsible for Sysadmin or DevOps tasks that distract you from coding.
 
 How is it different?
 --------------------
