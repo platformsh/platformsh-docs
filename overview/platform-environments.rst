@@ -1,62 +1,40 @@
 
-Platform.sh environments 
+Environments on Platform.sh 
 ========================
 
-`Platform.sh <https://platform.sh>`_  helps a coder with the development workflow by making it easy to manage project environments.
+`Platform.sh <https://platform.sh>`_  helps a coder with the development workflow by making it easy to manage project environments, including the live enviornment which runs the actual website.
  
 .. figure:: images/clone-hierarchy.png
    :alt: In this environment layout, *Master* is the parent of *Sprint1*. *Feature1* is a child of *Sprint1*. 
 
-The `platform <https://github.com/platformsh/platformsh-cli>`_ tool helps you manage your local environment, copy code, data and resources between your local environment and remote Platform.sh environments. 
+The `platform <https://github.com/platformsh/platformsh-cli>`_ tool helps you manage your local environment, copy code, data and resources between your local development machine and remote Platform.sh environments. 
 
 
-
-Hierarchical environments
+Enviroments are hierarchical - like Git branches
 -------------------------
 
 .. figure:: images/clone-hierarchy.png
    :alt: Understand hierarchical environments.
 
-   Platform allows you to organize and structure your :term:`environments <environment>` as you want.
+Platform.sh encourages you to structure your :term:`environments <environment>` as you want. New environments are tied to Git branches, and are considered children of the environment that they were branched from.
 
-When you :term:`Branch` an :term:`environment`, this creates a child of this :term:`environment`. 
+Each child :term:`environment` can :term:`sync` code and/or data down from its parent, and :term:`merge` code up to his parent.
 
-Each child :term:`environment` can :term:`sync` code and/or data from his parent and :term:`merge` code to his parent.
-
-
-parents and children
-^^^^^^^^^^^^^^^^^^^^
-
-Platform.sh allows the user to organize :term:`environments <environment>` in different ways. A developer can :term:`Branch` an :term:`environment` to create a child of this :term:`environment`. One environment can be used for production and the other for testing. An agile web development team may create a more complex hierarchy to fit their working style. 
-
-The master environment - the web site to be used by customers - can be easily branched, git-style, to make a hierarchy of child environments. Child environments can be updated and the changes merged back up to the parent site.
-Code and data can be copied between environments. A child :term:`environment` can :term:`sync` code and data from the parent and :term:`merge` code to the parent. Merging data to the parent can be done, but there is no easy Platform.sh option - this would make it easy to over-write live production data.
-
-
-the master environment
+The Master environment
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The first web site is the master - the public-facing site. Work is done on copies of the master site - not the original.  Nobody wants developers breaking the master site while they develop and test their changes - changes are made to copies, tested and finally merged into this site. 
+Platform.sh projects always have a :term:`Master` environment which corresponds to the Master branch in Git. This environment is your live site (on production plans), and is the environment that is mapped to a :term:`domain name`.
+
+Branches
+^^^^^^^^
+
+Any branches that are created with the Platform.sh user interface or the platform CLI tool become child environments. These are used for development, staging, and testing.
 
 
-a child environment
-^^^^^^^^^^^^^^^^^^^
-
-A child environment is used for development and testing. The master can be branched to create a child used for client acceptance tests. Staging can be branched to make a child for code integration tests. The integration environment can be copied to the user’s workstation, to make a local development environment.
-
-Different members of a development team can control different environments. A coder  works on his local workstation , then merges work into a test environment on Platform.sh.  The team leader controls merges from test environments to the staging site. The site owner controls merges to the master site. 
-
-
-a local development environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-In addition to these environments on Platform.sh, you also have one more - your local development environment. You connect your local environment to to Platform.sh. 
-
-
-workflows and environments
+Workflows and environments
 --------------------------
 
-Platform gives you the flexibility to create your own workflows. 
+Platform.sh gives you the flexibility to create your own workflows. 
 
 There are no rules you must follow when branching the master environment. You can use a style that best fits your workflow.
 * *agile* - one master parent, branch a few children to use for sprints, and branch each sprint to make stories for feature development. 
@@ -99,31 +77,19 @@ When the objectives of the sprint are complete, the administrator can then make 
 
 ----
 
-The adminstrator can then Sync the live site with any existing Sprint environments to repeat the process and continue the development process.
-
-.. note::
-
-  When using `Drupal <http://drupal.org>`_, it's recommended to have a site-specific module. This will allow you to enable other modules and update configurations in an update function so the necessary changes can be applied upstream when you merge an environment up.
-
-
-Continuous Integration and Automated Testing
---------------------------------------------
-
-Continuous integration a software development practice where team members frequently integrate their work into the main base. It is often combined with automated testing - which is a series of triggered tests that detects integration errors quickly and check that new work does not negatively effect the existing state of the software.
-
-The flexible, mulit-user development processes that are enabled by Platform compliment continuous integration. Each branch has it's own :term:`environment` for quick review and testing both before and after merging work at each step along the process.
+The adminstrator can then synchronize the live site with any existing Sprint environments to repeat the process and continue the development process.
 
 Environment conventions
 -----------------------
 
-Platform provides great flexibility on the way you can organize and work with your development environments. To improve readability and productivity, it’s important to think carefully about how to name and structure those environments.
+Platform provides great flexibility on the way you can organize and work with your development environments. To improve readability and productivity, it's important to think carefully about how to name and structure those environments.
 
 Naming
 ^^^^^^
 
 The name should represent the purpose of the environment. Is it a Staging site to show to your client? Is it an implementation of a new feature? Is it a hot fix?
 
-If you’re working Agile, for example, you could use hierarchical environments and name them like this:
+If you're working Agile, for example, you could use hierarchical environments and name them like this:
 
 .. code-block:: console
 
