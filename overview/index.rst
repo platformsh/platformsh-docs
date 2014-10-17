@@ -5,9 +5,9 @@ Overview
   :maxdepth: 2
   :glob:
 
-  overview
+  what-is-platform
   technical-requirements
-  Platform.sh-environments
+  platform-environments
   platform-web-ui
   command-line-interface
   git
