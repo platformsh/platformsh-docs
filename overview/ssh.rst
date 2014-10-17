@@ -6,10 +6,10 @@ SSH
 
 One of the ways `Platform <https://platform.sh/>`_ keeps things secure is by using :ref:`SSH` behind the scenes. Users connect to their Platform :ref:`git` repo and to their Platform :term:`CLI` using SSH. 
 
-a public-private keypair
+A RSA public/private keypair
 **************************
 
-SSH requires two keys to get started - a private key kept secret by the user, and a public key stored with the `Platform <https://platform.sh/>`_ account. These keys are called "the public-private keypair" and usually look like random lines of characters, like this. 
+SSH requires two `RSA keys <https://en.wikipedia.org/wiki/RSA_(cryptosystem)>` - a private key kept secret by the user, and a public key stored with the Platform.sh account. These keys are called "the public-private keypair" and usually look like random lines of characters, like this. 
 
 a private key ::
 
@@ -29,9 +29,7 @@ a public key (one very long line) ::
 
 As a Platform user, you need a public-private keypair like these to work with your :term:`environments <environment>`. 
 
-.. todo::
-   Add screenshots and text for all of the below...
-
+todo:: instructions on generating keypairs
 
 last update: |today|
 
