@@ -13,7 +13,7 @@ These modes use different layouts for files.
 Profile mode
 ------------
 
-Platform.sh looks for a file name ending in ``.profile``. If your project contains a profile Platform.sh builds your project in profile mode. This is similar to what Drupal.org does to build distributions. Everything you have in your repository will be copied to your ``profile/[name]`` folder.
+Platform.sh looks for a file name ending in ``.profile``. If your project contains a profile Platform.sh builds your project in profile mode. This is similar to what Drupal.org does to build distributions. Everything you have in your repository will be copied to your ``profiles/[name]`` folder.
 
 .. code-block:: console
 
