@@ -6,12 +6,5 @@ Cookbook
   :maxdepth: 2
   :glob:
 
-  billing-support
-  web-ui
-  cli
+  cache
   drupal
-  symfony
-  wordpress
-  miscellaneous
-  
-  
