@@ -6,7 +6,8 @@ Setting up your Drupal development with Platform.sh
 
 This guide will teach you how to set up local Drupal development for use with Platform.sh.
 
-### Prerequisites
+Prerequisites
+^^^^^^^^^^^^^
 
 To succeed with Platform.sh you need the following installed on your local machine:
 
@@ -18,7 +19,8 @@ To succeed with Platform.sh you need the following installed on your local machi
 
 You will also need to have signed up for a `Platform.sh <https://platform.sh>`_ project.
 
-### Goals
+Goals
+^^^^^
 
 1. Use the Platform CLI to obtain your project’s repository
 2. Settings.php (understand how Platform manages it)
@@ -26,7 +28,8 @@ You will also need to have signed up for a `Platform.sh <https://platform.sh>`_ 
 4. Synchronize databases and files with Platform.sh
 5. Use the Platform CLI to build your project 
 
-### Use the Platform CLI to obtain your project’s repository
+Use the Platform CLI to obtain your project’s repository
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Platform CLI will authenticate you with Platform.sh and show your projects. For example, if my Platform.sh project is this:
 https://eu.platform.sh/projects/x7mougrk7bcq6/
@@ -49,7 +52,8 @@ The builds directory contains built copies of the Drupal site. This is relevant 
 The www symlink is created by the platform build command and will always reference the latest build in the builds directory. The www directory should become your DOCROOT for local development.
 The .platform-project file is metadata for the platform tool.
 
-### Settings.php
+Settings.php
+^^^^^^^^^^^^
 
 An important step in setting up your local environment is editing shared/settings.local.php. It is in this file that your local database connection details can be set. (NOTE: If there is no shared/settings.local.php file, create one following the example here, and re-run platform build) The platform build command will generate a sites/default/settings.php file with each build of your application (when using Drush Make files). The shared/settings.local.php file will also be symlinked into the www/sites/default directory, where the generated settings.php can include it.
 
@@ -64,20 +68,24 @@ Example code from the generated settings.php:
 The above code (found in the generated settings.php) shows how the shared/settings.local.php gets included in the built application.
 
 
-### Drush Aliases
+Drush Aliases
+^^^^^^^^^^^^^
+
 The platform tool generates and maintains Drush Aliases that allow you to issue remote Drush commands on any environment (branch) that is running on Platform.sh. After you have run platform build, there is also a Drush Alias for your local site. 
 
 For example, on my site, here are my Drush Aliases:
 
 
-### Change the Drush alias group
+Change the Drush Alias Group
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can set the Drush alias group name to something more convenient:
 
 .. code-block:: console
 	$ platform drush-aliases -g robshouse
 
-### Synchronize Databases and Files with Platform.sh
+Synchronize Databases and Files with the Platform CLI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Given the Drush aliases shown above, I can now use a normal Drush command to synchronize my local database with the data from my Master environment online:
 
@@ -89,13 +97,15 @@ In the same style, use Drush to grab the uploaded files from the files directory
 .. code-block:: console
 	$ drush rsync @robshouse.staging:%files @robshouse._local:%files
 
-### Use the Platform CLI to build your project 
+Use the Platform CLI to Build Your Project 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Drupal sites have two separate build modes. In the “Vanilla” build mode, you commit all of your Drupal files (sans settings.php, which you should let Platform generate) into your git repository (NOTE: Never commit the uploaded files in your files directory - these never go into Git). In this build mode, running platform build will take care of creating symlinks with the local shared directory but nothing more.
 
 The other build mode is when you use a directory structure like this and a Drush Make file to build your project. This is the best way! In this build mode, platform build will first execute the Drush Make file, and then move the other assets (modules, themes, libraries) into the newly built www/sites/default/ directory. It will then take care of the symlinks with the local shared directory.
 
-### IDE specific tips:
+IDE Specific Tips
+^^^^^^^^^^^^^^^^^
 
 MAMP pro:
 
