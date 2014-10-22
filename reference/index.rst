@@ -11,5 +11,6 @@ Reference
   upgrade
   known-issues
   service-grid
-  rest-api
   public-ip-addresses
+  rest-api
+  
