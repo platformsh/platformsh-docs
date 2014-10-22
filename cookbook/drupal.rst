@@ -1,8 +1,8 @@
 Drupal
 ======
 
-Setting up your Drupal development with Platform.sh
----------------------------------------------------
+How to set up your local Drupal development
+-------------------------------------------
 
 This guide will teach you how to set up local Drupal development for use with Platform.sh.
 
