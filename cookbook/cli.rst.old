@@ -1,14 +1,5 @@
-
-
 CLI
 ===
-
-
-find the Platform.sh CLI
-------------------------
-
-Platform CLI is hosted on `Github <https://github.com/commerceguys/platform-cli>`_.
-
 
 List Platform.sh CLI options
 ----------------------------
@@ -60,17 +51,6 @@ Run **\`platform list\`** to see all of the available commands.
           It's also possible to get raw list of commands (useful for embedding command runner):
 
             platform list --raw
-
-
-.. _env_branch:
-
-branch an environment using the platform CLI
---------------------------------------------
-
-The platform environment:branch branchname command will create a new environment branched from your currently-checked-out Platform environment. It is equivalent to doing git checkout -b branchname. 
-
-Once you have run the environment:branch command, you can commit and push code to that branch on Platform.sh and an environment separate from your master environment will be built based on that code.
-
 
 
 .. _env_delete_cli:
