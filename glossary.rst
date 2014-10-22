@@ -6,11 +6,15 @@ Glossary
 .. glossary::
   :sorted:
   
+  API
+    :term:`Platform.sh` provides a REST API (Application Programming Interface) which allows you to interact whith it. Both the :term:`Platform UI` and the :term:`Platform CLI` are fully integrated with the :term:`Platform API`.
+
   Application
     Your application regroups all your code and configuration files that you want to deploy.
 
   Branch
-    A cloned version of a code base that is used to develop and test an update before it is applied to the original code base.
+    A versioned copy of your :term:`Git` content. A :term:`branch` is used to develop a specific feature and test an update, before it is :term:`merged` and deployed on the live environment.
+    :term:`Platform.sh` extends the concept of a :term:`Git` branch to the :term:`environment` level.
 
   Commerce Marketplace
     A marketplace of services that extend Drupal Commerce.
@@ -50,38 +54,45 @@ Glossary
 
   Environment active
   Active environment
-    An environment which is deployed. You can deactivate an active environment from the environment configuration page on Platform UI.
+    An environment which is deployed. You can deactivate an active environment from the environment configuration page on :term:`Platform UI`.
 
   Environment inactive
   Inactive environment
-    An environment which is not deployed. You can activate an inactive environment from the environment configuration page on Platform UI.
+    An environment which is not deployed. You can activate an inactive environment from the environment configuration page on :term:`Platform UI`.
 
   Environment variables
   Environment variable
     Variables exposed by Platform to the runtime environment which allow you to define any specific configuration at the environment level.
   
   Git
-    An open source version control system. Also see :ref:`git`
+    An open source version control system. Also see :ref:`git`.
 
   Make file
     A file used in comination with Drupal and :ref:`Drush <drush>` to download a series of modules, libraries, and repositories. Also see :ref:`drush_make`.
 
   Master
-    The production website. Master is the only environment which doesn’t have a parent and which has the most of the resources that you can get.
+    The production website. Master is the only environment which doesn’t have a :term:`parent` and which has the most of the resources that you can get.
 
   Merge
     The act of combining one environment's or branch's code with another.
 
+  Parent
+    :term:`Platform.sh` provides an organized hierarchy for your :term:`Git` branches. Each :term:`environment` has a :term:`parent` and can have multiple children. You can :term:`merge` code to a parent :term:`environment`, and :term:`synchronize` code and/or data to any child :term:`environment`.
+
   Platform
+  Platform.sh
     The best thing that happened to your web projects since Drupal.
 
   Platform UI
+  Platform.sh UI
     The UI for the best thing that happened to your web projects since Drupal.
 
   Platform API
+  Platform.sh API
     The API for the best thing that happened to your web projects since Drupal.
 
   Platform CLI
+  Platform.sh CLI
     Platform CLI is the official command line shell and Unix scripting interface for Platform. It ships with all the useful commands to interact with your Platform projects. You can get download it `here <https://github.com/commerceguys/platform-cli>`_.
 
   Project
@@ -115,7 +126,7 @@ Glossary
     Symfony is a PHP web application framework for MVC applications. Symfony is free software and released under the MIT license (see http://symfony.com/ for more information).
 
   Sync
-    The act of updating an environment with code and data from a parent environment.
+    The act of updating an environment with code and data from a :term:`parent` environment.
 
   Toolstack
     A specific set of tools that you're project is built with. It can be a CMS (Drupal), a framework (Symfony)...
