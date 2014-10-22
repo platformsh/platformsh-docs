@@ -1,5 +1,5 @@
-Use Platform.sh
-===============
+Using Platform.sh
+=================
 
 .. toctree::
   :maxdepth: 2
@@ -11,5 +11,4 @@ Use Platform.sh
   user-administration
   private-repository
   backup-and-restore
-
   install-drush
