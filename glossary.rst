@@ -13,7 +13,7 @@ Glossary
     Your application regroups all your code and configuration files that you want to deploy.
 
   Branch
-    A versioned copy of your :term:`Git` content. A :term:`branch` is used to develop a specific feature and test an update, before it is :term:`merged` and deployed on the live environment.
+    A versioned copy of your :term:`Git` content. A :term:`branch` is used to develop a specific feature and test an update, before it is synchronize and deployed on the live environment.
     :term:`Platform.sh` extends the concept of a :term:`Git` branch to the :term:`environment` level.
 
   Commerce Marketplace
@@ -77,7 +77,7 @@ Glossary
     The act of combining one environment's or branch's code with another.
 
   Parent
-    :term:`Platform.sh` provides an organized hierarchy for your :term:`Git` branches. Each :term:`environment` has a :term:`parent` and can have multiple children. You can :term:`merge` code to a parent :term:`environment`, and :term:`synchronize` code and/or data to any child :term:`environment`.
+    :term:`Platform.sh` provides an organized hierarchy for your :term:`Git` branches. Each :term:`environment` has a :term:`parent` and can have multiple children. You can :term:`merge` code to a parent :term:`environment`, and synchronize code and/or data to any child :term:`environment`.
 
   Platform
   Platform.sh

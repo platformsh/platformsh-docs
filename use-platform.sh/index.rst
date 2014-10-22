@@ -11,4 +11,3 @@ Using Platform.sh
   user-administration
   private-repository
   backup-and-restore
-  install-drush

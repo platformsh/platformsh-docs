@@ -1,3 +1,6 @@
+Public IP addresses
+===================
+
 Platform.sh clusters reach the outside through a limited number of IP addresses.
 
 European cluster (eu.platform.sh):

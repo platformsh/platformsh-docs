@@ -6,6 +6,7 @@ Drupal
 
   drupal-getting-started
   drupal-local-setup
+  install-drush
   drupal-migrate-an-existing-site
   developing-with-drupal
   drupal-solr
