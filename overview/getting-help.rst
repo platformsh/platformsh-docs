@@ -95,11 +95,33 @@ Once your project is built and ready for production, you can choose another plan
 
 Why did you choose the .sh extension for your domain?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 'sh' is the short version of shell.
+
 According to Wikipedia™, in computing, a `shell <http://en.wikipedia.org/wiki/Shell_(computing)>`_ is a `user interface <http://en.wikipedia.org/wiki/User_interface>`_ for access to an operating system's services. Generally, operating system shells use either a `command-line interface <http://en.wikipedia.org/wiki/Command-line_interface>`_ (CLI) or `graphical user interface <http://en.wikipedia.org/wiki/Graphical_user_interface>`_ (GUI).
 This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy, and run great websites!
 
 Which geographic zones is Platform covering?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Platform leverages the powerful AWS Infrastructure.
 We can deploy your site in a `data center <https://aws.amazon.com/about-aws/globalinfrastructure/regional-product-services/>`_ that is very close to your target audience.
+
+Which IP will my environment use to access external service?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All non-enterprise Platform clusters all reach the outside through a limited number of IP addresses.
+
+European cluster (eu.platform.sh):
+
+* 54.72.94.105
+* 54.76.137.67
+* 54.76.137.94
+
+American cluster (us.platform.sh):
+
+* 54.88.149.31
+* 54.209.114.37
+* 54.210.53.51
+
+Those are stable, but, for obvious reasons, we cannot commit that they will be there forever. If we need to change them, however, we will give ample prior notice.
