@@ -104,6 +104,10 @@ Glossary
   Push
     The act of moving and combining code from a local branch to a remote branch.
 
+  Relationship
+  Relationships
+    The relationships of the application with services or other applications. See also :ref:`relationships <relationships>`.
+
   Scope
     .. todo:: Platform team to write description.
 
