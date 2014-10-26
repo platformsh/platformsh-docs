@@ -17,7 +17,7 @@ For the Platform.sh CLI:
 * An `id_rsa public/private keypair <https://help.github.com/articles/generating-ssh-keys/>`_
 * `Git <http://git-scm.com/>`_
 * `Composer <https://getcomposer.org/>`_
-* `The Platform CLI tool <https://github.com/platformsh/platformsh-cli>`_
+* `The Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_
 * `Drush <https://github.com/drush-ops/drush>`_
 
 For your Drupal stack:
@@ -32,19 +32,19 @@ You will also need to have signed up for a `Platform.sh <https://platform.sh>`_ 
 Goals
 ^^^^^
 
-#. Authenticate locally using the `platform CLI tool <https://github.com/platformsh/platformsh-cli>`_
+#. Authenticate locally using the `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_
 #. Upload your SSH public key
-#. Use the `platform CLI tool <https://github.com/platformsh/platformsh-cli>`_ to obtain and build your project’s repository
+#. Use the `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_ to obtain and build your project’s repository
 #. Understand Settings.php
 #. Understand Build Modes
 #. Connect to your local database
 #. Use your Drush aliases
 #. Synchronize databases and files with Platform.sh
  
-Authenticate locally using the `platform CLI tool`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Authenticate locally using the Platform.sh CLI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The `platform CLI tool <https://github.com/platformsh/platformsh-cli>`_ will authenticate you with Platform.sh and show your projects.
+The `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_ will authenticate you with Platform.sh and show your projects.
 
 .. code-block:: console
 
@@ -69,15 +69,15 @@ To upload the public key in the browser go to `your user account <https://market
 Upload using Platform.sh CLI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Alternately, you can upload your SSH key using the Platform.sh CLI tool itself.
+Alternately, you can upload your SSH key using the Platform.sh CLI itself.
 
 .. code-block:: console
 
 	$ platform ssh-key:add ~/.ssh/id_rsa.pub 
 	Enter a name for the key: My public key
 
-Use the platform CLI to obtain and build your project’s repository
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Use the Platform.sh CLI to obtain and build your project’s repository
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``platform`` command will show you a list of your projects. 
 
@@ -190,7 +190,7 @@ The default ``project.make`` file for a Drupal 7 installation looks like this:
 	projects[platform][version] = 1.3
 	projects[platform][subdir] = contrib
 
-If you are building with Drush Make, the proper place for your file is ``shared/settings.local.php``. The `platform CLI tool <https://github.com/platformsh/platformsh-cli>`_ will have created this file for you when you ran the platform get command.
+If you are building with Drush Make, the proper place for your file is ``shared/settings.local.php``. The `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_ will have created this file for you when you ran the platform get command.
 
 .. note:: 
 	If there is no shared/settings.local.php file, create one following the `example found here <https://github.com/platformsh/platformsh-cli/blob/master/resources/drupal/settings.local.php>`_, and re-run platform build.) 
@@ -235,7 +235,7 @@ Whether your ``settings.local.php`` file is in `repository/sites/default/setting
 Drush Aliases
 ^^^^^^^^^^^^^
 
-The `platform CLI tool <https://github.com/platformsh/platformsh-cli>`_ generates and maintains Drush Aliases that allow you to issue remote Drush commands on any environment (branch) that is running on Platform.sh. There is also a Drush Alias for your local site. 
+The `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_ generates and maintains Drush Aliases that allow you to issue remote Drush commands on any environment (branch) that is running on Platform.sh. There is also a Drush Alias for your local site. 
 
 To see your Drush Aliases, use the ``platform drush-aliases`` command:
 
@@ -297,7 +297,7 @@ IDE Specific Tips
 
 MAMP pro:
 
-In order for MAMP to work well with the symlinks created by the `platform CLI tool <https://github.com/platformsh/platformsh-cli>`_, add the following to the section under Hosts > Advanced called “Customized virtual host general settings.”
+In order for MAMP to work well with the symlinks created by the `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_, add the following to the section under Hosts > Advanced called “Customized virtual host general settings.”
 
 .. code-block:: console
 
