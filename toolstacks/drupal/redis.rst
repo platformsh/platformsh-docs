@@ -45,11 +45,13 @@ Add the following :term:`environment variables` on Platform UI.
 .. code-block:: console
 
    [
-      "sites/all/modules/redis/redis.autoload.inc",
+      "sites/all/modules/redis/redis.autoload.inc"
    ]
    
 .. note::
    Remember to tick the JSON Value box.
+.. note::
+   Use the actual path to your redis module in case it is in a different location.   
 
 ``drupal:lock_inc``
 
