@@ -8,6 +8,7 @@ Reference
   architecture
   configuration-files
   environment-variables
+  cache
   upgrade
   known-issues
   service-grid

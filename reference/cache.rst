@@ -3,8 +3,8 @@ Cache
 
 .. _cache_http:
 
-How to enable HTTP caching
---------------------------
+Enable HTTP caching
+-------------------
 
 Platform.sh allows you to enable HTTP caching at the router level. 
 
