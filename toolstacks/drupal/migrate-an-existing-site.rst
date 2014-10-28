@@ -66,7 +66,7 @@ With Drush
 You can use *drush aliases* to import your existing local database into Platform.
 
 .. seealso::
-  * :ref:`create-drush-aliases`
+  * :ref:`create_drush_aliases`
 
 Before playing with the aliases, you should backup your local database using drush sql-dump.
 

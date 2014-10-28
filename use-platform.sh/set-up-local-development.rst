@@ -105,7 +105,7 @@ With the *Platform CLI* you can run this command from the branch that you wish t
 
 .. seealso::
   * :ref:`Drush <drush>`
-  * :ref:`create-drush-aliases`
+  * :ref:`create_drush_aliases`
   * :ref:`cli`
 
 

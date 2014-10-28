@@ -131,9 +131,9 @@ Just click on the "Merge" button and all of the commits you made on your branch 
 Synchronizing Data
 ------------------
 
-The easiest way to do that is to use Drush and the sql-sync command. You'll need to have :ref:`create-drush-aliases` setup for both your Platform site and your local site. If you are using the `Platform CLI <https://github.com/commerceguys/platform-cli>`_ and you've run ``platform get [platform_id]`` for a project, then your Platform aliases have already been setup.
+The easiest way to do that is to use Drush and the sql-sync command. You'll need to have :ref:`create_drush_aliases` setup for both your Platform site and your local site. If you are using the `Platform CLI <https://github.com/commerceguys/platform-cli>`_ and you've run ``platform get [platform_id]`` for a project, then your Platform aliases have already been setup.
 
-With the :ref:`create-drush-aliases` (depending on how yours are set up), you could use a command similar to this:
+With the :ref:`create_drush_aliases` (depending on how yours are set up), you could use a command similar to this:
 
 .. code-block:: console
 
