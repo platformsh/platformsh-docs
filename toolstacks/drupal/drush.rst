@@ -103,23 +103,9 @@ Create a make file
 
 Platform.sh can automatically build your site using make files. This allows you to easily test specific versions, apply patches and keep your site up to date. It also keeps your working directory much cleaner, since it only contains your custom code.
 
-Simply name your make file: ``project.make``.
+Your make file can be called: ``project.make`` or ``drupal-org.make``.
 
-And place all the contributed projects (modules, libraries, themes, etc...) you need on your site. 
-
-Here is a sample make file which includes Drupal core with a patch applied to it and the Platform indicator module:
-
-.. code-block:: console
-
-    api = 2
-    core = 7.x
-
-    projects[drupal][type] = core
-    projects[drupal][patch][] = "https://drupal.org/files/issues/install-redirect-on-empty-database-728702-36.patch"
-
-    ; Platform indicator module.
-    projects[platform][version] = "1.2"
-    projects[platform][subdir] = "contrib"
+You can find a nice example make file on `Github <https://github.com/platformsh/platform-drupal/blob/master/project.make>`_.
 
 When building as a profile, you **need a make file for Drupal core** called: ``project-core.make``:
 
@@ -135,4 +121,13 @@ When building as a profile, you **need a make file for Drupal core** called: ``p
 Generate a make file
 ^^^^^^^^^^^^^^^^^^^^
 
-If you want to generate a make file for your existing site, you can use the ``drush make-generate`` command.
+If you want to generate a make file from your existing site, you can run:
+
+.. code-block:: console
+
+  $ drush make-generate
+
+This will output a make file containing all your contributed modules, themes and libraries.
+
+.. seealso::
+  * `Make generate command <http://www.drushcommands.com/drush-6x/make/make-generate>`_
