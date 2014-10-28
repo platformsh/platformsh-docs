@@ -16,7 +16,7 @@ If you are using a make file, you can add those lines to your ``project.make``:
    projects[search_api_solr][version] = 1.x-dev
 
 .. seealso::
-  * :ref:`drush_make`
+  * :ref:`drush_make_files`
    
 Configuration
 -------------

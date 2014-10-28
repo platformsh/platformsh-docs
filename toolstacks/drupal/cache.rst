@@ -23,7 +23,7 @@ If you're project is using Drupal Commerce, you can also add the `Commerce Entit
    projects[commerce_authcache][version] = 1.x-dev
 
 .. seealso::
-  * :ref:`drush_make`
+  * :ref:`drush_make_files`
 
 Configuration
 -------------

@@ -22,7 +22,7 @@ If you are using a make file, you can add those lines to your ``project.make``:
    libraries[predis][destination] = libraries
 
 .. seealso::
-  * :ref:`drush_make`
+  * :ref:`drush_make_files`
    
 Configuration
 -------------

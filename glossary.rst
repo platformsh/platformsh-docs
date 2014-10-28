@@ -68,7 +68,7 @@ Glossary
     An open source version control system. Also see :ref:`git`.
 
   Make file
-    A file used in comination with Drupal and :ref:`Drush <drush>` to download a series of modules, libraries, and repositories. Also see :ref:`drush_make`.
+    A file used in comination with Drupal and :ref:`Drush <drush>` to download a series of modules, libraries, and repositories. Also see :ref:`drush_make_files`.
 
   Master
     The production website. Master is the only environment which doesn’t have a :term:`parent` and which has the most of the resources that you can get.

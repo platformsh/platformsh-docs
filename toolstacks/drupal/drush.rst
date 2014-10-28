@@ -1,12 +1,7 @@
-Getting Started
-===============
-
-Prerequisites
--------------
-
 .. _drush:
 
-.. rubric:: Drush
+Work with Drush
+===============
 
 Drush is a command-line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those who spend their working hours hacking away at the command prompt. Drush commands can, for example, be used to clear the Drupal cache, run module and database updates, revert features, perform database imports and dumps, and a whole lot more. You can reference the full set of Drush commands at `Drush.org <http://www.drush.org>`_. If you have never used Drush before, you can learn more, find installation instructions, or download Drush on the `Drush Github Repository <https://github.com/drush-ops/drush#description>`_
 
@@ -14,6 +9,8 @@ Platform uses Drush, so all :term:`environments <environment>` can utilize drush
 
 Platform's :ref:`cli` requires **Drush 6 or greater**.
 
+Install Drush
+-------------
 
 `Drush <http://www.drush.org/>`_ is a tool for Drupal developers. 
 Composer installs the drush tool in the same place as *platform*, in *~/.composer/vendor/bin/*. 
@@ -28,11 +25,8 @@ Check your work. ::
 
 A table of commands appears. 
 
-
 .. seealso::
   * `Install Drush <https://github.com/drush-ops/drush>`_
-
-.. _drush_make:
 
 Drush aliases
 -------------
@@ -96,3 +90,47 @@ Then test your settings to make sure they work.
    Database                        :  Connected
    Drupal bootstrap                :  Successful
    ...
+
+.. _drush_make_files:
+
+Make files
+----------
+
+Create a make file
+^^^^^^^^^^^^^^^^^
+
+Platform can automatically build your site using make files. This allows you to easily test specific versions, apply patches and keep your site up to date. It also keeps your working directory much cleaner, since it only contains your custom code.
+
+Simply name your make file: ``project.make``.
+
+And place all the contributed projects (modules, libraries, themes, etc...) you need on your site. 
+
+Here is a sample make file which includes Drupal core with a patch applied to it and the Platform indicator module:
+
+.. code-block:: console
+
+    api = 2
+    core = 7.x
+
+    projects[drupal][type] = core
+    projects[drupal][patch][] = "https://drupal.org/files/issues/install-redirect-on-empty-database-728702-36.patch"
+
+    ; Platform indicator module.
+    projects[platform][version] = "1.2"
+    projects[platform][subdir] = "contrib"
+
+When building as a profile, you **need a make file for Drupal core** called: ``project-core.make``:
+
+.. code-block:: console
+
+    api = 2
+    core = 7.x
+
+    projects[drupal][type] = core
+    projects[drupal][patch][] = "https://drupal.org/files/issues/install-redirect-on-empty-database-728702-36.patch"
+    
+
+Generate a make file
+^^^^^^^^^^^^^^^^^^^^
+
+If you want to generate a make file for your existing site, you can use the ``drush make-generate`` command.
