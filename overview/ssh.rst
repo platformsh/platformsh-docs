@@ -6,7 +6,7 @@ SSH
 One of the ways `Platform <https://platform.sh/>`_ keeps things secure is by using :ref:`SSH` behind the scenes. Users connect to their Platform :ref:`git` repo and to their Platform :term:`CLI` using SSH. 
 
 A RSA public/private keypair
-**************************
+****************************
 
 SSH requires two `RSA keys <https://en.wikipedia.org/wiki/RSA_(cryptosystem)>` - a private key kept secret by the user, and a public key stored with the Platform.sh account. These keys are called "the public-private keypair" and usually look like random lines of characters, like this. 
 

@@ -1,6 +1,6 @@
 
 Environments on Platform.sh 
-========================
+===========================
 
 `Platform.sh <https://platform.sh>`_  helps a coder with the development workflow by making it easy to manage project environments, including the live enviornment which runs the actual website.
  
@@ -11,7 +11,7 @@ The `platform <https://github.com/platformsh/platformsh-cli>`_ tool helps you ma
 
 
 Enviroments are hierarchical - like Git branches
--------------------------
+------------------------------------------------
 
 .. figure:: images/clone-hierarchy.png
    :alt: Understand hierarchical environments.
