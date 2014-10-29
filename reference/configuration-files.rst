@@ -36,6 +36,24 @@ Possible values are:
 * php:drupal
 * php:symfony
 
+.. _access:
+
+.. rubric:: Access
+
+You can define the user roles who can login via SSH to the environments they've access to.
+
+Possible values are:
+
+* ssh: admin
+* ssh: contributor
+* ssh: viewer
+
+.. code-block:: console
+    
+    # The access configuration.
+    access:
+        ssh: contributor
+
 .. _relationships:
 
 .. rubric:: Relationships
@@ -90,8 +108,7 @@ Possible hooks are:
 
 After a Git push, you can see the results of the deployment hooks in the ``/var/log/deploy.log`` file when logging to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
 
-.. code-block::
-    console
+.. code-block:: console
 
     [2014-07-03 10:03:51.100476] Launching hook 'cd /app/public ; drush -y updatedb'.
 
@@ -112,7 +129,7 @@ services.yaml, a Topology Configuration File
 
 .. note::
   Find the ``services.yaml`` file in the ``.platform`` folder at the root of your Git repository 
-  eg. 1237h7rtyh123/repository/.platform/services.yaml
+  eg. repository/.platform/services.yaml
 
 Platform allows you to completely define and configure the topology and services you want to use at the :term:`environment` level.
 
