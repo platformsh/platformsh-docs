@@ -148,10 +148,3 @@ Platform allows you to define the routes that will serve your project at the :te
 
 * `routes.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform/routes.yaml>`_
 * `routes.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/routes.yaml>`_
-
-https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform/routes.yaml
-
-.. todo::
-    Need to document the possible values.
-
-last update: |today|
