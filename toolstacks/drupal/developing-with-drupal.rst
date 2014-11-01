@@ -139,5 +139,8 @@ With the :ref:`create_drush_aliases` (depending on how yours are set up), you co
 
    $ drush sql-sync @platform.master @platform.local
 
-.. note::
-  An aternate command that is appropriate for larger databases is: *$ drush @source sql-dump | drush @target sqlc*
+An aternate method that is appropriate for larger databases uses the pipe `|` to stream the data, instead of making copies.
+
+.. code-block:: console
+
+   $ drush @platform.master sql-dump | drush @platform.local sqlc
