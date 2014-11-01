@@ -85,6 +85,9 @@ Possible variables are:
 
 The size of the persistent disk of the :term:`application` in MB.
 
+.. note::
+  The minimal recommended disk size is 256MB. If you see the error **UserError: Error building the project: Disk size may not be smaller than 128MB**, increase the size to 256MB.
+
 .. _mounts:
 
 .. rubric:: Mounts
