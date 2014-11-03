@@ -6,7 +6,7 @@ What is Platform.sh?
 How does it work?
 -----------------
 
-Platform.sh operates on the idea that you as a web developer will manage your application code in Git. From there, Platform.sh can provision each Git branch with a full application stack to run your application, online, with a synchronized copy of the applications data (DB, uploaded files, Solr index, etc.) 
+Platform.sh operates on the idea that you as a web developer will manage your application code in Git. From there, Platform.sh can provision each Git branch with a full application stack to run your application, online, with a synchronized copy of the applications data (*DB, files, Solr index...*) 
 
 This means that you now can work with your complete application infrastructure the same way you work with Git: branching and merging is cheap and fast, and you are no longer responsible for Sysadmin or DevOps tasks that distract you from coding.
 

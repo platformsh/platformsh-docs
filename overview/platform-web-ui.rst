@@ -1,7 +1,7 @@
 .. _platform_ui:
 
-The Platform Web UI
-===================
+Web UI
+======
 
 
 .. figure:: /overview/images/ui-header.png
