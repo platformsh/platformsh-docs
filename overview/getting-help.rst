@@ -10,9 +10,9 @@ Frequently Asked Questions (FAQ)
 What is the difference between a Platform, a Project and an Environment?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A Platform is the infrastructure which is running all your projects.
+Platform is the infrastructure which is running all your projects.
 
-A project is the site that you're working on. Each project can contain multiple environments.
+A project is the site that you're working on. Each project can contain multiple applications and be deployed in environments.
 
 An environment is a standalone copy of your live site (the Master environment) which can be used for testing, implementing new features...
 
@@ -26,8 +26,8 @@ Do you support other database services?
 
 We'll soon support PostgreSQL. We aim to support all the most popular database services like MongoDB...
 
-Does cloning an environment duplicate services?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Does branching an environment duplicate services?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Yes ! Branching an environment creates an exact copy (snapshot) of the parent environment, containing the files, the database, the services...
 
@@ -77,15 +77,10 @@ We try to make the log as self-explanatory as possible, so you should see the Gi
 
 You can also find it back by clicking on the status of the activity in the :term:`Platform UI`.
 
-What Linux distribution is Platform using?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+What Linux distribution is Platform.sh using?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Platform is built on Debian.
-
-Glossary
---------
-
-In the :ref:`glossary-label` you can find explained terminology.
+Platform.sh is built on Debian.
 
 If I choose the Development plan, can I use that plan for production?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

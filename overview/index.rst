@@ -10,5 +10,4 @@ Overview
   platform-environments
   platform-web-ui
   command-line-interface
-  local-development
   getting-help

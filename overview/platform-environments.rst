@@ -1,4 +1,4 @@
-.. _environment:
+.. _environments:
 
 Platform.sh Environments
 ========================
@@ -29,7 +29,7 @@ Each child environment can :term:`sync` code and/or data down from its parent, a
 Workflows
 ---------
 
-Since you can organize your :ref:`environment` as you want, you have a complete flexibility to create your own workflows. 
+Since you can organize your :ref:`environments` as you want, you have a complete flexibility to create your own workflows. 
 
 There are no rule you must follow when branching the master environment. You simply need a structure that best fits your workflow:
 
