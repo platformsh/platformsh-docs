@@ -27,7 +27,7 @@ Do you support other database services?
 We'll soon support PostgreSQL. We aim to support all the most popular database services like MongoDB...
 
 Does branching an environment duplicate services?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Yes ! Branching an environment creates an exact copy (snapshot) of the parent environment, containing the files, the database, the services...
 
