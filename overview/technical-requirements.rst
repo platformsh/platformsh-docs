@@ -3,13 +3,15 @@
 Technical Requirements
 ======================
 
-The only technical requirements for developing on Platform are **Git** and **SSH**.
+Platform.sh will require you to have **Git** installed. You also need to be familiar with **SSH**.
 
 Git
 ---
 
-:ref:`Git <git>` is the version control system used by Platformsh. You will need to have it installed to be able to interact with your codebase on Platform.sh.
+:ref:`Git <git>` is the version control system used by Platform.sh. You need to have it installed to be able to interact with your codebase on Platform.sh.
 
+.. seealso::
+   * `Install Git <http://www.git-scm.com/>`_
 
 SSH
 ---
@@ -23,7 +25,6 @@ You will need a :ref:`SSH <ssh>` public/private keypair in order to interact wit
 The Platform.sh CLI
 -------------------
 
-Platform.shs has a dedication :ref:`Command Line Interface (CLI) <cli>` tool called  *platform*. The *platform* tool gives enables you to use and manage all of your Platform.sh projects from the command line.
+Platform.sh offers a dedicated :ref:`Command Line Interface (CLI) <cli>` tool. The :ref:`Command Line Interface (CLI) <cli>` allows you to use and manage all of your projects directly from your terminal.
 
-Download *platform* from `Github <https://github.com/commerceguys/platform-cli>`_. 
-Installation instructions are included in the readme file.
+You can download the :ref:`Command Line Interface (CLI) <cli>` from `Github <https://github.com/commerceguys/platform-cli>`_. 
