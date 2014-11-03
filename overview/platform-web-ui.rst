@@ -3,7 +3,6 @@
 Web UI
 ======
 
-
 .. figure:: /overview/images/ui-header.png
   :alt: Platform UI
 

@@ -6,23 +6,23 @@ Command Line Interface (CLI)
 What is the CLI?
 ----------------
 
-The :ref:`Command Line Interface (CLI) <cli>` is the official tool to use and manage your Platform.sh projects directly from your terminal. Anything you can do in the :ref:`platform_ui` can be done with the :ref:`Command Line Interface (CLI) <cli>`.
+The :ref:`cli` is the official tool to use and manage your Platform.sh projects directly from your terminal. Anything you can do in the :ref:`platform_ui` can be done with the :ref:`cli`.
 
 How do I get it?
 ----------------
 
-You can download the :ref:`Command Line Interface (CLI) <cli>` from `Github <https://github.com/platformsh/platform-cli>`_. 
+You can download the :ref:`cli` from `Github <https://github.com/platformsh/platform-cli>`_. 
 
 Installation instructions can be found on the `README.md <https://github.com/platformsh/platformsh-cli/blob/development/README.md>`_.
 
 What can I do with the CLI?
 ---------------------------
 
-The :ref:`Command Line Interface (CLI) <cli>` is using the :ref:`api` to trigger commands (*Branch, Merge...*) on your Platform.sh project. 
+The :ref:`cli` is using the :ref:`api` to trigger commands (*Branch, Merge...*) on your Platform.sh project. 
 
 It's also very useful when you work locally since it can simulate a local build of your codebase as if you were pushing a change to Platform.sh.
 
-Once you have the :ref:`Command Line Interface (CLI) <cli>` installed, run ``platform list`` to see all of the available commands.
+Once you have the :ref:`cli` installed, run ``platform list`` to see all of the available commands.
 
 .. code-block:: console
 

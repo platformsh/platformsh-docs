@@ -1,52 +1,44 @@
 .. _environment:
 
-Environments on Platform.sh 
-===========================
+Platform.sh Environments
+========================
 
-`Platform.sh <https://platform.sh>`_  helps a coder with the development workflow by making it easy to manage project environments, including the live enviornment which runs the actual website.
- 
-.. figure:: images/clone-hierarchy.png
-   :alt: In this environment layout, *Master* is the parent of *Sprint1*. *Feature1* is a child of *Sprint1*. 
+An environment is tight to a Git branch, plus all the :term:`services <service>` that are serving that branch. You can see that as a **complete working website**. 
 
-The `platform <https://github.com/platformsh/platformsh-cli>`_ tool helps you manage your local environment, copy code, data and resources between your local development machine and remote Platform.sh environments. 
+`Platform.sh <https://platform.sh>`_  helps a coder with the development workflow by making it easy to manage multiple environments, including the live enviornment which runs the production website.
 
+.. _environment_master:
 
-Enviroments are hierarchical - like Git branches
-------------------------------------------------
+Master environment
+------------------
+
+Every Platform.sh project starts with a :ref:`environment_master` which corresponds to the Master branch in Git. 
+
+If you subscribed to a :term:`production plan`, this environment is your **live site** and can be mapped to a :term:`domain name` and an :term:`SSL certificate`.
+
+Hierarchy
+---------
 
 .. figure:: images/clone-hierarchy.png
    :alt: Understand hierarchical environments.
 
-Platform.sh encourages you to structure your :term:`environments <environment>` as you want. New environments are tied to Git branches, and are considered children of the environment that they were branched from.
+Platform.sh brings a concept of hierarchy between your environments. Each new environment you will create is considered as a **child** of the **parent** environment which it was branched from.
 
-Each child :term:`environment` can :term:`sync` code and/or data down from its parent, and :term:`merge` code up to his parent.
+Each child environment can :term:`sync` code and/or data down from its parent, and :term:`merge` code up to his parent. These are used for development, staging, and testing.
 
-The Master environment
-^^^^^^^^^^^^^^^^^^^^^^
+Workflows
+---------
 
-Platform.sh projects always have a :term:`Master` environment which corresponds to the Master branch in Git. This environment is your live site (on production plans), and is the environment that is mapped to a :term:`domain name`.
+Since you can organize your :ref:`environment` as you want, you have a complete flexibility to create your own workflows. 
 
-Branches
-^^^^^^^^
+There are no rule you must follow when branching the master environment. You simply need a structure that best fits your workflow:
 
-The Platform.sh ``master`` branch is used for the live/production environment in your project. Any other environment in the interface with have an equivalent branch in Git.
+* **Agile**: one master environment, a child environment per sprint. Each story in the sprint can have its own environment as a child of the sprint environment. 
+* **Developer-centric**: one master environment, one QA environment and a few development environments (*per developer, per task...*). 
+* **Testing**:: one master environment, an operational test environment, a user test environment and a few unit test environments. 
+* **Fix**: one master environment and children environments (*per bug fix, per security update...*).
 
-Any branches that are created with the Platform.sh user interface or the platform CLI tool become child environments. These are used for development, staging, and testing.
-
-
-Workflows and environments
---------------------------
-
-Platform.sh gives you the flexibility to create your own workflows. 
-
-There are no rules you must follow when branching the master environment. You can use a style that best fits your workflow.
-* *agile* - one master parent, branch a few children to use for sprints, and branch each sprint to make stories for feature development. 
-* *developer-centric* - one production master, one QA environment and a few development environments - one per coder. 
-* *testing* - one production master, an operational test environment, a user test environment and a few unit test environments. 
-* *fix* - one master parent and two children - one for testing bug fixes and one for security updates.
-
-
-Here is an example of an agile workflow.
+Here is an example of a possible Agile workflow.
 
 .. image:: /use-platform.sh/images/branches.png
   :alt: Create Branches
@@ -82,13 +74,12 @@ When the objectives of the sprint are complete, the administrator can then make 
 
 The adminstrator can then synchronize the live site with any existing Sprint environments to repeat the process and continue the development process.
 
-Environment conventions
------------------------
+.. _naming_convention:
 
-Platform provides great flexibility on the way you can organize and work with your development environments. To improve readability and productivity, it's important to think carefully about how to name and structure those environments.
+Naming conventions
+------------------
 
-Naming
-^^^^^^
+Platform.sh provides great flexibility on the way you can organize and work with your development environments. To improve readability and productivity, it's important to think carefully about how to name and structure those environments.
 
 The name should represent the purpose of the environment. Is it a Staging site to show to your client? Is it an implementation of a new feature? Is it a hot fix?
 
@@ -96,25 +87,23 @@ If you're working Agile, for example, you could use hierarchical environments an
 
 .. code-block:: console
 
-    Sprint1
-      Feature1
-      Feature2
-      Feature3
-    Sprint2
-      Feature1
-      Feature2
+  Sprint1
+    Feature1
+     Feature2
+     Feature3
+  Sprint2
+    Feature1
+    Feature2
     ...
 
 If you prefer splitting your environments per developer and having a specific environment per task or per ticket, you could use something like this:
 
 .. code-block:: console
 
-    Staging
-      Developer1
-        Ticket-526
-        Ticket-593
-      Developer2
-        Ticket-395
-      ...
-
-
+  Staging
+    Developer1
+      Ticket-526
+      Ticket-593
+    Developer2
+      Ticket-395
+    ...
