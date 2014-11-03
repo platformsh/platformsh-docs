@@ -10,7 +10,5 @@ Overview
   platform-environments
   platform-web-ui
   command-line-interface
-  git
-  ssh
   local-development
   getting-help

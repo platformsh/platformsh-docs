@@ -28,6 +28,8 @@ Platform.sh projects always have a :term:`Master` environment which corresponds 
 Branches
 ^^^^^^^^
 
+The Platform.sh ``master`` branch is used for the live/production environment in your project. Any other environment in the interface with have an equivalent branch in Git.
+
 Any branches that are created with the Platform.sh user interface or the platform CLI tool become child environments. These are used for development, staging, and testing.
 
 
