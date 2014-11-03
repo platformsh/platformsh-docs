@@ -1,7 +1,7 @@
 What is Platform.sh?
 ====================
 
-Platform.sh is a groundbreaking hosting and development tool for web applications. It extends a branch-merge Git workflow to infrastructure so that every branch has its own URL and can be tested as if it were in production. Platform.sh architecture allows it to scale for the largest sites.
+`Platform.sh <https://platform.sh/>`_ is a groundbreaking hosting and development tool for web applications. It extends a branch-merge Git workflow to infrastructure so that every branch has its own URL and can be tested as if it were in production. Platform.sh architecture allows it to scale for the largest sites.
 
 How does it work?
 -----------------
