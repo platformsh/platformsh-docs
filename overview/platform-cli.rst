@@ -13,7 +13,9 @@ How do I get it?
 
 You can download the :ref:`cli` from `Github <https://github.com/platformsh/platform-cli>`_. 
 
-Installation instructions can be found on the `README.md <https://github.com/platformsh/platformsh-cli/blob/development/README.md>`_.
+.. seealso::
+  * :ref:`install_cli`
+  * `Installation instructions on Github <https://github.com/platformsh/platformsh-cli/blob/development/README.md>`_.
 
 What can I do with the CLI?
 ---------------------------

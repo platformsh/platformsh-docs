@@ -4,8 +4,7 @@
 Use SSH keys
 ============
 
-One of the ways `Platform <https://platform.sh/>`_ keeps things secure is by using :ref:`SSH` behind the scenes. Users connect to their Platform :ref:`git` repo and to their Platform :term:`CLI` using SSH. 
-
+One of the ways `Platform.sh <https://platform.sh/>`_ keeps things secure is by using :ref:`SSH` behind the scenes. Users connect to their Platform :ref:`git` repo and to their :ref:`cli` using SSH. 
 
 Find your Public-Private Keypair
 --------------------------------
@@ -74,7 +73,7 @@ You have your SSH keys (if not, take a look at the section above), but you need 
 
 5. Click 'Save'. 
 
-That's it! You're all set. Now you'll be able to use :ref:`Git <git>` on Platform, and able to SSH into one of your :term:`environments <environment>` web servers.
+That's it! You're all set. Now you'll be able to use :ref:`Git <git>` on Platform, and able to SSH into one of your :ref:`environments <environments>` web servers.
 
 .. image:: /use-platform.sh/images/ssh-addkeytomarketplace.png
    :alt: Add SSH key to Marketplace
@@ -84,7 +83,7 @@ That's it! You're all set. Now you'll be able to use :ref:`Git <git>` on Platfor
 SSH to your Web Server
 ----------------------
 
-Just under the Environment name, in the :term:`Platform UI`, there is a link you can hover to copy the SSH URL of that :term:`environment`.
+Just under the Environment name, in the :ref:`platform_ui`, there is a link you can hover to copy the SSH URL of that :ref:`environment <environments>`.
 
 1. Open your Platform.sh web UI 
 2. Hover the ``Access info`` link

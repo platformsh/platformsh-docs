@@ -1,4 +1,4 @@
-
+.. _install_cli:
 
 Install the Platform.sh software bundle
 =======================================
