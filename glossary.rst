@@ -95,6 +95,9 @@ Glossary
   Platform.sh CLI
     Platform CLI is the official command line shell and Unix scripting interface for Platform. It ships with all the useful commands to interact with your Platform projects. You can get download it `here <https://github.com/commerceguys/platform-cli>`_.
 
+  Production plan
+    A subscription level which allows you to host your production website by adding a domain and an SSL certificate.
+
   Project
     A Platform account that consists of a specific set of environments, users, size, and storage.
 
@@ -125,6 +128,9 @@ Glossary
 
   SSH Key
     A means to identify yourself to an SSH server securely.
+
+  SSL Certificate
+    A certificate used to serve and secure your site.
 
   Symfony
     Symfony is a PHP web application framework for MVC applications. Symfony is free software and released under the MIT license (see http://symfony.com/ for more information).
