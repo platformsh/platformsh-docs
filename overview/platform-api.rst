@@ -1,9 +1,8 @@
 .. _platform_api:
 
-Web UI
-======
+Platform.sh API
+===============
 
-Platform.sh provides a responsive web UI which allows you to interact with your projects and manage your environments.
+Platform.sh exposes an **hypermedia REST API** which allows you to interact with your project and manage your environments.
 
-.. figure:: /overview/images/platform-ui.png
-  :alt: Platform web UI
+The :ref:`cli` and the :ref:`platform_ui` are both abstraction layers which consume this API.

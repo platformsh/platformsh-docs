@@ -3,7 +3,7 @@
 Platform.sh main actions
 ========================
 
-You can see on the top right of the :ref:`platform_ui` the main actions that you can use to interface with your :ref:`environments`.
+The :ref:`platform_ui` exposes 5 main actions that you can use to interface with your :ref:`environments`.
 
 .. image:: /overview/images/icon-branch.png
   :alt: Branch
