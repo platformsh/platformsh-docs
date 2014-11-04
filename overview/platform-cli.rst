@@ -18,7 +18,7 @@ Installation instructions can be found on the `README.md <https://github.com/pla
 What can I do with the CLI?
 ---------------------------
 
-The :ref:`cli` is using the :ref:`api` to trigger commands (*Branch, Merge...*) on your Platform.sh project. 
+The :ref:`cli` is using the :ref:`platform_api` to trigger commands (*Branch, Merge...*) on your Platform.sh project. 
 
 It's also very useful when you work locally since it can simulate a local build of your codebase as if you were pushing a change to Platform.sh.
 

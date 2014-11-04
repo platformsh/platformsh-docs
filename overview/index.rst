@@ -7,7 +7,9 @@ Overview
 
   what-is-platform
   technical-requirements
-  platform-environments
   platform-web-ui
-  command-line-interface
+  platform-cli
+  platform-api
+  platform-environments
+  platform-actions
   getting-help

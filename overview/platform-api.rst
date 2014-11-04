@@ -1,4 +1,4 @@
-.. _platform_ui:
+.. _platform_api:
 
 Web UI
 ======
