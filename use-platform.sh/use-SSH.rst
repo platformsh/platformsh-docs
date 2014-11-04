@@ -87,7 +87,7 @@ SSH to your Web Server
 Just under the Environment name, in the :term:`Platform UI`, there is a link you can hover to copy the SSH URL of that :term:`environment`.
 
 1. Open your Platform.sh web UI 
-2. Hover the ``Access info` link
+2. Hover the ``Access info`` link
 3. Click to copy the SSH URL
 
 .. figure:: /use-platform.sh/images/ssh-access-information.png

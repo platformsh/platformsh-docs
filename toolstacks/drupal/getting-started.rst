@@ -20,7 +20,7 @@ If your repository contains a ``.profile`` file, Platform.sh builds your project
 This build mode supports having a ``project.make`` file for your contributed modules, themes or libraries.
 
 .. note::
-    When building as a profile, you **need a make file for Drupal core** called: ``project-core.make``. See :ref:`_drush_make_files`_.
+    When building as a profile, you **need a make file for Drupal core** called: ``project-core.make``. See :ref:`drush_make_files`.
 
 .. code-block:: console
 
