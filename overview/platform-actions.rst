@@ -13,9 +13,9 @@ The :ref:`platform_ui` exposes 5 main actions that you can use to interface with
 Branch
 ------
 
-Branching an :term:`environment` means creating an exact copy of that :term:`environment`.
+Branching an :term:`environment` means creating a new branch in the Git repository, as well as an exact copy of that :term:`environment`.
 
-A Platform branch includes code, and also the services that are needed to run the whole application. This means that when you branch an :term:`environment`, you also branch the complete infrastructure. A fork will be done of all the services, their configuration as well as their data.
+The new branch includes code, all of the data that is stored on disk (database, Solr indexes, uploaded files, etc.), and also a new copy of the running services (and their configuration) that the application needs. This means that when you branch an :term:`environment`, you also branch the complete infrastructure. 
 
 During a ``branch``, three things happen:
 
@@ -53,7 +53,7 @@ Sync
 
 Synchronizing means updating the child :term:`environment` with the code and/or data of its parent and redeploying the child environment.
 
-Note that ``sync`` is only available if your branch has no unmerged commits, and can be fast-forwarded. On ``sync``, your code branch will be fast-forwarded to its parent's tip, and the data (e.g. databases) of the services on the branch will be overwritten with an exact copy of the parent's. Syncing of data and code can be done individually, so if desired, you can benefit from having only code changes applied for instance.
+Note that ``sync`` is only available if your branch has no unmerged commits, and can be fast-forwarded. On ``sync``, your code branch will be fast-forwarded to its parent's tip, and the data (e.g. databases) of the services on the branch will be overwritten with an exact copy of the parent's. Syncing of data and code can be done individually, so if desired, you can benefit from having only code changes applied.
 
 .. image:: /overview/images/icon-backup.png
   :alt: Backup
@@ -73,6 +73,7 @@ Backing up an :term:`environment` means saving a copy of the database, so that i
   :alt: Push
 
 .. _push:
+
 
 Push
 ----

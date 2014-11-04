@@ -27,7 +27,7 @@ SSH
 
 One of the ways `Platform.sh <https://platform.sh/>`_ keeps things secure is by using :ref:`SSH` behind the scenes. Users connect to their Platform.sh :ref:`git` repository and to their :ref:`Command Line Interface (CLI) <cli>` using SSH. 
 
-SSH requires two `RSA keys <https://en.wikipedia.org/wiki/RSA_(cryptosystem)>`:
+SSH requires two `RSA keys <https://en.wikipedia.org/wiki/RSA_(cryptosystem)>`_:
 
 * A **private key** kept secret by the user
 * A **public key** stored within the Platform.sh account. 
