@@ -5,7 +5,7 @@ Set Up your Local Development Environment
 Use the CLI
 -----------
 
-Use the :term:`Platform CLI` to get a copy of your project, so that you can start working locally.
+Use the :ref:`cli` to get a copy of your project, so that you can start working locally.
 
 In order to copy your project locally, you'll need to know its' project id. The command ``platform`` will list all of the active projects on your account.
 
@@ -22,7 +22,6 @@ In order to copy your project locally, you'll need to know its' project id. The 
      Get a project by running platform get [id].
      Delete a project by running platform project:delete [id].
      List a project's environments by running platform environments.
-
 
 Download an environment
 -----------------------
@@ -43,7 +42,6 @@ Once you know the project id you need to use, copying the project to your local 
      Checking connectivity... done.
 
 You should now have a folder, based on what you used for *[folder-name]* in the ``platform get`` command above. 
-
 
 Local Site Structure
 ^^^^^^^^^^^^^^^^^^^^
@@ -76,7 +74,7 @@ Now that you have a copy of your project locally, you can run ``platform build``
 .. code-block:: none
 
    ~/htdocs/my-project $ platform build
-     Beginning to build ~/htdocs/my-project/repository/project.make.                          [ok]
+     Beginning to build ~/htdocs/my-project/repository/project.make.                        [ok]
      commerce_kickstart-7.x-2.14 downloaded.                                                [ok]
      commerce_bundle-7.x-1.x-dev downloaded.                                                [ok]
 
@@ -91,8 +89,8 @@ Now that you have a copy of your project locally, you can run ``platform build``
      www -> ~/htdocs/my-project/builds/2014-05-19--16-22-46--sprint1
 
 .. seealso::
-   * `Installing Platform CLI <https://github.com/commerceguys/platform-cli>`_
-
+  * :ref:`install_cli`
+  * `Installation instructions on Github <https://github.com/platformsh/platformsh-cli/blob/development/README.md>`_.
 
 Synchronize Data
 ----------------
@@ -107,5 +105,3 @@ With the *Platform CLI* you can run this command from the branch that you wish t
   * :ref:`Drush <drush>`
   * :ref:`create_drush_aliases`
   * :ref:`cli`
-
-
