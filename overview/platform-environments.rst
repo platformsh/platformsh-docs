@@ -22,7 +22,7 @@ Hierarchy
 .. figure:: images/clone-hierarchy.png
    :alt: Understand hierarchical environments.
 
-Platform.sh brings a concept of hierarchy between your environments. Each new environment you create is considered a **child** of the **parent** environment from which it was branched.
+Platform.sh brings the concept of a hierarchy between your environments. Each new environment you create is considered a **child** of the **parent** environment from which it was branched.
 
 Each child environment can :term:`sync` code and/or data down from its parent, and :term:`merge` code up to its parent. These are used for development, staging, and testing.
 
@@ -52,7 +52,7 @@ The administrator creates a Sprint environment and gives each of the developers 
   :alt: Merge a feature
   :align: left
 
-As a feature is completed, the adimistrator can review the work by accessing the website of the feature environment. The new feature is then merged back into the Sprint environment.
+As a feature is completed, the administrator can review the work by accessing the website of the feature environment. The new feature is then merged back into the Sprint environment.
 
 ----
 
@@ -72,7 +72,7 @@ When the objectives of the sprint are complete, the administrator can then make 
 
 ----
 
-The adminstrator can then synchronize the next sprint's environment with data from the live (Master) environment to repeat and continue the development process.
+The administrator can then synchronize the next sprint's environment with data from the live (Master) environment to repeat and continue the development process.
 
 .. _naming_convention:
 
@@ -81,9 +81,9 @@ Naming conventions
 
 Platform.sh provides great flexibility on the way you can organize and work with your development environments. To improve readability and productivity, it's important to think carefully about how to name and structure those environments.
 
-The name should represent the purpose of the environment. Is it a Staging site to show to your client? Is it an implementation of a new feature? Is it a hot fix?
+The name should represent the purpose of the environment. Is it a Staging site to show to your client? Is it an implementation of a new feature? Is it a hotfix?
 
-If you're working Agile, for example, you could use hierarchical environments and name them like this:
+If you use Agile, for example, you could create hierarchical environments and name them like this:
 
 .. code-block:: console
 
