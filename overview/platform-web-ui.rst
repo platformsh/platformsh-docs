@@ -33,15 +33,22 @@ The :ref:`platform_ui` exposes 5 main actions that you can use to interface with
 Project configuration
 ---------------------
 
+The :ref:`platform_ui` allows you to manage users and domains on your project. You can access the configuration page of your project by clicking on the gear icon next to the project name.
+
 .. figure:: /overview/images/ui-conf-project.png
   :alt: Platform.sh project configuration screen
-
-You can access the configuration page of your project by clicking on the gear icon next to the project name.
 
 Environment configuration
 -------------------------
 
-.. figure:: /overview/images/ui-conf-environment.png
-  :alt: Platform.sh environment configuration screen
+The :ref:`platform_ui` allows you to configure the following parameters on a specific environment:
+
+* Status (disable/enable)
+* Environment variables
+* Routes that will serve the environment
+* Permissions and access control
 
 You can access the configuration page of an environment by clicking on the gear icon next to the environment name.
+
+.. figure:: /overview/images/ui-conf-environment.png
+  :alt: Platform.sh environment configuration screen
