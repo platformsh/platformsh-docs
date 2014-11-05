@@ -20,7 +20,7 @@ You can download the :ref:`cli` from `Github <https://github.com/platformsh/plat
 What can I do with the CLI?
 ---------------------------
 
-The :ref:`cli` is using the :ref:`platform_api` to trigger commands (*Branch, Merge...*) on your Platform.sh project. 
+The :ref:`cli` uses the :ref:`platform_api` to trigger commands (*Branch, Merge...*) on your Platform.sh project.
 
 It's also very useful when you work locally since it can simulate a local build of your codebase as if you were pushing a change to Platform.sh.
 
@@ -29,7 +29,7 @@ Once you have the :ref:`cli` installed, run ``platform list`` to see all of the 
 .. code-block:: console
 
   $ platform list
-  Platform.sh CLI version 1.2.2
+  Platform.sh CLI version 1.2.3
 
   Usage:
     [options] command [arguments]
