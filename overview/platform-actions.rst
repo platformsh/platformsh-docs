@@ -5,6 +5,18 @@ Platform.sh main actions
 
 The :ref:`platform_ui` exposes 5 main actions that you can use to interface with your :ref:`environments`.
 
+.. image:: /overview/images/icon-git.png
+  :alt: Push
+
+.. _git:
+
+Git
+---
+
+The Git icon displays the commands to use to clone or pull your Git repository locally.
+
+------------
+
 .. image:: /overview/images/icon-branch.png
   :alt: Branch
 
@@ -68,22 +80,3 @@ Backing up an :term:`environment` means saving a copy of the database, so that i
 .. warning::
 
    * Restoring environments is not yet available in the :term:`Platform UI`.
-
-.. image:: /overview/images/icon-git.png
-  :alt: Push
-
-.. _push:
-
-
-Push
-----
-
-Pushing code to a branch will update the code repository and also automatically triggers a rebuild of the application that is running on the infrastructure branch that was pushed to.
-
-Which means you can test a new service, a different module version, or any specific configuration by simply pushing code to your Git repository.
-
-During a ``push``, here is what happens:
-
-* The code repository is updated
-* The branch is deployed
-* The application is rebuilt
