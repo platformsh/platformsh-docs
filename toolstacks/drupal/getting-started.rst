@@ -102,7 +102,8 @@ Configure your app
 
 Platform.sh uses configuration files to determine what toolstack you want to deploy and how you want to deploy it.
 
+For Drupal, your ``.platform.app.yaml`` should have the ``php:drupal`` toolstack.
+
 .. seealso::
   * :ref:`configuration_files`
-
-If you're working with Drupal, your ``.platform.app.yaml`` should target the "php:drupal" toolstack. You can find an example of a Drupal specific ``.platform.app.yaml`` file on `Github <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_.
+  * `Default .platform.app.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_
