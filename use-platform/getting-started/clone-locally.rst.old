@@ -36,14 +36,14 @@ You might not need to *run* a copy of your :term:`environment` locally, but you 
 
 One of the first elements you'll see at the top of the Platform interface is a "PULL | CLONE" text widget. You can use the commands listed there to clone the branch you are currently viewing.
 
-.. figure:: /use-platform.sh/getting-started/images/pull-clone-copy.png
+.. figure:: /use-platform/getting-started/images/pull-clone-copy.png
   :alt: Pull or Clone your repository
 
   Select **CLONE** on the widget and copy the command listed in the adjacent text box. It should start with 'git clone'.
 
 ----
 
-.. image:: /use-platform.sh/getting-started/images/icon-warning.png
+.. image:: /use-platform/getting-started/images/icon-warning.png
   :alt: SSH warning
   :align: left
 

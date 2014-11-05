@@ -147,7 +147,7 @@ If you want to serve your website with HTTPS, you'll need to upload your SSL cer
 
 Once your certificate has been uploaded, you need to update the routes of your project within the Platform UI.
 
-.. figure:: /use-platform.sh/images/routes-setup.png
+.. figure:: /use-platform/images/routes-setup.png
   :alt: Routes Setup with SSL
 
   This is an example configuration which will serve ``https://`` with PHP and redirect all request starting with ``http://www` and ``http://`` to ``https://``.

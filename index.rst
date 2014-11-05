@@ -18,7 +18,7 @@ To fully benefit from `Platform.sh <https://platform.sh>`_, it's recommended to 
   :maxdepth: 3
   :glob:
 
-  use-platform.sh/index
+  use-platform/index
 
 .. toctree::
   :maxdepth: 3

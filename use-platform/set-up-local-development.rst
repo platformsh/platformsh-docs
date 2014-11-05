@@ -60,7 +60,7 @@ Inside the new folder, there are a couple directories and a file. They are:
 
 .. code-block:: none
 
-   ~/htdocs/my-project ]$ ls
+   ~/htdocs/my-project $ ls
      .platform-project
      builds
      repository
@@ -81,7 +81,7 @@ Now that you have a copy of your project locally, you can run ``platform build``
 
 .. code-block:: none
 
-   ~/htdocs/my-project ]$ ls
+   ~/htdocs/my-project $ ls
      .platform-project
      builds
      repository

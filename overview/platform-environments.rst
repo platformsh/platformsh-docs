@@ -40,7 +40,7 @@ There are no rules you must follow when branching the master environment. You si
 
 Here is an example of a possible Agile workflow.
 
-.. image:: /use-platform.sh/images/branches.png
+.. image:: /use-platform/images/branches.png
   :alt: Create Branches
   :align: left
 
@@ -48,7 +48,7 @@ The administrator creates a Sprint environment and gives each of the developers 
 
 ----
 
-.. image:: /use-platform.sh/images/merge.png
+.. image:: /use-platform/images/merge.png
   :alt: Merge a feature
   :align: left
 
@@ -56,7 +56,7 @@ As a feature is completed, the adimistrator can review the work by accessing the
 
 ----
 
-.. image:: /use-platform.sh/images/sync.png
+.. image:: /use-platform/images/sync.png
   :alt: Sync the update to other features
   :align: left
 
@@ -64,7 +64,7 @@ The remaining features will sync with the Sprint environment to ensure their wor
 
 ----
 
-.. image:: /use-platform.sh/images/merge-live.png
+.. image:: /use-platform/images/merge-live.png
   :alt: Merge to Live
   :align: left
 

@@ -26,7 +26,7 @@ rename an environment
 
 You can rename an :term:`environment` by clicking its name on the Platform UI. 
 
-.. figure:: /use-platform.sh/images/renaming-environment.png
+.. figure:: /use-platform/images/renaming-environment.png
   :alt: Renaming environment
 
   For example, you can rename the ``Master`` :term:`environment` into ``Live``.
@@ -46,7 +46,7 @@ When you are ready to launch your website, there are couple of steps that you mu
 
 First, you need to make sure that your domain has been added to Platform.
 
-  .. image:: /use-platform.sh/getting-started/images/icon-configure.png
+  .. image:: /use-platform/getting-started/images/icon-configure.png
     :alt: Configure icon
     :align: left
 

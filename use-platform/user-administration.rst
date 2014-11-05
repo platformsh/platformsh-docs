@@ -31,7 +31,7 @@ Manage User Permissions at the Project Level
 
   Access the project level configuration.
 
-  .. image:: /use-platform.sh/images/project_w-configarrow.png
+  .. image:: /use-platform/images/project_w-configarrow.png
      :alt: Project configure icon
      :align: left
 
@@ -41,7 +41,7 @@ Manage User Permissions at the Project Level
 
   Manage users.
 
-  .. image:: /use-platform.sh/images/project_usermanagement.png
+  .. image:: /use-platform/images/project_usermanagement.png
      :alt: Project user management screenshot
      :align: left
      :width: 400px
@@ -62,7 +62,7 @@ Manage User Permissions at the Environment Level
 
   Access the environment level configuration.
 
-  .. image:: /use-platform.sh/images/environment_w-configarrow.png
+  .. image:: /use-platform/images/environment_w-configarrow.png
      :alt: Project configure icon
      :align: left
 
@@ -72,7 +72,7 @@ Manage User Permissions at the Environment Level
 
   Manage users.
 
-  .. image:: /use-platform.sh/images/environment_usermanagement.png
+  .. image:: /use-platform/images/environment_usermanagement.png
      :alt: Project user management screenshot
      :align: left
      :width: 400px
