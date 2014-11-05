@@ -7,7 +7,6 @@ Overview
 
   what-is-platform
   technical-requirements
-  platform-api
   platform-environments
   platform-actions
   platform-web-ui
