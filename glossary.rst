@@ -6,11 +6,15 @@ Glossary
 .. glossary::
   :sorted:
   
+  API
+    :term:`Platform.sh` provides a REST API (Application Programming Interface) which allows you to interact whith it. Both the :term:`Platform UI` and the :term:`Platform CLI` are fully integrated with the :term:`Platform API`.
+
   Application
     Your application regroups all your code and configuration files that you want to deploy.
 
   Branch
-    A cloned version of a code base that is used to develop and test an update before it is applied to the original code base.
+    A versioned copy of your :term:`Git` content. A :term:`branch` is used to develop a specific feature and test an update, before it is synchronize and deployed on the live environment.
+    :term:`Platform.sh` extends the concept of a :term:`Git` branch to the :term:`environment` level.
 
   Commerce Marketplace
     A marketplace of services that extend Drupal Commerce.
@@ -31,6 +35,9 @@ Glossary
   Deployment hooks
     Allows you to run various actions during the deployment of your environment.
 
+  Domain name
+    Domain names are managed by Registrars (such as Namecheap.com) and you are responsible for using appropriate DNS tools for pointing domains to your Platform.sh Master environment. 
+
   Drupal
   Drupal 7
     A powerful open source software package that allows you to easily organize, manage, and publish your content with an endless variety of customization (see https://drupal.org/drupal-7.0 for more information).
@@ -47,39 +54,49 @@ Glossary
 
   Environment active
   Active environment
-    An environment which is deployed. You can deactivate an active environment from the environment configuration page on Platform UI.
+    An environment which is deployed. You can deactivate an active environment from the environment configuration page on :term:`Platform UI`.
 
   Environment inactive
   Inactive environment
-    An environment which is not deployed. You can activate an inactive environment from the environment configuration page on Platform UI.
+    An environment which is not deployed. You can activate an inactive environment from the environment configuration page on :term:`Platform UI`.
 
   Environment variables
   Environment variable
     Variables exposed by Platform to the runtime environment which allow you to define any specific configuration at the environment level.
   
   Git
-    An open source version control system. Also see :ref:`git`
+    An open source version control system. Also see :ref:`git`.
 
   Make file
-    A file used in comination with Drupal and :ref:`Drush <drush>` to download a series of modules, libraries, and repositories. Also see :ref:`drush_make`.
+    A file used in comination with Drupal and :ref:`Drush <drush>` to download a series of modules, libraries, and repositories. Also see :ref:`drush_make_files`.
 
   Master
-    The production website. Master is the only environment which doesn’t have a parent and which has the most of the resources that you can get.
+    The production website. Master is the only environment which doesn’t have a :term:`parent` and which has the most of the resources that you can get.
 
   Merge
     The act of combining one environment's or branch's code with another.
 
+  Parent
+    :term:`Platform.sh` provides an organized hierarchy for your :term:`Git` branches. Each :term:`environment` has a :term:`parent` and can have multiple children. You can :term:`merge` code to a parent :term:`environment`, and synchronize code and/or data to any child :term:`environment`.
+
   Platform
+  Platform.sh
     The best thing that happened to your web projects since Drupal.
 
   Platform UI
+  Platform.sh UI
     The UI for the best thing that happened to your web projects since Drupal.
 
   Platform API
+  Platform.sh API
     The API for the best thing that happened to your web projects since Drupal.
 
   Platform CLI
+  Platform.sh CLI
     Platform CLI is the official command line shell and Unix scripting interface for Platform. It ships with all the useful commands to interact with your Platform projects. You can get download it `here <https://github.com/commerceguys/platform-cli>`_.
+
+  Production plan
+    A subscription level which allows you to host your production website by adding a domain and an SSL certificate.
 
   Project
     A Platform account that consists of a specific set of environments, users, size, and storage.
@@ -89,6 +106,10 @@ Glossary
 
   Push
     The act of moving and combining code from a local branch to a remote branch.
+
+  Relationship
+  Relationships
+    The relationships of the application with services or other applications. See also :ref:`relationships <relationships>`.
 
   Scope
     .. todo:: Platform team to write description.
@@ -108,11 +129,14 @@ Glossary
   SSH Key
     A means to identify yourself to an SSH server securely.
 
+  SSL Certificate
+    A certificate used to serve and secure your site.
+
   Symfony
     Symfony is a PHP web application framework for MVC applications. Symfony is free software and released under the MIT license (see http://symfony.com/ for more information).
 
   Sync
-    The act of updating an environment with code and data from a parent environment.
+    The act of updating an environment with code and data from a :term:`parent` environment.
 
   Toolstack
     A specific set of tools that you're project is built with. It can be a CMS (Drupal), a framework (Symfony)...

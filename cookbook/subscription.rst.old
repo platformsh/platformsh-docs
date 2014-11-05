@@ -1,0 +1,28 @@
+Manage subscription
+===================
+
+.. _plan_cancel:
+
+How to cancel your subscription
+-------------------------------
+
+.. todo::
+   Write this piece
+
+.. _plan_upgrade:
+
+How to upgrade your subscription
+--------------------------------
+
+.. todo::
+   Write this piece
+
+If you need to resize your live environment, add additional users, or increase the environment limit, you will need to update your Platform plan.
+
+---------
+
+.. image:: /use-platform/getting-started/images/icon-configure.png
+  :alt: Configure icon
+  :align: left
+
+To do this, click on the top-most *Configure* icon next to the project name in the navigation bar. Select the **Subscription** tab and adjust the size, number of environments, and storage options.

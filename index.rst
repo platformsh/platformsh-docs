@@ -7,37 +7,24 @@ Platform.sh documentation
 
 To fully benefit from `Platform.sh <https://platform.sh>`_, it's recommended to install the `Command Line Interface (CLI) <https://github.com/platformsh/platformsh-cli>`_. Read more about the CLI :ref:`here <cli>`.
 
-.. toctree::
-  :maxdepth: 3
-  :glob:
-
-  introduction/index
-
-.. toctree::
-  :maxdepth: 3
-  :glob:
-
-  quick-start-guide/index
   
 .. toctree::
   :maxdepth: 3
   :glob:
 
-  toolstack/index
-
-----
+  overview/index
 
 .. toctree::
   :maxdepth: 3
   :glob:
 
-  using-platform/index
+  use-platform/index
 
 .. toctree::
   :maxdepth: 3
   :glob:
 
-  platform-components/index
+  toolstacks/index
 
 .. toctree::
   :maxdepth: 3

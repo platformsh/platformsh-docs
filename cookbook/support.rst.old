@@ -1,0 +1,42 @@
+
+
+Billing and Support
+===================
+
+
+submit a help request
+---------------------
+
+.. image:: images/submit_ticket.png
+   :alt: Submit a ticket
+   :align: left
+
+In the upper right corner of any Platform project page, there is a **Support** menu. Use the **Submit ticket** menu item to navigate to the Platform support form. Try to provide as much information as possible on the support form.
+
+
+
+.. _plan_cancel:
+
+Cancel your Platform.sh account
+-------------------------------
+
+Submit a help request.
+
+
+.. _plan_upgrade:
+
+Upgrade your Platform.sh account
+--------------------------------
+
+If you need to resize your live environment, add additional users, or increase the environment limit, you will need to update your Platform plan.
+
+---------
+
+.. image:: /use-platform/getting-started/images/icon-configure.png
+  :alt: Configure icon
+  :align: left
+
+To do this, click on the top-most *Configure* icon next to the project name in the navigation bar. Select the **Subscription** tab and adjust the size, number of environments, and storage options.
+
+
+last update: |today|

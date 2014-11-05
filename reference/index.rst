@@ -5,7 +5,13 @@ Reference
   :maxdepth: 2
   :glob:
 
-  001-service-grid
-  002-configuration-files
-  003-environment-variables
+  architecture
+  configuration-files
+  environment-variables
+  cache
   upgrade
+  known-issues
+  service-grid
+  public-ip-addresses
+  rest-api
+  
