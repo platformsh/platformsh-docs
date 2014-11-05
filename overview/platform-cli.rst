@@ -11,11 +11,16 @@ The :ref:`cli` is the official tool to use and manage your Platform.sh projects 
 How do I get it?
 ----------------
 
-You can download the :ref:`cli` from `Github <https://github.com/platformsh/platform-cli>`_. 
+You can install the :ref:`cli` easily using Composer:
+
+.. code-block:: console
+
+  composer global require 'platformsh/cli:1.*'
+
+You can find the system requirements and more information in the `installation instructions on GitHub <https://github.com/platformsh/platformsh-cli/blob/master/README.md>`_.
 
 .. seealso::
   * :ref:`install_cli`
-  * `Installation instructions on Github <https://github.com/platformsh/platformsh-cli/blob/development/README.md>`_.
 
 What can I do with the CLI?
 ---------------------------
