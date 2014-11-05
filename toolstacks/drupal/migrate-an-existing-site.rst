@@ -72,19 +72,20 @@ Before playing with the aliases, you should backup your local database using dru
 
 .. code-block:: console
 
-   $ drush sql-dump @platform.local > backup_database.sql
+   $ drush @platform.local sql-dump > backup_database.sql
 
 You can also sanitize your database prior to import it into Platform by running:
 
 .. code-block:: console
 
-   $ drush sql-sanitize @platform.local
+   $ drush @platform.local sql-sanitize
 
-When you're ready, import your database to your remote Platform environment.
+When you're ready, export your local database and then import it into your remote Platform environment.
 
 .. code-block:: console
 
-   $ drush sql-sync @platform.local @platform.master
+   $ drush @platform.local sql-dump > local_database.sql
+   $ drush @platform.master sql-cli < local_database.sql
 
 When the process completes, you can visit the URL of your development environment and test that the database has been properly imported.
 
