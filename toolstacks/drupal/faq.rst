@@ -45,8 +45,8 @@ You need to push your ``settings.php`` and make sure you include the settings.lo
 .. seealso::
    * :ref:`environment_variables`
 
-When I push a make file with a new module version, does Platform runs the update?
----------------------------------------------------------------------------------
+When I push changes to a make file, does Platform.sh run the update?
+--------------------------------------------------------------------
 
 After a push, Platform will rebuild your environment and download all the modules that are in your make file.
 
