@@ -17,7 +17,7 @@ If you are using a make file, you can add those lines to your ``project.make``:
    projects[redis][download][branch] = 7.x-2.11
 
    libraries[predis][download][type] = get
-   libraries[predis][download][url] = http://github.com/nrk/predis/archive/v0.8.5.tar.gz
+   libraries[predis][download][url] = http://github.com/nrk/predis/archive/v0.8.7.tar.gz
    libraries[predis][directory_name] = predis
    libraries[predis][destination] = libraries
 
@@ -27,7 +27,7 @@ If you are using a make file, you can add those lines to your ``project.make``:
 Configuration
 -------------
 
-To make use of the Redis cache you will need to set some Drupal Variables. You can either do this in your ``settings.php`` file or using the Platform Variables directly via the UI.
+To make use of the Redis cache you will need to set some Drupal variables. You can either do this in your ``settings.php`` file or by setting Platform Variables directly via the UI.
 
 .. seealso::
    * `Redis README.txt <http://cgit.drupalcode.org/redis/tree/README.txt>`_
@@ -36,9 +36,9 @@ To make use of the Redis cache you will need to set some Drupal Variables. You c
 Variables
 ^^^^^^^^^
 
-The advantage to using :term:`environment variables` is that these won't be used on your local build using Platform CLI where you might not have Redis installed.
+The advantage of using :term:`environment variables` is that these won't be used in your local build where you might not have Redis installed.
 
-Add the following :term:`environment variables` on Platform UI.
+Add the following :term:`environment variables` using the Platform UI.
 
 ``drupal:cache_backends``
 
@@ -83,10 +83,10 @@ Add the following :term:`environment variables` on Platform UI.
 
    Redis_Cache
    
-Settings.php
+settings.php
 ^^^^^^^^^^^^
 
-If you prefer commit those variables to your ``settings.php``, here are the lines to add:
+If you prefer to commit these variables to your ``settings.php``, here are the lines to add:
 
 .. code-block:: php
 

@@ -1,7 +1,7 @@
-User Administration
+User administration
 ===================
 
-User Roles
+User roles
 ----------
 
 Every Platform.sh user has a role. A role allosws to control access and improve security on your project - different roles are authorized to do different things with your applications, environments and users. You can use your collection of Roles to manage how users interact with Platform.sh.
@@ -26,16 +26,16 @@ If you want your users to be able to see everything (Reader), but only commit to
 
 ----
 
-Manage User Permissions at the Project Level
+Manage user permissions at the project level
 --------------------------------------------
 
-  Access the project level configuration.
+  Access the project-level configuration.
 
   .. image:: /use-platform/images/project_w-configarrow.png
      :alt: Project configure icon
      :align: left
 
-  | Click the project configuration icon next to the project name in the upper left corner of the project page.
+  | Click the project configuration icon next to the project name in the upper-left corner of the project page.
 
 ----
 
@@ -46,21 +46,21 @@ Manage User Permissions at the Project Level
      :align: left
      :width: 400px
 
-  | The ``Access control`` tab shows project level users and their roles.
+  | The ``Access control`` tab shows project-level users and their roles.
   |
-  | Selecting a user will allow you to either edit that users permissions or delete the users access to the project entirely.
+  | Selecting a user will allow you to either edit that user's permissions or delete the user's access to the project entirely.
   |
   | Add a new user by clicking on the ``Add user`` button.
   |
-  | If you select the 'Reader' role for the user, you'll have the option of adjusting the users permissions at the environment level.
+  | If you select the 'Reader' role for the user, you'll have the option of adjusting the user's permissions at the environment level.
   |
 
 ----
 
-Manage User Permissions at the Environment Level
+Manage user permissions at the environment level
 ------------------------------------------------
 
-  Access the environment level configuration.
+  Access the environment-level configuration.
 
   .. image:: /use-platform/images/environment_w-configarrow.png
      :alt: Project configure icon
@@ -77,9 +77,9 @@ Manage User Permissions at the Environment Level
      :align: left
      :width: 400px
 
-  | The ``User Management`` tab shows environment level users and their roles.
+  | The ``User Management`` tab shows environment-level users and their roles.
   |
-  | Selecting a user will allow you to either edit that users permissions or delete the users access to the environment entirely.
+  | Selecting a user will allow you to either edit that user's permissions or delete the user's access to the environment entirely.
   |
   | Add a new user by clicking on the ``Add user`` button.
   |

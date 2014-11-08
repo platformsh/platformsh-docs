@@ -14,7 +14,7 @@ If you get the following error:
 
 that's because Symfony is trying to write into: ``/var/lib/php5/`` which is read-only.
 
-A workaround is to mount a sessions folder into Platform and write sessions in that folder.
+A workaround is to mount a sessions folder into Platform.sh and write sessions in that folder.
 
 Simply edit your ``.platform.app.yaml`` and add a mounts there:
 

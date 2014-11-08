@@ -8,11 +8,11 @@ Enable HTTP caching
 
 Platform.sh allows you to enable HTTP caching at the router level. 
 
-If you disable caching, Platform.sh serves the files that are stored in the application directly. For example with Drupal, this means that all HTTP requests will bootstrap Drupal and query the database. When cache is enabled, if the page has been stored in the Nginx cache, it won't access Drupal.
+If you disable caching, Platform.sh serves the files that are stored in the application directly. For example with Drupal, this means that all HTTP requests will bootstrap Drupal and query the database. When the cache is enabled, if the page has been stored in the Nginx cache, it won't access Drupal.
 
-Many hosting solution are adding an additional layer (Varnish...) to handle caching.
+Many hosting solutions are adding an additional layer (Varnish...) to handle caching.
 
-Cache is enabled by default on your ``.platform/routes.yaml`` file.
+Cache is enabled by default in your ``.platform/routes.yaml`` file.
 
 .. seealso::
 	* :ref:`configuration_files`

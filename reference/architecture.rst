@@ -14,7 +14,7 @@ Services are deployed inside highly restricted :term:`containers <container>` on
   :align: center
 
 .. note::
-	Platform currently supports the following services: PHP, MySQL (MariaDB), Solr, Redis. Additional services will be available soon.
+	Platform.sh currently supports the following services: PHP, MySQL (MariaDB), Solr, Redis. Additional services will be available soon.
 
 .. todo::
    * We need to write an entry for the Entry Point Service.
@@ -25,19 +25,19 @@ Micro container
 Platform.sh uses LXC containers for applications. Each container provides a secure space to run one application. Each environment is built from many containers - one for the router, another for the PHP service, a third for the database and so on.
 
 
-Router Service
+Router service
 --------------
 
-Based on nginx, the Router Service processes HTTP requests, handles security, dynamic page construction (ESI), URL rewriting and mapping.
+Based on nginx, the Router service processes HTTP requests, handles security, dynamic page construction (ESI), URL rewriting and mapping.
 
 
-PHP Service
+PHP service
 -----------
 
 Supports PHP 5.3 and 5.4, the APC and ZO+ opcode caches, and all major PHP extensions, rewriting, and mapping.
 
 
-Database Service (MariaDB)
+Database service (MariaDB)
 --------------------------
 
 Transactional data storage. Based on MariaDB, supporting the XtraDB storage engine (equivalent to MySQL with InnoDB).
@@ -56,7 +56,7 @@ You can also use Drush:
 ``drush sql-cli``
 
 
-File System
+File system
 -----------
 
 Accessible transparently from PHP and mappable to a URL space by the Router component.
@@ -70,7 +70,7 @@ Solr search with generic schemas provided. Custom schemas are supported.
 * **scheme:** solr
 * **port:** 8080
 
-Object Cache (Redis)
+Object cache (Redis)
 --------------------
 
 Provides the in-memory object cache for your application. Can be used as a cache area for your application.

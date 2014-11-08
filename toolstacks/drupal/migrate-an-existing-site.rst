@@ -1,7 +1,7 @@
-Migrate an Existing Site to Platform
-====================================
+Migrate an existing site to Platform.sh
+=======================================
 
-If you want to migrate your existing site into Platform, here are the 3 components you need to import: *code base*, *database* and *files*.
+If you want to migrate your existing site into Platform.sh, here are the three components you need to import: *code base*, *database* and *files*.
 
 Import your code base
 ---------------------
@@ -92,7 +92,7 @@ When the process completes, you can visit the URL of your development environmen
 Without Drush
 ^^^^^^^^^^^^^
 
-Export your database in a sql file or in a compressed file.
+Export your database in an SQL file or in a compressed file.
 
 Copy it via SSH to the remote environment on Platform into the ``/app/tmp`` folder which is writable:
 
@@ -123,12 +123,12 @@ We use *drush alias* to import your existing local files.
 
 .. note:: Drush will verify that you are copying and over-writing the proper files folders, so double-check that information before you type ``y`` to continue.
 
-This step may take some time, but when the process completes, you can visit the url of your development environment and test that the files have properly been imported.
+This step may take some time, but when the process completes, you can visit the URL of your development environment and test that the files have properly been imported.
 
 Without Drush
 ^^^^^^^^^^^^^
 
-Go to your files folder on your local machine and synchronise them to your remote Platform environment:
+Go to your files folder on your local machine and synchronize them to your remote Platform environment:
 
 .. code-block:: console
 
