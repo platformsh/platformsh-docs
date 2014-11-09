@@ -5,7 +5,7 @@ Install the Platform.sh software bundle
 
 `Platform.sh <https://platform.sh>`_  comes with a tool called the :ref:`cli`.
 
-The :ref:`cli` is an open source project hosted on `Github <https://github.com/>`_. You can find help or raise issues for the CLI in the `Github issue queue <https://github.com/platformsh/platformsh-cli/issues>`_.
+The :ref:`cli` is an open-source project hosted on `GitHub <https://github.com/>`_. You can find help or raise issues for the CLI in the `GitHub issue queue <https://github.com/platformsh/platformsh-cli/issues>`_.
 
 
 Install Composer, the PHP dependency manager
@@ -34,11 +34,11 @@ Download the Composer .phar (PHP Archive). ::
 
  curl -sS https://getcomposer.org/installer | php
 
-Check the archive does something. ::
+Check that the archive does something. ::
 
  php composer.phar
 
-Move the archive to my command folder. ::
+Move the archive to a command folder. ::
 
  sudo mkdir -p /usr/local/bin
  sudo mv composer.phar /usr/local/bin/composer
@@ -58,27 +58,27 @@ Run composer. ::
  composer about
 
 
-Install the Platform.sh CLI tool
-------------------------------------------
+Install the Platform.sh CLI
+---------------------------
 
 This procedure installs the :ref:`cli` in the Composer's `.composer` folder. On OS X and Linux, this will be *~/.composer/vendor/bin/*.  
 
 Install the :ref:`cli`::
 
-  $ composer global require "commerceguys/platform-cli=1.*"
+  composer global require 'platformsh/cli:1.*'
 
 Add a path to the ``platform`` command ::
 
-  $ echo 'export PATH=$PATH:$HOME/.composer/vendor/bin' >> ~/.bash_profile
-  $ source ~/.bash_profile 
+  echo 'export PATH="$PATH:~/.composer/vendor/bin"' >> ~/.bash_profile
+  source ~/.bash_profile
 
 Find your Platform.sh login details (the e-mail address and password you use to authenticate to Marketplace).
 
-Run the Platform.sh CLI tool for the first time. ::
+Run the Platform.sh CLI for the first time. ::
 
-  $ platform
+  platform
 
-You are prompted for your Marketplace e-mail address and password.
+You are then prompted for your Marketplace e-mail address and password.
 
 Enter your details. A list of your projects appears, along with some tips for getting started. 
 
