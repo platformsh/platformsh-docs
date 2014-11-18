@@ -1,5 +1,5 @@
 
-Set Up your Local Development Environment
+Set up your local development environment
 =========================================
 
 Use the CLI
@@ -7,7 +7,7 @@ Use the CLI
 
 Use the :ref:`cli` to get a copy of your project, so that you can start working locally.
 
-In order to copy your project locally, you'll need to know its' project id. The command ``platform`` will list all of the active projects on your account.
+In order to copy your project locally, you'll need to know its project ID. The command ``platform`` will list all of the active projects in your account.
 
 .. code-block:: none
 
@@ -26,7 +26,7 @@ In order to copy your project locally, you'll need to know its' project id. The 
 Download an environment
 -----------------------
 
-Once you know the project id you need to use, copying the project to your local system is pretty simple. Navigate to the folder you want to copy the project to and then run ``platform get [project-id] [folder-name]``. You'll have to choose which branch you want to pull down to start with.
+Once you know the project ID you need to use, copying the project to your local system is pretty simple. Navigate to the folder you want to copy the project to and then run ``platform get [project-id] [folder-name]``. You can then choose which branch you want to clone first.
 
 .. code-block:: none
 
@@ -43,10 +43,10 @@ Once you know the project id you need to use, copying the project to your local 
 
 You should now have a folder, based on what you used for *[folder-name]* in the ``platform get`` command above. 
 
-Local Site Structure
+Local site structure
 ^^^^^^^^^^^^^^^^^^^^
 
-Inside the new folder, there are a couple directories and a file. They are:
+Inside the new folder, there are a few directories and a file. They are:
 
   - **.platform-project** - This JSON file stores information about your project for use by the Platform CLI.
 
@@ -54,7 +54,7 @@ Inside the new folder, there are a couple directories and a file. They are:
 
   - **repository** - This folder contains all of the files that are in your Platform repository.
 
-  - **shared** - This folder contains settings.local.php and each file in here is symlinked to your sites/default folder when a build is created.
+  - **shared** - This folder contains ``settings.local.php``. each file in here is symlinked to your sites/default folder when a build is created.
 
   - **www** - This folder is a symlink to the currently active build in the builds folder.
 
@@ -66,7 +66,7 @@ Inside the new folder, there are a couple directories and a file. They are:
      repository
      shared
 
-Build the Local Site
+Build the local site
 --------------------
 
 Now that you have a copy of your project locally, you can run ``platform build`` to pull it all together. Explain a bit about what platform build actually does.
@@ -89,10 +89,10 @@ Now that you have a copy of your project locally, you can run ``platform build``
      www -> ~/htdocs/my-project/builds/2014-05-19--16-22-46--sprint1
 
 .. seealso::
-  * :ref:`install_cli`
+  * :ref:`cli`
   * `Installation instructions on Github <https://github.com/platformsh/platformsh-cli/blob/development/README.md>`_.
 
-Synchronize Data
+Synchronize data
 ----------------
 
 With the *Platform CLI* you can run this command from the branch that you wish to synchronize.

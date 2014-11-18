@@ -19,7 +19,7 @@ Now that you're set up on your working branch, you can start developing on your 
 
 There are three common ways you will be making code changes to Platform:
 
-1. Add contributed modules, themes, distributions, 3rd party libraries in the :term:`make file`
+1. Add contributed modules, themes, distributions, third-party libraries in the :term:`make file`
 2. Create custom code (*modules, themes, profiles, libraries*) and commit them to your Platform codebase
 3. Modify the services grid configuration
 
@@ -27,12 +27,12 @@ There are three common ways you will be making code changes to Platform:
 
 Add contributed projects
 ^^^^^^^^^^^^^^^^^^^^^^^^
-Each time you push a commit, Platform will rebuild your environment and run the :term:`Drush` make command if a proper make file has been found..
+Each time you push a commit, Platform.sh will rebuild your environment and run the :term:`Drush` make command if a proper make file has been found.
 
 .. seealso::
    * `Working with make files <http://drushmake.me/>`_
 
-Add a Drupal Module
+Add a Drupal module
 +++++++++++++++++++
 Each Drupal module you want to install on your project should be included in the :term:`make file`. For example, if you want to add Drupal Commerce, you need to add the following lines to your ``project.make``:
 
@@ -57,7 +57,7 @@ Each Drupal module you want to install on your project should be included in the
   projects[views][version] = "3.7"
   projects[views][subdir] = "contrib"
 
-Add a Drupal Theme
+Add a Drupal theme
 ++++++++++++++++++
 You'd do the same if you want to add a theme.  Add the following lines to your ``project.make``:
 
@@ -66,9 +66,9 @@ You'd do the same if you want to add a theme.  Add the following lines to your `
    ; Zen Theme
    projects[] = zen
 
-Add a 3rd Party Library
-+++++++++++++++++++++++
-You'd do the same if you want to add a 3rd party library. For our example here, we're adding the HTML5 Boilerplate library. Add the following lines to your ``project.make``:
+Add a third-party library
++++++++++++++++++++++++++
+You'd do the same if you want to add a third-party library. For our example here, we're adding the HTML5 Boilerplate library. Add the following lines to your ``project.make``:
 
 .. code-block:: ini
 
@@ -128,10 +128,10 @@ Just click on the "Merge" button and all of the commits you made on your branch 
 .. seealso::
     `Branch an environment <platform/platform-quick-start-guide/001-mastering-the-basics.html#branch-an-environment>`_
 
-Synchronizing Data
+Synchronizing data
 ------------------
 
-The easiest way to do that is to use Drush and the sql-sync command. You'll need to have :ref:`create_drush_aliases` setup for both your Platform site and your local site. If you are using the `Platform CLI <https://github.com/commerceguys/platform-cli>`_ and you've run ``platform get [platform_id]`` for a project, then your Platform aliases have already been setup.
+The easiest way to do that is to use Drush and the sql-sync command. You'll need to have :ref:`create_drush_aliases` setup for both your Platform.sh site and your local site. If you are using the :ref:`cli`  and you've run ``platform get [platform_id]`` for a project, then your Drush aliases have already been set up.
 
 With the :ref:`create_drush_aliases` (depending on how yours are set up), you could use a command similar to this:
 
@@ -139,7 +139,7 @@ With the :ref:`create_drush_aliases` (depending on how yours are set up), you co
 
    $ drush sql-sync @platform.master @platform.local
 
-An aternate method that is appropriate for larger databases uses the pipe `|` to stream the data, instead of making copies.
+An alternate method that is appropriate for larger databases is to use the pipe `|` to stream the data, instead of making copies.
 
 .. code-block:: console
 

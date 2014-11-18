@@ -1,10 +1,10 @@
 .. _upgrade:
 
 Upgrading
-=====================
+=========
 
 Changes in version 1.7.0
------------------------------
+------------------------
 
 Version 1.7.0, deployed on September 4th, 2014, introduces changes in the
 configuration files format. Most of the old configuration format is still

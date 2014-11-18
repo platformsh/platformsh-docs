@@ -17,7 +17,7 @@ Install drush with composer:
 
 .. code-block:: console
 
- $ composer global require drush/drush:6.*
+ $ composer global require 'drush/drush:6.*'
 
 At the end of the installation, you should be able to run:
 
@@ -45,7 +45,7 @@ Platform utilizes `drush aliases`_ to make it easy to use Drush to manage your d
 
 .. note:: The :ref:`cli` generates Drush aliases for you automatically, when you run ``platform get [project_id]``.
 
-If you're not using the :ref:`cli`, navigate to your ``.drush`` folder and create a new file called ``platform.aliases.drushrc.php``.
+If you're not using the :ref:`cli`, navigate to your ``~/.drush`` folder and create a new file called ``platform.aliases.drushrc.php``.
 
 .. code-block:: console
 

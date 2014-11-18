@@ -7,10 +7,10 @@ The :term:`configuration files` are stored in Git and allow you to easily intera
 
 You can find default configuration files in the `public Platform.sh repositories on Github <https://github.com/platformsh/>`_.
 
-.platform.app.yaml, an Application Configuration File
+.platform.app.yaml, an application configuration file
 -----------------------------------------------------
 
-Platform.sh exposes a ``.platform.app.yaml`` file defines your :term:`application` and the way it'll be built and deployed on Platform.sh.
+Platform.sh exposes a ``.platform.app.yaml`` file which defines your :term:`application` and the way it will be built and deployed on Platform.sh.
 
 .. note::
   The ``.platform.app.yaml`` needs to be committed to your Git repository at the root of your :term:`application` folder.
@@ -39,7 +39,7 @@ Possible values are:
 
 .. rubric:: Access
 
-The ``access`` define the user roles who can login via SSH to the environments they've access to.
+The ``access`` define the user roles who can log in via SSH to the environments they have access to.
 
 Possible values are:
 
@@ -57,9 +57,9 @@ Possible values are:
 
 .. rubric:: Relationships
 
-The ``relationships`` defines how the services are mapped within your :term:`application`.
+The ``relationships`` defines how services are mapped within your :term:`application`.
 
-The left-hand side is the name of the relationship as it will be exposed to the :term:`application` in the *PLATFORM_RELATIONSHIPS* variable. The right-hand side is in the form ``<service name>:<endpoint name>``.
+The left-hand side is the name of the relationship as it will be exposed to the :term:`application` in the *PLATFORM_RELATIONSHIPS* environment variable. The right-hand side is in the form ``<service name>:<endpoint name>``.
 
 .. code-block:: console
   
@@ -88,7 +88,7 @@ It has a few sub-keys which are:
 
 Contrary to standard ``.htaccess`` approaches which accept a **blacklist** and allow everything to be accessed except this specific list of extensions, we accept a **whitelist** and for everything that belongs to the code we only allow a specific list of extensions to be accessed from the web.
 
-Everything that is not in the whitelist doesn't trigger a 403, but instead triggers a 404 and get ``passed thru`` to the URL that you configured: typically ``/index.php``.
+Everything that is not in the whitelist doesn't trigger a 403, but instead triggers a 404 and is ``passed thru`` to the URL that you configured: typically ``/index.php``.
 
 .. note::
   To extend the whitelisted extensions, you should override the default listing and only keep the extensions you need: [ "css", "js", "gif", "jpeg", "jpg", "png", "tiff", "wbmp", "ico", "jng", "bmp", "svgz", "midi", "mpega", "mp2", "mp3", "m4a", "ra", "weba", "3gpp", "mp4", "mpeg", "mpe", "ogv", "mov", "webm", "flv", "mng", "asx", "asf", "wmv", "avi", "ogx", "swf", "jar", "ttf", "eot", "woff", "otf", "txt" ].
@@ -106,7 +106,7 @@ The ``disk`` defines the size of the persistent disk size of the :term:`applicat
 
 .. rubric:: Mounts
 
-The ``mounts` is an object which keys are paths relative to the root of the application. It's in the form ``volume_id[/subpath]``.
+The ``mounts` is an object whose keys are paths relative to the root of the application. It's in the form ``volume_id[/subpath]``.
 
 For example with :term:`Drupal`, you'll want your ``sites/default/files`` to be mounted under a shared resource which is writable:
 
@@ -126,8 +126,8 @@ They can be executed at various points in the lifecycle of the application (buil
 
 Possible hooks are:
 
-* **build**: We run build hook before your application has been packaged. No other services are accessible at this time since the application has not been deployed yet.
-* **deploy**: We run deploy hook after your application has been deployed and started. You can access other services at this stage (MySQL, Solr, Redis...).
+* **build**: We run build hooks before your application has been packaged. No other services are accessible at this time since the application has not been deployed yet.
+* **deploy**: We run deploy hooks after your application has been deployed and started. You can access other services at this stage (MySQL, Solr, Redis...).
 
 After a Git push, you can see the results of the deployment hooks in the ``/var/log/deploy.log`` file when logging to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
 
@@ -153,21 +153,21 @@ It has a few sub-keys which are:
 * **cmd**: The command that is executed, for example `cd public ; drush core-cron``
 
 .. seealso::
-  You can find some good example of `.platform.app.yaml`` files for various toolstacks:
+  You can find some good examples of `.platform.app.yaml`` files for various toolstacks:
 
   * `.platform.app.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform.app.yaml>`_
   * `.platform.app.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_
 
 .. _services:
 
-services.yaml, a Topology Configuration File
+services.yaml, a topology configuration file
 --------------------------------------------
 
 .. note::
   Find the ``services.yaml`` file in the ``.platform`` folder at the root of your Git repository 
   eg. repository/.platform/services.yaml
 
-Platform allows you to completely define and configure the topology and services you want to use at the :term:`environment` level.
+Platform.sh allows you to completely define and configure the topology and services you want to use at the :term:`environment` level.
 
 .. seealso::
   You can find some good example of `services.yaml`` files for various toolstacks:
@@ -177,7 +177,7 @@ Platform allows you to completely define and configure the topology and services
 
 .. _routes:
 
-routes.yaml, an Environment Configuration File
+routes.yaml, an environment configuration file
 ----------------------------------------------
 
 .. note::
