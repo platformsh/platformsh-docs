@@ -8,6 +8,7 @@ Drupal
   drush
   migrate-an-existing-site
   developing-with-drupal
+  customizing-settings-php
   solr
   redis
   cache
