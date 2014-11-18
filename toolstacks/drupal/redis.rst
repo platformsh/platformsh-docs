@@ -30,11 +30,12 @@ Configuration
 To make use of the Redis cache you will need to set some Drupal variables. You can either do this in your ``settings.php`` file or by setting Platform Variables directly via the UI.
 
 .. seealso::
+
    * `Redis README.txt <http://cgit.drupalcode.org/redis/tree/README.txt>`_
    * :ref:`environment_variables`
    
-Variables
-^^^^^^^^^
+Via the Web UI
+^^^^^^^^^^^^^^
 
 The advantage of using :term:`environment variables` is that these won't be used in your local build where you might not have Redis installed.
 
@@ -50,8 +51,9 @@ Add the following :term:`environment variables` using the Platform UI.
    
 .. note::
    Remember to tick the JSON Value box.
+
 .. note::
-   Use the actual path to your redis module in case it is in a different location.   
+   Use the actual path to your Redis module in case it is in a different location. For example: ``sites/all/modules/contrib/redis``.
 
 ``drupal:lock_inc``
 
@@ -82,11 +84,14 @@ Add the following :term:`environment variables` using the Platform UI.
 .. code-block:: console
 
    Redis_Cache
-   
-settings.php
-^^^^^^^^^^^^
 
-If you prefer to commit these variables to your ``settings.php``, here are the lines to add:
+.. note::
+   Currently, you need to commit some code to rebuild your environment so that the new variables are properly added to your ``settings.local.php``. This will be fixed soon.
+   
+Via settings.php
+^^^^^^^^^^^^^^^^
+
+If you prefer to commit these variables directly to your ``settings.php``, here are the lines to add:
 
 .. code-block:: php
 
@@ -96,3 +101,6 @@ If you prefer to commit these variables to your ``settings.php``, here are the l
    $conf['path_inc']               = 'sites/all/modules/redis/redis.path.inc';
    $conf['cache_backends'][]       = 'sites/all/modules/redis/redis.autoload.inc';
    $conf['cache_default_class']    = 'Redis_Cache';
+
+.. seealso::
+   * :ref:`custom_settings_php`

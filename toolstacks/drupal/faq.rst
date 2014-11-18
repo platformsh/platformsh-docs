@@ -30,21 +30,6 @@ How do I import a database in an environment without drush aliases?
   $ scp LOCAL_DB.sql REMOTE_PHP_SERVER:/tmp
   $ mysql -h database.internal main < /tmp/LOCAL_DB.sql
 
-How do I add variables to my settings.php?
-------------------------------------------
-
-You need to push your ``settings.php`` and make sure you include the settings.local.php that Platform will create for you on each environment.
-
-.. code-block:: console
-
-   $local_settings = dirname(__FILE__) . '/settings.local.php';
-   if (file_exists($local_settings)) {
-     require_once($local_settings);
-   }
-
-.. seealso::
-   * :ref:`environment_variables`
-
 When I push changes to a make file, does Platform.sh run the update?
 --------------------------------------------------------------------
 
