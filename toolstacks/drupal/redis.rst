@@ -34,8 +34,8 @@ To make use of the Redis cache you will need to set some Drupal variables. You c
    * `Redis README.txt <http://cgit.drupalcode.org/redis/tree/README.txt>`_
    * :ref:`environment_variables`
    
-Via the Platform UI
-^^^^^^^^^^^^^^^^^^^
+Via the Web UI
+^^^^^^^^^^^^^^
 
 The advantage of using :term:`environment variables` is that these won't be used in your local build where you might not have Redis installed.
 
@@ -86,7 +86,7 @@ Add the following :term:`environment variables` using the Platform UI.
    Redis_Cache
 
 .. note::
-   Make sure commit some code to rebuild your environment so that the new variables are properly added to your ``settings.local.php``.
+   Currently, you need to commit some code to rebuild your environment so that the new variables are properly added to your ``settings.local.php``. This will be fixed soon.
    
 Via settings.php
 ^^^^^^^^^^^^^^^^
