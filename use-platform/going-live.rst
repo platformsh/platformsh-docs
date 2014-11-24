@@ -6,7 +6,7 @@ When your site is ready to go live, you need to configure the routes of your pro
 1 - Domain
 ----------
 
-First thing you need is to add your domain via the :ref:`platform_ui` using the configuration page of your project.
+First thing you need is to add your domain via the :ref:`platform_ui` using the configuration page of your project. It is important to note that once you do this, your site master branch will no longer be accessible at master-<project_id>.<country>.platform.sh. If you require access to the site, you can create a hosts file entry and point it to the IP address that resolves when you access your master project branch.
 
 2 - Routes
 ----------
@@ -36,7 +36,7 @@ Multiple hostnames
 
 If you want your site to be available at both ``http://mydomain.com`` and ``http://www.mydomain.com``, you need to define one upstream for each hostname.
 
-Here would be an example of your ``routes.yaml`` for the ``https://mydomain.com`` URL:
+Here would be an example of your ``routes.yaml`` for the ``http://mydomain.com`` URL:
 
 .. code-block:: console
     
@@ -86,4 +86,4 @@ Once you've checked with your registrar about where to change your DNS settings,
 If you use multiple hostnames for your site, you need to add a CNAME record for each of them. For example: ``master-k4ywtmwigmmgc.eu.platform.sh`` and ``www-master-k4ywtmwigmmgc.eu.platform.sh``.
 
 .. note::
-  This will **not** work for a naked domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (aka an ALIAS record).
+  This will **not** work for an apex (or "naked") domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (such as the ALIAS record on `Amazon's Route 53 <http://aws.amazon.com/route53/>`_). Many other providers also work arounds to accomplish this goal. The most common is to add a CNAME record for the ``www`` host on the domain and then use the DNS provider's redirection service to redirect the apex over to the ``www`` version of the domain. Check with your DNS provider to see how they support this.
