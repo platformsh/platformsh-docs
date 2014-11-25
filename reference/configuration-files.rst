@@ -5,7 +5,7 @@ Configuration files
 
 The :term:`configuration files` are stored in Git and allow you to easily interact with Platform.sh. You can define and configure the services you want to deploy and use, the specific routes you need to serve your application...
 
-You can find default configuration files in the `public Platform.sh repositories on Github <https://github.com/platformsh/>`_.
+You can find some examples for those configuration files on `Github <https://github.com/platformsh/platformsh-examples>`_.
 
 Configure your application
 --------------------------
@@ -13,7 +13,7 @@ Configure your application
 Platform.sh exposes a ``.platform.app.yaml`` file which defines your :term:`application` and the way it will be built and deployed on Platform.sh.
 
 .. note::
-  The ``.platform.app.yaml`` needs to be committed to your Git repository at the root of your :term:`application` folder.
+  The ``.platform.app.yaml`` is specific to your application. If you have multiple applications inside your Git repository, you need one ``.platform.app.yaml`` at the root of each application.
 
 Here are the keys that you can define in your ``.platform.app.yaml``:
 
@@ -163,8 +163,8 @@ It has a few sub-keys which are:
 
 .. _services:
 
-Configure the services
-----------------------
+Configure your services
+-----------------------
 
 Platform.sh allows you to completely define and configure the topology and services you want to use on your project.
 
@@ -196,8 +196,8 @@ Here is an example of a ``services.yaml`` file:
 
 .. _routes:
 
-Configure the routes
---------------------
+Configure your routes
+---------------------
 
 Platform.sh allows you to define the routes that will serve your environments.
 
