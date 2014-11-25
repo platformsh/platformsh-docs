@@ -116,6 +116,9 @@ For example with :term:`Drupal`, you'll want your ``sites/default/files`` to be 
   mounts:
     "/public/sites/default/files": "shared:files/files"
 
+.. note::
+   The ``shared`` means that the volume is shared between your applications inside an environment. The ``disk`` key defines the size available for that ``shared`` volume.
+
 .. _deployment_hooks:
 
 .. rubric:: Hooks
