@@ -3,13 +3,13 @@ Going Live
 
 When your site is ready to go live, you need to configure the routes of your project and your DNS provider to point your domain to Platform.sh.
 
-Domain
-------
+1 - Domain
+----------
 
 First thing you need is to add your domain via the :ref:`platform_ui` using the configuration page of your project.
 
-Routes
-------
+2 - Routes
+----------
 
 You can configure the :term:`routes` of your project directly within the :ref:`platform_ui` or within your ``.platform/routes.yaml`` file.
 
@@ -76,8 +76,8 @@ If you have uploaded your SSL certificate and you want to serve your entire site
 
 .. _dns:
 
-DNS
----
+3 - DNS
+-------
 
 Configure your DNS provider to point your domain to your `Platform.sh <https://platform.sh>`_  Master environment.
 

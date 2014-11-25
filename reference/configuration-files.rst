@@ -5,15 +5,15 @@ Configuration files
 
 The :term:`configuration files` are stored in Git and allow you to easily interact with Platform.sh. You can define and configure the services you want to deploy and use, the specific routes you need to serve your application...
 
-You can find default configuration files in the `public Platform.sh repositories on Github <https://github.com/platformsh/>`_.
+You can find some examples for those configuration files on `Github <https://github.com/platformsh/platformsh-examples>`_.
 
-.platform.app.yaml, an application configuration file
------------------------------------------------------
+Configure your application
+--------------------------
 
 Platform.sh exposes a ``.platform.app.yaml`` file which defines your :term:`application` and the way it will be built and deployed on Platform.sh.
 
 .. note::
-  The ``.platform.app.yaml`` needs to be committed to your Git repository at the root of your :term:`application` folder.
+  The ``.platform.app.yaml`` is specific to your application. If you have multiple applications inside your Git repository, you need one ``.platform.app.yaml`` at the root of each application.
 
 Here are the keys that you can define in your ``.platform.app.yaml``:
 
@@ -49,9 +49,9 @@ Possible values are:
 
 .. code-block:: console
     
-    # The access configuration.
-    access:
-        ssh: contributor
+  # The access configuration.
+  access:
+    ssh: contributor
 
 .. _relationships:
 
@@ -106,7 +106,7 @@ The ``disk`` defines the size of the persistent disk size of the :term:`applicat
 
 .. rubric:: Mounts
 
-The ``mounts` is an object whose keys are paths relative to the root of the application. It's in the form ``volume_id[/subpath]``.
+The ``mounts`` is an object whose keys are paths relative to the root of the application. It's in the form ``volume_id[/subpath]``.
 
 For example with :term:`Drupal`, you'll want your ``sites/default/files`` to be mounted under a shared resource which is writable:
 
@@ -115,6 +115,9 @@ For example with :term:`Drupal`, you'll want your ``sites/default/files`` to be 
   # The mounts that will be performed when the package is deployed.
   mounts:
     "/public/sites/default/files": "shared:files/files"
+
+.. note::
+   The ``shared`` means that the volume is shared between your applications inside an environment. The ``disk`` key defines the size available for that ``shared`` volume.
 
 .. _deployment_hooks:
 
@@ -160,34 +163,64 @@ It has a few sub-keys which are:
 
 .. _services:
 
-services.yaml, a topology configuration file
---------------------------------------------
+Configure your services
+-----------------------
 
-.. note::
-  Find the ``services.yaml`` file in the ``.platform`` folder at the root of your Git repository 
-  eg. repository/.platform/services.yaml
+Platform.sh allows you to completely define and configure the topology and services you want to use on your project.
 
-Platform.sh allows you to completely define and configure the topology and services you want to use at the :term:`environment` level.
+The topology is stored into a ``services.yaml`` file which should be added inside the ``.platform`` folder at the root of your Git repository.
+
+If you don't have a ``.platform`` folder, you need to create one:
+
+.. code-block:: console
+  
+  $ mkdir .platform
+
+Here is an example of a ``services.yaml`` file:
+
+.. code-block:: console
+
+  mysql:
+    type: mysql
+    disk: 2048
+
+  solr:
+    type: solr
+    disk: 1024
 
 .. seealso::
-  You can find some good example of `services.yaml`` files for various toolstacks:
 
-  * `services.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform/services.yaml>`_
-  * `services.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/services.yaml>`_
+  * `services.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/services.yaml>`_
+  * `services.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/services.yaml>`_
 
 .. _routes:
 
-routes.yaml, an environment configuration file
-----------------------------------------------
+Configure your routes
+---------------------
 
-.. note::
-  Find the ``routes.yaml`` file in the ``.platform`` folder at the root of your Git repository
-  eg. 1237h7rtyh123/repository/.platform/routes.yaml
+Platform.sh allows you to define the routes that will serve your environments.
 
-Platform.sh allows you to define the routes that will serve your project at the :term:`environment` level.
+A route describes how an incoming URL is going to be processed by Platform.sh.
+The routes are stored into a ``routes.yaml`` file which should be added inside the ``.platform`` folder at the root of your Git repository.
+
+If you don't have a ``.platform`` folder, you need to create one:
+
+.. code-block:: console
+  
+  $ mkdir .platform
+
+Here is an example of a ``routes.yaml`` file:
+
+.. code-block:: console
+  
+  "http://{default}/":
+    type: upstream
+    upstream: "php:php"
+  "http://www.{default}/":
+    type: redirect
+    to: "http://{default}/"
 
 .. seealso::
-  You can find some good example of `routes.yaml`` files for various toolstacks:
 
-  * `routes.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform/routes.yaml>`_
-  * `routes.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/routes.yaml>`_
+  * `routes.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/routes.yaml>`_
+  * `routes.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/routes.yaml>`_
