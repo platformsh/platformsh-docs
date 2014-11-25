@@ -7,8 +7,8 @@ The :term:`configuration files` are stored in Git and allow you to easily intera
 
 You can find default configuration files in the `public Platform.sh repositories on Github <https://github.com/platformsh/>`_.
 
-.platform.app.yaml, an application configuration file
------------------------------------------------------
+Configure your application
+--------------------------
 
 Platform.sh exposes a ``.platform.app.yaml`` file which defines your :term:`application` and the way it will be built and deployed on Platform.sh.
 
@@ -49,9 +49,9 @@ Possible values are:
 
 .. code-block:: console
     
-    # The access configuration.
-    access:
-        ssh: contributor
+  # The access configuration.
+  access:
+    ssh: contributor
 
 .. _relationships:
 
@@ -163,34 +163,66 @@ It has a few sub-keys which are:
 
 .. _services:
 
-services.yaml, a topology configuration file
---------------------------------------------
+Configure the services
+----------------------
 
-.. note::
-  Find the ``services.yaml`` file in the ``.platform`` folder at the root of your Git repository 
-  eg. repository/.platform/services.yaml
+Platform.sh allows you to completely define and configure the topology and services you want to use on your project.
 
-Platform.sh allows you to completely define and configure the topology and services you want to use at the :term:`environment` level.
+The topology is stored into a ``services.yaml`` file which should be added inside the ``.platform`` folder at the root of your Git repository.
+
+If you don't have a ``.platform`` folder, you need to create one:
+
+.. code-block:: console
+  
+  $ mkdir .platform
+
+Here is an example of a ``services.yaml`` file:
+
+.. code-block:: console
+
+  mysql:
+    type: mysql
+    disk: 2048
+
+  solr:
+    type: solr
+    disk: 1024
 
 .. seealso::
-  You can find some good example of `services.yaml`` files for various toolstacks:
+  You can find example of ``services.yaml`` files:
 
-  * `services.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform/services.yaml>`_
-  * `services.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/services.yaml>`_
+  * `services.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/services.yaml>`_
+  * `services.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/services.yaml>`_
 
 .. _routes:
 
-routes.yaml, an environment configuration file
-----------------------------------------------
+Configure the routes
+--------------------
 
-.. note::
-  Find the ``routes.yaml`` file in the ``.platform`` folder at the root of your Git repository
-  eg. 1237h7rtyh123/repository/.platform/routes.yaml
+Platform.sh allows you to define the routes that will serve your environments.
 
-Platform.sh allows you to define the routes that will serve your project at the :term:`environment` level.
+A route describes how an incoming URL is going to be processed by Platform.sh.
+The routes are stored into a ``routes.yaml`` file which should be added inside the ``.platform`` folder at the root of your Git repository.
+
+If you don't have a ``.platform`` folder, you need to create one:
+
+.. code-block:: console
+  
+  $ mkdir .platform
+
+Here is an example of a ``routes.yaml`` file:
+
+.. code-block:: console
+  
+  "http://{default}/":
+    type: upstream
+    upstream: "php:php"
+  "http://www.{default}/":
+    type: redirect
+    to: "http://{default}/"
 
 .. seealso::
-  You can find some good example of `routes.yaml`` files for various toolstacks:
+  You can find other examples of ``routes.yaml`` files:
 
-  * `routes.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform/routes.yaml>`_
-  * `routes.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/routes.yaml>`_
+  * `routes.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/routes.yaml>`_
+  * `routes.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/routes.yaml>`_
