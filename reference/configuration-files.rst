@@ -106,7 +106,7 @@ The ``disk`` defines the size of the persistent disk size of the :term:`applicat
 
 .. rubric:: Mounts
 
-The ``mounts` is an object whose keys are paths relative to the root of the application. It's in the form ``volume_id[/subpath]``.
+The ``mounts`` is an object whose keys are paths relative to the root of the application. It's in the form ``volume_id[/subpath]``.
 
 For example with :term:`Drupal`, you'll want your ``sites/default/files`` to be mounted under a shared resource which is writable:
 
@@ -189,7 +189,6 @@ Here is an example of a ``services.yaml`` file:
     disk: 1024
 
 .. seealso::
-  You can find example of ``services.yaml`` files:
 
   * `services.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/services.yaml>`_
   * `services.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/services.yaml>`_
@@ -222,7 +221,6 @@ Here is an example of a ``routes.yaml`` file:
     to: "http://{default}/"
 
 .. seealso::
-  You can find other examples of ``routes.yaml`` files:
 
   * `routes.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/routes.yaml>`_
   * `routes.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/routes.yaml>`_
