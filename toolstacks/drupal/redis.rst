@@ -8,17 +8,15 @@ There are two options for using Redis with Drupal on Platform.sh, you can either
 Requirements
 ------------
 
-You will need to add the `Redis <https://www.drupal.org/project/redis>`_ module and  to your project.
+You will need to add the `Redis <https://www.drupal.org/project/redis>`_ module to your project.
 
 If you are using a make file, you can add those lines to your ``project.make``:
 
 .. code-block:: ini
 
-   projects[redis][type] = module
-   projects[redis][download][type] = git
-   projects[redis][download][branch] = 7.x-2.12
+   projects[redis][version] = 7.x-2.12
 
-To use the Predis library also add this to your make file
+To use the Predis library also add it to your make file:
 
 .. code-block:: ini
 
@@ -57,7 +55,7 @@ Via the Web UI
 
 The advantage of using :term:`environment variables` is that these won't be used in your local build where you might not have Redis installed.
 
-Add the following :term:`environment variables` using the Platform UI.
+Add the following :term:`environment variables` using the Platform UI. Note, if you set a directory in the make file you will need to alter the variables to match.
 
 ``drupal:cache_backends``
 
