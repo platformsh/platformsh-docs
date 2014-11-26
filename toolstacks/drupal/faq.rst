@@ -73,7 +73,7 @@ I'm Getting a PDO Exception 'MySQL server has gone away'
 Normally, this means there is a problem with the MySQL server container and you may need to increase the storage available to MySQL to resolve the issue. Ballooning MySQL storage can be caused by a number of items:
 
 #) A large number of watchdog entries being captured. Fix the errors being generated or disable database logging.
-#) Ensure :ref:`cron runs at regular intervals <_crons>` to ensure cache tables get cleared out.
+#) Ensure :ref:`cron runs at regular intervals <crons>` to ensure cache tables get cleared out.
 #) If you're using Drupal Commerce Core < 1.10, you may have an `extremely large cache_form table`_. Upgrade to Commerce Core 1.10 to resolve.
 
 .. _`extremely large cache_form table`: https://www.drupal.org/node/2057073
@@ -81,4 +81,4 @@ Normally, this means there is a problem with the MySQL server container and you 
 MySQL cannot connect to the database server
 -------------------------------------------
 
-If you are having a problem connecting to the database server, you will need force a re-deployment of the database container. To do so, you can edit the :ref:`service definition <_services>` to add or remove a small amount of storage and then push.
+If you are having a problem connecting to the database server, you will need force a re-deployment of the database container. To do so, you can edit the :ref:`service definition <services>` to add or remove a small amount of storage and then push.
