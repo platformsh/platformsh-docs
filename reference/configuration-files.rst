@@ -68,7 +68,7 @@ The left-hand side is the name of the relationship as it will be exposed to the 
     database: "mysql:mysql"
     solr: "solr:solr"
 
-Possible varialbles are:
+Possible variables are:
 
 * **database: "mysql:mysql"**
 * **solr: "solr:solr"**
@@ -84,14 +84,11 @@ It has a few sub-keys which are:
 
 * **document_root**: The path relative to the root of the application that is exposed on the web. Typically ``/public`` or ``/web``.
 * **passthru**:  The URL that is used in case of a 404 (*which is the equivalent of the rewrite rules in Drupal*). Typically ``/index.php`` or ``/app.php``.
-* **whitelist**: Extend the whitelisted extensions. It should be formatted as an array: [ "html" ].
+* **whitelist**: A list of files (as regular expressions) that may be served.
 
-Contrary to standard ``.htaccess`` approaches which accept a **blacklist** and allow everything to be accessed except this specific list of extensions, we accept a **whitelist** and for everything that belongs to the code we only allow a specific list of extensions to be accessed from the web.
+Contrary to standard ``.htaccess`` approaches, which accept a **blacklist** and allow everything to be accessed except a specific list, we accept a **whitelist** which means that anything not matched will trigger a 404 error and will be passed through to your ``passthru`` URL.
 
-Everything that is not in the whitelist doesn't trigger a 403, but instead triggers a 404 and is ``passed thru`` to the URL that you configured: typically ``/index.php``.
-
-.. note::
-  To extend the whitelisted extensions, you should override the default listing and only keep the extensions you need: [ "css", "js", "gif", "jpeg", "jpg", "png", "tiff", "wbmp", "ico", "jng", "bmp", "svgz", "midi", "mpega", "mp2", "mp3", "m4a", "ra", "weba", "3gpp", "mp4", "mpeg", "mpe", "ogv", "mov", "webm", "flv", "mng", "asx", "asf", "wmv", "avi", "ogx", "swf", "jar", "ttf", "eot", "woff", "otf", "txt" ].
+To extend the whitelist, you should copy the `default whitelist <https://github.com/platformsh/platformsh-examples/blob/symfony/todo-mvc-full/.platform.app.yaml#L23>`_, and only keep the extensions you need.
 
 .. _disk:
 
