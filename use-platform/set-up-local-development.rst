@@ -54,9 +54,9 @@ Inside the new folder, there are a few directories and a file. They are:
 
   - **repository** - This folder contains all of the files that are in your Platform repository.
 
-  - **shared** - This folder contains ``settings.local.php``. each file in here is symlinked to your sites/default folder when a build is created.
+  - **shared** - Drupal specific: This folder contains ``settings.local.php``. each file in here is symlinked to your sites/default folder when a build is created.
 
-  - **www** - This folder is a symlink to the currently active build in the builds folder.
+  - **www** - This folder is a symlink to the currently active build in the builds folder. This should be used as the document root for your local server. For Drupal sites built with Drush Make, the Platform.sh CLI manages symlinks from `www/sites/default` back to the `repository` and `shared` directories.
 
 .. code-block:: none
 
