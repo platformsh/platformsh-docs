@@ -105,3 +105,29 @@ With the *Platform CLI* you can run this command from the branch that you wish t
   * :ref:`Drush <drush>`
   * :ref:`create_drush_aliases`
   * :ref:`cli`
+
+SSH Tunneling
+-------------
+
+Use SSH Tunneling to connect your local development site to remote services.
+
+.. code-block:: console
+
+  # Use your own project ID, branch, and specify whether it is the EU or US cluster (eg. us.platform.sh)
+  $ ssh -N -L 3306:database.internal:3306 [project ID]-[branch]@ssh.eu.platform.sh & 
+  
+After the tunnel is build, you can confirm its presence using the `fg` command:
+
+.. code-block:: console
+
+  $ fg
+    [1]  + 35203 running    ssh -N -L 3306:database.internal:3306 xjybxziut32me-master@ssh.eu.platform.sh
+  # pressing CTRL-C at this point will kill the tunnel.
+  # press CTRL-Z to return to the shell without killing the tunnel.
+
+Then you can connect to the remote database normally, as if it were local.
+
+.. code-block:: console
+
+  $ mysql --host=127.0.0.1 --user='' --pass='' --database='main'
+
