@@ -25,6 +25,7 @@ To fully benefit from `Platform.sh <https://platform.sh>`_, it's recommended to 
   :glob:
 
   toolstacks/index
+  integration/index
 
 .. toctree::
   :maxdepth: 3
