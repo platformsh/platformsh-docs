@@ -1,7 +1,7 @@
 Migrate an existing site to Platform.sh
 =======================================
 
-If you want to migrate your existing site into Platform.sh, here are the three components you need to import: *code base*, *database* and *files*.
+To migrate your existing site into Platform.sh, here are the three components you need to import: *code base*, *database* and *files*.
 
 Import your code base
 ---------------------
