@@ -30,7 +30,7 @@ And see a list of available commands.
 .. seealso::
   * `Install Drush <https://github.com/drush-ops/drush>`_
 
-Work with aliases
+Use drush aliases
 -----------------
 
 .. _create_drush_aliases:
@@ -95,8 +95,8 @@ Then test your settings to make sure they work.
 
 .. _drush_make_files:
 
-Work with make files
---------------------
+Use make files
+--------------
 
 Create a make file
 ^^^^^^^^^^^^^^^^^^
@@ -115,19 +115,47 @@ When building as a profile, you **need a make file for Drupal core** called: ``p
     core = 7.x
 
     projects[drupal][type] = core
-    projects[drupal][patch][] = "https://drupal.org/files/issues/install-redirect-on-empty-database-728702-36.patch"
     
-
-Generate a make file
-^^^^^^^^^^^^^^^^^^^^
+Generate a make file from an existing site
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you want to generate a make file from your existing site, you can run:
 
 .. code-block:: console
 
-  $ drush make-generate
+  $ drush make-generate project.make
 
 This will output a make file containing all your contributed modules, themes and libraries.
 
 .. seealso::
   * `Make generate command <http://www.drushcommands.com/drush-6x/make/make-generate>`_
+
+Apply patches
+^^^^^^^^^^^^^
+
+You can apply **contributed patches** to your modules, themes or libraries within your ``project.make``:
+
+.. code-block:: console
+
+   projects[features][version] = "2.2"
+   projects[features][patch][] = "https://www.drupal.org/files/issues/alter_overrides-766264-45.patch"
+
+You can also apply **self-hosted patches**. Simply create a ``PATCHES`` folder at the root of your repository and add the patch as follow:
+
+.. code-block:: console
+  
+   projects[uuid][version] = "1.0-alpha5"
+   projects[uuid][patch][] = "PATCHES/fix-non-uuid-entity-load.patch"
+
+Work with DEV version
+^^^^^^^^^^^^^^^^^^^^^
+
+When you are using a module that is in a DEV version, the best practice is to always target a specific commit ID so that you're always building the same "version" of the module:
+
+.. code-block:: console
+   
+   ; CKEditor module: version 7.x-1.15+2-dev
+   projects[ckeditor][download][revision] = "b29372fb446b547825dc6c30587eaf240717695c"
+   projects[ckeditor][download][type] = "git"
+   projects[ckeditor][download][branch] = "7.x-1.x"
+   projects[ckeditor][type] = "module"

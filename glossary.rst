@@ -111,6 +111,9 @@ Glossary
   Relationships
     The relationships of the application with services or other applications. See also :ref:`relationships <relationships>`.
 
+  Routes
+    A route describes how an incoming URL is going to be processed by Platform.sh to serve a project. See also :ref:`routes`.
+
   Scope
     .. todo:: Platform team to write description.
 

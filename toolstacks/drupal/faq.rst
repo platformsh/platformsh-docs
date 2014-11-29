@@ -30,21 +30,6 @@ How do I import a database in an environment without drush aliases?
   $ scp LOCAL_DB.sql REMOTE_PHP_SERVER:/tmp
   $ mysql -h database.internal main < /tmp/LOCAL_DB.sql
 
-How do I add variables to my settings.php?
-------------------------------------------
-
-You need to push your ``settings.php`` and make sure you include the settings.local.php that Platform will create for you on each environment.
-
-.. code-block:: console
-
-   $local_settings = dirname(__FILE__) . '/settings.local.php';
-   if (file_exists($local_settings)) {
-     require_once($local_settings);
-   }
-
-.. seealso::
-   * :ref:`environment_variables`
-
 When I push changes to a make file, does Platform.sh run the update?
 --------------------------------------------------------------------
 
@@ -82,3 +67,18 @@ After you push, you should see this line on your logs:
 .. seealso::
    * :ref:`deployment hooks <deployment_hooks>`
    
+I'm Getting a PDO Exception 'MySQL server has gone away'
+--------------------------------------------------------
+
+Normally, this means there is a problem with the MySQL server container and you may need to increase the storage available to MySQL to resolve the issue. Ballooning MySQL storage can be caused by a number of items:
+
+#) A large number of watchdog entries being captured. Fix the errors being generated or disable database logging.
+#) Ensure :ref:`cron runs at regular intervals <crons>` to ensure cache tables get cleared out.
+#) If you're using Drupal Commerce Core < 1.10, you may have an `extremely large cache_form table`_. Upgrade to Commerce Core 1.10 to resolve.
+
+.. _`extremely large cache_form table`: https://www.drupal.org/node/2057073
+
+MySQL cannot connect to the database server
+-------------------------------------------
+
+If you are having a problem connecting to the database server, you will need force a re-deployment of the database container. To do so, you can edit the :ref:`service definition <services>` to add or remove a small amount of storage and then push.

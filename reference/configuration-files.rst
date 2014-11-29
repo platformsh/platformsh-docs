@@ -1,27 +1,82 @@
 .. _configuration_files:
 
-Configuration files
-===================
+Configuration
+=============
+
+Configure your Application
+--------------------------
 
 The :term:`configuration files` are stored in Git and allow you to easily interact with Platform.sh. You can define and configure the services you want to deploy and use, the specific routes you need to serve your application...
 
-You can find default configuration files in the `public Platform.sh repositories on Github <https://github.com/platformsh/>`_.
-
-.platform.app.yaml, an application configuration file
------------------------------------------------------
+You can find some examples for those configuration files on `Github <https://github.com/platformsh/platformsh-examples>`_.
 
 Platform.sh exposes a ``.platform.app.yaml`` file which defines your :term:`application` and the way it will be built and deployed on Platform.sh.
 
-.. note::
-  The ``.platform.app.yaml`` needs to be committed to your Git repository at the root of your :term:`application` folder.
+.. code-block:: yaml
 
-Here are the keys that you can define in your ``.platform.app.yaml``:
+  # .platform.app.yaml
+  # This file describes an application. You can have multiple applications
+  # in the same project.
+
+  # The name of this app. Must be unique within a project.
+  name: php
+
+  # The toolstack used to build the application.
+  toolstack: "php:drupal"
+
+  # The relationships of the application with services or other applications.
+  # The left-hand side is the name of the relationship as it will be exposed
+  # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+  # side is in the form `<service name>:<endpoint name>`.
+  relationships:
+      database: "mysql:mysql"
+      solr: "solr:solr"
+      redis: "redis:redis"
+
+  # The configuration of app when it is exposed to the web.
+  web:
+      # The public directory of the app, relative to its root.
+      document_root: "/"
+      # The front-controller script to send non-static requests to.
+      passthru: "/index.php"
+
+  # The size of the persistent disk of the application (in MB).
+  disk: 2048
+
+  # The mounts that will be performed when the package is deployed.
+  mounts:
+      "/public/sites/default/files": "shared:files/files"
+      "/tmp": "shared:files/tmp"
+      "/private": "shared:files/private"
+
+  # The hooks executed at various points in the lifecycle of the application.
+  hooks:
+      # We run deploy hook after your application has been deployed and started.
+      deploy: "cd /app/public ; drush -y updatedb"
+
+  # The configuration of scheduled execution.
+  crons:
+      drupal:
+          spec: "*/20 * * * *"
+          cmd: "cd public ; drush core-cron"
+
+.. note::
+  The ``.platform.app.yaml`` is specific to your application. If you have multiple applications inside your Git repository, you need one ``.platform.app.yaml`` at the root of each application.
+
+.. seealso::
+
+  * `.platform.app.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform.app.yaml>`_
+  * `.platform.app.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_
+
+----
 
 .. _name:
 
 .. rubric:: Name
 
 The ``name`` is the unique identifier of the :term:`application`. Platform.sh supports multiple applications within a project, so each application must have a **unique name** within a project.
+
+----
 
 .. _toolstack:
 
@@ -31,9 +86,11 @@ The ``toolstack`` is used to build and run the project. It's in the form ``type[
 
 Possible values are:
 
-* **php:drupal**
-* **php:symfony**
-* **nodejs**
+* php:drupal
+* php:symfony
+* nodejs
+
+----
 
 .. _access:
 
@@ -43,15 +100,11 @@ The ``access`` define the user roles who can log in via SSH to the environments 
 
 Possible values are:
 
-* **ssh: admin**
-* **ssh: contributor**
-* **ssh: viewer**
+* ssh: admin
+* ssh: contributor
+* ssh: viewer
 
-.. code-block:: console
-    
-    # The access configuration.
-    access:
-        ssh: contributor
+----
 
 .. _relationships:
 
@@ -61,18 +114,13 @@ The ``relationships`` defines how services are mapped within your :term:`applica
 
 The left-hand side is the name of the relationship as it will be exposed to the :term:`application` in the *PLATFORM_RELATIONSHIPS* environment variable. The right-hand side is in the form ``<service name>:<endpoint name>``.
 
-.. code-block:: console
-  
-  # The relationships of the application with services or other applications.
-  relationships:
-    database: "mysql:mysql"
-    solr: "solr:solr"
+Possible variables are:
 
-Possible varialbles are:
+* database: "mysql:mysql"
+* solr: "solr:solr"
+* redis: "redis:redis"
 
-* **database: "mysql:mysql"**
-* **solr: "solr:solr"**
-* **redis: "redis:redis"**
+----
 
 .. _web:
 
@@ -84,14 +132,13 @@ It has a few sub-keys which are:
 
 * **document_root**: The path relative to the root of the application that is exposed on the web. Typically ``/public`` or ``/web``.
 * **passthru**:  The URL that is used in case of a 404 (*which is the equivalent of the rewrite rules in Drupal*). Typically ``/index.php`` or ``/app.php``.
-* **whitelist**: Extend the whitelisted extensions. It should be formatted as an array: [ "html" ].
+* **whitelist**: A list of files (as regular expressions) that may be served.
 
-Contrary to standard ``.htaccess`` approaches which accept a **blacklist** and allow everything to be accessed except this specific list of extensions, we accept a **whitelist** and for everything that belongs to the code we only allow a specific list of extensions to be accessed from the web.
+Contrary to standard ``.htaccess`` approaches, which accept a **blacklist** and allow everything to be accessed except a specific list, we accept a **whitelist** which means that anything not matched will trigger a 404 error and will be passed through to your ``passthru`` URL.
 
-Everything that is not in the whitelist doesn't trigger a 403, but instead triggers a 404 and is ``passed thru`` to the URL that you configured: typically ``/index.php``.
+To extend the whitelist, you should copy the `default whitelist <https://github.com/platformsh/platformsh-examples/blob/symfony/todo-mvc-full/.platform.app.yaml#L23>`_, and only keep the extensions you need.
 
-.. note::
-  To extend the whitelisted extensions, you should override the default listing and only keep the extensions you need: [ "css", "js", "gif", "jpeg", "jpg", "png", "tiff", "wbmp", "ico", "jng", "bmp", "svgz", "midi", "mpega", "mp2", "mp3", "m4a", "ra", "weba", "3gpp", "mp4", "mpeg", "mpe", "ogv", "mov", "webm", "flv", "mng", "asx", "asf", "wmv", "avi", "ogx", "swf", "jar", "ttf", "eot", "woff", "otf", "txt" ].
+----
 
 .. _disk:
 
@@ -102,19 +149,24 @@ The ``disk`` defines the size of the persistent disk size of the :term:`applicat
 .. note::
   The minimal recommended disk size is 256MB. If you see the error **UserError: Error building the project: Disk size may not be smaller than 128MB**, increase the size to 256MB.
 
+----
+
 .. _mounts:
 
 .. rubric:: Mounts
 
-The ``mounts` is an object whose keys are paths relative to the root of the application. It's in the form ``volume_id[/subpath]``.
+The ``mounts`` is an object whose keys are paths relative to the root of the application. It's in the form ``volume_id[/subpath]``.
 
-For example with :term:`Drupal`, you'll want your ``sites/default/files`` to be mounted under a shared resource which is writable:
+For example with :term:`Drupal`, you'll want your ``sites/default/files`` to be mounted under a shared resource which is writable.
 
-.. code-block:: console
-  
-  # The mounts that will be performed when the package is deployed.
-  mounts:
-    "/public/sites/default/files": "shared:files/files"
+The format is:
+
+* "/public/sites/default/files": "shared:files/files"
+
+.. note::
+   The ``shared`` means that the volume is shared between your applications inside an environment. The ``disk`` key defines the size available for that ``shared`` volume.
+
+----
 
 .. _deployment_hooks:
 
@@ -141,6 +193,8 @@ After a Git push, you can see the results of the deployment hooks in the ``/var/
     'all' cache was cleared.
     Finished performing updates.
 
+----
+
 .. _crons:
 
 .. rubric:: Crons
@@ -152,42 +206,74 @@ It has a few sub-keys which are:
 * **spec**: The cron specification. For example:  ``*/20 * * * *``.
 * **cmd**: The command that is executed, for example `cd public ; drush core-cron``
 
-.. seealso::
-  You can find some good examples of `.platform.app.yaml`` files for various toolstacks:
-
-  * `.platform.app.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform.app.yaml>`_
-  * `.platform.app.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_
-
 .. _services:
 
-services.yaml, a topology configuration file
---------------------------------------------
+Configure Services
+------------------
 
-.. note::
-  Find the ``services.yaml`` file in the ``.platform`` folder at the root of your Git repository 
-  eg. repository/.platform/services.yaml
+Platform.sh allows you to completely define and configure the topology and services you want to use on your project.
 
-Platform.sh allows you to completely define and configure the topology and services you want to use at the :term:`environment` level.
+The topology is stored into a ``services.yaml`` file which should be added inside the ``.platform`` folder at the root of your Git repository.
+
+If you don't have a ``.platform`` folder, you need to create one:
+
+.. code-block:: console
+  
+  $ mkdir .platform
+
+Here is an example of a ``services.yaml`` file:
+
+.. code-block:: yaml
+
+  # .platform/services.yaml
+  mysql:
+    type: mysql
+    disk: 2048
+
+  solr:
+    type: solr
+    disk: 1024
+
+.. rubric:: Available services
+
+* mysql
+* solr
+* redis
 
 .. seealso::
-  You can find some good example of `services.yaml`` files for various toolstacks:
 
-  * `services.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform/services.yaml>`_
-  * `services.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/services.yaml>`_
+  * `services.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/services.yaml>`_
+  * `services.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/services.yaml>`_
 
 .. _routes:
 
-routes.yaml, an environment configuration file
-----------------------------------------------
+Configure Routes
+----------------
 
-.. note::
-  Find the ``routes.yaml`` file in the ``.platform`` folder at the root of your Git repository
-  eg. 1237h7rtyh123/repository/.platform/routes.yaml
+Platform.sh allows you to define the routes that will serve your environments.
 
-Platform.sh allows you to define the routes that will serve your project at the :term:`environment` level.
+A route describes how an incoming URL is going to be processed by Platform.sh.
+The routes are stored into a ``routes.yaml`` file which should be added inside the ``.platform`` folder at the root of your Git repository.
+
+If you don't have a ``.platform`` folder, you need to create one:
+
+.. code-block:: console
+  
+  $ mkdir .platform
+
+Here is an example of a ``routes.yaml`` file:
+
+.. code-block:: yaml
+  
+  # .platform/routes.yaml
+  "http://{default}/":
+    type: upstream
+    upstream: "php:php"
+  "http://www.{default}/":
+    type: redirect
+    to: "http://{default}/"
 
 .. seealso::
-  You can find some good example of `routes.yaml`` files for various toolstacks:
 
-  * `routes.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform/routes.yaml>`_
-  * `routes.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/routes.yaml>`_
+  * `routes.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/routes.yaml>`_
+  * `routes.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/routes.yaml>`_
