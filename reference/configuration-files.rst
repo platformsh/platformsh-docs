@@ -1,27 +1,79 @@
 .. _configuration_files:
 
-Configuration files
-===================
+Configure your application
+==========================
 
 The :term:`configuration files` are stored in Git and allow you to easily interact with Platform.sh. You can define and configure the services you want to deploy and use, the specific routes you need to serve your application...
 
 You can find some examples for those configuration files on `Github <https://github.com/platformsh/platformsh-examples>`_.
 
-Configure your application
---------------------------
-
 Platform.sh exposes a ``.platform.app.yaml`` file which defines your :term:`application` and the way it will be built and deployed on Platform.sh.
+
+.. code-block:: yaml
+
+  # .platform.app.yaml
+  # This file describes an application. You can have multiple applications
+  # in the same project.
+
+  # The name of this app. Must be unique within a project.
+  name: php
+
+  # The toolstack used to build the application.
+  toolstack: "php:drupal"
+
+  # The relationships of the application with services or other applications.
+  # The left-hand side is the name of the relationship as it will be exposed
+  # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+  # side is in the form `<service name>:<endpoint name>`.
+  relationships:
+      database: "mysql:mysql"
+      solr: "solr:solr"
+      redis: "redis:redis"
+
+  # The configuration of app when it is exposed to the web.
+  web:
+      # The public directory of the app, relative to its root.
+      document_root: "/"
+      # The front-controller script to send non-static requests to.
+      passthru: "/index.php"
+
+  # The size of the persistent disk of the application (in MB).
+  disk: 2048
+
+  # The mounts that will be performed when the package is deployed.
+  mounts:
+      "/public/sites/default/files": "shared:files/files"
+      "/tmp": "shared:files/tmp"
+      "/private": "shared:files/private"
+
+  # The hooks executed at various points in the lifecycle of the application.
+  hooks:
+      # We run deploy hook after your application has been deployed and started.
+      deploy: "cd /app/public ; drush -y updatedb"
+
+  # The configuration of scheduled execution.
+  crons:
+      drupal:
+          spec: "*/20 * * * *"
+          cmd: "cd public ; drush core-cron"
 
 .. note::
   The ``.platform.app.yaml`` is specific to your application. If you have multiple applications inside your Git repository, you need one ``.platform.app.yaml`` at the root of each application.
 
-Here are the keys that you can define in your ``.platform.app.yaml``:
+.. seealso::
+
+  * `.platform.app.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform.app.yaml>`_
+  * `.platform.app.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_
+
+----
 
 .. _name:
 
 .. rubric:: Name
 
 The ``name`` is the unique identifier of the :term:`application`. Platform.sh supports multiple applications within a project, so each application must have a **unique name** within a project.
+
+----
 
 .. _toolstack:
 
@@ -31,9 +83,11 @@ The ``toolstack`` is used to build and run the project. It's in the form ``type[
 
 Possible values are:
 
-* **php:drupal**
-* **php:symfony**
-* **nodejs**
+* php:drupal
+* php:symfony
+* nodejs
+
+----
 
 .. _access:
 
@@ -43,15 +97,11 @@ The ``access`` define the user roles who can log in via SSH to the environments 
 
 Possible values are:
 
-* **ssh: admin**
-* **ssh: contributor**
-* **ssh: viewer**
+* ssh: admin
+* ssh: contributor
+* ssh: viewer
 
-.. code-block:: console
-    
-  # The access configuration.
-  access:
-    ssh: contributor
+----
 
 .. _relationships:
 
@@ -61,18 +111,13 @@ The ``relationships`` defines how services are mapped within your :term:`applica
 
 The left-hand side is the name of the relationship as it will be exposed to the :term:`application` in the *PLATFORM_RELATIONSHIPS* environment variable. The right-hand side is in the form ``<service name>:<endpoint name>``.
 
-.. code-block:: console
-  
-  # The relationships of the application with services or other applications.
-  relationships:
-    database: "mysql:mysql"
-    solr: "solr:solr"
-
 Possible variables are:
 
-* **database: "mysql:mysql"**
-* **solr: "solr:solr"**
-* **redis: "redis:redis"**
+* database: "mysql:mysql"
+* solr: "solr:solr"
+* redis: "redis:redis"
+
+----
 
 .. _web:
 
@@ -90,6 +135,8 @@ Contrary to standard ``.htaccess`` approaches, which accept a **blacklist** and 
 
 To extend the whitelist, you should copy the `default whitelist <https://github.com/platformsh/platformsh-examples/blob/symfony/todo-mvc-full/.platform.app.yaml#L23>`_, and only keep the extensions you need.
 
+----
+
 .. _disk:
 
 .. rubric:: Disk
@@ -99,22 +146,24 @@ The ``disk`` defines the size of the persistent disk size of the :term:`applicat
 .. note::
   The minimal recommended disk size is 256MB. If you see the error **UserError: Error building the project: Disk size may not be smaller than 128MB**, increase the size to 256MB.
 
+----
+
 .. _mounts:
 
 .. rubric:: Mounts
 
 The ``mounts`` is an object whose keys are paths relative to the root of the application. It's in the form ``volume_id[/subpath]``.
 
-For example with :term:`Drupal`, you'll want your ``sites/default/files`` to be mounted under a shared resource which is writable:
+For example with :term:`Drupal`, you'll want your ``sites/default/files`` to be mounted under a shared resource which is writable.
 
-.. code-block:: console
-  
-  # The mounts that will be performed when the package is deployed.
-  mounts:
-    "/public/sites/default/files": "shared:files/files"
+The format is:
+
+* "/public/sites/default/files": "shared:files/files"
 
 .. note::
    The ``shared`` means that the volume is shared between your applications inside an environment. The ``disk`` key defines the size available for that ``shared`` volume.
+
+----
 
 .. _deployment_hooks:
 
@@ -141,6 +190,8 @@ After a Git push, you can see the results of the deployment hooks in the ``/var/
     'all' cache was cleared.
     Finished performing updates.
 
+----
+
 .. _crons:
 
 .. rubric:: Crons
@@ -151,12 +202,6 @@ It has a few sub-keys which are:
 
 * **spec**: The cron specification. For example:  ``*/20 * * * *``.
 * **cmd**: The command that is executed, for example `cd public ; drush core-cron``
-
-.. seealso::
-  You can find some good examples of `.platform.app.yaml`` files for various toolstacks:
-
-  * `.platform.app.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform.app.yaml>`_
-  * `.platform.app.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_
 
 .. _services:
 
@@ -175,8 +220,9 @@ If you don't have a ``.platform`` folder, you need to create one:
 
 Here is an example of a ``services.yaml`` file:
 
-.. code-block:: console
+.. code-block:: yaml
 
+  # .platform/services.yaml
   mysql:
     type: mysql
     disk: 2048
@@ -184,6 +230,12 @@ Here is an example of a ``services.yaml`` file:
   solr:
     type: solr
     disk: 1024
+
+.. rubric:: Available services
+
+* mysql
+* solr
+* redis
 
 .. seealso::
 
@@ -208,8 +260,9 @@ If you don't have a ``.platform`` folder, you need to create one:
 
 Here is an example of a ``routes.yaml`` file:
 
-.. code-block:: console
+.. code-block:: yaml
   
+  # .platform/routes.yaml
   "http://{default}/":
     type: upstream
     upstream: "php:php"
