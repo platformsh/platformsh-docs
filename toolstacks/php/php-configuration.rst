@@ -3,10 +3,12 @@ Configuration
 
 .. _php_configuration:
 
-Configure PHP
--------------
-
 Platform.sh supports custom PHP configurations. 
+
+.. _php_extension:
+
+PHP extensions
+--------------
 
 You can define the PHP extensions you want to enable or disable:
 
@@ -25,62 +27,45 @@ The following extensions are enabled by default: *pdo, mysql, mysqli, pdo_mysql,
 
 In addition, you can enable the following extensions: *enchant, gearman, geoip, gmp, http, imagick, imap, ldap, pgsql, pdo_pgsql, pinba, pspell, recode, redis, snmp, spplus, ssh2, tidy, xdebug, xmlrpc and xsl*.
 
+.. seealso::
+    * :ref:`application_configuration`
+
+.. _php_ini:
+
 Use your own php.ini
 --------------------
 
-You can also provide a php.ini file in your project, for additional configuration tweaks.
+You can also push a ``php.ini`` file that will be appended to the configuration maintained by Platform.sh. 
 
-You can also provide a php.ini file that will be appended to the configuration maintained by Platform.sh. This file needs to be at the root of the application at the end of the build process, so depending on your build process, you might have to move it in place in a build hook.
+For example if you need to increase the PHP memory limit:
 
+.. code-block:: php
+    
+    # php.ini
+    ; Increase PHP memory limit
+    memory_limit = 256M
 
-.. Note:: 
-    We do not limit what you can put in your ``php.ini`` file, but many settings can break your application. This is a facility for advanced users.
-
-
-
-
-
-
-Many hosting solutions are adding an additional layer (Varnish...) to handle caching. Platform.sh allows you to enable HTTP caching right at the web server level. 
-
-If you disable caching, Platform.sh serves the files that are stored in the application directly. For example with Drupal, this means that all HTTP requests will bootstrap Drupal and query the database. When the cache is enabled, if the page has been stored in the Nginx cache, it won't access Drupal.
-
-Cache is enabled by default in your ``.platform/routes.yaml`` file. You can either whitelist the header that participate in the cache key:
-
-.. code-block:: yaml
-
-    http://{default}/:
-        type: upstream
-        upstream: php:php
-        cache:
-            enabled: true
-            headers: [ "Accept", "Accept-Language", "X-Language-Locale" ]
-
-Or simply disable caching on the route:
-
-.. code-block:: yaml
-
-    http://{default}/:
-        type: upstream
-        upstream: php:php
-        cache:
-            enabled: false
-
-You can see this in action like this:
+After pushing your file, you can check that the custom PHP configuration has been added to your environment by logging in via SSH and type:
 
 .. code-block:: console
+    
+    web@kjh43kbobssae-master--php:~$ cat /etc/php5/fpm/php.ini
 
-    $ curl -I https://coupledehuit.fr/
+    ; =============== Custom configuration from `/app/php.ini`
+    ; Increase PHP memory limit
+    memory_limit = 320M
 
-    HTTP/1.1 200 OK
-    ...
-    X-Drupal-Cache: HIT
-    ...
-    Cache-Control: public, max-age=86400
-    Last-Modified: Thu, 16 Oct 2014 10:25:30 +0000
-    Expires: Sun, 19 Nov 1978 05:00:00 GMT
-    ...
-    X-Platform-Cache: HIT
+----
 
-.. seealso::
-    * :ref:`routes_configuration`
+The ``php.ini`` file needs to be at the root of the application at the end of the build process. So depending on your build process, you might have to move it in place in a build hook. Example with Drupal if you have a ``project.make`` file:
+
+.. code-block:: yaml
+    
+    # .platform.app.yaml
+    hooks:
+        build: |
+            set -e
+            mv public/sites/default/php.ini php.ini
+
+.. Warning:: 
+    We do not limit what you can put in your ``php.ini`` file, but many settings can break your application. This is a facility for advanced users.
