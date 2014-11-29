@@ -18,7 +18,7 @@ On a terminal, go to your Git project folder and add **platform** as a remote.
 .. code-block:: console
 
    $ cd ~/Sites/platform
-   $ git remote add platform [project-id]@git.eu.platform.sh:[project-id].git
+   $ git remote add platform [PROJECT-ID]@git.[CLUSTER].platform.sh:[PROJECT-ID].git
 
 .. note:: You can copy-paste the Git URL from the Platform UI under the Git icon.
 
@@ -41,7 +41,7 @@ On a terminal, go to your project folder, initiate the Git repository, and add a
 
    $ cd ~/Sites/mysite
    $ git init
-   $ git remote add platform [project-id]@git.eu.platform.sh:[project-id].git
+   $ git remote add platform [PROJECT-ID]@git.[CLUSTER].platform.sh:[PROJECT-ID].git
 
 .. note:: You can get the Git URL from the Platform UI under the Git icon.
 
@@ -98,14 +98,14 @@ Copy it via SSH to the remote environment on Platform into the ``/app/tmp`` fold
 
 .. code-block:: console
 
-   $ scp database.sql [project-id]-master@ssh.eu.platform.sh:/app/tmp
+   $ scp database.sql [PROJECT-ID]-master@ssh.[CLUSTER].platform.sh:/app/tmp
 
 Log in to the environment via SSH and import the database:
 
 .. code-block:: console
 
-   $ ssh [project-id]-master@ssh.eu.platform.sh
-   web@[project-id]-master--php:~$ mysql -h database.internal main < tmp/database.sql
+   $ ssh [PROJECT-ID]-master@ssh.[CLUSTER].platform.sh
+   web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < tmp/database.sql
 
 Import your files
 -----------------
@@ -118,7 +118,7 @@ We use *drush alias* to import your existing local files.
 .. code-block:: console
 
    $ drush rsync @platform.local:%files @platform.master:%files
-   You will destroy data from [project-id]-master@ssh.eu.platform.sh:././sites/default/files and replace with data from ~/Sites/platform/sites/default/files/
+   You will destroy data from [PROJECT-ID]-master@ssh.[CLUSTER].platform.sh:././sites/default/files and replace with data from ~/Sites/platform/sites/default/files/
    Do you really want to continue? (y/n): y
 
 .. note:: Drush will verify that you are copying and over-writing the proper files folders, so double-check that information before you type ``y`` to continue.
@@ -132,4 +132,4 @@ Go to your files folder on your local machine and synchronize them to your remot
 
 .. code-block:: console
 
-   $ rsync -r files/. [project-id]-master@ssh.eu.platform.sh:public/sites/default/files/
+   $ rsync -r files/. [PROJECT-ID]-master@ssh.[CLUSTER].platform.sh:public/sites/default/files/

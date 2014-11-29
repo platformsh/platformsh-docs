@@ -1,8 +1,9 @@
 Symfony
-=================
+=======
 
 .. toctree::
   :glob:
 
-  symfony-getting-started
-  symfony-faq
+  getting-started
+  migrate-existing-site
+  faq
