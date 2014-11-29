@@ -3,6 +3,8 @@
 Configuration
 =============
 
+.. _application_configuration:
+
 Configure your Application
 --------------------------
 
@@ -206,7 +208,7 @@ It has a few sub-keys which are:
 * **spec**: The cron specification. For example:  ``*/20 * * * *``.
 * **cmd**: The command that is executed, for example `cd public ; drush core-cron``
 
-.. _services:
+.. _services_configuration:
 
 Configure Services
 ------------------
@@ -245,7 +247,7 @@ Here is an example of a ``services.yaml`` file:
   * `services.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/services.yaml>`_
   * `services.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/services.yaml>`_
 
-.. _routes:
+.. _routes_configuration:
 
 Configure Routes
 ----------------

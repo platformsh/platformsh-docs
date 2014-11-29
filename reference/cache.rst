@@ -48,4 +48,4 @@ You can see this in action like this:
     X-Platform-Cache: HIT
 
 .. seealso::
-    * :ref:`routes`
+    * :ref:`routes_configuration`
