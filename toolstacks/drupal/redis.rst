@@ -3,18 +3,22 @@
 Using Redis with Drupal 7.x
 ===========================
 
+There are two options for using Redis with Drupal on Platform.sh, you can either use the `PhpRedis <https://github.com/nicolasff/phpredis>`_ extension or the `Predis <http://github.com/nrk/predis>`_ library.
+
 Requirements
 ------------
 
-You will need to add the `Redis <https://www.drupal.org/project/redis>`_ module and `Predis <http://github.com/nrk/predis>`_ library to your project.
+You will need to add the `Redis <https://www.drupal.org/project/redis>`_ module to your project.
 
 If you are using a make file, you can add those lines to your ``project.make``:
 
 .. code-block:: ini
 
-   projects[redis][type] = module
-   projects[redis][download][type] = git
-   projects[redis][download][branch] = 7.x-2.11
+   projects[redis][version] = 7.x-2.12
+
+To use the Predis library also add it to your make file:
+
+.. code-block:: ini
 
    libraries[predis][download][type] = get
    libraries[predis][download][url] = http://github.com/nrk/predis/archive/v0.8.7.tar.gz
@@ -23,6 +27,18 @@ If you are using a make file, you can add those lines to your ``project.make``:
 
 .. seealso::
   * :ref:`drush_make_files`
+
+To use the PhpRedis extension you will need to add it to your .platform.app.yaml file.
+
+.. code-block:: yaml
+
+    # Additional extensions
+    runtime:
+        extensions:
+            - redis
+
+.. seealso::
+  * :ref:`.platform.app.yaml`
    
 Configuration
 -------------
@@ -39,7 +55,7 @@ Via the Web UI
 
 The advantage of using :term:`environment variables` is that these won't be used in your local build where you might not have Redis installed.
 
-Add the following :term:`environment variables` using the Platform UI.
+Add the following :term:`environment variables` using the Platform UI. Note, if you set a directory in the make file you will need to alter the variables to match.
 
 ``drupal:cache_backends``
 
@@ -78,6 +94,12 @@ Add the following :term:`environment variables` using the Platform UI.
 .. code-block:: console
 
    Predis
+
+Or
+
+.. code-block:: console
+
+   PhpRedis
    
 ``drupal:cache_default_class``
 
@@ -96,6 +118,15 @@ If you prefer to commit these variables directly to your ``settings.php``, here 
 .. code-block:: php
 
    $conf['redis_client_interface'] = 'Predis';
+
+Or
+
+.. code-block:: php
+
+   $conf['redis_client_interface'] = 'PhpRedis';
+
+.. code-block::php
+
    $conf['redis_client_host']      = 'redis.internal';
    $conf['lock_inc']               = 'sites/all/modules/redis/redis.lock.inc';
    $conf['path_inc']               = 'sites/all/modules/redis/redis.path.inc';
