@@ -81,4 +81,4 @@ Normally, this means there is a problem with the MySQL server container and you 
 MySQL cannot connect to the database server
 -------------------------------------------
 
-If you are having a problem connecting to the database server, you will need force a re-deployment of the database container. To do so, you can edit the :ref:`service definition <services>` to add or remove a small amount of storage and then push.
+If you are having a problem connecting to the database server, you will need force a re-deployment of the database container. To do so, you can edit the :ref:`service definition <services_configuration>` to add or remove a small amount of storage and then push.

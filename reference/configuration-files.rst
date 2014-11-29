@@ -3,6 +3,8 @@
 Configuration
 =============
 
+.. _application_configuration:
+
 Configure your Application
 --------------------------
 
@@ -168,6 +170,38 @@ The format is:
 
 ----
 
+.. _build_dependencies:
+
+.. rubric:: Build dependencies
+
+The ``dependencies`` allow you to specify dependencies that your application might need during the build process.
+
+Platform.sh supports pulling any dependencies for the following languages:
+
+* PHP
+* Python
+* Ruby
+* NodeJS
+
+Those dependencies are independent of the eventual dependencies of your application, and are available in the ``PATH``, during the build process and in the runtime environment of your application.
+
+You can specify those dependencies like this:
+
+.. code-block:: yaml
+
+  # .platform/services.yaml
+  dependencies:
+    php:
+      drush/drush: "6.4.0"
+    python:
+      behave: "*"
+    ruby:
+      sass: "3.4.7"
+    nodejs:
+      grunt: "~0.4.5"
+
+----
+
 .. _deployment_hooks:
 
 .. rubric:: Hooks
@@ -206,7 +240,7 @@ It has a few sub-keys which are:
 * **spec**: The cron specification. For example:  ``*/20 * * * *``.
 * **cmd**: The command that is executed, for example `cd public ; drush core-cron``
 
-.. _services:
+.. _services_configuration:
 
 Configure Services
 ------------------
@@ -245,7 +279,7 @@ Here is an example of a ``services.yaml`` file:
   * `services.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/services.yaml>`_
   * `services.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/services.yaml>`_
 
-.. _routes:
+.. _routes_configuration:
 
 Configure Routes
 ----------------

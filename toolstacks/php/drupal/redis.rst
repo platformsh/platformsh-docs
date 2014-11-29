@@ -38,7 +38,7 @@ To use the PhpRedis extension you will need to add it to your .platform.app.yaml
             - redis
 
 .. seealso::
-  * :ref:`.platform.app.yaml`
+  * :ref:`application_configuration`
    
 Configuration
 -------------

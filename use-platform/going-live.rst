@@ -14,7 +14,7 @@ First thing you need is to add your domain via the :ref:`platform_ui` using the 
 You can configure the :term:`routes` of your project directly within the :ref:`platform_ui` or within your ``.platform/routes.yaml`` file.
 
 .. seealso::
-   * :ref:`routes`
+   * :ref:`routes_configuration`
 
 Single hostname
 ^^^^^^^^^^^^^^^
@@ -72,7 +72,7 @@ If you have uploaded your SSL certificate and you want to serve your entire site
         to: "https://{default}/"
 
 .. seealso::
-   * :ref:`routes`
+   * :ref:`routes_configuration`
 
 .. _dns:
 
