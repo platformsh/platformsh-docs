@@ -53,7 +53,7 @@ After pushing your file, you can check that the custom PHP configuration has bee
 
     ; =============== Custom configuration from `/app/php.ini`
     ; Increase PHP memory limit
-    memory_limit = 320M
+    memory_limit = 256M
 
 ----
 
