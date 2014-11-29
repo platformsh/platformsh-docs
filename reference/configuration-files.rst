@@ -1,7 +1,10 @@
 .. _configuration_files:
 
-Configure your application
-==========================
+Configuration
+=============
+
+Configure your Application
+--------------------------
 
 The :term:`configuration files` are stored in Git and allow you to easily interact with Platform.sh. You can define and configure the services you want to deploy and use, the specific routes you need to serve your application...
 
@@ -205,8 +208,8 @@ It has a few sub-keys which are:
 
 .. _services:
 
-Configure your services
------------------------
+Configure Services
+------------------
 
 Platform.sh allows you to completely define and configure the topology and services you want to use on your project.
 
@@ -244,8 +247,8 @@ Here is an example of a ``services.yaml`` file:
 
 .. _routes:
 
-Configure your routes
----------------------
+Configure Routes
+----------------
 
 Platform.sh allows you to define the routes that will serve your environments.
 
