@@ -9,7 +9,6 @@ Reference
   configuration-files
   environment-variables
   cache
-  php-configuration
   upgrade
   known-issues
   service-grid

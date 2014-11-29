@@ -1,36 +1,43 @@
-PHP configuration
-=================
+Configuration
+=============
 
 .. _php_configuration:
 
-Customize your PHP configuration
---------------------------------
+Configure PHP
+-------------
 
 Platform.sh supports custom PHP configurations. 
 
-In your ``.platform.app.yaml``, you can add a runtime key like:
+You can define the PHP extensions you want to enable or disable:
 
-.. code-block:: console
-
+.. code-block:: yaml
+    
+    # .platform.app.yaml
     runtime:
         extensions:
             - http
+            - redis
             - ssh2
         disabled_extensions:
             - sqlite3
 
-Platform.sh comes with pdo, mysql, mysqli, pdo_mysql, sqlite3, pdo_sqlite3, gd, curl, intl, mcrypt and zendopcache extensions enabled by default. You can disable those by adding them to the disabled_extensions list.
+The following extensions are enabled by default: *pdo, mysql, mysqli, pdo_mysql, sqlite3, pdo_sqlite3, gd, curl, intl, mcrypt and zendopcache*. You can disable those by adding them to the ``disabled_extensions`` list.
 
-In addition, we ship with enchant, gearman, geoip, gmp, http, imagick, imap, ldap, pgsql, pdo_pgsql, pinba, pspell, recode, redis, snmp, spplus, ssh2, tidy, xdebug, xmlrpc and xsl that you can enable.
-
-You can also provide a php.ini file that will be appended to the configuration maintained by Platform.sh. This file needs to be at the root of the application at the end of the build process, so depending on your build process, you might have to move it in place in a build hook.
-
-Note: we do not limit what you can put in the php.ini file in any way, but many settings can completely break your application. This is a facility for advanced users.
+In addition, you can enable the following extensions: *enchant, gearman, geoip, gmp, http, imagick, imap, ldap, pgsql, pdo_pgsql, pinba, pspell, recode, redis, snmp, spplus, ssh2, tidy, xdebug, xmlrpc and xsl*.
 
 Use your own php.ini
 --------------------
 
 You can also provide a php.ini file in your project, for additional configuration tweaks.
+
+You can also provide a php.ini file that will be appended to the configuration maintained by Platform.sh. This file needs to be at the root of the application at the end of the build process, so depending on your build process, you might have to move it in place in a build hook.
+
+
+.. Note:: 
+    We do not limit what you can put in your ``php.ini`` file, but many settings can break your application. This is a facility for advanced users.
+
+
+
 
 
 
@@ -40,7 +47,7 @@ If you disable caching, Platform.sh serves the files that are stored in the appl
 
 Cache is enabled by default in your ``.platform/routes.yaml`` file. You can either whitelist the header that participate in the cache key:
 
-.. code-block:: console
+.. code-block:: yaml
 
     http://{default}/:
         type: upstream
@@ -51,7 +58,7 @@ Cache is enabled by default in your ``.platform/routes.yaml`` file. You can eith
 
 Or simply disable caching on the route:
 
-.. code-block:: console
+.. code-block:: yaml
 
     http://{default}/:
         type: upstream
