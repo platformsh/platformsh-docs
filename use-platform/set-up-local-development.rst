@@ -52,7 +52,7 @@ Inside the new folder, there are a few directories and a file. They are:
 
   - **builds** - This folder contains the current and previous builds. Each time you run ``platform build`` (see below) a build is generated in this folder.
 
-  - **repository** - This folder contains all of the files that are in your Platform repository.
+  - **repository** - This folder contains all of the files that are in your Platform.sh repository.
 
   - **shared** - Drupal specific: This folder contains ``settings.local.php``. Each file in `shared` will symlinked from `repository/sites/default` when `platform build` is run.
 
