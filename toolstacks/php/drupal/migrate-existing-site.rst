@@ -133,3 +133,23 @@ Go to your files folder on your local machine and synchronize them to your remot
 .. code-block:: console
 
    $ rsync -r files/. [PROJECT-ID]-master@ssh.[CLUSTER].platform.sh:public/sites/default/files/
+
+Rebuild the site registry
+-------------------------
+
+During the migration process, one or more modules may have changed location. This could result in a WSOD (white screen of death), any number of errors (fatal or otherwise), or just a plain broken site. To remedy this situation, the `registry will need to be rebuilt <https://www.drupal.org/project/registry_rebuild>`_. To rebuild the Drupal registry on your Platform.sh instance, you will need to do the following:
+
+First, SSH into your web container.
+
+.. code-block:: console
+
+   $ ssh [PROJECT-ID]-master@ssh.[CLUSTER].platform.sh
+
+Second, execute the following commands to download, tweak, and run the registry rebuild.
+
+.. code-block:: console
+
+   $ drush dl registry_rebuild --destination=/app/tmp
+   $ sed -i 's/, define_drupal_root()/, '"'"'\/app\/public'"'"'/' /app/tmp/registry_rebuild/registry_rebuild.php
+   $ cd /app/public
+   $ php ../tmp/registry_rebuild/registry_rebuild.php
