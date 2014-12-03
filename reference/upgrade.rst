@@ -10,8 +10,8 @@ Version 1.7.0, deployed on September 4th, 2014, introduces changes in the
 configuration files format. Most of the old configuration format is still
 supported, but customers are invited to move to the new format.
 
-For an example upgrade path, see the `platformsh/platform-drupal-minimal repository
-<https://github.com/platformsh/platform-drupal-minimal/commit/556285548025ec71cf9a31d600bda490b95ab718>`_
+For an example upgrade path, see the `Drupal 7.x branch of the platformsh/platformsh-examples repository 
+<https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml>`_
 on Github.
 
 Configuration items for PHP that previously was part of ``.platform/services.yaml``
