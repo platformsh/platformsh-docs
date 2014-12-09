@@ -2,22 +2,38 @@ TODO list:
 
 Goals of this document:
 * getting started guide
+
 * short overview of Platform.sh
+
 * define the needed tools
+
 * local setup (note the major versions of PHP and MariaDB)
+
 * explain the ideal workflow with Platform.sh
+
 * access rights
+
 * merge
+
 * create new project
+
 * Drupal specific steps
-* distribution
-* Drush make
-* vanilla
-* migrate existing project
-* custom code (modul, external repo - drush make)
+
+  * distribution
+
+  * Drush make
+
+  * vanilla
+
+  * migrate existing project
+
+  * custom code (modul, external repo - drush make)
+
 * e-mail settings (note for the master env)
 
 * Symphony TODO
+
+
 --------------------------------------------
 
 What is Platform.sh?
