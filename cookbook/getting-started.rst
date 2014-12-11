@@ -342,7 +342,7 @@ IDE Specific Tips
 
 MAMP pro:
 
-In order for MAMP to work well with the symlinks created by the `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_, add the following to the section under Hosts > Advanced called “Customized virtual host general settings.”
+In order for MAMP to work well with the symlinks created by the `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_, add the following to the section under Hosts > Advanced called “Customized virtual host general settings.” For more details visit `MAMP Pro documentation page <http://documentation.mamp.info/en/documentation/mamp/>`_. . 
 
 .. code-block:: console
 
