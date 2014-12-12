@@ -29,12 +29,15 @@ Generate private key
 Before requesting an SSL cert, you need to generate a private key in your local environment using the openssl tool. If you aren’t able to execute the openssl command from the terminal you may need to install it.
 
 Mac OS X
+
 Homebrew: brew install openssl
 
 Windows
-`Windows executable <http://slproweb.com/products/Win32OpenSSL.html>`_.
+
+`Windows executable <http://slproweb.com/products/Win32OpenSSL.html>`_
 
 Ubuntu Linux
+
 apt-get install openssl
 
 Use openssl to generate a new private key
@@ -98,7 +101,8 @@ The private key you generated in the first step, server.key.
 
 Once you have the SSL certificate file and private key you are ready to configure SSL Endpoint for your app. First, provision an endpoint.
 
-Use the Platform.sh CLI o add the certificate:
+Use the Platform.sh CLI to add the certificate
+----------------------------------------------
 
 platform domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
 
@@ -148,6 +152,9 @@ Modify your DNS settings and create an ALIAS or ANAME record to the endpoint.
 Record	Name	Target
 ALIAS or ANAME	<empty> or @	<ENVIRONMENT>-<PROJECT-ID>.<CLUSTER>.platform.sh
 
+
+Note: In case you want to change an already added certificate, you will have to remove the domain and add it again with the new certificate.
+
 Testing SSL
 -----------
 
@@ -183,31 +190,5 @@ The -k option tells curl to ignore untrusted certificates.
  > Host: www.example.com
  > Accept: */*
 
-...
+
 Pay attention to the output. It should print SSL certificate verify ok. If it prints something like common name: www.example.com (does not match 'www.somedomain.com') then something is not configured correctly.
-
-Add / change certificate
-------------------------
-
-Run this command via the cli to set it up for your site:
-~ platform help domain:add
-Usage:
-domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
-
-Arguments:
-name The name of the domain.
-
-Options:
---project The project ID
---cert The path to the certificate file for this domain.
---key The path to the private key file for the provided certificate.
---chain The path to the certificate chain file or files for the provided certificate. (multiple values allowed)
---help (-h) Display this help message.
---quiet (-q) Do not output any message.
---verbose (-v|vv|vvv) Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
---version (-V) Display this application version.
---yes (-y) Answer "yes" to all prompts.
---no (-n) Answer "no" to all prompts.
---shell (-s) Launch the shell.
-
-In case you want to change an already added certificate, you will have to remove the domain and add it again with the new certificate.
