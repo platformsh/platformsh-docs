@@ -5,6 +5,7 @@ Using Platform.sh
   :maxdepth: 2
   :glob:
 
+  getting-started-for-the-impatient
   install-the-platform.sh-software-bundle
   use-SSH
   set-up-local-development
@@ -12,3 +13,4 @@ Using Platform.sh
   private-repository
   backup-and-restore
   going-live
+  adding-SSL-TLS-certificate-to-your-platform
