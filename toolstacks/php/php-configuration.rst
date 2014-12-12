@@ -53,19 +53,11 @@ After pushing your file, you can check that the custom PHP configuration has bee
 
     ; =============== Custom configuration from `/app/php.ini`
     ; Increase PHP memory limit
-    memory_limit = 320M
+    memory_limit = 256M
 
 ----
 
-The ``php.ini`` file needs to be at the root of the application at the end of the build process. So depending on your build process, you might have to move it in place in a build hook. Example with Drupal if you have a ``project.make`` file:
-
-.. code-block:: yaml
-    
-    # .platform.app.yaml
-    hooks:
-        build: |
-            set -e
-            mv public/sites/default/php.ini php.ini
+Platform.sh will automatically detect your ``php.ini`` file and move it to the root of the application at the end of the build process (``/app`` by default).
 
 .. Warning:: 
     We do not limit what you can put in your ``php.ini`` file, but many settings can break your application. This is a facility for advanced users.
