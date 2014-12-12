@@ -1,21 +1,19 @@
-TODO list:
+Getting started for the impatient
+=================================
 
 Goals of this document:
-* getting started guide
 
-* short overview of Platform.sh
+* Getting started guide
 
-* define the needed tools
+* Short overview of Platform.sh
 
-* local setup (note the major versions of PHP and MariaDB)
+* Define the needed tools
 
-* explain the ideal workflow with Platform.sh
+* Local setup (note the major versions of PHP and MariaDB)
 
-* access rights
+* Explain the ideal workflow with Platform.sh
 
-* merge
-
-* create new project
+* Explain access rights
 
 * Drupal specific steps
 
@@ -29,12 +27,6 @@ Goals of this document:
 
   * custom code (modul, external repo - drush make)
 
-* e-mail settings (note for the master env)
-
-* Symphony TODO
-
-
---------------------------------------------
 
 What is Platform.sh?
 Platform.sh is a groundbreaking hosting and development tool for web applications. It extends a branch-merge Git workflow to infrastructure so that every branch has its own URL and can be tested as if it were in production. Platform.sh architecture allows it to scale for the largest sites.
@@ -42,7 +34,7 @@ Platform.sh is a groundbreaking hosting and development tool for web application
 Note: The environments used in Platform.sh are deployed on a read-only filesystems and are rebuilt with every Git push.
 
 Drupal
-======
+------
 
 How to set up your local Drupal development
 -------------------------------------------
@@ -57,7 +49,7 @@ To succeed with Platform.sh you need the following installed on your local machi
 For the Platform.sh CLI:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* An `id_rsa public/private keypair <https://help.github.com/articles/generating-ssh-keys/>`_
+* `id_rsa public/private keypair <https://help.github.com/articles/generating-ssh-keys/>`_
 * `Git <http://git-scm.com/>`_
 * `Composer <https://getcomposer.org/>`_
 * `The Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_
