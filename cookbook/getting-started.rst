@@ -208,7 +208,7 @@ In *Vanilla mode* you commit all of Drupal's files directly into the Git reposit
 
 In this mode, you should add your own settings.local.php file with your local database credentials directly to ``sites/default``. The following lines are present in your repository's .gitignore file, which will guarantee that a settings.local.php file won't get committed to Git:
 
-.. code-block:: console
+.. note::
   # /.gitignore
 
   # Ignore configuration files that may contain sensitive information.
