@@ -209,7 +209,7 @@ In *Vanilla mode* you commit all of Drupal's files directly into the Git reposit
 In this mode, you should add your own settings.local.php file with your local database credentials directly to ``sites/default``. The following lines are present in your repository's .gitignore file, which will guarantee that a settings.local.php file won't get committed to Git:
 
 .. code-block:: console
-  :name: .gitignore
+  # /.gitignore
 
   # Ignore configuration files that may contain sensitive information.
   sites/*/settings*.php
@@ -342,7 +342,7 @@ IDE Specific Tips
 
 MAMP pro:
 
-In order for MAMP to work well with the symlinks created by the `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_, add the following to the section under Hosts > Advanced called “Customized virtual host general settings.” For more details visit `MAMP Pro documentation page <http://documentation.mamp.info/en/documentation/mamp/>`_. 
+In order for MAMP to work well with the symlinks created by the `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_, add the following to the section under Hosts > Advanced called “Customized virtual host general settings.” For more details visit `MAMP Pro documentation page <http://documentation.mamp.info/en/documentation/mamp/>`_.
 
 .. code-block:: console
 
