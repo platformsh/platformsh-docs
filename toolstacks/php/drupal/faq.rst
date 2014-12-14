@@ -49,25 +49,9 @@ On your Development environments, Platform.sh automatically overrides your ``rob
     User-agent: *
     Disallow: /
 
-On the Master environment, you can still override it using a :ref:`deployment hook <deployment_hooks>`.
+You can customize the ``robots.txt`` by placing your own version at the root of your repository.
 
-Simply commit your custom ``robots.txt`` at the root of your repository, and add this line to your ``.platform.app.yaml``:
-
-.. code-block:: console
-
-    hooks:
-        build: "cp public/sites/default/robots.txt public/robots.txt"
-
-After you push, you should see this line on your logs:
-
-.. code-block:: console
-
-    Executing post-build hook: cp public/sites/default/robots.txt public/robots.txt
-
-.. seealso::
-   * :ref:`deployment hooks <deployment_hooks>`
-   
-I'm Getting a PDO Exception 'MySQL server has gone away'
+I'm getting a PDO Exception 'MySQL server has gone away'
 --------------------------------------------------------
 
 Normally, this means there is a problem with the MySQL server container and you may need to increase the storage available to MySQL to resolve the issue. Ballooning MySQL storage can be caused by a number of items:
