@@ -85,8 +85,7 @@ Once you've checked with your registrar about where to change your DNS settings,
 
 If you use multiple hostnames for your site, you need to add a CNAME record for each of them. For example: ``master-k4ywtmwigmmgc.eu.platform.sh`` and ``www-master-k4ywtmwigmmgc.eu.platform.sh``.
 
-.. note::
-  This will **not** work for an apex (or "naked") domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (such as the ALIAS record on `Amazon's Route 53 <http://aws.amazon.com/route53/>`_, or the ANAME record on `DNS Made Easy <http://www.dnsmadeeasy.com/>`_). Many other providers also work arounds to accomplish this goal. The most common is to add a CNAME record for the ``www`` host on the domain and then use the DNS provider's redirection service to redirect the apex over to the ``www`` version of the domain. Check with your DNS provider to see how they support this.
+Note:This will **not** work for an apex (or "naked") domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (such as the ALIAS record on `Amazon's Route 53 <http://aws.amazon.com/route53/>`_, or the ANAME record on `DNS Made Easy <http://www.dnsmadeeasy.com/>`_). Many other providers also work arounds to accomplish this goal. The most common is to add a CNAME record for the ``www`` host on the domain and then use the DNS provider's redirection service to redirect the apex over to the ``www`` version of the domain. Check with your DNS provider to see how they support this.
 
 4 - SSL/TLS
 -----------
@@ -142,7 +141,9 @@ Verifying - Enter pass phrase for server.pass.key:
 
 The private key needs to be stripped of its password so it can be loaded without manually entering the password.
 
-$ openssl rsa -in server.pass.key -out server.key
+.. code-block:: console
+
+  $ openssl rsa -in server.pass.key -out server.key
 
 You now have a server.key private key file in your current working directory.
 
@@ -166,11 +167,15 @@ The Common Name field must match the secure domain. You cannot purchase a certif
 
 
 Generate the CSR:
-$ openssl req -nodes -new -key server.key -out server.csr
-...
-Country Name (2 letter code) [AU]:US
-Common Name (eg, YOUR name) []:www.example.com
-...
+
+.. code-block:: console
+
+  $ openssl req -nodes -new -key server.key -out server.csr
+  ...
+  Country Name (2 letter code) [AU]:US
+  Common Name (eg, YOUR name) []:www.example.com
+  ...
+
 The result of this operation will be a server.csr file in your local directory (alongside the server.key private key file from the previous step).
 
 Submit CSR to SSL provider
@@ -194,11 +199,11 @@ Once you have the SSL certificate file and private key you are ready to configur
 Use the Platform.sh CLI to add the certificate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-platform domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
-
-platform help domain:add
-
 .. code-block:: console
+
+  platform domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
+
+  platform help domain:add
 
   Usage:
   domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
@@ -225,11 +230,13 @@ Subdomain
 If you’re securing a subdomain, e.g., www.example.com, modify your DNS settings and create a CNAME record to the endpoint or modify the CNAME target if you already have a CNAME record.
 
 Record	Name	Target
+
 CNAME	www	<ENVIRONMENT>-<PROJECT-ID>.<CLUSTER>.platform.sh.
 
 If you’re using a wildcard certificate your DNS setup will look similar.
 
 Record	Name	Target
+
 CNAME	*	<ENVIRONMENT>-<PROJECT-ID>.<CLUSTER>.platform.sh.
 
 Root domain
@@ -240,10 +247,11 @@ If you’re securing a root domain, e.g., example.com, you must be using a DNS p
 Modify your DNS settings and create an ALIAS or ANAME record to the endpoint.
 
 Record	Name	Target
+
 ALIAS or ANAME	<empty> or @	<ENVIRONMENT>-<PROJECT-ID>.<CLUSTER>.platform.sh
 
 
-Note: In case you want to change an already added certificate, you will have to remove the domain and add it again with the new certificate.
+In case you want to change an already added certificate, you will have to remove the domain and add it again with the new certificate.
 
 Testing SSL
 ^^^^^^^^^^^
