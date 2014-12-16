@@ -25,7 +25,7 @@ You can define the PHP extensions you want to enable or disable:
 
 The following extensions are enabled by default: *pdo, mysql, mysqli, pdo_mysql, sqlite3, pdo_sqlite3, gd, curl, intl, mcrypt and zendopcache*. You can disable those by adding them to the ``disabled_extensions`` list.
 
-In addition, you can enable the following extensions: *enchant, gearman, geoip, gmp, http, imagick, imap, ldap, pgsql, pdo_pgsql, pinba, pspell, recode, redis, snmp, spplus, ssh2, tidy, xdebug, xmlrpc and xsl*.
+In addition, you can enable the following extensions: *apc, apcu, enchant, gearman, geoip, gmp, http, imagick, imap, ldap, memcache, memcached, mongo, pdo_pgsql, pgsql, pinba, pspell, recode, redis, snmp, spplus, ssh2, tidy, xcache, xdebug, xhprof, xmlrpc, xsl*.
 
 .. seealso::
     * :ref:`application_configuration`
