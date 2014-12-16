@@ -11,7 +11,7 @@ Platform allows you to get code that is stored in private Git repository (from y
 .. figure:: images/ssh-key.png
    :alt: Get the project public SSH key.
 
-   Copy the project public SSH key on the *Access Control* tab of the project configuration screen.
+   As an Admin user on the Platform copy the project public SSH key on the *Access Control* tab of the project configuration screen.
 
 To grant Platform access to your private Git repository, you need to add the project public SSH key in the deploy keys of your Git repository. If your private repository is on Github, go to the target repository's settings page. Go to *Deploy Keys* and click *Add deploy key*. Paste the public SSH key in and submit.
 
