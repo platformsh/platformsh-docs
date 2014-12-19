@@ -20,7 +20,6 @@ In order to copy your project locally, you'll need to know its project ID. The c
      +---------------+----------------------------+------------------------------------------------+
 
      Get a project by running platform get [id].
-     Delete a project by running platform project:delete [id].
      List a project's environments by running platform environments.
 
 Download a project
