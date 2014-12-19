@@ -105,7 +105,7 @@ Platform.sh uses configuration files to determine what toolstack you want to dep
 Drupal 7
 ^^^^^^^^
 
-For Drupal 7, your ``.platform.app.yaml`` should specify the ``php:drupal`` toolstack. You can see a `working example on Github <https://github.com/platformsh/platformsh-examples/tree/drupal/7.x>`_.
+For Drupal 7, your ``.platform.app.yaml`` should specify the ``php:drupal`` toolstack. You can see a `working example on Github <https://github.com/platformsh/platformsh-examples/tree/drupal/7.x>`__.
 
 .. seealso::
   * :ref:`configuration_files`
@@ -123,7 +123,7 @@ For Drupal 8, your ``.platform.app.yaml`` should specify the ``php:drupal`` tool
         php:
             "drush/drush": "7.0.0-alpha6"
 
-You can see a `working example on Github <https://github.com/platformsh/platformsh-examples/tree/drupal/8.x>`_.
+You can see a `working example on Github <https://github.com/platformsh/platformsh-examples/tree/drupal/8.x>`__.
 
 .. seealso::
   * :ref:`configuration_files`
