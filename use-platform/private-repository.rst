@@ -26,6 +26,9 @@ If you're using Drupal for example, you can now use your private module by addin
   projects[module_private][download][branch] = dev
   projects[module_private][download][url] = "git@github.com:guguss/module_private.git"
 
+.. note::
+  In the make file use "git@github.com:username/module_private.git" format, also Platform.sh can only pull from Git servers by using the standard SSH port (22).
+
 Using multiple private Git repositories
 ---------------------------------------
 
