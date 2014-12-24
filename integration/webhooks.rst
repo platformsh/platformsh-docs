@@ -15,10 +15,10 @@ Generic hook
 Github
 ------
 
-The Github integration allows you to manage your Platform.sh environments
+The `Github <https://github.com>`_ integration allows you to manage your Platform.sh environments
 directly from your Github repository.
 
-Features:
+Supported:
 
 * Create a new environment when creating a Git branch or opening a pull request.
 * Rebuild an environment when pushing code to a Git branch or a pull request.
@@ -59,7 +59,7 @@ directly on your GIthub repository.
 Hipchat
 -------
 
-The Hipchat integration allows you to send notifications about your Platform.sh
+The `Hipchat <https://hipchat.com>`_ integration allows you to send notifications about your Platform.sh
 activity directly to Hipchat.
 
 To enable the Hipchat webhook with the CLI:
