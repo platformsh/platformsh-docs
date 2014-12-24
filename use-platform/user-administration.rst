@@ -4,7 +4,7 @@ User administration
 User roles
 ----------
 
-Every Platform.sh user has a role. A role allosws to control access and improve security on your project - different roles are authorized to do different things with your applications, environments and users. You can use your collection of Roles to manage how users interact with Platform.sh.
+Every Platform.sh user has a role. A role allows to control access and improve security on your project - different roles are authorized to do different things with your applications, environments and users. You can use your collection of Roles to manage how users interact with Platform.sh.
 
 At the project level:
 
@@ -83,3 +83,6 @@ Manage user permissions at the environment level
   |
   | Add a new user by clicking on the ``Add user`` button.
   |
+
+.. note::
+  After a new user is added to the environment, it needs to be rebuilt (git push) for the changes to take effect. When the environment rebuild is complete, allow a minute for the routes to fully update and for the new user to be able use SSH access.
