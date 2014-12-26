@@ -5,6 +5,12 @@ Webhooks
 
 Platform.sh can easily be integrated with external services using webhooks.
 
+With the CLI, you can list all your active integrations:
+
+.. code-block:: console
+
+    $ platform integration:list
+
 .. _generic-hook:
 
 Generic hook
@@ -36,7 +42,7 @@ To enable the Github webhook with the CLI:
 
 .. code-block:: console
 
-    $ platform integrations:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
+    $ platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 
 The two optional parameters, which default to true, control whether you want to
 track branches and/or pull requests:
@@ -66,7 +72,7 @@ To enable the Hipchat webhook with the CLI:
 
 .. code-block:: console
 
-    $ platform integrations:add --type=hipchat --room=ROOM-ID --token=HIPCHAT-TOKEN --repository=USER/REPOSITORY
+    $ platform integration:add --type=hipchat --room=ROOM-ID --token=HIPCHAT-TOKEN --repository=USER/REPOSITORY
 
 The two optional parameters control what events and states you want to track:
 
