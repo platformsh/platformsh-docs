@@ -27,7 +27,9 @@ The following extensions are enabled by default: *pdo, mysql, mysqli, pdo_mysql,
 
 In addition, you can enable the following extensions: *apc, apcu, enchant, gearman, geoip, gmp, http, imagick, imap, ldap, memcache, memcached, mongo, pdo_pgsql, pgsql, pinba, pspell, recode, redis, snmp, spplus, ssh2, tidy, xcache, xdebug, xhprof, xmlrpc, xsl*.
 
-This list might not be not be up to date, for the complete list, check the output of ``ls /etc/php5/mods-available``.
+.. note::
+
+  This list might not be fully up to date. For the complete list, check the output of ``ls /etc/php5/mods-available``.
 
 .. seealso::
     * :ref:`application_configuration`
