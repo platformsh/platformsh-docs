@@ -13,4 +13,3 @@ Using Platform.sh
   private-repository
   backup-and-restore
   going-live
-  adding-SSL-TLS-certificate-to-your-platform

@@ -90,7 +90,6 @@ Possible values are:
 
 * php:drupal
 * php:symfony
-* nodejs
 
 ----
 

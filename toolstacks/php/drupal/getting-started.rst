@@ -102,8 +102,29 @@ Configure your app
 
 Platform.sh uses configuration files to determine what toolstack you want to deploy and how you want to deploy it.
 
-For Drupal, your ``.platform.app.yaml`` should have the ``php:drupal`` toolstack.
+Drupal 7
+^^^^^^^^
+
+For Drupal 7, your ``.platform.app.yaml`` should specify the ``php:drupal`` toolstack. You can see a `working example on Github <https://github.com/platformsh/platformsh-examples/tree/drupal/7.x>`__.
 
 .. seealso::
   * :ref:`configuration_files`
-  * `Default .platform.app.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_
+  * `Drupal 7 .platform.app.yaml <https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml>`_
+
+Drupal 8
+^^^^^^^^
+
+For Drupal 8, your ``.platform.app.yaml`` should specify the ``php:drupal`` toolstack, and install Drush 7 as a build-time dependency:
+
+.. code-block:: console
+
+    # The build-time dependencies of the app.
+    dependencies:
+        php:
+            "drush/drush": "7.0.0-alpha6"
+
+You can see a `working example on Github <https://github.com/platformsh/platformsh-examples/tree/drupal/8.x>`__.
+
+.. seealso::
+  * :ref:`configuration_files`
+  * `Drupal 8 .platform.app.yaml <https://github.com/platformsh/platformsh-examples/blob/drupal/8.x/.platform.app.yaml>`_
