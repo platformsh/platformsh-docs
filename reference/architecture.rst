@@ -34,7 +34,7 @@ Based on nginx, the Router service processes HTTP requests, handles security, dy
 PHP service
 -----------
 
-Supports PHP 5.3 and 5.4, the APC and ZO+ opcode caches, and all major PHP extensions, rewriting, and mapping.
+Supports 5.4, the APC and ZO+ opcode caches, and all major PHP extensions, rewriting, and mapping.
 
 
 Database service (MariaDB)
