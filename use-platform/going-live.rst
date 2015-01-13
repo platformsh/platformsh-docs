@@ -85,7 +85,7 @@ Once you've checked with your registrar about where to change your DNS settings,
 
 If you use multiple hostnames for your site, you need to add a CNAME record for each of them. For example: ``master-k4ywtmwigmmgc.eu.platform.sh`` and ``www-master-k4ywtmwigmmgc.eu.platform.sh``.
 
-Note:This will **not** work for an apex (or "naked") domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (such as the ALIAS record on `Amazon's Route 53 <http://aws.amazon.com/route53/>`_, or the ANAME record on `DNS Made Easy <http://www.dnsmadeeasy.com/>`_). Many other providers also work arounds to accomplish this goal. The most common is to add a CNAME record for the ``www`` host on the domain and then use the DNS provider's redirection service to redirect the apex over to the ``www`` version of the domain. Check with your DNS provider to see how they support this.
+Note:This will **not** work for an apex (or "naked") domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (such as the `CNAME with ALIAS record from Dyn <http://dyn.com/support/record-types-standard-dns/>`_, or the ANAME record on `DNS Made Easy <http://www.dnsmadeeasy.com/services/aname-records/>`_). Many other providers also work arounds to accomplish this goal. The most common is to add a CNAME record for the ``www`` host on the domain and then use the DNS provider's redirection service to redirect the apex over to the ``www`` version of the domain. Check with your DNS provider to see how they support this.
 
 4 - SSL/TLS
 -----------
@@ -290,3 +290,6 @@ The -k option tells curl to ignore untrusted certificates.
 
 
 Pay attention to the output. It should print SSL certificate verify ok. If it prints something like common name: www.example.com (does not match 'www.somedomain.com') then something is not configured correctly.
+
+.. note::
+  Platform.sh supports all kinds of certificates including domain-validated certificates, extended validation (EV) certificates, high-assurance certificates and wildcard certificates.
