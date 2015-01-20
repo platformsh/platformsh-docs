@@ -36,7 +36,7 @@ account page on Github and click ``Edit profile``. Select the *Applications*
 tab and click `Generate new token <https://github.com/settings/tokens/new>`_ on
 the *Personal access tokens* section.
 
-Give it a description and only check the ``repo`` scope. Make sure you save the
+Give it a description and only check the ``repo`` and `read:org`` scopes. Make sure you save the
 token somewhere.
 
 To enable the Github webhook with the CLI:
