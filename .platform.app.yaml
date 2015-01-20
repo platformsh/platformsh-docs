@@ -11,8 +11,8 @@ toolstack: "php:symfony"
 web:
     # The public directory of the app, relative to its root.
     document_root: "/_build/html"
-    # The front-controller script to send non-static requests to.
-    passthru: "/index.html"
+    # TODO: This should be implemented soon.
+    default: "/index.html"
     whitelist:
       - \.html$
 
