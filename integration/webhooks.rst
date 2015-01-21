@@ -18,11 +18,11 @@ Generic hook
 
 .. _github-hook:
 
-Github
+GitHub
 ------
 
-The `Github <https://github.com>`_ integration allows you to manage your Platform.sh environments
-directly from your Github repository.
+The `GitHub <https://github.com>`_ integration allows you to manage your Platform.sh environments
+directly from your GitHub repository.
 
 Supported:
 
@@ -30,15 +30,15 @@ Supported:
 * Rebuild an environment when pushing code to a Git branch or a pull request.
 * Delete an environment when deleting a Git branch or merging a pull request.
 
-To integrate your Platform.sh project with an existing Github repository, you
-first need to generate a token on your Github user profile. Simply go to your
-account page on Github and click ``Edit profile``. Select the *Applications*
+To integrate your Platform.sh project with an existing GitHub repository, you
+first need to generate a token on your GitHub user profile. Simply go to your
+account page on GitHub and click ``Edit profile``. Select the *Applications*
 tab and click ``Generate new token`` on the *Personal access tokens* section.
 
 Give it a description and only check the ``repo`` scope. Make sure you save the
 token somewhere.
 
-To enable the Github webhook with the CLI:
+To enable the GitHub webhook with the CLI:
 
 .. code-block:: console
 
@@ -50,25 +50,25 @@ track branches and/or pull requests:
 * ``build_pull_requests``: true/false
 * ``fetch_branches``: true/false
 
-This command returns the Payload URL that you need to paste on your Github
+This command returns the Payload URL that you need to paste on your GitHub
 repository.
 
-Go to your Github repository and click ``Settings``. Select the *Webhooks and
+Go to your GitHub repository and click ``Settings``. Select the *Webhooks and
 Services* tab and click ``Add webhook``. Paste the Payload URL and click
 ``Add webhook``.
 
 You can now start pushing code, creating new branch or opening pull request
-directly on your GIthub repository.
+directly on your GitHub repository.
 
 .. _hipchat-hook:
 
-Hipchat
+HipChat
 -------
 
-The `Hipchat <https://hipchat.com>`_ integration allows you to send notifications about your Platform.sh
-activity directly to Hipchat.
+The `HipChat <https://hipchat.com>`_ integration allows you to send notifications about your Platform.sh
+activity directly to HipChat.
 
-To enable the Hipchat webhook with the CLI:
+To enable the HipChat webhook with the CLI:
 
 .. code-block:: console
 
