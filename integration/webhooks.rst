@@ -72,7 +72,7 @@ To enable the HipChat webhook with the CLI:
 
 .. code-block:: console
 
-    $ platform integration:add --type=hipchat --room=ROOM-ID --token=HIPCHAT-TOKEN --repository=USER/REPOSITORY
+    $ platform integration:add --type=hipchat --room=ROOM-ID --token=HIPCHAT-TOKEN
 
 The two optional parameters control what events and states you want to track:
 
