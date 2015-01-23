@@ -33,3 +33,18 @@ Then, add this line at the top of your ``app_dev.php``:
 
 .. seealso::
   * :ref:`configuration_files`
+
+
+Why does my newly cloned Symfony install throw errors?
+--------------------------------------------------------------------------------------
+
+You may encounter the WSOD (white screen of death) when you first clone a new Symfony2 project from your platform. This is likely because you forgot to install dependencies.
+
+You will need to install composer first and then run the following command:
+
+.. code-block:: console
+	
+	php composer.phar install
+
+.. seealso::
+  * `Install Composer <https://getcomposer.org/download/>`_
