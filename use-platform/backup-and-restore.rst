@@ -25,8 +25,6 @@ Automated backups
 
 Backups are triggered via the web UI or via the CLI.
 
-Platform.sh will automatically create a snapshot backup of the Master environment on a daily basis.
-
 .. note::
   If you increase the storage space of your services, take a backup soon after. 
 
