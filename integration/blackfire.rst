@@ -3,7 +3,7 @@
 Blackfire
 =========
 
-Platform.sh supports `Blackfire Profiler <https://blackfire.io/>`_.
+Platform.sh supports `Blackfire Profiler <https://blackfire.io/>`_ developed by SensioLabs <http://sensiolabs.com/>`_.
 
 Get Started
 ------------
@@ -30,9 +30,9 @@ Push your changes to your Platform environment to enable Blackfire:
 
 .. code-block:: console
 
-  $ git add .platform.app.yaml
-  $ git commit -m "Enable Blackfire."
-  $ git push
+  git add .platform.app.yaml
+  git commit -m "Enable Blackfire."
+  git push
 
 Profile
 -------
