@@ -81,12 +81,11 @@ Goals
 Authenticate locally using the Platform.sh CLI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_ will authenticate you with Platform.sh and show your projects.
+The `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_ will authenticate you with Platform.sh and show your projects. Just type this command to start:
 
 .. code-block:: console
 
-  # this command will authenticate you on Platform.sh
-  $ platform
+  platform
 
 The credentials you enter are the same for your account on `Commerce Guys' Marketplace <https://marketplace.commerceguys.com/user>`_.
 
@@ -110,8 +109,7 @@ Alternately, you can upload your SSH key using the Platform.sh CLI itself.
 
 .. code-block:: console
 
-  $ platform ssh-key:add ~/.ssh/id_rsa.pub
-  Enter a name for the key: My public key
+  platform ssh-key:add ~/.ssh/id_rsa.pub
 
 Use the Platform.sh CLI to obtain and build your project’s repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -129,30 +127,22 @@ The ``platform`` command will show you a list of your projects.
   | [PROJECT-ID] | My Drupal Site                      | https://[CLUSTER].platform.sh//#/projects/[PROJECT-ID] |
   | [PROJECT-ID] | A Symfony Project                   | https://[CLUSTER].platform.sh/#/projects/[PROJECT-ID] |
 
-You can obtain a local copy of the project using the ``platform get [PROJECT-ID]`` command:
+You can obtain a local copy of the project using the ``platform get`` command:
 
 .. code-block:: console
 
-  # This command will get the `My Drupal Site` project
-  $ platform get [PROJECT-ID]
+  platform get [PROJECT-ID]
 
 Now you can see the local directory structure that the Platform CLI provides for your local development:
 
 .. code-block:: console
 
   $ ls -1
-  # Contains all builds of your projects
-  builds
-
-  # Checkout of the Git repository
-  repository
-
-  # Your files directory, and your settings.local.php file
-  shared
-
-  # A symlink that always references the latest build
-  # This should be the document root for your local web server
-  www -> builds/2014-12-08--15-21-46--staging
+  builds     # Contains all builds of your projects
+  repository # Checkout of the Git repository
+  shared     # Your files directory, and your settings.local.php file
+  www        # A symlink that always references the latest build.
+             # This should be the document root for your local web server
 
 The ``builds`` directory contains every build of your project. This is relevant when you use Drush Make files to assist in your site building.
 
@@ -196,12 +186,11 @@ Platform.sh offers three build modes for Drupal projects: Vanilla, Drush Make, a
 Vanilla build mode
 ~~~~~~~~~~~~~~~~~~
 
-In *Vanilla mode* you commit all of Drupal's files directly into the Git repository instead of using Drush Make.
+In *Vanilla mode* you simply commit all of Drupal's files directly into the Git repository instead of using Drush Make.
 
-In this mode, you should add your own settings.local.php file with your local database credentials directly to ``sites/default``. The following lines are present in your repository's .gitignore file, which will guarantee that a settings.local.php file won't get committed to Git:
+In this mode, take care not to commit any database credentials to your repository. The following lines should be present in your repository's ``.gitignore`` file, which will guarantee that a settings.local.php file won't get committed to Git:
 
-.. note::
-  # /.gitignore
+.. code-block:: text
 
   # Ignore configuration files that may contain sensitive information.
   sites/*/settings*.php
@@ -227,30 +216,23 @@ The default ``project.make`` file for a Drupal 7 installation looks like this:
   projects[platform][version] = 1.3
   projects[platform][subdir] = contrib
 
-If you are building with Drush Make, the proper place for your file is ``shared/settings.local.php``. The `Platform.sh CLI <https://github.com/platformsh/platformsh-cli>`_ will have created this file for you when you ran the platform get command.
-
-.. note::
-  If there is no shared/settings.local.php file, create one following the `example found here <https://github.com/platformsh/platformsh-cli/blob/master/resources/drupal/settings.local.php>`_, and re-run platform build.)
-
-When using Drush Make files, the ``platform build`` command will generate a `sites/default/settings.php` file with each build of your application. The `shared/settings.local.php` file will also be symlinked into the `www/sites/default` directory, where the generated settings.php can include it.
-
 Install Profile build mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If your project contains a profile file: ``*.profile``, the Platform.sh CLI builds your project in profile mode. This is similar to what Drupal.org does to build distributions. Everything you have in your repository will be copied to your ``profile/[name]`` folder.
+If your project contains a profile file: ``*.profile``, the Platform.sh CLI builds your project in profile mode. This is similar to what Drupal.org does to build distributions. Everything you have in your repository will be copied to your ``profiles/[name]`` folder.
 
 .. note::
   It is a mistake to mix Vanilla mode with other modes. If you've copied all of the Drupal core files into your repository then you need to make sure you don't have any ``*.make` or ``*.profile`` files.
 
-Connect to your local database
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Your local database credentials will be put in a ``settings.local.php`` file. Where this file is stored depends on what build mode you are using for Drupal.
-
 Database credentials
 ~~~~~~~~~~~~~~~~~~~~
 
-Whether your ``settings.local.php`` file is in `repository/sites/default/settings.local.php` (Vanilla mode) or `shared/settings.local.php` (Drush Make mode), you need to add your local database credentials.
+You need to add your local database credentials to a ``settings.local.php`` file.
+
+This will be stored in ``sites/default/settings.local.php`` in your local Drupal site. However, if you have used the CLI to build your project, then it's better to use ``shared/settings.local.php`` (inside the project root). The CLI will have created this file for you, when you ran the ``platform get`` or ``platform build`` command.
+
+.. note::
+  If you are using the CLI but there is no shared/settings.local.php file, re-run ``platform build``.
 
 .. code-block:: php
 
@@ -267,7 +249,6 @@ Whether your ``settings.local.php`` file is in `repository/sites/default/setting
 
 .. note::
   You never have to add the server-side database credentials to ``settings.local.php``. Platform.sh generates a ``settings.php`` for each environment, already containing the proper database credentials.
-
 
 Drush Aliases
 ^^^^^^^^^^^^^
