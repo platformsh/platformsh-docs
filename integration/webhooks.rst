@@ -9,7 +9,7 @@ With the CLI, you can list all your active integrations:
 
 .. code-block:: console
 
-    $ platform integration:list
+    platform integration:list
 
 .. _generic-hook:
 
@@ -42,7 +42,7 @@ To enable the GitHub webhook with the CLI:
 
 .. code-block:: console
 
-    $ platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
+    platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 
 The two optional parameters, which default to true, control whether you want to
 track branches and/or pull requests:
@@ -72,7 +72,7 @@ To enable the HipChat webhook with the CLI:
 
 .. code-block:: console
 
-    $ platform integration:add --type=hipchat --room=ROOM-ID --token=HIPCHAT-TOKEN
+    platform integration:add --type=hipchat --room=ROOM-ID --token=HIPCHAT-TOKEN
 
 The two optional parameters control what events and states you want to track:
 
