@@ -3,7 +3,7 @@
 Blackfire
 =========
 
-Platform.sh supports `Blackfire Profiler <https://blackfire.io/>`_ developed by SensioLabs <http://sensiolabs.com/>`_.
+Platform.sh supports `Blackfire Profiler <https://blackfire.io/>`_ developed by `SensioLabs <http://sensiolabs.com/>`_.
 
 Get Started
 ------------
