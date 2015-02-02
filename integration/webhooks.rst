@@ -74,6 +74,7 @@ The two optional parameters control what events and states you want to track:
 
 * ``events``: ["*"]
 * ``states``: ["pending", "in_progress", "complete"]
+
 .. _generic-hook:
 
 Generic hook
@@ -85,7 +86,7 @@ your Platform.sh workflow.
 .. code-block:: console
 
     $ platform integration:add --type=webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
-    
+
 Here you can see an example of the response:
 
 .. code-block:: javascript
@@ -151,5 +152,3 @@ Here you can see an example of the response:
     "type": "environment.push",
     "updated_at": "2015-02-01T16:57:07.347358+00:00"
     }
-
-    
