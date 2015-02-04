@@ -310,3 +310,14 @@ Here is an example of a ``routes.yaml`` file:
 
   * `routes.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/routes.yaml>`_
   * `routes.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/routes.yaml>`_
+
+
+Sending emails
+----------------
+
+By default only the master enviroment can send emails and there is no need to additionally configure your web application to enable that. For the non-master environment this feature can be enabled if needed by creating a ticket.
+
+Emails from Platform.sh are sent via a Mandrill-based SMTP proxy. Each Platform.sh project is provisioned as a Mandrill sub-account.
+
+.. note::
+  Mandrill subaccounts are capped at 12k emails per month.
