@@ -68,7 +68,7 @@ Platform.sh exposes a ``.platform.app.yaml`` file which defines your :term:`appl
 .. seealso::
 
   * `.platform.app.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform.app.yaml>`_
-  * `.platform.app.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_
+  * `.platform.app.yaml default for Drupal <https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml>`_
 
 ----
 
@@ -276,7 +276,7 @@ Here is an example of a ``services.yaml`` file:
 .. seealso::
 
   * `services.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/services.yaml>`_
-  * `services.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/services.yaml>`_
+  * `services.yaml for Drupal <https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform/services.yaml>`_
 
 .. _routes_configuration:
 
@@ -309,4 +309,4 @@ Here is an example of a ``routes.yaml`` file:
 .. seealso::
 
   * `routes.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/routes.yaml>`_
-  * `routes.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/routes.yaml>`_
+  * `routes.yaml for Drupal <https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform/routes.yaml>`_
