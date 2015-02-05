@@ -188,7 +188,7 @@ You can specify those dependencies like this:
 
 .. code-block:: yaml
 
-  # .platform/services.yaml
+  # .platform.app.yaml
   dependencies:
     php:
       drush/drush: "6.4.0"
