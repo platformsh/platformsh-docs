@@ -315,7 +315,7 @@ Here is an example of a ``routes.yaml`` file:
 Sending emails
 ----------------
 
-By default only the master enviroment can send emails and there is no need to additionally configure your web application to enable that. For the non-master environment this feature can be enabled if needed by creating a ticket.
+By default only the master enviroment can send emails and there is no need to additionally configure your web application to enable that. For the non-master environment this feature can be enabled by using the Platform CLI.
 
 Emails from Platform.sh are sent via a Mandrill-based SMTP proxy. Each Platform.sh project is provisioned as a Mandrill sub-account.
 
