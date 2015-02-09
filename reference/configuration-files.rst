@@ -214,6 +214,8 @@ Possible hooks are:
 * **build**: We run build hooks before your application has been packaged. No other services are accessible at this time since the application has not been deployed yet.
 * **deploy**: We run deploy hooks after your application has been deployed and started. You can access other services at this stage (MySQL, Solr, Redis...).
 
+Note that the "home" directory is `/app` while your application will be mounted in /app/public so you might want to `cd /app/public` before running those.
+
 After a Git push, you can see the results of the deployment hooks in the ``/var/log/deploy.log`` file when logging to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
 
 .. code-block:: console
