@@ -329,6 +329,25 @@ In the same style, use Drush to grab the uploaded files from the files directory
 .. note::
   Never commit the files that are in your ``files`` directory to the Git repository. Git is only meant for code, not *data*, and files that are managed by your Drupal site are considered data.
 
+SQL-sync troubleshootings
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Drush 7 has problems with SQL-syncing Drupal 7 sites. If you see error below:
+
+.. code-block:: console
+
+  Starting to dump database on Source. [ok]
+  Directory /app exists, but is not writable. Please check directory permissions. [error]
+  Unable to create backup directory /app/drush-backups/main. [error]
+  Database dump saved to /tmp/main_20150206_091052.sql.gz [success]
+  sql-dump failed.
+ 
+Than you should downgrade to Drush version 6.* to make sql-sync works:
+ 
+.. code-block:: console
+
+  $ composer global require 'drush/drush:6.*'
+
 IDE Specific Tips
 ^^^^^^^^^^^^^^^^^
 

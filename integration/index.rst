@@ -6,3 +6,4 @@ Integration
   :glob:
 
   blackfire
+  webhooks

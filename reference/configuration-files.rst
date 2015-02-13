@@ -68,7 +68,7 @@ Platform.sh exposes a ``.platform.app.yaml`` file which defines your :term:`appl
 .. seealso::
 
   * `.platform.app.yaml default for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard/.platform.app.yaml>`_
-  * `.platform.app.yaml default for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform.app.yaml>`_
+  * `.platform.app.yaml default for Drupal <https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml>`_
 
 ----
 
@@ -188,7 +188,7 @@ You can specify those dependencies like this:
 
 .. code-block:: yaml
 
-  # .platform/services.yaml
+  # .platform.app.yaml
   dependencies:
     php:
       drush/drush: "6.4.0"
@@ -213,6 +213,9 @@ Possible hooks are:
 
 * **build**: We run build hooks before your application has been packaged. No other services are accessible at this time since the application has not been deployed yet.
 * **deploy**: We run deploy hooks after your application has been deployed and started. You can access other services at this stage (MySQL, Solr, Redis...).
+
+Note that the "home" directory is `/app` while your application will be mounted in `/app/public` (by default, you can define this yourself in you .app.platform.yaml file)
+so you might want to `cd /app/public` before running those.
 
 After a Git push, you can see the results of the deployment hooks in the ``/var/log/deploy.log`` file when logging to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
 
@@ -276,7 +279,7 @@ Here is an example of a ``services.yaml`` file:
 .. seealso::
 
   * `services.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/services.yaml>`_
-  * `services.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/services.yaml>`_
+  * `services.yaml for Drupal <https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform/services.yaml>`_
 
 .. _routes_configuration:
 
@@ -309,4 +312,14 @@ Here is an example of a ``routes.yaml`` file:
 .. seealso::
 
   * `routes.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/routes.yaml>`_
-  * `routes.yaml for Drupal <https://github.com/platformsh/platform-drupal/blob/master/.platform/routes.yaml>`_
+  * `routes.yaml for Drupal <https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform/routes.yaml>`_
+
+Sending emails
+----------------
+
+By default only the master enviroment can send emails and there is no need to additionally configure your web application to enable that. For the non-master environment this feature can be enabled by using the Platform CLI.
+
+Emails from Platform.sh are sent via a Mandrill-based SMTP proxy. Each Platform.sh project is provisioned as a Mandrill sub-account.
+
+.. note::
+  Mandrill subaccounts are capped at 12k emails per month.
