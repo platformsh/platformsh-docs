@@ -14,4 +14,4 @@ In some cases the restore will not be completed resulting in non-functional envi
 
 **Resolution plans:**
 
-We have a fix for this issue, and it's currently being tested.
+A fix for this issue is currently undergoing testing.
