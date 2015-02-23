@@ -2,7 +2,7 @@ Known issues
 ============
 
 Issue: Snapshot restore non-functional
-------------------------------------
+--------------------------------------
 
 **Description:** 
 
