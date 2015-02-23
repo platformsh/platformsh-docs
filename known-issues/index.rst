@@ -10,7 +10,7 @@ The snapshot restore functionality on the UI of Platform.sh is temporarily unava
 
 **Impact:** 
 
-In some cases the restore will not be completed resulting in non-functional environment.
+In some cases the restore will not be completed.
 
 **Resolution plans:**
 
