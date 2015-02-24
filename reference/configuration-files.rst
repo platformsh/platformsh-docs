@@ -254,7 +254,7 @@ The topology is stored into a ``services.yaml`` file which should be added insid
 If you don't have a ``.platform`` folder, you need to create one:
 
 .. code-block:: console
-  
+
   $ mkdir .platform
 
 Here is an example of a ``services.yaml`` file:
@@ -294,13 +294,13 @@ The routes are stored into a ``routes.yaml`` file which should be added inside t
 If you don't have a ``.platform`` folder, you need to create one:
 
 .. code-block:: console
-  
+
   $ mkdir .platform
 
 Here is an example of a ``routes.yaml`` file:
 
 .. code-block:: yaml
-  
+
   # .platform/routes.yaml
   "http://{default}/":
     type: upstream
@@ -318,6 +318,12 @@ Sending emails
 ----------------
 
 By default only the master enviroment can send emails and there is no need to additionally configure your web application to enable that. For the non-master environment this feature can be enabled by using the Platform CLI.
+
+For example, in case you want to enable sending emails for your non-master environment use this command:
+
+.. code-block:: console
+
+  $ platform environment:metadata enable_smtp true
 
 Emails from Platform.sh are sent via a Mandrill-based SMTP proxy. Each Platform.sh project is provisioned as a Mandrill sub-account.
 
