@@ -38,13 +38,15 @@ Then, add this line at the top of your ``app_dev.php``:
 Why does my newly cloned Symfony install throw errors?
 --------------------------------------------------------------------------------------
 
-You may encounter the WSOD (white screen of death) when you first clone a new Symfony2 project from your platform. This is likely because you forgot to install dependencies.
+You may encounter the WSOD (white screen of death) when you first clone a new Symfony2 project from your platform. This is likely because of missing dependencies.
 
 You will need to install composer first and then run the following command:
 
 .. code-block:: console
 	
-	php composer.phar install
+	cd my_project_name/
+	composer install
 
 .. seealso::
   * `Install Composer <https://getcomposer.org/download/>`_
+  * `Checking out a versioned Symfony Application <http://symfony.com/doc/current/book/installation.html#checking-out-a-versioned-symfony-application>`_
