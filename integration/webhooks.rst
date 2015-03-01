@@ -32,7 +32,8 @@ tab and click `Generate new token <https://github.com/settings/tokens/new>`_ on
 the *Personal access tokens* section.
 
 Give it a description and only check the ``repo`` and ``read:org`` scopes. Make sure you save the
-token somewhere. And choose "Just send me everything" for the events you want to receive.
+token somewhere. Now open a command line (you need to have the platform cli
+installed.)
 
 To enable the GitHub webhook with the CLI:
 
@@ -50,8 +51,8 @@ This command returns the Payload URL that you need to paste on your Github
 repository webhooks page.
 
 Go to your Github repository and click ``Settings``. Select the *Webhooks and
-Services* tab and click ``Add webhook``. Paste the Payload URL and click
-``Add webhook``.
+Services* tab and click ``Add webhook``. Paste the Payload URL, Choose "Just 
+send me everything" for the events you want to receive. and click ``Add webhook``. 
 
 You can now start pushing code, creating new branches or opening pull requests
 directly on your Github repository.
