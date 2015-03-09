@@ -35,12 +35,6 @@ To fully benefit from `Platform.sh <https://platform.sh>`_, it's recommended to 
   protective-block
 
 .. toctree::
-  :maxdepth: 3
-  :glob:
-
-  known-issues/index
-
-.. toctree::
    :hidden:
 
    glossary
