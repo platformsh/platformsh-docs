@@ -54,7 +54,7 @@ Platform.sh exposes a ``.platform.app.yaml`` file which defines your :term:`appl
   # The hooks executed at various points in the lifecycle of the application.
   hooks:
       # We run deploy hook after your application has been deployed and started.
-      deploy: "cd /app/public ; drush -y updatedb"
+      deploy: "cd public ; drush -y updatedb"
 
   # The configuration of scheduled execution.
   crons:
@@ -221,7 +221,7 @@ After a Git push, you can see the results of the deployment hooks in the ``/var/
 
 .. code-block:: console
 
-    [2014-07-03 10:03:51.100476] Launching hook 'cd /app/public ; drush -y updatedb'.
+    [2014-07-03 10:03:51.100476] Launching hook 'cd public ; drush -y updatedb'.
 
     My_custom_profile  7001  Update 7001: Enable the Platform module.
     Do you wish to run all pending updates? (y/n): y
