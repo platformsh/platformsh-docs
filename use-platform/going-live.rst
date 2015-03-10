@@ -85,7 +85,39 @@ Once you've checked with your registrar about where to change your DNS settings,
 
 If you use multiple hostnames for your site, you need to add a CNAME record for each of them. For example: ``master-k4ywtmwigmmgc.eu.platform.sh`` and ``www-master-k4ywtmwigmmgc.eu.platform.sh``.
 
-Note:This will **not** work for an apex (or "naked") domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (such as the `CNAME with ALIAS record from Dyn <http://dyn.com/support/record-types-standard-dns/>`_, or the ANAME record on `DNS Made Easy <http://www.dnsmadeeasy.com/services/aname-records/>`_). Many other providers also work arounds to accomplish this goal. The most common is to add a CNAME record for the ``www`` host on the domain and then use the DNS provider's redirection service to redirect the apex over to the ``www`` version of the domain. Check with your DNS provider to see how they support this.
+Note: This will **not** work for an apex (or "naked") domain. In that case, you need to use a DNS provider that supports forwarding DNS queries (such as the `CNAME with ALIAS record from Dyn <http://dyn.com/support/record-types-standard-dns/>`_, or the ANAME record on `DNS Made Easy <http://www.dnsmadeeasy.com/services/aname-records/>`_). Many other providers also work arounds to accomplish this goal. The most common is to add a CNAME record for the ``www`` host on the domain and then use the DNS provider's redirection service to redirect the apex over to the ``www`` version of the domain. Check with your DNS provider to see how they support this.
+
+
+Naked domain (sans www)
+^^^^^^^^^^^^^^^^^^^^^^^
+
+
+The www portion of your domain is a subdomain. In fact, any part of your domain that precedes domain.tld can be called a subdomain, not just “obvious” subdomains like shop.domain.tld.
+
+One of the challenges of using a cloud hosting service like Amazon Web Services (AWS) Elastic Cloud (EC2) is that you need to point your DNS to a CNAME. The problem is the DNS RFC (RFC1033) requires the "zone apex" (sometimes called the "root domain" or "naked domain") to be an "A Record," not a CNAME. This means that with most DNS providers you can setup a subdomain CNAME to point to EC2, but you cannot setup your root domain as a CNAME to point to EC2.
+
+In other words, with most DNS providers:
+
++------------------+--------------------+------+-------------------------------+
+| you can do this  | ``www.domain.tld`` |CNAME |``some.host.name.platform.sh`` |                                  
++------------------+--------------------+------+-------------------------------+
+| you can't do this| ``domain.tld``     |CNAME |``some.host.name.platform.sh`` |                                
++------------------+--------------------+------+-------------------------------+
+
+You also cannot reliably point your root A Record to an IP address within the cloud providers network since they reserve the right to reallocate the IP address dedicated to your instance.
+
+Some DNS hosts provide a way to get CNAME-like functionality at the zone apex using a custom record type. Such records include:
+
+* ALIAS at `Route53 <http://aws.amazon.com/route53>`_
+* CNAME at `Namechep <http://www.namecheap.com/>`_
+* ALIAS at `DNSimple <https://dnsimple.com/>`_
+* ANAME at `DNS Made <Easy http://www.dnsmadeeasy.com/>`_
+* ANAME at `easyDNS <https://www.easydns.com/>`_
+* ACNAME at `CloudFlare <https://www.cloudflare.com/>`_
+* ALIAS at `PointDNS <https://pointhq.com/>`_
+
+These ALIAS/CNAME/ANAME records resolves on request the IP address of the destination record and serves it as if it would be the IP address for the apex domain requested. If the IP address for the destination changes, the IP address for the mapped domain changes automatically as well.
+
 
 4 - SSL/TLS
 -----------
