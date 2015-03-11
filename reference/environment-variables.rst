@@ -51,7 +51,7 @@ Since they are **base64-encoded JSON object** that maps variable names to variab
 
 .. note::
 
-	:term:`environment variables` are **configurable** directly from the :ref:`platform_ui` under the *Variables* tab of the configuration page of the environment.
+	:term:`environment variables` are **configurable** directly from the :ref:`ui_overview` under the *Variables* tab of the configuration page of the environment.
 
 .. note::
 

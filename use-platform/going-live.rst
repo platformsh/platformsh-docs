@@ -6,12 +6,12 @@ When your site is ready to go live, you need to configure the routes of your pro
 1 - Domain
 ----------
 
-First thing you need is to add your domain via the :ref:`platform_ui` using the configuration page of your project. It is important to note that once you do this, your site master branch will no longer be accessible at master-<project_id>.<country>.platform.sh. If you require access to the site, you can create a hosts file entry and point it to the IP address that resolves when you access your master project branch.
+First thing you need is to add your domain via the :ref:`ui_overview` using the configuration page of your project. It is important to note that once you do this, your site master branch will no longer be accessible at master-<project_id>.<country>.platform.sh. If you require access to the site, you can create a hosts file entry and point it to the IP address that resolves when you access your master project branch.
 
 2 - Routes
 ----------
 
-You can configure the :term:`routes` of your project directly within the :ref:`platform_ui` or within your ``.platform/routes.yaml`` file.
+You can configure the :term:`routes` of your project directly within the :ref:`ui_overview` or within your ``.platform/routes.yaml`` file.
 
 .. seealso::
    * :ref:`routes_configuration`

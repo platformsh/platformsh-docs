@@ -13,6 +13,7 @@ To fully benefit from `Platform.sh <https://platform.sh>`_, it's recommended to 
   :glob:
 
   overview/index
+  web-ui/index
 
 .. toctree::
   :maxdepth: 3

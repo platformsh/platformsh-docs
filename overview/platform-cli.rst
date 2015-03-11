@@ -6,7 +6,7 @@ Command Line Interface (CLI)
 What is the CLI?
 ----------------
 
-The :ref:`cli` is the official tool to use and manage your Platform.sh projects directly from your terminal. Anything you can do in the :ref:`platform_ui` can be done with the :ref:`cli`.
+The :ref:`cli` is the official tool to use and manage your Platform.sh projects directly from your terminal. Anything you can do in the :ref:`ui_overview` can be done with the :ref:`cli`.
 
 How do I get it?
 ----------------
