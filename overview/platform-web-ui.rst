@@ -8,19 +8,21 @@ Platform.sh provides a responsive web UI which allows you to interact with your 
 .. figure:: /overview/images/platform-ui.png
   :alt: Platform.sh web UI
 
+Overview
+--------
 
 Environment List
-----------------
+****************
 
 The :ref:`platform_ui` lists all the :ref:`environments` of your project.
 
 Activity Feed
--------------
+*************
 
 The :ref:`platform_ui` displays all the activity happening on your environment. You can filter messages per type.
 
 Header
-------
+******
 
 .. figure:: /overview/images/ui-header.png
   :alt: Platform.sh web UI header
@@ -33,22 +35,50 @@ The :ref:`platform_ui` exposes 5 main actions that you can use to interface with
 Project configuration
 ---------------------
 
-The :ref:`platform_ui` allows you to manage users and domains on your project. You can access the configuration page of your project by clicking on the gear icon next to the project name.
+You can access the configuration page of your project by clicking the gear icon next to the project name.
 
 .. figure:: /overview/images/ui-conf-project.png
   :alt: Platform.sh project configuration screen
 
+.. _ui_project_settings:
+
+Settings
+********
+
+.. _ui_project_users:
+
+Users
+*****
+
+.. _ui_project_domains:
+
+Domains
+*******
+
 Environment configuration
 -------------------------
 
-The :ref:`platform_ui` allows you to configure the following parameters on a specific environment:
-
-* Status (disable/enable)
-* Environment variables
-* Routes that will serve the environment
-* Permissions and access control
-
-You can access the configuration page of an environment by clicking on the gear icon next to the environment name.
+You can access the configuration page of an environment by clicking the configure link under the environment name.
 
 .. figure:: /overview/images/ui-conf-environment.png
   :alt: Platform.sh environment configuration screen
+
+.. _ui_environment_settings:
+
+Settings
+********
+
+.. _ui_environment_variables:
+
+Variables
+*********
+
+.. _ui_environment_routes:
+
+Routes
+******
+
+.. _ui_environment_users:
+
+Users
+*****
