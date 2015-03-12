@@ -9,9 +9,9 @@ You can access the configuration page of your project by clicking the gear icon 
   :alt: Platform.sh project configuration screen
   :width: 300px
 
-.. _ui_project_settings:
-
 ----------------------------------
+
+.. _ui_project_settings:
 
 Settings
 --------
@@ -49,6 +49,9 @@ Selecting a user will allow you to either edit that user's permissions or delete
    :width: 100%
 
 If you check the ``Super user`` box, this user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment.
+
+.. note::
+   The ``Account owner`` is locked and you can't change its permissions.
 
 .. seealso::
    * :ref:`User roles <user_administration>`

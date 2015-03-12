@@ -1,8 +1,5 @@
 .. _cli:
 
-Command Line Interface (CLI)
-============================
-
 What is the CLI?
 ----------------
 

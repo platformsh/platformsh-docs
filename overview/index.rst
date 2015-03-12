@@ -9,5 +9,4 @@ Overview
   technical-requirements
   platform-environments
   platform-actions
-  platform-cli
   getting-help
