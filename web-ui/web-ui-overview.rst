@@ -1,7 +1,7 @@
 .. _ui_overview:
 
-UI Overview
-===========
+Overview
+========
 
 Platform.sh provides a responsive web UI which allows you to interact with your projects and manage your environments.
 

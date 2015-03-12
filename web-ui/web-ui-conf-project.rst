@@ -7,7 +7,8 @@ You can access the configuration page of your project by clicking the gear icon 
 
 .. image:: images/ui-conf-project.png
   :alt: Platform.sh project configuration screen
-  :width: 300px
+  :width: 40%
+  :align: center
 
 ----------------------------------
 

@@ -5,8 +5,10 @@ Environment configuration
 
 You can access the configuration page of an environment by clicking the configure link under the environment name.
 
-.. figure:: images/ui-conf-environment.png
+.. image:: images/ui-conf-environment.png
   :alt: Platform.sh environment configuration screen
+  :width: 40%
+  :align: center
 
 ----------------------------------
 
@@ -15,7 +17,17 @@ You can access the configuration page of an environment by clicking the configur
 Settings
 --------
 
-@TODO
+The ``Settings`` screen allows you to extend the behavior of a specific environment.
+
+.. image:: images/ui-conf-environment-settings.png
+   :alt: Configure Platform.sh environment settings
+   :width: 100%
+
+.. note:: Deleting the Master environment is forbidden.
+
+.. seealso::
+   * :ref:`outgoint_email`
+   * :ref:`access_control`
 
 ----------------------------------
 
