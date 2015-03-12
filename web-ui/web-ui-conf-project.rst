@@ -11,6 +11,8 @@ You can access the configuration page of your project by clicking the gear icon 
 
 .. _ui_project_settings:
 
+----------------------------------
+
 Settings
 --------
 
@@ -19,11 +21,13 @@ The ``Settings`` screen provides the SSH key that Platform.sh will use when tryi
 This is useful if you want to reuse some code components accross multiple projects and manage those components as dependencies of your project.
 
 .. image:: images/ui-conf-project-ssh-key.png
-   :alt: Get the project public SSH key.
+   :alt: Get the Platform.sh project public SSH key
    :width: 100%
 
 .. seealso::
    * :ref:`private_repository`
+
+----------------------------------
 
 .. _ui_project_users:
 
@@ -41,15 +45,26 @@ You can invite new users to your project by clicking the ``Add user`` link and e
 Selecting a user will allow you to either edit that user's permissions or delete the user's access to the project entirely.
 
 .. image:: images/ui-conf-project-users-access.png
-   :alt: Project user management screenshot
+   :alt: Manage users of your Platform.sh project
    :width: 100%
-   
-If you check the ``Super user`` box, the user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment.
+
+If you check the ``Super user`` box, this user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment.
 
 .. seealso::
-   * :ref:`user_administration`
+   * :ref:`User roles <user_administration>`
+
+----------------------------------
 
 .. _ui_project_domains:
 
 Domains
 -------
+
+The ``Domains`` screen allows you to manage your domains that your project will be accessible at.
+
+.. image:: images/ui-conf-project-domains.png
+   :alt: Manage domains of your Platform.sh project.
+   :width: 100%
+
+.. seealso::
+   * :ref:`Configure your domains <domains>`
