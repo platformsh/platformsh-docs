@@ -5,8 +5,9 @@ Project configuration
 
 You can access the configuration page of your project by clicking the gear icon next to the project name.
 
-.. figure:: images/ui-conf-project.png
+.. image:: images/ui-conf-project.png
   :alt: Platform.sh project configuration screen
+  :width: 300px
 
 .. _ui_project_settings:
 
@@ -15,10 +16,11 @@ Settings
 
 The ``Settings`` screen provides the SSH key that Platform.sh will use when trying to access external private Git repository during the build process.
 
-.. figure:: images/ui-conf-project-ssh-key.png
-   :alt: Get the project public SSH key.
-
 This is useful if you want to reuse some code components accross multiple projects and manage those components as dependencies of your project.
+
+.. image:: images/ui-conf-project-ssh-key.png
+   :alt: Get the project public SSH key.
+   :width: 100%
 
 .. seealso::
    * :ref:`private_repository`
@@ -27,6 +29,25 @@ This is useful if you want to reuse some code components accross multiple projec
 
 Users
 -----
+
+The ``Users`` screen allows you to manage users access on your project.
+
+You can invite new users to your project by clicking the ``Add user`` link and entering their email address, or modify permissions of existing users by clicking the ``Edit`` link when hovering the user.
+
+.. image:: images/ui-conf-project-users.png
+   :alt: Project configure icon
+   :width: 100%
+
+Selecting a user will allow you to either edit that user's permissions or delete the user's access to the project entirely.
+
+.. image:: images/ui-conf-project-users-access.png
+   :alt: Project user management screenshot
+   :width: 100%
+   
+If you check the ``Super user`` box, the user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment.
+
+.. seealso::
+   * :ref:`user_administration`
 
 .. _ui_project_domains:
 
