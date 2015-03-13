@@ -36,7 +36,14 @@ The ``Settings`` screen allows you to extend the behavior of a specific environm
 Variables
 ---------
 
-@TODO
+The ``Variables`` screen allows you to define the variables that will be available on a specific environment.
+
+.. image:: images/ui-conf-environment-variables.png
+   :alt: Configure Platform.sh environment variables
+   :width: 100%
+
+.. seealso::
+   * :ref:`environment_variables`
 
 ----------------------------------
 
