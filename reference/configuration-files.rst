@@ -313,6 +313,7 @@ Here is an example of a ``routes.yaml`` file:
 
   * `routes.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/routes.yaml>`_
   * `routes.yaml for Drupal <https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform/routes.yaml>`_
+  * :ref:`Configure routes via the web UI <ui_environment_settings>`
 
 .. _outgoing_email:
 
@@ -331,3 +332,6 @@ Emails from Platform.sh are sent via a Mandrill-based SMTP proxy. Each Platform.
 
 .. note::
   Mandrill subaccounts are capped at 12k emails per month.
+
+.. seealso::
+  * :ref:`Configure outgoing emails via the web UI <ui_environment_settings>`
