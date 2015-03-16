@@ -61,24 +61,24 @@ Routes
 Users
 -----
 
-Access the environment-level configuration.
+The ``Users`` screen allows you to manage users access on your project.
 
-.. image:: images/ui-conf-environment-users.png
+You can invite new users to your project by clicking the ``Add user`` link and entering their email address, or modify permissions of existing users by clicking the ``Edit`` link when hovering the user.
+
+.. image:: images/ui-conf-project-users.png
    :alt: Project configure icon
-   :align: left
+   :width: 100%
 
-Click the environment configuration icon next to the environment name on the project page.
+Selecting a user will allow you to either edit that user's permissions or delete the user's access to the project entirely.
 
-.. image:: images/ui-conf-environment-users.png
-   :alt: Project user management screenshot
-   :align: left
-   :width: 400px
+.. image:: images/ui-conf-project-users-access.png
+   :alt: Manage users of your Platform.sh project
+   :width: 100%
 
-The ``User Management`` tab shows environment-level users and their roles.
-
-Selecting a user will allow you to either edit that user's permissions or delete the user's access to the environment entirely.
-
-Add a new user by clicking on the ``Add user`` button.
+If you check the ``Super user`` box, this user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment.
 
 .. note::
-  After a new user is added to the environment, it needs to be rebuilt (git push) for the changes to take effect. When the environment rebuild is complete, allow a minute for the routes to fully update and for the new user to be able to use SSH access.
+   The ``Account owner`` is locked and you can't change its permissions.
+
+.. seealso::
+   * :ref:`User roles <user_administration>`
