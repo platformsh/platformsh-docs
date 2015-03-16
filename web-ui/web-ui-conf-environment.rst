@@ -27,7 +27,7 @@ The ``Settings`` screen allows you to extend the behavior of a specific environm
 The access control is very helpful if you need your development environments to be restricted by a login/password, or be accessible by only a certain range of IP addresses.
 
 .. seealso::
-   * :ref:`outgoint_email`
+   * :ref:`outgoing_email`
    * :ref:`access_control`
 
 ----------------------------------
@@ -52,7 +52,13 @@ The ``Variables`` screen allows you to define the variables that will be availab
 Routes
 ------
 
-@TODO
+The ``Routes`` screen allows you to configure the routes of your environments.
+
+.. image:: images/ui-conf-environment-routes.png
+   :alt: Configure Platform.sh environment routes
+
+.. seealso::
+   * :ref:`routes_configuration`
 
 ----------------------------------
 

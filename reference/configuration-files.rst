@@ -314,6 +314,8 @@ Here is an example of a ``routes.yaml`` file:
   * `routes.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/routes.yaml>`_
   * `routes.yaml for Drupal <https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform/routes.yaml>`_
 
+.. _outgoing_email:
+
 Sending emails
 ----------------
 
