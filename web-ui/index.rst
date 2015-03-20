@@ -5,6 +5,6 @@ Web UI
   :maxdepth: 2
   :glob:
 
-  web-ui-overview
-  web-ui-conf-project
-  web-ui-conf-environment
+  overview
+  configure-project
+  configure-environment
