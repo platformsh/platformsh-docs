@@ -28,7 +28,6 @@ The access control is very helpful if you need your development environments to 
 
 .. seealso::
    * :ref:`outgoing_email`
-   * :ref:`access_control`
 
 ----------------------------------
 
