@@ -21,17 +21,17 @@ Here is a default ``settings.php``:
 
 Any ``settings*.php`` file will be copied. It means you can use ``settings.dev.php`` and ``settings.staging.php``, then include the right one depending on environment variables.
 
-For example, you can load a development file for every development environment, by providing the ``drupal:load_development_overrides`` variable in Platform.sh UI, and using this code in the ``settings.php``:
+For example, you can load a development file for any development environment, by providing the ``drupal:load_development_overrides`` environment variable, and using this code in the ``settings.php``:
 
 .. code-block:: php
 
    <?php
 
    if (!empty($conf['load_development_overrides'])) {
-     require_once dirname(__FILE__) . '/settings.development.php';
+     require_once dirname(__FILE__) . '/settings.dev.php';
    }
 
-Of course, it means the ``settings.development.php`` file must exist in your repository root folder.
+It means the ``settings.dev.php`` file must exist in your repository root folder.
 
 .. note::
   The ``drupal:*`` environment variables are included in the ``settings.local.php`` file, so include it first.
