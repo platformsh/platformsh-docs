@@ -21,7 +21,7 @@ Here is a default ``settings.php``:
 
 Any ``settings*.php`` file will be copied. It means you can use ``settings.dev.php`` and ``settings.staging.php``, then include the right one depending on environment variables.
 
-For example, you can load a development file for any development environment, by providing the ``drupal:load_development_overrides`` environment variable, and using this code in the ``settings.php``:
+For example, you can load a development file for any development environment, by providing the ``drupal:load_development_overrides`` environment variable, and adding this code at the end of the ``settings.php``:
 
 .. code-block:: php
 
