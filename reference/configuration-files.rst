@@ -197,7 +197,7 @@ You can specify those dependencies like this:
     ruby:
       sass: "3.4.7"
     nodejs:
-      grunt: "~0.4.5"
+      grunt-cli: "~0.1.13"
 
 ----
 
@@ -228,6 +228,26 @@ After a Git push, you can see the results of the deployment hooks in the ``/var/
     Performed update: my_custom_profile_update_7001
     'all' cache was cleared.
     Finished performing updates.
+
+As a good example combining dependencies and hooks, you can compile your SASS files using Grunt.
+
+In your ``.platform.app.yaml`` file:
+
+.. code-block:: yaml
+
+  dependencies:
+    ruby:
+      sass: "3.4.7"
+    nodejs:
+      grunt-cli: "~0.1.13"
+
+  hooks:
+    build: |
+      cd public/profiles/project_name/themes/custom/theme_name
+      npm install
+      grunt
+
+This requires the ``package.json`` and ``Gruntfile.js`` files to be correctly setup in the theme folder.
 
 ----
 
