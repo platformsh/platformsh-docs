@@ -26,6 +26,9 @@ prepare:
 	if [ ! -d ".env" ]; then virtualenv -p /usr/bin/python2 .env; fi
 	. .env/bin/activate; pip install -r requirements.txt
 
+watch:
+	. .env/bin/activate; sphinx-autobuild -b dirhtml -d _build/doctrees . _build/html
+
 clean:
 	@rm -rf _build/*
 
