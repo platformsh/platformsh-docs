@@ -15,6 +15,9 @@ ALLSPHINXOPTS   = -d _build/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
+	@echo "  prepare   to make your environment ready"
+	@echo "  watch     to recompile when files change"
+	@echo "  clean     to make everything clean"
 	@echo "  html      to make standalone HTML files"
 	@echo "  pickle    to make pickle files (usable by e.g. sphinx-web)"
 	@echo "  htmlhelp  to make HTML files and a HTML help project"
