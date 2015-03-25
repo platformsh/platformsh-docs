@@ -84,18 +84,12 @@ Platform.sh accepts your project's files. You are expected to have an ``index.ph
 
     .git/
     index.php
-    ... (Drupal files)
-    includes/
-    profiles/
-    modules/
-      contrib/
-      custom/
-    themes/
-      contrib/
-      custom/
-    libraries
-      contrib/
-      custom/
+    ... (other Drupal core files)
+    sites/
+      all/
+        modules/
+        themes/
+      default/
 
 Configure your app
 ------------------

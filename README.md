@@ -13,10 +13,11 @@ Getting started
   $ cd platformsh-docs
   ```
 
-2. Install Sphinx
+2. Install Sphinx and dependencies
 
   ```
   $ sudo pip install sphinx
+  $ sudo pip install git+https://github.com/fabpot/sphinx-php.git
   ```
 
   (on Mac OS X you might need to do ``easy_install pip`` first)
@@ -28,5 +29,26 @@ Getting started
   ```
 
 Once the build is finished, the HTML pages should be in `_build/html`.
+
+Watch for changes
+-----------------
+
+Most of the times you want to keep the server up and recompile the HTML when any file changes.
+
+For this:
+
+1. Install Sphinx-Autobuild
+
+```
+$ sudo pip install sphinx-autobuild
+```
+
+2. Run the watcher
+
+```
+$ sphinx-autobuild -b dirhtml -d _build/doctrees . _build/html
+```
+
+And change your files.
 
 ![http://creativecommons.org/licenses/by-sa/4.0/](images/CC-BY-SA.png)
