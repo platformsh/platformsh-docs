@@ -1,3 +1,2 @@
 sphinx
-git+https://github.com/fabpot/sphinx-php.git
 sphinx-autobuild
