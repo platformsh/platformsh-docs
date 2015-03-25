@@ -23,7 +23,7 @@ Any ``settings*.php`` file will be copied. It means you can use ``settings.dev.p
 
 For example, you can load a development file for any development environment, by providing the ``drupal:load_development_overrides`` environment variable, and adding this code at the end of the ``settings.php``:
 
-.. code-block:: php
+.. code-block:: php-code
 
    if (!empty($conf['load_development_overrides'])) {
      require_once dirname(__FILE__) . '/settings.dev.php';

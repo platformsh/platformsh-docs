@@ -2,9 +2,10 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
-PAPER         =
+SPHINXOPTS      =
+SPHINXBUILD     = sphinx-build
+SPHINXAUTOBUILD = sphinx-autobuild
+PAPER           =
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -30,6 +31,10 @@ html:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) _build/html
 	@echo
 	@echo "Build finished. The HTML pages are in _build/html."
+
+livehtml:
+	mkdir -p _build/html _build/doctrees
+	$(SPHINXAUTOBUILD) -b dirhtml $(ALLSPHINXOPTS) _build/html
 
 text:
 	mkdir -p _build/text _build/doctrees
