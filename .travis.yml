@@ -2,5 +2,5 @@ language: python
 python:
     - "2.7"
 install:
-    - "pip install -q Sphinx --use-mirrors"
-script: sphinx-build -nW -b html -d _build/doctrees . _build/html
+    - "pip install -q sphinx-autobuild --use-mirrors"
+script: sphinx-autobuild -nW -b html -d _build/doctrees . _build/html
