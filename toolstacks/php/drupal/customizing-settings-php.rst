@@ -25,8 +25,6 @@ For example, you can load a development file for any development environment, by
 
 .. code-block:: php
 
-   <?php
-
    if (!empty($conf['load_development_overrides'])) {
      require_once dirname(__FILE__) . '/settings.dev.php';
    }

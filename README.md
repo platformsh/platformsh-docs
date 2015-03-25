@@ -13,10 +13,11 @@ Getting started
   $ cd platformsh-docs
   ```
 
-2. Install Sphinx
+2. Install Sphinx and dependencies
 
   ```
   $ sudo pip install sphinx
+  $ sudo pip install git+https://github.com/fabpot/sphinx-php.git
   ```
 
   (on Mac OS X you might need to do ``easy_install pip`` first)
