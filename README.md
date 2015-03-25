@@ -17,7 +17,6 @@ Getting started
 
   ```
   $ sudo pip install sphinx
-  $ sudo pip install git+https://github.com/fabpot/sphinx-php.git
   ```
 
   (on Mac OS X you might need to do ``easy_install pip`` first)
@@ -46,7 +45,7 @@ $ sudo pip install sphinx-autobuild
 2. Run the watcher
 
 ```
-$ sphinx-autobuild -b dirhtml -d _build/doctrees . _build/html
+$ make livehtml
 ```
 
 And change your files.
