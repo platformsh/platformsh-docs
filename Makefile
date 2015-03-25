@@ -22,6 +22,10 @@ help:
 	@echo "  changes   to make an overview over all changed/added/deprecated items"
 	@echo "  linkcheck to check all external links for integrity"
 
+prepare:
+	if [ ! -d ".env" ]; then virtualenv -p /usr/bin/python2 .env; fi
+	. .env/bin/activate; pip install -r requirements.txt
+
 clean:
 	@rm -rf _build/*
 
