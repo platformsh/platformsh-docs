@@ -229,11 +229,9 @@ After a Git push, you can see the results of the deployment hooks in the ``/var/
     'all' cache was cleared.
     Finished performing updates.
 
-----
+As a good example combining dependencies and hooks, you can compile your SASS files using Grunt.
 
-A good example combining dependencies and hooks: a theme compiling sass files using grunt. Here is an example of how to set this up:
-
-In the ``.platform.app.yaml`` file:
+In your ``.platform.app.yaml`` file:
 
 .. code-block:: yaml
 
@@ -250,9 +248,6 @@ In the ``.platform.app.yaml`` file:
       grunt
 
 This requires the ``package.json`` and ``Gruntfile.js`` files to be correctly setup in the theme folder.
-
-.. note::
-  The ``|`` after ``build:`` lets you write multiple lines.
 
 ----
 
