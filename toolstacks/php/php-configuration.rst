@@ -41,9 +41,11 @@ In addition, you can enable the following extensions: *apc, apcu, blackfire, bla
 Use your own php.ini
 --------------------
 
-You can also push a ``php.ini`` file that will be appended to the configuration maintained by Platform.sh.
+You can also create and push a ``php.ini`` file that will be appended to the configuration maintained by Platform.sh.
 
-For example if you need to increase the PHP memory limit:
+In your repository, the ``php.ini`` file should be added to the root of the application (normally the repository root).
+
+For example, if you need to increase the PHP memory limit:
 
 .. code-block:: php
 
@@ -62,8 +64,6 @@ After pushing your file, you can check that the custom PHP configuration has bee
     memory_limit = 256M
 
 ----
-
-Platform.sh will automatically detect your ``php.ini`` file and move it to the root of the application at the end of the build process (``/app`` by default).
 
 .. Warning::
     We do not limit what you can put in your ``php.ini`` file, but many settings can break your application. This is a facility for advanced users.
