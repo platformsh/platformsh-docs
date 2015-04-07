@@ -23,7 +23,7 @@ Supported:
 
 * Create a new environment when creating a Git branch or opening a pull request.
 * Rebuild an environment when pushing code to a Git branch or a pull request.
-* Delete an environment when deleting a Git branch or merging a pull request.
+* Delete an environment when merging a pull request.
 
 To integrate your Platform.sh project with an existing GitHub repository, you
 first need to generate a token on your GitHub user profile. Simply go to your
