@@ -23,10 +23,16 @@ Automated backups
 
 .. rubric:: Platform.sh Standard
 
-Backups are triggered via the web UI or via the CLI.
+No backup is triggered automatically on Platform.sh Standard. You can trigger your backup via the web UI or via the CLI. 
+
+If you want to automatize your backups, you can use Jenkins and trigger the following CLI command:
+
+.. code-block:: console
+
+   $ platform environment:backup
 
 .. note::
-  If you increase the storage space of your services, take a backup soon after. 
+  We advise you to backup your environment each time you increase the storage space of your services.
 
 .. rubric:: Platform.sh Enterprise
 
