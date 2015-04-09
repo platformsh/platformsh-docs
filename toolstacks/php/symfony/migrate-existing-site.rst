@@ -49,7 +49,7 @@ Commit your project to the **platform** remote repository and push the code.
 
 .. code-block:: console
 
-   $ git add *
+   $ git add .
    $ git commit -m "Initial commit of My Site"
    $ git push platform master
 
