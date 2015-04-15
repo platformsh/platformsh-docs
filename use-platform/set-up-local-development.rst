@@ -105,7 +105,7 @@ Use SSH tunneling to connect your local development site to Platform.sh services
 
 .. code-block:: console
 
-  # Use your own project ID, branch, and specify whether it is the EU or US cluster (eg. us.platform.sh)
+  # Use your own project ID, branch, and specify whether it is the EU or US region (eg. us.platform.sh)
   $ ssh -N -L 3306:database.internal:3306 [project ID]-[branch]@ssh.eu.platform.sh & 
   
 After the tunnel is built, you can confirm its presence using the ``fg`` command:
