@@ -92,7 +92,7 @@ Just under the Environment name, in the :ref:`platform_ui`, there is a link you 
 .. figure:: /use-platform/images/ssh-access-information.png
    :alt: SSH access information
 
-   The SSH user name is the concatenation of the your platforms unique id and the environment id. The ssh hostname is 'ssh.' prepended onto the server clusters hostname your platform is hosted on. I.E.: [project-id]-[environment-id]@ssh.[server-cluster-hostname].
+   The SSH user name is the concatenation of your platform's unique ID and the environment ID. The SSH hostname is 'ssh.' prepended to the hostname of your platform's region. I.E.: [project-id]-[environment-id]@ssh.[server-region-hostname].
 
 4. Open a terminal
 5. Paste the link into your terminal

@@ -124,8 +124,8 @@ The ``platform`` command will show you a list of your projects.
   +---------------+-------------------------------------+-------------------------------------------------+
   | ID            | Name                                | URL                                             |
   +---------------+-------------------------------------+-------------------------------------------------+
-  | [PROJECT-ID] | My Drupal Site                      | https://[CLUSTER].platform.sh//#/projects/[PROJECT-ID] |
-  | [PROJECT-ID] | A Symfony Project                   | https://[CLUSTER].platform.sh/#/projects/[PROJECT-ID] |
+  | [PROJECT-ID] | My Drupal Site                      | https://[REGION].platform.sh//#/projects/[PROJECT-ID] |
+  | [PROJECT-ID] | A Symfony Project                   | https://[REGION].platform.sh/#/projects/[PROJECT-ID] |
 
 You can obtain a local copy of the project using the ``platform get`` command:
 
