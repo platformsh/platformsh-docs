@@ -276,7 +276,7 @@ You can set the Drush alias group name to something more convenient:
 
 .. code-block:: console
 
-  $ platform drush-aliases -g [alias group]
+  platform drush-aliases -g [alias group]
 
 After that, they will be easier to remember and type.
 
