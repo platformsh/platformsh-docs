@@ -45,11 +45,11 @@ Now open a command line (you need to have the Platform.sh CLI installed). To ena
 
     platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 
-The two optional parameters, which both default to `true`, control whether
+The two optional parameters, which are both enabled by default, control whether
 you want to track branches and/or pull requests:
 
-* ``--build-pull-requests``: true/false
-* ``--fetch-branches``: true/false
+* ``--build-pull-requests`` [true | false]
+* ``--fetch-branches`` [true | false]
 
 This command returns the Payload URL that you need to paste on your Github
 repository webhooks page.
