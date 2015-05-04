@@ -13,7 +13,7 @@ With the CLI, you can list all your active integrations:
 
 .. _github-hook:
 
-Github
+GitHub
 ------
 
 The `Github <https://github.com>`_ integration allows you to manage your Platform.sh environments
