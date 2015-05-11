@@ -27,9 +27,11 @@ Supported:
 
 To integrate your Platform.sh project with an existing GitHub repository, you
 first need to generate a token on your GitHub user profile. Simply go to your
-account page on GitHub and click ``Edit profile``. Select the *Applications*
-tab and click `Generate new token <https://github.com/settings/tokens/new>`_ on
-the *Personal access tokens* section.
+account page on GitHub and click ``Edit profile``.
+
+Select the *Applications* tab and click `Generate new token
+<https://github.com/settings/tokens/new>`_ in the *Personal access tokens*
+section.
 
 Give it a description and then ensure the token has the following scopes:
 
@@ -38,6 +40,9 @@ Give it a description and then ensure the token has the following scopes:
 * To integrate with your organization's private repositories:  ``repo`` and ``read:org``
 
 Copy the token and make a note of it (temporarily).
+
+Note that for the integration to work, your GitHub user needs to have
+permission to push code to the repository.
 
 Now open a command line (you need to have the Platform.sh CLI installed). To enable the GitHub integration with the CLI:
 

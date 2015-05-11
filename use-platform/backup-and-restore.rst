@@ -16,7 +16,7 @@ Using the CLI:
 
 .. code-block:: console
 
-   $ platform environment:backup
+   platform environment:backup
 
 Automated backups
 ^^^^^^^^^^^^^^^^^
@@ -25,11 +25,11 @@ Automated backups
 
 No backup is triggered automatically on Platform.sh Standard. You can trigger your backup via the web UI or via the CLI. 
 
-If you want to automatize your backups, you can use Jenkins and trigger the following CLI command:
+If you want to automate your backups, you can use Jenkins and trigger the following CLI command:
 
 .. code-block:: console
 
-   $ platform environment:backup
+   platform environment:backup
 
 .. note::
   We advise you to backup your environment each time you increase the storage space of your services.

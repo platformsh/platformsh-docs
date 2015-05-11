@@ -343,7 +343,7 @@ For example, in case you want to enable sending emails for your non-master envir
 
 .. code-block:: console
 
-  $ platform environment:metadata enable_smtp true
+  platform environment:metadata enable_smtp true
 
 Emails from Platform.sh are sent via a Mandrill-based SMTP proxy. Each Platform.sh project is provisioned as a Mandrill sub-account.
 

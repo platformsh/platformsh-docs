@@ -80,12 +80,12 @@ You can also use the CLI with:
 
 .. code-block:: console
 
-   $ platform environment:backup
+   platform environment:backup
 
 to create a snapshot, and 
 
 .. code-block:: console
 
-   $ platform environment:restore
+   platform environment:restore
 
 to restore an existing snapshot.

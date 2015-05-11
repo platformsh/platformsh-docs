@@ -65,7 +65,7 @@ This procedure installs the :ref:`cli` in the Composer's `.composer` folder. On 
 
 Install the :ref:`cli`::
 
-  composer global require 'platformsh/cli:1.*'
+  composer global require platformsh/cli:@stable
 
 Add a path to the ``platform`` command ::
 
