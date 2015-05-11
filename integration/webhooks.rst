@@ -33,9 +33,9 @@ the *Personal access tokens* section.
 
 Give it a description and then ensure the token has the following scopes:
 
-* To integrate with public repositories: ``public_repo`` and ``repo:status``
-* To integrate with your own private repositories:  ``repo`` and ``repo:status``
-* To integrate with your organization's private repositories:  ``repo``, ``repo:status`` and ``read:org``
+* To integrate with public repositories: ``public_repo``
+* To integrate with your own private repositories:  ``repo``
+* To integrate with your organization's private repositories:  ``repo`` and ``read:org``
 
 Copy the token and make a note of it (temporarily).
 
