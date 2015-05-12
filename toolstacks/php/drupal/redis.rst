@@ -76,12 +76,6 @@ Add the following :term:`environment variables` using the Platform UI. Note, if 
 .. code-block:: console
 
    sites/all/modules/redis/redis.lock.inc
-   
-``drupal:path_inc``
-
-.. code-block:: console
-
-   sites/all/modules/redis/redis.path.inc
 
 ``drupal:redis_client_host``
 
@@ -106,6 +100,12 @@ Or
 .. code-block:: console
 
    Redis_Cache
+   
+``drupal:cache_class_cache_form``
+
+.. code-block:: console
+
+   DrupalDatabaseCache
 
 .. note::
    Currently, you need to commit some code to rebuild your environment so that the new variables are properly added to your ``settings.local.php``. This will be fixed soon.
@@ -129,9 +129,9 @@ Or
 
    $conf['redis_client_host']      = 'redis.internal';
    $conf['lock_inc']               = 'sites/all/modules/redis/redis.lock.inc';
-   $conf['path_inc']               = 'sites/all/modules/redis/redis.path.inc';
    $conf['cache_backends'][]       = 'sites/all/modules/redis/redis.autoload.inc';
    $conf['cache_default_class']    = 'Redis_Cache';
+   $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 
 .. seealso::
    * :ref:`custom_settings_php`
