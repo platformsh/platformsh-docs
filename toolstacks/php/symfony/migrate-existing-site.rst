@@ -83,7 +83,7 @@ Go to your files folder on your local machine and synchronize them to your remot
 
 .. code-block:: console
 
-   $ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:/app/tmp/
+   $ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:/app/public/sites/default/files
 
 .. note::
    The location of the files folder depends on your configuration.
