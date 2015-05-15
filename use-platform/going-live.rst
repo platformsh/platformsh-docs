@@ -62,8 +62,8 @@ Here would be an example of your ``routes.yaml`` for the ``http://mydomain.com``
 .. note::
   You can test those routes on your development environments with:
 
-  * ``http://[branch]]-[project-id].[cluster].platform.sh``
-  * ``http://www-[branch]]-[project-id].[cluster].platform.sh``
+  * ``http://[branch]]-[project-id].[region].platform.sh``
+  * ``http://www-[branch]]-[project-id].[region].platform.sh``
 
 .. _https:
 
@@ -92,7 +92,7 @@ If you have uploaded your SSL certificate and you want to serve your entire site
 
 Configure your DNS provider to point your domain to your `Platform.sh <https://platform.sh>`_  Master environment.
 
-Once you've checked with your registrar about where to change your DNS settings, add a CNAME record that references the Master environment's hostname: ``<environment>-<project>.<cluster>.platform.sh``
+Once you've checked with your registrar about where to change your DNS settings, add a CNAME record that references the Master environment's hostname: ``<environment>-<project>.<region>.platform.sh``
 
 If you use multiple hostnames for your site, you need to add a CNAME record for each of them. For example: ``master-k4ywtmwigmmgc.eu.platform.sh`` and ``www-master-k4ywtmwigmmgc.eu.platform.sh``.
 
@@ -274,13 +274,13 @@ If you’re securing a subdomain, e.g., www.example.com, modify your DNS setting
 
 Record	Name	Target
 
-CNAME	www	<ENVIRONMENT>-<PROJECT-ID>.<CLUSTER>.platform.sh.
+CNAME	www	<ENVIRONMENT>-<PROJECT-ID>.<REGION>.platform.sh.
 
 If you’re using a wildcard certificate your DNS setup will look similar.
 
 Record	Name	Target
 
-CNAME	*	<ENVIRONMENT>-<PROJECT-ID>.<CLUSTER>.platform.sh.
+CNAME	*	<ENVIRONMENT>-<PROJECT-ID>.<REGION>.platform.sh.
 
 Root domain
 ^^^^^^^^^^^
@@ -291,7 +291,7 @@ Modify your DNS settings and create an ALIAS or ANAME record to the endpoint.
 
 Record	Name	Target
 
-ALIAS or ANAME	<empty> or @	<ENVIRONMENT>-<PROJECT-ID>.<CLUSTER>.platform.sh
+ALIAS or ANAME	<empty> or @	<ENVIRONMENT>-<PROJECT-ID>.<REGION>.platform.sh
 
 
 In case you want to change an already added certificate, you will have to remove the domain and add it again with the new certificate.

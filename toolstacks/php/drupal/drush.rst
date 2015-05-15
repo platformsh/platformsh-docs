@@ -105,7 +105,7 @@ Platform.sh can automatically build your site using make files. This allows you 
 
 Your make file can be called: ``project.make`` or ``drupal-org.make``.
 
-You can find a nice example make file on `Github <https://github.com/platformsh/platform-drupal/blob/master/project.make>`_.
+You can find a nice example make file on `Github <https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/project.make>`_.
 
 When building as a profile, you **need a make file for Drupal core** called: ``project-core.make``:
 
