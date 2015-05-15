@@ -38,6 +38,7 @@ clean:
 html:
 	mkdir -p _build/html _build/doctrees
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) _build/html
+	cp index.php _build/html/index.php
 	@echo
 	@echo "Build finished. The HTML pages are in _build/html."
 
