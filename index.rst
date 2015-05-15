@@ -9,26 +9,26 @@ To fully benefit from `Platform.sh <https://platform.sh>`_, it's recommended to 
 
 
 .. toctree::
-  :maxdepth: 3
+  :maxdepth: 2
   :glob:
 
   overview/index
 
 .. toctree::
-  :maxdepth: 3
+  :maxdepth: 2
   :glob:
 
   use-platform/index
 
 .. toctree::
-  :maxdepth: 4
+  :maxdepth: 3
   :glob:
 
   toolstacks/index
   integration/index
 
 .. toctree::
-  :maxdepth: 3
+  :maxdepth: 2
   :glob:
 
   reference/index

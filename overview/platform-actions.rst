@@ -70,11 +70,22 @@ Note that ``sync`` is only available if your branch has no unmerged commits, and
 
 .. _backup_restore:
 
-Backup & Restore
-----------------
+Snapshot & Restore
+------------------
 
-Backing up an :term:`environment` means saving a copy of the database, so that it could be restored, if need be.
+Creating a snapshot for an :term:`environment` means saving a copy of the database, so that it could be restored (in other words, create a backup).
+You will see the snapshot in the activity feed of you environment in the :term:`Platform UI` where you can trigger the restore by clicking on the ``restore`` link. 
 
-.. warning::
+You can also use the CLI with:
 
-   * Restoring environments is not yet available in the :term:`Platform UI`.
+.. code-block:: console
+
+   platform environment:backup
+
+to create a snapshot, and 
+
+.. code-block:: console
+
+   platform environment:restore
+
+to restore an existing snapshot.

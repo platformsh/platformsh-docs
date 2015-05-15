@@ -13,7 +13,7 @@ With the CLI, you can list all your active integrations:
 
 .. _github-hook:
 
-Github
+GitHub
 ------
 
 The `Github <https://github.com>`_ integration allows you to manage your Platform.sh environments
@@ -23,13 +23,15 @@ Supported:
 
 * Create a new environment when creating a Git branch or opening a pull request.
 * Rebuild an environment when pushing code to a Git branch or a pull request.
-* Delete an environment when deleting a Git branch or merging a pull request.
+* Delete an environment when merging a pull request.
 
 To integrate your Platform.sh project with an existing GitHub repository, you
-first need to generate a token on your GitHub user profile. Simply go to your
-account page on Github and click ``Edit profile``. Select the *Applications*
-tab and click `Generate new token <https://github.com/settings/tokens/new>`_ on
-the *Personal access tokens* section.
+first need to generate a token on your GitHub user profile. Note that for the integration to work, 
+your GitHub user needs to have permission to push code to the repo
+
+Simply go to your account page on Github and click ``Edit profile``. 
+Select the *Applications* tab and click `Generate new token <https://github.com/settings/tokens/new>`_ 
+on the *Personal access tokens* section.
 
 Give it a description and only check the ``repo`` and ``read:org`` scopes. Make sure you save the
 token somewhere. Now open a command line (you need to have the platform cli
