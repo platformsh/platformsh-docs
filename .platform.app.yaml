@@ -12,7 +12,7 @@ web:
     # The public directory of the app, relative to its root.
     document_root: "/_build/html"
     # TODO: This should be implemented soon.
-    passthru: "/index.html"
+    passthru: "/index.php"
     whitelist:
       - \.html$
 
