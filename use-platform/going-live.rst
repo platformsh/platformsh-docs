@@ -108,13 +108,13 @@ You also cannot reliably point your root A Record to an IP address within the cl
 
 Some DNS hosts provide a way to get CNAME-like functionality at the zone apex using a custom record type. Such records include:
 
-* ALIAS at `Route53 <http://aws.amazon.com/route53>`_
-* CNAME at `Namechep <http://www.namecheap.com/>`_
-* ALIAS at `DNSimple <https://dnsimple.com/>`_
-* ANAME at `DNS Made Easy <http://www.dnsmadeeasy.com/>`_
-* ANAME at `easyDNS <https://www.easydns.com/>`_
-* ACNAME at `CloudFlare <https://www.cloudflare.com/>`_
-* ALIAS at `PointDNS <https://pointhq.com/>`_
+* ALIAS at `Route53 <http://aws.amazon.com/route53>`__
+* CNAME at `Namechep <http://www.namecheap.com/>`__
+* ALIAS at `DNSimple <https://dnsimple.com/>`__
+* ANAME at `DNS Made Easy <http://www.dnsmadeeasy.com/>`__
+* ANAME at `easyDNS <https://www.easydns.com/>`__
+* ACNAME at `CloudFlare <https://www.cloudflare.com/>`__
+* ALIAS at `PointDNS <https://pointhq.com/>`__
 
 These ALIAS/CNAME/ANAME records resolves on request the IP address of the destination record and serves it as if it would be the IP address for the apex domain requested. If the IP address for the destination changes, the IP address for the mapped domain changes automatically as well.
 
