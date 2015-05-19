@@ -111,7 +111,7 @@ Some DNS hosts provide a way to get CNAME-like functionality at the zone apex us
 * ALIAS at `Route53 <http://aws.amazon.com/route53>`_
 * CNAME at `Namechep <http://www.namecheap.com/>`_
 * ALIAS at `DNSimple <https://dnsimple.com/>`_
-* ANAME at `DNS Made <Easy http://www.dnsmadeeasy.com/>`_
+* ANAME at `DNS Made Easy <http://www.dnsmadeeasy.com/>`_
 * ANAME at `easyDNS <https://www.easydns.com/>`_
 * ACNAME at `CloudFlare <https://www.cloudflare.com/>`_
 * ALIAS at `PointDNS <https://pointhq.com/>`_
