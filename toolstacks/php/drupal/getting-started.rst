@@ -108,14 +108,15 @@ For Drupal 7, your ``.platform.app.yaml`` should specify the ``php:drupal`` tool
 Drupal 8
 ^^^^^^^^
 
-For Drupal 8, your ``.platform.app.yaml`` should specify the ``php:drupal`` toolstack, and install Drush 7 as a build-time dependency:
+For Drupal 8, your ``.platform.app.yaml`` should specify the ``php:drupal`` toolstack, and install Drush 7 RC as a build-time dependency:
 
 .. code-block:: console
 
-    # The build-time dependencies of the app.
+    # Note: Drush 7.0.0 is no longer compatible with Drupal 8, but the
+    # pre-release -rc versions were.
     dependencies:
         php:
-            "drush/drush": "7.0.0-alpha6"
+            "drush/drush": "7.0.0-rc2"
 
 You can see a `working example on Github <https://github.com/platformsh/platformsh-examples/tree/drupal/8.x>`__.
 
