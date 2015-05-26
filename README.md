@@ -1,33 +1,16 @@
 Platform.sh documentation
 =============================
 
-Here is what you need to build the Platform.sh documentation locally.
+This documentation is based on [Sphinx](http://sphinx-doc.org/) and rendered online at [docs.platform.sh](https://docs.platform.sh).
 
-Getting started
----------------------------
+Contribute
+----------
 
-1. Clone the repository
+It's very simple to contribute to the documentation since you don't need to install or set up anything in your local machine to test and review your changes.
 
-  ```shell
-  git clone git@github.com:platformsh/platformsh-docs.git
-  cd platformsh-docs
-  ```
+Simply open a Pull Request on top of the Master branch
 
-2. Install Sphinx and dependencies
-
-  ```shell
-  sudo pip install sphinx
-  ```
-
-  (on Mac OS X you might need to do ``easy_install pip`` first)
-
-3. Build the html
-
-  ```shell
-  make html
-  ```
-
-Once the build is finished, the HTML pages should be in `_build/html`.
+This will automatically trigger a new environment on [Platform.sh](https://platform.sh) where you can test your changes.
 
 Watch for changes
 -----------------
