@@ -134,6 +134,7 @@ It has a few sub-keys which are:
 * **document_root**: The path relative to the root of the application that is exposed on the web. Typically ``/public`` or ``/web``.
 * **passthru**:  The URL that is used in case of a 404 (*which is the equivalent of the rewrite rules in Drupal*). Typically ``/index.php`` or ``/app.php``.
 * **whitelist**: A list of files (as regular expressions) that may be served.
+* **expires**: The number of seconds whitelisted (static) content should be cached by the browswer. This enables the cache-control and expires headers for static content. The ``expires`` directive and resulting headers are left out entirely if this isn't set.
 
 Contrary to standard ``.htaccess`` approaches, which accept a **blacklist** and allow everything to be accessed except a specific list, we accept a **whitelist** which means that anything not matched will trigger a 404 error and will be passed through to your ``passthru`` URL.
 
