@@ -29,9 +29,9 @@ The new branch includes code, all of the data that is stored on disk (database, 
 
 During a ``branch``, three things happen:
 
-* A new branch is created in Git
-* The new branch is deployed
-* The application is rebuilt
+* A new branch is created in Git.
+* The application is rebuilt on the new branch, if necessary.
+* The new branch is deployed.
 
 ------------
 
@@ -43,13 +43,15 @@ During a ``branch``, three things happen:
 Merge
 -----
 
-Merging an :term:`environment` means introducing the code changes from a branch to its parent branch and redeploying the parent environment.
+Merging an :term:`environment` means introducing the code changes from a branch to its parent branch, and redeploying the parent.
 
 During a ``merge``:
 
-* The code changes are merged via Git to the parent branch
-* The parent branch is deployed
-* The application is rebuilt
+* The code changes are merged via Git to the parent branch.
+* The application is rebuilt on the parent branch, if necessary.
+* The parent branch is deployed.
+
+Rebuilding the application is not necessary if the same code was already built (for any environment): in this case you will see the message "Slug already built for this tree id, skipping".
 
 ------------
 
