@@ -1,17 +1,28 @@
 Going Live
 ==========
 
-When your site is ready to go live, you need to configure the routes of your project and your DNS provider to point your domain to Platform.sh.
+Here are the steps you need to follow when your site is ready to go live.
 
-1 - Domain
-----------
+.. _domains:
 
-First thing you need is to add your domain via the :ref:`platform_ui` using the configuration page of your project. It is important to note that once you do this, your site master branch will no longer be accessible at master-<project_id>.<country>.platform.sh. If you require access to the site, you can create a hosts file entry and point it to the IP address that resolves when you access your master project branch.
+1 - Domains
+-----------
+
+First step is to add your domain.
+
+.. seealso::
+   * :ref:`Manage domains via the web UI <ui_project_domains>`
+
+You can add multiple domains to point to your project. Each domain can have its own SSL certificate.
+
+After you have added your domain, your Master environment will no longer be accessible at ``master-<project_id>.<cluster>.platform.sh``.
+
+If you require access to the site, you can create a hosts file entry and point it to the IP address that resolves when you access your master project branch.
 
 2 - Routes
 ----------
 
-You can configure the :term:`routes` of your project directly within the :ref:`platform_ui` or within your ``.platform/routes.yaml`` file.
+You can configure the :term:`routes` of your project directly within the :ref:`ui_overview` or within your ``.platform/routes.yaml`` file.
 
 .. seealso::
    * :ref:`routes_configuration`

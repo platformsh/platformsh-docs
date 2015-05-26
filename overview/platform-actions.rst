@@ -3,7 +3,7 @@
 Platform.sh main actions
 ========================
 
-The :ref:`platform_ui` exposes 5 main actions that you can use to interface with your :ref:`environments`.
+The :ref:`ui_overview` exposes 5 main actions that you can use to interface with your :ref:`environments`.
 
 .. image:: /overview/images/icon-git.png
   :alt: Git

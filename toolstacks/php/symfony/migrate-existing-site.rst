@@ -56,7 +56,7 @@ Commit your project to the **platform** remote repository and push the code.
 .. note:: 
    *git init* should have created a default *master* branch for you locally, so you can directly push that branch to you *master* remote branch on Platform.sh.
 
-Both on the terminal and on the :ref:`platform_ui`, you should see your :term:`Master` environment being built.
+Both on the terminal and on the :ref:`ui_overview`, you should see your :term:`Master` environment being built.
 
 Import your database
 --------------------
