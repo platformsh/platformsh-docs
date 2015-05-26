@@ -88,4 +88,3 @@ Manage user permissions at the environment level
 
 .. note::
   After a new user is added to the environment, it needs to be rebuilt (git push) for the changes to take effect. When the environment rebuild is complete, allow a minute for the routes to update fully and for the new user to be able to use SSH access.
->>>>>>> dev
