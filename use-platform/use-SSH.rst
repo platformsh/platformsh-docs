@@ -83,7 +83,7 @@ That's it! You're all set. Now you'll be able to use :ref:`Git <git>` on Platfor
 SSH to your Web Server
 ----------------------
 
-Just under the Environment name, in the :ref:`platform_ui`, there is a link you can hover to copy the SSH URL of that :ref:`environment <environments>`.
+Just under the Environment name, in the :ref:`ui_overview`, there is a link you can hover to copy the SSH URL of that :ref:`environment <environments>`.
 
 1. Open your Platform.sh web UI 
 2. Hover the ``Access info`` link

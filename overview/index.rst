@@ -9,6 +9,4 @@ Overview
   technical-requirements
   platform-environments
   platform-actions
-  platform-web-ui
-  platform-cli
   getting-help

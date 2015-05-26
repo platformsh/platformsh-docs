@@ -16,8 +16,8 @@ With the CLI, you can list all your active integrations:
 GitHub
 ------
 
-The `Github <https://github.com>`_ integration allows you to manage your Platform.sh environments
-directly from your Github repository.
+The `GitHub <https://github.com>`_ integration allows you to manage your Platform.sh environments
+directly from your GitHub repository.
 
 Supported:
 
@@ -26,38 +26,45 @@ Supported:
 * Delete an environment when merging a pull request.
 
 To integrate your Platform.sh project with an existing GitHub repository, you
-first need to generate a token on your GitHub user profile. Note that for the integration to work, 
-your GitHub user needs to have permission to push code to the repo
+first need to generate a token on your GitHub user profile. Simply go to your
+account page on GitHub and click ``Edit profile``.
 
-Simply go to your account page on Github and click ``Edit profile``. 
-Select the *Applications* tab and click `Generate new token <https://github.com/settings/tokens/new>`_ 
-on the *Personal access tokens* section.
+Select the *Applications* tab and click `Generate new token
+<https://github.com/settings/tokens/new>`_ in the *Personal access tokens*
+section.
 
-Give it a description and only check the ``repo`` and ``read:org`` scopes. Make sure you save the
-token somewhere. Now open a command line (you need to have the platform cli
-installed.)
+Give it a description and then ensure the token has the following scopes:
 
-To enable the GitHub webhook with the CLI:
+* To integrate with public repositories: ``public_repo``
+* To integrate with your own private repositories:  ``repo``
+* To integrate with your organization's private repositories:  ``repo`` and ``read:org``
+
+Copy the token and make a note of it (temporarily).
+
+Note that for the integration to work, your GitHub user needs to have
+permission to push code to the repository.
+
+Now open a command line (you need to have the Platform.sh CLI installed). To enable the GitHub integration with the CLI:
 
 .. code-block:: console
 
-    $ platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
+    platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 
-The two optional parameters, which default to true, control whether you want to
-track branches and/or pull requests:
+The two optional parameters, which are both enabled by default, control whether
+you want to track branches and/or pull requests:
 
-* ``build_pull_requests``: true/false
-* ``fetch_branches``: true/false
+* ``--build-pull-requests`` [true | false]
+* ``--fetch-branches`` [true | false]
 
 This command returns the Payload URL that you need to paste on your Github
 repository webhooks page.
 
-Go to your Github repository and click ``Settings``. Select the *Webhooks and
+Go to your GitHub repository and click ``Settings``. Select the *Webhooks and
 Services* tab and click ``Add webhook``. Paste the Payload URL, Choose "Just 
 send me everything" for the events you want to receive. and click ``Add webhook``. 
 
 You can now start pushing code, creating new branches or opening pull requests
-directly on your Github repository.
+directly on your GitHub repository.
 
 .. _hipchat-hook:
 
@@ -71,7 +78,7 @@ To enable the HipChat webhook with the CLI:
 
 .. code-block:: console
 
-    $ platform integration:add --type=hipchat --room=ROOM-ID --token=HIPCHAT-TOKEN
+    platform integration:add --type=hipchat --room=ROOM-ID --token=HIPCHAT-TOKEN
 
 The two optional parameters control what events and states you want to track:
 
@@ -88,7 +95,7 @@ your Platform.sh workflow.
 
 .. code-block:: console
 
-    $ platform integration:add --type=webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
+    platform integration:add --type=webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
 
 Here you can see an example of the response:
 

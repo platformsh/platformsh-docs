@@ -9,7 +9,7 @@ Install Kickstart / Drupal / Empty Git
 .. figure:: /use-platform/getting-started/images/ui-setup.png
   :alt: Platform Setup
 
-  The first time you access the :ref:`platform_ui`, you'll see the project setup wizard which helps you to configure your project.
+  The first time you access the :ref:`ui_overview`, you'll see the project setup wizard which helps you to configure your project.
 
 Choose a name for your project (this could be the domain of the site you are working on) and then choose a starting point:
 
@@ -33,7 +33,7 @@ First look at Platform
   1. **Project selection and configuration -** Switch between projects, or manage the configurations of the current project. Changing the project here will update everything below it to the current project.
   2. **Account administration, support, and documentation-** Use these quick access links to documentation resources, support options, or your current user account information.
   3. **Environment indicator, access information, and configuration-** This will tell you which environment (or branch) you are currently working in. The configuration icon and website link will apply specifically to this environment.
-  4. **Git branch, synchronize, merge, and backups-** These primary actions are used for your regular development workflow for the specific environment. Read more about these actions in the :ref:`platform_ui` section.
+  4. **Git branch, synchronize, merge, and backups-** These primary actions are used for your regular development workflow for the specific environment. Read more about these actions in the :ref:`ui_overview` section.
   5. **Environment selector-** Switch between environment contexts. When you create a new branch by clicking the branch action link, those environemtns will appear here. Selecting an environment here will change everything to the right of this to that environment's context.
   6. **Environment activity stream-** Follow the latest activity for the current environment.
 
@@ -49,7 +49,7 @@ The **configuration icon** is a contextual link. It will direct you to the confi
 --------
 
 .. seealso::
-  * :ref:`platform_ui`
+  * :ref:`ui_overview`
 
 Access Your Site
 ----------------
