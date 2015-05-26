@@ -2,9 +2,9 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
-PAPER         =
+SPHINXOPTS      =
+SPHINXBUILD     = sphinx-build
+PAPER           =
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -15,6 +15,9 @@ ALLSPHINXOPTS   = -d _build/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
+	@echo "  prepare   to make your environment ready"
+	@echo "  watch     to recompile when files change"
+	@echo "  clean     to make everything clean"
 	@echo "  html      to make standalone HTML files"
 	@echo "  pickle    to make pickle files (usable by e.g. sphinx-web)"
 	@echo "  htmlhelp  to make HTML files and a HTML help project"
@@ -22,12 +25,20 @@ help:
 	@echo "  changes   to make an overview over all changed/added/deprecated items"
 	@echo "  linkcheck to check all external links for integrity"
 
+prepare:
+	if [ ! -d ".env" ]; then virtualenv -p /usr/bin/python2 .env; fi
+	. .env/bin/activate; pip install -r requirements.txt
+
+watch:
+	. .env/bin/activate; sphinx-autobuild -b dirhtml -d _build/doctrees . _build/html
+
 clean:
-	-rm -rf _build/*
+	@rm -rf _build/*
 
 html:
 	mkdir -p _build/html _build/doctrees
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) _build/html
+	cp index.php _build/html/index.php
 	@echo
 	@echo "Build finished. The HTML pages are in _build/html."
 

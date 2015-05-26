@@ -19,8 +19,30 @@ Here is a default ``settings.php``:
     require_once($local_settings);
   }
 
+Any ``settings*.php`` file will be copied. It means you can use ``settings.dev.php`` and ``settings.staging.php``, then include the right one depending on environment variables.
+
+For example, you can load a development file for any development environment, by providing the ``drupal:load_development_overrides`` environment variable, and adding this code at the end of the ``settings.php``:
+
+.. code-block:: php-code
+
+   if (!empty($conf['load_development_overrides'])) {
+     require_once dirname(__FILE__) . '/settings.dev.php';
+   }
+
+It means the ``settings.dev.php`` file must exist in your repository root folder.
+
+.. note::
+  The ``drupal:*`` environment variables are included in the ``settings.local.php`` file, so include it first.
+
+.. note::
+  The ``settings.local.php`` file will always be overwritten by Platform.sh.
+
 .. note::
   You also need to add a custom ``$drupal_hash_salt``.
+
+.. seealso::
+
+  * :ref:`environment_variables`
 
 Shared variables
 ----------------

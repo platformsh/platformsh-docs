@@ -1,7 +1,7 @@
 Migrate an existing site to Platform.sh
 =======================================
 
-If you want to migrate your existing site into Platform.sh, here are the three components you need to import: *code base*, *database* and *files*.
+To migrate your existing site into Platform.sh, here are the three components you need to import: *code base*, *database* and *files*.
 
 Import your code base
 ---------------------
@@ -18,7 +18,7 @@ On a terminal, go to your Git project folder and add **platform** as a remote.
 .. code-block:: console
 
    $ cd ~/Sites/platform
-   $ git remote add platform [project-id]@git.eu.platform.sh:[project-id].git
+   $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 
 .. note:: You can copy-paste the Git URL from the Platform UI under the Git icon.
 
@@ -41,7 +41,7 @@ On a terminal, go to your project folder, initiate the Git repository, and add a
 
    $ cd ~/Sites/mysite
    $ git init
-   $ git remote add platform [project-id]@git.eu.platform.sh:[project-id].git
+   $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 
 .. note:: You can get the Git URL from the Platform UI under the Git icon.
 
@@ -49,7 +49,7 @@ Commit your project to the **platform** remote repository and push the code.
 
 .. code-block:: console
 
-   $ git add *
+   $ git add .
    $ git commit -m "Initial commit of My Site"
    $ git push platform master
 
@@ -98,14 +98,14 @@ Copy it via SSH to the remote environment on Platform into the ``/app/tmp`` fold
 
 .. code-block:: console
 
-   $ scp database.sql [project-id]-master@ssh.eu.platform.sh:/app/tmp
+   $ scp database.sql [PROJECT-ID]-master@ssh.[REGION].platform.sh:/app/tmp
 
 Log in to the environment via SSH and import the database:
 
 .. code-block:: console
 
-   $ ssh [project-id]-master@ssh.eu.platform.sh
-   web@[project-id]-master--php:~$ mysql -h database.internal main < tmp/database.sql
+   $ ssh [PROJECT-ID]-master@ssh.[REGION].platform.sh
+   web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < tmp/database.sql
 
 Import your files
 -----------------
@@ -118,7 +118,7 @@ We use *drush alias* to import your existing local files.
 .. code-block:: console
 
    $ drush rsync @platform.local:%files @platform.master:%files
-   You will destroy data from [project-id]-master@ssh.eu.platform.sh:././sites/default/files and replace with data from ~/Sites/platform/sites/default/files/
+   You will destroy data from [PROJECT-ID]-master@ssh.[REGION].platform.sh:././sites/default/files and replace with data from ~/Sites/platform/sites/default/files/
    Do you really want to continue? (y/n): y
 
 .. note:: Drush will verify that you are copying and over-writing the proper files folders, so double-check that information before you type ``y`` to continue.
@@ -132,4 +132,24 @@ Go to your files folder on your local machine and synchronize them to your remot
 
 .. code-block:: console
 
-   $ rsync -r files/. [project-id]-master@ssh.eu.platform.sh:public/sites/default/files/
+   $ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:public/sites/default/files/
+
+Rebuild the site registry
+-------------------------
+
+During the migration process, one or more modules may have changed location. This could result in a WSOD (white screen of death), any number of errors (fatal or otherwise), or just a plain broken site. To remedy this situation, the `registry will need to be rebuilt <https://www.drupal.org/project/registry_rebuild>`_. To rebuild the Drupal registry on your Platform.sh instance, you will need to do the following:
+
+First, SSH into your web container.
+
+.. code-block:: console
+
+   $ ssh [PROJECT-ID]-master@ssh.[REGION].platform.sh
+
+Second, execute the following commands to download, tweak, and run the registry rebuild.
+
+.. code-block:: console
+
+   $ drush dl registry_rebuild --destination=/app/tmp
+   $ sed -i 's/, define_drupal_root()/, '"'"'\/app\/public'"'"'/' /app/tmp/registry_rebuild/registry_rebuild.php
+   $ cd /app/public
+   $ php ../tmp/registry_rebuild/registry_rebuild.php

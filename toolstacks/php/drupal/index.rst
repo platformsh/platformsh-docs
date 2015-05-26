@@ -6,7 +6,7 @@ Drupal
 
   getting-started
   drush
-  migrate-an-existing-site
+  migrate-existing-site
   developing-with-drupal
   customizing-settings-php
   solr

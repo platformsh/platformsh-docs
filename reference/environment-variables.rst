@@ -50,10 +50,11 @@ Since they are **base64-encoded JSON object** that maps variable names to variab
 	)
 
 .. note::
-	:term:`environment variables` are **configurable** directly from the :ref:`platform_ui` under the *Variables* tab of the configuration page of the environment. 
+	Variables are **hierarchical**, so if a variable is not overriden in an environment, it will take the value it has in the parent environment and use it as ``inherited``.
+	This allows you to define your development variables only once, and use them on all the children environments.
 
-.. note::
-	:term:`environment variables` are **hierarchical**, so if a variable is not defined in an environment, it will take the value it has in the parent environment and use it as ``inherited``.
+.. seealso::
+   * :ref:`Configure variables from the web UI <ui_environment_variables>`
 
 Platform.sh variables
 ---------------------

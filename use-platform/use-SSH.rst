@@ -83,7 +83,7 @@ That's it! You're all set. Now you'll be able to use :ref:`Git <git>` on Platfor
 SSH to your Web Server
 ----------------------
 
-Just under the Environment name, in the :ref:`platform_ui`, there is a link you can hover to copy the SSH URL of that :ref:`environment <environments>`.
+Just under the Environment name, in the :ref:`ui_overview`, there is a link you can hover to copy the SSH URL of that :ref:`environment <environments>`.
 
 1. Open your Platform.sh web UI 
 2. Hover the ``Access info`` link
@@ -92,7 +92,7 @@ Just under the Environment name, in the :ref:`platform_ui`, there is a link you 
 .. figure:: /use-platform/images/ssh-access-information.png
    :alt: SSH access information
 
-   The SSH user name is the concatenation of the your platforms unique id and the environment id. The ssh hostname is 'ssh.' prepended onto the server clusters hostname your platform is hosted on. I.E.: [project-id]-[environment-id]@ssh.[server-cluster-hostname].
+   The SSH user name is the concatenation of your platform's unique ID and the environment ID. The SSH hostname is 'ssh.' prepended to the hostname of your platform's region. I.E.: [project-id]-[environment-id]@ssh.[server-region-hostname].
 
 4. Open a terminal
 5. Paste the link into your terminal

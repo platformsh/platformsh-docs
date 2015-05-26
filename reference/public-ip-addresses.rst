@@ -1,15 +1,15 @@
 Public IP addresses
 ===================
 
-Platform.sh clusters reach the outside through a limited number of IP addresses.
+Platform.sh regions reach the outside through a limited number of IP addresses.
 
-European cluster (eu.platform.sh):
+European region (eu.platform.sh):
 
 * 54.72.94.105
 * 54.76.137.67
 * 54.76.137.94
 
-North American cluster (us.platform.sh):
+North American region (us.platform.sh):
 
 * 54.88.149.31
 * 54.209.114.37

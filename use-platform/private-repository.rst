@@ -1,3 +1,5 @@
+.. _private_repository:
+
 Use private Git repository
 ==========================
 
@@ -7,11 +9,6 @@ Pull code from a private Git repository
 Let's say you're building a module (*or theme, library...*) which is stored in a private Git repository that you have access to and want to use it on your project.
 
 Platform allows you to get code that is stored in private Git repository (from your :term:`make file`, or ``composer file``).
-
-.. figure:: images/ssh-key.png
-   :alt: Get the project public SSH key.
-
-   Copy the project public SSH key on the *Access Control* tab of the project configuration screen.
 
 To grant Platform access to your private Git repository, you need to add the project public SSH key in the deploy keys of your Git repository. If your private repository is on Github, go to the target repository's settings page. Go to *Deploy Keys* and click *Add deploy key*. Paste the public SSH key in and submit.
 
@@ -25,6 +22,13 @@ If you're using Drupal for example, you can now use your private module by addin
   projects[module_private][download][type] = git
   projects[module_private][download][branch] = dev
   projects[module_private][download][url] = "git@github.com:guguss/module_private.git"
+
+.. note::
+  In the make file use the ``<user>@<host>:<path>.git`` format,
+  or ``ssh://<user>@<host>:<port>/<path>.git`` if using a non-standard port.
+
+.. seealso::
+   * :ref:`Get the SSH key from the UI <ui_project_settings>`
 
 Using multiple private Git repositories
 ---------------------------------------
