@@ -12,7 +12,7 @@ You can install the :ref:`cli` easily using Composer:
 
 .. code-block:: console
 
-  composer global require 'platformsh/cli:1.*'
+  composer global require platformsh/cli:@stable
 
 You can find the system requirements and more information in the `installation instructions on GitHub <https://github.com/platformsh/platformsh-cli/blob/master/README.md>`_.
 
