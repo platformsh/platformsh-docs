@@ -15,6 +15,7 @@ To fully benefit from `Platform.sh <https://platform.sh>`_, it's recommended to 
   overview/index
   web-ui/index
   cli/index
+  reference/index
 
 .. toctree::
   :maxdepth: 2
@@ -33,7 +34,6 @@ To fully benefit from `Platform.sh <https://platform.sh>`_, it's recommended to 
   :maxdepth: 2
   :glob:
 
-  reference/index
   protective-block
 
 .. toctree::
