@@ -15,7 +15,7 @@ You can find some examples for those configuration files on
 Platform.sh exposes a `.platform.app.yaml` file which defines your
 application and the way it will be built and deployed on Platform.sh.
 
-``` {.sourceCode .yaml}
+```yaml
 # .platform.app.yaml
 # This file describes an application. You can have multiple applications
 # in the same project.
@@ -204,7 +204,7 @@ and in the runtime environment of your application.
 
 You can specify those dependencies like this:
 
-``` {.sourceCode .yaml}
+```yaml
 # .platform.app.yaml
 dependencies:
   php:
@@ -260,7 +260,7 @@ SASS files using Grunt.
 
 In your `.platform.app.yaml` file:
 
-``` {.sourceCode .yaml}
+```yaml
 dependencies:
   ruby:
     sass: "3.4.7"
@@ -307,7 +307,7 @@ $ mkdir .platform
 
 Here is an example of a `services.yaml` file:
 
-``` {.sourceCode .yaml}
+```yaml
 # .platform/services.yaml
 mysql:
   type: mysql
@@ -343,7 +343,7 @@ $ mkdir .platform
 
 Here is an example of a `routes.yaml` file:
 
-``` {.sourceCode .yaml}
+```yaml
 # .platform/routes.yaml
 "http://{default}/":
   type: upstream

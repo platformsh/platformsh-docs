@@ -39,7 +39,7 @@ several routes separately.
 
 Here is an example:
 
-``` {.sourceCode .yaml}
+```yaml
 http://{default}/:
   type: upstream
   upstream: php:php
@@ -92,7 +92,7 @@ Some parameters let you change this cache key: the `headers` key and the
 
 The default value for these keys are the following:
 
-``` {.sourceCode .yaml}
+```yaml
 cache:
   enabled: true
   headers: ["Accept-Language", "Accept"]
@@ -112,7 +112,7 @@ The `headers` key defines on which values the cache key must depend.
 
 For example, if the `headers` key is the following:
 
-``` {.sourceCode .yaml}
+```yaml
 cache:
   enabled: true
   headers: ["Accept"]
@@ -127,7 +127,7 @@ The `cookies` key define on which values the cache key must depend.
 
 For example:
 
-``` {.sourceCode .yaml}
+```yaml
 cache:
   enabled: true
   cookies: ["foo"]

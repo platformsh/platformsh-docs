@@ -11,7 +11,7 @@ In order to copy your project locally, you'll need to know its project
 ID. The command `platform projects` will list all of the projects in
 your account.
 
-``` {.sourceCode .none}
+```bash
 ~/htdocs $ platform projects
   Your projects are:
   +---------------+----------------------------+------------------------------------------------+
@@ -32,7 +32,7 @@ your local system is simple. Navigate to the folder you want to copy the
 project to and then run `platform get [project-id] [folder-name]`. You
 can then choose which branch you want to clone first.
 
-``` {.sourceCode .none}
+```bash
 ~/htdocs $ platform get [project-id] my-project
   Enter a number to choose which environment to checkout:
   [0] : Master
@@ -67,7 +67,7 @@ Inside the new folder, there are a few directories and a file. They are:
 >     `builds` folder. It should be used as the document root for your
 >     local web server.
 
-``` {.sourceCode .none}
+```bash
 ~/htdocs/my-project $ ls -a
   .platform-project
   builds
@@ -81,7 +81,7 @@ Build the local site
 Now that you have a copy of your project locally, you can run
 `platform build` to pull it all together.
 
-``` {.sourceCode .none}
+```bash
 ~/htdocs/my-project $ platform build
   Building application using the toolstack php:drupal
   Beginning to build ~/htdocs/my-project/repository/project.make.
@@ -92,7 +92,7 @@ Now that you have a copy of your project locally, you can run
   Build complete
 ```
 
-``` {.sourceCode .none}
+```bash
 ~/htdocs/my-project $ ls -a
   .platform-project
   builds

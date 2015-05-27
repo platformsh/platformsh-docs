@@ -1,9 +1,12 @@
 Toolstacks
 ==========
 
-> maxdepth
->
-> :   3
->
-> php/index
+* Drupal
+* Symfony
 
+* Custom PHP Applications
+
+* Wordpress
+* Magento
+* Prestashop
+* Laravel

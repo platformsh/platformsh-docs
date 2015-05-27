@@ -33,6 +33,3 @@ mounts:
 hooks:
     build: "./app/console cache:warmup"
 ```
-
-> -   configuration\_files
-

@@ -14,13 +14,13 @@ module to your project.
 If you are using a make file, you can add those lines to your
 `project.make`:
 
-``` {.sourceCode .ini}
+```ini
 projects[redis][version] = 7.x-2.12
 ```
 
 To use the Predis library also add it to your make file:
 
-``` {.sourceCode .ini}
+```ini
 libraries[predis][download][type] = get
 libraries[predis][download][url] = http://github.com/nrk/predis/archive/v0.8.7.tar.gz
 libraries[predis][directory_name] = predis
@@ -32,7 +32,7 @@ libraries[predis][destination] = libraries
 To use the PhpRedis extension you will need to add it to your
 .platform.app.yaml file.
 
-``` {.sourceCode .yaml}
+```yaml
 # Additional extensions
 runtime:
     extensions:
@@ -121,17 +121,17 @@ DrupalDatabaseCache
 If you prefer to commit these variables directly to your `settings.php`,
 here are the lines to add:
 
-``` {.sourceCode .php}
+```php
 $conf['redis_client_interface'] = 'Predis';
 ```
 
 Or
 
-``` {.sourceCode .php}
+```php
 $conf['redis_client_interface'] = 'PhpRedis';
 ```
 
-``` {.sourceCode .php}
+```php
 $conf['redis_client_host']      = 'redis.internal';
 $conf['lock_inc']               = 'sites/all/modules/redis/redis.lock.inc';
 $conf['cache_backends'][]       = 'sites/all/modules/redis/redis.autoload.inc';

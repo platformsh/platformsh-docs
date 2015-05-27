@@ -42,7 +42,7 @@ Each Drupal module you want to install on your project should be
 included in the make file. For example, if you want to add Drupal
 Commerce, you need to add the following lines to your `project.make`:
 
-``` {.sourceCode .ini}
+```ini
 ; Modules
 projects[addressfield][version] = "1.0-beta4"
 projects[addressfield][subdir] = "contrib"
@@ -68,7 +68,7 @@ projects[views][subdir] = "contrib"
 You'd do the same if you want to add a theme. Add the following lines to
 your `project.make`:
 
-``` {.sourceCode .ini}
+```ini
 ; Zen Theme
 projects[] = zen
 ```
@@ -79,7 +79,7 @@ You'd do the same if you want to add a third-party library. For our
 example here, we're adding the HTML5 Boilerplate library. Add the
 following lines to your `project.make`:
 
-``` {.sourceCode .ini}
+```ini
 ; Libraries
 libraries[html5bp][download][type] = "file"
 libraries[html5bp][download][url] = "http://github.com/h5bp/html5-boilerplate/zipball/v3.0.2stripped"

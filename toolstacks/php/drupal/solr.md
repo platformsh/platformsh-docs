@@ -12,12 +12,10 @@ project.
 If you are using a make file, you can add those lines to your
 `project.make`:
 
-``` {.sourceCode .ini}
+```ini
 projects[search_api][version] = 1.13
 projects[search_api_solr][version] = 1.x-dev
 ```
-
-> -   drush\_make\_files
 
 Configuration
 -------------

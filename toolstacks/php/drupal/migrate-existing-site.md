@@ -82,8 +82,6 @@ Import your database
 You can use *drush aliases* to import your existing local database into
 Platform.
 
-> -   create\_drush\_aliases
-
 Before playing with the aliases, you should backup your local database
 using drush sql-dump.
 

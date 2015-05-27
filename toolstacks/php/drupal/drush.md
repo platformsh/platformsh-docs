@@ -66,7 +66,7 @@ $ sudo vi platform.aliases.drushrc.php
 In your new alias file, you can create aliases for your various
 Platform.sh projects. For example:
 
-``` {.sourceCode .php}
+```php
 <?php
 // Platform environment
 $aliases['master'] = array(

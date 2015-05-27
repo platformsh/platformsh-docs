@@ -12,7 +12,7 @@ Requirements
 If you are using a make file, you can add those lines to your
 `project.make`:
 
-``` {.sourceCode .ini}
+```ini
 projects[entitycache][version] = 1.2
 projects[authcache][version] = 2.0-beta3
 ```
@@ -22,7 +22,7 @@ Entity Cache](https://www.drupal.org/project/commerce_entitycache) and
 [Commerce Authcache](https://www.drupal.org/project/commerce_authcache)
 modules:
 
-``` {.sourceCode .ini}
+```ini
 projects[commerce_entitycache][version] = 1.1
 projects[commerce_authcache][version] = 1.x-dev
 ```
@@ -57,7 +57,7 @@ Add the cache backends for Authcache
 If you prefer to commit these variables to your `settings.php`, here are
 the lines to add:
 
-``` {.sourceCode .php}
+```php
 $conf['cache_backends'][] = 'sites/all/modules/authcache/authcache.cache.inc';
 $conf['cache_backends'][] = 'sites/all/modules/authcache/modules/authcache_builtin/authcache_builtin.cache.inc';
 ```

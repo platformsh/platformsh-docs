@@ -20,7 +20,7 @@ public SSH key in and submit.
 If you're using Drupal for example, you can now use your private module
 by adding it to your make file:
 
-``` {.sourceCode .ini}
+```ini
 ; Add private repository from Github
 projects[module_private][type] = module
 projects[module_private][subdir] = "contrib"
