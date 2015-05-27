@@ -1,4 +1,3 @@
-_build/*
-*.pyc
+_book/*
 .DS_Store
 .env
