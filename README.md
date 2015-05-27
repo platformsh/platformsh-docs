@@ -8,4 +8,4 @@ development. This describes how to use (and benefit from)
 To fully benefit from [Platform.sh](https://platform.sh), it's
 recommended to install the [Command Line Interface
 (CLI)](https://github.com/platformsh/platformsh-cli). Read more about
-the CLI here \<cli\>.
+the CLI here [CLI](cli/).
