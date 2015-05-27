@@ -86,3 +86,4 @@ dependencies:
 hooks:
     build: |
       gitbook build
+      mv index.php _book/index.php
