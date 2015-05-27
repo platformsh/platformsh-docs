@@ -1,4 +1,3 @@
 .travis.yml
 .platform.app.yaml
 .platform/*
-index.php
