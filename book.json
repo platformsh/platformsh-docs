@@ -1,12 +1,32 @@
-{
+{   
+    "title": "Platform.sh Documentation",
     "description": "Platform.sh Documentation",
     "plugins": [
-        "ga"
+        "ga", "edit-link", "richquotes", "anchors"
     ],
     "pluginsConfig": {
+      "fontSettings": {
+          "theme": "night"
+      },
         "ga": {
             "token": "UA-4064131-10"
-        }
+        },
+        "edit-link": {
+                       "base": "https://github.com/platformsh/platformsh-docs/edit/dev",
+                       "label": "Edit This Page"
+                   }
     },
-    "title": "Platform.sh Documentation"
+    "links": {
+           "sidebar": {
+               "Platform.sh": "https://platform.sh"
+           },
+           "sharing": {
+               "google": null,
+               "facebook": null,
+               "twitter": null,
+               "weibo": null,
+               "all": null
+           }
+       }
+    
 }
