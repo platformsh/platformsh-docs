@@ -79,7 +79,7 @@ disk: 2048
 
 # Build time dependencies.
 dependencies:
-  nodehs:
+  nodejs:
     gitbook-cli: "*"
 
 # The hooks that will be performed when the package is deployed.
