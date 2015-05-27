@@ -1,3 +1,8 @@
 .travis.yml
 .platform.app.yaml
+<<<<<<< HEAD
 .platform/*
+=======
+.platform/*
+index.php
+>>>>>>> 288b0030b08213a8fd3527238589d8ee0905c6fb
