@@ -44,7 +44,7 @@ Add the following environment variables on Platform UI.
 
 Add the cache backends for Authcache
 
-``` {.sourceCode .console}
+```bash
 [
    "sites/all/modules/redis/redis.autoload.inc",
    "sites/all/modules/authcache/authcache.cache.inc",

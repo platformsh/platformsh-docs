@@ -6,7 +6,7 @@ webhooks.
 
 With the CLI, you can list all your active integrations:
 
-``` {.sourceCode .console}
+```bash
 platform integrations
 ```
 
@@ -49,7 +49,7 @@ permission to push code to the repository.
 Now open a command line (you need to have the Platform.sh CLI
 installed). To enable the GitHub integration with the CLI:
 
-``` {.sourceCode .console}
+```bash
 platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 ```
 
@@ -78,7 +78,7 @@ notifications about your Platform.sh activity directly to HipChat.
 
 To enable the HipChat webhook with the CLI:
 
-``` {.sourceCode .console}
+```bash
 platform integration:add --type=hipchat --room=ROOM-ID --token=HIPCHAT-TOKEN
 ```
 
@@ -95,7 +95,7 @@ This hook will allow you to capture any push events on platform and POST
 a JSON file describing the activity to the url of your choice. You can
 use this to further automate your Platform.sh workflow.
 
-``` {.sourceCode .console}
+```bash
 platform integration:add --type=webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
 ```
 

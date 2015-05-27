@@ -18,7 +18,7 @@ stored on the mounted volumes.
 
 Using the CLI:
 
-``` {.sourceCode .console}
+```bash
 platform environment:backup
 ```
 
@@ -32,7 +32,7 @@ trigger your backup via the web UI or via the CLI.
 If you want to automate your backups, you can use Jenkins and trigger
 the following CLI command:
 
-``` {.sourceCode .console}
+```bash
 platform environment:backup
 ```
 

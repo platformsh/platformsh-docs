@@ -22,7 +22,7 @@ account](https://blackfire.io/account/credentials).
 >
 Paste those credentials in your `.platform.app.yaml`:
 
-``` {.sourceCode .console}
+```bash
 runtime:
   extensions:
     - name: blackfire
@@ -33,7 +33,7 @@ runtime:
 
 Push your changes to your Platform environment to enable Blackfire:
 
-``` {.sourceCode .console}
+```bash
 git add .platform.app.yaml
 git commit -m "Enable Blackfire."
 git push

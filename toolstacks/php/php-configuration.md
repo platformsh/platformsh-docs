@@ -55,7 +55,7 @@ memory_limit = 256M
 After pushing your file, you can check that the custom PHP configuration
 has been added to your environment by logging in via SSH and type:
 
-``` {.sourceCode .console}
+```bash
 web@kjh43kbobssae-master--php:~$ cat /etc/php5/fpm/php.ini
 
 ; =============== Custom configuration from `/app/php.ini`

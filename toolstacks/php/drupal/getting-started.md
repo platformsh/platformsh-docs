@@ -34,7 +34,7 @@ contributed modules, themes or libraries.
 > When building as a profile, you **need a make file for Drupal core**
 > called: `project-core.make`. See drush\_make\_files.
 
-``` {.sourceCode .console}
+```bash
 .git/
 project.make
 project-core.make
@@ -67,7 +67,7 @@ make file called: `project.make` (or even `drupal-org.make`),
 Platform.sh builds your project using Drush make. Everything you have in
 your repository will be copied to your `sites/default` folder.
 
-``` {.sourceCode .console}
+```bash
 .git/
 project.make
 modules/
@@ -94,7 +94,7 @@ translations/
 Platform.sh accepts your project's files. You are expected to have an
 `index.php` file at the root of your repository.
 
-``` {.sourceCode .console}
+```bash
 .git/
 index.php
 ... (other Drupal core files)
@@ -126,7 +126,7 @@ Github](https://github.com/platformsh/platformsh-examples/tree/drupal/7.x).
 For Drupal 8, your `.platform.app.yaml` should specify the `php:drupal`
 toolstack, and install Drush 7 RC as a build-time dependency:
 
-``` {.sourceCode .console}
+```bash
 # Note: Drush 7.0.0 is no longer compatible with Drupal 8, but the
 # pre-release -rc versions were.
 dependencies:

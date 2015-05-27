@@ -19,7 +19,7 @@ Make sure your `.platform.app.yaml` is specific to Symfony.
 
 A Symfony specific `.platform.app.yaml` file would look like this:
 
-``` {.sourceCode .console}
+```bash
 toolstack: "php:symfony"
 
 web:

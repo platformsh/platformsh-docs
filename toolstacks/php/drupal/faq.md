@@ -29,7 +29,7 @@ If your project is using a make file, you will end up with the default
 On your Development environments, Platform.sh automatically overrides
 your `robots.txt` file with:
 
-``` {.sourceCode .console}
+```bash
 User-agent: *
 Disallow: /
 ```

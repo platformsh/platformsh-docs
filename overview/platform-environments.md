@@ -134,7 +134,7 @@ feature? Is it a hotfix?
 If you use Agile, for example, you could create hierarchical
 environments and name them like this:
 
-``` {.sourceCode .console}
+```bash
 Sprint1
   Feature1
    Feature2
@@ -149,7 +149,7 @@ If you prefer splitting your environments per developer and having a
 specific environment per task or per ticket, you could use something
 like this:
 
-``` {.sourceCode .console}
+```bash
 Staging
   Developer1
     Ticket-526

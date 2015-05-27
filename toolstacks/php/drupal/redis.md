@@ -59,7 +59,7 @@ variables to match.
 
 `drupal:cache_backends`
 
-``` {.sourceCode .console}
+```bash
 [
    "sites/all/modules/redis/redis.autoload.inc"
 ]
@@ -76,37 +76,37 @@ variables to match.
 
 `drupal:lock_inc`
 
-``` {.sourceCode .console}
+```bash
 sites/all/modules/redis/redis.lock.inc
 ```
 
 `drupal:redis_client_host`
 
-``` {.sourceCode .console}
+```bash
 redis.internal
 ```
 
 `drupal:redis_client_interface`
 
-``` {.sourceCode .console}
+```bash
 Predis
 ```
 
 Or
 
-``` {.sourceCode .console}
+```bash
 PhpRedis
 ```
 
 `drupal:cache_default_class`
 
-``` {.sourceCode .console}
+```bash
 Redis_Cache
 ```
 
 `drupal:cache_class_cache_form`
 
-``` {.sourceCode .console}
+```bash
 DrupalDatabaseCache
 ```
 

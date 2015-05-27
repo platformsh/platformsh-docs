@@ -31,7 +31,7 @@ If you want your site to only be available at `http://mydomain.com` and
 have `http://www.mydomain.com` redirect to `http://mydomain.com`, you
 need define your `routes.yaml` as follow:
 
-``` {.sourceCode .console}
+```bash
 "http://{default}/":
     type: upstream
     upstream: "php:php"
@@ -50,7 +50,7 @@ hostname.
 Here would be an example of your `routes.yaml` for the
 `http://mydomain.com` URL:
 
-``` {.sourceCode .console}
+```bash
 "http://{default}/":
     type: upstream
     upstream: "php:php"
@@ -72,7 +72,7 @@ Here would be an example of your `routes.yaml` for the
 If you have uploaded your SSL certificate and you want to serve your
 entire site with HTTPS, here is what your routes would look like:
 
-``` {.sourceCode .console}
+```bash
 "https://{default}/":
     type: upstream
     upstream: "php:php"
@@ -200,7 +200,7 @@ server.pass.key: Verifying - Enter pass phrase for server.pass.key:
 The private key needs to be stripped of its password so it can be loaded
 without manually entering the password.
 
-``` {.sourceCode .console}
+```bash
 $ openssl rsa -in server.pass.key -out server.key
 ```
 
@@ -232,7 +232,7 @@ one certificate and it can be attached to the main domain or subdomain.
 
 Generate the CSR:
 
-``` {.sourceCode .console}
+```bash
 $ openssl req -nodes -new -key server.key -out server.csr
 ...
 Country Name (2 letter code) [AU]:US
@@ -274,7 +274,7 @@ configure SSL Endpoint for your app. First, provision an endpoint.
 
 ### Use the Platform.sh CLI to add the certificate
 
-``` {.sourceCode .console}
+```bash
 platform domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
 
 platform help domain:add
@@ -338,7 +338,7 @@ configured correctly for your secure domain.
 
 The -k option tells curl to ignore untrusted certificates.
 
-``` {.sourceCode .console}
+```bash
 $ curl -kvI https://www.example.com
 About to connect() to www.example.com port 443 (#0)
 Trying 50.16.234.21... connected

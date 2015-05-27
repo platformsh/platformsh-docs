@@ -81,7 +81,7 @@ The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will
 authenticate you with Platform.sh and show your projects. Just type this
 command to start:
 
-``` {.sourceCode .console}
+```bash
 platform
 ```
 
@@ -109,7 +109,7 @@ key into the *Key* field. Your key will typically be found at
 Alternately, you can upload your SSH key using the Platform.sh CLI
 itself.
 
-``` {.sourceCode .console}
+```bash
 platform ssh-key:add ~/.ssh/id_rsa.pub
 ```
 
@@ -117,7 +117,7 @@ platform ssh-key:add ~/.ssh/id_rsa.pub
 
 The `platform` command will show you a list of your projects.
 
-``` {.sourceCode .console}
+```bash
 $ platform
 Welcome to Platform.sh!
 Your projects are:
@@ -131,14 +131,14 @@ Your projects are:
 You can obtain a local copy of the project using the `platform get`
 command:
 
-``` {.sourceCode .console}
+```bash
 platform get [PROJECT-ID]
 ```
 
 Now you can see the local directory structure that the Platform CLI
 provides for your local development:
 
-``` {.sourceCode .console}
+```bash
 $ ls -1
 builds     # Contains all builds of your projects
 repository # Checkout of the Git repository
@@ -229,7 +229,7 @@ executed during the build process.
 The default `project.make` file for a Drupal 7 installation looks like
 this:
 
-``` {.sourceCode .console}
+```bash
 api = 2
 core = 7.x
 
@@ -300,7 +300,7 @@ Platform.sh. There is also a Drush Alias for your local site.
 
 To see your Drush Aliases, use the `platform drush-aliases` command:
 
-``` {.sourceCode .console}
+```bash
 $ platform drush-aliases
 Aliases for My Site (tqmd2kvitnoly):
     @tqmd2kvitnoly._local
@@ -319,13 +319,13 @@ Aliases for My Site (tqmd2kvitnoly):
 
 You can set the Drush alias group name to something more convenient:
 
-``` {.sourceCode .console}
+```bash
 platform drush-aliases -g [alias group]
 ```
 
 After that, they will be easier to remember and type.
 
-``` {.sourceCode .console}
+```bash
 $ platform drush-aliases -g mysite
 Project aliases created, group: @mysite
 Delete old alias group @tqmd2kvitnoly? [Y/n] Y
@@ -342,14 +342,14 @@ Given the Drush aliases shown above, you can now use a normal Drush
 command to synchronize my local database with the data from my Master
 environment online:
 
-``` {.sourceCode .console}
+```bash
 $ drush sql-sync @mysite.master @mysite._local
 ```
 
 In the same style, use Drush to grab the uploaded files from the files
 directory and pull them into your local environment:
 
-``` {.sourceCode .console}
+```bash
 $ drush rsync @mysite.staging:%files @mysite._local:%files
 ```
 
@@ -364,7 +364,7 @@ $ drush rsync @mysite.staging:%files @mysite._local:%files
 Drush 7 has problems with SQL-syncing Drupal 7 sites. If you see error
 below:
 
-``` {.sourceCode .console}
+```bash
 Starting to dump database on Source. [ok]
 Directory /app exists, but is not writable. Please check directory permissions. [error]
 Unable to create backup directory /app/drush-backups/main. [error]
@@ -374,7 +374,7 @@ sql-dump failed.
 
 Than you should downgrade to Drush version 6.\* to make sql-sync works:
 
-``` {.sourceCode .console}
+```bash
 $ composer global require 'drush/drush:6.*'
 ```
 
@@ -389,7 +389,7 @@ virtual host general settings.” For more details visit [MAMP Pro
 documentation
 page](http://documentation.mamp.info/en/documentation/mamp/).
 
-``` {.sourceCode .console}
+```bash
 <Directory />
         Options FollowSymLinks
         AllowOverride All

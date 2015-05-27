@@ -21,7 +21,7 @@ won't access Drupal.
 Cache is enabled by default in your `.platform/routes.yaml` file. This
 is an example:
 
-``` {.sourceCode .console}
+```bash
 http://{default}/:
     type: upstream
     upstream: php:php

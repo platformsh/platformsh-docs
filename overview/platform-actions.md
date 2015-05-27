@@ -6,10 +6,6 @@ with your environments.
 
 ![image](/overview/images/icon-git.png)
 
-> alt
->
-> :   Git
->
 Git
 ---
 
@@ -20,10 +16,6 @@ repository locally.
 
 ![image](/overview/images/icon-branch.png)
 
-> alt
->
-> :   Branch
->
 Branch
 ------
 
@@ -46,10 +38,6 @@ During a `branch`, three things happen:
 
 ![image](/overview/images/icon-merge.png)
 
-> alt
->
-> :   Merge
->
 Merge
 -----
 
@@ -66,10 +54,6 @@ During a `merge`:
 
 ![image](/overview/images/icon-sync.png)
 
-> alt
->
-> :   Sync
->
 Sync
 ----
 
@@ -85,10 +69,6 @@ desired, you can benefit from having only code changes applied.
 
 ![image](/overview/images/icon-backup.png)
 
-> alt
->
-> :   Backup
->
 Snapshot & Restore
 ------------------
 
@@ -100,13 +80,13 @@ clicking on the `restore` link.
 
 You can also use the CLI with:
 
-``` {.sourceCode .console}
+```bash
 platform environment:backup
 ```
 
 to create a snapshot, and
 
-``` {.sourceCode .console}
+```bash
 platform environment:restore
 ```
 

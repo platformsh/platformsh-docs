@@ -6,7 +6,7 @@ How do I store my sessions variables?
 
 If you get the following error:
 
-``` {.sourceCode .console}
+```bash
 failed: Read-only file system (30) in /app/app/cache/dev/classes.php line 420
 ```
 
@@ -18,7 +18,7 @@ sessions in that folder.
 
 Simply edit your `.platform.app.yaml` and add a mounts there:
 
-``` {.sourceCode .console}
+```bash
 mounts:
 ...
     "/app/sessions": "shared:files/sessions"
@@ -27,7 +27,7 @@ mounts:
 
 Then, add this line at the top of your `app_dev.php`:
 
-``` {.sourceCode .console}
+```bash
 ini_set('session.save_path', __DIR__.'/../app/sessions' );
 ```
 
@@ -43,7 +43,7 @@ missing dependencies.
 You will need to install composer first and then run the following
 command:
 
-``` {.sourceCode .console}
+```bash
 cd my_project_name/
 composer install
 ```

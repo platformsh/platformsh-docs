@@ -6,7 +6,7 @@ Platform.sh exposes environment variables which you can interact with.
 When you're logged in via SSH to an environment, you can list the
 environment variables by running:
 
-``` {.sourceCode .console}
+```bash
 web@kjh43kbobssae-master--php:~$ export
 ```
 
@@ -14,7 +14,7 @@ Since they are **base64-encoded JSON object** that maps variable names
 to variable values, you can decode the value of a specific variable by
 running:
 
-``` {.sourceCode .console}
+```bash
 web@kjh43kbobssae-master--php:~$ php5 -r 'print_r(json_decode(base64_decode(getenv("PLATFORM_RELATIONSHIPS"))));'
 
 stdClass Object

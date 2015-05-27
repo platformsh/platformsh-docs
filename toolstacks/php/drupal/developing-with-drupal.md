@@ -14,7 +14,7 @@ Here, we'll see how to make code changes to an environment.
 Make sure you're on a working environment. In this example we're on the
 *sprint1* branch:
 
-``` {.sourceCode .console}
+```bash
 $ git branch
 * sprint1
 ```
@@ -91,7 +91,7 @@ To commit your custom modules, themes or libraries, you need to commit
 them under a `modules`, `themes` or `libraries` folder at the root of
 your Git repository.
 
-``` {.sourceCode .console}
+```bash
 $ ls
   libraries/
   modules/
@@ -118,7 +118,7 @@ want to use.
 When you're done, commit your changes to test them on your online
 environment.
 
-``` {.sourceCode .console}
+```bash
 $ git add .
 $ git commit -m "Made changes to my make file."
 $ git push
@@ -165,13 +165,13 @@ aliases have already been set up.
 With the create\_drush\_aliases (depending on how yours are set up), you
 could use a command similar to this:
 
-``` {.sourceCode .console}
+```bash
 $ drush sql-sync @platform.master @platform.local
 ```
 
 An alternate method that is appropriate for larger databases is to use
 the pipe | to stream the data, instead of making copies.
 
-``` {.sourceCode .console}
+```bash
 $ drush @platform.master sql-dump | drush @platform.local sqlc
 ```

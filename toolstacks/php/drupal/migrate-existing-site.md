@@ -19,7 +19,7 @@ keep your existing Git history.
 On a terminal, go to your Git project folder and add **platform** as a
 remote.
 
-``` {.sourceCode .console}
+```bash
 $ cd ~/Sites/platform
 $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 ```
@@ -31,7 +31,7 @@ $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 
 Then push your local branch to your **platform** remote.
 
-``` {.sourceCode .console}
+```bash
 $ git push platform HEAD:master
 ```
 
@@ -46,7 +46,7 @@ initialize your repo.
 On a terminal, go to your project folder, initiate the Git repository,
 and add a **platform** remote repository.
 
-``` {.sourceCode .console}
+```bash
 $ cd ~/Sites/mysite
 $ git init
 $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
@@ -59,7 +59,7 @@ $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 Commit your project to the **platform** remote repository and push the
 code.
 
-``` {.sourceCode .console}
+```bash
 $ git add .
 $ git commit -m "Initial commit of My Site"
 $ git push platform master
@@ -87,21 +87,21 @@ Platform.
 Before playing with the aliases, you should backup your local database
 using drush sql-dump.
 
-``` {.sourceCode .console}
+```bash
 $ drush @platform.local sql-dump > backup_database.sql
 ```
 
 You can also sanitize your database prior to import it into Platform by
 running:
 
-``` {.sourceCode .console}
+```bash
 $ drush @platform.local sql-sanitize
 ```
 
 When you're ready, export your local database and then import it into
 your remote Platform environment.
 
-``` {.sourceCode .console}
+```bash
 $ drush @platform.local sql-dump > local_database.sql
 $ drush @platform.master sql-cli < local_database.sql
 ```
@@ -116,13 +116,13 @@ Export your database in an SQL file or in a compressed file.
 Copy it via SSH to the remote environment on Platform into the
 `/app/tmp` folder which is writable:
 
-``` {.sourceCode .console}
+```bash
 $ scp database.sql [PROJECT-ID]-master@ssh.[REGION].platform.sh:/app/tmp
 ```
 
 Log in to the environment via SSH and import the database:
 
-``` {.sourceCode .console}
+```bash
 $ ssh [PROJECT-ID]-master@ssh.[REGION].platform.sh
 web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < tmp/database.sql
 ```
@@ -134,7 +134,7 @@ Import your files
 
 We use *drush alias* to import your existing local files.
 
-``` {.sourceCode .console}
+```bash
 $ drush rsync @platform.local:%files @platform.master:%files
 You will destroy data from [PROJECT-ID]-master@ssh.[REGION].platform.sh:././sites/default/files and replace with data from ~/Sites/platform/sites/default/files/
 Do you really want to continue? (y/n): y
@@ -155,7 +155,7 @@ have properly been imported.
 Go to your files folder on your local machine and synchronize them to
 your remote Platform environment:
 
-``` {.sourceCode .console}
+```bash
 $ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:public/sites/default/files/
 ```
 
@@ -172,14 +172,14 @@ the following:
 
 First, SSH into your web container.
 
-``` {.sourceCode .console}
+```bash
 $ ssh [PROJECT-ID]-master@ssh.[REGION].platform.sh
 ```
 
 Second, execute the following commands to download, tweak, and run the
 registry rebuild.
 
-``` {.sourceCode .console}
+```bash
 $ drush dl registry_rebuild --destination=/app/tmp
 $ sed -i 's/, define_drupal_root()/, '"'"'\/app\/public'"'"'/' /app/tmp/registry_rebuild/registry_rebuild.php
 $ cd /app/public

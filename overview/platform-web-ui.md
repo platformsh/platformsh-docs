@@ -6,10 +6,6 @@ with your projects and manage your environments.
 
 ![](/overview/images/platform-ui.png)
 
-> alt
->
-> :   Platform.sh web UI
->
 Environment List
 ----------------
 
@@ -26,10 +22,6 @@ Header
 
 ![](/overview/images/ui-header.png)
 
-> alt
->
-> :   Platform.sh web UI header
->
 The platform\_ui exposes 5 main actions that you can use to interface
 with your environments.
 
@@ -42,10 +34,6 @@ gear icon next to the project name.
 
 ![](/overview/images/ui-conf-project.png)
 
-> alt
->
-> :   Platform.sh project configuration screen
->
 Environment configuration
 -------------------------
 
@@ -61,9 +49,3 @@ You can access the configuration page of an environment by clicking on
 the gear icon next to the environment name.
 
 ![](/overview/images/ui-conf-environment.png)
-
-> alt
->
-> :   Platform.sh environment configuration screen
->
-

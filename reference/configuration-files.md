@@ -245,7 +245,7 @@ After a Git push, you can see the results of the deployment hooks in the
 `/var/log/deploy.log` file when logging to the environment via SSH. It
 contains the log of the execution of the deployment hook. For example:
 
-``` {.sourceCode .console}
+```bash
 [2014-07-03 10:03:51.100476] Launching hook 'cd public ; drush -y updatedb'.
 
 My_custom_profile  7001  Update 7001: Enable the Platform module.
@@ -301,7 +301,7 @@ inside the `.platform` folder at the root of your Git repository.
 
 If you don't have a `.platform` folder, you need to create one:
 
-``` {.sourceCode .console}
+```bash
 $ mkdir .platform
 ```
 
@@ -337,7 +337,7 @@ repository.
 
 If you don't have a `.platform` folder, you need to create one:
 
-``` {.sourceCode .console}
+```bash
 $ mkdir .platform
 ```
 
@@ -364,7 +364,7 @@ Platform CLI.
 For example, in case you want to enable sending emails for your
 non-master environment use this command:
 
-``` {.sourceCode .console}
+```bash
 platform environment:metadata enable_smtp true
 ```
 

@@ -10,7 +10,7 @@ How do I get it?
 
 You can install the cli easily using Composer:
 
-``` {.sourceCode .console}
+```bash
 composer global require platformsh/cli:@stable
 ```
 
@@ -33,7 +33,7 @@ Platform.sh.
 Once you have the cli installed, run `platform list` to see all of the
 available commands.
 
-``` {.sourceCode .console}
+```bash
 $ platform list
 Platform.sh CLI
 
@@ -113,7 +113,7 @@ variable
 You can preface any command with `help` to see more information on how
 to use that command.
 
-``` {.sourceCode .console}
+```bash
 $ platform help domain:add
 
 Usage:

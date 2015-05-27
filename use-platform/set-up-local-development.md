@@ -115,7 +115,7 @@ SSH tunneling
 Use SSH tunneling to connect your local development site to Platform.sh
 services.
 
-``` {.sourceCode .console}
+```bash
 # Use your own project ID, branch, and specify whether it is the EU or US region (eg. us.platform.sh)
 $ ssh -N -L 3306:database.internal:3306 [project ID]-[branch]@ssh.eu.platform.sh & 
 ```
@@ -123,7 +123,7 @@ $ ssh -N -L 3306:database.internal:3306 [project ID]-[branch]@ssh.eu.platform.sh
 After the tunnel is built, you can confirm its presence using the `fg`
 command:
 
-``` {.sourceCode .console}
+```bash
 $ fg
   [1]  + 35203 running    ssh -N -L 3306:database.internal:3306 xjybxziut32me-master@ssh.eu.platform.sh
 # pressing CTRL-C at this point will kill the tunnel.
@@ -133,6 +133,6 @@ $ fg
 Then you can connect to the remote database normally, as if it were
 local.
 
-``` {.sourceCode .console}
+```bash
 $ mysql --host=127.0.0.1 --user='' --pass='' --database='main'
 ```

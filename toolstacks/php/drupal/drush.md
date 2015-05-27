@@ -26,13 +26,13 @@ Install Drush
 
 Install drush with composer:
 
-``` {.sourceCode .console}
+```bash
 $ composer global require 'drush/drush:6.*'
 ```
 
 At the end of the installation, you should be able to run:
 
-``` {.sourceCode .console}
+```bash
 $ drush
 ```
 
@@ -58,7 +58,7 @@ file](https://github.com/drush-ops/drush/blob/master/examples/example.aliases.dr
 If you're not using the cli, navigate to your `~/.drush` folder and
 create a new file called `platform.aliases.drushrc.php`.
 
-``` {.sourceCode .console}
+```bash
 $ cd ~/.drush
 $ sudo vi platform.aliases.drushrc.php
 ```
@@ -93,7 +93,7 @@ $aliases['local'] = array(
 
 Then test your settings to make sure they work.
 
-``` {.sourceCode .console}
+```bash
 $ drush @platform.master status
 Drupal version                  :  7.24
 Site URI                        :  master-[project-id].eu.platform.sh
@@ -123,7 +123,7 @@ You can find a nice example make file on
 When building as a profile, you **need a make file for Drupal core**
 called: `project-core.make`:
 
-``` {.sourceCode .console}
+```bash
 api = 2
 core = 7.x
 
@@ -135,7 +135,7 @@ projects[drupal][type] = core
 If you want to generate a make file from your existing site, you can
 run:
 
-``` {.sourceCode .console}
+```bash
 $ drush make-generate project.make
 ```
 
@@ -150,7 +150,7 @@ themes and libraries.
 You can apply **contributed patches** to your modules, themes or
 libraries within your `project.make`:
 
-``` {.sourceCode .console}
+```bash
 projects[features][version] = "2.2"
 projects[features][patch][] = "https://www.drupal.org/files/issues/alter_overrides-766264-45.patch"
 ```
@@ -158,7 +158,7 @@ projects[features][patch][] = "https://www.drupal.org/files/issues/alter_overrid
 You can also apply **self-hosted patches**. Simply create a `PATCHES`
 folder at the root of your repository and add the patch as follow:
 
-``` {.sourceCode .console}
+```bash
 projects[uuid][version] = "1.0-alpha5"
 projects[uuid][patch][] = "PATCHES/fix-non-uuid-entity-load.patch"
 ```
@@ -169,7 +169,7 @@ When you are using a module that is in a DEV version, the best practice
 is to always target a specific commit ID so that you're always building
 the same "version" of the module:
 
-``` {.sourceCode .console}
+```bash
 ; CKEditor module: version 7.x-1.15+2-dev
 projects[ckeditor][download][revision] = "b29372fb446b547825dc6c30587eaf240717695c"
 projects[ckeditor][download][type] = "git"

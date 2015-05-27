@@ -1,9 +1,31 @@
 Web UI
 ======
 
-> maxdepth
->
-> :   2
->
-> overview configure-project configure-environment
+Platform.sh provides a responsive web UI which allows you to interact
+with your projects and manage your environments. The UI is built with
+[AngularJS](https://www.angularjs.org).
 
+![image](images/platform-ui.png)
+
+Environment List
+----------------
+
+Each of the environments of your projects are available on the left
+sidebar.
+
+The name of the environment is strikethroughed if it's been disabled. If
+it has an arrow next to it, this means the environment has children.
+
+Activity Feed
+-------------
+
+The web UI displays all the activity happening on your environments. You
+can filter messages per type.
+
+Header
+------
+
+The web UI exposes 5 main actions that you can use to interface with
+your environments.
+
+![image](images/ui-header.png)

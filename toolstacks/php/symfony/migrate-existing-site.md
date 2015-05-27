@@ -19,7 +19,7 @@ keep your existing Git history.
 On a terminal, go to your Git project folder and add **platform** as a
 remote.
 
-``` {.sourceCode .console}
+```bash
 $ cd ~/Sites/platform
 $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 ```
@@ -31,7 +31,7 @@ $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 
 Then push your local branch to your **platform** remote.
 
-``` {.sourceCode .console}
+```bash
 $ git push platform HEAD:master
 ```
 
@@ -46,7 +46,7 @@ initialize your repo.
 On a terminal, go to your project folder, initiate the Git repository,
 and add a **platform** remote repository.
 
-``` {.sourceCode .console}
+```bash
 $ cd ~/Sites/mysite
 $ git init
 $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
@@ -59,7 +59,7 @@ $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 Commit your project to the **platform** remote repository and push the
 code.
 
-``` {.sourceCode .console}
+```bash
 $ git add .
 $ git commit -m "Initial commit of My Site"
 $ git push platform master
@@ -82,13 +82,13 @@ Export your database in an SQL file or in a compressed file.
 Copy it via SSH to the remote environment on Platform into the
 `/app/tmp` folder which is writable:
 
-``` {.sourceCode .console}
+```bash
 $ scp database.sql [PROJECT-ID]-master@ssh.[REGION].platform.sh:/app/tmp
 ```
 
 Log in to the environment via SSH and import the database:
 
-``` {.sourceCode .console}
+```bash
 $ ssh [PROJECT-ID]-master@ssh.[REGION].platform.sh
 web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < tmp/database.sql
 ```
@@ -99,7 +99,7 @@ Import your files
 Go to your files folder on your local machine and synchronize them to
 your remote Platform.sh environment:
 
-``` {.sourceCode .console}
+```bash
 $ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:/app/tmp/
 ```
 
