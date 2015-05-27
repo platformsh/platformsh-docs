@@ -1,0 +1,12 @@
+{
+    "description": "Platform.sh Documentation",
+    "plugins": [
+        "ga"
+    ],
+    "pluginsConfig": {
+        "ga": {
+            "token": "UA-4064131-10"
+        }
+    },
+    "title": "Platform.sh Documentation"
+}
