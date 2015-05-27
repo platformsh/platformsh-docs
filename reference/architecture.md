@@ -11,14 +11,6 @@ dynamically keep track of each other.
 
 ![image](/overview/images/service-grid.png)
 
-> alt
->
-> :   Service Grid
->
-> align
->
-> :   center
->
 > **note**
 >
 > Platform.sh currently supports the following services: PHP, MySQL

@@ -53,14 +53,7 @@ Here is an example of a possible Agile workflow.
 
 ![image](/use-platform/images/branches.png)
 
-> alt
->
-> :   Create Branches
->
-> align
->
-> :   left
->
+
 The administrator creates a Sprint environment and gives each of the
 developers permission to create new feature environments. Another
 approach is that the administrator could create an environment for each
@@ -70,14 +63,7 @@ developer.
 
 ![image](/use-platform/images/merge.png)
 
-> alt
->
-> :   Merge a feature
->
-> align
->
-> :   left
->
+
 As a feature is completed, the administrator can review the work by
 accessing the website of the feature environment. The new feature is
 then merged back into the Sprint environment.
@@ -86,14 +72,6 @@ then merged back into the Sprint environment.
 
 ![image](/use-platform/images/sync.png)
 
-> alt
->
-> :   Sync the update to other features
->
-> align
->
-> :   left
->
 The remaining features will sync with the Sprint environment to ensure
 their working environment is up-to-date with the latest code.
 
@@ -101,14 +79,6 @@ their working environment is up-to-date with the latest code.
 
 ![image](/use-platform/images/merge-live.png)
 
-> alt
->
-> :   Merge to Live
->
-> align
->
-> :   left
->
 When the objectives of the sprint are complete, the administrator can
 then make a backup of the live site, then merge the Sprint environment
 into the live (Master) environment.

@@ -16,10 +16,6 @@ account](https://blackfire.io/account/credentials).
 
 ![](/integration/images/blackfire-credentials.png)
 
-> alt
->
-> :   Blackfire credentials
->
 Paste those credentials in your `.platform.app.yaml`:
 
 ```bash
@@ -47,10 +43,6 @@ Companion.
 
 ![](/integration/images/blackfire-companion.png)
 
-> alt
->
-> :   Blackfire companion
->
 That's it, your site is being profiled and you should get all the
 results in your Blackfire account.
 

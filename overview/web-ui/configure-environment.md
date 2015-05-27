@@ -6,18 +6,6 @@ configure link under the environment name.
 
 ![image](images/ui-conf-environment.png)
 
-> alt
->
-> :   Platform.sh environment configuration screen
->
-> width
->
-> :   40%
->
-> align
->
-> :   center
->
 ------------------------------------------------------------------------
 
 Settings

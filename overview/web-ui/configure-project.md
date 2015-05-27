@@ -6,18 +6,6 @@ gear icon next to the project name.
 
 ![image](images/ui-conf-project.png)
 
-> alt
->
-> :   Platform.sh project configuration screen
->
-> width
->
-> :   40%
->
-> align
->
-> :   center
->
 ------------------------------------------------------------------------
 
 Settings
