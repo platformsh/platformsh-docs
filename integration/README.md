@@ -8,4 +8,6 @@ With the CLI, you can list all your active integrations:
 
 ```bash
 platform integrations
-`
+```
+
+![Cli Integrations](images/cli-integrations.png)
