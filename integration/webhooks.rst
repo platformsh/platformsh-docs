@@ -49,6 +49,8 @@ Now open a command line (you need to have the Platform.sh CLI installed). To ena
 .. code-block:: console
 
     platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
+    
+If your repository belongs to an organisation, use ``--repository=ORGANISATION/REPOSITORY``.
 
 The two optional parameters, which are both enabled by default, control whether
 you want to track branches and/or pull requests:
