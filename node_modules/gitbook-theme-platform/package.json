@@ -1,0 +1,10 @@
+{
+  "name": "gitbook-theme-platform",
+  "description": "Platform.sh theme for GitBook",
+  "main": "index.js",
+  "version": "0.0.1",
+  "engines": {
+    "gitbook": "*"
+  },
+  "directories": {}
+}

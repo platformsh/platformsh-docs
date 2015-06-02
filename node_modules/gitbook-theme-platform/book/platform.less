@@ -1,0 +1,157 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800,700,600,300);
+
+body,
+.book.font-family-1,
+.book .book-summary {
+  font-family: "Gotham SSm A", "Gotham SSm B", "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#platform-bar {
+  background: #000;
+  color: #fff;
+  padding: 20px 50px;
+  .branding {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: right;
+    width: 200px;
+    display: inline-block;
+  }
+  .site-name {
+    line-height: 33px;
+    font-size: 1.15em;
+  }
+  .logo {
+    background: transparent url("logo.png") no-repeat 0 0;
+    height: 28px;
+    width: 140px;
+    display: inline-block;
+    float: left;
+  }
+}
+.font-family-list,
+.color-theme-list {
+  display: none;
+}
+.book .book-body .navigation {
+  min-width: 40px;
+}
+.book .book-summary {
+  color: #cbcaca;
+  width: 400px;
+  background: #363636;
+  left: -400px;
+
+  a,
+  ul.summary li.done>a {
+    color: #cbcaca;
+    border-left: 1px solid #363636;
+  }
+  ul.summary {
+    top: 90px;
+    li {
+      a,
+      span {
+        padding: 10px 50px;
+        color: #cbcaca;
+        line-height: 1em;
+      }
+      li a,
+      li span {
+        padding: 6px 14px;
+      }
+      &.active>a,
+      a:hover {
+        color: #00aeef;
+      }
+      &.active>a {
+        border-left: 1px solid #00aeef;
+      }
+    }
+    ul {
+      padding-left: 50px;
+      ul {
+        padding-left: 14px;
+      }
+    }
+  }
+  .book-search {
+    top: 0;
+    background: #484848;
+    &:before {
+      color: #8e8e8e;
+      content: "\f002";
+      font-family: FontAwesome;
+      font-size: 18px;
+      line-height: 18px;
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
+  }
+}
+.book .book-header {
+  .btn {
+    display: none;
+  }
+  .btn.toggle-summary,
+  .btn.fa-edit {
+    display: block;
+  }
+  .btn.fa-edit {
+    float: right;
+    padding-right: 30px;
+    overflow: hidden;
+    width: 0;
+    &:before {
+      content: "\f09b";
+      font-size: 30px;
+      font-family: FontAwesome;
+      line-height: 50px;
+      right: 0;
+      left: auto;
+      position: absolute;
+      background: #fff;
+    }
+  }
+}
+.book .book-body .page-wrapper .page-inner section.normal {
+  h1 {
+    font-size: 1.85em;
+    font-weight: 300;
+    border-bottom: none;
+  }
+  h2 {
+    font-size: 1.12em;
+    font-weight: 400;
+    border-bottom: none;
+  }
+  h3 {
+    font-size: 1em;
+    font-weight: 500;
+  }
+  h4 {
+    font-size: .9em;
+    font-weight: 300;
+  }
+  h5 {
+    font-size: .9em;
+    font-weight: 400;
+    color: #333;
+  }
+  h6 {
+    font-size: .85em;
+    font-weight: 500;
+    color: #666;
+  }
+  code {
+    border-radius: 0;
+    background: #fdf2f2;
+    color: #de1151;
+  }
+}
+
+@media (min-width: 600px) {
+  .book.with-summary .book-body {
+    left: 400px;
+  }
+}

@@ -1,13 +1,10 @@
-{   
+{
     "title": "Platform.sh Documentation",
     "description": "Platform.sh Documentation",
     "plugins": [
-        "ga", "edit-link", "richquotes", "anchors"
+        "ga", "edit-link", "richquotes", "anchors", "theme-platform"
     ],
     "pluginsConfig": {
-      "fontSettings": {
-          "theme": "night"
-      },
         "ga": {
             "token": "UA-4064131-10"
         },
