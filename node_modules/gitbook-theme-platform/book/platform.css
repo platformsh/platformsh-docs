@@ -65,10 +65,10 @@ body,
 .book .book-summary ul.summary li.active > a {
   border-left: 1px solid #00aeef;
 }
-.book .book-summary ul.summary ul {
+.book .book-summary ul.summary li ul {
   padding-left: 50px;
 }
-.book .book-summary ul.summary ul ul {
+.book .book-summary ul.summary li ul ul {
   padding-left: 14px;
 }
 .book .book-summary .book-search {
@@ -140,6 +140,15 @@ body,
   border-radius: 0;
   background: #fdf2f2;
   color: #de1151;
+}
+.book .book-body .page-wrapper .page-inner section.normal .alert-info {
+  background: #e0f5fd;
+  border: none;
+  border-radius: 0;
+  color: #363636;
+}
+.book .book-body .page-wrapper .page-inner section.normal hr {
+  height: 1px;
 }
 @media (min-width: 600px) {
   .book.with-summary .book-body {
