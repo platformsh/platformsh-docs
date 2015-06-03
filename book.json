@@ -14,9 +14,6 @@
                    }
     },
     "links": {
-           "sidebar": {
-               "Platform.sh": "https://platform.sh"
-           },
            "sharing": {
                "google": null,
                "facebook": null,
