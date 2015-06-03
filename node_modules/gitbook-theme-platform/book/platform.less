@@ -115,35 +115,54 @@ body,
   }
 }
 .book .book-body .page-wrapper .page-inner section.normal {
+  font-size: 16px;
   h1 {
-    font-size: 1.85em;
+    font-size: 30px;
     font-weight: 300;
     border-bottom: none;
   }
   h2 {
-    font-size: 1.12em;
+    font-size: 18px;
     font-weight: 400;
     border-bottom: none;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 30px;
+    margin-bottom: 20px;
   }
   h3 {
-    font-size: 1em;
+    font-size: 16px;
     font-weight: 500;
   }
   h4 {
-    font-size: .9em;
+    font-size: 14px;
     font-weight: 300;
   }
   h5 {
-    font-size: .9em;
+    font-size: 14px;
     font-weight: 400;
     color: #333;
   }
   h6 {
-    font-size: .85em;
+    font-size: 12px;
     font-weight: 500;
     color: #666;
   }
-  code {
+  p,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table,
+  pre {
+    margin-bottom: 30px;
+  }
+  p > code {
     border-radius: 0;
     background: #fdf2f2;
     color: #de1151;
@@ -153,6 +172,22 @@ body,
     border: none;
     border-radius: 0;
     color: #363636;
+    position: relative;
+    padding: 15px 25px 0;
+    .fa-edit {
+      display: none;
+    }
+    &:before {
+      content: "note";
+      font-weight: 500;
+      font-size: 12px;
+      text-transform: uppercase;
+      position: absolute;
+      top: 10px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
   }
   hr {
     height: 1px;
