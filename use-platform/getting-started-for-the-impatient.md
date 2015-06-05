@@ -404,6 +404,3 @@ page](http://documentation.mamp.info/en/documentation/mamp/).
 > substitute the actual build folder path. This means that when you
 > rebuild your project locally, you will need to repoint the docroot to
 > the symlink again so it will refresh the build path.
-
-last update: |today|
-

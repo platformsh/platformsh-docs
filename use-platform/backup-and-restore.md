@@ -35,7 +35,7 @@ platform environment:backup
 ```
 
 > **note**
-
+>
 > We advise you to backup your environment each time you increase the
 > storage space of your services.
 
@@ -51,6 +51,3 @@ kept for seven days.
 
 Commerce Guys can restore from backup for you. Request a restore by
 opening a ticket which contains the name of the environment to restore.
-
-last update: |today|
-

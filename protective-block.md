@@ -62,5 +62,3 @@ You can also explicitly opt-out of some specific check like this. :
     preflight:
        enabled: true
        ignore_rules: [ "drupal:SA-CORE-2014-005" ]
-
-last update: |today|
