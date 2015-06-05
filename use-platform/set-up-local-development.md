@@ -2,7 +2,7 @@
 
 ## Use the CLI
 
-Use the cli to get a copy of your project, so that you can start working
+Use the CLI to get a copy of your project, so that you can start working
 locally.
 
 In order to copy your project locally, you'll need to know its project
@@ -49,20 +49,11 @@ in the `platform get` command above.
 
 Inside the new folder, there are a few directories and a file. They are:
 
-> -   **.platform-project** - This YAML file stores information about
->     your project, for use by the CLI.
-> -   **builds** - This folder contains the current and some previous
->     builds. Each time you run `platform build` (see below) a build is
->     generated in this folder.
-> -   **repository** - This folder contains all of the files in your
->     Platform.sh repository.
-> -   **shared** - Files that can be shared between environments. For
->     Drupal projects, this folder contains `settings.local.php`, and
->     each file in `shared` will be symlinked from `sites/default` when
->     the local environment is built.
-> -   **www** - This is a symlink to the currently active build in the
->     `builds` folder. It should be used as the document root for your
->     local web server.
+* **.platform-project** - This YAML file stores information about your project, for use by the CLI.
+* **builds** - This folder contains the current and some previous builds. Each time you run `platform build` (see below) a build is generated in this folder.
+* **repository** - This folder contains all of the files in your Platform.sh repository.
+* **shared** - Files that can be shared between environments. For Drupal projects, this folder contains `settings.local.php`, and each file in `shared` will be symlinked from `sites/default` when the local environment is built.
+* **www** - This is a symlink to the currently active build in the `builds` folder. It should be used as the document root for your local web server.
 
 ```bash
 ~/htdocs/my-project $ ls -a
@@ -100,9 +91,10 @@ Now that you have a copy of your project locally, you can run
 
 Run `platform list` to see the other commands provided by the CLI.
 
-> -   cli
-> -   [Installation instructions on
->     GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md).
+> **seealso**
+>
+> * [CLI](../overview/cli)
+> * [Installation instructions on GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md).
 
 ## SSH tunneling
 
