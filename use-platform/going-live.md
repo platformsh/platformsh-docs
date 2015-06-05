@@ -366,7 +366,7 @@ If it prints something like common name: www.example.com (does not match
 'www.somedomain.com') then something is not configured correctly.
 
 > **note**
-
+>
 > Platform.sh supports all kinds of certificates including
 > domain-validated certificates, extended validation (EV) certificates,
 > high-assurance certificates and wildcard certificates.
