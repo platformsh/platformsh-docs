@@ -25,7 +25,7 @@ use it with Platform.
 ## Create a New Public-Private Keypair
 
 > **note**
-
+>
 > If you already have a SSH keypair, you can skip this step.
 
 Create a public-private keypair. :
@@ -52,7 +52,7 @@ That's it. Keys generated! Here are the results. :
     55:c5:d7:a9:1f:dc:7a:67:31:70:fd:87:5a:a6:d0:69 your_email_address@example.com
 
 > **note**
-
+>
 > Make note of the location of your public key, you're going to need
 > that in the next section.
 
@@ -126,8 +126,7 @@ Don't panic! It's an issue which can happen for the following reasons:
 
 ### Check your public key
 
-Make sure your public key has been uploaded to your profile (see
-ssh\_addkeytoaccount).
+Make sure your public key has been uploaded to your user account.
 
 ### Check your ssh-agent
 
