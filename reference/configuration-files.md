@@ -1,4 +1,6 @@
-# Configuration
+# Configuration files
+
+Platform.sh stores the configuration of your applications and services in YAML files that you need to commit in your Git repository.
 
 ## Configure your Application
 

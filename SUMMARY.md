@@ -36,7 +36,7 @@
          * [FAQ](toolstacks/php/symfony/faq.md)
   * [Architecture](reference/architecture.md)
   * [Cache](reference/cache.md)
-  * [Files](reference/configuration-files.md)
+  * [Configuration Files](reference/configuration-files.md)
   * [Variables](reference/environment-variables.md)
   * [Addresses](reference/public-ip-addresses.md)
   * [Api](reference/rest-api.md)
