@@ -85,6 +85,9 @@ body,
   top: 73px;
   background: #484848;
 }
+.book .book-summary .book-search input.form-control {
+  padding-left: 50px;
+}
 .book .book-summary .book-search:before {
   color: #8e8e8e;
   content: "\f002";
@@ -94,6 +97,9 @@ body,
   position: absolute;
   top: 16px;
   right: 16px;
+}
+.book.with-summary .search-form {
+  left: 0;
 }
 .book .book-header .btn {
   display: none;
@@ -201,10 +207,18 @@ body,
   top: 123px;
 }
 .book.with-search .book-summary .book-search {
-  top: 73px;
+  display: none;
 }
 @media (min-width: 600px) {
   .book.with-summary .book-body {
     left: 400px;
+  }
+}
+@media (max-width: 1240px) {
+  .book .book-body .body-inner {
+    margin-top: 73px;
+  }
+  .book .book-body .page-wrapper .page-inner section {
+    padding: 15px 30px;
   }
 }
