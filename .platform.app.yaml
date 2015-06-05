@@ -15,6 +15,7 @@ web:
     passthru: "/index.php"
     whitelist:
       - \.html$
+      - \.json$
 
       # CSS and Javascript.
       - \.css$
