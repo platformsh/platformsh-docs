@@ -24,7 +24,7 @@ The web UI exposes 5 main actions that you can use to interface with your enviro
 
 ### Git
 
-The Git icon displays the commands to use to clone or pull your Git repository locally.
+The Git icon displays the commands to use to get your project locally with the CLI or clone the codebase via Git.
 
 ------------------------------------------------------------------------
 
