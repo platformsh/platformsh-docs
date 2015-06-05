@@ -312,6 +312,9 @@ solr:
 -   solr
 -   redis
 
+> **note**
+> Platform.sh uses Solr 3.6 by default, but Solr 4.10 is also supported. You can request it by specifying the service type as ``solr:4.10``.
+
 ## Configure Routes
 
 Platform.sh allows you to define the routes that will serve your
