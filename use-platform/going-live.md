@@ -58,11 +58,9 @@ Here would be an example of your `routes.yaml` for the
 ```
 
 > **note**
-
 > You can test those routes on your development environments with:
->
-> -   `http://[branch]]-[project-id].[region].platform.sh`
-> -   `http://www-[branch]]-[project-id].[region].platform.sh`
+> * `http://[branch]]-[project-id].[region].platform.sh`
+> * `http://www-[branch]]-[project-id].[region].platform.sh`
 
 ### HTTPS
 
@@ -366,8 +364,5 @@ If it prints something like common name: www.example.com (does not match
 'www.somedomain.com') then something is not configured correctly.
 
 > **note**
->
-> Platform.sh supports all kinds of certificates including
-> domain-validated certificates, extended validation (EV) certificates,
-> high-assurance certificates and wildcard certificates.
+> Platform.sh supports all kinds of certificates including domain-validated certificates, extended validation (EV) certificates, high-assurance certificates and wildcard certificates.
 

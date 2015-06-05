@@ -23,9 +23,7 @@ $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 ```
 
 > **note**
->
-> You can copy-paste the Git URL from the Platform UI under the Git
-> icon.
+> You can copy-paste the Git URL from the Platform UI under the Git icon.
 
 Then push your local branch to your **platform** remote.
 
@@ -51,7 +49,6 @@ $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 ```
 
 > **note**
->
 > You can get the Git URL from the Platform UI under the Git icon.
 
 Commit your project to the **platform** remote repository and push the
@@ -64,10 +61,7 @@ $ git push platform master
 ```
 
 > **note**
->
-> *git init* should have created a default *master* branch for you
-> locally, so you can directly push that branch to you *master* remote
-> branch on Platform.
+> *git init* should have created a default *master* branch for you locally, so you can directly push that branch to you *master* remote branch on Platform.sh.
 
 Both on the terminal and on the Platform UI, you should see your Master
 environment being built.
@@ -135,10 +129,7 @@ Do you really want to continue? (y/n): y
 ```
 
 > **note**
->
-> Drush will verify that you are copying and over-writing the proper
-> files folders, so double-check that information before you type `y` to
-> continue.
+> Drush will verify that you are copying and over-writing the proper files folders, so double-check that information before you type `y` to continue.
 
 This step may take some time, but when the process completes, you can
 visit the URL of your development environment and test that the files

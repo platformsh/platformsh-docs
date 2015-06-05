@@ -17,7 +17,6 @@ specific remote Platform environments \<environment\> or you can utilize
 the cli.
 
 > **note**
-
 > Platform's cli requires **Drush 6 or greater**.
 
 ## Install Drush
@@ -48,9 +47,7 @@ example of a [drush alias
 file](https://github.com/drush-ops/drush/blob/master/examples/example.aliases.drushrc.php).
 
 > **note**
->
-> The cli generates Drush aliases for you automatically, when you run
-> `platform get [project_id]`.
+> The cli generates Drush aliases for you automatically, when you run `platform get [project_id]`.
 
 If you're not using the cli, navigate to your `~/.drush` folder and
 create a new file called `platform.aliases.drushrc.php`.

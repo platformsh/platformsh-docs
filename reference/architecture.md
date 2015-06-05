@@ -11,9 +11,7 @@ dynamically keep track of each other.
 ![image](/overview/images/service-grid.png)
 
 > **note**
->
-> Platform.sh currently supports the following services: PHP, MySQL
-> (MariaDB), Solr, Redis. Additional services will be available soon.
+> Platform.sh currently supports the following services: PHP, MySQL (MariaDB), Solr, Redis. Additional services will be available soon.
 
 ## Micro container
 

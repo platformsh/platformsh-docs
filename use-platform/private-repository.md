@@ -28,9 +28,7 @@ projects[module_private][download][url] = "git@github.com:guguss/module_private.
 ```
 
 > **note**
-
-> In the make file use the `<user>@<host>:<path>.git` format, or
-> `ssh://<user>@<host>:<port>/<path>.git` if using a non-standard port.
+> In the make file use the `<user>@<host>:<path>.git` format, or `ssh://<user>@<host>:<port>/<path>.git` if using a non-standard port.
 
 ## Using multiple private Git repositories
 

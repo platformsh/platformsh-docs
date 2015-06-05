@@ -63,13 +63,10 @@ variables to match.
 ```
 
 > **note**
->
 > Remember to tick the JSON Value box.
 
 > **note**
->
-> Use the actual path to your Redis module in case it is in a different
-> location. For example: `sites/all/modules/contrib/redis`.
+> Use the actual path to your Redis module in case it is in a different location. For example: `sites/all/modules/contrib/redis`.
 
 `drupal:lock_inc`
 
@@ -108,10 +105,7 @@ DrupalDatabaseCache
 ```
 
 > **note**
->
-> Currently, you need to commit some code to rebuild your environment so
-> that the new variables are properly added to your
-> `settings.local.php`. This will be fixed soon.
+> Currently, you need to commit some code to rebuild your environment so that the new variables are properly added to your `settings.local.php`. This will be fixed soon.
 
 ### Via settings.php
 

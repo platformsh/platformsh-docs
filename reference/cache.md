@@ -69,7 +69,6 @@ And the following routes are **not** cached:
 -   `http://{default}/foo/baz/`
 
 > **note**
-
 > Regular expressions in routes are **not** supported.
 
 #### Cache duration

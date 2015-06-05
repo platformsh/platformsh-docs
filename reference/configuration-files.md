@@ -62,10 +62,7 @@ crons:
 ```
 
 > **note**
-
-> The `.platform.app.yaml` is specific to your application. If you have
-> multiple applications inside your Git repository, you need one
-> `.platform.app.yaml` at the root of each application.
+> The `.platform.app.yaml` is specific to your application. If you have multiple applications inside your Git repository, you need one `.platform.app.yaml` at the root of each application.
 
 ------------------------------------------------------------------------
 
@@ -156,10 +153,7 @@ The `disk` defines the size of the persistent disk size of the
 application in MB.
 
 > **note**
-
-> The minimal recommended disk size is 256MB. If you see the error
-> **UserError: Error building the project: Disk size may not be smaller
-> than 128MB**, increase the size to 256MB.
+> The minimal recommended disk size is 256MB. If you see the error **UserError: Error building the project: Disk size may not be smaller than 128MB**, increase the size to 256MB.
 
 ------------------------------------------------------------------------
 
@@ -176,10 +170,7 @@ The format is:
 -   "/public/sites/default/files": "shared:files/files"
 
 > **note**
->
-> The `shared` means that the volume is shared between your applications
-> inside an environment. The `disk` key defines the size available for
-> that `shared` volume.
+> The `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
 
 ------------------------------------------------------------------------
 
@@ -367,7 +358,6 @@ Emails from Platform.sh are sent via a Mandrill-based SMTP proxy. Each
 Platform.sh project is provisioned as a Mandrill sub-account.
 
 > **note**
-
 > Mandrill subaccounts are capped at 12k emails per month.
 
 > -   Configure outgoing emails via the web UI \<ui\_environment\_settings\>

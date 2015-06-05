@@ -5,9 +5,7 @@
 Here, we'll see how to make code changes to an environment.
 
 > **note**
-
-> You should never be working on the Master branch since it's supposed
-> to be your production environment.
+> You should never be working on the Master branch since it's supposed to be your production environment.
 
 Make sure you're on a working environment. In this example we're on the
 *sprint1* branch:
@@ -130,13 +128,7 @@ When it's completed, you can see your changes on your site by clicking
 Platform UI.
 
 > **note**
-
-> -   The Drush Make processing doesn't create any file in your Git
->     repository. Your Git repository is the *input* of the process and
->     not the *output*. You can see the directory structure that has
->     been created by connecting via SSH to the environment. See the
->     information in the `Access information` below the title of the
->     environment
+> The Drush Make processing doesn't create any file in your Git repository. Your Git repository is the *input* of the process and not the *output*. You can see the directory structure that has been created by connecting via SSH to the environment. See the information in the `Access information` below the title of the environment
 
 ## Merge code changes to Master
 

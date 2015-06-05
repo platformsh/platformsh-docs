@@ -10,9 +10,7 @@ persistent data from all running services (MySQL, SOLR...) and any files
 stored on the mounted volumes.
 
 > **note**
-
-> Make backups of your live environment before merging an environment to
-> the live environment.
+> Make backups of your live environment before merging an environment to the live environment.
 
 Using the CLI:
 
@@ -35,9 +33,7 @@ platform environment:backup
 ```
 
 > **note**
->
-> We advise you to backup your environment each time you increase the
-> storage space of your services.
+> We advise you to backup your environment each time you increase the storage space of your services.
 
 **Platform.sh Enterprise**
 

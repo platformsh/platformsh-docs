@@ -37,17 +37,12 @@ It means the `settings.dev.php` file must exist in your repository root
 folder.
 
 > **note**
-
-> The `drupal:*` environment variables are included in the
-> `settings.local.php` file, so include it first.
+> The `drupal:*` environment variables are included in the `settings.local.php` file, so include it first.
 
 > **note**
-
-> The `settings.local.php` file will always be overwritten by
-> Platform.sh.
+> The `settings.local.php` file will always be overwritten by Platform.sh.
 
 > **note**
-
 > You also need to add a custom `$drupal_hash_salt`.
 
 ## Shared variables

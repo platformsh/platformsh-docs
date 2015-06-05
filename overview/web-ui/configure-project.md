@@ -38,7 +38,6 @@ uncheck the box, you'll have the option of adjusting the user's
 permissions on each environment.
 
 > **note**
->
 > The `Account owner` is locked and you can't change its permissions.
 
 ## Domains

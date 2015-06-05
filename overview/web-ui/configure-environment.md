@@ -13,7 +13,6 @@ environment.
 ![Configure Platform.sh environment settings](images/ui-conf-environment-settings.png)
 
 > **note**
->
 > Deleting the Master environment is forbidden.
 
 The access control is very helpful if you need your development

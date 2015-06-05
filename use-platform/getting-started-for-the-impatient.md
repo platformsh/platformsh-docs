@@ -200,10 +200,7 @@ Platform.sh offers three build modes for Drupal projects: Vanilla, Drush
 Make, and Install Profiles.
 
 > **note**
-
-> You can change build modes by changing the files in your repository.
-> Platform.sh recognizes each mode based on the presence or absence of
-> `project.make` or `*.profile` files.
+> You can change build modes by changing the files in your repository. Platform.sh recognizes each mode based on the presence or absence of `project.make` or `*.profile` files.
 
 #### Vanilla build mode
 
@@ -250,10 +247,7 @@ Drupal.org does to build distributions. Everything you have in your
 repository will be copied to your `profiles/[name]` folder.
 
 > **note**
-
-> It is a mistake to mix Vanilla mode with other modes. If you've copied
-> all of the Drupal core files into your repository then you need to
-> make sure you don't have any `` *.make` or ``\*.profile\`\` files.
+> It is a mistake to mix Vanilla mode with other modes. If you've copied all of the Drupal core files into your repository then you need to make sure you don't have any `` *.make` or ``\*.profile\`\` files.
 
 #### Database credentials
 
@@ -267,9 +261,7 @@ root). The CLI will have created this file for you, when you ran the
 `platform get` or `platform build` command.
 
 > **note**
-
-> If you are using the CLI but there is no shared/settings.local.php
-> file, re-run `platform build`.
+> If you are using the CLI but there is no `shared/settings.local.php` file, re-run `platform build`.
 
 ```php
 <?php
@@ -285,10 +277,7 @@ $databases['default']['default'] = array(
 ```
 
 > **note**
-
-> You never have to add the server-side database credentials to
-> `settings.local.php`. Platform.sh generates a `settings.php` for each
-> environment, already containing the proper database credentials.
+> You never have to add the server-side database credentials to `settings.local.php`. Platform.sh generates a `settings.php` for each environment, already containing the proper database credentials.
 
 ### Drush Aliases
 
@@ -309,10 +298,7 @@ Aliases for My Site (tqmd2kvitnoly):
 ```
 
 > **note**
-
-> Run local Drush commands with `drush`. Run remote Drush commands with
-> `platform drush`. Any `platform drush` command will execute on the
-> remote environment that you currently have checked out.
+> Run local Drush commands with `drush`. Run remote Drush commands with `platform drush`. Any `platform drush` command will execute on the remote environment that you currently have checked out.
 
 #### Change the Drush Alias Group
 
@@ -353,10 +339,7 @@ $ drush rsync @mysite.staging:%files @mysite._local:%files
 ```
 
 > **note**
-
-> Never commit the files that are in your `files` directory to the Git
-> repository. Git is only meant for code, not *data*, and files that are
-> managed by your Drupal site are considered data.
+> Never commit the files that are in your `files` directory to the Git repository. Git is only meant for code, not *data*, and files that are managed by your Drupal site are considered data.
 
 #### SQL-sync troubleshootings
 
@@ -399,8 +382,4 @@ page](http://documentation.mamp.info/en/documentation/mamp/).
 > Archives](http://forumsarchive.laravel.io/viewtopic.php?pid=11232#p11232)
 
 > **note**
-
-> When you specify your document root, MAMP will follow the symlink and
-> substitute the actual build folder path. This means that when you
-> rebuild your project locally, you will need to repoint the docroot to
-> the symlink again so it will refresh the build path.
+> When you specify your document root, MAMP will follow the symlink and substitute the actual build folder path. This means that when you rebuild your project locally, you will need to repoint the docroot to the symlink again so it will refresh the build path.

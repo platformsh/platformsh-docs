@@ -23,9 +23,7 @@ $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 ```
 
 > **note**
->
-> You can copy-paste the Git URL from the Platform UI under the Git
-> icon.
+> You can copy-paste the Git URL from the Platform UI under the Git icon.
 
 Then push your local branch to your **platform** remote.
 
@@ -51,7 +49,6 @@ $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 ```
 
 > **note**
->
 > You can get the Git URL from the Platform UI under the Git icon.
 
 Commit your project to the **platform** remote repository and push the
@@ -64,10 +61,7 @@ $ git push platform master
 ```
 
 > **note**
->
-> *git init* should have created a default *master* branch for you
-> locally, so you can directly push that branch to you *master* remote
-> branch on Platform.sh.
+> *git init* should have created a default *master* branch for you locally, so you can directly push that branch to you *master* remote branch on Platform.sh.
 
 Both on the terminal and on the ui\_overview, you should see your Master
 environment being built.
@@ -100,6 +94,4 @@ $ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:/app/tmp/
 ```
 
 > **note**
->
 > The location of the files folder depends on your configuration.
-

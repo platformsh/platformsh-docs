@@ -50,11 +50,8 @@ stdClass Object
 ```
 
 > **note**
->
 > Variables are **hierarchical**, so if a variable is not overriden in an environment, it will take the value it has in the parent environment and use it as `inherited`.
->
-> :   This allows you to define your development variables only once,
->     and use them on all the children environments.
+> This allows you to define your development variables only once, and use them on all the children environments.
 
 ## Platform.sh variables
 

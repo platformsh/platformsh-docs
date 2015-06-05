@@ -28,10 +28,7 @@ pdo\_sqlite, pgsql, pinba, pspell, recode, redis, snmp, spplus, ssh2,
 tidy, xcache, xdebug, xhprof, xmlrpc and xsl*.
 
 > **note**
->
-> This list might not be fully up to date. For the complete list, check
-> the output of `ls /etc/php5/mods-available` after you SSH into your
-> environment.
+> This list might not be fully up to date. For the complete list, check the output of `ls /etc/php5/mods-available` after you SSH into your environment.
 
 ## Use your own php.ini
 

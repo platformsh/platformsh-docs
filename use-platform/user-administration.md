@@ -36,10 +36,7 @@ commit to a specific branch, change their permission level on that
 environment to "Contributor".
 
 > **note**
-
-> The project owner - the person licensed to use Platform.sh - doesn't
-> have special powers. A project owner usually has a project
-> administrator role.
+> The project owner - the person licensed to use Platform.sh - doesn't have special powers. A project owner usually has a project administrator role.
 
 ------------------------------------------------------------------------
 
@@ -94,8 +91,4 @@ environment to "Contributor".
 > Add a new user by clicking on the `Add user` button.
 
 > **note**
-
-> After a new user is added to the environment, it needs to be rebuilt
-> (git push) for the changes to take effect. When the environment
-> rebuild is complete, allow a minute for the routes to update fully and
-> for the new user to be able to use SSH access.
+> After a new user is added to the environment, it needs to be rebuilt (git push) for the changes to take effect. When the environment rebuild is complete, allow a minute for the routes to update fully and for the new user to be able to use SSH access.

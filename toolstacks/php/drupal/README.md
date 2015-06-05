@@ -28,9 +28,7 @@ This build mode supports having a `project.make` file for your
 contributed modules, themes or libraries.
 
 > **note**
->
-> When building as a profile, you **need a make file for Drupal core**
-> called: `project-core.make`. See drush\_make\_files.
+> When building as a profile, you **need a make file for Drupal core** called: `project-core.make`. See drush\_make\_files.
 
 ```bash
 .git/
