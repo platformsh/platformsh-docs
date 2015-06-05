@@ -1,5 +1,4 @@
-REST API
-========
+# REST API
 
 Platform.sh exposes a **hypermedia REST API** which allows you to
 interact with your project and manage your environments.

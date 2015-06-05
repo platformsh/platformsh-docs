@@ -1,8 +1,6 @@
-Set up your local development environment
-=========================================
+# Set up your local development environment
 
-Use the CLI
------------
+## Use the CLI
 
 Use the cli to get a copy of your project, so that you can start working
 locally.
@@ -24,8 +22,7 @@ your account.
   List a project's environments by running platform environments.
 ```
 
-Download a project
-------------------
+## Download a project
 
 Once you know the project ID you need to use, copying the project to
 your local system is simple. Navigate to the folder you want to copy the
@@ -75,8 +72,7 @@ Inside the new folder, there are a few directories and a file. They are:
   shared
 ```
 
-Build the local site
---------------------
+## Build the local site
 
 Now that you have a copy of your project locally, you can run
 `platform build` to pull it all together.
@@ -100,8 +96,7 @@ Now that you have a copy of your project locally, you can run
   shared
 ```
 
-Other commands
---------------
+## Other commands
 
 Run `platform list` to see the other commands provided by the CLI.
 
@@ -109,8 +104,7 @@ Run `platform list` to see the other commands provided by the CLI.
 > -   [Installation instructions on
 >     GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md).
 
-SSH tunneling
--------------
+## SSH tunneling
 
 Use SSH tunneling to connect your local development site to Platform.sh
 services.

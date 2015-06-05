@@ -1,8 +1,6 @@
-User administration
-===================
+# User administration
 
-User roles
-----------
+##User roles
 
 Every Platform.sh user has a role. A role allows to control access and
 improve security on your project - different roles are authorized to do
@@ -45,8 +43,7 @@ environment to "Contributor".
 
 ------------------------------------------------------------------------
 
-Manage user permissions at the project level
---------------------------------------------
+## Manage user permissions at the project level
 
 > Access the project-level configuration.
 >
@@ -73,8 +70,7 @@ Manage user permissions at the project level
 
 ------------------------------------------------------------------------
 
-Manage user permissions at the environment level
-------------------------------------------------
+## Manage user permissions at the environment level
 
 > Access the environment-level configuration.
 >
@@ -103,4 +99,3 @@ Manage user permissions at the environment level
 > (git push) for the changes to take effect. When the environment
 > rebuild is complete, allow a minute for the routes to update fully and
 > for the new user to be able to use SSH access.
-

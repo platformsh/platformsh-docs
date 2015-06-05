@@ -1,8 +1,6 @@
-Getting started
-===============
+# Getting started
 
-Prerequisites
--------------
+## Prerequisites
 
 **Composer**
 
@@ -12,8 +10,7 @@ them in your project for you.
 
 > -   [Install Composer](https://getcomposer.org/download/)
 
-Configure your app
-------------------
+## Configure your app
 
 Make sure your `.platform.app.yaml` is specific to Symfony.
 

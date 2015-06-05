@@ -1,21 +1,18 @@
-Protective block
-================
+# Protective block
 
 The [Platform.sh](https://platform.sh) service has a protective blocking
 feature that, under certain circumstances, restricts access to web sites
 with security vulnerabilities. We use this partial blocking method to
 prevent exploitation of known security vulnerabilities.
 
-The Platform.sh security block
-------------------------------
+## The Platform.sh security block
 
 Outdated software often contains known vulnerabilities that can be
 exploited from the Internet. Sites that can be exploited are protected
 by [Platform.sh](https://platform.sh). The system partially blocks
 access to these sites.
 
-How the protective block works
-------------------------------
+## How the protective block works
 
 [Platform.sh](https://platform.sh) maintains a database of signatures of
 known security vulnerabilities in opensource software that are commonly
@@ -49,8 +46,7 @@ Unblocking is automated upon resolution of the security risk. The block
 is removed soon after a customer applies a security upgrade and removes
 the vulnerability.
 
-Opting out of the protective block
-----------------------------------
+## Opting out of the protective block
 
 The protective block is there to protect you against known vulnerability
 in the software you deploy on [Platform.sh](https://platform.sh).
@@ -68,4 +64,3 @@ You can also explicitly opt-out of some specific check like this. :
        ignore_rules: [ "drupal:SA-CORE-2014-005" ]
 
 last update: |today|
-

@@ -1,15 +1,11 @@
-Environment configuration
-=========================
+# Environment configuration
 
 You can access the configuration page of an environment by clicking the
 configure link under the environment name.
 
 ![image](images/ui-conf-environment.png)
 
-------------------------------------------------------------------------
-
-Settings
---------
+## Settings
 
 The `Settings` screen allows you to extend the behavior of a specific
 environment.
@@ -24,30 +20,21 @@ The access control is very helpful if you need your development
 environments to be restricted by a login/password, or be accessible by
 only a certain range of IP addresses.
 
-------------------------------------------------------------------------
-
-Variables
----------
+## Variables
 
 The `Variables` screen allows you to define the variables that will be
 available on a specific environment.
 
 ![Configure Platform.sh environment variables](images/ui-conf-environment-variables.png)
 
-------------------------------------------------------------------------
-
-Routes
-------
+## Routes
 
 The `Routes` screen allows you to configure the routes of your
 environments.
 
 ![Configure Platform.sh environment routes](images/ui-conf-environment-routes.png)
 
-------------------------------------------------------------------------
-
-Users
------
+## Users
 
 The `Users` screen allows you to manage users access on your project.
 
@@ -62,4 +49,3 @@ environment.
 
 You can also manage access to users on multiple environments using the
 project configuration screen \<ui\_project\_users\>.
-

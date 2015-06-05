@@ -1,5 +1,4 @@
-Generic hook
-------------
+# Generic hook
 
 This hook will allow you to capture any push events on platform and POST
 a JSON file describing the activity to the url of your choice. You can

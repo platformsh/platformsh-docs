@@ -1,11 +1,9 @@
-Migrate an existing site to Platform.sh
-=======================================
+# Migrate an existing site to Platform.sh
 
 To migrate your existing site into Platform.sh, here are the three
 components you need to import: *code base*, *database* and *files*.
 
-Import your code base
----------------------
+## Import your code base
 
 This will depend wether you have Git already set up for your project or
 not.
@@ -74,8 +72,7 @@ $ git push platform master
 Both on the terminal and on the Platform UI, you should see your Master
 environment being built.
 
-Import your database
---------------------
+## Import your database
 
 ### With Drush
 
@@ -125,8 +122,7 @@ $ ssh [PROJECT-ID]-master@ssh.[REGION].platform.sh
 web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < tmp/database.sql
 ```
 
-Import your files
------------------
+## Import your files
 
 ### With Drush
 
@@ -157,8 +153,7 @@ your remote Platform environment:
 $ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:public/sites/default/files/
 ```
 
-Rebuild the site registry
--------------------------
+## Rebuild the site registry
 
 During the migration process, one or more modules may have changed
 location. This could result in a WSOD (white screen of death), any

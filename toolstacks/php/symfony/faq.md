@@ -1,8 +1,6 @@
-Frequently Asked Questions (FAQ)
-================================
+# Frequently Asked Questions (FAQ)
 
-How do I store my sessions variables?
--------------------------------------
+## How do I store my sessions variables?
 
 If you get the following error:
 
@@ -33,8 +31,7 @@ ini_set('session.save_path', __DIR__.'/../app/sessions' );
 
 > -   configuration\_files
 
-Why does my newly cloned Symfony install throw errors?
-------------------------------------------------------
+## Why does my newly cloned Symfony install throw errors?
 
 You may encounter the WSOD (white screen of death) when you first clone
 a new Symfony2 project from your platform. This is likely because of

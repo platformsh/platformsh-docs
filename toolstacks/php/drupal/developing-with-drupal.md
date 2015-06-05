@@ -1,8 +1,6 @@
-Developing with Drupal
-======================
+# Developing with Drupal
 
-Push changes to an environment
-------------------------------
+## Push changes to an environment
 
 Here, we'll see how to make code changes to an environment.
 
@@ -140,8 +138,7 @@ Platform UI.
 >     information in the `Access information` below the title of the
 >     environment
 
-Merge code changes to Master
-----------------------------
+## Merge code changes to Master
 
 Once you've got a branch with some changes, you'll want to be able to
 push those changes up to your live environment. Platform has a great
@@ -153,8 +150,7 @@ appropriate changes to master.
 Just click on the "Merge" button and all of the commits you made on your
 branch will be merged into the master environment.
 
-Synchronizing data
-------------------
+## Synchronizing data
 
 The easiest way to do that is to use Drush and the sql-sync command.
 You'll need to have create\_drush\_aliases setup for both your

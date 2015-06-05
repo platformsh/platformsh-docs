@@ -1,5 +1,4 @@
-Install the Platform.sh software bundle
-=======================================
+# Install the Platform.sh software bundle
 
 [Platform.sh](https://platform.sh) comes with a tool called the cli.
 
@@ -8,8 +7,7 @@ The cli is an open-source project hosted on
 CLI in the [GitHub issue
 queue](https://github.com/platformsh/platformsh-cli/issues).
 
-Install Composer, the PHP dependency manager
---------------------------------------------
+## Install Composer, the PHP dependency manager
 
 [Composer](https://getcomposer.org/) is a dependency manager for
 [PHP](http://php.net/). For more details, see Composer's own
@@ -54,8 +52,7 @@ Run composer. :
 
     composer about
 
-Install the Platform.sh CLI
----------------------------
+## Install the Platform.sh CLI
 
 This procedure installs the cli in the Composer's .composer folder. On
 OS X and Linux, this will be *\~/.composer/vendor/bin/*.

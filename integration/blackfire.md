@@ -1,11 +1,9 @@
-Blackfire
-=========
+# Blackfire
 
 Platform.sh supports [Blackfire Profiler](https://blackfire.io/)
 developed by [SensioLabs](http://sensiolabs.com/).
 
-Get Started
------------
+## Get Started
 
 **Sign up for free** at [blackfire.io](https://blackfire.io/signup), and
 install the **Blackfire Companion** web browser extension
@@ -35,8 +33,7 @@ git commit -m "Enable Blackfire."
 git push
 ```
 
-Profile
--------
+## Profile
 
 Access your site via your browser and click `Profile` in the Blackfire
 Companion.
@@ -45,4 +42,3 @@ Companion.
 
 That's it, your site is being profiled and you should get all the
 results in your Blackfire account.
-

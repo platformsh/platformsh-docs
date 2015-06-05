@@ -1,12 +1,10 @@
-Use SSH keys
-============
+# Use SSH keys
 
 One of the ways [Platform.sh](https://platform.sh/) keeps things secure
 is by using SSH behind the scenes. Users connect to their Platform git
 repository and to their cli using SSH.
 
-Find your Public-Private Keypair
---------------------------------
+## Find your Public-Private Keypair
 
 If you use Linux, you already have keys. The private key is usually in a
 file named `~/.ssh/id_rsa` and the public key in `~/.ssh/id_rsa.pub`,
@@ -24,8 +22,7 @@ following commands. :
 If you find a file named either `id_rsa.pub` or `id_dsa.pub`, you can
 use it with Platform.
 
-Create a New Public-Private Keypair
------------------------------------
+## Create a New Public-Private Keypair
 
 > **note**
 
@@ -59,8 +56,7 @@ That's it. Keys generated! Here are the results. :
 > Make note of the location of your public key, you're going to need
 > that in the next section.
 
-Add your SSH key to your Platform account
------------------------------------------
+## Add your SSH key to your Platform account
 
 You have your SSH keys (if not, take a look at the section above), but
 you need to make sure Platform has a copy of your public key. It's
@@ -82,8 +78,7 @@ server.
 
 ![Add SSH key to Marketplace](/use-platform/images/ssh-addkeytomarketplace.png)
 
-SSH to your Web Server
-----------------------
+## SSH to your Web Server
 
 Just under the Environment name, in the ui\_overview, there is a link
 you can hover to copy the SSH URL of that environment \<environments\>.
@@ -116,8 +111,7 @@ You should see something like this: :
 
     web@wk5fqz6qoo123-master--php:~$ 
 
-Troubleshoot SSH
-----------------
+## Troubleshoot SSH
 
 While trying to log in via SSH, this can happen: :
 
@@ -179,4 +173,3 @@ file.
 
 If you are still stuck, don't hesitate to submit a support ticket and
 we'll help you.
-

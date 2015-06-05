@@ -1,6 +1,6 @@
-#THIS WILL GO THE WAY OF THE DODO TO ITS OWN THING
-Getting started for the impatient
-=================================
+# Getting started for the impatient
+
+@TODO: Remove this section and move it as a specific book.
 
 Goals of this document:
 
@@ -26,11 +26,9 @@ it to scale for the largest sites.
 Note: The environments used in Platform.sh are deployed on a read-only
 filesystems and are rebuilt with every Git push.
 
-Drupal
-------
+# Drupal
 
-How to set up your local Drupal development
--------------------------------------------
+## How to set up your local Drupal development
 
 This guide will teach you how to set up local Drupal development for use
 with Platform.sh.

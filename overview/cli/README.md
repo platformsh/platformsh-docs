@@ -1,17 +1,12 @@
-CLI (Command Line Interface)
-============================
+# CLI (Command Line Interface)
 
-What is the CLI?
-----------------
+## What is the CLI?
 
-The CLI is the official tool to use and manage your Platform.sh projects
-directly from your terminal. Anything you can do within the Web Interface can
-be done with the CLI.
+The CLI is the official tool to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the Web Interface can be done with the CLI.
 
 The source code of the CLI is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
 
-How do I get it?
-----------------
+## How do I get it?
 
 You can install the CLI easily using Composer:
 
@@ -19,31 +14,23 @@ You can install the CLI easily using Composer:
 composer global require platformsh/cli:@stable
 ```
 
-You can find the system requirements and more information in the
-[installation instructions on
-GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md).
+You can find the system requirements and more information in the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md).
 
-What can I do with the CLI?
----------------------------
+## What can I do with the CLI?
 
-The CLI uses the platform API to trigger commands (*Branch, Merge...*)
-on your Platform.sh project.
+The CLI uses the platform API to trigger commands (*Branch, Merge...*) on your Platform.sh project.
 
 ![Platform Cli In Project](images/platform-cli-in-project.png)
 
-It's also very useful when you work locally since it can simulate a
-local build of your codebase as if you were pushing a change to
-Platform.sh.
+It's also very useful when you work locally since it can simulate a local build of your codebase as if you were pushing a change to Platform.sh.
 
 ![Platform Cli Logged In](images/platform-cli-logged-in.png)
 
-Once you have the CLI installed, run `platform list` to see all of the
-available commands.
+Once you have the CLI installed, run `platform list` to see all of the available commands.
 
 ![Platform Cli List](images/platform-cli-list.png)
 
-You can preface any command with `help` to see more information on how
-to use that command.
+You can preface any command with `help` to see more information on how to use that command.
 
 ```bash
 $ platform help domain:add

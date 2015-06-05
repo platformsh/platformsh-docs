@@ -1,5 +1,4 @@
-Customizing settings.php
-========================
+# Customizing settings.php
 
 Platform.sh allows you to use your own `settings.php` that you commit to
 your Git repository.
@@ -51,8 +50,7 @@ folder.
 
 > You also need to add a custom `$drupal_hash_salt`.
 
-Shared variables
-----------------
+## Shared variables
 
 You can use your custom `settings.php` to define configuration that is
 shared among all your environments.

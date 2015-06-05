@@ -1,5 +1,4 @@
-Public IP addresses
-===================
+# Public IP addresses
 
 Platform.sh regions reach the outside through a limited number of IP
 addresses.

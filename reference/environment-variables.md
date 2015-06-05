@@ -1,5 +1,4 @@
-Environment variables
-=====================
+# Environment variables
 
 Platform.sh exposes environment variables which you can interact with.
 
@@ -56,9 +55,8 @@ stdClass Object
 >
 > :   This allows you to define your development variables only once,
 >     and use them on all the children environments.
->
-Platform.sh variables
----------------------
+
+## Platform.sh variables
 
 Environment variables that are specific to Platform.sh are exposed in
 the runtime (*ie. PHP*) and prefixed with `PLATFORM_*`.
@@ -89,8 +87,7 @@ the variable at runtime and use it to configure your application.
 For example with Drupal, we use the **PLATFORM\_RELATIONSHIPS** variable
 to configure your `settings.local.php`.
 
-Toolstack-specific variables
-----------------------------
+## Toolstack-specific variables
 
 You can define variables based on the toolstack you're working with.
 

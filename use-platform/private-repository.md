@@ -1,8 +1,6 @@
-Use private Git repository
-==========================
+# Use private Git repository
 
-Pull code from a private Git repository
----------------------------------------
+## Pull code from a private Git repository
 
 Let's say you're building a module (*or theme, library...*) which is
 stored in a private Git repository that you have access to and want to
@@ -34,8 +32,7 @@ projects[module_private][download][url] = "git@github.com:guguss/module_private.
 > In the make file use the `<user>@<host>:<path>.git` format, or
 > `ssh://<user>@<host>:<port>/<path>.git` if using a non-standard port.
 
-Using multiple private Git repositories
----------------------------------------
+## Using multiple private Git repositories
 
 Github only allow you to use a deploy key to a single repository. More
 complex projects may have many repositories to pull to the same server.

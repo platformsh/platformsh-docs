@@ -1,8 +1,6 @@
-Getting Started
-===============
+# Getting Started
 
-Structure your files
---------------------
+## Structure your files
 
 Platform.sh is very flexible and allows you to structure your files as
 you wish within your Git repository, and will build your project based
@@ -105,8 +103,7 @@ sites/
   default/
 ```
 
-Configure your app
-------------------
+## Configure your app
 
 Platform.sh uses configuration files to determine what toolstack you
 want to deploy and how you want to deploy it.

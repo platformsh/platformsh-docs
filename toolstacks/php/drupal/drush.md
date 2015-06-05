@@ -1,5 +1,4 @@
-Work with Drush
-===============
+# Work with Drush
 
 Drush is a command-line shell and scripting interface for Drupal, a
 veritable Swiss Army knife designed to make life easier for those who
@@ -21,8 +20,7 @@ the cli.
 
 > Platform's cli requires **Drush 6 or greater**.
 
-Install Drush
--------------
+## Install Drush
 
 Install drush with composer:
 
@@ -40,8 +38,7 @@ And see a list of available commands.
 
 > -   [Install Drush](https://github.com/drush-ops/drush)
 
-Use drush aliases
------------------
+## Use drush aliases
 
 ### Create Drush aliases
 
@@ -105,8 +102,7 @@ Drupal bootstrap                :  Successful
 ...
 ```
 
-Use make files
---------------
+## Use make files
 
 ### Create a make file
 

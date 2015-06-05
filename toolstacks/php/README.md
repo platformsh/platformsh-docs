@@ -1,10 +1,8 @@
-Configuration
-=============
+# Configuration
 
 Platform.sh supports custom PHP configurations.
 
-PHP extensions
---------------
+## PHP extensions
 
 You can define the PHP extensions you want to enable or disable:
 
@@ -35,8 +33,7 @@ tidy, xcache, xdebug, xhprof, xmlrpc and xsl*.
 > the output of `ls /etc/php5/mods-available` after you SSH into your
 > environment.
 
-Use your own php.ini
---------------------
+## Use your own php.ini
 
 You can also create and push a `php.ini` file that will be appended to
 the configuration maintained by Platform.sh.

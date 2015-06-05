@@ -1,5 +1,4 @@
-HipChat
--------
+# HipChat
 
 The [HipChat](https://hipchat.com) integration allows you to send
 notifications about your Platform.sh activity directly to HipChat.

@@ -1,5 +1,4 @@
-Toolstacks
-==========
+# Toolstacks
 
 * Drupal
 * Symfony

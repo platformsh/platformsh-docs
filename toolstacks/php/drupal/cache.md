@@ -1,13 +1,11 @@
-Adding Entity Cache and Authcache
-=================================
+# Adding Entity Cache and Authcache
 
 You can further improve the perfomance of your site by adding the
 [Entity Cache](https://www.drupal.org/project/entitycache) and
 [Authcache](https://www.drupal.org/project/authcache) modules to your
 project.
 
-Requirements
-------------
+## Requirements
 
 If you are using a make file, you can add those lines to your
 `project.make`:
@@ -29,8 +27,7 @@ projects[commerce_authcache][version] = 1.x-dev
 
 > -   drush\_make\_files
 
-Configuration
--------------
+## Configuration
 
 ### Variables
 

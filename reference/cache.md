@@ -1,8 +1,6 @@
-Cache
-=====
+# Cache
 
-Enable HTTP caching
--------------------
+## Enable HTTP caching
 
 ### Rationale
 

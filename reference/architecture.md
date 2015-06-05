@@ -1,5 +1,4 @@
-Architecture
-============
+# Architecture
 
 The Environments \<environment\> in [Platform.sh](https://platform.sh)
 rely on services \<service\>. Services are deployed inside highly
@@ -16,28 +15,24 @@ dynamically keep track of each other.
 > Platform.sh currently supports the following services: PHP, MySQL
 > (MariaDB), Solr, Redis. Additional services will be available soon.
 
-Micro container
----------------
+## Micro container
 
 Platform.sh uses LXC containers for applications. Each container
 provides a secure space to run one application. Each environment is
 built from many containers - one for the router, another for the PHP
 service, a third for the database and so on.
 
-Router service
---------------
+## Router service
 
 Based on nginx, the Router service processes HTTP requests, handles
 security, dynamic page construction (ESI), URL rewriting and mapping.
 
-PHP service
------------
+## PHP service
 
 Supports PHP 5.4, the APC and ZO+ opcode caches, and all major PHP
 extensions, rewriting, and mapping.
 
-Database service (MariaDB)
---------------------------
+## Database service (MariaDB)
 
 Transactional data storage. Based on MariaDB, supporting the XtraDB
 storage engine (equivalent to MySQL with InnoDB).
@@ -55,14 +50,12 @@ the following command: `mysql -h database.internal`
 
 You can also use Drush: `drush sql-cli`
 
-File system
------------
+## File system
 
 Accessible transparently from PHP and mappable to a URL space by the
 Router component.
 
-Search Service (Solr)
----------------------
+## Search Service (Solr)
 
 Solr search with generic schemas provided. Custom schemas are supported.
 
@@ -70,8 +63,7 @@ Solr search with generic schemas provided. Custom schemas are supported.
 -   **scheme:** solr
 -   **port:** 8080
 
-Object cache (Redis)
---------------------
+## Object cache (Redis)
 
 Provides the in-memory object cache for your application. Can be used as
 a cache area for your application.
@@ -79,4 +71,3 @@ a cache area for your application.
 -   **host:** redis.internal
 -   **scheme:** redis
 -   **port:** 6379
-

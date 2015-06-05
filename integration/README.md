@@ -1,5 +1,4 @@
-Integrations
-============
+# Integrations
 
 Platform.sh can easily be integrated with external services using
 webhooks.

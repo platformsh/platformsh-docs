@@ -1,8 +1,6 @@
-Configuration
-=============
+# Configuration
 
-Configure your Application
---------------------------
+## Configure your Application
 
 The configuration files are stored in Git and allow you to easily
 interact with Platform.sh. You can define and configure the services you
@@ -290,8 +288,7 @@ It has a few sub-keys which are:
 -   **cmd**: The command that is executed, for example
     cd public ; drush core-cron\`
 
-Configure Services
-------------------
+## Configure Services
 
 Platform.sh allows you to completely define and configure the topology
 and services you want to use on your project.
@@ -324,8 +321,7 @@ solr:
 -   solr
 -   redis
 
-Configure Routes
-----------------
+## Configure Routes
 
 Platform.sh allows you to define the routes that will serve your
 environments.
@@ -353,8 +349,7 @@ Here is an example of a `routes.yaml` file:
   to: "http://{default}/"
 ```
 
-Sending emails
---------------
+## Sending emails
 
 By default only the master enviroment can send emails and there is no
 need to additionally configure your web application to enable that. For
@@ -376,4 +371,3 @@ Platform.sh project is provisioned as a Mandrill sub-account.
 > Mandrill subaccounts are capped at 12k emails per month.
 
 > -   Configure outgoing emails via the web UI \<ui\_environment\_settings\>
-

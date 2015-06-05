@@ -1,20 +1,7 @@
-Platform.sh documentation
-=========================
-
-[Platform.sh](https://platform.sh) is a cloud based hosting solution for
-development. This describes how to use (and benefit from)
-[Platform.sh](https://platform.sh).
-
-To fully benefit from [Platform.sh](https://platform.sh), it's
-recommended to install the [Command Line Interface
-(CLI)](https://github.com/platformsh/platformsh-cli). Read more about
-the CLI here \<cli\>.
-
 * [Overview](overview/README.md)
   * [Techincal Requirements](overview/technical-requirements.md)
+  * [Platform.sh Environments](overview/environments.md)
   * [The Web Interface](overview/web-ui/README.md)
-    * [Platform Environments](overview/platform-environments.md)
-    * [Platform Actions](overview/platform-actions.md)
     * [Configure a project](overview/web-ui/configure-project.md)
     * [Configure an environement](overview/web-ui/configure-environment.md)
   * [Platform CLI](overview/cli/README.md)

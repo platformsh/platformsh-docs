@@ -1,8 +1,6 @@
-Backup and Restore
-==================
+# Backup and Restore
 
-Backup
-------
+## Backup
 
 ### Manual backup
 
@@ -49,8 +47,7 @@ month.
 In parallel we run EBS snapshots every four hours. Those snapshots are
 kept for seven days.
 
-Restore
--------
+## Restore
 
 Commerce Guys can restore from backup for you. Request a restore by
 opening a ticket which contains the name of the environment to restore.

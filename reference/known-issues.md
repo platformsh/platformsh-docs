@@ -1,8 +1,6 @@
-Known Issues
-============
+# Known Issues
 
-"No Application Configured"
----------------------------
+## No Application Configured
 
 If you see the `No Application Configured` when accessing your
 [Platform.sh](https://platform.sh) site within a browser, this means

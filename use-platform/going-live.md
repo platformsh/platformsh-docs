@@ -1,11 +1,9 @@
-Going Live
-==========
+# Going Live
 
 Here are the steps you need to follow when your site is ready to go
 live.
 
-1 - Domains
------------
+## 1 - Domains
 
 First step is to add your domain.
 
@@ -19,8 +17,7 @@ If you require access to the site, you can create a hosts file entry and
 point it to the IP address that resolves when you access your master
 project branch.
 
-2 - Routes
-----------
+## 2 - Routes
 
 You can configure the routes of your project directly within the
 ui\_overview or within your `.platform/routes.yaml` file.
@@ -82,8 +79,7 @@ entire site with HTTPS, here is what your routes would look like:
     to: "https://{default}/"
 ```
 
-3 - DNS
--------
+## 3 - DNS
 
 Configure your DNS provider to point your domain to your
 [Platform.sh](https://platform.sh) Master environment.
@@ -151,8 +147,7 @@ for the apex domain requested. If the IP address for the destination
 changes, the IP address for the mapped domain changes automatically as
 well.
 
-4 - SSL/TLS
------------
+## 4 - SSL/TLS
 
 -   Generate private key
 -   Use openssl to generate a new private key

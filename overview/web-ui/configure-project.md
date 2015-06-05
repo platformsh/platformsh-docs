@@ -1,15 +1,11 @@
-Project configuration
-=====================
+# Project configuration
 
 You can access the configuration page of your project by clicking the
 gear icon next to the project name.
 
 ![image](images/ui-conf-project.png)
 
-------------------------------------------------------------------------
-
-Settings
---------
+## Settings
 
 The `Settings` screen provides the SSH key that Platform.sh will use
 when trying to access external private Git repository during the build
@@ -21,10 +17,7 @@ project.
 
 ![Get the Platform.sh project public SSH key](images/ui-conf-project-ssh-key.png)
 
-------------------------------------------------------------------------
-
-Users
------
+## Users
 
 The `Users` screen allows you to manage users access on your project.
 
@@ -48,13 +41,9 @@ permissions on each environment.
 >
 > The `Account owner` is locked and you can't change its permissions.
 
-------------------------------------------------------------------------
-
-Domains
--------
+## Domains
 
 The `Domains` screen allows you to manage your domains that your project
 will be accessible at.
 
 ![Manage domains of your Platform.sh project.](images/ui-conf-project-domains.png)
-

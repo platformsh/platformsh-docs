@@ -1,11 +1,9 @@
-Technical Requirements
-======================
+# Technical Requirements
 
 [Platform.sh](https://platform.sh/) will require you to have **Git**
 installed. You also need to be familiar with **SSH**.
 
-Git
----
+## Git
 
 Git is the open source version control system that is utilized by
 [Platform.sh](https://platform.sh/).
@@ -22,8 +20,7 @@ to be able to interact with [Platform.sh](https://platform.sh/).
 > * [Install Git](https://help.github.com/articles/set-up-git)
 > * [Learn more about Git](http://git-scm.com/)
 
-SSH
----
+## SSH
 
 One of the ways [Platform.sh](https://platform.sh/) keeps things secure
 is by using SSH behind the scenes. Users connect to their Platform.sh
@@ -60,4 +57,3 @@ You will need a ssh *public/private keypair* in order to interact with
 Your public key is uploaded to your [Platform.sh](https://platform.sh/) user 
 account, and it then governs authentication for Git, SSH sessions (shell access), 
 and other tools that connect to your [Platform.sh](https://platform.sh/) project.
-

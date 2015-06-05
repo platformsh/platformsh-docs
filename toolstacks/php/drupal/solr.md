@@ -1,8 +1,6 @@
-Using Solr with Drupal 7.x
-==========================
+# Using Solr with Drupal 7.x
 
-Requirements
-------------
+## Requirements
 
 You will need to add the [Search
 API](https://www.drupal.org/project/search_api) and [Search API
@@ -17,8 +15,7 @@ projects[search_api][version] = 1.13
 projects[search_api_solr][version] = 1.x-dev
 ```
 
-Configuration
--------------
+## Configuration
 
 Go to `/admin/config/search/search_api` and click on *Add Server*. Give
 the server a name and a description.

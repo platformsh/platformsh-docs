@@ -1,12 +1,10 @@
-Using Redis with Drupal 7.x
-===========================
+# Using Redis with Drupal 7.x
 
 There are two options for using Redis with Drupal on Platform.sh, you
 can either use the [PhpRedis](https://github.com/nicolasff/phpredis)
 extension or the [Predis](http://github.com/nrk/predis) library.
 
-Requirements
-------------
+## Requirements
 
 You will need to add the [Redis](https://www.drupal.org/project/redis)
 module to your project.
@@ -41,8 +39,7 @@ runtime:
 
 > -   application\_configuration
 
-Configuration
--------------
+## Configuration
 
 To make use of the Redis cache you will need to set some Drupal
 variables. You can either do this in your `settings.php` file or by
