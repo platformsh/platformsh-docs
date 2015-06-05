@@ -1,14 +1,17 @@
-What is the CLI?
-================
+CLI (Command Line Interface)
+============================
 
-The cli is the official tool to use and manage your Platform.sh projects
-directly from your terminal. Anything you can do in the ui\_overview can
-be done with the cli.
+What is the CLI?
+----------------
+
+The CLI is the official tool to use and manage your Platform.sh projects
+directly from your terminal. Anything you can do within the Web Interface can
+be done with the CLI.
 
 How do I get it?
-================
+----------------
 
-You can install the cli easily using Composer:
+You can install the CLI easily using Composer:
 
 ```bash
 composer global require platformsh/cli:@stable
@@ -18,11 +21,10 @@ You can find the system requirements and more information in the
 [installation instructions on
 GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md).
 
-
 What can I do with the CLI?
-===========================
+---------------------------
 
-The cli uses the platform\_api to trigger commands (*Branch, Merge...*)
+The CLI uses the platform API to trigger commands (*Branch, Merge...*)
 on your Platform.sh project.
 
 ![Platform Cli In Project](images/platform-cli-in-project.png)
@@ -33,7 +35,7 @@ Platform.sh.
 
 ![Platform Cli Logged In](images/platform-cli-logged-in.png)
 
-Once you have the cli installed, run `platform list` to see all of the
+Once you have the CLI installed, run `platform list` to see all of the
 available commands.
 
 ![Platform Cli List](images/platform-cli-list.png)
