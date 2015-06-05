@@ -297,6 +297,10 @@ Here is an example of a ``services.yaml`` file:
 * solr
 * redis
 
+.. note::
+  Platform.sh uses Solr 3.6 by default, but Solr 4.10 is also supported. You
+  can request it by specifying the service type as ``solr:4.10``.
+
 .. seealso::
 
   * `services.yaml for Symfony <https://github.com/platformsh/platformsh-examples/blob/symfony/standard-full/.platform/services.yaml>`_
