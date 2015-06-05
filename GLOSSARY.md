@@ -106,12 +106,11 @@ Each environment has a parent and can have multiple children. You
 can merge code to a parent environment, and synchronize code
 and/or data to any child environment.
 
-
-#Platform CLI 
-Platform CLI is the official command line
+# Command Line Interface (CLI)
+The Command Line Interface (CLI) is the official command line
 shell and Unix scripting interface for Platform. It ships with all the
-useful commands to interact with your Platform projects. You can get
-download it [here](https://github.com/commerceguys/platform-cli).
+useful commands to interact with your Platform projects. You can download it 
+on [GitHub](https://github.com/commerceguys/platform-cli).
 
 #Production plan
 A subscription level which allows you to host your production

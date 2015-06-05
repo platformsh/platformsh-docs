@@ -8,36 +8,38 @@ Git
 ---
 
 Git is the open source version control system that is utilized by
-Platform.sh.
+[Platform.sh](https://platform.sh/).
 
-Any change you make to your Platform.sh project will need to be
-committed via Git. You can see all the Git commit messages of an
-environment \<environments\> in the activity feed of ui\_overview.
+Any change you make to your [Platform.sh](https://platform.sh/) project will 
+need to be committed via Git. You can see all the Git commit messages of an
+environment in the activity feed of the web interface.
 
 Before getting started, make sure you have it installed on your computer
-to be able to interact with Platform.sh.
+to be able to interact with [Platform.sh](https://platform.sh/).
 
-> -   [Install Git](https://help.github.com/articles/set-up-git)
-> -   [Learn more about Git](http://git-scm.com/)
+> **see also**
+>
+> * [Install Git](https://help.github.com/articles/set-up-git)
+> * [Learn more about Git](http://git-scm.com/)
 
 SSH
 ---
 
 One of the ways [Platform.sh](https://platform.sh/) keeps things secure
 is by using SSH behind the scenes. Users connect to their Platform.sh
-git repository and to their Command Line Interface (CLI) \<cli\> using
+git repository and to their Command Line Interface (CLI) using
 SSH.
 
 SSH requires two [RSA
-keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem)):
+keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem):
 
--   A **private key** kept secret by the user
--   A **public key** stored within the Platform.sh account.
+* A **private key** kept secret by the user
+* A **public key** stored within the [Platform.sh](https://platform.sh/) account
 
 These keys are called the *public-private keypair* and usually look like
-random lines of characters, like this.
+random lines of characters, like this:
 
-*A private key*: :
+*A private key*:
 
     -----BEGIN RSA PRIVATE KEY-----
     MIIEowIBAAKCAQEAtpw0S4DwDVj2q04mhiIMkhvrYU7Z6hRiNbTFsqg3X7x/uYS/
@@ -49,12 +51,13 @@ random lines of characters, like this.
     Kng4ohG6xHZ/OvC9tq7/THwAvleaxgLZN5GyXfAqNylDdZ0LtSjl
     -----END RSA PRIVATE KEY-----
 
-*A public key (one very long line)*: :
+*A public key (one very long line)*:
 
     ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2nDRLgPANWParTiaGIgySG+thTtnqFGI1tMWyqDdfvH+5hL91w2tK9PzaP+NJ5hA/cOyh30YRFb52Y64toU16Ko5K1mLqNFJajjWEI5Y4VukG6betrWfqdQ7XBr/s7nBuDOFQ5+eKbvug4rRSCSo8CsEI1eI0VNQkC9HJWYK28k7KurMdTN7X/Z/4vknM4/Rm2bnMk2idoORQgomeZS1p3GkG8dQs/c0j/b4H7azxnqdcCaR4ahbytX3d49BN0WwE84C+ItsnkCt1g5tVADPrab+Ywsm/FTnGY3cJKKdOAHt7Ls5lfpyyug2hNAFeiZF0MoCekjDZ2GH2xdFc7AX/ your_email_address@example.com
 
 You will need a ssh *public/private keypair* in order to interact with
-Platform.sh. Your public key is upladed to your Platform.sh user
-account, and it then governs authentication for git, SSH sessions (shell
-access), and other tools that connect to your Platform.sh project.
+[Platform.sh](https://platform.sh/). 
+Your public key is uploaded to your [Platform.sh](https://platform.sh/) user 
+account, and it then governs authentication for Git, SSH sessions (shell access), 
+and other tools that connect to your [Platform.sh](https://platform.sh/) project.
 

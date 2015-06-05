@@ -8,6 +8,8 @@ The CLI is the official tool to use and manage your Platform.sh projects
 directly from your terminal. Anything you can do within the Web Interface can
 be done with the CLI.
 
+The source code of the CLI is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
+
 How do I get it?
 ----------------
 
