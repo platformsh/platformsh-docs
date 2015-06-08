@@ -9,14 +9,16 @@ interact with Platform.sh. You can define and configure the services you
 want to deploy and use, the specific routes you need to serve your
 application...
 
-You can find some examples for those configuration files on
-[Github](https://github.com/platformsh/platformsh-examples).
-
 Platform.sh exposes a `.platform.app.yaml` file which defines your
 application and the way it will be built and deployed on Platform.sh.
 
+> **note**
+> Find many examples for those configuration files on the [platformsh-examples repository on 
+Github](https://github.com/platformsh/platformsh-examples).
+
+Here is an example of a ``.platform.app.yaml`` file:
+
 ```yaml
-# .platform.app.yaml
 # This file describes an application. You can have multiple applications
 # in the same project.
 
@@ -360,9 +362,7 @@ platform environment:metadata enable_smtp true
 ```
 
 Emails from Platform.sh are sent via a Mandrill-based SMTP proxy. Each
-Platform.sh project is provisioned as a Mandrill sub-account.
+Platform.sh project is provisioned as a Mandrill sub-account. Note that Mandrill subaccounts are capped at 12k emails per month.
 
-> **note**
-> Mandrill subaccounts are capped at 12k emails per month.
-
-> -   Configure outgoing emails via the web UI \<ui\_environment\_settings\>
+> **see also**
+> [Configure outgoing emails via the web UI](../overview/web-ui/configure-environment.html#settings)

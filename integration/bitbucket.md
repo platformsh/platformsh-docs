@@ -8,14 +8,11 @@ Platform.sh environments directly from your Bitbucket repository.
 On your Bitbucket account, click on your avatar, select ``Manage Account``, and simply install the Platform.sh add-on by selecting ``Find new add-ons`` from the left menu. The Platform.sh add-on is under the *Deployment* category.
 
 > **note**
-> You can also install the add-on at the *team* level so that every repository that belong to the team can use the add-on.
+> We recommand you to install the add-on at the *team*  (select ``Manage Team`` instead) level so that every repository that belong to the team can use the add-on.
 
 ## Get started
 
-To connect your Bitbucket repository to Platform.sh, go to the repository page on Bitbucket and click on the ``Settings`` icon. Then Click on ``Platform.sh integration`` under ``PLATFORM.SH``.
-
-> **note**
-> You need to be an administrator on the repository to connect the repository to Platform.sh.
+To connect your Bitbucket repository to Platform.sh, go to the repository page *as an administrator* on Bitbucket and click on the ``Settings`` icon. Then Click on ``Platform.sh integration`` under ``PLATFORM.SH``.
 
 You can then *Create a new project* or even connect to an existing project if you already have a project on Platform.sh.
 
@@ -35,10 +32,14 @@ Depending on the language (PHP) and the stack that you are running (Symfony, Wor
 
 ### Configure your application
 
+At the root of your Git repository (or at the root of each of your application folders if your repository contains multiple applications), add a file called ``.platform.app.yaml``.
+
 > **see also**
-> ...
+> [Configure your application](../reference/configuration-files.html#configure-your-application)
 
 ### Configure your services
 
+At the root of your Git repository, create a folder called ``.platform`` and inside this folder, create a file called ``services.yaml``.
+
 > **see also**
-> ...
+> [Configure your services](../reference/configuration-files.html#configure-services)
