@@ -13,6 +13,7 @@ web:
     document_root: "/_book"
     # TODO: This should be implemented soon.
     passthru: "/index.php"
+    expires: 300
     whitelist:
       - \.html$
       - \.json$
