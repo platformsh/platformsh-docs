@@ -1,7 +1,5 @@
 # Getting started for the impatient
 
-@TODO: Remove this section and move it as a specific book.
-
 Goals of this document:
 
 -   Getting started guide
