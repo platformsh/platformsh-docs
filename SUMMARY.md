@@ -19,6 +19,7 @@
     * [Blackfire](integration/blackfire.md)
     * [Webhook](integration/webhooks.md)
     * [Hipchat](integration/hipchat.md)
+* [Getting Started With Drupal](use-platform/getting-started-for-the-impatient.md)
 * [Reference](reference/README.md)
    * [Toolstacks](toolstacks/README.md)
      * [PHP](toolstacks/php/README.md)
@@ -44,4 +45,3 @@
   * [Upgrade](reference/upgrade.md)
   * [The Protective Block](protective-block.md)
 * [FAQ](faq/known-issues.md)
-* [GETTING STARTED WILL BE SOMEWHERE ELSE--impatient](use-platform/getting-started-for-the-impatient.md)
