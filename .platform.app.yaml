@@ -10,11 +10,12 @@ toolstack: "php:symfony"
 # The configuration of app when it is exposed to the web.
 web:
     # The public directory of the app, relative to its root.
-    document_root: "/_build/html"
+    document_root: "/_book"
     # TODO: This should be implemented soon.
     passthru: "/index.php"
     whitelist:
       - \.html$
+      - \.json$
 
       # CSS and Javascript.
       - \.css$
@@ -79,10 +80,11 @@ disk: 2048
 
 # Build time dependencies.
 dependencies:
-  python:
-    sphinx: "1.2.3"
+  nodejs:
+    gitbook-cli: "*"
 
 # The hooks that will be performed when the package is deployed.
 hooks:
     build: |
-      make html
+      gitbook build
+      mv index.php _book/index.php
