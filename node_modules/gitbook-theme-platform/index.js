@@ -8,7 +8,6 @@ module.exports = {
             "platform.css"
         ],
         html: {
-          "head:end": "<link rel='stylesheet' type='text/css' href='//cloud.typography.com/7640312/659566/css/fonts.css'>",
           "body:start": "<div id='platform-bar'><a class='branding' href='/'><span class='logo'></span><span class='site-name'>Docs</span></a></div>"
         }
     },
