@@ -3,8 +3,8 @@ $path = parse_url($_SERVER['REQUEST_URI']);
 
 $path = trim($path["path"], './');
 
-if (strpos($path, '.html')) {
-  $correct_path = str_replace('.html', '', $path);
+if (strlen($path) && !strpos($path, '.html')) {
+  $correct_path = $path . '.html';
   http_response_code(301);
   header('Location: /' . ltrim($correct_path, '/'));
   exit;
