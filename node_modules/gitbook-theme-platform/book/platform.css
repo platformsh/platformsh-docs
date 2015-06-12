@@ -186,27 +186,25 @@ body,
   background: #fdf2f2;
   color: #de1151;
 }
-.book .book-body .page-wrapper .page-inner section.normal .alert-info {
-  background: #e0f5fd;
+.book .book-body .page-wrapper .page-inner section.normal blockquote {
   border: none;
   border-radius: 0;
-  color: #363636;
-  position: relative;
-  padding: 15px 25px 0;
+  padding: 11px 25px 15px;
 }
-.book .book-body .page-wrapper .page-inner section.normal .alert-info .fa-edit {
-  display: none;
-}
-.book .book-body .page-wrapper .page-inner section.normal .alert-info:before {
-  content: "note";
+.book .book-body .page-wrapper .page-inner section.normal blockquote label {
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
-  position: absolute;
-  top: 10px;
 }
-.book .book-body .page-wrapper .page-inner section.normal .alert-info p {
+.book .book-body .page-wrapper .page-inner section.normal blockquote p {
   margin-bottom: 15px;
+}
+.book .book-body .page-wrapper .page-inner section.normal blockquote p:last-child {
+  margin-bottom: 0;
+}
+.book .book-body .page-wrapper .page-inner section.normal .alert-info {
+  background: #e0f5fd;
+  color: #363636;
 }
 .book .book-body .page-wrapper .page-inner section.normal hr {
   height: 1px;

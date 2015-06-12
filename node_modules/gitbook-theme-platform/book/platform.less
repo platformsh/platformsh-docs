@@ -192,27 +192,25 @@ body,
     background: #fdf2f2;
     color: #de1151;
   }
-  .alert-info {
-    background: #e0f5fd;
+  blockquote {
     border: none;
     border-radius: 0;
-    color: #363636;
-    position: relative;
-    padding: 15px 25px 0;
-    .fa-edit {
-      display: none;
-    }
-    &:before {
-      content: "note";
+    padding: 11px 25px 15px;
+    label {
       font-weight: 500;
       font-size: 12px;
       text-transform: uppercase;
-      position: absolute;
-      top: 10px;
     }
     p {
       margin-bottom: 15px;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
+  }
+  .alert-info {
+    background: #e0f5fd;
+    color: #363636;
   }
   hr {
     height: 1px;

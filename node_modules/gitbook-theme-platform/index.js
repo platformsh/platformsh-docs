@@ -12,11 +12,5 @@ module.exports = {
         }
     },
     hooks: {
-        init: function() {
-            console.log("init!");
-        },
-        finish: function() {
-            console.log("finish!");
-        }
     }
 };

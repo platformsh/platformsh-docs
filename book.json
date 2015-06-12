@@ -2,7 +2,7 @@
     "title": "Platform.sh Documentation",
     "description": "Platform.sh Documentation",
     "plugins": [
-        "ga", "edit-link", "richquotes", "anchors", "theme-platform"
+        "ga", "edit-link", "anchors", "theme-platform"
     ],
     "pluginsConfig": {
         "ga": {
