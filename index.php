@@ -7,5 +7,5 @@ if (substr($index, 0, strlen(realpath(getcwd()))) === realpath(getcwd()) && file
   readfile($index);
 } else { 
   http_response_code(404);
-  readfile("index.html");
+    header('Location: /');
 }
