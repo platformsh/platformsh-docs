@@ -21,6 +21,9 @@ mysql:
   type: mysql
   disk: 2048
 
+redis:
+  type: redis
+
 solr:
   type: solr
   disk: 1024
