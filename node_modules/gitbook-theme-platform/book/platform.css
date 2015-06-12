@@ -131,6 +131,7 @@ body,
 }
 .book .book-body .page-wrapper .page-inner section.normal {
   font-size: 16px;
+  overflow: visible;
 }
 .book .book-body .page-wrapper .page-inner section.normal h1 {
   font-size: 30px;
@@ -209,6 +210,45 @@ body,
 }
 .book .book-body .page-wrapper .page-inner section.normal hr {
   height: 1px;
+}
+.glossary-term {
+  position: relative;
+}
+.glossary-term .tooltip-wrapper {
+  display: none;
+  opacity: 0;
+  padding-top: 5px;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+  position: absolute;
+  width: 300px;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+}
+.glossary-term .tooltip-wrapper .tooltip {
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  max-width: 100%;
+  font-size: 12px;
+  padding: 10px;
+  display: inline-block;
+  word-wrap: normal;
+  box-sizing: border-box;
+}
+.glossary-term .tooltip-wrapper .tooltip:before {
+  content: " ";
+  position: absolute;
+  top: -5px;
+  left: 5px;
+  height: 0;
+  width: 0;
+  border: 5px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.9);
+}
+.glossary-term:hover .tooltip-wrapper {
+  opacity: 1;
+  display: inline-block;
 }
 .book.with-search .book-summary ul.summary {
   top: 123px;
