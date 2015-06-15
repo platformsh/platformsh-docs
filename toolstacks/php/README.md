@@ -40,8 +40,8 @@ the application (normally the repository root).
 
 For example, if you need to increase the PHP memory limit:
 
-```php
-# php.ini
+```ini
+; php.ini
 ; Increase PHP memory limit
 memory_limit = 256M
 ```
