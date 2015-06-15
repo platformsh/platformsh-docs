@@ -91,7 +91,7 @@ You need an [id\_rsa public/private
 keypair](https://help.github.com/articles/generating-ssh-keys/) to use
 Platform.sh.
 
-#### Upload using the Web UI
+### Upload using the Web UI
 
 To upload the public key in the browser go to [your user
 account](https://marketplace.commerceguys.com/user) and click the
@@ -101,7 +101,7 @@ key into the *Key* field. Your key will typically be found at
 
 ![Screenshot of a public key field](images/edit-ssh.png)
 
-#### Upload using Platform.sh CLI
+### Upload using Platform.sh CLI
 
 Alternately, you can upload your SSH key using the Platform.sh CLI
 itself.
@@ -154,7 +154,7 @@ like `git pull`, `git add`, `git commit`, and `git push`.
 The `shared` directory is for your settings.local.php file which stores
 the connection details to your local database.
 
-See the section below about Settings.php for a full explanation of the
+See the section below on Settings.php for a full explanation of the
 settings.local.php file.
 
 The `www` symlink is created by the `platform build` command and will
@@ -173,8 +173,6 @@ settings.php file to your Git repository in normal circumstances. Here
 is the entire contents of a generated settings.php:
 
 ```php
-```
-
 > linenos
 >
 > :   
@@ -186,6 +184,7 @@ is the entire contents of a generated settings.php:
 > \$local\_settings = dirname(\_\_FILE\_\_) . '/settings.local.php'; if
 > (file\_exists(\$local\_settings)) { require\_once(\$local\_settings);
 > }
+```
 
 The important part to see, starting in line 6, is the inclusion of
 another file, `settings.local.php`, which will handle the actual
@@ -352,7 +351,7 @@ Database dump saved to /tmp/main_20150206_091052.sql.gz [success]
 sql-dump failed.
 ```
 
-Than you should downgrade to Drush version 6.\* to make sql-sync works:
+Then you should downgrade to Drush version 6.\* to make sql-sync work:
 
 ```bash
 $ composer global require 'drush/drush:6.*'
@@ -376,8 +375,7 @@ page](http://documentation.mamp.info/en/documentation/mamp/).
 </Directory>
 ```
 
-> [Laravel Forum
-> Archives](http://forumsarchive.laravel.io/viewtopic.php?pid=11232#p11232)
+[Laravel Forum Archives](http://forumsarchive.laravel.io/viewtopic.php?pid=11232#p11232)
 
 > **note**
 > When you specify your document root, MAMP will follow the symlink and substitute the actual build folder path. This means that when you rebuild your project locally, you will need to repoint the docroot to the symlink again so it will refresh the build path.
