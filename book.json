@@ -1,6 +1,7 @@
 {
     "title": "Platform.sh Documentation",
     "description": "Platform.sh Documentation",
+    "version": "2.1.0",
     "plugins": [
         "ga", "edit-link", "anchors", "theme-platform"
     ],
