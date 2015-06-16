@@ -47,4 +47,4 @@ Selecting a user will allow you to either edit or remove access to that
 environment.
 
 You can also manage access to users on multiple environments using the
-project configuration screen \<ui\_project\_users\>.
+project configuration screen.

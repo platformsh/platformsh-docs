@@ -58,30 +58,30 @@ stdClass Object
 Environment variables that are specific to Platform.sh are exposed in
 the runtime (*ie. PHP*) and prefixed with `PLATFORM_*`.
 
--   **PLATFORM\_RELATIONSHIPS**: A base64-encoded JSON object whose keys
+-   **PLATFORM_RELATIONSHIPS**: A base64-encoded JSON object whose keys
     are the relationship name and the values are arrays of relationship
     endpoint definitions. Each relationship endpoint definition is a
     decomposed form of a URL. It has a `scheme`, a `host`, a `port`, and
     optionally a `username`, `password`, `path` and some additional
     information in `query`.
--   **PLATFORM\_ROUTES**: Describe the routes that you defined in the
+-   **PLATFORM_ROUTES**: Describe the routes that you defined in the
     environment. It maps the content of the `.platform/routes.yaml`
     file.
--   **PLATFORM\_PROJECT**: The ID of the project.
--   **PLATFORM\_ENVIRONMENT**: The name of the environment (*ie. the
+-   **PLATFORM_PROJECT**: The ID of the project.
+-   **PLATFORM_ENVIRONMENT**: The name of the environment (*ie. the
     name of the branch in Git*).
--   **PLATFORM\_TREE\_ID**: The ID of the tree the application was built
+-   **PLATFORM_TREE_ID**: The ID of the tree the application was built
     from. It's essentially the SHA of the tree in Git.
--   **PLATFORM\_VARIABLES**: A base64-encoded JSON object which keys are
+-   **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are
     variables names and values are variable values (*a string*).
--   **PLATFORM\_APPLICATION**: A base64-encoded JSON object that
+-   **PLATFORM_APPLICATION**: A base64-encoded JSON object that
     describes the application. It maps the content of the
     `.platform.app.yaml` that you have in Git and it has a few subkeys.
 
 Since values can change over time, the best thing is to just introspect
 the variable at runtime and use it to configure your application.
 
-For example with Drupal, we use the **PLATFORM\_RELATIONSHIPS** variable
+For example with Drupal, we use the **PLATFORM_RELATIONSHIPS** variable
 to configure your `settings.local.php`.
 
 ## Toolstack-specific variables

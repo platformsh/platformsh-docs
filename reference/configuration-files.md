@@ -109,7 +109,7 @@ The `relationships` defines how services are mapped within your
 application.
 
 The left-hand side is the name of the relationship as it will be exposed
-to the application in the *PLATFORM\_RELATIONSHIPS* environment
+to the application in the *PLATFORM_RELATIONSHIPS* environment
 variable. The right-hand side is in the form
 `<service name>:<endpoint name>`.
 
@@ -127,7 +127,7 @@ The `web` defines how the application is exposed to the web (in HTTP).
 
 It has a few sub-keys which are:
 
--   **document\_root**: The path relative to the root of the application
+-   **document_root**: The path relative to the root of the application
     that is exposed on the web. Typically `/public` or `/web`.
 -   **passthru**: The URL that is used in case of a 404 (*which is the
     equivalent of the rewrite rules in Drupal*). Typically `/index.php`
@@ -281,7 +281,7 @@ It has a few sub-keys which are:
 
 -   **spec**: The cron specification. For example: `*/20 * * * *`.
 -   **cmd**: The command that is executed, for example
-    cd public ; drush core-cron\`
+    `cd public ; drush core-cron\`
 
 ## Configure Services
 

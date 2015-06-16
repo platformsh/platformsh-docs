@@ -20,7 +20,7 @@ project branch.
 ## 2 - Routes
 
 You can configure the routes of your project directly within the
-ui\_overview or within your `.platform/routes.yaml` file.
+Web Interface or within your `.platform/routes.yaml` file.
 
 ### Single hostname
 
@@ -215,7 +215,7 @@ in which your organization is based.
 
 Common Name This is the fully qualified domain name that you wish to
 secure. For a single subdomain: www.example.com For all subdomains,
-specify the wildcard URL: \*.example.com For the root domain:
+specify the wildcard URL: *.example.com For the root domain:
 example.com
 
 The Common Name field must match the secure domain. You cannot purchase
@@ -254,7 +254,7 @@ etc…) choose X.509.
 If you want to secure more than one subdomain you will need to purchase
 a wildcard certificate from your provider. While these certificates are
 typically more expensive, they allow you to serve requests for all
-subdomains of \*.example.com over SSL.
+subdomains of *.example.com over SSL.
 
 On completion of the SSL certificate purchase process you should have
 several files including: The SSL certificate for the domain specified in
@@ -300,13 +300,13 @@ target if you already have a CNAME record.
 
 Record Name Target
 
-CNAME www \<ENVIRONMENT\>-\<PROJECT-ID\>.\<REGION\>.platform.sh.
+CNAME www ENVIRONMENT-PROJECT-ID.REGION.platform.sh.
 
 If you’re using a wildcard certificate your DNS setup will look similar.
 
 Record Name Target
 
-CNAME \* \<ENVIRONMENT\>-\<PROJECT-ID\>.\<REGION\>.platform.sh.
+CNAME * ENVIRONMENT-PROJECT-ID.REGION.platform.sh.
 
 ### Root domain
 
@@ -318,8 +318,8 @@ endpoint.
 
 Record Name Target
 
-ALIAS or ANAME \<empty\> or @
-\<ENVIRONMENT\>-\<PROJECT-ID\>.\<REGION\>.platform.sh
+ALIAS or ANAME empty or @
+ENVIRONMENT-PROJECT-ID.REGION.platform.sh
 
 In case you want to change an already added certificate, you will have
 to remove the domain and add it again with the new certificate.

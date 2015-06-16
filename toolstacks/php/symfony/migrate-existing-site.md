@@ -63,7 +63,7 @@ $ git push platform master
 > **note**
 > *git init* should have created a default *master* branch for you locally, so you can directly push that branch to you *master* remote branch on Platform.sh.
 
-Both on the terminal and on the ui\_overview, you should see your Master
+Both on the terminal and on the Web Interface, you should see your Master
 environment being built.
 
 ## Import your database

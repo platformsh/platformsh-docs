@@ -45,7 +45,7 @@ To make use of the Redis cache you will need to set some Drupal
 variables. You can either do this in your `settings.php` file or by
 setting Platform Variables directly via the UI.
 
-### Via the Web UI
+### Via the Web Interface
 
 The advantage of using environment variables is that these won't be used
 in your local build where you might not have Redis installed.

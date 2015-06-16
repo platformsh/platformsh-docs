@@ -25,8 +25,6 @@ projects[commerce_entitycache][version] = 1.1
 projects[commerce_authcache][version] = 1.x-dev
 ```
 
-> -   drush\_make\_files
-
 ## Configuration
 
 ### Variables

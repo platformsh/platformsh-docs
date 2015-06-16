@@ -10,10 +10,10 @@ commands at [Drush.org](http://www.drush.org). If you have never used
 Drush before, you can learn more about it on the [Drush Github
 Repository](https://github.com/drush-ops/drush#description)
 
-Platform.sh uses Drush, so all environments \<environment\> can utilize
+Platform.sh uses Drush, so all environments  can utilize
 drush commands in the development process. You can either set up
-Drush aliases \<create\_drush\_aliases\> to easily run drush commands on
-specific remote Platform environments \<environment\> or you can utilize
+Drush aliases to easily run drush commands on
+specific remote Platform environments  or you can utilize
 the cli.
 
 > **note**

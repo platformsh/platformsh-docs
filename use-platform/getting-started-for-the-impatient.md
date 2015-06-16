@@ -91,7 +91,7 @@ You need an [id\_rsa public/private
 keypair](https://help.github.com/articles/generating-ssh-keys/) to use
 Platform.sh.
 
-#### Upload using the Web UI
+#### Upload using the Web Interface
 
 To upload the public key in the browser go to [your user
 account](https://marketplace.commerceguys.com/user) and click the
