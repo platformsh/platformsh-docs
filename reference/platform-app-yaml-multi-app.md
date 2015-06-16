@@ -60,7 +60,7 @@ The `.profile/routes.yaml` may look like:
         enabled: false
 "http://{default}/":
     type: upstream
-    upstream: "front_end:php"
+    upstream: "front:php"
     cache:
         enabled: true
 ```
@@ -68,23 +68,23 @@ The `.profile/routes.yaml` may look like:
 > **note** for the moment the upstream is always of this form, ending with ":php" this is 
 > because, currently we only support PHP, and in the future Platform.sh will support multiple 
 > endpoints per application. Here it simply tells our router to connect, for example to 
-> a service we called "front_end" and route http traffic to the PHP service running there.
+> a service we called "front" and route http traffic to the PHP service running there.
 > Learn more on : [routes.yaml](/refernce/routes.yaml.md)
 
 
 The `.profile/services.yaml` may look like:
 ```
-common_db:
+commondb:
     type: postgresql
     disk: 4096
-redis_cache:
+cache:
     type: redis
 ```
 Here we say that we have two services that will be potentially available to any application
-in the project the, the keys "common_db" and "redis_cache" are names we can freely choose
-to describe the role theses services will have in our project; We will use these names in 
-each application's `.platform.app.yaml` to link the service to the application.
-
+in the project the, the keys "commondb" and "cache" are names we can freely (must be 
+alphanumeric with no special characters) choose to describe the role theses services will 
+have in our project; We will use these names in each application's `.platform.app.yaml` to 
+link the service to the application.
 
 
 The User API `user_api/.platform.app.yaml`  will look like the following (only putting here the relevant parts `[...]` representing the stuff we cut out...):
@@ -92,22 +92,21 @@ The User API `user_api/.platform.app.yaml`  will look like the following (only p
 name: user
 [...]
 relationships:
-    "database": "common_db:postgresql"
+    "database": "commondb:postgresql"
 ```
+Here the name "database" is freely chosen by us, this will be exposed in the 
+Environment Variables of the application (so it can be different between the different
+application of the same project). The right part "commondb:postgresql" comes from
+what we put in `services.yaml` for the name. The ":postgresql" suffix, which is required,
+is there because in the future we will support multiple endpoints per service (for 
+services that support multiple protocols). Learn more on : [services.yaml](/refernce/routes.yaml.md)
 
-> **note** Here the name "database" is freely chosen by us, this will be exposed in the 
-> Environment Variables of the application (so it can be different between the different
-> application of the same project). The right part "common_db:postgresql" comes from
-> what we put in `services.yaml` for the name. The ":postgresql" suffix, which is required,
-> is there because in the future we will support multiple endpoints per service (for 
-> services that support multiple protocols). Learn more on : [services.yaml](/refernce/routes.yaml.md)
-
-Or example's Content API `cintent_api/.platform.app.yaml` will in this case be very similar
+For example's Content API `content_api/.platform.app.yaml` will in this case be very similar:
 ```
 name: content
 [...]
 relationships:
-    "database": "common_db:postgresql"
+    "database": "commondb:postgresql"
 ```
 
 > **note** Here we keep the name "database" but this could be anything; This name will only
@@ -118,7 +117,7 @@ And finally the Front End `front_end/.platform.app.yaml` will look like:
 name: front
 [...]
 relationships:
-    "database": "redis_cache:redis"
+    "database": "cache:redis"
     "user_service": "user:php"
     "content_service": "content:php"
 ```
