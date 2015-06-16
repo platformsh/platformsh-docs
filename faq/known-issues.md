@@ -10,8 +10,7 @@ An environment is a standalone copy of your live site (the Master environment) w
 
 ##Do you support MySQL?
 
-
-`Platform.sh <https://platform.sh>`_ uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
+[Platform.sh](https://platform.sh) uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
 
 ##Do you support other database services?
 
@@ -51,7 +50,7 @@ No ! Since the PHP service you access via SSH is a read-only file system, you'll
 
 We try to make the log as self-explanatory as possible, so you should see the Git output and also output from the drush make...
 
-You can also find it back by clicking on the status of the activity in the :term:`Platform UI`.
+You can also find it back by clicking on the status of the activity in the `Platform UI`.
 
 ## What Linux distribution is Platform.sh using?
 
@@ -60,15 +59,23 @@ Platform.sh is built on Debian.
 ## If I choose the Development plan, can I use that plan for production?
 
 The Development plan provides all the tools to build your website. You can create as many development profiles as you wish for yourself and for your team.
-Once your project is built and ready for production, you can choose another plan to go live. These plans are listed on the `pricing page <https://platform.sh/pricing/>`_.
-
-##Why did you choose the .sh extension for your domain?
-
-'sh' is the short version of shell.
-According to Wikipedia™, in computing, a `shell <http://en.wikipedia.org/wiki/Shell_(computing)>`_ is a `user interface <http://en.wikipedia.org/wiki/User_interface>`_ for access to an operating system's services. Generally, operating system shells use either a `command-line interface <http://en.wikipedia.org/wiki/Command-line_interface>`_ (CLI) or `graphical user interface <http://en.wikipedia.org/wiki/Graphical_user_interface>`_ (GUI).
-This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy, and run great websites!
+Once your project is built and ready for production, you can choose another plan to go live. These plans are listed on the [pricing page](<https://platform.sh/pricing/).
 
 ## Which geographic zones does Platform.sh cover?
 
 Platform leverages the powerful AWS Infrastructure.
 We can deploy your site in a  [datacenter](https://aws.amazon.com/about-aws/globalinfrastructure/regional-product-services/) that is very close to your target audience.
+
+##Why did you choose the .sh extension for your domain?
+
+'sh' is the short version of shell.
+According to Wikipedia™, in computing, a [shell](http://en.wikipedia.org/wiki/Shell_(computing)) is a user interface  for access 
+to an operating system's services. Generally, operating system shells use either a [command-line interface ](http://en.wikipedia.org/wiki/Command-line_interface) (CLI) or
+[graphical user interface](http://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).
+This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy, 
+and run great websites!
+
+".sh" is also the TLD for Saint Helena that looks like a lovely island, and whose motto is: 
+"Loyal and Unshakeable" which we also strive to be.
+ 
+
