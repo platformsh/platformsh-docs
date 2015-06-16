@@ -1,17 +1,17 @@
 # Architecture
 
-The Environments \<environment\> in [Platform.sh](https://platform.sh)
-rely on services \<service\>. Services are deployed inside highly
-restricted containers \<container\> on a grid of servers. Monitoring and
+The Environments  in [Platform.sh](https://platform.sh)
+rely on services. Services are deployed inside highly
+restricted containers on a grid of servers. Monitoring and
 fail-over happen automatically, behind the scene.
 
-Services \<service\> are grouped together in *virtual clusters*, and
+Services are grouped together in *virtual clusters*, and
 dynamically keep track of each other.
 
 ![image](/overview/images/service-grid.png)
 
 > **note**
-> Platform.sh currently supports the following services: PHP, MySQL (MariaDB), Solr, Redis. Additional services will be available soon.
+> Platform.sh currently supports the following services: PHP, MySQL (MariaDB), Solr, Redis, Postgres, MongoDB. Additional services will be available soon.
 
 ## Micro container
 
