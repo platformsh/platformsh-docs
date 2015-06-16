@@ -19,7 +19,9 @@ on the Web Interface and copy it from there:
 
 If your private repository is on Github, go to the target repository's
 settings page. Go to *Deploy Keys* and click *Add deploy key*. Paste the
-public SSH key in and submit.
+public SSH key in and submit. By default, on github, deploy keys are read only
+so you do not need to worry about the system pushing code to the private
+repository.
 
 If you're using Drupal for example, you can now use your private module
 by adding it to your make file:
