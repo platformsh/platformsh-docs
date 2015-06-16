@@ -33,7 +33,7 @@ The advantage to using environment variables is that these won't be used
 on your local build using Platform CLI where you might not have Redis
 installed.
 
-Add the following environment variables on Platform UI.
+Add the following environment variables on Platform.sh Web Interface.
 
 `drupal:cache_backends`
 

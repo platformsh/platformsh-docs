@@ -50,7 +50,7 @@ setting Platform Variables directly via the UI.
 The advantage of using environment variables is that these won't be used
 in your local build where you might not have Redis installed.
 
-Add the following environment variables using the Platform UI. Note, if
+Add the following environment variables using the Platform.sh Web Interface. Note, if
 you set a directory in the make file you will need to alter the
 variables to match.
 

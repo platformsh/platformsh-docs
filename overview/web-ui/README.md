@@ -2,7 +2,7 @@
 
 [Platform.sh](https://platform.sh/) provides a responsive web UI which allows you to interact with your projects and manage your environments. Everything you can do with this interface you can also achieve with the  [CLI (Command Line Interface)](/overview/cli) and vice versa.
 
-![image](images/platform-ui.png)
+![Web Interface](images/platform-ui.png)
 
 ## Environment List
 
@@ -19,7 +19,7 @@ The web UI displays all the activity happening on your environments. You can fil
 
 The web UI exposes 5 main actions that you can use to interface with your environments.
 
-![image](images/ui-header.png)
+![Header](images/ui-header.png)
 
 ### Git
 
@@ -27,7 +27,7 @@ The Git icon displays the commands to use to get your project locally with the C
 
 ------------------------------------------------------------------------
 
-![image](/overview/images/icon-branch.png)
+![Branch](/overview/images/icon-branch.png)
 
 ### Branch
 
@@ -43,7 +43,7 @@ During a `branch`, three things happen:
 
 ------------------------------------------------------------------------
 
-![image](/overview/images/icon-merge.png)
+![Merge](/overview/images/icon-merge.png)
 
 ### Merge
 
@@ -57,7 +57,7 @@ During a `merge`:
 
 ------------------------------------------------------------------------
 
-![image](/overview/images/icon-sync.png)
+![Sync](/overview/images/icon-sync.png)
 
 ### Sync
 
@@ -69,7 +69,7 @@ Note that `sync` is only available if your branch has no unmerged commits, and c
 
 ### Snapshot & Restore
 
-Creating a snapshot for an environment means saving a copy of the database, so that it could be restored (in other words, create a backup). You will see the snapshot in the activity feed of you environment in the Platform UI where you can trigger the restore by
+Creating a snapshot for an environment means saving a copy of the database, so that it could be restored (in other words, create a backup). You will see the snapshot in the activity feed of you environment in the Platform.sh Web Interface where you can trigger the restore by
 clicking on the `restore` link.
 
 You can also use the CLI with:

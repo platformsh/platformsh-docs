@@ -1,6 +1,6 @@
 # Getting Help
 
 If you're facing any issue with Platform.sh, you can submit a support
-ticket from the [Platform UI](/web-ui).
+ticket from the [Platform.sh Web Interface](/web-ui).
 
-![](/overview/images/support-ticket.png)
+![Support Ticket](/overview/images/support-ticket.png)

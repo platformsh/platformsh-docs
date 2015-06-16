@@ -23,7 +23,7 @@ $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 ```
 
 > **note**
-> You can copy-paste the Git URL from the Platform UI under the Git icon.
+> You can copy-paste the Git URL from the Platform.sh Web Interface under the Git icon.
 
 Then push your local branch to your **platform** remote.
 
@@ -31,7 +31,7 @@ Then push your local branch to your **platform** remote.
 $ git push platform HEAD:master
 ```
 
-Both on the terminal and on the Platform UI, you should see your Master
+Both on the terminal and on the Platform.sh Web Interface, you should see your Master
 environment being built.
 
 ### Your project doesn't use Git yet
@@ -49,7 +49,7 @@ $ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
 ```
 
 > **note**
-> You can get the Git URL from the Platform UI under the Git icon.
+> You can get the Git URL from the Platform.sh Web Interface under the Git icon.
 
 Commit your project to the **platform** remote repository and push the
 code.
@@ -63,7 +63,7 @@ $ git push platform master
 > **note**
 > *git init* should have created a default *master* branch for you locally, so you can directly push that branch to you *master* remote branch on Platform.sh.
 
-Both on the terminal and on the Platform UI, you should see your Master
+Both on the terminal and on the Platform.sh Web Interface, you should see your Master
 environment being built.
 
 ## Import your database
