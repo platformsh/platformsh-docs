@@ -28,8 +28,8 @@ This build mode supports having a `project.make` file for your
 contributed modules, themes or libraries.
 
 > **note**
-> When building as a profile, you **need a make file for Drupal core** called: `project-core.make`. See drush\_make\_files.
-
+> When building as a profile, you **need a make file for Drupal core** called: `project-core.make`. See 
+[drush make files](/toolstacks/php/drupal/drush.md)
 ```bash
 .git/
 project.make
@@ -112,7 +112,7 @@ For Drupal 7, your `.platform.app.yaml` should specify the `php:drupal`
 toolstack. You can see a [working example on
 Github](https://github.com/platformsh/platformsh-examples/tree/drupal/7.x).
 
-> -   configuration\_files
+> -   configuration_files
 > -   [Drupal 7
 >     .platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml)
 
@@ -132,7 +132,7 @@ dependencies:
 You can see a [working example on
 Github](https://github.com/platformsh/platformsh-examples/tree/drupal/8.x).
 
-> -   configuration\_files
+> -   configuration_files
 > -   [Drupal 8
 >     .platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/8.x/.platform.app.yaml)
 

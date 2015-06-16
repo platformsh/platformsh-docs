@@ -143,12 +143,12 @@ branch will be merged into the master environment.
 ## Synchronizing data
 
 The easiest way to do that is to use Drush and the sql-sync command.
-You'll need to have `create_drush_aliases` setup for both your
+You'll need to have setup  drush aliasesfor both your
 Platform.sh site and your local site. If you are using the cli and
 you've run `platform get [platform_id]` for a project, then your Drush
 aliases have already been set up.
 
-With the `create_drush_aliases` (depending on how yours are set up), you
+With the drush aliases (depending on how yours are set up), you
 could use a command similar to this:
 
 ```bash

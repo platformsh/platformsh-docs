@@ -281,7 +281,7 @@ It has a few sub-keys which are:
 
 -   **spec**: The cron specification. For example: `*/20 * * * *`.
 -   **cmd**: The command that is executed, for example
-    `cd public ; drush core-cron\`
+    `cd public ; drush core-cron>
 
 ## Configure Services
 

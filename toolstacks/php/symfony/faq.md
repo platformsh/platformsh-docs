@@ -29,7 +29,7 @@ Then, add this line at the top of your `app_dev.php`:
 ini_set('session.save_path', __DIR__.'/../app/sessions' );
 ```
 
-> -   configuration\_files
+> -   configuration_files
 
 ## Why does my newly cloned Symfony install throw errors?
 
@@ -46,6 +46,5 @@ composer install
 ```
 
 > -   [Install Composer](https://getcomposer.org/download/)
-> -   [Checking out a versioned Symfony
->     Application](http://symfony.com/doc/current/book/installation.html#checking-out-a-versioned-symfony-application)
+> -   [Checking out a versioned Symfony Application](http://symfony.com/doc/current/book/installation.html#checking-out-a-versioned-symfony-application)
 

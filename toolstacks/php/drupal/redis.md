@@ -25,7 +25,7 @@ libraries[predis][directory_name] = predis
 libraries[predis][destination] = libraries
 ```
 
-> -   drush\_make\_files
+> -   drush_make_files
 
 To use the PhpRedis extension you will need to add it to your
 .platform.app.yaml file.
@@ -37,7 +37,7 @@ runtime:
         - redis
 ```
 
-> -   application\_configuration
+> -   application_configuration
 
 ## Configuration
 
