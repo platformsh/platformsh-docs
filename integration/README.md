@@ -6,7 +6,7 @@ webhooks.
 With the CLI, you can list all your active integrations:
 
 ```bash
-platform integrations
+$ platformlatform integrations
 ```
 
 ![Cli Integrations](images/cli-integrations.png)

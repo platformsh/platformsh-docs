@@ -266,4 +266,6 @@ It has a few sub-keys which are:
 -   **cmd**: The command that is executed, for example
     cd public ; drush core-cron\`
 
+------------------------------------------------------------------------
 
+[Past Changes of the configuration format](reference/upgrade.md)

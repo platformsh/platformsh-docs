@@ -76,7 +76,7 @@ authenticate you with Platform.sh and show your projects. Just type this
 command to start:
 
 ```bash
-platform
+$ platform
 ```
 
 The credentials you enter are the same for your account on [Commerce
@@ -104,7 +104,7 @@ Alternately, you can upload your SSH key using the Platform.sh CLI
 itself.
 
 ```bash
-platform ssh-key:add ~/.ssh/id_rsa.pub
+$ platform ssh-key:add ~/.ssh/id_rsa.pub
 ```
 
 ### Use the Platform.sh CLI to obtain and build your project’s repository
@@ -126,7 +126,7 @@ You can obtain a local copy of the project using the `platform get`
 command:
 
 ```bash
-platform get [PROJECT-ID]
+$ platform get [PROJECT-ID]
 ```
 
 Now you can see the local directory structure that the Platform CLI
@@ -214,13 +214,13 @@ executed during the build process.
 The default `project.make` file for a Drupal 7 installation looks like
 this:
 
-```bash
+```ini
 api = 2
 core = 7.x
 
 ; Drupal core.
 projects[drupal][type] = core
-projects[drupal][version] = 7.32
+projects[drupal][version] = 7.37
 projects[drupal][patch][] = "https://drupal.org/files/issues/install-redirect-on-empty-database-728702-36.patch"
 
 ; Platform indicator module.
@@ -294,7 +294,7 @@ Aliases for My Site (tqmd2kvitnoly):
 You can set the Drush alias group name to something more convenient:
 
 ```bash
-platform drush-aliases -g [alias group]
+$ platform drush-aliases -g [alias group]
 ```
 
 After that, they will be easier to remember and type.

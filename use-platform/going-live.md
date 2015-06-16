@@ -28,7 +28,7 @@ If you want your site to only be available at `http://mydomain.com` and
 have `http://www.mydomain.com` redirect to `http://mydomain.com`, you
 need define your `routes.yaml` as follow:
 
-```bash
+```yaml
 "http://{default}/":
     type: upstream
     upstream: "php:php"
@@ -47,7 +47,7 @@ hostname.
 Here would be an example of your `routes.yaml` for the
 `http://mydomain.com` URL:
 
-```bash
+```yaml
 "http://{default}/":
     type: upstream
     upstream: "php:php"
@@ -67,7 +67,7 @@ Here would be an example of your `routes.yaml` for the
 If you have uploaded your SSL certificate and you want to serve your
 entire site with HTTPS, here is what your routes would look like:
 
-```bash
+```yaml
 "https://{default}/":
     type: upstream
     upstream: "php:php"
@@ -170,15 +170,16 @@ a private key in your local environment using the openssl tool. If you
 aren’t able to execute the openssl command from the terminal you may
 need to install it.
 
-Mac OS X
+####Mac OS X
+Your OS X installation should come with OpenSSL installed, but
+you might consider installing  a more recent version using homebrew:
+ `brew install openssl`
 
-Homebrew: brew install openssl
-
-Windows
+####Windows
 
 [Windows executable](http://slproweb.com/products/Win32OpenSSL.html)
 
-Ubuntu Linux
+####Ubuntu Linux
 
 apt-get install openssl
 
@@ -268,9 +269,10 @@ configure SSL Endpoint for your app. First, provision an endpoint.
 ### Use the Platform.sh CLI to add the certificate
 
 ```bash
-platform domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
-
-platform help domain:add
+$ platform domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
+```
+```bash
+$ platform help domain:add
 
 Usage:
 domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
@@ -300,13 +302,13 @@ target if you already have a CNAME record.
 
 Record Name Target
 
-CNAME www ENVIRONMENT-PROJECT-ID.REGION.platform.sh.
+`CNAME www ENVIRONMENT-PROJECT-ID.REGION.platform.sh.`
 
 If you’re using a wildcard certificate your DNS setup will look similar.
 
 Record Name Target
 
-CNAME * ENVIRONMENT-PROJECT-ID.REGION.platform.sh.
+`CNAME * ENVIRONMENT-PROJECT-ID.REGION.platform.sh.`
 
 ### Root domain
 
@@ -319,7 +321,7 @@ endpoint.
 Record Name Target
 
 ALIAS or ANAME empty or @
-ENVIRONMENT-PROJECT-ID.REGION.platform.sh
+`ENVIRONMENT-PROJECT-ID.REGION.platform.sh`
 
 In case you want to change an already added certificate, you will have
 to remove the domain and add it again with the new certificate.

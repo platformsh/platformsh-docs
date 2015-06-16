@@ -1,7 +1,4 @@
-# Technical Requirements
-
-[Platform.sh](https://platform.sh/) will require you to have **Git**
-installed. You also need to be familiar with **SSH**.
+# Technical Requirements Git and SSH
 
 ## Git
 

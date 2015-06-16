@@ -1,6 +1,6 @@
 # Web Interface
 
-[Platform.sh](https://platform.sh/) provides a responsive web UI which allows you to interact with your projects and manage your environments. Everything you can do with this interface you can also achieve with the  [CLI (Command Line Interface)](/overview/cli) and vice versa.
+[Platform.sh](https://platform.sh/) provides a responsive Web Interface which allows you to interact with your projects and manage your environments. Everything you can do with this interface you can also achieve with the  [CLI (Command Line Interface)](/overview/cli) and vice versa.
 
 ![Web Interface](images/platform-ui.png)
 
@@ -12,12 +12,12 @@ The name of the environment is strikethroughed if it's been disabled. If it has 
 
 ## Activity Feed
 
-The web UI displays all the activity happening on your environments. You can filter messages per type.
+The Web Interface displays all the activity happening on your environments. You can filter messages per type.
 
 ## Header
 
 
-The web UI exposes 5 main actions that you can use to interface with your environments.
+The Web Interface exposes 5 main actions that you can use to interface with your environments.
 
 ![Header](images/ui-header.png)
 
@@ -75,13 +75,13 @@ clicking on the `restore` link.
 You can also use the CLI with:
 
 ```bash
-platform environment:backup
+$ platform environment:backup
 ```
 
 to create a snapshot, and
 
 ```bash
-platform environment:restore
+$ platform environment:restore
 ```
 
 to restore an existing snapshot.

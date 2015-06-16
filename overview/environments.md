@@ -1,8 +1,15 @@
 # Platform.sh Environments
 
-An environment is tied to a Git branch, plus all the services that are serving that branch. You can see that as a **complete working website**.
+[Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage 
+multiple environments, including the Master environment which runs the production website. Its precisely
+like a "development" or a "staging" server.. except they are created on the fly, and they are absolutly 
+identical copies of their parent environments. 
 
-[Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage multiple environments, including the Master environment which runs the production website.
+An environment is tied to a Git branch, plus all the services that are serving that branch. You can see that as a **complete working website**. With Bitbucket and Github integrations you can even get a "development server"
+for each and every pull-request.
+
+You can have branches that are not tied to a running instance of your application; This is what we call
+"inactive environments
 
 ## Master environment
 
@@ -72,7 +79,7 @@ The name should represent the purpose of the environment. Is it a Staging site t
 
 If you use Agile, for example, you could create hierarchical environments and name them like this:
 
-```bash
+```
 Sprint1
   Feature1
    Feature2
@@ -85,7 +92,7 @@ Sprint2
 
 If you prefer splitting your environments per developer and having a specific environment per task or per ticket, you could use something like this:
 
-```bash
+```
 Staging
   Developer1
     Ticket-526

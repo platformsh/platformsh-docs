@@ -144,7 +144,7 @@ You can apply **contributed patches** to your modules, themes or
 libraries within your `project.make`:
 
 ```bash
-projects[features][version] = "2.2"
+$ platformrojects[features][version] = "2.2"
 projects[features][patch][] = "https://www.drupal.org/files/issues/alter_overrides-766264-45.patch"
 ```
 
@@ -152,7 +152,7 @@ You can also apply **self-hosted patches**. Simply create a `PATCHES`
 folder at the root of your repository and add the patch as follow:
 
 ```bash
-projects[uuid][version] = "1.0-alpha5"
+$ platformrojects[uuid][version] = "1.0-alpha5"
 projects[uuid][patch][] = "PATCHES/fix-non-uuid-entity-load.patch"
 ```
 

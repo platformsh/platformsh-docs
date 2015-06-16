@@ -72,7 +72,7 @@ Now that you have a copy of your project locally, you can run
 ~/htdocs/my-project $ platform build
   Building application using the toolstack php:drupal
   Beginning to build ~/htdocs/my-project/repository/project.make.
-  drupal-7.34 downloaded.
+  drupal-7.37 downloaded.
   drupal patched with install-redirect-on-empty-database-728702-36.patch.
   Generated PATCHES.txt file for drupal
   platform-7.x-1.3 downloaded.
@@ -103,7 +103,12 @@ services.
 
 ```bash
 # Use your own project ID, branch, and specify whether it is the EU or US region (eg. us.platform.sh)
-$ ssh -N -L 3306:database.internal:3306 [project ID]-[branch]@ssh.eu.platform.sh & 
+$ ssh -N -L [PORT]:[RELATIONSHIP].internal:[PORT] [PROJECT ID]-[BRANCH]@ssh.[REGION].platform.sh & 
+# An example of tunneling mysql (port 3306) to an environment called "staging" 
+# on a project whose id is "xjybxziut32me" hosted in europe and for 
+# whom there is in .platform.app.yaml a relationship called "database" to
+# a service of type mysql :
+ssh -N -L 3306:database.internal:3306 xjybxziut32me-staging@ssh.eu.platform.sh
 ```
 
 After the tunnel is built, you can confirm its presence using the `fg`
@@ -116,7 +121,7 @@ $ fg
 # press CTRL-Z to return to the shell without killing the tunnel.
 ```
 
-Then you can connect to the remote database normally, as if it were
+Now you can connect to the remote database normally, as if it were
 local.
 
 ```bash

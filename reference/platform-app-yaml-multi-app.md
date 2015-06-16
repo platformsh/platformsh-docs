@@ -47,7 +47,7 @@ In our use case the User API is accessible through  a url like "http://api.examp
 and the Content API is accessible through "http://api.example.com/v1/content". In this case we are not doing http caching on the two APIs, but we are caching on the Front End applications.
 
 The `.profile/routes.yaml` may look like:
-````
+````yaml
 "http://api.{default}/v1/users":
     type: upstream
     upstream: "user:php"
@@ -73,7 +73,7 @@ The `.profile/routes.yaml` may look like:
 
 
 The `.profile/services.yaml` may look like:
-```
+```yaml
 commondb:
     type: postgresql
     disk: 4096
@@ -94,15 +94,15 @@ name: user
 relationships:
     "database": "commondb:postgresql"
 ```
-Here the name "database" is freely chosen by us, this will be exposed in the 
-Environment Variables of the application (so it can be different between the different
-application of the same project). The right part "commondb:postgresql" comes from
-what we put in `services.yaml` for the name. The ":postgresql" suffix, which is required,
-is there because in the future we will support multiple endpoints per service (for 
-services that support multiple protocols). Learn more on : [services.yaml](/refernce/routes.yaml.md)
+> Here the name "database" is freely chosen by us, this will be exposed in the 
+> Environment Variables of the application (so it can be different between the different
+> application of the same project). The right part "commondb:postgresql" comes from
+> what we put in `services.yaml` for the name. The ":postgresql" suffix, which is required,
+> is there because in the future we will support multiple endpoints per service (for 
+> services that support multiple protocols). Learn more on : [services.yaml](/refernce/routes.yaml.md)
 
 For example's Content API `content_api/.platform.app.yaml` will in this case be very similar:
-```
+```yaml
 name: content
 [...]
 relationships:

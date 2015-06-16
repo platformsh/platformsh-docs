@@ -11,7 +11,7 @@ The source code of the CLI is hosted on [GitHub](https://github.com/platformsh/p
 You can install the CLI easily using Composer:
 
 ```bash
-composer global require platformsh/cli:@stable
+$ composer global require platformsh/cli:@stable
 ```
 
 You can find the system requirements and more information in the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md).

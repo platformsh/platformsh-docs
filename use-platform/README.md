@@ -1,5 +1,8 @@
-# Install the Platform.sh software bundle
+# Using Platform.sh
 
-[Platform.sh](https://platform.sh) comes with a tool called the CLI (Command Line Interface) which is an open-source project hosted on [GitHub](https://github.com/platformsh/platformsh-cli). 
+This section will help you familiarize yourself with the feature set of Platform.sh
+and the kind of things you would daily do with it.. such as setting up a local
+development environement, backing up and restoring environements, using private
+repositories.. or going live with you site.
 
-Read more about the CLI [here](../overview/cli).
+[//]: # (TODO: link to getting started here)

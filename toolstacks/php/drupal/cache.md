@@ -1,3 +1,4 @@
+[//]: # (TODO: This probably wants to go away. This can be a blog article if needed)
 # Adding Entity Cache and Authcache
 
 You can further improve the perfomance of your site by adding the

@@ -5,7 +5,7 @@ a JSON file describing the activity to the url of your choice. You can
 use this to further automate your Platform.sh workflow.
 
 ```bash
-platform integration:add --type=webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
+$ platform integration:add --type=webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
 ```
 
 Here you can see an example of the response:
