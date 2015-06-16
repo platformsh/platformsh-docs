@@ -13,6 +13,6 @@ if (substr($index, 0, strlen(realpath(getcwd()))) === realpath(getcwd()) && file
   header("Cache-Control: public, max-age=300");
   readfile($index);
 } else {
-  $location = array_key_exists($path, $url_mapping) ? $url_mapping[$path] : '';
-  header('Location: /' . $location);
+  $location = array_key_exists($path, $url_mapping) ? $url_mapping[$path] : '/';
+  header('Location: ' . $location);
 }
