@@ -1,7 +1,6 @@
 # Web Interface
 
-[Platform.sh](https://platform.sh/) provides a responsive web UI which allows you to interact with your projects and manage your environments. 
-The UI is built with [AngularJS](https://www.angularjs.org).
+[Platform.sh](https://platform.sh/) provides a responsive web UI which allows you to interact with your projects and manage your environments. Everything you can do with this interface you can also achieve with the  [CLI (Command Line Interface)](/overview/cli) and vice versa.
 
 ![image](images/platform-ui.png)
 
