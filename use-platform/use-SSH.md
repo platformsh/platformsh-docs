@@ -69,16 +69,16 @@ pretty easy to add it to your account.
     don't add one).
 5.  Click 'Save'.
 
-That's it! You're all set. Now you'll be able to use Git \<git\> on
-Platform, and able to SSH into any environment's \<environments\> web
+That's it! You're all set. Now you'll be able to use Git on
+Platform, and able to SSH into any environment's web
 server.
 
 ![Add SSH key to Marketplace](/use-platform/images/ssh-addkeytomarketplace.png)
 
 ## SSH to your Web Server
 
-Just under the Environment name, in the ui\_overview, there is a link
-you can hover to copy the SSH URL of that environment \<environments\>.
+Just under the Environment name, in the Web Interface, there is a link
+you can hover to copy the SSH URL of that environment .
 
 1.  Open your Platform.sh Web Interface
 2.  Hover the `Access info` link
