@@ -1,4 +1,4 @@
-# Frequently Asked Questions (FAQ)
+# Symfony Frequently Asked Questions (FAQ)
 
 ## How do I store my sessions variables?
 
