@@ -9,7 +9,7 @@ For example, in case you want to enable sending emails for your
 non-master environment use this command:
 
 ```bash
-$ platformlatform environment:metadata enable_smtp true
+$ platform environment:metadata enable_smtp true
 ```
 
 Emails from Platform.sh are sent via a Mandrill-based SMTP proxy. Each

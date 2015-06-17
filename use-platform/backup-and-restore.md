@@ -15,7 +15,7 @@ stored on the mounted volumes.
 Using the CLI:
 
 ```bash
-$ platformlatform environment:backup
+$ platform environment:backup
 ```
 
 ### Automated backups
@@ -29,7 +29,7 @@ If you want to automate your backups, you can use Jenkins and trigger
 the following CLI command:
 
 ```bash
-$ platformlatform environment:backup
+$ platform environment:backup
 ```
 
 > **note**
