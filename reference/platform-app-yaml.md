@@ -58,8 +58,8 @@ Possible values are:
 -   php:drupal
 -   php:symfony
 
-> ** note ** this is a misnomer that will soon be correcter, for historical reasons, 
-> you should use php:symfony for anything that is not drupal.
+> ** note ** this is a misnomer that will soon be corrected you should use 
+> php:symfony for anything that is not drupal.
 
 ------------------------------------------------------------------------
 
