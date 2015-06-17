@@ -8,7 +8,6 @@ of your repository.
 
 This file controls the application and the way it will be built and deployed on Platform.sh.
 
-
 Here is an example of a `.platform.app.yaml` file:
 
 ```yaml
@@ -112,13 +111,11 @@ It has a few sub-keys which are:
 
 -   **document_root**: The path relative to the root of the application
     that is exposed on the web. Typically `/public` or `/web`.
--   **passthru**: The URL that is used in case of a 404 (*which is the
-    equivalent of the rewrite rules in Drupal*). Typically `/index.php`
-    or `/app.php`.
+-   **passthru**: The URL that is used in case of a file could not be found (either static or php). This would typically be your applications front controller, often `/index.php` or `/app.php`.
 -   **whitelist**: A list of files (as regular expressions) that may be
     served.
 -   **expires**: The number of seconds whitelisted (static) content
-    should be cached by the browswer. This enables the cache-control and
+    should be cached by the browser. This enables the cache-control and
     expires headers for static content. The `expires` directive and
     resulting headers are left out entirely if this isn't set.
 
@@ -181,7 +178,6 @@ and in the runtime environment of your application.
 You can specify those dependencies like this:
 
 ```yaml
-# .platform.app.yaml
 dependencies:
   php:
     drush/drush: "6.4.0"
@@ -267,5 +263,31 @@ It has a few sub-keys which are:
     cd public ; drush core-cron\`
 
 ------------------------------------------------------------------------
+## Defaults
+if you do not have a `.platform.app.yaml` file the following one that assumes you are deploying
+a Drupal instance will be applied:
 
-[Past Changes of the configuration format](reference/upgrade.md)
+```yaml
+name: php
+toolstack: "php:drupal"
+access:
+    ssh: contributor
+relationships:
+    database: "mysql:mysql"
+    solr: "solr:solr"
+    redis: "redis:redis"
+web:
+    document_root: "/"
+    passthru: "/index.php"
+disk: 2048
+mounts:
+    "/public/sites/default/files": "shared:files/files"
+    "/tmp": "shared:files/tmp"
+    "/private": "shared:files/private"
+crons:
+    drupal:
+        spec: "*/20 * * * *"
+        cmd: "cd public ; drush core-cron"
+```
+
+* [Past Changes of the configuration format can be found here](reference/upgrade.md)

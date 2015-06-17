@@ -11,6 +11,34 @@ To create a multi-application setup put each application in its own directory wi
 an `.platform.app.yaml` at its root. When Platform.sh deploys this it will create
 a service for each application.
 
+For example if we have a project composed of a Drupal installation and a Symfony project, we would put each project in its own directory:
+```bash
+$ ls -a
+.platform/
+drupal/
+symfony/
+```
+
+> ** note ** Platform.sh supports git submodules, so each project can be in a separate
+> repository. This is an incredibly powerful feature.. it allows you with a single commit
+> to create a "staging" server with different versions of each application.
+
+
+In the symfony `.platform.app.yaml` we might have `name: phpsymfony` and in the Drupal one `name: phpdrupal` to make this work together we would put in `.platform/routes.yaml` something like the following:
+
+```yaml
+"http://{default}/myapp":
+    type: upstream
+    upstream: "phpsymfony:php"
+"http://{default}/":
+    type: upstream
+    upstream: « phpdrupal:php"
+```
+This will result (if we consider we are on the http://example.com domain): http://example.com being served by the Drupal instance, while http://example.com/myapp and all the urls below it to be served by the Symfony App.
+
+## Micro-service Multi-App example
+Here is a more detailed and complete example for a project that is designed in "micro-service" style.
+
 The directory layout may resemble something like the following:
 ```
 .platform/

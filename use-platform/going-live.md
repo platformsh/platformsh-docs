@@ -59,8 +59,8 @@ Here would be an example of your `routes.yaml` for the
 
 > **note**
 > You can test those routes on your development environments with:
-> * `http://[branch]]-[project-id].[region].platform.sh`
-> * `http://www-[branch]]-[project-id].[region].platform.sh`
+> * `http://[branch]-[project-id].[region].platform.sh`
+> * `http://www-[branch]-[project-id].[region].platform.sh`
 
 ### HTTPS
 

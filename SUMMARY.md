@@ -25,9 +25,10 @@
     * [.platform.app.yaml](reference/platform-app-yaml.md)
     * [.platform/services.yaml](reference/services-yaml.md)
     * [.platform/routes.yaml](reference/routes-yaml.md)
+      * [HTTP Caching](reference/cache.md)
     * [Configuring Multiple Applications](reference/platform-app-yaml-multi-app.md)
   * [Environment Variables](reference/environment-variables.md)
-  * [HTTP Caching](reference/cache.md)
+
   * [Sending E-Mail](reference/email.md)
   * [Addresses](reference/public-ip-addresses.md)
   * [Toolstacks](toolstacks/README.md)

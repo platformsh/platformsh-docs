@@ -34,8 +34,29 @@ solr:
 -   mysql
 -   solr
 -   redis
+-   postgres
+-   mongodb
+-   elasticsearch
+
+##Defaults
+If you do not have a `routes.yaml` file the following default one will be loaded:
+
+```yaml
+mysql:
+    type: mysql
+    disk: 2048
+
+redis:
+    type: redis
+
+solr:
+    type: solr
+    disk: 1024
+```
 
 > **note**
 > Platform.sh uses Solr 3.6 by default, but Solr 4.10 is also supported. You can request it by specifying the service type as ``solr:4.10``.
 
-
+```yaml
+solr:
+    type: "solr:4.10"```
