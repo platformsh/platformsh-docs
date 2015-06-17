@@ -3,7 +3,7 @@
 You can access the configuration page of your project by clicking the
 gear icon next to the project name.
 
-![image](images/ui-conf-project.png)
+![configure project](images/ui-conf-project.png)
 
 ## Settings
 

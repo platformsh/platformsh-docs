@@ -42,53 +42,53 @@ environment to "Contributor".
 
 ## Manage user permissions at the project level
 
-> Access the project-level configuration.
->
-> ![Project configure icon](/use-platform/images/project_w-configarrow.png)
->
-> Click the project configuration icon next to the project name in the
-> upper-left corner of the project page.
+Access the project-level configuration.
+
+![Project configure icon](/use-platform/images/project_w-configarrow.png)
+
+Click the project configuration icon next to the project name in the
+upper-left corner of the project page.
 
 ------------------------------------------------------------------------
 
-> Manage users.
->
-> ![Project user management screenshot](/use-platform/images/project_usermanagement.png)
->
-> The `Access control` tab shows project-level users and their roles.
->
-> Selecting a user will allow you either to edit that user's permissions
-> or delete the user's access to the project entirely.
->
-> Add a new user by clicking on the `Add user` button.
->
-> If you select the 'Reader' role for the user, you'll have the option
-> of adjusting the user's permissions at the environment level.
+Manage users.
+
+![Project user management screenshot](/use-platform/images/project_usermanagement.png)
+
+The `Access control` tab shows project-level users and their roles.
+
+Selecting a user will allow you either to edit that user's permissions
+or delete the user's access to the project entirely.
+
+Add a new user by clicking on the `Add user` button.
+
+If you select the 'Reader' role for the user, you'll have the option
+of adjusting the user's permissions at the environment level.
 
 ------------------------------------------------------------------------
 
 ## Manage user permissions at the environment level
 
-> Access the environment-level configuration.
->
-> ![Project configure icon](/use-platform/images/environment_w-configarrow.png)
->
-> Click the environment configuration icon next to the environment name
-> on the project page.
+Access the environment-level configuration.
+
+![Project configure icon](/use-platform/images/environment_w-configarrow.png)
+
+Click the environment configuration icon next to the environment name
+on the project page.
 
 ------------------------------------------------------------------------
 
-> Manage users.
->
-> ![Project user management screenshot](/use-platform/images/environment_usermanagement.png)
->
-> The `User Management` tab shows environment-level users and their
-> roles.
->
-> Selecting a user will allow you either to edit that user's permissions
-> or delete the user's access to the environment entirely.
->
-> Add a new user by clicking on the `Add user` button.
+Manage users.
+
+![Project user management screenshot](/use-platform/images/environment_usermanagement.png)
+
+The `User Management` tab shows environment-level users and their
+roles.
+
+Selecting a user will allow you either to edit that user's permissions
+or delete the user's access to the environment entirely.
+
+Add a new user by clicking on the `Add user` button.
 
 > **note**
 > After a new user is added to the environment, it needs to be rebuilt (git push) for the changes to take effect. When the environment rebuild is complete, allow a minute for the routes to update fully and for the new user to be able to use SSH access.

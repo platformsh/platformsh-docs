@@ -38,8 +38,7 @@ local machine:
 
 #### For the Platform.sh CLI:
 
--   [id\_rsa public/private
-    keypair](https://help.github.com/articles/generating-ssh-keys/)
+-   [id_rsa public private keypair](https://help.github.com/articles/generating-ssh-keys/)
 -   [Git](http://git-scm.com/)
 -   [Composer](https://getcomposer.org/)
 -   [The Platform.sh CLI](https://github.com/platformsh/platformsh-cli)
@@ -60,11 +59,9 @@ Platform.sh is currently running PHP 5.4, MySQL Ver 15.1 Distrib
 
 ### Goals
 
-1.  Authenticate locally using the [Platform.sh
-    CLI](https://github.com/platformsh/platformsh-cli)
+1.  Authenticate locally using the [Platform.sh CLI](https://github.com/platformsh/platformsh-cli)
 2.  Upload your SSH public key
-3.  Use the [Platform.sh
-    CLI](https://github.com/platformsh/platformsh-cli) to obtain and
+3.  Use the [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) to obtain and
     build your project’s repository
 4.  Understand Settings.php
 5.  Understand Build Modes
@@ -79,7 +76,7 @@ authenticate you with Platform.sh and show your projects. Just type this
 command to start:
 
 ```bash
-platform
+$ platform
 ```
 
 The credentials you enter are the same for your account on [Commerce
@@ -87,11 +84,11 @@ Guys' Marketplace](https://marketplace.commerceguys.com/user).
 
 ### Upload your SSH public key
 
-You need an [id\_rsa public/private
+You need an [id_rsa public/private
 keypair](https://help.github.com/articles/generating-ssh-keys/) to use
 Platform.sh.
 
-#### Upload using the Web UI
+#### Upload using the Web Interface
 
 To upload the public key in the browser go to [your user
 account](https://marketplace.commerceguys.com/user) and click the
@@ -107,7 +104,7 @@ Alternately, you can upload your SSH key using the Platform.sh CLI
 itself.
 
 ```bash
-platform ssh-key:add ~/.ssh/id_rsa.pub
+$ platform ssh-key:add ~/.ssh/id_rsa.pub
 ```
 
 ### Use the Platform.sh CLI to obtain and build your project’s repository
@@ -129,7 +126,7 @@ You can obtain a local copy of the project using the `platform get`
 command:
 
 ```bash
-platform get [PROJECT-ID]
+$ platform get [PROJECT-ID]
 ```
 
 Now you can see the local directory structure that the Platform CLI
@@ -173,20 +170,14 @@ settings.php file to your Git repository in normal circumstances. Here
 is the entire contents of a generated settings.php:
 
 ```php
+ <?php $update_free_access = FALSE;
+
+ $drupal_hash_salt = '5vNH-JwuKOSlgzbJCL3FbXvNQNfd8Bz26SiadpFx6gE';
+
+ $local_settings = dirname(__FILE__) . '/settings.local.php'; if
+ (file_exists(\$local_settings)) { require_once(\$local_settings);
+ }
 ```
-
-> linenos
->
-> :   
->
-> \<?php \$update\_free\_access = FALSE;
->
-> \$drupal\_hash\_salt = '5vNH-JwuKOSlgzbJCL3FbXvNQNfd8Bz26SiadpFx6gE';
->
-> \$local\_settings = dirname(\_\_FILE\_\_) . '/settings.local.php'; if
-> (file\_exists(\$local\_settings)) { require\_once(\$local\_settings);
-> }
-
 The important part to see, starting in line 6, is the inclusion of
 another file, `settings.local.php`, which will handle the actual
 connection to the database, as well as the parsing of other important
@@ -223,13 +214,13 @@ executed during the build process.
 The default `project.make` file for a Drupal 7 installation looks like
 this:
 
-```bash
+```ini
 api = 2
 core = 7.x
 
 ; Drupal core.
 projects[drupal][type] = core
-projects[drupal][version] = 7.32
+projects[drupal][version] = 7.37
 projects[drupal][patch][] = "https://drupal.org/files/issues/install-redirect-on-empty-database-728702-36.patch"
 
 ; Platform indicator module.
@@ -245,7 +236,7 @@ Drupal.org does to build distributions. Everything you have in your
 repository will be copied to your `profiles/[name]` folder.
 
 > **note**
-> It is a mistake to mix Vanilla mode with other modes. If you've copied all of the Drupal core files into your repository then you need to make sure you don't have any `` *.make` or ``\*.profile\`\` files.
+> It is a mistake to mix Vanilla mode with other modes. If you've copied all of the Drupal core files into your repository then you need to make sure you don't have any `*.make` or `*.profile` files.
 
 #### Database credentials
 
@@ -303,7 +294,7 @@ Aliases for My Site (tqmd2kvitnoly):
 You can set the Drush alias group name to something more convenient:
 
 ```bash
-platform drush-aliases -g [alias group]
+$ platform drush-aliases -g [alias group]
 ```
 
 After that, they will be easier to remember and type.

@@ -1,3 +1,4 @@
+[//]: # (TODO: This probably wants to go away. This can be a blog article if needed)
 # Adding Entity Cache and Authcache
 
 You can further improve the perfomance of your site by adding the
@@ -25,8 +26,6 @@ projects[commerce_entitycache][version] = 1.1
 projects[commerce_authcache][version] = 1.x-dev
 ```
 
-> -   drush\_make\_files
-
 ## Configuration
 
 ### Variables
@@ -35,7 +34,7 @@ The advantage to using environment variables is that these won't be used
 on your local build using Platform CLI where you might not have Redis
 installed.
 
-Add the following environment variables on Platform UI.
+Add the following environment variables on Platform.sh Web Interface.
 
 `drupal:cache_backends`
 

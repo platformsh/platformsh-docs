@@ -4,7 +4,7 @@
 
 ### Manual backup
 
-Backups are triggered directly via the web UI or via the CLI. The backup
+Backups are triggered directly via the Web Interface or via the CLI. The backup
 creates a complete snapshot of the environment. It includes all
 persistent data from all running services (MySQL, SOLR...) and any files
 stored on the mounted volumes.
@@ -15,7 +15,7 @@ stored on the mounted volumes.
 Using the CLI:
 
 ```bash
-platform environment:backup
+$ platform environment:backup
 ```
 
 ### Automated backups
@@ -23,13 +23,13 @@ platform environment:backup
 **Platform.sh Standard**
 
 No backup is triggered automatically on Platform.sh Standard. You can
-trigger your backup via the web UI or via the CLI.
+trigger your backup via the Web Interface or via the CLI.
 
 If you want to automate your backups, you can use Jenkins and trigger
 the following CLI command:
 
 ```bash
-platform environment:backup
+$ platform environment:backup
 ```
 
 > **note**

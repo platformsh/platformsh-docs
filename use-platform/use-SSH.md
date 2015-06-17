@@ -1,12 +1,12 @@
-# Use SSH keys
+# Using SSH keys
 
 One of the ways [Platform.sh](https://platform.sh/) keeps things secure
 is by using SSH behind the scenes. Users connect to their Platform git
-repository and to their cli using SSH.
+repository and to the CLI also uses SSH.
 
 ## Find your Public-Private Keypair
 
-If you use Linux, you already have keys. The private key is usually in a
+If you use Linux, you probably already have keys. The private key is usually in a
 file named `~/.ssh/id_rsa` and the public key in `~/.ssh/id_rsa.pub`,
 
 Search for a public key file. 1. Open up a command prompt. 2. run the
@@ -20,7 +20,7 @@ following commands. :
     authorized_keys
 
 If you find a file named either `id_rsa.pub` or `id_dsa.pub`, you can
-use it with Platform.
+use it with Platform.sh.
 
 ## Create a New Public-Private Keypair
 
@@ -80,7 +80,7 @@ server.
 Just under the Environment name, in the ui\_overview, there is a link
 you can hover to copy the SSH URL of that environment \<environments\>.
 
-1.  Open your Platform.sh web UI
+1.  Open your Platform.sh Web Interface
 2.  Hover the `Access info` link
 3.  Click to copy the SSH URL
 

@@ -37,7 +37,7 @@ Now open a command line (you need to have the Platform.sh CLI
 installed). To enable the GitHub integration with the CLI:
 
 ```bash
-platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
+$ platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 ```
 
 If your repository belongs to an organisation, use ``--repository=ORGANISATION/REPOSITORY``.

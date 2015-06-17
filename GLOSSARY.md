@@ -2,7 +2,7 @@
 This is the main Platform.sh configuration file, it allows you to configure the stack you are using as well as build and deploy and runtime dependencies and hooks.
 
 #API
-Platform.sh provides a REST API (Application Programming Interface) which allows you to interact whith it. Both the Platform UI and the Platform CLI are fully integrated with the Platform API.
+Platform.sh provides a REST API (Application Programming Interface) which allows you to interact whith it. Both the Platform.sh Web Interface and the Platform CLI are fully integrated with the Platform API.
 
 #Application
 Your application regroups all your code and configuration files that you want to deploy.
@@ -21,7 +21,7 @@ Those files are stored in Git and allow you to easily interact with Platform top
 
 #Container
 
-CLI Command Line Interface The official tool to use and manage your Platform projects directly from within your terminal. Anything you can do in the Platform UI, you can do in your terminal with Platform CLI.
+CLI Command Line Interface The official tool to use and manage your Platform projects directly from within your terminal. Anything you can do in the Platform.sh Web Interface, you can do in your terminal with Platform CLI.
 
 #Deployment hooks
 Allows you to run various actions during the deployment of your environment.
@@ -45,11 +45,11 @@ Drush aliases allow you to run a drush commands on your local server but actuall
 An environment is a Git branch, plus all the services which are serving that branch.
 
 #Active Environment 
-An environment which is deployed. You can deactivate an active environment from the environment configuration page on Platform UI.
+An environment which is deployed. You can deactivate an active environment from the environment configuration page on Platform.sh Web Interface.
 
 #Inactive environment
 An environment which is not deployed. You can activate an inactive environment from the
-environment configuration page on Platform UI.
+environment configuration page on Platform.sh Web Interface.
 
 #Environment variables
 Variables exposed by Platform to the runtime environment which allow you to define any
@@ -87,7 +87,9 @@ The act of combining code from a remote branch to a local branch.
 
 #Push
 The act of moving and combining code from a local branch to a remote branch.
-Relationship Relationships The relationships of the application with services or other applications. See also relationships.
+
+#Relationship 
+Relationships The relationships of the application with services or other applications. See also relationships.
 
 #Routes
 A route describes how an incoming URL is going to be processed by Platform.sh to serve a project. See also routes configuration.

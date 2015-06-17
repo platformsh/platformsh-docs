@@ -10,10 +10,10 @@ commands at [Drush.org](http://www.drush.org). If you have never used
 Drush before, you can learn more about it on the [Drush Github
 Repository](https://github.com/drush-ops/drush#description)
 
-Platform.sh uses Drush, so all environments \<environment\> can utilize
+Platform.sh uses Drush, so all environments  can utilize
 drush commands in the development process. You can either set up
-Drush aliases \<create\_drush\_aliases\> to easily run drush commands on
-specific remote Platform environments \<environment\> or you can utilize
+Drush aliases to easily run drush commands on
+specific remote Platform environments  or you can utilize
 the cli.
 
 > **note**
@@ -144,7 +144,7 @@ You can apply **contributed patches** to your modules, themes or
 libraries within your `project.make`:
 
 ```bash
-projects[features][version] = "2.2"
+$ platformrojects[features][version] = "2.2"
 projects[features][patch][] = "https://www.drupal.org/files/issues/alter_overrides-766264-45.patch"
 ```
 
@@ -152,7 +152,7 @@ You can also apply **self-hosted patches**. Simply create a `PATCHES`
 folder at the root of your repository and add the patch as follow:
 
 ```bash
-projects[uuid][version] = "1.0-alpha5"
+$ platformrojects[uuid][version] = "1.0-alpha5"
 projects[uuid][patch][] = "PATCHES/fix-non-uuid-entity-load.patch"
 ```
 

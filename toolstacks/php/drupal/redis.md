@@ -25,7 +25,7 @@ libraries[predis][directory_name] = predis
 libraries[predis][destination] = libraries
 ```
 
-> -   drush\_make\_files
+> -   drush_make_files
 
 To use the PhpRedis extension you will need to add it to your
 .platform.app.yaml file.
@@ -37,7 +37,7 @@ runtime:
         - redis
 ```
 
-> -   application\_configuration
+> -   application_configuration
 
 ## Configuration
 
@@ -45,12 +45,12 @@ To make use of the Redis cache you will need to set some Drupal
 variables. You can either do this in your `settings.php` file or by
 setting Platform Variables directly via the UI.
 
-### Via the Web UI
+### Via the Web Interface
 
 The advantage of using environment variables is that these won't be used
 in your local build where you might not have Redis installed.
 
-Add the following environment variables using the Platform UI. Note, if
+Add the following environment variables using the Platform.sh Web Interface. Note, if
 you set a directory in the make file you will need to alter the
 variables to match.
 

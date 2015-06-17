@@ -1,8 +1,15 @@
 # Platform.sh Environments
 
-An environment is tied to a Git branch, plus all the services that are serving that branch. You can see that as a **complete working website**.
+[Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage 
+multiple environments, including the Master environment which runs the production website. Its precisely
+like a "development" or a "staging" server.. except they are created on the fly, and they are absolutly 
+identical copies of their parent environments. 
 
-[Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage multiple environments, including the Master environment which runs the production website.
+An environment is tied to a Git branch, plus all the services that are serving that branch. You can see that as a **complete working website**. With Bitbucket and Github integrations you can even get a "development server"
+for each and every pull-request.
+
+You can have branches that are not tied to a running instance of your application; This is what we call
+"inactive environments
 
 ## Master environment
 
@@ -12,7 +19,7 @@ If you subscribed to a production plan, this environment is your **live site** a
 
 ## Hierarchy
 
-![](images/clone-hierarchy.png)
+![Hierarchy](images/clone-hierarchy.png)
 
 Platform.sh brings the concept of a hierarchy between your environments.
 Each new environment you create is considered a **child** of the **parent** environment from which it was branched.
@@ -36,27 +43,27 @@ There are no rules you must follow when branching the master environment. You si
 
 Here is an example of a possible Agile workflow.
 
-![image](/use-platform/images/branches.png)
+![Branches](/use-platform/images/branches.png)
 
 
 The administrator creates a Sprint environment and gives each of the developers permission to create new feature environments. Another approach is that the administrator could create an environment for each developer.
 
 ------------------------------------------------------------------------
 
-![image](/use-platform/images/merge.png)
+![Merge](/use-platform/images/merge.png)
 
 
 As a feature is completed, the administrator can review the work by accessing the website of the feature environment. The new feature is then merged back into the Sprint environment.
 
 ------------------------------------------------------------------------
 
-![image](/use-platform/images/sync.png)
+![Sync](/use-platform/images/sync.png)
 
 The remaining features will sync with the Sprint environment to ensure their working environment is up-to-date with the latest code.
 
 ------------------------------------------------------------------------
 
-![image](/use-platform/images/merge-live.png)
+![Live](/use-platform/images/merge-live.png)
 
 When the objectives of the sprint are complete, the administrator can then make a backup of the live site, then merge the Sprint environment into the live (Master) environment.
 
@@ -72,7 +79,7 @@ The name should represent the purpose of the environment. Is it a Staging site t
 
 If you use Agile, for example, you could create hierarchical environments and name them like this:
 
-```bash
+```
 Sprint1
   Feature1
    Feature2
@@ -85,7 +92,7 @@ Sprint2
 
 If you prefer splitting your environments per developer and having a specific environment per task or per ticket, you could use something like this:
 
-```bash
+```
 Staging
   Developer1
     Ticket-526

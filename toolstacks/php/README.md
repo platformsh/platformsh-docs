@@ -18,13 +18,13 @@ runtime:
 ```
 
 The following extensions are enabled by default: *pdo, mysql, mysqli,
-pdo\_mysql, sqlite3, gd, curl, intl, mcrypt and zendopcache*. You can
+pdo_mysql, sqlite3, gd, curl, intl, mcrypt and zendopcache*. You can
 disable those by adding them to the `disabled_extensions` list.
 
 In addition, you can enable the following extensions: *apc, apcu,
 blackfire, blackfire.psh-tmpl, enchant, gearman, geoip, gmp, http,
-imagick, imap, ldap, memcache, memcached, mongo, pdo\_pgsql,
-pdo\_sqlite, pgsql, pinba, pspell, recode, redis, snmp, spplus, ssh2,
+imagick, imap, ldap, memcache, memcached, mongo, pdo_pgsql,
+pdo_sqlite, pgsql, pinba, pspell, recode, redis, snmp, spplus, ssh2,
 tidy, xcache, xdebug, xhprof, xmlrpc and xsl*.
 
 > **note**
@@ -40,8 +40,8 @@ the application (normally the repository root).
 
 For example, if you need to increase the PHP memory limit:
 
-```php
-# php.ini
+```ini
+; php.ini
 ; Increase PHP memory limit
 memory_limit = 256M
 ```

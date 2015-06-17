@@ -107,8 +107,6 @@ environment, by modifying the configuration files.
 This means that you're able to define and configure the services you
 want to use.
 
-> -   service\_grid
-
 ### Push your changes
 
 When you're done, commit your changes to test them on your online
@@ -125,7 +123,7 @@ rebuild your environment.
 
 When it's completed, you can see your changes on your site by clicking
 `View this website` under the name of **Sprint1** environment on the
-Platform UI.
+Platform.sh Web Interface.
 
 > **note**
 > The Drush Make processing doesn't create any file in your Git repository. Your Git repository is the *input* of the process and not the *output*. You can see the directory structure that has been created by connecting via SSH to the environment. See the information in the `Access information` below the title of the environment
@@ -145,12 +143,12 @@ branch will be merged into the master environment.
 ## Synchronizing data
 
 The easiest way to do that is to use Drush and the sql-sync command.
-You'll need to have create\_drush\_aliases setup for both your
+You'll need to have setup  drush aliasesfor both your
 Platform.sh site and your local site. If you are using the cli and
 you've run `platform get [platform_id]` for a project, then your Drush
 aliases have already been set up.
 
-With the create\_drush\_aliases (depending on how yours are set up), you
+With the drush aliases (depending on how yours are set up), you
 could use a command similar to this:
 
 ```bash

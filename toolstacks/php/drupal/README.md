@@ -28,9 +28,9 @@ This build mode supports having a `project.make` file for your
 contributed modules, themes or libraries.
 
 > **note**
-> When building as a profile, you **need a make file for Drupal core** called: `project-core.make`. See drush\_make\_files.
-
-```bash
+> When building as a profile, you **need a make file for Drupal core** called: `project-core.make`. See 
+[drush make files](/toolstacks/php/drupal/drush.md)
+```
 .git/
 project.make
 project-core.make
@@ -63,7 +63,7 @@ make file called: `project.make` (or even `drupal-org.make`),
 Platform.sh builds your project using Drush make. Everything you have in
 your repository will be copied to your `sites/default` folder.
 
-```bash
+```
 .git/
 project.make
 modules/
@@ -90,7 +90,7 @@ translations/
 Platform.sh accepts your project's files. You are expected to have an
 `index.php` file at the root of your repository.
 
-```bash
+```
 .git/
 index.php
 ... (other Drupal core files)
@@ -110,18 +110,14 @@ want to deploy and how you want to deploy it.
 
 For Drupal 7, your `.platform.app.yaml` should specify the `php:drupal`
 toolstack. You can see a [working example on
-Github](https://github.com/platformsh/platformsh-examples/tree/drupal/7.x).
-
-> -   configuration\_files
-> -   [Drupal 7
->     .platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml)
+Github](https://github.com/platformsh/platformsh-examples/tree/drupal/7.x). And the Drupal 7[.platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml)
 
 ### Drupal 8
 
 For Drupal 8, your `.platform.app.yaml` should specify the `php:drupal`
 toolstack, and install Drush 7 RC as a build-time dependency:
 
-```bash
+```yaml
 # Note: Drush 7.0.0 is no longer compatible with Drupal 8, but the
 # pre-release -rc versions were.
 dependencies:
@@ -129,10 +125,5 @@ dependencies:
         "drush/drush": "7.0.0-rc2"
 ```
 
-You can see a [working example on
-Github](https://github.com/platformsh/platformsh-examples/tree/drupal/8.x).
-
-> -   configuration\_files
-> -   [Drupal 8
->     .platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/8.x/.platform.app.yaml)
-
+You can see a [working example on Github](https://github.com/platformsh/platformsh-examples/tree/drupal/8.x).
+, and the Drupal 8 [.platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/8.x/.platform.app.yaml)
