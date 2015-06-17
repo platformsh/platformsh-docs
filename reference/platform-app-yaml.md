@@ -84,19 +84,22 @@ application.
 The left-hand side is the name of the relationship as it will be exposed
 to the application in the *PLATFORM_RELATIONSHIPS* environment
 variable. The right-hand side is in the form
-`<service name>:<endpoint name>`.
- where "service name" comes from the `.platform/services.yaml` and  "endpoint name"
-  should be the same as the "type" as declared in that same  file.
-  **note** so here in the above example you could very well have something like
-  `mycache: "redis_cache:redis"`  (if in `services.yaml` you named your redis service
-  instead of `redis: "redis:redis"`
- 
+`<service name>:<endpoint name>`. where "service name" comes from the 
+ `.platform/services.yaml` and  "endpoint name" should be the same as the 
+ value of "type"  declared in that same file.
+
+>**note** so here in the first  example above you could very well have something
+>like `mycache: "arediscache:redis"` instead of `redis: "redis:redis"` (if in 
+> `services.yaml` you named your a service of type `redis` with `arediscache`.
+> more often than not in our example we simply call a redis service "redis" a 
+> mysql one "mysql" etc..
+
 Example of valid options are:
 
 -   database: "mysql:mysql"
--   my_other_database: "mysql2:mysql"
--   db: "my_redis_cache:redis"
--   search: "search_engine:solr"
+-   database2: "mysql2:mysql"
+-   cache: "arediscache:redis"
+-   search: "searchengine:solr"
 
 >** note ** You should see the [`services.yaml` documentation](reference/services-yaml.md) 
 > for a full list of currently supported service types and service endpoints.
