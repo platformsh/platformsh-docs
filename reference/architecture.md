@@ -55,7 +55,7 @@ Router component.
 
 ## Search Service (Solr)
 
-Solr search with generic schemas provided. Custom schemas are supported.
+Solr search with generic schemas provided.
 
 -   **host:** solr.internal
 -   **scheme:** solr
