@@ -72,7 +72,7 @@ Now that you have a copy of your project locally, you can run
 ~/htdocs/my-project $ platform build
   Building application using the toolstack php:drupal
   Beginning to build ~/htdocs/my-project/repository/project.make.
-  drupal-7.37 downloaded.
+  drupal-7.38 downloaded.
   drupal patched with install-redirect-on-empty-database-728702-36.patch.
   Generated PATCHES.txt file for drupal
   platform-7.x-1.3 downloaded.
