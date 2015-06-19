@@ -19,12 +19,10 @@ you'd be missing out on everything platform has to offer - moving fast, and
 safely testing things in isolation.
 
 And because of the dynamic nature of the domain names that are created for
-the different environments, while theoretically possibly you would require 
-using unholy black magic for this, and it  would result in a fragile thing.
+the different environments, it would result in a fragile hacky thing.
 
 As such please consider Platform.sh does not support running "vanilla/old-style"
  multi-site (using different sub-directories such as `sites/sub.example.com/`).
-
 
 ##Using Domain Access
 Of course Platform.sh supports the domain access as it supports anything 
