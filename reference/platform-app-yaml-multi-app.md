@@ -103,10 +103,10 @@ The `.profile/routes.yaml` may look like:
 The `.profile/services.yaml` may look like:
 ```yaml
 commondb:
-    type: postgresql
+    type: postgresql:9.3
     disk: 4096
 cache:
-    type: redis
+    type: redis:2.8
 ```
 Here we say that we have two services that will be potentially available to any application
 in the project the, the keys "commondb" and "cache" are names we can freely (must be 

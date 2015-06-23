@@ -43,11 +43,12 @@ applications and services, [documented here](/reference/platform-app-yaml.html).
 
 **Available services**
 
--   mysql
--   solr
--   redis
--   postgresql
--   elasticsearch
+* MySQL 5.5
+* PostgreSQL 9.3
+* ElasticSearch 0.90 and 1.4
+* Redis 2.8
+* Solr 3.6 and 4.10
+* MongoDB 2.6 (in beta not generally available)
 
 We are adding new services all the time.
 
@@ -56,14 +57,14 @@ If you do not have a `routes.yaml` file the following default one will be loaded
 
 ```yaml
 mysql:
-    type: mysql
+    type: mysql:5.5
     disk: 2048
 
 redis:
-    type: redis
+    type: redis:2.8
 
 solr:
-    type: solr
+    type: solr:3.6
     disk: 1024
 ```
 
