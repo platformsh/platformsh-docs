@@ -74,7 +74,7 @@ the database (it does everything through these APIs) but it does use a Redis as 
 In our use case the User API is accessible through  a url like "http://api.example.com/v1/users"
 and the Content API is accessible through "http://api.example.com/v1/content". In this case we are not doing http caching on the two APIs, but we are caching on the Front End applications.
 
-The `.profile/routes.yaml` may look like:
+The `.platform/routes.yaml` may look like:
 ````yaml
 "http://api.{default}/v1/users":
     type: upstream
@@ -100,7 +100,7 @@ The `.profile/routes.yaml` may look like:
 > Learn more on : [routes.yaml](/refernce/routes.yaml.md)
 
 
-The `.profile/services.yaml` may look like:
+The `.platform/services.yaml` may look like:
 ```yaml
 commondb:
     type: postgresql:9.3

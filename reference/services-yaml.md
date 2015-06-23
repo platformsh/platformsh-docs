@@ -52,7 +52,7 @@ applications and services, [documented here](/reference/platform-app-yaml.html).
 
 We are adding new services all the time.
 
-##Defaults
+## Defaults
 If you do not have a `routes.yaml` file the following default one will be loaded:
 
 ```yaml
@@ -69,13 +69,21 @@ solr:
 ```
 
 > **note**
-> Platform.sh uses Solr 3.6 by default, but Solr 4.10 is also supported. You can
-> request it by specifying the service type as ``solr:4.10``.
+> We do not currently support persistence for Redis.
+
+## Supported versions
+
+For some services, you can specify the version you want to use using the ``type`` key.
 
 ```yaml
 solr:
-    type: "solr:4.10"```
+    type: "solr:4.10"
+```
 
-> **note**
-> We do not currently support persistence for Redis.
+**Solr**:
+* 3.6 (default)
+* 4.10
 
+**ElasticSearch**
+* 0.9 (default)
+* 1.4
