@@ -63,17 +63,16 @@ solr:
 ## Supported Services
 
 We currently support the following services:
-* MySQL: 5.5
-* PostgreSQL: 9.3
-* ElasticSearch: 0.9 (default), 1.4
-* Redis: 2.8
-* Solr: 3.6 (default), 4.10
-* MongoDB: 2.6 (in beta not generally available)
+* MySQL **mysql**: 5.5
+* PostgreSQL **postgresql**: 9.3
+* ElasticSearch **elasticsearch**: 0.9 (*default*), 1.4
+* Redis **redis**: 2.8
+* Solr **solr**: 3.6 (*default*), 4.10
+* MongoDB **mongodb**: 2.6 (in beta not generally available)
 
 If no version number is specified, the *default* one will be deployed.
 
 If the version number specified isn't available, you'll see this error when pushing your changes:
-
 ```bash
 Validating configuration files.
 E: Error parsing configuration files:
