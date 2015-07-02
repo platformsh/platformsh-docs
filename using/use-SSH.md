@@ -73,7 +73,7 @@ That's it! You're all set. Now you'll be able to use Git on
 Platform, and able to SSH into any environment's web
 server.
 
-![Add SSH key to Marketplace](/images/ssh-addkeytomarketplace.png)
+![Add SSH key to Marketplace](/use-platform/images/ssh-addkeytomarketplace.png)
 
 ## SSH to your Web Server
 
@@ -87,7 +87,7 @@ you can hover to copy the SSH URL of that environment .
 ![The SSH user name is the concatenation of your platform's unique ID
 and the environment ID. The SSH hostname is 'ssh.' prepended to the
 hostname of your platform's region. I.E.:
-[project-id]-[environment-id]@ssh.[server-region-hostname].](/images/ssh-access-information.png)
+[project-id]-[environment-id]@ssh.[server-region-hostname].](/use-platform/images/ssh-access-information.png)
 
 4.  Open a terminal
 5.  Paste the link into your terminal
@@ -144,7 +144,19 @@ authentication agent that manages your private key.
 
 4.  Try again.
 
-### Generate some SSH debug information
+### Still having trouble?
+
+If you followed all the steps above, you may also notice an error message similar to below while attempting to ssh to platform.sh:
+
+    Hello Your Name, you successfully connected, but you do not have access to service 'xxxxxxxxxxxxxx-master': check permissions.
+    Received disconnect from 54.210.49.244: 14: No more auth methods available
+
+This usually means a deployment has not been committed yet. When a new key is added, it only becomes immediately active for use with git. For use with ssh, it will not be activated until a deployment is made. An easy way to force this is to create and push an empty commit:
+
+    $ git commit --allow-empty -m 'force redeploy'
+    $ git push origin master
+
+### If all else fails, generate some SSH debug information
 
 If your private key and public key both look OK but you don't have any
 luck logging in, print debugging information. These lines often give
