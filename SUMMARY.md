@@ -39,6 +39,8 @@
         * [Migrate an existing site](toolstacks/php/drupal/migrate-existing-site.md)
         * [Drush](toolstacks/php/drupal/drush.md)
         * [Redis](toolstacks/php/drupal/redis.md)
+          * [Redis with Drupal 6](toolstacks/php/drupal/redis-drupal-6.md)
+          * [Redis with Drupal 7](toolstacks/php/drupal/redis-drupal-7.md)
         * [Solr](toolstacks/php/drupal/solr.md)
         * [FAQ](toolstacks/php/drupal/faq.md)
       * [Symfony](toolstacks/php/symfony/README.md)
