@@ -8,7 +8,7 @@ fail-over happen automatically, behind the scene.
 Services are grouped together in *virtual clusters*, and
 dynamically keep track of each other.
 
-![image](/overview/images/service-grid.png)
+![image](/images/service-grid.png)
 
 > **note**
 > Platform.sh currently supports the following services: PHP, MySQL (MariaDB), Solr, Redis, Postgres, MongoDB. Additional services will be available soon.

@@ -12,7 +12,7 @@ install the **Blackfire Companion** web browser extension
 Get your server credentials on your [Blackfire
 account](https://blackfire.io/account/credentials).
 
-![Blackfire credentials](/integration/images/blackfire-credentials.png)
+![Blackfire credentials](/images/blackfire-credentials.png)
 
 Paste those credentials in your `.platform.app.yaml`:
 
@@ -38,7 +38,7 @@ git push
 Access your site via your browser and click `Profile` in the Blackfire
 Companion.
 
-![Blackfire Companion](/integration/images/blackfire-companion.png)
+![Blackfire Companion](/images/blackfire-companion.png)
 
 That's it, your site is being profiled and you should get all the
 results in your Blackfire account.

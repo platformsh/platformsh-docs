@@ -73,7 +73,7 @@ That's it! You're all set. Now you'll be able to use Git on
 Platform, and able to SSH into any environment's web
 server.
 
-![Add SSH key to Marketplace](/use-platform/images/ssh-addkeytomarketplace.png)
+![Add SSH key to Marketplace](/images/ssh-addkeytomarketplace.png)
 
 ## SSH to your Web Server
 
@@ -87,7 +87,7 @@ you can hover to copy the SSH URL of that environment .
 ![The SSH user name is the concatenation of your platform's unique ID
 and the environment ID. The SSH hostname is 'ssh.' prepended to the
 hostname of your platform's region. I.E.:
-[project-id]-[environment-id]@ssh.[server-region-hostname].](/use-platform/images/ssh-access-information.png)
+[project-id]-[environment-id]@ssh.[server-region-hostname].](/images/ssh-access-information.png)
 
 4.  Open a terminal
 5.  Paste the link into your terminal

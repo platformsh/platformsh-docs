@@ -96,7 +96,7 @@ SSH Keys tab. Name your key in the *Title* field, and paste the public
 key into the *Key* field. Your key will typically be found at
 `~/.ssh/id_rsa.pub` on Linux and Mac OS X machines.
 
-![Screenshot of a public key field](images/edit-ssh.png)
+![Screenshot of a public key field](/images/edit-ssh.png)
 
 #### Upload using Platform.sh CLI
 

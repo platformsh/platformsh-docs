@@ -3,7 +3,7 @@
 You can access the configuration page of your project by clicking the
 gear icon next to the project name.
 
-![configure project](images/ui-conf-project.png)
+![configure project](/images/ui-conf-project.png)
 
 ## Settings
 
@@ -15,7 +15,7 @@ This is useful if you want to reuse some code components accross
 multiple projects and manage those components as dependencies of your
 project.
 
-![Get the Platform.sh project public SSH key](images/ui-conf-project-ssh-key.png)
+![Get the Platform.sh project public SSH key](/images/ui-conf-project-ssh-key.png)
 
 ## Users
 
@@ -25,12 +25,12 @@ You can invite new users to your project by clicking the `Add user` link
 and entering their email address, or modify permissions of existing
 users by clicking the `Edit` link when hovering the user.
 
-![Project configure icon](images/ui-conf-project-users.png)
+![Project configure icon](/images/ui-conf-project-users.png)
 
 Selecting a user will allow you to either edit that user's permissions
 or delete the user's access to the project entirely.
 
-![Manage users of your Platform.sh project](images/ui-conf-project-users-access.png)
+![Manage users of your Platform.sh project](/images/ui-conf-project-users-access.png)
 
 If you check the `Super user` box, this user will be an administrator of
 the project and will have fulll access on all environments. If you
@@ -45,4 +45,4 @@ permissions on each environment.
 The `Domains` screen allows you to manage your domains that your project
 will be accessible at.
 
-![Manage domains of your Platform.sh project.](images/ui-conf-project-domains.png)
+![Manage domains of your Platform.sh project.](/images/ui-conf-project-domains.png)

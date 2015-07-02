@@ -2,7 +2,7 @@
 
 [Platform.sh](https://platform.sh/) provides a responsive Web Interface which allows you to interact with your projects and manage your environments. Everything you can do with this interface you can also achieve with the  [CLI (Command Line Interface)](/overview/cli) and vice versa.
 
-![Web Interface](images/platform-ui.png)
+![Web Interface](/images/platform-ui.png)
 
 ## Environment List
 
@@ -19,7 +19,7 @@ The Web Interface displays all the activity happening on your environments. You 
 
 The Web Interface exposes 5 main actions that you can use to interface with your environments.
 
-![Header](images/ui-header.png)
+![Header](/images/ui-header.png)
 
 ### Git
 
@@ -27,7 +27,7 @@ The Git icon displays the commands to use to get your project locally with the C
 
 ------------------------------------------------------------------------
 
-![Branch](/overview/images/icon-branch.png)
+![Branch](/images/icon-branch.png)
 
 ### Branch
 
@@ -43,7 +43,7 @@ During a `branch`, three things happen:
 
 ------------------------------------------------------------------------
 
-![Merge](/overview/images/icon-merge.png)
+![Merge](/images/icon-merge.png)
 
 ### Merge
 
@@ -59,7 +59,7 @@ Rebuilding the application is not necessary if the same code was already built (
 
 ------------------------------------------------------------------------
 
-![Sync](/overview/images/icon-sync.png)
+![Sync](/images/icon-sync.png)
 
 ### Sync
 
@@ -67,7 +67,7 @@ Synchronizing means updating the child environment with the code and/or data of 
 
 Note that `sync` is only available if your branch has no unmerged commits, and can be fast-forwarded. On `sync`, your code branch will be fast-forwarded to its parent's tip, and the data (e.g. databases) of the services on the branch will be overwritten with an exact copy of the parent's. Syncing of data and code can be done individually, so if desired, you can benefit from having only code changes applied.
 
-![image](/overview/images/icon-backup.png)
+![image](/images/icon-backup.png)
 
 ### Snapshot & Restore
 

@@ -125,7 +125,7 @@ environment settings .
 You can get a list of the configured routes for an environment by running 
 `$ platform  environment:routes`
 
-![Platform Routes Cli](images/platform-routes-cli.png)
+![Platform Routes Cli](/images/platform-routes-cli.png)
 
 ##Defaults
 If you do not have a `routes.yaml` file the following default one will be loaded:
