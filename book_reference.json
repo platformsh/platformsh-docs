@@ -1,0 +1,31 @@
+{   
+    "title": "Platform.sh User Guide",
+    "description": "Platform.sh user guide",
+    "version": "2.1.0",
+        "structure": {
+            "summary": "SUMMARY_reference.md"
+        },
+    "plugins": [
+        "ga", "edit-link", "richquotes", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"
+    ],
+    "pluginsConfig": {
+        "ga": {
+            "token": "UA-4064131-10"
+        },
+        "edit-link": {
+                       "base": "https://github.com/platformsh/platformsh-docs/edit/dev",
+                       "label": "Edit This Page"
+                   }
+    },
+    "links": {
+           "sharing": {
+               "google": null,
+               "facebook": null,
+               "twitter": null,
+               "weibo": null,
+               "all": null
+           }
+       }
+}
+
+
