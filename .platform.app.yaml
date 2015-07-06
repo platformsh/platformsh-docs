@@ -10,7 +10,7 @@ toolstack: "php:symfony"
 # The configuration of app when it is exposed to the web.
 web:
     # The public directory of the app, relative to its root.
-    document_root: "/_book"
+    document_root: "/_books"
     # TODO: This should be implemented soon.
     passthru: "/index.php"
     expires: 300
@@ -87,5 +87,5 @@ dependencies:
 # The hooks that will be performed when the package is deployed.
 hooks:
     build: |
-      gitbook build
-      mv index.php _book/index.php
+      ./build drupal
+      mv index.php _books/index.php

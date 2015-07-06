@@ -1,0 +1,33 @@
+{   
+    "title": "Getting Started with Symfony and Platform.sh",
+    "description": "Getting Started with Symfony and Platform.sh",
+    "version": "2.1.0",
+        "structure": {
+            "summary": "SUMMARY_symfony.md"
+        },
+    "plugins": [
+        "ga", "edit-link", "richquotes", "anchors", "repl","reveal","sections", "collapsible-menu", "theme-platform"
+    ],
+    "pluginsConfig": {
+
+      "repl": { "URL": "http://localhost:8080/eval" },
+        "ga": {
+            "token": "UA-4064131-10"
+        },
+        "edit-link": {
+                       "base": "https://github.com/platformsh/platformsh-docs/edit/dev",
+                       "label": "Edit This Page"
+                   }
+    },
+    "links": {
+           "sharing": {
+               "google": null,
+               "facebook": null,
+               "twitter": null,
+               "weibo": null,
+               "all": null
+           }
+       }
+}
+
+
