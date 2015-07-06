@@ -1,4 +1,4 @@
-# Getting Started
+# Getting Started with Drupal on Platform.sh
 
 * [Overview](guides/README.md)
   * [Prerequisites](guides/prerequisites/requirements.md)

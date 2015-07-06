@@ -6,11 +6,9 @@
             "summary": "SUMMARY_drupal.md"
         },
     "plugins": [
-        "ga", "edit-link", "richquotes", "anchors", "repl","reveal","sections", "collapsible-menu", "theme-platform"
+        "ga", "edit-link", "richquotes", "anchors","reveal","sections", "collapsible-menu", "theme-platform"
     ],
     "pluginsConfig": {
-
-      "repl": { "URL": "http://localhost:8080/eval" },
         "ga": {
             "token": "UA-4064131-10"
         },

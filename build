@@ -7,5 +7,6 @@ if [[ $# -eq 0 ]] ; then
 fi
 export BOOK=$1
 gitbook build
-mkdir -p _books
-mv _book _books/$1
+rm -rf  _books/$1
+mkdir -p _books/$1
+cp -r _book/* _books/$1/

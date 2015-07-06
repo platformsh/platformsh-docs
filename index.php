@@ -8,5 +8,5 @@ if (substr($index, 0, strlen(realpath(getcwd()))) === realpath(getcwd()) && file
   readfile($index);
 } else { 
   http_response_code(404);
-  readfile("drupal/index.html");
+  readfile("/index.html");
 }
