@@ -68,7 +68,6 @@ We currently support the following services:
 * ElasticSearch **elasticsearch**: 0.9 (*default*), 1.4
 * Redis **redis**: 2.8
 * Solr **solr**: 3.6 (*default*), 4.10
-* MongoDB **mongodb**: 2.6 (in beta not generally available)
 
 If no version number is specified, the *default* one will be deployed.
 
