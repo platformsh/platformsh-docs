@@ -68,12 +68,6 @@ variables to match.
 > **note**
 > Use the actual path to your Redis module in case it is in a different location. For example: `sites/all/modules/contrib/redis`.
 
-`drupal:lock_inc`
-
-```bash
-sites/all/modules/redis/redis.lock.inc
-```
-
 `drupal:redis_client_host`
 
 ```bash
@@ -124,7 +118,6 @@ $conf['redis_client_interface'] = 'PhpRedis';
 
 ```php
 $conf['redis_client_host']      = 'redis.internal';
-$conf['lock_inc']               = 'sites/all/modules/redis/redis.lock.inc';
 $conf['cache_backends'][]       = 'sites/all/modules/redis/redis.autoload.inc';
 $conf['cache_default_class']    = 'Redis_Cache';
 $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
