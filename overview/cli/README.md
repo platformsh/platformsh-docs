@@ -20,15 +20,15 @@ You can find the system requirements and more information in the [installation i
 
 The CLI uses the platform API to trigger commands (*Branch, Merge...*) on your Platform.sh project.
 
-![Platform Cli In Project](images/platform-cli-in-project.png)
+![Platform Cli In Project](/images/platform-cli-in-project.png)
 
 It's also very useful when you work locally since it can simulate a local build of your codebase as if you were pushing a change to Platform.sh.
 
-![Platform Cli Logged In](images/platform-cli-logged-in.png)
+![Platform Cli Logged In](/images/platform-cli-logged-in.png)
 
 Once you have the CLI installed, run `platform list` to see all of the available commands.
 
-![Platform Cli List](images/platform-cli-list.png)
+![Platform Cli List](/images/platform-cli-list.png)
 
 You can preface any command with `help` to see more information on how to use that command.
 

@@ -135,7 +135,7 @@ push those changes up to your live environment. Platform has a great
 button called `Merge` that you can click on and it will push the
 appropriate changes to master.
 
-![Merge your changes.](images/merge.png)
+![Merge your changes.](/images/merge.png)
 
 Just click on the "Merge" button and all of the commits you made on your
 branch will be merged into the master environment.

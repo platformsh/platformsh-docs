@@ -44,7 +44,7 @@ environment to "Contributor".
 
 Access the project-level configuration.
 
-![Project configure icon](/use-platform/images/project_w-configarrow.png)
+![Project configure icon](/images/project_w-configarrow.png)
 
 Click the project configuration icon next to the project name in the
 upper-left corner of the project page.
@@ -53,7 +53,7 @@ upper-left corner of the project page.
 
 Manage users.
 
-![Project user management screenshot](/use-platform/images/project_usermanagement.png)
+![Project user management screenshot](/images/project_usermanagement.png)
 
 The `Access control` tab shows project-level users and their roles.
 
@@ -71,7 +71,7 @@ of adjusting the user's permissions at the environment level.
 
 Access the environment-level configuration.
 
-![Project configure icon](/use-platform/images/environment_w-configarrow.png)
+![Project configure icon](/images/environment_w-configarrow.png)
 
 Click the environment configuration icon next to the environment name
 on the project page.
@@ -80,7 +80,7 @@ on the project page.
 
 Manage users.
 
-![Project user management screenshot](/use-platform/images/environment_usermanagement.png)
+![Project user management screenshot](/images/environment_usermanagement.png)
 
 The `User Management` tab shows environment-level users and their
 roles.

@@ -19,7 +19,7 @@ If you subscribed to a production plan, this environment is your **live site** a
 
 ## Hierarchy
 
-![Hierarchy](images/clone-hierarchy.png)
+![Hierarchy](/images/clone-hierarchy.png)
 
 Platform.sh brings the concept of a hierarchy between your environments.
 Each new environment you create is considered a **child** of the **parent** environment from which it was branched.
@@ -43,27 +43,27 @@ There are no rules you must follow when branching the master environment. You si
 
 Here is an example of a possible Agile workflow.
 
-![Branches](/use-platform/images/branches.png)
+![Branches](/images/branches.png)
 
 
 The administrator creates a Sprint environment and gives each of the developers permission to create new feature environments. Another approach is that the administrator could create an environment for each developer.
 
 ------------------------------------------------------------------------
 
-![Merge](/use-platform/images/merge.png)
+![Merge](/images/merge.png)
 
 
 As a feature is completed, the administrator can review the work by accessing the website of the feature environment. The new feature is then merged back into the Sprint environment.
 
 ------------------------------------------------------------------------
 
-![Sync](/use-platform/images/sync.png)
+![Sync](/images/sync.png)
 
 The remaining features will sync with the Sprint environment to ensure their working environment is up-to-date with the latest code.
 
 ------------------------------------------------------------------------
 
-![Live](/use-platform/images/merge-live.png)
+![Live](/images/merge-live.png)
 
 When the objectives of the sprint are complete, the administrator can then make a backup of the live site, then merge the Sprint environment into the live (Master) environment.
 

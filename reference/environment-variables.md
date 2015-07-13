@@ -1,53 +1,28 @@
 # Environment variables
 
-Platform.sh exposes environment variables which you can interact with.
+Platform.sh exposes environment variables which you can interact with. There are
+two sources for these. There are the ones that are set by Platform.sh itself
+and that give you all the context you need about the environment (how to 
+connect to you database for example). And there are the ones you can set
+yourself through the web interface or the CLI.
 
-When you're logged in via SSH to an environment, you can list the
-environment variables by running:
+When you're logged in via SSH to an environment (with the cli: `platform ssh`), 
+you can list the environment variables by running:
 
 ```bash
-web@kjh43kbobssae-master--php:~$ export
+web@myp3bmdujgzqe-master--php:~$ export
 ```
-
 Since they are **base64-encoded JSON object** that maps variable names
 to variable values, you can decode the value of a specific variable by
 running:
 
 ```bash
-web@kjh43kbobssae-master--php:~$ php5 -r 'print_r(json_decode(base64_decode(getenv("PLATFORM_RELATIONSHIPS"))));'
-
-stdClass Object
-(
-    [solr] => Array
-        (
-            [0] => stdClass Object
-                (
-                    [ip] => 250.0.80.135
-                    [host] => solr.internal
-                    [scheme] => solr
-                    [port] => 8080
-                )
-        )
-    [database] => Array
-        (
-            [0] => stdClass Object
-                (
-                    [username] =>
-                    [password] =>
-                    [ip] => 250.0.80.112
-                    [host] => database.internal
-                    [query] => stdClass Object
-                        (
-                            [is_master] => 1
-                        )
-
-                    [path] => main
-                    [scheme] => mysql
-                    [port] => 3306
-                )
-        )
-)
+echo $PLATFORM_VARIABLES| base64 --decode
+{"myvar": "this is a value"}
 ```
+
+In this example we defined for one of our environments a variable we called 
+"myvar".
 
 > **note**
 > Variables are **hierarchical**, so if a variable is not overriden in an environment, it will take the value it has in the parent environment and use it as `inherited`.
@@ -78,19 +53,59 @@ the runtime (*ie. PHP*) and prefixed with `PLATFORM_*`.
     describes the application. It maps the content of the
     `.platform.app.yaml` that you have in Git and it has a few subkeys.
 
+
 Since values can change over time, the best thing is to just introspect
 the variable at runtime and use it to configure your application.
 
 For example with Drupal, we use the **PLATFORM_RELATIONSHIPS** variable
 to configure your `settings.local.php`.
 
-## Toolstack-specific variables
+For example:
+
+```bash
+web@vmwklzcpbi6zq-master--php:~$ echo $PLATFORM_RELATIONSHIPS |base64 --decode
+{
+    "database": [
+        {
+            "host": "database.internal",
+            "ip": "246.0.97.91",
+            "password": "",
+            "path": "main",
+            "port": 3306,
+            "query": {
+                "is_master": true
+            },
+            "scheme": "mysql",
+            "username": "user"
+        }
+    ],
+    "redis": [
+        {
+            "host": "redis.internal",
+            "ip": "246.0.97.88",
+            "port": 6379,
+            "scheme": "redis"
+        }
+    ],
+    "solr": [
+        {
+            "host": "solr.internal",
+            "ip": "246.0.97.90",
+            "path": "solr",
+            "port": 8080,
+            "scheme": "solr"
+        }
+    ]
+}
+```
+
+## Drupal specific variables
 
 You can define variables based on the toolstack you're working with.
 
 For example with Drupal, you would prefix your Environment variables
 with `drupal:`. Those variables will then be special-cased by our
-`settings.local.php` and directly added to `$conf`.
+`settings.local.php` and directly added to `$conf[]`.
 
 An example variable:
 

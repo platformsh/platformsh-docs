@@ -5,14 +5,18 @@
 name: php
 
 # The toolstack used to build the application.
-toolstack: "php:symfony"
+type: "php"
+
+# Should be able to empty this at some point.
+build:
+    flavor: "composer"
 
 # The configuration of app when it is exposed to the web.
 web:
     # The public directory of the app, relative to its root.
     document_root: "/_book"
-    # TODO: This should be implemented soon.
-    passthru: "/index.php"
+    index_files: 
+      - index.html
     expires: 300
     whitelist:
       - \.html$
@@ -88,4 +92,3 @@ dependencies:
 hooks:
     build: |
       gitbook build
-      mv index.php _book/index.php
