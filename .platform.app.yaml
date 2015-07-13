@@ -5,7 +5,7 @@
 name: php
 
 # The toolstack used to build the application.
-toolstack: "php:symfony"
+type: "php"
 
 # The configuration of app when it is exposed to the web.
 web:
