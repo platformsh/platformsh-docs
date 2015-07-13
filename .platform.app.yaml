@@ -7,7 +7,7 @@ name: php
 # The toolstack used to build the application.
 type: "php"
 
-# Should be able to empty this.
+# Should be able to empty this at some point.
 build:
     flavor: "composer"
 
