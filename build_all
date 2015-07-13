@@ -1,0 +1,7 @@
+./build overview
+./build reference
+./build drupal
+./build symfony
+./build drupal_migrate
+cp index.php _books/index.php
+cp index.html _books/index.html

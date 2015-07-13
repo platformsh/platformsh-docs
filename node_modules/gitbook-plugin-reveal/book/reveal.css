@@ -1,0 +1,11 @@
+.book .book-body .page-wrapper .page-inner div.reveal a.btn[data-reveal] {
+white-space: normal;
+}
+.book .book-body .page-wrapper .page-inner div.reveal div.revealable h1:first-child,
+.book .book-body .page-wrapper .page-inner div.reveal div.revealable h2:first-child,
+.book .book-body .page-wrapper .page-inner div.reveal div.revealable h3:first-child,
+.book .book-body .page-wrapper .page-inner div.reveal div.revealable h4:first-child,
+.book .book-body .page-wrapper .page-inner div.reveal div.revealable h5:first-child,
+.book .book-body .page-wrapper .page-inner div.reveal div.revealable h6:first-child {
+margin-top: 0;
+}
