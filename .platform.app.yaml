@@ -11,8 +11,8 @@ toolstack: "php:symfony"
 web:
     # The public directory of the app, relative to its root.
     document_root: "/_book"
-    # TODO: This should be implemented soon.
-    passthru: "/index.php"
+    index_files: 
+      - index.html
     expires: 300
     whitelist:
       - \.html$
@@ -88,4 +88,3 @@ dependencies:
 hooks:
     build: |
       gitbook build
-      mv index.php _book/index.php
