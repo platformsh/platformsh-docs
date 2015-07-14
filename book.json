@@ -10,7 +10,7 @@
             "token": "UA-4064131-10"
         },
         "edit-link": {
-                       "base": "https://github.com/platformsh/platformsh-docs/edit/dev",
+                       "base": "https://github.com/platformsh/platformsh-docs/",
                        "label": "Edit This Page"
                    }
     },
