@@ -117,8 +117,11 @@ $conf['redis_client_interface'] = 'PhpRedis';
 ```
 
 ```php
-$conf['redis_client_host']      = 'redis.internal';
-$conf['cache_backends'][]       = 'sites/all/modules/redis/redis.autoload.inc';
-$conf['cache_default_class']    = 'Redis_Cache';
-$conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
+  $conf['redis_client_host'] = $relationships['redis'][0]['host'];
+  $conf['redis_client_port'] = $relationships['redis'][0]['port'];
+  $conf['redis_client_interface'] = 'PhpRedis';
+  $conf['cache_backends'][]       = 'sites/all/modules/redis/redis.autoload.inc';
+  $conf['cache_default_class']    = 'Redis_Cache';
+  // The 'cache_form' bin must be assigned to non-volatile storage.
+  $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 ```
