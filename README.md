@@ -11,3 +11,5 @@ A new staging takes less then a minute to create. Developers can focus on Code. 
 This means that you now can work with your complete application infrastructure the same way you work with Git: branching and merging is cheap and fast, and you are no longer responsible for the system administration or DevOps tasks that distract from coding.
 
 That means less waiting for code changes to go live, whether they be tiny tweaks or brand new functionality.
+
+This is a test.
