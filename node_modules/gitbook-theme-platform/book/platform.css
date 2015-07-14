@@ -17,13 +17,13 @@ body,
   text-transform: uppercase;
   color: #fff;
   text-align: right;
-  width: 370px;
   display: inline-block;
   padding-left: 50px;
 }
 #platform-bar .site-name {
   line-height: 33px;
   font-size: 1.15em;
+  padding-left: 10px;
 }
 #platform-bar .logo {
   background: transparent url("logo.png") no-repeat 0 0;
@@ -31,6 +31,144 @@ body,
   width: 140px;
   display: inline-block;
   float: left;
+}
+#platform-bar .navlink {
+  display: inline-block;
+  line-height: 33px;
+  font-size: 1.15em;
+  text-transform: uppercase;
+}
+#platform-bar .navlink span {
+  font-size: 50px;
+  color: #424242;
+  line-height: 20px;
+  vertical-align: middle;
+  font-weight: 100;
+  padding: 0 10px;
+}
+.home-page {
+  background-color: #262424;
+  color: #fff;
+}
+#home-content {
+  padding: 73px 0 50px;
+}
+#home-content a {
+  color: #a8a7a7;
+}
+#home-content a:hover {
+  color: #fff;
+}
+#home-content h1 {
+  font-size: 24px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 200;
+  padding-top: 50px;
+  background: transparent url("images/icon-docs.png") no-repeat center top;
+  margin: 50px 0;
+}
+#home-content h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  text-align: center;
+  text-transform: uppercase;
+}
+#home-content h2 span {
+  font-weight: 200;
+}
+#home-content .container {
+  width: 47%;
+  margin: 0 1.5%;
+  height: 370px;
+  float: left;
+  border: 1px solid #4b4949;
+  padding: 50px 40px;
+}
+#home-content .container h2 {
+  padding-top: 50px;
+}
+#home-content .container.getting-started h2 {
+  background: transparent url("images/icon-get-started.png") no-repeat center top;
+}
+#home-content .container.topic-trends h2 {
+  background: transparent url("images/icon-fire.png") no-repeat center top;
+}
+#home-content .container.overview h2 {
+  background: transparent url("images/icon-compass.png") no-repeat center top;
+}
+#home-content .container.reference h2 {
+  background: transparent url("images/icon-reference.png") no-repeat center top;
+}
+#home-content .container ul,
+#home-content .container li {
+  padding: 0;
+  margin: 0;
+}
+#home-content .container ul.book,
+#home-content .container li.book {
+  padding-left: 30px;
+}
+#home-content .container ul.drupal,
+#home-content .container li.drupal {
+  background: transparent url("images/icon-drupal.png") no-repeat 0 0;
+}
+#home-content .container ul.symfony,
+#home-content .container li.symfony {
+  background: transparent url("images/icon-symfony.png") no-repeat 0 0;
+}
+#home-content .container ul.bitbucket,
+#home-content .container li.bitbucket {
+  background: transparent url("images/icon-bitbucket.png") no-repeat 0 0;
+}
+#home-content .container ul.github,
+#home-content .container li.github {
+  background: transparent url("images/icon-github.png") no-repeat 0 0;
+}
+#home-content .container ul li {
+  list-style: none;
+}
+#home-content .container > ul > li:nth-child(odd) {
+  clear: left;
+}
+#home-content .container > ul > li {
+  float: left;
+  width: 48%;
+  margin: 0 1% 25px;
+}
+#home-content .container > ul > li li a {
+  color: #fff;
+}
+#home-content .container > ul > li li a:hover {
+  text-decoration: underline;
+}
+#home-content .container .more {
+  text-align: center;
+}
+#home-content .container .more a {
+  height: 40px;
+  width: 40px;
+  background: transparent url("images/icon-more.png") no-repeat center center;
+  border: 1px solid #00aeef;
+  font: 0/0 none;
+  display: inline-block;
+}
+#home-content .row {
+  display: table;
+  clear: both;
+  width: 100%;
+  padding: 50px;
+}
+#home-content .row.white {
+  background: #fff;
+  color: #b6b5b5;
+}
+#home-content .row.white .container {
+  border-color: #9b9b9b;
+}
+#home-content .row.white h2 {
+  color: #000;
 }
 .font-family-list,
 .color-theme-list {
