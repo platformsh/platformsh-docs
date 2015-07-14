@@ -5,10 +5,10 @@ http://{default}/:
   to: https://{default}/
   type: redirect
 # Add redirects to broken links from the Web UI.
-https://{default}/web-ui/configure-project/:
+https://{default}/web-ui/configure-project:
   to: https://{default}/overview/web-ui/configure-project.html
   type: redirect
-https://{default}/web-ui/web-ui/configure-environment/:
+https://{default}/web-ui/web-ui/configure-environment:
   to: https://{default}/overview/web-ui/configure-environment.html
   type: redirect
 https://{default}/:
