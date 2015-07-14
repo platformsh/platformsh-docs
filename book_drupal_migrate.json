@@ -1,5 +1,5 @@
-{   
-    "title": "Migrate your existing Drupal site to Platform.sh",
+{
+    "title": "Drupal Migrate",
     "description": "Migrate your existing Drupal site to Platform.sh",
     "version": "2.1.0",
         "structure": {
