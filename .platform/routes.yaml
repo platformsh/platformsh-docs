@@ -4,6 +4,28 @@ http://www.{default}/:
 http://{default}/:
   to: https://{default}/
   type: redirect
+# Add redirects to broken links from the Web UI.
+https://www.{default}/web-ui/configure-project/#settings:
+  to: https://{default}/overview/web-ui/configure-project.html#settings
+  type: redirect
+https://www.{default}/web-ui/configure-project/#users:
+  to: https://{default}/overview/web-ui/configure-project.html#users
+  type: redirect
+https://www.{default}/web-ui/configure-project/#domains:
+  to: https://{default}/overview/web-ui/configure-project.html#domains
+  type: redirect
+https://www.{default}/web-ui/web-ui/configure-environment/#settings:
+  to: https://{default}/overview/web-ui/configure-environment.html#settings
+  type: redirect
+https://www.{default}/web-ui/web-ui/configure-environment/#variables:
+  to: https://{default}/overview/web-ui/configure-environment.html#variables
+  type: redirect
+https://www.{default}/web-ui/web-ui/configure-environment/#routes:
+  to: https://{default}/overview/web-ui/configure-environment.html#routes
+  type: redirect
+https://www.{default}/web-ui/web-ui/configure-environment/#users:
+  to: https://{default}/overview/web-ui/configure-environment.html#users
+  type: redirect
 https://{default}/:
   cache:
     cookies:
