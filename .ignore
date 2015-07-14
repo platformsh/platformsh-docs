@@ -4,7 +4,7 @@
 index.php
 _book/*
 _books/*
-./book_*.json
+book_*.json
 book.js
 build
 build_all

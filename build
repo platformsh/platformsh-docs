@@ -6,6 +6,7 @@ if [[ $# -eq 0 ]] ; then
     exit 0
 fi
 export BOOK=$1
+echo "{\"name\":\"$BOOK\", \"title\":`cat book_$BOOK.json | jq '.title'`}," >> ./_books/index.txt
 gitbook build
 rm -rf  _books/$1
 mkdir -p _books/$1
