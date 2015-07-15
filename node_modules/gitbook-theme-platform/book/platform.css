@@ -87,6 +87,16 @@ body,
   background-color: #262424;
   color: #fff;
 }
+.home-page .wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.home-page #platform-bar .branding {
+  padding-left: 0;
+}
+.home-page .row {
+  padding: 0 10px;
+}
 #home-content {
   padding: 73px 0 50px;
 }
@@ -116,12 +126,10 @@ body,
   font-weight: 200;
 }
 #home-content .container {
-  width: 47%;
-  margin: 0 1.5%;
-  height: 370px;
-  float: left;
+  min-height: 370px;
   border: 1px solid #4b4949;
-  padding: 50px 40px;
+  padding: 30px 20px;
+  margin-bottom: 50px;
 }
 #home-content .container h2 {
   padding-top: 50px;
@@ -206,7 +214,7 @@ body,
   display: table;
   clear: both;
   width: 100%;
-  padding: 50px;
+  padding: 50px 10px;
 }
 #home-content .row.white {
   background: #fff;
@@ -398,6 +406,26 @@ body,
 @media (min-width: 600px) {
   .book.with-summary .book-body {
     left: 400px;
+  }
+}
+@media (min-width: 768px) {
+  #home-content .container {
+    width: 47%;
+    margin: 0 1.5%;
+    float: left;
+    padding: 30px;
+    height: 370px;
+  }
+  #home-content .row {
+    padding: 50px;
+  }
+  #platform-bar .row {
+    padding: 0 50px;
+  }
+}
+@media (min-width: 960px) {
+  #home-content .container {
+    padding: 50px 40px;
   }
 }
 @media (max-width: 1240px) {
