@@ -45,6 +45,7 @@
       * [Symfony](reference/toolstacks/php/symfony/README.md)
         * [Migrate an existing site](reference/toolstacks/php/symfony/migrate-existing-site.md)
         * [FAQ](reference/toolstacks/php/symfony/faq.md)
+  * [Services](reference/services/README.md)
   * [API](reference/rest-api.md)
   * [The Protective Block](reference/protective-block.md)
   * [FAQ](reference/faq/known-issues.md)
