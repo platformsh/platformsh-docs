@@ -20,7 +20,7 @@ We support PostgreSQL, ElasticSearch, Redis and MongoDB Out of the box. Batterie
 
 Yes ! Branching an environment creates an exact copy (snapshot) of the parent environment, containing the files, the database, the services...
 
-## I am using Drupal ans  I see "File not found" why?
+## I am using Drupal and  I see "File not found" why?
 
 If you see the "File not found" when accessing your site within a browser, this means that you’ve pushed your code as a vanilla project but no *index.php* has been found.
 
