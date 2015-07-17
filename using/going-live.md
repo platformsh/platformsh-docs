@@ -261,46 +261,28 @@ typically more expensive, they allow you to serve requests for all
 subdomains of *.example.com over SSL.
 
 On completion of the SSL certificate purchase process you should have
-several files including: The SSL certificate for the domain specified in
-your CSR, downloaded from your certificate provider. This file will have
-either a.pem or .crt extension. The private key you generated in the
-first step, server.key.
+several files including:
+
+* The SSL certificate for the domain specified in your CSR, downloaded from your certificate provider. This file will have either a .pem or .crt extension.
+* The private key you generated in the first step, server.key.
 
 Once you have the SSL certificate file and private key you are ready to
-configure SSL Endpoint for your app. First, provision an endpoint.
+configure SSL for your project.
+
+### Use the Platform.sh Web Interface to add the certificate
+
+You can also add your certificate via the Platform.sh [Web Interface](/overview/web-ui/index.html). Just go to the [project configuration page](/overview/web-ui/configure-project.html) in the web interface and click on Domains. If you already have a domain, you can edit the domain and then click on the Add SSL certificate button. You can then add your private key, public key certificate and optional certificate chain.
+
+![UI configuration for SSL](/images/ui-ssl.png)
 
 ### Use the Platform.sh CLI to add the certificate
 
+Example:
 ```bash
-$ platform domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
+platform domain:add secure.example.com --cert=/etc/ssl/private/secure-example-com.crt --key=/etc/ssl/private/secure-example-com.key
 ```
-```bash
-$ platform help domain:add
 
-Usage:
-domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
-
-Arguments:
-name                  The name of the domain
-
-Options:
---project             The project ID
---cert                The path to the certificate file for this domain.
---key                 The path to the private key file for the provided certificate.
---chain               The path to the certificate chain file or files for the provided certificate. (multiple values allowed)
---help (-h)           Display this help message.
---quiet (-q)          Do not output any message.
---verbose (-v|vv|vvv) Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
---version (-V)        Display this application version.
---yes (-y)            Answer "yes" to all prompts.
---no (-n)             Answer "no" to all prompts.
---shell (-s)          Launch the shell.
-```
-### Use the Platform.sh GUI to add the certificate
-
-You can also add your certificate via the Platform.sh GUI. Just go to the [project configuration page](/overview/web-ui/configure-project.md) in the web interface and click on Domains. If you already have a domain, you can edit the domain and then click on the Add SSL certificate button. You can then add your private key, public key certificate and optional certificate chain.
-
-![UI configuration for SSL](/images/ui-ssl.png)
+Type `platform help domain:add` for more information.
 
 ### Subdomain
 
