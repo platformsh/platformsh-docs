@@ -17,7 +17,8 @@ environment.
 
 The access control is very helpful if you need your development
 environments to be restricted by a login/password, or be accessible by
-only a certain range of IP addresses.
+only a certain range of IP addresses. Changes to access control will
+only become active on the environment's next deployment.
 
 ## Variables
 
