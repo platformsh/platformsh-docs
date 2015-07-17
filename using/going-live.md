@@ -100,7 +100,7 @@ queries (such as the [CNAME with ALIAS record from
 Dyn](http://dyn.com/support/record-types-standard-dns/), or the ANAME
 record on [DNS Made
 Easy](http://www.dnsmadeeasy.com/services/aname-records/)). Many other
-providers also work arounds to accomplish this goal. The most common is
+providers also offer work arounds to accomplish this goal. The most common is
 to add a CNAME record for the `www` host on the domain and then use the
 DNS provider's redirection service to redirect the apex over to the
 `www` version of the domain. Check with your DNS provider to see how
@@ -135,9 +135,9 @@ Some DNS hosts provide a way to get CNAME-like functionality at the zone
 apex using a custom record type. Such records include:
 
 -   ALIAS at [Route53](http://aws.amazon.com/route53)
--   CNAME at [Namechep](http://www.namecheap.com/)
+-   CNAME at [Namecheap](http://www.namecheap.com/)
 -   ALIAS at [DNSimple](https://dnsimple.com/)
--   ANAME at [DNS Made](Easy%20http://www.dnsmadeeasy.com/)
+-   ANAME at [DNS Made Easy](http://www.dnsmadeeasy.com/)
 -   ANAME at [easyDNS](https://www.easydns.com/)
 -   ACNAME at [CloudFlare](https://www.cloudflare.com/)
 -   ALIAS at [PointDNS](https://pointhq.com/)
@@ -296,6 +296,11 @@ Options:
 --no (-n)             Answer "no" to all prompts.
 --shell (-s)          Launch the shell.
 ```
+### Use the Platform.sh GUI to add the certificate
+
+You can also add your certificate via the Platform.sh GUI. Just go to the [project configuration page](/overview/web-ui/configure-project.md) in the web interface and click on Domains. If you already have a domain, you can edit the domain and then click on the Add SSL certificate button. You can then add your private key, public key certificate and optional certificate chain.
+
+![UI configuration for SSL](/images/ui-ssl.png)
 
 ### Subdomain
 
