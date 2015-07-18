@@ -27,8 +27,7 @@ We analyze the code of your application:
 -   Regularly when new vulnerabilities are added to our database
 
 If a vulnerability deemed as criticial is detected in your application,
-[Platform.sh](https://platform.sh) is going to reject the push, and will
-block the
+[Platform.sh](https://platform.sh) is going to reject the Git push.
 
 We run two types of blocks:
 
