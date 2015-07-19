@@ -17,6 +17,9 @@ If you require access to the site, you can create a hosts file entry and
 point it to the IP address that resolves when you access your master
 project branch.
 
+> **note**
+> If you are on a Development plan, your domain will not be served by Platform.sh. In that case, you need to upgrade your subscription to a production plan.
+
 ## 2 - Routes
 
 You can configure the routes of your project directly within the
