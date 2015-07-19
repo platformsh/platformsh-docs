@@ -49,6 +49,9 @@ body,
       position: relative;
       display: inline-block;
       ul, li {
+        max-width:700px;
+        width:200%;
+        min-width:350px;
         list-style: none;
         padding: 0;
         margin: 0;
@@ -151,6 +154,8 @@ body,
       margin: 0;
       &.book {
         padding-left: 30px;
+        margin-bottom:10px;
+        color:#A8A7A7;
       }
       &.drupal {
         background: transparent url("images/icon-drupal.png") no-repeat 0 0;
@@ -175,6 +180,7 @@ body,
       float: left;
       width: 48%;
       margin: 0 1% 25px;
+      margin-top:4px;
       li a {
         color: #fff;
         &:hover {
@@ -252,7 +258,7 @@ body,
       a,
       span {
         padding: 10px 50px;
-        color: #cbcaca;
+        color: #00aeef;
         line-height: 1em;
       }
       li a,
@@ -261,7 +267,7 @@ body,
       }
       &.active>a,
       a:hover {
-        color: #00aeef;
+        color: #cbcaca;
       }
       &.active>a {
         border-left: 1px solid #00aeef;

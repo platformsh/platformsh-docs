@@ -1,4 +1,4 @@
-#Platform.sh User Guide
+#User Guide
 
 * [Technical Requirements](overview/technical-requirements.md)
 * [Configuring the Project and its environments](overview/configuring-project-environments.md)
@@ -15,7 +15,7 @@
     * [.platform/routes.yaml](reference/routes-yaml.md)
       * [HTTP Caching](reference/cache.md)
     * [Configuring Multiple Applications](reference/platform-app-yaml-multi-app.md)
-* [Administration and Operations]()
+* [Administration and Operations](using/README.md)
   * [User administration](using/user-administration.md)
   * [Backup and restore](using/backup-and-restore.md)
   * [Going Live](using/going-live.md)

@@ -35,11 +35,11 @@ Depending on the language (PHP) and the stack that you are running (Symfony, Wor
 At the root of your Git repository (or at the root of each of your application folders if your repository contains multiple applications), add a file called ``.platform.app.yaml``.
 
 > **see also**
-> [Configure your application](../reference/configuration-files.html#configure-your-application)
+> [Configure your application](/user_guide/reference/configuration-files.html#configure-your-application)
 
 ### Configure your services
 
 At the root of your Git repository, create a folder called ``.platform`` and inside this folder, create a file called ``services.yaml``.
 
 > **see also**
-> [Configure your services](../reference/configuration-files.html#configure-services)
+> [Configure your services](/user_guide/reference/configuration-files.html#configure-services)

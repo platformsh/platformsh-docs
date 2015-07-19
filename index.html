@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Introduction | Getting Started with Drupal and Platform.sh</title>
+        <title>Platform.sh Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="Getting Started with Drupal Platform.sh">
         <meta name="generator" content="GitBook 2.1.0">
@@ -13,11 +13,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
-        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="/drupal/gitbook/style.css">
-<link rel="stylesheet" href="/drupal/gitbook/plugins/gitbook-theme-platform/platform.css">
-<link rel="next" href="./guides/index.html" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/overview/gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="/overview/gitbook/images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/overview/gitbook/style.css">
+<link rel="stylesheet" href="/overview/gitbook/plugins/gitbook-theme-platform/platform.css">
         <!-- head:end -->
 <link rel='stylesheet' type='text/css' href='//cloud.typography.com/7640312/659566/css/fonts.css'>
     </head>
@@ -31,61 +30,69 @@
       <div class="container getting-started">
         <h2><span>Getting</span> Started</h2>
         <ul>
-          <li class="book drupal">
-            <a href="/drupal/">Drupal</a>
+          <li class="book drupal">Drupal
             <ul>
-              <li><a href="/drupal_migrate/">Migrate an existing project</a></li>
-              <li><a href="/drupal/guides/type/php/drupal/setup/get-started.html">Start a new project</a></li>
+              <li><a href="/drupal/">Start a new project</a></li>
+              <li><a href="/drupal_migrate/guides/type/php/drupal/migrate/init.html">Migrate an existing project</a></li>
             </ul>
           </li>
-          <li class="book symfony">
-            <a href="/symfony/">Symfony</a>
+          <li class="book symfony">Symfony
             <ul>
-              <li><a href="/symfony/guides/type/php/symfony/index.html">Start a new project</a></li>
+              <li><a href="/symfony/">Start a new project</a></li>
             </ul>
           </li>
+<!-- 
           <li class="book bitbucket">
-            <a href="/symfony/">Bitbucket</a>
+            <em>Coming Soon</em>Bitbucket
             <ul>
-              <li><a href="#">Bitbucket + Platform.sh</a></li>
+              <li><em>Coming Soon</em> Bitbucket + Platform.sh</li>
             </ul>
           </li>
           <li class="book github">
-            <a href="/github/">Github</a>
+            Github
             <ul>
-              <li><a href="#">Github + Platform.sh</a></li>
+              <li> <em>Coming Soon</em>Github + Platform.sh</li>
             </ul>
           </li>
+ -->
         </ul>
       </div>
       <div class="container topic-trends">
-        <h2><span>Topic</span> Trends</h2>
+        <h2><span>Popular</span> Topics</h2>
         <ul>
-          <li><a href="/reference/" title="index">User Guide testing length of the column when a link wraps</a></li>
-          <li><a href="/reference/" title="index">User Guide</a></li>
-          <li><a href="/reference/" title="index">User Guide</a></li>
-          <li><a href="/reference/" title="index">User Guide</a></li>
+          <li><a href="/user_guide/using/going-live.html">Going Live</a></li>
+          <li><a href="/user_guide/using/set-up-local-development.html">Setting up local development</a></li>
+          <li><a href="/overview/overview/cli/index.html">The Command Line Tool</a></li>
+          <li><a href="/user_guide/overview/web-ui/configure-environment.html">Configuring an environment</a></li>
+          <li><a href="/user_guide/overview/web-ui/configure-project.html">Configuring a project </a></li>
         </ul>
         <ul>
-          <li><a href="/overview/" title="index">Overview</a></li>
-          <li><a href="/overview/" title="index">Overview</a></li>
-          <li><a href="/overview/" title="index">Overview testing length of the column when a link wraps</a></li>
-          <li><a href="/overview/" title="index">Overview</a></li>
+          <li><a href="/user_guide/reference/toolstacks/php/drupal/developing-with-drupal.html">Developing with Platform.sh and Drupal</a></li>
+          <li><a href="/overview/">Platform.sh Overview</a></li>
+          <li><a href="/user_guide/overview/environments.html">What are Environments?</a></li>
+          <li><a href="/user_guide/reference/platform-app-yaml.html">The app configuration file .platform.app.yaml</a></li>
         </ul>
       </div>
     </div>
   </div>
   <div class="row white">
     <div class="wrapper">
+      <div class="container reference">
+        <h2><span>User</span> Guide</h2>
+        <p>This section will give you detailed technical information about how 
+          Platform.sh operates, how to configure every aspect of it, use 
+          multiple applications in the  same project, configure and use search
+          engines and caches or integrate with external services such as
+          Github, Bitbucket or Blackfire.</p>
+        <div class="more"><a href="/user_guide/">more</a></div>
+      </div>
       <div class="container overview">
         <h2><span>Platform.sh</span> Overview</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis tempor ac augue tincidunt, gravida quis arcu scelerisque. Duis interdum quam mauris, in pretium quam tincidunt at.</p>
-        <div class="more"><a href="/overview/">more</a></div>
-      </div>
-      <div class="container reference">
-        <h2><span>Technical</span> Reference</h2>
-        <p>Interdum and malesuada fames ac ante ipsum primis in faucibus. Sed sed nunc rhoncus, sagittis eros vel turpis curriculum.</p>
-        <div class="more"><a href="/reference/">more</a></div>
+        <p>The overview section will give you a general idea on the concepts of
+           Platform.sh and give you a glimpse of what you can do with the Web
+           Interface and the command Line Interface.
+        </p>
+        <div class="more"><a href="/overview/overview/">more</a></div>
       </div>
     </div>
   </div>

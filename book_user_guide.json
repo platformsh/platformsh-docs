@@ -1,9 +1,9 @@
 {
-    "title": "Reference",
+    "title": "User Guide",
     "description": "Platform.sh user guide",
     "version": "2.1.0",
         "structure": {
-            "summary": "SUMMARY_reference.md"
+            "summary": "SUMMARY_user_guide.md"
         },
     "plugins": [
         "ga", "edit-link", "richquotes", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"

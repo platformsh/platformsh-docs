@@ -53,7 +53,7 @@ Each route can be configured separately its has the following properties
     * It will then be followed by `to` property, this is an HTTP redirection to 
     another route that will be identified by its template (see examples below).
   * `cache` controls caching for the route ([click here for full 
-  docs](/reference/cache.html).) 
+  docs](/user_guide/reference/cache.html).) 
   * `ssi` controls whether Server Side Includes are enabled.
     
 > **note** for the moment the upstream is always of this form, ending with 
@@ -98,7 +98,7 @@ routes):
 ```
 
 You can see the [Configuring Multiple 
-Applications](/reference/platform-app-yaml-multi-app.md) section for a  detailed
+Applications](/user_guide/reference/platform-app-yaml-multi-app.md) section for a  detailed
  view of how this works with multiple applications in the same project.
  
 In the following example we are redirecting the naked domain to http, and http 
@@ -184,4 +184,4 @@ If you examine the routes of your application (for example by running
 `echo $PLATFORM_ROUTES |base64 --decode` in an SSH session on your environment).
 You will see a route such as `https://*---add-theme-vmwklxcpbi6zq.eu.platform.sh/`
 
-[You can find detailed information about caching here](/reference/cache.html).
+[You can find detailed information about caching here](/user_guide/reference/cache.html).

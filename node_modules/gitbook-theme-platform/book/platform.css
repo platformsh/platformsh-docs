@@ -52,6 +52,9 @@ body,
 }
 #platform-bar #navlink .dropdown ul,
 #platform-bar #navlink .dropdown li {
+  max-width: 700px;
+  width: 200%;
+  min-width: 350px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -155,6 +158,8 @@ body,
 #home-content .container ul.book,
 #home-content .container li.book {
   padding-left: 30px;
+  margin-bottom: 10px;
+  color: #A8A7A7;
 }
 #home-content .container ul.drupal,
 #home-content .container li.drupal {
@@ -182,6 +187,7 @@ body,
   float: left;
   width: 48%;
   margin: 0 1% 25px;
+  margin-top: 4px;
 }
 #home-content .container > ul > li li a {
   color: #fff;
@@ -255,7 +261,7 @@ body,
 .book .book-summary ul.summary li a,
 .book .book-summary ul.summary li span {
   padding: 10px 50px;
-  color: #cbcaca;
+  color: #00aeef;
   line-height: 1em;
 }
 .book .book-summary ul.summary li li a,
@@ -264,7 +270,7 @@ body,
 }
 .book .book-summary ul.summary li.active > a,
 .book .book-summary ul.summary li a:hover {
-  color: #00aeef;
+  color: #cbcaca;
 }
 .book .book-summary ul.summary li.active > a {
   border-left: 1px solid #00aeef;
