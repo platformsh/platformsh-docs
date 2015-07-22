@@ -53,8 +53,6 @@ body,
 #platform-bar #navlink .dropdown ul,
 #platform-bar #navlink .dropdown li {
   max-width: 700px;
-  width: 200%;
-  min-width: 350px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -68,9 +66,11 @@ body,
   display: none;
   position: absolute;
   top: 30px;
-  left: 0;
+  left: -20px;
   background: #000;
   padding: 0;
+  line-height: 1em;
+  min-width: 300px;
 }
 #platform-bar #navlink .dropdown ul li ul a {
   color: #fff;
@@ -203,7 +203,7 @@ body,
   float: left;
 }
 #home-content .container.topic-trends ul li {
-  margin: 0 0 20px 0;
+  margin: 0;
   float: none;
   width: 100%;
 }
@@ -279,7 +279,7 @@ body,
 .book .book-summary ul.summary li a,
 .book .book-summary ul.summary li span {
   padding: 10px 50px;
-  color: #00aeef;
+  color: #cbcaca;
   line-height: 1em;
 }
 .book .book-summary ul.summary li li a,
@@ -288,7 +288,7 @@ body,
 }
 .book .book-summary ul.summary li.active > a,
 .book .book-summary ul.summary li a:hover {
-  color: #cbcaca;
+  color: #00aeef;
 }
 .book .book-summary ul.summary li.active > a {
   border-left: 1px solid #00aeef;
