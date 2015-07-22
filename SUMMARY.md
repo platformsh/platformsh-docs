@@ -1,14 +1,51 @@
-# Platform.sh
-
-[Platform.sh](https://platform.sh) is a powerful new cloud solution for Continuous Integration and Hosting of PHP websites (with specific integrated support for Symfony, Drupal and other frameworks). This is the official documentation on how to use [Platform.sh](https://platform.sh).
-
-## How does it work?
-
-[Platform.sh](https://platform.sh/) operates on the idea that you as a web  developer will manage your application code in Git. From there, [Platform.sh](https://platform.sh/) can provision each Git branch with a full application stack to run your application, online, with a synchronized copy of the application's data (*DB, files, Solr index...*).
-
-A new staging takes less then a minute to create. Developers can focus on Code. QA and Project managers on features. Every user story can have its own development and testing environments. You can test each change in isolation bringing down lead time and shortening the release cycle for new features from weeks to hours.   Platform.sh is a fully managed and fully integrated system. To get an instance of MySQL, Solr, Redis, ElasticSearch,  MongoDB and so on.. you just add a single line in a configuration file. Our enterprise offering adds high-availability features and white-glove support, perfect for high traffic e-commerce and media web sites.
-
-This means that you now can work with your complete application infrastructure the same way you work with Git: branching and merging is cheap and fast, and you are no longer responsible for the system administration or DevOps tasks that distract from coding.
-
-That means less waiting for code changes to go live, whether they be tiny tweaks or brand new functionality.
->>>>>>> 2434efee58714706ef211c297450bcfe3f86e7b0
+* [Overview](overview/README.md)
+  * [Technical Requirements](overview/technical-requirements.md)
+  * [Platform.sh Environments](overview/environments.md)
+  * [The Web Interface](overview/web-ui/README.md)
+    * [Project configuration](overview/web-ui/configure-project.md)
+    * [Environment configuration](overview/web-ui/configure-environment.md)
+  * [Platform.sh CLI](overview/cli/README.md)
+  * [Getting Help](overview/getting-help.md)
+* [Using Platform.sh](using/README.md)
+  * [Set up local development](using/set-up-local-development.md)
+  * [Using SSH](using/use-SSH.md)
+  * [Backup and restore](using/backup-and-restore.md)
+  * [Private Repositories](using/private-repository.md)
+  * [User administration](using/user-administration.md)
+  * [Going Live](using/going-live.md)
+  * [Integrations](using/integrations/README.md)
+    * [Bitbucket](using/integrations/bitbucket.md)
+    * [GitHub](using/integrations/github.md)
+    * [Blackfire](using/integrations/blackfire.md)
+    * [Webhook](using/integrations/webhooks.md)
+    * [Hipchat](using/integrations/hipchat.md)
+* [Reference](reference/README.md)
+  * [Architecture](reference/architecture.md)
+  * [Configuration Files](reference/configuration-files.md)
+    * [.platform.app.yaml](reference/platform-app-yaml.md)
+    * [.platform/services.yaml](reference/services-yaml.md)
+    * [.platform/routes.yaml](reference/routes-yaml.md)
+      * [HTTP Caching](reference/cache.md)
+    * [Upgrading from previous versions](reference/upgrade/README.md)
+  * [Environment Variables](reference/environment-variables.md)
+  * [Sending E-Mail](reference/email.md)
+  * [Addresses](reference/public-ip-addresses.md)
+  * [Toolstacks](reference/toolstacks/README.md)
+    * [PHP](reference/toolstacks/php/README.md)
+      * [Drupal](reference/toolstacks/php/drupal/README.md)
+        * [Developing With Drupal](reference/toolstacks/php/drupal/developing-with-drupal.md)
+        * [Customizing settings.php](reference/toolstacks/php/drupal/customizing-settings-php.md)
+        * [Migrate an existing site](reference/toolstacks/php/drupal/migrate-existing-site.md)
+        * [Drush](reference/toolstacks/php/drupal/drush.md)
+        * [Redis](reference/toolstacks/php/drupal/redis.md)
+          * [Redis with Drupal 6](reference/toolstacks/php/drupal/redis-drupal-6.md)
+          * [Redis with Drupal 7](reference/toolstacks/php/drupal/redis-drupal-7.md)
+        * [Solr](reference/toolstacks/php/drupal/solr.md)
+        * [FAQ](reference/toolstacks/php/drupal/faq.md)
+      * [Symfony](reference/toolstacks/php/symfony/README.md)
+        * [Migrate an existing site](reference/toolstacks/php/symfony/migrate-existing-site.md)
+        * [FAQ](reference/toolstacks/php/symfony/faq.md)
+  * [Services](reference/services/README.md)
+  * [API](reference/rest-api.md)
+  * [The Protective Block](reference/protective-block.md)
+  * [FAQ](reference/faq/known-issues.md)

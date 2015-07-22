@@ -16,5 +16,5 @@ and a front-end, or a main web site and a blog). Each of these will have its own
 
 > **note**
 > Find many examples for those configuration files on the [platformsh-examples repository on 
-Github](https://github.com/platformsh/platformsh-examples).
+GitHub](https://github.com/platformsh/platformsh-examples).
 

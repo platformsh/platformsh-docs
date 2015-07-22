@@ -49,7 +49,7 @@ whether you want to track branches and/or pull requests:
 -   `--fetch-branches` [true | false]
 
 This command returns the Payload URL that you need to paste on your
-Github repository webhooks page.
+GitHub repository webhooks page.
 
 Go to your GitHub repository and click `Settings`. Select the *Webhooks
 and Services* tab and click `Add webhook`. Paste the Payload URL, Choose

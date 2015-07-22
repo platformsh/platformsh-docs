@@ -27,7 +27,7 @@ still supported, but customers are invited to move to the new format.
 For an example upgrade path, see the [Drupal 7.x branch of the
 Platformsh-examples
 repository](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml)
-on Github.
+on GitHub.
 
 Configuration items for PHP that previously was part of
 `.platform/services.yaml` are now moved into `.platform.app.yaml`, which
