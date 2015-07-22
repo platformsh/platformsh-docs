@@ -17,4 +17,3 @@ This section will give you detailed technical information about how Platform.sh
 operates, how to configure every aspect of it, use multiple applications in the 
 same project, configure and use search engines and caches or integrate with external
 services such as GitHub, Bitbucket or Blackfire.
->>>>>>> master
