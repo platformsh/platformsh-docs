@@ -81,7 +81,7 @@ disk: 2048
 
 # Build time dependencies.
 dependencies:
-  python:
+#  python:
 #    jq: "*"
   nodejs:
     gitbook-cli: "*"
