@@ -104,10 +104,10 @@ body,
   padding: 73px 0 50px;
 }
 #home-content a {
-  color: #a8a7a7;
+  color: #fff;
 }
 #home-content a:hover {
-  color: #fff;
+  text-decoration: underline;
 }
 #home-content h1 {
   font-size: 24px;
@@ -152,8 +152,9 @@ body,
 }
 #home-content .container ul,
 #home-content .container li {
-  padding: 0;
+  padding: 0 0 10px 0;
   margin: 0;
+  color: #a8a7a7;
 }
 #home-content .container ul.book,
 #home-content .container li.book {
@@ -195,20 +196,10 @@ body,
 #home-content .container > ul > li li a:hover {
   text-decoration: underline;
 }
-#home-content .container .more {
-  text-align: center;
-}
-#home-content .container .more a {
-  height: 40px;
-  width: 40px;
-  background: transparent url("images/icon-more.png") no-repeat center center;
-  border: 1px solid #00aeef;
-  font: 0/0 none;
-  display: inline-block;
-}
 #home-content .container.topic-trends ul {
   width: 48%;
   margin: 0 1%;
+  padding-top: 4px;
   float: left;
 }
 #home-content .container.topic-trends ul li {
@@ -228,6 +219,33 @@ body,
 }
 #home-content .row.white .container {
   border-color: #9b9b9b;
+  position: relative;
+}
+#home-content .row.white .more {
+  text-align: center;
+  height: 40px;
+  width: 40px;
+  background: transparent url("images/icon-more.png") no-repeat center center;
+  border: 1px solid #00aeef;
+  font: 0/0 none;
+  display: inline-block;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -20px;
+  opacity: .5;
+}
+#home-content .row.white a {
+  color: #b6b5b5;
+  height: 370px;
+  display: inline-block;
+}
+#home-content .row.white a:hover {
+  text-decoration: none;
+  color: #000;
+}
+#home-content .row.white a:hover .more {
+  opacity: 1;
 }
 #home-content .row.white h2 {
   color: #000;
@@ -422,6 +440,13 @@ body,
     padding: 30px;
     height: 370px;
   }
+  #home-content .white .container {
+    padding: 0;
+  }
+  #home-content .white .container a {
+    padding: 30px;
+    height: 370px;
+  }
   #home-content .row {
     padding: 50px;
   }
@@ -431,6 +456,12 @@ body,
 }
 @media (min-width: 960px) {
   #home-content .container {
+    padding: 50px 40px;
+  }
+  #home-content .white .container {
+    padding: 0;
+  }
+  #home-content .white .container a {
     padding: 50px 40px;
   }
 }

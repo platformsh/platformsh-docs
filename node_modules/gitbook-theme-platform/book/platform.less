@@ -103,9 +103,9 @@ body,
 #home-content {
   padding: 73px 0 50px;
   a {
-    color: #a8a7a7;
+    color: #fff;
     &:hover {
-      color: #fff;
+      text-decoration: underline;
     }
   }
   h1 {
@@ -150,8 +150,9 @@ body,
     }
     ul,
     li {
-      padding: 0;
+      padding: 0 0 10px 0;
       margin: 0;
+      color: #a8a7a7;
       &.book {
         padding-left: 30px;
         margin-bottom:10px;
@@ -188,21 +189,11 @@ body,
         }
       }
     }
-    .more {
-      text-align: center;
-      a {
-        height: 40px;
-        width: 40px;
-        background: transparent url("images/icon-more.png") no-repeat center center;
-        border: 1px solid #00aeef;
-        font: 0/0 none;
-        display: inline-block;
-      }
-    }
     &.topic-trends {
       ul {
         width: 48%;
         margin: 0 1%;
+        padding-top: 4px;
         float: left;
         li {
           margin: 0 0 20px 0;
@@ -222,6 +213,33 @@ body,
       color: #b6b5b5;
       .container {
         border-color: #9b9b9b;
+        position: relative;
+      }
+      .more {
+        text-align: center;
+        height: 40px;
+        width: 40px;
+        background: transparent url("images/icon-more.png") no-repeat center center;
+        border: 1px solid #00aeef;
+        font: 0/0 none;
+        display: inline-block;
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        margin-left: -20px;
+        opacity: .5;
+      }
+      a {
+        color: #b6b5b5;
+        height: 370px;
+        display: inline-block;
+        &:hover {
+          text-decoration: none;
+          color: #000;
+          .more {
+            opacity: 1;
+          }
+        }
       }
       h2 {
         color: #000;
@@ -425,6 +443,13 @@ body,
     padding: 30px;
     height: 370px;
   }
+  #home-content .white .container {
+    padding: 0;
+    a {
+      padding: 30px;
+      height: 370px;
+    }
+  }
   #home-content .row {
     padding: 50px;
   }
@@ -435,6 +460,13 @@ body,
 @media (min-width: 960px) {
   #home-content .container {
     padding: 50px 40px;
+  }
+
+  #home-content .white .container {
+    padding: 0;
+    a {
+      padding: 50px 40px;
+    }
   }
 }
 @media (max-width: 1240px) {
