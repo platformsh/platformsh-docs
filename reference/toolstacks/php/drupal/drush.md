@@ -7,7 +7,7 @@ commands can, for example, be used to clear the Drupal cache, run module
 and database updates, revert features, perform database imports and
 dumps, and a whole lot more. You can reference the full set of Drush
 commands at [Drush.org](http://www.drush.org). If you have never used
-Drush before, you can learn more about it on the [Drush Github
+Drush before, you can learn more about it on the [Drush GitHub
 Repository](https://github.com/drush-ops/drush#description)
 
 Platform.sh uses Drush, so all environments  can utilize
@@ -111,7 +111,7 @@ since it only contains your custom code.
 Your make file can be called: `project.make` or `drupal-org.make`.
 
 You can find a nice example make file on
-[Github](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/project.make).
+[GitHub](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/project.make).
 
 When building as a profile, you **need a make file for Drupal core**
 called: `project-core.make`:

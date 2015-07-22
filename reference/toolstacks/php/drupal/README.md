@@ -110,7 +110,7 @@ want to deploy and how you want to deploy it.
 
 For Drupal 7, your `.platform.app.yaml` should specify the `php:drupal`
 toolstack. You can see a [working example on
-Github](https://github.com/platformsh/platformsh-examples/tree/drupal/7.x). And the Drupal 7[.platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml)
+GitHub](https://github.com/platformsh/platformsh-examples/tree/drupal/7.x). And the Drupal 7[.platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml)
 
 ### Drupal 8
 
@@ -125,5 +125,5 @@ dependencies:
         "drush/drush": "7.0.0-rc2"
 ```
 
-You can see a [working example on Github](https://github.com/platformsh/platformsh-examples/tree/drupal/8.x).
+You can see a [working example on GitHub](https://github.com/platformsh/platformsh-examples/tree/drupal/8.x).
 , and the Drupal 8 [.platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/8.x/.platform.app.yaml)

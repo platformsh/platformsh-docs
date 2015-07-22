@@ -7,5 +7,5 @@ It is noteworthy that Platform.sh provids specific tooling to help you be more p
 
 > **note**
 > Find many examples for those configuration files on the [platformsh-examples repository on 
-Github](https://github.com/platformsh/platformsh-examples).
+GitHub](https://github.com/platformsh/platformsh-examples).
 > with many examples for Drupal, Symfony, Custom PHP Applications (with multi apps), Wordpress, Magento, Prestashop, Laravel...

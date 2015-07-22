@@ -15,7 +15,7 @@
   * [Going Live](using/going-live.md)
   * [Integrations](using/integrations/README.md)
     * [Bitbucket](using/integrations/bitbucket.md)
-    * [Github](using/integrations/github.md)
+    * [GitHub](using/integrations/github.md)
     * [Blackfire](using/integrations/blackfire.md)
     * [Webhook](using/integrations/webhooks.md)
     * [Hipchat](using/integrations/hipchat.md)
