@@ -17,6 +17,11 @@ to be able to interact with [Platform.sh](https://platform.sh/).
 > * [Install Git](https://help.github.com/articles/set-up-git)
 > * [Learn more about Git](http://git-scm.com/)
 
+> **note**
+> The branch name may only be composed of lower case alpha-numeric characters. (a-z0-9)
+> We convert branch names into URLs, which is why we are reducing the allowed characters in there.
+
+
 ## SSH
 
 One of the ways [Platform.sh](https://platform.sh/) keeps things secure

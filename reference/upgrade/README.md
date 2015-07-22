@@ -1,24 +1,22 @@
 # Upgrading
 
 ## Changes in version 2015.7
-In  `.platform.app.yaml` we allow for a much clearer syntax.. you should start using
+In the `.platform.app.yaml` configuration file we now allow for a much clearer syntax, which you can (and should) start using now.
 
-The old format had a single string to identify the toolstack you use
+The old format had a single string to identify the 'toolstack' you use:
 ```yaml
 toolstack: "php:drupal"
 ```
 
 The new syntax allows to separate the concerns of what language you are running
-and the build process that is going to happen on deployment.
+and the build process that is going to happen on deployment:
 ```yaml
 type: php
 build:
     flavor: drupal
 ```
-Currently, as you may know we only support PHP applications. Current supported 
-flavors are : `drupal`, `composer` and `symfony` the default flavor is `composer`
-basically meaning `composer install` will be run automatically if composer.json
-is found.
+Currently we only support `php` in the 'type' key. Current supported build
+flavors are `drupal`, `composer` and `symfony`.
 
 ## Changes in version 1.7.0
 
