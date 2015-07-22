@@ -5,11 +5,10 @@ Platform.sh environments directly from your GitHub repository.
 
 Supported:
 
--   Create a new environment when creating a Git branch or opening a
-    pull request.
--   Rebuild an environment when pushing code to a Git branch or a pull
-    request.
--   Delete an environment when merging a pull request.
+-   Create a new environment when creating a branch or opening a
+    pull request on GitHub.
+-   Rebuild the environment when pushing new code to GitHub.
+-   Delete the environment when merging a pull request.
 
 To integrate your Platform.sh project with an existing GitHub
 repository, you first need to generate a token on your GitHub user
@@ -58,3 +57,9 @@ and Services* tab and click `Add webhook`. Paste the Payload URL, Choose
 
 You can now start pushing code, creating new branches or opening pull
 requests directly on your GitHub repository.
+
+### Types of environment
+
+Environments based on GitHub **pull requests** will have the correct 'parent' environment on Platform.sh: they will be activated automatically with a copy of the parent's data.
+
+However, environments based on (non-pull-request) **branches** cannot have parents: they will inherit directly from `master` and start inactive by default.
