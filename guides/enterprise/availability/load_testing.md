@@ -1,0 +1,3 @@
+# Optional Load testing
+
+As an additional measure to ensure availability, customers can optionally request load testing either during onboarding or at an appropriate point after launch. Platform.sh will design a pre-launch load test with the customer and execute it for them using enterprise-grade JMeter-compliant load testing tools. We then examine the results with the customer to validate that the site is ready to go into production at the level that is required. One week should be planned within any given project for load testing as it takes: 1 day to plan and execute the test; 1 day to analyze the results and communicate with the partner; 2-3 days to react to the results and deploy performance improvements or more hardware if needed.

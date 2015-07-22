@@ -1,0 +1,3 @@
+# Public, private and hybrid Clouds
+
+The standard version of Platform Enterprise places the Customer’s website (including all services and data) in the public AWS cloud. Platform.sh does not yet support deployment to private clouds. However, there are no restrictions on application level integrations with other services (eg. for the purpose of data import, or API integration) that may be hosted on private clouds.

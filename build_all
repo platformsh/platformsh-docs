@@ -3,6 +3,7 @@
 ./build drupal
 ./build symfony
 ./build drupal_migrate
+./build enterprise
 cp index.php _books/index.php
 cp index.html _books/index.html
 rm -f _books/index.json
