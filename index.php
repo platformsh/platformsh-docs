@@ -1,5 +1,4 @@
 <?php
-=======
 # Mapping of old URLs as key, and new URLs as values.
 $url_mapping = array(
   '/web-ui/configure-environment' => '/overview/web-ui/configure-environment.html',

@@ -1,5 +1,5 @@
 if [[ $# -eq 0 ]] ; then
-    echo 'You need to specifiy a book to build'
+    echo 'You need to specify a book to build'
     echo 'ex: build drupal'
     echo 'Available books\n'
     ls book_*.json | sed -e 's/^book_(.*)\.json$/ccc/g'
