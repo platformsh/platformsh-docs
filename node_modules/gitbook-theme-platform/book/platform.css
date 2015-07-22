@@ -68,9 +68,9 @@ body,
   top: 30px;
   left: -20px;
   background: #000;
-  padding: 0;
+  padding: 10px 0;
   line-height: 1em;
-  min-width: 300px;
+  min-width: 225px;
 }
 #platform-bar #navlink .dropdown ul li ul a {
   color: #fff;
@@ -162,6 +162,10 @@ body,
   margin-bottom: 10px;
   color: #A8A7A7;
 }
+#home-content .container ul.book ul,
+#home-content .container li.book ul {
+  padding-top: 10px;
+}
 #home-content .container ul.drupal,
 #home-content .container li.drupal {
   background: transparent url("images/icon-drupal.png") no-repeat 0 0;
@@ -206,6 +210,7 @@ body,
   margin: 0;
   float: none;
   width: 100%;
+  height: 40px;
 }
 #home-content .row {
   display: table;
@@ -426,6 +431,45 @@ body,
 }
 .book.with-search .book-summary .book-search {
   display: none;
+}
+.glossary-term {
+  position: relative;
+}
+.glossary-term .tooltip-wrapper {
+  display: none;
+  opacity: 0;
+  padding-top: 5px;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+  position: absolute;
+  width: 300px;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+}
+.glossary-term .tooltip-wrapper .tooltip {
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  max-width: 100%;
+  font-size: 12px;
+  padding: 10px;
+  display: inline-block;
+  word-wrap: normal;
+  box-sizing: border-box;
+}
+.glossary-term .tooltip-wrapper .tooltip:before {
+  content: " ";
+  position: absolute;
+  top: -5px;
+  left: 5px;
+  height: 0;
+  width: 0;
+  border: 5px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.9);
+}
+.glossary-term:hover .tooltip-wrapper {
+  opacity: 1;
+  display: inline-block;
 }
 @media (min-width: 600px) {
   .book.with-summary .book-body {
