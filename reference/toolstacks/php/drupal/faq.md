@@ -33,6 +33,9 @@ Disallow: /
 You can customize the `robots.txt` by placing your own version at the
 root of your repository.
 
+To override the behavior of robots.txt for Development environments you would
+currently need to use the API, contact our support for details.
+
 ## I'm getting a PDO Exception 'MySQL server has gone away'
 
 Normally, this means there is a problem with the MySQL server container
@@ -52,6 +55,6 @@ the issue. Ballooning MySQL storage can be caused by a number of items:
 
 If you are having a problem connecting to the database server, you will
 need force a re-deployment of the database container. To do so, you can
-edit the service definition to add or removea small amount of storage and
+edit the service definition to add or remove a small amount of storage and
 then push.
 

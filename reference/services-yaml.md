@@ -31,8 +31,18 @@ database2:
   disk: 1024
 ```
 
-This configuration will give you a MySQL with 2GB of disk space, and a Postgres instance with 1GB allocated.
-You are free to name each service as you wish (*lowercase alphanumeric only*). Usually you will see in our examples that we simply call the mysql: `mysql`. Note that you can have multiple instances of each services.
+This configuration will give you a MySQL with 2GB of disk space, and a Postgres 
+instance with 1GB allocated.You are free to name each service as you wish
+(*lowercase alphanumeric only*). Usually you will see in our examples that we 
+simply call the mysql: `mysql`. Note that you can have multiple instances of 
+each services.
+
+The `disk`  attribute is the size of the persistent disk of the application (in 
+MB) you can to allocate to this service. So, for example, the current default
+storage amount per project is 5GB (meaning 5120MB) which you can distribute 
+between you application, as defined in 
+[.platform.app.yaml](/reference/platform-app-yaml.html), and it's services.
+
 
 In order for a service to be available to an application in your project 
 (Platform.sh supports not only multiple backends but also multiple 

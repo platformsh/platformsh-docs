@@ -100,7 +100,7 @@ queries (such as the [CNAME with ALIAS record from
 Dyn](http://dyn.com/support/record-types-standard-dns/), or the ANAME
 record on [DNS Made
 Easy](http://www.dnsmadeeasy.com/services/aname-records/)). Many other
-providers also work arounds to accomplish this goal. The most common is
+providers also offer work arounds to accomplish this goal. The most common is
 to add a CNAME record for the `www` host on the domain and then use the
 DNS provider's redirection service to redirect the apex over to the
 `www` version of the domain. Check with your DNS provider to see how
@@ -135,9 +135,9 @@ Some DNS hosts provide a way to get CNAME-like functionality at the zone
 apex using a custom record type. Such records include:
 
 -   ALIAS at [Route53](http://aws.amazon.com/route53)
--   CNAME at [Namechep](http://www.namecheap.com/)
+-   CNAME at [Namecheap](http://www.namecheap.com/)
 -   ALIAS at [DNSimple](https://dnsimple.com/)
--   ANAME at [DNS Made](Easy%20http://www.dnsmadeeasy.com/)
+-   ANAME at [DNS Made Easy](http://www.dnsmadeeasy.com/)
 -   ANAME at [easyDNS](https://www.easydns.com/)
 -   ACNAME at [CloudFlare](https://www.cloudflare.com/)
 -   ALIAS at [PointDNS](https://pointhq.com/)
@@ -261,41 +261,28 @@ typically more expensive, they allow you to serve requests for all
 subdomains of *.example.com over SSL.
 
 On completion of the SSL certificate purchase process you should have
-several files including: The SSL certificate for the domain specified in
-your CSR, downloaded from your certificate provider. This file will have
-either a.pem or .crt extension. The private key you generated in the
-first step, server.key.
+several files including:
+
+* The SSL certificate for the domain specified in your CSR, downloaded from your certificate provider. This file will have either a .pem or .crt extension.
+* The private key you generated in the first step, server.key.
 
 Once you have the SSL certificate file and private key you are ready to
-configure SSL Endpoint for your app. First, provision an endpoint.
+configure SSL for your project.
+
+### Use the Platform.sh Web Interface to add the certificate
+
+You can also add your certificate via the Platform.sh [Web Interface](/overview/web-ui/index.html). Just go to the [project configuration page](/overview/web-ui/configure-project.html) in the web interface and click on Domains. If you already have a domain, you can edit the domain and then click on the Add SSL certificate button. You can then add your private key, public key certificate and optional certificate chain.
+
+![UI configuration for SSL](/images/ui-ssl.png)
 
 ### Use the Platform.sh CLI to add the certificate
 
+Example:
 ```bash
-$ platform domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
+platform domain:add secure.example.com --cert=/etc/ssl/private/secure-example-com.crt --key=/etc/ssl/private/secure-example-com.key
 ```
-```bash
-$ platform help domain:add
 
-Usage:
-domain:add [--project[="..."]] [--cert="..."] [--key="..."] [--chain="..."] [name]
-
-Arguments:
-name                  The name of the domain
-
-Options:
---project             The project ID
---cert                The path to the certificate file for this domain.
---key                 The path to the private key file for the provided certificate.
---chain               The path to the certificate chain file or files for the provided certificate. (multiple values allowed)
---help (-h)           Display this help message.
---quiet (-q)          Do not output any message.
---verbose (-v|vv|vvv) Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
---version (-V)        Display this application version.
---yes (-y)            Answer "yes" to all prompts.
---no (-n)             Answer "no" to all prompts.
---shell (-s)          Launch the shell.
-```
+Type `platform help domain:add` for more information.
 
 ### Subdomain
 
