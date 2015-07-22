@@ -118,6 +118,7 @@ While trying to log in via SSH, this can happen: :
 Don't panic! It's an issue which can happen for the following reasons:
 
 -   Your environment is inactive
+-   You haven't rebuilt (git push) your environment since adding the new public key
 -   You didn't upload your public key to your user profile
 -   Your SSH private key has not been added into your ssh-agent
 

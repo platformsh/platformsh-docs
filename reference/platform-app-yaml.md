@@ -1,4 +1,5 @@
 # `.platform.app.yaml`
+
 ## Configure your Application
 
 Platform.sh supports  multiple applications per project(for example a RESTful web service
@@ -35,20 +36,20 @@ crons:
 ```
 
 > **note**
-> The `.platform.app.yaml` is specific to your application. If you have multiple applications inside your Git repository, you need one `.platform.app.yaml` at the root of each application [see here](/reference/platform-app-yaml-multi-app.md).  
+> The `.platform.app.yaml` is specific to your application. If you have multiple
+> applications inside your Git repository, you need one `.platform.app.yaml` at 
+>the root of each application [see here](/reference/platform-app-yaml-multi-app.html).  
 
-------------------------------------------------------------------------
 
-**Name**
+### Name
 
 The `name` is the unique identifier of the application. Platform.sh
 supports multiple applications within a project, so each application
 must have a **unique name** within a project. The name may only be 
 composed of lower case alpha-numeric characters. (a-z0-9)
 
-------------------------------------------------------------------------
 
-**Toolstack**
+### Toolstack
 
 The `toolstack` is used to build and run the project. It's in the form
 `type[:subtype]`.
@@ -61,9 +62,8 @@ Possible values are:
 > ** note ** this is a misnomer that will soon be corrected you should use 
 > php:symfony for anything that is not drupal.
 
-------------------------------------------------------------------------
 
-**Access**
+### Access
 
 The `access` define the user roles who can log in via SSH to the
 environments they have access to.
@@ -74,9 +74,8 @@ Possible values are:
 -   ssh: contributor
 -   ssh: viewer
 
-------------------------------------------------------------------------
 
-**Relationships**
+### Relationships
 
 The `relationships` defines how services are mapped within your
 application.
@@ -104,9 +103,8 @@ Example of valid options are:
 >** note ** You should see the [`services.yaml` documentation](reference/services-yaml.md) 
 > for a full list of currently supported service types and service endpoints.
 
-------------------------------------------------------------------------
 
-**Web**
+### Web
 
 The `web` defines how the application is exposed to the web (in HTTP).  Here we tell the web application how to serve content. We tell The front-controller script to non-static requests to an index.php file on the root. We support any directory structure so the can be in a sub directory, and the index.php file can be further down.
 
@@ -132,9 +130,8 @@ To extend the whitelist, you should copy the [default
 whitelist](https://github.com/platformsh/platformsh-examples/blob/symfony/todo-mvc-full/.platform.app.yaml#L23),
 and only keep the extensions you need.
 
-------------------------------------------------------------------------
 
-**Disk**
+### Disk
 
 The `disk` defines the size of the persistent disk size of the
 application in MB.
@@ -142,9 +139,8 @@ application in MB.
 > **note**
 > The minimal recommended disk size is 256MB. If you see the error **UserError: Error building the project: Disk size may not be smaller than 128MB**, increase the size to 256MB.
 
-------------------------------------------------------------------------
 
-**Mounts**
+### Mounts
 
 The `mounts` is an object whose keys are paths relative to the root of
 the application. It's in the form `volume_id[/subpath]`.
@@ -159,9 +155,8 @@ The format is:
 > **note**
 > The `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
 
-------------------------------------------------------------------------
 
-**Build dependencies**
+### Build dependencie
 
 The `dependencies` allow you to specify dependencies that your
 application might need during the build process.
@@ -192,9 +187,8 @@ dependencies:
     grunt-cli: "~0.1.13"
 ```
 
-------------------------------------------------------------------------
 
-**Hooks**
+### Hooks
 
 The `hooks` (also called: deployment hooks) let you define shell
 commands to run during the deployment process.
@@ -252,9 +246,8 @@ hooks:
 This requires the `package.json` and `Gruntfile.js` files to be
 correctly setup in the theme folder.
 
-------------------------------------------------------------------------
 
-**Crons**
+### Crons
 
 The `crons` is an object describing processes that are triggered on a
 schedule.
@@ -265,10 +258,10 @@ It has a few sub-keys which are:
 -   **cmd**: The command that is executed, for example
     cd public ; drush core-cron\`
 
-------------------------------------------------------------------------
-## Defaults
-if you do not have a `.platform.app.yaml` file the following one that assumes you are deploying
-a Drupal instance will be applied:
+
+## Default configuration file
+
+if you do not have a `.platform.app.yaml` file the following one that assumes you are deploying a Drupal instance will be applied:
 
 ```yaml
 name: php
@@ -293,4 +286,4 @@ crons:
         cmd: "cd public ; drush core-cron"
 ```
 
-* [Past Changes of the configuration format can be found here](reference/upgrade.md)
+* [Past Changes of the configuration format can be found here](reference/upgrade/)
