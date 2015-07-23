@@ -1,5 +1,3 @@
-#User Guide
-
 * [Technical Requirements](overview/technical-requirements.md)
 * [Configuring the Project and its environments](overview/configuring-project-environments.md)
   * [Project configuration](overview/web-ui/configure-project.md)

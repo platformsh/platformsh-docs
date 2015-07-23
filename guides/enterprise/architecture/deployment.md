@@ -1,5 +1,0 @@
-# Deployment process
-
-Platform.sh values consistency over availability, acknowledging that it is nearly impossible to have both. The way that the deployment works guarantees that you will never have inconsistent data on production due to ambiguous states caused by sloppy deployment. For example, you will never be running code that is inconsistent with the database schema. You will never be running code on one web server that is different than code on another web server. These are problems that we observed on other hosting services, and Platform avoids that. The cost is, as you've observed 30-90 seconds of application unavailability per deployment.
-
-Keep in mind, though, that this doesn't mean that every Git push from every developer will take your site offline. Your Master branch - your live site - will only be pushed to infrequently, and you can choose when to deploy based on your peak/trough site traffic. All the normal, day-to-day git pushes will be done on the many development branches that you will create. Those deployments won't affect the production site at all.

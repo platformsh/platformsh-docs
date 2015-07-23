@@ -1,5 +1,3 @@
-# Migrate your Drupal site to Platform.sh
-
 * [Overview](guides/README.md)
   * [Prerequisites](guides/prerequisites/requirements.md)
     * [Get a Platform.sh account](guides/account/subscribe.md)
