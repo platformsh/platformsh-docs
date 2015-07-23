@@ -347,8 +347,13 @@ body,
   position: absolute;
   background: #fff;
 }
+.book .book-body .body-inner,
+.book .book-body .page-wrapper {
+  overflow: visible;
+}
 .book .book-body .page-wrapper .page-inner section.normal {
   font-size: 16px;
+  overflow: visible;
 }
 .book .book-body .page-wrapper .page-inner section.normal h1 {
   font-size: 30px;
@@ -396,32 +401,46 @@ body,
 .book .book-body .page-wrapper .page-inner section.normal pre {
   margin-bottom: 30px;
 }
+.book .book-body .page-wrapper .page-inner section.normal p strong,
+.book .book-body .page-wrapper .page-inner section.normal blockquote strong,
+.book .book-body .page-wrapper .page-inner section.normal ul strong,
+.book .book-body .page-wrapper .page-inner section.normal ol strong,
+.book .book-body .page-wrapper .page-inner section.normal dl strong,
+.book .book-body .page-wrapper .page-inner section.normal table strong,
+.book .book-body .page-wrapper .page-inner section.normal pre strong {
+  display: inline-block;
+  text-align: center;
+  float: none;
+  width: auto;
+  height: auto;
+  margin-right: 0;
+  padding-top: 0;
+}
 .book .book-body .page-wrapper .page-inner section.normal p > code {
   border-radius: 0;
   background: #fdf2f2;
   color: #de1151;
 }
-.book .book-body .page-wrapper .page-inner section.normal .alert-info {
-  background: #e0f5fd;
+.book .book-body .page-wrapper .page-inner section.normal .alert {
+  background: #eee;
   border: none;
   border-radius: 0;
   color: #363636;
   position: relative;
-  padding: 15px 25px 0;
+  padding: 15px 25px;
 }
-.book .book-body .page-wrapper .page-inner section.normal .alert-info .fa-edit {
-  display: none;
-}
-.book .book-body .page-wrapper .page-inner section.normal .alert-info:before {
-  content: "note";
-  font-weight: 500;
+.book .book-body .page-wrapper .page-inner section.normal .alert .quote-label {
   font-size: 12px;
   text-transform: uppercase;
-  position: absolute;
-  top: 10px;
 }
-.book .book-body .page-wrapper .page-inner section.normal .alert-info p {
+.book .book-body .page-wrapper .page-inner section.normal .alert .fa-edit {
+  display: none;
+}
+.book .book-body .page-wrapper .page-inner section.normal .alert p {
   margin-bottom: 15px;
+}
+.book .book-body .page-wrapper .page-inner section.normal .alert-info {
+  background: #e0f5fd;
 }
 .book .book-body .page-wrapper .page-inner section.normal hr {
   height: 1px;
@@ -471,6 +490,12 @@ body,
   opacity: 1;
   display: inline-block;
 }
+<<<<<<< HEAD
+=======
+strong .glossary-term .tooltip-wrapper {
+  font-weight: normal;
+}
+>>>>>>> Removing richquotes putting in theme plugin
 @media (min-width: 600px) {
   .book.with-summary .book-body {
     left: 400px;
