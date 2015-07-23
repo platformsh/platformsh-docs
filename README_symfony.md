@@ -1,3 +1,3 @@
-# Symfony
+# Get started with Symfony
 
-TODO
+This guide will help you to create a new Symfony site on Platform.sh and get setup properly.

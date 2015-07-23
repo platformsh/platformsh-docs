@@ -1,3 +1,3 @@
-# Drupal migrate
+# Migrate your existing Drupal site
 
-TODO
+This guide will help you to migrate your existing Drupal site to Platform.sh and get setup properly.
