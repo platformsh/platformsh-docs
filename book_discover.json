@@ -1,10 +1,10 @@
 {
-    "title": "Overview",
-    "description": "Platform.sh overview",
+    "title": "Discover",
+    "description": "Discover Platform.sh",
     "version": "2.1.0",
         "structure": {
-            "readme": "README_overview.md",
-            "summary": "SUMMARY_overview.md"
+            "readme": "README_discover.md",
+            "summary": "SUMMARY_discover.md"
         },
     "plugins": [
         "ga", "edit-link", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"
