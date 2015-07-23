@@ -348,8 +348,13 @@ body,
     }
   }
 }
+.book .book-body .body-inner,
+.book .book-body .page-wrapper {
+  overflow: visible;
+}
 .book .book-body .page-wrapper .page-inner section.normal {
   font-size: 16px;
+  overflow: visible;
   h1 {
     font-size: 30px;
     font-weight: 300;
@@ -395,33 +400,41 @@ body,
   table,
   pre {
     margin-bottom: 30px;
+    strong {
+      display: inline-block;
+      text-align: center;
+      float: none;
+      width: auto;
+      height: auto;
+      margin-right: 0;
+      padding-top: 0;
+    }
   }
   p > code {
     border-radius: 0;
     background: #fdf2f2;
     color: #de1151;
   }
-  .alert-info {
-    background: #e0f5fd;
+  .alert {
+    background: #eee;
     border: none;
     border-radius: 0;
     color: #363636;
     position: relative;
-    padding: 15px 25px 0;
-    .fa-edit {
-      display: none;
-    }
-    &:before {
-      content: "note";
-      font-weight: 500;
+    padding: 15px 25px;
+    .quote-label {
       font-size: 12px;
       text-transform: uppercase;
-      position: absolute;
-      top: 10px;
+    }
+    .fa-edit {
+      display: none;
     }
     p {
       margin-bottom: 15px;
     }
+  }
+  .alert-info {
+    background: #e0f5fd;
   }
   hr {
     height: 1px;
@@ -473,6 +486,9 @@ body,
       display: inline-block;
     }
   }
+}
+strong .glossary-term .tooltip-wrapper {
+  font-weight: normal;
 }
 
 @media (min-width: 600px) {

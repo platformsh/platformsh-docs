@@ -7,7 +7,7 @@
             "summary": "SUMMARY_enterprise.md"
         },
     "plugins": [
-        "ga", "edit-link", "richquotes", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"
+        "ga", "edit-link", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"
     ],
     "pluginsConfig": {
         "ga": {
