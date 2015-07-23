@@ -210,7 +210,7 @@ body,
   margin: 0;
   float: none;
   width: 100%;
-  height: 40px;
+  min-height: 40px;
 }
 #home-content .row {
   display: table;
@@ -490,12 +490,9 @@ body,
   opacity: 1;
   display: inline-block;
 }
-<<<<<<< HEAD
-=======
 strong .glossary-term .tooltip-wrapper {
   font-weight: normal;
 }
->>>>>>> Removing richquotes putting in theme plugin
 @media (min-width: 600px) {
   .book.with-summary .book-body {
     left: 400px;
@@ -506,7 +503,7 @@ strong .glossary-term .tooltip-wrapper {
     width: 47%;
     margin: 0 1.5%;
     float: left;
-    padding: 30px;
+    padding: 15px;
     height: 370px;
   }
   #home-content .white .container {
@@ -525,7 +522,7 @@ strong .glossary-term .tooltip-wrapper {
 }
 @media (min-width: 960px) {
   #home-content .container {
-    padding: 50px 40px;
+    padding: 40px;
   }
   #home-content .white .container {
     padding: 0;
@@ -535,6 +532,9 @@ strong .glossary-term .tooltip-wrapper {
   }
 }
 @media (max-width: 1240px) {
+  #home-content .container {
+    padding: 50px 40px;
+  }
   .book .book-body .body-inner {
     margin-top: 73px;
   }
