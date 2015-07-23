@@ -3,6 +3,7 @@
     "description": "Getting Started with Symfony and Platform.sh",
     "version": "2.1.0",
         "structure": {
+            "readme": "README_symfony.md",
             "summary": "SUMMARY_symfony.md"
         },
     "plugins": [

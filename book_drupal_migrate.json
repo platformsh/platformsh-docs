@@ -3,6 +3,7 @@
     "description": "Migrate your existing Drupal site to Platform.sh",
     "version": "2.1.0",
         "structure": {
+            "readme": "README_drupal_migrate.md",
             "summary": "SUMMARY_drupal_migrate.md"
         },
     "plugins": [

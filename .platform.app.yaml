@@ -16,56 +16,15 @@ web:
     expires: 300
     whitelist:
       - \.html$
-      - \.json$
 
       # CSS and Javascript.
       - \.css$
       - \.js$
-      - \.hbs$
 
       # image/* types.
       - \.gif$
       - \.jpe?g$
       - \.png$
-      - \.tiff?$
-      - \.wbmp$
-      - \.ico$
-      - \.jng$
-      - \.bmp$
-      - \.svgz?$
-
-      # audio/* types.
-      - \.midi?$
-      - \.mpe?ga$
-      - \.mp2$
-      - \.mp3$
-      - \.m4a$
-      - \.ra$
-      - \.weba$
-
-      # video/* types.
-      - \.3gpp?$
-      - \.mp4$
-      - \.mpe?g$
-      - \.mpe$
-      - \.ogv$
-      - \.mov$
-      - \.webm$
-      - \.flv$
-      - \.mng$
-      - \.asx$
-      - \.asf$
-      - \.wmv$
-      - \.avi$
-
-      # application/ogg.
-      - \.ogx$
-
-      # application/x-shockwave-flash.
-      - \.swf$
-
-      # application/java-archive.
-      - \.jar$
 
       # fonts types.
       - \.ttf$

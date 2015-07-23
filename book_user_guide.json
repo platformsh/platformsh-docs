@@ -3,6 +3,7 @@
     "description": "Platform.sh user guide",
     "version": "2.1.0",
         "structure": {
+            "readme": "README_user_guide.md",
             "summary": "SUMMARY_user_guide.md"
         },
     "plugins": [

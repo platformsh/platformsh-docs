@@ -3,6 +3,7 @@
     "description": "Platform.sh overview",
     "version": "2.1.0",
         "structure": {
+            "readme": "README_overview.md",
             "summary": "SUMMARY_overview.md"
         },
     "plugins": [

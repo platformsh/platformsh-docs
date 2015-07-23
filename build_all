@@ -6,6 +6,7 @@
 ./build enterprise
 cp index.php _books/index.php
 cp index.html _books/index.html
+rm -rf _book
 #rm -f _books/index.json
 #echo "{\"books\":[`cat _books/index.txt`]}" > _books/index.json
 #rm -f _books/index.txt

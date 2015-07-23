@@ -3,6 +3,7 @@
     "description": "Platform.sh Enterprise Documentation",
     "version": "2.1.0",
         "structure": {
+            "readme": "README_enterprise.md",
             "summary": "SUMMARY_enterprise.md"
         },
     "plugins": [
