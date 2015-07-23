@@ -81,22 +81,35 @@ The act of combining code from a remote branch to a local branch.
 The act of moving and combining code from a local branch to a remote branch.
 
 #Relationship 
-The relationships of the application with the services that are deployed. They are defined in your .platform.app.yaml.
+The relationships of the application with the services that are deployed. They 
+are defined in your .platform.app.yaml.
 
 #Routes
-A route describes how an incoming URL is going to be processed by Platform.sh to serve a project. See also .platform/routes.yaml.
+A route describes how an incoming URL is going to be processed by Platform.sh 
+to serve a project. See also .platform/routes.yaml.
+
+#routes.yaml
+A route describes how an incoming URL is going to be processed by Platform.sh.
 
 #Service
-A web technology utilized as part of a server setup and/or configuration. See also service grid.
+A web technology utilized as part of a server setup and/or configuration. See 
+also service grid.
+
+#services.yaml
+Platform.sh allows you to completely define and configure the topology and
+ services you want to use on your project.
 
 #Service Grid
-A server setup that allows seperate functionality and scale of services as needed. See also service grid.
+A server setup that allows seperate functionality and scale of services as 
+needed. See also service grid.
 
 #Sprint
 A short-term initiative or release in an Agile development cycle.
 
 #SSH
-A cryptographic network protocol for secure data communication, remote command-line login, remote command execution, and other sercure network services between two networked computers.
+A cryptographic network protocol for secure data communication, remote command-
+line login, remote command execution, and other sercure network services between
+ two networked computers.
 
 #SSH Key
 A means to identify yourself to an SSH server securely.
@@ -105,10 +118,14 @@ A means to identify yourself to an SSH server securely.
 A certificate used to serve and secure your site.
 
 #Symfony
-Symfony is a PHP web application framework for MVC applications. Symfony is free software and released under the MIT license (see <http://symfony.com/> for more information).
+Symfony is a PHP web application framework for MVC applications. Symfony is free
+software and released under the MIT license (see <http://symfony.com/> for more 
+information).
 
 #Sync
-The act of updating an environment with code and or data from a parent environment.
+The act of updating an environment with code and or data from a parent 
+environment.
 
 #Toolstack
-A specific set of tools that you're project is built with. It can be a CMS (Drupal), a framework (Symfony)...
+A specific set of tools that you're project is built with. It can be a CMS 
+(Drupal), a framework (Symfony)...

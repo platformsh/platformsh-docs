@@ -10,61 +10,21 @@ toolstack: "php:symfony"
 # The configuration of app when it is exposed to the web.
 web:
     # The public directory of the app, relative to its root.
-    document_root: "/_book"
+    document_root: "/_books"
+    # TODO: This should be implemented soon.
     passthru: "/index.php"
     expires: 300
     whitelist:
       - \.html$
-      - \.json$
 
       # CSS and Javascript.
       - \.css$
       - \.js$
-      - \.hbs$
 
       # image/* types.
       - \.gif$
       - \.jpe?g$
       - \.png$
-      - \.tiff?$
-      - \.wbmp$
-      - \.ico$
-      - \.jng$
-      - \.bmp$
-      - \.svgz?$
-
-      # audio/* types.
-      - \.midi?$
-      - \.mpe?ga$
-      - \.mp2$
-      - \.mp3$
-      - \.m4a$
-      - \.ra$
-      - \.weba$
-
-      # video/* types.
-      - \.3gpp?$
-      - \.mp4$
-      - \.mpe?g$
-      - \.mpe$
-      - \.ogv$
-      - \.mov$
-      - \.webm$
-      - \.flv$
-      - \.mng$
-      - \.asx$
-      - \.asf$
-      - \.wmv$
-      - \.avi$
-
-      # application/ogg.
-      - \.ogx$
-
-      # application/x-shockwave-flash.
-      - \.swf$
-
-      # application/java-archive.
-      - \.jar$
 
       # fonts types.
       - \.ttf$
@@ -86,5 +46,4 @@ dependencies:
 # The hooks that will be performed when the package is deployed.
 hooks:
     build: |
-      gitbook build
-      mv index.php _book/index.php
+      ./build_all
