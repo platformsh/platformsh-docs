@@ -1,9 +1,12 @@
 <?php
 # Mapping of old URLs as key, and new URLs as values.
 $url_mapping = array(
-  '/web-ui/configure-environment' => '/overview/web-ui/configure-environment.html',
-  '/web-ui/configure-project' => '/overview/web-ui/configure-project.html',
-  '/overview/technical-requirements' => 'using/use-SSH.html'
+  '/web-ui/configure-environment' => '/user_guide/overview/web-ui/configure-environment.html',
+  '/overview/web-ui/configure-environment.html' => '/user_guide/overview/web-ui/configure-environment.html',
+  '/web-ui/configure-project' => '/user_guide/overview/web-ui/configure-project.html',
+  '/overview/web-ui/configure-project.html' => '/user_guide/overview/web-ui/configure-project.html',    
+  '/overview/technical-requirements' => '/user_guide/using/use-SSH.html',
+  '/using/use-SSH.html' => '/user_guide/using/use-SSH.html'
 );
 # Load HTML files until Platform.sh supports directory indexes.
 $path = parse_url($_SERVER['REQUEST_URI']);
