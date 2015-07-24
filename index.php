@@ -154,9 +154,10 @@ if (substr($index, 0, strlen(realpath(getcwd()))) === realpath(getcwd()) && file
     "/user_guide/using/use-SSH.html",
     "/user_guide/using/user-administration.html",
   ];
+    $location = "/";
     foreach ($current_urls as $url) {
-        if (stripos($path, $url) !== FALSE) {
-          $location=$url;
+        if (stripos($url, $path) !== FALSE )) {
+          $location = $url;
           break;
         }
     }
