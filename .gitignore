@@ -1,3 +1,4 @@
 _book/*
+_books/*
 .DS_Store
 .env

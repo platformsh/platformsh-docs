@@ -1,0 +1,32 @@
+{
+    "title": "Drupal Migrate",
+    "description": "Migrate your existing Drupal site to Platform.sh",
+    "version": "2.1.0",
+        "structure": {
+            "readme": "README_drupal_migrate.md",
+            "summary": "SUMMARY_drupal_migrate.md"
+        },
+    "plugins": [
+        "ga", "edit-link", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"
+    ],
+    "pluginsConfig": {
+        "ga": {
+            "token": "UA-4064131-10"
+        },
+        "edit-link": {
+                       "base": "https://github.com/platformsh/platformsh-docs/edit/dev",
+                       "label": "Edit This Page"
+                   }
+    },
+    "links": {
+           "sharing": {
+               "google": null,
+               "facebook": null,
+               "twitter": null,
+               "weibo": null,
+               "all": null
+           }
+       }
+}
+
+

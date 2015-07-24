@@ -15,10 +15,10 @@ access to these sites.
 ## How the protective block works
 
 [Platform.sh](https://platform.sh) maintains a database of signatures of
-known security vulnerabilities in opensource software that are commonly
+known security vulnerabilities in open-source software that are commonly
 deployed on our infrastructure. The security check only analyze known
-vulnerabilities in opensource projects like Drupal, Symfony or
-Wordpress. It cannot examine customisations written by
+vulnerabilities in open-source projects like Drupal, Symfony or
+Wordpress. It cannot examine customizations written by
 [Platform.sh](https://platform.sh) customers.
 
 We analyze the code of your application:
@@ -26,8 +26,9 @@ We analyze the code of your application:
 -   When you push new code to Git
 -   Regularly when new vulnerabilities are added to our database
 
-If a vulnerability deemed as criticial is detected in your application,
+If a vulnerability deemed as critical is detected in your application,
 [Platform.sh](https://platform.sh) is going to reject the Git push.
+
 
 We run two types of blocks:
 

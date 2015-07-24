@@ -1,0 +1,9 @@
+- [x] account created
+- [ ] git installed 
+- [ ] ssh keypair created
+- [ ] ssh public key uploaded
+- [ ] CLI installed
+- [ ] Drush installed
+- [ ] Created .platform.app.yaml
+- [ ] Created .platform/services.yaml
+- [ ] Created .platform/routes.yaml
