@@ -1,4 +1,4 @@
-* [The Web Interface](discover/web-ui/README.md)
-* [Platform.sh CLI](discover/cli/README.md)
+* [The Web Interface](overview/web-ui/README.md)
+* [Platform.sh CLI](overview/cli/README.md)
 * [Architecture](reference/architecture.md)
-* [Getting Help](discover/getting-help.md)
+* [Getting Help](overview/getting-help.md)

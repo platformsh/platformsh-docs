@@ -12,3 +12,4 @@ book.js
 build
 build_all
 serve
+lint.sh
