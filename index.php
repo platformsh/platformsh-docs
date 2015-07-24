@@ -156,10 +156,10 @@ if (substr($index, 0, strlen(realpath(getcwd()))) === realpath(getcwd()) && file
   ];
     $location = "/";
     foreach ($current_urls as $url) {
-        if (stripos($url, $path) !== FALSE )) {
+        if (stripos($url, $path) !== FALSE ) {
           $location = $url;
           break;
         }
     }
-    header('Location: ' . $location);
+    header('Location: ' . $location, TRUE, 301);
 }
