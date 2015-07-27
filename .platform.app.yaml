@@ -17,6 +17,9 @@ web:
     whitelist:
       - \.html$
 
+      # GitBook search indexes.
+      - search_index\.json$
+
       # CSS and Javascript.
       - \.css$
       - \.js$
