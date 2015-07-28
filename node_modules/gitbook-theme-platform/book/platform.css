@@ -94,9 +94,6 @@ body,
   max-width: 1200px;
   margin: 0 auto;
 }
-.home-page #platform-bar .branding {
-  padding-left: 0;
-}
 .home-page .row {
   padding: 0 10px;
 }
