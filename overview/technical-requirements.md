@@ -18,8 +18,18 @@ to be able to interact with [Platform.sh](https://platform.sh/).
 > * [Learn more about Git](http://git-scm.com/)
 
 > **note**
-> The branch name may only be composed of lower case alpha-numeric characters. (a-z0-9)
-> We convert branch names into URLs, which is why we are reducing the allowed characters in there.
+> In addition to Git's requirements for [valid branch
+> names](https://www.kernel.org/pub/software/scm/git/docs/git-check-ref-format.html),
+> [Platform.sh](https://platform.sh/) adds two extra restrictions:
+> * The '/' character isn't allowed.
+> * Branch names must be case-insensitively unique. In other words, they must
+>   differ from existing branches by more than just case. For example, if you
+>   have a branch named _CaSe_, you won't be able to create another branch
+>   named _case_: it will be rejected when you try to push it into your
+>   environment.
+>
+> These restrictions make it possible to use branch names in URLs without any
+> mangling, which in turn makes our Web UI and HTTP APIs more pleasant to use.
 
 
 ## SSH
