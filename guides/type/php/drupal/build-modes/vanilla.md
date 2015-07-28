@@ -19,4 +19,4 @@ won't get committed to Git:
 
 > It is a mistake to mix Vanilla mode with other modes. If you've copied
 > all of the Drupal core files into your repository then you need to
-> make sure you don't have any `` *.make` or ``\*.profile\`\` files.
+> make sure you don't have any `*.make` or `*.profile` files.
