@@ -10,14 +10,11 @@ commands at [Drush.org](http://www.drush.org). If you have never used
 Drush before, you can learn more about it on the [Drush GitHub
 Repository](https://github.com/drush-ops/drush#description)
 
-Platform.sh uses Drush, so all environments  can utilize
-drush commands in the development process. You can either set up
-Drush aliases to easily run drush commands on
-specific remote Platform environments  or you can utilize
-the cli.
+Platform.sh has Drush installed by default, so all environments can utilize Drush commands in the development process. You can use the CLI to set up Drush aliases, to easily run Drush commands on
+specific remote Platform.sh environments.
 
 > **note**
-> Platform's cli requires **Drush 6 or greater**.
+> Platform's CLI requires **Drush 6 or greater**.
 
 ## Install Drush
 
@@ -41,76 +38,25 @@ And see a list of available commands.
 
 ### Create Drush aliases
 
-Platform utilizes [drush aliases](https://drupal.org/node/670460) to
-make it easy to use Drush to manage your development websites. Here's an
-example of a [drush alias
+[Drush aliases](http://drush.readthedocs.org/en/master/usage/index.html#site-aliases) make it easy to manage your development websites. Here's an
+example of a [Drush alias
 file](https://github.com/drush-ops/drush/blob/master/examples/example.aliases.drushrc.php).
 
 > **note**
-> The cli generates Drush aliases for you automatically, when you run `platform get [project_id]`.
-
-If you're not using the cli, navigate to your `~/.drush` folder and
-create a new file called `platform.aliases.drushrc.php`.
-
-```bash
-$ cd ~/.drush
-$ sudo vi platform.aliases.drushrc.php
-```
-
-In your new alias file, you can create aliases for your various
-Platform.sh projects. For example:
-
-```php
-<?php
-// Platform environment
-$aliases['master'] = array(
-  'uri' => 'master-[project-id].eu.platform.sh',
-  'root' => '/app/public',
-  'remote-host' => 'ssh.eu.platform.sh',
-  'remote-user' => '[project-id]-master',
-);
-// Platform branch environment
-$aliases['BRANCHNAME'] = array(
-  'uri' => 'BRANCHNAME-[project-id].eu.platform.sh',
-  'root' => '/app/public',
-  'remote-host' => 'ssh.eu.platform.sh',
-  'remote-user' => '[project-id]-BRANCHNAME',
-);
-// Platform local environment
-$aliases['local'] = array(
-  'site' => 'platform',
-  'env' => 'local',
-  'uri' => 'platform',
-  'root' => '~/Sites/platform',
-);
-```
-
-Then test your settings to make sure they work.
-
-```bash
-$ drush @platform.master status
-Drupal version                  :  7.24
-Site URI                        :  master-[project-id].eu.platform.sh
-Database driver                 :  mysql
-Database username               :
-Database name                   :  main
-Database                        :  Connected
-Drupal bootstrap                :  Successful
-...
-```
+> The CLI generates Drush aliases for you automatically, when you run `platform get [project_id]`.
 
 ## Use make files
 
 ### Create a make file
 
-Platform.sh can automatically build your site using make files. This
+Platform.sh can automatically build your site using Drush make files. This
 allows you to easily test specific versions, apply patches and keep your
 site up to date. It also keeps your working directory much cleaner,
 since it only contains your custom code.
 
 Your make file can be called: `project.make` or `drupal-org.make`.
 
-You can find a nice example make file on
+You can find an example make file on
 [GitHub](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/project.make).
 
 When building as a profile, you **need a make file for Drupal core**
@@ -144,7 +90,7 @@ You can apply **contributed patches** to your modules, themes or
 libraries within your `project.make`:
 
 ```bash
-$ platformrojects[features][version] = "2.2"
+projects[features][version] = "2.2"
 projects[features][patch][] = "https://www.drupal.org/files/issues/alter_overrides-766264-45.patch"
 ```
 
@@ -152,7 +98,7 @@ You can also apply **self-hosted patches**. Simply create a `PATCHES`
 folder at the root of your repository and add the patch as follow:
 
 ```bash
-$ platformrojects[uuid][version] = "1.0-alpha5"
+projects[uuid][version] = "1.0-alpha5"
 projects[uuid][patch][] = "PATCHES/fix-non-uuid-entity-load.patch"
 ```
 

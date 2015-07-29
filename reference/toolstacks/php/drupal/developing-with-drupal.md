@@ -131,7 +131,7 @@ Platform.sh Web Interface.
 ## Merge code changes to Master
 
 Once you've got a branch with some changes, you'll want to be able to
-push those changes up to your live environment. Platform has a great
+push those changes up to your live environment. Platform.sh has a great
 button called `Merge` that you can click on and it will push the
 appropriate changes to master.
 
@@ -143,21 +143,21 @@ branch will be merged into the master environment.
 ## Synchronizing data
 
 The easiest way to do that is to use Drush and the sql-sync command.
-You'll need to have setup  drush aliasesfor both your
-Platform.sh site and your local site. If you are using the cli and
+You'll need to have Drush aliases for both your
+Platform.sh site and your local site. If you are using the CLI and
 you've run `platform get [platform_id]` for a project, then your Drush
 aliases have already been set up.
 
-With the drush aliases (depending on how yours are set up), you
+With the Drush aliases (depending on how yours are set up), you
 could use a command similar to this:
 
 ```bash
-$ drush sql-sync @platform.master @platform.local
+$ drush sql-sync @platform.master @platform._local
 ```
 
 An alternate method that is appropriate for larger databases is to use
 the pipe | to stream the data, instead of making copies.
 
 ```bash
-$ drush @platform.master sql-dump | drush @platform.local sqlc
+$ drush @platform.master sql-dump | drush @platform._local sqlc
 ```
