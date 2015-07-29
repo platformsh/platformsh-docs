@@ -41,7 +41,7 @@ The `disk`  attribute is the size of the persistent disk of the application (in
 MB) you can to allocate to this service. So, for example, the current default
 storage amount per project is 5GB (meaning 5120MB) which you can distribute 
 between you application, as defined in 
-[.platform.app.yaml](/reference/platform-app-yaml.html), and it's services.
+[.platform.app.yaml](/user_guide/reference/platform-app-yaml.html), and it's services.
 
 
 In order for a service to be available to an application in your project 
