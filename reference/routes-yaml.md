@@ -52,10 +52,10 @@ Each route can be configured separately its has the following properties
   * `redirect` redirects to another route
     * It will then be followed by `to` property, this is an HTTP redirection to 
     another route that will be identified by its template (see examples below).
-  * `cache` controls caching for the route ([click here for full 
-  docs](/user_guide/reference/cache.html).) 
-  * `ssi` controls whether Server Side Includes are enabled.
-    
+* `cache` controls [caching for the route](cache.html).
+* `ssi` controls whether Server Side Includes are enabled.
+* `redirects` controls [redirect rules](redirects.html) associated with the route.
+
 > **note** for the moment the upstream is always of this form, ending with 
 > ":php" in the  future Platform.sh will support multiple endpoints per 
 > application. 

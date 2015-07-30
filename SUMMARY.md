@@ -26,6 +26,7 @@
     * [.platform/services.yaml](reference/services-yaml.md)
     * [.platform/routes.yaml](reference/routes-yaml.md)
       * [HTTP Caching](reference/cache.md)
+      * [Redirects](reference/redirects.md)
     * [Upgrading from previous versions](reference/upgrade/README.md)
   * [Environment Variables](reference/environment-variables.md)
   * [Sending E-Mail](reference/email.md)

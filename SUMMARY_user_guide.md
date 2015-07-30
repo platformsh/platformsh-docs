@@ -12,6 +12,7 @@
     * [.platform/services.yaml](reference/services-yaml.md)
     * [.platform/routes.yaml](reference/routes-yaml.md)
       * [HTTP Caching](reference/cache.md)
+      * [Redirects](reference/redirects.md)
     * [Configuring Multiple Applications](reference/platform-app-yaml-multi-app.md)
 * [Administration and Operations](using/README.md)
   * [User administration](using/user-administration.md)
