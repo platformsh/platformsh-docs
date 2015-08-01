@@ -157,7 +157,7 @@ The format is:
 > The `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
 
 
-### Build dependencie
+### Build dependencies
 
 The `dependencies` allow you to specify dependencies that your
 application might need during the build process.
