@@ -1,13 +1,10 @@
-# Drush Make build mode
+# Project mode
 
-This is the preferred for of deployment with Platform.sh, there are many benefits from
-using it, not the least being that it allows you to get automatic security updates applied.
+This is the most popular mode for deploying Drupal on Platform.sh.
 
-The Drush Make build mode looks for a `project.make` file which will get
-executed during the build process.
+Platform.sh looks for a `project.make` file, and if found it will be built using Drush Make. Contributed projects are typically downloaded into `sites/all`, while nearly everything else in the repository will be moved to `sites/default`.
 
-The default `project.make` file for a Drupal 7 installation looks like
-this:
+An example `project.make` file for a Drupal 7 installation looks like this:
 
 ```bash
     api = 2
