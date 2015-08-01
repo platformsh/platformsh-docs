@@ -14,4 +14,3 @@
     * [Choose Symfony](guides/type/php/symfony/choose-stack-symfony.md)
     * [Go for Symfony Standard](guides/type/php/symfony/choose-stack-symfony-base-standard.md)
     * [Success! You have a new Symfony Site](guides/type/php/symfony/activity-stream-first-deployment-success-symfony.md)
-    * [Visit your new site](guides/type/php/symfony/activity-stream-first-deployment-success-symfony.md)
