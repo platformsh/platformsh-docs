@@ -10,13 +10,16 @@ settings.php file to your Git repository in normal circumstances. Here
 is the entire contents of a generated settings.php:
 
 ```php
-<?php $update_free_access = FALSE;
+<?php
 
- $drupal_hash_salt = 'do-not-copy-and-paste-this-is-something-need-to-change';
+$update_free_access = FALSE;
 
- $local_settings = dirname(__FILE__) . '/settings.local.php'; if
- (file_exists(\$local_settings)) { require_once(\$local_settings);
- }
+$drupal_hash_salt = 'do-not-copy-and-paste-this-is-something-you-need-to-change';
+
+$local_settings = dirname(__FILE__) . '/settings.local.php';
+if (file_exists($local_settings)) {
+  require $local_settings;
+}
 ```
 
 The important part to see, starting in line 6, is the inclusion of
