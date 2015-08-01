@@ -9,7 +9,7 @@
   * [Private Repositories](using/private-repository.md)
   * [Configuration Files](reference/configuration-files.md)
     * [.platform.app.yaml](reference/platform-app-yaml.md)
-      * [Upgrade .platform.app.yaml from previous version](user_guide/reference/upgrade.html)
+      * [Upgrade .platform.app.yaml from previous version](reference/upgrade/README.md)
     * [.platform/services.yaml](reference/services-yaml.md)
     * [.platform/routes.yaml](reference/routes-yaml.md)
       * [HTTP Caching](reference/cache.md)
