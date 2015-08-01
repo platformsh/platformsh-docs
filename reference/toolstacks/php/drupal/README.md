@@ -6,7 +6,7 @@ Platform.sh is very flexible and allows you to structure your files as
 you wish within your Git repository, and will build your project based
 on how your files are organized.
 
-Here are the three build modes that can happen:
+Here are the three build modes that can be used:
 
 -   **Profile**: Platform.sh builds your project like Drupal.org does
     for distributions.
