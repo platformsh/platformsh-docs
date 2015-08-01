@@ -10,7 +10,7 @@ Platform allows you to get code that is stored in private Git repository
 (from your make file, or `composer file`).
 
 To grant Platform access to your private Git repository, you need to add
-the project public SSH key in the deploy keys of your Git repository. 
+the project public SSH key in the deploy keys of your Git repository.
 
 You can find your project's public key by going to the project's configuration
 on the Web Interface and copy it from there:
