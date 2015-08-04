@@ -28,7 +28,9 @@ mounts:
     "/private": "shared:files/private"
 hooks:
     # We run deploy hook after your application has been deployed and started.
-    deploy: "cd public ; drush -y updatedb"
+    deploy: |
+        cd public
+        drush -y updatedb
 crons:
     drupal:
         spec: "*/20 * * * *"
@@ -211,7 +213,7 @@ mounted in /app/public (by default, you can define this yourself in you
 .app.platform.yaml file) so you might want to cd /app/public before
 running those.
 
-After a Git push, you can see the results of the deployment hooks in the
+After a Git push, you can see the results of the `deploy` hook in the
 `/var/log/deploy.log` file when logging to the environment via SSH. It
 contains the log of the execution of the deployment hook. For example:
 
@@ -224,6 +226,8 @@ Performed update: my_custom_profile_update_7001
 'all' cache was cleared.
 Finished performing updates.
 ```
+
+#### [Example] Compile SASS files using Grunt
 
 As a good example combining dependencies and hooks, you can compile your
 SASS files using Grunt.
@@ -247,6 +251,24 @@ hooks:
 This requires the `package.json` and `Gruntfile.js` files to be
 correctly setup in the theme folder.
 
+#### [Example] Trigger deploy hook on a specific environment
+
+To trigger a deploy hook only on a specific environment, use the following 
+environment variable: `$PLATFORM_ENVIRONMENT` that you put in a `if/then` statement.
+
+In your `.platform.app.yaml` file:
+
+```
+hooks:
+  deploy: |
+    if [ $PLATFORM_ENVIRONMENT = "master" ]; then
+      # Use Drush to disable the Devel module on the Master environment.
+      drush dis devel -y
+    else
+      # Use Drush to enable the Devel module on other environments.
+      drush en devel -y
+    fi
+```
 
 ### Crons
 
