@@ -94,17 +94,14 @@ body,
   max-width: 1200px;
   margin: 0 auto;
 }
+.home-page #platform-bar .branding {
+  padding-left: 0;
+}
 .home-page .row {
   padding: 0 10px;
 }
 #home-content {
   padding: 73px 0 50px;
-}
-#home-content a {
-  color: #fff;
-}
-#home-content a:hover {
-  text-decoration: underline;
 }
 #home-content h1 {
   font-size: 24px;
@@ -134,6 +131,12 @@ body,
 #home-content .container h2 {
   padding-top: 50px;
   margin-top: 0;
+}
+#home-content .container a {
+  color: #fff;
+}
+#home-content .container a:hover {
+  text-decoration: underline;
 }
 #home-content .container.getting-started h2 {
   background: transparent url("images/icon-get-started.png") no-repeat center top;
@@ -538,4 +541,12 @@ strong .glossary-term .tooltip-wrapper {
   .book .book-body .page-wrapper .page-inner section {
     padding: 15px 30px;
   }
+}
+#google-search {
+  margin: auto;
+  padding: 0 90px 0 90px;
+}
+#google-search .gsc-control-cse {
+  background-color: #262424;
+  border-color: #262424;
 }
