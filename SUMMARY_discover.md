@@ -1,5 +1,4 @@
 * [The Web Interface](overview/web-ui/README.md)
 * [Platform.sh CLI](overview/cli/README.md)
 * [Architecture](reference/architecture.md)
-* [Upgrade](reference/upgrade/README.md)
 * [Getting Help](overview/getting-help.md)
