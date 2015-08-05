@@ -13,7 +13,7 @@ If you are using a make file, you can add those lines to your
 `project.make`:
 
 ```ini
-projects[redis][version] = 7.x-2.12
+projects[redis][version] = 2.12
 ```
 
 To use the Predis library also add it to your make file:
