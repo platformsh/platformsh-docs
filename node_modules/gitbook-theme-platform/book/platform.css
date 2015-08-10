@@ -191,7 +191,7 @@ body,
 #home-content .container > ul > li {
   float: left;
   width: 48%;
-  margin: 0 1% 25px;
+  margin: 0 1%;
   margin-top: 4px;
 }
 #home-content .container > ul > li li a {
@@ -199,6 +199,9 @@ body,
 }
 #home-content .container > ul > li li a:hover {
   text-decoration: underline;
+}
+#home-content .container > ul > li li a:hover h2 {
+  text-decoration: none;
 }
 #home-content .container.topic-trends ul {
   width: 48%;
@@ -218,19 +221,14 @@ body,
   width: 100%;
   padding: 50px 10px;
 }
-#home-content .row.white {
-  background: #fff;
-  color: #b6b5b5;
-}
-#home-content .row.white .container {
-  border-color: #9b9b9b;
+#home-content .row .container {
   position: relative;
 }
-#home-content .row.white .more {
+#home-content .row .more {
   text-align: center;
   height: 40px;
   width: 40px;
-  background: transparent url("images/icon-more.png") no-repeat center center;
+  background: transparent url("images/icon-more-white.png") no-repeat center center;
   border: 1px solid #00aeef;
   font: 0/0 none;
   display: inline-block;
@@ -240,19 +238,40 @@ body,
   margin-left: -20px;
   opacity: .5;
 }
+#home-content .row a.link-wrapper {
+  height: 370px;
+  display: inline-block;
+}
+#home-content .row a.link-wrapper p {
+  opacity: .5;
+}
+#home-content .row a.link-wrapper:hover {
+  text-decoration: none;
+}
+#home-content .row a.link-wrapper:hover p,
+#home-content .row a.link-wrapper:hover .more {
+  opacity: 1;
+}
+#home-content .row.white {
+  background: #fff;
+  color: #b6b5b5;
+}
+#home-content .row.white .container {
+  border-color: #9b9b9b;
+  position: relative;
+}
 #home-content .row.white a {
   color: #b6b5b5;
-  display: inline-block;
 }
 #home-content .row.white a:hover {
   text-decoration: none;
   color: #000;
 }
-#home-content .row.white a:hover .more {
-  opacity: 1;
-}
 #home-content .row.white h2 {
   color: #000;
+}
+#home-content .row.white .more {
+  background: transparent url("images/icon-more.png") no-repeat center center;
 }
 .font-family-list,
 .color-theme-list {
