@@ -493,6 +493,146 @@ body,
 strong .glossary-term .tooltip-wrapper {
   font-weight: normal;
 }
+#google-search {
+  margin: auto;
+  padding: 0 50px;
+}
+#google-search .gsc-control-cse {
+  background-color: transparent;
+  border: none;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#google-search .cse form.gsc-search-box,
+#google-search form.gsc-search-box {
+  background: #484848;
+}
+#google-search .gsc-input input.gsc-input {
+  padding: 6px;
+  background: transparent !important;
+  border: none;
+  color: #fff;
+}
+#google-search .gsc-results-wrapper-visible {
+  background: #000;
+}
+#google-search .gsc-results-wrapper-visible .gsc-result-info,
+#google-search .gsc-results-wrapper-visible .gsc-orderby-label,
+#google-search .gsc-results-wrapper-visible .gsc-selected-option-container {
+  color: #fff;
+  font-weight: 600;
+}
+#google-search .gsc-results-wrapper-visible .gsc-selected-option-container {
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  width: 90px !important;
+}
+#google-search input.gsc-search-button {
+  background: transparent;
+  border: none;
+  font: 0/0 none;
+}
+#google-search input.gsc-search-button:focus {
+  box-shadow: none;
+}
+#google-search .gsc-search-button {
+  position: relative;
+}
+#google-search .gsc-search-button::before {
+  color: #8e8e8e;
+  content: "\f002";
+  font-family: FontAwesome;
+  font-size: 18px;
+  line-height: 18px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+#google-search .gsc-clear-button {
+  position: relative;
+  padding: 0;
+  width: 1px;
+}
+#google-search div.gsc-clear-button {
+  position: absolute;
+  left: -50px;
+  top: 7px;
+  width: 10px;
+}
+#google-search .gsc-above-wrapper-area {
+  border: none;
+}
+#google-search .gsc-wrapper {
+  padding: 0 15px;
+  background: #fff;
+}
+#google-search .cse .gsc-webResult.gsc-result,
+#google-search .gsc-webResult.gsc-result,
+#google-search .gsc-imageResult-classic,
+#google-search .gsc-imageResult-column {
+  border-bottom: 1px solid #9b9b9b;
+  border-left: none;
+  padding: 0 0 20px 0;
+  margin-bottom: 20px;
+}
+#google-search .cse .gsc-webResult.gsc-result .gs-webResult .gs-snippet,
+#google-search .gsc-webResult.gsc-result .gs-webResult .gs-snippet,
+#google-search .gsc-imageResult-classic .gs-webResult .gs-snippet,
+#google-search .gsc-imageResult-column .gs-webResult .gs-snippet,
+#google-search .cse .gsc-webResult.gsc-result .gs-imageResult .gs-snippet,
+#google-search .gsc-webResult.gsc-result .gs-imageResult .gs-snippet,
+#google-search .gsc-imageResult-classic .gs-imageResult .gs-snippet,
+#google-search .gsc-imageResult-column .gs-imageResult .gs-snippet,
+#google-search .cse .gsc-webResult.gsc-result .gs-fileFormatType,
+#google-search .gsc-webResult.gsc-result .gs-fileFormatType,
+#google-search .gsc-imageResult-classic .gs-fileFormatType,
+#google-search .gsc-imageResult-column .gs-fileFormatType {
+  color: #333;
+  margin-bottom: 10px;
+}
+#google-search .cse .gsc-webResult.gsc-result a:hover,
+#google-search .gsc-webResult.gsc-result a:hover,
+#google-search .gsc-imageResult-classic a:hover,
+#google-search .gsc-imageResult-column a:hover {
+  text-decoration: underline;
+}
+#google-search .gs-webResult div.gs-visibleUrl {
+  color: #333;
+  opacity: .5;
+}
+#google-search .gsc-table-cell-thumbnail,
+#google-search .gs-promotion-image-cell {
+  padding: 0 6px 0 0;
+}
+#google-search .gs-title {
+  font-weight: 200;
+  color: #00aeef;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+#google-search .gs-title b {
+  font-weight: 600;
+  color: #00aeef;
+  text-decoration: none;
+}
+#google-search .gsc-results .gsc-cursor-box .gsc-cursor-page {
+  border: none;
+  background-color: #FFFFFF;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+}
+#google-search .gsc-results .gsc-cursor-box .gsc-cursor-page:hover {
+  color: #00aeef;
+}
+#google-search .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+  color: #fff;
+  background: #262424;
+}
+#google-search .gsc-results .gsc-cursor-box .gsc-cursor-current-page:hover {
+  color: #fff;
+}
 @media (min-width: 600px) {
   .book.with-summary .book-body {
     left: 400px;
@@ -541,12 +681,4 @@ strong .glossary-term .tooltip-wrapper {
   .book .book-body .page-wrapper .page-inner section {
     padding: 15px 30px;
   }
-}
-#google-search {
-  margin: auto;
-  padding: 0 90px 0 90px;
-}
-#google-search .gsc-control-cse {
-  background-color: #262424;
-  border-color: #262424;
 }
