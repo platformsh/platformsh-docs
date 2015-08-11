@@ -59,6 +59,7 @@ body,
 }
 #platform-bar #navlink .dropdown > ul > li {
   background: transparent url("images/caret-dropdown.png") no-repeat right center;
+  background-size: 9px auto;
   padding-right: 15px;
   cursor: pointer;
 }
@@ -110,6 +111,7 @@ body,
   font-weight: 200;
   padding-top: 50px;
   background: transparent url("images/icon-docs.png") no-repeat center top;
+  background-size: 29px auto;
   margin: 65px 0 10px;
 }
 #home-content h2 {
@@ -140,15 +142,19 @@ body,
 }
 #home-content .container.getting-started h2 {
   background: transparent url("images/icon-get-started.png") no-repeat center top;
+  background-size: 30px auto;
 }
 #home-content .container.topic-trends h2 {
   background: transparent url("images/icon-fire.png") no-repeat center top;
+  background-size: 37px auto;
 }
 #home-content .container.overview h2 {
   background: transparent url("images/icon-compass.png") no-repeat center top;
+  background-size: 31px auto;
 }
 #home-content .container.reference h2 {
   background: transparent url("images/icon-reference.png") no-repeat center top;
+  background-size: 36px auto;
 }
 #home-content .container ul,
 #home-content .container li {
@@ -169,18 +175,22 @@ body,
 #home-content .container ul.drupal,
 #home-content .container li.drupal {
   background: transparent url("images/icon-drupal.png") no-repeat 0 0;
+  background-size: 18px auto;
 }
 #home-content .container ul.symfony,
 #home-content .container li.symfony {
   background: transparent url("images/icon-symfony.png") no-repeat 0 0;
+  background-size: 21px auto;
 }
 #home-content .container ul.bitbucket,
 #home-content .container li.bitbucket {
   background: transparent url("images/icon-bitbucket.png") no-repeat 0 0;
+  background-size: 18px auto;
 }
 #home-content .container ul.github,
 #home-content .container li.github {
   background: transparent url("images/icon-github.png") no-repeat 0 0;
+  background-size: 21px auto;
 }
 #home-content .container ul li {
   list-style: none;
@@ -229,6 +239,7 @@ body,
   height: 40px;
   width: 40px;
   background: transparent url("images/icon-more-white.png") no-repeat center center;
+  background-size: 8px auto;
   border: 1px solid #00aeef;
   font: 0/0 none;
   display: inline-block;
@@ -272,6 +283,7 @@ body,
 }
 #home-content .row.white .more {
   background: transparent url("images/icon-more.png") no-repeat center center;
+  background-size: 8px auto;
 }
 .font-family-list,
 .color-theme-list {
