@@ -162,7 +162,7 @@ body,
       &.book {
         padding-left: 30px;
         margin-bottom:10px;
-        color:#A8A7A7;
+        color:#646464;
         ul {
           padding-top: 10px;
         }
@@ -243,31 +243,37 @@ body,
       margin-left: -20px;
       opacity: .5;
     }
-    a.link-wrapper {
-      height: 370px;
-      display: inline-block;
-      p {
-        opacity: .5;
-      }
-      &:hover {
-        text-decoration: none;
-        p, .more {
-          opacity: 1;
+    .link-wrapper {
+      padding: 0;
+      a {
+        height: 370px;
+        display: inline-block;
+        &:hover {
+          text-decoration: none;
+          .more {
+            opacity: 1;
+          }
         }
       }
     }
     &.white {
       background: #fff;
       color: #b6b5b5;
+      a {
+        color: #000;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
       .container {
         border-color: #9b9b9b;
         position: relative;
-      }
-      a {
-        color: #b6b5b5;
-        &:hover {
-          text-decoration: none;
-          color: #000;
+        &.link-wrapper a {
+          color: #b6b5b5;
+          &:hover {
+            text-decoration: none;
+            color: #000;
+          }
         }
       }
       h2 {
@@ -678,12 +684,12 @@ strong .glossary-term .tooltip-wrapper {
     float: left;
     padding: 15px;
     height: 370px;
-  }
-  #home-content .white .container {
-    padding: 0;
-    a {
-      padding: 30px;
-      height: 370px;
+    &.link-wrapper {
+      padding: 0;
+      a {
+        padding: 30px;
+        height: 370px;
+      }
     }
   }
   #home-content .row {
@@ -696,12 +702,12 @@ strong .glossary-term .tooltip-wrapper {
 @media (min-width: 960px) {
   #home-content .container {
     padding: 40px;
-  }
 
-  #home-content .white .container {
-    padding: 0;
-    a {
-      padding: 50px 40px;
+    &.link-wrapper {
+      padding: 0;
+      a {
+        padding: 50px 40px;
+      }
     }
   }
 }
