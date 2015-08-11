@@ -40,7 +40,7 @@ crons:
 > **note**
 > The `.platform.app.yaml` is specific to your application. If you have multiple
 > applications inside your Git repository, you need one `.platform.app.yaml` at 
->the root of each application [see here](/reference/platform-app-yaml-multi-app.html).  
+>the root of each application [see here](/platform-app-yaml-multi-app.html).  
 
 
 ### Name
