@@ -25,7 +25,8 @@ function matchPath($path, $current_urls){
                 break;
             }
         }
-    }
+    };
+    if ($location == $path){$location = "/";}; // Prevent redirect loops
     return $location;
 }
 
