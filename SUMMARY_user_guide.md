@@ -1,5 +1,7 @@
 * [Technical Requirements](overview/technical-requirements.md)
 * [Configuring the Project and its environments](overview/configuring-project-environments.md)
+  * [The Web Interface](overview/web-ui/README.md)
+  * [Platform.sh CLI](overview/cli/README.md)
   * [Project configuration](overview/web-ui/configure-project.md)
   * [Platform.sh Environments](overview/environments.md)
     * [Environment Configuration](overview/web-ui/configure-environment.md)
