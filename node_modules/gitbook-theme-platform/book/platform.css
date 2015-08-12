@@ -538,15 +538,14 @@ strong .glossary-term .tooltip-wrapper {
   max-width: 1200px;
   margin: 0 auto;
 }
-#google-search .cse form.gsc-search-box,
-#google-search form.gsc-search-box {
-  background: #484848;
-}
 #google-search .gsc-input input.gsc-input {
   padding: 6px;
-  background: transparent !important;
+  background: #484848 !important;
   border: none;
   color: #fff;
+  line-height: 30px;
+  padding: 5px 60px 5px 10px;
+  width: 100%;
 }
 #google-search .gsc-results-wrapper-visible {
   background: #000;
@@ -571,28 +570,39 @@ strong .glossary-term .tooltip-wrapper {
 #google-search input.gsc-search-button:focus {
   box-shadow: none;
 }
-#google-search .gsc-search-button {
-  position: relative;
+#google-search .cse table.gsc-search-box td.gsc-input,
+#google-search table.gsc-search-box td.gsc-input {
+  padding-right: 0;
 }
-#google-search .gsc-search-button::before {
+#google-search input.gsc-search-button {
+  position: absolute;
+  min-width: auto;
+  font: 0/0 none;
+  width: 20px;
+  height: 20px;
+  top: 11px;
+  right: 15px;
+}
+#google-search td.gsc-search-button::before {
   color: #8e8e8e;
   content: "\f002";
   font-family: FontAwesome;
   font-size: 18px;
   line-height: 18px;
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 11px;
+  right: 15px;
 }
-#google-search .gsc-clear-button {
+#google-search td.gsc-search-button,
+#google-search td.gsc-clear-button {
   position: relative;
   padding: 0;
   width: 1px;
 }
 #google-search div.gsc-clear-button {
   position: absolute;
-  left: -50px;
-  top: 7px;
+  left: -60px;
+  top: 12px;
   width: 10px;
 }
 #google-search .gsc-above-wrapper-area {
@@ -667,6 +677,13 @@ strong .glossary-term .tooltip-wrapper {
 }
 #google-search .gsc-results .gsc-cursor-box .gsc-cursor-current-page:hover {
   color: #fff;
+}
+.gsc-completion-container {
+  color: #000;
+  border: none;
+}
+.gsc-completion-container .gssb_a {
+  padding: 5px;
 }
 @media (min-width: 600px) {
   .book.with-summary .book-body {

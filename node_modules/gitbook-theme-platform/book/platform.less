@@ -535,14 +535,14 @@ strong .glossary-term .tooltip-wrapper {
     max-width: 1200px;
     margin: 0 auto;
   }
-  .cse form.gsc-search-box, form.gsc-search-box {
-    background: #484848;
-  }
   .gsc-input input.gsc-input {
     padding: 6px;
-    background: transparent !important;
+    background: #484848 !important;
     border: none;
     color: #fff;
+    line-height: 30px;
+    padding: 5px 60px 5px 10px;
+    width: 100%;
   }
   .gsc-results-wrapper-visible {
     background: #000;
@@ -567,8 +567,19 @@ strong .glossary-term .tooltip-wrapper {
       box-shadow: none;
     }
   }
-  .gsc-search-button {
-    position: relative;
+  .cse table.gsc-search-box td.gsc-input, table.gsc-search-box td.gsc-input {
+    padding-right: 0;
+  }
+  input.gsc-search-button {
+    position: absolute;
+    min-width: auto;
+    font: 0/0 none;
+    width: 20px;
+    height: 20px;
+    top: 11px;
+    right: 15px;
+  }
+  td.gsc-search-button {
     &::before {
       color: #8e8e8e;
       content: "\f002";
@@ -576,19 +587,20 @@ strong .glossary-term .tooltip-wrapper {
       font-size: 18px;
       line-height: 18px;
       position: absolute;
-      top: 5px;
-      right: 5px;
+      top: 11px;
+      right: 15px;
     }
   }
-  .gsc-clear-button {
+  td.gsc-search-button,
+  td.gsc-clear-button {
     position: relative;
     padding: 0;
     width: 1px;
   }
   div.gsc-clear-button {
     position: absolute;
-    left: -50px;
-    top: 7px;
+    left: -60px;
+    top: 12px;
     width: 10px;
   }
   .gsc-above-wrapper-area {
@@ -653,6 +665,13 @@ strong .glossary-term .tooltip-wrapper {
     &:hover {
       color: #fff;
     }
+  }
+}
+.gsc-completion-container {
+  color: #000;
+  border: none;
+  .gssb_a {
+    padding: 5px;
   }
 }
 @media (min-width: 600px) {
