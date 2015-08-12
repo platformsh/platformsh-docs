@@ -3,9 +3,9 @@
 Platform.sh is a managed and automated high-availability hosting platform for
 PHP.
 
-Platform.sh is a second generation PaaS powered by a highly available grid of
-micro-containers. The developer pushes code, and we automatically put
-everything into production.
+Platform.sh is a second generation Platform-as-a-Service powered by a highly 
+available grid of micro-containers. The developer pushes code, and we 
+automatically put everything into production.
 
 Our job is to make developers' lives easier, and to practically eliminate all
 sysadmin chores.We can create staging and development environments on-the-fly
@@ -25,5 +25,6 @@ Blackfire.
 And if what you want is to just quickly get started here are some step-by-step
 guides help get you on your way:
 
-* [Start a new Drupal site](../drupal/) * [Migrate an existing Drupal
-site](../drupal_migrate/) * [Start a new Symfony site](../symfony/)
+* [Start a new Drupal site](../drupal/) 
+* [Migrate an existing Drupal site](../drupal_migrate/) 
+* [Start a new Symfony site](../symfony/)
