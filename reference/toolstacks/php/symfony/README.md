@@ -17,7 +17,9 @@ Make sure your `.platform.app.yaml` is specific to Symfony.
 A Symfony specific `.platform.app.yaml` file would look like this:
 
 ```bash
-toolstack: "php:symfony"
+type: php
+build:
+    flavor: symfony
 
 web:
     document_root: "/web"

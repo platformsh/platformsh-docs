@@ -6,7 +6,9 @@ Open this file and paste this content:
 
 ```yaml
 name: php
-toolstack: "php:drupal"
+type: php
+build:
+    flavor: drupal
 access:
     ssh: contributor
 relationships:

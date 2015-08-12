@@ -13,7 +13,9 @@ Here is an example of a `.platform.app.yaml` file:
 
 ```yaml
 name: front
-toolstack: "php:drupal"
+type: php
+build:
+    flavor: drupal
 relationships:
     database: "mysql:mysql"
     solr: "solr:solr"
@@ -51,19 +53,24 @@ must have a **unique name** within a project. The name may only be
 composed of lower case alpha-numeric characters. (a-z0-9)
 
 
-### Toolstack
+### Type and Build
 
-The `toolstack` is used to build and run the project. It's in the form
-`type[:subtype]`.
+The `type`  and `build` are used to build and run the project. It's in the form
+the only supported `type` currently is php:
 
-Possible values are:
+    type: php
 
--   php:drupal
--   php:symfony
+The `build` concernes what will happen by default when building the project it has a sub property `flavor` for which the possible values are:
 
-> ** note ** this is a misnomer that will soon be corrected you should use 
-> php:symfony for anything that is not drupal.
+-   drupal
+-   symfony
+-   composer
 
+example:
+
+    type: php
+    build:
+        flavor: symfony
 
 ### Access
 
@@ -288,7 +295,9 @@ if you do not have a `.platform.app.yaml` file the following one that assumes yo
 
 ```yaml
 name: php
-toolstack: "php:drupal"
+type: php
+build:
+    flavor: drupal
 access:
     ssh: contributor
 relationships:
