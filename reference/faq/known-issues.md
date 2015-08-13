@@ -61,6 +61,14 @@ Platform.sh is built on Debian.
 The Development plan provides all the tools to build your website. You can create as many development profiles as you wish for yourself and for your team.
 Once your project is built and ready for production, you can choose another plan to go live. These plans are listed on the [pricing page](<https://platform.sh/pricing/).
 
+## Can I please use tabs in my YAML files?
+
+No.
+
+## I am getting weird errors when I push (something with paramiko..)
+
+Please validate the syntax of your YAML file. Don't use tabs. And if all fails, contact support.
+
 ## Which geographic zones does Platform.sh cover?
 
 Platform leverages the powerful AWS Infrastructure.
