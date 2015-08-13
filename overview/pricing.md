@@ -71,16 +71,12 @@ So for a price lower than traditional managed hosting, you get included
 development and staging environments and triple redundancy on every element of 
 the stack.
 
-Enterprise plans add high availability triple-redundant stack for speed,
-security and resilience and
+> With 99.99% Uptime Guaranteed
+> And 24/7 White Glove On-boarding and Support 
 
->99.99% Uptime SLA
-
->24/7 White glove support 
-
-Please contact our sales department to discuss how we can help you.
+Please [https://platform.sh/contact/#form](contact our sales department) to discuss how we can help you.
 
 ## Agency
 The Platform.sh Agency Plan (PAP) waives developer license fees, lets anyone on your team start projects at no cost, and permits all-hands access to any site. In addition you get a 10% commission when you recommend Platform.sh to your customers.
 
-Please contact our sales department to discuss how we can help you.
+Please [https://platform.sh/contact/#form](contact our sales department) to discuss how we can help you.
