@@ -391,12 +391,12 @@ body,
   overflow: visible;
 }
 .book .book-body .page-wrapper .page-inner section.normal h1 {
-  font-size: 30px;
+  font-size: 34px;
   font-weight: 300;
   border-bottom: none;
 }
 .book .book-body .page-wrapper .page-inner section.normal h2 {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 400;
   border-bottom: none;
   margin-top: 50px;
@@ -410,20 +410,20 @@ body,
   margin-bottom: 20px;
 }
 .book .book-body .page-wrapper .page-inner section.normal h3 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
 }
 .book .book-body .page-wrapper .page-inner section.normal h4 {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 300;
 }
 .book .book-body .page-wrapper .page-inner section.normal h5 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   color: #333;
 }
 .book .book-body .page-wrapper .page-inner section.normal h6 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: #666;
 }
