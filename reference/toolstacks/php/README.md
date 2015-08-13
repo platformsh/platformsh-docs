@@ -52,7 +52,7 @@ the application (normally the repository root).
 
 For example, if you need to increase the PHP memory limit:
 
-```ini
+```
 ; php.ini
 ; Increase PHP memory limit
 memory_limit = 256M
