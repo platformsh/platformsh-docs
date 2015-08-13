@@ -1,5 +1,6 @@
 * [Architecture](reference/architecture.md)
 * [Unique Workflow](overview/workflow.md)
 * [Working with Platform.sh](overview/tooling.md)
+* [What happens when you deploy an app](overview/tooling.md)
 * [Pricing](overview/pricing.md)
 * [Getting Help](overview/getting-help.md)
