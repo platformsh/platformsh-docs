@@ -115,7 +115,7 @@ Example of valid options are:
 
 ### Web
 
-The `web` defines how the application is exposed to the web (in HTTP).  Here we tell the web application how to serve content. We tell The front-controller script to non-static requests to an index.php file on the root. We support any directory structure so the can be in a sub directory, and the index.php file can be further down.
+The `web` defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content. From the front-controller script to a non-static requests to an index.php file on the root. We support any directory structure so the static file can be in a sub directory, and the index.php file can be further down.
 
 It has a few sub-keys which are:
 
