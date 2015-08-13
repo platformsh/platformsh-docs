@@ -74,9 +74,9 @@ the stack.
 > With 99.99% Uptime Guaranteed
 > And 24/7 White Glove On-boarding and Support 
 
-Please [https://platform.sh/contact/#form](contact our sales department) to discuss how we can help you.
+Please [contact our sales department](https://platform.sh/contact/#form) to discuss how we can help you.
 
 ## Agency
 The Platform.sh Agency Plan (PAP) waives developer license fees, lets anyone on your team start projects at no cost, and permits all-hands access to any site. In addition you get a 10% commission when you recommend Platform.sh to your customers.
 
-Please [https://platform.sh/contact/#form](contact our sales department) to discuss how we can help you.
+Please [contact our sales department](https://platform.sh/contact/#form) to discuss how we can help you.
