@@ -44,6 +44,11 @@ of existing users by clicking the `Edit` link when hovering the user.
 
 ![Manage users of your Platform.sh environments](/images/ui-conf-environment-users.png)
 
+> **note**
+> Currently, permissions changes that grant or revoke SSH access to an
+> environment take effect only after the next time that environment is
+> deployed.
+
 Selecting a user will allow you to either edit or remove access to that
 environment.
 

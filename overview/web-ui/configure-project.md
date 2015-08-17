@@ -27,6 +27,11 @@ users by clicking the `Edit` link when hovering the user.
 
 ![Project configure icon](/images/ui-conf-project-users.png)
 
+> **note**
+> Currently, permissions changes that grant or revoke SSH access to an
+> environment take effect only after the next time that environment is
+> deployed.
+
 Selecting a user will allow you to either edit that user's permissions
 or delete the user's access to the project entirely.
 
