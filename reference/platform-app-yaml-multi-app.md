@@ -32,7 +32,7 @@ In the symfony `.platform.app.yaml` we might have `name: phpsymfony` and in the 
     upstream: "phpsymfony:php"
 "http://{default}/":
     type: upstream
-    upstream: « phpdrupal:php"
+    upstream: "phpdrupal:php"
 ```
 This will result (if we consider we are on the http://example.com domain): http://example.com being served by the Drupal instance, while http://example.com/myapp and all the urls below it to be served by the Symfony App.
 
