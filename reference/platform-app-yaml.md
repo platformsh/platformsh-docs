@@ -13,7 +13,7 @@ Here is an example of a `.platform.app.yaml` file:
 
 ```yaml
 name: front
-type: php
+type: php:5.4
 build:
     flavor: drupal
 relationships:
@@ -44,7 +44,6 @@ crons:
 > applications inside your Git repository, you need one `.platform.app.yaml` at 
 >the root of each application [see here](/platform-app-yaml-multi-app.html).  
 
-
 ### Name
 
 The `name` is the unique identifier of the application. Platform.sh
@@ -52,13 +51,15 @@ supports multiple applications within a project, so each application
 must have a **unique name** within a project. The name may only be 
 composed of lower case alpha-numeric characters. (a-z0-9)
 
-
 ### Type and Build
 
-The `type`  and `build` are used to build and run the project. It's in the form
-the only supported `type` currently is php:
+The `type`  and `build` are used to build and run the project. The only supported `type` currently is PHP.
 
-    type: php
+Supported versions:
+
+    type: php:5.4 (default)
+    type: php:5.5
+    type: php:5.6
 
 The `build` concernes what will happen by default when building the project it has a sub property `flavor` for which the possible values are:
 
@@ -66,9 +67,9 @@ The `build` concernes what will happen by default when building the project it h
 -   symfony
 -   composer
 
-example:
+Example:
 
-    type: php
+    type: php:5.5
     build:
         flavor: symfony
 
@@ -295,7 +296,7 @@ if you do not have a `.platform.app.yaml` file the following one that assumes yo
 
 ```yaml
 name: php
-type: php
+type: php:5.5
 build:
     flavor: drupal
 access:
