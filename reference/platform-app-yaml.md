@@ -13,7 +13,7 @@ Here is an example of a `.platform.app.yaml` file:
 
 ```yaml
 name: front
-type: php:5.4
+type: php:5.5
 build:
     flavor: drupal
 relationships:
@@ -69,7 +69,7 @@ The `build` concernes what will happen by default when building the project it h
 
 Example:
 
-    type: php:5.5
+    type: php:5.4
     build:
         flavor: symfony
 
@@ -296,7 +296,7 @@ if you do not have a `.platform.app.yaml` file the following one that assumes yo
 
 ```yaml
 name: php
-type: php:5.5
+type: php:5.4
 build:
     flavor: drupal
 access:
