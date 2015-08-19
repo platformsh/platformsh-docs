@@ -17,4 +17,4 @@ This directory needs to contain everything that Solr 4.10 needs to start a core.
 
 ## Default
 
-When unspecified, our default configuration is based on what Drupal generally expects (the content is equivalent to the attached `config.tar.gz`).
+When unspecified, our default configuration is based on what Drupal generally expects.
