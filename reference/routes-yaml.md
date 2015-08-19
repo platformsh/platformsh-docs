@@ -62,7 +62,8 @@ Each route can be configured separately its has the following properties
 
 
 ## Routes examples
-Here is an example of a `routes.yaml` file:
+Here is an example of a `.platform/routes.yaml` file:
+
 ```yaml
 "http://{default}/":
   type: upstream
@@ -71,6 +72,7 @@ Here is an example of a `routes.yaml` file:
   type: redirect
   to: "http://{default}/"
 ```
+
 In this example we will route both the naked domain, and the www (www being 
 redirected to the naked domain) subdomain to an application  we called 
 "frontend". We are not doing any HTTPS here. 
@@ -126,12 +128,15 @@ https://{default}/:
   type: upstream
   upstream: php:php
 ```
+
 ## Configuring routes on the Web Interface
+
 For your convenience routes can also be configured using the web interface in
 the [routes section ](overview/web-ui/configure-environment.html#routes) of the 
 environment settings .
 
 ## CLI Access
+
 You can get a list of the configured routes for an environment by running 
 `$ platform  environment:routes`
 
@@ -153,7 +158,9 @@ If you do not have a `routes.yaml` file the following default one will be loaded
     type: redirect
     to: "http://{default}/"
 ```
+
 ## Wildcard routes
+
 Platform.sh supports wildcard routes so you can map multiple subdomains to the
 same application. This works both for redirect an upstream routes. You can 
 simply prefix the route with an `*` (for example `*.example.com`) and 
