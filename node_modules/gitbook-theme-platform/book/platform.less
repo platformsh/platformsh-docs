@@ -87,6 +87,11 @@ body,
     }
   }
 }
+.book .book-body,
+.book .book-summary {
+  position: fixed;
+  top: 73px;
+}
 .home-page {
   background-color: #262424;
   color: #fff;
@@ -291,7 +296,7 @@ body,
   display: none;
 }
 .book .book-body .body-inner {
-  top: 73px;
+  top: 0;
 }
 .book .book-body .navigation {
   min-width: 40px;
@@ -309,7 +314,7 @@ body,
     border-left: 1px solid #363636;
   }
   ul.summary {
-    top: 123px;
+    top: 50px;
     padding-top: 40px;
     li {
       a,
@@ -338,7 +343,7 @@ body,
     }
   }
   .book-search {
-    top: 73px;
+    top: 0;
     background: #484848;
     input.form-control {
       padding-left: 50px;
@@ -399,15 +404,23 @@ body,
     font-size: 24px;
     font-weight: 400;
     border-bottom: none;
-    margin-top: 50px;
+    padding-top: 50px;
     margin-bottom: 30px;
+    margin-top: 0;
+    a.plugin-anchor {
+      top: 49px;
+    }
   }
   h3,
   h4,
   h5,
   h6 {
-    margin-top: 30px;
+    padding-top: 30px;
     margin-bottom: 20px;
+    margin-top: 0;
+    a.plugin-anchor {
+      top: 29px;
+    }
   }
   h3 {
     font-size: 20px;
@@ -474,9 +487,6 @@ body,
   hr {
     height: 1px;
   }
-}
-.book.with-search .book-summary ul.summary {
-  top: 123px;
 }
 .book.with-search .book-summary .book-search {
   display: none;
@@ -674,12 +684,32 @@ strong .glossary-term .tooltip-wrapper {
     padding: 5px;
   }
 }
-@media (min-width: 600px) {
+@media (max-width: 600px) {
+  .book .book-summary {
+    width: 50%;
+  }
   .book.with-summary .book-body {
-    left: 400px;
+    width: 50%;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+    left: 50%;
+  }
+}
+@media (min-width: 600px) {
+  .book .book-summary {
+    width: 300px;
   }
 }
 @media (min-width: 768px) {
+  .book .book-summary {
+    width: 400px;
+  }
+  .book.with-summary .book-body {
+    left: 400px;
+  }
   #platform-bar {
     .branding {
       padding-left: 50px;
@@ -734,11 +764,19 @@ strong .glossary-term .tooltip-wrapper {
   #home-content .container {
     padding: 50px 40px;
   }
+  .book .book-body .navigation {
+    position: fixed;
+    &.navigation-prev {
+      left: 0;
+    }
+  }
+  .book.with-summary .book-body .navigation {
+    &.navigation-prev {
+      left: 400px;
+    }
+  }
 }
 @media (max-width: 1240px) {
-  .book .book-body .body-inner {
-    margin-top: 73px;
-  }
   .book .book-body .page-wrapper .page-inner section {
     padding: 15px 30px;
   }
