@@ -1,4 +1,4 @@
-#Platform.sh services 
+# Platform.sh services 
 
 Each Platform.sh project or "platform" as we call it sometimes is composed of 
 one or more applications (configured through .platform.app.yaml) and zero or 
@@ -58,8 +58,8 @@ Solr search with generic schemas provided (both versions 3.6 and 4.10 are suppor
 Support for custom schemas is available for Platform.sh Enterprise customers.
 
 ## Elastic Search (Search Service)
-A very popular Open Source Search engine, We support versions 0.9 and 1.4
 
+A very popular Open Source Search engine, We support versions 0.9 and 1.4
 
 ## Redis (Object cache )
 

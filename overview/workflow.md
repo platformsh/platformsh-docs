@@ -1,4 +1,4 @@
-#Unique Workflow
+# Unique Workflow
 
 Platform.sh proposes a truly unique workflow. The main idea is that for every
 new feature developed a staging environment just for that feature is created
@@ -8,6 +8,7 @@ You can test every feature in isolation and put it into production with a
 single click, or a single command on the command-line.
 
 ## Use any methodology
+
 You can have just a traditional Development -> Staging -> production workflow.
 
 But... you can also create as many branches for your code as you would like.
@@ -20,6 +21,7 @@ bottle-neck, and you can just merge to master and put the whole sprint into
 production.
 
 ## Git Driven
+
 Everything in Platform.sh is Git driven. Not only the code, but also the
 infrastructure. 
 

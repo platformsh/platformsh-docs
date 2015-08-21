@@ -1,4 +1,5 @@
-#Platform.sh pricing
+# Platform.sh pricing
+
 All Platform.sh plans include the following:
 
 * Four Environments (3 for staging/development 1 for the live site).
@@ -26,20 +27,24 @@ test.
 > include the correct VAT rate.
 
 ## Extras
+
 All extra consumption is prorated to the time it was actually used. 
 
 > So if for example you added an extra developer for 10 days you would be billed around  extra $3 at the end of the month.
 
 ### Extra developers
+
 Adding a developer to your project will add $10 per month.
 
 ### Extra environments
+
 You can add extra development staging/development to any plan by multiples of 3
 for $21 / month. 
 
 > So if for example you want to have 12 staging servers you would pay additional $63 per month on top of your basic plan price.
 
 ### Extra storage
+
 You can add additional storage at $2.50 per 5GB  per staging/development 
 environment. 
 
@@ -48,6 +53,7 @@ environment.
 >If you added 3 extra environments (for a total of 6 staging environments) and you added 10GB (so total 15GB) you would pay an extra $30 a month.
 
 ## Development
+
 The basic Plan (development) starts at 10$ per month (including 4 environments : 3 staging/development and 1 future production).
 
 > You can not map a custom domain name to a development plan
@@ -65,6 +71,7 @@ Production plans come in three flavors:
 * Large: with 7GB of dedicated memory
 
 ## Enterprise
+
 Enterprise plans start at $670 a month. 
 
 So for a price lower than traditional managed hosting, you get included 
@@ -77,6 +84,7 @@ the stack.
 Please [contact our sales department](https://platform.sh/contact/#form) to discuss how we can help you.
 
 ## Agency
+
 The Platform.sh Agency Plan (PAP) waives developer license fees, lets anyone on your team start projects at no cost, and permits all-hands access to any site. In addition you get a 10% commission when you recommend Platform.sh to your customers.
 
 Please [contact our sales department](https://platform.sh/contact/#form) to discuss how we can help you.

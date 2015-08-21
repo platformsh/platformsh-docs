@@ -1,4 +1,6 @@
-## What happens when you deploy an app
+# Deployment process
+
+## What happens when you deploy an application?
 
 Deploying an app means simply pushing the source code to your Git server
 hosted on Platform.sh. 

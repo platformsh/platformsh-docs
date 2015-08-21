@@ -1,4 +1,4 @@
-#Configuring your Project
+# Configuring your Project
 
 There are two levels to the configuration of your Platform.sh project:
 
