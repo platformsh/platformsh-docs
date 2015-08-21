@@ -35,7 +35,6 @@
   * [Drupal](reference/toolstacks/php/drupal/README.md)
     * [Developing With Drupal](reference/toolstacks/php/drupal/developing-with-drupal.md)
     * [Customizing settings.php](reference/toolstacks/php/drupal/customizing-settings-php.md)
-    * [Migrate an existing site](reference/toolstacks/php/drupal/migrate-existing-site.md)
     * [Drush](reference/toolstacks/php/drupal/drush.md)
     * [Redis](reference/toolstacks/php/drupal/redis.md)
       * [Redis with Drupal 6](reference/toolstacks/php/drupal/redis-drupal-6.md)
