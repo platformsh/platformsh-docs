@@ -87,6 +87,11 @@ body,
 #platform-bar #navlink .dropdown ul li:hover ul {
   display: inline-block;
 }
+.book .book-body,
+.book .book-summary {
+  position: fixed;
+  top: 73px;
+}
 .home-page {
   background-color: #262424;
   color: #fff;
@@ -295,7 +300,7 @@ body,
   display: none;
 }
 .book .book-body .body-inner {
-  top: 73px;
+  top: 0;
 }
 .book .book-body .navigation {
   min-width: 40px;
@@ -313,7 +318,7 @@ body,
   border-left: 1px solid #363636;
 }
 .book .book-summary ul.summary {
-  top: 123px;
+  top: 50px;
   padding-top: 40px;
 }
 .book .book-summary ul.summary li a,
@@ -340,7 +345,7 @@ body,
   padding-left: 14px;
 }
 .book .book-summary .book-search {
-  top: 73px;
+  top: 0;
   background: #484848;
 }
 .book .book-summary .book-search input.form-control {
@@ -399,15 +404,26 @@ body,
   font-size: 24px;
   font-weight: 400;
   border-bottom: none;
-  margin-top: 50px;
+  padding-top: 50px;
   margin-bottom: 30px;
+  margin-top: 0;
+}
+.book .book-body .page-wrapper .page-inner section.normal h2 a.plugin-anchor {
+  top: 49px;
 }
 .book .book-body .page-wrapper .page-inner section.normal h3,
 .book .book-body .page-wrapper .page-inner section.normal h4,
 .book .book-body .page-wrapper .page-inner section.normal h5,
 .book .book-body .page-wrapper .page-inner section.normal h6 {
-  margin-top: 30px;
+  padding-top: 30px;
   margin-bottom: 20px;
+  margin-top: 0;
+}
+.book .book-body .page-wrapper .page-inner section.normal h3 a.plugin-anchor,
+.book .book-body .page-wrapper .page-inner section.normal h4 a.plugin-anchor,
+.book .book-body .page-wrapper .page-inner section.normal h5 a.plugin-anchor,
+.book .book-body .page-wrapper .page-inner section.normal h6 a.plugin-anchor {
+  top: 29px;
 }
 .book .book-body .page-wrapper .page-inner section.normal h3 {
   font-size: 20px;
@@ -479,9 +495,6 @@ body,
 }
 .book .book-body .page-wrapper .page-inner section.normal hr {
   height: 1px;
-}
-.book.with-search .book-summary ul.summary {
-  top: 123px;
 }
 .book.with-search .book-summary .book-search {
   display: none;
@@ -685,12 +698,32 @@ strong .glossary-term .tooltip-wrapper {
 .gsc-completion-container .gssb_a {
   padding: 5px;
 }
-@media (min-width: 600px) {
+@media (max-width: 600px) {
+  .book .book-summary {
+    width: 50%;
+  }
   .book.with-summary .book-body {
-    left: 400px;
+    width: 50%;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+    left: 50%;
+  }
+}
+@media (min-width: 600px) {
+  .book .book-summary {
+    width: 300px;
   }
 }
 @media (min-width: 768px) {
+  .book .book-summary {
+    width: 400px;
+  }
+  .book.with-summary .book-body {
+    left: 400px;
+  }
   #platform-bar .branding {
     padding-left: 50px;
   }
@@ -738,11 +771,17 @@ strong .glossary-term .tooltip-wrapper {
   #home-content .container {
     padding: 50px 40px;
   }
+  .book .book-body .navigation {
+    position: fixed;
+  }
+  .book .book-body .navigation.navigation-prev {
+    left: 0;
+  }
+  .book.with-summary .book-body .navigation.navigation-prev {
+    left: 400px;
+  }
 }
 @media (max-width: 1240px) {
-  .book .book-body .body-inner {
-    margin-top: 73px;
-  }
   .book .book-body .page-wrapper .page-inner section {
     padding: 15px 30px;
   }
