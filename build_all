@@ -4,6 +4,7 @@
 ./build symfony
 ./build drupal_migrate
 cp index.php _books/index.php
+cp 404.html _books/404.html
 cp index.html _books/index.html
 rm -rf _book
 cp -R ./_books/discover/gitbook ./_books/gitbook
