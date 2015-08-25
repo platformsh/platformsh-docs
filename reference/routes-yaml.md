@@ -71,9 +71,9 @@ Here is an example of a `routes.yaml` file:
   type: redirect
   to: "http://{default}/"
 ```
-In this example we will route both the naked domain, and the www (www being 
-redirected to the naked domain) subdomain to an application  we called 
-"frontend". We are not doing any HTTPS here. 
+In this example we will route both the naked domain and the www subdomain to an
+application we called "frontend", the www subdomain being redirected to the
+naked domain. We aren't handling any HTTPS requests here.
 
 In the following example we are not redirecting from the www to the naked domain 
 but serving from both:
