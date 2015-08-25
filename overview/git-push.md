@@ -7,11 +7,11 @@ on the state of the project the output can vary wildly. But this can give
 you an idea.
 
 In this case we have a PHP project with a lot of data backends, it uses MySQL,
-PostGres, Redis and ElasticSearch. It has a its PHP dependencies in a 
+PostGres, Redis and ElasticSearch. It has its PHP dependencies in a 
 `composer.json` file and it uses the Ruby library "sass" to compile the SCSS
 during its build process.
 
-The developer wanted to work a new feature so they created a new environment by
+The developer wanted to work on a new feature so they created a new environment by
 running `platform environment:branch maximal`. "maximal" is the name of the 
 branch.
 
@@ -37,18 +37,18 @@ conflict it would have errored out and asked you to resolve it.
 ```
 Validating submodules.
 ```
-Platform.sh supports git submodules and supports multiple applications (so you
+Platform.sh supports git submodules and supports multiple applications. (So you
 can have multiple applications, each in its own git repository, but have a 
-single production environment for all of them.). In this case we only have a 
-single application and no git submodules. 
+single production environment for all of them.) In this case we only have a 
+single application and no git submodule.
 
-The output for each application deployed would have been similar to what you see
+The output for each deployed application would have been similar to what you see
  below for a single application.
 
 ```
 Validating configuration files.
 ```
-Platform.sh now checks your configuration files make sens. It will yell at
+Platform.sh now checks that your configuration files make sense. It will yell at
 you impolitely if you used tabs instead of spaces in your yaml files. It
 does many other validations, and tries to provide you with useful error
 messages.
@@ -58,22 +58,22 @@ Processing activity: **Shelly** pushed to **maximal**
     Found 1 new commit.
 ```
 
-Happy with what it got it is going to start building your application(s)
+Happy with what it got it is going to start building your application(s).
 
 ```
     Building application 'myapp' (runtime type: php, tree: 551ee89)
       Generating runtime configuration.
 ```
 
-Based on what you put in you `.platform.app.yaml` it is going to build for each
-application, a container with the correct configuration.
+Based on what you put in your `.platform.app.yaml`, it is going to build for each
+application a container with the correct configuration.
 
 ```
       Installing build dependencies...
         Installing ruby build dependencies: sass
 ```
 In this case we have a dependency on the Ruby sass library so it has installed 
-it (again this comes from `.platform.app.yaml`).
+it. (Again, this comes from `.platform.app.yaml`.)
 
 ```
       Found a `composer.json`, installing dependencies.
@@ -91,15 +91,15 @@ and install all the PHP dependencies.
 ```
 We supplied a build hook in `.platform.app.yaml` (here it is transforming scss
 files to css). It is a good time to run  anything that needs to change the main
-file system (when deployed it will turn read-only)
+file system. (Because after the build hook, it will turn read-only.)
 ```
 
       Executing pre-flight checks...
 
 ```
 Platform.sh just ran some static security checks on the code. There are some 
-vulnerabilities it will refuse to deploy (you can force it but its not a good
-idea).
+vulnerabilities it will refuse to deploy. (You can force it but its not a good
+idea.)
 ```
 
       Compressing application.
@@ -114,7 +114,7 @@ to send it to one of the hosts on the grid where it will be mounted.
     Re-deploying environment mswy7hzcuhcjy-maximal.
 ```
 The environment with all its applications has been deployed (here there is just
-one). and Platform.sh will now give you an overview of its configuration.
+one) and Platform.sh will now give you an overview of its configuration.
 
 You will not be able to see output from the "deploy" hook as these happen in
 the context of the deployed application. But you could ssh to the environment
