@@ -39,16 +39,24 @@ Two keys are available under `redirects`:
  * `expires`: optional, the duration the redirect will be cached;
  * `paths`: the paths to apply redirections to.
 
-Each rule in `paths` is made of a key, that is a string or a PCRE regular expression to match the request path against, and a value object made of the following keys:
+Each rule in `paths` is made of a key, which is a string or a PCRE regular
+expression to match the request path against, and a value object made of the
+following keys:
 
- * `to`: required, a partial (`"/toto"` or `"//toto"`) or full URL (`"http://example.com/"`);
+ * `to`: required, a partial (`"/toto"` or `"//toto"`) or full URL (`"http://example.com/"`)
  * `regexp`: optional, determines if the path is a regular expression. (Defaults to `false`.)
- * `prefix`: optional, determines if the redirect applies to just the path, or to every children of the path too. (Defaults to `true` if regexp is `false`, not supported when regexp is `true`.)
+ * `prefix`: optional, determines if the redirect applies to just the path, or
+             also to all children of the path. (Defaults to `true` if regexp is
+             `false`, not supported when regexp is `true`.)
  * `append_suffix`: optional, determines if the suffix is carried over with the redirect (Defaults to `true` if regexp is `false`, not supported when regexp is `true`.)
- * `code`: optional, defaults to `302` (Can be one of `301`, `302`, `307`, `308`);
- * `expires`: optional, the duration the redirect will be cached, if not present the value at the top level will be take.
+ * `code`: optional, defaults to `302` (Can be one of `301`, `302`, `307`, `308`)
+ * `expires`: optional, the duration the redirect will be cached (defaults to
+              the `expires` value defined directly under the `redirects` key.
 
 
 ## Application-driven redirects
 
-If none of the two other options satisfy your redirection plan, feel free to implement redirects directly in your application. If sent with the appropriate caching headers, it would be almost as efficient as Platform.sh integrated options.
+If none of the above options satisfy your redirection needs, you can still
+implement redirects directly in your application. If sent with the appropriate
+caching headers, it would be almost as efficient as the options provided by
+Platform.sh.
