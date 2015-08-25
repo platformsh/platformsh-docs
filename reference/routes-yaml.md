@@ -101,9 +101,10 @@ You can see the [Configuring Multiple
 Applications](/user_guide/reference/platform-app-yaml-multi-app.md) section for a  detailed
  view of how this works with multiple applications in the same project.
  
-In the following example we are redirecting the naked domain to http, and http 
-to https which isour default. So everything will be served from the naked domain
- with HTTPS. We also activate caching, deactivate SSI (server side includes).
+In the following example, any requests arriving at the naked domain or www
+subdomain over HTTP will be redirected to the naked domain with HTTPS, which is
+our default. So everything will be served from the naked domain with HTTPS. We
+also activate caching and deactivate SSI (server side includes).
 
 ```yaml
 http://www.{default}/:
