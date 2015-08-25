@@ -157,9 +157,9 @@ If you do not have a `routes.yaml` file, the following default one will be loade
 ## Wildcard routes
 Platform.sh supports wildcard routes, so you can map multiple subdomains to the
 same application. This works both for redirect and upstream routes. You can
-simply prefix the route with a star (`*`) (for example `*.example.com`) and
+simply prefix the route with a star (`*`), for example `*.example.com`, and
 www.example.com, blog.example.com, us.example.com will all get routed to the
-same endpoint. 
+same endpoint.
 
 For your live environment this would function as a catch-all domain.
 
