@@ -25,6 +25,18 @@ the environment level:
 -   **Environment Reader** - An environment reader can only view this
     environment.
 
+> **Important!**
+> After a new user is added to an environment, it needs to be rebuilt. Rebuilds
+> are triggered when you push a new commit to the environment in question.
+> To be able to rebuild without new code changes you can issue the command
+> `git commit --allow-empty -m'rebuild' && git push`
+> to create an empty commit and "force" rebuilding the environment.
+>
+> When the environment rebuild is complete, allow a minute for the routes to 
+> update fully and for the new user to be able to use SSH access.
+
+------------------------------------------------------------------------
+
 When a development team works on a project, the team leader can be the
 project administrator and decide which roles to give his team members.
 One team member can contribute to one environment, another member can
@@ -35,8 +47,15 @@ If you want your users to be able to see everything (Reader), but only
 commit to a specific branch, change their permission level on that
 environment to "Contributor".
 
+> **Important!**
+> An environment contributor can push code to the environment but that user 
+> role does not have SSH access to the environment.** by default only 
+> environment Administrators have SSH access**. You can change the default
+> in `.platform.app.yaml` by example by specifying `ssh: contributor`
+
 > **note**
-> The project owner - the person licensed to use Platform.sh - doesn't have special powers. A project owner usually has a project administrator role.
+> The project owner - the person licensed to use Platform.sh - doesn't have 
+> special powers. A project owner usually has a project administrator role.
 
 ------------------------------------------------------------------------
 
@@ -65,6 +84,16 @@ Add a new user by clicking on the `Add user` button.
 If you select the 'Reader' role for the user, you'll have the option
 of adjusting the user's permissions at the environment level.
 
+Once this has been done, if the user does not have a Platform.sh they  will 
+receive an email asking  to confirm their details and register an account name 
+and a password.
+
+In order to push and pull code (or to SSH to one of the project's environments)
+the user will need to add an SSH key.
+
+If the user already has an account they will receive an email with a link to
+the project.
+
 ------------------------------------------------------------------------
 
 ## Manage user permissions at the environment level
@@ -78,8 +107,6 @@ on the project page.
 
 ------------------------------------------------------------------------
 
-Manage users.
-
 ![Project user management screenshot](/images/environment_usermanagement.png)
 
 The `User Management` tab shows environment-level users and their
@@ -91,4 +118,68 @@ or delete the user's access to the environment entirely.
 Add a new user by clicking on the `Add user` button.
 
 > **note**
-> After a new user is added to the environment, it needs to be rebuilt (git push) for the changes to take effect. When the environment rebuild is complete, allow a minute for the routes to update fully and for the new user to be able to use SSH access.
+> Remember the user will only be able to access the environment once it has 
+> been rebuilt (after a `git push`)
+
+------------------------------------------------------------------------
+## Manage user with the CLI
+You can user the Platform.sh command line client to fully manage your users
+and integrate this with any other automated system.
+
+Available commands:
+
+* user:add
+  * Add a user to the project
+* user:delete
+  * Delete a user
+* user:list (users) 
+  * List project users
+* user:role
+  * View or change a user's role
+
+For example the following command would add the admin to alice@example.com role to the current 
+project.
+
+```
+   platform user:add 
+```
+
+Will present you with an interactive wizard that will allow you to choose
+precisely what rights you want to give the new user.
+
+````bash
+$ platform user:add
+
+Email address: alice@example.com
+The user's project role can be 'viewer' ('v') or 'admin' ('a').
+Project role [V/a]:
+The user's environment-level roles can be 'viewer', 'contributor', or 'admin'.
+development environment role [V/c/a]:
+sprint1 environment role [V/c/a]:
+hot-fix environment role [V/c/a]:
+master environment role [V/c/a]:
+pr-2 environment role [V/c/a]:
+pr-3 environment role [V/c/a]:
+Summary:
+    Email address: alice@example.com
+    Project role: viewer
+    development: viewer
+    sprint1: viewer
+    hot-fix: viewer
+    pr-2: viewer
+    pr-3: viewer
+Adding users can result in additional charges.
+Are you sure you want to add this user? [Y/n]
+User alice@example.com created
+```
+
+Once this has been done the user will receive an email asking her to confirm
+her details and register an account name and a password.
+
+To give Alice the 'contributor' role on the environment 'development' you could run:
+
+```
+   platform user:role alice@example.com --level environment --environment development --role contributor
+```
+
+Use `platform list` to get the full list of commands.
