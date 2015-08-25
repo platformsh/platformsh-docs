@@ -49,11 +49,13 @@ environment to "Contributor".
 
 > **Important!**
 > An environment contributor can push code to the environment but that user 
-> role does not have SSH access to the environment.** only environment 
-> Administrators have SSH access**.
+> role does not have SSH access to the environment.** by default only 
+> environment Administrators have SSH access**. You can change the default
+> in `.platform.app.yaml` by example by specifying `ssh: contributor`
 
 > **note**
-> The project owner - the person licensed to use Platform.sh - doesn't have special powers. A project owner usually has a project administrator role.
+> The project owner - the person licensed to use Platform.sh - doesn't have 
+> special powers. A project owner usually has a project administrator role.
 
 ------------------------------------------------------------------------
 
