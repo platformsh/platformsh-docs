@@ -139,7 +139,7 @@ You can get a list of the configured routes for an environment by running
 ![Platform Routes Cli](/images/platform-routes-cli.png)
 
 ##Defaults
-If you do not have a `routes.yaml` file the following default one will be loaded:
+If you do not have a `routes.yaml` file, the following default one will be loaded:
 
 ```yaml
 "http://{default}/":
@@ -155,26 +155,26 @@ If you do not have a `routes.yaml` file the following default one will be loaded
     to: "http://{default}/"
 ```
 ## Wildcard routes
-Platform.sh supports wildcard routes so you can map multiple subdomains to the
-same application. This works both for redirect an upstream routes. You can 
-simply prefix the route with an `*` (for example `*.example.com`) and 
+Platform.sh supports wildcard routes, so you can map multiple subdomains to the
+same application. This works both for redirect and upstream routes. You can
+simply prefix the route with a star (`*`) (for example `*.example.com`) and
 www.example.com, blog.example.com, us.example.com will all get routed to the
 same endpoint. 
 
 For your live environment this would function as a catch-all domain.
 
-For environments that are not mapped to a domain (basically anything else than
+For environments that are not mapped to a domain (basically anything other than
 a live master) we will also be able to handle this. Here is how:
 
-Let's imagine we have a project on the eu cluster  who's id is 
-vmwklxcpbi6zq and we created a branch called "add-theme". Platform.sh will
-automatically be able to route to this environment the url 
-`http://add-theme-vmwklxcpbi6zq.eu.platform.sh/`. If for example we also defined
-a `http://www.{default}/` route, you could visit the following url to see
+Let's imagine we have a project on the EU cluster whose id is vmwklxcpbi6zq and
+we created a branch called "add-theme". Platform.sh will automatically be able
+to route the url `http://add-theme-vmwklxcpbi6zq.eu.platform.sh/` to this
+environment. If, for example, we also defined a `http://www.{default}/` route,
+you could visit the following url to see
 `http://www---add-theme-vmwklxcpbi6zq.eu.platform.sh/` the same environment. 
  
-> **note** notice the triple dash `---` we use as a separator for the subdomain
-> this is what replaces the dot `.`.
+> **note** notice the triple dash (`---`) we use as a separator for the subdomain.
+> This is what replaces the dot (`.`).
 
 With a wildcard route this means that you could put anything before the triple 
 dashes. In our case if we have a `http://*.{default}/` route, both
