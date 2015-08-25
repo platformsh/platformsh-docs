@@ -1,4 +1,5 @@
 # `.platform/services.yaml`
+
 ## Configure Services
 
 Platform.sh allows you to completely define and configure the topology
@@ -19,7 +20,7 @@ $ mkdir .platform
 $ touch .platform/services.yaml
 ```
 
-Here is an example of a `services.yaml` file:
+Here is an example of a `.platform/services.yaml` file:
 
 ```yaml
 database1:
@@ -43,16 +44,34 @@ storage amount per project is 5GB (meaning 5120MB) which you can distribute
 between you application, as defined in 
 [.platform.app.yaml](/user_guide/reference/platform-app-yaml.html), and it's services.
 
-
 In order for a service to be available to an application in your project 
 (Platform.sh supports not only multiple backends but also multiple 
 applications in each project) you will need to refer to it in the 
 `.platform.app.yaml` file which configures the Relationships between 
 applications and services, [documented here](/user_guide/reference/platform-app-yaml.html).
 
+## Supported Services
+
+We currently support the following services:
+* MySQL **mysql**: 5.5
+* PostgreSQL **postgresql**: 9.3
+* ElasticSearch **elasticsearch**: 0.9 (*default*), 1.4
+* Redis **redis**: 2.8
+* Solr **solr**: 3.6 (*default*), 4.10
+
+If no version number is specified, the *default* one will be deployed.
+
+If the version number specified isn't available, you'll see this error when pushing your changes:
+
+```bash
+Validating configuration files.
+E: Error parsing configuration files:
+    - services.mysql.type: 'mysql:5.6' is not a valid service type.
+```
+
 ## Defaults
 
-If you do not have a `services.yaml` file the following default one will be loaded:
+If you do not have a `.platform/services.yaml` file the following default one will be loaded:
 
 ```yaml
 mysql:
@@ -69,21 +88,3 @@ solr:
 
 > **note**
 > We do not currently support persistence for Redis.
-
-## Supported Services
-
-We currently support the following services:
-* MySQL **mysql**: 5.5
-* PostgreSQL **postgresql**: 9.3
-* ElasticSearch **elasticsearch**: 0.9 (*default*), 1.4
-* Redis **redis**: 2.8
-* Solr **solr**: 3.6 (*default*), 4.10
-
-If no version number is specified, the *default* one will be deployed.
-
-If the version number specified isn't available, you'll see this error when pushing your changes:
-```bash
-Validating configuration files.
-E: Error parsing configuration files:
-    - services.mysql.type: 'mysql:5.6' is not a valid service type.
-```

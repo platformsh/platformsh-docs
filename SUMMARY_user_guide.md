@@ -13,6 +13,7 @@
     * [.platform.app.yaml](reference/platform-app-yaml.md)
       * [Upgrade .platform.app.yaml from previous version](reference/upgrade/README.md)
     * [.platform/services.yaml](reference/services-yaml.md)
+      * [Configure Solr core](reference/services-yaml-solr.md)
     * [.platform/routes.yaml](reference/routes-yaml.md)
       * [HTTP Caching](reference/cache.md)
       * [Redirects](reference/redirects.md)
