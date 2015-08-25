@@ -176,4 +176,10 @@ User alice@example.com created
 Once this has been done the user will receive an email asking her to confirm
 her details and register an account name and a password.
 
+To give Alice the 'contributor' role on the environment 'development' you could run:
+
+```
+   platform user:role alice@example.com --level environment --environment development --role contributor
+```
+
 Use `platform list` to get the full list of commands.
