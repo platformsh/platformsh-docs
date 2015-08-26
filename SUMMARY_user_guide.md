@@ -16,6 +16,7 @@
     * [.platform/routes.yaml](reference/routes-yaml.md)
       * [HTTP Caching](reference/cache.md)
       * [Redirects](reference/redirects.md)
+      * [Server Side Includes](reference/ssi.md)
     * [Configuring Multiple Applications](reference/platform-app-yaml-multi-app.md)
   * [Working with Private Repositories](using/private-repository.md)
 * [Administration and Operations](using/README.md)
