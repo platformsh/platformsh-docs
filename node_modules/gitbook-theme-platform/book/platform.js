@@ -3,6 +3,10 @@ require(["gitbook"], function(gitbook) {
         $('.book-search input[type="text"]').prop('placeholder', 'Search');
         $('.book-search').css('top', '0');
         $('.book-search').css('display', 'block');
+
+      if (location.href.indexOf('#') > -1) {
+        location.href+='';
+      }
     });
   // Replacing glossary term elements.
   $('.glossary-term').each(function(){
