@@ -71,9 +71,9 @@ Here is an example of a `routes.yaml` file:
   type: redirect
   to: "http://{default}/"
 ```
-In this example we will route both the naked domain, and the www (www being 
-redirected to the naked domain) subdomain to an application  we called 
-"frontend". We are not doing any HTTPS here. 
+In this example we will route both the naked domain and the www subdomain to an
+application we called "frontend", the www subdomain being redirected to the
+naked domain. We aren't handling any HTTPS requests here.
 
 In the following example we are not redirecting from the www to the naked domain 
 but serving from both:
@@ -109,12 +109,9 @@ project**.
  
 Look at the **[redirects](redirects.md)** section
 for even more details on how you can set up complex redirection rules including
-**partial redirects** and **wildcard redirects**.
+**partial redirects**.
 
-In the following example we are redirecting the naked domain to http, and http 
-to https which is our default. So everything will be served from the naked 
-domain with HTTPS. We also activate caching, and deactivate SSI (server side 
-includes).
+
 
 ```yaml
 http://www.{default}/:
@@ -148,8 +145,41 @@ You can get a list of the configured routes for an environment by running
 
 ![Platform Routes Cli](/images/platform-routes-cli.png)
 
+## Wildcard routes
+Platform.sh supports wildcard routes, so you can map multiple subdomains to the
+same application. This works both for redirect and upstream routes. You can
+simply prefix the route with a star (`*`), for example `*.example.com`, and
+www.example.com, blog.example.com, us.example.com will all get routed to the
+same endpoint.
+
+For your live environment this would function as a catch-all domain.
+
+For environments that are not mapped to a domain (basically anything other than
+a live master) we will also be able to handle this. Here is how:
+
+Let's imagine we have a project on the EU cluster whose id is vmwklxcpbi6zq and
+we created a branch called "add-theme". Platform.sh will automatically be able
+to route the url `http://add-theme-vmwklxcpbi6zq.eu.platform.sh/` to this
+environment. If, for example, we also defined a `http://www.{default}/` route,
+you could visit the following url to see
+`http://www---add-theme-vmwklxcpbi6zq.eu.platform.sh/` the same environment. 
+ 
+> **note** notice the triple dash (`---`) we use as a separator for the subdomain.
+> This is what replaces the dot (`.`).
+
+With a wildcard route this means that you could put anything before the triple 
+dashes. In our case if we have a `http://*.{default}/` route, both
+`http://foo---add-theme-vmwklxcpbi6zq.eu.platform.sh/` and 
+`http://bar---add-theme-vmwklxcpbi6zq.eu.platform.sh/` would work just fine.
+
+If you examine the routes of your application (for example by running
+`echo $PLATFORM_ROUTES |base64 --decode` in an SSH session on your environment).
+You will see a route such as `https://*---add-theme-vmwklxcpbi6zq.eu.platform.sh/`
+
+[You can find detailed information about caching here](cache.html).
+
 ##Defaults
-If you do not have a `routes.yaml` file the following default one will be loaded:
+If you do not have a `routes.yaml` file, the following default one will be loaded:
 
 ```yaml
 "http://{default}/":
