@@ -8,4 +8,4 @@ command to start:
 platform
 ```
 
-The credentials you enter are the same than your [Platform.sh account](https://accounts.platform.sh/user).
+The credentials you enter are the same as your [Platform.sh account](https://accounts.platform.sh/user).
