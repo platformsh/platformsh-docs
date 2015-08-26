@@ -60,8 +60,7 @@ you need to make sure Platform has a copy of your public key. It's
 pretty easy to add it to your account.
 
 1.  First off, you'll need to copy your public key to the clipboard.
-2.  Head over to your user account page on
-    [Marketplace](https://marketplace.commerceguys.com/user) and
+2.  Head over to your [Platform.sh account]](https://accounts.platform.sh/user) and
     navigate to the `SSH Keys` tab.
 3.  Click on the `Add a public key` link.
 4.  Paste the key that you copied earlier into the 'Key' text box and
@@ -73,7 +72,7 @@ That's it! You're all set. Now you'll be able to use Git on
 Platform, and able to SSH into any environment's web
 server.
 
-![Add SSH key to Marketplace](/use-platform/images/ssh-addkeytomarketplace.png)
+![Add SSH key to your Platform.sh account](/use-platform/images/ssh-addkeytomarketplace.png)
 
 ## SSH to your Web Server
 

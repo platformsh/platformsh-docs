@@ -13,15 +13,15 @@ Add a path to the `platform` command :
     source ~/.bash_profile
 
 Find your Platform.sh login details (the e-mail address and password you
-use to authenticate to Marketplace).
+use to authenticate to your [Platform.sh account](https://accounts.platform.sh/user)).
 
 Run the Platform.sh CLI for the first time. :
 
     platform
 
-You are then prompted for your Marketplace e-mail address and password.
+You are then prompted for your Platform.sh e-mail address and password.
 
 Enter your details. A list of your projects appears, along with some
 tips for getting started.
 
-##Your command line tools are now ready to use with Platform.sh.
+**Your command line tools are now ready to use with Platform.sh.**

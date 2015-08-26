@@ -79,8 +79,7 @@ command to start:
 $ platform
 ```
 
-The credentials you enter are the same for your account on [Commerce
-Guys' Marketplace](https://marketplace.commerceguys.com/user).
+The credentials you enter are the same than your [Platform.sh account](https://accounts.platform.sh/user).
 
 ### Upload your SSH public key
 
@@ -90,8 +89,8 @@ Platform.sh.
 
 #### Upload using the Web Interface
 
-To upload the public key in the browser go to [your user
-account](https://marketplace.commerceguys.com/user) and click the
+To upload the public key in the browser go to [your Platform.sh
+account](https://accounts.platform.sh/user) and click the
 SSH Keys tab. Name your key in the *Title* field, and paste the public
 key into the *Key* field. Your key will typically be found at
 `~/.ssh/id_rsa.pub` on Linux and Mac OS X machines.
