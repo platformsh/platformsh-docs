@@ -5,12 +5,12 @@
 Git is the open source version control system that is utilized by
 [Platform.sh](https://platform.sh/).
 
-Any change you make to your [Platform.sh](https://platform.sh/) project will 
+Any change you make to your Platform.sh project will 
 need to be committed via Git. You can see all the Git commit messages of an
 environment in the activity feed of the web interface.
 
 Before getting started, make sure you have it installed on your computer
-to be able to interact with [Platform.sh](https://platform.sh/).
+to be able to interact with Platform.sh.
 
 > **see also**
 >
@@ -20,7 +20,7 @@ to be able to interact with [Platform.sh](https://platform.sh/).
 > **note**
 > In addition to Git's requirements for [valid branch
 > names](https://www.kernel.org/pub/software/scm/git/docs/git-check-ref-format.html),
-> [Platform.sh](https://platform.sh/) adds two extra restrictions:
+> Platform.sh adds two extra restrictions:
 > * The '/' character isn't allowed.
 > * Branch names must be case-insensitively unique. In other words, they must
 >   differ from existing branches by more than just case. For example, if you
@@ -43,7 +43,7 @@ SSH requires two [RSA
 keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem):
 
 * A **private key** kept secret by the user
-* A **public key** stored within the [Platform.sh](https://platform.sh/) account
+* A **public key** stored within the Platform.sh account
 
 These keys are called the *public-private keypair* and usually look like
 random lines of characters, like this:
@@ -65,7 +65,7 @@ random lines of characters, like this:
     ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2nDRLgPANWParTiaGIgySG+thTtnqFGI1tMWyqDdfvH+5hL91w2tK9PzaP+NJ5hA/cOyh30YRFb52Y64toU16Ko5K1mLqNFJajjWEI5Y4VukG6betrWfqdQ7XBr/s7nBuDOFQ5+eKbvug4rRSCSo8CsEI1eI0VNQkC9HJWYK28k7KurMdTN7X/Z/4vknM4/Rm2bnMk2idoORQgomeZS1p3GkG8dQs/c0j/b4H7azxnqdcCaR4ahbytX3d49BN0WwE84C+ItsnkCt1g5tVADPrab+Ywsm/FTnGY3cJKKdOAHt7Ls5lfpyyug2hNAFeiZF0MoCekjDZ2GH2xdFc7AX/ your_email_address@example.com
 
 You will need a ssh *public/private keypair* in order to interact with
-[Platform.sh](https://platform.sh/). 
-Your public key is uploaded to your [Platform.sh](https://platform.sh/) user 
+Platform.sh. 
+Your public key is uploaded to your Platform.sh user 
 account, and it then governs authentication for Git, SSH sessions (shell access), 
-and other tools that connect to your [Platform.sh](https://platform.sh/) project.
+and other tools that connect to your Platform.sh project.

@@ -319,4 +319,4 @@ crons:
         cmd: "cd public ; drush core-cron"
 ```
 
-* [Past Changes of the configuration format can be found here](/user_guide/reference/upgrade/)
+* [Past Changes of the configuration format can be found here](reference/upgrade/)

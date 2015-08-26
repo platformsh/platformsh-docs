@@ -53,7 +53,7 @@ Each route can be configured separately its has the following properties
     * It will then be followed by `to` property, this is an HTTP redirection to 
     another route that will be identified by its template (see examples below).
 * `cache` controls [caching for the route](cache.html).
-* `ssi` controls whether Server Side Includes are enabled.
+* `ssi` controls whether Server Side Includes are enabled. For more information: see [SSI](ssi.html).
 * `redirects` controls [redirect rules](redirects.html) associated with the route.
 
 > **note** for the moment the upstream is always of this form, ending with 
@@ -88,6 +88,11 @@ but serving from both:
     upstream: "php:php"
 ```
 
+The difference between the two previous examples is that for the first one the
+server will respond directly to a request of the form `http://example.com/hello`, 
+but it will issue a 301 redirect for `http://www.example.com/foo_bar` (to 
+`http://example.com/foo_bar`).
+
 And here is an example wildcard configuration (see below for details on wildcard
 routes):
 
@@ -98,13 +103,15 @@ routes):
 ```
 
 You can see the [Configuring Multiple 
-Applications](/user_guide/reference/platform-app-yaml-multi-app.md) section for a  detailed
- view of how this works with multiple applications in the same project.
+Applications](platform-app-yaml-multi-app.md) section
+for a  detailed view of how this works with **multiple applications in the same 
+project**.
  
-In the following example, any requests arriving at the naked domain or www
-subdomain over HTTP will be redirected to the naked domain with HTTPS, which is
-our default. So everything will be served from the naked domain with HTTPS. We
-also activate caching and deactivate SSI (server side includes).
+Look at the **[redirects](redirects.md)** section
+for even more details on how you can set up complex redirection rules including
+**partial redirects**.
+
+
 
 ```yaml
 http://www.{default}/:
@@ -129,7 +136,7 @@ https://{default}/:
 ```
 ## Configuring routes on the Web Interface
 For your convenience routes can also be configured using the web interface in
-the [routes section ](overview/web-ui/configure-environment.html#routes) of the 
+the [routes section ](../overview/web-ui/configure-environment.html#routes) of the 
 environment settings .
 
 ## CLI Access
@@ -138,22 +145,6 @@ You can get a list of the configured routes for an environment by running
 
 ![Platform Routes Cli](/images/platform-routes-cli.png)
 
-##Defaults
-If you do not have a `routes.yaml` file, the following default one will be loaded:
-
-```yaml
-"http://{default}/":
-    type: upstream
-    upstream: "php:php"
-    cache:
-        enabled: true
-    ssi:
-        enabled: false
-
-"http://www.{default}/":
-    type: redirect
-    to: "http://{default}/"
-```
 ## Wildcard routes
 Platform.sh supports wildcard routes, so you can map multiple subdomains to the
 same application. This works both for redirect and upstream routes. You can
@@ -185,4 +176,21 @@ If you examine the routes of your application (for example by running
 `echo $PLATFORM_ROUTES |base64 --decode` in an SSH session on your environment).
 You will see a route such as `https://*---add-theme-vmwklxcpbi6zq.eu.platform.sh/`
 
-[You can find detailed information about caching here](/user_guide/reference/cache.html).
+[You can find detailed information about caching here](cache.html).
+
+##Defaults
+If you do not have a `routes.yaml` file, the following default one will be loaded:
+
+```yaml
+"http://{default}/":
+    type: upstream
+    upstream: "php:php"
+    cache:
+        enabled: true
+    ssi:
+        enabled: false
+
+"http://www.{default}/":
+    type: redirect
+    to: "http://{default}/"
+```
