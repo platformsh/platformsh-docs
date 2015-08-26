@@ -41,8 +41,9 @@ header("Cache-Control: max-age=600");
 echo date(DATE_RFC2822);
 ```
 
-And you visit the home page... you will, see as you refresh, the page the time 
-on the top will continue to change while the one on the bottom will only change
+And you visit the home page... you will see, as you refresh the page, the time 
+on the top will continue to change, while the one on the bottom will only change
 every 600 seconds.
 
-You can learn more on the directives on the nginx documentation page: http://nginx.org/en/docs/http/ngx_http_ssi_module.html
+You can learn more on the directives on the nginx documentation page: 
+http://nginx.org/en/docs/http/ngx_http_ssi_module.html
