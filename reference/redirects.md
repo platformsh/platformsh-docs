@@ -48,6 +48,38 @@ Each rule in `paths` is made of a key, that is a string or a PCRE regular expres
  * `code`: optional, defaults to `302` (Can be one of `301`, `302`, `307`, `308`);
  * `expires`: optional, the duration the redirect will be cached, if not present the value at the top level will be take.
 
+## Wildcard routes
+Platform.sh supports wildcard routes so you can map multiple subdomains to the
+same application. This works both for redirect an upstream routes. You can 
+simply prefix the route with an `*` (for example `*.example.com`) and 
+www.example.com, blog.example.com, us.example.com will all get routed to the
+same endpoint. 
+
+For your live environment this would function as a catch-all domain.
+
+For environments that are not mapped to a domain (basically anything else than
+a live master) we will also be able to handle this. Here is how:
+
+Let's imagine we have a project on the eu cluster  who's id is 
+vmwklxcpbi6zq and we created a branch called "add-theme". Platform.sh will
+automatically be able to route to this environment the url 
+`http://add-theme-vmwklxcpbi6zq.eu.platform.sh/`. If for example we also defined
+a `http://www.{default}/` route, you could visit the following url to see
+`http://www---add-theme-vmwklxcpbi6zq.eu.platform.sh/` the same environment. 
+ 
+> **note** notice the triple dash `---` we use as a separator for the subdomain
+> this is what replaces the dot `.`.
+
+With a wildcard route this means that you could put anything before the triple 
+dashes. In our case if we have a `http://*.{default}/` route, both
+`http://foo---add-theme-vmwklxcpbi6zq.eu.platform.sh/` and 
+`http://bar---add-theme-vmwklxcpbi6zq.eu.platform.sh/` would work just fine.
+
+If you examine the routes of your application (for example by running
+`echo $PLATFORM_ROUTES |base64 --decode` in an SSH session on your environment).
+You will see a route such as `https://*---add-theme-vmwklxcpbi6zq.eu.platform.sh/`
+
+[You can find detailed information about caching here](cache.html).
 
 ## Application-driven redirects
 

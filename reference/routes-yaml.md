@@ -88,6 +88,11 @@ but serving from both:
     upstream: "php:php"
 ```
 
+The difference between the two previous examples is that for the first one the
+server will respond directly to a request of the form `http://example.com/hello`, 
+but it will issue a 301 redirect for `http://www.example.com/foo_bar` (to 
+`http://example.com/foo_bar`).
+
 And here is an example wildcard configuration (see below for details on wildcard
 routes):
 
@@ -98,12 +103,18 @@ routes):
 ```
 
 You can see the [Configuring Multiple 
-Applications](/user_guide/reference/platform-app-yaml-multi-app.md) section for a  detailed
- view of how this works with multiple applications in the same project.
+Applications](platform-app-yaml-multi-app.md) section
+for a  detailed view of how this works with **multiple applications in the same 
+project**.
  
+Look at the **[redirects](redirects.md)** section
+for even more details on how you can set up complex redirection rules including
+**partial redirects** and **wildcard redirects**.
+
 In the following example we are redirecting the naked domain to http, and http 
-to https which isour default. So everything will be served from the naked domain
- with HTTPS. We also activate caching, deactivate SSI (server side includes).
+to https which is our default. So everything will be served from the naked 
+domain with HTTPS. We also activate caching, and deactivate SSI (server side 
+includes).
 
 ```yaml
 http://www.{default}/:
@@ -128,7 +139,7 @@ https://{default}/:
 ```
 ## Configuring routes on the Web Interface
 For your convenience routes can also be configured using the web interface in
-the [routes section ](overview/web-ui/configure-environment.html#routes) of the 
+the [routes section ](../overview/web-ui/configure-environment.html#routes) of the 
 environment settings .
 
 ## CLI Access
@@ -153,35 +164,3 @@ If you do not have a `routes.yaml` file the following default one will be loaded
     type: redirect
     to: "http://{default}/"
 ```
-## Wildcard routes
-Platform.sh supports wildcard routes so you can map multiple subdomains to the
-same application. This works both for redirect an upstream routes. You can 
-simply prefix the route with an `*` (for example `*.example.com`) and 
-www.example.com, blog.example.com, us.example.com will all get routed to the
-same endpoint. 
-
-For your live environment this would function as a catch-all domain.
-
-For environments that are not mapped to a domain (basically anything else than
-a live master) we will also be able to handle this. Here is how:
-
-Let's imagine we have a project on the eu cluster  who's id is 
-vmwklxcpbi6zq and we created a branch called "add-theme". Platform.sh will
-automatically be able to route to this environment the url 
-`http://add-theme-vmwklxcpbi6zq.eu.platform.sh/`. If for example we also defined
-a `http://www.{default}/` route, you could visit the following url to see
-`http://www---add-theme-vmwklxcpbi6zq.eu.platform.sh/` the same environment. 
- 
-> **note** notice the triple dash `---` we use as a separator for the subdomain
-> this is what replaces the dot `.`.
-
-With a wildcard route this means that you could put anything before the triple 
-dashes. In our case if we have a `http://*.{default}/` route, both
-`http://foo---add-theme-vmwklxcpbi6zq.eu.platform.sh/` and 
-`http://bar---add-theme-vmwklxcpbi6zq.eu.platform.sh/` would work just fine.
-
-If you examine the routes of your application (for example by running
-`echo $PLATFORM_ROUTES |base64 --decode` in an SSH session on your environment).
-You will see a route such as `https://*---add-theme-vmwklxcpbi6zq.eu.platform.sh/`
-
-[You can find detailed information about caching here](/user_guide/reference/cache.html).
