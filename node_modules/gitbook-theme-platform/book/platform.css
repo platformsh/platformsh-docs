@@ -20,6 +20,7 @@ body,
   text-align: right;
   display: inline-block;
   padding-left: 10px;
+  padding-top: 4px;
   height: 17px;
 }
 #platform-bar .site-name {
@@ -110,6 +111,10 @@ body,
 }
 .home-page .row {
   padding: 0 10px;
+}
+.home-page #user-account .dropdown {
+  border: 1px solid #403f3f;
+  border-top: none;
 }
 #home-content {
   padding: 73px 0 50px;
