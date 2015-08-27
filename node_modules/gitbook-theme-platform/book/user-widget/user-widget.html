@@ -1,0 +1,31 @@
+<div id="user-account" ng-controller="navBar">
+  <ul class="nav navbar-nav navbar-right logged-in" ng-show="platform.user.uid != null">
+    <li class="platforms"><a href="{{accountsPath}}/user">Platforms</a>
+      <div class="dropdown" ng-class="{'overflow': platform.projects.length >= 10}" ng-show="platform.projects.length != 0">
+        <ul>
+          <li><span class="area">Europe</span></li>
+          <li ng-repeat="project in platform.projects"><a href="{{ project.uri }}">{{ project.name }}</a></li>
+          <li class="view-all" ng-show="platform.projects.length >= 10"><a href="{{accountsPath}}">View all Platforms</a></li>
+        </ul>
+      </div>
+      <ul ng-show="platform.projects.length == 0" class="dropdown platform-empty"><li><p><span>You don't have any Platform.sh projects yet.</span><a href="{{accountsPath}}/platform/buy-now" class="btn">Get a platform</a></p></li></ul>
+    </li>
+    <li class="user" ng-show="platform.user.uid != null">
+      <a class="user-pic" href="{{accountsPath}}/user" title="My Account"><img src="{{platform.user.picture}}" ng-show="platform.user.picture != null"><img src="{{ defaultUserPic }}" ng-show="platform.user.picture == null"></a>
+      <ul class="dropdown">
+        <li><a href="{{accountsPath}}/platform/support">Support</a></li>
+        <li><a href="{{accountsPath}}/user">Account Settings</a></li>
+        <li><a href="{{accountsPath}}/user/{{platform.user.uid}}/orders">Billing History</a></li>
+        <li><a href="{{accountsPath}}/user/logout">Log Out</a></li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right logged-out" ng-show="platform.user && platform.user.uid == null">
+    <li>
+      <a href="{{accountsPath}}/platform/login">Log in</a>
+    </li>
+    <li>
+      <a href="{{accountsPath}}/platform/buy-now" class="call-to-action">Get a platform</a>
+    </li>
+  </ul>
+</div>

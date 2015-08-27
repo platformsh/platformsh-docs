@@ -2,10 +2,14 @@ module.exports = {
     book: {
         assets: "./book",
         js: [
-            "platform.js"
+          "platform.js",
+          "user-widget/user-widget.js",
+          "user-widget/angular.min.js",
+          "user-widget/app.js"
         ],
         css: [
-            "platform.css"
+          "platform.css",
+          "user-widget/user-widget.css"
         ],
         html: {
           "head:end": "<link rel='stylesheet' type='text/css' href='//cloud.typography.com/7640312/659566/css/fonts.css'>",

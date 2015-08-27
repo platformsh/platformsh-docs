@@ -108,9 +108,6 @@ body,
   max-width: 1200px;
   margin: 0 auto;
 }
-.home-page #platform-bar .branding {
-  padding-left: 0;
-}
 .home-page .row {
   padding: 0 10px;
 }
@@ -741,6 +738,9 @@ strong .glossary-term .tooltip-wrapper {
   }
   #platform-bar .branding {
     padding-left: 50px;
+  }
+  #platform-bar .platform-links {
+    padding-right: 50px;
   }
   #platform-bar .site-name,
   #platform-bar #navlink {
