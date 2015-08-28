@@ -4,6 +4,14 @@ One of the ways [Platform.sh](https://platform.sh/) keeps things secure
 is by using SSH behind the scenes. Users connect to their Platform git
 repository and to the CLI also uses SSH.
 
+When you create a new project the wizard will to propose you to add your ssh
+key.
+
+![Setting Up Your Project Add SSH Key Done](/images/03-setting-up-your-project-add-ssh-key-done.png)
+
+You can also manage SSH keys through the CLI (see below). Or through the 
+settings screen on your account page.
+
 ## Find your Public-Private Keypair
 
 If you use Linux, you probably already have keys. The private key is usually in a
@@ -61,7 +69,7 @@ pretty easy to add it to your account.
 
 1.  First off, you'll need to copy your public key to the clipboard.
 2.  Head over to your user account page on
-    [Marketplace](https://marketplace.commerceguys.com/user) and
+    [the Platform.sh Accounts page](https://accounts.platform.sh/user) and
     navigate to the `SSH Keys` tab.
 3.  Click on the `Add a public key` link.
 4.  Paste the key that you copied earlier into the 'Key' text box and
@@ -73,7 +81,7 @@ That's it! You're all set. Now you'll be able to use Git on
 Platform, and able to SSH into any environment's web
 server.
 
-![Add SSH key to Marketplace](/use-platform/images/ssh-addkeytomarketplace.png)
+![Edit Account Ssh](/images/edit-account-ssh.png)
 
 ## SSH to your Web Server
 
