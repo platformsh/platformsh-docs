@@ -1,10 +1,14 @@
-# PHP Toolstacks
+# PHP Applications
 
-Platform.sh supports any PHP application, in this section we provide information specific
+We have tested Platform.sh extensively with Drupal and Symfony applications, but it's 
+versatility allows it to support any PHP application (people have been running 
+Wordpress, CiviCrm, Laravel Applications, Magento and Prestashop on it as well as
+custom built PHP applications), in this section we provide information specific
 to the configuration and operation of specific Frameworks and Toolstacks.
 
-It is noteworthy that Platform.sh provids specific tooling to help you be more productive
-(through built-in composer support or built-in drush support).
+It is noteworthy that for Drupal and Symfony Platform.sh provides specific 
+tooling to help you be more productive (through built-in composer support or 
+built-in drush support).
 
 > **note**
 > Find many examples for those configuration files on the [platformsh-examples repository on 
@@ -13,6 +17,9 @@ Github](https://github.com/platformsh/platformsh-examples).
 Platform.sh supports custom PHP configurations.
 
 ## Configuring PHP
+
+You can choose which version of PHP you want to run in your `.platform.app.yaml` file, currently
+supported versions: PHP 5.4 (default), PHP 5.5 and PHP 5.6.
 
 ### PHP extensions
 
