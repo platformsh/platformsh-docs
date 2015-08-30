@@ -1,6 +1,6 @@
 # PHP Applications
 
-We have tested Platform.sh extensively with Drupal and Symfony applications, but it's 
+We have tested Platform.sh extensively with Drupal and Symfony applications, but its 
 versatility allows it to support any PHP application (people have been running 
 Wordpress, CiviCrm, Laravel Applications, Magento and Prestashop on it as well as
 custom built PHP applications), in this section we provide information specific
