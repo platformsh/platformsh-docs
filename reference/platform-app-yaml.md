@@ -49,7 +49,19 @@ crons:
 The `name` is the unique identifier of the application. Platform.sh
 supports multiple applications within a project, so each application
 must have a **unique name** within a project. The name may only be 
-composed of lower case alpha-numeric characters. (a-z0-9)
+composed of lower case alpha-numeric characters. (a-z0-9). This name
+is used in the `.platform/routes.yaml` to define the HTTP upstream
+(by default `php:php`) if you called your application `app` you will
+need to use `app:php` in the upstream field. You can also use this
+name in multi-application relationships. 
+
+> **note* 
+> If you change the name you should think about updating your other
+> configuration files (routes.yaml or the different .platform.app.yaml
+> you will have in a multi-application project.
+> Changing the name has no effect on your different services (databases
+> etc) you data will still be there.
+ 
 
 ### Type and Build
 
