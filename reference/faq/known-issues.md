@@ -20,6 +20,31 @@ We support PostgreSQL, ElasticSearch, Redis and MongoDB Out of the box. Batterie
 
 Yes ! Branching an environment creates an exact copy (snapshot) of the parent environment, containing the files, the database, the services...
 
+##Do you have a local writable file-system?
+
+Yes! Unlike other PaaS providers Platform.sh supports non-ephemeral 
+storage. When you configure your application you can tell us what directories
+you want to be read/write (these are called mounts). These will be mounted
+on a distributed file system (which is transparent for you). When you back-up
+your environment they will be backed up as well. When you create a new staging
+environment... these will be cloned with the rest of your data.
+
+##So, why do I get an error with "Read-only file system" when I try to manually modify files on Platform.sh?
+Everything except the mounts you declared as Read/Write will be read-only. Read/Write
+is there for your data, for your uploads, for logs and temporary files. Not for
+your code. In order to change code on Platform.sh you have to go through Git.
+
+This is what gives you all of the benefits of having repeatable deployments,
+consistent backups, traceability, magic creation of staging/dev environments.
+
+In Platform.sh you can not just "hack production". It is a constraint, but it
+is a good constraint. 
+
+During the build phase of your application everything is still read/write so
+you can while deploying do whatever you want (compile stuff or generate 
+anything you need on the storage). But once deployed the main file-system
+will turn read-only.
+
 ## I am using Drupal and  I see "File not found" why?
 
 If you see the "File not found" when accessing your site within a browser, this means that you’ve pushed your code as a vanilla project but no *index.php* has been found.

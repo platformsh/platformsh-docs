@@ -25,16 +25,21 @@ It supports Caching, so you do not need Varnish or an extra cache in front of it
 
 The configuration of the router service happens through the special [.platform/routes.yaml](../../user_guide/reference/routes-yaml.html) file
 
-## PHP service
+## Application/PHP service
 
-Platform.sh can run multiple applications in the same project, as such each
-application is considered to be a service by itself (which you can route to
-in the `.platform/routes.yaml`) and which you can reference as a relationship
-from another application in its `.platform.app.yaml`. 
+This is where your application code lives and runs. Platform.sh can run multiple
+applications in the same project, as such each application is considered to be a
+service by itself (which you can route to in the `.platform/routes.yaml`) and 
+which you can reference as a relationship from another application in its 
+`.platform.app.yaml`. 
 
 We currently upport PHP 5.4, PHP 5.5, PHP 5.6, the APC and ZO+ opcode caches, 
 and all major PHP extensions, rewriting, and mapping. Also, you can have a 
 custom PHP.INI file.
+
+> **note*
+> The file system on the application service turns Read-Only after deployment
+> except for the mounts you specifically set as Read/Write in `.platform.app.yaml`. 
 
 ## MariaDB (Database service)
 
