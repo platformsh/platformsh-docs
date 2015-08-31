@@ -1,16 +1,17 @@
-# Backup and Restore
+# Snapshot and Restore
 
-## Backup
+## Snapshot
 
-### Manual backup
+### Manual snapshot
 
-Backups are triggered directly via the Web Interface or via the CLI. The backup
-creates a complete snapshot of the environment. It includes all
+Snapshots are triggered directly via the Web Interface or via the CLI. The snapshot
+creates a complete backup of the environment. It includes all
 persistent data from all running services (MySQL, SOLR...) and any files
 stored on the mounted volumes.
 
 > **note**
-> Make backups of your live environment before merging an environment to the live environment.
+> We advise you to make backups of your live environment before merging an environment 
+> to the live environment, or each time you increase the storage space of your services.
 
 Using the CLI:
 
@@ -22,11 +23,11 @@ $ platform environment:backup
 
 You will see the snapshot in the activity feed of you environment in the Platform.sh Web Interface where you can trigger the restore by clicking on the `restore` link.
 
-You can list existing backups using the CLI using:
+You can list existing snapshots using the CLI using:
 ```bash
 $ platform environment:backup --list
 
-Finding backups for the environment master
+Finding snapshots for the environment master
 +---------------------+------------+----------------------+
 | Created             | % Complete | Backup name          |
 +---------------------+------------+----------------------+
@@ -43,29 +44,18 @@ You can restore a specific snapshot with the CLI with:
 $ platform environment:restore 92c9a4b2aa75422efb3d
 ```
 
+### Automated snapshots
 
-### Automated backups
+No snapshot is triggered automatically on Platform.sh Standard. You can
+trigger your snapshot via the Web Interface or via the CLI.
 
-**Platform.sh Standard**
-
-No backup is triggered automatically on Platform.sh Standard. You can
-trigger your backup via the Web Interface or via the CLI.
-
-If you want to automate your backups, you can use Jenkins and trigger
+If you want to automate your snapshots, you can use Jenkins and trigger
 the following CLI command:
 
 ```bash
 $ platform environment:backup
 ```
 
-> **note**
-> We advise you to backup your environment each time you increase the storage space of your services.
+### Retention
 
-**Platform.sh Enterprise**
-
-Platform.sh Enterprise backups are run daily. Backups are retained for a
-month.
-
-In parallel we run EBS snapshots every four hours. Those snapshots are
-kept for seven days.
-
+Your snapshots are kept for 14 days.
