@@ -8,5 +8,4 @@ command to start:
 platform
 ```
 
-The credentials you enter are the same for your account on [Commerce
-Guys' Marketplace](https://marketplace.commerceguys.com/user).
+The credentials you enter are the same as your [Platform.sh account](https://accounts.platform.sh/user).
