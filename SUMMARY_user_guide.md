@@ -21,7 +21,7 @@
   * [Working with Private Repositories](using/private-repository.md)
 * [Administration and Operations](using/README.md)
   * [User administration](using/user-administration.md)
-  * [Backup and restore](using/backup-and-restore.md)
+  * [Snapshot and Restore](using/backup-and-restore.md)
   * [Going Live](using/going-live.md)
   * [Setting up local development](using/set-up-local-development.md)
   * [Using SSH](using/use-SSH.md)
