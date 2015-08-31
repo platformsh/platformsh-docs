@@ -13,7 +13,7 @@ body,
   width: 100%;
   z-index: 2;
   height: 53px;
-  
+
   .branding {
     text-transform: uppercase;
     color: #fff;
@@ -379,21 +379,28 @@ body,
   .btn.fa-edit {
     display: block;
   }
-  .btn.fa-edit {
-    float: right;
-    padding-right: 30px;
-    overflow: hidden;
-    width: 0;
-    &:before {
-      content: "\f09b";
-      font-size: 30px;
-      font-family: FontAwesome;
-      line-height: 50px;
-      right: 0;
-      left: auto;
-      position: absolute;
-      background: #fff;
-    }
+}
+#edit-link {
+  position: absolute;
+  right: 10px;
+  top: -42px;
+  padding-right: 30px;
+  overflow: hidden;
+  width: 0;
+  height: 30px;
+  color: #ccc;
+  &:before {
+    content: "\f09b";
+    font: 30px/30px FontAwesome;
+    height: 30px;
+    right: 0;
+    left: auto;
+    position: absolute;
+    background: #fff;
+  }
+  &:hover {
+    text-decoration: none;
+    color: #444;
   }
 }
 .book .book-body .body-inner,
