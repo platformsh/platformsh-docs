@@ -12,6 +12,12 @@ project, all of the services are backed-up.
 The topology is stored into a `services.yaml` file which should be added
 inside the `.platform` folder at the root of your Git repository.
 
+> **WARNING**
+> Some changes to `services.yaml` can be destructive (like removing or
+> renaming a service). Backup your environment before you change anything
+> in this file.
+
+
 If you don't have a `.platform` folder, you need to create one:
 
 ```bash
@@ -32,10 +38,18 @@ database2:
 ```
 
 This configuration will give you a MySQL with 2GB of disk space, and a Postgres 
-instance with 1GB allocated.You are free to name each service as you wish
+instance with 1GB allocated. You are free to name each service as you wish
 (*lowercase alphanumeric only*). Usually you will see in our examples that we 
 simply call the mysql: `mysql`. Note that you can have multiple instances of 
 each services.
+
+> **CAVEAT**
+> Because we support multiple services of the same type (you can have 3 
+> different MySQL instances), changing the name of the service in services.yaml
+> will be interpreted as destroying the existing service and creating a new one.
+> Which will make **all the data in that service disappear forever**.
+> Remeber: backup environments in which you have important data before modifying
+> this file.
 
 The `disk`  attribute is the size of the persistent disk of the application (in 
 MB) you can to allocate to this service. So, for example, the current default

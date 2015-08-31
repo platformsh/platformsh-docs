@@ -53,7 +53,6 @@ following keys:
  * `expires`: optional, the duration the redirect will be cached (defaults to
               the `expires` value defined directly under the `redirects` key.
 
-
 ## Application-driven redirects
 
 If none of the above options satisfy your redirection needs, you can still

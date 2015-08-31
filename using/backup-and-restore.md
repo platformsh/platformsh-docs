@@ -18,6 +18,32 @@ Using the CLI:
 $ platform environment:backup
 ```
 
+### Manual Restore
+
+You will see the snapshot in the activity feed of you environment in the Platform.sh Web Interface where you can trigger the restore by clicking on the `restore` link.
+
+You can list existing backups using the CLI using:
+```bash
+$ platform environment:backup --list
+
+Finding backups for the environment master
++---------------------+------------+----------------------+
+| Created             | % Complete | Backup name          |
++---------------------+------------+----------------------+
+| 2015-06-19 17:11:42 | 100        | 2ca4d90639f706283fee |
+| 2015-05-28 15:05:42 | 100        | 1a1fbcb9943849706ee6 |
+| 2015-05-21 14:38:40 | 100        | 7dbdcdb16f41f9e1c061 |
+| 2015-05-20 15:29:58 | 100        | 4997900d2804d5b2fc39 |
+| 2015-05-20 13:31:57 | 100        | c1f2c976263bec03a10e |
+| 2015-05-19 14:51:18 | 100        | 71051a8fe6ef78bca0eb |
+```
+
+You can restore a specific snapshot with the CLI with:
+```bash
+$ platform environment:restore 92c9a4b2aa75422efb3d
+```
+
+
 ### Automated backups
 
 **Platform.sh Standard**
@@ -43,7 +69,3 @@ month.
 In parallel we run EBS snapshots every four hours. Those snapshots are
 kept for seven days.
 
-## Restore
-
-Commerce Guys can restore from backup for you. Request a restore by
-opening a ticket which contains the name of the environment to restore.
