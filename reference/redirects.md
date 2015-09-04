@@ -30,6 +30,7 @@ http://{default}/:
     expires: 1d
     paths:
       "/from": { "to": "http://example.com/" }
+      "/regexp/(.*)/matching": { "to": "http://example.com/$1", regexp: true }
 ```
 
 This format is much richer, and works with any type of route, including a route that is served directly by an application.
@@ -45,13 +46,10 @@ following keys:
 
  * `to`: required, a partial (`"/toto"` or `"//toto"`) or full URL (`"http://example.com/"`)
  * `regexp`: optional, determines if the path is a regular expression. (Defaults to `false`.)
- * `prefix`: optional, determines if the redirect applies to just the path, or
-             also to all children of the path. (Defaults to `true` if regexp is
-             `false`, not supported when regexp is `true`.)
+ * `prefix`: optional, determines if the redirect applies to just the path, oralso to all children of the path. (Defaults to `true` if regexp is false`, not supported when regexp is `true`.)
  * `append_suffix`: optional, determines if the suffix is carried over with the redirect (Defaults to `true` if regexp is `false`, not supported when regexp is `true`.)
  * `code`: optional, defaults to `302` (Can be one of `301`, `302`, `307`, `308`)
- * `expires`: optional, the duration the redirect will be cached (defaults to
-              the `expires` value defined directly under the `redirects` key.
+ * `expires`: optional, the duration the redirect will be cached (defaults to the `expires` value defined directly under the `redirects` key.)
 
 ## Application-driven redirects
 
