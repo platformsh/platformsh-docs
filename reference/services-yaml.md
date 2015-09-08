@@ -102,7 +102,7 @@ solr:
 
 ### Messaging
 
-* RabbitMQ **rabbitmq**: 3.5
+* RabbitMQ **rabbitmq**: 3.5.4
 
 If no version number is specified, the *default* one will be deployed.
 
