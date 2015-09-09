@@ -45,6 +45,23 @@ cd my_project_name/
 composer install
 ```
 
+## Why do I get permission denied on a deploy hook?
+
+If you get the following error during a deploy hook:
+```bash
+Launching hook 'app/console cache:clear'. 
+/bin/dash: 1: app/console: Permission denied
+```
+
+This means that you might have committed the executable file (in this case ``app/console``) without the execute bit set.
+
+Run this to fix the problem:
+```bash
+chmod a+x app/console
+git add app/console
+git commit -m "Fix the console script execute permission."
+```
+
 > -   [Install Composer](https://getcomposer.org/download/)
 > -   [Checking out a versioned Symfony Application](http://symfony.com/doc/current/book/installation.html#checking-out-a-versioned-symfony-application)
 
