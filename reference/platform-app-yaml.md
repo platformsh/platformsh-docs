@@ -244,6 +244,23 @@ application in MB.
 > The minimum recommended disk size is 256MB. If you see the error `UserError: Error building the project: Disk size may not be smaller than 128MB`, increase the size to 256MB.
 
 
+## Runtime
+
+The `runtime` defines sizing hints (in MB) used to determine the maximum amount of requests to process concurrently (i.e. number of workers) for a PHP instance depending on its size. Those are not hard limits.
+
+Example:
+
+    runtime:
+        sizing_hints:
+            reserved_memory: 70
+            request_memory: 45
+
+Keys are:
+
+-   **reserved_memory**: is the memory that is used by the PHP container independently of the request (nginx, page cache, opcode cache, etc.). Default to 70 MB.
+-   **request_memory**: is the amount of system memory you expect a single request to consume on average. Default to 45 MB.
+
+
 ### Mounts
 
 The `mounts` is an object whose keys are paths relative to the root of
