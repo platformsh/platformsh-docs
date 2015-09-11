@@ -86,12 +86,23 @@ solr:
 
 ## Supported Services
 
-We currently support the following services:
+### Database
+
 * MySQL **mysql**: 5.5
 * PostgreSQL **postgresql**: 9.3
+
+### Search
+
 * ElasticSearch **elasticsearch**: 0.9 (*default*), 1.4
-* Redis **redis**: 2.8
 * Solr **solr**: 3.6 (*default*), 4.10
+
+### Cache
+
+* Redis **redis**: 2.8
+
+### Messaging
+
+* RabbitMQ **rabbitmq**: 3.5.4
 
 If no version number is specified, the *default* one will be deployed.
 
