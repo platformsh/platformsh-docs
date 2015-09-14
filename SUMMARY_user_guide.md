@@ -18,6 +18,7 @@
       * [Redis](reference/services/redis.md)
       * [Solr](reference/services/solr.md)
       * [Elasticsearch](reference/services/elasticsearch.md)
+      * [RabbitMQ](reference/services/rabbitmq.md)
     * [.platform/routes.yaml](reference/routes-yaml.md)
       * [HTTP Caching](reference/cache.md)
       * [Redirects](reference/redirects.md)
