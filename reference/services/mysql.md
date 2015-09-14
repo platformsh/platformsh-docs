@@ -34,7 +34,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](ref
 In your ``.platform/services.yaml``:
 
 ```yaml
-database1:
+mydatabase:
     type: mysql:5.5
     disk: 1024
 ```
@@ -43,7 +43,7 @@ In your ``.platform.app.yaml``:
 
 ```yaml
 relationships:
-    database: "database1:mysql"
+    database: "mydatabase:mysql"
 ```
 
 You can them use the service in a configuration file of your application with something like:
@@ -57,9 +57,17 @@ if (!$relationships) {
 
 $relationships = json_decode(base64_decode($relationships), TRUE);
 
-foreach ($relationships['elasticsearch'] as $endpoint) {
-  $container->setParameter('elasticsearch_host', $endpoint['host']);
-  $container->setParameter('elasticsearch_port', $endpoint['port']);
+foreach ($relationships['database'] as $endpoint) {
+  if (empty($endpoint['query']['is_master'])) {
+    continue;
+  }
+  $container->setParameter('database_driver', 'pdo_' . $endpoint['scheme']);
+  $container->setParameter('database_host', $endpoint['host']);
+  $container->setParameter('database_port', $endpoint['port']);
+  $container->setParameter('database_name', $endpoint['path']);
+  $container->setParameter('database_user', $endpoint['username']);
+  $container->setParameter('database_password', $endpoint['password']);
+  $container->setParameter('database_path', '');
 }
 ```
 
