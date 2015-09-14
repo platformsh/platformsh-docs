@@ -14,7 +14,15 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](ref
 {
     "database": [
         {
-            @TODO.
+            "username": "main",
+            "password": "main",
+            "host": "248.0.65.196",
+            "query": {
+                "is_master": true
+            },
+            "path": "main",
+            "scheme": "pgsql",
+            "port": 5432
         }
     ]
 }
@@ -49,6 +57,12 @@ if (!$relationships) {
 $relationships = json_decode(base64_decode($relationships), TRUE);
 
 foreach ($relationships['database'] as $endpoint) {
-  @TODO
+  $container->setParameter('database_driver', 'pdo_' . $endpoint['scheme']);
+  $container->setParameter('database_host', $endpoint['host']);
+  $container->setParameter('database_port', $endpoint['port']);
+  $container->setParameter('database_name', $endpoint['path']);
+  $container->setParameter('database_user', $endpoint['username']);
+  $container->setParameter('database_password', $endpoint['password']);
+  $container->setParameter('database_path', '');
 }
 ```
