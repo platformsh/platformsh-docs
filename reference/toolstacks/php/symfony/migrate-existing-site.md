@@ -71,7 +71,7 @@ environment being built.
 Export your database in an SQL file or in a compressed file.
 
 Copy it via SSH to the remote environment on Platform into the
-`/app/tmp` folder which is writable:
+`/tmp` folder which is writable:
 
 ```bash
 $ scp database.sql [PROJECT-ID]-master@ssh.[REGION].platform.sh:/tmp
