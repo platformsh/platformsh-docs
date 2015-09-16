@@ -40,6 +40,12 @@ body,
   white-space: nowrap;
   overflow: hidden;
 }
+#user-account .navbar-right a.call-to-action {
+  padding: 7px 8px;
+}
+#user-account ul.logged-in {
+  margin-top: -5px;
+}
 #platform-bar #navlink {
   display: inline-block;
   line-height: 33px;
