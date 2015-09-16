@@ -6,13 +6,13 @@ body,
 #platform-bar {
   background: #000;
   color: #fff;
-  padding: 10px 0;
+  padding: 10px 0 6px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 2;
-  height: 53px;
+  min-height: 53px;
 
   .branding {
     text-transform: uppercase;
@@ -73,7 +73,7 @@ body,
         display: none;
         position: absolute;
         top: 30px;
-        right: 0;
+        left: -20px;
         background: #000;
         padding: 10px 0;
         line-height: 1em;
@@ -94,6 +94,15 @@ body,
         display: inline-block;
       }
     }
+  }
+}
+
+#user-account {
+  .navbar-right a.call-to-action {
+    padding: 7px 8px;
+  }
+  ul.logged-in {
+    margin-top: -5px;
   }
 }
 .book .book-body,
@@ -738,14 +747,6 @@ strong .glossary-term .tooltip-wrapper {
     #navlink {
       font-size: 1.15em;
     }
-    #navlink {
-      .dropdown {
-        ul li ul {
-          right: auto;
-          left: -20px;
-        }
-      }
-    }
   }
   #home-content .container {
     width: 47%;
@@ -956,11 +957,41 @@ display: table;
 }
 
 @media (max-width: 768px) {
-#get-started .container {
-  background-image: none;
-  padding-left: 0px;
-}
-
+  #get-started .container {
+    background-image: none;
+    padding-left: 0px;
+  }
+  #platform-bar .site-name {
+    margin-right: 10px;
+    span {
+      position: relative;
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-indent: -9999px;
+      width: 20px;
+      overflow: hidden;
+      &:before {
+        text-indent: 0;
+        content: "\f015";
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 16px;
+        line-height: 16px;
+        opacity: .5;
+      }
+      &:hover:before {
+        opacity: 1;
+      }
+    }
+  }
+  #platform-bar #navlink .divider {
+    display: none;
+  }
 }
 @media (min-width: 768px) {
 #get-started .container {

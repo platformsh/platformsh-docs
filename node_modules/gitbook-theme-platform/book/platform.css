@@ -6,13 +6,13 @@ body,
 #platform-bar {
   background: #000;
   color: #fff;
-  padding: 10px 0;
+  padding: 10px 0 6px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 2;
-  height: 53px;
+  min-height: 53px;
 }
 #platform-bar .branding {
   text-transform: uppercase;
@@ -39,12 +39,6 @@ body,
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-}
-#user-account .navbar-right a.call-to-action {
-  padding: 7px 8px;
-}
-#user-account ul.logged-in {
-  margin-top: -5px;
 }
 #platform-bar #navlink {
   display: inline-block;
@@ -82,7 +76,7 @@ body,
   display: none;
   position: absolute;
   top: 30px;
-  right: 0;
+  left: -20px;
   background: #000;
   padding: 10px 0;
   line-height: 1em;
@@ -101,6 +95,12 @@ body,
 }
 #platform-bar #navlink .dropdown ul li:hover ul {
   display: inline-block;
+}
+#user-account .navbar-right a.call-to-action {
+  padding: 7px 8px;
+}
+#user-account ul.logged-in {
+  margin-top: -5px;
 }
 .book .book-body,
 .book .book-summary {
@@ -757,10 +757,6 @@ strong .glossary-term .tooltip-wrapper {
   #platform-bar #navlink {
     font-size: 1.15em;
   }
-  #platform-bar #navlink .dropdown ul li ul {
-    right: auto;
-    left: -20px;
-  }
   #home-content .container {
     width: 47%;
     margin: 0 1.5%;
@@ -972,6 +968,37 @@ button {
   #get-started .container {
     background-image: none;
     padding-left: 0px;
+  }
+  #platform-bar .site-name {
+    margin-right: 10px;
+  }
+  #platform-bar .site-name span {
+    position: relative;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-indent: -9999px;
+    width: 20px;
+    overflow: hidden;
+  }
+  #platform-bar .site-name span:before {
+    text-indent: 0;
+    content: "\f015";
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 16px;
+    line-height: 16px;
+    opacity: .5;
+  }
+  #platform-bar .site-name span:hover:before {
+    opacity: 1;
+  }
+  #platform-bar #navlink .divider {
+    display: none;
   }
 }
 @media (min-width: 768px) {
