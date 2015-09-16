@@ -11,12 +11,14 @@
   font-size: 12px;
   color: rgba(255,255,255,.85);
   font-weight: 400;
+  text-decoration: none;
 }
 #user-account li a:hover {
   color: #fff;
 }
 #user-account a.call-to-action {
   border: 1px solid #fff;
+  display: inline-block;
 }
 #user-account > ul > li > a {
   text-transform: uppercase;
@@ -34,6 +36,7 @@
   margin-left: 0;
 }
 #user-account .nav > li > .user-pic {
+  box-sizing: border-box;
   display: inline-block;
   width: 54px;
   padding: 0 20px 0 0;
@@ -73,6 +76,8 @@
 #user-account .platforms .dropdown ul {
   padding: 0;
   margin: 0;
+}
+#user-account .platforms .dropdown > ul {
   max-height: 300px;
   overflow-y: scroll;
 }
@@ -129,6 +134,12 @@
 }
 #user-account li:hover .dropdown {
   display: inline-block;
+}
+#user-account .loading {
+  opacity: .5;
+}
+#user-account .loading a {
+  cursor: not-allowed;
 }
 
 /* Responsive settings */
