@@ -31,9 +31,13 @@ myredis:
     type: redis:2.8
 ```
 
-In your ``.platform.app.yaml``:
+In your ``.platform.app.yaml``, configure the relationship and enable the [PHP redis extension](user_guide/reference/toolstacks/php/index.html#php-extensions.md):
 
 ```yaml
+runtime:
+    extensions:
+        - redis
+
 relationships:
     redis: "myredis:redis"
 ```
