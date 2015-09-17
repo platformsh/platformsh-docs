@@ -59,12 +59,21 @@ foreach ($relationships['rabbitmq'] as $endpoint) {
 }
 ```
 
-## Known issue
+## Known issues
 
-The PHP container that is deployed doesn't ship with the [AMQP](https://pecl.php.net/package/amqp) PHP extension. This means you won't be able to use the RabbitMQ Management Command Line Tool as is.
+### AMQP PHP extension
 
- You can work around this issue by using any other CLI (like [amqp-utils](https://github.com/dougbarth/amqp-utils/))and include it in the dependencies in your ``.platform.app.yaml``:
- 
+The PHP container that is deployed doesn't ship with the [AMQP](https://pecl.php.net/package/amqp) PHP extension. The reason is that there is no stable release yet. 
+
+This means you won't be able to connect to RabbitMQ within the PHP container as you would do for MySQL for example.
+
+A possible workaround is to use a PHP library (like [PHP AMQPlib](https://github.com/videlalvaro/php-amqplib)).
+
+### Use a CLI
+
+You can use any CLI for RabbitMQ (like [amqp-utils](https://github.com/dougbarth/amqp-utils/)).
+
+All you need to do is to include it as a dependency in your ``.platform.app.yaml``:
  ```yaml
 dependencies:
   ruby:
