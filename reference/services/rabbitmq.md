@@ -58,3 +58,17 @@ foreach ($relationships['rabbitmq'] as $endpoint) {
   $container->setParameter('rabbitmq_port', $endpoint['port']);
 }
 ```
+
+## Known issue
+
+The PHP container that is deployed doesn't ship with the [AMQP](https://pecl.php.net/package/amqp) PHP extension. This means you won't be able to use the RabbitMQ Management Command Line Tool as is.
+
+ You can work around this issue by using any other CLI (like [amqp-utils](https://github.com/dougbarth/amqp-utils/))and include it in the dependencies in your ``.platform.app.yaml``:
+ 
+ ```yaml
+dependencies:
+  ruby:
+    amqp-utils: "0.5.1"
+```
+
+Then, when you SSH in your PHP container, you can simply type any ``amqp-`` command available to manage your queues.
