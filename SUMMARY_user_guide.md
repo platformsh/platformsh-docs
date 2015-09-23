@@ -39,6 +39,7 @@
     * [Hipchat](using/integrations/hipchat.md)
   * [The Protective Block](reference/protective-block.md)
 * [PHP Toolstacks](reference/toolstacks/php/README.md)
+  * [HHVM beta](reference/toolstacks/php/hhvm.md)
   * [Drupal](reference/toolstacks/php/drupal/README.md)
     * [Developing With Drupal](reference/toolstacks/php/drupal/developing-with-drupal.md)
     * [Customizing settings.php](reference/toolstacks/php/drupal/customizing-settings-php.md)
