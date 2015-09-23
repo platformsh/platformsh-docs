@@ -9,7 +9,7 @@ Example:
 
 ```yaml
     name: "fastapp"
-    type: hhvm
+    type: hhvm:3.9
     build:
         flavor: composer
     web:
