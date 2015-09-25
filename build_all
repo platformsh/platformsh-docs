@@ -1,3 +1,5 @@
+cd cli && ./cli_docs.sh && cd ..
+
 ./build discover
 ./build user_guide
 ./build drupal
