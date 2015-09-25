@@ -4,7 +4,7 @@ RabbitMQ is an open source message broker software (sometimes called message-ori
 
 ## Supported versions
 
-* 3.5.4 (default)
+* 3.5 (default)
 
 ## Relationship
 
@@ -31,7 +31,7 @@ In your ``.platform/services.yaml``:
 
 ```yaml
 myqueue:
-    type: rabbitmq:3.5.4
+    type: rabbitmq
     disk: 1024
 ```
 
