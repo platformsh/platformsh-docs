@@ -8,7 +8,7 @@ RabbitMQ is an open source message broker software (sometimes called message-ori
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](reference/environment-variables.md):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../environment-variables.md):
 
 ```bash
 {
