@@ -7,7 +7,8 @@ HHVM.
 
 HHVM can be much, much faster then PHP so it is worth the trouble of adjusting your code for it.
 
-To switch your projet to HHVM, in the `type` property of your `.platform.app.yaml` simply put `hhvm` instead of `php`
+To switch your project to HHVM, put `hhvm` instead of `php` in the `type`
+property of your `.platform.app.yaml`.
 
 Example:
 
