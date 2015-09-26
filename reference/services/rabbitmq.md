@@ -30,7 +30,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 In your ``.platform/services.yaml``:
 
 ```yaml
-myqueue:
+myrabbitmq:
     type: rabbitmq
     disk: 1024
 ```
@@ -39,7 +39,7 @@ In your ``.platform.app.yaml``:
 
 ```yaml
 relationships:
-    rabbitmq: "myqueue:rabbitmq"
+    mq: "myrabbitmq:rabbitmq"
 ```
 
 You can them use the service in a configuration file of your application with something like:
@@ -53,7 +53,7 @@ if (!$relationships) {
 
 $relationships = json_decode(base64_decode($relationships), TRUE);
 
-foreach ($relationships['rabbitmq'] as $endpoint) {
+foreach ($relationships['mq'] as $endpoint) {
   $container->setParameter('rabbitmq_host', $endpoint['host']);
   $container->setParameter('rabbitmq_port', $endpoint['port']);
 }
