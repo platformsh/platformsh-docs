@@ -59,25 +59,56 @@ foreach ($relationships['mq'] as $endpoint) {
 }
 ```
 
-## Known issues
+# Connecting to RabbitMQ
 
-### AMQP PHP extension
+## From your local development environment
 
-The PHP container that is deployed doesn't ship with the [AMQP](https://pecl.php.net/package/amqp) PHP extension. The reason is that there is no stable release yet. 
+For debugging purposes, it's sometimes useful to be able to directly connect to
+a service instance. You can do this using SSH tunneling. To open a tunnel, log
+into your application container like usual, but with an extra flag to enable
+local port forwarding:
 
-This means you won't be able to connect to RabbitMQ within the PHP container as you would do for MySQL for example.
+```bash
+ssh -L 5672:mq.internal:5672 <projectid>-<branch_ID>@ssh.eu.platform.sh
+```
 
-A possible workaround is to use a PHP library (like [PHP AMQPlib](https://github.com/videlalvaro/php-amqplib)).
+Within that SSH session, use the following command to pretty-print your
+relationships. This lets you see which username and password to use, and you
+can double check that the remote service's port is 5672.
 
-### Use a CLI
+```bash
+php -r 'print_r(json_decode(base64_decode($_ENV["PLATFORM_RELATIONSHIPS"])));'
+```
 
-You can use any CLI for RabbitMQ (like [amqp-utils](https://github.com/dougbarth/amqp-utils/)).
+If your service is running on a different port, you can re-open your SSH
+session with the correct port by modifying your `-L` flag: `-L
+5672:mq.internal:<remote port>`.
 
-All you need to do is to include it as a dependency in your ``.platform.app.yaml``:
+Finally, while the session is open, you can launch a RabbitMQ client of your
+choice from your local workstation, configured to connect to localhost:5672
+using the username and password you found in the relationship variable.
+
+## From the application container
+
+The application container currently doesn't include any useful utilities to
+connect to RabbitMQ with. However, you can work around this by adding a client
+as a dependency in your `.platform.app.yaml` file.
+
+For example, you can use
+[amqp-utils](https://github.com/dougbarth/amqp-utils/) by adding this:
  ```yaml
 dependencies:
   ruby:
     amqp-utils: "0.5.1"
 ```
 
-Then, when you SSH in your PHP container, you can simply type any ``amqp-`` command available to manage your queues.
+Then, when you SSH into your PHP container, you can simply type any ``amqp-``
+command available to manage your queues.
+
+## From your PHP application
+
+The PHP container that is deployed doesn't ship with the
+[AMQP](https://pecl.php.net/package/amqp) PHP extension yet, so consider
+including a pure PHP library (like
+[PHP AMQPlib](https://github.com/videlalvaro/php-amqplib)) in your source tree
+instead.
