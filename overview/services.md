@@ -14,29 +14,7 @@ And when you clone a project you get everything in a consistent state.
 
 We add new services, and new service versions all the time.
 
-## Router service
-
-This is a default service that exists in all projects.
-
-Based on nginx, the Router service processes HTTP requests, handles security,
-dynamic page construction (ESI), URL rewriting and mapping. 
-
-It supports Caching, so you do not need Varnish or an extra cache in front of it.
-
-The configuration of the router service happens through the special [.platform/routes.yaml](../../user_guide/reference/routes-yaml.html) file
-
-## PHP service
-
-Platform.sh can run multiple applications in the same project, as such each
-application is considered to be a service by itself (which you can route to
-in the `.platform/routes.yaml`) and which you can reference as a relationship
-from another application in its `.platform.app.yaml`. 
-
-We currently upport PHP 5.4, PHP 5.5, PHP 5.6, the APC and ZO+ opcode caches, 
-and all major PHP extensions, rewriting, and mapping. Also, you can have a 
-custom PHP.INI file.
-
-## MariaDB (Database service)
+## MariaDB/MySQL (Database service)
 
 Transactional data storage. Based on MariaDB, supporting the XtraDB storage
 engine (equivalent to MySQL with InnoDB).
@@ -53,9 +31,6 @@ You can also use Drush: `drush sql-cli`
 
 Transactional data storage  and the world's most advanced open source database. 
 Currently supported version: 9.3
-
-## MongoDB (Database service)
-Currently in internal beta. We are not ready yet to make this public. Stay tuned for news.
 
 ## Solr (Search Service)
 
@@ -76,6 +51,35 @@ A high throuput message queue, great for multi-app!
 
 ## Kafka (Message Queue service)
 An ever higher throuput message queue!
+
+## MongoDB (Database service)
+Currently in internal beta. We are not ready yet to make this public. Stay tuned for news.
+
+# Internal Services
+
+These are automatically deployed with your application.
+
+## Router service
+
+This is a default service that exists in all projects.
+
+Based on nginx, the Router service processes HTTP requests, handles security,
+dynamic page construction (ESI), URL rewriting and mapping. 
+
+It supports Caching, so you do not need Varnish or an extra cache in front of it.
+
+The configuration of the router service happens through the special [.platform/routes.yaml](../../user_guide/reference/routes-yaml.html) file
+
+## PHP/HHVM service
+
+Platform.sh can run multiple applications in the same project, as such each
+application is considered to be a service by itself (which you can route to
+in the `.platform/routes.yaml`) and which you can reference as a relationship
+from another application in its `.platform.app.yaml`. 
+
+We currently upport PHP 5.4, PHP 5.5, PHP 5.6, HHVM, the APC and ZO+ opcode caches, 
+and all major PHP extensions, rewriting, and mapping. Also, you can have a 
+custom PHP.INI file.
 
 ## File system
 
