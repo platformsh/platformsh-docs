@@ -25,6 +25,7 @@
       * [Server Side Includes](reference/ssi.md)
     * [Configuring Multiple Applications](reference/platform-app-yaml-multi-app.md)
   * [Working with Private Repositories](using/private-repository.md)
+  * [Using Git submodules](using/submodules.md)
 * [Administration and Operations](using/README.md)
   * [User administration](using/user-administration.md)
   * [Snapshot and Restore](using/backup-and-restore.md)
