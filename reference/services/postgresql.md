@@ -41,6 +41,10 @@ mydatabase:
 In your ``.platform.app.yaml``:
 
 ```yaml
+runtime:
+    extensions:
+        - pdo_pgsql
+
 relationships:
     database: "mydatabase:postgresql"
 ```
@@ -66,3 +70,11 @@ foreach ($relationships['database'] as $endpoint) {
   $container->setParameter('database_path', '');
 }
 ```
+
+## Known issue
+
+### Could not find driver
+
+If you see this error: ``Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'``, 
+this means you are missing the ``pdo_pgsql`` PHP extension. You simply need to enable it in your ``.platform.app.yaml``
+(see above).
