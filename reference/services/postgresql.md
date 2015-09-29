@@ -71,7 +71,7 @@ foreach ($relationships['database'] as $endpoint) {
 }
 ```
 
-## Known issue
+## Notes
 
 ### Could not find driver
 
