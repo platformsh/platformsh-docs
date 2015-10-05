@@ -6,7 +6,7 @@
 
 angular.module('userWidget',[])
   .controller('navBar', function($scope, $http) {
-    $scope.accountsPath = 'https://accounts.internal.platform.sh';
+    $scope.accountsPath = 'https://accounts.platform.sh';
     if (typeof(accountsPath) !== "undefined") {
       $scope.accountsPath = accountsPath;
     }
