@@ -40,39 +40,38 @@ body,
   white-space: nowrap;
   overflow: hidden;
 }
-#platform-bar #navlink {
+#navlink {
   display: inline-block;
   line-height: 33px;
   font-size: .9em;
   text-transform: uppercase;
 }
-#platform-bar #navlink .divider {
+#navlink .divider {
   font-size: 50px;
   color: #424242;
   line-height: 20px;
   vertical-align: middle;
   font-weight: 100;
   padding: 0 10px;
-  margin-left: 20px;
 }
-#platform-bar #navlink .dropdown {
+#navlink .dropdown {
   position: relative;
   display: inline-block;
 }
-#platform-bar #navlink .dropdown ul,
-#platform-bar #navlink .dropdown li {
+#navlink .dropdown ul,
+#navlink .dropdown li {
   max-width: 700px;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-#platform-bar #navlink .dropdown > ul > li {
+#navlink .dropdown > ul > li {
   background: transparent url("images/caret-dropdown.png") no-repeat right center;
   background-size: 9px auto;
   padding-right: 15px;
   cursor: pointer;
 }
-#platform-bar #navlink .dropdown ul li ul {
+#navlink .dropdown ul li ul {
   display: none;
   position: absolute;
   top: 30px;
@@ -82,7 +81,7 @@ body,
   line-height: 1em;
   min-width: 225px;
 }
-#platform-bar #navlink .dropdown ul li ul a {
+#navlink .dropdown ul li ul a {
   color: #fff;
   display: block;
   padding: 5px 20px;
@@ -90,10 +89,10 @@ body,
   min-width: 150px;
   text-transform: none;
 }
-#platform-bar #navlink .dropdown ul li ul a:hover {
+#navlink .dropdown ul li ul a:hover {
   color: #00aeef;
 }
-#platform-bar #navlink .dropdown ul li:hover ul {
+#navlink .dropdown ul li:hover ul {
   display: inline-block;
 }
 #user-account .navbar-right a.call-to-action {
@@ -753,8 +752,10 @@ strong .glossary-term .tooltip-wrapper {
   #platform-bar .platform-links {
     padding-right: 50px;
   }
-  #platform-bar .site-name,
-  #platform-bar #navlink {
+  #platform-bar .site-name {
+    font-size: 1.15em;
+  }
+  #navlink {
     font-size: 1.15em;
   }
   #home-content .container {
@@ -964,6 +965,9 @@ button {
   content: " ";
   display: table;
 }
+#menu-toggle {
+  display: none;
+}
 @media (max-width: 768px) {
   #get-started .container {
     background-image: none;
@@ -997,8 +1001,58 @@ button {
   #platform-bar .site-name span:hover:before {
     opacity: 1;
   }
-  #platform-bar #navlink .divider {
+  #navlink .divider {
     display: none;
+  }
+  #navlink,
+  #navlink .dropdown,
+  #navlink .dropdown ul li:hover ul {
+    display: block;
+    clear: both;
+  }
+  #navlink {
+    display: none;
+    padding: 0 10px 10px;
+  }
+  #navlink .dropdown ul li ul {
+    display: block;
+    position: relative;
+    top: 0;
+    padding: 0;
+  }
+  #navlink .dropdown > ul > li {
+    color: #999;
+    background: none;
+    padding: 0;
+    cursor: inherit;
+  }
+  #menu-toggle {
+    display: inline-block;
+    text-indent: -9999px;
+    position: relative;
+    top: 2px;
+    color: #fff;
+    font-family: FontAwesome;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+  }
+  #menu-toggle:before {
+    content: "\f039";
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+    line-height: 14px;
+    opacity: .5;
+    cursor: pointer;
+  }
+  #menu-toggle:hover:before {
+    opacity: 1;
+  }
+  .platform-links {
+    padding-right: 10px;
   }
 }
 @media (min-width: 768px) {
@@ -1024,5 +1078,8 @@ button {
   .col-sm-11,
   .col-sm-12 {
     float: left;
+  }
+  #navlink {
+    display: inline-block !important;
   }
 }

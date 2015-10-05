@@ -40,63 +40,61 @@ body,
     white-space: nowrap;
     overflow: hidden;
   }
-  #navlink {
+}
+#navlink {
+  display: inline-block;
+  line-height: 33px;
+  font-size: .9em;
+  text-transform: uppercase;
+  .divider {
+    font-size: 50px;
+    color: #424242;
+    line-height: 20px;
+    vertical-align: middle;
+    font-weight: 100;
+    padding: 0 10px;
+  }
+  .dropdown {
+    position: relative;
     display: inline-block;
-    line-height: 33px;
-    font-size: .9em;
-    text-transform: uppercase;
-    .divider {
-      font-size: 50px;
-      color: #424242;
-      line-height: 20px;
-      vertical-align: middle;
-      font-weight: 100;
-      padding: 0 10px;
-      margin-left: 20px;
+    ul, li {
+      max-width:700px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      ul, li {
-        max-width:700px;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      > ul > li {
-        background: transparent url("images/caret-dropdown.png") no-repeat right center;
-        background-size: 9px auto;
-        padding-right: 15px;
-        cursor: pointer;
-      }
-      ul li ul {
-        display: none;
-        position: absolute;
-        top: 30px;
-        left: -20px;
-        background: #000;
-        padding: 10px 0;
-        line-height: 1em;
-        min-width: 225px;
-        a {
-          color: #fff;
-          display: block;
-          padding: 5px 20px;
-          font-size: 13px;
-          min-width: 150px;
-          text-transform: none;
-          &:hover {
-            color: #00aeef;
-          }
+    > ul > li {
+      background: transparent url("images/caret-dropdown.png") no-repeat right center;
+      background-size: 9px auto;
+      padding-right: 15px;
+      cursor: pointer;
+    }
+    ul li ul {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: -20px;
+      background: #000;
+      padding: 10px 0;
+      line-height: 1em;
+      min-width: 225px;
+      a {
+        color: #fff;
+        display: block;
+        padding: 5px 20px;
+        font-size: 13px;
+        min-width: 150px;
+        text-transform: none;
+        &:hover {
+          color: #00aeef;
         }
       }
-      ul li:hover ul {
-        display: inline-block;
-      }
+    }
+    ul li:hover ul {
+      display: inline-block;
     }
   }
 }
-
 #user-account {
   .navbar-right a.call-to-action {
     padding: 7px 8px;
@@ -743,10 +741,13 @@ strong .glossary-term .tooltip-wrapper {
     .platform-links {
       padding-right: 50px;
     }
-    .site-name,
-    #navlink {
+    .site-name {
       font-size: 1.15em;
     }
+  }
+
+  #navlink {
+    font-size: 1.15em;
   }
   #home-content .container {
     width: 47%;
@@ -955,6 +956,9 @@ clear: both;
 content: " ";
 display: table;
 }
+#menu-toggle {
+  display: none;
+}
 
 @media (max-width: 768px) {
   #get-started .container {
@@ -989,8 +993,58 @@ display: table;
       }
     }
   }
-  #platform-bar #navlink .divider {
+  #navlink .divider {
     display: none;
+  }
+  #navlink,
+  #navlink .dropdown,
+  #navlink .dropdown ul li:hover ul {
+    display: block;
+    clear: both;
+  }
+  #navlink {
+    display: none;
+    padding: 0 10px 10px;
+  }
+  #navlink .dropdown ul li ul {
+    display: block;
+    position: relative;
+    top: 0;
+    padding: 0;
+  }
+  #navlink .dropdown > ul > li {
+    color: #999;
+    background: none;
+    padding: 0;
+    cursor: inherit;
+  }
+  #menu-toggle {
+    display: inline-block;
+    text-indent: -9999px;
+    position: relative;
+    top: 2px;
+    color: #fff;
+    font-family: FontAwesome;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    &:before {
+      content: "\f039";
+      text-indent: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 14px;
+      line-height: 14px;
+      opacity: .5;
+      cursor: pointer;
+    }
+    &:hover:before {
+      opacity: 1;
+    }
+  }
+  .platform-links {
+    padding-right: 10px;
   }
 }
 @media (min-width: 768px) {
@@ -1007,4 +1061,7 @@ display: table;
   float: left;
 }
 
+  #navlink {
+    display: inline-block !important;
+  }
 }
