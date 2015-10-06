@@ -134,7 +134,6 @@ reallocate the IP address dedicated to your instance.
 Some DNS hosts provide a way to get CNAME-like functionality at the zone
 apex using a custom record type. Such records include:
 
--   ALIAS at [Route53](http://aws.amazon.com/route53)
 -   CNAME at [Namecheap](http://www.namecheap.com/)
 -   ALIAS at [DNSimple](https://dnsimple.com/)
 -   ANAME at [DNS Made Easy](http://www.dnsmadeeasy.com/)
