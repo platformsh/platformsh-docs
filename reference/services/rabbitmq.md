@@ -12,15 +12,16 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 ```bash
 {
-    "rabbitmq": [
-        {
-            "username": "guest",
-            "password": "guest",
-            "host": "248.0.65.98",
-            "scheme": "amqp",
-            "port": 5672
-        }
-    ]
+   "rabbitmq" : [
+      {
+         "password" : "guest",
+         "ip" : "246.0.129.2",
+         "scheme" : "amqp",
+         "port" : 5672,
+         "host" : "rabbitmq.internal",
+         "username" : "guest"
+      }
+   ]
 }
 ```
 
