@@ -4,7 +4,7 @@ Elasticsearch is a distributed RESTful search engine built for the cloud.
 
 ## Supported versions
 
-* 0.9 (default)
+* 0.90 (default)
 * 1.4
 
 ## Relationship
