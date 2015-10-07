@@ -17,7 +17,6 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
             "username": "guest",
             "password": "guest",
             "host": "248.0.65.98",
-            "scheme": "solr",
             "scheme": "amqp",
             "port": 5672
         }
