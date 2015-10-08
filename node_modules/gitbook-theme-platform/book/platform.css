@@ -482,10 +482,17 @@ body,
   margin-right: 0;
   padding-top: 0;
 }
-.book .book-body .page-wrapper .page-inner section.normal p > code {
+.book .book-body .page-wrapper .page-inner section.normal code {
   border-radius: 0;
   background: #fdf2f2;
   color: #de1151;
+}
+.book .book-body .page-wrapper .page-inner section.normal pre code {
+  color: #333;
+}
+.book .book-body .page-wrapper .page-inner section.normal a code {
+  background: #f7f7f7;
+  color: #4183c4;
 }
 .book .book-body .page-wrapper .page-inner section.normal .alert {
   background: #eee;
