@@ -1,0 +1,3 @@
+[submodule "user-widget"]
+    path = node_modules/gitbook-theme-platform/book/user-widget
+    url = git@github.com:platformsh/user-widget.git
