@@ -5,6 +5,8 @@ developed by [SensioLabs](http://sensiolabs.com/).
 
 ## Get Started
 
+### 1. Get your credentials
+
 **Sign up for free** at [blackfire.io](https://blackfire.io/signup), and
 install the **Blackfire Companion** web browser extension
 ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld)).
@@ -13,6 +15,8 @@ Get your server credentials on your [Blackfire
 account](https://blackfire.io/account/credentials).
 
 ![Blackfire credentials](/images/blackfire-credentials.png)
+
+### 2. Enable the Blackfire extension
 
 Paste those credentials in your `.platform.app.yaml`:
 
@@ -31,6 +35,16 @@ Push your changes to your Platform environment to enable Blackfire:
 git add .platform.app.yaml
 git commit -m "Enable Blackfire."
 git push
+```
+
+### 3. Confirm it's running
+
+You can then confirm that Blackfire is running by SSH in the PHP container:
+
+```bash
+php -v
+...
+  with blackfire v1.4.1, https://blackfire.io/, by SensioLabs
 ```
 
 ## Profile
