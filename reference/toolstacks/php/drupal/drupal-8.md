@@ -37,7 +37,7 @@ dependencies:
 
 * Configure your `settings.php` file to reference this directory.
 
-  ```yaml
+  ```php
   $config_directories[CONFIG_SYNC_DIRECTORY] = 'config/sync';
   ```
 
