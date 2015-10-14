@@ -42,9 +42,15 @@ git push
 You can then confirm that Blackfire is running by SSH in the PHP container:
 
 ```bash
-php -v
+php --ri blackfire
+
+blackfire
+
+blackfire => enabled
+blackfire => 1.4.1
+Timing measurement => gtod
+Num of CPU => 8
 ...
-  with blackfire v1.4.1, https://blackfire.io/, by SensioLabs
 ```
 
 ## Profile
