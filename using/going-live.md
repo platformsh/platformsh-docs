@@ -82,9 +82,7 @@ entire site with HTTPS, here is what your routes would look like:
 
 ### Wildcard domains
 
-Platform.sh has support for wildcard domains (*.mydomain.com).
-
-To configure a wildcard domain:
+To configure a wildcard domain (*.mydomain.com):
 
 - Add your domain to your project (in form of mydomain.com).
 - Add a route to your master branch serving http://*.mydomain.com with the upstream php:php.
