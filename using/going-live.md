@@ -80,6 +80,16 @@ entire site with HTTPS, here is what your routes would look like:
     to: "https://{default}/"
 ```
 
+### Wildcard domains
+
+Platform.sh has support for wildcard domains (*.mydomain.com).
+
+To configure a wildcard domain:
+
+- Add your domain to your project (in form of mydomain.com).
+- Add a route to your master branch serving http://*.mydomain.com with the upstream php:php.
+
+
 ## 3 - DNS
 
 Configure your DNS provider to point your domain to your
