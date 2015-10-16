@@ -81,7 +81,7 @@ Log in to the environment via SSH and import the database:
 
 ```bash
 $ ssh [PROJECT-ID]-master@ssh.[REGION].platform.sh
-web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < tmp/database.sql
+web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < /tmp/database.sql
 ```
 
 ## Import your files
