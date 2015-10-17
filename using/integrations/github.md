@@ -3,12 +3,16 @@
 The [GitHub](https://github.com) integration allows you to manage your
 Platform.sh environments directly from your GitHub repository.
 
-Supported:
+Features supported:
 
--   Create a new environment when creating a branch or opening a
+* Create a new environment when creating a branch or opening a
     pull request on GitHub.
--   Rebuild the environment when pushing new code to GitHub.
--   Delete the environment when merging a pull request.
+* Rebuild the environment when pushing new code to GitHub.
+* Delete the environment when merging a pull request.
+
+## Setup
+
+### 1. Generate a token
 
 To integrate your Platform.sh project with an existing GitHub
 repository, you first need to generate a token on your GitHub user
@@ -32,23 +36,24 @@ Copy the token and make a note of it (temporarily).
 Note that for the integration to work, your GitHub user needs to have
 permission to push code to the repository.
 
+### 2. Enable the integration
+
 Now open a command line (you need to have the Platform.sh CLI
 installed). To enable the GitHub integration with the CLI:
 
 ```bash
-$ platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
+$ platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY --build-pull-requests=true --fetch-branches=false
 ```
 
-If your repository belongs to an organisation, use ``--repository=ORGANISATION/REPOSITORY``.
+Optional parameters:
+* `fetch-branches`: Track and deploy branches (true by default)
+* `build-pull-requests`: Track and deploy pull-requests (true by default)
 
-The two optional parameters, which are both enabled by default, control
-whether you want to track branches and/or pull requests:
+Note that if your repository belongs to an organisation, use ``--repository=ORGANISATION/REPOSITORY``.
 
--   `--build-pull-requests` [true | false]
--   `--fetch-branches` [true | false]
+### 3. Add the webhook
 
-This command returns the Payload URL that you need to paste on your
-GitHub repository webhooks page.
+Copy the Payload URL that is returned by the previous command.
 
 Go to your GitHub repository and click `Settings`. Select the *Webhooks
 and Services* tab and click `Add webhook`. Paste the Payload URL, Choose
@@ -58,7 +63,7 @@ and Services* tab and click `Add webhook`. Paste the Payload URL, Choose
 You can now start pushing code, creating new branches or opening pull
 requests directly on your GitHub repository.
 
-### Types of environment
+## Types of environment
 
 Environments based on GitHub **pull requests** will have the correct 'parent' environment on Platform.sh: they will be activated automatically with a copy of the parent's data.
 

@@ -10,10 +10,10 @@ To see your Drush Aliases, use the `platform drush-aliases` command:
 ```bash
 $ platform drush-aliases
 Aliases for My Site (tqmd2kvitnoly):
-    @tqmd2kvitnoly._local
-    @tqmd2kvitnoly.master
-    @tqmd2kvitnoly.staging
-    @tqmd2kvitnoly.sprint1
+    @my-site._local
+    @my-site.master
+    @my-site.staging
+    @my-site.sprint1
 ```
 
 > **note**
@@ -22,23 +22,23 @@ Aliases for My Site (tqmd2kvitnoly):
 > `platform drush`. Any `platform drush` command will execute on the
 > remote environment that you currently have checked out.
 
-## Change the Drush Alias Group
+## Change the Drush alias group
 
-You can set the Drush alias group name to something more convenient:
+You can set the Drush alias group name to something else, if you prefer:
 
 ```bash
 platform drush-aliases -g [alias group]
 ```
 
-After that, they will be easier to remember and type.
+For example:
 
 ```bash
-$ platform drush-aliases -g mysite
-Project aliases created, group: @mysite
-Delete old alias group @tqmd2kvitnoly? [Y/n] Y
+$ platform drush-aliases -g example
+Project aliases created, group: @example
+Delete old alias group @my-site? [Y/n] Y
 Aliases for My Site (tqmd2kvitnoly):
-    @mysite._local
-    @mysite.master
-    @mysite.staging
-    @mysite.sprint1
+    @example._local
+    @example.master
+    @example.staging
+    @example.sprint1
 ```

@@ -21,6 +21,13 @@ Platform.sh supports custom PHP configurations.
 You can choose which version of PHP you want to run in your `.platform.app.yaml` file, currently
 supported versions: PHP 5.4 (default), PHP 5.5 and PHP 5.6.
 
+Example `.platform.app.yaml`:
+
+```yaml
+name: front
+type: php:5.6
+```
+
 ### PHP extensions
 
 You can define the PHP extensions you want to enable or disable:
@@ -40,14 +47,17 @@ The following extensions are enabled by default: *pdo, mysql, mysqli,
 pdo_mysql, sqlite3, gd, curl, intl, mcrypt and zendopcache*. You can
 disable those by adding them to the `disabled_extensions` list.
 
-In addition, you can enable the following extensions: *apc, apcu,
-blackfire, blackfire.psh-tmpl, enchant, gearman, geoip, gmp, http,
-imagick, imap, ldap, memcache, memcached, mongo, pdo_pgsql,
-pdo_sqlite, pgsql, pinba, pspell, recode, redis, snmp, spplus, ssh2,
-tidy, xcache, xdebug, xhprof, xmlrpc and xsl*.
+This is the complete list of extensions that can be enabled: *apc, 
+apcu, blackfire, curl, enchant, gd, gearman, geoip, gmp, http, 
+imagick, imap, intl, ldap, mcrypt, memcache, memcached, mongo, mysql, 
+mysqli, pdo, pdo_mysql, pdo_pgsql, pdo_sqlite, pgsql, pinba, pspell, 
+recode, redis, snmp, spplus, sqlite3, ssh2, tidy, xcache, xdebug, 
+xhprof, xmlrpc, xsl and zendopcache*.
 
 > **note**
-> This list might not be fully up to date. For the complete list, check the output of `ls /etc/php5/mods-available` after you SSH into your environment.
+> You can check out the output of `ls /etc/php5/mods-available` to
+> see the up-to-date complete list of extenstions after you SSH into 
+> your environment.
 
 ### Use your own php.ini
 
@@ -68,7 +78,7 @@ memory_limit = 256M
 After pushing your file, you can check that the custom PHP configuration
 has been added to your environment by logging in via SSH and type:
 
-```bash
+```
 web@kjh43kbobssae-master--php:~$ cat /etc/php5/fpm/php.ini
 
 ; =============== Custom configuration from `/app/php.ini`

@@ -1,6 +1,6 @@
-#Frequently Asked Questions (FAQ)
+# Frequently Asked Questions (FAQ)
 
-##What is the difference between a Platform, a Project and an Environment?
+## What is the difference between a Platform, a Project and an Environment?
 
 Platform or Platform.sh is the infrastructure which is running all your projects.
 
@@ -8,15 +8,21 @@ A project is the site that you're working on. Each project can contain multiple 
 
 An environment is a standalone copy of your live site (the Master environment) which can be used for testing, implementing new features...
 
-##Do you support MySQL?
+## How can I cancel my subscription?
+
+If you want to delete your project and cancel your subscription, simply go to your user profile and click on "Edit plan" on the project you want to delete. Then you can click on the link: "delete your Platform.sh plan".
+
+This will delete your project and stop invoicing for this project. If you have multiple projects, your subscription will continue until you don't have any projects left.
+
+## Do you support MySQL?
 
 [Platform.sh](https://platform.sh) uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
 
-##Do you support other database services?
+## Do you support other database services?
 
 We support PostgreSQL, ElasticSearch, Redis and MongoDB Out of the box. Batteries included.No need for add-ons. We aim to support all the most popular database services...
 
-##Does branching an environment duplicate services?
+## Does branching an environment duplicate services?
 
 Yes ! Branching an environment creates an exact copy (snapshot) of the parent environment, containing the files, the database, the services...
 
@@ -67,7 +73,7 @@ Master gets all the resources that are divided into each service (PHP 40%, MySQL
 
 You're logged in to the PHP service. It's a read-only file system. 
 
-##Can I edit a quick fix on a Platform environment without triggering a rebuild?
+## Can I edit a quick fix on a Platform environment without triggering a rebuild?
 
 No ! Since the PHP service you access via SSH is a read-only file system, you'll have to push your fix to be able to test it.
 
@@ -99,7 +105,7 @@ Please validate the syntax of your YAML file. Don't use tabs. And if all fails, 
 Platform leverages the powerful AWS Infrastructure.
 We can deploy your site in a  [datacenter](https://aws.amazon.com/about-aws/globalinfrastructure/regional-product-services/) that is very close to your target audience.
 
-##Why did you choose the .sh extension for your domain?
+## Why did you choose the .sh extension for your domain?
 
 'sh' is the short version of shell.
 According to Wikipedia™, in computing, a [shell](http://en.wikipedia.org/wiki/Shell_(computing)) is a user interface  for access 

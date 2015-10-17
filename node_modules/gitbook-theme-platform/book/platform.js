@@ -8,6 +8,11 @@ require(["gitbook"], function(gitbook) {
         location.href+='';
       }
     });
+  // Mobile menu toggle.
+  $('<span id="menu-toggle" title="Menu">Menu</span>').insertAfter('#platform-bar .site-name');
+  $('#menu-toggle').click(function(){
+    $('#navlink').slideToggle();
+  });
   // Replacing glossary term elements.
   $('.glossary-term').each(function(){
     var message = $(this).prop('title');
