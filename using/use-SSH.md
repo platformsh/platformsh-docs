@@ -92,15 +92,11 @@ with.
 In the Web Interface, just under the environment name, there is a link
 you can hover over to copy the SSH URL of that environment:
 
+![Image of an environment's access information in the web interface](/images/ssh-access-information.png "The SSH URL is formatted as follows: `<project-id>-<environment-id>@ssh.<region>.platform.sh`")
+
 1.  Open your Platform.sh Web Interface
 2.  Hover over the `Access info` link
 3.  Click to copy the SSH URL
-
-![The SSH user name is the concatenation of your platform's unique ID
-and the environment ID. The SSH hostname is 'ssh.' prepended to the
-hostname of your platform's region. I.E.:
-[project-id]-[environment-id]@ssh.[server-region-hostname].](/use-platform/images/ssh-access-information.png)
-
 4.  Open a terminal
 5.  Paste the link into your terminal
 
