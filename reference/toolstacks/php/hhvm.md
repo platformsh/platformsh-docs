@@ -14,7 +14,7 @@ Example:
 
 ```yaml
     name: "fastapp"
-    type: hhvm:3.9
+    type: hhvm:3.10
     build:
         flavor: composer
     web:
