@@ -39,3 +39,9 @@ Then you should downgrade to Drush version 6.\* to make sql-sync work:
 ```bash
 $ composer global require 'drush/drush:6.*'
 ```
+
+Or you can use a simple workaround by adding "--source-dump=" to make the latest Drush work:
+
+```bash
+$ drush sql-sync @mysite.master @mysite._local --source-dump=/app/tmp/db.sql.gz
+```
