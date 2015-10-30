@@ -101,29 +101,57 @@ sites/
   default/
 ```
 
-## Configure your app
+## Configure your Drupal application
 
 Platform.sh uses configuration files to determine what toolstack you
 want to deploy and how you want to deploy it.
 
-### Drupal 7
+Add a `.platform.app.yaml` at the root of your drupal folder.
 
-For Drupal 7, your `.platform.app.yaml` should specify the `php:drupal`
-toolstack. You can see a [working example on
-GitHub](https://github.com/platformsh/platformsh-examples/tree/drupal/7.x). And the Drupal 7[.platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml)
+Here is an example of a Drupal configuration:
+```yaml
+# .platform.app.yaml
+name: php
 
-### Drupal 8
+type: php
+build:
+    flavor: drupal
+
+relationships:
+    database: "mysql:mysql"
+
+web:
+    document_root: "/"
+    passthru: "/index.php"
+
+disk: 2048
+
+mounts:
+    "/public/sites/default/files": "shared:files/files"
+    "/tmp": "shared:files/tmp"
+    "/private": "shared:files/private"
+
+hooks:
+    deploy: |
+      cd public
+      drush -y updatedb
+
+crons:
+    drupal:
+        spec: "*/20 * * * *"
+        cmd: "cd public ; drush core-cron"
+```
+
+You can find some working example on GitHub:
+* [Drupal 7](https://github.com/platformsh/platformsh-examples/tree/drupal/7.x)
+* [Drupal 8](https://github.com/platformsh/platformsh-examples/tree/drupal/8.x)
 
 For Drupal 8, your `.platform.app.yaml` should specify the `php:drupal`
 toolstack, and install Drush 7 RC as a build-time dependency:
 
 ```yaml
-# Note: Drush 7.0.0 is no longer compatible with Drupal 8, but the
-# pre-release -rc versions were.
+# The build-time dependencies of the app.
 dependencies:
     php:
-        "drush/drush": "7.0.0-rc2"
+        "drush/drush": "8.0.0-rc2"
 ```
-
-You can see a [working example on GitHub](https://github.com/platformsh/platformsh-examples/tree/drupal/8.x).
-, and the Drupal 8 [.platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/8.x/.platform.app.yaml)
