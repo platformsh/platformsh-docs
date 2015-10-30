@@ -140,6 +140,11 @@ default value.
 > name, or match all cookies with a "*". "SESS*" or "~SESS" are currently
 > not valid values.
 
+> **note** 
+> For Drupal sites, the name of the session cookie is based on a hash of the domain 
+> name. This means that it will actually be consistent for a specific website and can 
+> safely be used as a fixed value.
+
 ### `default_ttl`
 
 If the response does not have a `Cache-Control` header, the
