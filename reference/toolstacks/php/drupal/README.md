@@ -30,6 +30,7 @@ contributed modules, themes or libraries.
 > **note**
 > When building as a profile, you **need a make file for Drupal core** called: `project-core.make`. See 
 [drush make files](drush.html)
+
 ```
 .git/
 project.make
