@@ -146,11 +146,10 @@ You can find some working example on GitHub:
 * [Drupal 7](https://github.com/platformsh/platformsh-examples/tree/drupal/7.x)
 * [Drupal 8](https://github.com/platformsh/platformsh-examples/tree/drupal/8.x)
 
-For Drupal 8, your `.platform.app.yaml` should specify the `php:drupal`
-toolstack, and install Drush 7 RC as a build-time dependency:
+For Drupal 8, your `.platform.app.yaml` should install Drush 8 RC as a build-time dependency:
 
 ```yaml
-# The build-time dependencies of the app.
+# .platform.app.yaml
 dependencies:
     php:
         "drush/drush": "8.0.0-rc2"
