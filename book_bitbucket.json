@@ -1,13 +1,13 @@
 {   
     "title": "Integrate Bitbucket with Platform.sh",
     "description": "Integrate Bitbucket with Platform.sh",
-    "gitbook": "2.2.0",
+    "gitbook": "2.5.1",
         "structure": {
             "readme": "README_bitbucket.md",
             "summary": "SUMMARY_bitbucket.md"
         },
     "plugins": [
-        "ga", "edit-link", "richquotes", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"
+        "ga", "edit-link", "richquotes", "anchors", "reveal","sections", "collapsible-menu",  "theme-platform@0.0.1"
     ],
     "pluginsConfig": {
         "ga": {

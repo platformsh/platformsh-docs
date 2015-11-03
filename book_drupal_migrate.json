@@ -1,13 +1,13 @@
 {
     "title": "Migrate an existing Drupal site",
     "description": "Migrate your existing Drupal site to Platform.sh",
-    "gitbook": "2.2.0",
+    "gitbook": "2.5.1",
         "structure": {
             "readme": "README_drupal_migrate.md",
             "summary": "SUMMARY_drupal_migrate.md"
         },
     "plugins": [
-        "ga", "edit-link", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"
+        "ga", "edit-link", "anchors", "reveal","sections", "collapsible-menu",  "theme-platform@0.0.1"
     ],
     "pluginsConfig": {
         "ga": {
