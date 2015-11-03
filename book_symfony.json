@@ -1,13 +1,13 @@
 {
     "title": "Get started with Symfony",
     "description": "Getting Started with Symfony and Platform.sh",
-    "gitbook": "2.2.0",
+    "gitbook": "2.5.1",
         "structure": {
             "readme": "README_symfony.md",
             "summary": "SUMMARY_symfony.md"
         },
     "plugins": [
-        "ga", "edit-link", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"
+        "ga", "edit-link", "anchors", "reveal","sections", "collapsible-menu",  "theme-platform@0.0.1"
     ],
     "pluginsConfig": {
         "ga": {
