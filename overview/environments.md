@@ -16,6 +16,9 @@ Every Platform.sh project starts with a Master environment which corresponds to 
 
 If you subscribed to a production plan, this environment is your **live site** and can be mapped to a domain name and an SSL certificate.
 
+> **note**
+> Your project must have a `master` branch: it will not function properly without one.
+
 ## Hierarchy
 
 ![Hierarchy](/images/clone-hierarchy.png)

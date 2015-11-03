@@ -42,7 +42,7 @@ Now open a command line (you need to have the Platform.sh CLI
 installed). To enable the GitHub integration with the CLI:
 
 ```bash
-$ platform integration:add --type=github --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY --build-pull-requests=true --fetch-branches=false
+$ platform integration:add --type=github --project=PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY --build-pull-requests=true --fetch-branches=false
 ```
 
 Optional parameters:

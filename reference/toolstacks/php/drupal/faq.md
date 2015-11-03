@@ -51,10 +51,15 @@ the issue. Ballooning MySQL storage can be caused by a number of items:
     table](https://www.drupal.org/node/2057073). Upgrade to Commerce
     Core 1.10 to resolve.
 
-## MySQL cannot connect to the database server
+## Why do I get "MySQL cannot connect to the database server"?
 
 If you are having a problem connecting to the database server, you will
 need force a re-deployment of the database container. To do so, you can
 edit the service definition to add or remove a small amount of storage and
 then push.
 
+## Can I use the name of the session cookie for caching?
+
+For Drupal sites, the name of the session cookie is based on a hash of the 
+domain name. This means that it will actually be consistent for a specific 
+website and can safely be used as a fixed value.

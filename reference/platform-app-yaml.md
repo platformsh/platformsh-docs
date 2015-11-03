@@ -233,6 +233,10 @@ mounted in /app/public (by default, you can define this yourself in you
 .app.platform.yaml file) so you might want to cd /app/public before
 running those.
 
+The hooks will be considered failed if the final command in them fails. To
+cause them to fail on the first failed command, add `set -e` to the beginning
+of the hook.
+
 After a Git push, you can see the results of the `deploy` hook in the
 `/var/log/deploy.log` file when logging to the environment via SSH. It
 contains the log of the execution of the deployment hook. For example:

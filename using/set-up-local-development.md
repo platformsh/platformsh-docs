@@ -125,5 +125,5 @@ Now you can connect to the remote database normally, as if it were
 local.
 
 ```bash
-$ mysql --host=127.0.0.1 --user='' --pass='' --database='main'
+$ mysql --host=127.0.0.1 --user='user' --pass='' --database='main'
 ```

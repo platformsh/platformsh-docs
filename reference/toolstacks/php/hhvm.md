@@ -1,4 +1,4 @@
-#HHVM Beta Support
+# HHVM Beta Support
 
 HHVM is an open-source virtual machine designed for executing programs written in Hack and PHP. HHVM uses a just-in-time (JIT) compilation approach to achieve superior performance while maintaining the development flexibility that PHP provides.
 
@@ -14,7 +14,7 @@ Example:
 
 ```yaml
     name: "fastapp"
-    type: hhvm:3.9
+    type: hhvm:3.10
     build:
         flavor: composer
     web:
