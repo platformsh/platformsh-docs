@@ -17,6 +17,10 @@ On your Bitbucket account, click on your avatar, select ``Manage Account``, and 
 > **note**
 > We recommend you install the add-on at the *team*   level (select ``Manage Team`` instead) so that every repository that belongs to the team can use the add-on.
 
+> **note**
+> If you have created your account using the bitbucket oAuth Login in order to use the Platform CLI you will need to setup a
+> password which you can do by visiting this page [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password)
+
 ## Get started
 
 To connect your Bitbucket repository to Platform.sh, go to the repository page *as an administrator* on Bitbucket and click on the ``Settings`` icon. Then Click on ``Platform.sh integration`` under ``PLATFORM.SH``.
