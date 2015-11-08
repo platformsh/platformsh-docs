@@ -25,7 +25,7 @@ And we can do so in 30 seconds.
 * You can add fully managed backend services, like MySQL, Postgres, Solr, Elastic Search, Redis etc.. without requiring external add-ons.
 * You can use a robust build process (with support for not only composer, but also NodeJS, Ruby and Python scripts).
 * You can upsize production plans to more memory and cpu to handle larger traffic.
-* You can opt for out Enterprise offering giving you white-glove support and 99.99% guaranteed availability
+* You can opt for our Enterprise offering giving you white-glove support and 99.99% guaranteed availability
 
 ## Great integrations
 Platform.sh comes out-of-the-box with great integrations for services such
