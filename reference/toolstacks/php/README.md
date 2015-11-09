@@ -47,12 +47,12 @@ The following extensions are enabled by default: *pdo, mysql, mysqli,
 pdo_mysql, sqlite3, gd, curl, intl, mcrypt and zendopcache*. You can
 disable those by adding them to the `disabled_extensions` list.
 
-This is the complete list of extensions that can be enabled: *apc, 
-apcu, blackfire, curl, enchant, gd, gearman, geoip, gmp, http, 
-imagick, imap, intl, ldap, mcrypt, memcache, memcached, mongo, mysql, 
-mysqli, pdo, pdo_mysql, pdo_pgsql, pdo_sqlite, pgsql, pinba, pspell, 
-recode, redis, snmp, spplus, sqlite3, ssh2, tidy, xcache, xdebug, 
-xhprof, xmlrpc, xsl and zendopcache*.
+This is the complete list of extensions that can be enabled: *apc, apcu,
+blackfire, curl, enchant, gd, gearman, geoip, gmp, http, imagick, imap,
+intl, ldap, mcrypt, memcache, memcached, mongo, mysql, mysqli, pdo,
+pdo_mysql, pdo_pgsql, pdo_sqlite, pgsql, pinba, pspell, recode, redis,
+snmp, sqlite3, ssh2, tidy, xcache, xdebug, xhprof, xmlrpc, xsl and
+zendopcache*.
 
 > **note**
 > You can check out the output of `ls /etc/php5/mods-available` to
