@@ -50,6 +50,7 @@
       * [Redis with Drupal 7](reference/toolstacks/php/drupal/redis-drupal-7.md)
     * [Solr](reference/toolstacks/php/drupal/solr.md)
     * [FAQ](reference/toolstacks/php/drupal/faq.md)
+    * [Drupal 8](reference/toolstacks/php/drupal/drupal-8.md)
   * [Symfony](reference/toolstacks/php/symfony/README.md)
     * [Migrate an existing site](reference/toolstacks/php/symfony/migrate-existing-site.md)
     * [FAQ](reference/toolstacks/php/symfony/faq.md)
