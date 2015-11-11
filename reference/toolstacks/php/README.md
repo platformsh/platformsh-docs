@@ -56,7 +56,7 @@ zendopcache*.
 
 > **note**
 > You can check out the output of `ls /etc/php5/mods-available` to
-> see the up-to-date complete list of extenstions after you SSH into 
+> see the up-to-date complete list of extensions after you SSH into
 > your environment.
 
 ### Use your own php.ini
