@@ -10,27 +10,27 @@ Detailed information on [setting up a local development environment](/user_guide
 
 ## How do I get it?
 
-You can install the CLI easily using Composer:
+You can install the CLI easily using this command:
 
 ```bash
-$ composer global require platformsh/cli:@stable
+curl -sS https://platform.sh/cli/installer | php
 ```
 
-You can find the system requirements and more information in the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md).
+You can find the system requirements and more information in the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md#installation).
 
 ## What can I do with the CLI?
 
 The CLI uses the platform API to trigger commands (*Branch, Merge...*) on your Platform.sh project.
 
-![Platform Cli In Project](/images/platform-cli-in-project.png)
+![Platform.sh CLI In Project](/images/platform-cli-in-project.png)
 
 It's also very useful when you work locally since it can simulate a local build of your codebase as if you were pushing a change to Platform.sh.
 
-![Platform Cli Logged In](/images/platform-cli-logged-in.png)
+![Platform.sh CLI Logged In](/images/platform-cli-logged-in.png)
 
 Once you have the CLI installed, run `platform list` to see all of the available commands.
 
-![Platform Cli List](/images/platform-cli-list.png)
+![Platform.sh CLI List](/images/platform-cli-list.png)
 
 You can preface any command with `help` to see more information on how to use that command.
 
