@@ -48,13 +48,13 @@ pdo_mysql, pdo_sqlite, sqlite3, gd, curl, intl, mcrypt and
 zendopcache/opcache*. You can disable those by adding them to the
 `disabled_extensions` list.
 
-This is the complete list of extensions that can be enabled: *apcu, blackfire,
+This is the complete list of extensions that can be enabled: *apc(5.4 only), apcu, blackfire,
 curl, enchant, gd, gearman, geoip, gmp, http (5.4 and 5.5 only), imagick, imap,
 intl, json (added in 5.6), ldap, mcrypt, memcache, memcached, mongo, msgpack
 (added in 5.6), mysql, mysqli, mysqlnd, opcache (5.5 and up), pdo, pdo_mysql,
 pdo_pgsql, pdo_sqlite, pecl-http (added in 5.6), pgsql, pinba, propro (added in
 5.6), pspell, raphf (added in 5.6), readline, recode, redis, snmp, sqlite3,
-ssh2, tidy, xdebug, xhprof, xmlrpc, xsl, and zendopcache (5.4 only)*.
+ssh2, tidy, xcache, xdebug, xhprof, xmlrpc, xsl, and zendopcache (5.4 only)*.
 
 > **note**
 > You can check out the output of `ls /etc/php5/mods-available` to
