@@ -2,10 +2,13 @@
 
 PHP7 is the next major version of PHP. It not only brings new language features
 but it also sports huge performance boosts over the 5.x generation. On many
-workloads it is on-par with HHVM.
+workloads it is on-par with HHVM. 
 
 Our performance tests with Drupal 8.0 and PHP 7.0 yielded 2X performance gains
-compared with php 5.6!
+compared with PHP 5.6!
+
+To your joy you may also discover it has a much lower memory footprint than
+both PHP 5.6 and HHVM so in some cases it may outperform both by a margin.
 
 But this PHP 7.0 is not yet released. So this is beta level support. You may
 get into trouble... and we may not be able to help. Using this in production 
