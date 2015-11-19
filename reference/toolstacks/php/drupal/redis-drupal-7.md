@@ -116,7 +116,11 @@ Or
 $conf['redis_client_interface'] = 'PhpRedis';
 ```
 
+Then (after the settings.local.php include):
+
 ```php
+if (!empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
+  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
   $conf['redis_client_host'] = $relationships['redis'][0]['host'];
   $conf['redis_client_port'] = $relationships['redis'][0]['port'];
   $conf['redis_client_interface'] = 'PhpRedis';
@@ -124,4 +128,10 @@ $conf['redis_client_interface'] = 'PhpRedis';
   $conf['cache_default_class']    = 'Redis_Cache';
   // The 'cache_form' bin must be assigned to non-volatile storage.
   $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
+}
 ```
+
+> **note**
+> If you use Domain Access and Redis, ensure that your Redis settings (particularly `$conf['cache_backends']`)
+> are included before the Domain Access `settings.inc` file - see
+> [this Drupal.org issue](https://www.drupal.org/node/2008486#comment-7782941) for more information.

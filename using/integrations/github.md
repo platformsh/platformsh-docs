@@ -63,6 +63,10 @@ and Services* tab and click `Add webhook`. Paste the Payload URL, Choose
 You can now start pushing code, creating new branches or opening pull
 requests directly on your GitHub repository.
 
+> **note**
+> If you have created your account using the github oAuth Login in order to use the Platform CLI you will need to setup a
+> password which you can do by visiting this page [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password)
+
 ## Types of environment
 
 Environments based on GitHub **pull requests** will have the correct 'parent' environment on Platform.sh: they will be activated automatically with a copy of the parent's data.

@@ -1,27 +1,36 @@
 # Install the Platform.sh CLI
 
-This procedure installs the cli in the Composer's .composer folder. On
-OS X and Linux, this will be *\~/.composer/vendor/bin/*.
+Run:
 
-Install the cli:
+    curl -sS https://platform.sh/cli/installer | php
 
-    composer global require platformsh/cli:@stable
+This will install the CLI in your home directory and configure your shell. If you need further installation instructions, see the [CLI README](https://github.com/platformsh/platformsh-cli/tree/master#installation).
 
-Add a path to the `platform` command :
+## Authenticate locally using the Platform.sh CLI
 
-    echo 'export PATH="$PATH:~/.composer/vendor/bin"' >> ~/.bash_profile
-    source ~/.bash_profile
+The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will
+authenticate you with Platform.sh and show your projects. Just type this
+command to start:
 
-Find your Platform.sh login details (the e-mail address and password you
-use to authenticate to your [Platform.sh account](https://accounts.platform.sh/user)).
+```bash
+platform
+```
 
-Run the Platform.sh CLI for the first time. :
+The credentials you enter are the same as your [Platform.sh account](https://accounts.platform.sh/user).
 
-    platform
-
-You are then prompted for your Platform.sh e-mail address and password.
+> **note**
+> If you have created your account using the OAuth Login (via Bitbucket, GitHub or Google) then in order to use the Platform CLI you
+> will need to create a password, which you can do using the ['Request new password' tool](https://accounts.platform.sh/user/password)
 
 Enter your details. A list of your projects appears, along with some
 tips for getting started.
 
-**Your command line tools are now ready to use with Platform.sh.**
+**Your command-line tools are now ready to use with Platform.sh.**
+
+## Updating the CLI
+
+To update the CLI at any time, run:
+
+```bash
+platform self-update
+```

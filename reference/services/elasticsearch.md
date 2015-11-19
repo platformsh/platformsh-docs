@@ -6,10 +6,11 @@ Elasticsearch is a distributed RESTful search engine built for the cloud.
 
 * 0.90 (default)
 * 1.4
+* 1.7
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](reference/environment-variables.md):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](reference/environment-variables.md):
 
 ```bash
 {
@@ -25,7 +26,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](ref
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+In your `.platform/services.yaml`:
 
 ```yaml
 mysearch:
@@ -33,26 +34,23 @@ mysearch:
     disk: 1024
 ```
 
-In your ``.platform.app.yaml``:
+In your `.platform.app.yaml`:
 
 ```yaml
 relationships:
     elasticsearch: "mysearch:elasticsearch"
 ```
 
-You can them use the service in a configuration file of your application with something like:
+You can then use the service in a configuration file of your application with something like:
 
 ```php
 <?php
-$relationships = getenv("PLATFORM_RELATIONSHIPS");
-if (!$relationships) {
-  return;
-}
+if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
+  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
 
-$relationships = json_decode(base64_decode($relationships), TRUE);
-
-foreach ($relationships['elasticsearch'] as $endpoint) {
-  $container->setParameter('elasticsearch_host', $endpoint['host']);
-  $container->setParameter('elasticsearch_port', $endpoint['port']);
+  foreach ($relationships['elasticsearch'] as $endpoint) {
+    $container->setParameter('elasticsearch_host', $endpoint['host']);
+    $container->setParameter('elasticsearch_port', $endpoint['port']);
+  }
 }
 ```
