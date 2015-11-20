@@ -18,7 +18,7 @@ point it to the IP address that resolves when you access your master
 project branch.
 
 > **note**
-> If you are on a Development plan, your domain will not be served by Platform.sh. In that case, you need to upgrade your subscription to a production plan.
+> If you are on a Development plan, you cannot add a domain. You would need to upgrade your subscription to a production plan.
 
 ## 2 - Routes
 
