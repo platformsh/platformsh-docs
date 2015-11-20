@@ -9,7 +9,7 @@ if [[ $# -eq 0 ]] ; then
 fi
 export BOOK=$1
 # echo "{\"name\":\"$BOOK\", \"title\":`cat book_$BOOK.json | jq '.title'`}," >> ./_books/index.txt
-gitbook install
+#gitbook install
 gitbook build
 rm -rf  _books/$1
 mkdir -p _books/$1
