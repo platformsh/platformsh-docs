@@ -1,13 +1,13 @@
 {
     "title": "User Guide",
     "description": "Platform.sh user guide",
-    "gitbook": "2.2.0",
+    "gitbook": "2.5.1",
         "structure": {
             "readme": "README_user_guide.md",
             "summary": "SUMMARY_user_guide.md"
         },
     "plugins": [
-        "ga", "edit-link", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"
+        "ga", "edit-link", "anchors", "reveal","sections", "collapsible-menu",  "theme-platform@0.0.1"
     ],
     "pluginsConfig": {
         "ga": {
