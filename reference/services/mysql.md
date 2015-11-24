@@ -5,6 +5,7 @@ MySQL is one of the world's most popular open source database.
 ## Supported versions
 
 * 5.5 (default)
+* 10.0
 
 ## Relationship
 
