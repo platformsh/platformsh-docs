@@ -57,7 +57,7 @@ Copy the Payload URL that is returned by the previous command.
 
 Go to your GitHub repository and click `Settings`. Select the *Webhooks
 and Services* tab and click `Add webhook`. Paste the Payload URL, Choose
-"Just send me everything" for the events you want to receive. and click
+"Send me everything" for the events you want to receive. and click
 `Add webhook`.
 
 You can now start pushing code, creating new branches or opening pull
