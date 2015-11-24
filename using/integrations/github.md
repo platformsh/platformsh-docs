@@ -19,9 +19,8 @@ repository, you first need to generate a token on your GitHub user
 profile. Simply go to your account page on GitHub and click
 `Edit profile`.
 
-Select the *Applications* tab and click [Generate new
-token](https://github.com/settings/tokens/new) in the *Personal access
-tokens* section.
+Select the *Personal access tokens* tab and click on [Generate new
+token](https://github.com/settings/tokens/new).
 
 Give it a description and then ensure the token has the following
 scopes:
