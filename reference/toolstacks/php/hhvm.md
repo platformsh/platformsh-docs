@@ -5,7 +5,7 @@ HHVM is an open-source virtual machine designed for executing programs written i
 Note that there are some differences between PHP and HHVM and you should really test your application before deploying with
 HHVM. 
 
-HHVM can be much, much faster then PHP so it is worth the trouble of adjusting your code for it.
+HHVM can be much, much faster than PHP so it is worth the trouble of adjusting your code for it.
 
 To switch your project to HHVM, put `hhvm` instead of `php` in the `type`
 property of your `.platform.app.yaml`.
