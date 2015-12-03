@@ -12,13 +12,13 @@ project, all of the services are backed-up.
 
 Services are configured through the [.platform/services.yaml](reference/services-yaml.md)
 file you will need to commit to your git repository. This section describes
-specificities you might want to know about, for each service.
+specifics you might want to know about for each service.
 
 If you don't have a `.platform` folder, you need to create one:
 
 ```bash
-$ mkdir .platform
-$ touch .platform/services.yaml
+mkdir .platform
+touch .platform/services.yaml
 ```
 
 Here is an example of a `services.yaml` file:
@@ -58,17 +58,17 @@ E: Error parsing configuration files:
 
 ### Disk
 
-The `disk` attribute is the size of the persistent disk of the application (in MB) you can to allocate to the service. 
+The `disk` attribute is the size of the persistent disk (in MB) allocated to the service. 
 
-For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between you application, as defined in ``.platform.app.yaml``, and it's services.
+For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between your application (as defined in `.platform.app.yaml`) and each of its services.
 
 ## Using the services
 
-In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the `.platform.app.yaml` file which configures the Relationships between applications and services, [documented here](/user_guide/reference/platform-app-yaml.html).
+In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the `.platform.app.yaml` file which configures the *relationships* between applications and services, [documented here](/user_guide/reference/platform-app-yaml.html).
 
 ## Defaults
 
-If you do not provide a `services.yaml` file the following default one will be loaded:
+If you do not provide a `services.yaml` file, the following default one will be loaded:
 
 ```yaml
 mysql:
