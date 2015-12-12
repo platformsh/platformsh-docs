@@ -21,7 +21,7 @@ You can activate or deactivate SSI on a per-route basis in your
 ```
 
 It allows you to include in your HTML response directives that will make the
-server "fill-in" parts of the HTML respecting the caching the you setup.
+server "fill-in" parts of the HTML respecting the caching you setup.
 
 For example you could in a dynamic non-cached page include a block that would 
 have been cached for example in the /index.php page we would have:
