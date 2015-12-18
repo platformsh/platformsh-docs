@@ -173,7 +173,7 @@ dashes. In our case if we have a `http://*.{default}/` route, both
 `http://bar---add-theme-vmwklxcpbi6zq.eu.platform.sh/` would work just fine.
 
 If you examine the routes of your application (for example by running
-`echo $PLATFORM_ROUTES |base64 --decode` in an SSH session on your environment).
+`echo $PLATFORM_ROUTES | base64 --decode | json_pp` in an SSH session on your environment).
 You will see a route such as `https://*---add-theme-vmwklxcpbi6zq.eu.platform.sh/`
 
 [You can find detailed information about caching here](cache.html).
