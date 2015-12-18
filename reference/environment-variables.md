@@ -67,7 +67,7 @@ to configure your `settings.local.php`.
 For example:
 
 ```bash
-web@vmwklzcpbi6zq-master--php:~$ echo $PLATFORM_RELATIONSHIPS | base64 --decode
+echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
 {
     "database": [
         {
