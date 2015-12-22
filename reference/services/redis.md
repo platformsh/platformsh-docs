@@ -42,22 +42,19 @@ relationships:
     redis: "myredis:redis"
 ```
 
-You can them use the service in a configuration file of your application with something like:
+You can then use the service in a configuration file of your application with something like:
 
 ```php
 <?php
-$relationships = getenv("PLATFORM_RELATIONSHIPS");
-if (!$relationships) {
-  return;
-}
+if (getenv('PLATFORM_RELATIONSHIPS')) {
+    $relationships = json_decode(base64_decode(getenv('PLATFORM_RELATIONSHIPS')), true);
 
-$relationships = json_decode(base64_decode($relationships), TRUE);
-
-foreach ($relationships['redis'] as $endpoint) {
-  $container->setParameter('redis_host', $endpoint['host']);
-  $container->setParameter('redis_port', $endpoint['port']);
+    foreach ($relationships['redis'] as $endpoint) {
+        $container->setParameter('redis_host', $endpoint['host']);
+        $container->setParameter('redis_port', $endpoint['port']);
+    }
 }
 ```
 
 **notes**
-1. Redis is configured to serve as a cache, its storage is not persistent. You should not use it as a database.
+1. Redis is configured to serve as a cache: its storage is not persistent. You should not use it as a database.

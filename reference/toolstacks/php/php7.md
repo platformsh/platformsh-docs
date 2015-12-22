@@ -10,6 +10,8 @@ compared with PHP 5.6!
 To your joy you may also discover it has a much lower memory footprint than
 both PHP 5.6 and HHVM so in some cases it may outperform both by a margin.
 
+But some extensions have not yet been ported to PHP 7.0, so we can only provide beta level support since we may not be able to help in case of some very specific issues. Using this in production is a risk and we can not recommend, until we announce official stable support.
+
 For some of those there are pure PHP replacements (such as Predis for redis) 
 some do not.
 
