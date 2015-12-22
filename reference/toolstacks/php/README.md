@@ -18,16 +18,22 @@ Platform.sh supports custom PHP configurations.
 
 ## Configuring PHP
 
-You can choose which version of PHP you want to run in your `.platform.app.yaml` file, currently
-supported versions: PHP 5.4 (default), PHP 5.5 and PHP 5.6. We support HHVM and PHP 7.0 (currently in beta awaiting stable
-release)
-
-Example `.platform.app.yaml`:
+You can choose which version of PHP you want to run in your `.platform.app.yaml` file:
 
 ```yaml
 name: front
 type: php:5.6
 ```
+
+## Supported versions
+
+* 5.4 (default)
+* 5.5
+* 5.6
+* 7.0
+
+> **note**
+> You can also use HHVM.
 
 ### PHP extensions
 
