@@ -114,7 +114,7 @@ DNS provider's redirection service to redirect the apex over to the
 `www` version of the domain. Check with your DNS provider to see how
 they support this.
 
-### Naked domain (sans www)
+### Naked domain (without www)
 
 The www portion of your domain is a subdomain. In fact, any part of your
 domain that precedes domain.tld can be called a subdomain, not just
