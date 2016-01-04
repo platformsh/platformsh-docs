@@ -77,7 +77,7 @@ application is considered to be a service by itself (which you can route to
 in the `.platform/routes.yaml`) and which you can reference as a relationship
 from another application in its `.platform.app.yaml`. 
 
-We currently support PHP 5.4, PHP 5.5, PHP 5.6, HHVM, the APC and ZO+ opcode caches, 
+We currently support PHP 5.4, PHP 5.5, PHP 5.6, PHP 7.0, HHVM, the APC and ZO+ opcode caches, 
 and all major PHP extensions, rewriting, and mapping. Also, you can have a 
 custom PHP.INI file.
 
