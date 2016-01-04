@@ -191,6 +191,7 @@ languages:
 -   Python
 -   Ruby
 -   NodeJS
+-   Java (with integrated Maven and Ant support)
 
 Those dependencies are independent of the eventual dependencies of your
 application, and are available in the `PATH`, during the build process
