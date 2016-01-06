@@ -282,6 +282,12 @@ You can also add your certificate via the Platform.sh [Web Interface](/overview/
 
 ![UI configuration for SSL](/images/ui-ssl.png)
 
+> **note**
+> Private key should be in the old style, which means it should beging with BEGIN RSA PRIVATE KEY. If it starts with BEGIN > PRIVATE KEY that means it is bundled with the identifier for key type. To convert it to the old style RSA key:
+> ```bash
+> $ openssl rsa -in private.key -out private.rsa.key
+
+
 ### Use the Platform.sh CLI to add the certificate
 
 Example:
