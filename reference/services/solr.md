@@ -30,7 +30,7 @@ In your ``.platform/services.yaml``:
 
 ```yaml
 mysearch:
-    type: solr:1.4
+    type: solr:4.10
     disk: 1024
 ```
 
@@ -57,3 +57,17 @@ foreach ($relationships['solr'] as $endpoint) {
   $container->setParameter('solr_port', $endpoint['port']);
 }
 ```
+
+## Configuration
+
+If you want to provide your own Solr configuration, you can add a `core_config` key in your ``.platform/services.yaml``:
+
+```yaml
+mysearch:
+    type: solr:4.10
+    disk: 1024
+    configuration:
+        core_config: !archive "<directory>"
+```
+
+The `directory` parameter points to a directory in the Git repository, relative to the `.platform/services.yaml` file.  This directory needs to contain everything that Solr 4.10 needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.
