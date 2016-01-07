@@ -30,7 +30,7 @@ In your ``.platform/services.yaml``:
 
 ```yaml
 mysearch:
-    type: solr:1.4
+    type: solr:4.10
     disk: 1024
 ```
 
@@ -64,7 +64,7 @@ If you want to provide your own Solr configuration, you can add a `core_config` 
 
 ```yaml
 mysearch:
-    type: solr:1.4
+    type: solr:4.10
     disk: 1024
     configuration:
         core_config: !archive "<directory>"
