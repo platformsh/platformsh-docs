@@ -130,10 +130,10 @@ domain as a CNAME to point to EC2.
 
 In other words, with most DNS providers:
 
-  ----------------- ------------------- ------ -----------------------------
-  you can do this   `www.domain.tld`    CNAME  `some.host.name.platform.sh`
-  you can't do this `domain.tld`        CNAME  `some.host.name.platform.sh`
-  ----------------- ------------------- ------ -----------------------------
+  ----------------- ------------------- ------ ----------------------------------------------
+  you can do this   `www.domain.tld`    CNAME  `<environment>-<project>.<region>.platform.sh`
+  you can't do this `domain.tld`        CNAME  `<environment>-<project>.<region>.platform.sh`
+  ----------------- ------------------- ------ ----------------------------------------------
 
 You also cannot reliably point your root A Record to an IP address
 within the cloud providers network since they reserve the right to
