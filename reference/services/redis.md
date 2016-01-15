@@ -1,10 +1,12 @@
 # Redis
 
-Redis is an open source (BSD licensed), in-memory data structure store, used as database, cache and message broker.
-
+Redis is an open source (BSD licensed), in-memory data structure store, used as database, cache and message broker. 
 ## Supported versions
 
 * 2.8 (default)
+* 3.0
+
+> The 3.0 version supports up to 64 different databases per instance of the service, while the 2.8 only allows for a single database
 
 ## Relationship
 
@@ -31,7 +33,14 @@ myredis:
     type: redis:2.8
 ```
 
-In your ``.platform.app.yaml``, configure the relationship and enable the [PHP redis extension](user_guide/reference/toolstacks/php/index.html#php-extensions.md):
+or something in the lines of:
+
+```yaml
+cache:
+    type: redis:3.0
+```
+
+In your ``.platform.app.yaml``, configure the relationship and enable the [PHP redis extension](user_guide/reference/toolstacks/php/index.html#php-extensions.md) if you are using PHP:
 
 ```yaml
 runtime:
