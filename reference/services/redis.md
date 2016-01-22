@@ -65,5 +65,13 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 }
 ```
 
+## Using redis-cli to access your Redis service
+
+Assuming your Redis relationship is named `redis`, you can access it by
+connecting to a host named `redis.internal` using the redis-cli tool. Open an [SSH session](/user_guide/using/use-SSH.html) as follows:
+```bash
+redis-cli -h redis.internal
+```
+
 **notes**
 1. Redis is configured to serve as a cache: its storage is not persistent. You should not use it as a database.
