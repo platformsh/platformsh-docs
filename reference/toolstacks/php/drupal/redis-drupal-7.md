@@ -10,17 +10,17 @@ You will need to add the [Redis](https://www.drupal.org/project/redis)
 module to your project.
 
 If you are using a make file, you can add those lines to your
-`project.make`:
+`project.make`. 
 
 ```ini
-projects[redis][version] = 2.12
+projects[redis][version] = 3.11
 ```
 
 To use the Predis library also add it to your make file:
 
 ```ini
 libraries[predis][download][type] = get
-libraries[predis][download][url] = http://github.com/nrk/predis/archive/v0.8.7.tar.gz
+libraries[predis][download][url] = https://github.com/nrk/predis/archive/v1.0.tar.gz
 libraries[predis][directory_name] = predis
 libraries[predis][destination] = libraries
 ```
