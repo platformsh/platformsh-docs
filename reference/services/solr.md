@@ -70,4 +70,4 @@ mysearch:
         core_config: !archive "&lt;directory&gt;"
 ```
 
-The `directory` parameter points to a directory in the Git repository, relative to the `.platform/services.yaml` file.  This directory needs to contain everything that Solr 4.10 needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.
+The `directory` parameter points to a directory in the Git repository, in or below the `.platform/` folder. This directory needs to contain everything that Solr 4.10 needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.
