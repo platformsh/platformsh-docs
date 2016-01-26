@@ -5,7 +5,7 @@
 Platform.sh supports  multiple applications per project(for example a RESTful web service
 and a front-end, or a main web site and a blog). But more often than not projects are composed
 of a single application. In which case you can simply put a `.platform.app.yaml` at the root
-of your repository. 
+of your repository.
 
 This file controls the application and the way it will be built and deployed on Platform.sh.
 
@@ -41,27 +41,27 @@ crons:
 
 > **note**
 > The `.platform.app.yaml` is specific to your application. If you have multiple
-> applications inside your Git repository, you need one `.platform.app.yaml` at 
+> applications inside your Git repository, you need one `.platform.app.yaml` at
 >the root of each application [see here](/platform-app-yaml-multi-app.html).  
 
 ### Name
 
 The `name` is the unique identifier of the application. Platform.sh
 supports multiple applications within a project, so each application
-must have a **unique name** within a project. The name may only be 
+must have a **unique name** within a project. The name may only be
 composed of lower case alpha-numeric characters. (a-z0-9). This name
 is used in the `.platform/routes.yaml` to define the HTTP upstream
 (by default `php:php`) if you called your application `app` you will
 need to use `app:php` in the upstream field. You can also use this
-name in multi-application relationships. 
+name in multi-application relationships.
 
-> **note* 
+> **note*
 > If you change the name you should think about updating your other
 > configuration files (routes.yaml or the different .platform.app.yaml
 > you will have in a multi-application project.
 > Changing the name has no effect on your different services (databases
 > etc) you data will still be there.
- 
+
 
 ### Type and Build
 
@@ -105,14 +105,14 @@ application.
 The left-hand side is the name of the relationship as it will be exposed
 to the application in the *PLATFORM_RELATIONSHIPS* environment
 variable. The right-hand side is in the form
-`<service name>:<endpoint name>`. where "service name" comes from the 
- `.platform/services.yaml` and  "endpoint name" should be the same as the 
+`<service name>:<endpoint name>`. where "service name" comes from the
+ `.platform/services.yaml` and  "endpoint name" should be the same as the
  value of "type"  declared in that same file.
 
 >**note** so here in the first  example above you could very well have something
->like `mycache: "arediscache:redis"` instead of `redis: "redis:redis"` (if in 
+>like `mycache: "arediscache:redis"` instead of `redis: "redis:redis"` (if in
 > `services.yaml` you named your a service of type `redis` with `arediscache`.
-> more often than not in our example we simply call a redis service "redis" a 
+> more often than not in our example we simply call a redis service "redis" a
 > mysql one "mysql" etc..
 
 Example of valid options are:
@@ -122,7 +122,7 @@ Example of valid options are:
 -   cache: "arediscache:redis"
 -   search: "searchengine:solr"
 
->** note ** You should see the [`services.yaml` documentation](reference/services-yaml.md) 
+>** note ** You should see the [`services.yaml` documentation](reference/services-yaml.md)
 > for a full list of currently supported service types and service endpoints.
 
 
@@ -135,7 +135,8 @@ It has a few sub-keys which are:
 -   **document_root**: The path relative to the root of the application
     that is exposed on the web. Typically `/public` or `/web`.
 -   **passthru**: The URL that is used in case of a file could not be found (either static or php). This would typically be your applications front controller, often `/index.php` or `/app.php`.
--   **index_files**: If you want to use a static file (`index.html`) to serve your application.
+-   **index_files**: If you want to use a static file (`index.html`) to serve your application. This key expects an collection. NB! In order for this to work you
+will also need to add the `.html` format to your whitelist, e.g. like `- \.html$`.
 -   **blacklist**: A list of files which should never be executed. Has no effect on static files.
 -   **whitelist**: A list of static files (as regular expressions) that may be served. Dynamic files (eg: PHP files) will be treated as static files and have their source code served, but they will not be executed.
 -   **expires**: The number of seconds whitelisted (static) content
@@ -278,7 +279,7 @@ correctly setup in the theme folder.
 
 #### [Example] Trigger deploy hook on a specific environment
 
-To trigger a deploy hook only on a specific environment, use the following 
+To trigger a deploy hook only on a specific environment, use the following
 environment variable: `$PLATFORM_ENVIRONMENT` that you put in a `if/then` statement.
 
 In your `.platform.app.yaml` file:
