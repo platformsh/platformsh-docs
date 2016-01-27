@@ -135,8 +135,11 @@ It has a few sub-keys which are:
 -   **document_root**: The path relative to the root of the application
     that is exposed on the web. Typically `/public` or `/web`.
 -   **passthru**: The URL that is used in case of a file could not be found (either static or php). This would typically be your applications front controller, often `/index.php` or `/app.php`.
--   **index_files**: If you want to use a static file (`index.html`) to serve your application. This key expects an collection. NB! In order for this to work you
-will also need to add the `.html` format to your whitelist, e.g. like `- \.html$`.
+-   **index_files**: If you want to use a static file (for example `index.html`) to serve
+    your application. This key expects a collection. NB: In order for this to
+    work, the static file(s) should be included in your whitelist. For example,
+    to use a file named `index.html` as an index file, your whitelist should
+    include an element that matches the filename, like `- \.html$`.
 -   **blacklist**: A list of files which should never be executed. Has no effect on static files.
 -   **whitelist**: A list of static files (as regular expressions) that may be served. Dynamic files (eg: PHP files) will be treated as static files and have their source code served, but they will not be executed.
 -   **expires**: The number of seconds whitelisted (static) content
