@@ -198,8 +198,12 @@ apt-get install openssl
 When prompted, enter an easy password value as it will only be used when
 generating the CSR and not by your app at runtime.
 
-openssl genrsa -des3 -out server.pass.key 2048 ... Enter pass phrase for
-server.pass.key: Verifying - Enter pass phrase for server.pass.key:
+```bash
+openssl genrsa -des3 -out server.pass.key 2048 ... 
+Enter pass phrase for server.pass.key: 
+Verifying - 
+Enter pass phrase for server.pass.key:
+```
 
 The private key needs to be stripped of its password so it can be loaded
 without manually entering the password.
