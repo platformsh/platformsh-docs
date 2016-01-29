@@ -153,10 +153,75 @@ list, we accept a **whitelist** which means that anything not matched
 will trigger a 404 error and will be passed through to your `passthru`
 URL.
 
-To extend the whitelist, you should copy the [default
-whitelist](https://github.com/platformsh/platformsh-examples/blob/symfony/todo-mvc-full/.platform.app.yaml#L23),
-and only keep the extensions you need.
+To extend the whitelist, you should copy the default
+whitelist below and and only keep the extensions you need:
 
+```yaml
+# The configuration of app when it is exposed to the web.
+web:
+    # The public directory of the app, relative to its root.
+    document_root: "/web"
+    # The front-controller script to send non-static requests to.
+    passthru: "/app.php"
+    whitelist:
+      # CSS and Javascript.
+      - \.css$
+      - \.js$
+      - \.hbs$
+
+      # image/* types.
+      - \.gif$
+      - \.jpe?g$
+      - \.png$
+      - \.tiff?$
+      - \.wbmp$
+      - \.ico$
+      - \.jng$
+      - \.bmp$
+      - \.svgz?$
+
+      # audio/* types.
+      - \.midi?$
+      - \.mpe?ga$
+      - \.mp2$
+      - \.mp3$
+      - \.m4a$
+      - \.ra$
+      - \.weba$
+
+      # video/* types.
+      - \.3gpp?$
+      - \.mp4$
+      - \.mpe?g$
+      - \.mpe$
+      - \.ogv$
+      - \.mov$
+      - \.webm$
+      - \.flv$
+      - \.mng$
+      - \.asx$
+      - \.asf$
+      - \.wmv$
+      - \.avi$
+
+      # application/ogg.
+      - \.ogx$
+
+      # application/x-shockwave-flash.
+      - \.swf$
+
+      # application/java-archive.
+      - \.jar$
+
+      # fonts types.
+      - \.ttf$
+      - \.eot$
+      - \.woff$
+      - \.otf$
+
+      # robots.txt.
+      - /robots\.txt$
+```
 
 ### Disk
 
