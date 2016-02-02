@@ -1,8 +1,9 @@
 require(["gitbook"], function(gitbook) {
     gitbook.events.bind("page.change", function() {
-        $('.book-search input[type="text"]').prop('placeholder', 'Search');
-        $('.book-search').css('top', '0');
-        $('.book-search').css('display', 'block');
+      ga('send', 'pageview', window.location.pathname+window.location.search);
+      $('.book-search input[type="text"]').prop('placeholder', 'Search');
+      $('.book-search').css('top', '0');
+      $('.book-search').css('display', 'block');
 
       if (location.href.indexOf('#') > -1) {
         location.href+='';
