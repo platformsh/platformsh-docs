@@ -525,9 +525,6 @@ body,
 .book .book-body .page-wrapper .page-inner section.normal hr {
   height: 1px;
 }
-.book.with-search .book-summary .book-search {
-  display: none;
-}
 .glossary-term {
   position: relative;
 }
