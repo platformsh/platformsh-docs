@@ -364,7 +364,7 @@ hooks:
     fi
 ```
 
-### Crons
+### Crons / Cronjobs
 
 The `crons` is an object describing processes that are triggered on a
 schedule.
@@ -375,6 +375,7 @@ It has a few sub-keys which are:
 -   **cmd**: The command that is executed, for example
     cd public ; drush core-cron\`
 
+The minimum interval between cron runs is 5 minutes, even if specified as less.
 
 ## Default configuration file
 
