@@ -38,7 +38,7 @@ There are no rules you must follow when branching the master environment. You si
     can have its own environment as a child of the sprint environment.
 -   **Developer-centric**: one QA environment and a few development
     environments (*per developer, per task...*).
--   **Testing**:: an operational test environment, a user test
+-   **Testing**: an operational test environment, a user test
     environment and a few unit test environments.
 -   **Hotfix**: one environment for every bug, security, or hotfix that
     needs deployment.
