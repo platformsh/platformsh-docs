@@ -23,9 +23,9 @@ Access to MariaDB is only possible from the PHP containers, thus
 username/password based authentication is not used.
 
 To access the MariaDB database directly, ssh into the web server and use the
-following command: `mysql -h database.internal`
+following command: `mysql -h database.internal -u user`
 
-You can also use Drush: `drush sql-cli`
+From outside the web server you can use the CLI: `platform sql`
 
 ## PostgreSQL (Database service)
 
