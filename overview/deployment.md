@@ -101,7 +101,7 @@ after all.
 ### Deploy slugs and cluster
 
 Now Platform.sh provisions of all the elements it needs to run your
-application cluster : your application(s) and all the backend services you
+application cluster: your application(s) and all the backend services you
 need. It will mount each service in its own container, mount their Read/Write storage (that is hosted on a highly available distributed storage grid), and
 configure the network so they can see each other (and only each other!).
 
