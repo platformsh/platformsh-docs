@@ -389,7 +389,7 @@ body,
 #edit-link {
   position: absolute;
   right: 10px;
-  top: -42px;
+  top: 10px;
   padding-right: 30px;
   overflow: hidden;
   width: 0;
@@ -865,7 +865,7 @@ footer > .closing-container {
   font-size: 11px;
 }
 footer > .closing-container a {
-  color: #ffffff;
+  color: #fff;
 }
 footer > .closing-container a:hover {
   text-decoration: underline;
@@ -943,7 +943,7 @@ button {
 }
 .container-grey-dark {
   background: #363636;
-  color: #ffffff;
+  color: #fff;
 }
 .bodycontent .container {
   padding-top: 50px;
