@@ -122,7 +122,7 @@ environments, clear caches, ping external CI tools, etc.) When this
 script runs you already have access to a fully running application.
 
 ### Configure routing
-While de deployment is running we freeze the incoming traffic at the entry-point
+While the deployment is running we freeze the incoming traffic at the entry-point
 so no transactions are going to be lost.
 
 If everything went fine, we are now ready to configure routing, so your
