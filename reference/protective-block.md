@@ -52,12 +52,12 @@ The protective block is there to protect you against known vulnerability
 in the software you deploy on [Platform.sh](https://platform.sh).
 
 If nonetheless you want to opt out of the protective block, you simply
-need to specify it in your `.platform.app.yaml` like this. :
+need to specify it in your `.platform.app.yaml` like this:
 
     preflight:
        enabled: false
 
-You can also explicitly opt-out of some specific check like this. :
+You can also explicitly opt-out of some specific check like this:
 
     preflight:
        enabled: true
