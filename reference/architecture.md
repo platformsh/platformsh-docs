@@ -24,7 +24,7 @@ database and so on.
 Each element of the project is run in its own container and they are managed
 together by our orchestration layer. 
 
-Some services are built-in : like the HTTP router (handling incoming requests, but also caching and redirects). Or the PHP
+Some services are built-in: like the HTTP router (handling incoming requests, but also caching and redirects). Or the PHP
 application server the GIT server itself or the SSH service.
 
 Some services you can add to your project (it happens through a simple configuration file).
