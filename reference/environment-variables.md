@@ -17,7 +17,7 @@ to variable values, you can decode the value of a specific variable by
 running:
 
 ```bash
-echo $PLATFORM_VARIABLES| base64 --decode
+echo $PLATFORM_VARIABLES | base64 --decode
 {"myvar": "this is a value"}
 ```
 
