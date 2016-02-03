@@ -9,7 +9,7 @@ single click, or a single command on the command-line.
 
 ## Use any methodology
 
-You can have just a traditional Development -> Staging -> production workflow.
+You can have just a traditional Development -> Staging -> Production workflow.
 
 But... you can also create as many branches for your code as you would like.
 And Platform.sh will give you a hierarchical view of these branches. So for 
