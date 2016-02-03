@@ -21,11 +21,11 @@ that are precise copies of production with even the same data as production.
 And we can do so in 30 seconds.
 
 ## Batteries Included
-* Every Platform.sh plan includes 4 environments (one for the live/production environment, 3 for staging/development). You can have as many Inactive Environments as you wish. You can pay to have as many Active ones as you'd like
+* Every Platform.sh plan includes 4 environments (one for the live/production environment, 3 for staging/development). You can have as many Inactive Environments as you wish. You can pay to have as many Active ones as you'd like.
 * You can add fully managed backend services, like MySQL, Postgres, Solr, Elastic Search, Redis etc.. without requiring external add-ons.
 * You can use a robust build process (with support for not only composer, but also NodeJS, Ruby and Python scripts).
 * You can upsize production plans to more memory and cpu to handle larger traffic.
-* You can opt for our Enterprise offering giving you white-glove support and 99.99% guaranteed availability
+* You can opt for our Enterprise offering giving you white-glove support and 99.99% guaranteed availability.
 
 ## Great integrations
 Platform.sh comes out-of-the-box with great integrations for services such
