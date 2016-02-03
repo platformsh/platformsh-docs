@@ -1,7 +1,7 @@
 # Platform.sh Environments
 
 [Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage 
-multiple environments, including the Master environment which runs the production website. Its precisely
+multiple environments, including the Master environment which runs the production website. It's precisely
 like a "development" or a "staging" server.. except they are created on the fly, and they are absolutly 
 identical copies of their parent environments. 
 
