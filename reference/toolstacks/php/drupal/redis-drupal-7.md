@@ -98,9 +98,6 @@ Redis_Cache
 DrupalDatabaseCache
 ```
 
-> **note**
-> Currently, you need to commit some code to rebuild your environment so that the new variables are properly added to your `settings.local.php`. This will be fixed soon.
-
 ### Via settings.php
 
 If you prefer to commit these variables directly to your `settings.php`,
