@@ -12,6 +12,15 @@ environment.
 
 ![Configure Platform.sh environment settings](/images/ui-conf-environment-settings.png)
 
+The *Delete* action will destroy all services running on this environment (PHP, MySQL, volumes...) 
+so that only the Git branch remains. You can reactivate the environment later if needed.
+
+To also delete the branch, you need to use Git and run:
+
+```
+git push origin :BRANCH-NAME
+```
+
 > **note**
 > Deleting the Master environment is forbidden.
 
