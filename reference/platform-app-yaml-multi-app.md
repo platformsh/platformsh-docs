@@ -30,11 +30,40 @@ angular/
   .platform.app.yaml
 ```
 
-> **note** 
-> Platform.sh supports Git submodules, so each project can be in a separate
-> repository. This is an incredibly powerful feature which allows you to create
-> to create a `Staging` server with different versions of each application in a
-> single commit.
+## Submodules
+Platform.sh supports Git submodules, so each application can be in a separate
+repository. This is a powerful feature which allows you to create to create a
+`Staging` server with different versions of each application in a single
+commit.
+
+However, there is currently a notable limitation: the `.platform.app.yaml`
+files must be in the top-level repository. For now, you'll have to implement a
+repository layout that looks like this:
+```
+.git/
+.platform/
+    routes.yaml
+    services.yaml
+app1/
+    .platform.app.yaml
+    app1-submodule/
+        index.php
+app2/
+    .platform.app.yaml
+    app2-submodule/
+        index.php
+```
+
+This puts your applications' files at a different path relative to your
+`.platform.app.yaml` files, so you'll also have to update your web
+configuration to match. For example, your first application's
+`.platform.app.yaml` file would include something like this:
+```
+web:
+    document_root: "/app1-submodule"
+    # Or /app1-submodule/path/to/webroot, if appropriate.
+```
+
 
 ### Multi-app Routes
 
