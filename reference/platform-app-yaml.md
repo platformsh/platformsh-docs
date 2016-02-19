@@ -2,10 +2,10 @@
 
 ## Configure your Application
 
-Platform.sh supports  multiple applications per project(for example a RESTful web service
-and a front-end, or a main web site and a blog). But more often than not projects are composed
-of a single application. In which case you can simply put a `.platform.app.yaml` at the root
-of your repository.
+Platform.sh supports multiple applications per project (for example, a RESTful
+web service and a front-end, or a main web site and a blog). But more often
+than not, projects are composed of a single application, in which case you can
+simply put a `.platform.app.yaml` at the root of your repository.
 
 This file controls the application and the way it will be built and deployed on Platform.sh.
 
