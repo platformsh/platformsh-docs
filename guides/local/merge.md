@@ -2,8 +2,8 @@
 
 You can now test your change. You like it? Want to put it into production?
 ![Platform Web Merge](/images/platform-web-merge.png)
-Click on the merge button a voilà! it is going to redeploy your production
-with the new theme. 
+Click on the merge button and voilà! It is going to redeploy your production
+site with the new theme. 
 
 You can also do this from the command line.. with nothing but git..
 ```
@@ -29,7 +29,7 @@ To vmwklzcpbi6zq@git.eu.platform.sh:vmwklzcpbi6zq.git
    f56715e..2548c67  master -> master
 ```
 
-Visually of course nothing will change.. we synchronize the code.. not the 
+Visually of course nothing will change: we merge the code, not the 
 database (that would be stupid). So you will need to reactivate the theme. In
 real life you would probably export a feature or do this in an installation
 profile. 
