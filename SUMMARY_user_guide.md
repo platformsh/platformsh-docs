@@ -2,6 +2,7 @@
 * [Configuration](overview/configuring-project-environments.md)
   * [The Web Interface](overview/web-ui/README.md)
   * [Platform.sh CLI](overview/cli/README.md)
+{% include "./SUMMARY_cli.md" %}
   * [Project configuration](overview/web-ui/configure-project.md)
   * [Platform.sh Environments](overview/environments.md)
     * [Environment Configuration](overview/web-ui/configure-environment.md)

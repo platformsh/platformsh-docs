@@ -25,6 +25,8 @@ function matchPath($path, $current_urls){
                 break;
             }
         }
+        // nothing was matched let's redirect to 404 page with a search query
+        $location = "/404/?q=$path";
     };
     if ($location == $path){$location = "/";}; // Prevent redirect loops
     return $location;
