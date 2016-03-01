@@ -5,7 +5,7 @@ This documentation is rendered online at https://docs.platform.sh
 ## Contributing
 
 We love contributors! For more information on how you can contribute to the
-Symfony documentation, please read
+Platform.sh documentation, please read
 [Contributing to the Documentation](https://docs.platform.sh)
 
 >**Note**
