@@ -9,5 +9,5 @@ Platform.sh documentation, please read
 [Contributing to the Documentation](https://docs.platform.sh)
 
 >**Note**
->All pull requests must be based off of the **master** branch. And they're 
+>All pull requests must be based on the **master** branch. They're
 automatically deployed on [Platform.sh](https://platform.sh) for you to test.
