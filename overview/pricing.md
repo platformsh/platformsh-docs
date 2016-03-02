@@ -10,7 +10,11 @@ All Platform.sh plans include the following:
 
 You can switch between plans (downgrade or upgrade) freely but note that 
 reducing storage is currently not supported for technical reasons. If you need 
-to reduce storage please create a support ticket.
+to reduce storage please create a support ticket. You will always be billed the
+prorated rate of your plan over the period it was used.
+
+You may cancel your plan at any time and you will only be billed for the actual
+period used.
 
 For Enterprise and Agency Plans you can pay by Purchase Order, for all other 
 plans you need to add a Credit Card to your account.
@@ -20,7 +24,7 @@ are. If ever you need more time to evaluate Platform.sh please contact our
 sales representatives they can issue you an extra voucher to prolong your
 test.
 
-> In this section we describe the billing in US Dollars, you will be build in 
+> In this section we describe the billing in US Dollars, you will be billed in 
 > Dollars, Euros or British Pounds depending on where your billing address is.
 
 > Euro Prices are presented excluding VAT, in your bill, as appropriate we will 
@@ -58,11 +62,15 @@ The basic Plan (development) starts at 10$ per month (including 4 environments :
 
 > You can not map a custom domain name to a development plan
 
+Development environments have less resources than production environments.
+
 ## Production - Standard / Medium / Large
 
 The live environment (master) of a production plan has more resources
-then the development environments.
-You can map domain names to your master environment, SSL support is included.
+then the development environments of the project.
+
+You can map domain names to your master environment. SSL support is always 
+included.
 
 Production plans come in three flavors:
 
@@ -70,7 +78,7 @@ Production plans come in three flavors:
 * Medium: with 4GB of dedicated memory
 * Large: with 7GB of dedicated memory
 
-### Multiple Applications in a single cluster
+### Multiple Applications in a single project
 All Platform.sh plans support multiple applications in a single cluster but
 they all share the global resource of the cluster.
 
