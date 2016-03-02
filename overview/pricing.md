@@ -70,6 +70,19 @@ Production plans come in three flavors:
 * Medium: with 4GB of dedicated memory
 * Large: with 7GB of dedicated memory
 
+### Multiple Applications in a single cluster
+All Platform.sh plans support multiple applications in a single cluster but
+they all share the global resource of the cluster.
+
+The resources of a **Standard plan are not sufficient to run more then one 
+application** in the same cluster if there is also a MySQL database as a service. So useful multi-apps start at Medium.
+
+A Medium plan for example can support 3 Apps with a MySql Instance and a Redis 
+instance.
+
+If you wonder if a specific setup would fit in a plan, don't hesitate to
+contact our support.
+
 ## Enterprise
 
 Enterprise plans start at $670 a month. 
