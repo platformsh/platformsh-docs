@@ -6,10 +6,10 @@ Let's say you're building a module (*or theme, library...*) which is
 stored in a private Git repository that you have access to and want to
 use it on your project.
 
-Platform allows you to get code that is stored in private Git repository
-(from your make file, or `composer file`).
+Platform.sh allows you to pull code dependencies that are stored in external private 
+Git repository (e.g. from a Drupal `.make` file, a PHP `composer.json` file).
 
-To grant Platform access to your private Git repository, you need to add
+To grant Platform.sh access to your private Git repository, you need to add
 the project public SSH key in the deploy keys of your Git repository.
 
 You can find your project's public key by going to the project's configuration
