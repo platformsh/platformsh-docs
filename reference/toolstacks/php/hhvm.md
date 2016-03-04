@@ -4,7 +4,7 @@ HHVM is an open-source virtual machine designed for executing programs written i
 
 HHVM can be much, much faster than PHP for some projects.
 
-Note that this is beta-level support: we do not officially recommend HHVM for production use yet. Additionally, HHVM may not be suitable for all: you should really test your application before making the switch. You may also want to look at our [PHP 7 support](php7.md).
+Note that this is beta-level support: it's not as well tested as our support for PHP. Additionally, HHVM may not be suitable for all: you should really test your application before making the switch. You may also want to look at our [PHP 7 support](php7.md).
 
 ## Supported versions
 
