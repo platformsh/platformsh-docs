@@ -8,16 +8,14 @@ Note that this is beta-level support: we do not officially recommend HHVM for pr
 
 ## Supported versions
 
-* 3.9 (default)
-* 3.10
-* 3.11
+* 3.9 (LTS)
 * 3.12
 
 To switch your project to HHVM, simply specify `hhvm` instead of `php` in the `type` property of your `.platform.app.yaml` file:
 
 ```yaml
     name: "fastapp"
-    type: hhvm:3.10
+    type: hhvm:3.12
     build:
         flavor: composer
     web:
