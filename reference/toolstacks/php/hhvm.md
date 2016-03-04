@@ -11,6 +11,13 @@ Note that this is beta-level support: it's not as well tested as our support for
 * 3.9 (LTS)
 * 3.12
 
+## Supported versions
+
+* 3.9 (default)
+* 3.10
+* 3.11
+* 3.12
+
 To switch your project to HHVM, simply specify `hhvm` instead of `php` in the `type` property of your `.platform.app.yaml` file:
 
 ```yaml
