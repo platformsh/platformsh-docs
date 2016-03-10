@@ -15,6 +15,4 @@ In a single project you can have multiple applications (for example a RESTful we
 and a front-end, or a main web site and a blog). Each of these will have its own `.platform.app.yaml`
 
 > **note**
-> Find many examples for those configuration files on the [platformsh-examples repository on 
-GitHub](https://github.com/platformsh/platformsh-examples).
-
+> You can find many example configurations on GitHub for [Drupal](https://github.com/platformsh/platformsh-example-drupal), [Symfony](https://github.com/platformsh/platformsh-example-symfony), [NodeJS](https://github.com/platformsh/platformsh-example-nodejs)...
