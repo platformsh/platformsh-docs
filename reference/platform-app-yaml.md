@@ -39,7 +39,7 @@ crons:
         cmd: "cd public ; drush core-cron"
 ```
 
-> **note**
+> **Note**
 > This configuration file is specific to one application. If you have multiple
 > applications inside your Git repository, you need one `.platform.app.yaml` at
 >the root of each application [see here](/platform-app-yaml-multi-app.html).  
@@ -55,7 +55,7 @@ is used in the `.platform/routes.yaml` to define the HTTP upstream
 need to use `app:php` in the upstream field. You can also use this
 name in multi-application relationships.
 
-> **note*
+> **Note**
 > If you change the name you should think about updating your other
 > configuration files (routes.yaml or the different .platform.app.yaml
 > you will have in a multi-application project.
@@ -109,8 +109,9 @@ variable. The right-hand side is in the form
  `.platform/services.yaml` and  "endpoint name" should be the same as the
  value of "type"  declared in that same file.
 
->**note** so here in the first  example above you could very well have something
->like `mycache: "arediscache:redis"` instead of `redis: "redis:redis"` (if in
+> **Note**
+> In the first  example above you could very well have something
+> like `mycache: "arediscache:redis"` instead of `redis: "redis:redis"` (if in
 > `services.yaml` you named your a service of type `redis` with `arediscache`.
 > more often than not in our example we simply call a redis service "redis" a
 > mysql one "mysql" etc..
@@ -122,7 +123,8 @@ Example of valid options are:
 -   cache: "arediscache:redis"
 -   search: "searchengine:solr"
 
->** note ** You should see the [`services.yaml` documentation](reference/services-yaml.md)
+> **Note**
+> You should see the [`services.yaml` documentation](reference/services-yaml.md)
 > for a full list of currently supported service types and service endpoints.
 
 #### Example
@@ -234,7 +236,7 @@ web:
 The `disk` defines the size of the persistent disk size of the
 application in MB.
 
-> **note**
+> **Note**
 > The minimal recommended disk size is 256MB. If you see the error **UserError: Error building the project: Disk size may not be smaller than 128MB**, increase the size to 256MB.
 
 
@@ -250,7 +252,7 @@ The format is:
 
 -   "/public/sites/default/files": "shared:files/files"
 
-> **note**
+> **Note**
 > The `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
 
 
@@ -304,7 +306,8 @@ Possible hooks are:
     deployed and started. You can access other services at this stage
     (MySQL, Solr, Redis...).
 
-Note that the "home" directory is /app while your application will be
+> **Note**
+> The "home" directory is /app while your application will be
 mounted in /app/public (by default, you can define this yourself in you
 .app.platform.yaml file) so you might want to cd /app/public before
 running those.
