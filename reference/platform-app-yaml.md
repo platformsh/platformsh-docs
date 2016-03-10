@@ -84,7 +84,7 @@ The `build` defines what will happen by default when building the project it has
 * symfony
 * composer
 
-#### Example
+**Example**
 
     type: php:5.6
     build:
@@ -97,9 +97,9 @@ environments they have access to.
 
 Possible values are:
 
--   ssh: admin
--   ssh: contributor
--   ssh: viewer
+* ssh: admin
+* ssh: contributor
+* ssh: viewer
 
 
 ### Relationships
@@ -121,41 +121,48 @@ variable. The right-hand side is in the form
 > more often than not in our example we simply call a redis service "redis" a
 > mysql one "mysql" etc..
 
-Example of valid options are:
+*Example*
 
--   database: "mysql:mysql"
--   database2: "mysql2:mysql"
--   cache: "arediscache:redis"
--   search: "searchengine:solr"
+    relationships:
+        database: "mysql:mysql"
+        database2: "mysql2:mysql"
+        cache: "arediscache:redis"
+        search: "searchengine:solr"
 
 > **Note**
 > You should see the [`services.yaml` documentation](reference/services-yaml.md)
 > for a full list of currently supported service types and service endpoints.
 
-#### Example
-
-    relationships:
-        database: "mysql:mysql"
-        solr: "solr:solr"
-        redis: "redis:redis"
-
 ### Web
 
 The `web` defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content. From the front-controller script to a non-static requests to an index.php file on the root. We support any directory structure so the static file can be in a sub directory, and the index.php file can be further down.
 
+#### Locations
+
+The ``locations`` key allows you to provide specific parameters for different URL prefixes.
+
+*Example*
+
+    web:
+        locations:
+            "/":
+                ...
+            "/sites/default/files":
+                ...
+
 It has a few sub-keys which are:
 
--   **document_root**: The path relative to the root of the application
+* **document_root**: The path relative to the root of the application
     that is exposed on the web. Typically `/public` or `/web`.
--   **passthru**: The URL that is used in case of a file could not be found (either static or php). This would typically be your applications front controller, often `/index.php` or `/app.php`.
--   **index_files**: If you want to use a static file (for example `index.html`) to serve
+* **passthru**: The URL that is used in case of a file could not be found (either static or php). This would typically be your applications front controller, often `/index.php` or `/app.php`.
+* **index_files**: If you want to use a static file (for example `index.html`) to serve
     your application. This key expects a collection. NB: In order for this to
     work, the static file(s) should be included in your whitelist. For example,
     to use a file named `index.html` as an index file, your whitelist should
     include an element that matches the filename, like `- \.html$`.
--   **blacklist**: A list of files which should never be executed. Has no effect on static files.
--   **whitelist**: A list of static files (as regular expressions) that may be served. Dynamic files (eg: PHP files) will be treated as static files and have their source code served, but they will not be executed.
--   **expires**: The number of seconds whitelisted (static) content
+* **blacklist**: A list of files which should never be executed. Has no effect on static files.
+* **whitelist**: A list of static files (as regular expressions) that may be served. Dynamic files (eg: PHP files) will be treated as static files and have their source code served, but they will not be executed.
+* **expires**: The number of seconds whitelisted (static) content
     should be cached by the browser. This enables the cache-control and
     expires headers for static content. The `expires` directive and
     resulting headers are left out entirely if this isn't set.
