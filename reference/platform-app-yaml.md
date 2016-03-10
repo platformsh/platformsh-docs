@@ -154,92 +154,33 @@ The `locations` key allows you to provide specific parameters for different URL 
 It has a few sub-keys which are:
 
 * `root`: The folder to serve static assets for this location from relative to the application root. Typically `public` or `web`.
-* `expires`: How long to allow static assets from this location to be cached. Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d).
 * `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be true, false or a URI path string. Typically your applications front controller `/index.php` or `/app.php`.
 * `index`: The file or files to consider when serving a request for a directory. Can be file name, and array of file names or *null*. Typically `index.html`. Note that in order for this to work, the static file(s) should be allowed by your rules. For example, to use a file named `index.html` as an index file, your rules must allow elements that matches the filename, like `- \.html$`.
+* `expires`: How long to allow static assets from this location to be cached (this enables the cache-control and expires headers). Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d). The `expires` directive and resulting headers are left out entirely if this isn't set.
+* `scripts`: Wether to allow loading scripts in that location (*true* or *false*).
+* `allow`: Whether to allow serving files which don't match a rule or not (*true* or *false*).
+* `rules`: Specific overrides for a specific location. The key is a PCRE regular expression that is matched against the full request path. Here is the list of file extension that you can provide rules for: *\.css$,\.js$,\.gif$,\.jpe?g$,\.png$,\.tiff?$,\.wbmp$,\.ico$,\.jng$,\.bmp$,\.svgz?$,\.midi?$,\.mpe?ga$,\.mp2$,\.mp3$,\.m4a$,\.ra$,\.weba$,\.3gpp?$,\.mp4$,\.mpe?g$,\.mpe$,\.ogv$,\.mov$,\.webm$,\.flv$,\.mng$,\.asx$,\.asf$,\.wmv$,\.avi$,\.ogx$,\.swf$,\.jar$,\.ttf$,\.eot$,\.woff$,\.otf$,/robots\.txt$*.
 
-* **blacklist**: A list of files which should never be executed. Has no effect on static files.
-* **whitelist**: A list of static files (as regular expressions) that may be served. Dynamic files (eg: PHP files) will be treated as static files and have their source code served, but they will not be executed.
-* **expires**: The number of seconds whitelisted (static) content
-    should be cached by the browser. This enables the cache-control and
-    expires headers for static content. The `expires` directive and
-    resulting headers are left out entirely if this isn't set.
+*Example*
 
-Contrary to standard `.htaccess` approaches, which accept a
-**blacklist** and allow everything to be accessed except a specific
-list, we accept a **whitelist** which means that anything not matched
-will trigger a 404 error and will be passed through to your `passthru`
-URL.
-
-To extend the whitelist, you should copy the default
-whitelist below and and only keep the extensions you need:
-
-```yaml
-# The configuration of app when it is exposed to the web.
-web:
-    # The public directory of the app, relative to its root.
-    document_root: "/web"
-    # The front-controller script to send non-static requests to.
-    passthru: "/app.php"
-    whitelist:
-      # CSS and Javascript.
-      - \.css$
-      - \.js$
-      - \.hbs$
-
-      # image/* types.
-      - \.gif$
-      - \.jpe?g$
-      - \.png$
-      - \.tiff?$
-      - \.wbmp$
-      - \.ico$
-      - \.jng$
-      - \.bmp$
-      - \.svgz?$
-
-      # audio/* types.
-      - \.midi?$
-      - \.mpe?ga$
-      - \.mp2$
-      - \.mp3$
-      - \.m4a$
-      - \.ra$
-      - \.weba$
-
-      # video/* types.
-      - \.3gpp?$
-      - \.mp4$
-      - \.mpe?g$
-      - \.mpe$
-      - \.ogv$
-      - \.mov$
-      - \.webm$
-      - \.flv$
-      - \.mng$
-      - \.asx$
-      - \.asf$
-      - \.wmv$
-      - \.avi$
-
-      # application/ogg.
-      - \.ogx$
-
-      # application/x-shockwave-flash.
-      - \.swf$
-
-      # application/java-archive.
-      - \.jar$
-
-      # fonts types.
-      - \.ttf$
-      - \.eot$
-      - \.woff$
-      - \.otf$
-
-      # robots.txt.
-      - /robots\.txt$
-```
+    web:
+        locations:
+            "/":
+                root: "public"
+                passthru: "/index.php"
+                index: 
+                    - index.php
+                expires: -1
+                scripts: true
+                allow: true
+                rules:
+                    \.mp4$:
+                        allow: false
+                        expires: -1
+            "/sites/default/files":
+                expires: 300
+                passthru: true
+                allow: true
 
 ### Disk
 
@@ -260,7 +201,7 @@ mounted under a shared resource which is writable.
 
 The format is:
 
--   "/public/sites/default/files": "shared:files/files"
+* `"/public/sites/default/files": "shared:files/files"`
 
 > **Note**
 > The `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
@@ -274,11 +215,11 @@ application might need during the build process.
 Platform.sh supports pulling any dependencies for the following
 languages:
 
--   PHP
--   Python
--   Ruby
--   NodeJS
--   Java (with integrated Maven and Ant support)
+* PHP
+* Python
+* Ruby
+* NodeJS
+* Java (with integrated Maven and Ant support)
 
 Those dependencies are independent of the eventual dependencies of your
 application, and are available in the `PATH`, during the build process
