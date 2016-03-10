@@ -71,9 +71,9 @@ The `type` defines what language will run your application.
 
 The `type` can be:
 
-* ``php``
-* ``nodejs``
-* ``hhvm``
+* `php`
+* `nodejs`
+* `hhvm`
 
 **Example**
 
@@ -83,9 +83,9 @@ The `type` can be:
 
 The `build` defines what will happen by default when building the project it has a sub property `flavor` for which the possible values are:
 
-* ``drupal`` means that ``drush make`` will automatically run if you provide ``.make`` files.
-* ``composer`` means that ``composer install`` will automatically run if you provide ``composer.json`` or ``composer.lock`` file.
-* ``symfony`` is an alisas for ``composer``.
+* `drupal` means that `drush make` will automatically run if you provide `.make` files.
+* `composer` means that `composer install` will automatically run if you provide a `composer.json` or `composer.lock` file.
+* `symfony` is an alisas for `composer`.
 
 **Example**
 
@@ -140,7 +140,7 @@ The `web` defines how the application is exposed to the web (in HTTP). Here we t
 
 #### Locations
 
-The ``locations`` key allows you to provide specific parameters for different URL prefixes.
+The `locations` key allows you to provide specific parameters for different URL prefixes.
 
 *Example*
 
@@ -153,14 +153,11 @@ The ``locations`` key allows you to provide specific parameters for different UR
 
 It has a few sub-keys which are:
 
-* **document_root**: The path relative to the root of the application
-    that is exposed on the web. Typically `/public` or `/web`.
-* **passthru**: The URL that is used in case of a file could not be found (either static or php). This would typically be your applications front controller, often `/index.php` or `/app.php`.
-* **index_files**: If you want to use a static file (for example `index.html`) to serve
-    your application. This key expects a collection. NB: In order for this to
-    work, the static file(s) should be included in your whitelist. For example,
-    to use a file named `index.html` as an index file, your whitelist should
-    include an element that matches the filename, like `- \.html$`.
+* `root`: The folder to serve static assets for this location from relative to the application root. Typically `public` or `web`.
+* `expires`: How long to allow static assets from this location to be cached. Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d).
+* `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be true, false or a URI path string. Typically your applications front controller `/index.php` or `/app.php`.
+* `index`: The file or files to consider when serving a request for a directory. Can be file name, and array of file names or *null*. Typically `index.html`. Note that in order for this to work, the static file(s) should be allowed by your rules. For example, to use a file named `index.html` as an index file, your rules must allow elements that matches the filename, like `- \.html$`.
+
 * **blacklist**: A list of files which should never be executed. Has no effect on static files.
 * **whitelist**: A list of static files (as regular expressions) that may be served. Dynamic files (eg: PHP files) will be treated as static files and have their source code served, but they will not be executed.
 * **expires**: The number of seconds whitelisted (static) content
