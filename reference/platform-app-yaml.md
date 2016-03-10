@@ -65,23 +65,23 @@ name in multi-application relationships.
 
 ### Type and Build
 
-The `type`  and `build` are used to build and run the project. The only supported `type` currently is PHP.
+The `type`  and `build` are used to build and run the project. 
 
-Supported versions:
+The `type` can be:
 
-    type: php:5.4 (default)
-    type: php:5.5
-    type: php:5.6
+* php
+* nodejs
+* hhvm
 
-The `build` concernes what will happen by default when building the project it has a sub property `flavor` for which the possible values are:
+The `build` defines what will happen by default when building the project it has a sub property `flavor` for which the possible values are:
 
--   drupal
--   symfony
--   composer
+* drupal
+* symfony
+* composer
 
 Example:
 
-    type: php:5.4
+    type: php:5.6
     build:
         flavor: symfony
 
