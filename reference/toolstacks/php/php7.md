@@ -18,17 +18,10 @@ missing, there may or may not be a pure PHP replacement for it, such as Predis
 for redis.
 
 To switch your project to PHP 7, put `php:7.0` instead of `php` or `php:5.6` in
-the `type` property of your `.platform.app.yaml`.
-
-Example:
+the `type` property of your `.platform.app.yaml`:
 
 ```yaml
-    name: "fastapp"
+    # .platform.app.yaml
+    name: myphpapp
     type: php:7.0
-    build:
-        flavor: composer
-    web:
-      document_root: "/"
-      passthru: "/index.php"
-    disk: 2048
 ```
