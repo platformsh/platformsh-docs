@@ -9,7 +9,7 @@ simply put a `.platform.app.yaml` at the root of your repository.
 
 This file controls the application and the way it will be built and deployed on Platform.sh.
 
-Here is an example of a `.platform.app.yaml` file:
+Here is an example of a `.platform.app.yaml` file for Drupal:
 
 ```yaml
 name: front
@@ -79,7 +79,7 @@ The `build` defines what will happen by default when building the project it has
 * symfony
 * composer
 
-Example:
+#### Example
 
     type: php:5.6
     build:
@@ -125,6 +125,12 @@ Example of valid options are:
 >** note ** You should see the [`services.yaml` documentation](reference/services-yaml.md)
 > for a full list of currently supported service types and service endpoints.
 
+#### Example
+
+    relationships:
+        database: "mysql:mysql"
+        solr: "solr:solr"
+        redis: "redis:redis"
 
 ### Web
 
