@@ -45,7 +45,7 @@ Of course, we alway keep backward compatibility with the previous configuration 
     document_root: "/public"      # Converted to [locations][/][root]"
     passthru: "/index.php"        # Converted to [locations][/][passthru]
     index_files:
-        - index.php    # Converted to [locations][/][index]
+        - index.php               # Converted to [locations][/][index]
     whitelist: [ ]                # Converted to [locations][/][rules]
     blacklist: [ ]                # Converted to [locations][/][rules]
     expires: 3d                   # Converted to [locations][/][expires]
