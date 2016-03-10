@@ -8,39 +8,37 @@ folder inside your Git repository.
 
 Here is an example of a `.platform.app.yaml` file for Drupal:
 
-```yaml
-name: front
-type: php:5.5
-build:
-    flavor: drupal
-relationships:
-    database: "mysql:mysql"
-    solr: "solr:solr"
-    redis: "redis:redis"
-web:
-    locations:
-        "/":
-            root: "public"
-            expires: -1
-            passthru: "/index.php"
-            index: 
-                - index.php
-            allow: true
-disk: 2048
-mounts:
-    "/public/sites/default/files": "shared:files/files"
-    "/tmp": "shared:files/tmp"
-    "/private": "shared:files/private"
-hooks:
-    # We run deploy hook after your application has been deployed and started.
-    deploy: |
-        cd public
-        drush -y updatedb
-crons:
-    drupal:
-        spec: "*/20 * * * *"
-        cmd: "cd public ; drush core-cron"
-```
+    name: front
+    type: php:5.5
+    build:
+        flavor: drupal
+    relationships:
+        database: "mysql:mysql"
+        solr: "solr:solr"
+        redis: "redis:redis"
+    web:
+        locations:
+            "/":
+                root: "public"
+                expires: -1
+                passthru: "/index.php"
+                index: 
+                    - index.php
+                allow: true
+    disk: 2048
+    mounts:
+        "/public/sites/default/files": "shared:files/files"
+        "/tmp": "shared:files/tmp"
+        "/private": "shared:files/private"
+    hooks:
+        # We run deploy hook after your application has been deployed and started.
+        deploy: |
+            cd public
+            drush -y updatedb
+    crons:
+        drupal:
+            spec: "*/20 * * * *"
+            cmd: "cd public ; drush core-cron"
 
 > **Note**
 > This configuration file is specific to one application. If you have multiple
@@ -67,26 +65,30 @@ name in multi-application relationships.
 > Changing the name has no effect on your different services (databases
 > etc) you data will still be there.
 
+### Type
 
-### Type and Build
-
-The `type`  and `build` are used to build and run the project. 
+The `type` defines what language will run your application.
 
 The `type` can be:
 
-* php
-* nodejs
-* hhvm
-
-The `build` defines what will happen by default when building the project it has a sub property `flavor` for which the possible values are:
-
-* drupal
-* symfony
-* composer
+* ``php``
+* ``nodejs``
+* ``hhvm``
 
 **Example**
 
     type: php:5.6
+
+### Build
+
+The `build` defines what will happen by default when building the project it has a sub property `flavor` for which the possible values are:
+
+* ``drupal`` means that ``drush make`` will automatically run if you provide ``.make`` files.
+* ``composer`` means that ``composer install`` will automatically run if you provide ``composer.json`` or ``composer.lock`` file.
+* ``symfony`` is an alisas for ``composer``.
+
+**Example**
+
     build:
         flavor: symfony
 
@@ -100,7 +102,6 @@ Possible values are:
 * ssh: admin
 * ssh: contributor
 * ssh: viewer
-
 
 ### Relationships
 
@@ -130,7 +131,7 @@ variable. The right-hand side is in the form
         search: "searchengine:solr"
 
 > **Note**
-> You should see the [`services.yaml` documentation](reference/services-yaml.md)
+> Read the [`services.yaml` documentation](reference/services-yaml.html)
 > for a full list of currently supported service types and service endpoints.
 
 ### Web
