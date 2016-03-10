@@ -14,5 +14,29 @@ that will be common to all the applications in the same project.
 In a single project you can have multiple applications (for example a RESTful web service
 and a front-end, or a main web site and a blog). Each of these will have its own `.platform.app.yaml`
 
+Here are the configuration files required for one application:
+```
+myproject/
+  .git/
+  .platform/
+    services.yaml
+    routes.yaml
+  .platform.app.yaml
+```
+
+Here are the configuration files required for multiple applications:
+```
+myproject/
+  .git/
+  .platform/
+    services.yaml
+    routes.yaml
+  myphpapplycation/
+    .platform.app.yaml
+  mynodeapplication/
+    .platform.app.yaml
+```
+
+
 > **note**
 > You can find many example configurations on GitHub for [Drupal](https://github.com/platformsh/platformsh-example-drupal), [Symfony](https://github.com/platformsh/platformsh-example-symfony), [NodeJS](https://github.com/platformsh/platformsh-example-nodejs)...
