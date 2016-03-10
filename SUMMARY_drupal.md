@@ -21,7 +21,6 @@
     * [Let's back it up](guides/getting-started/activity-stream-first-deployment-success-backup.md)
     * [Let's finish installing Drupal](guides/type/php/drupal/activity-stream-first-deployment-success-drupal-finish.md)
   * [Working on the project](guides/local/get-project.md)
-    * [Understand the directory structure](guides/local/directory-structure.md)
     * [Creating a new environement](guides/local/create-environment.md)
     * [Now we have a "dev" environment](guides/type/php/drupal/change-make-file-envs.md)
     * [Checking it out](guides/type/php/drupal/change-make-file-checkout.md)

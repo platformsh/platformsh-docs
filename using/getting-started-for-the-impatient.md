@@ -128,35 +128,6 @@ command:
 $ platform get [PROJECT-ID]
 ```
 
-Now you can see the local directory structure that the Platform CLI
-provides for your local development:
-
-```bash
-$ ls -1
-builds     # Contains all builds of your projects
-repository # Checkout of the Git repository
-shared     # Your files directory, and your settings.local.php file
-www        # A symlink that always references the latest build.
-           # This should be the document root for your local web server
-```
-
-The `builds` directory contains every build of your project. This is
-relevant when you use Drush Make files to assist in your site building.
-
-The `repository` directory is your local checkout of the Platform.sh Git
-repository. This is where you edit code and issue normal Git commands,
-like `git pull`, `git add`, `git commit`, and `git push`.
-
-The `shared` directory is for your settings.local.php file which stores
-the connection details to your local database.
-
-See the section below about Settings.php for a full explanation of the
-settings.local.php file.
-
-The `www` symlink is created by the `platform build` command and will
-always reference the latest build in the builds directory. The `www`
-directory should become your DOCROOT for local development.
-
 ### Understand Settings.php
 
 Drupal sites use a file called settings.php to store database connection
