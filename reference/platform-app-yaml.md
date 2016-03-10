@@ -2,12 +2,9 @@
 
 ## Configure your Application
 
-Platform.sh supports multiple applications per project (for example, a RESTful
-web service and a front-end, or a main web site and a blog). But more often
-than not, projects are composed of a single application, in which case you can
-simply put a `.platform.app.yaml` at the root of your repository.
-
-This file controls the application and the way it will be built and deployed on Platform.sh.
+You control your application and the way it will be built and deployed on Platform.sh
+via a single configuration file `.platform.app.yaml` located at the root of your application 
+folder inside your Git repository.
 
 Here is an example of a `.platform.app.yaml` file for Drupal:
 
@@ -21,8 +18,14 @@ relationships:
     solr: "solr:solr"
     redis: "redis:redis"
 web:
-    document_root: "/"
-    passthru: "/index.php"
+    locations:
+        "/":
+            root: "public"
+            expires: -1
+            passthru: "/index.php"
+            index: 
+                - index.php
+            allow: true
 disk: 2048
 mounts:
     "/public/sites/default/files": "shared:files/files"
@@ -41,8 +44,10 @@ crons:
 
 > **Note**
 > This configuration file is specific to one application. If you have multiple
-> applications inside your Git repository, you need one `.platform.app.yaml` at
->the root of each application [see here](/platform-app-yaml-multi-app.html).  
+> applications inside your Git repository (i.e. a RESTful
+> web service and a front-end, or a main web site and a blog), you need 
+> one `.platform.app.yaml` at the root of each application 
+> [see here](/platform-app-yaml-multi-app.html).  
 
 ### Name
 
