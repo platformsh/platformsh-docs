@@ -136,13 +136,13 @@ Example of valid options are:
 
 ### Web
 
-The `web` defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content. From the front-controller script to a non-static requests to an index.php file on the root. We support any directory structure so the static file can be in a sub directory, and the index.php file can be further down.
+The `web` key defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content, including static files, front-controller scripts, index files, index scripts, and so on. We support any directory structure, so the static files can be in a subdirectory, and the index.php file can be further down.
 
 It has a few sub-keys which are:
 
 -   **document_root**: The path relative to the root of the application
     that is exposed on the web. Typically `/public` or `/web`.
--   **passthru**: The URL that is used in case of a file could not be found (either static or php). This would typically be your applications front controller, often `/index.php` or `/app.php`.
+-   **passthru**: The URL that is used in case of a file could not be found (either static or php). This would typically be your application's front controller, often `/index.php` or `/app.php`.
 -   **index_files**: If you want to use a static file (for example `index.html`) to serve
     your application. This key expects a collection. NB: In order for this to
     work, the static file(s) should be included in your whitelist. For example,
