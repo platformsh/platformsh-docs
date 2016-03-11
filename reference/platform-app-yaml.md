@@ -138,6 +138,20 @@ variable. The right-hand side is in the form
 
 The `web` defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content. From the front-controller script to a non-static requests to an index.php file on the root. We support any directory structure so the static file can be in a sub directory, and the index.php file can be further down.
 
+#### Commands
+
+The `commands` key defines the command to launch the application.
+
+It has a few subkeys which are:
+
+* `start`: The command line to use to launch the application. Can be a string, or *null* if the application is only made of static files. It's filled out during the build process for PHP.
+
+*Example*
+
+    web:
+        commands:
+            start: "uwsgi --ini conf/server.ini"
+
 #### Locations
 
 The `locations` key allows you to provide specific parameters for different URL prefixes.
@@ -151,7 +165,7 @@ The `locations` key allows you to provide specific parameters for different URL 
             "/sites/default/files":
                 ...
 
-It has a few sub-keys which are:
+It has a few subkeys which are:
 
 * `root`: The folder to serve static assets for this location from relative to the application root. Typically `public` or `web`.
 * `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be true, false or a URI path string. Typically your applications front controller `/index.php` or `/app.php`.
@@ -329,7 +343,7 @@ hooks:
 The `crons` is an object describing processes that are triggered on a
 schedule.
 
-It has a few sub-keys which are:
+It has a few subkeys which are:
 
 -   **spec**: The cron specification. For example: `*/20 * * * *`.
 -   **cmd**: The command that is executed, for example
