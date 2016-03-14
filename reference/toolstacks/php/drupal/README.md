@@ -144,8 +144,8 @@ crons:
 ```
 
 You can find some working example on GitHub:
-* [Drupal 7](https://github.com/platformsh/platformsh-examples/tree/drupal/7.x)
-* [Drupal 8](https://github.com/platformsh/platformsh-examples/tree/drupal/8.x)
+* [Drupal 7](https://github.com/platformsh/platformsh-example-drupal/tree/7.x)
+* [Drupal 8](https://github.com/platformsh/platformsh-example-drupal/tree/8.x)
 
 For Drupal 8, your `.platform.app.yaml` should install Drush 8 RC as a build-time dependency:
 
