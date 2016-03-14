@@ -8,14 +8,19 @@ folder inside your Git repository.
 
 Here is an example of a `.platform.app.yaml` file for Drupal:
 
+    # The unique identifier of the application.
     name: front
+    # The language that will run your application.
     type: php:5.5
+    # The way to build your application.
     build:
         flavor: drupal
+    # The way services are mapped within your application.
     relationships:
         database: "mysql:mysql"
         solr: "solr:solr"
         redis: "redis:redis"
+    # The way your application is exposed to the web.
     web:
         locations:
             "/":
@@ -25,16 +30,20 @@ Here is an example of a `.platform.app.yaml` file for Drupal:
                 index: 
                     - index.php
                 allow: true
+    # The size of the persistent disk size of your application in MB.
     disk: 2048
+    # The volumes that are mounted under a writable shared resource.
     mounts:
         "/public/sites/default/files": "shared:files/files"
         "/tmp": "shared:files/tmp"
         "/private": "shared:files/private"
+    # The shell commands to run during the build or deployment process.
     hooks:
         # We run deploy hook after your application has been deployed and started.
         deploy: |
             cd public
             drush -y updatedb
+    # The processes that are triggered on a schedule.
     crons:
         drupal:
             spec: "*/20 * * * *"
@@ -81,7 +90,9 @@ The `type` can be:
 
 ### Build
 
-The `build` defines what will happen by default when building the project it has a sub property `flavor` for which the possible values are:
+The `build` defines what will happen by default when building the application. 
+
+It has a sub property `flavor` for which the possible values are:
 
 * `drupal` means that `drush make` will automatically run if you provide `.make` files.
 * `composer` means that `composer install` will automatically run if you provide a `composer.json` or `composer.lock` file.
