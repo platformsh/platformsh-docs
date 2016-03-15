@@ -1,7 +1,58 @@
 # Upgrading
 
+## Changes in version 2016.3
+
+As we are aiming to always provide you more control and flexibility on how to deploy your applications, the `.platform.app.yaml` format has been greatly improved. It is now way more flexible, and also much more explicit to describe what you want to do.
+
+The `web` key is now a set of `locations` where you can define very precisely the behavior of each URL prefix.
+
+Old format:
+
+    web:
+        document_root: "/"
+        passthru: "/index.php" 
+        expires: 300
+        whitelist:
+            - \.html$
+
+New format:
+
+    web:
+    locations:
+        "/":
+            root: "public"
+            passthru: "/index.php"
+            index: 
+                - index.php
+            expires: -1
+            scripts: true
+            allow: true
+            rules:
+                \.mp4$:
+                    allow: false
+                    expires: -1
+        "/sites/default/files":
+            expires: 300
+            passthru: true
+            allow: true
+
+### Backward compatibility
+
+Of course, we alway keep backward compatibility with the previous configuration format. Here is what happens if you don't upgrade your configuration:
+
+    # The following parameters are automatically moved as a "/" block in the
+    # "locations" object, and are invalid if there is a valid "locations" block.
+    document_root: "/public"      # Converted to [locations][/][root]"
+    passthru: "/index.php"        # Converted to [locations][/][passthru]
+    index_files:
+        - index.php               # Converted to [locations][/][index]
+    whitelist: [ ]                # Converted to [locations][/][rules]
+    blacklist: [ ]                # Converted to [locations][/][rules]
+    expires: 3d                   # Converted to [locations][/][expires]
+
 ## Changes in version 2015.7
-In the `.platform.app.yaml` configuration file we now allow for a much clearer syntax, which you can (and should) start using now.
+
+The `.platform.app.yaml` configuration file now allows for a much clearer syntax, which you can (and should) start using now.
 
 The old format had a single string to identify the 'toolstack' you use:
 ```yaml
@@ -18,9 +69,9 @@ build:
 Currently we only support `php` in the 'type' key. Current supported build
 flavors are `drupal`, `composer` and `symfony`.
 
-## Changes in version 1.7.0
+## Changes in version 2014.9
 
-Version 1.7.0, deployed on September 4th, 2014, introduces changes in
+This version introduces changes in
 the configuration files format. Most of the old configuration format is
 still supported, but customers are invited to move to the new format.
 
