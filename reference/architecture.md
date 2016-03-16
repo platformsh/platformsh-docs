@@ -10,7 +10,7 @@ of each other.
 ![image](/images/service-grid.png)
 
 > **note** > Platform.sh currently supports the following services: PHP, MySQL
-(MariaDB), Solr, Redis, Postgres, Elastic Search, MongoDB. Additional services 
+(MariaDB), Solr, Redis, PostgreSQL, Elasticsearch, MongoDB, and RabbitMQ. Additional services 
 will be available soon.
 
 ## Micro containers
