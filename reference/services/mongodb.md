@@ -1,10 +1,11 @@
-# PostgreSQL (Database service)
+# MongoDB (Database service)
 
-Transactional data storage  and the world's most advanced open source database.
+MongoDB is a cross-platform document-oriented database. It's classified as a 
+NoSQL databass.
 
 ## Supported versions
 
-* 9.3 (default)
+* 3.0 (default)
 
 ## Relationship
 
@@ -12,41 +13,37 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](ref
 
 ```bash
 {
-    "database": [
-        {
-            "username": "main",
-            "password": "main",
-            "host": "248.0.65.196",
-            "query": {
-                "is_master": true
-            },
-            "path": "main",
-            "scheme": "pgsql",
-            "port": 5432
-        }
-    ]
+  "database": [
+    {
+      "username": "main", 
+      "password": "main", 
+      "host": "248.0.81.46", 
+      "query": {
+        "is_master": true
+      }, 
+      "path": "main", 
+      "scheme": "mongodb", 
+      "port": 27017
+    }
+  ]
 }
 ```
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+In your `.platform/services.yaml`:
 
 ```yaml
 mydatabase:
-    type: postgresql:9.3
+    type: mongodb:3.0
     disk: 1024
 ```
 
-In your ``.platform.app.yaml``:
+In your `.platform.app.yaml`:
 
 ```yaml
-runtime:
-    extensions:
-        - pdo_pgsql
-
 relationships:
-    database: "mydatabase:postgresql"
+    database: "mydatabase:mongodb"
 ```
 
 You can them use the service in a configuration file of your application with something like:
@@ -61,6 +58,9 @@ if (!$relationships) {
 $relationships = json_decode(base64_decode($relationships), TRUE);
 
 foreach ($relationships['database'] as $endpoint) {
+  if (empty($endpoint['query']['is_master'])) {
+    continue;
+  }
   $container->setParameter('database_driver', 'pdo_' . $endpoint['scheme']);
   $container->setParameter('database_host', $endpoint['host']);
   $container->setParameter('database_port', $endpoint['port']);
@@ -70,11 +70,3 @@ foreach ($relationships['database'] as $endpoint) {
   $container->setParameter('database_path', '');
 }
 ```
-
-## Notes
-
-### Could not find driver
-
-If you see this error: ``Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'``, 
-this means you are missing the ``pdo_pgsql`` PHP extension. You simply need to enable it in your ``.platform.app.yaml``
-(see above).

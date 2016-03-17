@@ -1,6 +1,12 @@
-# Solr
+# Solr (Search Service)
 
-Solr is highly reliable, scalable and fault tolerant, providing distributed indexing, replication and load-balanced querying, automated failover and recovery, centralized configuration and more.
+Solr is highly reliable, scalable and fault tolerant, providing distributed 
+indexing, replication and load-balanced querying, automated failover and 
+recovery, centralized configuration and more.
+
+Solr search with generic schemas provided.
+
+Support for custom schemas is available for Platform.sh Enterprise customers.
 
 ## Supported versions
 

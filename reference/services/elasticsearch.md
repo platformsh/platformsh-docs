@@ -1,4 +1,4 @@
-# Elasticsearch
+# Elastic Search (Search Service)
 
 Elasticsearch is a distributed RESTful search engine built for the cloud.
 

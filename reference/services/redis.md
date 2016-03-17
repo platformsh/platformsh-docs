@@ -1,6 +1,8 @@
-# Redis
+# Redis (Object cache)
 
-Redis is an open source (BSD licensed), in-memory data structure store, used as database, cache and message broker. 
+Provides the in-memory object cache for your application. Can be used as a
+cache area for your application.
+
 ## Supported versions
 
 * 2.8 (default)
