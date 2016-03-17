@@ -1,6 +1,15 @@
-# MySQL
+# MariaDB/MySQL (Database service)
 
-MySQL is one of the world's most popular open source database.
+Transactional data storage. Based on MariaDB, supporting the XtraDB storage
+engine (equivalent to MySQL with InnoDB).
+
+Access to MariaDB is only possible from the PHP containers, thus
+username/password based authentication is not used.
+
+To access the MariaDB database directly, ssh into the web server and use the
+following command: `mysql -h database.internal -u user`
+
+From outside the web server you can use the CLI: `platform sql`
 
 ## Supported versions
 
@@ -13,26 +22,26 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](ref
 
 ```bash
 {
-    "database": [
-        {
-            "host": "database.internal",
-            "ip": "246.0.97.91",
-            "password": "",
-            "path": "main",
-            "port": 3306,
-            "query": {
-                "is_master": true
-            },
-            "scheme": "mysql",
-            "username": "user"
-        }
-    ]
+  "database": [
+    {
+      "host": "database.internal",
+      "ip": "246.0.97.91",
+      "password": "",
+      "path": "main",
+      "port": 3306,
+      "query": {
+          "is_master": true
+      },
+      "scheme": "mysql",
+      "username": "user"
+    }
+  ]
 }
 ```
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+In your `.platform/services.yaml`:
 
 ```yaml
 mydatabase:
@@ -40,7 +49,7 @@ mydatabase:
     disk: 1024
 ```
 
-In your ``.platform.app.yaml``:
+In your `.platform.app.yaml`:
 
 ```yaml
 relationships:
