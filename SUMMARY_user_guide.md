@@ -16,6 +16,7 @@
       * [Solr](reference/services/solr.md)
       * [Elasticsearch](reference/services/elasticsearch.md)
       * [RabbitMQ](reference/services/rabbitmq.md)
+      * [Internal Services](reference/services/internal-services.md)
   * [Configuration Files](reference/configuration-files.md)
     * [.platform.app.yaml](reference/platform-app-yaml.md)
       * [Upgrade .platform.app.yaml from previous version](reference/upgrade/README.md)
