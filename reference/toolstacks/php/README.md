@@ -11,7 +11,4 @@ tooling to help you be more productive (through built-in composer support or
 built-in drush support).
 
 > **note**
-> Find many examples for those configuration files on the [platformsh-examples repository on 
-Github](https://github.com/platformsh/platformsh-examples).
-> with many examples for Drupal, Symfony, Custom PHP Applications (with multi apps), Wordpress, Magento, Prestashop, Laravel...
-Platform.sh supports custom PHP configurations.
+> You can find many example configurations on GitHub for [Drupal](https://github.com/platformsh/platformsh-example-drupal), [Symfony](https://github.com/platformsh/platformsh-example-symfony), [NodeJS](https://github.com/platformsh/platformsh-example-nodejs)...
