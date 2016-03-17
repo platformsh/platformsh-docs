@@ -10,6 +10,8 @@ that you don't need to subscribe to an external service to get a cache or
 a search engine. And that those services are managed. When you back up your
 project, all of the services are backed-up.
 
+See the list of all [available services](../overview/services.md).
+
 Services are configured through the [.platform/services.yaml](reference/services-yaml.md)
 file you will need to commit to your git repository. This section describes
 specifics you might want to know about for each service.
