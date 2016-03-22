@@ -51,7 +51,7 @@ Inside the new folder, you will see your repository contents, along with one or
 two new hidden files. They are:
 
 * **.platform/local** - This directory contains builds and any local metadata about your project needed by the CLI.
-* **.www** This is a symlink to the currently active build in the `.platform/local/builds` folder. It should be used as the document root for your local web server.
+* **_www** This is a symlink to the currently active build in the `.platform/local/builds` folder. It should be used as the document root for your local web server.
 
 ## Build the local site
 
@@ -70,7 +70,7 @@ Running post-build hooks
 Symlinking files from the 'shared' directory to sites/default
 
 Build complete for application myapp
-Web root: ~/htdocs/my-project/.www
+Web root: ~/htdocs/my-project/_www
 ~/htdocs/my-project $ 
 ```
 

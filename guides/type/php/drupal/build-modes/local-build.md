@@ -15,5 +15,5 @@ Building application (runtime type: php)
 Symlinking files from the 'shared' directory to sites/default
 
 Build complete
-Web root: ~/htdocs/my-project/.www
+Web root: ~/htdocs/my-project/_www
 ```
