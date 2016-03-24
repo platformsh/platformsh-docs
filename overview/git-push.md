@@ -157,3 +157,4 @@ and as a farewell we are back to some normal git output, where the server tells
 you at what commit level it is now.
 
 And all of that... happens really, really fast.
+
