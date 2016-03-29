@@ -30,6 +30,7 @@
   * [Working with Git submodules](using/submodules.md)
 * [Administration and Operations](using/README.md)
   * [User administration](using/user-administration.md)
+   * [Transfer ownership](using/transfer-owner.md)
   * [Snapshot and Restore](using/backup-and-restore.md)
   * [Going Live](using/going-live.md)
   * [Setting up local development](using/set-up-local-development.md)
