@@ -13,12 +13,12 @@ normal Git repository" and a very smart piece of software. When you have
 pushed to it, it will parse the configuration files you committed to your 
 repository so it knows what it needs to deploy (more on that later).
 
-If you are pushing directly to the Platform.sh git you will see in your terminal
+If you are pushing directly to the Platform.sh Git server, you will see in your terminal
 what is happening in real-time. The same information is going to get streamed
 in real-time to the Web Interface.
 
 If you are using the Bitbucket or Github integration you will not see the log
-of the operations in the git session (because you are talking to their git 
+of the operations in the Git session (because you are talking to their Git 
 server) but you can follow on whats happening in their interface, our in Platform.sh's Web Interface.
 
 The only modification you need to do to your application is to tell it
