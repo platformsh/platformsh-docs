@@ -19,7 +19,7 @@ in real-time to the Web Interface.
 
 If you are using the Bitbucket or Github integration you will not see the log
 of the operations in the git session (because you are talking to their git 
-server) but you can follow on whats happening in their interface, our in Platform.sh's Web Interface.
+server) but you can follow on what's happening in our Platform.sh's Web Interface.
 
 The only modification you need to do to your application is to tell it
 to load its configuration from the environment (and we supply [all the
