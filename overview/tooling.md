@@ -34,7 +34,7 @@ Platform.sh environments be automatically created for every pull-request or
 branch you create.. and get feedback on deployments right there without 
 switching tools.
 
-A developer could use Platform.sh without even knowing its there. 
+A developer could use Platform.sh without even knowing it's there. 
 
 They just get automatic staging environments.  Which is how the whole
 feature-branch thing was always supposed to work.
