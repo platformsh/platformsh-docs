@@ -1,7 +1,7 @@
 # Unique Workflow
 
 Platform.sh proposes a truly unique workflow. The main idea is that for every
-new feature developed a staging environment just for that feature is created
+new feature developed, a staging environment just for that feature is created
 automatically.
 
 You can test every feature in isolation and put it into production with a 
