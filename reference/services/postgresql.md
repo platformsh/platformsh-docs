@@ -49,7 +49,7 @@ relationships:
     database: "mydatabase:postgresql"
 ```
 
-You can them use the service in a configuration file of your application with something like:
+You can then use the service in a configuration file of your application with something like:
 
 ```php
 <?php
