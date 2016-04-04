@@ -29,7 +29,7 @@ A developer could use Platform.sh without ever installing our CLI.
 ## Seamless Bitbucket and Github integrations
 
 We have perfectly seamless integrations for both Bitbucket and Github. You can
-login to platform with your Bitbucket or Github account. And you can have
+login to Platform.sh with your Bitbucket or Github account. And you can have
 Platform.sh environments be automatically created for every pull-request or 
 branch you create.. and get feedback on deployments right there without 
 switching tools.
