@@ -23,8 +23,7 @@ Paste those credentials in your `.platform.app.yaml`:
 ```bash
 runtime:
   extensions:
-    - name: blackfire
-      configuration:
+    - blackfire:
         server_id: "bad10394-bbaf-436e-9ee9-c6090cb45eb2"
         server_token: "692203ae8755da6b57b8161d3f20dd1be71502f77adebf3363d164033d74d29b"
 ```
