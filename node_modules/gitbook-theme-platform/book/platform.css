@@ -898,18 +898,18 @@ footer > .closing-container .privacy {
     text-align: right;
   }
 }
-#get-started {
+#home-get-started {
   font-weight: 300;
   background: #262424;
 }
-#get-started p {
+#home-get-started p {
   color: #a7a7a7;
 }
-#get-started h3 {
+#home-get-started h3 {
   font-weight: 300;
   font-size: 30px;
 }
-#get-started a.button,
+#home-get-started a.button,
 button {
   border: 0px none;
   width: 100%;
@@ -924,7 +924,7 @@ button {
   display: inline-block;
   box-sizing: border-box;
 }
-#get-started > .container {
+#home-get-started > .container {
   background: transparent url("https://platform.sh/images/bg-get-started.png") no-repeat 40px bottom;
   text-align: left;
   padding-left: 520px;
@@ -973,7 +973,7 @@ button {
   display: none;
 }
 @media (max-width: 768px) {
-  #get-started .container {
+  #home-get-started .container {
     background-image: none;
     padding-left: 0px;
   }
@@ -1060,7 +1060,7 @@ button {
   }
 }
 @media (min-width: 768px) {
-  #get-started .container {
+  #home-get-started .container {
     width: 970px;
   }
   .col-sm-3 {
