@@ -103,6 +103,14 @@ echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
 }
 ```
 
+## Custom Environment Variables
+
+You can create simple environment variables outside of the
+**PLATFORM_VARIABLES** value by prefixing the variable name with `env:`.
+
+For example, the variable `env:foo` will create an environment variable called
+`FOO`.
+
 ## Drupal specific variables
 
 You can define variables based on the toolstack you're working with.
