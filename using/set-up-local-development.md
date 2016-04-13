@@ -123,3 +123,6 @@ and you can close tunnels with:
 ```bash
 platform tunnel:close
 ```
+
+> **note**
+> platform tunnel: requires the pcntl and posix PHP extensions.
