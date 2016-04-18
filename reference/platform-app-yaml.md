@@ -186,7 +186,7 @@ It has a few subkeys which are:
 * `expires`: How long to allow static assets from this location to be cached (this enables the cache-control and expires headers). Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d). The `expires` directive and resulting headers are left out entirely if this isn't set.
 * `scripts`: Wether to allow loading scripts in that location (*true* or *false*).
 * `allow`: Whether to allow serving files which don't match a rule or not (*true* or *false*).
-* `rules`: Specific overrides for a specific location. The key is a PCRE regular expression that is matched against the full request path. Here is the list of file extension that you can provide rules for: *\.css$,\.js$,\.gif$,\.jpe?g$,\.png$,\.tiff?$,\.wbmp$,\.ico$,\.jng$,\.bmp$,\.svgz?$,\.midi?$,\.mpe?ga$,\.mp2$,\.mp3$,\.m4a$,\.ra$,\.weba$,\.3gpp?$,\.mp4$,\.mpe?g$,\.mpe$,\.ogv$,\.mov$,\.webm$,\.flv$,\.mng$,\.asx$,\.asf$,\.wmv$,\.avi$,\.ogx$,\.swf$,\.jar$,\.ttf$,\.eot$,\.woff$,\.otf$,/robots\.txt$*.
+* `rules`: Specific overrides for a specific location. The key is a PCRE regular expression that is matched against the full request path. Here is a list of example regular expressions that you could provide rules for: *\.css$,\.js$,\.gif$,\.jpe?g$,\.png$,\.tiff?$,\.wbmp$,\.ico$,\.jng$,\.bmp$,\.svgz?$,\.midi?$,\.mpe?ga$,\.mp2$,\.mp3$,\.m4a$,\.ra$,\.weba$,\.3gpp?$,\.mp4$,\.mpe?g$,\.mpe$,\.ogv$,\.mov$,\.webm$,\.flv$,\.mng$,\.asx$,\.asf$,\.wmv$,\.avi$,\.ogx$,\.swf$,\.jar$,\.ttf$,\.eot$,\.woff$,\.otf$,/robots\.txt$*.
 
 *Example*
 
