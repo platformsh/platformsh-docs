@@ -146,7 +146,7 @@ network so your application container can access them.
 Lastly Platform.sh gives you the different routes that are served by your 
 application. Here you can see the "mangled" routes on a non-live environment
 where the `www.` part was replaced by `www---` you can visit those in a
-browser. The site is live.
+browser. The site is up and running.
 
 ```
 
