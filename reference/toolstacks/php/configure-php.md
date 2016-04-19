@@ -68,6 +68,14 @@ For example, if you need to increase the PHP memory limit:
 memory_limit = 256M
 ```
 
+Another example is to set the timezone of the PHP runtime (though, the timezone settings of containers/services would remain in UTC):
+
+```
+; php.ini
+; Set PHP runtime timezone
+date.timezone = "Europe/Paris"
+```
+
 After pushing your file, you can check that the custom PHP configuration
 has been added to your environment by logging in via SSH and type:
 
@@ -77,6 +85,9 @@ web@kjh43kbobssae-master--php:~$ cat /etc/php5/fpm/php.ini
 ; =============== Custom configuration from `/app/php.ini`
 ; Increase PHP memory limit
 memory_limit = 256M
+
+; Set PHP runtime timezone
+date.timezone = "Europe/Paris"
 ```
 
 ------------------------------------------------------------------------
