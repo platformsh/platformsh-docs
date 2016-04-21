@@ -820,6 +820,10 @@ footer {
   font-size: 12px;
   font-weight: 300;
 }
+footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 footer > .container {
   border-top: 2px solid #434341;
 }
@@ -929,6 +933,8 @@ button {
   text-align: left;
   padding-left: 520px;
   height: 250px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 #built-by {
   max-height: 592px;
