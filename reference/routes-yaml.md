@@ -34,7 +34,7 @@ Platform.sh will also generate for every active environment urls that allow you
 to test that environment, here `{default}` will be replaced with 
 `[branch]-[project-id].[region].platform.sh` so for a project with id 
 `mswy7hzcuhcjw` on a branch called `refactorcss` hosted in the `us` cluser we 
-will get: `http://www-refactorcss-mswy7hzcuhcjw.us.platform.sh/` and 
+will get: `http://www---refactorcss-mswy7hzcuhcjw.us.platform.sh/` and 
 `https://refactorcss-mswy7hzcuhcjw.us.platform.sh/blog` 
 
 > **note** Platform.sh also supports multiple applications per
