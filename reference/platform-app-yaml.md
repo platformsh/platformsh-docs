@@ -248,6 +248,9 @@ application in MB.
 
 The `runtime` defines sizing hints (in MB) used to determine the maximum amount of requests to process concurrently (i.e. number of workers) for a PHP instance depending on its size. Those are not hard limits.
 
+> **note**
+> The more memory your application consumes, the less workers it can have at a particular service size.
+
 Example:
 
     runtime:
