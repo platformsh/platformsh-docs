@@ -10,13 +10,13 @@ persistent data from all running services (MySQL, SOLR...) and any files
 stored on the mounted volumes.
 
 > **note**
-> We advise you to make backups of your live environment before merging an environment 
+> We advise you to make snapshots of your live environment before merging an environment 
 > to the live environment, or each time you increase the storage space of your services.
 
 Using the CLI:
 
 ```bash
-$ platform environment:backup
+$ platform snapshot:create
 ```
 
 ### Manual Restore
@@ -25,11 +25,10 @@ You will see the snapshot in the activity feed of you environment in the Platfor
 
 You can list existing snapshots using the CLI using:
 ```bash
-$ platform environment:backup --list
-
+$ platform snapshots
 Finding snapshots for the environment master
 +---------------------+------------+----------------------+
-| Created             | % Complete | Backup name          |
+| Created             | % Complete | Snapshot name        |
 +---------------------+------------+----------------------+
 | 2015-06-19 17:11:42 | 100        | 2ca4d90639f706283fee |
 | 2015-05-28 15:05:42 | 100        | 1a1fbcb9943849706ee6 |
@@ -41,7 +40,7 @@ Finding snapshots for the environment master
 
 You can restore a specific snapshot with the CLI with:
 ```bash
-$ platform environment:restore 92c9a4b2aa75422efb3d
+$ platform snapshot:restore 92c9a4b2aa75422efb3d
 ```
 
 ### Automated snapshots
@@ -53,7 +52,7 @@ If you want to automate your snapshots, you can use Jenkins and trigger
 the following CLI command:
 
 ```bash
-$ platform environment:backup
+$ platform snapshot:create --yes
 ```
 
 ### Retention
