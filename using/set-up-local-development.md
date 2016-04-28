@@ -99,6 +99,9 @@ View tunnel details with: platform tunnel:info
 Close tunnels with: platform tunnel:close
 ```
 
+> **note**
+> platform tunnel: requires the pcntl and posix PHP extensions. Run `php -m | grep -E 'posix|pcntl'` to check if they're there.
+
 Now you can connect to the remote database normally, as if it were
 local.
 
@@ -123,6 +126,3 @@ and you can close tunnels with:
 ```bash
 platform tunnel:close
 ```
-
-> **note**
-> platform tunnel: requires the pcntl and posix PHP extensions.
