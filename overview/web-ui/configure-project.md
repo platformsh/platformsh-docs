@@ -23,7 +23,7 @@ The `Users` screen allows you to manage users access on your project.
 
 You can invite new users to your project by clicking the `Add user` link
 and entering their email address, or modify permissions of existing
-users by clicking the `Edit` link when hovering the user.
+users by clicking the `Edit` link when hovering over the user.
 
 ![Project configure icon](/images/ui-conf-project-users.png)
 
