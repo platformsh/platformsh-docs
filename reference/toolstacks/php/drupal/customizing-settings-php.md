@@ -69,3 +69,19 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
   $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 }
 ```
+
+## Web-based installation requirements
+
+Background: Code is always read-only on Platform.sh (a deliberate feature, which means your code is entirely determined by your Git repository, bringing security and maintenance benefits). Drupal will therefore not be able to write to `settings.php` on Platform.sh or download and install its own modules. This is a good thing, but means the web-based installation process (via /core/install.php in D8) also cannot write to `settings.php`.
+
+Thankfully Drupal 8 only needs these 4 things to install with a read-only `settings.php`:
+- Configure $config_directories[CONFIG_SYNC_DIRECTORY] with a valid (existing) directory.
+- Configure $databases with a valid database connection.
+- Configure $settings['install_profile'] with the profile you are going to install.
+- Configure $settings['hash_salt'] with your private hash salt (you can do this through environment variables).
+
+Unfortunately, there is (currently) a bug in Drupal `8.1.1` which affects this:
+- "Staging directory should not have to be writeable" https://www.drupal.org/node/2466197 (patch, needs review)
+We will endeavour to update this page when the bug is resolved.
+
+Because of this bug, you might find it easier to install the database elsewhere, and then import the database tables to your platform.sh database via the platform.sh CLI.
