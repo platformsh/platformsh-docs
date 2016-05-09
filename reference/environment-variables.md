@@ -3,7 +3,7 @@
 Platform.sh exposes environment variables which you can interact with. There are
 two sources for these. There are the ones that are set by Platform.sh itself
 and that give you all the context you need about the environment (how to 
-connect to you database for example). And there are the ones you can set
+connect to your database for example). And there are the ones you can set
 yourself through the web interface or the CLI.
 
 When you're logged in via SSH to an environment (with the cli: `platform ssh`), 
