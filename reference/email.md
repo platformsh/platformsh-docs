@@ -12,8 +12,8 @@ non-master environment use this command:
 $ platform environment:metadata enable_smtp true
 ```
 
-Emails from Platform.sh are sent via a Mandrill-based SMTP proxy. Each
-Platform.sh project is provisioned as a Mandrill sub-account. Note that Mandrill
+Emails from Platform.sh are sent via a SendGrid-based SMTP proxy. Each
+Platform.sh project is provisioned as a SendGrid sub-account. Note that SendGrid
 sub-accounts are capped at 12k emails per month.
 
 >**note:** 
