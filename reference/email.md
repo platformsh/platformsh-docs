@@ -20,6 +20,10 @@ sub-accounts are capped at 12k emails per month.
 > When you send email you should use the `mail` facility. There is no SMTP 
 > server running on localhost.
 
+>**note:**
+> If you need to adopt SPF for improving email deliverability,
+> please read [SPF setup guidelines on SendGrid](https://sendgrid.com/docs/Glossary/spf.html).
+
 For example for Symfony, if you use the default SwiftMailer you
 should set in your `app/config/parameters.yaml`:
 
