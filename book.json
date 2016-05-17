@@ -1,0 +1,34 @@
+{
+    "title": "User Guide",
+    "description": "Platform.sh user guide",
+    "gitbook": "3.0.0-pre.15",
+        "structure": {
+            "readme": "README.md",
+            "summary": "SUMMARY.md"
+        },
+    "plugins": [
+        "edit-link", "anchors", "reveal","sections", "collapsible-menu"
+    ],
+    "pluginsConfig": {
+        "edit-link": {
+                       "base": "https://github.com/platformsh/platformsh-docs/edit/master",
+                       "label": "Edit This Page"
+                   }
+    },
+    "links": {
+           "sharing": {
+               "google": null,
+               "facebook": null,
+               "twitter": null,
+               "weibo": null,
+               "all": null
+           }
+       },
+           "styles": {
+               "website": "styles/platform.css"
+           }
+
+
+}
+
+
