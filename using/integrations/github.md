@@ -37,7 +37,7 @@ permission to push code to the repository.
 
 ### 2. Enable the integration
 
-Note that only the project owner can enable the integration.
+Note that only `project owner` or `project admin` can manage the integrations.
 
 Now open a command line (you need to have the Platform.sh CLI
 installed). To enable the GitHub integration with the CLI:
