@@ -14,6 +14,32 @@ If you want to delete your project and cancel your subscription, simply go to yo
 
 This will delete your project and stop invoicing for this project. If you have multiple projects, your subscription will continue until you don't have any projects left.
 
+## How can I export my data?
+
+If you have file mounts, you can keep a copy of the files using `rsync` like below.
+
+```
+rsync -r <project-id>-<environment>@ssh.<region>.platform.sh:/app/private/ .
+```
+
+Data stored in database can be dumped onto the filesystem and then `rsync` to local as well.
+
+```
+# 1. SSH to your container
+platform ssh -p <project-id> -e <environment>
+
+# 2. Take MySQL as example, using mysqldump
+# Note, you can either find your database host from '/etc/hosts' 
+# or 'echo $PLATFORM_RELATIONSHIPS | base64 -d | json_pp'
+mysqldump -h <database-host> -u user --single-transaction main > /app/private/db.sql
+gzip /app/private/db.sql
+
+# 3. Back to local box and rsync the dump
+rsync -r <project-id>-<environment>@ssh.<region>.platform.sh:/app/private/ .
+```
+
+Regarding the data in Solr, if you have to make a copy, you have to use `platform tunnel` from [Platform.sh CLI](https://docs.platform.sh/user_guide/overview/cli/index.html) and then run [Solr replication](http://wiki.apache.org/solr/SolrReplication) moving your data to local box. Though, if the data are just the search index of your site, you can always rebuild that from scratch easily.
+
 ## Do you support MySQL?
 
 [Platform.sh](https://platform.sh) uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
