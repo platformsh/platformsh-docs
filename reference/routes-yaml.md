@@ -56,9 +56,8 @@ Each route can be configured separately its has the following properties
 * `ssi` controls whether Server Side Includes are enabled. For more information: see [SSI](ssi.html).
 * `redirects` controls [redirect rules](redirects.html) associated with the route.
 
-> **note** for the moment the upstream is always of this form, ending with 
-> ":php" in the  future Platform.sh will support multiple endpoints per 
-> application. 
+> **note** the supported upstream protocol are: ":php" and ":http" at the moment.
+> In the future, Platform.sh will support multiple endpoints per application. 
 
 
 ## Routes examples
