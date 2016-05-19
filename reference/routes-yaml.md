@@ -47,8 +47,7 @@ Each route can be configured separately its has the following properties
 * `type` can be:
   * `upstream` serves an application
     * It will then also have an `upstream` property which will be the name of 
-    the application (as defined in `.platform.app.yaml`) followed by ":php" (see
-     examples below).
+    the application (as defined in `.platform.app.yaml`) followed by communication protocol used between router and the application  server.  For php based applications, the communication protocol value can be ":http" or ":php" (php, though not a protocol, is allowed for legacy reasons, as outlined in examples below). Otherwise, it is always just ":http".
   * `redirect` redirects to another route
     * It will then be followed by `to` property, this is an HTTP redirection to 
     another route that will be identified by its template (see examples below).
@@ -56,9 +55,7 @@ Each route can be configured separately its has the following properties
 * `ssi` controls whether Server Side Includes are enabled. For more information: see [SSI](ssi.html).
 * `redirects` controls [redirect rules](redirects.html) associated with the route.
 
-> **note** for the moment the upstream is always of this form, ending with 
-> ":php" in the  future Platform.sh will support multiple endpoints per 
-> application. 
+> **note** At the moment the upstream is always of the form ending with ":php" or ":http".  In future, Platform.sh would be supporting other communication protocols (e.g., HTTPS, HTTP/2, QUIC, etc) for each application.
 
 
 ## Routes examples
