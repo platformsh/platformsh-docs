@@ -60,7 +60,6 @@ Each route can be configured separately its has the following properties
 > ":php" in the  future Platform.sh will support multiple endpoints per 
 > application. 
 
-
 ## Routes examples
 Here is an example of a `routes.yaml` file:
 ```yaml
@@ -177,6 +176,22 @@ If you examine the routes of your application (for example by running
 You will see a route such as `https://*---add-theme-vmwklxcpbi6zq.eu.platform.sh/`
 
 [You can find detailed information about caching here](cache.html).
+
+##WebSocket routes
+
+To use WebSocket on a route, `cache` must be disabled. WebSocket is incompatible with buffering which is required for cache.
+Here is an example to define a route for serving WebSocket:
+
+```yaml
+"http://{default}/ws":
+    type: upstream
+    upstream: "app:http"
+    cache:
+        enabled: false
+```
+
+> **note**
+> "app" is the name of your application container, specified in `.platform.app.yaml`.
 
 ##Defaults
 If you do not have a `routes.yaml` file, the following default one will be loaded:
