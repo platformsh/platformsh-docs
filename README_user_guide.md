@@ -6,4 +6,6 @@ This guide will help you to properly work with Platform.sh.
 * The [Configuration](overview/configuring-project-environments.md) section will give you detailed reference material for configuring your projects and environments, through the web interface, the CLI, and the Platform.sh configuration files
 * The [administration and Operations](using/README.md) section is here to help you through the day-to-day operations of Platform.sh - how to go live, how to backup and restore how to setup a local development environment and how to make full use of integrations with third party tools
 * The [PHP Toolstacks](reference/toolstacks/php/README.md) will give you a detailed view of how to work with PHP and more specifically with frameworks such as Drupal and Symfony
+* The [Node.js Beta](reference/toolstacks/nodejs/README.md) section describes the configuration changes along with some examples to build and deploy your Node.js applications
+* The [API](reference/rest-api.md) section describes the REST APIs that allow you to interact with platforms and environments.  Note that this is not yet generally available.
 * The [FAQ](reference/faq/known-issues.md) section tries to answer common questions about Platform.sh
