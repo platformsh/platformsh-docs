@@ -106,6 +106,6 @@ Please [contact our sales department](https://platform.sh/contact/#form) to disc
 
 ## Agency
 
-The Platform.sh Agency Plan (PAP) waives developer license fees, lets anyone on your team start projects at no cost, and permits all-hands access to any site. In addition you get a 10% commission when you recommend Platform.sh to your customers.
+The Platform.sh Agency Plan (PAP) waives developer license fees, lets anyone on your team start projects, and permits all-hands access to any site. In addition you get a 10% commission when you recommend Platform.sh to your customers.
 
 Please [contact our sales department](https://platform.sh/contact/#form) to discuss how we can help you.
