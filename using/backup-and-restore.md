@@ -13,6 +13,9 @@ stored on the mounted volumes.
 > We advise you to make snapshots of your live environment before merging an environment 
 > to the live environment, or each time you increase the storage space of your services.
 
+> **note**
+> You need "admin" role to take a snapshot of your environment.
+
 Using the CLI:
 
 ```bash
@@ -42,6 +45,9 @@ You can restore a specific snapshot with the CLI with:
 ```bash
 $ platform snapshot:restore 92c9a4b2aa75422efb3d
 ```
+
+> **note**
+> You need "admin" role to restore your environment from a snapshot.
 
 ### Automated snapshots
 
