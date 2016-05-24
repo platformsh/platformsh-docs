@@ -321,6 +321,9 @@ body,
   min-width: 40px;
   top: 123px;
 }
+.book .book-body .navigation.navigation-next {
+  right: 10px;
+}
 .book .book-summary {
   color: #cbcaca;
   width: 400px;
