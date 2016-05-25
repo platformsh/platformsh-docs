@@ -18,23 +18,23 @@ Old format:
 New format:
 
     web:
-    locations:
-        "/":
-            root: "public"
-            passthru: "/index.php"
-            index: 
-                - index.php
-            expires: -1
-            scripts: true
-            allow: true
-            rules:
-                \.mp4$:
-                    allow: false
-                    expires: -1
-        "/sites/default/files":
-            expires: 300
-            passthru: true
-            allow: true
+        locations:
+            "/":
+                root: "public"
+                passthru: "/index.php"
+                index: 
+                    - index.php
+                expires: -1
+                scripts: true
+                allow: true
+                rules:
+                    \.mp4$:
+                        allow: false
+                        expires: -1
+            "/sites/default/files":
+                expires: 300
+                passthru: true
+                allow: true
 
 ### Backward compatibility
 
