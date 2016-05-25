@@ -5,40 +5,22 @@
 name: php
 
 # The toolstack used to build the application.
-type: php
+type: php:7.0
 build:
-    flavor: symfony
+    flavor: composer
 
 # The configuration of app when it is exposed to the web.
 web:
-    # The public directory of the app, relative to its root.
-    document_root: "/_books"
-    # TODO: This should be implemented soon.
-    passthru: "/index.php"
-    expires: 300
-    whitelist:
-      - \.html$
-
-      # GitBook search indexes.
-      - search_index\.json$
-
-      # CSS and Javascript.
-      - \.css$
-      - \.js$
-
-      # image/* types.
-      - \.gif$
-      - \.jpe?g$
-      - \.png$
-
-      # fonts types.
-      - \.ttf$
-      - \.eot$
-      - \.woff$
-      - \.otf$
-
-      # robots.txt.
-      - /robots\.txt$
+    locations:
+        "/":
+            root: "_books"
+            passthru: "/index.html"
+            expires: -1
+            scripts: true
+            allow: false
+            rules:
+                \.(css|js|gif|jpe?g|png|ttf|eot|woff|otf|search_index\.json|robots\.txt|html?)$:
+                    allow: true
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048
