@@ -10,7 +10,9 @@ Old format:
 
     web:
         document_root: "/"
-        passthru: "/index.php" 
+        passthru: "/index.php"
+        index_files:
+            - "index.php"
         expires: 300
         whitelist:
             - \.html$
@@ -24,7 +26,7 @@ New format:
                 passthru: "/index.php"
                 index: 
                     - index.php
-                expires: -1
+                expires: 300
                 scripts: true
                 allow: true
                 rules:
@@ -42,7 +44,7 @@ Of course, we alway keep backward compatibility with the previous configuration 
 
     # The following parameters are automatically moved as a "/" block in the
     # "locations" object, and are invalid if there is a valid "locations" block.
-    document_root: "/public"      # Converted to [locations][/][root]"
+    document_root: "/public"      # Converted to [locations][/][root]
     passthru: "/index.php"        # Converted to [locations][/][passthru]
     index_files:
         - index.php               # Converted to [locations][/][index]
