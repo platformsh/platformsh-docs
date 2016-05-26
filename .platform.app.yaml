@@ -14,7 +14,8 @@ web:
     locations:
         "/":
             root: "_books"
-            passthru: "/index.html"
+            passthru: "index.php"
+            index: "index.html"
             expires: -1
             scripts: true
             allow: false
