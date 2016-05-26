@@ -1,5 +1,5 @@
 * [Prerequisites](guides/prerequisites/requirements.md)
-  * [Get a Platform.sh account](guides/account/subscribe.md)
+  * [Get a Platform.sh project](guides/account/subscribe.md)
   * [Install Composer](guides/type/php/composer/install.md)
      * [on OS X](guides/type/php/composer/osx.md)
      * [on Linux](guides/type/php/composer/linux.md)
