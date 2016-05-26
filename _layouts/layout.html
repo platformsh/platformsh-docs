@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="{{ config.language }}" {% if page.dir == "rtl" %}dir="rtl"{% endif %}>
+    <head>
+        <title>{% block title %}{{ config.title|d("GitBook", true) }}{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="generator" content="GitBook {{ gitbook.version }}">
+        {% if config.author %}<meta name="author" content="{{ config.author }}">{% endif %}
+        {% if config.isbn %}<meta name="identifier" content="{{ config.isbn }}" scheme="ISBN">{% endif %}
+        {% block style %}
+            {% for resource in plugins.resources.css %}
+                {% if resource.url %}
+                <link rel="stylesheet" href="{{ resource.url }}">
+                {% else %}
+                <link rel="stylesheet" href="{{ resource.path|resolveAsset }}">
+                {% endif %}
+            {% endfor %}
+        {% endblock %}
+        {% block head %}{% endblock %}
+        <link rel='stylesheet' type='text/css' href='//cloud.typography.com/7640312/659566/css/fonts.css'>
+    </head>
+    <body>
+        <div id='platform-bar'><a class='branding' href='https://platform.sh'><span class='logo'>Platform.sh</span></a><a class='site-name' href='/'><span>Documentation Home</span></a><div id='navlink'><span class='divider'>/</span><div class='dropdown'><ul><li>"+this.options.title+"<ul><li><a href='/user_guide/'>User Guide</a></li><li><a href='/discover/'>Discover</a></li><li><a href='/drupal/'>Get started with Drupal</a></li><li><a href='/drupal_migrate/'>Migrate an existing Drupal site</a></li><li><a href='/symfony/'>Get started with Symfony</a></li></ul></li></ul></div></div></div>
+        {% block body %}{% endblock %}
+        {% block javascript %}{% endblock %}
+        <script src="scripts/platform.js" />
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-4064131-10', 'auto');ga('send', 'pageview');</script>
+    </body>
+</html>

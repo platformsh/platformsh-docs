@@ -1,6 +1,7 @@
-# Platform.sh Documentation
+# About the documentation
 
 This documentation is rendered online at https://docs.platform.sh
+
 
 ## Contributing
 

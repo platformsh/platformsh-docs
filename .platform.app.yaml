@@ -13,9 +13,9 @@ build:
 web:
     locations:
         "/":
-            root: "_books"
+            root: "_book"
             passthru: "/index.html"
-            expires: -1
+            expires: 300
             scripts: true
             allow: false
             rules:
@@ -33,4 +33,4 @@ dependencies:
 # The hooks that will be performed when the package is deployed.
 hooks:
     build: |
-      ./build_all
+      gitbook build
