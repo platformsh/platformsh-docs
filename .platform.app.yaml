@@ -15,7 +15,8 @@ web:
         "/":
             root: "_books"
             passthru: "/index.php"
-            index: "index.html"
+            index:
+                - "index.html"
             expires: -1
             scripts: true
             allow: false
