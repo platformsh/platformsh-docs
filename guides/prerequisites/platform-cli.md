@@ -1,5 +1,13 @@
 # Install the Platform.sh CLI
 
+## Prerequisites
+	
+### Composer
+
+Composer is a dependency management tool for PHP. Follow this [Install Composer](https://getcomposer.org/download/) guide.
+
+## Install the CLI
+
 Run:
 
     curl -sS https://platform.sh/cli/installer | php
