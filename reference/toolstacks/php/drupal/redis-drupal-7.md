@@ -9,18 +9,17 @@ extension or the [Predis](http://github.com/nrk/predis) library.
 You will need to add the [Redis](https://www.drupal.org/project/redis)
 module to your project.
 
-If you are using a make file, you can add those lines to your
-`project.make`. 
+If you are using Drush Make, you can add these lines to your `project.make` file:
 
 ```ini
-projects[redis][version] = 3.11
+projects[redis][version] = 3.12
 ```
 
-To use the Predis library also add it to your make file:
+To use the Predis library, also add it to your make file:
 
 ```ini
 libraries[predis][download][type] = get
-libraries[predis][download][url] = https://github.com/nrk/predis/archive/v1.0.tar.gz
+libraries[predis][download][url] = https://github.com/nrk/predis/archive/v1.0.3.tar.gz
 libraries[predis][directory_name] = predis
 libraries[predis][destination] = libraries
 ```
