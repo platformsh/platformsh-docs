@@ -61,18 +61,21 @@ Here is an example of a `.platform.app.yaml` file for Drupal:
 The `name` is the unique identifier of the application. Platform.sh
 supports multiple applications within a project, so each application
 must have a **unique name** within a project. The name may only be
-composed of lower case alpha-numeric characters. (a-z0-9). This name
-is used in the `.platform/routes.yaml` to define the HTTP upstream
-(by default `php:php`) if you called your application `app` you will
-need to use `app:php` in the upstream field. You can also use this
-name in multi-application relationships.
+composed of lower case alpha-numeric characters. (a-z0-9).
+
+This name is used in the `.platform/routes.yaml` file to define the HTTP upstream
+(by default `php:php` - if you called your application `app` you will
+need to use `app:php` in the upstream field).
+
+You can also use this name in multi-application relationships.
 
 > **Note**
+> Changing the name of an app is the same as deleting it and replacing
+> it: your app data (static files) will be deleted.
+>
 > If you change the name you should think about updating your other
-> configuration files (routes.yaml or the different .platform.app.yaml
-> you will have in a multi-application project.
-> Changing the name has no effect on your different services (databases
-> etc) you data will still be there.
+> configuration files: `.platform/routes.yaml` and any other
+> `.platform.app.yaml` files you have in a multi-application project.
 
 ### Type
 
