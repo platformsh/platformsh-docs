@@ -68,11 +68,12 @@ need to use `app:php` in the upstream field. You can also use this
 name in multi-application relationships.
 
 > **Note**
+> Changing the name of an app is the same as deleting it and replacing
+> it: your app data (static files) will be deleted.
+>
 > If you change the name you should think about updating your other
 > configuration files (routes.yaml or the different .platform.app.yaml
 > you will have in a multi-application project.
-> Changing the name has no effect on your different services (databases
-> etc) you data will still be there.
 
 ### Type
 
