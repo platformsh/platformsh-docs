@@ -12,7 +12,7 @@ dynamic page construction (ESI), URL rewriting and mapping.
 It supports caching, so you do not need Varnish or an extra cache in front of it.
 
 The configuration of the router service happens through the special 
-[.platform/routes.yaml](../../user_guide/reference/routes-yaml.html) file
+[.platform/routes.yaml](../../reference/routes-yaml.html) file
 
 ## File system
 
@@ -24,7 +24,7 @@ grid.
 
 Platform.sh can run multiple applications in the same project. As such each
 application is considered to be a service by itself (which you can route to
-in the [.platform/routes.yaml](../../user_guide/reference/routes-yaml.html)) 
+in the [.platform/routes.yaml](../../reference/routes-yaml.html)) 
 and which you can reference as a relationship from another application in its 
 `.platform.app.yaml`. 
 
