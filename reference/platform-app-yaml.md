@@ -152,6 +152,10 @@ variable. The right-hand side is in the form
 
 The `web` key defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content, including static files, front-controller scripts, index files, index scripts, and so on. We support any directory structure, so the static files can be in a subdirectory, and the `index.php` file can be further down.
 
+> **Note**
+> Gzip compression is enabled only for serving precompressed static files with the ".gz" filename extension.
+> However, dynamic content is not automatically compressed due to a [well known security issue](https://en.wikipedia.org/wiki/BREACH_%28security_exploit%29).
+
 It has the following subkeys:
 
 #### Commands
