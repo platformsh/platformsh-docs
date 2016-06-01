@@ -6,13 +6,16 @@ These are automatically deployed with your application.
 
 This is a default service that exists in all projects.
 
-Based on nginx, the Router service processes HTTP requests, handles security,
+Based on Nginx, the Router service processes HTTP requests, handles security,
 dynamic page construction (ESI), URL rewriting and mapping. 
 
 It supports caching, so you do not need Varnish or an extra cache in front of it.
 
+Gzip compression is enabled for sending precompressed files with the ".gz" filename extension instead of regular files.
+Though, dynamic content is not compressed due to [well known security issue](https://en.wikipedia.org/wiki/BREACH_%28security_exploit%29).
+
 The configuration of the router service happens through the special 
-[.platform/routes.yaml](../../reference/routes-yaml.html) file
+[.platform/routes.yaml](../../reference/routes-yaml.html) file.
 
 ## File system
 
