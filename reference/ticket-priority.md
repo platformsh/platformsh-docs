@@ -2,7 +2,7 @@
 
 | Priority   |      Response      |  Resolution |
 |----------|:-------------:|------:|
-| Critical |  within 1 business hour | 4 hours |
+| Critical |  1 business hour | 4 hours |
 | High |    1 business day   |   Best Effort |
 | Normal | 1-2 business days |    Best Effort |
 | Low | Best Effort |    Best Effort |
