@@ -6,8 +6,8 @@ addresses.
 European region (eu.platform.sh):
 
 -   54.72.94.105
--   54.76.137.67
--   54.76.137.94
+-   54.76.136.0/24
+-   54.76.137.0/24
 
 North American region (us.platform.sh):
 
