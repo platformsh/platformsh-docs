@@ -8,6 +8,11 @@
 * Then Fallback to just the last part of the url
 * Then fallback to the root.
 **/
+// Don't show any errors since we're live. 
+// Comment out the below two lines when debugging.
+error_reporting(0);
+@ini_set('display_errors', 0);
+
 function matchPath($path, $current_urls){
     $location = "/"; // Fallback to root
     foreach ($current_urls as $url) {
