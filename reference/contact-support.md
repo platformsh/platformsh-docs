@@ -1,6 +1,6 @@
 # Contacting Support
 
-In order to provide the most efficient support, we request you use our helpdesk as the primary contact method.
+In order to provide the most efficient support, we request you use our help desk as the primary contact method.
 
 ## Open a Support Ticket
 
@@ -8,13 +8,11 @@ In order to provide the most efficient support, we request you use our helpdesk 
 
 ![image](/images/login-screen1.png)
 
-1. Click on the `Create Ticket` button located just underneath the tab list.
+1. Click on the `Create Ticket` button located just underneath the tab list.  You will need to have at least one active project in order to create a support ticket.
 
 ![image](/images/create-ticket.png)
 
-> **note** > You will need to have at least one active project in order to create a support ticket.
-
-1. Select the relevat project from the `support plan` drop-down list.  Then type a short summary of your issue in the subject field.
+1. Select the relevant project from the `support plan` drop-down list.  Then type a short summary of your issue in the subject field.
 
 ![image](/images/create-ticket-step1.png)
 
@@ -30,9 +28,9 @@ In order to provide the most efficient support, we request you use our helpdesk 
 
 ![image](/images/create-ticket-step4.png)
 
-Please review the `Ticket Priorty` section below for guidence on selecting a proper level.
+Please review the `Ticket Priority` section below for guidance on selecting a proper level.
 
-## Ticket Priorty
+## Ticket Priority
 
 | Priority   |      Response      |  Resolution |
 |----------|:-------------:|------:|
