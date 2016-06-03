@@ -2,10 +2,10 @@
 A no-assumption, first-of-a-kind framework that can power the most demanding ecommerce projects. (see <https://drupal.org/project/commerce> for more information).
 
 #Drush
-Drush is a command-line shell and scripting interface for Drupal.
+[Drush](http://www.drush.org/) is a command-line shell and scripting interface for Drupal.
 
 #Drush aliases
-Drush aliases allow you to run a drush commands on your local server but actually execute the command on a remote server. You have to either configure drush manually or use `platform get` from Platform.sh CLI to configure it.
+Drush [site aliases](http://docs.drush.org/en/master/usage/#site-aliases) allow you to define short names that let you run Drush commands on specific local or remote Drupal installations. The Platform.sh CLI configures Drush aliases for you on your local environment (via `platform get` or `platform drush-aliases`). You can also configure them manually.
 
 #Live Environment
 An environment which is deployed from the `master` branch under a production plan.
