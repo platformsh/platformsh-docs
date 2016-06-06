@@ -67,6 +67,15 @@ you can while deploying do whatever you want (compile stuff or generate
 anything you need on the storage). But once deployed the main file-system
 will turn read-only.
 
+## Do you add custom HTTP headers?
+
+We add the following custom HTTP headers to give the application information about the connection.
+
+* "X-Forwarded-Proto": The protocol forwarded to the application, e.g. "http", "https".
+* "X-Client-IP": The remote IP address of the request.
+* "X-Client-SSL": Set "on" only if the client is using SSL connection, otherwise the header is not added.
+* "X-Original-Route": The route in `.platform/routes.yaml` which is used currently, e.g. "http://{default}/".
+
 ## I am using Drupal and  I see "File not found" why?
 
 If you see the "File not found" when accessing your site within a browser, this means that you’ve pushed your code as a vanilla project but no *index.php* has been found.
