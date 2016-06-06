@@ -390,7 +390,7 @@ relationships:
     solr: "solr:solr"
     redis: "redis:redis"
 web:
-    document_root: "/"
+    document_root: "/app/public"
     passthru: "/index.php"
 disk: 2048
 mounts:
@@ -402,5 +402,11 @@ crons:
         spec: "*/20 * * * *"
         cmd: "cd public ; drush core-cron"
 ```
+
+## Top level document_roots
+
+Platform.sh requires that the document root not be at the root of the project.  It is important for security that
+private file mounts not be web-accessible. If the document_root is set to /, it will move the application to
+/app/public and use that as the root to allow for the private mounts to be kept private.
 
 * [Past Changes of the configuration format can be found here](reference/upgrade/)
