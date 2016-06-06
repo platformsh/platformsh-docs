@@ -26,7 +26,10 @@ In this example we defined for one of our environments a variable we called
 
 > **note**
 > Variables are **hierarchical**, so if a variable is not overriden in an environment, it will take the value it has in the parent environment and use it as `inherited`.
-> This allows you to define your development variables only once, and use them on all the children environments.
+> This allows you to define your development variables only once, and use them on all the child environments.
+
+> **note**
+> If a variable is added in the parent environment after the child environments are created, the child environments have to be re-deployed in order to load the inherited variables.
 
 ## Platform.sh variables
 
