@@ -63,3 +63,11 @@ environment.
 
 You can also manage access to users on multiple environments using the
 project configuration screen.
+
+## Robots.txt
+
+By default, Platform.sh returns a restrictive `robots.txt` on all environments. If you need to provide a custom `robots.txt`, first disable the default one by [Platform.sh CLI](/user_guide/overview/cli/index.html) command below.
+
+```
+platform environment:info restrict_robots false
+```
