@@ -93,7 +93,7 @@ contact our support.
 
 ## Enterprise
 
-Enterprise plans start at $670 a month. 
+Enterprise plans start at $815 a month. 
 
 So for a price lower than traditional managed hosting, you get included 
 development and staging environments and triple redundancy on every element of 
