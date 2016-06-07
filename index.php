@@ -18,7 +18,7 @@ function matchPath($path, $current_urls){
     }
     if ($location=="/"){ 
         // nothing was matched let's try a shorter match
-        $path = str_replace(["/index.html",".html"],"",array_pop(explode('/', $path)));
+        $path = basename($path);
         foreach ($current_urls as $url) {
             if (stripos($url, $path) !== FALSE ) {
                 $location = $url;
