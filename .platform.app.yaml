@@ -21,9 +21,12 @@ web:
             scripts: true
             allow: false
             rules:
-                \.(css|js|gif|jpe?g|png|ttf|eot|woff|otf|search_index\.json|robots\.txt|html?)$:
+                \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|html?)$:
                     allow: true
-
+                ^/robots\.txt$:
+                    allow: true
+                search_index\.json$:
+                    allow: true
 # The size of the persistent disk of the application (in MB).
 disk: 2048
 
