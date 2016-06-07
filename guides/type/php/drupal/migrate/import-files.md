@@ -26,12 +26,12 @@ your remote Platform environment:
 $ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:public/sites/default/files/
 ```
 
-> **note**
-> If you are using a Mac OS computer, you might experience issues where files with non-ascii characters in them don't work after transfer because Mac OS X uses decomposed form (like "a + ¨ = ä", a form known as NFD), not the usual composed form ("ä", a form known as NFC used everywhere else).
-
-A workaround for this is to transfer the files directly from server to server. If you have a firewall between the origin server and platform.sh, you can use agent-forwarding to enable a direct connection: 
-
+## Directly from server to platform.sh
+If the files folder is too large to fit on your computer, you can transfer them directly from server to server. If you have a firewall between the origin server and platform.sh, you can use agent-forwarding to enable a direct connection: 
 ```bash
 $ ssh -A -t [USER]@[ORIGIN-SERVER] ssh -A -t [PROJECT-ID]-master@ssh.[REGION].platform.sh
 $ rsync -a --delete [USER]@[ORIGIN-SERVER]:/var/www/drupal/sites/default/files/ public/sites/default/files
 ```
+
+> **note**
+> If you are using a Mac OS computer, you might experience issues where files with non-ascii characters in them don't work after transfer because Mac OS X uses decomposed form (like "a + ¨ = ä", a form known as NFD), not the usual composed form ("ä", a form known as NFC used everywhere else). One workaround is to use the direct server-to-server transfer method mentioned above. 
