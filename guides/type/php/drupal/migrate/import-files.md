@@ -26,7 +26,7 @@ your remote Platform environment:
 $ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:public/sites/default/files/
 ```
 
-## Directly from server to platform.sh
+#### Directly from server to platform.sh
 If the files folder is too large to fit on your computer, you can transfer them directly from server to server. If you have a firewall between the origin server and platform.sh, you can use agent-forwarding to enable a direct connection: 
 ```bash
 $ ssh -A -t [USER]@[ORIGIN-SERVER] ssh -A -t [PROJECT-ID]-master@ssh.[REGION].platform.sh
