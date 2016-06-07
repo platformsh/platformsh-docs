@@ -23,9 +23,14 @@ The `Users` screen allows you to manage users access on your project.
 
 You can invite new users to your project by clicking the `Add user` link
 and entering their email address, or modify permissions of existing
-users by clicking the `Edit` link when hovering the user.
+users by clicking the `Edit` link when hovering over the user.
 
 ![Project configure icon](/images/ui-conf-project-users.png)
+
+> **note**
+> Currently, permissions changes that grant or revoke SSH access to an
+> environment take effect only after the next time that environment is
+> deployed.
 
 Selecting a user will allow you to either edit that user's permissions
 or delete the user's access to the project entirely.
@@ -46,3 +51,10 @@ The `Domains` screen allows you to manage your domains that your project
 will be accessible at.
 
 ![Manage domains of your Platform.sh project.](/images/ui-conf-project-domains.png)
+
+More information on how to [setup your domain](https://docs.platform.sh/user_guide/using/going-live.html).
+
+> **note**
+> Platform.sh expects an ASCII representation of the domain here. In case you want to use an internationalized domain name you can use the [conversion tool provided by Verisign](http://mct.verisign-grs.com/) to convert your IDN domain to ASCII.
+
+

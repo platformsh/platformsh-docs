@@ -12,6 +12,15 @@ environment.
 
 ![Configure Platform.sh environment settings](/images/ui-conf-environment-settings.png)
 
+The *Delete* action will destroy all services running on this environment (PHP, MySQL, volumes...) 
+so that only the Git branch remains. You can reactivate the environment later if needed.
+
+To also delete the branch, you need to use Git and run:
+
+```
+git push origin :BRANCH-NAME
+```
+
 > **note**
 > Deleting the Master environment is forbidden.
 
@@ -44,8 +53,21 @@ of existing users by clicking the `Edit` link when hovering the user.
 
 ![Manage users of your Platform.sh environments](/images/ui-conf-environment-users.png)
 
+> **note**
+> Currently, permissions changes that grant or revoke SSH access to an
+> environment take effect only after the next time that environment is
+> deployed.
+
 Selecting a user will allow you to either edit or remove access to that
 environment.
 
 You can also manage access to users on multiple environments using the
 project configuration screen.
+
+## Robots.txt
+
+By default, Platform.sh returns a restrictive `robots.txt` on all environments. If you need to provide a custom `robots.txt`, first disable the default one by [Platform.sh CLI](/user_guide/overview/cli/index.html) command below.
+
+```
+platform environment:info restrict_robots false
+```

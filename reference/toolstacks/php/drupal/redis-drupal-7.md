@@ -9,18 +9,17 @@ extension or the [Predis](http://github.com/nrk/predis) library.
 You will need to add the [Redis](https://www.drupal.org/project/redis)
 module to your project.
 
-If you are using a make file, you can add those lines to your
-`project.make`:
+If you are using Drush Make, you can add these lines to your `project.make` file:
 
 ```ini
-projects[redis][version] = 2.12
+projects[redis][version] = 3.12
 ```
 
-To use the Predis library also add it to your make file:
+To use the Predis library, also add it to your make file:
 
 ```ini
 libraries[predis][download][type] = get
-libraries[predis][download][url] = http://github.com/nrk/predis/archive/v0.8.7.tar.gz
+libraries[predis][download][url] = https://github.com/nrk/predis/archive/v1.0.3.tar.gz
 libraries[predis][directory_name] = predis
 libraries[predis][destination] = libraries
 ```
@@ -98,9 +97,6 @@ Redis_Cache
 DrupalDatabaseCache
 ```
 
-> **note**
-> Currently, you need to commit some code to rebuild your environment so that the new variables are properly added to your `settings.local.php`. This will be fixed soon.
-
 ### Via settings.php
 
 If you prefer to commit these variables directly to your `settings.php`,
@@ -116,7 +112,11 @@ Or
 $conf['redis_client_interface'] = 'PhpRedis';
 ```
 
+Then (after the settings.local.php include):
+
 ```php
+if (!empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
+  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
   $conf['redis_client_host'] = $relationships['redis'][0]['host'];
   $conf['redis_client_port'] = $relationships['redis'][0]['port'];
   $conf['redis_client_interface'] = 'PhpRedis';
@@ -124,4 +124,10 @@ $conf['redis_client_interface'] = 'PhpRedis';
   $conf['cache_default_class']    = 'Redis_Cache';
   // The 'cache_form' bin must be assigned to non-volatile storage.
   $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
+}
 ```
+
+> **note**
+> If you use Domain Access and Redis, ensure that your Redis settings (particularly `$conf['cache_backends']`)
+> are included before the Domain Access `settings.inc` file - see
+> [this Drupal.org issue](https://www.drupal.org/node/2008486#comment-7782941) for more information.

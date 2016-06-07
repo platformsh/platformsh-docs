@@ -18,10 +18,10 @@ specific remote Platform.sh environments.
 
 ## Install Drush
 
-Install drush with composer:
+Install drush with Composer:
 
 ```bash
-$ composer global require 'drush/drush:6.*'
+$ composer global require drush/drush
 ```
 
 At the end of the installation, you should be able to run:

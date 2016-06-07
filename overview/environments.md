@@ -1,7 +1,7 @@
 # Platform.sh Environments
 
 [Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage 
-multiple environments, including the Master environment which runs the production website. Its precisely
+multiple environments, including the Master environment which runs the production website. It's precisely
 like a "development" or a "staging" server.. except they are created on the fly, and they are absolutly 
 identical copies of their parent environments. 
 
@@ -15,6 +15,9 @@ You can have branches that are not tied to a running instance of your applicatio
 Every Platform.sh project starts with a Master environment which corresponds to the Master branch in Git.
 
 If you subscribed to a production plan, this environment is your **live site** and can be mapped to a domain name and an SSL certificate.
+
+> **note**
+> Your project must have a `master` branch: it will not function properly without one.
 
 ## Hierarchy
 
@@ -35,7 +38,7 @@ There are no rules you must follow when branching the master environment. You si
     can have its own environment as a child of the sprint environment.
 -   **Developer-centric**: one QA environment and a few development
     environments (*per developer, per task...*).
--   **Testing**:: an operational test environment, a user test
+-   **Testing**: an operational test environment, a user test
     environment and a few unit test environments.
 -   **Hotfix**: one environment for every bug, security, or hotfix that
     needs deployment.

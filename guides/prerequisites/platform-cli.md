@@ -1,27 +1,44 @@
 # Install the Platform.sh CLI
 
-This procedure installs the cli in the Composer's .composer folder. On
-OS X and Linux, this will be *\~/.composer/vendor/bin/*.
+## Prerequisites
+	
+### Composer
 
-Install the cli:
+Composer is a dependency management tool for PHP. Follow this [Install Composer](https://getcomposer.org/download/) guide.
 
-    composer global require platformsh/cli:@stable
+## Install the CLI
 
-Add a path to the `platform` command :
+Run:
 
-    echo 'export PATH="$PATH:~/.composer/vendor/bin"' >> ~/.bash_profile
-    source ~/.bash_profile
+    curl -sS https://platform.sh/cli/installer | php
 
-Find your Platform.sh login details (the e-mail address and password you
-use to authenticate to Marketplace).
+This will install the CLI in your home directory and configure your shell. If you need further installation instructions, see the [CLI README](https://github.com/platformsh/platformsh-cli/tree/master#installation).
 
-Run the Platform.sh CLI for the first time. :
+## Authenticate locally using the Platform.sh CLI
 
-    platform
+The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will
+authenticate you with Platform.sh and show your projects. Just type this
+command to start:
 
-You are then prompted for your Marketplace e-mail address and password.
+```bash
+platform
+```
+
+The credentials you enter are the same as your [Platform.sh account](https://accounts.platform.sh/user).
+
+> **note**
+> If you have created your account using the OAuth Login (via Bitbucket, GitHub or Google) then in order to use the Platform CLI you
+> will need to create a password, which you can do using the ['Request new password' tool](https://accounts.platform.sh/user/password)
 
 Enter your details. A list of your projects appears, along with some
 tips for getting started.
 
-##Your command line tools are now ready to use with Platform.sh.
+**Your command-line tools are now ready to use with Platform.sh.**
+
+## Updating the CLI
+
+To update the CLI at any time, run:
+
+```bash
+platform self-update
+```

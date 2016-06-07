@@ -29,7 +29,8 @@ contributed modules, themes or libraries.
 
 > **note**
 > When building as a profile, you **need a make file for Drupal core** called: `project-core.make`. See 
-[drush make files](/toolstacks/php/drupal/drush.md)
+[drush make files](drush.html)
+
 ```
 .git/
 project.make
@@ -101,29 +102,56 @@ sites/
   default/
 ```
 
-## Configure your app
+## Configure your Drupal application
 
 Platform.sh uses configuration files to determine what toolstack you
 want to deploy and how you want to deploy it.
 
-### Drupal 7
+Add a `.platform.app.yaml` at the root of your drupal folder.
 
-For Drupal 7, your `.platform.app.yaml` should specify the `php:drupal`
-toolstack. You can see a [working example on
-GitHub](https://github.com/platformsh/platformsh-examples/tree/drupal/7.x). And the Drupal 7[.platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/.platform.app.yaml)
-
-### Drupal 8
-
-For Drupal 8, your `.platform.app.yaml` should specify the `php:drupal`
-toolstack, and install Drush 7 RC as a build-time dependency:
-
+Here is an example of a Drupal configuration:
 ```yaml
-# Note: Drush 7.0.0 is no longer compatible with Drupal 8, but the
-# pre-release -rc versions were.
-dependencies:
-    php:
-        "drush/drush": "7.0.0-rc2"
+# .platform.app.yaml
+name: php
+
+type: php
+build:
+    flavor: drupal
+
+relationships:
+    database: "mysql:mysql"
+
+web:
+    document_root: "/"
+    passthru: "/index.php"
+
+disk: 2048
+
+mounts:
+    "/public/sites/default/files": "shared:files/files"
+    "/tmp": "shared:files/tmp"
+    "/private": "shared:files/private"
+
+hooks:
+    deploy: |
+      cd public
+      drush -y updatedb
+
+crons:
+    drupal:
+        spec: "*/20 * * * *"
+        cmd: "cd public ; drush core-cron"
 ```
 
-You can see a [working example on GitHub](https://github.com/platformsh/platformsh-examples/tree/drupal/8.x).
-, and the Drupal 8 [.platform.app.yaml](https://github.com/platformsh/platformsh-examples/blob/drupal/8.x/.platform.app.yaml)
+You can find some working example on GitHub:
+* [Drupal 7](https://github.com/platformsh/platformsh-example-drupal/tree/7.x)
+* [Drupal 8](https://github.com/platformsh/platformsh-example-drupal/tree/8.x)
+
+For Drupal 8, your `.platform.app.yaml` should install Drush 8 RC as a build-time dependency:
+
+```yaml
+# .platform.app.yaml
+dependencies:
+    php:
+        "drush/drush": "8.0.0-rc2"
+```

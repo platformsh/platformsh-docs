@@ -1,3 +1,9 @@
+#!/bin/bash
+
+set -xe
+
+gitbook fetch 2.2.0
+
 ./build discover
 ./build user_guide
 ./build drupal

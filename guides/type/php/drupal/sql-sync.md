@@ -21,21 +21,29 @@ $ drush rsync @mysite.staging:%files @mysite._local:%files
 > repository. Git is only meant for code, not *data*, and files that are
 > managed by your Drupal site are considered data.
 
-## SQL-sync troubleshooting tips
+## Alternative SQL sync methods
 
-Drush 7 has problems with SQL-syncing Drupal 7 sites. If you see error
-below:
+Drush `sql-sync` changed in version 7, such that it now always saves a file on
+the source by default. As the Platform.sh source is read-only, it will show
+an error message (`Unable to create backup directory`).
 
-```bash
-Starting to dump database on Source. [ok]
-Directory /app exists, but is not writable. Please check directory permissions. [error]
-Unable to create backup directory /app/drush-backups/main. [error]
-Database dump saved to /tmp/main_20150206_091052.sql.gz [success]
-sql-dump failed.
-```
+You have several options to avoid this error:
 
-Then you should downgrade to Drush version 6.\* to make sql-sync work:
+ * Use `sql-sync` specifying a temporary directory for the file on the source. This may be easier on a slower or less reliable connection, but it could fill up the temporary directory.
 
-```bash
-$ composer global require 'drush/drush:6.*'
-```
+  ```
+  drush sql-sync @mysite.master @mysite._local --source-dump=/app/tmp/db.sql.gz
+  ```
+
+ * Stream the SQL dump directly (handy for smaller databases):
+
+  ```
+  drush @mysite.remote sql-dump | drush @mysite._local sqlc
+  ```
+
+ * Make an SQL dump locally, and then import from it:
+
+  ```
+  drush @mysite.remote sql-dump > dump.sql
+  drush @mysite._local sqlc < dump.sql
+  ```

@@ -18,7 +18,7 @@ point it to the IP address that resolves when you access your master
 project branch.
 
 > **note**
-> If you are on a Development plan, your domain will not be served by Platform.sh. In that case, you need to upgrade your subscription to a production plan.
+> If you are on a Development plan, you cannot add a domain. You would need to upgrade your subscription to a production plan.
 
 ## 2 - Routes
 
@@ -80,6 +80,14 @@ entire site with HTTPS, here is what your routes would look like:
     to: "https://{default}/"
 ```
 
+### Wildcard domains
+
+To configure a wildcard domain (*.mydomain.com):
+
+- Add your domain to your project (in form of mydomain.com).
+- Add a route to your master branch serving http://*.mydomain.com with the upstream php:php.
+
+
 ## 3 - DNS
 
 Configure your DNS provider to point your domain to your
@@ -106,7 +114,7 @@ DNS provider's redirection service to redirect the apex over to the
 `www` version of the domain. Check with your DNS provider to see how
 they support this.
 
-### Naked domain (sans www)
+### Naked domain (without www)
 
 The www portion of your domain is a subdomain. In fact, any part of your
 domain that precedes domain.tld can be called a subdomain, not just
@@ -122,10 +130,10 @@ domain as a CNAME to point to EC2.
 
 In other words, with most DNS providers:
 
-  ----------------- ------------------- ------ -----------------------------
-  you can do this   `www.domain.tld`    CNAME  `some.host.name.platform.sh`
-  you can't do this `domain.tld`        CNAME  `some.host.name.platform.sh`
-  ----------------- ------------------- ------ -----------------------------
+  ----------------- ------------------- ------ ----------------------------------------------
+  you can do this   `www.domain.tld`    CNAME  `<environment>-<project>.<region>.platform.sh`
+  you can't do this `domain.tld`        CNAME  `<environment>-<project>.<region>.platform.sh`
+  ----------------- ------------------- ------ ----------------------------------------------
 
 You also cannot reliably point your root A Record to an IP address
 within the cloud providers network since they reserve the right to
@@ -134,7 +142,6 @@ reallocate the IP address dedicated to your instance.
 Some DNS hosts provide a way to get CNAME-like functionality at the zone
 apex using a custom record type. Such records include:
 
--   ALIAS at [Route53](http://aws.amazon.com/route53)
 -   CNAME at [Namecheap](http://www.namecheap.com/)
 -   ALIAS at [DNSimple](https://dnsimple.com/)
 -   ANAME at [DNS Made Easy](http://www.dnsmadeeasy.com/)
@@ -191,8 +198,12 @@ apt-get install openssl
 When prompted, enter an easy password value as it will only be used when
 generating the CSR and not by your app at runtime.
 
-openssl genrsa -des3 -out server.pass.key 2048 ... Enter pass phrase for
-server.pass.key: Verifying - Enter pass phrase for server.pass.key:
+```bash
+openssl genrsa -des3 -out server.pass.key 2048 ... 
+Enter pass phrase for server.pass.key: 
+Verifying - 
+Enter pass phrase for server.pass.key:
+```
 
 The private key needs to be stripped of its password so it can be loaded
 without manually entering the password.
@@ -274,6 +285,11 @@ configure SSL for your project.
 You can also add your certificate via the Platform.sh [Web Interface](/overview/web-ui/index.html). Just go to the [project configuration page](/overview/web-ui/configure-project.html) in the web interface and click on Domains. If you already have a domain, you can edit the domain and then click on the Add SSL certificate button. You can then add your private key, public key certificate and optional certificate chain.
 
 ![UI configuration for SSL](/images/ui-ssl.png)
+
+> **note**
+> Private key should be in the old style, which means it should begin with BEGIN RSA PRIVATE KEY. If it starts with BEGIN PRIVATE KEY that means it is bundled with the identifier for key type. To convert it to the old style RSA key:
+> openssl rsa -in private.key -out private.rsa.key
+
 
 ### Use the Platform.sh CLI to add the certificate
 

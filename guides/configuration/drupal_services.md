@@ -2,7 +2,7 @@
 
 Create a ``.platform`` folder at the root of your Git repository.
 
-Inside this folder, create a ``.services`` file.
+Inside this folder, create a ``services.yaml`` file.
 
 Open this file and paste this content:
 

@@ -1,4 +1,5 @@
 # `.platform/services.yaml`
+
 ## Configure Services
 
 Platform.sh allows you to completely define and configure the topology
@@ -9,14 +10,17 @@ that you don't need to subscribe to an external service to get a cache or
 a search engine. And that those services are managed. When you back up your
 project, all of the services are backed-up.
 
-The topology is stored into a `services.yaml` file which should be added
-inside the `.platform` folder at the root of your Git repository.
+See the list of all [available services](../overview/services.md).
+
+Services are configured through the [.platform/services.yaml](reference/services-yaml.md)
+file you will need to commit to your git repository. This section describes
+specifics you might want to know about for each service.
 
 If you don't have a `.platform` folder, you need to create one:
 
 ```bash
-$ mkdir .platform
-$ touch .platform/services.yaml
+mkdir .platform
+touch .platform/services.yaml
 ```
 
 Here is an example of a `services.yaml` file:
@@ -31,28 +35,42 @@ database2:
   disk: 1024
 ```
 
-This configuration will give you a MySQL with 2GB of disk space, and a Postgres 
-instance with 1GB allocated.You are free to name each service as you wish
-(*lowercase alphanumeric only*). Usually you will see in our examples that we 
-simply call the mysql: `mysql`. Note that you can have multiple instances of 
-each services.
+## Name
 
-The `disk`  attribute is the size of the persistent disk of the application (in 
-MB) you can to allocate to this service. So, for example, the current default
-storage amount per project is 5GB (meaning 5120MB) which you can distribute 
-between you application, as defined in 
-[.platform.app.yaml](/user_guide/reference/platform-app-yaml.html), and it's services.
+The `name` you want to give to your service. You are free to name each service as you wish
+(*lowercase alphanumeric only*). 
 
+Usually you will see in our examples that we simply call the mysql: `mysql`. Note that you can have multiple instances of each service.
 
-In order for a service to be available to an application in your project 
-(Platform.sh supports not only multiple backends but also multiple 
-applications in each project) you will need to refer to it in the 
-`.platform.app.yaml` file which configures the Relationships between 
-applications and services, [documented here](/user_guide/reference/platform-app-yaml.html).
+**WARNING**: Because we support multiple services of the same type (you can have 3 different MySQL instances), changing the name of the service in ``services.yaml`` will be interpreted as destroying the existing service and creating a new one. This will make **all the data in that service disappear forever**. Remember to always snapshot your environment in which you have important data before modifying this file.
+
+### Type
+
+The `type` of your service. It's using the format ``type:version``. 
+
+The version number is optional. If you don't specify a version number, the *default* version will be loaded.
+
+If you specify a version number which is not available, you'll see this error when pushing your changes:
+
+```bash
+Validating configuration files.
+E: Error parsing configuration files:
+    - services.mysql.type: 'mysql:5.6' is not a valid service type.
+```
+
+### Disk
+
+The `disk` attribute is the size of the persistent disk (in MB) allocated to the service. 
+
+For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between your application (as defined in `.platform.app.yaml`) and each of its services.
+
+## Using the services
+
+In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the `.platform.app.yaml` file which configures the *relationships* between applications and services, [documented here](/user_guide/reference/platform-app-yaml.html).
 
 ## Defaults
 
-If you do not have a `services.yaml` file the following default one will be loaded:
+If you do not provide a `services.yaml` file, the following default one will be loaded:
 
 ```yaml
 mysql:
@@ -65,25 +83,4 @@ redis:
 solr:
     type: solr:3.6
     disk: 1024
-```
-
-> **note**
-> We do not currently support persistence for Redis.
-
-## Supported Services
-
-We currently support the following services:
-* MySQL **mysql**: 5.5
-* PostgreSQL **postgresql**: 9.3
-* ElasticSearch **elasticsearch**: 0.9 (*default*), 1.4
-* Redis **redis**: 2.8
-* Solr **solr**: 3.6 (*default*), 4.10
-
-If no version number is specified, the *default* one will be deployed.
-
-If the version number specified isn't available, you'll see this error when pushing your changes:
-```bash
-Validating configuration files.
-E: Error parsing configuration files:
-    - services.mysql.type: 'mysql:5.6' is not a valid service type.
 ```

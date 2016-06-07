@@ -71,17 +71,17 @@ environment being built.
 Export your database in an SQL file or in a compressed file.
 
 Copy it via SSH to the remote environment on Platform into the
-`/app/tmp` folder which is writable:
+`/tmp` folder which is writable:
 
 ```bash
-$ scp database.sql [PROJECT-ID]-master@ssh.[REGION].platform.sh:/app/tmp
+$ scp database.sql [PROJECT-ID]-master@ssh.[REGION].platform.sh:/tmp
 ```
 
 Log in to the environment via SSH and import the database:
 
 ```bash
 $ ssh [PROJECT-ID]-master@ssh.[REGION].platform.sh
-web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < tmp/database.sql
+web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < /tmp/database.sql
 ```
 
 ## Import your files
@@ -90,7 +90,7 @@ Go to your files folder on your local machine and synchronize them to
 your remote Platform.sh environment:
 
 ```bash
-$ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:/app/tmp/
+$ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:/tmp/
 ```
 
 > **note**

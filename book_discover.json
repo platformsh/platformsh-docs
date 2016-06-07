@@ -1,18 +1,15 @@
 {
     "title": "Discover",
     "description": "Discover Platform.sh",
-    "version": "2.1.0",
+    "gitbook": "2.2.0",
         "structure": {
             "readme": "README_discover.md",
             "summary": "SUMMARY_discover.md"
         },
     "plugins": [
-        "ga", "edit-link", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"
+        "edit-link", "anchors", "reveal","sections", "collapsible-menu", "theme-platform"
     ],
     "pluginsConfig": {
-        "ga": {
-            "token": "UA-4064131-10"
-        },
         "edit-link": {
                        "base": "https://github.com/platformsh/platformsh-docs/edit/master",
                        "label": "Edit This Page"

@@ -17,9 +17,10 @@ defaults[projects][subdir] = contrib
 ; Platform indicator module.
 projects[platform][version] = 1.3
 ```
-And add the following line:
+And add the following lines:
 ```
-projects[bootstrap] = 3.0
+projects[bootstrap][type] = theme
+projects[bootstrap][version] = 3.0
 ```
 Save and close the file
 

@@ -1,8 +1,6 @@
-# Cache
+# HTTP Cache
 
-## Enable HTTP caching
-
-### Rationale
+## Rationale
 
 Many hosting solutions are adding an additional layer (Varnish...) to
 handle caching. Platform.sh allows you to enable HTTP caching right at
@@ -14,7 +12,7 @@ HTTP requests will bootstrap Drupal and query the database. When the
 cache is enabled, if the page has been stored in the Nginx cache, it
 won't access Drupal.
 
-### Reference
+## Reference
 
 Cache is enabled by default in your `.platform/routes.yaml` file. This
 is an example:
@@ -30,7 +28,7 @@ http://{default}/:
         default_ttl: 60
 ```
 
-#### Routes
+## Cache Per Route
 
 If you need fine-grained caching, you can set up caching rules for
 several routes separately.
@@ -71,13 +69,13 @@ And the following routes are **not** cached:
 > **note**
 > Regular expressions in routes are **not** supported.
 
-#### Cache duration
+## Cache duration
 
 The cache duration is decided based on the `Cache-Control` response
 header value. If no `Cache-Control` header is in the response, then the
 `default_ttl` key is used.
 
-#### Cache key
+## Cache key
 
 To decide how to cache a response, Platform.sh will build a cache key
 depending on several factors and store the response associated with this
@@ -96,14 +94,14 @@ cache:
   cookies: ["*"]
 ```
 
-#### Keys
+## Cache Attributes
 
-##### `enabled`
+### `enabled`
 
 When set to `true`, enable the cache for this route. When set to
 `false`, disable the cache for this route.
 
-##### `headers`
+### `headers`
 
 The `headers` key defines on which values the cache key must depend.
 
@@ -118,7 +116,7 @@ cache:
 Then Platform.sh will cache a different response for each value of the
 `Accept` HTTP header.
 
-##### `cookies`
+### `cookies`
 
 The `cookies` key define on which values the cache key must depend.
 
@@ -142,9 +140,8 @@ default value.
 > name, or match all cookies with a "*". "SESS*" or "~SESS" are currently
 > not valid values.
 
-##### `default_ttl`
+### `default_ttl`
 
 If the response does not have a `Cache-Control` header, the
 `default_ttl` key is used to define the cache duration, in seconds. The
 default value is `0`.
-

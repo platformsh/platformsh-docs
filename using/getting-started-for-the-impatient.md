@@ -79,8 +79,7 @@ command to start:
 $ platform
 ```
 
-The credentials you enter are the same for your account on [Commerce
-Guys' Marketplace](https://marketplace.commerceguys.com/user).
+The credentials you enter are the same as your [Platform.sh account](https://accounts.platform.sh/user).
 
 ### Upload your SSH public key
 
@@ -90,8 +89,8 @@ Platform.sh.
 
 #### Upload using the Web Interface
 
-To upload the public key in the browser go to [your user
-account](https://marketplace.commerceguys.com/user) and click the
+To upload the public key in the browser go to [your Platform.sh
+account](https://accounts.platform.sh/user) and click the
 SSH Keys tab. Name your key in the *Title* field, and paste the public
 key into the *Key* field. Your key will typically be found at
 `~/.ssh/id_rsa.pub` on Linux and Mac OS X machines.
@@ -128,35 +127,6 @@ command:
 ```bash
 $ platform get [PROJECT-ID]
 ```
-
-Now you can see the local directory structure that the Platform CLI
-provides for your local development:
-
-```bash
-$ ls -1
-builds     # Contains all builds of your projects
-repository # Checkout of the Git repository
-shared     # Your files directory, and your settings.local.php file
-www        # A symlink that always references the latest build.
-           # This should be the document root for your local web server
-```
-
-The `builds` directory contains every build of your project. This is
-relevant when you use Drush Make files to assist in your site building.
-
-The `repository` directory is your local checkout of the Platform.sh Git
-repository. This is where you edit code and issue normal Git commands,
-like `git pull`, `git add`, `git commit`, and `git push`.
-
-The `shared` directory is for your settings.local.php file which stores
-the connection details to your local database.
-
-See the section below about Settings.php for a full explanation of the
-settings.local.php file.
-
-The `www` symlink is created by the `platform build` command and will
-always reference the latest build in the builds directory. The `www`
-directory should become your DOCROOT for local development.
 
 ### Understand Settings.php
 
@@ -280,35 +250,14 @@ To see your Drush Aliases, use the `platform drush-aliases` command:
 ```bash
 $ platform drush-aliases
 Aliases for My Site (tqmd2kvitnoly):
-    @tqmd2kvitnoly._local
-    @tqmd2kvitnoly.master
-    @tqmd2kvitnoly.staging
-    @tqmd2kvitnoly.sprint1
+    @my-site._local
+    @my-site.master
+    @my-site.staging
+    @my-site.sprint1
 ```
 
 > **note**
 > Run local Drush commands with `drush`. Run remote Drush commands with `platform drush`. Any `platform drush` command will execute on the remote environment that you currently have checked out.
-
-#### Change the Drush Alias Group
-
-You can set the Drush alias group name to something more convenient:
-
-```bash
-$ platform drush-aliases -g [alias group]
-```
-
-After that, they will be easier to remember and type.
-
-```bash
-$ platform drush-aliases -g mysite
-Project aliases created, group: @mysite
-Delete old alias group @tqmd2kvitnoly? [Y/n] Y
-Aliases for My Site (tqmd2kvitnoly):
-    @mysite._local
-    @mysite.master
-    @mysite.staging
-    @mysite.sprint1
-```
 
 ### Synchronize Databases and Files with the Platform CLI
 
@@ -317,14 +266,14 @@ command to synchronize my local database with the data from my Master
 environment online:
 
 ```bash
-$ drush sql-sync @mysite.master @mysite._local
+$ drush sql-sync @my-site.master @my-site._local
 ```
 
 In the same style, use Drush to grab the uploaded files from the files
 directory and pull them into your local environment:
 
 ```bash
-$ drush rsync @mysite.staging:%files @mysite._local:%files
+$ drush rsync @my-site.staging:%files @my-site._local:%files
 ```
 
 > **note**

@@ -13,6 +13,7 @@ Building application (runtime type: php)
   Generated PATCHES.txt file for drupal
   platform-7.x-1.3 downloaded.
 Symlinking files from the 'shared' directory to sites/default
-Web root: ~/htdocs/my-project/www
+
 Build complete
+Web root: ~/htdocs/my-project/_www
 ```

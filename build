@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -xe
+
 if [[ $# -eq 0 ]] ; then
     echo 'You need to specify a book to build'
     echo 'ex: build drupal'

@@ -2,68 +2,109 @@
 
 ## Configure your Application
 
-Platform.sh supports  multiple applications per project(for example a RESTful web service
-and a front-end, or a main web site and a blog). But more often than not projects are composed
-of a single application. In which case you can simply put a `.platform.app.yaml` at the root
-of your repository. 
+You control your application and the way it will be built and deployed on Platform.sh
+via a single configuration file `.platform.app.yaml` located at the root of your application 
+folder inside your Git repository.
 
-This file controls the application and the way it will be built and deployed on Platform.sh.
+Here is an example of a `.platform.app.yaml` file for Drupal:
 
-Here is an example of a `.platform.app.yaml` file:
+    # The unique identifier of the application.
+    name: front
+    # The language that will run your application.
+    type: php:5.5
+    # The way to build your application.
+    build:
+        flavor: drupal
+    # The way services are mapped within your application.
+    relationships:
+        database: "mysql:mysql"
+        solr: "solr:solr"
+        redis: "redis:redis"
+    # The way your application is exposed to the web.
+    web:
+        locations:
+            "/":
+                root: "public"
+                expires: -1
+                passthru: "/index.php"
+                index: 
+                    - index.php
+                allow: true
+    # The size of the persistent disk size of your application in MB.
+    disk: 2048
+    # The volumes that are mounted under a writable shared resource.
+    mounts:
+        "/public/sites/default/files": "shared:files/files"
+        "/tmp": "shared:files/tmp"
+        "/private": "shared:files/private"
+    # The shell commands to run during the build or deployment process.
+    hooks:
+        # We run deploy hook after your application has been deployed and started.
+        deploy: |
+            cd public
+            drush -y updatedb
+    # The processes that are triggered on a schedule.
+    crons:
+        drupal:
+            spec: "*/20 * * * *"
+            cmd: "cd public ; drush core-cron"
 
-```yaml
-name: front
-toolstack: "php:drupal"
-relationships:
-    database: "mysql:mysql"
-    solr: "solr:solr"
-    redis: "redis:redis"
-web:
-    document_root: "/"
-    passthru: "/index.php"
-disk: 2048
-mounts:
-    "/public/sites/default/files": "shared:files/files"
-    "/tmp": "shared:files/tmp"
-    "/private": "shared:files/private"
-hooks:
-    # We run deploy hook after your application has been deployed and started.
-    deploy: |
-        cd public
-        drush -y updatedb
-crons:
-    drupal:
-        spec: "*/20 * * * *"
-        cmd: "cd public ; drush core-cron"
-```
-
-> **note**
-> The `.platform.app.yaml` is specific to your application. If you have multiple
-> applications inside your Git repository, you need one `.platform.app.yaml` at 
->the root of each application [see here](/reference/platform-app-yaml-multi-app.html).  
-
+> **Note**
+> This configuration file is specific to one application. If you have multiple
+> applications inside your Git repository (i.e. a RESTful
+> web service and a front-end, or a main web site and a blog), you need 
+> one `.platform.app.yaml` at the root of each application 
+> [see here](/platform-app-yaml-multi-app.html).  
 
 ### Name
 
 The `name` is the unique identifier of the application. Platform.sh
 supports multiple applications within a project, so each application
-must have a **unique name** within a project. The name may only be 
-composed of lower case alpha-numeric characters. (a-z0-9)
+must have a **unique name** within a project. The name may only be
+composed of lower case alpha-numeric characters. (a-z0-9).
 
+This name is used in the `.platform/routes.yaml` file to define the HTTP upstream
+(by default `php:php` - if you called your application `app` you will
+need to use `app:php` in the upstream field).
 
-### Toolstack
+You can also use this name in multi-application relationships.
 
-The `toolstack` is used to build and run the project. It's in the form
-`type[:subtype]`.
+> **Note**
+> Changing the name of an app is the same as deleting it and replacing
+> it: your app data (static files) will be deleted.
+>
+> If you change the name you should think about updating your other
+> configuration files: `.platform/routes.yaml` and any other
+> `.platform.app.yaml` files you have in a multi-application project.
 
-Possible values are:
+### Type
 
--   php:drupal
--   php:symfony
+The `type` defines what language will run your application.
 
-> ** note ** this is a misnomer that will soon be corrected you should use 
-> php:symfony for anything that is not drupal.
+The `type` can be:
 
+* `php`
+* `nodejs`
+* `hhvm`
+
+**Example**
+
+    type: php:5.6
+
+### Build
+
+The `build` defines what will happen by default when building the application. 
+
+It has a sub property `flavor` for which the possible values are:
+
+* `drupal` means that `drush make` will automatically run if you provide `.make` files.
+* `composer` means that `composer install` will automatically run if you provide a `composer.json` or `composer.lock` file.
+* `symfony` is an alisas for `composer`.
+
+**Example**
+
+    build:
+        flavor: symfony
 
 ### Access
 
@@ -72,10 +113,9 @@ environments they have access to.
 
 Possible values are:
 
--   ssh: admin
--   ssh: contributor
--   ssh: viewer
-
+* ssh: admin
+* ssh: contributor
+* ssh: viewer
 
 ### Relationships
 
@@ -85,62 +125,100 @@ application.
 The left-hand side is the name of the relationship as it will be exposed
 to the application in the *PLATFORM_RELATIONSHIPS* environment
 variable. The right-hand side is in the form
-`<service name>:<endpoint name>`. where "service name" comes from the 
- `.platform/services.yaml` and  "endpoint name" should be the same as the 
+`<service name>:<endpoint name>`. where "service name" comes from the
+ `.platform/services.yaml` and  "endpoint name" should be the same as the
  value of "type"  declared in that same file.
 
->**note** so here in the first  example above you could very well have something
->like `mycache: "arediscache:redis"` instead of `redis: "redis:redis"` (if in 
+> **Note**
+> In the first  example above you could very well have something
+> like `mycache: "arediscache:redis"` instead of `redis: "redis:redis"` (if in
 > `services.yaml` you named your a service of type `redis` with `arediscache`.
-> more often than not in our example we simply call a redis service "redis" a 
+> more often than not in our example we simply call a redis service "redis" a
 > mysql one "mysql" etc..
 
-Example of valid options are:
+*Example*
 
--   database: "mysql:mysql"
--   database2: "mysql2:mysql"
--   cache: "arediscache:redis"
--   search: "searchengine:solr"
+    relationships:
+        database: "mysql:mysql"
+        database2: "mysql2:mysql"
+        cache: "arediscache:redis"
+        search: "searchengine:solr"
 
->** note ** You should see the [`services.yaml` documentation](reference/services-yaml.md) 
+> **Note**
+> Read the [`services.yaml` documentation](reference/services-yaml.html)
 > for a full list of currently supported service types and service endpoints.
-
 
 ### Web
 
-The `web` defines how the application is exposed to the web (in HTTP).  Here we tell the web application how to serve content. We tell The front-controller script to non-static requests to an index.php file on the root. We support any directory structure so the can be in a sub directory, and the index.php file can be further down.
+The `web` key defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content, including static files, front-controller scripts, index files, index scripts, and so on. We support any directory structure, so the static files can be in a subdirectory, and the `index.php` file can be further down.
 
-It has a few sub-keys which are:
+It has the following subkeys:
 
--   **document_root**: The path relative to the root of the application
-    that is exposed on the web. Typically `/public` or `/web`.
--   **passthru**: The URL that is used in case of a file could not be found (either static or php). This would typically be your applications front controller, often `/index.php` or `/app.php`.
--   **index_files**: If you want to use a static file (`index.html`) to serve your application.
--   **blacklist**: A list of files which should never be executed. Has no effect on static files.
--   **whitelist**: A list of static files (as regular expressions) that may be served. Dynamic files (eg: PHP files) will be treated as static files and have their source code served, but they will not be executed.
--   **expires**: The number of seconds whitelisted (static) content
-    should be cached by the browser. This enables the cache-control and
-    expires headers for static content. The `expires` directive and
-    resulting headers are left out entirely if this isn't set.
+#### Commands
 
-Contrary to standard `.htaccess` approaches, which accept a
-**blacklist** and allow everything to be accessed except a specific
-list, we accept a **whitelist** which means that anything not matched
-will trigger a 404 error and will be passed through to your `passthru`
-URL.
+The `commands` key defines the command to launch the application.
 
-To extend the whitelist, you should copy the [default
-whitelist](https://github.com/platformsh/platformsh-examples/blob/symfony/todo-mvc-full/.platform.app.yaml#L23),
-and only keep the extensions you need.
+It has a few subkeys which are:
 
+* `start`: The command line to use to launch the application. Can be a string, or *null* if the application is only made of static files. It's filled out during the build process for PHP.
+
+*Example*
+
+    web:
+        commands:
+            start: "uwsgi --ini conf/server.ini"
+
+#### Locations
+
+The `locations` key allows you to provide specific parameters for different URL prefixes.
+
+*Example*
+
+    web:
+        locations:
+            "/":
+                ...
+            "/sites/default/files":
+                ...
+
+It has a few subkeys which are:
+
+* `root`: The folder to serve static assets for this location from relative to the application root. Typically `public` or `web`.
+* `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be true, false or a URI path string. Typically your applications front controller `/index.php` or `/app.php`.
+* `index`: The file or files to consider when serving a request for a directory. Can be file name, and array of file names or *null*. Typically `index.html`. Note that in order for this to work, the static file(s) should be allowed by your rules. For example, to use a file named `index.html` as an index file, your rules must allow elements that matches the filename, like `- \.html$`.
+* `expires`: How long to allow static assets from this location to be cached (this enables the cache-control and expires headers). Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d). The `expires` directive and resulting headers are left out entirely if this isn't set.
+* `scripts`: Whether to allow loading scripts in that location (*true* or *false*).
+* `allow`: Whether to allow serving files which don't match a rule (*true* or *false*, default: *true*).
+* `rules`: Specific overrides for a specific location. The key is a PCRE regular expression that is matched against the full request path. Here is a list of example regular expressions that you could provide rules for: *\\.css$,\\.js$,\\.gif$,\\.jpe?g$,\\.png$,\\.tiff?$,\\.wbmp$,\\.ico$,\\.jng$,\\.bmp$,\\.svgz?$,\\.midi?$,\\.mpe?ga$,\\.mp2$,\\.mp3$,\\.m4a$,\\.ra$,\\.weba$,\\.3gpp?$,\\.mp4$,\\.mpe?g$,\\.mpe$,\\.ogv$,\\.mov$,\\.webm$,\\.flv$,\\.mng$,\\.asx$,\\.asf$,\\.wmv$,\\.avi$,\\.ogx$,\\.swf$,\\.jar$,\\.ttf$,\\.eot$,\\.woff$,\\.otf$,/robots\\.txt$*.
+
+*Example*
+
+    web:
+        locations:
+            "/":
+                root: "public"
+                passthru: "/index.php"
+                index: 
+                    - index.php
+                expires: -1
+                scripts: true
+                allow: true
+                rules:
+                    \.mp4$:
+                        allow: false
+                        expires: -1
+            "/sites/default/files":
+                expires: 300
+                passthru: true
+                allow: true
 
 ### Disk
 
 The `disk` defines the size of the persistent disk size of the
 application in MB.
 
-> **note**
-> The minimal recommended disk size is 256MB. If you see the error **UserError: Error building the project: Disk size may not be smaller than 128MB**, increase the size to 256MB.
+> **Note**
+> The minimal recommended disk size is 256MB. If you see the error `UserError: Error building the project: Disk size may not be smaller than 128MB`, increase the size to 256MB.
 
 
 ### Mounts
@@ -153,9 +231,9 @@ mounted under a shared resource which is writable.
 
 The format is:
 
--   "/public/sites/default/files": "shared:files/files"
+* `"/public/sites/default/files": "shared:files/files"`
 
-> **note**
+> **Note**
 > The `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
 
 
@@ -167,10 +245,11 @@ application might need during the build process.
 Platform.sh supports pulling any dependencies for the following
 languages:
 
--   PHP
--   Python
--   Ruby
--   NodeJS
+* PHP
+* Python
+* Ruby
+* NodeJS
+* Java (with integrated Maven and Ant support)
 
 Those dependencies are independent of the eventual dependencies of your
 application, and are available in the `PATH`, during the build process
@@ -208,10 +287,15 @@ Possible hooks are:
     deployed and started. You can access other services at this stage
     (MySQL, Solr, Redis...).
 
-Note that the "home" directory is /app while your application will be
+> **Note**
+> The "home" directory is /app while your application will be
 mounted in /app/public (by default, you can define this yourself in you
 .app.platform.yaml file) so you might want to cd /app/public before
 running those.
+
+The hooks will be considered failed if the final command in them fails. To
+cause them to fail on the first failed command, add `set -e` to the beginning
+of the hook.
 
 After a Git push, you can see the results of the `deploy` hook in the
 `/var/log/deploy.log` file when logging to the environment via SSH. It
@@ -253,7 +337,7 @@ correctly setup in the theme folder.
 
 #### [Example] Trigger deploy hook on a specific environment
 
-To trigger a deploy hook only on a specific environment, use the following 
+To trigger a deploy hook only on a specific environment, use the following
 environment variable: `$PLATFORM_ENVIRONMENT` that you put in a `if/then` statement.
 
 In your `.platform.app.yaml` file:
@@ -270,17 +354,18 @@ hooks:
     fi
 ```
 
-### Crons
+### Crons / Cronjobs
 
 The `crons` is an object describing processes that are triggered on a
 schedule.
 
-It has a few sub-keys which are:
+It has a few subkeys which are:
 
 -   **spec**: The cron specification. For example: `*/20 * * * *`.
 -   **cmd**: The command that is executed, for example
     cd public ; drush core-cron\`
 
+The minimum interval between cron runs is 5 minutes, even if specified as less.
 
 ## Default configuration file
 
@@ -288,7 +373,9 @@ if you do not have a `.platform.app.yaml` file the following one that assumes yo
 
 ```yaml
 name: php
-toolstack: "php:drupal"
+type: php:5.4
+build:
+    flavor: drupal
 access:
     ssh: contributor
 relationships:
@@ -309,4 +396,4 @@ crons:
         cmd: "cd public ; drush core-cron"
 ```
 
-* [Past Changes of the configuration format can be found here](/user_guide/reference/upgrade/)
+* [Past Changes of the configuration format can be found here](reference/upgrade/)
