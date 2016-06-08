@@ -57,7 +57,7 @@ since it only contains your custom code.
 Your make file can be called: `project.make` or `drupal-org.make`.
 
 You can find an example make file on
-[GitHub](https://github.com/platformsh/platformsh-examples/blob/drupal/7.x/project.make).
+[GitHub](https://github.com/platformsh/platformsh-example-drupal/blob/7.x/project.make).
 
 When building as a profile, you **need a make file for Drupal core**
 called: `project-core.make`:

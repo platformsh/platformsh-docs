@@ -22,9 +22,7 @@ of the operations in the Git session (because you are talking to their Git
 server) but you can follow on whats happening in their interface, our in Platform.sh's Web Interface.
 
 The only modification you need to do to your application is to tell it
-to load its configuration from the environment (and we supply [all the
-examples you need](https://github.com/platformsh/platformsh-examples)) instead
-of hardcoded values.
+to load its configuration from the environment instead of hardcoded values.
 
 There are a couple of "dot files" in YAML format you  put at the root
 of your application that will describe its dependencies. You can say for
