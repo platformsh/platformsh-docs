@@ -34,25 +34,80 @@ runtime:
         - sqlite3
 ```
 
-The following extensions are enabled by default: *pdo, mysql, mysqli, mysqlnd,
-pdo_mysql, pdo_sqlite, sqlite3, gd, curl, intl, mcrypt and
-zendopcache/opcache*. You can disable those by adding them to the
-`disabled_extensions` list.
+The following extensions are enabled by default:
 
-This is the complete list of extensions that can be enabled: *apc (5.4 only),
-apcu, blackfire, bz2 (added in 7.0), curl, enchant, gd, gearman, geoip, gmp,
-http (5.4 and 5.5 only), igbinary (added in 7.0), imagick, imap, intl,
-json (added in 5.6), ldap, mcrypt, memcache, memcached, mongo (5.6 and older),
-mongodb (added in 7.0), msgpack (added in 5.6), mysql, mysqli, mysqlnd,
-opcache (5.5 and up), pdo, pdo_mysql, pdo_pgsql, pdo_sqlite,
-pecl-http (added in 5.6), pgsql, pinba, propro (added in 5.6), pspell,
-raphf (added in 5.6), readline, recode, redis, snmp, sqlite3, ssh2, tidy,
-xcache, xdebug, xhprof, xmlrpc, xsl, and zendopcache (5.4 only)*.
+* pdo
+* mysql
+* mysqli
+* mysqlnd
+* pdo_mysql
+* pdo_sqlite
+* sqlite3
+* gd
+* curl
+* intl
+* mcrypt
+* zendopcache (5.4 only) / opcache (5.5 and later)
+
+You can disable those by adding them to the `disabled_extensions` list.
+
+This is the complete list of extensions that can be enabled:
+
+* apc (5.4 only)
+* apcu
+* blackfire
+* bz2 (7.0 and later)
+* curl
+* enchant
+* gd
+* gearman
+* geoip
+* gmp
+* http (5.4-5.5 only)
+* igbinary (7.0 and later)
+* imagick
+* imap
+* intl
+* json (5.6 and later)
+* ldap
+* mcrypt
+* memcache (5.6 and older)
+* memcached
+* mongo (5.6 and older) / mongodb (7.0 and later)
+* mongodb (7.0 and later)
+* msgpack (5.6 and later)
+* mysql
+* mysqli
+* mysqlnd
+* opcache (5.5 and later)
+* pdo
+* pdo_mysql
+* pdo_pgsql
+* pdo_sqlite
+* pecl-http (5.6 and later)
+* pgsql
+* pinba
+* propro (5.6 and later)
+* pspell
+* raphf (5.6 and later)
+* readline
+* recode
+* redis
+* snmp
+* sqlite3
+* ssh2
+* tidy
+* xcache
+* xdebug
+* xhprof
+* xmlrpc
+* xsl
+* zendopcache (5.4 only)
 
 > **note**
 > You can check out the output of `ls /etc/php5/mods-available` to
 > see the up-to-date complete list of extensions after you SSH into
-> your environment.
+> your environment. For PHP 7, use `ls /etc/php/mods-available`.
 
 ## Custom php.ini
 
