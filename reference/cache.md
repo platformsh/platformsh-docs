@@ -14,10 +14,9 @@ won't access Drupal.
 
 ## Reference
 
-Cache is enabled by default in your `.platform/routes.yaml` file. This
-is an example:
+Cache can be enabled in your `.platform/routes.yaml` file like below:
 
-```bash
+```yaml
 http://{default}/:
     type: upstream
     upstream: php:php
@@ -69,18 +68,12 @@ And the following routes are **not** cached:
 > **note**
 > Regular expressions in routes are **not** supported.
 
-## Cache duration
-
-The cache duration is decided based on the `Cache-Control` response
-header value. If no `Cache-Control` header is in the response, then the
-`default_ttl` key is used.
-
 ## Cache key
 
 To decide how to cache a response, Platform.sh will build a cache key
 depending on several factors and store the response associated with this
-key. When a request comes with the same cache key, the response will be
-reused. It is similar to the `Vary` header in purpose.
+key. When a request comes with the same cache key, the cached response will
+be reused.
 
 Some parameters let you change this cache key: the `headers` key and the
 `cookies` key.
@@ -90,9 +83,45 @@ The default value for these keys are the following:
 ```yaml
 cache:
   enabled: true
-  headers: ["Accept-Language", "Accept"]
+  headers: []
   cookies: ["*"]
 ```
+
+The `Vary` header in the response is also respected. Multiple copies under
+the same cache key would be created according to the value of this header.
+For example, you can rely on the `X-Forwarded-Proto`
+[custom request header](reference/faq/known-issues.html#do-you-add-custom-http-headers)
+to render content based on the request protocol (i.e. HTTP or HTTPS).
+By adding `Vary: X-Forwarded-Proto` to the response header, HTTP and HTTPS
+content would be cached under the same cache key separately.
+
+## Cache behavior
+
+Cache is only applied to `GET` and `HEAD` requests.
+Responses with the `Cache-Control` header set to `Private`, `No-Cache`,
+or `No-Store` are not cached. Responses with the `Set-Cookie` header set are
+also not cached.
+
+## Cache duration
+
+The cache duration is decided based on the `Cache-Control` response
+header value. If no `Cache-Control` header is in the response, then the
+value of `default_ttl` key is used.
+
+## Cache serving
+
+Our web server does not honor the `Pragma` request header.
+Conditional requests using `If-Modified-Since` and `If-None-Match`
+are both supported.
+
+## Cache revalidation
+
+When the cache is expired, indicated by `Last-Modified` header
+in the response, the web server would send a request to your
+application with `If-Modified-Since` header. Also, `If-None-Match` header
+is sent in the conditional request when `Etag` header is set in the cached
+response. Your application can extend the validity of the cache by replying
+`HTTP 304 Not Modified`.
 
 ## Cache Attributes
 
@@ -114,7 +143,11 @@ cache:
 ```
 
 Then Platform.sh will cache a different response for each value of the
-`Accept` HTTP header.
+`Accept` HTTP request header.
+
+> **note**
+> The following request headers cannot be used as cache key:
+> `Accept-Encoding`, `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`.
 
 ### `cookies`
 
