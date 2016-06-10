@@ -127,6 +127,13 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
 }
 ```
 
+### Verifying redis is running
+Run this command in a SSH session in your environment `redis-cli -h redis.internal info`. You should run it before you push all this new code to your repository.
+
+This should give you a baseline of activity on your Redis installation. There should be very little memory allocated to the Redis cache.
+
+After you push this code, you should run the command and notice that allocated memory will start jumping.
+
 > **note**
 > If you use Domain Access and Redis, ensure that your Redis settings (particularly `$conf['cache_backends']`)
 > are included before the Domain Access `settings.inc` file - see
