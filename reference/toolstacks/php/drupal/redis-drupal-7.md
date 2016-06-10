@@ -2,9 +2,57 @@
 
 There are two options for using Redis with Drupal on Platform.sh, you
 can either use the [PhpRedis](https://github.com/nicolasff/phpredis)
-extension or the [Predis](http://github.com/nrk/predis) library.
+extension or the [Predis](http://github.com/nrk/predis) library.  PhpRedis
+requires a PHP extension (which we provide) and should therefore be faster in
+most situations. Predis is written entirely in PHP and so would require no PHP
+extension to install locally, but at the cost of some performance.
+
+If you are unsure which to use, we recommend using PhpRedis.
 
 ## Requirements
+
+### Add a redis service
+
+First you need to create a redis service.  In your `.platform/services.yaml` file,
+add or uncomment the following:
+
+```yaml
+rediscache:
+    type: redis:2.8
+```
+
+That will create a service named `rediscache`, of type `redis`, specifically version `2.8`.
+
+### Expose the Redis service to your application
+
+In your `.platform.app.yaml` file, we now need to open a connection to the new 
+Redis service.  Under the `relationships` section, add the following:
+
+```yaml
+relationships:
+    redis: "rediscache:redis"
+```
+
+The key (left side) is the name that will be exposed to the application in the PLATFORM_RELATIONSHIPS
+variable.  The right hand side is the name of the service we specified above (`rediscache`) and
+the type of endpoint (`redis`).  If you named the service something different above, change `rediscache`
+to that.
+
+### Add the Redis PHP extension
+
+If you're using PhpRedis you will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file,
+add the following right after the `type` block:
+
+```yaml
+# Additional extensions
+runtime:
+    extensions:
+        - redis
+```
+
+(Skip this part if using Predis.)
+
+### Add the Drupal module
 
 You will need to add the [Redis](https://www.drupal.org/project/redis)
 module to your project.
@@ -23,20 +71,6 @@ libraries[predis][download][url] = https://github.com/nrk/predis/archive/v1.0.3.
 libraries[predis][directory_name] = predis
 libraries[predis][destination] = libraries
 ```
-
-> -   drush_make_files
-
-To use the PhpRedis extension you will need to add it to your
-.platform.app.yaml file.
-
-```yaml
-# Additional extensions
-runtime:
-    extensions:
-        - redis
-```
-
-> -   application_configuration
 
 ## Configuration
 
@@ -57,7 +91,7 @@ variables to match.
 
 ```bash
 [
-   "sites/all/modules/redis/redis.autoload.inc"
+   "sites/all/modules/contrib/redis/redis.autoload.inc"
 ]
 ```
 
@@ -65,24 +99,13 @@ variables to match.
 > Remember to tick the JSON Value box.
 
 > **note**
-> Use the actual path to your Redis module in case it is in a different location. For example: `sites/all/modules/contrib/redis`.
+> Use the actual path to your Redis module in case it is in a different location. For example: `sites/all/modules/redis`. The
+> location used above is the default when using Drush.
 
 `drupal:redis_client_host`
 
 ```bash
 redis.internal
-```
-
-`drupal:redis_client_interface`
-
-```bash
-Predis
-```
-
-Or
-
-```bash
-PhpRedis
 ```
 
 `drupal:cache_default_class`
@@ -96,6 +119,21 @@ Redis_Cache
 ```bash
 DrupalDatabaseCache
 ```
+
+And finally, set the client interface to either `PhpRedis` or `Predis`.
+
+`drupal:redis_client_interface`
+
+```bash
+PhpRedis
+```
+
+Or
+
+```bash
+Predis
+```
+
 
 ### Via settings.php
 
