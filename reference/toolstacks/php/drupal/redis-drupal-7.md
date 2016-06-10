@@ -18,10 +18,10 @@ add or uncomment the following:
 
 ```yaml
 rediscache:
-    type: redis:2.8
+    type: redis:3.0
 ```
 
-That will create a service named `rediscache`, of type `redis`, specifically version `2.8`.
+That will create a service named `rediscache`, of type `redis`, specifically version `3.0`.
 
 ### Expose the Redis service to your application
 
