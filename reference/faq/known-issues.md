@@ -76,6 +76,17 @@ We add the following custom HTTP headers to give the application information abo
 * "X-Client-SSL": Set "on" only if the client is using SSL connection, otherwise the header is not added.
 * "X-Original-Route": The route in `.platform/routes.yaml` which is used currently, e.g. "http://{default}/".
 
+## How do I change timezone settings?
+
+We do not allow changing the system timezone of your application, though you can change the timezone in your services.
+
+* PHP runtime - You can change the timezone by providing a [custom php.ini](https://docs.platform.sh/user_guide/reference/toolstacks/php/configure-php.html#custom-php-ini).
+* NodeJS runtime - You can change the timezone by starting the server with `env TZ='<timezone>' node server.js`.
+* MySQL - You can change the per-connection timezone by running SQL `SET time_zone = <timezone>;`.
+* PostgreSQL - You can change the timezone of current session by running SQL `SET TIME ZONE <timezone>;`.
+
+You may also refer to the list of [supported timezones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+
 ## I am using Drupal and  I see "File not found" why?
 
 If you see the "File not found" when accessing your site within a browser, this means that you’ve pushed your code as a vanilla project but no *index.php* has been found.
