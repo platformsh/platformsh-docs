@@ -76,16 +76,37 @@ libraries[predis][destination] = libraries
 
 To make use of the Redis cache you will need to set some Drupal
 variables. You can either do this in your `settings.php` file or by
-setting Platform Variables directly via the UI.
+setting Platform Variables directly via the UI.  In general, using the `settings.php`
+file is easier.
+
+### Via settings.php
+
+To configure Drupal 7 to use our Redis server for caching, place the following
+at the end of `settings.php`, after the include directive for `settings.local.php`:
+
+```php
+if (!empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
+  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
+  if (!empty($relationships['redis'])) {
+    $conf['redis_client_host'] = $relationships['redis'][0]['host'];
+    $conf['redis_client_port'] = $relationships['redis'][0]['port'];
+    $conf['redis_client_interface'] = 'PhpRedis';
+    $conf['cache_backends'][]       = 'sites/all/modules/contrib/redis/redis.autoload.inc';
+    $conf['cache_default_class']    = 'Redis_Cache';
+    // The 'cache_form' bin must be assigned to non-volatile storage.
+    $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
+  }
+}
+```
+
+If using Predis, change the `PhpRedis` reference to `Predis` (case-sensitive).
+If your redis module is not installed in `sites/all/modules/contrib`, modify the
+`cache_backends` line accordingly.
 
 ### Via the Web Interface
 
-The advantage of using environment variables is that these won't be used
-in your local build where you might not have Redis installed.
-
-Add the following environment variables using the Platform.sh Web Interface. Note, if
-you set a directory in the make file you will need to alter the
-variables to match.
+Alternatively, add the following environment variables using the Platform.sh Web Interface.
+Note, if you set a directory in the make file you will need to alter the variables to match.
 
 `drupal:cache_backends`
 
@@ -98,9 +119,9 @@ variables to match.
 > **note**
 > Remember to tick the JSON Value box.
 
-> **note**
-> Use the actual path to your Redis module in case it is in a different location. For example: `sites/all/modules/redis`. The
-> location used above is the default when using Drush.
+
+Use the actual path to your Redis module in case it is in a different location. For example: `sites/all/modules/redis`. The
+location used above is the default when using Drush on Platform.sh.
 
 `drupal:redis_client_host`
 
@@ -132,37 +153,6 @@ Or
 
 ```bash
 Predis
-```
-
-
-### Via settings.php
-
-If you prefer to commit these variables directly to your `settings.php`,
-here are the lines to add:
-
-```php
-$conf['redis_client_interface'] = 'Predis';
-```
-
-Or
-
-```php
-$conf['redis_client_interface'] = 'PhpRedis';
-```
-
-Then (after the settings.local.php include):
-
-```php
-if (!empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
-  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
-  $conf['redis_client_host'] = $relationships['redis'][0]['host'];
-  $conf['redis_client_port'] = $relationships['redis'][0]['port'];
-  $conf['redis_client_interface'] = 'PhpRedis';
-  $conf['cache_backends'][]       = 'sites/all/modules/redis/redis.autoload.inc';
-  $conf['cache_default_class']    = 'Redis_Cache';
-  // The 'cache_form' bin must be assigned to non-volatile storage.
-  $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
-}
 ```
 
 ### Verifying redis is running
