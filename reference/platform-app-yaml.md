@@ -355,7 +355,10 @@ hooks:
     else
       # Use Drush to enable the Devel module on other environments.
       drush en devel -y
+      # Sanitize your database and get rid of sensitive information from Master environment.
+      drush -y sql-sanitize --sanitize-email=user_%uid@example.com --sanitize-password=custompassword
     fi
+    drush -y updatedb
 ```
 
 ### Crons / Cronjobs
