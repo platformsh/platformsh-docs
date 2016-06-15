@@ -188,7 +188,7 @@ The `locations` key allows you to provide specific parameters for different URL 
 It has a few subkeys which are:
 
 * `root`: The folder to serve static assets for this location from relative to the application root. Typically `public` or `web`.
-* `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be true, false or a URI path string. Typically your applications front controller `/index.php` or `/app.php`.
+* `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be `true` or `false` (for application capable to handle HTTP traffic directly) or a URI path string (for CGI based application, e.g. PHP). Typically your applications front controller `/index.php` or `/app.php`.
 * `index`: The file or files to consider when serving a request for a directory. Can be file name, and array of file names or *null*. Typically `index.html`. Note that in order for this to work, the static file(s) should be allowed by your rules. For example, to use a file named `index.html` as an index file, your rules must allow elements that matches the filename, like `- \.html$`.
 * `expires`: How long to allow static assets from this location to be cached (this enables the cache-control and expires headers). Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d). The `expires` directive and resulting headers are left out entirely if this isn't set.
 * `scripts`: Whether to allow loading scripts in that location (*true* or *false*).
