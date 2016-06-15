@@ -185,12 +185,12 @@ The `locations` key allows you to provide specific parameters for different URL 
             "/sites/default/files":
                 ...
 
-It has a few subkeys which are:
+It has a few subkeys, which are:
 
-* `root`: The folder to serve static assets for this location from relative to the application root. Typically `public` or `web`.
-* `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be `true` or `false` (for application capable to handle HTTP traffic directly) or a URI path string (for CGI based application, e.g. PHP). Typically your applications front controller `/index.php` or `/app.php`.
-* `index`: The file or files to consider when serving a request for a directory. Can be file name, and array of file names or *null*. Typically `index.html`. Note that in order for this to work, the static file(s) should be allowed by your rules. For example, to use a file named `index.html` as an index file, your rules must allow elements that matches the filename, like `- \.html$`.
-* `expires`: How long to allow static assets from this location to be cached (this enables the cache-control and expires headers). Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d). The `expires` directive and resulting headers are left out entirely if this isn't set.
+* `root`: The folder to serve static assets for this location from, relative to the application root. Typically `public` or `web`.
+* `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be `true` or `false` (for an application capable of handling HTTP traffic directly) or a URI path string (for a CGI based application, e.g. PHP). Typically your application's front controller, such as `/index.php` or `/app.php`.
+* `index`: The file or files to consider when serving a request for a directory. Can be a file name, an array of file names or *null*. Typically `index.html`. Note that in order for this to work, the static file(s) should be allowed by your rules. For example, to use a file named `index.html` as an index file, your rules must allow elements that match the filename, like `- \.html$`.
+* `expires`: How long to allow static assets from this location to be cached (this affects the Cache-Control and Expires headers). Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d). The `expires` directive and resulting headers are left out entirely if this isn't set.
 * `scripts`: Whether to allow loading scripts in that location (*true* or *false*).
 * `allow`: Whether to allow serving files which don't match a rule (*true* or *false*, default: *true*).
 * `rules`: Specific overrides for a specific location. The key is a PCRE regular expression that is matched against the full request path. Here is a list of example regular expressions that you could provide rules for: *\\.css$,\\.js$,\\.gif$,\\.jpe?g$,\\.png$,\\.tiff?$,\\.wbmp$,\\.ico$,\\.jng$,\\.bmp$,\\.svgz?$,\\.midi?$,\\.mpe?ga$,\\.mp2$,\\.mp3$,\\.m4a$,\\.ra$,\\.weba$,\\.3gpp?$,\\.mp4$,\\.mpe?g$,\\.mpe$,\\.ogv$,\\.mov$,\\.webm$,\\.flv$,\\.mng$,\\.asx$,\\.asf$,\\.wmv$,\\.avi$,\\.ogx$,\\.swf$,\\.jar$,\\.ttf$,\\.eot$,\\.woff$,\\.otf$,/robots\\.txt$*.
@@ -218,11 +218,11 @@ It has a few subkeys which are:
 
 ### Disk
 
-The `disk` defines the size of the persistent disk size of the
+The `disk` defines the size of the persistent disk of the
 application in MB.
 
 > **Note**
-> The minimal recommended disk size is 256MB. If you see the error `UserError: Error building the project: Disk size may not be smaller than 128MB`, increase the size to 256MB.
+> The minimum recommended disk size is 256MB. If you see the error `UserError: Error building the project: Disk size may not be smaller than 128MB`, increase the size to 256MB.
 
 
 ### Mounts
@@ -293,16 +293,16 @@ Possible hooks are:
 
 > **Note**
 > The "home" directory is /app while your application will be
-mounted in /app/public (by default, you can define this yourself in you
-.app.platform.yaml file) so you might want to cd /app/public before
-running those.
+mounted in /app/public (by default: you can define this yourself in your
+.platform.app.yaml file) - so you might want to `cd public` before
+running hooks.
 
-The hooks will be considered failed if the final command in them fails. To
-cause them to fail on the first failed command, add `set -e` to the beginning
-of the hook.
+The hooks are executed as a single script, so they will be considered failed
+only if the final command in them fails. To cause them to fail on the first
+failed command, add `set -e` to the beginning of the hook.
 
 After a Git push, you can see the results of the `deploy` hook in the
-`/var/log/deploy.log` file when logging to the environment via SSH. It
+`/var/log/deploy.log` file when logged in to the environment via SSH. It
 contains the log of the execution of the deployment hook. For example:
 
 ```bash
@@ -317,7 +317,7 @@ Finished performing updates.
 
 #### [Example] Compile SASS files using Grunt
 
-As a good example combining dependencies and hooks, you can compile your
+As a good example of combining dependencies and hooks, you can compile your
 SASS files using Grunt.
 
 In your `.platform.app.yaml` file:
@@ -376,7 +376,7 @@ The minimum interval between cron runs is 5 minutes, even if specified as less.
 
 ## Default configuration file
 
-if you do not have a `.platform.app.yaml` file the following one that assumes you are deploying a Drupal instance will be applied:
+If you do not have a `.platform.app.yaml` file the following one that assumes you are deploying a Drupal instance will be applied:
 
 ```yaml
 name: php
