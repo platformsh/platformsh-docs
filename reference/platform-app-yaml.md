@@ -255,13 +255,13 @@ Example:
 
     runtime:
         sizing_hints:
-            reserved_memory: 70
             request_memory: 45
+            reserved_memory: 70
 
 Keys are:
 
--   **reserved_memory**: is the memory that is used by the PHP container independently of the request (nginx, page cache, opcode cache, etc.). Default to 70 MB.
 -   **request_memory**: is the amount of system memory you expect a single request to consume on average. Default to 45 MB.
+-   **reserved_memory**: is the memory that is used by the PHP container independently of the request (nginx, page cache, opcode cache, etc.). Default to 70 MB.
 
 
 ### Mounts
