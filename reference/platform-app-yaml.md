@@ -244,7 +244,7 @@ application in MB.
 > The minimum recommended disk size is 256MB. If you see the error `UserError: Error building the project: Disk size may not be smaller than 128MB`, increase the size to 256MB.
 
 
-## Runtime
+### Runtime
 
 In the `runtime` section you can define sizing hints (in MB) to determine the maximum amount of requests to process concurrently (i.e. number of workers) for a PHP instance depending on its size. Those are not hard limits.
 
