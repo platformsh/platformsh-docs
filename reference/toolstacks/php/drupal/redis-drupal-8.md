@@ -124,7 +124,7 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
       ],
     ];
 
-    // Explicitly set the fast backend for bootstrap, default, discover and config,
+    // Explicitly set the fast backend for bootstrap, default, discovery and config,
     // otherwise this gets lost when redis is enabled.
     $settings['cache']['bins']['bootstrap'] = 'cache.backend.chainedfast';
     $settings['cache']['bins']['discovery'] = 'cache.backend.chainedfast';
