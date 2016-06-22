@@ -36,6 +36,7 @@ runtime:
 
 The following extensions are enabled by default:
 
+* json (5.6 and later)
 * pdo
 * mysql
 * mysqli
