@@ -53,6 +53,7 @@
     * [Redis](reference/toolstacks/php/drupal/redis.md)
       * [Redis with Drupal 6](reference/toolstacks/php/drupal/redis-drupal-6.md)
       * [Redis with Drupal 7](reference/toolstacks/php/drupal/redis-drupal-7.md)
+      * [Redis with Drupal 8](reference/toolstacks/php/drupal/redis-drupal-8.md)
     * [Solr](reference/toolstacks/php/drupal/solr.md)
     * [FAQ](reference/toolstacks/php/drupal/faq.md)
   * [Symfony](reference/toolstacks/php/symfony/README.md)
