@@ -14,9 +14,9 @@ Platform.sh
 
 ## Requirements
 
-### Add a redis service
+### Add a Redis service
 
-First you need to create a redis service.  In your `.platform/services.yaml` file,
+First you need to create a Redis service.  In your `.platform/services.yaml` file,
 add or uncomment the following:
 
 ```yaml
@@ -141,7 +141,7 @@ that on Platform.sh. Our Redis instance is not persistent, which means every dep
 would result in an emptied queue and possible lost items when the Redis instance
 gets full. It is, however, safe for transient information like caching and locking.
 
-### Verifying redis is running
+### Verifying Redis is running
 Run this command in a SSH session in your environment `redis-cli -h redis.internal info`. You should run it before you push all this new code to your repository.
 
 This should give you a baseline of activity on your Redis installation. There should be very little memory allocated to the Redis cache.
