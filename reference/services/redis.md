@@ -8,6 +8,10 @@ cache area for your application.
 * 2.8 (default)
 * 3.0
 
+> **note**
+> Redis is configured to serve as a LRU cache with the eviction policy `allkeys-lru` - its storage is not persistent. You should not use it as a database.
+
+> **note**
 > The 3.0 version supports up to 64 different databases per instance of the service, while the 2.8 only allows for a single database
 
 ## Relationship
@@ -74,6 +78,3 @@ connecting to a host named `redis.internal` using the redis-cli tool. Open an [S
 ```bash
 redis-cli -h redis.internal
 ```
-
-**notes**
-1. Redis is configured to serve as a cache: its storage is not persistent. You should not use it as a database.
