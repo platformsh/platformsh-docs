@@ -72,67 +72,70 @@ configuration is a bit more complex than can be easily represented in
 Platform.sh's environment variables configuration, so using `settings.php` directly
 is the recommended approach.
 
-Place the following at the end of `settings.php`, after the include directive
-for `settings.local.php`.  Note the inline comments, as you may wish to customize
+Place the following at the end of `settings.php`. Note the inline comments, as you may wish to customize
 it further.  Also review the `README.txt` file that comes with the redis module,
 as it has a great deal more information on possible configuration options. The
 example below is intended as a "most common case".
 
 ```php
 // Set redis configuration.
-if (!empty($relationships['redis'][0]) && extension_loaded('redis')) {
-  $redis = $relationships['redis'][0];
+if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
+  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
 
-  $settings['cache']['default'] = 'cache.backend.redis';
-  $settings['redis.connection']['host'] = $redis['host'];
-  $settings['redis.connection']['port'] = $redis['port'];
+  if (!empty($relationships['redis'][0])) {
+    $redis = $relationships['redis'][0];
 
-  // Enable the redis server overrides, e.g. cache tags checksum.
-  // See that file, you might want to copy and customize it, it is meant as an example
-  // and will change as more backends are offered by the redis module.
-  $settings['container_yamls'][] = 'modules/contrib/redis/example.services.yml';
+    $settings['cache']['default'] = 'cache.backend.redis';
+    $settings['redis.connection']['host'] = $redis['host'];
+    $settings['redis.connection']['port'] = $redis['port'];
 
-  // Manually add the classloader path, this is required for the container cache bin definition below
-  // and allows to use it without the redis module being enabled
-  $class_loader->addPsr4('Drupal\\redis\\', 'modules/contrib/redis/src');
+    // Enable the redis server overrides, e.g. cache tags checksum.
+    // See that file, you might want to copy and customize it, it is meant as an example
+    // and will change as more backends are offered by the redis module.
+    $settings['container_yamls'][] = 'modules/contrib/redis/example.services.yml';
 
-  // Use redis for container cache.
-  $settings['bootstrap_container_definition'] = [
-    'parameters' => [],
-    'services' => [
-      'redis.factory' => [
-        'class' => 'Drupal\redis\ClientFactory',
+    // Manually add the classloader path, this is required for the container cache bin definition below
+    // and allows to use it without the redis module being enabled.
+    $class_loader->addPsr4('Drupal\\redis\\', 'modules/contrib/redis/src');
+
+    // Use redis for container cache.
+    $settings['bootstrap_container_definition'] = [
+      'parameters' => [],
+      'services' => [
+        'redis.factory' => [
+          'class' => 'Drupal\redis\ClientFactory',
+        ],
+        'cache.backend.redis' => [
+          'class' => 'Drupal\redis\Cache\CacheBackendFactory',
+          'arguments' => ['@redis.factory', '@cache_tags_provider.container'],
+        ],
+        'cache.container' => [
+          'class' => '\Drupal\redis\Cache\PhpRedis',
+          'factory' => ['@cache.backend.redis', 'get'],
+          'arguments' => ['container'],
+        ],
+        'cache_tags_provider.container' => [
+          'class' => 'Drupal\redis\Cache\RedisCacheTagsChecksum',
+          'arguments' => ['@redis.factory'],
+        ],
       ],
-      'cache.backend.redis' => [
-        'class' => 'Drupal\redis\Cache\CacheBackendFactory',
-        'arguments' => ['@redis.factory', '@cache_tags_provider.container'],
-      ],
-      'cache.container' => [
-        'class' => '\Drupal\redis\Cache\PhpRedis',
-        'factory' => ['@cache.backend.redis', 'get'],
-        'arguments' => ['container'],
-      ],
-      'cache_tags_provider.container' => [
-        'class' => 'Drupal\redis\Cache\RedisCacheTagsChecksum',
-        'arguments' => ['@redis.factory'],
-      ],
-    ],
-  ];
+    ];
 
-  // Explicitly set the fast backend for bootstrap, default, discover and config,
-  // otherwise this gets lost when redis is enabled.
-  $settings['cache']['bins']['bootstrap'] = 'cache.backend.chainedfast';
-  $settings['cache']['bins']['discovery'] = 'cache.backend.chainedfast';
-  $settings['cache']['bins']['config'] = 'cache.backend.chainedfast';
-  // Default does not use the fast chained backend by default, but core only uses it for small caches
-  // ensure this is also the case for a specific site before enabling this.
-  // $settings['cache']['bins']['default'] = 'cache.backend.chainedfast';
+    // Explicitly set the fast backend for bootstrap, default, discover and config,
+    // otherwise this gets lost when redis is enabled.
+    $settings['cache']['bins']['bootstrap'] = 'cache.backend.chainedfast';
+    $settings['cache']['bins']['discovery'] = 'cache.backend.chainedfast';
+    $settings['cache']['bins']['config'] = 'cache.backend.chainedfast';
+    // Default does not use the fast chained backend by default, but core only uses it for small caches
+    // ensure this is also the case for a specific site before enabling this.
+    // $settings['cache']['bins']['default'] = 'cache.backend.chainedfast';
 
-  // The static cache should always use a memory cache, not Redis
-  $settings['cache']['bins']['static'] = 'cache.backend.memory';
+    // The static cache should always use a memory cache, not Redis
+    $settings['cache']['bins']['static'] = 'cache.backend.memory';
 
-  // Set a fixed prefix so that all requests share that, the default is currently not reliable.
-  $settings['cache_prefix'] = 'prefix_';
+    // Set a fixed prefix so that all requests share that, the default is currently not reliable.
+    $settings['cache_prefix'] = 'prefix_';
+  }
 }
 ```
 
