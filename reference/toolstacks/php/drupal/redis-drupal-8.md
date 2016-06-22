@@ -43,7 +43,7 @@ to that.
 
 ### Add the Redis PHP extension
 
-If you're using PhpRedis you will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file,
+You will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file,
 add the following right after the `type` block:
 
 ```yaml
