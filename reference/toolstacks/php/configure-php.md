@@ -54,56 +54,67 @@ You can disable those by adding them to the `disabled_extensions` list.
 
 This is the complete list of extensions that can be enabled:
 
-* apc (5.4 only)
-* apcu
-* blackfire
-* bz2 (7.0 and later)
-* curl
-* enchant
-* gd
-* gearman
-* geoip
-* gmp
-* http (5.4-5.5 only)
-* igbinary (7.0 and later)
-* imagick
-* imap
-* intl
-* json (5.6 and later)
-* ldap
-* mcrypt
-* memcache (5.6 and older)
-* memcached
-* mongo (5.6 and older) / mongodb (7.0 and later)
-* mongodb (7.0 and later)
-* msgpack (5.6 and later)
-* mysql
-* mysqli
-* mysqlnd
-* opcache (5.5 and later)
-* pdo
-* pdo_mysql
-* pdo_pgsql
-* pdo_sqlite
-* pecl-http (5.6 and later)
-* pgsql
-* pinba
-* propro (5.6 and later)
-* pspell
-* raphf (5.6 and later)
-* readline
-* recode
-* redis
-* snmp
-* sqlite3
-* ssh2
-* tidy
-* xcache
-* xdebug
-* xhprof
-* xmlrpc
-* xsl
-* zendopcache (5.4 only)
+| Extension    | 5.4 | 5.5 | 5.6 | 7.0 |
+|--------------|-----|-----|-----|-----|
+| apc          | *   | *   | *   | *   |
+| apcu         | *   |     |     |     |
+| apcu_bc      |     |     |     | *   |
+| blackfire    | *   | *   | *   | *   |
+| bz2          |     |     |     | *   |
+| curl         | *   | *   | *   | *   |
+| enchant      | *   | *   | *   | *   |
+| gd           | *   | *   | *   | *   |
+| gearman      | *   | *   | *   |     |
+| geoip        | *   | *   | *   |     |
+| gmp          | *   | *   | *   | *   |
+| http         | *   | *   |     |     |
+| igbinary     |     |     |     | *   |
+| imagick      | *   | *   | *   | *   |
+| imap         | *   | *   | *   | *   |
+| interbase    | *   | *   | *   | *   |
+| intl         | *   | *   | *   | *   |
+| json         |     |     | *   | *   |
+| ldap         | *   | *   | *   | *   |
+| mcrypt       | *   | *   | *   | *   |
+| memcache     | *   | *   | *   |     |
+| memcached    | *   | *   | *   | *   |
+| mongo        | *   | *   | *   |     |
+| mongodb      |     |     |     | *   |
+| msgpack      |     |     | *   | *   |
+| mssql        | *   | *   | *   |     |
+| mysql        | *   | *   | *   |     |
+| mysqli       | *   | *   | *   | *   |
+| mysqlnd      | *   | *   | *   |     |
+| odbc         | *   | *   | *   | *   |
+| opcache      |     | *   | *   | *   |
+| pdo          | *   | *   | *   | *   |
+| pdo_dblib    | *   | *   | *   | *   |
+| pdo_firebird | *   | *   | *   | *   |
+| pdo_mysql    | *   | *   | *   | *   |
+| pdo_odbc     | *   | *   | *   | *   |
+| pdo_pgsql    | *   | *   | *   | *   |
+| pdo_sqlite   | *   | *   | *   | *   |
+| pecl-http    |     |     | *   |     |
+| pgsql        | *   | *   | *   | *   |
+| pinba        | *   | *   | *   |     |
+| propro       |     |     | *   |     |
+| pspell       | *   | *   | *   | *   |
+| raphf        |     |     | *   |     |
+| readline     | *   | *   | *   | *   |
+| recode       | *   | *   | *   | *   |
+| redis        | *   | *   | *   | *   |
+| snmp         | *   | *   | *   | *   |
+| spplus       | *   | *   |     |     |
+| sqlite3      | *   | *   | *   | *   |
+| ssh2         | *   | *   | *   |     |
+| tidy         | *   | *   | *   | *   |
+| xcache       | *   | *   |     |     |
+| xdebug       | *   | *   | *   | *   |
+| xhprof       | *   | *   | *   |     |
+| xmlrpc       | *   | *   | *   | *   |
+| xsl          | *   | *   | *   | *   |
+| zendopcache  | *   |     |     |     |
+
 
 > **note**
 > You can check out the output of `ls /etc/php5/mods-available` to
