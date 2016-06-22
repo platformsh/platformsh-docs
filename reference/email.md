@@ -14,18 +14,13 @@ $ platform environment:metadata enable_smtp true
 
 Emails from Platform.sh are sent via a SendGrid-based SMTP proxy. Each
 Platform.sh project is provisioned as a SendGrid sub-account. Note that SendGrid
-sub-accounts are capped at 12k emails per month.
+sub-accounts are capped at 12k emails per month. If you need to adopt SPF for
+improving email deliverability, please read
+[SPF setup guidelines on SendGrid](https://sendgrid.com/docs/Glossary/spf.html).
 
->**note:** 
-> When you send email you should use the `mail` facility. There is no SMTP 
-> server running on localhost.
-
->**note:**
-> If you need to adopt SPF for improving email deliverability,
-> please read [SPF setup guidelines on SendGrid](https://sendgrid.com/docs/Glossary/spf.html).
-
-For example for Symfony, if you use the default SwiftMailer you
-should set in your `app/config/parameters.yaml`:
+When you send email you should use the `mail` facility. There is no SMTP 
+server running on localhost. For example in Symfony, if you use the default `SwiftMailer`,
+you should set the followings in your `app/config/parameters.yaml`:
 
 ```yaml
 parameters:
@@ -43,6 +38,9 @@ mounts:
     "/app/spool": "shared:files/spool"
 ```
 
+> **note**
+> If you choose to use your own SMTP server, do not connect it
+> via port 25 since we block it for security reasons.
 
 > **see also**
 > [Configure outgoing emails via the Web Interface](../overview/web-ui/configure-environment.html#settings)
