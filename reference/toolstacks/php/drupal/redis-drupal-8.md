@@ -128,6 +128,9 @@ if (!empty($relationships['redis'][0]) && extension_loaded('redis')) {
   // ensure this is also the case for a specific site before enabling this.
   // $settings['cache']['bins']['default'] = 'cache.backend.chainedfast';
 
+  // The static cache should always use a memory cache, not Redis
+  $settings['cache']['bins']['static'] = 'cache.backend.memory';
+
   // Set a fixed prefix so that all requests share that, the default is currently not reliable.
   $settings['cache_prefix'] = 'prefix_';
 }
