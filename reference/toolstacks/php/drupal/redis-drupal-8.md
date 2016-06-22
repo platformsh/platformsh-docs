@@ -74,8 +74,11 @@ is the recommended approach.
 
 Place the following at the end of `settings.php`. Note the inline comments, as you may wish to customize
 it further.  Also review the `README.txt` file that comes with the redis module,
-as it has a great deal more information on possible configuration options. The
-example below is intended as a "most common case".
+as it has a great deal more information on possible configuration options. For instance,
+you may wish to not use Redis for the persistent lock if you have a custom module 
+that needs locks to persist for more than a few seconds.
+
+The example below is intended as a "most common case".
 
 ```php
 // Set redis configuration.
