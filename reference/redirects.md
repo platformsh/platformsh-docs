@@ -71,10 +71,11 @@ keys:
        paths:
          "/from":
             to: "http://{default}/to"
-            partial: true
+            prefix: true
    ```
-   with `partial` set to `true`, `/from` will redirect to `/to` and `/from/another/path` will redirect to `/to/another/path`.
-   If `partial` is set to `false` then `/from` will trigger a redirect, but `/from/another/path` will not.
+   with `prefix` set to `true`, `/from` will redirect to `/to` and `/from/another/path` will redirect to `/to/another/path`.
+   If `prefix` is set to `false` then `/from` will trigger a redirect, but `/from/another/path` will not.
+
  * `append_suffix`: optional, determines if the suffix is carried over with the redirect. Defaults to `true`, but not supported if `regexp` is `true` or if `prefix` is `false`.
    If we redirect with `append_suffix` set to `false`, for example, then the following
 
@@ -88,6 +89,7 @@ keys:
             append_suffix: false
    ```
    would result in `/from/path/suffix` redirecting to just `/to`. If `append_suffix` was left on its default value of `true`, then `/from/path/suffix` would have redirected to `/to/path/suffix`.
+
  * `code`: optional, HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`.
  * `expires`: optional, the duration the redirect will be cached for. Defaults to the `expires` value defined directly under the `redirects` key, but at this level we can fine-tune the expiration of individual partial redirects:
 
