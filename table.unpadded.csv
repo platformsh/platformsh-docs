@@ -1,0 +1,58 @@
+apc | * | * | * | * 
+apcu | * | | | 
+apcu_bc | | | | * 
+blackfire | * | * | * | * 
+bz2 | | | | * 
+curl | * | * | * | * 
+enchant | * | * | * | * 
+gd | * | * | * | * 
+gearman | * | * | * | 
+geoip | * | * | * | 
+gmp | * | * | * | * 
+http | * | * | | 
+igbinary | | | | * 
+imagick | * | * | * | * 
+imap | * | * | * | * 
+interbase | * | * | * | * 
+intl | * | * | * | * 
+json | | | * | * 
+ldap | * | * | * | * 
+mcrypt | * | * | * | * 
+memcache | * | * | * | 
+memcached | * | * | * | * 
+mongo | * | * | * | 
+mongodb | | | | * 
+msgpack | | | * | * 
+mssql | * | * | * | 
+mysql | * | * | * | 
+mysqli | * | * | * | * 
+mysqlnd | * | * | * | 
+odbc | * | * | * | * 
+opcache | | * | * | * 
+pdo | * | * | * | * 
+pdo_dblib | * | * | * | * 
+pdo_firebird | * | * | * | * 
+pdo_mysql | * | * | * | * 
+pdo_odbc | * | * | * | * 
+pdo_pgsql | * | * | * | * 
+pdo_sqlite | * | * | * | * 
+pecl-http | | | * | 
+pgsql | * | * | * | * 
+pinba | * | * | * | 
+propro | | | * | 
+pspell | * | * | * | * 
+raphf | | | * | 
+readline | * | * | * | * 
+recode | * | * | * | * 
+redis | * | * | * | * 
+snmp | * | * | * | * 
+spplus | * | * | | 
+sqlite3 | * | * | * | * 
+ssh2 | * | * | * | 
+tidy | * | * | * | * 
+xcache | * | * | | 
+xdebug | * | * | * | * 
+xhprof | * | * | * | 
+xmlrpc | * | * | * | * 
+xsl | * | * | * | * 
+zendopcache | * | | |
