@@ -106,7 +106,7 @@ Now you can connect to the remote database normally, as if it were
 local.
 
 ```
-$ mysql --host=127.0.0.1 --port=30001 --user='user' --pass='' --database='main'
+$ mysql --host=127.0.0.1 --port=30001 --user='user' --password='' --database='main'
 ```
 
 After the tunnel(s) are opened, you can confirm their presence:
