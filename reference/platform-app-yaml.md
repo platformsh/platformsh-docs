@@ -174,7 +174,7 @@ It has a few subkeys which are:
 
 #### Locations
 
-The `locations` key allows you to provide specific parameters for different URL prefixes.
+The `locations` key allows you to provide specific parameters for different URL prefixes. Each entry's key is a domain-root-relative path, and its value is configuration directives for that path.  That is, if your domain is `example.com` then `"/"` means "requests for `example.com/`", while `"/admin"` means "requests for `example.com/admin`".
 
 *Example*
 
@@ -187,10 +187,10 @@ The `locations` key allows you to provide specific parameters for different URL 
 
 It has a few subkeys, which are:
 
-* `root`: The folder to serve static assets for this location from, relative to the application root. Typically `public` or `web`.
-* `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be `true` or `false` (for an application capable of handling HTTP traffic directly) or a URI path string (for a CGI based application, e.g. PHP). Typically your application's front controller, such as `/index.php` or `/app.php`.
-* `index`: The file or files to consider when serving a request for a directory. Can be a file name, an array of file names or *null*. Typically `index.html`. Note that in order for this to work, the static file(s) should be allowed by your rules. For example, to use a file named `index.html` as an index file, your rules must allow elements that match the filename, like `- \.html$`.
-* `expires`: How long to allow static assets from this location to be cached (this affects the Cache-Control and Expires headers). Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d). The `expires` directive and resulting headers are left out entirely if this isn't set.
+* `root`: The folder to serve static assets for this location from relative to the application root. The application root is the directory in which the `.platform.app.yaml` file is located.  Typical values for this property include `public` or `web`.  Setting it to `"/"` is not recommended, and its behavior may vary depending on the type of application.
+* `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be true, false or a URI path string. In a PHP application, this will typically be the front controller such as `/index.php` or `/app.php`. If your application relies on a `.htaccess` file with `mod_rewrite` under Apache, this entry is the equivalent.
+* `index`: The file or files to consider when serving a request for a directory. Can be file name, and array of file names or *null*. Typically `index.html`. Note that in order for this to work, the static file(s) should be allowed by your rules. For example, to use a file named `index.html` as an index file, your rules must allow elements that matches the filename, like `- \.html$`.
+* `expires`: How long to allow static assets from this location to be cached (this enables the cache-control and expires headers). Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d). The `expires` directive and resulting headers are left out entirely if this isn't set.
 * `scripts`: Whether to allow loading scripts in that location (*true* or *false*).
 * `allow`: Whether to allow serving files which don't match a rule (*true* or *false*, default: *true*).
 * `rules`: Specific overrides for a specific location. The key is a PCRE regular expression that is matched against the full request path. Here is a list of example regular expressions that you could provide rules for: *\\.css$,\\.js$,\\.gif$,\\.jpe?g$,\\.png$,\\.tiff?$,\\.wbmp$,\\.ico$,\\.jng$,\\.bmp$,\\.svgz?$,\\.midi?$,\\.mpe?ga$,\\.mp2$,\\.mp3$,\\.m4a$,\\.ra$,\\.weba$,\\.3gpp?$,\\.mp4$,\\.mpe?g$,\\.mpe$,\\.ogv$,\\.mov$,\\.webm$,\\.flv$,\\.mng$,\\.asx$,\\.asf$,\\.wmv$,\\.avi$,\\.ogx$,\\.swf$,\\.jar$,\\.ttf$,\\.eot$,\\.woff$,\\.otf$,/robots\\.txt$*.
@@ -228,7 +228,7 @@ application in MB.
 ### Mounts
 
 The `mounts` is an object whose keys are paths relative to the root of
-the application. It's in the form `volume_id[/subpath]`.
+the application (That is, where the `.platform.app.yaml` file lives). It's in the form `volume_id[/subpath]`.
 
 For example with Drupal, you'll want your `sites/default/files` to be
 mounted under a shared resource which is writable.
@@ -289,13 +289,12 @@ Possible hooks are:
     application has not been deployed yet.
 -   **deploy**: We run deploy hooks after your application has been
     deployed and started. You can access other services at this stage
-    (MySQL, Solr, Redis...).
+    (MySQL, Solr, Redis...). However, the disk where the application lives is read-only at this point.
 
 > **Note**
-> The "home" directory is /app while your application will be
-mounted in /app/public (by default: you can define this yourself in your
-.platform.app.yaml file) - so you might want to `cd public` before
-running hooks.
+> Your application will always be mounted under `/app`, and whatever subdirectory
+you specified in the `web/locations/root` key above.  For example, `/app/web`. You may need
+to `cd /app/web` before running further commands.
 
 The hooks are executed as a single script, so they will be considered failed
 only if the final command in them fails. To cause them to fail on the first
@@ -408,7 +407,6 @@ crons:
 ## Top level document roots
 
 Platform.sh requires that the document root not be at the root of the project.  It is important for security that
-private file mounts not be web-accessible. If the web location root is set to `/`, it will move the application to
-`public` and use that as the root to allow for the private mounts to be kept private.
+private file mounts not be web-accessible.
 
 * [Past Changes of the configuration format can be found here](reference/upgrade/)
