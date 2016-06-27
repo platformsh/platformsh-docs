@@ -316,8 +316,10 @@ Finished performing updates.
 
 #### [Example] Compile SASS files using Grunt
 
-As a good example of combining dependencies and hooks, you can compile your
-SASS files using Grunt.
+As a good example combining dependencies and hooks, you can compile your
+SASS files using Grunt.  (The `|` character tells YAML that the following lines
+should be read as a single string, which allows us to run multiple commands or
+even use bash syntax for conditionals, as in the second example.)
 
 In your `.platform.app.yaml` file:
 
