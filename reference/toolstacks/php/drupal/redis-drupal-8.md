@@ -93,10 +93,6 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
     $settings['redis.connection']['host'] = $redis['host'];
     $settings['redis.connection']['port'] = $redis['port'];
 
-    // Enable the redis server overrides, e.g. cache tags checksum.
-    // See that file, you might want to copy and customize it, it is meant as an example
-    // and will change as more backends are offered by the redis module.
-
     // Apply changes to the container configuration to better leverage Redis.
     // This includes using Redis for the lock and flood control systems, as well
     // as the cache tag checksum. Alternatively, copy the contents of that file
