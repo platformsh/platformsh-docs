@@ -88,6 +88,7 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
   if (!empty($relationships['redis'][0])) {
     $redis = $relationships['redis'][0];
 
+    // Set Redis as the default backend for any cache bin not otherwise specified.
     $settings['cache']['default'] = 'cache.backend.redis';
     $settings['redis.connection']['host'] = $redis['host'];
     $settings['redis.connection']['port'] = $redis['port'];
@@ -95,6 +96,12 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
     // Enable the redis server overrides, e.g. cache tags checksum.
     // See that file, you might want to copy and customize it, it is meant as an example
     // and will change as more backends are offered by the redis module.
+
+    // Apply changes to the container configuration to better leverage Redis.
+    // This includes using Redis for the lock and flood control systems, as well
+    // as the cache tag checksum. Alternatively, copy the contents of that file
+    // to your project-specific services.yml file, modify as appropriate, and
+    // remove this line.
     $settings['container_yamls'][] = 'modules/contrib/redis/example.services.yml';
 
     // Manually add the classloader path, this is required for the container cache bin definition below
@@ -102,6 +109,10 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
     $class_loader->addPsr4('Drupal\\redis\\', 'modules/contrib/redis/src');
 
     // Use redis for container cache.
+    // The container cache is used to load the container definition itself, and
+    // thus any configuration stored in the container itself is not available
+    // yet. These lines force the container cache to use Redis rather than the
+    // default SQL cache.
     $settings['bootstrap_container_definition'] = [
       'parameters' => [],
       'services' => [
@@ -124,20 +135,18 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
       ],
     ];
 
-    // Explicitly set the fast backend for bootstrap, default, discovery and config,
-    // otherwise this gets lost when redis is enabled.
+    // Set a fixed prefix so that all requests share that, the default is currently not reliable.
+    $settings['cache_prefix'] = 'prefix_';
+
+    // Drupal 8.1 has a bug where certain special caches that should use the
+    // APUc cache if available will not do so if a non-SQL default is specified. 
+    // The following lines explicitly force those cache bins to use the correct
+    // cache backend. This block may be removed in Drupal 8.2.
+    // @see https://www.drupal.org/node/2753989
     $settings['cache']['bins']['bootstrap'] = 'cache.backend.chainedfast';
     $settings['cache']['bins']['discovery'] = 'cache.backend.chainedfast';
     $settings['cache']['bins']['config'] = 'cache.backend.chainedfast';
-    // Default does not use the fast chained backend by default, but core only uses it for small caches
-    // ensure this is also the case for a specific site before enabling this.
-    // $settings['cache']['bins']['default'] = 'cache.backend.chainedfast';
-
-    // The static cache should always use a memory cache, not Redis
     $settings['cache']['bins']['static'] = 'cache.backend.memory';
-
-    // Set a fixed prefix so that all requests share that, the default is currently not reliable.
-    $settings['cache_prefix'] = 'prefix_';
   }
 }
 ```
