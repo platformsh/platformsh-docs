@@ -131,7 +131,8 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
       ],
     ];
 
-    // Set a fixed prefix so that all requests share that, the default is currently not reliable.
+    // Set a fixed prefix so that all requests share the same prefix, even if
+    // on different domains.
     $settings['cache_prefix'] = 'prefix_';
 
     // Drupal 8.1 has a bug where certain special caches that should use the
