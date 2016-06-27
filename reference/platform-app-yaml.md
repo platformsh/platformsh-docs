@@ -104,7 +104,7 @@ It has a sub property `flavor` for which the possible values are:
 **Example**
 
     build:
-        flavor: symfony
+        flavor: composer
 
 ### Access
 
