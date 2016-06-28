@@ -11,9 +11,9 @@ If you are unsure which to use, we recommend using PhpRedis.
 
 ## Requirements
 
-### Add a redis service
+### Add a Redis service
 
-First you need to create a redis service.  In your `.platform/services.yaml` file,
+First you need to create a Redis service.  In your `.platform/services.yaml` file,
 add or uncomment the following:
 
 ```yaml
@@ -40,7 +40,7 @@ to that.
 
 ### Add the Redis PHP extension
 
-If you're using PhpRedis you will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file,
+If you're using the PhpRedis option you will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file,
 add the following right after the `type` block:
 
 ```yaml
@@ -155,7 +155,7 @@ Or
 Predis
 ```
 
-### Verifying redis is running
+### Verifying Redis is running
 Run this command in a SSH session in your environment `redis-cli -h redis.internal info`. You should run it before you push all this new code to your repository.
 
 This should give you a baseline of activity on your Redis installation. There should be very little memory allocated to the Redis cache.
