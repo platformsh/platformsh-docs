@@ -136,7 +136,7 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
     $settings['cache_prefix'] = 'prefix_';
 
     // Drupal 8.1 has a bug where certain special caches that should use the
-    // APUc cache if available will not do so if a non-SQL default is specified. 
+    // APCu cache if available will not do so if a non-SQL default is specified. 
     // The following lines explicitly force those cache bins to use the correct
     // cache backend. This block may be removed in Drupal 8.2.
     // @see https://www.drupal.org/node/2753989
