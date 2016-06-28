@@ -11,7 +11,7 @@ Javascript and PHP applications.
 * 4.4
 * 6.2
 
-See https://github.com/platformsh/platformsh-example-nodejs/tree/mongodb for a 
+See https://github.com/platformsh/platformsh-example-nodejs/tree/mongodb for a
 full example with MongoDB support.
 
 ## Configuration
@@ -20,59 +20,70 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml``
 file with a few key settings, as described here (a complete example is included
 at the end).
 
-1. Specify the `type` as `nodejs` you should definitely specify a version for example `type: nodejs:4.2`
+1. Specify the `type` as `nodejs:4.4` (other versions you may use are listed above).
 2. Specify your dependencies under the `nodejs` key, like this:
 
-```yaml
- dependencies:
-   nodejs:
-     pm2: "^0.15.10"
-```
+   ```yaml
+   dependencies:
+     nodejs:
+       pm2: "^0.15.10"
+   ```
 
-These are the global dependencies of your project (the ones you would have
-installed with `npm install -g`). Here we specify the pm2, Production process manager that will allow us to run the node process.
+   These are the global dependencies of your project (the ones you would have
+   installed with `npm install -g`). Here we specify the `pm2` process manager
+   that will allow us to run the node process.
 
 3. Configure the command you use to start serving your application (this must
    be a foreground-running process) under the `web` section, e.g.:
 
-```yaml
- web:
-   commands:
-     start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
-```
+   ```yaml
+   web:
+     commands:
+       start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
+   ```
 
-If there is a package.json file present at the root of your repository 
-Platform.sh will automatically install the dependencies. We suggest including
-the `platformsh` helper npm module, that makes it trivial to access the 
-running environement.
+   If there is a package.json file present at the root of your repository,
+   Platform.sh will automatically install the dependencies. We suggest including
+   the `platformsh` helper npm module, which makes it trivial to access the
+   running environement.
 
-```javascript
-  "dependencies": {
-    "platformsh": "^0.0.1"
-  }
-```
+   ```javascript
+   "dependencies": {
+     "platformsh": "^0.0.1"
+   }
+   ```
 
-5. Create any Read/Write mounts 
-The Platform.sh file system is read only you have to explicitly describe  
-writable mounts. In (3) we set the home of the process manager to `/app/run`
-so this needs to be writable.
+4. Create any Read/Write mounts. The root file system is read only.
+   You must explicitly describe writable mounts. In (3) we set the
+   home of the process manager to `/app/run` so this needs to be writable.
 
-```yaml
-  mounts:
-    "/run": "shared:files/run"
-```
+   ```yaml
+   mounts:
+     "/run": "shared:files/run"
+   ```
 
-
-6. Include any relevant commands needed to build and setup your application in
+5. Include any relevant commands needed to build and setup your application in
    the `hooks` section, e.g.:
 
-```yaml
-hooks:
-  build: |
-    npm install
-    npm run build
-    bower install
-```
+   ```yaml
+   hooks:
+     build: |
+       npm install
+       npm run build
+       bower install
+   ```
+
+6. Setup the routes to your nodejs application in `.platform/routes.yaml`.
+
+   ```yaml
+   "http://{default}/":
+     type: upstream
+     upstream: "node:http"
+
+   "https://{default}/":
+     type: upstream
+     upstream: "node:http"
+   ```
 
 Here's a complete example that also serves static assets (.png from the /public directory):
 
@@ -103,10 +114,10 @@ disk: 512
 ```
 
 ## In your application...
-Finally, make sure your Node.js application is configured to listen over the 
-port given by the environement (here we use the platformsh helper and get it
-from config.port) it is available in the environment variable ``PORT``.
- Here's an example:
+Finally, make sure your Node.js application is configured to listen over the
+port given by the environment (here we use the platformsh helper and get it
+from config.port) that is available in the environment variable ``PORT``.
+Here's an example:
 
 ```javascript
 // Load the http module to create an http server.
