@@ -74,10 +74,10 @@ like the following (names need to match):
 ```yaml
 "http://back-end.{default}/":
     type: upstream
-    upstream: "drupal:php"
+    upstream: "drupal:http"
 "http://{default}/":
     type: upstream
-    upstream: "angular:php"
+    upstream: "angular:http"
 ```
 
 This will result (if we consider we are on the `http://example.com` domain): 
@@ -162,28 +162,27 @@ The `.platform/routes.yaml` may look like:
 ````yaml
 "http://api.{default}/v1/users":
     type: upstream
-    upstream: "user:php"
+    upstream: "user:http"
     cache:
         enabled: false
 "http://api.{default}/v1/content":
     type: upstream
-    upstream: "content:php"
+    upstream: "content:http"
     cache:
         enabled: false
 "http://{default}/":
     type: upstream
-    upstream: "front:php"
+    upstream: "front:http"
     cache:
         enabled: true
 ```
 
 For the later, we simply tell our router to connect, to a service called `front` and 
-route HTTP traffic to the PHP service running there.
+route HTTP traffic to the application service running there.
 
 > **note** 
-> The upstream currently always ends with `:php` since Platform.sh only supports
-> PHP. In the future Platform.sh will support multiple endpoints per 
-> application.
+> The upstream virtually always ends in `':http`, since Platform.sh only supports
+> HTTP-based applications exposed to the outside world.
 > Learn more on: [routes.yaml](/reference/routes.yaml.md)
 
 ### Services
@@ -244,8 +243,8 @@ name: front
 [...]
 relationships:
     "database": "cache:redis"
-    "user_service": "user:php"
-    "content_service": "content:php"
+    "user_service": "user:http"
+    "content_service": "content:http"
 ```
 
 These relationships allow an application to connect to another, and will expose 
