@@ -288,21 +288,20 @@ application (build/deploy).
 
 Possible hooks are:
 
--   **build**: We run build hooks before your application has been
+-   **build**: We run a build hook before your application has been
     packaged. No other services are accessible at this time since the
     application has not been deployed yet.
--   **deploy**: We run deploy hooks after your application has been
+-   **deploy**: We run a deploy hook after your application has been
     deployed and started. You can access other services at this stage
     (MySQL, Solr, Redis...). However, the disk where the application lives is read-only at this point.
 
-> **Note**
-> Your application will always be mounted under `/app`, and whatever subdirectory
-you specified in the `web.locations.root` key above.  For example, `/app/web`. You may need
-to `cd /app/web` before running further commands.
-
-The hooks are executed as a single script, so they will be considered failed
+Each hook is executed as a single script, so they will be considered failed
 only if the final command in them fails. To cause them to fail on the first
 failed command, add `set -e` to the beginning of the hook.
+
+The `home` directory for each hook is the application root. If your scripts
+need to be run from the doc root of your application you will need to `cd` to it
+first; e.g.: `cd web`.
 
 After a Git push, you can see the results of the `deploy` hook in the
 `/var/log/deploy.log` file when logged in to the environment via SSH. It
