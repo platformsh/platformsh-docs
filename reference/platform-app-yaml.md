@@ -229,13 +229,14 @@ application in MB.
 
 The `mounts` is an object whose keys are paths relative to the root of
 the application (That is, where the `.platform.app.yaml` file lives). It's in the form `volume_id[/subpath]`.
+At this time, the only legal `volume_id` is `shared`.
 
 For example with Drupal, you'll want your `sites/default/files` to be
 mounted under a shared resource which is writable.
 
 The format is:
 
-* `"/public/sites/default/files": "shared:files/files"`
+* `"/web/sites/default/files": "shared:files/files"`
 
 > **Note**
 > The `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
