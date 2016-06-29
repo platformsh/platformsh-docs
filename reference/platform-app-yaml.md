@@ -297,7 +297,7 @@ Possible hooks are:
 
 > **Note**
 > Your application will always be mounted under `/app`, and whatever subdirectory
-you specified in the `web/locations/root` key above.  For example, `/app/web`. You may need
+you specified in the `web.locations.root` key above.  For example, `/app/web`. You may need
 to `cd /app/web` before running further commands.
 
 The hooks are executed as a single script, so they will be considered failed
