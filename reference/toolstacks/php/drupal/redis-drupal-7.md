@@ -95,6 +95,8 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
     $conf['cache_default_class']    = 'Redis_Cache';
     // The 'cache_form' bin must be assigned to non-volatile storage.
     $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
+    // The 'cache_field' bin must be transactional.
+    $conf['cache_class_cache_field'] = 'DrupalDatabaseCache';
   }
 }
 ```
@@ -136,6 +138,12 @@ Redis_Cache
 ```
 
 `drupal:cache_class_cache_form`
+
+```bash
+DrupalDatabaseCache
+```
+
+`drupal:cache_class_cache_field`
 
 ```bash
 DrupalDatabaseCache
