@@ -34,7 +34,7 @@ need define your `routes.yaml` as follow:
 ```yaml
 "http://{default}/":
     type: upstream
-    upstream: "php:php"
+    upstream: "php:http"
 
 "http://www.{default}/":
     type: redirect
@@ -53,11 +53,11 @@ Here would be an example of your `routes.yaml` for the
 ```yaml
 "http://{default}/":
     type: upstream
-    upstream: "php:php"
+    upstream: "php:http"
 
 "http://www.{default}/":
     type: upstream
-    upstream: "php:php"
+    upstream: "php:http"
 ```
 
 > **note**
@@ -73,7 +73,7 @@ entire site with HTTPS, here is what your routes would look like:
 ```yaml
 "https://{default}/":
     type: upstream
-    upstream: "php:php"
+    upstream: "php:http"
 
 "http://{default}/":
     type: redirect
@@ -85,7 +85,7 @@ entire site with HTTPS, here is what your routes would look like:
 To configure a wildcard domain (*.mydomain.com):
 
 - Add your domain to your project (in form of mydomain.com).
-- Add a route to your master branch serving http://*.mydomain.com with the upstream php:php.
+- Add a route to your master branch serving http://*.mydomain.com with the upstream php:http.
 
 
 ## 3 - DNS

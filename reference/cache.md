@@ -19,7 +19,7 @@ Cache can be enabled in your `.platform/routes.yaml` file like below:
 ```yaml
 http://{default}/:
     type: upstream
-    upstream: php:php
+    upstream: php:http
     cache:
         enabled: true
         headers: [ "Accept", "Accept-Language", "X-Language-Locale" ]
@@ -37,19 +37,19 @@ Here is an example:
 ```yaml
 http://{default}/:
   type: upstream
-  upstream: php:php
+  upstream: php:http
   cache:
     enabled: true
 
 http://{default}/foo/:
   type: upstream
-  upstream: php:php
+  upstream: php:http
   cache:
     enabled: false
 
 http://{default}/foo/bar/:
   type: upstream
-  upstream: php:php
+  upstream: php:http
   cache:
     enabled: true
 ```

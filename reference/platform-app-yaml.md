@@ -64,8 +64,8 @@ must have a **unique name** within a project. The name may only be
 composed of lower case alpha-numeric characters. (a-z0-9).
 
 This name is used in the `.platform/routes.yaml` file to define the HTTP upstream
-(by default `php:php` - if you called your application `app` you will
-need to use `app:php` in the upstream field).
+(by default `php:http` - if you called your application `app` you will
+need to use `app:http` in the upstream field).
 
 You can also use this name in multi-application relationships.
 

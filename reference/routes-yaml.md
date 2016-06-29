@@ -47,7 +47,7 @@ Each route can be configured separately its has the following properties
 * `type` can be:
   * `upstream` serves an application
     * It will then also have an `upstream` property which will be the name of 
-    the application (as defined in `.platform.app.yaml`) followed by ":php" (see
+    the application (as defined in `.platform.app.yaml`) followed by ":http" (see
      examples below).
   * `redirect` redirects to another route
     * It will then be followed by `to` property, this is an HTTP redirection to 
@@ -57,7 +57,7 @@ Each route can be configured separately its has the following properties
 * `redirects` controls [redirect rules](redirects.html) associated with the route.
 
 > **note** for the moment the upstream is always of this form, ending with 
-> ":php" in the  future Platform.sh will support multiple endpoints per 
+> ":http" in the  future Platform.sh will support multiple endpoints per 
 > application. 
 
 ## Routes examples
@@ -65,7 +65,7 @@ Here is an example of a `routes.yaml` file:
 ```yaml
 "http://{default}/":
   type: upstream
-  upstream: "frontend:php"
+  upstream: "frontend:http"
 "http://www.{default}/":
   type: redirect
   to: "http://{default}/"
@@ -80,11 +80,11 @@ but serving from both:
 ```yaml
 "http://{default}/":
     type: upstream
-    upstream: "php:php"
+    upstream: "php:http"
 
 "http://www.{default}/":
     type: upstream
-    upstream: "php:php"
+    upstream: "php:http"
 ```
 
 The difference between the two previous examples is that for the first one the
@@ -98,7 +98,7 @@ routes):
 ```yaml
 "http://*.{default}/":
     type: upstream
-    upstream: "php:php"
+    upstream: "php:http"
 ```
 
 You can see the [Configuring Multiple 
@@ -131,7 +131,7 @@ https://{default}/:
   ssi:
     enabled: false
   type: upstream
-  upstream: php:php
+  upstream: php:http
 ```
 ## Configuring routes on the Web Interface
 For your convenience routes can also be configured using the web interface in
@@ -199,7 +199,7 @@ If you do not have a `routes.yaml` file, the following default one will be loade
 ```yaml
 "http://{default}/":
     type: upstream
-    upstream: "php:php"
+    upstream: "php:http"
     cache:
         enabled: true
     ssi:
