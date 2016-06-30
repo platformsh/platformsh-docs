@@ -60,8 +60,11 @@ configuration to match. For example, your first application's
 `.platform.app.yaml` file would include something like this:
 ```
 web:
-    document_root: "/app1-submodule"
-    # Or /app1-submodule/path/to/webroot, if appropriate.
+    locations:
+        "/":
+            root: "app1-submodule"
+            # Or app1-submodule/path/to/webroot, if appropriate.
+            passthru: "/index.php"
 ```
 
 
