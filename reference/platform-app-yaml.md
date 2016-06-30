@@ -104,7 +104,7 @@ It has a sub property `flavor` for which the possible values are:
 **Example**
 
     build:
-        flavor: symfony
+        flavor: composer
 
 ### Access
 
@@ -174,7 +174,7 @@ It has a few subkeys which are:
 
 #### Locations
 
-The `locations` key allows you to provide specific parameters for different URL prefixes.
+The `locations` key allows you to provide specific parameters for different URL prefixes. Each entry's key is an absolute URI path (with leading `/`), and its value is configuration directives for that path.  That is, if your domain is `example.com` then `"/"` means "requests for `example.com/`", while `"/admin"` means "requests for `example.com/admin`".
 
 *Example*
 
@@ -187,10 +187,10 @@ The `locations` key allows you to provide specific parameters for different URL 
 
 It has a few subkeys, which are:
 
-* `root`: The folder to serve static assets for this location from, relative to the application root. Typically `public` or `web`.
-* `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be `true` or `false` (for an application capable of handling HTTP traffic directly) or a URI path string (for a CGI based application, e.g. PHP). Typically your application's front controller, such as `/index.php` or `/app.php`.
-* `index`: The file or files to consider when serving a request for a directory. Can be a file name, an array of file names or *null*. Typically `index.html`. Note that in order for this to work, the static file(s) should be allowed by your rules. For example, to use a file named `index.html` as an index file, your rules must allow elements that match the filename, like `- \.html$`.
-* `expires`: How long to allow static assets from this location to be cached (this affects the Cache-Control and Expires headers). Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d). The `expires` directive and resulting headers are left out entirely if this isn't set.
+* `root`: (Required) The folder from which to serve static assets for this location, relative to the application root. The application root is the directory in which the `.platform.app.yaml` file is located.  Typical values for this property include `public` or `web`.  Setting it to `""` is not recommended, and its behavior may vary depending on the type of application.  Absolute paths are not supported.
+* `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be true, false or an absolute URI path (with leading `/`). For non-PHP applications it will generally be just true or false.  In a PHP application, this will typically be the front controller such as `/index.php` or `/app.php`.  This entry works similar to `mod_rewrite` under Apache.  Note: if the value of `passthru` does not begin with the same value as the location key it is under the passthru may evaluate to another entry. That may be useful when you want different cache settings for different paths, for instance, but want missing files in all of them to map back to the same front controller.  See the example block below.
+* `index`: The file or files to consider when serving a request for a directory. Can be file name, an array of file names, or *null*. Typically `index.html`. Note that in order for this to work, access to the static file(s) named must be allowed (by the `allow` or `rules` keys for this location).
+* `expires`: How long to allow static assets from this location to be cached (this enables the `Cache-Control` and `Expires` headers). Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d). The `expires` directive and resulting headers are left out entirely if this isn't set.
 * `scripts`: Whether to allow loading scripts in that location (*true* or *false*).
 * `allow`: Whether to allow serving files which don't match a rule (*true* or *false*, default: *true*).
 * `rules`: Specific overrides for a specific location. The key is a PCRE regular expression that is matched against the full request path. Here is a list of example regular expressions that you could provide rules for: *\\.css$,\\.js$,\\.gif$,\\.jpe?g$,\\.png$,\\.tiff?$,\\.wbmp$,\\.ico$,\\.jng$,\\.bmp$,\\.svgz?$,\\.midi?$,\\.mpe?ga$,\\.mp2$,\\.mp3$,\\.m4a$,\\.ra$,\\.weba$,\\.3gpp?$,\\.mp4$,\\.mpe?g$,\\.mpe$,\\.ogv$,\\.mov$,\\.webm$,\\.flv$,\\.mng$,\\.asx$,\\.asf$,\\.wmv$,\\.avi$,\\.ogx$,\\.swf$,\\.jar$,\\.ttf$,\\.eot$,\\.woff$,\\.otf$,/robots\\.txt$*.
@@ -211,6 +211,9 @@ It has a few subkeys, which are:
                     \.mp4$:
                         allow: false
                         expires: -1
+            # Set a 5 min expiration time for static files here; a missing URL
+            # will passthru to the "/" location above, and hit the application
+            # front-controller.
             "/sites/default/files":
                 expires: 300
                 passthru: true
@@ -228,14 +231,15 @@ application in MB.
 ### Mounts
 
 The `mounts` is an object whose keys are paths relative to the root of
-the application. It's in the form `volume_id[/subpath]`.
+the application (That is, where the `.platform.app.yaml` file lives). It's in the form `volume_id[/subpath]`.
+At this time, the only legal `volume_id` is `shared:files`.
 
 For example with Drupal, you'll want your `sites/default/files` to be
 mounted under a shared resource which is writable.
 
 The format is:
 
-* `"/public/sites/default/files": "shared:files/files"`
+* `"/web/sites/default/files": "shared:files/files"`
 
 > **Note**
 > The `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
@@ -284,22 +288,20 @@ application (build/deploy).
 
 Possible hooks are:
 
--   **build**: We run build hooks before your application has been
+-   **build**: We run a build hook before your application has been
     packaged. No other services are accessible at this time since the
     application has not been deployed yet.
--   **deploy**: We run deploy hooks after your application has been
+-   **deploy**: We run a deploy hook after your application has been
     deployed and started. You can access other services at this stage
-    (MySQL, Solr, Redis...).
+    (MySQL, Solr, Redis...). However, the disk where the application lives is read-only at this point.
 
-> **Note**
-> The "home" directory is /app while your application will be
-mounted in /app/public (by default: you can define this yourself in your
-.platform.app.yaml file) - so you might want to `cd public` before
-running hooks.
-
-The hooks are executed as a single script, so they will be considered failed
+Each hook is executed as a single script, so they will be considered failed
 only if the final command in them fails. To cause them to fail on the first
 failed command, add `set -e` to the beginning of the hook.
+
+The `home` directory for each hook is the application root. If your scripts
+need to be run from the doc root of your application you will need to `cd` to it
+first; e.g.: `cd web`.
 
 After a Git push, you can see the results of the `deploy` hook in the
 `/var/log/deploy.log` file when logged in to the environment via SSH. It
@@ -317,8 +319,10 @@ Finished performing updates.
 
 #### [Example] Compile SASS files using Grunt
 
-As a good example of combining dependencies and hooks, you can compile your
-SASS files using Grunt.
+As a good example combining dependencies and hooks, you can compile your
+SASS files using Grunt.  (The `|` character tells YAML that the following lines
+should be read as a single string, which allows us to run multiple commands or
+even use bash syntax for conditionals, as in the second example.)
 
 In your `.platform.app.yaml` file:
 
@@ -390,8 +394,10 @@ relationships:
     solr: "solr:solr"
     redis: "redis:redis"
 web:
-    document_root: "/"
-    passthru: "/index.php"
+    locations:
+        "/":
+            root: "public"
+            passthru: "/index.php"
 disk: 2048
 mounts:
     "/public/sites/default/files": "shared:files/files"
@@ -402,5 +408,10 @@ crons:
         spec: "*/20 * * * *"
         cmd: "cd public ; drush core-cron"
 ```
+
+## Top level document roots
+
+Platform.sh requires that the document root not be at the root of the project.  It is important for security that
+private file mounts not be web-accessible.
 
 * [Past Changes of the configuration format can be found here](reference/upgrade/)
