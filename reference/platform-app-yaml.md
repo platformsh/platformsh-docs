@@ -11,7 +11,7 @@ Here is an example of a `.platform.app.yaml` file for Drupal:
     # The unique identifier of the application.
     name: front
     # The language that will run your application.
-    type: php:5.5
+    type: php:5.6
     # The way to build your application.
     build:
         flavor: drupal
