@@ -56,8 +56,8 @@ This is the complete list of extensions that can be enabled:
 
 | Extension    | 5.4 | 5.5 | 5.6 | 7.0 |
 |--------------|-----|-----|-----|-----|
-| apc          | *   | *   | *   | *   |
-| apcu         | *   |     |     |     |
+| apc          | *   |     |     |     |
+| apcu         |     | *   | *   | *   |
 | apcu_bc      |     |     |     | *   |
 | blackfire    | *   | *   | *   | *   |
 | bz2          |     |     |     | *   |
