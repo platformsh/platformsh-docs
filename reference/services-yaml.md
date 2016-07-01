@@ -64,6 +64,9 @@ The `disk` attribute is the size of the persistent disk (in MB) allocated to the
 
 For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between your application (as defined in `.platform.app.yaml`) and each of its services.
 
+> **notes**
+> Currently we do not support downsizing the persistent disk of a service.
+
 ## Using the services
 
 In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the `.platform.app.yaml` file which configures the *relationships* between applications and services, [documented here](/user_guide/reference/platform-app-yaml.html).
