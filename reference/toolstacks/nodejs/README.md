@@ -1,4 +1,4 @@
-# Node.js Beta
+# Node.js
 
 Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine.
 Platform.sh supports deploying Node.js applications quickly and easily. Using
