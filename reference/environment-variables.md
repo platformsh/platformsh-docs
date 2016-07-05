@@ -36,33 +36,20 @@ In this example we defined for one of our environments a variable we called
 Environment variables that are specific to Platform.sh are exposed in
 the runtime (*ie. PHP*) and prefixed with `PLATFORM_*`.
 
--   **PLATFORM_APP_DIR**: The absolute path to the application directory.
--   **PLATFORM_APPLICATION**: A base64-encoded JSON object that
-    describes the application. It maps the content of the
-    `.platform.app.yaml` that you have in Git and it has a few subkeys.
--   **PLATFORM_APPLICATION_NAME**: The name of the application, as configured
-    in the `.platform.app.yaml` file.
--   **PLATFORM_DOCUMENT_ROOT**: The absolute path to the web document root, if
-    applicable.
--   **PLATFORM_ENVIRONMENT**: The name of the environment (*ie. the
-    name of the branch in Git*).
--   **PLATFORM_PROJECT**: The ID of the project.
--   **PLATFORM_RELATIONSHIPS**: A base64-encoded JSON object whose keys
-    are the relationship name and the values are arrays of relationship
-    endpoint definitions. Each relationship endpoint definition is a
-    decomposed form of a URL. It has a `scheme`, a `host`, a `port`, and
-    optionally a `username`, `password`, `path` and some additional
-    information in `query`.
--   **PLATFORM_ROUTES**: Describe the routes that you defined in the
-    environment. It maps the content of the `.platform/routes.yaml`
+* **PLATFORM_APP_DIR**: The absolute path to the application directory.
+* **PLATFORM_APPLICATION**: A base64-encoded JSON object that describes the application. It maps the content of the `.platform.app.yaml` that you have in Git and it has a few subkeys.
+* **PLATFORM_APPLICATION_NAME**: The name of the application, as configured in the `.platform.app.yaml` file.
+* **PLATFORM_DOCUMENT_ROOT**: The absolute path to the web document root, if applicable.
+* **PLATFORM_ENVIRONMENT**: The name of the environment (*ie. the name of the branch in Git*).
+* **PLATFORM_PROJECT**: The ID of the project.
+* **PLATFORM_RELATIONSHIPS**: A base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. Each relationship endpoint definition is a decomposed form of a URL. It has a `scheme`, a `host`, a `port`, and optionally a `username`, `password`, `path` and some additional information in `query`.
+* **PLATFORM_ROUTES**: Describe the routes that you defined in the environment. It maps the content of the `.platform/routes.yaml`
     file.
--   **PLATFORM_TREE_ID**: The ID of the tree the application was built
-    from. It's essentially the SHA of the tree in Git.
--   **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are
-    variables names and values are variable values (*a string*).
+* **PLATFORM_TREE_ID**: The ID of the tree the application was built from. It's essentially the SHA of the tree in Git.
+* **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are variables names and values are variable values (*a string*).
+* **PLATFORM_PROJECT_ENTROPY**: A random value which is stable throughout the project’s life. This can be used for Drupal hash salt for example.
 
-Since values can change over time, the best thing is to just introspect
-the variable at runtime and use it to configure your application.
+Since values can change over time, the best thing is to just introspect the variable at runtime and use it to configure your application.
 
 For example with Drupal, we use the **PLATFORM_RELATIONSHIPS** variable
 to configure your `settings.local.php`.
