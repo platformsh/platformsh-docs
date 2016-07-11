@@ -65,7 +65,7 @@ The `disk` attribute is the size of the persistent disk (in MB) allocated to the
 For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between your application (as defined in `.platform.app.yaml`) and each of its services.
 
 > **notes**
-> Currently we do not support downsizing the persistent disk of a service.
+> Currently we do not support downsizing the persistent disk of a service. The actual disk size will be the maximum that has been deployed to master at any point.
 
 ## Using the services
 
