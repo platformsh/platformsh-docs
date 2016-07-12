@@ -14,12 +14,14 @@ Note that this is beta-level support: it's not as well tested as our support for
 To switch your project to HHVM, simply specify `hhvm` instead of `php` in the `type` property of your `.platform.app.yaml` file:
 
 ```yaml
-    name: "fastapp"
-    type: hhvm:3.12
-    build:
-        flavor: composer
-    web:
-      document_root: "/"
-      passthru: "/index.php"
-    disk: 2048
+name: "fastapp"
+type: hhvm:3.12
+build:
+    flavor: composer
+web:
+    locations:
+        "/":
+            root: "web"
+            passthru: "/index.php"
+disk: 2048
 ```

@@ -122,8 +122,10 @@ relationships:
     database: "mysql:mysql"
 
 web:
-    document_root: "/"
-    passthru: "/index.php"
+    locations:
+        "/":
+            root: "web"
+            passthru: "/index.php"
 
 disk: 2048
 

@@ -22,9 +22,10 @@ build:
     flavor: symfony
 
 web:
-    document_root: "/web"
-    passthru: "/app_dev.php"
-
+    locations:
+        "/":
+            root: "web"
+            passthru: "/index.php"
 mounts:
     "/app/cache": "shared:files/cache"
     "/app/logs": "shared:files/logs"
