@@ -30,7 +30,7 @@
     * [Upgrading from previous versions](reference/upgrade/README.md)
   * [Environment Variables](reference/environment-variables.md)
   * [Sending E-Mail](reference/email.md)
-  * [Addresses](reference/public-ip-addresses.md)
+  * [IP Addresses](reference/public-ip-addresses.md)
   * [Toolstacks](reference/toolstacks/README.md)
     * [PHP](reference/toolstacks/php/README.md)
       * [Drupal](reference/toolstacks/php/drupal/README.md)
