@@ -121,6 +121,53 @@ This is the complete list of extensions that can be enabled:
 > see the up-to-date complete list of extensions after you SSH into
 > your environment. For PHP 7, use `ls /etc/php/mods-available`.
 
+
+## So your app is a memory hog?
+
+Platform.sh uses an heuristic to automatically set the number of workers of a PHP runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more or less memory.  In most cases, however, you should not need to change them.
+
+### The heuristic
+
+The heuristic is based on three input parameters:
+
+ * The memory available for the container, which depends on the size of the container (`S`, `M`, `L`, `XL`, `XXL`),
+ * The memory that an average request is expected to require,
+ * The memory that should be reserved for things that are not specific to a request (memory for `nginx`, the op-code cache, some OS page cache, etc.)
+
+The number of workers is calculated as:
+
+```
+             / ContainerMemory - ReservedMemory   \
+workers = max|---------------------------------, 2|
+             \           RequestMemory            /
+```
+
+### Defaults
+
+The default assumptions are:
+
+ * `40 MB` for the average per-request memory
+ * `70 MB` for the reserved memory
+
+You can change them by using the `runtime.sizing_hints.reserved_memory` and `runtime.sizing_hints.request_memory` in your `.platform.app.yaml`. For example, if your application consumes on average `110 MB` of memory for a request (don't feel bad, we have seen many Drupal websites that do), use:
+
+```
+runtime:
+    sizing_hints:
+        request_memory: 110
+```
+
+### Measuring PHP worker memory usage
+
+To see how much memory your PHP worker processes are using, you can open an [SSH session](using/use-SSH) and run `ps -eF | grep 'RSS\s\|php-fpm\W\+pool web'`.  The value under the `RSS` column is the size being used by an active request.
+
+It's generally advisable to set the request memory to a value somewhat higher than the typical request usage in order to allow for variation between requests.
+
+> **note**
+> The sizing hints only influence the number of PHP workers that will be available.
+> It has no impact on the maximum allowed memory usage of a particular request.
+> For that, set the `memory_limit` via a custom `php.ini` file.
+
 ## Custom php.ini
 
 You can also create and push a `php.ini` file that will be appended to

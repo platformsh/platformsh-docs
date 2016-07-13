@@ -396,38 +396,9 @@ The minimum interval between cron runs is 5 minutes, even if specified as less.
 
 ### Runtime
 
-#### Sizing hints
+The `.platform.app.yaml` file also supports a `runtime` key, which allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate toolstack documentation.
 
-PHP FPM uses a pool of "worker" processes to process incoming requests. The optimal number of worker processes to use depends on how much memory and CPU time a given application uses in order to handle each request, as well as how much of memory is available in an environment. Platform.sh provides environments in multiple sizes (with different amounts of available memory and CPU time), so the number of worker processes has to increase with the environment size.
-
-To choose an appropriate number of workers for each size of environment, our PHP container configuration makes assumptions about how much memory will be used to process each request. Using that assumption, as well as the amount of memory available in the container, an optimal number of workers is chosen.
-
-If you find that your application is having performance problems that come from using too much memory, one short-term solution to the problem may be to reduce the number of worker processes, which will result in a reduction in memory usage. You can do this by declaring how much memory you expect each worker to need to allocate, as described below, which will cause a corresponding reduction in the number of workers.
-
-Conversely, if you're optimizing your application and you find that your workers need less than 45MB of memory each, you _may_ get a performance boost by lowering the `request_memory` size hint. Note that if you provide an estimate that is too low, your PHP container may end up using too much memory, which will have a significantly negative performance impact.
-
-#### Measuring PHP worker memory usage
-
-To see how much memory your PHP worker processes are using, you can open an [SSH session](using/use-SSH) and run `ps -eF | grep 'RSS\s\|php-fpm\W\+pool web'`.
-
-#### Changing the sizing hints
-
-In the `runtime` section, you can define sizing hints (in MB) to influence the maximum amount of requests that your PHP containers will process concurrently (i.e. number of workers).
-
-> **note**
-> The more memory your application consumes while handling each request, the less workers it can have at a particular service size.
-
-Example:
-
-    runtime:
-        sizing_hints:
-            request_memory: 45
-            reserved_memory: 70
-
-Keys are:
-
--   **request_memory**: is the amount of system memory you expect a single request to consume on average. Default to 45 MB.
--   **reserved_memory**: is the memory that is used by the PHP container independently of the request (nginx, page cache, opcode cache, etc.). Default to 70 MB.
+* (PHP)[/user_guide/reference/toolstacks/php/configure-php.html]
 
 
 ## Top level document roots
