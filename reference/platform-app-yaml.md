@@ -378,37 +378,6 @@ It has a few subkeys which are:
 
 The minimum interval between cron runs is 5 minutes, even if specified as less.
 
-## Default configuration file
-
-If you do not have a `.platform.app.yaml` file the following one that assumes you are deploying a Drupal instance will be applied:
-
-```yaml
-name: php
-type: php:5.4
-build:
-    flavor: drupal
-access:
-    ssh: contributor
-relationships:
-    database: "mysql:mysql"
-    solr: "solr:solr"
-    redis: "redis:redis"
-web:
-    locations:
-        "/":
-            root: "public"
-            passthru: "/index.php"
-disk: 2048
-mounts:
-    "/public/sites/default/files": "shared:files/files"
-    "/tmp": "shared:files/tmp"
-    "/private": "shared:files/private"
-crons:
-    drupal:
-        spec: "*/20 * * * *"
-        cmd: "cd public ; drush core-cron"
-```
-
 ## Top level document roots
 
 Platform.sh requires that the document root not be at the root of the project.  It is important for security that

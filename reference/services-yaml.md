@@ -67,20 +67,3 @@ For example, the current default storage amount per project is 5GB (meaning 5120
 ## Using the services
 
 In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the `.platform.app.yaml` file which configures the *relationships* between applications and services, [documented here](/user_guide/reference/platform-app-yaml.html).
-
-## Defaults
-
-If you do not provide a `services.yaml` file, the following default one will be loaded:
-
-```yaml
-mysql:
-    type: mysql:5.5
-    disk: 2048
-
-redis:
-    type: redis:2.8
-
-solr:
-    type: solr:3.6
-    disk: 1024
-```

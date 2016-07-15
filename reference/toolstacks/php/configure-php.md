@@ -11,7 +11,7 @@ type: php:5.6
 
 ### Supported versions
 
-* 5.4 (default)
+* 5.4
 * 5.5
 * 5.6
 * 7.0
