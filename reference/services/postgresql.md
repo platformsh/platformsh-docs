@@ -4,7 +4,7 @@ Transactional data storage  and the world's most advanced open source database.
 
 ## Supported versions
 
-* 9.3 (default)
+* 9.3
 
 ## Relationship
 

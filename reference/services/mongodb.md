@@ -5,7 +5,7 @@ NoSQL database.
 
 ## Supported versions
 
-* 3.0 (default)
+* 3.0
 
 ## Relationship
 

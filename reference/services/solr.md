@@ -10,7 +10,7 @@ Support for custom schemas is available for Platform.sh Enterprise customers.
 
 ## Supported versions
 
-* 3.6 (default)
+* 3.6
 * 4.10
 
 ## Relationship

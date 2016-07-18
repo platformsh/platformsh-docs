@@ -5,7 +5,7 @@ cache area for your application.
 
 ## Supported versions
 
-* 2.8 (default)
+* 2.8
 * 3.0
 
 > **note**
