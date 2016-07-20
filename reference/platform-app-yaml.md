@@ -29,7 +29,10 @@ Here is an example of a `.platform.app.yaml` file for Drupal:
                 passthru: "/index.php"
                 index: 
                     - index.php
-                allow: true
+                allow: false
+                rules:
+                    "^/robots\.txt$":
+                        allow: true
     # The size of the persistent disk size of your application in MB.
     disk: 2048
     # The volumes that are mounted under a writable shared resource.
@@ -201,23 +204,20 @@ It has a few subkeys, which are:
         locations:
             "/":
                 root: "public"
+                # A missing or denied file will be passed to the passthru, and hit the
+                # application's front controller.
                 passthru: "/index.php"
-                index: 
-                    - index.php
                 expires: -1
                 scripts: true
-                allow: true
+                allow: false
                 rules:
-                    \.mp4$:
-                        allow: false
-                        expires: -1
-            # Set a 5 min expiration time for static files here; a missing URL
-            # will passthru to the "/" location above, and hit the application
-            # front-controller.
+                    "^/robots\.txt$":
+                        allow: true
             "/sites/default/files":
-                expires: 300
-                passthru: true
+                expires: 5m
+                passthru: "/index.php"
                 allow: true
+                scripts: false
 
 ### Disk
 
