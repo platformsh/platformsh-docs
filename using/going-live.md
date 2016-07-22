@@ -199,20 +199,17 @@ When prompted, enter an easy password value as it will only be used when
 generating the CSR and not by your app at runtime.
 
 ```bash
-openssl genrsa -des3 -out server.pass.key 2048 ... 
-Enter pass phrase for server.pass.key: 
-Verifying - 
-Enter pass phrase for server.pass.key:
+openssl genrsa -des3 -out server.pass.key 2048 
 ```
 
 The private key needs to be stripped of its password so it can be loaded
 without manually entering the password.
 
 ```bash
-$ openssl rsa -in server.pass.key -out server.key
+openssl rsa -in server.pass.key -out server.key
 ```
 
-You now have a server.key private key file in your current working
+You now have a `server.key` private key file in your current working
 directory.
 
 ### Generate CSR
@@ -225,27 +222,24 @@ about your organization and domain.
 Though most fields are self-explanatory, pay close attention to the
 following:
 
-Country Name The two letter code, in ISO 3166-1 format, of the country
+* Country Name: The two letter code, in ISO 3166-1 format, of the country
 in which your organization is based.
 
-Common Name This is the fully qualified domain name that you wish to
-secure. For a single subdomain: www.example.com For all subdomains,
-specify the wildcard URL: *.example.com For the root domain:
-example.com
+* Common Name: This is the fully qualified domain name that you wish to
+secure.
+  - For a single subdomain: `www.example.com`
+  - For all subdomains, specify the wildcard URL: `*.example.com`
+  - For the root domain only: `example.com`
 
-The Common Name field must match the secure domain. You cannot purchase
-a certificate for the root domain, e.g.,example.com, and expect to
-secure www.example.com. The inverse is also true. Each domain can have
+  The Common Name field must match the secure domain. You cannot purchase
+a certificate for the root domain, e.g. `example.com`, and expect to
+secure `www.example.com`. The inverse is also true. Each domain can have
 one certificate and it can be attached to the main domain or subdomain.
 
 Generate the CSR:
 
 ```bash
-$ openssl req -nodes -new -key server.key -out server.csr
-...
-Country Name (2 letter code) [AU]:US
-Common Name (eg, YOUR name) []:www.example.com
-...
+openssl req -new -key server.key -out server.csr
 ```
 
 The result of this operation will be a server.csr file in your local
