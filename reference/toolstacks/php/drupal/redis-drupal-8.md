@@ -99,6 +99,9 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
     // to your project-specific services.yml file, modify as appropriate, and
     // remove this line.
     $settings['container_yamls'][] = 'modules/contrib/redis/example.services.yml';
+    
+    // Allow the services to work before the Redis module itself is enabled.
+    $settings['container_yamls'][] = 'modules/contrib/redis/redis.services.yml';
 
     // Manually add the classloader path, this is required for the container cache bin definition below
     // and allows to use it without the redis module being enabled.
