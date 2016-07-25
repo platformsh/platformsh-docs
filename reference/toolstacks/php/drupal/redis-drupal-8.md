@@ -162,8 +162,3 @@ Run this command in a SSH session in your environment `redis-cli -h redis.intern
 This should give you a baseline of activity on your Redis installation. There should be very little memory allocated to the Redis cache.
 
 After you push this code, you should run the command and notice that allocated memory will start jumping.
-
-> **note**
-> If you use Domain Access and Redis, ensure that your Redis settings (particularly `$settings['cache']`)
-> are included before the Domain Access `settings.inc` file - see
-> [this Drupal.org issue](https://www.drupal.org/node/2008486#comment-7782941) for more information.
