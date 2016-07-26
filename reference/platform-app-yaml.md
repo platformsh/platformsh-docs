@@ -216,7 +216,7 @@ It has a few subkeys, which are:
             # front-controller.
             "/sites/default/files":
                 expires: 300
-                passthru: true
+                passthru: "/index.php"
                 allow: true
 
 ### Disk
