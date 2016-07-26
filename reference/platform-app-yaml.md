@@ -31,7 +31,7 @@ Here is an example of a `.platform.app.yaml` file for Drupal:
                     - index.php
                 allow: false
                 rules:
-                    "^/robots\.txt$":
+                    '^/robots\.txt$':
                         allow: true
     # The size of the persistent disk size of your application in MB.
     disk: 2048
