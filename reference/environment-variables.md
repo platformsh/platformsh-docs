@@ -47,7 +47,7 @@ the runtime (*ie. PHP*) and prefixed with `PLATFORM_*`.
     file.
 * **PLATFORM_TREE_ID**: The ID of the tree the application was built from. It's essentially the SHA of the tree in Git.
 * **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are variables names and values are variable values (*a string*).
-* **PLATFORM_PROJECT_ENTROPY**: A random value which is stable throughout the project’s life. This can be used for Drupal hash salt for example.
+* **PLATFORM_PROJECT_ENTROPY**: A random value created when the project is first created, which is then stable throughout the project’s life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
 
 Since values can change over time, the best thing is to just introspect the variable at runtime and use it to configure your application.
 
