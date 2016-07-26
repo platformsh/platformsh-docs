@@ -11,31 +11,29 @@ The previous default files, for reference, are:
 ### .platform.app.yaml
 
 ```yaml
- name: php
- type: php:5.4
- build:
-     flavor: drupal
- access:
-     ssh: contributor
- relationships:
-     database: "mysql:mysql"
-     solr: "solr:solr"
-     redis: "redis:redis"
- web:
-     locations:
-         "/":
-             root: "public"
-             passthru: "/index.php"
- disk: 2048
- mounts:
-     "/public/sites/default/files": "shared:files/files"
-     "/tmp": "shared:files/tmp"
-     "/private": "shared:files/private"
- crons:
-     drupal:
-         spec: "*/20 * * * *"
-         cmd: "cd public ; drush core-cron"
- ```
+name: php
+type: "php:5.4"
+build:
+    flavor: "drupal"
+access:
+    ssh: contributor
+relationships:
+    database: "mysql:mysql"
+    solr: "solr:solr"
+    redis: "redis:redis"
+web:
+    document_root: "/"
+    passthru: "/index.php"
+disk: 2048
+mounts:
+    "/public/sites/default/files": "shared:files/files"
+    "/tmp": "shared:files/tmp"
+    "/private": "shared:files/private"
+crons:
+    drupal:
+        spec: "*/20 * * * *"
+        cmd: "cd public ; drush core-cron"
+```
 
 ### .platform/routes.yaml
 
