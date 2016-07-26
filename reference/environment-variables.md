@@ -6,6 +6,8 @@ and that give you all the context you need about the environment (how to
 connect to your database for example). And there are the ones you can set
 yourself through the web interface or the CLI.
 
+Environment variables are a good place to store values that apply only on Platform.sh, not on your local development environment. That includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" toggle, etc.
+
 When you're logged in via SSH to an environment (with the cli: `platform ssh`), 
 you can list the environment variables by running:
 
