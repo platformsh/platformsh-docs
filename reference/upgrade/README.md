@@ -1,5 +1,71 @@
 # Upgrading
 
+## Changes in version 2016.4
+
+As of July 2016, we no longer create default configuration files if one is not provided.  The defaults we used to provide were tailored specifically for Drupal 7, which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites.  They also defaulted to software versions that are no longer current and recommended.  Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `.platform/services.yaml` files.
+
+Additionally, a version for a language or service should always be specified as well. That allows you to control when you upgrade from one version to another without relying on a network default.
+
+The previous default files, for reference, are:
+
+### .platform.app.yaml
+
+```yaml
+name: php
+type: "php:5.4"
+build:
+    flavor: "drupal"
+access:
+    ssh: contributor
+relationships:
+    database: "mysql:mysql"
+    solr: "solr:solr"
+    redis: "redis:redis"
+web:
+    document_root: "/"
+    passthru: "/index.php"
+disk: 2048
+mounts:
+    "/public/sites/default/files": "shared:files/files"
+    "/tmp": "shared:files/tmp"
+    "/private": "shared:files/private"
+crons:
+    drupal:
+        spec: "*/20 * * * *"
+        cmd: "cd public ; drush core-cron"
+```
+
+### .platform/routes.yaml
+
+```yaml
+ "http://{default}/":
+     type: upstream
+     upstream: "php:http"
+     cache:
+         enabled: true
+     ssi:
+         enabled: false
+ 
+ "http://www.{default}/":
+     type: redirect
+     to: "http://{default}/"
+```
+
+### .platform/services.yaml
+
+```yaml
+ mysql:
+     type: mysql:5.5
+     disk: 2048
+ 
+ redis:
+     type: redis:2.8
+ 
+ solr:
+     type: solr:3.6
+     disk: 1024
+ ```
+
 ## Changes in version 2016.3
 
 As we are aiming to always provide you more control and flexibility on how to deploy your applications, the `.platform.app.yaml` format has been greatly improved. It is now way more flexible, and also much more explicit to describe what you want to do.

@@ -8,7 +8,7 @@ Protocol (AMQP).
 
 ## Supported versions
 
-* 3.5 (default)
+* 3.5
 
 ## Relationship
 

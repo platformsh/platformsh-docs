@@ -192,20 +192,3 @@ Here is an example to define a route for serving WebSocket:
 
 > **note**
 > "app" is the name of your application container, specified in `.platform.app.yaml`.
-
-##Defaults
-If you do not have a `routes.yaml` file, the following default one will be loaded:
-
-```yaml
-"http://{default}/":
-    type: upstream
-    upstream: "php:http"
-    cache:
-        enabled: true
-    ssi:
-        enabled: false
-
-"http://www.{default}/":
-    type: redirect
-    to: "http://{default}/"
-```

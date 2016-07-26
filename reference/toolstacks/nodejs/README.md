@@ -7,7 +7,7 @@ Javascript and PHP applications.
 
 ## Supported versions
 
-* 0.12 (default)
+* 0.12
 * 4.4
 * 6.2
 
@@ -89,7 +89,7 @@ Here's a complete example that also serves static assets (.png from the /public 
 
 ```yaml
 name: node
-type: nodejs
+type: nodejs:4.4
 
 web:
   commands:

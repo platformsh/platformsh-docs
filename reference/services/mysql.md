@@ -13,7 +13,7 @@ From outside the web server you can use the CLI: `platform sql`
 
 ## Supported versions
 
-* 5.5 (default)
+* 5.5
 * 10.0
 
 ## Relationship
