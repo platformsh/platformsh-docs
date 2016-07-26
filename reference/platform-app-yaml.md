@@ -202,20 +202,21 @@ It has a few subkeys, which are:
 
     web:
         locations:
-            "/":
-                root: "public"
+            '/':
+                root: 'public'
                 # A missing or denied file will be passed to the passthru, and hit the
                 # application's front controller.
-                passthru: "/index.php"
+                passthru: '/index.php'
                 expires: -1
                 scripts: true
                 allow: false
                 rules:
-                    "^/robots\.txt$":
+                    '^/robots\.txt$':
                         allow: true
-            "/sites/default/files":
+            '/sites/default/files':
                 expires: 5m
-                passthru: "/index.php"
+                passthru: '/index.php'
+                root: 'public/sites/default/files'
                 allow: true
                 scripts: false
 
@@ -394,10 +395,8 @@ relationships:
     solr: "solr:solr"
     redis: "redis:redis"
 web:
-    locations:
-        "/":
-            root: "public"
-            passthru: "/index.php"
+    document_root: "public"
+    passthru: "index.php"
 disk: 2048
 mounts:
     "/public/sites/default/files": "shared:files/files"
