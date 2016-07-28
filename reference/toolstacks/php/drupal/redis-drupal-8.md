@@ -72,7 +72,7 @@ configuration is a bit more complex than can be easily represented in
 Platform.sh's environment variables configuration, so using `settings.php` directly
 is the recommended approach.
 
-Place the following at the end of `settings.php`. Note the inline comments, as you may wish to customize
+Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize
 it further.  Also review the `README.txt` file that comes with the redis module,
 as it has a great deal more information on possible configuration options. For instance,
 you may wish to not use Redis for the persistent lock if you have a custom module 
@@ -139,7 +139,7 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
     $settings['cache_prefix'] = 'prefix_';
 
     // Drupal 8.1 has a bug where certain special caches that should use the
-    // APCu cache if available will not do so if a non-SQL default is specified. 
+    // APCu cache if available will not do so if a non-SQL default is specified.
     // The following lines explicitly force those cache bins to use the correct
     // cache backend. This block may be removed in Drupal 8.2.
     // @see https://www.drupal.org/node/2753989
