@@ -5,7 +5,7 @@ live.
 
 ## 1 - Domains
 
-First step is to add your domain.
+First step is to [add your domain](../overview/web-ui/configure-project.html#domains).
 
 You can add multiple domains to point to your project. Each domain can
 have its own SSL certificate.
@@ -199,7 +199,7 @@ When prompted, enter an easy password value as it will only be used when
 generating the CSR and not by your app at runtime.
 
 ```bash
-openssl genrsa -des3 -out server.pass.key 2048 
+openssl genrsa -des3 -out server.pass.key 2048
 ```
 
 The private key needs to be stripped of its password so it can be loaded
