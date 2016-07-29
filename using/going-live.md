@@ -5,7 +5,7 @@ live.
 
 ## 1 - Domains
 
-First step is to [add your domain])(../overview/web-ui/configure-project.html#domains).
+First step is to [add your domain](../overview/web-ui/configure-project.html#domains).
 
 You can add multiple domains to point to your project. Each domain can
 have its own SSL certificate.
