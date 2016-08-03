@@ -1,92 +1,68 @@
 # Getting Started
 
-## Structure your files
+## Drupal 8 and Composer
 
-Platform.sh is very flexible and allows you to structure your files as
-you wish within your Git repository, and will build your project based
-on how your files are organized.
+The recommended way to deploy Drupal 8 on Platform.sh is to use Composer. Composer is the PHP package management suite, and is now supported by Drupal 8 (and Drupal 7 in a pinch). There is an unofficial but well-supported Composer flavor of Drupal 8 called [Drupal Composer](https://github.com/drupal-composer/drupal-project) that we recommend.  If you use the [Drupal 8 Example Repository](https://github.com/platformsh/platformsh-example-drupal8/) or select the Drupal 8 option when creating a new project from a template, that's what you will be using.  You can also create your own project directly from that repository and add the Platform.sh-specific configuration files.  Note that you will also need to add the Drupal.org Composer repositories to `composer.json` if you are not working from our template.
 
-Here are the three build modes that can be used:
+If you use Drupal Composer, note that any 3rd party modules, themes, or PHP libraries you install, as well as Drupal core itself, will not be checked into your repository.  They are specifically excluded from Git by a `.gitignore` file, as they will be re-downloaded when you run `composer install` or `composer update`.  Rather than downloading modules or themes using wget or FTP, you can add them using composer.  For example, to add the `devel` module you would run this command:
 
--   **Profile**: Platform.sh builds your project like Drupal.org does
-    for distributions.
--   **Project**: Platform.sh builds your make file using *drush make*.
-    You don't need any Drupal core files nor any contributed modules,
-    themes or libraries within your Git repository.
--   **Vanilla**: Platform.sh builds your project as it is in your Git
-    repository. You can push all Drupal files and contributed modules,
-    themes or libraries.
+```
+$ composer require drupal/devel
+```
 
-### Profile mode
-
-If your repository contains a `.profile` file, Platform.sh builds your
-project in profile mode. This is similar to what Drupal.org does to
-build distributions. Everything you have in your repository will be
-copied to your `profiles/[name]` folder.
-
-This build mode supports having a `project.make` file for your
-contributed modules, themes or libraries.
+And then commit just the changes to `composer.json` and `composer.lock` to your repository.  That also means that to get a working copy of your site locally you will need to run `composer install` to download all of the necessary libraries and modules.
 
 > **note**
-> When building as a profile, you **need a make file for Drupal core** called: `project-core.make`. See 
-[drush make files](drush.html)
+> When using Composer, your docroot where most of Drupal lives will be called `web`, but the `vendor` directory will be outside of that directory in contrast to how a standard Drupal download .tar.gz file is organized.  The config export directory will also be outside of the web root.  This is normal, expected, and more secure.
+
+### File organization
+
+Your repository should be laid out as follows:
 
 ```
+composer.json
+composer.lock
+config/
+  sync/
+    <this is where exported configuration will go> 
+drush/
 .git/
-project.make
-project-core.make
-my_profile.info
-my_profile.install
-my_profile.profile
-modules/
-  features/
-    my_feature_01/
-    ...
-  custom/
-    my_custom_module/
-    ...
-themes/
-  custom/
-    my_custom_theme/
-    ...
-libraries/
-  custom/
-    my_custom_libraries/
-    ...
-translations/
-  ...
+.gitignore
+.platform/
+  routes.yaml
+  services.yaml
+.platform.app.yaml
+README.md
+scripts/
+web
+  index.php
+  core/
+  modules/
+    contrib/
+      <empty until composer runs>
+    custom/
+      <your custom modules here>
+  themes/
+    contrib/
+      <empty until composer runs>
+    custom/
+      <your custom themes here>
+  sites/
+    default/
+      settings.php
+      settings.platformsh.php
 ```
 
-### Project mode
+### Changes to settings.php
 
-If your repository doesn’t contain a `.profile` file, but contains a
-make file called: `project.make` (or even `drupal-org.make`),
-Platform.sh builds your project using Drush make. Everything you have in
-your repository will be copied to your `sites/default` folder.
+Platform.sh exposes database configuration, as well as other configuration values such as a hash salt, to PHP as environment variables available either via `$_ENV` or `getenv()`.  That means you'll need to tell Drupal how to get that information.  Additionally, Drupal needs to be told where the config export directory is, where the private files directory is (which is outside of the web root), and so on.
 
-```
-.git/
-project.make
-modules/
-  features/
-    my_feature_01/
-    ...
-  custom/
-    my_custom_module/
-    ...
-themes/
-  custom/
-    my_custom_theme/
-    ...
-libraries/
-  custom/
-    my_custom_libraries/
-    ...
-translations/
-  ...
-```
+The easiest way to access that information is via a small configuration add-on we provide.  See our recommended [settings.php file](https://github.com/platformsh/platformsh-example-drupal8/blob/master/web/sites/default/settings.php), which includes a file called [settings.platformsh.php](https://github.com/platformsh/platformsh-example-drupal8/blob/master/web/sites/default/settings.platformsh.php).  The latter maps all Platform.sh-provided environment values to Drupal settings, either the Drupal database array or the global `$settings` object.  If run on a non-Platform.sh server this file does nothing so it is safe to always include.
 
-### Vanilla mode
+If you need to add additional Platform.sh-specific configuration, such as to enable a [Redis server](redis.md) for caching, we recommend also putting it into `settings.platformsh.php`.
+
+
+## Vanilla Drupal 8
 
 Platform.sh accepts your project's files. You are expected to have an
 `index.php` file at the root of your repository.
@@ -101,50 +77,3 @@ sites/
     themes/
   default/
 ```
-
-## Configure your Drupal application
-
-Platform.sh uses configuration files to determine what toolstack you
-want to deploy and how you want to deploy it.
-
-Add a `.platform.app.yaml` at the root of your drupal folder.
-
-Here is an example of a Drupal configuration:
-```yaml
-# .platform.app.yaml
-name: php
-
-type: php
-build:
-    flavor: drupal
-
-relationships:
-    database: "mysql:mysql"
-
-web:
-    locations:
-        "/":
-            root: "web"
-            passthru: "/index.php"
-
-disk: 2048
-
-mounts:
-    "/public/sites/default/files": "shared:files/files"
-    "/tmp": "shared:files/tmp"
-    "/private": "shared:files/private"
-
-hooks:
-    deploy: |
-      cd public
-      drush -y updatedb
-
-crons:
-    drupal:
-        spec: "*/20 * * * *"
-        cmd: "cd public ; drush core-cron"
-```
-
-You can find some working example on GitHub:
-* [Drupal 7](https://github.com/platformsh/platformsh-example-drupal/tree/7.x)
-* [Drupal 8](https://github.com/platformsh/platformsh-example-drupal/tree/8.x)
