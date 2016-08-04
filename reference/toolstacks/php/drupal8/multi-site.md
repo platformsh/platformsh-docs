@@ -1,4 +1,3 @@
-#DRAFT
 #Multiple Drupal  sites in a single Project
 
 Platform.sh supports running [multiple applications in the same project](/user_guide/reference/platform-app-yaml-multi-app.html) 
@@ -7,22 +6,19 @@ instances , they will have their assets separate and live their lives apart and
 it would be much better for them not to share the same database (though they 
 could).
 
-Note, that the same Drupal instance can also use multiple databases (just add 
-multiple instances to services.yaml and use  db_select) you will need to 
-override settings.php [as described here](customizing-settings-php.html) and
-add the other databases you could then use `db_select` to switch between those.
+# Drupal "Mutlisite" and Platform.sh
 
-# Old Style "Mutli-Site" and Platform.sh
+Platform.sh actively discourages running Drupal in "multisite" mode. Doing so
+eliminates many of the advantages Platform.sh offers, such as isolation, safe
+testing, and so forth.
 
-It makes no sense running truly different websites under the same project, 
-you'd be missing out on everything platform has to offer - moving fast, and 
-safely testing things in isolation.
+Additionally, because of the dynamic nature of the domain names that are created for
+the different environments the multisite configuration would likely be complex
+and fragile.
 
-And because of the dynamic nature of the domain names that are created for
-the different environments, it would result in a fragile hacky thing.
-
-As such please consider Platform.sh does not support running "old-style"
- multi-site (using different sub-directories such as `sites/sub.example.com/`).
+We recommend running separate projects for separate Drupal sites, or using one of
+the various "single instance" options available such as [Domain Access](https://www.drupal.org/project/domain),
+[Organic Groups](https://www.drupal.org/project/og), or [Workbench Access](https://www.drupal.org/project/workbench_access).
 
 ## Using Domain Access
 Of course Platform.sh supports the Domain Access module, as it supports anything Drupal.

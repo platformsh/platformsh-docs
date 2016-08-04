@@ -1,4 +1,3 @@
-#DRAFT
 #Multiple Drupal  sites in a single Project
 
 Platform.sh supports running [multiple applications in the same project](/user_guide/reference/platform-app-yaml-multi-app.html) 
@@ -12,17 +11,19 @@ multiple instances to services.yaml and use  db_select) you will need to
 override settings.php [as described here](customizing-settings-php.html) and
 add the other databases you could then use `db_select` to switch between those.
 
-# Old Style "Mutli-Site" and Platform.sh
+# Old Style "Mutlisite" and Platform.sh
 
-It makes no sense running truly different websites under the same project, 
-you'd be missing out on everything platform has to offer - moving fast, and 
-safely testing things in isolation.
+Platform.sh actively discourages running Drupal in "multisite" mode. Doing so
+eliminates many of the advantages Platform.sh offers, such as isolation, safe
+testing, and so forth.
 
-And because of the dynamic nature of the domain names that are created for
-the different environments, it would result in a fragile hacky thing.
+Additionally, because of the dynamic nature of the domain names that are created for
+the different environments the multisite configuration would likely be complex
+and fragile.
 
-As such please consider Platform.sh does not support running "old-style"
- multi-site (using different sub-directories such as `sites/sub.example.com/`).
+We recommend running separate projects for separate Drupal sites, or using one of
+the various "single instance" options available such as [Domain Access](https://www.drupal.org/project/domain),
+[Organic Groups](https://www.drupal.org/project/og), or [Workbench Access](https://www.drupal.org/project/workbench_access).
 
 ## Using Domain Access
 Of course Platform.sh supports the Domain Access module, as it supports anything Drupal.
