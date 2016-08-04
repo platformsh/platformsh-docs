@@ -1,21 +1,17 @@
 # Drupal Frequently Asked Questions (FAQ)
 
-## How should I name my make files?
+## How can I import configuration on production?
 
-In order for Platform to automatically detect your make file, you need
-to call it **project.make**.
+If you don't want to do so manually, include the following lines in your deploy hook in `.platformsh.app.yaml`:
 
-You can also have a **specific make file for Drupal core** called
-**project-core.make**
+```yaml
+drush -y updatedb
+drush -y config-import
+```
 
-## When I push changes to a make file, does Platform.sh run the update?
+That will automatically run `update.php` and import configuration on every new deploy.
 
-After a push, Platform.sh will rebuild your environment and download all
-the modules that are in your make file.
-
-If an update function (hook_update) needs to run, you'll have to
-manually trigger it by going to `/update.php` or use the
-deployment hooks to automatically run the updates.
+The above configuration is included by default if you used our Drupal 8 example repository or created a project through the UI.
 
 ## How can I override the default robots.txt?
 
@@ -44,12 +40,8 @@ the issue. Ballooning MySQL storage can be caused by a number of items:
 
 1)  A large number of watchdog entries being captured. Fix the errors
     being generated or disable database logging.
-2)  Cron should  run at regular intervals to ensure cache
+2)  Cron should run at regular intervals to ensure cache
     tables get cleared out.
-3)  If you're using Drupal Commerce Core < 1.10, you may have an
-    [extremely large cache_form
-    table](https://www.drupal.org/node/2057073). Upgrade to Commerce
-    Core 1.10 to resolve.
 
 ## Why do I get "MySQL cannot connect to the database server"?
 
