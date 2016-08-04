@@ -17,87 +17,37 @@ $ git branch
 
 Now that you're set up on your working branch, you can start developing
 on your website by making code changes and pushing those changes to
-Platform to test them live.
+Platform.sh to test them live.
 
 There are three common ways you will be making code changes to Platform:
 
 1.  Add contributed modules, themes, distributions, third-party
     libraries in the make file
 2.  Create custom code (*modules, themes, profiles, libraries*) and
-    commit them to your Platform codebase
+    commit them to your Platform.sh codebase
 3.  Modify the services grid configuration
 
 ### Add contributed projects
 
 Each time you push a commit, Platform.sh will rebuild your environment
-and run the Drush make command if a proper make file has been found.
+and run the Composer command if a proper `composer.json` file has been found.
 
-#### Add a Drupal module
+#### Add a Drupal module or theme
 
-Each Drupal module you want to install on your project should be
-included in the make file. For example, if you want to add Drupal
-Commerce, you need to add the following lines to your `project.make`:
+Each Drupal module or theme you want to install on your project should be
+included in your `composer.json` file.  For example:
 
-```ini
-; Modules
-projects[addressfield][version] = "1.0-beta4"
-projects[addressfield][subdir] = "contrib"
-
-projects[ctools][version] = "1.3"
-projects[ctools][subdir] = "contrib"
-
-projects[commerce][version] = "1.8"
-projects[commerce][subdir] = "contrib"
-
-projects[entity][version] = "1.2"
-projects[entity][subdir] = "contrib"
-
-projects[rules][version] = "2.6"
-projects[rules][subdir] = "contrib"
-
-projects[views][version] = "3.7"
-projects[views][subdir] = "contrib"
+```bash
+$ composer require drupal/token
 ```
 
-#### Add a Drupal theme
+That will update your `composer.json` and `composer.lock` files, which you can then commit.
 
-You'd do the same if you want to add a theme. Add the following lines to
-your `project.make`:
-
-```ini
-; Zen Theme
-projects[] = zen
-```
-
-#### Add a third-party library
-
-You'd do the same if you want to add a third-party library. For our
-example here, we're adding the HTML5 Boilerplate library. Add the
-following lines to your `project.make`:
-
-```ini
-; Libraries
-libraries[html5bp][download][type] = "file"
-libraries[html5bp][download][url] = "http://github.com/h5bp/html5-boilerplate/zipball/v3.0.2stripped"
-```
+If you're using Composer, 3rd party PHP libraries can be added in the exact same way as Drupal modules.
 
 ### Add custom code
 
-To commit your custom modules, themes or libraries, you need to commit
-them under a `modules`, `themes` or `libraries` folder at the root of
-your Git repository.
-
-```bash
-$ ls
-  libraries/
-  modules/
-  project.make
-  themes/
-```
-
-When you push your code, Platform will build your environment and move
-your modules, themes, libraries to the correct location on your site
-(usually `sites/default/`).
+To commit your custom modules, themes, or libraries, add those to the `web/modules/custom` or `web/themes/custom` directory and commit them to Git as normal.
 
 ### Change the services configuration
 
@@ -114,7 +64,7 @@ environment.
 
 ```bash
 $ git add .
-$ git commit -m "Made changes to my make file."
+$ git commit -m "Made changes to my files."
 $ git push
 ```
 
@@ -126,7 +76,7 @@ When it's completed, you can see your changes on your site by clicking
 Platform.sh Web Interface.
 
 > **note**
-> The Drush Make processing doesn't create any file in your Git repository. Your Git repository is the *input* of the process and not the *output*. You can see the directory structure that has been created by connecting via SSH to the environment. See the information in the `Access information` below the title of the environment
+> The build process makes no changes to your Git repository.  Your Git repository is the *input* of the process. A PHP container containing your code and dependencies is the *output*. You can see the directory structure that has been created by connecting via SSH to the environment. See the information in the `Access information` below the title of the environment
 
 ## Merge code changes to Master
 
@@ -156,7 +106,7 @@ $ drush sql-sync @platform.master @platform._local
 ```
 
 An alternate method that is appropriate for larger databases is to use
-the pipe | to stream the data, instead of making copies.
+the pipe | to stream the data, instead of making a copy of the dump file.
 
 ```bash
 $ drush @platform.master sql-dump | drush @platform._local sqlc
