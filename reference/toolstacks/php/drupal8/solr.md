@@ -6,8 +6,8 @@ You will need to add the [Search API](https://www.drupal.org/project/search_api)
 
 If you are using composer, the easiest way to add them is to simply run:
 
-```
-composer require drupal/search_api drupal/search_api_solr
+```bash
+$ composer require drupal/search_api drupal/search_api_solr
 ```
 
 And then commit the changes to `composer.json` and `composer.lock`.
