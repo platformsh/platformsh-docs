@@ -43,7 +43,6 @@
         * [FAQ](reference/toolstacks/php/drupal/faq.md)
       * [Drupal 8](reference/toolstacks/php/drupal8/README.md)
         * [Developing With Drupal](reference/toolstacks/php/drupal8/developing-with-drupal.md)
-        * [Customizing settings.php](reference/toolstacks/php/drupal8/customizing-settings-php.md)
         * [Migrate an existing site](reference/toolstacks/php/drupal8/migrate-existing-site.md)
         * [Drush](reference/toolstacks/php/drupal8/drush.md)
         * [Redis](reference/toolstacks/php/drupal8/redis.md)
