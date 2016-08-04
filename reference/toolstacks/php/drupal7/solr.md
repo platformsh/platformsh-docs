@@ -25,3 +25,6 @@ the server a name and a description.
 -   Solr port: `8080`
 -   Solr path: `/solr`
 
+> **note**
+> The name of the host depends on the name you the relationship in `.platform.app.yaml`. If
+> you called the relationship `solrsearch` instead, then the hostname will be `solrsearch.internal`.
