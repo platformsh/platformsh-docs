@@ -20,7 +20,7 @@ web:
             passthru: "/index.php"
 disk: 2048
 mounts:
-    "/public/sites/default/files": "shared:files/files"
+    "/web/sites/default/files": "shared:files/files"
     "/tmp": "shared:files/tmp"
     "/private": "shared:files/private"
 crons:
