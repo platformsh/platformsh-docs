@@ -35,7 +35,7 @@ In your ``.platform/services.yaml``:
 
 ```yaml
 myrabbitmq:
-    type: rabbitmq
+    type: rabbitmq:3.5
     disk: 1024
 ```
 
