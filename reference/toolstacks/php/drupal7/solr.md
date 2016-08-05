@@ -26,5 +26,5 @@ the server a name and a description.
 -   Solr path: `/solr`
 
 > **note**
-> The name of the host depends on the name you the relationship in `.platform.app.yaml`. If
+> The name of the host depends on the name you gave the relationship in `.platform.app.yaml`. If
 > you called the relationship `solrsearch` instead, then the hostname will be `solrsearch.internal`.
