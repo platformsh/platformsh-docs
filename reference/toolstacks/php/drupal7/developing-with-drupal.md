@@ -11,8 +11,7 @@ Make sure you're on a working environment. In this example we're on the
 *sprint1* branch:
 
 ```bash
-$ git branch
-* sprint1
+$ git checkout sprint1
 ```
 
 Now that you're set up on your working branch, you can start developing
