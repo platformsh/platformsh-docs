@@ -18,7 +18,7 @@ Second, execute the following commands to download, tweak, and run the
 registry rebuild.
 
 ```bash
-$ drush dl registry_rebuild-7.x --destination=/app/tmp
+$ drush dl registry_rebuild-7.x-2.3 --destination=/app/tmp
 $ sed -i 's/, define_drupal_root()/, '"'"'\/app\/public'"'"'/' /app/tmp/registry_rebuild/registry_rebuild.php
 $ cd /app/public
 $ php ../tmp/registry_rebuild/registry_rebuild.php
