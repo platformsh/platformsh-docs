@@ -33,3 +33,4 @@ We currently support the following stacks:
 * PHP
 * HHVM
 * Node.js
+* Python
