@@ -256,7 +256,7 @@ languages:
 * PHP
 * Python
 * Ruby
-* NodeJS
+* Node.js
 * Java (with integrated Maven and Ant support)
 
 Those dependencies are independent of the eventual dependencies of your
