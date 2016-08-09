@@ -24,12 +24,12 @@ grid.
 
 Platform.sh can run multiple applications in the same project. As such each
 application is considered to be a service by itself (which you can route to
-in the [.platform/routes.yaml](../../reference/routes-yaml.html)) 
-and which you can reference as a relationship from another application in its 
-`.platform.app.yaml`. 
+in the [.platform/routes.yaml](../../reference/routes-yaml.html))
+and which you can reference as a relationship from another application in its
+`.platform.app.yaml`.
 
 We currently support the following stacks:
 
 * PHP
 * HHVM
-* NodeJS
+* Node.js
