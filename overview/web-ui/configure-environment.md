@@ -72,6 +72,14 @@ By default, Platform.sh returns a restrictive `robots.txt` on all environments. 
 platform environment:info restrict_robots false
 ```
 
+Or to disable it for a specific environment rather than production:
+
+```
+platform environment:info -e ENVNAME restrict_robots false
+```
+
+(Where `ENVNAME` is the name of the environment, which is generally the branch associated with it.)
+
 Then, you have to serve your `robots.txt` by configuring ["/" location in `.platform.app.yaml`](/user_guide/reference/platform-app-yaml.html#locations).
 
 > **note**
