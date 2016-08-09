@@ -160,5 +160,3 @@ the pipe | to stream the data, instead of making copies.
 ```bash
 $ drush @platform.master sql-dump | drush @platform._local sqlc
 ```
-
-
