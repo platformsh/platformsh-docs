@@ -2,14 +2,14 @@
 
 Platform.sh stores the configuration of your applications and services in YAML files within your Git repository.
 
-Those configuration files allow you to easily interact with Platform.sh. 
-You can define and configure how you want to deploy your application, 
+Those configuration files allow you to easily interact with Platform.sh.
+You can define and configure how you want to deploy your application,
 the services you want to deploy and use, the specific routes you need to serve your
 application...
 
 Each project can have a single `.platform/` directory at its root where you can define the following configuration files:
 * `services.yaml`: the services you depend on (such as databases, search engine...).
-* `routes.yaml`: the routes (the way urls get mapped) to your applications. 
+* `routes.yaml`: the routes (the way urls get mapped) to your applications.
 
 This is the configuration that will be common to all the applications in the same project.
 

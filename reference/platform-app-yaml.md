@@ -3,7 +3,7 @@
 ## Configure your Application
 
 You control your application and the way it will be built and deployed on Platform.sh
-via a single configuration file `.platform.app.yaml` located at the root of your application 
+via a single configuration file `.platform.app.yaml` located at the root of your application
 folder inside your Git repository.
 
 Here is an example of a `.platform.app.yaml` file for Drupal:
@@ -27,7 +27,7 @@ Here is an example of a `.platform.app.yaml` file for Drupal:
                 root: "public"
                 expires: -1
                 passthru: "/index.php"
-                index: 
+                index:
                     - index.php
                 allow: true
     # The size of the persistent disk size of your application in MB.
@@ -52,9 +52,9 @@ Here is an example of a `.platform.app.yaml` file for Drupal:
 > **Note**
 > This configuration file is specific to one application. If you have multiple
 > applications inside your Git repository (i.e. a RESTful
-> web service and a front-end, or a main web site and a blog), you need 
-> one `.platform.app.yaml` at the root of each application 
-> [see here](/platform-app-yaml-multi-app.html).  
+> web service and a front-end, or a main web site and a blog), you need
+> one `.platform.app.yaml` at the root of each application
+> [see here](/platform-app-yaml-multi-app.html).
 
 ### Name
 
@@ -98,7 +98,7 @@ The `type` can be:
 
 ### Build
 
-The `build` defines what will happen by default when building the application. 
+The `build` defines what will happen by default when building the application.
 
 It has a sub property `flavor` for which the possible values are:
 
@@ -207,7 +207,7 @@ It has a few subkeys, which are:
             "/":
                 root: "public"
                 passthru: "/index.php"
-                index: 
+                index:
                     - index.php
                 expires: -1
                 scripts: true

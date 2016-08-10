@@ -44,7 +44,7 @@ Yes ! Branching an environment creates an exact copy (snapshot) of the parent en
 
 ##Do you have a local writable file-system?
 
-Yes! Unlike other PaaS providers Platform.sh supports non-ephemeral 
+Yes! Unlike other PaaS providers Platform.sh supports non-ephemeral
 storage. When you configure your application you can tell us what directories
 you want to be read/write (these are called mounts). These will be mounted
 on a distributed file system (which is transparent for you). When you back-up
@@ -60,10 +60,10 @@ This is what gives you all of the benefits of having repeatable deployments,
 consistent backups, traceability, magic creation of staging/dev environments.
 
 In Platform.sh you can not just "hack production". It is a constraint, but it
-is a good constraint. 
+is a good constraint.
 
 During the build phase of your application everything is still read/write so
-you can while deploying do whatever you want (compile stuff or generate 
+you can while deploying do whatever you want (compile stuff or generate
 anything you need on the storage). But once deployed the main file-system
 will turn read-only.
 
@@ -107,7 +107,7 @@ Master gets all the resources that are divided into each service (PHP 40%, MySQL
 
 ## What exactly am I sshing into?
 
-You're logged in to the PHP service. It's a read-only file system. 
+You're logged in to the PHP service. It's a read-only file system.
 
 ## Can I edit a quick fix on a Platform environment without triggering a rebuild?
 
@@ -144,13 +144,13 @@ We can deploy your site in a  [datacenter](https://aws.amazon.com/about-aws/glob
 ## Why did you choose the .sh extension for your domain?
 
 'sh' is the short version of shell.
-According to Wikipedia™, in computing, a [shell](http://en.wikipedia.org/wiki/Shell_(computing)) is a user interface  for access 
+According to Wikipedia™, in computing, a [shell](http://en.wikipedia.org/wiki/Shell_(computing)) is a user interface  for access
 to an operating system's services. Generally, operating system shells use either a [command-line interface ](http://en.wikipedia.org/wiki/Command-line_interface) (CLI) or
 [graphical user interface](http://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).
-This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy, 
+This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy,
 and run great websites!
 
-".sh" is also the TLD for Saint Helena that looks like a lovely island, and whose motto is: 
+".sh" is also the TLD for Saint Helena that looks like a lovely island, and whose motto is:
 "Loyal and Unshakeable" which we also strive to be.
- 
+
 

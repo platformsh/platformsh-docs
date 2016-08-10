@@ -5,7 +5,7 @@ PHP.
 
 >The developer pushes code, and we automatically put everything into production.
 
-We support any PHP application, but worked hard to get the developer experience 
+We support any PHP application, but worked hard to get the developer experience
 for Drupal and Symfony totally awesome.
 
 ## No System Administration Required
@@ -29,7 +29,7 @@ And we can do so in 30 seconds.
 
 ## Great integrations
 Platform.sh comes out-of-the-box with great integrations for services such
-as Bitbucket, Github, Hipchat and Blackfire and generic Webhooks allow you 
+as Bitbucket, Github, Hipchat and Blackfire and generic Webhooks allow you
 to create your own integrations with your internal tooling with little effort.
 
 ## Documentation
@@ -43,6 +43,6 @@ Blackfire.
 And if what you want is to just quickly get started here are some step-by-step
 guides help get you on your way:
 
-* [Start a new Drupal site](../drupal/) 
-* [Migrate an existing Drupal site](../drupal_migrate/) 
+* [Start a new Drupal site](../drupal/)
+* [Migrate an existing Drupal site](../drupal_migrate/)
 * [Start a new Symfony site](../symfony/)

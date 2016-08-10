@@ -8,31 +8,31 @@ All Platform.sh plans include the following:
 * Multiple Backend services (MySQL, PostgreSQL, Elastic Search, Redis, Solr..)
 * Support
 
-You can switch between plans (downgrade or upgrade) freely but note that 
-reducing storage is currently not supported for technical reasons. If you need 
+You can switch between plans (downgrade or upgrade) freely but note that
+reducing storage is currently not supported for technical reasons. If you need
 to reduce storage please create a support ticket. You will always be billed the
 prorated rate of your plan over the period it was used.
 
 You may cancel your plan at any time and you will only be billed for the actual
 period used.
 
-For Enterprise and Agency Plans you can pay by Purchase Order, for all other 
+For Enterprise and Agency Plans you can pay by Purchase Order, for all other
 plans you need to add a Credit Card to your account.
 
 We offer a free trial period so you can test the service and see how great they
-are. If ever you need more time to evaluate Platform.sh please contact our 
+are. If ever you need more time to evaluate Platform.sh please contact our
 sales representatives they can issue you an extra voucher to prolong your
 test.
 
-> In this section we describe the billing in US Dollars, you will be billed in 
+> In this section we describe the billing in US Dollars, you will be billed in
 > Dollars, Euros or British Pounds depending on where your billing address is.
 
-> Euro Prices are presented excluding VAT, in your bill, as appropriate we will 
+> Euro Prices are presented excluding VAT, in your bill, as appropriate we will
 > include the correct VAT rate.
 
 ## Extras
 
-All extra consumption is prorated to the time it was actually used. 
+All extra consumption is prorated to the time it was actually used.
 
 > So if for example you added an extra developer for 10 days you would be billed around  extra $3 at the end of the month.
 
@@ -43,14 +43,14 @@ Adding a developer to your project will add $10 per month.
 ### Extra environments
 
 You can add extra development staging/development to any plan by multiples of 3
-for $21 / month. 
+for $21 / month.
 
 > So if for example you want to have 12 staging servers you would pay additional $63 per month on top of your basic plan price.
 
 ### Extra storage
 
-You can add additional storage at $2.50 per 5GB  per staging/development 
-environment. 
+You can add additional storage at $2.50 per 5GB  per staging/development
+environment.
 
 >So if you have the default plan (with 3 staging environments) and you add 10GB (so total 15GB per environment) you would pay an extra $15 a month.
 
@@ -69,7 +69,7 @@ Development environments have less resources than production environments.
 The live environment (master) of a production plan has more resources
 then the development environments of the project.
 
-You can map domain names to your master environment. SSL support is always 
+You can map domain names to your master environment. SSL support is always
 included.
 
 Production plans come in three flavors:
@@ -82,10 +82,10 @@ Production plans come in three flavors:
 All Platform.sh plans support multiple applications in a single cluster but
 they all share the global resource of the cluster.
 
-The resources of a **Standard plan are not sufficient to run more then one 
+The resources of a **Standard plan are not sufficient to run more then one
 application** in the same cluster if there is also a MySQL database as a service. So useful multi-apps start at Medium.
 
-A Medium plan for example can support 3 Apps with a MySql Instance and a Redis 
+A Medium plan for example can support 3 Apps with a MySql Instance and a Redis
 instance.
 
 If you wonder if a specific setup would fit in a plan, don't hesitate to
@@ -93,14 +93,14 @@ contact our support.
 
 ## Enterprise
 
-Enterprise plans start at $815 a month. 
+Enterprise plans start at $815 a month.
 
-So for a price lower than traditional managed hosting, you get included 
-development and staging environments and triple redundancy on every element of 
+So for a price lower than traditional managed hosting, you get included
+development and staging environments and triple redundancy on every element of
 the stack.
 
 > With 99.99% Uptime Guaranteed
-> And 24/7 White Glove On-boarding and Support 
+> And 24/7 White Glove On-boarding and Support
 
 Please [contact our sales department](https://platform.sh/contact/#form) to discuss how we can help you.
 

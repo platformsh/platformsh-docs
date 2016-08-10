@@ -1,9 +1,9 @@
 # Finish installing Drupal
 
-As you would normally. 
+As you would normally.
 
-Just to get the hang of how special Platform.sh is let's see how you can get a 
-new development/staging server to test a new feature. 
+Just to get the hang of how special Platform.sh is let's see how you can get a
+new development/staging server to test a new feature.
 
 Although we could do almost everything with the Web Interface, that's no fun.
 Let's fire up a terminal and continue on from there.

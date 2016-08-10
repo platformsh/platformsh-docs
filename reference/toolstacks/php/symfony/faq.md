@@ -49,7 +49,7 @@ composer install
 
 If you get the following error during a deploy hook:
 ```bash
-Launching hook 'app/console cache:clear'. 
+Launching hook 'app/console cache:clear'.
 /bin/dash: 1: app/console: Permission denied
 ```
 

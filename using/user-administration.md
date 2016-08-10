@@ -32,7 +32,7 @@ the environment level:
 > `git commit --allow-empty -m'rebuild' && git push`
 > to create an empty commit and "force" rebuilding the environment.
 >
-> When the environment rebuild is complete, allow a minute for the routes to 
+> When the environment rebuild is complete, allow a minute for the routes to
 > update fully and for the new user to be able to use SSH access.
 
 ------------------------------------------------------------------------
@@ -48,13 +48,13 @@ commit to a specific branch, change their permission level on that
 environment to "Contributor".
 
 > **Important!**
-> An environment contributor can push code to the environment but that user 
-> role does not have SSH access to the environment.** by default only 
+> An environment contributor can push code to the environment but that user
+> role does not have SSH access to the environment.** by default only
 > environment Administrators have SSH access**. You can change the default
 > in `.platform.app.yaml` by example by specifying `ssh: contributor`
 
 > **note**
-> The project owner - the person licensed to use Platform.sh - doesn't have 
+> The project owner - the person licensed to use Platform.sh - doesn't have
 > special powers. A project owner usually has a project administrator role.
 
 ------------------------------------------------------------------------
@@ -84,8 +84,8 @@ Add a new user by clicking on the `Add user` button.
 If you select the 'Reader' role for the user, you'll have the option
 of adjusting the user's permissions at the environment level.
 
-Once this has been done, if the user does not have a Platform.sh they  will 
-receive an email asking  to confirm their details and register an account name 
+Once this has been done, if the user does not have a Platform.sh they  will
+receive an email asking  to confirm their details and register an account name
 and a password.
 
 In order to push and pull code (or to SSH to one of the project's environments)
@@ -118,7 +118,7 @@ or delete the user's access to the environment entirely.
 Add a new user by clicking on the `Add user` button.
 
 > **note**
-> Remember the user will only be able to access the environment once it has 
+> Remember the user will only be able to access the environment once it has
 > been rebuilt (after a `git push`)
 
 ------------------------------------------------------------------------
@@ -132,16 +132,16 @@ Available commands:
   * Add a user to the project
 * user:delete
   * Delete a user
-* user:list (users) 
+* user:list (users)
   * List project users
 * user:role
   * View or change a user's role
 
-For example the following command would add the admin to alice@example.com role to the current 
+For example the following command would add the admin to alice@example.com role to the current
 project.
 
 ```
-   platform user:add 
+   platform user:add
 ```
 
 Will present you with an interactive wizard that will allow you to choose

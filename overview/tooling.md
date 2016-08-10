@@ -7,7 +7,7 @@ a very easy one to use.
 ## Command Line Interface
 
 We offer a feature rich CLI that allows you to manage and automate every aspect
-of Platform.sh. 
+of Platform.sh.
 
 A developer could use Platform.sh without ever having to open the Web Interface.
 
@@ -30,11 +30,11 @@ A developer could use Platform.sh without ever installing our CLI.
 
 We have perfectly seamless integrations for both Bitbucket and Github. You can
 login to Platform.sh with your Bitbucket or Github account. And you can have
-Platform.sh environments be automatically created for every pull-request or 
-branch you create.. and get feedback on deployments right there without 
+Platform.sh environments be automatically created for every pull-request or
+branch you create.. and get feedback on deployments right there without
 switching tools.
 
-A developer could use Platform.sh without even knowing it's there. 
+A developer could use Platform.sh without even knowing it's there.
 
 They just get automatic staging environments.  Which is how the whole
 feature-branch thing was always supposed to work.

@@ -7,11 +7,11 @@ These are automatically deployed with your application.
 This is a default service that exists in all projects.
 
 Based on nginx, the Router service processes HTTP requests, handles security,
-dynamic page construction (SSI), URL rewriting and mapping. 
+dynamic page construction (SSI), URL rewriting and mapping.
 
 It supports caching, so you do not need Varnish or an extra cache in front of it.
 
-The configuration of the router service happens through the special 
+The configuration of the router service happens through the special
 [.platform/routes.yaml](../../reference/routes-yaml.html) file
 
 ## File system
