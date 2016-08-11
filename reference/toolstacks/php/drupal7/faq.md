@@ -44,7 +44,7 @@ the issue. Ballooning MySQL storage can be caused by a number of items:
 
 1)  A large number of watchdog entries being captured. Fix the errors
     being generated or disable database logging.
-2)  Cron should  run at regular intervals to ensure cache
+2)  Cron should run at regular intervals to ensure cache
     tables get cleared out.
 3)  If you're using Drupal Commerce Core < 1.10, you may have an
     [extremely large cache_form

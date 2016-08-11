@@ -16,7 +16,7 @@ specific remote Platform.sh environments.
 > **note**
 > Platform's CLI requires **Drush 6 or greater**.
 
-## Install Drush
+## Install Drush locally
 
 Install drush with Composer:
 
