@@ -15,7 +15,7 @@ you can list the environment variables by running:
 web@myp3bmdujgzqe-master--php:~$ export
 ```
 Since they are **base64-encoded JSON object** that maps variable names
-to variable values, you can decode the value of a specific variable by
+to variable values, you can decode the value of user defined variables by
 running:
 
 ```bash
