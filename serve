@@ -1,9 +1,0 @@
-if [[ $# -eq 0 ]] ; then
-    echo 'You need to specifiy a book to serve'
-    echo 'ex: serve drupal'
-    echo 'Available books\n'
-    ls book_*.json | sed -e 's/^book_(.*)\.json$/ccc/g'
-    exit 0
-fi
-export BOOK=$1 
-gitbook serve

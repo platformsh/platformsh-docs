@@ -34,8 +34,11 @@ disk: 2048
 dependencies:
   nodejs:
     gitbook-cli: "*"
+  ruby:
+      mdl: "*"
 
 # The hooks that will be performed when the package is deployed.
 hooks:
     build: |
-      ./build_all
+      gitbook install
+      gitbook build
