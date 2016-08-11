@@ -104,6 +104,10 @@ too.
 Here is the complete `.platform.app.yaml` file:
 
 ```yaml
+{% include "git+https://github.com/platformsh/platformsh-example-ruby.git/.platform.app.yaml#sinatra" %}
+```
+
+```yaml
 name: myrubyapp
 type: "ruby:2.3"
 
