@@ -38,7 +38,7 @@ database2:
 ## Name
 
 The `name` you want to give to your service. You are free to name each service as you wish
-(*lowercase alphanumeric only*). 
+(*lowercase alphanumeric only*).
 
 Usually you will see in our examples that we simply call the mysql: `mysql`. Note that you can have multiple instances of each service.
 
@@ -46,7 +46,7 @@ Usually you will see in our examples that we simply call the mysql: `mysql`. Not
 
 ### Type
 
-The `type` of your service. It's using the format ``type:version``. 
+The `type` of your service. It's using the format ``type:version``.
 
 The version number is optional. If you don't specify a version number, the *default* version will be loaded.
 
@@ -60,7 +60,7 @@ E: Error parsing configuration files:
 
 ### Disk
 
-The `disk` attribute is the size of the persistent disk (in MB) allocated to the service. 
+The `disk` attribute is the size of the persistent disk (in MB) allocated to the service.
 
 For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between your application (as defined in `.platform.app.yaml`) and each of its services.
 

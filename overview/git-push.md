@@ -133,7 +133,7 @@ looking at `/var/log/deploy.log`.
         moardatabase (type: postgresql, size: S, disk: 200)
         moarsearch (type: elasticsearch, size: S, disk: 200)
         search (type: solr, size: S, disk: 200)
-        
+
 ```
 We can see the 5 different data backends were deployed (started, and initialized
 with the data from the parent environment). Platform.sh also configures a
@@ -147,7 +147,7 @@ networking environment that allows your application container to access them.
         https://www---maximal-mswy7hzcuhcjy.us.platform.sh/ redirects to http://maximal-mswy7hzcuhcjy.us.platform.sh/
 ```
 
-Lastly Platform.sh gives you the different routes that are served by your 
+Lastly Platform.sh gives you the different routes that are served by your
 application. Here, because this is a non-production environment, the routes are
 mangled to ensure that it's possible to test each one: instead of www.<domain
 name>, the environment is accessible at

@@ -45,7 +45,7 @@ crons:
          enabled: true
      ssi:
          enabled: false
- 
+
  "http://www.{default}/":
      type: redirect
      to: "http://{default}/"
@@ -57,10 +57,10 @@ crons:
  mysql:
      type: mysql:5.5
      disk: 2048
- 
+
  redis:
      type: redis:2.8
- 
+
  solr:
      type: solr:3.6
      disk: 1024
@@ -90,7 +90,7 @@ New format:
             "/":
                 root: "public"
                 passthru: "/index.php"
-                index: 
+                index:
                     - index.php
                 expires: 300
                 scripts: true

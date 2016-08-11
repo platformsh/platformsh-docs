@@ -25,7 +25,7 @@ That will create a service named `rediscache`, of type `redis`, specifically ver
 
 ### Expose the Redis service to your application
 
-In your `.platform.app.yaml` file, we now need to open a connection to the new 
+In your `.platform.app.yaml` file, we now need to open a connection to the new
 Redis service.  Under the `relationships` section, add the following:
 
 ```yaml

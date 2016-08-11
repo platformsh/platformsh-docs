@@ -3,7 +3,7 @@ We'll get into this in a bit more detail later.. but the best way currently
 to develop Drupal sites is with Drush Make Files. We'll show you how cool this
 is.
 
-type `platform` again in your projects directory. 
+type `platform` again in your projects directory.
 
 You should see the new branch that was created, and a couple of starting points
 to help you get along.

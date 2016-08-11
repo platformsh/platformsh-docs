@@ -1,5 +1,5 @@
 - [x] account created
-- [x] git installed 
+- [x] git installed
 - [x] ssh keypair created
 - [x] ssh public key uploaded
 - [x] CLI installed

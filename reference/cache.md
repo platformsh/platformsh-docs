@@ -168,7 +168,7 @@ A special case exists if the `cookies` key has the `["*"]` value: it
 means that any request with a cookie will bypass the cache. This is the
 default value.
 
-> **note** 
+> **note**
 > You can not  use wildcards in the cookie name, either use a precise cookie
 > name, or match all cookies with a "*". "SESS*" or "~SESS" are currently
 > not valid values.

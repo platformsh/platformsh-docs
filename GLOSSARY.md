@@ -10,7 +10,7 @@ Drush [site aliases](http://docs.drush.org/en/master/usage/#site-aliases) allow 
 #Live Environment
 An environment which is deployed from the `master` branch under a production plan.
 
-#Active Environment 
+#Active Environment
 An environment which is deployed. You can deactivate an active environment from the environment configuration page on Platform.sh Web Interface.
 
 #Inactive environment

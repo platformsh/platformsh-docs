@@ -7,7 +7,7 @@ an SSH key generated. Here are a couple of external resources that will help you
 * [ Getting Started with SSH](https://ekkescorner.wordpress.com/blog-series/git-mercurial/step-by-step-ssh-on-osx-ubuntu-and-windows/) and [Generating SSH keys](https://help.github.com/articles/generating-ssh-keys/)
 
 You could use Platform with nothing else by just pushing and pulling to  the Platform.sh git repo or
- connecting directly to a project environement through ssh to inspect logs, or run commands. 
+ connecting directly to a project environement through ssh to inspect logs, or run commands.
 
 But [Platform.sh](https://platform.sh) also comes with a great tool called the Platform CLI.
 It not only allows you to manage the local copy of your project but also to do any action

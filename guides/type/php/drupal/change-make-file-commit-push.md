@@ -59,7 +59,7 @@ Processing activity: **Ori Pekelman** pushed to **add-theme**
 
 To vmwklzcpbi6zq@git.eu.platform.sh:vmwklzcpbi6zq.git
    c1b8067..2548c67  add-theme -> add-theme
-``` 
+```
 You can see Platform.sh is not your normal git server.. it is going to give you
 a lot of information about what it just did. If you quickly visit your Web
 Interface you will see it is going to show you what is happening in real-time.

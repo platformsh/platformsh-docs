@@ -71,7 +71,7 @@ Symlinking files from the 'shared' directory to sites/default
 
 Build complete for application myapp
 Web root: ~/htdocs/my-project/_www
-~/htdocs/my-project $ 
+~/htdocs/my-project $
 ```
 
 ## Other commands

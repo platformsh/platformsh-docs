@@ -5,7 +5,7 @@
 > you are OK with running an alpha-version of a Drupal module. It should be
 > stable and has been deployed in production, but more cautious users may prefer
 > to wait for the module to have a stable release. The instructions below are
-> unlikely to change at that time, but it is possible. See https://www.drupal.org/project/redis 
+> unlikely to change at that time, but it is possible. See https://www.drupal.org/project/redis
 > for more information.
 
 The Drupal 8 Redis module currently only supports the [PhpRedis](https://github.com/nicolasff/phpredis)
@@ -28,7 +28,7 @@ That will create a service named `rediscache`, of type `redis`, specifically ver
 
 ### Expose the Redis service to your application
 
-In your `.platform.app.yaml` file, we now need to open a connection to the new 
+In your `.platform.app.yaml` file, we now need to open a connection to the new
 Redis service.  Under the `relationships` section, add the following:
 
 ```yaml
@@ -75,7 +75,7 @@ is the recommended approach.
 Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize
 it further.  Also review the `README.txt` file that comes with the redis module,
 as it has a great deal more information on possible configuration options. For instance,
-you may wish to not use Redis for the persistent lock if you have a custom module 
+you may wish to not use Redis for the persistent lock if you have a custom module
 that needs locks to persist for more than a few seconds.
 
 The example below is intended as a "most common case".
@@ -99,7 +99,7 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
     // to your project-specific services.yml file, modify as appropriate, and
     // remove this line.
     $settings['container_yamls'][] = 'modules/contrib/redis/example.services.yml';
-    
+
     // Allow the services to work before the Redis module itself is enabled.
     $settings['container_yamls'][] = 'modules/contrib/redis/redis.services.yml';
 

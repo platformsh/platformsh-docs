@@ -104,8 +104,8 @@ You should see something like this:
 
     $ ssh wk5fqz6qoo123-master@ssh.eu.platform.sh
 
-       ___ _      _    __ 
-      | _ \ |__ _| |_ / _|___ _ _ _ __ 
+       ___ _      _    __
+      | _ \ |__ _| |_ / _|___ _ _ _ __
       |  _/ / _` |  _|  _/ _ \ '_| '  \
       |_| |_\__,_|\__|_| \___/_| |_|_|_|
 
@@ -114,7 +114,7 @@ You should see something like this:
      This is environment master
      of project wk5fqz6qoo123.
 
-    web@wk5fqz6qoo123-master--php:~$ 
+    web@wk5fqz6qoo123-master--php:~$
 
 ## Troubleshoot SSH
 
@@ -172,15 +172,15 @@ clues about what is going wrong.
 
 1.  Run the SSH command with the `-v` option, like this:
 
-        $ ssh -v wk5fqz6qoo123-master@ssh.eu.platform.sh 
-        OpenSSH_6.7.8, OpenSSL 1.2.3 1 Sep 2014 
-        debug1: Connecting to ssh.eu.platform.sh [54.32.10.98] port 22. 
-        debug1: Connection established. 
+        $ ssh -v wk5fqz6qoo123-master@ssh.eu.platform.sh
+        OpenSSH_6.7.8, OpenSSL 1.2.3 1 Sep 2014
+        debug1: Connecting to ssh.eu.platform.sh [54.32.10.98] port 22.
+        debug1: Connection established.
         debug1: identity file /Users/nick/.ssh/id_rsa type 1
         ...(30 more lines of this light reading)...
         debug1: Offering RSA public key: /Users/nick/.ssh/id_rsa
         debug1: Authentications that can continue: publickey
-        debug1: No more authentication methods to try. 
+        debug1: No more authentication methods to try.
         Permission denied (publickey).
         $
 

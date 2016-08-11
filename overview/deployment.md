@@ -3,14 +3,14 @@
 ## What happens when you deploy an application?
 
 Deploying an app means simply pushing the source code to your Git server
-hosted on Platform.sh. 
+hosted on Platform.sh.
 
 The Git server is part of your projects cluster so it is totally isolated from
 other clients.
 
 The Git server that runs on Platform.sh is at the same time "just a
 normal Git repository" and a very smart piece of software. When you have
-pushed to it, it will parse the configuration files you committed to your 
+pushed to it, it will parse the configuration files you committed to your
 repository so it knows what it needs to deploy (more on that later).
 
 If you are pushing directly to the Platform.sh Git server, you will see in your terminal
@@ -18,7 +18,7 @@ what is happening in real-time. The same information is going to get streamed
 in real-time to the Web Interface.
 
 If you are using the Bitbucket or Github integration you will not see the log
-of the operations in the Git session (because you are talking to their Git 
+of the operations in the Git session (because you are talking to their Git
 server) but you can follow on whats happening in their interface, our in Platform.sh's Web Interface.
 
 The only modification you need to do to your application is to tell it
@@ -28,12 +28,12 @@ There are a couple of "dot files" in YAML format you  put at the root
 of your application that will describe its dependencies. You can say for
 example "my app needs mysql as a database", or "my app needs this or
 that other php extension", or you can say "my front web app depends on
-these three API apps". 
+these three API apps".
 
-If for example in order to build your app you need a specific NodeJS, Python or 
+If for example in order to build your app you need a specific NodeJS, Python or
 Ruby library (for example Less or Jekyll) you simply specify those in the YAML
-file. There are many other aspects of the application you can control through 
-this simple declarative style. You don't write scripts, you just tell 
+file. There are many other aspects of the application you can control through
+this simple declarative style. You don't write scripts, you just tell
 Platform.sh what you need.
 
 ## Platform.sh is build oriented
@@ -47,8 +47,8 @@ First the Git server is going to inspect what you have sent it and see
 that it understands what it is supposed to do. If for example you have a
 syntax error in a configuration file, it will simply refuse the push.
 
-The same goes for code where Platform.sh can detect a critical vulnerability. 
-Platform.sh will refuse the push. This is a good thing; Because it means you 
+The same goes for code where Platform.sh can detect a critical vulnerability.
+Platform.sh will refuse the push. This is a good thing; Because it means you
 can't break your production system that easily. Once the Git server has
 validated the configuration and sees it can satisfy the requirements, it
 will build the cluster.
@@ -77,7 +77,7 @@ anything was daemonized; This is just a build phase.
 
 But also know that once the application has been built it is going to be
 mounted on a read-only file system (you will be able to configure specific
-mount points that are going to be read/write). 
+mount points that are going to be read/write).
 
 This means you can not "ftp" to the server and add modules. So, if you are
 used to be working like this, this is going to change some of your habits.

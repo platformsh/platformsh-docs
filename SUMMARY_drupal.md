@@ -3,7 +3,7 @@
   * [Install the Platform.sh CLI](guides/prerequisites/platform-cli.md)
   * [Install Drush](guides/type/php/drupal/drush.md)
 * [Getting Started With Drupal](guides/type/php/drupal/setup/get-started.md)
-  * [Start a new Platform.sh project](guides/type/php/drupal/setup/start-new-site.md) 
+  * [Start a new Platform.sh project](guides/type/php/drupal/setup/start-new-site.md)
     * [Create a new project](guides/getting-started/new-project.md)
     * [Name your project](guides/type/php/drupal/setup/name-project.md)
     * [Add your SSH key](guides/getting-started/add-ssh-key.md)

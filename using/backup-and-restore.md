@@ -10,7 +10,7 @@ persistent data from all running services (MySQL, SOLR...) and any files
 stored on the mounted volumes.
 
 > **note**
-> We advise you to make snapshots of your live environment before merging an environment 
+> We advise you to make snapshots of your live environment before merging an environment
 > to the live environment, or each time you increase the storage space of your services.
 
 > **note**

@@ -1,6 +1,6 @@
 # MongoDB (Database service)
 
-MongoDB is a cross-platform document-oriented database. It's classified as a 
+MongoDB is a cross-platform document-oriented database. It's classified as a
 NoSQL database.
 
 ## Supported versions
@@ -15,14 +15,14 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](ref
 {
   "database": [
     {
-      "username": "main", 
-      "password": "main", 
-      "host": "248.0.81.46", 
+      "username": "main",
+      "password": "main",
+      "host": "248.0.81.46",
       "query": {
         "is_master": true
-      }, 
-      "path": "main", 
-      "scheme": "mongodb", 
+      },
+      "path": "main",
+      "scheme": "mongodb",
       "port": 27017
     }
   ]

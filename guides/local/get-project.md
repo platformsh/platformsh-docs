@@ -30,5 +30,5 @@ Build complete for application php
 ```
 
 The Platform CLI downloaded your project and built it. If now we cd to the
-directory, in our case `cd a-drupal-site-for-the-masses`, we will see three 
+directory, in our case `cd a-drupal-site-for-the-masses`, we will see three
 directories.

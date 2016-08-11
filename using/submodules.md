@@ -3,7 +3,7 @@
 ## Clone submodules during deployment
 
 Platform.sh allows you to use submodules in your Git repository. They are usually
-listed in a ``.gitmodules`` file at the root of your Git repository. When you push via Git, 
+listed in a ``.gitmodules`` file at the root of your Git repository. When you push via Git,
 Platform.sh will try to clone them automatically.
 
 Here is an example of a ``.gitmodules`` file:
