@@ -65,6 +65,9 @@ composer require drupal/redis
 
 Then commit the resulting changes to your `composer.json` and `composer.lock` files.
 
+Note that the Redis module does not need to be enabled in Drupal except for diagnostic
+purposes.  The configuration below is sufficient to leverage its functionality.
+
 ## Configuration
 
 To make use of the Redis cache you will need to set some Drupal variables. The
