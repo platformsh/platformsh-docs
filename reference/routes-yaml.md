@@ -26,10 +26,8 @@ routes will be resolved to `http://www.example.com/` and
 `https://example.com/blog` in the master environment.
 
 Platform.sh will also generate a domain for every active development environment.
-For example, a project with ID `mswy7hzcuhcjw` on a Git branch called
-`refactorcss` hosted in the `us` region, we will get:
-`http://www---refactorcss-mswy7hzcuhcjw.us.platform.sh/` and
-`https://refactorcss-mswy7hzcuhcjw.us.platform.sh/blog`
+It will receive a domain name based on the region, project ID, branch name, and a per-project random string. The
+domain name itself is not guaranteed stable, although the pattern is consistent.
 
 > **note**
 > Platform.sh supports running multiple applications per environment.
