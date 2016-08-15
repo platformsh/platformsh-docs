@@ -5,8 +5,9 @@ Create a ``.platform.app.yaml`` file at the root of your Git repository.
 Open this file and paste this content:
 
 ```yaml
-name: php
-type: php
+name: app
+
+type: php:5.6
 build:
     flavor: drupal
 access:

@@ -112,9 +112,10 @@ Add a `.platform.app.yaml` at the root of your drupal folder.
 Here is an example of a Drupal configuration:
 ```yaml
 # .platform.app.yaml
-name: php
+name: app
 
-type: php
+type: php:5.6
+
 build:
     flavor: drupal
 
