@@ -1,123 +1,116 @@
 # `.platform/routes.yaml`
-
 ## Configure Routes
 
 Platform.sh allows you to define the routes that will serve your
 environments.
 
-A route describes how an incoming HTTP request is going to be processed by
-Platform.sh. The routes can be defined using `.platform/routes.yaml` file
-in your Git repository.
+A route describes how an incoming URL is going to be processed by
+Platform.sh. The routes are stored into a `routes.yaml` file which
+should be added inside the `.platform` folder at the root of your Git
+repository.
 
-If you don't have a `.platform/` folder, you need to create one and create the
+As you may know, Platform.sh is capable of both managing production
+environments, as of generating on-the-fly testing, development
+and staging environments. This single configuration file covers
+all of this.
+
+If you don't have a `.platform` folder, you need to create one and create the
 `routes.yaml` file:
 
 ```bash
 $ mkdir .platform
 $ touch .platform/routes.yaml
 ```
-
 ## Route templates
 
-The yaml file is composed of a list of routes and their configuration.
-A route can either be an absolute URL or a URL template that looks like:
-`http://www.{default}/` or `https://{default}/blog` where `{default}`
-will be substituted by the default fully qualified domain name configured
-in the project. So if your default domain is `example.com`, these
-routes will be resolved to `http://www.example.com/` and
-`https://example.com/blog` in the master environment.
+The yaml file is composed of a list of templated routes, and their
+configuration. A route  template can look like this: `http://www.{default}/` or
+`https://{default}/blog` where `{default}` will be the fully qualified domain
+name configured for the project. So if our domain would be `example.com` these
+routes will get resolved to : `http://www.example.com/` and
+`https://example.com/blog` for live environment (the Master).
 
-Platform.sh will also generate domain for every active environment.
-In those cases, `{default}` will be replaced by
-`[branch]-[project-id].[region].platform.sh`. For example, a
-project with id `mswy7hzcuhcjw` on a Git branch called `refactorcss` hosted
-in the `us` region, we will get:
-`http://www---refactorcss-mswy7hzcuhcjw.us.platform.sh/` and
+Platform.sh will also generate for every active environment urls that allow you
+to test that environment, here `{default}` will be replaced with
+`[branch]-[project-id].[region].platform.sh` so for a project with id
+`mswy7hzcuhcjw` on a branch called `refactorcss` hosted in the `us` cluser we
+will get: `http://www---refactorcss-mswy7hzcuhcjw.us.platform.sh/` and
 `https://refactorcss-mswy7hzcuhcjw.us.platform.sh/blog`
 
-> **note**
-> Platform.sh supports running multiple applications per environment.
-> The `.platform/routes.yaml` file defines how to route requests to
-> different applications.
+> **note** Platform.sh also supports multiple applications per
+> project. Each project has single `routes.yaml` file that defines
+> which request will be routed to which application.
 
 ## Route configuration
-
-Each route can be configured separately. It has the following properties
+Each route can be configured separately its has the following properties
 
 * `type` can be:
   * `upstream` serves an application
     * It will then also have an `upstream` property which will be the name of
-      the application (as defined in `.platform.app.yaml`),
-      followed by ":http" (see examples below).
+    the application (as defined in `.platform.app.yaml`) followed by ":http" (see
+     examples below).
   * `redirect` redirects to another route
-    * It will then be followed by a `to` property, this defines a HTTP 301
-      redirect to any URL or another route (see examples below).
-* `cache` controls [caching behavior of the route](cache.html).
-* `ssi` controls whether Server Side Includes are enabled.
-  For more information: see [SSI](ssi.html).
-* `redirects` controls [redirect rules](redirects.html) associated with the
-  route.
+    * It will then be followed by `to` property, this is an HTTP redirection to
+    another route that will be identified by its template (see examples below).
+* `cache` controls [caching for the route](cache.html).
+* `ssi` controls whether Server Side Includes are enabled. For more information: see [SSI](ssi.html).
+* `redirects` controls [redirect rules](redirects.html) associated with the route.
 
-> **note**
-> For the moment the upstream is always of this form, ending with
-> ":http". In the future, Platform.sh will support multiple endpoints per
+> **note** for the moment the upstream is always of this form, ending with
+> ":http" in the  future Platform.sh will support multiple endpoints per
 > application.
 
 ## Routes examples
-
-Here is an example of a `.platform/routes.yaml` file:
-
+Here is an example of a `routes.yaml` file:
 ```yaml
 "http://{default}/":
   type: upstream
-  upstream: "app:http"
+  upstream: "frontend:http"
 "http://www.{default}/":
   type: redirect
   to: "http://{default}/"
 ```
+In this example we will route both the naked domain and the www subdomain to an
+application we called "frontend", the www subdomain being redirected to the
+naked domain. We aren't handling any HTTPS requests here.
 
-In this example, we will route both the naked domain and the www subdomain to an
-application we called "app", the www subdomain being redirected to the
-naked domain. Note, we also generate HTTPS routes automatically using the
-configuration of each HTTP route.
-
-> **note**
-> In case of only having HTTPS routes defined in `.platform/routes.yaml`,
-> we would generate HTTP routes that reply HTTP 301 redirect
-> to the corresponding HTTPS route.
-
-In the following example, we are not redirecting from the www subdomain to the
-naked domain but serving from both:
+In the following example we are not redirecting from the www to the naked domain
+but serving from both:
 
 ```yaml
 "http://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "php:http"
 
 "http://www.{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "php:http"
 ```
 
-The server in the former example will respond directly to a request in the form
-`http://example.com/hello`. And, it will issue a HTTP 301 redirect from
-`http://www.example.com/foo/bar` to `http://example.com/foo/bar`, which is not
-the case in the latter example.
+The difference between the two previous examples is that for the first one the
+server will respond directly to a request of the form `http://example.com/hello`,
+but it will issue a 301 redirect for `http://www.example.com/foo_bar` (to
+`http://example.com/foo_bar`).
 
-Here is an example of using wildcard configuration (see details on wildcard
-routes in later section):
+And here is an example wildcard configuration (see below for details on wildcard
+routes):
 
 ```yaml
 "http://*.{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "php:http"
 ```
 
-You can see the [Configuring Multiple Applications](platform-app-yaml-multi-app.md)
-section for a detailed view on how to define routes that work with
-**multiple applications in the same project**. Also, look at the
-[redirects](redirects.md) section for details on how you can set up complex
-redirection rules including **partial redirects**.
+You can see the [Configuring Multiple
+Applications](platform-app-yaml-multi-app.md) section
+for a  detailed view of how this works with **multiple applications in the same
+project**.
+
+Look at the **[redirects](redirects.md)** section
+for even more details on how you can set up complex redirection rules including
+**partial redirects**.
+
+
 
 ```yaml
 http://www.{default}/:
@@ -126,7 +119,6 @@ http://www.{default}/:
 http://{default}/:
   to: https://{default}/
   type: redirect
-
 https://{default}/:
   cache:
     cookies:
@@ -139,61 +131,55 @@ https://{default}/:
   ssi:
     enabled: false
   type: upstream
-  upstream: app:http
+  upstream: php:http
 ```
-
 ## Configuring routes on the Web Interface
-
-For your convenience, routes can also be configured using the web interface in
-the [routes section](../overview/web-ui/configure-environment.html#routes)
-of the environment settings.
+For your convenience routes can also be configured using the web interface in
+the [routes section ](../overview/web-ui/configure-environment.html#routes) of the
+environment settings .
 
 ## CLI Access
-
-You can get a list of the configured routes of an environment by running
-`platform  environment:routes`.
+You can get a list of the configured routes for an environment by running
+`$ platform  environment:routes`
 
 ![Platform Routes Cli](/images/platform-routes-cli.png)
 
 ## Wildcard routes
-
 Platform.sh supports wildcard routes, so you can map multiple subdomains to the
 same application. This works both for redirect and upstream routes. You can
 simply prefix the route with a star (`*`), for example `*.example.com`, and
-HTTP request to www.example.com, blog.example.com, us.example.com will all get
-routed to the same endpoint.
+www.example.com, blog.example.com, us.example.com will all get routed to the
+same endpoint.
 
-For your master environment, this would function as a catch-all domain.
+For your live environment this would function as a catch-all domain.
 
-For development environments, we will also be able to handle this. Here is how:
+For environments that are not mapped to a domain (basically anything other than
+a live master) we will also be able to handle this. Here is how:
 
-Let's say we have a project on the EU cluster whose id is "vmwklxcpbi6zq" and
+Let's imagine we have a project on the EU cluster whose id is vmwklxcpbi6zq and
 we created a branch called "add-theme". Platform.sh will automatically be able
 to route the url `http://add-theme-vmwklxcpbi6zq.eu.platform.sh/` to this
 environment. If, for example, we also defined a `http://www.{default}/` route,
 you could visit the following url to see
 `http://www---add-theme-vmwklxcpbi6zq.eu.platform.sh/` the same environment.
 
-> **note**
-> Triple dash (`---`) is used as a separator for the subdomain in development
-> environment. It replaces the dot (`.`).
+> **note** notice the triple dash (`---`) we use as a separator for the subdomain.
+> This is what replaces the dot (`.`).
 
 With a wildcard route this means that you could put anything before the triple
 dashes. In our case if we have a `http://*.{default}/` route, both
 `http://foo---add-theme-vmwklxcpbi6zq.eu.platform.sh/` and
 `http://bar---add-theme-vmwklxcpbi6zq.eu.platform.sh/` would work just fine.
 
-If you examine the routes of your application (by running
-`echo $PLATFORM_ROUTES | base64 --decode | json_pp` inside your environment),
-you will see a route such as
-`https://*---add-theme-vmwklxcpbi6zq.eu.platform.sh/`.
+If you examine the routes of your application (for example by running
+`echo $PLATFORM_ROUTES | base64 --decode | json_pp` in an SSH session on your environment).
+You will see a route such as `https://*---add-theme-vmwklxcpbi6zq.eu.platform.sh/`
 
 [You can find detailed information about caching here](cache.html).
 
-## WebSocket routes
+##WebSocket routes
 
-To use WebSocket on a route, `cache` must be disabled.
-WebSocket is incompatible with buffering which is required for caching.
+To use WebSocket on a route, `cache` must be disabled. WebSocket is incompatible with buffering which is required for cache.
 Here is an example to define a route for serving WebSocket:
 
 ```yaml
