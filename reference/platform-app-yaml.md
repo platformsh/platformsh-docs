@@ -10,33 +10,33 @@ Here's an example of a minimalist `.platform.app.yaml` file for PHP:
 
 ```yaml
 # The name of this app. Must be unique within a project.
-name: app
+name: 'app'
 
 # The type key specifies the language and version for your application.
-type: php:7.0
+type: 'php:7.0'
 
 # On PHP, there are multiple build flavors available. Pretty much everyone except
 # Drupal 7 users will want the composer flavor.
 build:
-  flavor: composer
+  flavor: 'composer'
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
-    database: "mysqldb:mysql"
+    database: 'mysqldb:mysql'
 
 # The configuration of app when it is exposed to the web.
 web:
     locations:
-        "/":
+        '/':
             # The public directory of the app, relative to its root.
-            root: "web"
+            root: 'web'
             # The front-controller script to send non-static requests to.
-            passthru: "/app.php"
+            passthru: '/app.php'
         # Allow uploaded files to be served, but do not run scripts.
-        "/files"
+        '/files'
             scripts: false
             allow: true
 
@@ -45,7 +45,7 @@ disk: 2048
 
 # The mounts that will be performed when the package is deployed.
 mounts:
-    "/app/web/files": "shared:files/cache"
+    '/app/web/files': 'shared:files/cache'
 
 
 # The hooks that will be performed when the package is deployed.
