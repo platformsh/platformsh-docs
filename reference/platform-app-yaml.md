@@ -36,16 +36,19 @@ web:
             # The front-controller script to send non-static requests to.
             passthru: '/app.php'
         # Allow uploaded files to be served, but do not run scripts.
-        '/files'
+        # Missing files get mapped to the front controller above.
+        '/files':
+            root: 'web/files'
             scripts: false
             allow: true
+            passthru: '/app.php'
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048
 
 # The mounts that will be performed when the package is deployed.
 mounts:
-    '/app/web/files': 'shared:files/cache'
+    '/app/web/files': 'shared:files/files'
 
 
 # The hooks that will be performed when the package is deployed.
