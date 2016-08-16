@@ -6,7 +6,7 @@ You control your application and the way it will be built and deployed on Platfo
 via a single configuration file `.platform.app.yaml` located at the root of your application
 folder inside your Git repository.
 
-Here'sa n example of a minimalist `.platform.app.yaml` file for PHP:
+Here's an example of a minimalist `.platform.app.yaml` file for PHP:
 
 ```yaml
 # The name of this app. Must be unique within a project.
