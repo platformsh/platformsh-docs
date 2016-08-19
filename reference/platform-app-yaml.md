@@ -6,48 +6,61 @@ You control your application and the way it will be built and deployed on Platfo
 via a single configuration file `.platform.app.yaml` located at the root of your application
 folder inside your Git repository.
 
-Here is an example of a `.platform.app.yaml` file for Drupal:
+Here's an example of a minimalist `.platform.app.yaml` file for PHP:
 
-    # The unique identifier of the application.
-    name: front
-    # The language that will run your application.
-    type: php:5.6
-    # The way to build your application.
-    build:
-        flavor: drupal
-    # The way services are mapped within your application.
-    relationships:
-        database: "mysql:mysql"
-        solr: "solr:solr"
-        redis: "redis:redis"
-    # The way your application is exposed to the web.
-    web:
-        locations:
-            "/":
-                root: "public"
-                expires: -1
-                passthru: "/index.php"
-                index:
-                    - index.php
-                allow: true
-    # The size of the persistent disk size of your application in MB.
-    disk: 2048
-    # The volumes that are mounted under a writable shared resource.
-    mounts:
-        "/public/sites/default/files": "shared:files/files"
-        "/tmp": "shared:files/tmp"
-        "/private": "shared:files/private"
-    # The shell commands to run during the build or deployment process.
-    hooks:
-        # We run deploy hook after your application has been deployed and started.
-        deploy: |
-            cd public
-            drush -y updatedb
-    # The processes that are triggered on a schedule.
-    crons:
-        drupal:
-            spec: "*/20 * * * *"
-            cmd: "cd public ; drush core-cron"
+```yaml
+# The name of this app. Must be unique within a project.
+name: 'app'
+
+# The type key specifies the language and version for your application.
+type: 'php:7.0'
+
+# On PHP, there are multiple build flavors available. Pretty much everyone except
+# Drupal 7 users will want the composer flavor.
+build:
+  flavor: 'composer'
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: 'mysqldb:mysql'
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        '/':
+            # The public directory of the app, relative to its root.
+            root: 'web'
+            # The front-controller script to send non-static requests to.
+            passthru: '/app.php'
+        # Allow uploaded files to be served, but do not run scripts.
+        # Missing files get mapped to the front controller above.
+        '/files':
+            root: 'web/files'
+            scripts: false
+            allow: true
+            passthru: '/app.php'
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The mounts that will be performed when the package is deployed. The mount
+# path is relative to the application root, where this file lives.
+mounts:
+    '/web/files': 'shared:files/files'
+
+
+# The hooks that will be performed when the package is deployed.
+hooks:
+    # Build hooks can modify the application files on disk, but not access any services like databases.
+    build: |
+      rm web/app_dev.php
+    # Deploy hooks can access services, but the file system is now read-only.
+    deploy: |
+      app/console --env=prod cache:clear
+```
 
 > **Note**
 > This configuration file is specific to one application. If you have multiple
@@ -138,14 +151,12 @@ variable. The right-hand side is in the form
 > In the first  example above you could very well have something
 > like `mycache: "arediscache:redis"` instead of `redis: "redis:redis"` (if in
 > `services.yaml` you named your a service of type `redis` with `arediscache`.
-> more often than not in our example we simply call a redis service "redis" a
-> mysql one "mysql" etc..
 
 *Example*
 
     relationships:
-        database: "mysql:mysql"
-        database2: "mysql2:mysql"
+        database: "mysqldb:mysql"
+        database2: "mysqldb2:mysql"
         cache: "arediscache:redis"
         search: "searchengine:solr"
 
