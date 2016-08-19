@@ -3,7 +3,7 @@
 Transactional data storage. Based on MariaDB, supporting the XtraDB storage
 engine (equivalent to MySQL with InnoDB).
 
-Access to MariaDB is only possible from the PHP containers, thus
+Access to MariaDB is only possible from your application container, thus
 username/password based authentication is not used.
 
 To access the MariaDB database directly, ssh into the web server and use the
