@@ -48,7 +48,7 @@ disk: 2048
 
 # The mounts that will be performed when the package is deployed.
 mounts:
-    '/app/web/files': 'shared:files/files'
+    '/web/files': 'shared:files/files'
 
 
 # The hooks that will be performed when the package is deployed.
