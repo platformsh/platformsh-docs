@@ -72,6 +72,9 @@ As we are aiming to always provide you more control and flexibility on how to de
 
 The `web` key is now a set of `locations` where you can define very precisely the behavior of each URL prefix.
 
+Note, we no longer move your application from "/" to "public/" automatically if the new format is adopted.
+If you are using Drupal, move all of your Drupal files into "public/" in the Git repository.
+
 Old format:
 
     web:
