@@ -46,7 +46,8 @@ web:
 # The size of the persistent disk of the application (in MB).
 disk: 2048
 
-# The mounts that will be performed when the package is deployed.
+# The mounts that will be performed when the package is deployed. The mount
+# path is relative to the application root, where this file lives.
 mounts:
     '/web/files': 'shared:files/files'
 
