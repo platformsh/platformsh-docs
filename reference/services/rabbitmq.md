@@ -106,7 +106,7 @@ dependencies:
     amqp-utils: "0.5.1"
 ```
 
-Then, when you SSH into your PHP container, you can simply type any ``amqp-``
+Then, when you SSH into your container, you can simply type any ``amqp-``
 command available to manage your queues.
 
 ## From your PHP application
