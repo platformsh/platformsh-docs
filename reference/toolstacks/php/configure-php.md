@@ -159,14 +159,17 @@ runtime:
 
 ### Measuring PHP worker memory usage
 
-To see how much memory your PHP worker processes are using, you can open an [SSH session](using/use-SSH) and run `ps -eF | grep 'RSS\s\|php-fpm\W\+pool web'`.  The value under the `RSS` column is the size being used by an active request.
+To see how much memory your PHP worker processes are using, you can open an
+[SSH session](using/use-SSH) and look at the PHP access log:
 
-It's generally advisable to set the request memory to a value somewhat higher than the typical request usage in order to allow for variation between requests.
+    less /var/log/php.access.log
 
-> **note**
-> The sizing hints only influence the number of PHP workers that will be available.
-> It has no impact on the maximum allowed memory usage of a particular request.
-> For that, set the `memory_limit` via a custom `php.ini` file.
+In the fifth column, you'll see the peak memory usage that occurred while each
+request was handled. The peak usage will probably vary between requests, but in
+order to avoid the severe performance costs that come from swapping, your size
+hint should be somewhere between the average and worst case memory usages that
+you observe.
+
 
 ## Custom php.ini
 
