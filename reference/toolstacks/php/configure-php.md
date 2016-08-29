@@ -146,7 +146,7 @@ workers = max|---------------------------------, 2|
 
 The default assumptions are:
 
- * `40 MB` for the average per-request memory
+ * `45 MB` for the average per-request memory
  * `70 MB` for the reserved memory
 
 You can change them by using the `runtime.sizing_hints.reserved_memory` and `runtime.sizing_hints.request_memory` in your `.platform.app.yaml`. For example, if your application consumes on average `110 MB` of memory for a request (don't feel bad, we have seen many Drupal websites that do), use:
