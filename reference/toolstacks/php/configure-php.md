@@ -121,6 +121,56 @@ This is the complete list of extensions that can be enabled:
 > see the up-to-date complete list of extensions after you SSH into
 > your environment. For PHP 7, use `ls /etc/php/mods-available`.
 
+
+## PHP Worker sizing hints
+
+Platform.sh uses a heuristic to automatically set the number of workers of a PHP runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more or less memory.  In most cases, however, you should not need to change them.
+
+### The heuristic
+
+The heuristic is based on three input parameters:
+
+ * The memory available for the container, which depends on the size of the container (`S`, `M`, `L`, `XL`, `XXL`),
+ * The memory that an average request is expected to require,
+ * The memory that should be reserved for things that are not specific to a request (memory for `nginx`, the op-code cache, some OS page cache, etc.)
+
+The number of workers is calculated as:
+
+```
+             / ContainerMemory - ReservedMemory   \
+workers = max|---------------------------------, 2|
+             \           RequestMemory            /
+```
+
+### Defaults
+
+The default assumptions are:
+
+ * `45 MB` for the average per-request memory
+ * `70 MB` for the reserved memory
+
+You can change them by using the `runtime.sizing_hints.reserved_memory` and `runtime.sizing_hints.request_memory` in your `.platform.app.yaml`. For example, if your application consumes on average `110 MB` of memory for a request (don't feel bad, we have seen many Drupal websites that do), use:
+
+```
+runtime:
+    sizing_hints:
+        request_memory: 110
+```
+
+### Measuring PHP worker memory usage
+
+To see how much memory your PHP worker processes are using, you can open an
+[SSH session](using/use-SSH) and look at the PHP access log:
+
+    less /var/log/php.access.log
+
+In the fifth column, you'll see the peak memory usage that occurred while each
+request was handled. The peak usage will probably vary between requests, but in
+order to avoid the severe performance costs that come from swapping, your size
+hint should be somewhere between the average and worst case memory usages that
+you observe.
+
+
 ## Custom php.ini
 
 You can also create and push a `php.ini` file that will be appended to

@@ -394,6 +394,13 @@ It has a few subkeys which are:
 
 The minimum interval between cron runs is 5 minutes, even if specified as less.
 
+### Runtime
+
+The `.platform.app.yaml` file also supports a `runtime` key, which allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate toolstack documentation.
+
+* (PHP)[/user_guide/reference/toolstacks/php/configure-php.html]
+
+
 ## Top level document roots
 
 Platform.sh requires that the document root not be at the root of the project.  It is important for security that
