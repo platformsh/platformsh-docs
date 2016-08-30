@@ -64,5 +64,6 @@
     * [FAQ](reference/toolstacks/php/symfony/faq.md)
 * [Node.js](reference/toolstacks/nodejs/README.md)
 * [Python beta](reference/toolstacks/python/README.md)
+* [Ruby beta](reference/toolstacks/ruby/README.md)
 * [API](reference/rest-api.md)
 * [FAQ](reference/faq/known-issues.md)
