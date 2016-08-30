@@ -1,6 +1,6 @@
 # Ruby
 
-Platform.sh supports deploying any Ruby application, your application can use
+Platform.sh supports deploying any Ruby application. Your application can use
 any Ruby application server such as Unicorn or Puma and deploying a Rails or
 a Sinatra app is very straight forward.
 
@@ -14,7 +14,7 @@ In this example, we use Unicorn to run our Ruby application.
 Configure the `.platform.app.yaml` file with a few key settings
 as listed below, a complete example is included at the end of this section.
 
-1. Specify the `type` as `ruby:2.3` (this is currently the only supported version).
+1. Specify the `type` as `ruby:2.3`.
 2. Build your application with the build hook.
 
 Assuming you have your  dependencies stored in the `Gemfile` at the root of your 
@@ -42,14 +42,14 @@ web:
 ```
 
 This assumes you have Unicorn as a dependency in your Gemfile
-   
+
  ```ruby
 # Use Unicorn as the app server
 group :production do 
   gem 'unicorn'
 end
 ```
-   
+
 and that you have a rackup file `config.ru` at the root of your
 repository, for example for a rails application you would put:
 
@@ -98,17 +98,13 @@ too.
 "http://{default}/":
     type: upstream
     # the first part should be your project name
-    upstream: "myrubyapp:http"
+    upstream: "app:http"
 ```
 
 Here is the complete `.platform.app.yaml` file:
 
 ```yaml
-{% include "git+https://github.com/platformsh/platformsh-example-ruby.git/.platform.app.yaml#sinatra" %}
-```
-
-```yaml
-name: myrubyapp
+name: 'app'
 type: "ruby:2.3"
 
 web:
@@ -155,7 +151,7 @@ And, link to the services using `.platform.app.yaml`:
 
 ```yaml
 relationships:
-    database: "mysql:mysql"
+    database: "mysqldb:mysql"
 ```
 
 By using the following ruby function calls, you can obtain the
