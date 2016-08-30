@@ -82,6 +82,7 @@ We do not allow changing the system timezone of your application, though you can
 
 * PHP runtime - You can change the timezone by providing a [custom php.ini](https://docs.platform.sh/user_guide/reference/toolstacks/php/configure-php.html#custom-php-ini).
 * Node.js runtime - You can change the timezone by starting the server with `env TZ='<timezone>' node server.js`.
+* Python runtime - You can change the timezone by starting the server with `env TZ='<timezone>' python server.py`.
 * MySQL - You can change the per-connection timezone by running SQL `SET time_zone = <timezone>;`.
 * PostgreSQL - You can change the timezone of current session by running SQL `SET TIME ZONE <timezone>;`.
 

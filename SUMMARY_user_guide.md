@@ -63,5 +63,6 @@
     * [Migrate an existing site](reference/toolstacks/php/symfony/migrate-existing-site.md)
     * [FAQ](reference/toolstacks/php/symfony/faq.md)
 * [Node.js](reference/toolstacks/nodejs/README.md)
+* [Python beta](reference/toolstacks/python/README.md)
 * [API](reference/rest-api.md)
 * [FAQ](reference/faq/known-issues.md)

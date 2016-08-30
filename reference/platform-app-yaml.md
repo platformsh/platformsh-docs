@@ -103,6 +103,7 @@ The `type` can be:
 
 * `php`
 * `nodejs`
+* `python`
 * `hhvm`
 
 **Example**
