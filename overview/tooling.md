@@ -11,6 +11,8 @@ of Platform.sh.
 
 A developer could use Platform.sh without ever having to open the Web Interface.
 
+Read more about the [Platform.sh CLI](../overview/cli/index.html).
+
 ## Clean and Lean Web Interface
 
 You can configure most aspects of Platform.sh using our simple Web Interface
