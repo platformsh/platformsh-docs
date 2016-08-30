@@ -1,6 +1,6 @@
 # Python
 
-Platform.sh supports deploying Python applications, your application can use
+Platform.sh supports deploying Python applications. Your application can use
 WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
 
 ## Supported versions
@@ -57,7 +57,7 @@ as listed below, a complete example is included at the end of this section.
 
    This configuration asks our web server to handle HTTP requests at "/static"
    to serve static files stored in `/app/static/` folder
-   while everything else are forwarded to your application server.
+   while everything else is forwarded to your application server.
 
 5. Create any Read/Write mounts. The root file system is read only.
    You must explicitly describe writable mounts.
@@ -71,7 +71,7 @@ as listed below, a complete example is included at the end of this section.
    This setting allows your application writing files to `/app/tmp` and
    have logs stored in `/app/logs`.
 
-Then, setup the routes to your application in `.platform/routes.yaml`.
+Then, set up the routes to your application in `.platform/routes.yaml`.
 
    ```yaml
    "http://{default}/":
@@ -114,10 +114,10 @@ mounts:
 disk: 512
 ```
 
-## Using Python 3.5+ asyncio module
+## Using the asyncio module
 
 The above Gunicorn based WSGI example can be modified to
-use Python 3.5+ asyncio module.
+use the Python 3.5+ asyncio module.
 
 1. Change the `type` to `python:3.5`.
 2. Change the start command to use asyncio.
@@ -145,7 +145,7 @@ And, link to the services using `.platform.app.yaml`:
 
 ```yaml
 relationships:
-    database: "mysql:mysql"
+    database: "mysqldb:mysql"
 ```
 
 By using the following Python function calls, you can obtain the
