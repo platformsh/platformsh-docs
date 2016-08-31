@@ -39,3 +39,19 @@
 * [Protective block](development/protective-block.md)
 * [Going live](development/going-live.md)
 
+## Administration
+
+* [Users](administration/users.md)
+* [Snapshot and restore](administration/snapshot-and-restore.md)
+* [External integrations](administration/integrations.md)
+  * [Bitbucket](administration/integrations/bitbucket.md)
+  * [blackfire](administration/integrations/blackfire.md)
+  * [GitHub](administration/integrations/github.md)
+  * [HipChat](administration/integrations/hipchat.md)
+  * [Web hooks](administration/integrations/webhooks.md)
+* [Web interface](administration/web.md)
+  * [Project configuration](administration/web/configure-project.md)
+  * [Environments](administration/web/environments.md)
+  * [Configure environments (tmp)](administration/web/configure-environment.md)
+  * [Email](administration/web/email.md)
+
