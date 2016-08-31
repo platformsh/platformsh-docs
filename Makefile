@@ -1,14 +1,10 @@
-GITBOOK_VERSION = 3.2
+# This file contains build steps that need to be run offline, not as part of
+# The Platform.sh build process.
 
-all: gitbook-fetch
+all: graphs
 
-# Download Gitbook itself and any plugins specified.
-gitbook-fetch:
-	gitbook install
-	gitbook fetch $(GITBOOK_VERSION)
+graphs: build-pipeline
 
-
-build: gitbook-fetch
-	gitbook build
-
+build-pipeline:
+	dot -Tsvg -osrc/images/build-pipeline.svg src/images/build-pipeline.dot
 
