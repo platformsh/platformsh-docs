@@ -13,7 +13,7 @@ build:
 web:
     locations:
         "/":
-            root: "_books"
+            root: "_book"
             passthru: "/index.php"
             index:
                 - "index.html"
@@ -38,4 +38,5 @@ dependencies:
 # The hooks that will be performed when the package is deployed.
 hooks:
     build: |
-      ./build_all
+      make build
+      #./build_all

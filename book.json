@@ -1,0 +1,10 @@
+{
+  "title": "Platform.sh Documentation",
+  "root": "src",
+  "plugins": [
+    "anchors",
+    "reveal",
+    "collapsible-menu",
+    "codesnippet"
+  ]
+}
