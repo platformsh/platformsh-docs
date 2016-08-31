@@ -27,3 +27,15 @@
 * [App Containers](configuration/app-containers.md)
   * [Multiple Apps](configuration/app/multi-app.md)
   * [Upgrading](configuration/app/upgrading.md)
+
+## Development
+
+* [Local development](development/local.md)
+* [Environment variables](development/environment-variables.md)
+* [Private repositories](development/private-repository.md)
+* [Git submodules](development/submodules.md)
+* [Using SSH](development/ssh.md)
+* [Public IPs](development/public-ips.md)
+* [Protective block](development/protective-block.md)
+* [Going live](development/going-live.md)
+
