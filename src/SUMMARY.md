@@ -28,6 +28,13 @@
   * [Multiple Apps](configuration/app/multi-app.md)
   * [Upgrading](configuration/app/upgrading.md)
 
+## Languages
+
+* [Node.js](languages/nodejs.md)
+* [PHP](languages/php.md)
+* [Python (beta)](languages/python.md)
+* [Ruby (beta)](languages/ruby.md)
+
 ## Development
 
 * [Local development](development/local.md)
