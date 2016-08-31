@@ -4,6 +4,8 @@
 * [How we think](overview/how-we-think.md)
 * [How it looks](overview/how-it-looks.md)
 * [How it works](overview/how-it-works.md)
+* [Tools](overview/tools.md)
+* [Platform CLI](overview/cli.md)
 * [Pricing](overview/pricing.md)
 * [Getting help](overview/getting-help.md)
 
