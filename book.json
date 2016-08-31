@@ -1,6 +1,7 @@
 {
   "title": "Platform.sh Documentation",
   "root": "src",
+  "gitbook": ">=3.2",
   "plugins": [
     "anchors",
     "reveal",
