@@ -62,3 +62,22 @@
   * [Configure environments (tmp)](administration/web/configure-environment.md)
   * [Email](administration/web/email.md)
 
+## Featured frameworks
+
+* [Drupal 7](frameworks/drupal7.md)
+  * [Developing with Drupal](frameworks/drupal7/developing-with-drupal.md)
+  * [Migrating](frameworks/drupal7/migrating.md)
+  * [Customizing settings.php](frameworks/drupal7/customizing-settings-php.md)
+  * [Drush](frameworks/drupal7/customizing-settings-php.md)
+  * [Redis](frameworks/drupal7/redis.md)
+  * [Solr](frameworks/drupal7/solr.md)
+  * [FAQ](frameworks/drupal7/faq.md)
+* [Drupal 8](frameworks/drupal8.md)
+  * [Developing with Drupal](frameworks/drupal8/developing-with-drupal.md)
+  * [Drush](frameworks/drupal8/drush.md)
+  * [Redis](frameworks/drupal8/redis.md)
+  * [Solr](frameworks/drupal8/solr.md)
+  * [FAQ](frameworks/drupal8/faq.md)
+* [Symfony](frameworks/symfony.md)
+  * [Migrating](frameworks/symfony/migrating.md)
+  * [FAQ](frameworks/symfony/faq.md)
