@@ -8,6 +8,8 @@ a Sinatra app is very straight forward.
 
 * 2.3
 
+>We currently only support the MRI.
+
 ## Unicorn based configuration
 
 In this example, we use Unicorn to run our Ruby application.
