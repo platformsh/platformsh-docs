@@ -6,6 +6,22 @@
     "anchors",
     "reveal",
     "collapsible-menu",
-    "codesnippet"
-  ]
+    "codesnippet",
+    "edit-link"
+  ],
+  "pluginsConfig": {
+    "edit-link": {
+      "base": "https://github.com/platformsh/platformsh-docs/edit/master",
+      "label": "Edit This Page"
+    }
+  },
+  "links": {
+    "sharing": {
+      "google": null,
+      "facebook": null,
+      "twitter": null,
+      "weibo": null,
+      "all": null
+    }
+  }
 }
