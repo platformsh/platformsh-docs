@@ -8,7 +8,7 @@ a Sinatra app is very straight forward.
 
 * 2.3
 
-## Unicorn based configuration
+## Unicorn based Rails configuration
 
 In this example, we use Unicorn to run our Ruby application.
 Configure the `.platform.app.yaml` file with a few key settings
