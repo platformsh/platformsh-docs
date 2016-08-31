@@ -38,5 +38,5 @@ dependencies:
 # The hooks that will be performed when the package is deployed.
 hooks:
     build: |
-      make build
-      #./build_all
+      gitbook install
+      gitbook build
