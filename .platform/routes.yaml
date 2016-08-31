@@ -1,10 +1,12 @@
 http://www.{default}/:
-  to: https://{default}/
   type: redirect
+  to: https://{default}/
 http://{default}/:
-  to: https://{default}/
   type: redirect
+  to: https://{default}/
 https://{default}/:
+  type: upstream
+  upstream: app:http
   cache:
     cookies:
     - '*'
@@ -15,5 +17,3 @@ https://{default}/:
     - Accept-Language
   ssi:
     enabled: false
-  type: upstream
-  upstream: php:http
