@@ -185,8 +185,7 @@ route HTTP traffic to the application service running there.
 
 > **note**
 > The upstream virtually always ends in `':http`, since Platform.sh only supports
-> HTTP-based applications exposed to the outside world.
-> Learn more on: [routes.yaml](/reference/routes.yaml.md)
+> HTTP-based applications exposed to the outside world. See the [Routing](/configuration/routing.md) section
 
 ### Services
 
@@ -230,8 +229,7 @@ The `commondb` comes from the name we put in `services.yaml`.
 
 The `:postgresql` suffix, which is required, is there because in the future
 Platform.sh will support multiple endpoints per service (for services that
-support multiple protocols).
-Learn more on: [services.yaml](/reference/routes.yaml.md)
+support multiple protocols).  See the [Services](/configuration/services.md) section.
 
 
 > **note**

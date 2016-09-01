@@ -1,13 +1,12 @@
 # Customizing settings.php
 
 For applications using the `drupal` build flavor (those based on our [Drupal 7
-example](https://github.com/platformsh/platformsh-example-drupal/tree/7.x)),
-Platform.sh automatically generates a `settings.local.php` file. This allows the Drupal site to be connected to MySQL without any additional configuration.
+example](https://github.com/platformsh/platformsh-example-drupal7)), Platform.sh automatically generates a `settings.local.php` file. This allows the Drupal site to be connected to MySQL without any additional configuration.
 
 Platform.sh also generates a default `settings.php` file if there isn't one already (again, only when using the `drupal` build flavor).
 
 You can commit your own `settings.php` file to your Git repository, at the root
-of your application. Make sure that your `settings.php` requires `settings.local.php`, like the default:
+of your application. Make sure that your `settings.php` requires `settings.local.php`, like so:
 
 ```php
 <?php

@@ -102,50 +102,9 @@ sites/
   default/
 ```
 
-## Configure your Drupal application
+## Configuring Platform.sh for Drupal
 
-Platform.sh uses configuration files to determine what toolstack you
-want to deploy and how you want to deploy it.
+The ideal `.platform.app.yaml` file will vary from project project, and you are free to customize yours as needed.  A recommended baseline Drupal 7 configuration is listed below, and can also be found in our [Drupal 7 template project](https://github.com/platformsh/platformsh-example-drupal7).
 
-Add a `.platform.app.yaml` at the root of your drupal folder.
+{% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-example-symfony/2.8/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
 
-Here is an example of a Drupal configuration:
-```yaml
-# .platform.app.yaml
-name: app
-
-type: php:5.6
-
-build:
-    flavor: drupal
-
-relationships:
-    database: "mysql:mysql"
-
-web:
-    locations:
-        "/":
-            root: "web"
-            passthru: "/index.php"
-
-disk: 2048
-
-mounts:
-    "/public/sites/default/files": "shared:files/files"
-    "/tmp": "shared:files/tmp"
-    "/private": "shared:files/private"
-
-hooks:
-    deploy: |
-      cd public
-      drush -y updatedb
-
-crons:
-    drupal:
-        spec: "*/20 * * * *"
-        cmd: "cd public ; drush core-cron"
-```
-
-You can find some working example on GitHub:
-* [Drupal 7](https://github.com/platformsh/platformsh-example-drupal/tree/7.x)
-* [Drupal 8](https://github.com/platformsh/platformsh-example-drupal/tree/8.x)

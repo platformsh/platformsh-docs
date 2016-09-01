@@ -10,9 +10,7 @@ that you don't need to subscribe to an external service to get a cache or
 a search engine. And that those services are managed. When you back up your
 project, all of the services are backed-up.
 
-See the list of all [available services](../overview/services.md).
-
-Services are configured through the [.platform/services.yaml](reference/services-yaml.md)
+Services are configured through the `.platform/services.yaml`
 file you will need to commit to your git repository. This section describes
 specifics you might want to know about for each service.
 
@@ -27,7 +25,7 @@ Here is an example of a `services.yaml` file:
 
 ```yaml
 database1:
-  type: mysql:5.5
+  type: mysql:10.0
   disk: 2048
 
 database2:
@@ -39,8 +37,6 @@ database2:
 
 The `name` you want to give to your service. You are free to name each service as you wish
 (*lowercase alphanumeric only*).
-
-Usually you will see in our examples that we simply call the mysql: `mysql`. Note that you can have multiple instances of each service.
 
 **WARNING**: Because we support multiple services of the same type (you can have 3 different MySQL instances), changing the name of the service in ``services.yaml`` will be interpreted as destroying the existing service and creating a new one. This will make **all the data in that service disappear forever**. Remember to always snapshot your environment in which you have important data before modifying this file.
 
@@ -69,4 +65,4 @@ For example, the current default storage amount per project is 5GB (meaning 5120
 
 ## Using the services
 
-In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the `.platform.app.yaml` file which configures the *relationships* between applications and services, [documented here](/user_guide/reference/platform-app-yaml.html).
+In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml](/configuration/app-containers.md) file which configures the *relationships* between applications and services.

@@ -80,7 +80,7 @@ Run `platform list` to see the other commands provided by the CLI.
 
 > **seealso**
 >
-> * [CLI](../overview/cli)
+> * [CLI](/overview/cli.md)
 > * [Installation instructions on GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md).
 
 ## SSH tunneling

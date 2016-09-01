@@ -108,16 +108,16 @@ routes](#wildcard-routes)):
     upstream: "app:http"
 ```
 
-You can see the [Configuring Multiple Applications](platform-app-yaml-multi-app.md)
+You can see the [Configuring Multiple Applications](/configuration/app/multi-app.md)
 section for a detailed view on how to define routes that work with
 **multiple applications in the same project**. Also, look at the
-[redirects](redirects.md) section for details on how you can set up complex
+[redirects](/configuration/routing/redirects.md) section for details on how you can set up complex
 redirection rules including **partial redirects**.
 
 ## Configuring routes on the Web Interface
 
 Routes can also be configured using the web interface in
-the [routes section](../overview/web-ui/configure-environment.html#routes)
+the [routes section](/administration/web/configure-environment.html#routes)
 of the environment settings. If you have edited the routes via the web interface,
 you will have to `git pull` the updated `.platform/routes.yaml` file from us.
 

@@ -1,6 +1,4 @@
-# `.platform.app.yaml`
-
-## Configure your Application
+# Configure your Application
 
 You control your application and the way it will be built and deployed on Platform.sh
 via a single configuration file `.platform.app.yaml` located at the root of your application
@@ -66,8 +64,7 @@ hooks:
 > This configuration file is specific to one application. If you have multiple
 > applications inside your Git repository (i.e. a RESTful
 > web service and a front-end, or a main web site and a blog), you need
-> one `.platform.app.yaml` at the root of each application
-> [see here](/platform-app-yaml-multi-app.html).
+> one `.platform.app.yaml` at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
 
 ### Name
 
@@ -162,7 +159,7 @@ variable. The right-hand side is in the form
         search: "searchengine:solr"
 
 > **Note**
-> Read the [`services.yaml` documentation](reference/services-yaml.html)
+> See  the [Services](/configuration/services.md) documentation
 > for a full list of currently supported service types and service endpoints.
 
 ### Web
@@ -399,12 +396,13 @@ The minimum interval between cron runs is 5 minutes, even if specified as less.
 
 The `.platform.app.yaml` file also supports a `runtime` key, which allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate toolstack documentation.
 
-* (PHP)[/user_guide/reference/toolstacks/php/configure-php.html]
-
+* (PHP)[/languages/php.md]
 
 ## Top level document roots
 
 Platform.sh requires that the document root not be at the root of the project.  It is important for security that
 private file mounts not be web-accessible.
 
-* [Past Changes of the configuration format can be found here](reference/upgrade/)
+## Upgrading from previous versions of the configuration file.
+
+Although we make an effort to always maintain backward compatibility in the `.platform.app.yaml` format, we do from time to time [upgrade the file](/configuration/app/upgrading.md) and encourage you to upgrade as well. 
