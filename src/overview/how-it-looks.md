@@ -6,7 +6,19 @@ There are three types of container within your cluster: One *Router*, one or mor
 ![Service grid](/images/service-grid.png)
 
 
-All of those containers are managed by three special files in your Git repository: `.platform/routes.yaml`, `.platform/services.yaml`, and `.platform.app.yaml`.  
+All of those containers are managed by three special files in your Git repository: `.platform/routes.yaml`, `.platform/services.yaml`, and `.platform.app.yaml`.
+
+In most cases, that means your repository will look like this:
+
+```
+yourproject/
+  .git/
+  .platform/
+    services.yaml
+    routes.yaml
+  .platform.app.yaml
+  <your files here>
+```
 
 ## Router
 
@@ -18,6 +30,6 @@ Service containers are configured by the `services.yaml` file.  There may be zer
 
 ## Application
 
-There is always at least one Application container per cluster, but there may be more.  Each application container corresponds to a `.platform.app.yaml` file in the repository.  If there are 3 `.platform.app.yaml` files, there will be three Application containers.  Application containers hold the code you provide via your Git repository.  Application containers are always built off of one of the Platform.sh-provided language-specific images, such as “PHP 5.6”, “PHP 7.0”, or “Python 3.5”.
+There is always at least one Application container per cluster, but there may be more.  Each application container corresponds to a `.platform.app.yaml` file in the repository.  If there are 3 `.platform.app.yaml` files, there will be three Application containers.  Application containers hold the code you provide via your Git repository.  Application containers are always built off of one of the Platform.sh-provided language-specific images, such as “PHP 5.6”, “PHP 7.0”, or “Python 3.5”. And different application containers can be running different languages or versions.
 
 For most typical applications there is only one `.platform.app.yaml` file, which is generally placed at the repository root.
