@@ -242,7 +242,7 @@ The `disk` defines the size of the persistent disk of the
 application in MB.
 
 > **Note**
-> The minimum recommended disk size is 256MB. If you see the error `UserError: Error building the project: Disk size may not be smaller than 128MB`, increase the size to 256MB.
+> The minimum recommended disk size is 256MB. Currently, we do not support downsizing a persistent disk. The actual disk size will be the maximum that has been deployed to master at any point.
 
 
 ### Mounts
