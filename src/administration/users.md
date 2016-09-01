@@ -147,7 +147,7 @@ project.
 Will present you with an interactive wizard that will allow you to choose
 precisely what rights you want to give the new user.
 
-````bash
+```bash
 $ platform user:add
 
 Email address: alice@example.com
@@ -183,3 +183,12 @@ To give Alice the 'contributor' role on the environment 'development' you could 
 ```
 
 Use `platform list` to get the full list of commands.
+
+## Transfer ownership
+
+If you want to transfer ownership of your project to a different user,
+first invite this user as a project administrator, and then submit a
+support ticket to ask for the ownership transfer.
+
+This action will automatically transfer the subscription charges to the
+new owner.
