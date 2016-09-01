@@ -50,5 +50,13 @@ drush will then be available at vendor/bin/drush, in the exact same version on y
 example of a [Drush alias
 file](https://github.com/drush-ops/drush/blob/master/examples/example.aliases.drushrc.php).
 
-> **note**
-> The CLI generates Drush aliases for you automatically, when you run `platform get [project_id]`.
+The CLI generates Drush aliases for you automatically, when you run `platform get [project_id]`. To see the aliases that are created, run `platform drush-aliases` and you should get output similar to that below:
+
+```bash
+$ platform drush-aliases
+Aliases for My Site (tqmd2kvitnoly):
+    @my-site._local
+    @my-site.master
+    @my-site.staging
+    @my-site.sprint1
+```

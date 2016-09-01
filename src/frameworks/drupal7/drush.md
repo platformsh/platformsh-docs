@@ -38,12 +38,18 @@ And see a list of available commands.
 
 ### Create Drush aliases
 
-[Drush aliases](http://drush.readthedocs.org/en/master/usage/index.html#site-aliases) make it easy to manage your development websites. Here's an
-example of a [Drush alias
-file](https://github.com/drush-ops/drush/blob/master/examples/example.aliases.drushrc.php).
+[Drush aliases](http://drush.readthedocs.org/en/master/usage/index.html#site-aliases) make it easy to manage your development websites. Here's an example of a [Drush alias file](https://github.com/drush-ops/drush/blob/master/examples/example.aliases.drushrc.php).
 
-> **note**
-> The CLI generates Drush aliases for you automatically, when you run `platform get [project_id]`.
+The CLI generates Drush aliases for you automatically, when you run `platform get [project_id]`. To see the aliases that are created, run `platform drush-aliases` and you should get output similar to that below:
+
+```bash
+$ platform drush-aliases
+Aliases for My Site (tqmd2kvitnoly):
+    @my-site._local
+    @my-site.master
+    @my-site.staging
+    @my-site.sprint1
+```
 
 ## Use make files
 
