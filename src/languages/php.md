@@ -1,23 +1,27 @@
-# Configuring PHP
+# PHP Support
 
-## PHP version
+PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
 
-You can choose which version of PHP you want to run in your `.platform.app.yaml` file:
+Platform.sh also supports HHVM, an alternative PHP engine developed by Facebook that includes several extensions to the PHP language, collectivelly called "Hack".
 
-```yaml
-name: myphpapp
-type: php:5.6
-```
+Both are interchangeable from a configuration perspective, although code that uses Hack will only run on HHVM.
+
 
 ### Supported versions
+
+For PHP:
 
 * 5.4
 * 5.5
 * 5.6
 * 7.0
 
-> **note**
-> You can also use HHVM.
+For HHVM:
+
+* 3.9
+* 3.12
+
+To select a PHP version, specify a `type` such as `php:5.6` or `hhvm:3.9`.
 
 ## PHP extensions
 
