@@ -17,11 +17,11 @@ relationships:
 web:
     locations:
         "/":
-            root: "web"
+            root: "public"
             passthru: "/index.php"
 disk: 2048
 mounts:
-    "/web/sites/default/files": "shared:files/files"
+    "/public/sites/default/files": "shared:files/files"
     "/tmp": "shared:files/tmp"
     "/private": "shared:files/private"
 crons:
@@ -32,4 +32,4 @@ crons:
 
 In this example, we are only using the ``mysql`` service. You can use more services (redis, solr...) if you need.
 
-This example presumes that your Drupal codebase is in the "web" directory of your repository. If it's not the case, you can change the ``root`` to the proper folder where your Drupal files are located. Note that putting your Drupal webroot at the root of the repository is not supported.
+This example presumes that your Drupal codebase is in the "public" directory of your repository. If it's not the case, you can change the ``root`` to the proper folder where your Drupal files are located. Note that putting your Drupal webroot at the root of the repository is not supported.
