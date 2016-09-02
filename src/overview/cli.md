@@ -6,7 +6,7 @@ The CLI is the official tool to use and manage your Platform.sh projects directl
 
 The source code of the CLI is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
 
-Detailed information on [setting up a local development environment](/user_guide/using/set-up-local-development.html)
+Detailed information on [setting up a local development environment](/development/local.md)
 
 ## How do I get it?
 

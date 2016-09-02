@@ -5,7 +5,7 @@ live.
 
 ## 1 - Domains
 
-First step is to [add your domain](../overview/web-ui/configure-project.html#domains).
+First step is to [add your domain](/administration/web/configure-project.html#domains).
 
 You can add multiple domains to point to your project. Each domain can
 have its own SSL certificate.
@@ -34,7 +34,7 @@ need define your `routes.yaml` as follow:
 ```yaml
 "http://{default}/":
     type: upstream
-    upstream: "php:http"
+    upstream: "app:http"
 
 "http://www.{default}/":
     type: redirect
@@ -53,11 +53,11 @@ Here would be an example of your `routes.yaml` for the
 ```yaml
 "http://{default}/":
     type: upstream
-    upstream: "php:http"
+    upstream: "app:http"
 
 "http://www.{default}/":
     type: upstream
-    upstream: "php:http"
+    upstream: "app:http"
 ```
 
 > **note**
@@ -73,7 +73,7 @@ entire site with HTTPS, here is what your routes would look like:
 ```yaml
 "https://{default}/":
     type: upstream
-    upstream: "php:http"
+    upstream: "app:http"
 
 "http://{default}/":
     type: redirect
@@ -85,7 +85,7 @@ entire site with HTTPS, here is what your routes would look like:
 To configure a wildcard domain (*.mydomain.com):
 
 - Add your domain to your project (in form of mydomain.com).
-- Add a route to your master branch serving http://*.mydomain.com with the upstream php:http.
+- Add a route to your master branch serving `http://*.mydomain.com` with the upstream app:http.
 
 
 ## 3 - DNS
@@ -105,9 +105,9 @@ record for each of them. For example:
 Note: This will **not** work for an apex (or "naked") domain. In that
 case, you need to use a DNS provider that supports forwarding DNS
 queries (such as the [CNAME with ALIAS record from
-Dyn](http://dyn.com/support/record-types-standard-dns/), or the ANAME
+Dyn](https://help.dyn.com/standard-dns/), or the ANAME
 record on [DNS Made
-Easy](http://www.dnsmadeeasy.com/services/aname-records/)). Many other
+Easy](http://www.dnsmadeeasy.com/services/anamerecords/)). Many other
 providers also offer work arounds to accomplish this goal. The most common is
 to add a CNAME record for the `www` host on the domain and then use the
 DNS provider's redirection service to redirect the apex over to the
@@ -142,7 +142,7 @@ reallocate the IP address dedicated to your instance.
 Some DNS hosts provide a way to get CNAME-like functionality at the zone
 apex using a custom record type. Such records include:
 
--   CNAME at [Namecheap](http://www.namecheap.com/)
+-   CNAME at [Namecheap](https://www.namecheap.com/)
 -   ALIAS at [DNSimple](https://dnsimple.com/)
 -   ANAME at [DNS Made Easy](http://www.dnsmadeeasy.com/)
 -   ANAME at [easyDNS](https://www.easydns.com/)
@@ -276,7 +276,7 @@ configure SSL for your project.
 
 ### Use the Platform.sh Web Interface to add the certificate
 
-You can also add your certificate via the Platform.sh [Web Interface](/overview/web-ui/index.html). Just go to the [project configuration page](/overview/web-ui/configure-project.html) in the web interface and click on Domains. If you already have a domain, you can edit the domain and then click on the Add SSL certificate button. You can then add your private key, public key certificate and optional certificate chain.
+You can also add your certificate via the Platform.sh [Web Interface](/administration/web.md). Just go to the [project configuration page](/administration/web/configure-project.md) in the web interface and click on Domains. If you already have a domain, you can edit the domain and then click on the Add SSL certificate button. You can then add your private key, public key certificate and optional certificate chain.
 
 ![UI configuration for SSL](/images/ui-ssl.png)
 

@@ -46,10 +46,10 @@ Each route can be configured separately. It has the following properties
   * `redirect` redirects to another route
     * It will then be followed by a `to` property, this defines a HTTP 301
       redirect to any URL or another route (see examples below).
-* `cache` controls [caching behavior of the route](cache.html).
+* `cache` controls [caching behavior of the route](/configuration/routing/cache.html).
 * `ssi` controls whether Server Side Includes are enabled.
-  For more information: see [SSI](ssi.html).
-* `redirects` controls [redirect rules](redirects.html) associated with the
+  For more information: see [SSI](/configuration/routing/ssi.html).
+* `redirects` controls [redirect rules](/configuration/routing/redirects.html) associated with the
   route.
 
 > **note**

@@ -15,7 +15,7 @@ Support for custom schemas is available for Platform.sh Enterprise customers.
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](reference/environment-variables.md):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/configuration/environment-variables.md):
 
 ```bash
 {

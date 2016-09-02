@@ -140,7 +140,7 @@ use the Python 3.5+ asyncio module.
 
 ## Connecting to services
 
-You can [define services](configuration/services.md) in your environment.
+You can [define services](/configuration/services.md) in your environment.
 And, link to the services using `.platform.app.yaml`:
 
 ```yaml

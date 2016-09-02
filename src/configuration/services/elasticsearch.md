@@ -10,7 +10,7 @@ Elasticsearch is a distributed RESTful search engine built for the cloud.
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](reference/environment-variables.md):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/environment-variables.md):
 
 ```bash
 {

@@ -8,7 +8,7 @@ Transactional data storage  and the world's most advanced open source database.
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](reference/environment-variables.md):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
 
 ```bash
 {

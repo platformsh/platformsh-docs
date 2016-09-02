@@ -1,7 +1,7 @@
 # Blackfire
 
 Platform.sh supports [Blackfire Profiler](https://blackfire.io/)
-developed by [SensioLabs](http://sensiolabs.com/).
+developed by [SensioLabs](https://sensiolabs.com/).
 
 ## Get Started
 

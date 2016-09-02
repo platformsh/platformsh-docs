@@ -14,8 +14,8 @@ to be able to interact with Platform.sh.
 
 > **see also**
 >
-> * [Install Git](https://help.github.com/articles/set-up-git)
-> * [Learn more about Git](http://git-scm.com/)
+> * [Install Git](https://help.github.com/articles/set-up-git/)
+> * [Learn more about Git](https://git-scm.com/)
 
 > **note**
 > In addition to Git's requirements for [valid branch
@@ -40,7 +40,7 @@ git repository and to their Command Line Interface (CLI) using
 SSH.
 
 SSH requires two [RSA
-keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem):
+keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem)):
 
 * A **private key** kept secret by the user
 * A **public key** stored within the Platform.sh account

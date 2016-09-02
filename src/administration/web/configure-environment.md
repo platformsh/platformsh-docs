@@ -66,7 +66,7 @@ project configuration screen.
 
 ## Robots.txt
 
-By default, Platform.sh returns a restrictive `robots.txt` on all environments. If you need to provide a custom `robots.txt`, first disable the default one by [Platform.sh CLI](/user_guide/overview/cli/index.html) command below.
+By default, Platform.sh returns a restrictive `robots.txt` on all environments. If you need to provide a custom `robots.txt`, first disable the default one by [Platform.sh CLI](/overview/cli.md) command below.
 
 ```
 platform environment:info restrict_robots false
@@ -80,7 +80,7 @@ platform environment:info -e ENVNAME restrict_robots false
 
 (Where `ENVNAME` is the name of the environment, which is generally the branch associated with it.)
 
-Then, you have to serve your `robots.txt` by configuring ["/" location in `.platform.app.yaml`](/user_guide/reference/platform-app-yaml.html#locations).
+Then, you have to serve your `robots.txt` by configuring ["/" location in `.platform.app.yaml`](/configuration/app-container.md#locations).
 
 > **note**
 > A deployment is required after running the CLI command to make the changes effective.

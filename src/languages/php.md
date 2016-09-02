@@ -164,7 +164,7 @@ runtime:
 ### Measuring PHP worker memory usage
 
 To see how much memory your PHP worker processes are using, you can open an
-[SSH session](using/use-SSH) and look at the PHP access log:
+[SSH session](/development/ssh.md) and look at the PHP access log:
 
     less /var/log/php.access.log
 

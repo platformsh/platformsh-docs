@@ -158,7 +158,7 @@ The `example.services.yml` file noted above will also use Redis for the lock and
 control systems.
 
 Although the redis module is able to use Redis for a queue backend, we do not recommend
-that on Platform.sh. Our [Redis instance is not persistent](/reference/service/redis), which means every deploy
+that on Platform.sh. Our [Redis instance is not persistent](/configuration/services/redis.md), which means every deploy
 would result in an emptied queue and possible lost items when the Redis instance
 gets full. It is, however, safe for transient information like caching and locking.
 

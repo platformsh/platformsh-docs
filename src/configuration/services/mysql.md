@@ -18,7 +18,7 @@ From outside the web server you can use the CLI: `platform sql`
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](reference/environment-variables.md):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
 
 ```bash
 {
@@ -83,4 +83,4 @@ foreach ($relationships['database'] as $endpoint) {
 
 **notes**
 1. There is a single MySQL user, so you can not use "DEFINER" Access Control mechanism for Stored Programs and Views.
-2. MySQL Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](reference/services-yaml.md).
+2. MySQL Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).

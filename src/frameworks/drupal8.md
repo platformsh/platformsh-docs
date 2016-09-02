@@ -60,7 +60,7 @@ Platform.sh exposes database configuration, as well as other configuration value
 
 The easiest way to access that information is via a small configuration add-on we provide.  See our recommended [settings.php file](https://github.com/platformsh/platformsh-example-drupal8/blob/master/web/sites/default/settings.php), which includes a file called [settings.platformsh.php](https://github.com/platformsh/platformsh-example-drupal8/blob/master/web/sites/default/settings.platformsh.php).  The latter maps all Platform.sh-provided environment values to Drupal settings, either the Drupal database array or the global `$settings` object.  If run on a non-Platform.sh server this file does nothing so it is safe to always include.
 
-If you need to add additional Platform.sh-specific configuration, such as to enable a [Redis server](redis.md) for caching, we recommend also putting it into `settings.platformsh.php`.
+If you need to add additional Platform.sh-specific configuration, such as to enable a [Redis server](/frameworks/drupal8/redis.md) for caching, we recommend also putting it into `settings.platformsh.php`.
 
 
 ## Vanilla Drupal 8

@@ -63,5 +63,3 @@ git commit -m "Fix the console script execute permission."
 ```
 
 > -   [Install Composer](https://getcomposer.org/download/)
-> -   [Checking out a versioned Symfony Application](http://symfony.com/doc/current/book/installation.html#checking-out-a-versioned-symfony-application)
-

@@ -16,7 +16,7 @@ cache area for your application.
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](reference/environment-variables.md):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
 
 ```bash
 {
@@ -46,7 +46,7 @@ cache:
     type: redis:3.0
 ```
 
-In your ``.platform.app.yaml``, configure the relationship and enable the [PHP redis extension](user_guide/reference/toolstacks/php/index.html#php-extensions.md) if you are using PHP:
+If you are using PHP, configure the relationship and enable the [PHP redis extension](/languages/php.md#php-extensions.md) in your `.platform.app.yaml`.
 
 ```yaml
 runtime:
@@ -74,7 +74,8 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 ## Using redis-cli to access your Redis service
 
 Assuming your Redis relationship is named `redis`, you can access it by
-connecting to a host named `redis.internal` using the redis-cli tool. Open an [SSH session](/user_guide/using/use-SSH.html) as follows:
+connecting to a host named `redis.internal` using the redis-cli tool. Open an [SSH session](/development/ssh.md) as follows:
+
 ```bash
 redis-cli -h redis.internal
 ```
