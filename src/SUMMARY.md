@@ -12,10 +12,10 @@
 
 ## Configuration
 
-* [Routing](configuration/routing.md)
-  * [HTTP Cache](configuration/routing/cache.md)
-  * [Redirects](configuration/routing/redirects.md)
-  * [Server Side Includes](configuration/routing/ssi.md)
+* [Routes](configuration/routes.md)
+  * [HTTP Cache](configuration/routes/cache.md)
+  * [Redirects](configuration/routes/redirects.md)
+  * [Server Side Includes](configuration/routes/ssi.md)
 * [Services](configuration/services.md)
   * [MySQL](configuration/services/mysql.md)
   * [PostgreSQL](configuration/services/postgresql.md)
