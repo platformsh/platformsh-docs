@@ -1,3 +1,5 @@
+# How it works
+
 Every time you push to a live branch or activate a cluster for a branch there are two main processes that happen: *Build* and *Deploy*.  The build process looks through the configuration files in your repository and assembles the necessary LXC containers.  The deploy process makes those containers live, replacing the previous versions, with virtually no interruption in service.
 
 ![The Build and Deploy pipeline](/images/build-pipeline.svg)

@@ -1,3 +1,5 @@
+# How it looks
+
 Every application you deploy on Platform.sh is built as a *virtual cluster*, containing a series of containers.  The master branch of your Git repository is always deployed as a production cluster.  Any other branch can be deployed as a development cluster.  By default you can have up to three live development clusters at once but you can buy more on a per-project basis.
 
 There are three types of container within your cluster: One *Router*, one or more *Applications*, and zero or more *Services*.  When deployed, they conceptually look like this:
