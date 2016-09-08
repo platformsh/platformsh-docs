@@ -8,12 +8,16 @@
     "reveal",
     "collapsible-menu",
     "codesnippet",
+    "ga",
     "edit-link"
   ],
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/platformsh/platformsh-docs/edit/master",
       "label": "Edit This Page"
+    },
+    "ga": {
+      "token": "UA-4064131-10"
     }
   },
   "links": {
