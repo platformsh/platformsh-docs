@@ -396,7 +396,7 @@ The minimum interval between cron runs is 5 minutes, even if specified as less.
 
 The `.platform.app.yaml` file also supports a `runtime` key, which allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate toolstack documentation.
 
-* (PHP)[/languages/php.md]
+* [PHP](/languages/php.md)
 
 ## Top level document roots
 
