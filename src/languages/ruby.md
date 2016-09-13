@@ -4,8 +4,8 @@ Platform.sh supports deploying any Ruby application. Your application can use
 any Ruby application server such as Unicorn or Puma and deploying a Rails or
 a Sinatra app is very straight forward.
 
-## Supported versions
-
+### Supported versions
+#### Ruby MRI
 * 2.3
 
 ## Unicorn based Rails configuration
