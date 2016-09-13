@@ -1,6 +1,9 @@
-# `.platform/services.yaml`
+---
+search:
+    keywords: ['services', 'services.yaml', '.platform/services.yaml']
+---
 
-## Configure Services
+# Configure Services
 
 Platform.sh allows you to completely define and configure the topology
 and services you want to use on your project.

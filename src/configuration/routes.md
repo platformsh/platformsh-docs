@@ -1,6 +1,9 @@
-# `.platform/routes.yaml`
+---
+search:
+    keywords: ['routes', 'routing', 'routes.yaml', '.platform/routes.yaml']
+---
 
-## Configure Routes
+# Configure Routes
 
 Platform.sh allows you to define the routes used in your environments.
 

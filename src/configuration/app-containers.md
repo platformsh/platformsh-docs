@@ -1,3 +1,8 @@
+---
+search:
+    keywords: ['.platform.app.yaml']
+---
+
 # Configure your Application
 
 You control your application and the way it will be built and deployed on Platform.sh
