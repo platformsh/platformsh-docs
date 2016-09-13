@@ -26,3 +26,8 @@ nav ul.summary li.chapter.active > a {
   color: inherit;
   font-weight: bold;
 }
+
+/* Improve contrast of the header toolbar buttons */
+div.book-header a.btn {
+  color: #757575;
+}
