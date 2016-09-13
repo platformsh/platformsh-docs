@@ -362,15 +362,15 @@ correctly setup in the theme folder.
 
 #### [Example] Trigger deploy hook on a specific environment
 
-To trigger a deploy hook only on a specific environment, use the following
-environment variable: `$PLATFORM_ENVIRONMENT` that you put in a `if/then` statement.
+To trigger a deploy hook only on a specific environment/branch, use the following
+environment variable: `$PLATFORM_BRANCH` that you put in a `if/then` statement.
 
 In your `.platform.app.yaml` file:
 
 ```
 hooks:
   deploy: |
-    if [ $PLATFORM_ENVIRONMENT = "master" ]; then
+    if [ $PLATFORM_BRANCH = "master" ]; then
       # Use Drush to disable the Devel module on the Master environment.
       drush dis devel -y
     else
