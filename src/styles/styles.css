@@ -1,0 +1,46 @@
+
+/* Navigation bar / TOC styling */
+
+#platform-bar {
+  background: #fafafa;
+  color: #364149;
+  border-bottom: 1px solid rgba(0,0,0,.07);
+  height: 50px;
+}
+#user-account li a {
+  color: #364149;
+}
+#user-account li a:hover {
+  color: #000;
+}
+
+nav {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.book-summary nav ul.summary li.header {
+  text-align: center;
+  border: 1px solid lightgray;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-top: 1em;
+  padding-top: 10px;
+  color: #364149;
+  font-weight: bold;
+}
+
+nav ul.summary > li.chapter {
+  border: 1px solid lightgray;
+}
+
+nav ul.summary li.chapter.active > a {
+  color: inherit;
+  font-weight: bold;
+}
+
+/* Improve contrast of the header toolbar buttons */
+div.book-header a.btn {
+  color: #757575;
+}

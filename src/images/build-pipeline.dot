@@ -1,0 +1,40 @@
+digraph "Build pipeline" {
+    graph [rankdir=TB]
+    compound=true
+
+    node[
+        shape=record
+    ]
+
+
+    subgraph cluster_build {
+      label="Build Phase"
+
+      Push[label="Git Push"]
+      Container[label="Assemble container"]
+      PshBuild[label="Run Build Flavor commands"]
+      Dependencies[label="Install dependencies"]
+      BuildHook[label="Run build hook"]
+      Freeze[label="Freeze app container"]
+    }
+
+    subgraph cluster_deploy {
+      label="Deploy Phase"
+
+      Close[label="Hold requests"]
+      Unmount[label="Unmount current containers"]
+      Mount[label="Mount file systems"]
+      Services[label="Expose services"]
+      Start[label="Run start command"]
+      DeployHook[label="Run Deploy hook"]
+      Open[label="Serve requests"]
+    }
+
+    /* Build process */
+    Push->Container->Dependencies->PshBuild->BuildHook->Freeze
+
+    /* Deploy process */
+    Freeze->Close[lhead=cluster_deploy]
+    Close->Unmount->Mount->Services->Start->DeployHook->Open
+}
+

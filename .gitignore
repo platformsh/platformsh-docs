@@ -2,3 +2,4 @@ _book/*
 _books/*
 .DS_Store
 .env
+node_modules/*

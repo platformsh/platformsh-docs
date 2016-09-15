@@ -1,7 +1,0 @@
-* [Architecture](reference/architecture.md)
-* [Unique Workflow](overview/workflow.md)
-* [Working with Platform.sh](overview/tooling.md)
-* [What happens when you deploy](overview/deployment.md)
-  * [Anatomy of a git push log](overview/git-push.md)
-* [Pricing](overview/pricing.md)
-* [Getting Help](overview/getting-help.md)
