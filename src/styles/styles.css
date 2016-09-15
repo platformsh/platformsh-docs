@@ -31,3 +31,8 @@ nav ul.summary li.chapter.active > a {
 div.book-header a.btn {
   color: #757575;
 }
+
+
+.markdown-section blockquote {
+  color: #333;
+}
