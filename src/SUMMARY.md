@@ -45,6 +45,7 @@
 * [Public IPs](development/public-ips.md)
 * [Protective block](development/protective-block.md)
 * [Going live](development/going-live.md)
+* [FAQ](development/faq.md)
 
 ## Administration
 
