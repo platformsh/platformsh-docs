@@ -5,6 +5,5 @@ $(document).ready(function () {
   var containerWrapper = '#platform-bar';
 
   var navbar = '<div class="platform-links" ng-app="userWidget"><div ng-include="' + sourcePath + 'user-widget.html\'"></div></div>';
-  var wrapper = $(containerWrapper);
-    wrapper.prepend(navbar);
+  $(containerWrapper).prepend(navbar);
   });
