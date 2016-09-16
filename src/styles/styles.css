@@ -7,6 +7,24 @@
   border-bottom: 1px solid rgba(0,0,0,.07);
   height: 50px;
 }
+
+#platform-bar .title-bar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#platform-bar .title {
+  font-size: 2em;
+  font-family: Georgia, serif;
+  font-weight: bold;
+}
+
+#platform-bar .logo-image {
+  height: 50px;
+  padding-left: 5px;
+}
+
 #user-account li a {
   color: #364149;
 }
@@ -40,12 +58,12 @@ nav ul.summary li.chapter.active > a {
   font-weight: bold;
 }
 
-/* Improve contrast of the header toolbar buttons */
+/* Improve contrast of various text the default theme makes too light */
 div.book-header a.btn {
   color: #757575;
 }
 
-
 .markdown-section blockquote {
   color: #333;
 }
+

@@ -1,7 +1,12 @@
 {% extends template.self %}
 
 {% block body %}
-<div id="platform-bar"></div>
+<div id="platform-bar">
+  <div class="title-bar">
+    <img src="/images/platform-logo-2c.svg" class="logo-image" alt="Platform.sh" />
+    <span class="title">User Documentation</span>
+  </div>
+</div>
 
 {{ super() }}
 {% endblock %}
