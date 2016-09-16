@@ -39,3 +39,5 @@ hooks:
     build: |
       gitbook install
       gitbook build
+      # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
+      cp src/images/favicon.ico _book/gitbook/images/favicon.ico
