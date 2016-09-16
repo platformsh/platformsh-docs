@@ -53,7 +53,7 @@
 * [Snapshot and restore](administration/snapshot-and-restore.md)
 * [External integrations](administration/integrations.md)
   * [Bitbucket](administration/integrations/bitbucket.md)
-  * [blackfire](administration/integrations/blackfire.md)
+  * [Blackfire](administration/integrations/blackfire.md)
   * [GitHub](administration/integrations/github.md)
   * [HipChat](administration/integrations/hipchat.md)
   * [Web hooks](administration/integrations/webhooks.md)
