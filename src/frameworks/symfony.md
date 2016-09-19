@@ -12,24 +12,6 @@ them in your project for you.
 
 ## Configure your app
 
-Make sure your `.platform.app.yaml` is specific to Symfony.
+The ideal `.platform.app.yaml` file will vary from project project, and you are free to customize yours as needed.  A recommended baseline Symfony configuration is listed below, and can also be found in our [Symfony template project](https://github.com/platformsh/platformsh-example-symfony).
 
-A Symfony specific `.platform.app.yaml` file would look like this:
-
-```bash
-type: php
-build:
-    flavor: symfony
-
-web:
-    locations:
-        "/":
-            root: "web"
-            passthru: "/index.php"
-mounts:
-    "/app/cache": "shared:files/cache"
-    "/app/logs": "shared:files/logs"
-
-hooks:
-    build: "./app/console cache:warmup"
-```
+{% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-example-symfony/3.0/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}

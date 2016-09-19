@@ -93,3 +93,9 @@ web/
 ```
 
 Note the `settings.php` and `settings.patformsh.php` files.  Both should be identical to the ones used for a Composer-based site.  Also note that the `config/sync` directory is still outside the docroot.  That is recommended for all Drupal installs generally, and is configured by the `settings.php` file.
+
+## Configuring Platform.sh for Drupal
+
+The ideal `.platform.app.yaml` file will vary from project project, and you are free to customize yours as needed.  A recommended baseline Drupal 7 configuration is listed below, and can also be found in our [Drupal 8 template project](https://github.com/platformsh/platformsh-example-drupal8).
+
+{% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-example-drupal8/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
