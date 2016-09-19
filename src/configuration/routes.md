@@ -49,10 +49,10 @@ Each route can be configured separately. It has the following properties
   * `redirect` redirects to another route
     * It will then be followed by a `to` property, this defines a HTTP 301
       redirect to any URL or another route (see examples below).
-* `cache` controls [caching behavior of the route](/configuration/routing/cache.html).
+* `cache` controls [caching behavior of the route](/configuration/routes/cache.html).
 * `ssi` controls whether Server Side Includes are enabled.
-  For more information: see [SSI](/configuration/routing/ssi.html).
-* `redirects` controls [redirect rules](/configuration/routing/redirects.html) associated with the
+  For more information: see [SSI](/configuration/routes/ssi.html).
+* `redirects` controls [redirect rules](/configuration/routes/redirects.html) associated with the
   route.
 
 > **note**
@@ -114,7 +114,7 @@ routes](#wildcard-routes)):
 You can see the [Configuring Multiple Applications](/configuration/app/multi-app.md)
 section for a detailed view on how to define routes that work with
 **multiple applications in the same project**. Also, look at the
-[redirects](/configuration/routing/redirects.md) section for details on how you can set up complex
+[redirects](/configuration/routes/redirects.md) section for details on how you can set up complex
 redirection rules including **partial redirects**.
 
 ## Configuring routes on the Web Interface

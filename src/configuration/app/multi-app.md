@@ -185,7 +185,7 @@ route HTTP traffic to the application service running there.
 
 > **note**
 > The upstream virtually always ends in `':http`, since Platform.sh only supports
-> HTTP-based applications exposed to the outside world. See the [Routing](/configuration/routing.md) section
+> HTTP-based applications exposed to the outside world. See the [Routing](/configuration/routes.md) section
 
 ### Services
 
