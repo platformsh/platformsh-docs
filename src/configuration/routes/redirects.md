@@ -10,7 +10,7 @@ would be almost as efficient as using the configuration options provided by Plat
 
 ## Whole-route redirects
 
-Using whole-route redirects, you can define very basic routes in your [`.platform/routes.yaml`](/configuration/routing.md)
+Using whole-route redirects, you can define very basic routes in your [`.platform/routes.yaml`](/configuration/routes.md)
 file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.`
 prefix to your domain, as the following example shows:
 

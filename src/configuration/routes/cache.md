@@ -90,7 +90,7 @@ cache:
 The `Vary` header in the response is also respected. Multiple copies under
 the same cache key would be created according to the value of this header.
 For example, you can rely on the `X-Forwarded-Proto`
-[custom request header](reference/faq/known-issues.html#do-you-add-custom-http-headers)
+[custom request header](/development/faq.md#do-you-add-custom-http-headers)
 to render content based on the request protocol (i.e. HTTP or HTTPS).
 By adding `Vary: X-Forwarded-Proto` to the response header, HTTP and HTTPS
 content would be cached under the same cache key separately.
