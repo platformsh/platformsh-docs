@@ -1,6 +1,6 @@
 @import url("//fonts.googleapis.com/css?family=Open+Sans:400,600");
 body {
-  padding-top: 74px;
+  padding-top: 78px;
 }
 body,
 .book,
@@ -38,6 +38,9 @@ body,
   text-transform: uppercase;
   color: #fff;
   display: inline-block;
+  overflow: hidden;
+  width: 27px;
+  white-space: nowrap;
 }
 .title-bar {
   padding-left: 10px;
@@ -52,6 +55,10 @@ body,
 }
 #user-account ul.logged-in {
   margin-top: -5px;
+}
+#user-account .logged-in > li > a,
+#user-account .nav > li > .user-pic {
+  line-height: 38px;
 }
 .font-settings {
   display: none;
@@ -266,6 +273,12 @@ section.normal p strong,
 
 /* Responsive Fixes */
 @media (min-width: 600px) {
+  .site-name {
+    width: auto;
+  }
+  .site-name span {
+    display: none;
+  }
 }
 @media (min-width: 768px) {
   .title-bar {
