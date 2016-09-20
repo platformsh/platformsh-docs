@@ -48,7 +48,7 @@ the vulnerability.
 
 ## Opting out of the protective block
 
-The protective block is there to protect you against known vulnerability
+The protective block is there to protect you against known vulnerabilities
 in the software you deploy on [Platform.sh](https://platform.sh).
 
 If nonetheless you want to opt out of the protective block, you simply
