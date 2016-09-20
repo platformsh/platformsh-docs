@@ -19,10 +19,9 @@ period used.
 For Enterprise and Agency Plans you can pay by Purchase Order, for all other
 plans you need to add a Credit Card to your account.
 
-We offer a free trial period so you can test the service and see how great they
-are. If ever you need more time to evaluate Platform.sh please contact our
-sales representatives they can issue you an extra voucher to prolong your
-test.
+We offer a free trial period so you can test the service and see how great it
+is. If ever you need more time to evaluate Platform.sh please contact our sales
+representatives. They can issue you an extra voucher to prolong your test.
 
 > In this section we describe the billing in US Dollars, you will be billed in
 > Dollars, Euros or British Pounds depending on where your billing address is.
