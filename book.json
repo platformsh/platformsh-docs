@@ -1,0 +1,32 @@
+{
+  "title": "Platform.sh Documentation",
+  "root": "src",
+  "gitbook": ">=3.2",
+  "language": "en",
+  "plugins": [
+    "anchors",
+    "reveal",
+    "collapsible-menu",
+    "codesnippet",
+    "ga",
+    "edit-link"
+  ],
+  "pluginsConfig": {
+    "edit-link": {
+      "base": "https://github.com/platformsh/platformsh-docs/edit/master",
+      "label": "Edit Page"
+    },
+    "ga": {
+      "token": "UA-4064131-10"
+    }
+  },
+  "links": {
+    "sharing": {
+      "google": null,
+      "facebook": null,
+      "twitter": null,
+      "weibo": null,
+      "all": null
+    }
+  }
+}

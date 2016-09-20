@@ -2,7 +2,7 @@
 # in the same project.
 
 # The name of this app. Must be unique within a project.
-name: php
+name: app
 
 # The toolstack used to build the application.
 type: php:7.0
@@ -13,15 +13,14 @@ build:
 web:
     locations:
         "/":
-            root: "_books"
-            passthru: "/index.php"
+            root: "_book"
             index:
                 - "index.html"
             expires: -1
             scripts: true
             allow: false
             rules:
-                \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|html?)$:
+                \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|html|ico|svg?)$:
                     allow: true
                 ^/robots\.txt$:
                     allow: true
@@ -38,4 +37,7 @@ dependencies:
 # The hooks that will be performed when the package is deployed.
 hooks:
     build: |
-      ./build_all
+      gitbook install
+      gitbook build
+      # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
+      cp src/images/favicon.ico _book/gitbook/images/favicon.ico

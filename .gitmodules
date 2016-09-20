@@ -1,3 +1,3 @@
-[submodule "user-widget"]
-    path = node_modules/gitbook-theme-platform/book/user-widget
-    url = git@lab.plat.farm:accounts/user-widget.git
+[submodule "src/user-widget"]
+	path = src/scripts/user-widget
+	url = git@lab.plat.farm:accounts/user-widget.git
