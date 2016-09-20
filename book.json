@@ -13,7 +13,7 @@
   ],
   "pluginsConfig": {
     "edit-link": {
-      "base": "https://github.com/platformsh/platformsh-docs/edit/master",
+      "base": "https://github.com/platformsh/platformsh-docs/edit/master/src",
       "label": "Edit Page"
     },
     "ga": {
