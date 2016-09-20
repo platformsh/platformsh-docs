@@ -41,3 +41,9 @@ The goal of Platform.sh's documentation is to help tech-savvy users self-educate
 * "We" should, if used, always refer to Platform.sh the company.  However, avoid its use where feasible.
 * The reader is assumed to be a developer, and should be addressed as "you".  E.g., "Once you add this file to your repository...".
 * Avoid the use of gender-specific pronouns (he/she, his/her).  The "singular they" (they/their) should be used when it is necessary to refer to a person in the 3rd person.
+
+## Process
+
+* Favor many small PRs over larger ones.
+* Never push directly to the master branch.
+* Never merge your own PR, unless not doing so would result in customer data loss.
