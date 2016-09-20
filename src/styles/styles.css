@@ -1,15 +1,10 @@
-
+@import url("//fonts.googleapis.com/css?family=Open+Sans:400,600");
 body {
   padding-top: 74px;
 }
 body,
-.book.font-family-1,
-.book .book-summary {
-  font-family: "Gotham SSm A", "Gotham SSm B", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-body,
-.book.font-family-1,
-.book .book-summary {
+.book,
+.book-summary {
   font-family: "Gotham SSm A", "Gotham SSm B", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 #platform-bar {
@@ -61,27 +56,31 @@ body,
 .font-settings {
   display: none;
 }
-.book .book-body .body-inner {
+.body-inner {
   top: 0;
 }
-.book .book-summary {
+.book-summary {
   color: #000;
   background: #ebebeb;
 }
-.book .book-summary a,
-.book .book-summary ul.summary li.done > a {
+.body-inner,
+.page-wrapper {
+  overflow: visible;
+}
+.book-summary a,
+ul.summary li.done > a {
   color: #cbcaca;
   border-left: 1px solid #ebebeb;
   padding-left: 15px;
 }
-.book .book-summary ul.summary {
+.book-summary ul.summary {
   top: 50px;
   padding-top: 40px;
   width: 80%;
   margin: 0 auto;
 }
-.book .book-summary ul.summary li a,
-.book .book-summary ul.summary li span {
+ul.summary li a,
+ul.summary li span {
   padding: 8px 12px;
   color: #000;
   line-height: 1em;
@@ -89,40 +88,40 @@ body,
 nav > ul.summary > li > a {
   font-weight: 600;
 }
-.book .book-summary ul.summary li li a,
-.book .book-summary ul.summary li li span {
+ul.summary li li a,
+ul.summary li li span {
   padding: 6px 15px;
 }
-.book .book-summary ul.summary li.active > a,
-.book .book-summary ul.summary li a:hover {
+ul.summary li.active > a,
+ul.summary li a:hover {
   color: #00aeef;
 }
-.book .book-summary ul.summary li.active > a {
+ul.summary li.active > a {
   border-left: 1px solid #00aeef;
 }
-.book .book-summary ul.summary li ul {
+ul.summary li ul {
   padding-left: 14px;
 }
-.book .book-summary ul.summary li ul ul {
+ul.summary li ul ul {
   padding-left: 14px;
 }
-.book .book-summary ul.summary li.header {
-  padding: 10px 0;
+.book-summary ul.summary li.header {
+  color: #848484;
+  padding: 15px 0 10px;
   border-top: 1px solid rgba(0,0,0,.07);
   margin-top: 10px;
+  font-weight: 600;
+  font-size: 1.1em;
 }
-.book .book-summary ul.summary li.header:first-child {
+.book-summary ul.summary li.header:first-child {
   border-top: none;
   margin-top: 0;
+  padding-top: 0;
 }
-.book .book-summary .book-search {
-  top: 0;
-  background: #484848;
+#book-search-input {
+  left: 0;
 }
-.book .book-summary .book-search input.form-control {
-  padding-left: 50px;
-}
-.book .book-summary .book-search:before {
+#book-search-input:before {
   color: #8e8e8e;
   content: "\f002";
   font-family: FontAwesome;
@@ -132,53 +131,23 @@ nav > ul.summary > li > a {
   top: 16px;
   right: 16px;
 }
-#book-search-input {
-  left: 0;
-}
 .book .book-header .btn {
   color: #757575;
 }
-.book .book-header .btn.toggle-summary,
-.book .book-header .btn.fa-edit {
+.book-header .btn.toggle-summary,
+.book-header .btn.fa-edit {
   display: block;
 }
-#edit-link {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  padding-right: 30px;
-  overflow: hidden;
-  width: 0;
-  height: 30px;
-  color: #ccc;
-}
-#edit-link:before {
-  content: "\f09b";
-  font: 30px/30px FontAwesome;
-  height: 30px;
-  right: 0;
-  left: auto;
-  position: absolute;
-  background: #fff;
-}
-#edit-link:hover {
-  text-decoration: none;
-  color: #444;
-}
-.book .book-body .body-inner,
-.book .book-body .page-wrapper {
-  overflow: visible;
-}
-.book .book-body .page-wrapper .page-inner section.normal {
+.markdown-section {
   font-size: 16px;
   overflow: visible;
 }
-.book .book-body .page-wrapper .page-inner section.normal h1 {
+.markdown-section h1 {
   font-size: 34px;
   font-weight: 300;
   border-bottom: none;
 }
-.book .book-body .page-wrapper .page-inner section.normal h2 {
+.markdown-section h2 {
   font-size: 24px;
   font-weight: 400;
   border-bottom: none;
@@ -186,57 +155,57 @@ nav > ul.summary > li > a {
   margin-bottom: 30px;
   margin-top: 0;
 }
-.book .book-body .page-wrapper .page-inner section.normal h2 a.plugin-anchor {
+.markdown-section h2 a.plugin-anchor {
   top: 49px;
 }
-.book .book-body .page-wrapper .page-inner section.normal h3,
-.book .book-body .page-wrapper .page-inner section.normal h4,
-.book .book-body .page-wrapper .page-inner section.normal h5,
-.book .book-body .page-wrapper .page-inner section.normal h6 {
+.markdown-section h3,
+.markdown-section h4,
+.markdown-section h5,
+.markdown-section h6 {
   padding-top: 30px;
   margin-bottom: 20px;
   margin-top: 0;
 }
-.book .book-body .page-wrapper .page-inner section.normal h3 a.plugin-anchor,
-.book .book-body .page-wrapper .page-inner section.normal h4 a.plugin-anchor,
-.book .book-body .page-wrapper .page-inner section.normal h5 a.plugin-anchor,
-.book .book-body .page-wrapper .page-inner section.normal h6 a.plugin-anchor {
+h3 a.plugin-anchor,
+h4 a.plugin-anchor,
+h5 a.plugin-anchor,
+h6 a.plugin-anchor {
   top: 29px;
 }
-.book .book-body .page-wrapper .page-inner section.normal h3 {
+.markdown-section h3 {
   font-size: 20px;
   font-weight: 500;
 }
-.book .book-body .page-wrapper .page-inner section.normal h4 {
+.markdown-section h4 {
   font-size: 18px;
   font-weight: 300;
 }
-.book .book-body .page-wrapper .page-inner section.normal h5 {
+.markdown-section h5 {
   font-size: 16px;
   font-weight: 400;
   color: #333;
 }
-.book .book-body .page-wrapper .page-inner section.normal h6 {
+.markdown-section h6 {
   font-size: 14px;
   font-weight: 500;
   color: #666;
 }
-.book .book-body .page-wrapper .page-inner section.normal p,
-.book .book-body .page-wrapper .page-inner section.normal blockquote,
-.book .book-body .page-wrapper .page-inner section.normal ul,
-.book .book-body .page-wrapper .page-inner section.normal ol,
-.book .book-body .page-wrapper .page-inner section.normal dl,
-.book .book-body .page-wrapper .page-inner section.normal table,
-.book .book-body .page-wrapper .page-inner section.normal pre {
+.markdown-section p,
+.markdown-section blockquote,
+.markdown-section ul,
+.markdown-section ol,
+.markdown-section dl,
+.markdown-section table,
+.markdown-section pre {
   margin-bottom: 30px;
 }
-.book .book-body .page-wrapper .page-inner section.normal p strong,
-.book .book-body .page-wrapper .page-inner section.normal blockquote strong,
-.book .book-body .page-wrapper .page-inner section.normal ul strong,
-.book .book-body .page-wrapper .page-inner section.normal ol strong,
-.book .book-body .page-wrapper .page-inner section.normal dl strong,
-.book .book-body .page-wrapper .page-inner section.normal table strong,
-.book .book-body .page-wrapper .page-inner section.normal pre strong {
+section.normal p strong,
+.markdown-section blockquote strong,
+.markdown-section ul strong,
+.markdown-section ol strong,
+.markdown-section dl strong,
+.markdown-section table strong,
+.markdown-section pre strong {
   display: inline-block;
   text-align: center;
   float: none;
@@ -245,40 +214,19 @@ nav > ul.summary > li > a {
   margin-right: 0;
   padding-top: 0;
 }
-.book .book-body .page-wrapper .page-inner section.normal code {
+.markdown-section code {
   border-radius: 0;
   background: #fdf2f2;
   color: #de1151;
 }
-.book .book-body .page-wrapper .page-inner section.normal pre code {
+.markdown-section pre code {
   color: #333;
 }
-.book .book-body .page-wrapper .page-inner section.normal a code {
+.markdown-section a code {
   background: #f7f7f7;
   color: #4183c4;
 }
-.book .book-body .page-wrapper .page-inner section.normal .alert {
-  background: #eee;
-  border: none;
-  border-radius: 0;
-  color: #363636;
-  position: relative;
-  padding: 15px 25px;
-}
-.book .book-body .page-wrapper .page-inner section.normal .alert .quote-label {
-  font-size: 12px;
-  text-transform: uppercase;
-}
-.book .book-body .page-wrapper .page-inner section.normal .alert .fa-edit {
-  display: none;
-}
-.book .book-body .page-wrapper .page-inner section.normal .alert p {
-  margin-bottom: 15px;
-}
-.book .book-body .page-wrapper .page-inner section.normal .alert-info {
-  background: #e0f5fd;
-}
-.book .book-body .page-wrapper .page-inner section.normal hr {
+.markdown-section hr {
   height: 1px;
 }
 .markdown-section blockquote {
@@ -289,6 +237,31 @@ nav > ul.summary > li > a {
 }
 .markdown-section blockquote p {
   margin-bottom: 10px;
+}
+.markdown-section blockquote code {
+  background: #f7f7f7;
+  color: #333;
+}
+.markdown-section .alert {
+  background: #eee;
+  border: none;
+  border-radius: 0;
+  color: #363636;
+  position: relative;
+  padding: 15px 25px;
+}
+.markdown-section .alert .quote-label {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.markdown-section .alert .fa-edit {
+  display: none;
+}
+.markdown-section .alert p {
+  margin-bottom: 15px;
+}
+.markdown-section .alert-info {
+  background: #e0f5fd;
 }
 
 /* Responsive Fixes */
