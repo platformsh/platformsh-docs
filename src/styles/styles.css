@@ -1,69 +1,293 @@
-
-/* Navigation bar / TOC styling */
-
+@import url("//fonts.googleapis.com/css?family=Open+Sans:400,600");
+body {
+  padding-top: 74px;
+}
+body,
+.book,
+.book-summary {
+  font-family: "Gotham SSm A", "Gotham SSm B", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 #platform-bar {
-  background: #fafafa;
-  color: #364149;
-  border-bottom: 1px solid rgba(0,0,0,.07);
-  height: 50px;
+  background: #000;
+  color: #fff;
+  padding: 28px 0 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  min-height: 53px;
 }
-
-#platform-bar .title-bar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+.branding {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: right;
+  background: transparent url("/images/platform-logo.svg") no-repeat 0 0;
+  height: 22px;
+  width: 105px;
+  display: inline-block;
+  float: left;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
-
-#platform-bar .title {
-  font-size: 2em;
-  font-family: Georgia, serif;
-  font-weight: bold;
+.site-name {
+  line-height: 22px;
+  padding-left: 12px;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #fff;
+  display: inline-block;
 }
-
-#platform-bar .logo-image {
-  height: 50px;
-  padding-left: 5px;
+.title-bar {
+  padding-left: 10px;
 }
-
-#user-account li a {
-  color: #364149;
+.platform-links {
+  padding-right: 10px;
+  margin-top: -6px;
+  margin-bottom: -5px;
 }
-#user-account li a:hover {
+#user-account .navbar-right a.call-to-action {
+  padding: 7px 8px;
+}
+#user-account ul.logged-in {
+  margin-top: -5px;
+}
+.font-settings {
+  display: none;
+}
+.body-inner {
+  top: 0;
+}
+.book-summary {
   color: #000;
+  background: #ebebeb;
 }
-
-nav {
+.body-inner,
+.page-wrapper {
+  overflow: visible;
+}
+.book-summary a,
+ul.summary li.done > a {
+  color: #cbcaca;
+  border-left: 1px solid #ebebeb;
+  padding-left: 15px;
+}
+.book-summary ul.summary {
+  top: 50px;
+  padding-top: 40px;
   width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
-
-div.book-summary nav ul.summary li.header {
-  text-align: center;
-  border: 1px solid lightgray;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  margin-top: 1em;
-  padding-top: 10px;
-  color: #364149;
-  font-weight: bold;
+ul.summary li a,
+ul.summary li span {
+  padding: 8px 12px;
+  color: #000;
+  line-height: 1em;
 }
-
-nav ul.summary > li.chapter {
-  border: 1px solid lightgray;
+nav > ul.summary > li > a {
+  font-weight: 600;
 }
-
-nav ul.summary li.chapter.active > a {
-  color: inherit;
-  font-weight: bold;
+ul.summary li li a,
+ul.summary li li span {
+  padding: 6px 15px;
 }
-
-/* Improve contrast of various text the default theme makes too light */
-div.book-header a.btn {
+ul.summary li.active > a,
+ul.summary li a:hover {
+  color: #00aeef;
+}
+ul.summary li.active > a {
+  border-left: 1px solid #00aeef;
+}
+ul.summary li ul {
+  padding-left: 14px;
+}
+ul.summary li ul ul {
+  padding-left: 14px;
+}
+.book-summary ul.summary li.header {
+  color: #848484;
+  padding: 15px 0 10px;
+  border-top: 1px solid rgba(0,0,0,.07);
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+.book-summary ul.summary li.header:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+#book-search-input {
+  left: 0;
+}
+#book-search-input:before {
+  color: #8e8e8e;
+  content: "\f002";
+  font-family: FontAwesome;
+  font-size: 18px;
+  line-height: 18px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+.book .book-header .btn {
   color: #757575;
 }
-
-.markdown-section blockquote {
+.book-header .btn.toggle-summary,
+.book-header .btn.fa-edit {
+  display: block;
+}
+.markdown-section {
+  font-size: 16px;
+  overflow: visible;
+}
+.markdown-section h1 {
+  font-size: 34px;
+  font-weight: 300;
+  border-bottom: none;
+}
+.markdown-section h2 {
+  font-size: 24px;
+  font-weight: 400;
+  border-bottom: none;
+  padding-top: 50px;
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+.markdown-section h2 a.plugin-anchor {
+  top: 49px;
+}
+.markdown-section h3,
+.markdown-section h4,
+.markdown-section h5,
+.markdown-section h6 {
+  padding-top: 30px;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+h3 a.plugin-anchor,
+h4 a.plugin-anchor,
+h5 a.plugin-anchor,
+h6 a.plugin-anchor {
+  top: 29px;
+}
+.markdown-section h3 {
+  font-size: 20px;
+  font-weight: 500;
+}
+.markdown-section h4 {
+  font-size: 18px;
+  font-weight: 300;
+}
+.markdown-section h5 {
+  font-size: 16px;
+  font-weight: 400;
   color: #333;
 }
+.markdown-section h6 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+.markdown-section p,
+.markdown-section blockquote,
+.markdown-section ul,
+.markdown-section ol,
+.markdown-section dl,
+.markdown-section table,
+.markdown-section pre {
+  margin-bottom: 30px;
+}
+section.normal p strong,
+.markdown-section blockquote strong,
+.markdown-section ul strong,
+.markdown-section ol strong,
+.markdown-section dl strong,
+.markdown-section table strong,
+.markdown-section pre strong {
+  display: inline-block;
+  text-align: center;
+  float: none;
+  width: auto;
+  height: auto;
+  margin-right: 0;
+  padding-top: 0;
+}
+.markdown-section code {
+  border-radius: 0;
+  background: #fdf2f2;
+  color: #de1151;
+}
+.markdown-section pre code {
+  color: #333;
+}
+.markdown-section a code {
+  background: #f7f7f7;
+  color: #4183c4;
+}
+.markdown-section hr {
+  height: 1px;
+}
+.markdown-section blockquote {
+  color: #333;
+  border: none;
+  background: #e0f5fd;
+  padding: 10px 25px;
+}
+.markdown-section blockquote p {
+  margin-bottom: 10px;
+}
+.markdown-section blockquote code {
+  background: #f7f7f7;
+  color: #333;
+}
+.markdown-section .alert {
+  background: #eee;
+  border: none;
+  border-radius: 0;
+  color: #363636;
+  position: relative;
+  padding: 15px 25px;
+}
+.markdown-section .alert .quote-label {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.markdown-section .alert .fa-edit {
+  display: none;
+}
+.markdown-section .alert p {
+  margin-bottom: 15px;
+}
+.markdown-section .alert-info {
+  background: #e0f5fd;
+}
 
+/* Responsive Fixes */
+@media (min-width: 600px) {
+}
+@media (min-width: 768px) {
+  .title-bar {
+    padding-left: 50px;
+  }
+  .platform-links {
+    padding-right: 50px;
+  }
+  #platform-bar .site-name {
+    font-size: 1.15em;
+  }
+  #navlink {
+    font-size: 1.15em;
+  }
+  #platform-bar .row {
+    padding: 0 50px;
+  }
+}
+@media (min-width: 1240px) {
+}
+@media (max-width: 1240px) {
+  .book .book-body .page-wrapper .page-inner section {
+    padding: 15px 30px;
+  }
+}
