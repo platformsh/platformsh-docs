@@ -17,20 +17,6 @@ to be able to interact with Platform.sh.
 > * [Install Git](https://help.github.com/articles/set-up-git/)
 > * [Learn more about Git](https://git-scm.com/)
 
-> **note**
-> In addition to Git's requirements for [valid branch
-> names](https://www.kernel.org/pub/software/scm/git/docs/git-check-ref-format.html),
-> Platform.sh adds two extra restrictions:
-> * The '/' character isn't allowed.
-> * Branch names must be case-insensitively unique. In other words, they must
->   differ from existing branches by more than just case. For example, if you
->   have a branch named _CaSe_, you won't be able to create another branch
->   named _case_: it will be rejected when you try to push it into your
->   environment.
->
-> These restrictions make it possible to use branch names in URLs without any
-> mangling, which in turn makes our Web UI and HTTP APIs more pleasant to use.
-
 
 ## SSH
 
