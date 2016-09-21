@@ -57,7 +57,7 @@ environment.
 
 ## Development
 
-The basic Plan (development) starts at 10$ per month (including 4 environments : 3 staging/development and 1 future production).
+The basic Plan (development) starts at $10 per month (including 4 environments : 3 staging/development and 1 future production).
 
 > You can not map a custom domain name to a development plan
 
