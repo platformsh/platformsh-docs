@@ -66,7 +66,7 @@ Development environments have less resources than production environments.
 ## Production - Standard / Medium / Large
 
 The live environment (master) of a production plan has more resources
-then the development environments of the project.
+than the development environments of the project.
 
 You can map domain names to your master environment. SSL support is always
 included.
