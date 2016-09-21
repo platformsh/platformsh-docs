@@ -8,4 +8,4 @@ You can also open a support ticket directly from your [user account](https://acc
 
 You are more than welcome to hop-on to our [public Slack channel](https://chat.platform.sh/).
 
-And you are [always invited to drop us a line at our contact form](https://platform.sh/contact/#form)
+And you are [always invited to drop us a line at our contact form](https://platform.sh/contact/#form).
