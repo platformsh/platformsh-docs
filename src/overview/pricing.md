@@ -41,10 +41,10 @@ Adding a developer to your project will add $10 per month.
 
 ### Extra environments
 
-You can add extra development staging/development to any plan by multiples of 3
+You can add extra staging/development environments to any plan by multiples of 3
 for $21 / month.
 
-> So if for example you want to have 12 staging servers you would pay additional $63 per month on top of your basic plan price.
+> So if for example you want to have 12 staging environments you would pay additional $63 per month on top of your basic plan price.
 
 ### Extra storage
 
