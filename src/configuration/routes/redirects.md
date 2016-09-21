@@ -47,7 +47,7 @@ request path and a value object describing both the destination to redirect to w
 detail on how to handle the redirection. The value object is defined with the following
 keys:
 
- * `to`: required, a partial (`"/destination"` or `"//destination"`) or full URL (`"http://example.com/"`).
+ * `to`: required, a relative URL - `"/destination"`, or absolute URL - `"http://example.com/"`.
  * `regexp`: optional, defaults to `false`. Specifies whether the path key should be interpreted as
    a PCRE regular expression. In the following example, a request to `http://example.com/regexp/a/b/c/match`
    would redirect to `http://example.com/a/b/c`:
