@@ -299,8 +299,7 @@ dependencies:
 
 ### Hooks
 
-The `hooks` (also called: deployment hooks) let you define shell
-commands to run during the deployment process.
+The `hooks` let you define shell commands to run during the build and deployment processes.
 
 They can be executed at various points in the lifecycle of the
 application (build/deploy).
