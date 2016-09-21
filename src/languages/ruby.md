@@ -4,8 +4,8 @@ Platform.sh supports deploying any Ruby application. Your application can use
 any Ruby application server such as Unicorn or Puma and deploying a Rails or
 a Sinatra app is very straight forward.
 
-### Supported versions
-#### Ruby MRI
+## Supported versions
+
 * 2.3
 
 ## Unicorn based Rails configuration
@@ -14,7 +14,13 @@ In this example, we use Unicorn to run our Ruby application.
 Configure the `.platform.app.yaml` file with a few key settings
 as listed below, a complete example is included at the end of this section.
 
-1. Specify the `type` as `ruby:2.3`.
+1. Specify the language of your application (available versions are listed above):
+
+   ```yaml
+   # .platform.app.yaml
+   type: "ruby:2.3"
+   ```
+
 2. Build your application with the build hook.
 
 Assuming you have your  dependencies stored in the `Gemfile` at the root of your 

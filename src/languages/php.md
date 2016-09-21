@@ -6,22 +6,26 @@ Platform.sh also supports HHVM, an alternative PHP engine developed by Facebook 
 
 Both are interchangeable from a configuration perspective, although code that uses Hack will only run on HHVM.
 
+## Supported versions
 
-### Supported versions
-
-For PHP:
+### PHP
 
 * 5.4
 * 5.5
 * 5.6
 * 7.0
 
-For HHVM:
+### HHVM
 
 * 3.9
 * 3.12
 
-To select a PHP version, specify a `type` such as `php:5.6` or `hhvm:3.9`.
+To select a PHP version, specify a `type` such as `php:7.0` or `hhvm:3.9`:
+
+```yaml
+# .platform.app.yaml
+type: "php:7.0"
+```
 
 ## PHP extensions
 
