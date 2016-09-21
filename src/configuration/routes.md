@@ -29,8 +29,9 @@ routes will be resolved to `http://www.example.com/` and
 `https://example.com/blog` in the master environment.
 
 Platform.sh will also generate a domain for every active development environment.
-It will receive a domain name based on the region, project ID, branch name, and a per-project random string. The
-domain name itself is not guaranteed stable, although the pattern is consistent.
+It will receive a domain name based on the region, project ID, branch name, and 
+a per-environment random string. The domain name itself is not guaranteed stable,
+although the pattern is consistent.
 
 > **note**
 > Platform.sh supports running multiple applications per environment.
