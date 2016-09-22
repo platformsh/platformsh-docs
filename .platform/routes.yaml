@@ -8,13 +8,7 @@ https://{default}/:
   type: upstream
   upstream: app:http
   cache:
-    cookies:
-    - '*'
-    default_ttl: 0
     enabled: true
-    headers:
-    - Accept
-    - Accept-Language
   ssi:
     enabled: false
   redirects:
