@@ -5,6 +5,8 @@ feature that, under certain circumstances, restricts access to web sites
 with security vulnerabilities. We use this partial blocking method to
 prevent exploitation of known security vulnerabilities.
 
+The protective block is meant for high impact, low complexity attacks.
+
 ## The Platform.sh security block
 
 Outdated software often contains known vulnerabilities that can be
