@@ -25,7 +25,7 @@ is by using SSH behind the scenes. Users connect to their Platform.sh
 git repository and to their Command Line Interface (CLI) using
 SSH.
 
-SSH requires two [RSA keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem) ):
+SSH requires two [RSA keys](https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29):
 
 * A **private key** kept secret by the user
 * A **public key** stored within the Platform.sh account
