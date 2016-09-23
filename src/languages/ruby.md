@@ -37,8 +37,10 @@ theses can be Ruby, Python, NodeJS or PHP libraries.
 
 ```yaml
 web:
-  commands:
-    start: "unicorn -l $SOCKET -E production config.ru"
+    upstream:
+        socket_family: unix
+    commands:
+        start: "unicorn -l $SOCKET -E production config.ru"
 ```
 
 This assumes you have Unicorn as a dependency in your Gemfile
@@ -108,8 +110,10 @@ name: 'app'
 type: "ruby:2.3"
 
 web:
+    upstream:
+        socket_family: unix
     commands:
-       start: "unicorn -l $SOCKET -E production config.ru"
+        start: "unicorn -l $SOCKET -E production config.ru"
 
     locations:
         "/":
