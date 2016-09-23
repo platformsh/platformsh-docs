@@ -191,6 +191,36 @@ It has a few subkeys which are:
         commands:
             start: "uwsgi --ini conf/server.ini"
 
+#### Upstream
+
+`upstream` is an optional key that describes how your application listens to
+requests, and what protocol it speaks.
+
+The following subkeys can be defined:
+* `socket_family`:
+    Default: `tcp`. Describes whether your application will listen on a
+    Unix socket or a TCP socket. Can be either `tcp` or `unix`.
+* `protocol`:
+    Specifies whether your application is going to receive incoming requests
+    over HTTP, FastCGI, or UWSGI. Can be `http`, `fastcgi`, or `uwsgi`. The
+    default varies depending on which application runtime you're using.
+
+##### Socket family
+
+The value of the `socket_family` key controls whether your application will
+receive requests over a Unix socket, or a network socket.
+
+If it's set to `unix`, the runtime will set the `SOCKET` environment variable
+to contain the path to the socket that you should configure your application to
+listen on.
+
+If it's set to `tcp`, the runtime will set the `PORT` environment variable with
+the port that you should configure your application to listen on.
+
+If your application isn't listening at the same place that the runtime is
+sending requests to, you'll see *502 Bad Gateway* errors when you try to
+connect to your web site.
+
 #### Locations
 
 The `locations` key allows you to provide specific parameters for different URL prefixes. Each entry's key is an absolute URI path (with leading `/`), and its value is configuration directives for that path.  That is, if your domain is `example.com` then `"/"` means "requests for `example.com/`", while `"/admin"` means "requests for `example.com/admin`".
