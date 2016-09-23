@@ -206,13 +206,47 @@ The `locations` key allows you to provide specific parameters for different URL 
 
 It has a few subkeys, which are:
 
-* `root`: (Required) The folder from which to serve static assets for this location, relative to the application root. The application root is the directory in which the `.platform.app.yaml` file is located.  Typical values for this property include `public` or `web`.  Setting it to `""` is not recommended, and its behavior may vary depending on the type of application.  Absolute paths are not supported.
-* `passthru`: Whether to forward disallowed and missing resources from this location to the application. Can be true, false or an absolute URI path (with leading `/`), the default value is false. For non-PHP applications it will generally be just true or false.  In a PHP application, this will typically be the front controller such as `/index.php` or `/app.php`.  This entry works similar to `mod_rewrite` under Apache.  Note: if the value of `passthru` does not begin with the same value as the location key it is under the passthru may evaluate to another entry. That may be useful when you want different cache settings for different paths, for instance, but want missing files in all of them to map back to the same front controller.  See the example block below.
-* `index`: The file or files to consider when serving a request for a directory. Can be file name, an array of file names, or *null*. Typically `index.html`. Note that in order for this to work, access to the static file(s) named must be allowed (by the `allow` or `rules` keys for this location).
-* `expires`: How long to allow static assets from this location to be cached (this enables the `Cache-Control` and `Expires` headers). Can be a time or *-1* for no caching. Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d). The `expires` directive and resulting headers are left out entirely if this isn't set.
-* `scripts`: Whether to allow loading scripts in that location (*true* or *false*).
-* `allow`: Whether to allow serving files which don't match a rule (*true* or *false*, default: *true*).
-* `rules`: Specific overrides for a specific location. The key is a PCRE regular expression that is matched against the full request path. Here is a list of example regular expressions that you could provide rules for: *\\.css$,\\.js$,\\.gif$,\\.jpe?g$,\\.png$,\\.tiff?$,\\.wbmp$,\\.ico$,\\.jng$,\\.bmp$,\\.svgz?$,\\.midi?$,\\.mpe?ga$,\\.mp2$,\\.mp3$,\\.m4a$,\\.ra$,\\.weba$,\\.3gpp?$,\\.mp4$,\\.mpe?g$,\\.mpe$,\\.ogv$,\\.mov$,\\.webm$,\\.flv$,\\.mng$,\\.asx$,\\.asf$,\\.wmv$,\\.avi$,\\.ogx$,\\.swf$,\\.jar$,\\.ttf$,\\.eot$,\\.woff$,\\.otf$,/robots\\.txt$*.
+* `root`:
+    (Required) The folder from which to serve static assets for this location,
+    relative to the application root. The application root is the directory in
+    which the `.platform.app.yaml` file is located.  Typical values for this
+    property include `public` or `web`.  Setting it to `""` is not recommended,
+    and its behavior may vary depending on the type of application.  Absolute
+    paths are not supported.
+* `passthru`:
+    Whether to forward disallowed and missing resources from this location to
+    the application. Can be true, false or an absolute URI path (with leading
+    `/`), the default value is false. For non-PHP applications it will
+    generally be just true or false.  In a PHP application, this will typically
+    be the front controller such as `/index.php` or `/app.php`.  This entry
+    works similar to `mod_rewrite` under Apache.  Note: if the value of
+    `passthru` does not begin with the same value as the location key it is
+    under the passthru may evaluate to another entry. That may be useful when
+    you want different cache settings for different paths, for instance, but
+    want missing files in all of them to map back to the same front controller.
+    See the example block below.
+* `index`:
+    The file or files to consider when serving a request for a directory. Can
+    be file name, an array of file names, or *null*. Typically `index.html`.
+    Note that in order for this to work, access to the static file(s) named
+    must be allowed (by the `allow` or `rules` keys for this location).
+* `expires`:
+    How long to allow static assets from this location to be cached (this
+    enables the `Cache-Control` and `Expires` headers). Can be a time or *-1*
+    for no caching. Times can be suffixed with "ms" (milliseconds), "s"
+    (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M"
+    (months, 30d) or "y" (years, 365d). The `expires` directive and resulting
+    headers are left out entirely if this isn't set.
+* `scripts`:
+    Whether to allow loading scripts in that location (*true* or *false*).
+* `allow`:
+    Whether to allow serving files which don't match a rule (*true* or *false*,
+    default: *true*).
+* `rules`:
+    Specific overrides for a specific location. The key is a PCRE regular
+    expression that is matched against the full request path. Here is a list of
+    example regular expressions that you could provide rules for:
+    *\\.css$,\\.js$,\\.gif$,\\.jpe?g$,\\.png$,\\.tiff?$,\\.wbmp$,\\.ico$,\\.jng$,\\.bmp$,\\.svgz?$,\\.midi?$,\\.mpe?ga$,\\.mp2$,\\.mp3$,\\.m4a$,\\.ra$,\\.weba$,\\.3gpp?$,\\.mp4$,\\.mpe?g$,\\.mpe$,\\.ogv$,\\.mov$,\\.webm$,\\.flv$,\\.mng$,\\.asx$,\\.asf$,\\.wmv$,\\.avi$,\\.ogx$,\\.swf$,\\.jar$,\\.ttf$,\\.eot$,\\.woff$,\\.otf$,/robots\\.txt$*.
 
 *Example*
 
