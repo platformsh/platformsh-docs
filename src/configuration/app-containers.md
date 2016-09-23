@@ -202,8 +202,9 @@ The following subkeys can be defined:
     Unix socket or a TCP socket. Can be either `tcp` or `unix`.
 * `protocol`:
     Specifies whether your application is going to receive incoming requests
-    over HTTP, FastCGI, or UWSGI. Can be `http`, `fastcgi`, or `uwsgi`. The
-    default varies depending on which application runtime you're using.
+    over HTTP, FastCGI, or UWSGI. Can be `http` or `fastcgi`, for now. The
+    default varies depending on which application runtime you're using. Other
+    values will be supported in the future.
 
 ##### Socket family
 
