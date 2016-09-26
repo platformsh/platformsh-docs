@@ -43,10 +43,10 @@ https://{default}/:
       "/user_guide/reference/platform-app-yaml-multi-app.html": { "to": "/configuration/app/multi-app.html", "code": "301", "prefix": false}
       "/user_guide/overview/environments.html": { "to": "/administration/web/environments.html", "code": "301", "prefix": false}
       "/user_guide/reference/routes-yaml.html": { "to": "/configuration/routes.html", "code": "301", "prefix": false}
-      "/drupal/guides/type/php/drupal/sql-sync.html": { "to": "/frameworks/drupal8/developing-with-drupal.html#synchronizing-data", "code": "301", "prefix": false}
+      "/drupal/guides/type/php/drupal/sql-sync.html": { "to": "/frameworks/drupal8/developing-with-drupal.html", "code": "301", "prefix": false}
       "/user_guide/reference/redirects.html": { "to": "/configuration/routes/redirects.html", "code": "301", "prefix": false}
       "/user_guide/reference/services/solr.html": { "to": "/user_guide/reference/services/solr.html", "code": "301", "prefix": false}
-      "/drupal_migrate/guides/type/php/drupal/migrate/import-files.html": { "to": "/frameworks/drupal7/migrating.html#import-files", "code": "301", "prefix": false}
+      "/drupal_migrate/guides/type/php/drupal/migrate/import-files.html": { "to": "/frameworks/drupal7/migrating.html", "code": "301", "prefix": false}
       "/user_guide/using/integrations/webhooks.html": { "to": "/administration/integrations/webhooks.html", "code": "301", "prefix": false}
       "/user_guide/reference/services-yaml.html": { "to": "/configuration/services.html", "code": "301", "prefix": false}
       "/user_guide/reference/services/redis.html": { "to": "/configuration/services/redis.html", "code": "301", "prefix": false}
