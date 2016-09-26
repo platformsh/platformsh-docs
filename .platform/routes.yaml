@@ -34,6 +34,7 @@ https://{default}/:
       "/user_guide/overview/services.html": { "to": "/configuration/services.html", "code": "301", "prefix": false}
       "/drupal/guides/prerequisites/platform-cli.html": { "to": "/overview/cli.html", "code": "301", "prefix": false} 
       "/discover": { "to": "/", "code": "301", "prefix": false}
+      "/discover/": { "to": "/", "code": "301", "prefix": false}
       "/user_guide/using/integrations/blackfire.html": { "to": "/administration/integrations/blackfire.html", "code": "301", "prefix": false}
       "/user_guide/reference/toolstacks/php/symfony/migrate-existing-site.html": { "to": "/frameworks/symfony/migrating.html", "code": "301", "prefix": false}
       "/discover/overview/pricing.html": { "to": "/discover/overview/pricing.html", "code": "301", "prefix": false}
@@ -51,6 +52,7 @@ https://{default}/:
       "/user_guide/reference/services-yaml.html": { "to": "/configuration/services.html", "code": "301", "prefix": false}
       "/user_guide/reference/services/redis.html": { "to": "/configuration/services/redis.html", "code": "301", "prefix": false}
       "/drupal": { "to": "/frameworks/drupal8.html", "code": "301", "prefix": false}
+      "/drupal/": { "to": "/frameworks/drupal8.html", "code": "301", "prefix": false}
       "/user_guide/reference/toolstacks/nodejs/index.html": { "to": "/languages/nodejs.html", "code": "301", "prefix": false}
       "/user_guide/reference/email.html": { "to": "/administration/web/email.html", "code": "301", "prefix": false}
       "/user_guide/using/backup-and-restore.html": { "to": "/administration/snapshot-and-restore.html", "code": "301", "prefix": false}
@@ -59,18 +61,22 @@ https://{default}/:
       "/user_guide/using/integrations/github.html": { "to": "/administration/integrations/github.html", "code": "301", "prefix": false}
       "/drupal_migrate": { "to": "/frameworks/drupal7/migrating.html", "code": "301", "prefix": false}
       "/user_guide": { "to": "/", "code": "301", "prefix": false}
+      "/user_guide/": { "to": "/", "code": "301", "prefix": false}
       "/handbook/mysql.html": { "to": "/configuration/services/mysql.html", "code": "301", "prefix": false}
       "/user_guide/reference/public-ip-addresses.html": { "to": "/development/public-ips.html", "code": "301", "prefix": false}
       "/user_guide/using/integrations/github.html": { "to": "/administration/integrations/github.html", "code": "301", "prefix": false}
       "/drupal_migrate": { "to": "/frameworks/drupal7/migrating.html", "code": "301", "prefix": false}
       "/user_guide": { "to": "/", "code": "301", "prefix": false}
+      "/user_guide/": { "to": "/", "code": "301", "prefix": false}
       "/user_guide/using/private-repository.html": { "to": "/development/private-repository.html", "code": "301", "prefix": false}
       "/drupal/guides/type/php/drupal/drush-aliases.html": { "to": "/frameworks/drupal8/drush.html", "code": "301", "prefix": false}
       "/user_guide/reference/services/elasticsearch.html": { "to": "/configuration/services/elasticsearch.html", "code": "301", "prefix": false}
       "/user_guide/overview/cli": { "to": "/overview/cli.html", "code": "301", "prefix": false}
+      "/user_guide/overview/cli/": { "to": "/overview/cli.html", "code": "301", "prefix": false}
       "/user_guide/reference/toolstacks/php/drupal/redis-drupal-7.html": { "to": "/frameworks/drupal7/redis.html", "code": "301", "prefix": false}
       "/handbook/migrating_files.html": { "to": "/frameworks/drupal7/migrating.html", "code": "301", "prefix": false}
       "/symfony": { "to": "/frameworks/symfony.html", "code": "301", "prefix": false}
+      "/symfony/": { "to": "/frameworks/symfony.html", "code": "301", "prefix": false}
       "/drupal_migrate/guides/type/php/drupal/rebuild-site-registry.html": { "to": "/frameworks/drupal7/faq.html", "code": "301", "prefix": false}
       "/drupal/guides/type/php/drupal/local-settings-php.html": { "to": "/frameworks/drupal7/customizing-settings-php.html", "code": "301", "prefix": false}
       "/user_guide/using/user-administration.html": { "to": "/user_guide/using/user-administration.html", "code": "301", "prefix": false}
