@@ -15,7 +15,7 @@ https://{default}/:
     paths:
       # The following were the most common paths on the old site; redirect to the
       # corresponding new page. These redirects should be safe to remove in 2017.
-      "/user_guide/reference/paltform-app-yaml.html": { "to": "/configuration/app-containers.html", "code": "301", "prefix": false}
+      "/user_guide/reference/platform-app-yaml.html": { "to": "/configuration/app-containers.html", "code": "301", "prefix": false}
       "/user_guide/overview/configuring-project-environments.html": { "to": "/administration/web/configure-environment.html", "code": "301", "prefix": false}
       "/user_guide/using/going-live.html": { "to": "/development/going-live.html", "code": "301", "prefix": false}
       "/user_guide/using/set-up-local-development.html": { "to": "/development/local.html", "code": "301", "prefix": false}
