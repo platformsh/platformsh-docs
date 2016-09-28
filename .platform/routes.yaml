@@ -72,7 +72,6 @@ https://{default}/:
       "/drupal/guides/type/php/drupal/drush-aliases.html": { "to": "/frameworks/drupal8/drush.html", "code": "301", "prefix": false}
       "/user_guide/reference/services/elasticsearch.html": { "to": "/configuration/services/elasticsearch.html", "code": "301", "prefix": false}
       "/user_guide/overview/cli": { "to": "/overview/cli.html", "code": "301", "prefix": false}
-      "/user_guide/overview/cli/": { "to": "/overview/cli.html", "code": "301", "prefix": false}
       "/user_guide/reference/toolstacks/php/drupal/redis-drupal-7.html": { "to": "/frameworks/drupal7/redis.html", "code": "301", "prefix": false}
       "/handbook/migrating_files.html": { "to": "/frameworks/drupal7/migrating.html", "code": "301", "prefix": false}
       "/symfony": { "to": "/frameworks/symfony.html", "code": "301", "prefix": false}
