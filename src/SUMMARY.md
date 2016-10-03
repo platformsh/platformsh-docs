@@ -30,8 +30,8 @@
 
 ## Languages
 
-* [Node.js](languages/nodejs.md)
 * [PHP](languages/php.md)
+* [Node.js](languages/nodejs.md)
 * [Python (beta)](languages/python.md)
 * [Ruby (beta)](languages/ruby.md)
 
