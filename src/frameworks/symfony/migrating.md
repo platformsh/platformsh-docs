@@ -19,11 +19,12 @@ remote.
 
 ```bash
 $ cd ~/Sites/platform
-$ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
+$ git remote add platform [GIT-URL]
 ```
 
 > **note**
 > You can copy-paste the Git URL from the Platform.sh Web Interface under the Git icon.
+> The `[GIT-URL]` should look something like: `[PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git`
 
 Then push your local branch to your **platform** remote.
 
@@ -45,7 +46,7 @@ and add a **platform** remote repository.
 ```bash
 $ cd ~/Sites/mysite
 $ git init
-$ git remote add platform [PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git
+$ git remote add platform [GIT-URL]
 ```
 
 > **note**
@@ -74,13 +75,16 @@ Copy it via SSH to the remote environment on Platform into the
 `/tmp` folder which is writable:
 
 ```bash
-$ scp database.sql [PROJECT-ID]-master-[RANDOM-STRING]@ssh.[REGION].platform.sh:/tmp
+$ scp database.sql [SSH-URL]:/tmp
 ```
+
+> **note**
+> The `[SSH-URL]` should look something like: `[PROJECT-ID]-master-[RANDOM-STRING]@ssh.[REGION].platform.sh`
 
 Log in to the environment via SSH and import the database:
 
 ```bash
-$ ssh [PROJECT-ID]-master-[RANDOM-STRING]@ssh.[REGION].platform.sh
+$ ssh [SSH-URL]
 web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < /tmp/database.sql
 ```
 
@@ -90,7 +94,7 @@ Go to your files folder on your local machine and synchronize them to
 your remote Platform.sh environment:
 
 ```bash
-$ rsync -r files/. [PROJECT-ID]-master-[RANDOM-STRING]@ssh.[REGION].platform.sh:/tmp/
+$ rsync -r files/. [SSH-URL]:/tmp/
 ```
 
 > **note**
