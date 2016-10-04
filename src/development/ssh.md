@@ -120,7 +120,7 @@ You should see something like this:
 
 While trying to log in via SSH, this can happen:
 
-    $ ssh wk5fqz6qoo123-master@ssh.eu.platform.sh
+    $ ssh [SSH-URL]
     Permission denied (publickey).
 
 Don't panic! It's an issue which can happen for the following reasons:
@@ -172,7 +172,7 @@ clues about what is going wrong.
 
 1.  Run the SSH command with the `-v` option, like this:
 
-        $ ssh -v wk5fqz6qoo123-master@ssh.eu.platform.sh
+        $ ssh -v [SSH-URL]
         OpenSSH_6.7.8, OpenSSL 1.2.3 1 Sep 2014
         debug1: Connecting to ssh.eu.platform.sh [54.32.10.98] port 22.
         debug1: Connection established.
