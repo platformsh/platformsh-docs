@@ -24,7 +24,6 @@ $ git remote add platform [GIT-URL]
 
 > **note**
 > You can copy-paste the Git URL from the Platform.sh Web Interface under the Git icon.
-> The `[GIT-URL]` should look something like: `[PROJECT-ID]@git.[REGION].platform.sh:[PROJECT-ID].git`
 
 Then push your local branch to your **platform** remote.
 
@@ -77,9 +76,6 @@ Copy it via SSH to the remote environment on Platform into the
 ```bash
 $ scp database.sql [SSH-URL]:/tmp
 ```
-
-> **note**
-> The `[SSH-URL]` should look something like: `[PROJECT-ID]-master-[RANDOM-STRING]@ssh.[REGION].platform.sh`
 
 Log in to the environment via SSH and import the database:
 
