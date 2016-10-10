@@ -6,6 +6,8 @@ a Sinatra app is very straight forward.
 
 ## Supported versions
 
+### Ruby MRI
+
 * 2.3
 
 ## Unicorn based Rails configuration
