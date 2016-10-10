@@ -14,7 +14,13 @@ In this example, we use Gunicorn to run our WSGI application.
 Configure the `.platform.app.yaml` file with a few key settings
 as listed below, a complete example is included at the end of this section.
 
-1. Specify the `type` as `python:2.7` (other versions you may use are listed above).
+1. Specify the language of your application (available versions are listed above):
+
+   ```yaml
+   # .platform.app.yaml
+   type: "python:3.5"
+   ```
+
 2. Build your application with the build hook.
    Assuming you have your pip dependencies stored in `requirements.txt` and
    a `setup.py` at the root of your application folder to execute build steps:

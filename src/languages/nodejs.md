@@ -20,7 +20,13 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml``
 file with a few key settings, as described here (a complete example is included
 at the end).
 
-1. Specify the `type` as `nodejs:4.4` (other versions you may use are listed above).
+1. Specify the language of your application (available versions are listed above):
+
+   ```yaml
+   # .platform.app.yaml
+   type: "nodejs:4.4"
+   ```
+
 2. Specify your dependencies under the `nodejs` key, like this:
 
    ```yaml
