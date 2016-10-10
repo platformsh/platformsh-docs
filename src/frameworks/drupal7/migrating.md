@@ -41,13 +41,13 @@ Copy it via SSH to the remote environment on Platform into the
 `/app/tmp` folder which is writable:
 
 ```bash
-scp database.sql [PROJECT-ID]-master@ssh.[REGION].platform.sh:/app/tmp
+scp database.sql [SSH-URL]:/app/tmp
 ```
 
 Log in to the environment via SSH and import the database:
 
 ```bash
-ssh [PROJECT-ID]-master@ssh.[REGION].platform.sh
+ssh [SSH-URL]
 web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < tmp/database.sql
 ```
 
@@ -59,7 +59,7 @@ You can use [*Drush site aliases*](http://docs.drush.org/en/master/usage/#site-a
 
 ```bash
 $ drush rsync @platform._local:%files @platform.master:%files
-You will destroy data from [PROJECT-ID]-master@ssh.[REGION].platform.sh:././sites/default/files and replace with data from ~/Sites/platform/sites/default/files/
+You will destroy data from [SSH-URL]:././sites/default/files and replace with data from ~/Sites/platform/sites/default/files/
 Do you really want to continue? (y/n): y
 ```
 
@@ -76,7 +76,7 @@ Go to your "files" folder on your local machine and synchronize them to
 your remote Platform environment:
 
 ```bash
-$ rsync -r files/. [PROJECT-ID]-master@ssh.[REGION].platform.sh:public/sites/default/files/
+$ rsync -r files/. [SSH-URL]:public/sites/default/files/
 ```
 
 Note that the path in URL may vary depending on what your `.platform.app.yaml` file specifies as the root path and files mount.
@@ -84,7 +84,7 @@ Note that the path in URL may vary depending on what your `.platform.app.yaml` f
 #### Directly from server to platform.sh
 If the files folder is too large to fit on your computer, you can transfer them directly from server to server. If you have a firewall between the origin server and platform.sh, you can use agent-forwarding to enable a direct connection:
 ```bash
-$ ssh -A -t [USER]@[ORIGIN-SERVER] ssh -A -t [PROJECT-ID]-master@ssh.[REGION].platform.sh
+$ ssh -A -t [USER]@[ORIGIN-SERVER] ssh -A -t [SSH-URL]
 $ rsync -a --delete [USER]@[ORIGIN-SERVER]:/var/www/drupal/sites/default/files/ public/sites/default/files
 ```
 

@@ -77,7 +77,7 @@ the following:
 First, SSH into your web container.
 
 ```bash
-$ ssh [PROJECT-ID]-master@ssh.[REGION].platform.sh
+$ ssh [SSH-URL]
 ```
 
 Second, execute the following commands to download, tweak, and run the

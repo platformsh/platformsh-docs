@@ -19,7 +19,7 @@ This will delete your project and stop invoicing for this project. If you have m
 If you have file mounts, you can keep a copy of the files using `rsync` like below.
 
 ```
-rsync -r <project-id>-<environment>@ssh.<region>.platform.sh:/app/private/ .
+rsync -r [SSH-URL]:/app/private/ .
 ```
 
 Data stored in database can be copied to you local file system via [Platform.sh CLI](https://docs.platform.sh/user_guide/overview/cli/index.html).
@@ -182,5 +182,3 @@ page](http://documentation.mamp.info/en/documentation/mamp/).
 > substitute the actual build folder path. This means that when you
 > rebuild your project locally, you will need to repoint the docroot to
 > the symlink again so it will refresh the build path.
-
-
