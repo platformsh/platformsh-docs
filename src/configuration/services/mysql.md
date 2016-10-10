@@ -3,14 +3,6 @@
 Transactional data storage. Based on MariaDB, supporting the XtraDB storage
 engine (equivalent to MySQL with InnoDB).
 
-Access to MariaDB is only possible from your application container, thus
-username/password based authentication is not used.
-
-To access the MariaDB database directly, ssh into the web server and use the
-following command: `mysql -h database.internal -u user`
-
-From outside the web server you can use the CLI: `platform sql`
-
 ## Supported versions
 
 * 5.5
@@ -84,3 +76,15 @@ foreach ($relationships['database'] as $endpoint) {
 **notes**
 1. There is a single MySQL user, so you can not use "DEFINER" Access Control mechanism for Stored Programs and Views.
 2. MySQL Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).
+
+
+## Access your MariaDB service
+
+Assuming your MariaDB relationship is named `database`, you can access it by connecting
+to a host named `database.internal` using the MySQL command line client.
+
+```
+mysql -h database.internal -u user main
+```
+
+Outside the application container, you can use Platform CLI `platform sql`.
