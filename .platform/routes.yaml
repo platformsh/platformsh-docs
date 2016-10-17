@@ -34,7 +34,7 @@ https://{default}/:
       "/user_guide/overview/services.html": { "to": "/configuration/services.html", "code": "301", "prefix": false}
       "/drupal/guides/prerequisites/platform-cli.html": { "to": "/overview/cli.html", "code": "301", "prefix": false} 
       #"/discover": { "to": "/", "code": "301", "prefix": false}
-      "/discover/": { "to": "/", "code": "301", "prefix": false}
+      #"/discover/": { "to": "/", "code": "301", "prefix": false}
       "/user_guide/using/integrations/blackfire.html": { "to": "/administration/integrations/blackfire.html", "code": "301", "prefix": false}
       "/user_guide/reference/toolstacks/php/symfony/migrate-existing-site.html": { "to": "/frameworks/symfony/migrating.html", "code": "301", "prefix": false}
       "/discover/overview/pricing.html": { "to": "/overview/pricing.html", "code": "301", "prefix": false}
@@ -61,13 +61,13 @@ https://{default}/:
       "/user_guide/using/integrations/github.html": { "to": "/administration/integrations/github.html", "code": "301", "prefix": false}
       "/drupal_migrate": { "to": "/frameworks/drupal7/migrating.html", "code": "301", "prefix": false}
       #"/user_guide": { "to": "/", "code": "301", "prefix": false}
-      "/user_guide/": { "to": "/", "code": "301", "prefix": false}
+      #"/user_guide/": { "to": "/", "code": "301", "prefix": false}
       "/handbook/mysql.html": { "to": "/configuration/services/mysql.html", "code": "301", "prefix": false}
       "/user_guide/reference/public-ip-addresses.html": { "to": "/development/public-ips.html", "code": "301", "prefix": false}
       "/user_guide/using/integrations/github.html": { "to": "/administration/integrations/github.html", "code": "301", "prefix": false}
       "/drupal_migrate": { "to": "/frameworks/drupal7/migrating.html", "code": "301", "prefix": false}
       #"/user_guide": { "to": "/", "code": "301", "prefix": false}
-      "/user_guide/": { "to": "/", "code": "301", "prefix": false}
+      #"/user_guide/": { "to": "/", "code": "301", "prefix": false}
       "/user_guide/using/private-repository.html": { "to": "/development/private-repository.html", "code": "301", "prefix": false}
       "/drupal/guides/type/php/drupal/drush-aliases.html": { "to": "/frameworks/drupal8/drush.html", "code": "301", "prefix": false}
       "/user_guide/reference/services/elasticsearch.html": { "to": "/configuration/services/elasticsearch.html", "code": "301", "prefix": false}
