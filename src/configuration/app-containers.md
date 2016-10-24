@@ -119,7 +119,7 @@ The `build` defines what will happen by default when building the application.
 Its only property is `flavor`, which specifies a default set of build tasks to run. Flavors are language-specific.
 
 * PHP - default `composer`
-  * `composer` will run `composer install --optimize-imports --prefer-dist` if a `composer.json` file is detected.
+  * `composer` will run `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
   * `drupal` will run `drush make` automatically if a `.make` file is detected.
 * NodeJs
   * `default` will run `npm prune --userconfig && npm install --userconfig` if a `package.json` file is detected.
