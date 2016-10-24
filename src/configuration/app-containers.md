@@ -116,11 +116,15 @@ The `type` can be:
 
 The `build` defines what will happen by default when building the application.
 
-It has a sub property `flavor` for which the possible values are:
+Its only property is `flavor`, which specifies a default set of build tasks to run. Flavors are language-specific.
 
-* `drupal` means that `drush make` will automatically run if you provide `.make` files.
-* `composer` means that `composer install` will automatically run if you provide a `composer.json` or `composer.lock` file.
-* `symfony` is an alisas for `composer`.
+* PHP - default `composer`
+  * `composer` will run `composer install --optimize-imports --prefer-dist` if a `composer.json` file is detected.
+  * `drupal` will run `drush make` automatically if a `.make` file is detected.
+* NodeJs
+  * `default` will run `npm prune --userconfig && npm install --userconfig` if a `package.json` file is detected.
+
+In all languages you can also specify a flavor of `none` (which is the default for any language other than PHP and NodeJs), which as the name suggests will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom composer command or use an alternate NodeJs package manager.
 
 **Example**
 
