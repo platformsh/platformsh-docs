@@ -104,9 +104,12 @@ The `type` defines what language will run your application.
 The `type` can be:
 
 * `php`
+* `hhvm`
 * `nodejs`
 * `python`
-* `hhvm`
+* `ruby`
+
+followed by a version.  See the appropriate language page for all available versions.
 
 **Example**
 
