@@ -12,6 +12,8 @@ the root of your application folder inside your Git repository.
 Here's an example of a minimalist `.platform.app.yaml` file for PHP:
 
 ```yaml
+# .platform.app.yaml
+
 # The name of this app. Must be unique within a project.
 name: 'app'
 
@@ -110,7 +112,9 @@ The `type` can be:
 
 **Example**
 
-    type: php:5.6
+```yaml
+type: php:5.6
+```
 
 ### Build
 
@@ -124,8 +128,10 @@ It has a sub property `flavor` for which the possible values are:
 
 **Example**
 
-    build:
-        flavor: composer
+```yaml
+build:
+    flavor: composer
+```
 
 ### Access
 
@@ -157,11 +163,13 @@ variable. The right-hand side is in the form
 
 *Example*
 
-    relationships:
-        database: "mysqldb:mysql"
-        database2: "mysqldb2:mysql"
-        cache: "arediscache:redis"
-        search: "searchengine:solr"
+```yaml
+relationships:
+    database: "mysqldb:mysql"
+    database2: "mysqldb2:mysql"
+    cache: "arediscache:redis"
+    search: "searchengine:solr"
+```
 
 > **Note**
 > See  the [Services](/configuration/services.md) documentation
@@ -187,9 +195,11 @@ It has a few subkeys which are:
 
 *Example*
 
-    web:
-        commands:
-            start: "uwsgi --ini conf/server.ini"
+```yaml
+web:
+    commands:
+        start: "uwsgi --ini conf/server.ini"
+```
 
 #### Upstream
 
@@ -228,17 +238,19 @@ The `locations` key allows you to provide specific parameters for different URL 
 
 *Example*
 
-    web:
-        locations:
-            "/":
-                ...
-            "/sites/default/files":
-                ...
+```yaml
+web:
+    locations:
+        "/":
+            ...
+        "/sites/default/files":
+            ...
+```
 
 It has a few subkeys, which are:
 
 * `root`:
-    (Required) The folder from which to serve static assets for this location,
+    The folder from which to serve static assets for this location,
     relative to the application root. The application root is the directory in
     which the `.platform.app.yaml` file is located.  Typical values for this
     property include `public` or `web`.  Setting it to `""` is not recommended,
@@ -281,27 +293,29 @@ It has a few subkeys, which are:
 
 *Example*
 
-    web:
-        locations:
-            "/":
-                root: "public"
-                passthru: "/index.php"
-                index:
-                    - index.php
-                expires: -1
-                scripts: true
-                allow: true
-                rules:
-                    \.mp4$:
-                        allow: false
-                        expires: -1
-            # Set a 5 min expiration time for static files here; a missing URL
-            # will passthru to the "/" location above, and hit the application
-            # front-controller.
-            "/sites/default/files":
-                expires: 300
-                passthru: true
-                allow: true
+```yaml
+web:
+    locations:
+        "/":
+            root: "public"
+            passthru: "/index.php"
+            index:
+                - index.php
+            expires: -1
+            scripts: true
+            allow: true
+            rules:
+                \.mp4$:
+                    allow: false
+                    expires: -1
+        # Set a 5 min expiration time for static files here; a missing URL
+        # will passthru to the "/" location above, and hit the application
+        # front-controller.
+        "/sites/default/files":
+            expires: 300
+            passthru: true
+            allow: true
+```
 
 ### Disk
 
@@ -310,7 +324,6 @@ application in MB.
 
 > **Note**
 > The minimum recommended disk size is 256MB. If you see the error `UserError: Error building the project: Disk size may not be smaller than 128MB`, increase the size to 256MB.
-
 
 ### Mounts
 
@@ -327,7 +340,6 @@ The format is:
 
 > **Note**
 > The `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
-
 
 ### Build dependencies
 
@@ -360,7 +372,6 @@ dependencies:
   nodejs:
     grunt-cli: "~0.1.13"
 ```
-
 
 ### Hooks
 
@@ -433,7 +444,7 @@ environment variable: `$PLATFORM_BRANCH` that you put in a `if/then` statement.
 
 In your `.platform.app.yaml` file:
 
-```
+```yaml
 hooks:
   deploy: |
     if [ $PLATFORM_BRANCH = "master" ]; then
