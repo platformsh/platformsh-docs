@@ -276,10 +276,9 @@ It has a few subkeys, which are:
 * `expires`:
     How long to allow static assets from this location to be cached (this
     enables the `Cache-Control` and `Expires` headers). Can be a time or *-1*
-    for no caching. Times can be suffixed with "ms" (milliseconds), "s"
+    for no caching (default). Times can be suffixed with "ms" (milliseconds), "s"
     (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M"
-    (months, 30d) or "y" (years, 365d). The `expires` directive and resulting
-    headers are left out entirely if this isn't set.
+    (months, 30d) or "y" (years, 365d).
 * `scripts`:
     Whether to allow loading scripts in that location (*true* or *false*).
 * `allow`:
