@@ -51,11 +51,11 @@ web:
 # The size of the persistent disk of the application (in MB).
 disk: 2048
 
-# The mounts that will be performed when the package is deployed. The mount
-# path is relative to the application root, where this file lives.
+# The 'mounts' describe writable, persistent filesystem mounts in the application. The keys are
+# directory paths, relative to the application root. The values are strings such as
+# 'shared:files/NAME', where NAME is just a unique name for the mount.
 mounts:
-    '/web/files': 'shared:files/files'
-
+    '/web/files': 'shared:files/web-files'
 
 # The hooks that will be performed when the package is deployed.
 hooks:
