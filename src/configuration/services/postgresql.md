@@ -80,11 +80,11 @@ foreach ($relationships['database'] as $endpoint) {
 
 PostgreSQL does not support direct migration from one significant version to another without extensive user intervention. For that reason we do not support transparent updates from one PostgreSQL version to another (such as from 9.3 to 9.6).  In order to upgrade the service version, we recommend the following process:
 
-* Create a new service for the new PostgreSQL version
+* Create a new service for the new PostgreSQL version and expose that relationship to your application container
 * If possible, set your site to maintenance mode or read-only mode to avoid further database writes
-* Using `pg_dumpall` to take a snapshot of the old data
+* Use `pg_dumpall` to take a snapshot of the old data
 * Import that data into the new service
-* Modify the relationships block in `.platform.app.yaml` to use the new service name and redeploy
+* Modify the relationships block in `.platform.app.yaml` to use the new service name for your application and redeploy
 
 That will allow for a "fresh install" of the new PostgreSQL version with existing data.
 
