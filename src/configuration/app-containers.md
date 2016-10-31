@@ -103,11 +103,11 @@ The `type` defines what language will run your application.
 
 The `type` can be:
 
-* `php`
-* `hhvm`
-* `nodejs`
-* `python`
-* `ruby`
+* [`php`](/languages/php.md)
+* [`hhvm`](/languages/php.md)
+* [`nodejs`](/languages/nodejs.md)
+* [`python`](/languages/python.md)
+* [`ruby`](/languages/ruby.md)
 
 followed by a version.  See the appropriate language page for all available versions.
 
