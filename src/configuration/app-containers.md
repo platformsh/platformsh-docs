@@ -123,7 +123,7 @@ Its only property is `flavor`, which specifies a default set of build tasks to r
 
 * PHP - default `composer`
   * `composer` will run `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
-  * `drupal` will run `drush make` automatically if a `.make` file is detected.
+  * `drupal` will run `drush make` automatically in one of a few different ways.  See the [Drupal 7][/frameworks/drupal7.md] documentation for more details. We recommend only using this build mode for Drupal 7.
 * Node.js
   * `default` will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
 
