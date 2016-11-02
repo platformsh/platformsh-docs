@@ -125,7 +125,7 @@ Its only property is `flavor`, which specifies a default set of build tasks to r
   * `composer` will run `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
   * `drupal` will run `drush make` automatically if a `.make` file is detected.
 * Node.js
-  * `default` will run `npm prune --userconfig && npm install --userconfig` if a `package.json` file is detected.
+  * `default` will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
 
 In all languages you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js), which as the name suggests will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom composer command or use an alternate Node.js package manager.
 
