@@ -7,7 +7,7 @@ name: app
 # The toolstack used to build the application.
 type: php:7.0
 build:
-    flavor: composer
+    flavor: none
 
 # The configuration of app when it is exposed to the web.
 web:
