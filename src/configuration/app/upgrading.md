@@ -2,7 +2,21 @@
 
 ## Changes in version 2016.5
 
-As of October 2016, we now always set `Cache-Control` HTTP response header for static files. This prevents undefined caching behavior on static files that we allowed in the past. The default behavior is disabling cache of static files. Please make sure you have put a `expires` key in your [location configuration](https://docs.platform.sh/configuration/app-containers.html#locations) like below.
+As of October 2016, the default behaviour of the `expires` key, which controls
+client-side caching of static files, has changed. Previously, if the key was
+unset, the `Expires` and `Cache-Control` HTTP headers were left unset in the
+response, which meant that client side caching behaviour was left undefined.
+
+To ensure consistent behaviour that doesn't depend on which browser the client
+is using, the new default behaviour is to set these headers to values that
+disable client-side caching. This change only affects static files served
+directly by the web server. Responses served from passthru URLs continue to use
+whatever caching headers were set by the application..
+
+To enable caching on your static files, make sure you include an `expires` key
+in your [web
+configuration](https://docs.platform.sh/configuration/app-containers.html#locations),
+as shown below:
 
 ```
     web:
