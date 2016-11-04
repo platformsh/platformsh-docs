@@ -5,7 +5,7 @@ All Platform.sh plans include the following:
 * Four Environments (3 for staging/development 1 for the live site).
 * One Developer License
 * 5GB of Storage per environment
-* Multiple Backend services (MySQL, PostgreSQL, Elastic Search, Redis, Solr..)
+* Multiple Backend services (MySQL, PostgreSQL, Elasticsearch, Redis, Solr..)
 * Support
 
 You can switch between plans (downgrade or upgrade) freely but note that
