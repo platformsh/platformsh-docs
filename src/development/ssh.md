@@ -2,7 +2,7 @@
 
 One of the ways [Platform.sh](https://platform.sh/) keeps things secure
 is by using SSH behind the scenes. Users can interact with their environment
-through a command shell, or push changes to the environment's git repository,
+through a command shell, or push changes to the environment's Git repository,
 and both of these features rely on SSH.
 
 When you create a new project, the wizard will propose that you add your ssh
@@ -126,7 +126,7 @@ While trying to log in via SSH, this can happen:
 Don't panic! It's an issue which can happen for the following reasons:
 
 -   Your environment is inactive
--   You haven't rebuilt (git push) your environment since adding the new public key
+-   You haven't rebuilt (i.e. `git push`) your environment since adding the new public key
 -   You didn't upload your public key to your user profile
 -   Your SSH private key has not been added into your ssh-agent
 
@@ -159,7 +159,7 @@ If you followed all the steps above, you may also notice an error message simila
     Hello Your Name, you successfully connected, but you do not have access to service 'xxxxxxxxxxxxxx-master': check permissions.
     Received disconnect from 54.210.49.244: 14: No more auth methods available
 
-This usually means a deployment has not been committed yet. When a new key is added, it only becomes immediately active for use with git. For use with ssh, it will not be activated until a deployment is made. An easy way to force this is to create and push an empty commit:
+This usually means a deployment has not been committed yet. When a new key is added, it only becomes immediately active for use with Git. For use with ssh, it will not be activated until a deployment is made. An easy way to force this is to create and push an empty commit:
 
     $ git commit --allow-empty -m 'force redeploy'
     $ git push origin master
