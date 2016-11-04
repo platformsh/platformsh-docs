@@ -36,7 +36,7 @@ Regarding the data in Solr, if you have to make a copy, you have to use `platfor
 
 ## Do you support other database services?
 
-We support PostgreSQL, ElasticSearch, Redis and MongoDB Out of the box. Batteries included.No need for add-ons. We aim to support all the most popular database services...
+We support PostgreSQL, Elasticsearch, Redis and MongoDB Out of the box. Batteries included.No need for add-ons. We aim to support all the most popular database services...
 
 ## Does branching an environment duplicate services?
 
