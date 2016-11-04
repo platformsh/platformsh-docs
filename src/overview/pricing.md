@@ -84,7 +84,7 @@ they all share the global resource of the cluster.
 The resources of a **Standard plan are not sufficient to run more then one
 application** in the same cluster if there is also a MySQL database as a service. So useful multi-apps start at Medium.
 
-A Medium plan for example can support 3 Apps with a MySql Instance and a Redis
+A Medium plan for example can support 3 Apps with a MySQL Instance and a Redis
 instance.
 
 If you wonder if a specific setup would fit in a plan, don't hesitate to
