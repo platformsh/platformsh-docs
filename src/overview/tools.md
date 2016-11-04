@@ -22,7 +22,7 @@ to be able to interact with Platform.sh.
 
 One of the ways [Platform.sh](https://platform.sh/) keeps things secure
 is by using SSH behind the scenes. Users connect to their Platform.sh
-git repository and to their Command Line Interface (CLI) using
+Git repository and to their Command Line Interface (CLI) using
 SSH.
 
 SSH requires two [RSA keys](https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29):
