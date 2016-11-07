@@ -30,7 +30,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+Add the service in your `.platform/services.yaml`:
 
 ```yaml
 mydatabase:
@@ -38,15 +38,19 @@ mydatabase:
     disk: 1024
 ```
 
-In your ``.platform.app.yaml``:
+Add a relationship to the service in your ``.platform.app.yaml``:
+
+```yaml
+relationships:
+    database: "mydatabase:postgresql"
+```
+
+For PHP you should also enable the relevant extension:
 
 ```yaml
 runtime:
     extensions:
         - pdo_pgsql
-
-relationships:
-    database: "mydatabase:postgresql"
 ```
 
 You can then use the service in a configuration file of your application with something like:
