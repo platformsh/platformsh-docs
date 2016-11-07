@@ -38,7 +38,7 @@ mydatabase:
     disk: 1024
 ```
 
-In your ``.platform.app.yaml``:
+For PHP you should add in your ``.platform.app.yaml``:
 
 ```yaml
 runtime:
