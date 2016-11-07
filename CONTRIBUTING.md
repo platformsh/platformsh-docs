@@ -31,7 +31,7 @@ The goal of Platform.sh's documentation is to help tech-savvy users self-educate
 * Titles of pages and sections should use Sentence case.  That is, capitalize the first word and proper nouns only.
 * Never have a page in the outline that is more than 2 levels deep. That is, never have a sub-sub item.  That ensures all pages are at most 2 clicks away from any other page.
 * Each page should cover one topic, but should completely cover that topic. Do not break topics across multiple pages needlessly.
-* The use of asides should be sparing.  If used, they must begin with a `**bolded**` header of "node" or "warning", as appropriate. Most text simply belongs as part of the prose, however.
+* The use of asides should be sparing.  If used, they must begin with a `**bolded**` header of "note" or "warning", as appropriate. Most text simply belongs as part of the prose, however.
 
 ## Language usage
 
