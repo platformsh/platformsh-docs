@@ -7,28 +7,6 @@ Transactional data storage  and the world's most advanced open source database.
 * 9.3
 * 9.6
 
-## Relationship
-
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
-
-```bash
-{
-    "database": [
-        {
-            "username": "main",
-            "password": "main",
-            "host": "248.0.65.196",
-            "query": {
-                "is_master": true
-            },
-            "path": "main",
-            "scheme": "pgsql",
-            "port": 5432
-        }
-    ]
-}
-```
-
 ## Usage example
 
 In your `.platform/services.yaml` add:
@@ -78,6 +56,36 @@ foreach ($relationships['database'] as $endpoint) {
 
 (Or the equivalent for your application.)
 
+## Relationship
+
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
+
+```bash
+{
+    "database": [
+        {
+            "username": "main",
+            "password": "main",
+            "host": "248.0.65.196",
+            "query": {
+                "is_master": true
+            },
+            "path": "main",
+            "scheme": "pgsql",
+            "port": 5432
+        }
+    ]
+}
+```
+
+## Notes
+
+### Could not find driver
+
+If you see this error: ``Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'``,
+this means you are missing the ``pdo_pgsql`` PHP extension. You simply need to enable it in your ``.platform.app.yaml``
+(see above).
+
 ## Upgrading
 
 PostgreSQL does not support direct migration from one significant version to another without extensive user intervention. For that reason we do not support transparent updates from one PostgreSQL version to another (such as from 9.3 to 9.6).  In order to upgrade the service version, we recommend the following process:
@@ -89,11 +97,3 @@ PostgreSQL does not support direct migration from one significant version to ano
 * Modify the relationships block in `.platform.app.yaml` to use the new service name for your application and redeploy
 
 That will allow for a "fresh install" of the new PostgreSQL version with existing data.
-
-## Notes
-
-### Could not find driver
-
-If you see this error: ``Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'``,
-this means you are missing the ``pdo_pgsql`` PHP extension. You simply need to enable it in your ``.platform.app.yaml``
-(see above).
