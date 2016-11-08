@@ -5,6 +5,7 @@ Transactional data storage  and the world's most advanced open source database.
 ## Supported versions
 
 * 9.3
+* 9.6
 
 ## Relationship
 
@@ -30,7 +31,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## Usage example
 
-Add the service in your `.platform/services.yaml`:
+In your `.platform/services.yaml` add:
 
 ```yaml
 mydatabase:
@@ -45,7 +46,7 @@ relationships:
     database: "mydatabase:postgresql"
 ```
 
-For PHP you should also enable the relevant extension:
+For PHP, in your `.platform.app.yaml` add:
 
 ```yaml
 runtime:
@@ -74,6 +75,20 @@ foreach ($relationships['database'] as $endpoint) {
   $container->setParameter('database_path', '');
 }
 ```
+
+(Or the equivalent for your application.)
+
+## Upgrading
+
+PostgreSQL does not support direct migration from one significant version to another without extensive user intervention. For that reason we do not support transparent updates from one PostgreSQL version to another (such as from 9.3 to 9.6).  In order to upgrade the service version, we recommend the following process:
+
+* Create a new service for the new PostgreSQL version and expose that relationship to your application container
+* If possible, set your site to maintenance mode or read-only mode to avoid further database writes
+* Use `pg_dumpall` to take a snapshot of the old data
+* Import that data into the new service
+* Modify the relationships block in `.platform.app.yaml` to use the new service name for your application and redeploy
+
+That will allow for a "fresh install" of the new PostgreSQL version with existing data.
 
 ## Notes
 
