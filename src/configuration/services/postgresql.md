@@ -76,6 +76,8 @@ foreach ($relationships['database'] as $endpoint) {
 }
 ```
 
+(Or the equivalent for your application.)
+
 ## Upgrading
 
 PostgreSQL does not support direct migration from one significant version to another without extensive user intervention. For that reason we do not support transparent updates from one PostgreSQL version to another (such as from 9.3 to 9.6).  In order to upgrade the service version, we recommend the following process:
