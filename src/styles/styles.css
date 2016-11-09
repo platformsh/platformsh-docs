@@ -129,7 +129,7 @@ ul.summary li ul ul {
   padding-top: 50px;
 }
 #book-search-input {
-  left: -300px;
+  left: -100%;
   position: fixed;
   width: calc(100% - 61px);
   z-index: 2;
@@ -293,6 +293,7 @@ section.normal p strong,
     display: none;
   }
   #book-search-input {
+    left: -300px;
     width: 299px;
   }
 }
