@@ -18,15 +18,15 @@
     },
     "ga": {
       "token": "UA-4064131-10"
-    }
-  },
-  "links": {
+    },
     "sharing": {
-      "google": null,
-      "facebook": null,
-      "twitter": null,
-      "weibo": null,
-      "all": null
+      "google": false,
+      "facebook": false,
+      "twitter": false,
+      "share": false,
+      "all": [
+        "facebook", "google", "twitter", "share"
+      ]
     }
   }
 }
