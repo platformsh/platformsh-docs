@@ -125,7 +125,20 @@ ul.summary li ul ul {
   margin-top: 0;
   padding-top: 0;
 }
+.book-summary > nav {
+  padding-top: 50px;
+}
 #book-search-input {
+  left: -100%;
+  position: fixed;
+  width: calc(100% - 61px);
+  z-index: 2;
+  -webkit-transition: left 250ms ease;
+  -moz-transition: left 250ms ease;
+  -o-transition: left 250ms ease;
+  transition: left 250ms ease;
+}
+.book.with-summary .book-summary #book-search-input {
   left: 0;
 }
 #book-search-input:before {
@@ -278,6 +291,10 @@ section.normal p strong,
   }
   .site-name span {
     display: none;
+  }
+  #book-search-input {
+    left: -300px;
+    width: 299px;
   }
 }
 @media (min-width: 768px) {
