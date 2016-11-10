@@ -13,7 +13,7 @@ In your `.platform/services.yaml` add:
 
 ```yaml
 mydatabase:
-    type: postgresql:9.3
+    type: postgresql:9.6
     disk: 1024
 ```
 
