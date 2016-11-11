@@ -95,7 +95,7 @@ To minimize the downtime associated with such upgrades, we suggest the following
 1. Create a development environment that you can use to test the upgrade process.
 2. Create a new service for the new PostgreSQL version (alongside the existing one), and point your application container's existing relationship at the new service.
 3. Add a new relationship to expose the service running the older PostgreSQL version
-4. Add a deploy hook that migrates the data from the old service to the new one. This prevents the application from loading and modifying the database during the migration.
+4. Add a [deploy hook](#example-deploy-hook) that migrates the data from the old service to the new one. This prevents the application from loading and modifying the database during the migration.
 5. Make a Git commit with these changes, and push it into the development environment that you're testing with.
 6. In the development environment, review `/var/log/deploy.log` to confirm that the migration was successful, inspect the database, and test your application as needed to confirm that the migration was successful and that the application works with the new PostgreSQL version.
 7. When you're ready to upgrade the database on your master environment, start off by triggering a fresh snapshot of the master environment's data. This will give you the ability to roll back the upgrade process in case something goes wrong.
