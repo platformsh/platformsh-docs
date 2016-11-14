@@ -467,8 +467,7 @@ hooks:
 
 ### Crons / Cronjobs
 
-The `crons` is an object describing processes that are triggered on a
-schedule.
+The `crons` is an object describing processes that are triggered on a schedule.  Each item in the list is a unique name identifying a separate cron task.
 
 It has a few subkeys which are:
 
