@@ -478,6 +478,8 @@ It has a few subkeys which are:
 
 The minimum interval between cron runs is 5 minutes, even if specified as less.
 
+Note that cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
+
 ### Runtime
 
 The `.platform.app.yaml` file also supports a `runtime` key, which allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate language documentation.
