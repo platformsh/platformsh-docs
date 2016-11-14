@@ -96,7 +96,7 @@ echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
 }
 ```
 
-## Custom Environment Variables
+## Custom environment variables
 
 You can create simple environment variables outside of the
 **PLATFORM_VARIABLES** value by prefixing the variable name with `env:`.
@@ -104,7 +104,18 @@ You can create simple environment variables outside of the
 For example, the variable `env:FOO` will create an environment variable called
 `FOO`.
 
-For example with PHP, you can get that variable with `$_ENV['FOO']`.
+With PHP, you can get that variable with `$_ENV['FOO']` or `getenv('FOO')`.
+
+## PHP specific variables
+
+Any variable that is pre-pended with `php:` will also be added to the `php.ini` configuration of all PHP-based application containers.  For example, an environment variable named `php:display_errors` with value `On` is equivalent to placing the following in `php.ini`:
+
+```ini
+display_errors = On
+```
+
+This feature is primarily useful to override debug configuration on development environments, such as enabling errors or configuring the XDebug extension.  For applying a configuration setting to all environments, or to vary them between different PHP containers in the same project, use a custom `php.ini` file in your repository.  See the [PHP configuration page](/languages/php.md#custom-phpini) for more information.
+
 
 ## Drupal specific variables
 
