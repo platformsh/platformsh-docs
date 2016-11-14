@@ -95,12 +95,20 @@ To minimize the downtime associated with such upgrades, we suggest the following
 1. Create a development environment that you can use to test the upgrade process.
 2. Create a new service for the new PostgreSQL version (alongside the existing one), and point your application container's existing relationship at the new service.
 3. Add a new relationship to expose the service running the older PostgreSQL version
-4. Add a deploy hook that migrates the data from the old service to the new one. This prevents the application from loading and modifying the database during the migration.
+4. Add a [deploy hook](#example-deploy-hook) that migrates the data from the old service to the new one. This prevents the application from loading and modifying the database during the migration.
 5. Make a Git commit with these changes, and push it into the development environment that you're testing with.
 6. In the development environment, review `/var/log/deploy.log` to confirm that the migration was successful, inspect the database, and test your application as needed to confirm that the migration was successful and that the application works with the new PostgreSQL version.
 7. When you're ready to upgrade the database on your master environment, start off by triggering a fresh snapshot of the master environment's data. This will give you the ability to roll back the upgrade process in case something goes wrong.
 8. Push the same commit from step 5 into your project's master branch. This will carry out the migration in your production environment.
 9. Finally, push out another commit that removes the old database service, which is no longer needed now that the upgrade process is finished.
+
+**Note**
+If your database is too large to duplicate within your plan size, we'd suggest temporarily raising your plan limits. Charges are prorated, so you'll only be billed for a single day of increased usage. However, you can also use a development environment to perform the migration:
+1. Put your master environment's application into maintenance mode, if possible, to prevent it from trying to read from or write to the database during the migration.
+2. Create an up-to-date copy of your database by cloning a development environment from master.
+3. Rename the master environment's postgresql service, and switch the version to 9.6. Renaming ensures that the service's storage is reset, which is necessary to avoid exposing the 9.6 server to incompatible data from version 9.3.
+4. Open an SSH session in your master environment, with agent forwarding enabled (so you can SSH from master to your development environment).
+5. Now, use SSH to run `pg_dump` on the development environment, and pipe the data from SSH into a `pg_restore` command running in the master environment. You can use the [sample deploy hook](#example-deploy-hook) below as a starting point. You'll need to create a .pgpass file on the development environment, and also wrap the `pg_dump` invocation in a call to `ssh`.
 
 ### Example deploy hook
 
