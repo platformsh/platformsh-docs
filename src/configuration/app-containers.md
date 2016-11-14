@@ -471,9 +471,9 @@ The `crons` is an object describing processes that are triggered on a schedule. 
 
 It has a few subkeys which are:
 
--   **spec**: The cron specification. For example: `*/20 * * * *`.
+-   **spec**: The [cron specification](http://www.nncron.ru/help/EN/working/cron-format.htm). For example: `*/20 * * * *` to run every 20 minutes.
 -   **cmd**: The command that is executed, for example
-    cd public ; drush core-cron\`
+    `cd public ; drush core-cron\`
 
 The minimum interval between cron runs is 5 minutes, even if specified as less.
 
