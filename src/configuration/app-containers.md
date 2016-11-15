@@ -486,7 +486,7 @@ crons:
         spec: '*/20 * * * *'
         cmd: 'cd web ; drush core-cron'
     # But also run pending queue tasks every 5 minutes.
-    drush-cron:
+    drush-queue:
         spec: '*/5 * * * *'
         cmd: 'cd web ; drush queue-run aggregator_feeds
 ```
