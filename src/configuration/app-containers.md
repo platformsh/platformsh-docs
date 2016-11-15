@@ -479,6 +479,18 @@ The minimum interval between cron runs is 5 minutes, even if specified as less.
 
 Note that cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
 
+```yaml
+crons:
+    # Run Drupal's cron tasks every 20 minutes.
+    drupal:
+        spec: '*/20 * * * *'
+        cmd: 'cd web ; drush core-cron'
+    # But also run pending queue tasks every 5 minutes.
+    drush-cron:
+        spec: '*/5 * * * *'
+        cmd: 'cd web ; drush queue-run aggregator_feeds
+```
+
 ### Runtime
 
 The `.platform.app.yaml` file also supports a `runtime` key, which allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate language documentation.
