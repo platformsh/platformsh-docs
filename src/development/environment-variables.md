@@ -104,6 +104,8 @@ You can create simple environment variables outside of the
 For example, the variable `env:FOO` will create an environment variable called
 `FOO`.
 
+For example with PHP, you can get that variable with `$_ENV['FOO']`.
+
 ## Drupal specific variables
 
 You can define variables based on the toolstack you're working with.
