@@ -1,5 +1,10 @@
 # Upgrading
 
+## Changes in version 2016.6 (2016-11-18)
+
+* Application containers now include the latest LTS version of Node.js, 6.9.1. The previously included version was 4.6.1.
+* Composer is now called with `--no-dev`, to reduce the likelihood of including insecure software in your production applications. If you need to return to the previous behaviour, you can set the [build flavor](https://docs.platform.sh/configuration/app-containers.html#build) to `none` and call composer from within your [build hook](https://docs.platform.sh/configuration/app-containers.html#hooks).
+
 ## Changes in version 2016.5
 
 As of October 2016, the default behaviour of the `expires` key, which controls
