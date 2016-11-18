@@ -131,7 +131,7 @@ Its only property is `flavor`, which specifies a default set of build tasks to r
 * Node.js
   * `default` will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
 
-In all languages you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js), which as the name suggests will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom composer command or use an alternate Node.js package manager.
+In all languages you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js), which, as the name suggests, will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom composer command or use an alternate Node.js package manager.
 
 **Example**
 
