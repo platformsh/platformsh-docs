@@ -78,6 +78,60 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 }
 ```
 
+## PostgreSQL Extensions
+We have full support for running PostgreSQL Extensions on Platform.sh. In your `services.yaml` 
+file you can simply add a configuration subkey with the following strucure:
+
+```yaml
+postgresql:
+    type: "postgresql:9.6"
+    disk: 1025
+    configuration:
+        extensions:
+            - pg_trgm
+            - hstore
+```
+
+In this cas you will have pg_trgm installed giving functions to determine the similarity of text based on trigram matching and hstore, giving you a key-value store.
+
+### List of supported extensions
+
+The following is the extensive list of supported extensions. Note that you cannot currently add custom 
+extensions not list here.
+
+* **adminpack**      - File and log manipulation routines, used by pgAdmin
+* **btree_gist**     - B-Tree indexing using GiST (Generalised Search Tree)
+* **chkpass**        - An auto-encrypted password datatype
+* **cube**           - Multidimensional-cube datatype (GiST indexing example)
+* **dblink**         - Functions to return results from a remote database
+* **earthdistance**  - Operator for computing the distance (in miles) between two points on the earth's surface
+* **fuzzystrmatch**  - Levenshtein, metaphone, and soundex fuzzy string matching
+* **hstore**         - Store (key, value) pairs
+* **intagg**         - Integer aggregator/enumerator
+* **_int**           - Index support for arrays of int4, using GiST (benchmark needs the libdbd-pg-perl package)
+* **isn**            - type extensions for ISBN, ISSN, ISMN, EAN13 product numbers
+* **lo**             - Large Object maintenance
+* **ltree**          - Tree-like data structures
+* **oid2name**       - Maps OIDs to table names
+* **pageinspect**    - Inspection of database pages
+* **passwordcheck**  - Simple password strength checker
+* **pg_buffercache** - Real time queries on the shared buffer cache
+* **pg_freespacemap*- Displays the contents of the free space map (FSM)
+* **pg_trgm**        - Determine the similarity of text based on trigram matching
+* **pg_standby**     - Create a warm stand-by server
+* **pgbench**        - TPC-B like benchmark
+* **pgcrypto**       - Cryptographic functions
+* **pgrowlocks**     - A function to return row locking information
+* **pgstattuple**    - Returns the percentage of dead tuples in a table; this indicates whether a vacuum is required.
+* **postgresql_fdw** - foreign data wrapper for PostgreSQL
+* **seg**            - Confidence-interval datatype (GiST indexing example)
+* **sepgsql**        - mandatory access control (MAC) based on SELinux
+* **spi**            - PostgreSQL Server Programming Interface
+* **tablefunc**      - examples of functions returning tables
+* **uuid-ossp**      - UUID generation functions
+* **vacuumlo**       - Remove orphaned large objects
+
+
 ## Notes
 
 ### Could not find driver
