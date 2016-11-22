@@ -80,7 +80,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## PostgreSQL Extensions
 We have full support for running PostgreSQL Extensions on Platform.sh. In your `services.yaml` 
-file you can simply add a configuration subkey with the following strucure:
+file you can simply add a configuration subkey with the following structure:
 
 ```yaml
 postgresql:
