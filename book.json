@@ -9,7 +9,8 @@
     "collapsible-menu",
     "codesnippet",
     "ga",
-    "edit-link"
+    "edit-link",
+    "-sharing"
   ],
   "pluginsConfig": {
     "edit-link": {
@@ -18,15 +19,6 @@
     },
     "ga": {
       "token": "UA-4064131-10"
-    },
-    "sharing": {
-      "google": false,
-      "facebook": false,
-      "twitter": false,
-      "share": false,
-      "all": [
-        "facebook", "google", "twitter", "share"
-      ]
     }
   }
 }
