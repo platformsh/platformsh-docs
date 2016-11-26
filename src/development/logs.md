@@ -1,6 +1,6 @@
 # Accessing logs
 
-Logs for various tasks on an application container are available in the `/var/log` directory.  They can be accessed on the normal shell after loging in with `platform ssh`.  Alternatively, they may also be accessed remotely using the `platform log` command.  The CLI lets you specify which log file to access (the name of the file below minus the `.log` extension), as well as view the while file in a pager, only the most recent lines, and so forth.  Run `platform log --help` for complete documentation.
+Logs for various tasks on an application container are available in the `/var/log` directory.  They can be accessed on the normal shell after loging in with `platform ssh`.  Alternatively, they may also be accessed remotely using the `platform log` command.  The CLI lets you specify which log file to access (the name of the file below minus the `.log` extension), as well as view the entire file in a pager, only the most recent lines, and so forth.  Run `platform log --help` for complete documentation.
 
 A number of different log files are available depending on the application container in use.
 
