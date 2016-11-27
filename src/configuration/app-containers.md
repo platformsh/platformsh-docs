@@ -465,9 +465,9 @@ hooks:
     drush -y updatedb
 ```
 
-### Crons / Cronjobs
+### Crons / Cron jobs
 
-The `crons` is an object describing processes that are triggered on a schedule.  Each item in the list is a unique name identifying a separate cron task.
+Cron jobs allow you to run scheduled tasks at specified times or intervals. The `crons` object describes these tasks and the schedule that they are triggered on.  Each item in the list is a unique name identifying a separate cron job.
 
 It has a few subkeys which are:
 
