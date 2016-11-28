@@ -39,7 +39,7 @@
 
 * [Local development](development/local.md)
 * [Environment variables](development/environment-variables.md)
-* [Accessing Logs](development/logs.md)
+* [Accessing logs](development/logs.md)
 * [Private repositories](development/private-repository.md)
 * [Git submodules](development/submodules.md)
 * [Using SSH](development/ssh.md)
