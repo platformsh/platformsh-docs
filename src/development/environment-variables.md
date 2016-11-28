@@ -108,7 +108,7 @@ With PHP, you can get that variable with `$_ENV['FOO']` or `getenv('FOO')`.
 
 ## PHP specific variables
 
-Any variable that is pre-pended with `php:` will also be added to the `php.ini` configuration of all PHP-based application containers.  For example, an environment variable named `php:display_errors` with value `On` is equivalent to placing the following in `php.ini`:
+Any variable that is prepended with `php:` will also be added to the `php.ini` configuration of all PHP-based application containers.  For example, an environment variable named `php:display_errors` with value `On` is equivalent to placing the following in `php.ini`:
 
 ```ini
 display_errors = On
