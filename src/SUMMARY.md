@@ -69,7 +69,7 @@
   * [Developing with Drupal](frameworks/drupal7/developing-with-drupal.md)
   * [Migrating](frameworks/drupal7/migrating.md)
   * [Customizing settings.php](frameworks/drupal7/customizing-settings-php.md)
-  * [Drush](frameworks/drupal7/customizing-settings-php.md)
+  * [Drush](frameworks/drupal7/drush.md)
   * [Redis](frameworks/drupal7/redis.md)
   * [Solr](frameworks/drupal7/solr.md)
   * [FAQ](frameworks/drupal7/faq.md)
