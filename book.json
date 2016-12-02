@@ -8,7 +8,7 @@
     "reveal",
     "collapsible-menu",
     "codesnippet",
-    "ga",
+    "gtm",
     "edit-link",
     "-sharing"
   ],
@@ -17,8 +17,9 @@
       "base": "https://github.com/platformsh/platformsh-docs/edit/master/src",
       "label": "Edit Page"
     },
-    "ga": {
-      "token": "UA-4064131-10"
+    "gtm": {
+      "token": "GTM-MR3BJL",
+      "virtualPageViews": true
     }
   }
 }
