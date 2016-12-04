@@ -23,7 +23,7 @@ The Web Interface exposes 5 main actions that you can use to interface with your
 
 ### Git
 
-The Git icon displays the commands to use to get your project locally with the CLI or clone the codebase via Git.
+The Git icon displays the commands to use to get your project set up locally with the CLI or clone the codebase via Git.
 
 ------------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ During a `branch`, three things happen:
 
 ### Merge
 
-Merging an environment means introducing the code changes from a branch to its parent branch, and redeploying the parent.
+Merging an environment means introducing the code changes from a branch to its parent branch and redeploying the parent.
 
 During a `merge`:
 
@@ -65,13 +65,13 @@ Rebuilding the application is not necessary if the same code was already built (
 
 Synchronizing means updating the child environment with the code and/or data of its parent and redeploying the child environment.
 
-Note that `sync` is only available if your branch has no unmerged commits, and can be fast-forwarded. On `sync`, your code branch will be fast-forwarded to its parent's tip, and the data (e.g. databases) of the services on the branch will be overwritten with an exact copy of the parent's. Syncing of data and code can be done individually, so if desired, you can benefit from having only code changes applied.
+Note that `sync` is only available if your branch has no unmerged commits, and can be fast-forwarded. On `sync`, your code branch will be fast-forwarded to its parent's tip, and the data (e.g. databases) of the services on the branch will be overwritten with an exact copy of the parent's. Syncing of data and code can be done individually, if desired, so you can benefit from having only code changes applied.
 
 ![image](/images/icon-backup.png)
 
 ### Snapshot & Restore
 
-Creating a snapshot for an environment means saving a copy of the database, so that it could be restored (in other words, create a backup). You will see the snapshot in the activity feed of you environment in the Platform.sh Web Interface where you can trigger the restore by
+Creating a snapshot for an environment means saving a copy of the database so that it can be restored (in other words, create a backup). You will see the snapshot in the activity feed of you environment in the Platform.sh Web Interface where you can trigger the restore by
 clicking on the `restore` link.
 
 You can also use the CLI with:
