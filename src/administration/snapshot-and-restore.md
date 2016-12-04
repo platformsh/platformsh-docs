@@ -5,9 +5,8 @@
 ### Manual snapshot
 
 Snapshots are triggered directly via the Web Interface or via the CLI. The snapshot
-creates a complete backup of the environment. It includes all
-persistent data from all running services (MySQL, SOLR...) and any files
-stored on the mounted volumes.
+creates a complete backup of the environment. It includes all persistent data from
+all running services (MySQL, SOLR,...) and any files stored on the mounted volumes.
 
 > **note**
 > We advise you to make snapshots of your live environment before merging an environment
@@ -24,9 +23,10 @@ $ platform snapshot:create
 
 ### Manual Restore
 
-You will see the snapshot in the activity feed of you environment in the Platform.sh Web Interface where you can trigger the restore by clicking on the `restore` link.
+You will see the snapshot in the activity feed of you environment in the Platform.sh
+Web Interface. You can trigger the restore by clicking on the `restore` link.
 
-You can list existing snapshots using the CLI using:
+You can list existing snapshots with the CLI as follows:
 ```bash
 $ platform snapshots
 Finding snapshots for the environment master
@@ -41,7 +41,7 @@ Finding snapshots for the environment master
 | 2015-05-19 14:51:18 | 100        | 71051a8fe6ef78bca0eb |
 ```
 
-You can restore a specific snapshot with the CLI with:
+You can restore a specific snapshot with the CLI as follows:
 ```bash
 $ platform snapshot:restore 92c9a4b2aa75422efb3d
 ```
@@ -55,7 +55,7 @@ No snapshot is triggered automatically on Platform.sh Standard. You can
 trigger your snapshot via the Web Interface or via the CLI.
 
 If you want to automate your snapshots, you can use Jenkins and trigger
-the following CLI command:
+with the CLI command as follows:
 
 ```bash
 $ platform snapshot:create --yes
