@@ -137,8 +137,8 @@ Available commands:
 * user:role
   * View or change a user's role
 
-For example the following command would add the admin to alice@example.com role
-to the current project.
+For example, the following command would add the 'admin' role to alice@example.com
+in the current project.
 
 ```
    platform user:add
