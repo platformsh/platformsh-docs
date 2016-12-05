@@ -15,9 +15,9 @@ file whose sole purpose is to redirect. A typical use case for this type of rout
 prefix to your domain, as the following example shows:
 
 ```yaml
-http://{default}/:
+https://{default}/:
     type: redirect
-    to: http://www.{default}/
+    to: https://www.{default}/
 ```
 
 ## Partial redirects
@@ -26,13 +26,13 @@ In the [`.platform/routes.yaml`](routes-yaml.html) file you can also add partial
 to existing routes:
 
 ```yaml
-http://{default}/:
+https://{default}/:
   # [...]
   redirects:
     expires: 1d
     paths:
-      "/from": { "to": "http://example.com/" }
-      "/regexp/(.*)/matching": { "to": "http://example.com/$1", regexp: true }
+      "/from": { "to": "https://example.com/" }
+      "/regexp/(.*)/matching": { "to": "https://example.com/$1", regexp: true }
 ```
 
 This format is more rich and works with any type of route, including routes served directly by the application.
@@ -47,30 +47,30 @@ request path and a value object describing both the destination to redirect to w
 detail on how to handle the redirection. The value object is defined with the following
 keys:
 
- * `to`: required, a relative URL - `"/destination"`, or absolute URL - `"http://example.com/"`.
+ * `to`: required, a relative URL - `"/destination"`, or absolute URL - `"https://example.com/"`.
  * `regexp`: optional, defaults to `false`. Specifies whether the path key should be interpreted as
-   a PCRE regular expression. In the following example, a request to `http://example.com/regexp/a/b/c/match`
-   would redirect to `http://example.com/a/b/c`:
+   a PCRE regular expression. In the following example, a request to `https://example.com/regexp/a/b/c/match`
+   would redirect to `https://example.com/a/b/c`:
 
    ```yaml
-   http://{default}/:
+   https://{default}/:
      type: upstream
      redirects:
        paths:
          "/regexp/(.*)/match":
-            to: "http://example.com/$1"
+            to: "https://example.com/$1"
             regexp: true
    ```
 
  * `prefix`: optional, specifies whether we should redirect both the path and all its children or just the path itself. Defaults to `true`, but not supported if `regexp` is `true`. For example,
 
    ```yaml
-   http://{default}/:
+   https://{default}/:
      type: upstream
      redirects:
        paths:
          "/from":
-            to: "http://{default}/to"
+            to: "https://{default}/to"
             prefix: true
    ```
    with `prefix` set to `true`, `/from` will redirect to `/to` and `/from/another/path` will redirect to `/to/another/path`.
@@ -80,12 +80,12 @@ keys:
    If we redirect with `append_suffix` set to `false`, for example, then the following
 
    ```yaml
-   http://{default}/:
+   https://{default}/:
      type: upstream
      redirects:
        paths:
          "/from":
-            to: "http://{default}/to"
+            to: "https://{default}/to"
             append_suffix: false
    ```
    would result in `/from/path/suffix` redirecting to just `/to`. If `append_suffix` was left on its default value of `true`, then `/from/path/suffix` would have redirected to `/to/path/suffix`.
@@ -94,13 +94,13 @@ keys:
  * `expires`: optional, the duration the redirect will be cached for. Defaults to the `expires` value defined directly under the `redirects` key, but at this level we can fine-tune the expiration of individual partial redirects:
 
    ```yaml
-   http://{default}/:
+   https://{default}/:
      type: upstream
      redirects:
        expires: 1d
        paths:
-         "/from": { "to": "http://example.com/" }
-         "/here": { "to": "http://example.com/there", "expires": "2w" }
+         "/from": { "to": "https://example.com/" }
+         "/here": { "to": "https://example.com/there", "expires": "2w" }
    ```
    In this example, redirects from `/from` would be set to expire in one day, but redirects from `/here` would
    expire in two weeks.
