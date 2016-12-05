@@ -6,7 +6,6 @@
   "plugins": [
     "anchors",
     "reveal",
-    "collapsible-menu",
     "codesnippet",
     "ga",
     "edit-link",
