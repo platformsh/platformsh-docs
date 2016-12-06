@@ -217,6 +217,8 @@ memory_limit = 256M
 date.timezone = "Europe/Paris"
 ```
 
+Environment-specific `php.ini` configuration directives can be provided via environment variables.  See the note in the [Environment variables](/development/environment-variables.md#php-specific-variables) section.
+
 ------------------------------------------------------------------------
 
 > **warning**

@@ -3,19 +3,38 @@
 Platform.sh exposes environment variables which you can interact with. There are
 two sources for these. There are the ones that are set by Platform.sh itself
 and that give you all the context you need about the environment (how to
-connect to your database for example). And there are the ones you can set
-yourself through the web interface or the CLI.
+connect to your database, for example), and there are the ones you can set
+yourself.
 
-Environment variables are a good place to store values that apply only on Platform.sh, not on your local development environment. That includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" toggle, etc.
+Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" toggle, etc.
 
-When you're logged in via SSH to an environment (with the cli: `platform ssh`),
-you can list the environment variables by running:
+## Adding environment variables
+
+New custom environment variables can be set [through the web interface](administration/web/configure-environment.html#settings), or using the CLI. For example, this command adds the variable `foo` to the `$PLATFORM_VARIABLES` object...
+
+```bash
+$ platform variable:set foo bar
+```
+## Inspecting and listing environment variables
+
+Custom environment variables which you have defined can be viewed [via the Web Interface](administration/web/configure-environment.html#settings) or using the CLI...
+
+```bash
+$ platform variables
+
++---------+-------+-----------+------+
+| ID      | Value | Inherited | JSON |
++---------+-------+-----------+------+
+| env:FOO | bar   | No        | No   |
++---------+-------+-----------+------+
+```
+You can also list all the environment variables when logged in via SSH to an environment (with the cli: `platform ssh`):
 
 ```bash
 web@myp3bmdujgzqe-master--php:~$ export
 ```
-Since they are **base64-encoded JSON object** that maps variable names
-to variable values, you can decode the value of user defined variables by
+Some environment variables are **base64-encoded JSON objects** that map variable names
+to variable values. You can decode the value of user defined variables by
 running:
 
 ```bash
@@ -23,20 +42,22 @@ echo $PLATFORM_VARIABLES | base64 --decode
 {"myvar": "this is a value"}
 ```
 
-In this example we defined for one of our environments a variable we called
+In this example we defined a variable for one of our environments that we called
 "myvar".
 
-> **note**
-> Variables are **hierarchical**, so if a variable is not overriden in an environment, it will take the value it has in the parent environment and use it as `inherited`.
-> This allows you to define your development variables only once, and use them on all the child environments.
+## Environment inheritance
+
+Variables are **hierarchical**, so if a variable is not overridden in an environment, it will take the value it has in the parent environment and use it as `inherited`.
+
+This allows you to define your development variables only once, and use them on all the child environments.
 
 > **note**
 > If a variable is added in the parent environment after the child environments are created, the child environments have to be re-deployed in order to load the inherited variables.
 
 ## Platform.sh variables
 
-Environment variables that are specific to Platform.sh are exposed in
-the runtime (*ie. PHP*) and prefixed with `PLATFORM_*`.
+Environment variables that are specific to Platform.sh are exposed in the runtime (*ie. PHP*) and prefixed with `PLATFORM_*`. These variables are used to provide a a range of information about your environment and services for use in application configuration. For example, for Drupal, we use the **PLATFORM_RELATIONSHIPS** variable to configure your `settings.local.php`.
+
 
 * **PLATFORM_APP_DIR**: The absolute path to the application directory.
 * **PLATFORM_APPLICATION**: A base64-encoded JSON object that describes the application. It maps the content of the `.platform.app.yaml` that you have in Git and it has a few subkeys.
@@ -52,12 +73,7 @@ the runtime (*ie. PHP*) and prefixed with `PLATFORM_*`.
 * **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are variables names and values are variable values (*a string*).
 * **PLATFORM_PROJECT_ENTROPY**: A random value created when the project is first created, which is then stable throughout the project’s life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
 
-Since values can change over time, the best thing is to just introspect the variable at runtime and use it to configure your application.
-
-For example with Drupal, we use the **PLATFORM_RELATIONSHIPS** variable
-to configure your `settings.local.php`.
-
-For example:
+Since values can change over time, the best thing is to inspect the variable at runtime then use it to configure your application. For example:
 
 ```bash
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
@@ -96,7 +112,13 @@ echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
 }
 ```
 
-## Custom Environment Variables
+## Custom environment variables
+
+Custom environment variables can be added via the web interface (under **Configure environment**) or by using the CLI's `platform variable:set` command. For example, this command adds the variable `foo` to the `$PLATFORM_VARIABLES` object...
+
+```bash
+$ platform variable:set foo bar
+```
 
 You can create simple environment variables outside of the
 **PLATFORM_VARIABLES** value by prefixing the variable name with `env:`.
@@ -104,18 +126,32 @@ You can create simple environment variables outside of the
 For example, the variable `env:FOO` will create an environment variable called
 `FOO`.
 
-For example with PHP, you can get that variable with `$_ENV['FOO']`.
+```ini
+$ platform variable:set env:foo bar
+```
 
-## Drupal specific variables
+With PHP, you can get that variable with `$_ENV['FOO']` or `getenv('FOO')`.
+
+### PHP-specific variables
+
+Any variable that is prepended with `php:` will also be added to the `php.ini` configuration of all PHP-based application containers.  For example, an environment variable named `php:display_errors` with value `On` is equivalent to placing the following in `php.ini`:
+
+```ini
+display_errors = On
+```
+
+This feature is primarily useful to override debug configuration on development environments, such as enabling errors or configuring the XDebug extension.  For applying a configuration setting to all environments, or to vary them between different PHP containers in the same project, use a custom `php.ini` file in your repository.  See the [PHP configuration page](/languages/php.md#custom-phpini) for more information.
+
+
+### Drupal-specific variables
 
 You can define variables based on the toolstack you're working with.
 
 For example with Drupal, you would prefix your Environment variables
 with `drupal:`. Those variables will then be special-cased by our
-`settings.local.php` and directly added to `$conf[]`.
+`settings.platformsh.php` file and directly added to `$conf[]`.
 
 An example variable:
 
 -   `drupal:site_name` which will directly set the site name of your
     Drupal site on an environment.
-
