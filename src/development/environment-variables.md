@@ -132,7 +132,7 @@ $ platform variable:set env:foo bar
 
 With PHP, you can get that variable with `$_ENV['FOO']` or `getenv('FOO')`.
 
-### PHP specific variables
+### PHP-specific variables
 
 Any variable that is prepended with `php:` will also be added to the `php.ini` configuration of all PHP-based application containers.  For example, an environment variable named `php:display_errors` with value `On` is equivalent to placing the following in `php.ini`:
 
@@ -143,13 +143,13 @@ display_errors = On
 This feature is primarily useful to override debug configuration on development environments, such as enabling errors or configuring the XDebug extension.  For applying a configuration setting to all environments, or to vary them between different PHP containers in the same project, use a custom `php.ini` file in your repository.  See the [PHP configuration page](/languages/php.md#custom-phpini) for more information.
 
 
-### Drupal specific variables
+### Drupal-specific variables
 
 You can define variables based on the toolstack you're working with.
 
 For example with Drupal, you would prefix your Environment variables
 with `drupal:`. Those variables will then be special-cased by our
-`settings.local.php` and directly added to `$conf[]`.
+`settings.platformsh.php` file and directly added to `$conf[]`.
 
 An example variable:
 
