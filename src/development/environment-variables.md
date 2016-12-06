@@ -25,7 +25,7 @@ $ platform variables
 +---------+-------+-----------+------+
 | ID      | Value | Inherited | JSON |
 +---------+-------+-----------+------+
-| env:FOO | bar   | No        | No   |
+| foo     | bar   | No        | No   |
 +---------+-------+-----------+------+
 ```
 You can also list all the environment variables when logged in via SSH to an environment (with the cli: `platform ssh`):
@@ -155,3 +155,14 @@ An example variable:
 
 -   `drupal:site_name` which will directly set the site name of your
     Drupal site on an environment.
+
+
+## Shell variables
+
+You can also provide a `.environment` file as part of your application, in your application root (as a sibling of your `.platform.app.yaml` file, or files in the case of a mult-app configuration).  That file will be sourced as a bash script when the container starts and on all SSH logins.  It can be used to set any environment variables directly, such as the PATH variable.  For example, the following `.environment` file will allow any executable installed using Composer as part of a project to be run regardless of the current directory:
+ 
+ ```yaml
+export PATH=/app/vendor/bin:$PATH
+ ```
+
+Note that the file is sourced after all other environment variables above are defined, so they will be available to the script.  
