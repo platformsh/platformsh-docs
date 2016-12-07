@@ -76,8 +76,6 @@ foreach ($relationships['database'] as $endpoint) {
 }
 ```
 
-(Or the equivalent for your application.)
-
 ## PostgreSQL Extensions
 We have full support for running PostgreSQL Extensions on Platform.sh. In your `services.yaml` 
 file you can simply add a configuration subkey with the following structure:
