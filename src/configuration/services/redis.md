@@ -18,7 +18,7 @@ cache area for your application.
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
 
-```bash
+```json
 {
     "redis": [
         {

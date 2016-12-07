@@ -17,7 +17,7 @@ Support for custom schemas is available for Platform.sh Enterprise customers.
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/configuration/environment-variables.md):
 
-```bash
+```json
 {
     "solr": [
         {

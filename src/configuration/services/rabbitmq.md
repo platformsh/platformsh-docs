@@ -14,7 +14,7 @@ Protocol (AMQP).
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
 
-```bash
+```json
 {
    "rabbitmq" : [
       {

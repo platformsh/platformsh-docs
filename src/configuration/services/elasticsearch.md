@@ -12,7 +12,7 @@ Elasticsearch is a distributed RESTful search engine built for the cloud.
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/environment-variables.md):
 
-```bash
+```json
 {
     "elasticsearch": [
         {
@@ -54,3 +54,4 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
   }
 }
 ```
+

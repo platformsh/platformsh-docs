@@ -60,7 +60,7 @@ foreach ($relationships['database'] as $endpoint) {
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
 
-```bash
+```json
 {
     "database": [
         {
@@ -167,6 +167,7 @@ If your database is too large to duplicate within your plan size, we'd suggest t
 ### Example deploy hook
 
 Here's a sample deploy hook that you can use to implement the migration between versions:
+
 ```yaml
 hooks:
     deploy: |
