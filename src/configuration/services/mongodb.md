@@ -50,7 +50,7 @@ You can then use the service in a configuration file of your application with so
 
 ```php
 <?php
-$relationships = getenv("PLATFORM_RELATIONSHIPS");
+$relationships = getenv('PLATFORM_RELATIONSHIPS');
 if (!$relationships) {
   return;
 }
@@ -61,7 +61,7 @@ foreach ($relationships['database'] as $endpoint) {
   if (empty($endpoint['query']['is_master'])) {
     continue;
   }
-  $container->setParameter('mongodb_server', $endpoint['scheme'] . '://' $endpoint['host'] . ':' $endpoint['port']);
+  $container->setParameter('mongodb_server', $endpoint['scheme'] . '://' . $endpoint['host'] . ':' . $endpoint['port']);
   $container->setParameter('database_name', $endpoint['path']);
   $container->setParameter('database_user', $endpoint['username']);
   $container->setParameter('database_password', $endpoint['password']);
