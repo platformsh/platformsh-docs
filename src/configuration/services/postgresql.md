@@ -7,6 +7,28 @@ Transactional data storage and the world's most advanced open source database.
 * 9.3
 * 9.6
 
+## Relationship
+
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
+
+```json
+{
+    "database": [
+        {
+            "username": "main",
+            "password": "main",
+            "host": "248.0.65.196",
+            "query": {
+                "is_master": true
+            },
+            "path": "main",
+            "scheme": "pgsql",
+            "port": 5432
+        }
+    ]
+}
+```
+
 ## Usage example
 
 In your `.platform/services.yaml` add:
@@ -55,28 +77,6 @@ foreach ($relationships['database'] as $endpoint) {
 ```
 
 (Or the equivalent for your application.)
-
-## Relationship
-
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
-
-```json
-{
-    "database": [
-        {
-            "username": "main",
-            "password": "main",
-            "host": "248.0.65.196",
-            "query": {
-                "is_master": true
-            },
-            "path": "main",
-            "scheme": "pgsql",
-            "port": 5432
-        }
-    ]
-}
-```
 
 ## PostgreSQL Extensions
 We have full support for running PostgreSQL Extensions on Platform.sh. In your `services.yaml` 
