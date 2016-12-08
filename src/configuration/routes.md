@@ -130,7 +130,7 @@ you will have to `git pull` the updated `.platform/routes.yaml` file from us.
 You can get a list of the configured routes of an environment by running
 `platform environment:routes`.
 
-![Platform Routes Cli](/images/platform-routes-cli.png)
+![Platform Routes CLI](/images/platform-routes-cli.png)
 
 ## Wildcard routes
 

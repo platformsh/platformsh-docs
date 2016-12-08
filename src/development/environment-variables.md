@@ -28,7 +28,7 @@ $ platform variables
 | env:FOO | bar   | No        | No   |
 +---------+-------+-----------+------+
 ```
-You can also list all the environment variables when logged in via SSH to an environment (with the cli: `platform ssh`):
+You can also list all the environment variables when logged in via SSH to an environment (with the CLI: `platform ssh`):
 
 ```bash
 web@myp3bmdujgzqe-master--php:~$ export
