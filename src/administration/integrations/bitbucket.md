@@ -31,10 +31,10 @@ The add-on needs access to some information on your repository. Click on ``Grant
 
 That's it! The bot will build your Platform.sh project and connect it to your Bitbucket repository.
 
-You can already start pushing code (branch, pull request...) to your Bitbucket repository and see those changes automatically deployed on Platform.sh.
+You can already start pushing code (branch, pull request, ...) to your Bitbucket repository and see those changes automatically deployed on Platform.sh.
 
-## Types of environment
+## Types of environments
 
-Environments based on Bitbucket **pull requests** will have the correct 'parent' environment on Platform.sh: they will be activated automatically with a copy of the parent's data.
+Environments based on Bitbucket **pull requests** will have the correct 'parent' environment on Platform.sh and will be activated automatically with a copy of the parent's data.
 
-However, environments based on (non-pull-request) **branches** cannot have parents: they will inherit directly from `master` and start inactive by default.
+However, environments based on (non-pull-request) **branches** cannot have parents and will inherit directly from `master` and start inactive by default.
