@@ -1,12 +1,10 @@
 # Solr (Search Service)
 
-Solr is highly reliable, scalable and fault tolerant, providing distributed
-indexing, replication and load-balanced querying, automated failover and
-recovery, centralized configuration and more.
+Apache Solr is a scalable and fault-tolerant search index.
 
-Solr search with generic schemas provided.
+Solr search with generic schemas provided, and a custom schema is also supported.
 
-Support for custom schemas is available for Platform.sh Enterprise customers.
+See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) for more information.
 
 ## Supported versions
 

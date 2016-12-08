@@ -1,10 +1,8 @@
 # RabbitMQ (Message Queue service)
 
-A high throughput message queue, great for multi-app!
+RabbitMQ is an open source message broker software (sometimes called message-oriented middleware) that implements the Advanced Message Queuing Protocol (AMQP).
 
-RabbitMQ is an open source message broker software (sometimes called
-message-oriented middleware) that implements the Advanced Message Queuing
-Protocol (AMQP).
+See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for more information.
 
 ## Supported versions
 

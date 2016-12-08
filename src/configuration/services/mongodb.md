@@ -1,7 +1,8 @@
 # MongoDB (Database service)
 
-MongoDB is a cross-platform document-oriented database. It's classified as a
-NoSQL database.
+MongoDB is a cross-platform document-oriented database.
+
+See the [MongoDB documentation](https://docs.mongodb.com/manual/) for more information.
 
 ## Supported versions
 

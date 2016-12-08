@@ -1,7 +1,8 @@
 # MariaDB/MySQL (Database service)
 
-Transactional data storage. Based on MariaDB, supporting the XtraDB storage
-engine (equivalent to MySQL with InnoDB).
+MariaDB is a MySQL-compatible relational database system. Its XtraDB storage engine is equivalent to MySQL with InnoDB.
+
+See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentation](https://dev.mysql.com/doc/refman/5.5/en/) for more information.
 
 ## Supported versions
 

@@ -2,6 +2,8 @@
 
 Elasticsearch is a distributed RESTful search engine built for the cloud.
 
+See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
+
 ## Supported versions
 
 * 0.90

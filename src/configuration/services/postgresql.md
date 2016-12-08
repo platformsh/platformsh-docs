@@ -1,6 +1,8 @@
 # PostgreSQL (Database service)
 
-Transactional data storage and the world's most advanced open source database.
+PostgreSQL is a high-performance, standards-compliant relational SQL database.
+
+See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/static/index.html) for more information.
 
 ## Supported versions
 
