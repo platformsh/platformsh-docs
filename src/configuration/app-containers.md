@@ -121,14 +121,14 @@ type: php:5.6
 
 ### Build
 
-The `build` defines what will happen by default when building the application.
+The `build` defines what happens when building the application.
 
 Its only property is `flavor`, which specifies a default set of build tasks to run. Flavors are language-specific.
 
-* PHP - default `composer`
+* PHP (`composer` by default)
   * `composer` will run `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
-  * `drupal` will run `drush make` automatically in one of a few different ways.  See the [Drupal 7][/frameworks/drupal7.md] documentation for more details. We recommend only using this build mode for Drupal 7.
-* Node.js
+  * `drupal` will run `drush make` automatically in one of a few different ways.  See the [Drupal 7](/frameworks/drupal7.md) documentation for more details. We recommend only using this build mode for Drupal 7.
+* Node.js (`default` by default)
   * `default` will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
 
 In all languages you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js), which, as the name suggests, will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom composer command or use an alternate Node.js package manager.
