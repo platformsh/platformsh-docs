@@ -198,7 +198,7 @@ The `commands` key defines the command to launch the application.
 
 It has a few subkeys which are:
 
-* `start`: The command line to use to launch the application. Can be a string, or *null* if the application is only made of static files. It's filled out during the build process for PHP.
+* `start`: The command line to use to launch the application. Can be a string, or *null* if the application is only made of static files. On PHP containers this value is optional and will default to starting PHP-FPM.
 
 *Example*
 
