@@ -29,7 +29,7 @@ runtime:
               server_token: '692203ae8755da6b57b8161d3f20dd1be71502f77adebf3363d164033d74d29b'
 ```
 
-Push changes to your Platform environment to enable Blackfire as follows:
+Push the changes to your Platform environment to enable Blackfire as follows:
 
 ```bash
 git add .platform.app.yaml
@@ -39,7 +39,7 @@ git push
 
 ### 3. Confirm it's running
 
-You can then confirm that Blackfire is running from SSH in the PHP container as follows:
+Login via SSH to your container and confirm that Blackfire is running as follows:
 
 ```bash
 php --ri blackfire
