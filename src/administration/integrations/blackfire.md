@@ -7,7 +7,7 @@ developed by [SensioLabs](https://sensiolabs.com/).
 
 ### 1. Get your credentials
 
-**Sign up for free** at [blackfire.io](https://blackfire.io/signup), and
+**Sign up for free** at [blackfire.io](https://blackfire.io/signup) and
 install the **Blackfire Companion** web browser extension
 ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld)).
 
@@ -18,7 +18,7 @@ account](https://blackfire.io/account/credentials).
 
 ### 2. Enable the Blackfire extension
 
-Paste those credentials in your `.platform.app.yaml`:
+Paste the credentials above in your `.platform.app.yaml` as follows:
 
 ```bash
 runtime:
@@ -29,7 +29,7 @@ runtime:
               server_token: '692203ae8755da6b57b8161d3f20dd1be71502f77adebf3363d164033d74d29b'
 ```
 
-Push your changes to your Platform environment to enable Blackfire:
+Push the changes to your Platform environment to enable Blackfire as follows:
 
 ```bash
 git add .platform.app.yaml
@@ -39,7 +39,7 @@ git push
 
 ### 3. Confirm it's running
 
-You can then confirm that Blackfire is running by SSH in the PHP container:
+Login via SSH to your container and confirm that Blackfire is running as follows:
 
 ```bash
 php --ri blackfire
@@ -60,5 +60,5 @@ Companion.
 
 ![Blackfire Companion](/images/blackfire-companion.png)
 
-That's it, your site is being profiled and you should get all the
+That's it! Your site will be profiled and you should get all the
 results in your Blackfire account.
