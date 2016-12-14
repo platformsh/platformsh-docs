@@ -4,9 +4,9 @@
 
 Platform or Platform.sh is the infrastructure which is running all your projects.
 
-A project is the site that you're working on. Each project can contain multiple applications and be deployed in environments.
+A project is the site that you're working on. Each project can contain multiple applications and be deployed in their own environments.
 
-An environment is a standalone copy of your live site (the Master environment) which can be used for testing, implementing new features...
+An environment is a standalone copy of your site, complete with code, data, and running services. The master branch is the production environment, while any other branch can be setup as an otherwise identical testing environment.
 
 ## How can I cancel my subscription?
 
@@ -34,22 +34,6 @@ Then, perform the Git push as follows:
 ```
 PLATFORMSH_PUSH_NO_WAIT=1 git push
 ```
-
-## How can I export my data?
-
-If you have file mounts, you can keep a copy of the files using `rsync` like below.
-
-```
-rsync -r [SSH-URL]:/app/private/ .
-```
-
-Data stored in database can be copied to you local file system via [Platform.sh CLI](https://docs.platform.sh/user_guide/overview/cli/index.html).
-
-```
-platform sql-dump
-```
-
-Regarding the data in Solr, if you have to make a copy, you have to use `platform tunnel` from [Platform.sh CLI](https://docs.platform.sh/user_guide/overview/cli/index.html) and then run [Solr replication](http://wiki.apache.org/solr/SolrReplication) moving your data to local box. Though, if the data are just the search index of your site, you can always rebuild that from scratch easily.
 
 ## Do you support MySQL?
 
