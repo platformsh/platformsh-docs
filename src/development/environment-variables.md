@@ -1,63 +1,47 @@
-# Environment variables
+# Variables
 
-Platform.sh exposes environment variables which you can interact with. There are
-two sources for these. There are the ones that are set by Platform.sh itself
-and that give you all the context you need about the environment (how to
-connect to your database, for example), and there are the ones you can set
-yourself.
+Platform.sh allows a high degree of control over both the build process and the runtime environment of a project.  Part of that control comes in the form of *variables* that are set independently of the project's code base but available either at build or runtime for your code to leverage.  Platform.sh also exposes additional information to your application that way, including information like database credentials, the host or port it can use, and so forth.
 
-Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" toggle, etc.
+## Types of variables
 
-## Adding environment variables
+There are three different types of variable: User-provided project variables, user-provided environment variables, and Platform.sh-provided environment variables.  All of those may be simple strings or base64-encoded JSON-serialized values.
 
-New custom environment variables can be set [through the web interface](administration/web/configure-environment.html#settings), or using the CLI. For example, this command adds the variable `foo` to the `$PLATFORM_VARIABLES` object...
+### Project variables
+
+Project variables are defined by the user and bound to a whole project.  They are available both at build time (and therefore from a build hook) and at runtime, and are the same for all environments in the project.  New project variables can be added using the CLI.  For example, the following command sets a project-level variable "foo" to the value "bar":
+
+```bash
+platform project:variable:set foo bar
+```
+
+Project variables are a good place to store secret information that is needed at build time, such as credentials for a private 3rd party code repository.
+
+By default, project variables will be available at both build time and runtime. You can supress one or the other with the `--no-visible-build` and `--no-visible-runtime` flags, such as if you want to hide certain credentials from runtime entirely.  For example, the following (silly) example will define a project variable but hide it from both build and runtime:
+>>>>>>> Rewrite the variables page.
+
+```bash
+platform project:variable:set foo bar --no-visible-build --no-visible-runtime
+```
+
+Naturally in practice you'll want to use only one or the other, or allow the variable to be visible in both cases.
+
+### Platform.sh Environment variables
+
+Environtment-level variables can also be set [through the web interface](administration/web/configure-environment.html#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to set the environment variable "foo" to the value "bar" on the currently checked out environment/branch, run:
 
 ```bash
 $ platform variable:set foo bar
 ```
-## Inspecting and listing environment variables
 
-Custom environment variables which you have defined can be viewed [via the Web Interface](administration/web/configure-environment.html#settings) or using the CLI...
+That will set a variable on the currently active environment (that is, the branch you have checked out).  To set a variable on a different environment include the `-e` switch to specify the environment name.
 
-```bash
-$ platform variables
+Changing an environment variable will cause that environment to be redeployed so that it gets the new value.  However, it will *not* redeploy any child environments. If you want those to get the new value you will need to redeploy them yourself.
 
-+---------+-------+-----------+------+
-| ID      | Value | Inherited | JSON |
-+---------+-------+-----------+------+
-| foo     | bar   | No        | No   |
-+---------+-------+-----------+------+
-```
-You can also list all the environment variables when logged in via SSH to an environment (with the CLI: `platform ssh`):
+Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" toggle, etc.
 
-```bash
-web@myp3bmdujgzqe-master--php:~$ export
-```
-Some environment variables are **base64-encoded JSON objects** that map variable names
-to variable values. You can decode the value of user defined variables by
-running:
+## Platform.sh-provided variables
 
-```bash
-echo $PLATFORM_VARIABLES | base64 --decode
-{"myvar": "this is a value"}
-```
-
-In this example we defined a variable for one of our environments that we called
-"myvar".
-
-## Environment inheritance
-
-Variables are **hierarchical**, so if a variable is not overridden in an environment, it will take the value it has in the parent environment and use it as `inherited`.
-
-This allows you to define your development variables only once, and use them on all the child environments.
-
-> **note**
-> If a variable is added in the parent environment after the child environments are created, the child environments have to be re-deployed in order to load the inherited variables.
-
-## Platform.sh variables
-
-Environment variables that are specific to Platform.sh are exposed in the runtime (*ie. PHP*) and prefixed with `PLATFORM_*`. These variables are used to provide a a range of information about your environment and services for use in application configuration. For example, for Drupal, we use the **PLATFORM_RELATIONSHIPS** variable to configure your `settings.local.php`.
-
+Platform.sh also provides a series of variables by default.  These inform an application about its runtime configuration.  The most important of these is relationship information, which tells the application how to connect to databases and other services defined in `services.yaml`.  They are always prefixed with `PLATFORM_*` to differentiate them from user-provided values.
 
 * **PLATFORM_APP_DIR**: The absolute path to the application directory.
 * **PLATFORM_APPLICATION**: A base64-encoded JSON object that describes the application. It maps the content of the `.platform.app.yaml` that you have in Git and it has a few subkeys.
@@ -66,17 +50,19 @@ Environment variables that are specific to Platform.sh are exposed in the runtim
 * **PLATFORM_DOCUMENT_ROOT**: The absolute path to the web document root, if applicable.
 * **PLATFORM_ENVIRONMENT**: The name of the environment generated by the name of the Git branch.
 * **PLATFORM_PROJECT**: The ID of the project.
-* **PLATFORM_RELATIONSHIPS**: A base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. Each relationship endpoint definition is a decomposed form of a URL. It has a `scheme`, a `host`, a `port`, and optionally a `username`, `password`, `path` and some additional information in `query`.
-* **PLATFORM_ROUTES**: Describe the routes that you defined in the environment. It maps the content of the `.platform/routes.yaml`
-    file.
-* **PLATFORM_TREE_ID**: The ID of the tree the application was built from. It's essentially the SHA of the tree in Git.
-* **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are variables names and values are variable values (*a string*).
+* **PLATFORM_RELATIONSHIPS**: A base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. See the documentation for each [Service](/configuration/services.yaml) for details on each service type's schema.
+* **PLATFORM_ROUTES**: Describe the routes that you defined in the environment. It maps the content of the `.platform/routes.yaml` file.
+* **PLATFORM_TREE_ID**: The ID of the tree the application was built from. It's essentially the SHA hash of the tree in Git.
+* **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are variables names and values are variable values (see below).
 * **PLATFORM_PROJECT_ENTROPY**: A random value created when the project is first created, which is then stable throughout the project’s life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
 
 Since values can change over time, the best thing is to inspect the variable at runtime then use it to configure your application. For example:
 
 ```bash
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
+```
+
+```json
 {
     "database": [
         {
@@ -99,38 +85,101 @@ echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
             "port": 6379,
             "scheme": "redis"
         }
-    ],
-    "solr": [
-        {
-            "host": "solr.internal",
-            "ip": "246.0.97.90",
-            "path": "solr",
-            "port": 8080,
-            "scheme": "solr"
-        }
     ]
 }
 ```
 
-## Custom environment variables
+## Accessing variables
 
-Custom environment variables can be added via the web interface (under **Configure environment**) or by using the CLI's `platform variable:set` command. For example, this command adds the variable `foo` to the `$PLATFORM_VARIABLES` object...
+You can get a list of all variables defined on a given environment either [via the Web Interface](administration/web/configure-environment.html#settings) or using the CLI:
 
 ```bash
-$ platform variable:set foo bar
+$ platform variables
+
++---------+-------+-----------+------+
+| ID      | Value | Inherited | JSON |
++---------+-------+-----------+------+
+| env:FOO | bar   | No        | No   |
++---------+-------+-----------+------+
 ```
 
-You can create simple environment variables outside of the
-**PLATFORM_VARIABLES** value by prefixing the variable name with `env:`.
+### At build time
 
-For example, the variable `env:FOO` will create an environment variable called
-`FOO`.
+Only Project variables are available at build time.  They will be exposed as Unix environment variables, with their names forced to uppercase, which can be accessed either from the shell directly or as part of a script.  To access them inline as part of a build hook command prefix the variable with a `$` like so:
+
+```bash
+echo $MY_VAR
+```
+
+They can also be accessed from within a non-shell script via the language's standard way of accessing environment variables.  For instance, in PHP you would use `getenv('MY_VAR')`. Remember that in some cases they may be base64 JSON strings, and will need to be unpacked.  To do so from the shell, for instance, you would do: 
+
+```bash
+echo $PLATFORM_VARIABLES | base64 --decode
+{"myvar": "this is a value"}
+```
+
+### At runtime
+
+In a running container, which includes the deploy hook, your Project variables, Environment variables, and Platform.sh-provided variables are all exposed as Unix environment variables and can be accessed by your application through your language's standard way of accessing environment variables.
+
+Platform.sh-defined variables will be exposed directly with the names listed above.  Project and environment variables will be merged together into a single JSON array and exposed in the `$PLATFORM_VARIABLES` environment variable.  In case of a matching name, an environment variable will override a variable of the same name in a parent environment, and both will override a project variable.
+
+For example, suppose we have the following project variables defined:
+
+```bash
+platform project:variable:set system_name Spiffy
+platform project:variable:set system_version 1.5
+```
+
+And the following environment variables defined, where `feature-x` is a child environment (and branch off of) `master`:
+
+```bash
+platform variable:set -e master api_key abc123
+platform variable:set -e feature-x api_key def456
+platform variable:set -e feature-x system_version 1.7
+platform variable:set -e feature-x debug_mode 1
+```
+
+In this case, on the `master` environment `$PLATFORM_VARIABLES` would look like this:
+
+```bash
+echo $PLATFORM_VARIABLES | base64 --decode | json_pp
+```
+
+```json
+{
+    "system_name": "Spiffy",
+    "system_version": "1.5",
+    "api_key": "abc123"
+}
+```
+
+While the same command on the `feature-x` branch would produce:
+
+```json
+{
+    "system_name": "Spiffy",
+    "system_version": "1.7",
+    "api_key": "def456",
+    "debug_mode": "1"
+}
+```
+
+## Variable prefixes
+
+Certain variable name prefixes have special meaning.  A few of these are defined by Platform.sh and are built-in.  Others are simply available as a convention for your own application code to follow.
+
+### Top-level environment variables
+
+By default, project and environment variables are only added as part of the `$PLATFORM_VARIABLES` Unix environment variable.  However, you can also expose a variable as its own Unix environment variable by giving it the prefix `env:`.  
+
+For example, the variable `env:foo` will create an environment variable called `FOO`.  (Note the automatic upper-casing.)
 
 ```ini
 $ platform variable:set env:foo bar
 ```
 
-With PHP, you can get that variable with `$_ENV['FOO']` or `getenv('FOO')`.
+With PHP, you can then access that variable with `getenv('FOO')`.
 
 ### PHP-specific variables
 
@@ -142,20 +191,17 @@ display_errors = On
 
 This feature is primarily useful to override debug configuration on development environments, such as enabling errors or configuring the XDebug extension.  For applying a configuration setting to all environments, or to vary them between different PHP containers in the same project, use a custom `php.ini` file in your repository.  See the [PHP configuration page](/languages/php.md#custom-phpini) for more information.
 
-
 ### Drupal-specific variables
 
-You can define variables based on the toolstack you're working with.
+As a convention, our provided Drupal template code will automatically map variables to Drupal's configuration system.  The logic varies slightly depending on the Drupal version.
 
-For example with Drupal, you would prefix your Environment variables
-with `drupal:`. Those variables will then be special-cased by our
-`settings.platformsh.php` file and directly added to `$conf[]`.
+On [Drupal 7](), any variable that begins with `drupal:` will be mapped to the global `$conf` array, which overrides Drupal's `variable_get()` system.  For instance, to force a site name from the Platform.sh variables (say to set it "This is a Dev site") you would set the `drupal:site_name` variable.
 
-An example variable:
+On [Drupal 8](), any variable that begins with `drupal:` will be mapped to the global `$settings` array. That is intended for very low-level configuration.  
 
--   `drupal:site_name` which will directly set the site name of your
-    Drupal site on an environment.
+Also on Drupal 8, any variable that begins with `d8config:` will be mapped to the global `$config` array, which is useful for overriding drupal's exportable configuration system.  The variable name will need to contain two colons, one for `d8config:` and one for the name of the configuration object to override.  For example, a variable named `d8config:system.site:name` will override the `name` property of the `system.site` configuration object.
 
+As the above logic is defined in a file in your Git repository you are free to change it if desired.  The same behavior can also be easily implemented for any other application or framework.
 
 ## Shell variables
 
