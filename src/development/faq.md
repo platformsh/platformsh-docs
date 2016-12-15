@@ -39,10 +39,6 @@ PLATFORMSH_PUSH_NO_WAIT=1 git push
 
 [Platform.sh](https://platform.sh) uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
 
-## Do you support other database services?
-
-We support PostgreSQL, Elasticsearch, Redis and MongoDB Out of the box. Batteries included.No need for add-ons. We aim to support all the most popular database services...
-
 ## Does branching an environment duplicate services?
 
 Yes ! Branching an environment creates an exact copy (snapshot) of the parent environment, containing the files, the database, the services...
