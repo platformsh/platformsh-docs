@@ -2,6 +2,8 @@
 
 Elasticsearch is a distributed RESTful search engine built for the cloud.
 
+See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
+
 ## Supported versions
 
 * 0.90
@@ -12,7 +14,7 @@ Elasticsearch is a distributed RESTful search engine built for the cloud.
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/environment-variables.md):
 
-```bash
+```json
 {
     "elasticsearch": [
         {
@@ -54,3 +56,4 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
   }
 }
 ```
+

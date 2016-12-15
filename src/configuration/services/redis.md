@@ -1,7 +1,8 @@
 # Redis (Object cache)
 
-Provides the in-memory object cache for your application. Can be used as a
-cache area for your application.
+Redis is a high-performance in-memory object cache, well-suited for application level caching.
+
+See the [Redis documentation](https://redis.io/documentation) for more information.
 
 ## Supported versions
 
@@ -18,7 +19,7 @@ cache area for your application.
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
 
-```bash
+```json
 {
     "redis": [
         {
@@ -35,14 +36,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 In your ``.platform/services.yaml``:
 
 ```yaml
-myredis:
-    type: redis:2.8
-```
-
-or something in the lines of:
-
-```yaml
-cache:
+rediscache:
     type: redis:3.0
 ```
 
@@ -54,7 +48,7 @@ runtime:
         - redis
 
 relationships:
-    redis: "myredis:redis"
+    redis: "rediscache:redis"
 ```
 
 You can then use the service in a configuration file of your application with something like:

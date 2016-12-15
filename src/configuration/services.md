@@ -69,3 +69,36 @@ For example, the current default storage amount per project is 5GB (meaning 5120
 ## Using the services
 
 In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml](/configuration/app-containers.md) file which configures the *relationships* between applications and services.
+
+## Connecting to a service
+
+Once a service is running and exposed as a relationship, its appropriate credentials (host name, username if appropriate, etc.) will be exposed through the `PLATFORM_RELATIONSHIPS` environment variable.  The structure of each is documented on the appropriate service's page, along with sample code for how to connect to it from your application. Note that different applications manage configuration differently so the exact code will vary from one application to another.
+
+To connect to a remote service from your local computer, the easiest way is to use the [Platform CLI](/overview/cli.md) to open an SSH tunnel.
+
+```bash
+platform tunnel:open
+```
+
+That will open an SSH tunnel to all services on the current environment, and give an output similar to:
+
+```bash
+SSH tunnel opened on port 30000 to relationship: redis
+SSH tunnel opened on port 30001 to relationship: database
+Logs are written to: /home/myuser/.platformsh/tunnels.log
+
+List tunnels with: platform tunnels
+View tunnel details with: platform tunnel:info
+Close tunnels with: platform tunnel:close
+```
+
+In this example, we can now securely connect to the database or redis server on our environment by connecting to the specified local ports.  The `platform tunnels` command will list all open tunnels:
+
+```text
++-------+---------------+-------------+-----------+--------------+
+| Port  | Project       | Environment | App       | Relationship |
++-------+---------------+-------------+-----------+--------------+
+| 30000 | a43m75zns6k4c | master      | [default] | redis        |
+| 30001 | a43m75zns6k4c | master      | [default] | database     |
++-------+---------------+-------------+-----------+--------------+
+```

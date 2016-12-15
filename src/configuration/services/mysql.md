@@ -1,7 +1,8 @@
 # MariaDB/MySQL (Database service)
 
-Transactional data storage. Based on MariaDB, supporting the XtraDB storage
-engine (equivalent to MySQL with InnoDB).
+MariaDB is a MySQL-compatible relational database system. Its XtraDB storage engine is equivalent to MySQL with InnoDB.
+
+See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentation](https://dev.mysql.com/doc/refman/5.5/en/) for more information.
 
 ## Supported versions
 
@@ -12,7 +13,7 @@ engine (equivalent to MySQL with InnoDB).
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
 
-```bash
+```json
 {
   "database": [
     {
@@ -83,7 +84,7 @@ foreach ($relationships['database'] as $endpoint) {
 Assuming your MariaDB relationship is named `database`, you can access it by connecting
 to a host named `database.internal` using the MySQL command line client.
 
-```
+```bash
 mysql -h database.internal -u user main
 ```
 

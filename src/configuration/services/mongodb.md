@@ -1,7 +1,8 @@
 # MongoDB (Database service)
 
-MongoDB is a cross-platform document-oriented database. It's classified as a
-NoSQL database.
+MongoDB is a cross-platform document-oriented database.
+
+See the [MongoDB documentation](https://docs.mongodb.com/manual/) for more information.
 
 ## Supported versions
 
@@ -11,7 +12,7 @@ NoSQL database.
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
 
-```bash
+```json
 {
   "database": [
     {
@@ -50,7 +51,7 @@ You can then use the service in a configuration file of your application with so
 
 ```php
 <?php
-$relationships = getenv("PLATFORM_RELATIONSHIPS");
+$relationships = getenv('PLATFORM_RELATIONSHIPS');
 if (!$relationships) {
   return;
 }
@@ -61,7 +62,7 @@ foreach ($relationships['database'] as $endpoint) {
   if (empty($endpoint['query']['is_master'])) {
     continue;
   }
-  $container->setParameter('mongodb_server', $endpoint['scheme'] . '://' $endpoint['host'] . ':' $endpoint['port']);
+  $container->setParameter('mongodb_server', $endpoint['scheme'] . '://' . $endpoint['host'] . ':' . $endpoint['port']);
   $container->setParameter('database_name', $endpoint['path']);
   $container->setParameter('database_user', $endpoint['username']);
   $container->setParameter('database_password', $endpoint['password']);

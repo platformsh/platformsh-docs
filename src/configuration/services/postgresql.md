@@ -1,11 +1,35 @@
 # PostgreSQL (Database service)
 
-Transactional data storage and the world's most advanced open source database.
+PostgreSQL is a high-performance, standards-compliant relational SQL database.
+
+See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/static/index.html) for more information.
 
 ## Supported versions
 
 * 9.3
 * 9.6
+
+## Relationship
+
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
+
+```json
+{
+    "database": [
+        {
+            "username": "main",
+            "password": "main",
+            "host": "248.0.65.196",
+            "query": {
+                "is_master": true
+            },
+            "path": "main",
+            "scheme": "pgsql",
+            "port": 5432
+        }
+    ]
+}
+```
 
 ## Usage example
 
@@ -51,30 +75,6 @@ foreach ($relationships['database'] as $endpoint) {
   $container->setParameter('database_user', $endpoint['username']);
   $container->setParameter('database_password', $endpoint['password']);
   $container->setParameter('database_path', '');
-}
-```
-
-(Or the equivalent for your application.)
-
-## Relationship
-
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
-
-```bash
-{
-    "database": [
-        {
-            "username": "main",
-            "password": "main",
-            "host": "248.0.65.196",
-            "query": {
-                "is_master": true
-            },
-            "path": "main",
-            "scheme": "pgsql",
-            "port": 5432
-        }
-    ]
 }
 ```
 
@@ -167,6 +167,7 @@ If your database is too large to duplicate within your plan size, we'd suggest t
 ### Example deploy hook
 
 Here's a sample deploy hook that you can use to implement the migration between versions:
+
 ```yaml
 hooks:
     deploy: |
