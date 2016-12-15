@@ -18,20 +18,14 @@ mounts:
     '/private': 'shared:files/private'
 ```
 
-First, get the SSH URL of your application and environment:
+To use `rsync` to download each directory, we can use the following commands.  The `platform ssh --pipe` command will return the SSH URL for the current environment as an inline string that `rsync` can recognize. To use a non-default environment, use the `-e` switch after `--pipe`.  Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself, .
 
 ```bash
-platform ???
+rsync -az `platform ssh --pipe`:/app/private/ ./private/
+rsync -az `platform ssh --pipe`:/app/web/uploads ./uploads/
 ```
 
-Then, use `rsync` to download each directory.  Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself, .
-
-```bash
-rsync -az [SSH-URL]:/app/private/ ./private/
-rsync -az [SSH-URL]:/app/web/uploads ./uploads/
-```
-
-See the [`rsync` documentation]() for more details on how to adjust the download process.
+See the [`rsync` documentation](http://linuxcommand.org/man_pages/rsync1.html) for more details on how to adjust the download process.
 
 ## Download data from services
 
