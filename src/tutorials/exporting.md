@@ -18,7 +18,7 @@ mounts:
     '/private': 'shared:files/private'
 ```
 
-To use `rsync` to download each directory, we can use the following commands.  The `platform ssh --pipe` command will return the SSH URL for the current environment as an inline string that `rsync` can recognize. To use a non-default environment, use the `-e` switch after `--pipe`.  Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself, .
+To use `rsync` to download each directory, we can use the following commands.  The `platform ssh --pipe` command will return the SSH URL for the current environment as an inline string that `rsync` can recognize. To use a non-default environment, use the `-e` switch after `--pipe`.  Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself.
 
 ```bash
 rsync -az `platform ssh --pipe`:/app/private/ ./private/
@@ -29,6 +29,6 @@ See the [`rsync` documentation](http://linuxcommand.org/man_pages/rsync1.html) f
 
 ## Download data from services
 
-The mechanism for downloading from each service (such as your database) varies.  For services designed to hold non-persistent information (such as Redis or Solr) it's generally not necessary to download data as it can be rebuilt off of the primary data store.
+The mechanism for downloading from each service (such as your database) varies.  For services designed to hold non-persistent information (such as Redis or Solr) it's generally not necessary to download data as it can be rebuilt from the primary data store.
 
 To download data from persistent services ([MySQL](/configuration/services/mysql.md), [PostgreSQL](/configuration/services/postgresql.md), or [MongoDB](/configuration/services/mongodb.md)), see each service's page for instructions.

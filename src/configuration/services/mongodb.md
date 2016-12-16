@@ -71,7 +71,7 @@ foreach ($relationships['database'] as $endpoint) {
 
 ## Exporting data
 
-The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and simply export the data directly using MongoDB's tools.  First, open an ssh tunnel with the Platform CLI:
+The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and simply export the data directly using MongoDB's tools.  First, open an SSH tunnel with the Platform.sh CLI:
 
 ```bash
 platform tunnel:open

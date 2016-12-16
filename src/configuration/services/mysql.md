@@ -92,7 +92,7 @@ Outside the application container, you can use Platform CLI `platform sql`.
 
 ## Exporting data
 
-The easiest way to download all data in a MariaDB instance is with the Platform CLI.  If you have a single SQL database, the following command will export all data using the `mysqldump` command to a local file:
+The easiest way to download all data in a MariaDB instance is with the Platform.sh CLI.  If you have a single SQL database, the following command will export all data using the `mysqldump` command to a local file:
 
 ```bash
 platform db:dump
