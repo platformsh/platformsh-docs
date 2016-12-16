@@ -22,7 +22,7 @@ profile. Simply go to your account page on GitHub and click
 Select the *Personal access tokens* tab and click on [Generate new
 token](https://github.com/settings/tokens/new).
 
-Give it a description and then ensure the token has the scopes as follows:
+Give it a description and then ensure the token has the following scopes:
 
 -   To integrate with public repositories: `public_repo`
 -   To integrate with your own private repositories: `repo`
@@ -31,16 +31,13 @@ Give it a description and then ensure the token has the scopes as follows:
 
 Copy the token and make a note of it (temporarily).
 
-> **Note:**
-> For the integration to work, your GitHub user needs to have permission to push code to the repository.
+Note that for the integration to work, your GitHub user needs to have permission to push code to the repository.
 
 ### 2. Enable the integration
 
-> **Note:**
-> Only `project owner` or `project admin` can manage the integrations.
+Note that only `project owner` or `project admin` can manage the integrations.
 
-Open a terminal window (you need to have the Platform.sh CLI
-installed). Enable the GitHub integration as follows:
+Open a terminal window (you need to have the Platform.sh CLI installed). Enable the GitHub integration as follows:
 
 ```bash
 platform integration:add --type=github --project=PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY --build-pull-requests=true --fetch-branches=false
@@ -50,8 +47,7 @@ Optional parameters:
 * `fetch-branches`: Track and deploy branches (true by default)
 * `build-pull-requests`: Track and deploy pull-requests (true by default)
 
-> **Note:**
-> If your repository belongs to an organization, use ``--repository=ORGANISATION/REPOSITORY``.
+Note that if your repository belongs to an organization, use ``--repository=ORGANISATION/REPOSITORY``.
 
 ### 3. Add the webhook
 
@@ -65,9 +61,7 @@ and Services* tab and click `Add webhook`. Paste the Payload URL, Choose
 You can now start pushing code, creating new branches or opening pull
 requests directly on your GitHub repository.
 
-> **Note:**
-> If you have created your account using the GitHub oAuth Login, in order to use the Platform CLI, you will need to setup a
-> password here: [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password).
+Note that if you have created your account using the GitHub oAuth Login then in order to use the Platform CLI, you will need to [setup a password](https://accounts.platform.sh/user/password).
 
 ## Types of environments
 
