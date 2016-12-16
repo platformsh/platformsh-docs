@@ -68,3 +68,24 @@ foreach ($relationships['database'] as $endpoint) {
   $container->setParameter('database_password', $endpoint['password']);
 }
 ```
+
+## Exporting data
+
+The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and simply export the data directly using MongoDB's tools.  First, open an ssh tunnel with the Platform CLI:
+
+```bash
+platform tunnel:open
+```
+
+That will open an SSH tunnel to all services on your current environment, and produce output something like the following:
+
+```text
+SSH tunnel opened on port 30000 to relationship: mongodb
+SSH tunnel opened on port 30001 to relationship: redis
+```
+
+The port may vary in your case.  Then, simply connect to that port locally using `mongodump` (or your favorite MongoDB tools) to export all data in that server:
+
+```bash
+mongodbump --port 30000
+```
