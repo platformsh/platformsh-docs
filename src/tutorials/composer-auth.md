@@ -1,8 +1,8 @@
 # Authenticated Composer repositories
 
-Some PHP projects may need to leverage a private, 3rd party Composer repository in addition to the public Packagist.org repository.  Often, such 3rd party repositories require authentication in order to download packages, and not everyone is comfortable putting those credentials into their Git repository source code (for obvious reasons).  To handle that situation, you can use [project variables]().
+Some PHP projects may need to leverage a private, third party Composer repository in addition to the public Packagist.org repository.  Often, such third party repositories require authentication in order to download packages, and not everyone is comfortable putting those credentials into their Git repository source code (for obvious reasons).  To handle that situation, you can use [project variables](/development/variables.md#project-variables).
 
-## Specify a 3rd party repository in `composer.json`
+## Specify a third party repository in `composer.json`
 
 For this example, consider that there are several packages we want to install from a private repository hosted at `my-private-repos.example.com`.  List that repository in `composer.json`. 
 
@@ -32,7 +32,7 @@ The variable names used here are arbitrary, as long as they match what's in the 
 
 ## Use a custom Composer command
 
-You'll need to run our own custom Composer command, so first disable the default composer build mode.  Add or modify the following in `.platform.app.yaml`:  
+You'll need to run your own custom Composer command, so first disable the default composer build mode.  Add or modify the following in `.platform.app.yaml`:
 
 ```yaml
 build:
