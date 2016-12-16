@@ -22,8 +22,8 @@ For this example, consider that there are several packages we want to install fr
 Now set the composer authentication key and password as project variables. That can be done through the UI or via the command line, like so:
 
 ```bash
-platform project:variables:set env:composer_key abc123 --no-visible-runtime
-platform project:variables:set env:composer_password abc123 --no-visible-runtime
+platform project:variable:set env:composer_key abc123 --no-visible-runtime
+platform project:variable:set env:composer_password abc123 --no-visible-runtime
 ```
 
 The `env:` prefix will make those variables appear as their own Unix environment variables, which makes the next step easier.  The optional `--no-visible-runtime` flag means the variable will only be defined during the build hook, which offers slightly better security.
@@ -52,4 +52,4 @@ hooks:
 
 The specific switches in the `composer install` line are what Platform.sh would run by default, but you can customize that as needed.  They important part is the `composer config` line, which tells composer to use the key and password from the environment when connecting to `my-private-repos.example.com`.
 
-From here on, everything should proceed as normal.  Composer will download all listed packages from whatever repositories are appropriate, authenticating against them as needed, build the application, and then it will deploy as normal.  Because the variables are defined above to not be visible at runtime they will appear at all in the running application.
+From here on, everything should proceed as normal.  Composer will download all listed packages from whatever repositories are appropriate, authenticating against them as needed, build the application, and then it will deploy as normal.  Because the variables are defined above to not be visible at runtime they will not appear at all in the running application.
