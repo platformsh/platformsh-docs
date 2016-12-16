@@ -78,6 +78,27 @@ foreach ($relationships['database'] as $endpoint) {
 }
 ```
 
+## Exporting data
+
+The easiest way to download all data in a PostgreSQL instance is with the Platform CLI.  If you have a single SQL database, the following command will export all data using the `pg_dump` command to a local file:
+
+```bash
+platform db:dump
+```
+
+If you have multiple SQL databases it will prompt you which one to export. You can also specify one by relationship name explicitly:
+
+```bash
+platform db:dump --relationship database
+```
+
+By default the file will be uncompressed.  If you want to compress it, direct the output to stdout and pipe it to gzip or bzip2 locally:
+
+```bash
+platform db:dump --relationship database --stdout | bzip2 > dump.bz2
+ ```
+
+
 ## PostgreSQL Extensions
 We have full support for running PostgreSQL Extensions on Platform.sh. In your `services.yaml` 
 file you can simply add a configuration subkey with the following structure:
