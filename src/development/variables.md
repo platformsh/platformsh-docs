@@ -26,7 +26,7 @@ Naturally in practice you'll want to use only one or the other, or allow the var
 
 ### Platform.sh Environment variables
 
-Environtment-level variables can also be set [through the web interface](administration/web/configure-environment.html#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to set the environment variable "foo" to the value "bar" on the currently checked out environment/branch, run:
+Environment-level variables can also be set [through the web interface](administration/web/configure-environment.html#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to set the environment variable "foo" to the value "bar" on the currently checked out environment/branch, run:
 
 ```bash
 $ platform variable:set foo bar
@@ -182,7 +182,7 @@ With PHP, you can then access that variable with `getenv('FOO')`.
 
 ### PHP-specific variables
 
-Any variable that is prepended with `php:` will also be added to the `php.ini` configuration of all PHP-based application containers.  For example, an environment variable named `php:display_errors` with value `On` is equivalent to placing the following in `php.ini`:
+Any variable with the prefix `php:` will also be added to the `php.ini` configuration of all PHP-based application containers.  For example, an environment variable named `php:display_errors` with value `On` is equivalent to placing the following in `php.ini`:
 
 ```ini
 display_errors = On
@@ -204,7 +204,7 @@ As the above logic is defined in a file in your Git repository you are free to c
 
 ## Shell variables
 
-You can also provide a `.environment` file as part of your application, in your application root (as a sibling of your `.platform.app.yaml` file, or files in the case of a mult-app configuration).  That file will be sourced as a bash script when the container starts and on all SSH logins.  It can be used to set any environment variables directly, such as the PATH variable.  For example, the following `.environment` file will allow any executable installed using Composer as part of a project to be run regardless of the current directory:
+You can also provide a `.environment` file as part of your application, in your application root (as a sibling of your `.platform.app.yaml` file, or files in the case of a multi-app configuration).  That file will be sourced as a bash script when the container starts and on all SSH logins.  It can be used to set any environment variables directly, such as the PATH variable.  For example, the following `.environment` file will allow any executable installed using Composer as part of a project to be run regardless of the current directory:
  
  ```yaml
 export PATH=/app/vendor/bin:$PATH
