@@ -12,10 +12,10 @@ environment.
 
 ![Configure Platform.sh environment settings](/images/ui-conf-environment-settings.png)
 
-The *Delete* action will destroy all services running on this environment (PHP, MySQL, volumes...)
+The *Delete* action will destroy all services running on this environment (PHP, MySQL, volumes, ...)
 so that only the Git branch remains. You can reactivate the environment later if needed.
 
-To delete the branch also, you need to execute the following:
+To delete the branch as well, you need to execute the following:
 
 ```
 git push origin :BRANCH-NAME
@@ -45,7 +45,7 @@ environments.
 
 ## Users
 
-The `Users` screen allows you to manage the users access on your project.
+The `Users` screen allows you to manage the users' access on your project.
 
 You can invite new users to a specific environment by clicking the
 `Add user` link and entering their email address, or modify permissions
