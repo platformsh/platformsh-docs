@@ -75,3 +75,6 @@ https://{default}/:
       "/user_guide/index.html": { "to": "/administration/users.html", "code": "301", "prefix": false}
       "/discover/overview/deployment.html": { "to": "/administration/web/environments.html", "code": "301", "prefix": false}
       "/user_guide/reference/toolstacks/php/drupal/solr.html": { "to": "/configuration/services/solr.html", "code": "301", "prefix": false}
+
+      # File rename in December 2016.
+      "/development/environment-variables.html": { "to": "/development/variables.html", "code": "301", "prefix": false}
