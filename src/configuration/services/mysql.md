@@ -89,3 +89,23 @@ mysql -h database.internal -u user main
 ```
 
 Outside the application container, you can use Platform CLI `platform sql`.
+
+## Exporting data
+
+The easiest way to download all data in a MariaDB instance is with the Platform.sh CLI.  If you have a single SQL database, the following command will export all data using the `mysqldump` command to a local file:
+
+```bash
+platform db:dump
+```
+
+If you have multiple SQL databases it will prompt you which one to export. You can also specify one by relationship name explicitly:
+
+```bash
+platform db:dump --relationship database
+```
+
+By default the file will be uncompressed.  If you want to compress it, direct the output to stdout and pipe it to gzip or bzip2 locally:
+
+```bash
+platform db:dump --relationship database --stdout | bzip2 > dump.bz2
+ ```
