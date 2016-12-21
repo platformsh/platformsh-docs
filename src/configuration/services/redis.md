@@ -17,7 +17,7 @@ See the [Redis documentation](https://redis.io/documentation) for more informati
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md):
 
 ```json
 {

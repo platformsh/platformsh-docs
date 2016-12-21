@@ -10,7 +10,7 @@ See the [MongoDB documentation](https://docs.mongodb.com/manual/) for more infor
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/environment-variables.md):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md):
 
 ```json
 {
