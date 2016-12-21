@@ -8,7 +8,7 @@
 > unlikely to change at that time, but it is possible. See https://www.drupal.org/project/redis
 > for more information.
 
-The Drupal 8 Redis module currently only supports the [PhpRedis](https://github.com/nicolasff/phpredis) option, which relies on a PHP extension. Fortunately, that extension is trivial to enable on Platform.sh
+The Drupal 8 Redis module currently only supports the [PhpRedis](https://github.com/nicolasff/phpredis) option, which relies on a PHP extension. Fortunately, that extension is trivial to enable on Platform.sh.
 
 ## Requirements
 
