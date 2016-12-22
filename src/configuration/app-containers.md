@@ -9,19 +9,19 @@ You control your application and the way it will be built and deployed on
 Platform.sh via a single configuration file, `.platform.app.yaml`, located at
 the root of your application folder inside your Git repository.
 
-Here's an example of a minimalist `.platform.app.yaml` file for PHP:
+Below is an example of a minimalist `.platform.app.yaml` file for PHP:
 
 ```yaml
 # .platform.app.yaml
 
-# The name of this app. Must be unique within a project.
+# The name of this application which must be unique within a project.
 name: 'app'
 
-# The type key specifies the language and version for your application.
+# The type key specifies the language and version of your application.
 type: 'php:7.0'
 
-# On PHP, there are multiple build flavors available. Pretty much everyone except
-# Drupal 7 users will want the composer flavor.
+# On PHP, there are multiple build flavors available. Pretty much everyone
+# except Drupal 7 users will want the composer flavor.
 build:
   flavor: 'composer'
 
@@ -32,13 +32,14 @@ build:
 relationships:
     database: 'mysqldb:mysql'
 
-# The configuration of app when it is exposed to the web.
+# The configuration of the application when it is exposed to the web.
 web:
     locations:
         '/':
-            # The public directory of the app, relative to its root.
+            # The public directory of the application relative to its root.
             root: 'web'
-            # The front-controller script to send non-static requests to.
+            # The front-controller script which determines where to send
+            # non-static requests.
             passthru: '/app.php'
         # Allow uploaded files to be served, but do not run scripts.
         # Missing files get mapped to the front controller above.
@@ -51,59 +52,59 @@ web:
 # The size of the persistent disk of the application (in MB).
 disk: 2048
 
-# The 'mounts' describe writable, persistent filesystem mounts in the application. The keys are
-# directory paths, relative to the application root. The values are strings such as
-# 'shared:files/NAME', where NAME is just a unique name for the mount.
+# The 'mounts' describe writable, persistent filesystem mounts in the application.
+# The keys are directory paths relative to the application root. The values are
+# strings such as 'shared:files/NAME' where NAME is just a unique name for the mount.
 mounts:
     '/web/files': 'shared:files/web-files'
 
-# The hooks that will be performed when the package is deployed.
+# The hooks that will be triggered when the package is deployed.
 hooks:
-    # Build hooks can modify the application files on disk, but not access any services like databases.
+    # Build hooks can modify the application files on disk but not access any services like databases.
     build: |
       rm web/app_dev.php
-    # Deploy hooks can access services, but the file system is now read-only.
+    # Deploy hooks can access services but the file system is now read-only.
     deploy: |
       app/console --env=prod cache:clear
 ```
 
 > **Note**
 > This configuration file is specific to one application. If you have multiple
-> applications inside your Git repository (i.e. a RESTful
-> web service and a front-end, or a main web site and a blog), you need
-> one `.platform.app.yaml` at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
+> applications inside your Git repository (i.e. a RESTful web service and a
+> front-end or a main web site and a blog), you need one `.platform.app.yaml`
+> at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
 
 ### Name
 
 The `name` is the unique identifier of the application. Platform.sh
 supports multiple applications within a project, so each application
 must have a **unique name** within a project. The name may only be
-composed of lower case alpha-numeric characters. (a-z0-9).  *Be advised
-that changing the `name` of your app after it's been deployed will
-destroy all storage volumes, and thus is typically a Very Bad Thing to do.*
+composed of lower case alpha-numeric characters (a-z0-9).  *Be advised
+that changing the `name` of your application after it has been deployed will
+destroy all storage volumes and thus, is typically a Very Bad Thing to do.*
 It could be useful under certain circumstances in the early stages
-of development but you almost certainly don't want to change it on 
+of development but you almost certainly don't want to change it on
 a live project.
 
 This name is used in the `.platform/routes.yaml` file to define the HTTP upstream
-(by default `php:http` - if you called your application `app` you will
+(by default `php:http`; if you called your application `app` you will
 need to use `app:http` in the upstream field).
 
 You can also use this name in multi-application relationships.
 
 > **Note**
-> Changing the name of an app is the same as deleting it and replacing
-> it: your app data (static files) will be deleted.
+> Changing the name of an application is the same as deleting it and replacing
+> it. Your application data (static files) will be deleted.
 >
-> If you change the name you should think about updating your other
-> configuration files: `.platform/routes.yaml` and any other
+> If you change the name, you should think about updating your other
+> configuration files. This includes `.platform/routes.yaml` and any other
 > `.platform.app.yaml` files you have in a multi-application project.
 
 ### Type
 
 The `type` defines what language will run your application.
 
-The `type` can be:
+The `type` can be one of the following:
 
 * [`php`](/languages/php.md)
 * [`hhvm`](/languages/php.md)
@@ -131,7 +132,7 @@ Its only property is `flavor`, which specifies a default set of build tasks to r
 * Node.js (`default` by default)
   * `default` will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
 
-In all languages you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js), which, as the name suggests, will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom composer command or use an alternate Node.js package manager.
+In all languages, you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js); as the name suggests, will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom composer command or use an alternate Node.js package manager.
 
 **Example**
 
@@ -142,10 +143,10 @@ build:
 
 ### Access
 
-The `access` define the user roles who can log in via SSH to the
-environments they have access to.
+The `access` defines the user roles who can log in via SSH to the
+environments they have permission to access.
 
-Possible values are:
+Possible values are below:
 
 * ssh: admin
 * ssh: contributor
@@ -153,20 +154,20 @@ Possible values are:
 
 ### Relationships
 
-The `relationships` defines how services are mapped within your
+The `relationships` define how services are mapped within your
 application.
 
 The left-hand side is the name of the relationship as it will be exposed
 to the application in the *PLATFORM_RELATIONSHIPS* environment
 variable. The right-hand side is in the form
-`<service name>:<endpoint name>`. where "service name" comes from the
+`<service name>:<endpoint name>` where "service name" comes from the
  `.platform/services.yaml` and  "endpoint name" should be the same as the
- value of "type"  declared in that same file.
+ value of "type" declared in that same file.
 
 > **Note**
-> In the first  example above you could very well have something
+> In the first example above, you could very well have something
 > like `mycache: "arediscache:redis"` instead of `redis: "redis:redis"` (if in
-> `services.yaml` you named your a service of type `redis` with `arediscache`.
+> `services.yaml` you named a service of the type `redis` with `arediscache`.
 
 *Example*
 
@@ -184,7 +185,7 @@ relationships:
 
 ### Web
 
-The `web` key defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content, including static files, front-controller scripts, index files, index scripts, and so on. We support any directory structure, so the static files can be in a subdirectory, and the `index.php` file can be further down.
+The `web` key defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content, including static files, front-controller scripts, index files, index scripts, and so on. We support any directory structure, so the static files can be in a subdirectory and the `index.php` file can be further down.
 
 > **Note**
 > Gzip compression is enabled only for serving precompressed static files with the ".gz" filename extension.
@@ -196,9 +197,9 @@ It has the following subkeys:
 
 The `commands` key defines the command to launch the application.
 
-It has a few subkeys which are:
+It has a few subkeys which are below:
 
-* `start`: The command line to use to launch the application. Can be a string, or *null* if the application is only made of static files. On PHP containers this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).
+* `start`: The command used to launch the application which can be a string or *null* if the application is only made of static files. On PHP containers, this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).
 
 *Example*
 
@@ -211,37 +212,37 @@ web:
 #### Upstream
 
 `upstream` is an optional key that describes how your application listens to
-requests, and what protocol it speaks.
+requests and what protocol it speaks.
 
 The following subkeys can be defined:
 * `socket_family`:
     Default: `tcp`. Describes whether your application will listen on a
-    Unix socket or a TCP socket. Can be either `tcp` or `unix`.
+    Unix socket or a TCP socket and can be either `tcp` or `unix`.
 * `protocol`:
     Specifies whether your application is going to receive incoming requests
-    over HTTP, FastCGI, or UWSGI. Can be `http` or `fastcgi`, for now. The
+    over HTTP, FastCGI, or UWSGI and can be `http` or `fastcgi`, for now. The
     default varies depending on which application runtime you're using. Other
     values will be supported in the future.
 
 ##### Socket family
 
 The value of the `socket_family` key controls whether your application will
-receive requests over a Unix socket, or a network socket.
+receive requests over a Unix socket or a network socket.
 
 If it's set to `unix`, the runtime will set the `SOCKET` environment variable
-to contain the path to the socket that you should configure your application to
-listen on.
+to contain the path to the socket where you should configure your application to
+listen.
 
 If it's set to `tcp`, the runtime will set the `PORT` environment variable with
-the port that you should configure your application to listen on.
+the port where you should configure your application to listen.
 
 If your application isn't listening at the same place that the runtime is
-sending requests to, you'll see *502 Bad Gateway* errors when you try to
+sending requests, you'll see *502 Bad Gateway* errors when you try to
 connect to your web site.
 
 #### Locations
 
-The `locations` key allows you to provide specific parameters for different URL prefixes. Each entry's key is an absolute URI path (with leading `/`), and its value is configuration directives for that path.  That is, if your domain is `example.com` then `"/"` means "requests for `example.com/`", while `"/admin"` means "requests for `example.com/admin`".
+The `locations` key allows you to provide specific parameters for different URL prefixes. Each entry's key is an absolute URI path (with leading `/`) and its value includes the configuration directives for that path.  That is, if your domain is `example.com` then `"/"` means "requests for `example.com/`", while `"/admin"` means "requests for `example.com/admin`".
 
 *Example*
 
@@ -254,35 +255,35 @@ web:
             ...
 ```
 
-It has a few subkeys, which are:
+It has a few subkeys, which are below:
 
 * `root`:
-    The folder from which to serve static assets for this location,
-    relative to the application root. The application root is the directory in
-    which the `.platform.app.yaml` file is located.  Typical values for this
+    The folder from which to serve static assets for this location
+    relative to the application root. The application root is the directory
+    where the `.platform.app.yaml` file is located.  Typical values for this
     property include `public` or `web`.  Setting it to `""` is not recommended,
     and its behavior may vary depending on the type of application.  Absolute
     paths are not supported.
 * `passthru`:
     Whether to forward disallowed and missing resources from this location to
-    the application. Can be true, false or an absolute URI path (with leading
-    `/`), the default value is false. For non-PHP applications it will
+    the application and can be true, false or an absolute URI path (with leading
+    `/`). The default value is false. For non-PHP applications, it will
     generally be just true or false.  In a PHP application, this will typically
     be the front controller such as `/index.php` or `/app.php`.  This entry
-    works similar to `mod_rewrite` under Apache.  Note: if the value of
-    `passthru` does not begin with the same value as the location key it is
-    under the passthru may evaluate to another entry. That may be useful when
+    works similar to `mod_rewrite` under Apache.  Note: If the value of
+    `passthru` does not begin with the same value as the location key, it is
+    under the passthru and may evaluate to another entry. That may be useful when
     you want different cache settings for different paths, for instance, but
     want missing files in all of them to map back to the same front controller.
     See the example block below.
 * `index`:
-    The file or files to consider when serving a request for a directory. Can
-    be file name, an array of file names, or *null*. Typically `index.html`.
+    The file or files to consider when serving a request for a directory and can
+    be a file name, an array of file names, or *null* (typically `index.html`).
     Note that in order for this to work, access to the static file(s) named
-    must be allowed (by the `allow` or `rules` keys for this location).
+    must be allowed by the `allow` or `rules` keys for this location.
 * `expires`:
     How long to allow static assets from this location to be cached (this
-    enables the `Cache-Control` and `Expires` headers). Can be a time or *-1*
+    enables the `Cache-Control` and `Expires` headers) and can be a time or *-1*
     for no caching (default). Times can be suffixed with "ms" (milliseconds), "s"
     (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M"
     (months, 30d) or "y" (years, 365d).
@@ -292,9 +293,9 @@ It has a few subkeys, which are:
     Whether to allow serving files which don't match a rule (*true* or *false*,
     default: *true*).
 * `rules`:
-    Specific overrides for a specific location. The key is a PCRE regular
-    expression that is matched against the full request path. Here is a list of
-    example regular expressions that you could provide rules for:
+    Specific overrides for a specific location. The key is a PCRE (regular
+    expression) that is matched against the full request path. Below is a list of
+    example regular expressions that you could use to provide rules:
     *\\.css$,\\.js$,\\.gif$,\\.jpe?g$,\\.png$,\\.tiff?$,\\.wbmp$,\\.ico$,\\.jng$,\\.bmp$,\\.svgz?$,\\.midi?$,\\.mpe?ga$,\\.mp2$,\\.mp3$,\\.m4a$,\\.ra$,\\.weba$,\\.3gpp?$,\\.mp4$,\\.mpe?g$,\\.mpe$,\\.ogv$,\\.mov$,\\.webm$,\\.flv$,\\.mng$,\\.asx$,\\.asf$,\\.wmv$,\\.avi$,\\.ogx$,\\.swf$,\\.jar$,\\.ttf$,\\.eot$,\\.woff$,\\.otf$,/robots\\.txt$*.
 
 *Example*
@@ -315,7 +316,7 @@ web:
                     allow: false
                     expires: -1
         # Set a 5 min expiration time for static files here; a missing URL
-        # will passthru to the "/" location above, and hit the application
+        # will passthru to the "/" location above and hit the application
         # front-controller.
         "/sites/default/files":
             expires: 300
@@ -326,7 +327,7 @@ web:
 ### Disk
 
 The `disk` defines the size of the persistent disk of the
-application in MB.
+application (in MB).
 
 > **Note**
 > The minimum recommended disk size is 256MB. If you see the error `UserError: Error building the project: Disk size may not be smaller than 128MB`, increase the size to 256MB.
@@ -334,18 +335,18 @@ application in MB.
 ### Mounts
 
 The `mounts` is an object whose keys are paths relative to the root of
-the application (That is, where the `.platform.app.yaml` file lives). It's in the form `volume_id[/subpath]`.
+the application (that is, where the `.platform.app.yaml` file lives). It's in the form `volume_id[/subpath]`.
 At this time, the only legal `volume_id` is `shared:files`.
 
-For example with Drupal, you'll want your `sites/default/files` to be
+For example, with Drupal, you'll want your `sites/default/files` to be
 mounted under a shared resource which is writable.
 
-The format is:
+The format is below:
 
 * `"/web/sites/default/files": "shared:files/files"`
 
 > **Note**
-> The `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
+> `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
 
 ### Build dependencies
 
@@ -362,10 +363,10 @@ languages:
 * Java (with integrated Maven and Ant support)
 
 Those dependencies are independent of the eventual dependencies of your
-application, and are available in the `PATH`, during the build process
+application and are available in the `PATH` during the build process
 and in the runtime environment of your application.
 
-You can specify those dependencies like this:
+You can specify those dependencies like below:
 
 ```yaml
 dependencies:
@@ -386,21 +387,21 @@ The `hooks` let you define shell commands to run during the build and deployment
 They can be executed at various points in the lifecycle of the
 application (build/deploy).
 
-Possible hooks are:
+Possible hooks are below:
 
 -   **build**: We run a build hook before your application has been
     packaged. No other services are accessible at this time since the
     application has not been deployed yet.
 -   **deploy**: We run a deploy hook after your application has been
     deployed and started. You can access other services at this stage
-    (MySQL, Solr, Redis...). However, the disk where the application lives is read-only at this point.
+    (MySQL, Solr, Redis, etc.), however, the disk where the application lives is read-only at this point.
 
 Each hook is executed as a single script, so they will be considered failed
 only if the final command in them fails. To cause them to fail on the first
 failed command, add `set -e` to the beginning of the hook.
 
 The `home` directory for each hook is the application root. If your scripts
-need to be run from the doc root of your application you will need to `cd` to it
+need to be run from the doc root of your application, you will need to `cd` to it
 first; e.g.: `cd web`.
 
 After a Git push, you can see the results of the `deploy` hook in the
@@ -419,12 +420,12 @@ Finished performing updates.
 
 #### [Example] Compile SASS files using Grunt
 
-As a good example combining dependencies and hooks, you can compile your
-SASS files using Grunt.  (The `|` character tells YAML that the following lines
+As a good example of combining dependencies and hooks, you can compile your
+SASS files using Grunt. The `|` character tells YAML that the following lines
 should be read as a single string, which allows us to run multiple commands or
-even use bash syntax for conditionals, as in the second example.)
+even use bash syntax for conditionals, as in the second example.
 
-In your `.platform.app.yaml` file:
+Your `.platform.app.yaml` file should include:
 
 ```yaml
 dependencies:
@@ -446,9 +447,9 @@ correctly setup in the theme folder.
 #### [Example] Trigger deploy hook on a specific environment
 
 To trigger a deploy hook only on a specific environment/branch, use the following
-environment variable: `$PLATFORM_BRANCH` that you put in a `if/then` statement.
+environment variable: `$PLATFORM_BRANCH` which you should put in an `if/then` statement.
 
-In your `.platform.app.yaml` file:
+Your `.platform.app.yaml` file should include:
 
 ```yaml
 hooks:
@@ -467,17 +468,17 @@ hooks:
 
 ### Crons / Cron jobs
 
-Cron jobs allow you to run scheduled tasks at specified times or intervals. The `crons` object describes these tasks and the schedule that they are triggered on.  Each item in the list is a unique name identifying a separate cron job.
+Cron jobs allow you to run scheduled tasks at specified times or intervals. The `crons` object describes these tasks and the schedule when they are triggered.  Each item in the list is a unique name identifying a separate cron job.
 
-It has a few subkeys which are:
+It has a few subkeys which are below:
 
 -   **spec**: The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). For example: `*/20 * * * *` to run every 20 minutes.
 -   **cmd**: The command that is executed, for example
     `cd public ; drush core-cron`
 
-The minimum interval between cron runs is 5 minutes, even if specified as less.
+The minimum interval between cron runs is 5 minutes; even if specified as less.
 
-Note that cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
+Note that cron runs are executed using the dash shell; not the bash shell used by normal SSH logins. In most cases, that makes no difference but may impact some more involved cron scripts.
 
 ```yaml
 crons:
@@ -494,7 +495,7 @@ crons:
 ### URL rewriting
 
 Platform.sh supports using URL rewriting in your application. To do so, you have to add a `rules` block to a location.
-Here is an example to rewrite `/blog/20140513` to `/blog.php?bid=20140513`.
+Below is an example to rewrite `/blog/20140513` to `/blog.php?bid=20140513`.
 
 ```
 web:
@@ -509,7 +510,7 @@ web:
 
 ### Runtime
 
-The `.platform.app.yaml` file also supports a `runtime` key, which allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate language documentation.
+The `.platform.app.yaml` file also supports a `runtime` key which allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate language documentation.
 
 * [PHP](/languages/php.md)
 
@@ -520,4 +521,4 @@ private file mounts not be web-accessible.
 
 ## Upgrading from previous versions of the configuration file.
 
-Although we make an effort to always maintain backward compatibility in the `.platform.app.yaml` format, we do from time to time [upgrade the file](/configuration/app/upgrading.md) and encourage you to upgrade as well. 
+Although we make an effort to always maintain backward compatibility in the `.platform.app.yaml` format, we do from time to time [upgrade the file](/configuration/app/upgrading.md) and encourage you to upgrade as well.
