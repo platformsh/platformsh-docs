@@ -242,7 +242,7 @@ connect to your web site.
 
 #### Locations
 
-The `locations` key allows you to provide specific parameters for different URL prefixes. Each entry's key is an absolute URI path (with leading `/`) and its value is configuration directives for that path.  That is, if your domain is `example.com` then `"/"` means "requests for `example.com/`", while `"/admin"` means "requests for `example.com/admin`".
+The `locations` key allows you to provide specific parameters for different URL prefixes. Each entry's key is an absolute URI path (with leading `/`) and its value includes the configuration directives for that path.  That is, if your domain is `example.com` then `"/"` means "requests for `example.com/`", while `"/admin"` means "requests for `example.com/admin`".
 
 *Example*
 
