@@ -345,7 +345,7 @@ The format is:
 * `"/web/sites/default/files": "shared:files/files"`
 
 > **Note**
-> The `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
+> `shared` means that the volume is shared between builds of the same application, _not_ that the volume can be shared between different applications within a project. The `disk` key defines the size available for that `shared` volume.
 
 ### Build dependencies
 
