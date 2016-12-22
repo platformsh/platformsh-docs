@@ -14,7 +14,7 @@ Below is an example of a minimalist `.platform.app.yaml` file for PHP:
 ```yaml
 # .platform.app.yaml
 
-# The name of this application must be unique within a project.
+# The name of this application which must be unique within a project.
 name: 'app'
 
 # The type key specifies the language and version of your application.
