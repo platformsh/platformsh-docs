@@ -197,7 +197,7 @@ It has the following subkeys:
 
 The `commands` key defines the command to launch the application.
 
-It has a few subkeys which are below:
+It has a few subkeys listed below:
 
 * `start`: The command used to launch the application which can be a string or *null* if the application is only made of static files. On PHP containers, this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).
 
