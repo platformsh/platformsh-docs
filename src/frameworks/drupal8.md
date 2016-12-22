@@ -92,7 +92,7 @@ web/
       settings.platformsh.php
 ```
 
-Note the `settings.php` and `settings.patformsh.php` files.  Both should be identical to the ones used for a Composer-based site.  Also note that the `config/sync` directory is still outside the docroot.  That is recommended for all Drupal installs generally, and is configured by the `settings.php` file.
+Note the `settings.php` and `settings.platformsh.php` files.  Both should be identical to the ones used for a Composer-based site.  Also note that the `config/sync` directory is still outside the docroot.  That is recommended for all Drupal installs generally, and is configured by the `settings.php` file.
 
 ## Configuring Platform.sh for Drupal
 
