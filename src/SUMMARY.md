@@ -87,3 +87,4 @@
 
 * [Authenticated Composer](/tutorials/composer-auth.md)
 * [Exporting data](/tutorials/exporting.md)
+* [Migrating to Platform.sh](/tutorials/migrating.md)
