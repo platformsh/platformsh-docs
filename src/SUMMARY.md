@@ -81,7 +81,6 @@
   * [Solr](frameworks/drupal8/solr.md)
   * [FAQ](frameworks/drupal8/faq.md)
 * [Symfony](frameworks/symfony.md)
-  * [Migrating](frameworks/symfony/migrating.md)
   * [FAQ](frameworks/symfony/faq.md)
 
 ## Tutorials
