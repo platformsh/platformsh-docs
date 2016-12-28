@@ -138,7 +138,7 @@ This is the complete list of extensions that can be enabled:
 
 ## Alternate start commands
 
-PHP is most commonly run in a CGI mode, using PHP-FPM.  If you are not sure how PHP is configured to start then that is what is happening.  However, you can also start alternative processes if desired, such as if you're running an Async PHP daemon, a thread-based worker process, etc.  To do so, simply specify an alternative start command in `platform.app.yaml`, similar to the following:
+PHP is most commonly run in a CGI mode, using PHP-FPM.  That is the default on Platform.sh.  However, you can also start alternative processes if desired, such as if you're running an Async PHP daemon, a thread-based worker process, etc.  To do so, simply specify an alternative start command in `platform.app.yaml`, similar to the following:
 
 ```yaml
 web:
@@ -149,7 +149,7 @@ web:
             protocol: http
 ```
 
-The above configuration will execute the run.php script in the application root when the container starts, just before the deploy hook runs, but will *not* launch PHP-FPM.  It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the 'PORT' environment variable.
+The above configuration will execute the `run.php` script in the application root when the container starts using the PHP-CLI SAPI, just before the deploy hook runs, but will *not* launch PHP-FPM.  It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the 'PORT' environment variable.
 
 If you want to both start your own worker daemon and the normal PHP-FPM process, you can kick off both your process and the default at the same time, like so:
 
