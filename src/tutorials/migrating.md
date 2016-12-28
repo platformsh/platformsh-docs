@@ -5,7 +5,7 @@ search:
 
 # Migrating to Platform.sh
 
-Moving an already-built site to Platform.sh is generally straightforward.  For the most part, the only part that will vary from one framework to another is the details of the Platform.sh configuration files.  See the **Featured Framework** section or our [project templates](https://github.com/platformsh/) for more project-specific documentation.
+Moving an already-built site to Platform.sh is generally straightforward.  For the most part, the only part that will vary from one framework to another is the details of the Platform.sh configuration files.  See the **Featured Frameworks** section or our [project templates](https://github.com/platformsh/) for more project-specific documentation.
 
 ## Preparation
 
