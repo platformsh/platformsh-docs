@@ -134,8 +134,7 @@ This is the complete list of extensions that can be enabled:
 > **note**
 > You can check out the output of `ls /etc/php5/mods-available` to
 > see the up-to-date complete list of extensions after you SSH into
-> your environment. For PHP 7, use `ls /etc/php7.0//mods-available`.
-> For PHP 7.1, use `ls /etc/php7.1-zts/mods/available`.
+> your environment. For PHP 7, use `ls /etc/php/*/mods-available`.
 
 ## Alternate start commands
 
