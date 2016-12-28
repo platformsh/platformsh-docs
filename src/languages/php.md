@@ -14,6 +14,9 @@ Both are interchangeable from a configuration perspective, although code that us
 * 5.5
 * 5.6
 * 7.0
+* 7.1
+
+Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
 ### HHVM
 
@@ -51,6 +54,7 @@ The following extensions are enabled by default:
 * mysqlnd
 * pdo_mysql
 * pdo_sqlite
+* sockets (5.6 and later)
 * sqlite3
 * gd
 * curl
@@ -62,66 +66,69 @@ You can disable those by adding them to the `disabled_extensions` list.
 
 This is the complete list of extensions that can be enabled:
 
-| Extension    | 5.4 | 5.5 | 5.6 | 7.0 |
-|--------------|-----|-----|-----|-----|
-| apc          | *   |     |     |     |
-| apcu         |     | *   | *   | *   |
-| apcu_bc      |     |     |     | *   |
-| blackfire    | *   | *   | *   | *   |
-| bz2          |     |     |     | *   |
-| curl         | *   | *   | *   | *   |
-| enchant      | *   | *   | *   | *   |
-| gd           | *   | *   | *   | *   |
-| gearman      | *   | *   | *   |     |
-| geoip        | *   | *   | *   |     |
-| gmp          | *   | *   | *   | *   |
-| http         | *   | *   |     |     |
-| igbinary     |     |     |     | *   |
-| imagick      | *   | *   | *   | *   |
-| imap         | *   | *   | *   | *   |
-| interbase    | *   | *   | *   | *   |
-| intl         | *   | *   | *   | *   |
-| json         |     |     | *   | *   |
-| ldap         | *   | *   | *   | *   |
-| mcrypt       | *   | *   | *   | *   |
-| memcache     | *   | *   | *   |     |
-| memcached    | *   | *   | *   | *   |
-| mongo        | *   | *   | *   |     |
-| mongodb      |     |     |     | *   |
-| msgpack      |     |     | *   | *   |
-| mssql        | *   | *   | *   |     |
-| mysql        | *   | *   | *   |     |
-| mysqli       | *   | *   | *   | *   |
-| mysqlnd      | *   | *   | *   |     |
-| odbc         | *   | *   | *   | *   |
-| opcache      |     | *   | *   | *   |
-| pdo          | *   | *   | *   | *   |
-| pdo_dblib    | *   | *   | *   | *   |
-| pdo_firebird | *   | *   | *   | *   |
-| pdo_mysql    | *   | *   | *   | *   |
-| pdo_odbc     | *   | *   | *   | *   |
-| pdo_pgsql    | *   | *   | *   | *   |
-| pdo_sqlite   | *   | *   | *   | *   |
-| pecl-http    |     |     | *   |     |
-| pgsql        | *   | *   | *   | *   |
-| pinba        | *   | *   | *   |     |
-| propro       |     |     | *   |     |
-| pspell       | *   | *   | *   | *   |
-| raphf        |     |     | *   |     |
-| readline     | *   | *   | *   | *   |
-| recode       | *   | *   | *   | *   |
-| redis        | *   | *   | *   | *   |
-| snmp         | *   | *   | *   | *   |
-| spplus       | *   | *   |     |     |
-| sqlite3      | *   | *   | *   | *   |
-| ssh2         | *   | *   | *   |     |
-| tidy         | *   | *   | *   | *   |
-| xcache       | *   | *   |     |     |
-| xdebug       | *   | *   | *   | *   |
-| xhprof       | *   | *   | *   |     |
-| xmlrpc       | *   | *   | *   | *   |
-| xsl          | *   | *   | *   | *   |
-| zendopcache  | *   |     |     |     |
+| Extension    | 5.4 | 5.5 | 5.6 | 7.0 | 7.1 |
+|--------------|-----|-----|-----|-----|-----|
+| apc          | *   |     |     |     |     |
+| apcu         |     | *   | *   | *   | *   |
+| apcu_bc      |     |     |     | *   | *   |
+| blackfire    | *   | *   | *   | *   | *   |
+| bz2          |     |     |     | *   | *   |
+| curl         | *   | *   | *   | *   | *   |
+| enchant      | *   | *   | *   | *   | *   |
+| event        |     |     |     |     | *   |
+| gd           | *   | *   | *   | *   | *   |
+| gearman      | *   | *   | *   |     |     |
+| geoip        | *   | *   | *   |     |     |
+| gmp          | *   | *   | *   | *   | *   |
+| http         | *   | *   |     |     |     |
+| igbinary     |     |     |     | *   | *   |
+| imagick      | *   | *   | *   | *   | *   |
+| imap         | *   | *   | *   | *   | *   |
+| interbase    | *   | *   | *   | *   | *   |
+| intl         | *   | *   | *   | *   | *   |
+| json         |     |     | *   | *   | *   |
+| ldap         | *   | *   | *   | *   | *   |
+| mcrypt       | *   | *   | *   | *   | *   |
+| memcache     | *   | *   | *   |     |     |
+| memcached    | *   | *   | *   | *   | *   |
+| mongo        | *   | *   | *   |     |     |
+| mongodb      |     |     |     | *   | *   |
+| msgpack      |     |     | *   | *   | *   |
+| mssql        | *   | *   | *   |     |     |
+| mysql        | *   | *   | *   |     |     |
+| mysqli       | *   | *   | *   | *   | *   |
+| mysqlnd      | *   | *   | *   |     |     |
+| odbc         | *   | *   | *   | *   | *   |
+| opcache      |     | *   | *   | *   | *   |
+| pdo          | *   | *   | *   | *   | *   |
+| pdo_dblib    | *   | *   | *   | *   | *   |
+| pdo_firebird | *   | *   | *   | *   | *   |
+| pdo_mysql    | *   | *   | *   | *   | *   |
+| pdo_odbc     | *   | *   | *   | *   | *   |
+| pdo_pgsql    | *   | *   | *   | *   | *   |
+| pdo_sqlite   | *   | *   | *   | *   | *   |
+| pecl-http    |     |     | *   |     |     |
+| pgsql        | *   | *   | *   | *   | *   |
+| pinba        | *   | *   | *   |     |     |
+| propro       |     |     | *   |     |     |
+| pspell       | *   | *   | *   | *   | *   |
+| pthreads     |     |     |     |     | *   |
+| raphf        |     |     | *   |     |     |
+| readline     | *   | *   | *   | *   | *   |
+| recode       | *   | *   | *   | *   | *   |
+| redis        | *   | *   | *   | *   | *   |
+| snmp         | *   | *   | *   | *   | *   |
+| sockets      |     |     | *   | *   | *   |
+| spplus       | *   | *   |     |     |     |
+| sqlite3      | *   | *   | *   | *   | *   |
+| ssh2         | *   | *   | *   |     |     |
+| tidy         | *   | *   | *   | *   | *   |
+| xcache       | *   | *   |     |     |     |
+| xdebug       | *   | *   | *   | *   | *   |
+| xhprof       | *   | *   | *   |     |     |
+| xmlrpc       | *   | *   | *   | *   | *   |
+| xsl          | *   | *   | *   | *   | *   |
+| zendopcache  | *   |     |     |     |     |
 
 
 > **note**
