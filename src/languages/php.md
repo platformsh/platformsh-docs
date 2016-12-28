@@ -137,6 +137,37 @@ This is the complete list of extensions that can be enabled:
 > your environment. For PHP 7, use `ls /etc/php7.0//mods-available`.
 > For PHP 7.1, use `ls /etc/php7.1-zts/mods/available`.
 
+## Alternate start commands
+
+PHP is most commonly run in a CGI mode, using PHP-FPM.  If you are not sure how PHP is configured to start then that is what is happening.  However, you can also start alternative processes if desired, such as if you're running an Async PHP daemon, a thread-based worker process, etc.  To do so, simply specify an alternative start command in `platform.app.yaml`, similar to the following:
+
+```yaml
+web:
+    commands:
+        start: php run.php
+    upstream:
+            socket_family: tcp
+            protocol: http
+```
+
+The above configuration will execute the run.php script in the application root when the container starts, just before the deploy hook runs, but will *not* launch PHP-FPM.  It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the 'PORT' environment variable.
+
+If you want to both start your own worker daemon and the normal PHP-FPM process, you can kick off both your process and the default at the same time, like so:
+
+```yaml
+web:
+    commands:
+        start: php run.php && /usr/sbin/php-fpm7.0
+    upstream:
+            socket_family: tcp
+            protocol: http
+```
+
+The default start command varies by PHP version:
+
+* On PHP 5.x, it's `/usr/sbin/php5-fpm`.
+* On PHP 7.0, it's `/usr/sbin/php-fpm7.0`.
+* On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`
 
 ## PHP Worker sizing hints
 
