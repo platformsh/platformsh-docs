@@ -54,7 +54,7 @@ The following extensions are enabled by default:
 * mysqlnd
 * pdo_mysql
 * pdo_sqlite
-* sockets (5.6 and later)
+* sockets (7.0 and later)
 * sqlite3
 * gd
 * curl
