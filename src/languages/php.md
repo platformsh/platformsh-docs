@@ -151,23 +151,6 @@ web:
 
 The above configuration will execute the `run.php` script in the application root when the container starts using the PHP-CLI SAPI, just before the deploy hook runs, but will *not* launch PHP-FPM.  It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the 'PORT' environment variable.
 
-If you want to both start your own worker daemon and the normal PHP-FPM process, you can kick off both your process and the default at the same time, like so:
-
-```yaml
-web:
-    commands:
-        start: php run.php && /usr/sbin/php-fpm7.0
-    upstream:
-            socket_family: tcp
-            protocol: http
-```
-
-The default start command varies by PHP version:
-
-* On PHP 5.x, it's `/usr/sbin/php5-fpm`.
-* On PHP 7.0, it's `/usr/sbin/php-fpm7.0`.
-* On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`
-
 ## PHP Worker sizing hints
 
 Platform.sh uses a heuristic to automatically set the number of workers of a PHP runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more or less memory.  In most cases, however, you should not need to change them.
