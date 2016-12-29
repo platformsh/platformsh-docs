@@ -151,6 +151,14 @@ web:
 
 The above configuration will execute the `run.php` script in the application root when the container starts using the PHP-CLI SAPI, just before the deploy hook runs, but will *not* launch PHP-FPM.  It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the 'PORT' environment variable.
 
+If not specified, the effective default start command varies by PHP version:
+
+* On PHP 5.x, it's `/usr/sbin/php5-fpm`.
+* On PHP 7.0, it's `/usr/sbin/php-fpm7.0`.
+* On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`
+
+While you can call it manually that is generally not necessary.  Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or AmPHP).  If you need both they will have to run in separate containers.
+
 ## PHP Worker sizing hints
 
 Platform.sh uses a heuristic to automatically set the number of workers of a PHP runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more or less memory.  In most cases, however, you should not need to change them.
