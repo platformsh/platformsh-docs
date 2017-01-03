@@ -14,7 +14,7 @@ An example of a minimalist `.platform.app.yaml` file for PHP is below:
 ```yaml
 # .platform.app.yaml
 
-# The name of this application which must be unique within a project.
+# The name of this application, which must be unique within a project.
 name: 'app'
 
 # The type key specifies the language and version for your application.
@@ -71,7 +71,7 @@ hooks:
 > **Note**
 > This configuration file is specific to one application. If you have multiple
 > applications inside your Git repository (i.e. a RESTful web service and a
-> front-end or a main web site and a blog), you need one `.platform.app.yaml`
+> front-end, or a main web site and a blog), you need `.platform.app.yaml`
 > at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
 
 ### Name
@@ -81,20 +81,20 @@ supports multiple applications within a project, so each application
 must have a **unique name** within a project. The name may only be
 composed of lower case alpha-numeric characters (a-z0-9).  *Be advised
 that changing the `name` of your application after it has been deployed will
-destroy all storage volumes and thus, is typically a Very Bad Thing to do.*
+destroy all storage volumes, and thus is typically a Very Bad Thing to do.*
 It could be useful under certain circumstances in the early stages
 of development but you almost certainly don't want to change it on
 a live project.
 
 This name is used in the `.platform/routes.yaml` file to define the HTTP upstream
-(by default `php:http`; if you called your application `app` you will
-need to use `app:http` in the upstream field).
+(by default `php:http`).  For instance, if you called your application `app` you will
+need to use `app:http` in the upstream field.
 
 You can also use this name in multi-application relationships.
 
 > **Note**
 > Changing the name of an application is the same as deleting it and replacing
-> it. Your application data (static files) will be deleted.
+> it. Your application's data (static files) will be deleted.
 >
 > If you change the name, you should think about updating your other
 > configuration files. This includes `.platform/routes.yaml` and any other
@@ -132,7 +132,7 @@ Its only property is `flavor`, which specifies a default set of build tasks to r
 * Node.js (`default` by default)
   * `default` will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
 
-In all languages, you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js); as the name suggests, will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom composer command or use an alternate Node.js package manager.
+In all languages you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js); as the name suggests, will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom composer command or use an alternate Node.js package manager.
 
 **Example**
 
@@ -143,8 +143,7 @@ build:
 
 ### Access
 
-The `access` defines the user roles who can log in via SSH to the
-environments they have permission to access.
+The `access` defines the user roles who can log in via SSH to the environments they have permission to access.
 
 Possible values are below:
 
@@ -165,7 +164,7 @@ variable. The right-hand side is in the form
  value of "type" declared in that same file.
 
 > **Note**
-> In the first example above, you could very well have something
+> In the first example above you could very well have something
 > like `mycache: "arediscache:redis"` instead of `redis: "redis:redis"` (if in
 > `services.yaml` you named a service of the type `redis` with `arediscache`.
 
@@ -211,18 +210,13 @@ web:
 
 #### Upstream
 
-`upstream` is an optional key that describes how your application listens to
-requests and what protocol it speaks.
+`upstream` is an optional key that describes how your application listens to requests and what protocol it speaks.
 
 The following subkeys can be defined:
 * `socket_family`:
-    Default: `tcp`. Describes whether your application will listen on a
-    Unix socket or a TCP socket and can be either `tcp` or `unix`.
+    Default: `tcp`. Describes whether your application will listen on a Unix socket (`unix`) or a TCP socket (`tcp`).
 * `protocol`:
-    Specifies whether your application is going to receive incoming requests
-    over HTTP, FastCGI, or UWSGI and can be `http` or `fastcgi`, for now. The
-    default varies depending on which application runtime you're using. Other
-    values will be supported in the future.
+    Specifies whether your application is going to receive incoming requests over HTTP (`http`) or FastCGI (`fastcgi`). The default varies depending on which application runtime you're using. Other values will be supported in the future.
 
 ##### Socket family
 
@@ -255,30 +249,30 @@ web:
             ...
 ```
 
-It has a few subkeys listed below:
+There are subkeys listed below, some of which are used by web.locations as follows:
 
 * `root`:
     The folder from which to serve static assets for this location
     relative to the application root. The application root is the directory
-    where the `.platform.app.yaml` file is located.  Typical values for this
+    in which the `.platform.app.yaml` file is located.  Typical values for this
     property include `public` or `web`.  Setting it to `""` is not recommended,
     and its behavior may vary depending on the type of application.  Absolute
     paths are not supported.
 * `passthru`:
     Whether to forward disallowed and missing resources from this location to
     the application and can be true, false or an absolute URI path (with leading
-    `/`). The default value is false. For non-PHP applications, it will
-    generally be just true or false.  In a PHP application, this will typically
+    `/`). The default value is `false`. For non-PHP applications it will
+    generally be just `true` or `false`.  In a PHP application this will typically
     be the front controller such as `/index.php` or `/app.php`.  This entry
     works similar to `mod_rewrite` under Apache.  Note: If the value of
-    `passthru` does not begin with the same value as the location key, it is
-    under the passthru and may evaluate to another entry. That may be useful when
+    `passthru` does not begin with the same value as the location key it is
+    under, the passthru may evaluate to another entry. That may be useful when
     you want different cache settings for different paths, for instance, but
     want missing files in all of them to map back to the same front controller.
     See the example block below.
 * `index`:
     The file or files to consider when serving a request for a directory and can
-    be a file name, an array of file names, or *null* (typically `index.html`).
+    be a file name, an array of file names, or *null*. (Typically `index.html`).
     Note that in order for this to work, access to the static file(s) named
     must be allowed by the `allow` or `rules` keys for this location.
 * `expires`:
@@ -366,7 +360,7 @@ Those dependencies are independent of the eventual dependencies of your
 application and are available in the `PATH` during the build process
 and in the runtime environment of your application.
 
-You can specify those dependencies like below:
+You can specify those dependencies as shown below:
 
 ```yaml
 dependencies:
@@ -394,7 +388,7 @@ Possible hooks are below:
     application has not been deployed yet.
 -   **deploy**: We run a deploy hook after your application has been
     deployed and started. You can access other services at this stage
-    (MySQL, Solr, Redis, etc.), however, the disk where the application lives is read-only at this point.
+    (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.
 
 Each hook is executed as a single script, so they will be considered failed
 only if the final command in them fails. To cause them to fail on the first
@@ -476,9 +470,9 @@ It has a few subkeys listed below:
 -   **cmd**: The command that is executed, for example
     `cd public ; drush core-cron`
 
-The minimum interval between cron runs is 5 minutes; even if specified as less.
+The minimum interval between cron runs is 5 minutes, even if specified as less.
 
-Note that cron runs are executed using the dash shell; not the bash shell used by normal SSH logins. In most cases, that makes no difference but may impact some more involved cron scripts.
+Note that cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
 
 ```yaml
 crons:
@@ -510,7 +504,7 @@ web:
 
 ### Runtime
 
-The `.platform.app.yaml` file also supports a `runtime` key which allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate language documentation.
+The `.platform.app.yaml` file also supports a `runtime` key that allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate language documentation.
 
 * [PHP](/languages/php.md)
 
