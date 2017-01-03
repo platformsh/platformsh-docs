@@ -81,10 +81,10 @@
   * [Solr](frameworks/drupal8/solr.md)
   * [FAQ](frameworks/drupal8/faq.md)
 * [Symfony](frameworks/symfony.md)
-  * [Migrating](frameworks/symfony/migrating.md)
   * [FAQ](frameworks/symfony/faq.md)
 
 ## Tutorials
 
 * [Authenticated Composer](/tutorials/composer-auth.md)
 * [Exporting data](/tutorials/exporting.md)
+* [Migrating to Platform.sh](/tutorials/migrating.md)
