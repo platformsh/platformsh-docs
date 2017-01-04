@@ -40,7 +40,7 @@ mounts:
 
 ## Starting the daemon
 
-You'll eventually be building this step in to your [deploy hook](/configuration/app-containers.html#hooks), but first we need to start it manually so that you can perform the Dropbox Login Ceremony from your application's container.  Login to your application's container via `ssh`, either by grabbing the URL from the "access site" link in your project's admin UI, or by running `platform ssh` if you've installed the [Platform CLI](https://docs.platform.sh/overview/cli.html) (recommended).
+You'll eventually be building this step in to your [deploy hook](/configuration/app-containers.html#hooks), but first we need to start it manually so that you can perform the Dropbox login ceremony from your application's container.  Login to your application's container via `ssh`, either by grabbing the URL from the "access site" link in your project's admin UI, or by running `platform ssh` if you've installed the [Platform CLI](https://docs.platform.sh/overview/cli.html) (recommended).
 
 You should see a `~/.dropbox-dist` directory as a result of your build hook.  Run this - `~/.dropbox-dist/dropboxd` and you'll be presented with some text in `stdout` that asks you to visit a tokenized Dropbox URL that will authenticate your new Dropbox client against your account and store the results in the `~/.dropbox` directory.
 
@@ -67,6 +67,6 @@ Commit this to your project and push it to your Platform.sh project.
 
 Once you get this all running, the configuration that was stored in the `~/.dropbox` directory will be available in any child environments that are created out of whichever one you set all this up in.  They can also be sync'd to any child environments you've already created and will function as intended.
 
-If you're doing this in a child branch (anything other than `master`), you'll likely need to comment out the deploy portion (`nohup ...`) and run `~/.dropbox-dist/dropboxd` from inside the parent container to perform the Dropbox Login Ceremony there after you've merged the child branch.  Then you can uncomment the `nohup` line and everything should work as intended.
+If you're doing this in a child branch (anything other than `master`), you'll likely need to comment out the deploy portion (`nohup ...`) and run `~/.dropbox-dist/dropboxd` from inside the parent container to perform the Dropbox login ceremony there after you've merged the child branch.  Then you can uncomment the `nohup` line and everything should work as intended.
 
-Also, this is intended to show create use of the build and deploy hooks, and not as an endorsement of whether or not this is a good idea to mount your Dropbox into your application.  It is neither a better nor worse idea than any other Linux setup.  As with much of application development, you swim at your own risk.
+Also, this is intended to show creative use of the build and deploy hooks, and not as an endorsement of whether or not it is a good idea to mount your Dropbox into your application.  It is neither a better nor worse idea than any other Linux setup.  As with much of application development, you swim at your own risk.
