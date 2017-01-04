@@ -1,6 +1,6 @@
 # Setting up the Dropbox daemon
 
-- Time needed: 5-10 minutes
+- Time needed: ~10 minutes
 
 Dropbox has a very useful [Linux version](https://www.dropbox.com/install-linux) that can be installed into your Platform.sh application with a bit of intermediate [build hook](/configuration/app-containers.html#hooks) hacking.
 
@@ -16,11 +16,11 @@ hooks:
     cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar
 ```
 
-The build hook is when your application's codebase is being assembled for deployment, so the filesystem is still writable.  This means that the above command will create a `~/.dropbox-dist` directory in the home directory of your project, aka "the project root", aka `/app`.  Starting the daemon is _almost_ as simple as running `~/.dropbox-dist/dropboxd` when you `ssh` into your application's container.
+The build hook runs when your application's codebase is being assembled for deployment, so the filesystem is still writable.  This means that the above command will create a `~/.dropbox-dist` directory in the home directory of your project, aka "the project root", aka `/app`.  Starting the daemon is _almost_ as simple as running `~/.dropbox-dist/dropboxd` when you `ssh` into your application's container.
 
-## Creating the needed writable directories
+## Creating the necessary writable directories
 
-Before we can start the daemon, we need to add a couple directories that Dropbox expects to be there and to be writable.  The main one is `~/Dropbox`, which contains _your entire Dropbox_.  (There may be a way to only mount part of it, and please do open a Merge Request to these docs if you figure it out).  For obvious reasons, this directory needs to be at least as large as all the contents of your Dropbox or you're going to have a Bad Time.
+Before we can start the daemon, we'll need to add a couple directories that Dropbox expects to be there and to be writable.  The main one is `~/Dropbox`, which contains **your entire Dropbox**.  (There may be a way to only mount part of it, and please do open a Merge Request to these docs if you figure it out).  For obvious reasons, this directory needs to be at least as large as all the contents of your Dropbox or you're going to have a Bad Time.
 
 The other is a metadata/etc directory at `~/.dropbox`.  This author's `.dropbox` directory is 43M, so it doesn't appear to take up too much room.  
 
