@@ -6,17 +6,18 @@ Dropbox has a very useful [Linux version](https://www.dropbox.com/install-linux)
 
 ## Install the daemon
 
-Per the instructions on [installing the Linux client](https://www.dropbox.com/install-linux), you can install the client via a simple one-liner shell command, so place this into your build hook - `cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-`, like so
+Per the instructions on [installing the Linux client](https://www.dropbox.com/install-linux), you can install the client via a simple one-liner shell command, but I needed to modify it slightly so modify your build hook to add this to it -
 
 ```yaml
 hooks:
   build: |
-    echo "This is the build hook firing!"
-    cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar
+    wget "https://www.dropbox.com/download?plat=lnx.x86_64" -O archive.tar
+    tar xzvf archive.tar && rm archive.tar
 ```
 
-The build hook runs when your application's codebase is being assembled for deployment, so the filesystem is still writable.  This means that the above command will create a `~/.dropbox-dist` directory in the home directory of your project, aka "the project root", aka `/app`.  Starting the daemon is _almost_ as simple as running `~/.dropbox-dist/dropboxd` when you `ssh` into your application's container.
+
+
+The build hook runs when your application's codebase is being assembled for deployment, so the filesystem is still writable.  This means that the above command will create a `~/.dropbox-dist` directory in the home directory of your application, aka "the application root".  Starting the daemon is _almost_ as simple as running `~/.dropbox-dist/dropboxd` when you `ssh` into your application's container.
 
 ## Creating the necessary writable directories
 
@@ -51,10 +52,9 @@ Edit your `hooks` section to look like this -
 ```yaml
 hooks:
   build: |
-    echo "This is the build hook firing!"
-    cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+    wget "https://www.dropbox.com/download?plat=lnx.x86_64" -O archive.tar
+    tar xzvf archive.tar && rm archive.tar
   deploy: |
-    echo "This is the deploy hook firing!"
     # starts the process as a daemon and sends all
     # output to /dev/null.  Obviously, feel free to
     # direct this output to a logfile(s) if you wish.
