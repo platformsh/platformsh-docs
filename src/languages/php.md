@@ -155,7 +155,7 @@ If not specified, the effective default start command varies by PHP version:
 
 * On PHP 5.x, it's `/usr/sbin/php5-fpm`.
 * On PHP 7.0, it's `/usr/sbin/php-fpm7.0`.
-* On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`
+* On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`.
 
 While you can call it manually that is generally not necessary.  Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or AmPHP).  If you need both they will have to run in separate containers.
 
