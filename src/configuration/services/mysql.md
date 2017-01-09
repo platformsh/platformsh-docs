@@ -98,17 +98,17 @@ The easiest way to download all data in a MariaDB instance is with the Platform.
 platform db:dump
 ```
 
+By default the file will be uncompressed. If you want to compress it, use the `--gzip` (`-z`) option:
+
+```bash
+platform db:dump --gzip
+```
+
 If you have multiple SQL databases it will prompt you which one to export. You can also specify one by relationship name explicitly:
 
 ```bash
 platform db:dump --relationship database
 ```
-
-By default the file will be uncompressed.  If you want to compress it, direct the output to stdout and pipe it to gzip or bzip2 locally:
-
-```bash
-platform db:dump --relationship database --stdout | bzip2 > dump.bz2
- ```
 
 ## Importing data
 
