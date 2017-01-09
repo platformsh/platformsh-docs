@@ -3,6 +3,8 @@ search:
     keywords: ['.platform.app.yaml']
 ---
 
+<!-- toc -->
+
 # Configure your Application
 
 You control your application and the way it will be built and deployed on
