@@ -3,9 +3,9 @@ search:
     keywords: ['.platform.app.yaml']
 ---
 
-<!-- toc -->
-
 # Configure your Application
+
+<!-- toc -->
 
 You control your application and the way it will be built and deployed on
 Platform.sh via a single configuration file, `.platform.app.yaml`, located at
