@@ -14,6 +14,9 @@ Both are interchangeable from a configuration perspective, although code that us
 * 5.5
 * 5.6
 * 7.0
+* 7.1
+
+Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
 ### HHVM
 
@@ -51,6 +54,7 @@ The following extensions are enabled by default:
 * mysqlnd
 * pdo_mysql
 * pdo_sqlite
+* sockets (7.0 and later)
 * sqlite3
 * gd
 * curl
@@ -62,73 +66,98 @@ You can disable those by adding them to the `disabled_extensions` list.
 
 This is the complete list of extensions that can be enabled:
 
-| Extension    | 5.4 | 5.5 | 5.6 | 7.0 |
-|--------------|-----|-----|-----|-----|
-| apc          | *   |     |     |     |
-| apcu         |     | *   | *   | *   |
-| apcu_bc      |     |     |     | *   |
-| blackfire    | *   | *   | *   | *   |
-| bz2          |     |     |     | *   |
-| curl         | *   | *   | *   | *   |
-| enchant      | *   | *   | *   | *   |
-| gd           | *   | *   | *   | *   |
-| gearman      | *   | *   | *   |     |
-| geoip        | *   | *   | *   |     |
-| gmp          | *   | *   | *   | *   |
-| http         | *   | *   |     |     |
-| igbinary     |     |     |     | *   |
-| imagick      | *   | *   | *   | *   |
-| imap         | *   | *   | *   | *   |
-| interbase    | *   | *   | *   | *   |
-| intl         | *   | *   | *   | *   |
-| json         |     |     | *   | *   |
-| ldap         | *   | *   | *   | *   |
-| mcrypt       | *   | *   | *   | *   |
-| memcache     | *   | *   | *   |     |
-| memcached    | *   | *   | *   | *   |
-| mongo        | *   | *   | *   |     |
-| mongodb      |     |     |     | *   |
-| msgpack      |     |     | *   | *   |
-| mssql        | *   | *   | *   |     |
-| mysql        | *   | *   | *   |     |
-| mysqli       | *   | *   | *   | *   |
-| mysqlnd      | *   | *   | *   |     |
-| odbc         | *   | *   | *   | *   |
-| opcache      |     | *   | *   | *   |
-| pdo          | *   | *   | *   | *   |
-| pdo_dblib    | *   | *   | *   | *   |
-| pdo_firebird | *   | *   | *   | *   |
-| pdo_mysql    | *   | *   | *   | *   |
-| pdo_odbc     | *   | *   | *   | *   |
-| pdo_pgsql    | *   | *   | *   | *   |
-| pdo_sqlite   | *   | *   | *   | *   |
-| pecl-http    |     |     | *   |     |
-| pgsql        | *   | *   | *   | *   |
-| pinba        | *   | *   | *   |     |
-| propro       |     |     | *   |     |
-| pspell       | *   | *   | *   | *   |
-| raphf        |     |     | *   |     |
-| readline     | *   | *   | *   | *   |
-| recode       | *   | *   | *   | *   |
-| redis        | *   | *   | *   | *   |
-| snmp         | *   | *   | *   | *   |
-| spplus       | *   | *   |     |     |
-| sqlite3      | *   | *   | *   | *   |
-| ssh2         | *   | *   | *   |     |
-| tidy         | *   | *   | *   | *   |
-| xcache       | *   | *   |     |     |
-| xdebug       | *   | *   | *   | *   |
-| xhprof       | *   | *   | *   |     |
-| xmlrpc       | *   | *   | *   | *   |
-| xsl          | *   | *   | *   | *   |
-| zendopcache  | *   |     |     |     |
+| Extension    | 5.4 | 5.5 | 5.6 | 7.0 | 7.1 |
+|--------------|-----|-----|-----|-----|-----|
+| apc          | *   |     |     |     |     |
+| apcu         |     | *   | *   | *   | *   |
+| apcu_bc      |     |     |     | *   | *   |
+| blackfire    | *   | *   | *   | *   | *   |
+| bz2          |     |     |     | *   | *   |
+| curl         | *   | *   | *   | *   | *   |
+| enchant      | *   | *   | *   | *   | *   |
+| event        |     |     |     |     | *   |
+| gd           | *   | *   | *   | *   | *   |
+| gearman      | *   | *   | *   |     |     |
+| geoip        | *   | *   | *   |     |     |
+| gmp          | *   | *   | *   | *   | *   |
+| http         | *   | *   |     |     |     |
+| igbinary     |     |     |     | *   | *   |
+| imagick      | *   | *   | *   | *   | *   |
+| imap         | *   | *   | *   | *   | *   |
+| interbase    | *   | *   | *   | *   | *   |
+| intl         | *   | *   | *   | *   | *   |
+| json         |     |     | *   | *   | *   |
+| ldap         | *   | *   | *   | *   | *   |
+| mcrypt       | *   | *   | *   | *   | *   |
+| memcache     | *   | *   | *   |     |     |
+| memcached    | *   | *   | *   | *   | *   |
+| mongo        | *   | *   | *   |     |     |
+| mongodb      |     |     |     | *   | *   |
+| msgpack      |     |     | *   | *   | *   |
+| mssql        | *   | *   | *   |     |     |
+| mysql        | *   | *   | *   |     |     |
+| mysqli       | *   | *   | *   | *   | *   |
+| mysqlnd      | *   | *   | *   |     |     |
+| odbc         | *   | *   | *   | *   | *   |
+| opcache      |     | *   | *   | *   | *   |
+| pdo          | *   | *   | *   | *   | *   |
+| pdo_dblib    | *   | *   | *   | *   | *   |
+| pdo_firebird | *   | *   | *   | *   | *   |
+| pdo_mysql    | *   | *   | *   | *   | *   |
+| pdo_odbc     | *   | *   | *   | *   | *   |
+| pdo_pgsql    | *   | *   | *   | *   | *   |
+| pdo_sqlite   | *   | *   | *   | *   | *   |
+| pecl-http    |     |     | *   |     |     |
+| pgsql        | *   | *   | *   | *   | *   |
+| pinba        | *   | *   | *   |     |     |
+| propro       |     |     | *   |     |     |
+| pspell       | *   | *   | *   | *   | *   |
+| pthreads     |     |     |     |     | *   |
+| raphf        |     |     | *   |     |     |
+| readline     | *   | *   | *   | *   | *   |
+| recode       | *   | *   | *   | *   | *   |
+| redis        | *   | *   | *   | *   | *   |
+| snmp         | *   | *   | *   | *   | *   |
+| sockets      |     |     | *   | *   | *   |
+| spplus       | *   | *   |     |     |     |
+| sqlite3      | *   | *   | *   | *   | *   |
+| ssh2         | *   | *   | *   |     |     |
+| tidy         | *   | *   | *   | *   | *   |
+| xcache       | *   | *   |     |     |     |
+| xdebug       | *   | *   | *   | *   | *   |
+| xhprof       | *   | *   | *   |     |     |
+| xmlrpc       | *   | *   | *   | *   | *   |
+| xsl          | *   | *   | *   | *   | *   |
+| zendopcache  | *   |     |     |     |     |
 
 
 > **note**
 > You can check out the output of `ls /etc/php5/mods-available` to
 > see the up-to-date complete list of extensions after you SSH into
-> your environment. For PHP 7, use `ls /etc/php/mods-available`.
+> your environment. For PHP 7, use `ls /etc/php/*/mods-available`.
 
+## Alternate start commands
+
+PHP is most commonly run in a CGI mode, using PHP-FPM.  That is the default on Platform.sh.  However, you can also start alternative processes if desired, such as if you're running an Async PHP daemon, a thread-based worker process, etc.  To do so, simply specify an alternative start command in `platform.app.yaml`, similar to the following:
+
+```yaml
+web:
+    commands:
+        start: php run.php
+    upstream:
+            socket_family: tcp
+            protocol: http
+```
+
+The above configuration will execute the `run.php` script in the application root when the container starts using the PHP-CLI SAPI, just before the deploy hook runs, but will *not* launch PHP-FPM.  It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the 'PORT' environment variable.
+
+If not specified, the effective default start command varies by PHP version:
+
+* On PHP 5.x, it's `/usr/sbin/php5-fpm`.
+* On PHP 7.0, it's `/usr/sbin/php-fpm7.0`.
+* On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`.
+
+While you can call it manually that is generally not necessary.  Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or AmPHP).  If you need both they will have to run in separate containers.
 
 ## PHP Worker sizing hints
 

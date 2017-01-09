@@ -99,6 +99,24 @@ platform db:dump --relationship database --stdout | bzip2 > dump.bz2
  ```
 
 
+## Importing data
+
+The easiest way to load data into a database is to pipe an SQL dump through the `platform sql` command, like so:
+
+```bash
+platform sql < my_database_snapshot.sql
+```
+
+That will run the database snapshot against the SQL database on Platform.sh.  That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database).  As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
+
+```bash
+platform sql --relationship database -e master < my_database_snapshot.sql
+```
+
+> **note**
+> Importing a database snapshot is a destructive operation. It will overwrite data already in your database.
+> Taking a snapshot or a database export before doing so is strongly recommended.
+
 ## PostgreSQL Extensions
 We have full support for running PostgreSQL Extensions on Platform.sh. In your `services.yaml` 
 file you can simply add a configuration subkey with the following structure:
