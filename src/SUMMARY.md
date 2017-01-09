@@ -91,6 +91,7 @@
 
 ## Changelog
 
+* [2017](changelog/2017.md)
 * [2016](changelog/2016.md)
 * [2015](changelog/2015.md)
 * [2014](changelog/2014.md)
