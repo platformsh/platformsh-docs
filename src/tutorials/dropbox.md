@@ -67,6 +67,6 @@ Commit this to your project and push it to Platform.sh.  This will download a fr
 
 The configuration that was stored in the `~/.dropbox` directory will be available in any child environments that are created out of whichever one you set all this up in.  They can also be sync'd to any child environments you've already created and will function as intended.
 
-If you're doing this in a child branch (anything other than `master`), you'll likely need to comment out the deploy portion (`nohup ...`) and run `~/.dropbox-dist/dropboxd` from inside the parent container to login to Dropbox there after you've merged the child branch.  Then you can uncomment the `nohup` line and everything should work as intended.
+If you're doing this in a child branch (anything other than `master`), you'll likely need to comment out the `web.commands.start` portion and run `~/.dropbox-dist/dropboxd` from inside the parent container to login to Dropbox there after you've merged the child branch.  Then you can uncomment the `web.commands.start` portion and everything should work as intended.
 
 Also, this is intended to show creative use of build hooks, and not as an endorsement of whether or not it is a good idea to mount your Dropbox into your application.  It is neither a better nor worse idea than any other Linux setup.  As with much of application development, you swim at your own risk.
