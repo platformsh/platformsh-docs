@@ -5,6 +5,8 @@ search:
 
 # Configure your Application
 
+<!-- toc -->
+
 You control your application and the way it will be built and deployed on
 Platform.sh via a single configuration file, `.platform.app.yaml`, located at
 the root of your application folder inside your Git repository.
@@ -74,7 +76,7 @@ hooks:
 > front-end, or a main web site and a blog), you need `.platform.app.yaml`
 > at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
 
-### Name
+## Name
 
 The `name` is the unique identifier of the application. Platform.sh
 supports multiple applications within a project, so each application
@@ -100,7 +102,7 @@ You can also use this name in multi-application relationships.
 > configuration files. This includes `.platform/routes.yaml` and any other
 > `.platform.app.yaml` files you have in a multi-application project.
 
-### Type
+## Type
 
 The `type` defines what language will run your application.
 
@@ -120,7 +122,7 @@ followed by a version.  See the appropriate language page for all available vers
 type: php:5.6
 ```
 
-### Build
+## Build
 
 The `build` defines what happens when building the application.
 
@@ -141,7 +143,7 @@ build:
     flavor: composer
 ```
 
-### Access
+## Access
 
 The `access` defines the user roles who can log in via SSH to the environments they have permission to access.
 
@@ -151,7 +153,7 @@ Possible values are below:
 * ssh: contributor
 * ssh: viewer
 
-### Relationships
+## Relationships
 
 The `relationships` define how services are mapped within your
 application.
@@ -182,7 +184,7 @@ relationships:
 > See  the [Services](/configuration/services.md) documentation
 > for a full list of currently supported service types and service endpoints.
 
-### Web
+## Web
 
 The `web` key defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content, including static files, front-controller scripts, index files, index scripts, and so on. We support any directory structure, so the static files can be in a subdirectory and the `index.php` file can be further down.
 
@@ -192,7 +194,7 @@ The `web` key defines how the application is exposed to the web (in HTTP). Here 
 
 It has the following subkeys:
 
-#### Commands
+### Commands
 
 The `commands` key defines the command to launch the application.
 
@@ -208,7 +210,7 @@ web:
         start: "uwsgi --ini conf/server.ini"
 ```
 
-#### Upstream
+### Upstream
 
 `upstream` is an optional key that describes how your application listens to requests and what protocol it speaks.
 
@@ -218,7 +220,7 @@ The following subkeys can be defined:
 * `protocol`:
     Specifies whether your application is going to receive incoming requests over HTTP (`http`) or FastCGI (`fastcgi`). The default varies depending on which application runtime you're using. Other values will be supported in the future.
 
-##### Socket family
+#### Socket family
 
 The value of the `socket_family` key controls whether your application will
 receive requests over a Unix socket or a network socket.
@@ -234,7 +236,7 @@ If your application isn't listening at the same place that the runtime is
 sending requests, you'll see *502 Bad Gateway* errors when you try to
 connect to your web site.
 
-#### Locations
+### Locations
 
 The `locations` key allows you to provide specific parameters for different URL prefixes. Each entry's key is an absolute URI path (with leading `/`) and its value includes the configuration directives for that path.  That is, if your domain is `example.com` then `"/"` means "requests for `example.com/`", while `"/admin"` means "requests for `example.com/admin`".
 
@@ -318,7 +320,7 @@ web:
             allow: true
 ```
 
-### Disk
+## Disk
 
 The `disk` defines the size of the persistent disk of the
 application (in MB).
@@ -326,7 +328,7 @@ application (in MB).
 > **Note**
 > The minimum recommended disk size is 256MB. If you see the error `UserError: Error building the project: Disk size may not be smaller than 128MB`, increase the size to 256MB.
 
-### Mounts
+## Mounts
 
 The `mounts` is an object whose keys are paths relative to the root of
 the application (that is, where the `.platform.app.yaml` file lives). It's in the form `volume_id[/subpath]`.
@@ -342,7 +344,7 @@ The format is below:
 > **Note**
 > `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
 
-### Build dependencies
+## Build dependencies
 
 The `dependencies` allow you to specify dependencies that your
 application might need during the build process.
@@ -374,7 +376,7 @@ dependencies:
     grunt-cli: "~0.1.13"
 ```
 
-### Hooks
+## Hooks
 
 The `hooks` let you define shell commands to run during the build and deployment processes.
 
@@ -412,7 +414,7 @@ Performed update: my_custom_profile_update_7001
 Finished performing updates.
 ```
 
-#### [Example] Compile SASS files using Grunt
+### [Example] Compile SASS files using Grunt
 
 As a good example of combining dependencies and hooks, you can compile your
 SASS files using Grunt. The `|` character tells YAML that the following lines
@@ -438,7 +440,7 @@ hooks:
 This requires the `package.json` and `Gruntfile.js` files to be
 correctly setup in the theme folder.
 
-#### [Example] Trigger deploy hook on a specific environment
+### [Example] Trigger deploy hook on a specific environment
 
 To trigger a deploy hook only on a specific environment/branch, use the following
 environment variable: `$PLATFORM_BRANCH` which you should put in an `if/then` statement.
@@ -460,7 +462,7 @@ hooks:
     drush -y updatedb
 ```
 
-### Crons / Cron jobs
+## Crons / Cron jobs
 
 Cron jobs allow you to run scheduled tasks at specified times or intervals. The `crons` object describes these tasks and the schedule when they are triggered.  Each item in the list is a unique name identifying a separate cron job.
 
@@ -486,7 +488,7 @@ crons:
         cmd: 'cd web ; drush queue-run aggregator_feeds
 ```
 
-### URL rewriting
+## URL rewriting
 
 Platform.sh supports using URL rewriting in your application. To do so, you have to add a `rules` block to a location.
 An example to rewrite `/blog/20140513` to `/blog.php?bid=20140513` is below:
@@ -502,7 +504,7 @@ web:
                     passthru: '/blog.php?bid=$bid'
 ```
 
-### Runtime
+## Runtime
 
 The `.platform.app.yaml` file also supports a `runtime` key that allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate language documentation.
 
