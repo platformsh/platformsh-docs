@@ -104,11 +104,17 @@ If you have multiple SQL databases it will prompt you which one to export. You c
 platform db:dump --relationship database
 ```
 
-By default the file will be uncompressed.  If you want to compress it, direct the output to stdout and pipe it to gzip or bzip2 locally:
+By default the file will be uncompressed. If you want to compress it, use the `--gzip` (`-z`) option:
 
 ```bash
-platform db:dump --relationship database --stdout | bzip2 > dump.bz2
- ```
+platform db:dump --gzip
+```
+
+You can use the `--stdout` option to pipe the result to another command. For example, if you want to create a bzip2-compressed file, you can run:
+
+```bash
+platform db:dump --stdout | bzip2 > dump.sql.bz2
+```
 
 ## Importing data
 
