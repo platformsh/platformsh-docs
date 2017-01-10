@@ -86,16 +86,22 @@ The easiest way to download all data in a PostgreSQL instance is with the Platfo
 platform db:dump
 ```
 
+If you have multiple SQL databases it will prompt you which one to export. You can also specify one by relationship name explicitly:
+
+```bash
+platform db:dump --relationship database
+```
+
 By default the file will be uncompressed. If you want to compress it, use the `--gzip` (`-z`) option:
 
 ```bash
 platform db:dump --gzip
 ```
 
-If you have multiple SQL databases it will prompt you which one to export. You can also specify one by relationship name explicitly:
+You can use the `--stdout` option to pipe the result to another command. For example, if you want to create a bzip2-compressed file, you can run:
 
 ```bash
-platform db:dump --relationship database
+platform db:dump --stdout | bzip2 > dump.sql.bz2
 ```
 
 ## Importing data
