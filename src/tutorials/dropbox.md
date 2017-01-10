@@ -38,24 +38,27 @@ mounts:
 
 ## Starting the daemon
 
-You'll eventually be building this step in to your [deploy hook](/configuration/app-containers.html#hooks), but first you'll need to start it manually so that you can login to Dropbox from your application's container.  `ssh` into your application's container, either by grabbing the URL from the "access site" link in your project's admin UI or by running `platform ssh` if you've installed the [Platform CLI](https://docs.platform.sh/overview/cli.html) (recommended).
+You'll eventually be building this step in to [`web.commands.start`](/configuration/app-containers.html#commands), but first you'll need to start it manually so that you can login to Dropbox from your application's container.  `ssh` into your application's container, either by grabbing the URL from the "access site" link in your project's admin UI or by running `platform ssh` if you've installed the [Platform CLI](https://docs.platform.sh/overview/cli.html) (recommended).
 
 You should see a `~/.dropbox-dist` directory as a result of your build hook.  Run this - `~/.dropbox-dist/dropboxd` and you'll be presented with some text in `stdout` that asks you to visit a tokenized Dropbox URL that will authenticate your new Dropbox client against your account and store the results in the `~/.dropbox` directory.
 
-After authenticating, you'll notice that the client just hangs there because by default it runs in the foreground.  Press control-c to kill the process.  Add this startup command to your deploy hook, modified to run in the background.
+After authenticating, you'll notice that the client just hangs there because by default it runs in the foreground.  Press control-c to kill the process.  Add this startup command to `web.commands.start`, modified to run in the background.
 
-Edit your `hooks` section to look like this -
+Edit your `web` section to look like this -
 
 ```yaml
+web:
+  commands:
+    start: |
+      ~/.dropbox-dist/dropboxd >/dev/null 2>&1 &
+      /usr/sbin/php-fpm7.0 # for php7. Adjust accordingly
+  locations:
+    # rest of config...
+
 hooks:
   build: |
     wget "https://www.dropbox.com/download?plat=lnx.x86_64" -O archive.tar
     tar xzvf archive.tar && rm archive.tar
-  deploy: |
-    # starts the process as a daemon and sends all
-    # output to /dev/null.  Obviously, feel free to
-    # direct this output to a logfile(s) if you wish.
-    nohup ~/.dropbox-dist/dropboxd >/dev/null 2>&1 &
 ```
 
 Commit this to your project and push it to Platform.sh.  This will download a fresh copy of the Dropbox daemon and run the startup command every time you deploy from now on.
@@ -66,4 +69,4 @@ The configuration that was stored in the `~/.dropbox` directory will be availabl
 
 If you're doing this in a child branch (anything other than `master`), you'll likely need to comment out the deploy portion (`nohup ...`) and run `~/.dropbox-dist/dropboxd` from inside the parent container to login to Dropbox there after you've merged the child branch.  Then you can uncomment the `nohup` line and everything should work as intended.
 
-Also, this is intended to show creative use of the build and deploy hooks, and not as an endorsement of whether or not it is a good idea to mount your Dropbox into your application.  It is neither a better nor worse idea than any other Linux setup.  As with much of application development, you swim at your own risk.
+Also, this is intended to show creative use of build hooks, and not as an endorsement of whether or not it is a good idea to mount your Dropbox into your application.  It is neither a better nor worse idea than any other Linux setup.  As with much of application development, you swim at your own risk.
