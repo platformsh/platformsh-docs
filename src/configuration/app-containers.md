@@ -220,6 +220,18 @@ The following subkeys can be defined:
 * `protocol`:
     Specifies whether your application is going to receive incoming requests over HTTP (`http`) or FastCGI (`fastcgi`). The default varies depending on which application runtime you're using. Other values will be supported in the future.
 
+
+*Example*
+
+```yaml
+web:
+    upstream:
+        socket_family: tcp
+        protocol: http
+```
+
+The above block will instruct the container to pass incoming requests to your application as straight HTTP over a TCP socket.
+
 #### Socket family
 
 The value of the `socket_family` key controls whether your application will
