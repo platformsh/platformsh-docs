@@ -61,6 +61,7 @@ The following extensions are enabled by default:
 * intl
 * mcrypt (5.6 and earlier)
 * zendopcache (5.4 only) / opcache (5.5 and later)
+* bcmath
 
 You can disable those by adding them to the `disabled_extensions` list.
 
