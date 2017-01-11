@@ -25,8 +25,6 @@ You'll need to add two writable/mounted directories that Dropbox expects to be t
 Because Dropbox files are mirrored on your writable disk mount, your application container's disk size needs to be large enough to accommodate all of your Dropbox files as well as any user-uploaded files and your own code. You should also include sufficient extra space to allow for growth over time.
 
 ```yaml
-# for a 1G total Dropbox size, 
-# leaving another 1G for the application
 disk: 2048
 # the needed mounts for the Dropbox daemon
 mounts:
@@ -51,7 +49,10 @@ web:
   commands:
     start: |
       ~/.dropbox-dist/dropboxd >/dev/null 2>&1 &
-      /usr/sbin/php-fpm7.0 # for php7. Adjust accordingly
+      /usr/sbin/php-fpm7.0 # we do this by default for PHP7,
+      # but you're overwriting the default web.commands.start so
+      # you'll need to add it in manually.  Adjust according to your 
+      # language and version.
   locations:
     # rest of config...
 
@@ -65,7 +66,7 @@ Commit this to your project and push it to Platform.sh.  This will download a fr
 
 ## Caveat
 
-The configuration that was stored in the `~/.dropbox` directory will be available in any child environments that are created out of whichever one you set all this up in.  They can also be sync'd to any child environments you've already created and will function as intended.
+The configuration that was stored in the `~/.dropbox` directory will be available in any child environments that are created out of whichever one you set all this up in.  They can also be sync'd to any child environments you've already created and will function as intended.  **Note: The Dropbox directory will be automatically synced between your various environments, ie what you upload to dev will also appear in Master and vice versa.  This counter to how mounted directories typically work, where each environment is totally isolated from the others.**
 
 If you're doing this in a child branch (anything other than `master`), you'll likely need to comment out the `web.commands.start` portion and run `~/.dropbox-dist/dropboxd` from inside the parent container to login to Dropbox there after you've merged the child branch.  Then you can uncomment the `web.commands.start` portion and everything should work as intended.
 
