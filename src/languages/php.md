@@ -74,7 +74,6 @@ This is the complete list of extensions that can be enabled:
 | apcu_bc      |     |     |     | *   | *   |
 | blackfire    | *   | *   | *   | *   | *   |
 | bz2          |     |     |     | *   | *   |
-| bcmath       | *   | *   | *   | *   | *   |
 | curl         | *   | *   | *   | *   | *   |
 | enchant      | *   | *   | *   | *   | *   |
 | event        |     |     |     |     | *   |
