@@ -20,6 +20,19 @@ http://{default}/:
     to: http://www.{default}/
 ```
 
+Another use case is redirecting the requests to HTTPS:
+
+```yaml
+http://{default}/:
+    type: redirect
+    to: https://{default}/
+```
+
+> **note**
+> In case of only having HTTPS routes defined in `.platform/routes.yaml`,
+> Platform.sh would generate HTTP routes that reply HTTP 301 redirect
+> to the corresponding HTTPS route.
+
 ## Partial redirects
 
 In the [`.platform/routes.yaml`](routes-yaml.html) file you can also add partial redirect rules
