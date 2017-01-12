@@ -10,12 +10,12 @@ These SendGrid sub-accounts are capped at 12k emails per month.
 You can use `/usr/sbin/sendmail` on your application container to send emails
 with the assigned SendGrid sub-account.
 
-Alternatively, you may use your own SMTP server.
-In this case, use port 465 / 587 since port 25 is blocked for security reasons.
+We do not guarantee the deliverability of emails, and we do not support white-labeling them.  Our SMTP proxy is intended as a zero-configuration, best effort service.  If needed, you can instead use your own SMTP server or email delivery service provider. In that case, please bear in mind that TCP port 25 is blocked for security reasons; use TCP port 465 or 587 instead.
 
 > **note**:
-> If you need to adopt SPF for improving email deliverability, please read
-> [SPF setup guidelines on SendGrid](https://sendgrid.com/docs/Glossary/spf.html).
+> You may follow the
+> [SPF setup guidelines on SendGrid](https://sendgrid.com/docs/Glossary/spf.html)
+> to improve email deliverability with our SMTP proxy.
 
 ## Sending email in PHP
 
