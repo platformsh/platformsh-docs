@@ -80,11 +80,6 @@ application we called "app", the www subdomain being redirected to the
 apex domain. Note, we also generate HTTPS routes automatically using the
 configuration of each HTTP route.
 
-> **note**
-> In case of only having HTTPS routes defined in `.platform/routes.yaml`,
-> we would generate HTTP routes that reply HTTP 301 redirect
-> to the corresponding HTTPS route.
-
 In the following example, we are not redirecting from the www subdomain to the
 apex domain but serving from both:
 
