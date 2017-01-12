@@ -10,7 +10,7 @@ These SendGrid sub-accounts are capped at 12k emails per month.
 You can use `/usr/sbin/sendmail` on your application container to send emails
 with the assigned SendGrid sub-account.
 
-We do not guarantee the deliverability of emails, and we do not support white-labeling of them.  Our SMTP proxy is intended as a zero-configuration, best effort service.  If needed, you can instead use your own SMTP server or email delivery service provider. In that case, please bear in mind that TCP port 25 is blocked for security reasons; use TCP port 465 or 587 instead.
+We do not guarantee the deliverability of emails, and we do not support white-labeling them.  Our SMTP proxy is intended as a zero-configuration, best effort service.  If needed, you can instead use your own SMTP server or email delivery service provider. In that case, please bear in mind that TCP port 25 is blocked for security reasons; use TCP port 465 or 587 instead.
 
 > **note**:
 > You may follow the
