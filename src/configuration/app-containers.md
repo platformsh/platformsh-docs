@@ -500,6 +500,8 @@ crons:
         cmd: 'cd web ; drush queue-run aggregator_feeds
 ```
 
+Also note that all server times are in UTC, and hence so are the cron schedules.
+
 ## URL rewriting
 
 Platform.sh supports using URL rewriting in your application. To do so, you have to add a `rules` block to a location.
