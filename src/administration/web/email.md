@@ -19,22 +19,22 @@ We do not guarantee the deliverability of emails, and we do not support white-la
 
 ## Sending email in PHP
 
-When you send email, you should use the built-in `mail()` function in PHP.
-The PHP runtime is configured to send email via the assigned SendGrid sub-account.
+When you send email, you can simply use the built-in `mail()` function in PHP. The PHP runtime is configured to send email automatically via the assigned SendGrid sub-account.
 
-In Symfony, if you use the default `SwiftMailer`,
-you should set the followings in your `app/config/parameters.yaml`:
+Beware of the potential security problems when using the `mail()` function, which arise when using user-supplied input in the fifth (`$additional_parameters`) argument. See the [PHP `mail()` documentation](http://php.net/manual/en/function.mail.php) for more information.
+
+In Symfony, if you use the default `SwiftMailer` service, we recommend the following settings in your `app/config/parameters.yaml`:
 
 ```yaml
 parameters:
-  mailer_transport: mail
+  mailer_transport: sendmail
   mailer_host: null
   mailer_user: null
   mailer_password: null
 ```
 
 If you are using a file spool facility, you will probably need
-to setup a read/write mount for it in `.platform.app.yaml`
+to setup a read/write mount for it in `.platform.app.yaml`, for example:
 
 ```yaml
 mounts:
