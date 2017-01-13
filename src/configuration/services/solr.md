@@ -158,4 +158,4 @@ solrsearch:
             core: collection1
 ```
 
-The Solr 6.x Drupal 8 configuration files are reasonably generic and should work in many other circumstance, but explicitly defining a core, configuration, and endpoint is generally recommended.
+The Solr 6.x Drupal 8 configuration files are reasonably generic and should work in many other circumstances, but explicitly defining a core, configuration, and endpoint is generally recommended.
