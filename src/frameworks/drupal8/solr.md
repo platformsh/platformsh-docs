@@ -25,3 +25,6 @@ the server a name and a description.
 > **note**
 > The name of the host depends on the name you gave the relationship in `.platform.app.yaml`. If
 > you called the relationship `solrsearch` instead, then the hostname will be `solrsearch.internal`.
+
+> **note**
+> At this time, bugs in Drupal 8 prevent the Solr configuration from being managed from `settings.platformsh.php`.  See [these](https://www.drupal.org/node/2682369) [issues](https://www.drupal.org/node/2744057) for more information.
