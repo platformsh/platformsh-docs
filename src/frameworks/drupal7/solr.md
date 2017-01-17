@@ -17,7 +17,7 @@ projects[search_api_override][version] = 1.0-rc1
 
 ## Configuration
 
-The Search API module includes recommended configuration files to use with Drupal.  See the [Solr](/configuration/services/solr.md) configuration page for details of how to configure your Solr server to use the Drupal configuration files.  Note that the module does not include Drupal configuration files for Solr 6.  The Drupal 8 version of the module does, however, and should work acceptably.  It can also be customized as desired.
+The Search API module includes recommended configuration files to use with Drupal.  See the [Solr](/configuration/services/solr.md) configuration page for details of how to configure your Solr server to use the Drupal configuration files.  Note that the Drupal 7 version of Search API Solr does not include configuration files for Solr 6.  The Drupal 8 version of the module does, however, and should work acceptably.  It can also be customized as desired.
 
 The Search API Override module (listed above) allows Search API configuration to be overridden from `settings.php`.  Once it has been enabled, add the following to your `settings.platformsh.php` file:
 
