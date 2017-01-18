@@ -68,7 +68,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 ## Using redis-cli to access your Redis service
 
 Assuming your Redis relationship is named `redis`, you can access it by
-connecting to a host named `redis.internal` using the redis-cli tool. Open an [SSH session](/development/ssh.md) as follows:
+connecting to a host named `redis.internal` using the redis-cli tool. Open an [SSH session](/development/ssh.md) and access the Redis server as follows:
 
 ```bash
 redis-cli -h redis.internal
