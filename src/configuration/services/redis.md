@@ -57,7 +57,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 }
 ```
 
-The format is identical regardless of whether it's a Persistent or Ephemeral service.
+The format is identical regardless of whether it's a persistent or ephemeral service.
 
 ## Usage example
 
