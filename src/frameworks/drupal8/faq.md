@@ -13,25 +13,6 @@ That will automatically run `update.php` and import configuration on every new d
 
 The above configuration is included by default if you used our Drupal 8 example repository or created a project through the UI.
 
-## How can I override the default robots.txt?
-
-If your project is using a make file, you will end up with the default
-`robots.txt` provided by Drupal.
-
-On your Development environments, Platform.sh automatically overrides
-your `robots.txt` file with:
-
-```bash
-User-agent: *
-Disallow: /
-```
-
-You can customize the `robots.txt` by placing your own version at the
-root of your repository.
-
-To override the behavior of robots.txt for Development environments you would
-currently need to use the API, contact our support for details.
-
 ## I'm getting a PDO Exception 'MySQL server has gone away'
 
 Normally, this means there is a problem with the MySQL server container
