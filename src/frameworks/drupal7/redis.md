@@ -25,23 +25,18 @@ That will create a service named `rediscache`, of type `redis`, specifically ver
 
 ### Expose the Redis service to your application
 
-In your `.platform.app.yaml` file, we now need to open a connection to the new
-Redis service.  Under the `relationships` section, add the following:
+In your `.platform.app.yaml` file, you now need to open a connection to the new Redis service.  Under the `relationships` section, add the following:
 
 ```yaml
 relationships:
     redis: "rediscache:redis"
 ```
 
-The key (left side) is the name that will be exposed to the application in the PLATFORM_RELATIONSHIPS
-variable.  The right hand side is the name of the service we specified above (`rediscache`) and
-the type of endpoint (`redis`).  If you named the service something different above, change `rediscache`
-to that.
+The key (left side) is the name that will be exposed to the application in the PLATFORM_RELATIONSHIPS variable.  The right hand side is the name of the service you specified above (`rediscache`) and the endpoint (`redis`).  If you named the service something different above, change `rediscache` to that.
 
 ### Add the Redis PHP extension
 
-If you're using the PhpRedis option you will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file,
-add the following right after the `type` block:
+If you're using the PhpRedis option you will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
 
 ```yaml
 # Additional extensions
@@ -54,13 +49,12 @@ runtime:
 
 ### Add the Drupal module
 
-You will need to add the [Redis](https://www.drupal.org/project/redis)
-module to your project.
+You will need to add the [Redis](https://www.drupal.org/project/redis) module to your project.
 
 If you are using Drush Make, you can add these lines to your `project.make` file:
 
 ```ini
-projects[redis][version] = 3.12
+projects[redis][version] = 3.15
 ```
 
 To use the Predis library, also add it to your make file:
@@ -74,15 +68,11 @@ libraries[predis][destination] = libraries
 
 ## Configuration
 
-To make use of the Redis cache you will need to set some Drupal
-variables. You can either do this in your `settings.php` file or by
-setting Platform Variables directly via the UI.  In general, using the `settings.php`
-file is easier.
+To make use of the Redis cache you will need to set some Drupal variables. You can either do this in your `settings.php` file or by setting Platform Variables directly via the UI.  In general, using the `settings.php` file is easier.
 
 ### Via settings.php
 
-To configure Drupal 7 to use our Redis server for caching, place the following
-at the end of `settings.php`, after the include directive for `settings.local.php`:
+To configure Drupal 7 to use our Redis server for caching, place the following at the end of `settings.php`, after the include directive for `settings.local.php`:
 
 ```php
 if (!empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
