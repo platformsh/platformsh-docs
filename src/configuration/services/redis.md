@@ -86,18 +86,16 @@ You can then use the service in a configuration file of your application with so
 if (getenv('PLATFORM_RELATIONSHIPS')) {
     $relationships = json_decode(base64_decode(getenv('PLATFORM_RELATIONSHIPS')), true);
 
-    foreach ($relationships['redis'] as $endpoint) {
-        $container->setParameter('redis_host', $endpoint['host']);
-        $container->setParameter('redis_port', $endpoint['port']);
-    }
+    $container->setParameter('redis_host', $relationships['redis'][0]['host']);
+    $container->setParameter('redis_port', $relationships['redis'][0]['port']);
 }
 ```
 
 ## Using redis-cli to access your Redis service
 
-Assuming your Redis relationship is named `redis`, you can access it by
-connecting to a host named `redis.internal` using the redis-cli tool. Open an [SSH session](/development/ssh.md) and access the Redis server as follows:
+Assuming your Redis relationship is named `rediscache`, you can access it by
+connecting to a host named `rediscache.internal` using the redis-cli tool. Open an [SSH session](/development/ssh.md) and access the Redis server as follows:
 
 ```bash
-redis-cli -h redis.internal
+redis-cli -h rediscache.internal
 ```
