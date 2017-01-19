@@ -95,7 +95,9 @@ Configure your DNS provider to point your domain to your
 
 Once you've checked with your registrar about where to change your DNS
 settings, add a CNAME record that references the Master environment's
-hostname: `<environment>-<project>.<region>.platform.sh`
+hostname: `<environment>-<project>.<region>.platform.sh` in which
+`<environment>` is the **machine name** of the environment. The best way
+to find the machine name is to use `platform environment:info`.
 
 If you use multiple hostnames for your site, you need to add a CNAME
 record for each of them. For example:
