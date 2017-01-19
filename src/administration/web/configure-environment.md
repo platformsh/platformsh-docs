@@ -66,22 +66,25 @@ project configuration screen.
 
 ## Robots.txt
 
-By default, Platform.sh returns a restrictive `robots.txt` on all environments. If you need to provide a custom `robots.txt`, first disable the default one using the [Platform.sh CLI](/overview/cli.md) command below:
+By default, Platform.sh serves the following default and restrictive `robots.txt` on all non-production environments:
+
+```
+User-agent: *
+Disallow: /
+```
+
+That tells search engines to ignore pre-production sites entirely, even if they are publicly visible.  To disable that feature for pre-production sites use the [Platform.sh CLI](/overview/cli.md) command below:
 
 ```
 platform environment:info restrict_robots false
 ```
 
-Or to disable it for a specific environment rather than production, execute the following:
+Or to disable it for a specific environment other than the one that is currently checked out, execute the following:
 
 ```
 platform environment:info -e ENVNAME restrict_robots false
 ```
 
-(Where `ENVNAME` is the name of the environment, which is generally the branch associated with it.)
+(Where `ENVNAME` is the name of the environment, which is generally the branch associated with it.)  Note that you will need to trigger a new deployment after changing this setting.
 
-Then you have to serve your `robots.txt` by configuring ["/" location in `.platform.app.yaml`](/configuration/app-container.md#locations).
-
-> **note**
-> A deployment is required after running the CLI command to make the changes effective.
-
+On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`](/configuration/app-container.md#locations).
