@@ -85,6 +85,6 @@ Or to disable it for a specific environment other than the one that is currently
 platform environment:info -e ENVNAME restrict_robots false
 ```
 
-(Where `ENVNAME` is the name of the environment, which is generally the branch associated with it.)  Note that you will need to trigger a new deployment after changing this setting.
+where `ENVNAME` is the name of the environment.
 
 On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`](/configuration/app-container.md#locations).

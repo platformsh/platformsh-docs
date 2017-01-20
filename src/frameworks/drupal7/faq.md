@@ -19,9 +19,9 @@ deployment hooks to automatically run the updates.
 
 ## How can I override the default robots.txt?
 
-Platform.sh allows the use of a custom `robots.txt` file on production. For pre-production environments we provide a [default that blocks all search engines](/administration/web/configure-environment.html#robotstxt) (to keep pre-production sites out of search indexes).
+Platform.sh supports custom `robots.txt` by default in production. For pre-production environments we provide a [default that blocks all search engines](/administration/web/configure-environment.html#robotstxt) (to keep pre-production sites out of search indexes).
 
-If using the `drupal` build mode with a Drush make file, place your `robots.txt` file in your project root, as a sibling of `.platform.app.yaml`.  It will get moved to the appropriate location automatically by the build process.  For all other cases just include the file in your web root normally.
+If using the `drupal` build mode with a Drush make file, place your `robots.txt` file in your application root, as a sibling of `.platform.app.yaml`.  It will get moved to the appropriate location automatically by the build process.  For all other cases just include the file in your web root normally.
 
 ## I'm getting a PDO Exception 'MySQL server has gone away'
 
