@@ -1,9 +1,6 @@
 # Platform.sh Environments
 
-[Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage
-multiple environments, including the Master environment which runs the production website. It's precisely
-like a "development" or a "staging" server.. except they are created on the fly, and they are absolutly
-identical copies of their parent environments.
+[Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage multiple environments, including the Master environment which runs the production website. It's precisely like a "development" or a "staging" server.. except they are created on the fly, and they are absolutly identical copies of their parent environments.
 
 An environment is tied to a Git branch, plus all the services that are serving that branch. You can see that as a **complete working website**. With Bitbucket and GitHub integrations you can even get a "development server"
 for each and every pull request.
@@ -23,8 +20,7 @@ If you subscribed to a production plan, this environment is your **live site** a
 
 ![Hierarchy](/images/clone-hierarchy.png)
 
-Platform.sh brings the concept of a hierarchy between your environments.
-Each new environment you create is considered a **child** of the **parent** environment from which it was branched.
+Platform.sh brings the concept of a hierarchy between your environments. Each new environment you create is considered a **child** of the **parent** environment from which it was branched.
 
 Each child environment can sync code and/or data down from its parent, and merge code up to its parent. These are used for development, staging, and testing.
 
