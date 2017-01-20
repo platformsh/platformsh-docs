@@ -28,6 +28,21 @@ Each new environment you create is considered a **child** of the **parent** envi
 
 Each child environment can sync code and/or data down from its parent, and merge code up to its parent. These are used for development, staging, and testing.
 
+When you create a branch or child environment through the Platform.sh UI the branch it was made from will be treated as the parent.  If you create a branch through your local Git checkout and push it to Platform.sh, or synchronize a branch from a 3rd party such as GitHub or Bitbucket, its parent will default to the master branch.
+
+Any environment's parent can be changed using the Platform.sh CLI with the following command:
+
+```bash
+platform environment:info parent NEW_PARENT
+```
+
+In this case, the current environment (the branch you're on) will be set to have `NEW_PARENT` as its parent environment.  The environment to reparent can be set explicitly with the `-e` option:
+
+```bash
+platform environment:info -e feature-x parent NEW_PARENT
+```
+
+
 ## Workflows
 
 Since you can organize your environments as you want, you have complete flexibility to create your own workflows.
