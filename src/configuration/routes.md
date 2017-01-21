@@ -59,7 +59,7 @@ Each route can be configured separately. It has the following properties
 > **note**
 > For the moment, the value of upstream is always in the form: `<application-name>:http`.
 > `<application-name>` is the `name` defined in `.platform.app.yaml` file.
-> `:php` is a deprecated application endpoint, use `:http` instead.
+> `:php` is a deprecated application endpoint; use `:http` instead.
 > In the future, Platform.sh will support multiple endpoints per application.
 
 ## Routes examples
@@ -112,6 +112,24 @@ section for a detailed view on how to define routes that work with
 **multiple applications in the same project**. Also, look at the
 [redirects](/configuration/routes/redirects.md) section for details on how you can set up complex
 redirection rules including **partial redirects**.
+
+### HTTPS
+
+All development environments on Platform.sh support both HTTP and HTTPS requests automatically.  For production, you can provide your own SSL certificate from the issuer of your choice at no charge from us.
+
+If you would like to force your whole site to use HTTPS at all times, that can be done with the following `routes.yaml` configuration:
+
+```yaml
+"https://{default}/":
+    type: upstream
+    upstream: "app:http"
+
+"http://{default}/":
+    type: redirect
+    to: "https://{default}/"
+```
+
+Alternatively, if you define only routes that use HTTPS we will automatically create redirects from the HTTP to HTTPS version of each route.
 
 ## Configuring routes on the Web Interface
 

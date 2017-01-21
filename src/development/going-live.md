@@ -65,20 +65,6 @@ Here would be an example of your `routes.yaml` for the
 > * `http://[branch]-[project-id].[region].platform.sh`
 > * `http://www-[branch]-[project-id].[region].platform.sh`
 
-### HTTPS
-
-If you have uploaded your SSL certificate and you want to serve your
-entire site with HTTPS, here is what your routes would look like:
-
-```yaml
-"https://{default}/":
-    type: upstream
-    upstream: "app:http"
-
-"http://{default}/":
-    type: redirect
-    to: "https://{default}/"
-```
 
 ### Wildcard domains
 
