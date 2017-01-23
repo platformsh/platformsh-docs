@@ -1,8 +1,8 @@
 
 ## The Big Picture
 
-* [How we think](overview/how-we-think.md)
-* [How it looks](overview/how-it-looks.md)
+* [How we think](overview/basics.md)
+* [How it looks](overview/structure.md)
 * [How it works](overview/how-it-works.md)
 * [Tools](overview/tools.md)
 * [Platform CLI](overview/cli.md)
