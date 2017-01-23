@@ -1,6 +1,6 @@
 # Platform.sh Environments
 
-[Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage multiple environments, including the Master environment which runs the production website. It's precisely like a "development" or a "staging" server.. except they are created on the fly, and they are absolutly identical copies of their parent environments.
+[Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage multiple environments, including the Master environment which runs the production website. It's precisely like a "development" or a "staging" server.. except they are created on the fly, and they are absolutely identical copies of their parent environments.
 
 An environment is tied to a Git branch, plus all the services that are serving that branch. You can see that as a **complete working website**. With Bitbucket and GitHub integrations you can even get a "development server"
 for each and every pull request.
