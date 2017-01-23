@@ -1,89 +1,89 @@
 # Going Live
 
-Here are the steps you need to follow when your site is ready to go
-live.
+There's a few short steps to go through to launch a site into production on Platform.sh.
 
-## 1 - Domains
+## Prerequisites
+
+This page assumes you already have the following:
+
+1) Your site is running and configured as you want it to be, on your master branch.  In particular, see the [Routes documentation](/configuration/routes.md). You will need your routes configured appropriately before you begin.
+2) You have a domain name registered for your site with a Registrar of your choice. The registrar must allow you to use CNAMEs for your domain.  (Some registrars may call these Aliases or similar.)
+3) If your domain is currently active elsewhere, the Time-To-Live (TTL) on your domain is set to the lowest possible value in order to minimize transition time.
+4) You have the auto-generated domain for your master branch.  This is the domain you see in the Location bar after selecting "Access site" in the UI.  You can also retrieve this value from the command line by running `platform environment:url` to see a list of all URLs that Platform.sh will serve for the current environment.  Write this down.
+5) Optional: If you want to guarantee that you have access to  your master environment before the domain name has switched over, use `ping` or any similar tool to determine the IP address of the master environment.  The IP address is not guaranteed stable but is unlikely to change during the course of the go-live process.
+
+## Set your domain
 
 First step is to [add your domain](/administration/web/configure-project.html#domains).
 
-You can add multiple domains to point to your project. Each domain can
-have its own SSL certificate.
+You can add multiple domains to point to your project. Each domain can have its own [SSL certificate](/development/going-live/ssl.md).
 
-After you have added your domain, your Master environment will no longer
-be accessible at `master-<project_id>.<cluster>.platform.sh`.
+After you have added your domain, your Master environment will no longer be accessible at `<environment>-<project>.<region>.platform.sh`.
 
-If you require access to the site, you can create a hosts file entry and
-point it to the IP address that resolves when you access your master
-project branch.
+If you require access to the site before the domain name becomes active you can create a hosts file entry and point it to the IP address that resolves when you access your master project branch.
 
 > **note**
 > If you are on a Development plan, you cannot add a domain. You would need to upgrade your subscription to a production plan.
 
-## 2 - Routes
 
-You can configure the routes of your project directly within the
-Web Interface or within your `.platform/routes.yaml` file.
+## Configure your DNS provider
 
-### Single hostname
+Configure your DNS provider to point your domain to your Platform.sh Master environment.
 
-If you want your site to only be available at `http://mydomain.com` and
-have `http://www.mydomain.com` redirect to `http://mydomain.com`, you
-need define your `routes.yaml` as follow:
+The way to do so will vary somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.  Some will call it an Alias or similar alternate name, but either way the intent is to say "this domain should always resolve to... this other domain".  Add a CNAME record from your desired domain (`example.com`) to the master environment hostname you wrote down earlier.
 
-```yaml
-"http://{default}/":
-    type: upstream
-    upstream: "app:http"
+If you use multiple domain names for your site, such as `www.example.com` and `example.com`, you'll need to add a CNAME for each of them.
 
-"http://www.{default}/":
-    type: redirect
-    to: "http://{default}/"
-```
+Note that depending on your registrar and the TTL you set, it could take anywhere from 15 minutes to 12 hours for the DNS change to fully propagate across the Internet.
 
-### Multiple hostnames
+## Example setup
 
-If you want your site to be available at both `http://mydomain.com` and
-`http://www.mydomain.com`, you need to define one upstream for each
-hostname.
+For example, suppose your project ID is `abc123` in the US region, and you've registered `mysite.com`.  You want `www.mysite.com` to be the "real" site and `mysite.com` to redirect to it.
 
-Here would be an example of your `routes.yaml` for the
-`http://mydomain.com` URL:
+### Configure `routes.yaml`
+
+First, configure your `routes.yaml` file like so:
 
 ```yaml
-"http://{default}/":
-    type: upstream
-    upstream: "app:http"
-
 "http://www.{default}/":
-    type: upstream
-    upstream: "app:http"
+  type: upstream
+  upstream: "app:http"
+"http://{default}/":
+  type: redirect
+  to: "http://www.{default}/"
 ```
 
-> **note**
-> You can test those routes on your development environments with:
-> * `http://[branch]-[project-id].[region].platform.sh`
-> * `http://www-[branch]-[project-id].[region].platform.sh`
+That will result in two domains being created on Platform.sh: `master-def456-abc123.us.platform.sh` and `www---master-def456-abc123.us.platform.sh`.  The former will automatically redirect to the latter.  In the `routes.yaml` file, `{default}` will automatically be replaced with `master-def456-abc123.us.platform.sh`.  In domain prefixes (like `www`), the `.` will be replaced with `---`.
 
+### Set your domain
 
-### Wildcard domains
+Now, add a single domain to your Platform.sh project for `mysite.com`.  As soon as you do, Platform.sh will no longer serve `master-def456-abc123.us.platform.sh` at all.  Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywhere it appears when generating routes to respond to.
 
-To configure a wildcard domain (*.mydomain.com):
+### Configure your DNS provider
 
-- Add your domain to your project (in form of mydomain.com).
-- Add a route to your master branch serving `http://*.mydomain.com` with the upstream app:http.
+On your DNS provider, you would create two CNAMEs:
 
+`mysite.com` should be a CNAME to `www---master-def456-abc123.us.platform.sh`.
+`www.mysite.com` should be a CNAME to `www---master-def456-abc123.us.platform.sh`.
 
-## 3 - DNS
+(Yes, both point to the same place.)
 
-Configure your DNS provider to point your domain to your
-[Platform.sh](https://platform.sh) Master environment.
+### Result
 
-Once you've checked with your registrar about where to change your DNS
-settings, add a CNAME record that references the Master environment's
-hostname: `<environment>-<project>.<region>.platform.sh` in which
-`<environment>` is the **machine name** of the environment. The best way
-to find the machine name is to use `platform environment:info`.
+Now, an incoming request for `mysite.com` will result in the following:
+
+1) Your browser asks the DNS network for `mysite.com`'s DNS record.  It responds with "it's an alias for `www---master-def456-abc123.us.platform.sh`".
+2) your browser asks the DNS network for `www---master-def456-abc123.us.platform.sh`'s DNS record.  It responds with "that's IP address 1.2.3.4".  (Or whatever the actual address is.)
+3) Your browser sends a request to `1.2.3.4` for domain `mysite.com`.
+4) Your router responds with an HTTP 301 redirect to `www.mysite.com`.
+5) Your browser looks up `www.mysite.com` and, as above, gets an alias for `www---master-def456-abc123.us.platform.sh`, which is IP 1.2.3.4.
+6) Your browser sends a request to `1.2.3.4` for domain `www.mysite.com`.  Your router passes the request through to your application which in turn responds with whatever it's supposed to do.
+
+On subsequent requests, your browser will know to simply connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.  The entire process takes only a few milliseconds.
+
+## Old Stuff, is it relevant?
+
+Once you've checked with your registrar about where to change your DNS settings, add a CNAME record that references the Master environment's hostname: `<environment>-<project>.<region>.platform.sh`, in which `<environment>` is the **machine name** of the environment. The best way to find the machine name is to use `platform environment:info`.
 
 If you use multiple hostnames for your site, you need to add a CNAME
 record for each of them. For example:
@@ -141,3 +141,57 @@ the destination record and serves it as if it would be the IP address
 for the apex domain requested. If the IP address for the destination
 changes, the IP address for the mapped domain changes automatically as
 well.
+
+
+## 2 - Routes
+
+You can configure the routes of your project directly within the
+Web Interface or within your `.platform/routes.yaml` file.
+
+### Single hostname
+
+If you want your site to only be available at `http://mydomain.com` and
+have `http://www.mydomain.com` redirect to `http://mydomain.com`, you
+need define your `routes.yaml` as follow:
+
+```yaml
+"http://{default}/":
+    type: upstream
+    upstream: "app:http"
+
+"http://www.{default}/":
+    type: redirect
+    to: "http://{default}/"
+```
+
+### Multiple hostnames
+
+If you want your site to be available at both `http://mydomain.com` and
+`http://www.mydomain.com`, you need to define one upstream for each
+hostname.
+
+Here would be an example of your `routes.yaml` for the
+`http://mydomain.com` URL:
+
+```yaml
+"http://{default}/":
+    type: upstream
+    upstream: "app:http"
+
+"http://www.{default}/":
+    type: upstream
+    upstream: "app:http"
+```
+
+> **note**
+> You can test those routes on your development environments with:
+> * `http://[branch]-[project-id].[region].platform.sh`
+> * `http://www-[branch]-[project-id].[region].platform.sh`
+
+
+### Wildcard domains
+
+To configure a wildcard domain (*.mydomain.com):
+
+- Add your domain to your project (in form of mydomain.com).
+- Add a route to your master branch serving `http://*.mydomain.com` with the upstream app:http.
