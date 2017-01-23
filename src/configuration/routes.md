@@ -129,7 +129,7 @@ If you would like to force your whole site to use HTTPS at all times, that can b
     to: "https://{default}/"
 ```
 
-Alternatively, if you define only routes that use HTTPS we will automatically create redirects from the HTTP to HTTPS version of each route.
+Alternatively, if you define only routes that use HTTPS Platform.sh will automatically create redirects from the HTTP to HTTPS version of each route.
 
 ## Configuring routes on the Web Interface
 
