@@ -4,8 +4,7 @@
 
 ## HTTP 502 response
 
-If you're receiving HTTP 502 responses from your site,
-that means your site is running out of workers.
+If you're receiving HTTP 502 responses from your site, that means your site is running out of workers.
 Here are the typical causes:
 
 * The amount of traffic coming to your site exceeds the processing power of your application.
@@ -17,8 +16,7 @@ If you're running our PHP containers, you could first use the following [Platfor
 platform ssh "grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20"
 ```
 
-If you see the processing time of certain requests are slow (e.g. taking more than 1000ms),
-you may consider using profiler like [Blackfire](/administration/integrations/blackfire.md) to debug the performance issue.
+If you see the processing time of certain requests are slow (e.g. taking more than 1000ms), you may consider using profiler like [Blackfire](/administration/integrations/blackfire.md) to debug the performance issue.
 
 Otherwise, you may check if the following options are applicable:
 
@@ -45,8 +43,7 @@ That is typically caused by one of the followings:
   Code path 2, in contrast, first locks record B and then locks record A.
 * There is a long running background process executed by your application that holds the lock until it ends.
 
-If you're using [MariaDB 10.0](/configuration/services/mysql.md),
-you can use SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.
+If you're using [MariaDB 10.0](/configuration/services/mysql.md), you can use SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.
 Find output like below and start debugging.
 
 ```
