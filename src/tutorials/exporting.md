@@ -25,6 +25,9 @@ rsync -az `platform ssh --pipe`:/app/private/ ./private/
 rsync -az `platform ssh --pipe`:/app/web/uploads ./uploads/
 ```
 
+> **notes**
+> If you're running `rsync` on MacOS, you should add `--iconv=utf-8,utf-8-mac` to your `rsync` call.
+
 See the [`rsync` documentation](http://linuxcommand.org/man_pages/rsync1.html) for more details on how to adjust the download process.
 
 ## Download data from services
