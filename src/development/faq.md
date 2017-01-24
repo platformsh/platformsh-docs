@@ -73,12 +73,6 @@ We do not allow changing the system timezone of your application, though you can
 
 You may also refer to the list of [supported timezones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 
-## I am using Drupal and  I see "File not found" why?
-
-If you see the "File not found" when accessing your site within a browser, this means that you’ve pushed your code as a vanilla project but no *index.php* has been found.
-
-Make sure your repository contains an *index.php* file as the root, or that your make files are properly named.
-
 ## What happens if I push a local branch to my project?
 
 If you push a local branch that you created with Git, you create what we call an `inactive environment`, ie. an environment that is not deployed.

@@ -75,3 +75,10 @@ It is a constraint, but it is a good constraint.
 During the [build phase](/overview/how-it-works.md#building-the-application) of your application, the main file-system is Read/Write-able.
 So you can do whatever you want (e.g. compile stuff or generate anything you need).
 But once entered [deploy phase](/overview/how-it-works.md#deploying-the-application), the main file-system will be read-only.
+
+
+## "File not found" in Drupal
+
+If you see the "File not found" when accessing your site within a browser, this means that you've pushed your code as a vanilla project but no *index.php* has been found.
+
+Make sure your repository contains an *index.php* file in the [web location root](/configuration/app-containers.md#locations), or that your Makefiles are properly named.
