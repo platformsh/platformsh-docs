@@ -73,7 +73,7 @@ User-agent: *
 Disallow: /
 ```
 
-That tells search engines to ignore pre-production sites entirely, even if they are publicly visible.  To disable that feature for pre-production sites use the [Platform.sh CLI](/overview/cli.md) command below:
+That tells search engines to ignore sites on non-production environments entirely, even if they are publicly visible.  To disable that feature for a non-production environment, use the [Platform.sh CLI](/overview/cli.md) command below:
 
 ```
 platform environment:info restrict_robots false
