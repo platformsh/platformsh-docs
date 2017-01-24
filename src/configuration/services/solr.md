@@ -99,18 +99,20 @@ solrsearch:
     disk: 1024
     configuration:
         cores:
-            mainindex: !archive "core1-conf"
-            extraindex: !archive "core2-conf"
+            mainindex:
+                conf_dir: !archive "core1-conf"
+            extraindex:
+                conf_dir: !archive "core2-conf"
         endpoints:
             main:
-              core: mainindex
+                core: mainindex
             extra:
-              core: extraindex
+                core: extraindex
 ```
 
-The above definition defines a single Solr 6.3 server.  That server has 2 cores defined: `maincore` &mdash; the configuration for which is in the `.platform/core1-conf` directory &mdash; and `extracore` &mdash; the configuration for which is in the `.platform/core2-conf` directory.
+The above definition defines a single Solr 6.3 server.  That server has 2 cores defined: `mainindex` &mdash; the configuration for which is in the `.platform/core1-conf` directory &mdash; and `extraindex` &mdash; the configuration for which is in the `.platform/core2-conf` directory.
 
-It then defines two endpoints: `main` is connected to the `mainindex` core while `extra` is connected to the `extraindex` core.  Two endpoints may be connected to the same core but at this time there would be no reason to do so.  Additional options may be defined in the future.  
+It then defines two endpoints: `main` is connected to the `mainindex` core while `extra` is connected to the `extraindex` core.  Two endpoints may be connected to the same core but at this time there would be no reason to do so.  Additional options may be defined in the future.
 
 Each endpoint is then available in the relationships definition in `.platform.app.yaml`.  For example, to allow an application to talk to both of the cores defined above its `.platform.app.yaml` file should contain the following:
  
@@ -145,17 +147,49 @@ The relationships array would then look something like the following:
 }
 ```
 
+### Configsets
+
+For even more customizability, it's also possible to define Solr configsets.  For example, the following snippet would define one configset, which would be used by all cores.  Specific details can then be overriden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
+
+```yaml
+solrsearch:
+    type: solr:6.3
+    disk: 1024
+    configuration:
+        configsets:
+            mainconfig: !archive "configsets/solr6"
+        cores:
+            na_index:
+                core_properties: |
+                    configSet=mainconfig
+                    schema=english/schema.xml
+            mideast_index:
+                core_properties: |
+                    configSet=mainconfig
+                    schema=arabic/schema.xml
+        endpoints:
+            na:
+                core: na_index
+            mideast:
+                core: mideast_index
+```
+
+In this example, the directory `.platform/configsets/solr6` contains the configuration definition for multiple cores.  There are then two cores created: `na_index` uses the defined configset, but specifically the `.platform/configsets/solr6/english/schema.xml` file, while `mideast_index` is identical except for using the `.platform/configsets/solr6/english/schema.xml` file.  Note that not all of Solrs core.properties file is available in the `core_properties` key.
+
+### Default configuration
+
 If no configuration is specified, the default configuration is equivalent to:
 
 ```yaml
 solrsearch:
-  type: solr:6.3
-  configuration:
-    cores:
-      collection1: <default Drupal 8 configuration>
-    endpoints:
-        solr:
-            core: collection1
+    type: solr:6.3
+    configuration:
+        cores:
+            collection1:
+                conf_dir: <default Drupal 8 configuration>
+        endpoints:
+            solr:
+                core: collection1
 ```
 
 The Solr 6.x Drupal 8 configuration files are reasonably generic and should work in many other circumstances, but explicitly defining a core, configuration, and endpoint is generally recommended.
