@@ -1,9 +1,6 @@
 # Platform.sh Environments
 
-[Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage
-multiple environments, including the Master environment which runs the production website. It's precisely
-like a "development" or a "staging" server.. except they are created on the fly, and they are absolutly
-identical copies of their parent environments.
+[Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage multiple environments, including the Master environment which runs the production website. It's precisely like a "development" or a "staging" server.. except they are created on the fly, and they are absolutely identical copies of their parent environments.
 
 An environment is tied to a Git branch, plus all the services that are serving that branch. You can see that as a **complete working website**. With Bitbucket and GitHub integrations you can even get a "development server"
 for each and every pull request.
@@ -23,10 +20,24 @@ If you subscribed to a production plan, this environment is your **live site** a
 
 ![Hierarchy](/images/clone-hierarchy.png)
 
-Platform.sh brings the concept of a hierarchy between your environments.
-Each new environment you create is considered a **child** of the **parent** environment from which it was branched.
+Platform.sh brings the concept of a hierarchy between your environments. Each new environment you create is considered a **child** of the **parent** environment from which it was branched.
 
 Each child environment can sync code and/or data down from its parent, and merge code up to its parent. These are used for development, staging, and testing.
+
+When you create a branch or child environment through the Platform.sh UI the branch it was made from will be treated as the parent.  If you create a branch through your local Git checkout and push it to Platform.sh, or synchronize a branch from a 3rd party such as GitHub or Bitbucket, its parent will default to the master branch.
+
+Any environment's parent can be changed using the Platform.sh CLI with the following command:
+
+```bash
+platform environment:info parent NEW_PARENT
+```
+
+In this case, the current environment (the branch you're on) will be set to have `NEW_PARENT` as its parent environment.  The environment to reparent can be set explicitly with the `-e` option:
+
+```bash
+platform environment:info -e feature-x parent NEW_PARENT
+```
+
 
 ## Workflows
 
