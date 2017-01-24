@@ -2,6 +2,7 @@
 
 <!-- toc -->
 
+
 ## HTTP 502 response
 
 If you're receiving HTTP 502 responses from your site, that means your site is running out of workers.
@@ -58,3 +59,19 @@ Info: SELECT ...
 To find active background process, run `ps aufx` on your application container.
 
 Also, please make sure that locks are acquired in a pre-defined order and released as soon as possible.
+
+
+## "Read-only file system" error
+
+Everything except the mounts you declared as Read/Write will be read-only.
+Read/Write is there for your data, for file uploads, for logs and temporary files. Not for your code.
+In order to change code on Platform.sh you have to go through Git.
+
+This is what gives you all of the benefits of having repeatable deployments, consistent backups, traceability, magic creation of staging/dev environments.
+
+In Platform.sh, you cannot just "hack production".
+It is a constraint, but it is a good constraint.
+
+During the [build phase](/overview/how-it-works.md#building-the-application) of your application, the main file-system is Read/Write-able.
+So you can do whatever you want (e.g. compile stuff or generate anything you need).
+But once entered [deploy phase](/overview/how-it-works.md#deploying-the-application), the main file-system will be read-only.
