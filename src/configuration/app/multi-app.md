@@ -1,7 +1,6 @@
 # Multiple Applications
 
-Platform.sh supports building multiple applications per project (for example
-RESTful web services with a front-end, or a main website and a blog).
+Platform.sh supports building multiple applications per project (for example RESTful web services with a front-end, or a main website and a blog).  For resource allocation reasons, however, that is only supported on Medium and larger plans.
 
 ## Introduction
 
