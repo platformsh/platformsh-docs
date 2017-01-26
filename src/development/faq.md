@@ -52,22 +52,6 @@ on a distributed file system (which is transparent for you). When you back-up
 your environment they will be backed up as well. When you create a new staging
 environment... these will be cloned with the rest of your data.
 
-##So, why do I get an error with "Read-only file system" when I try to manually modify files on Platform.sh?
-Everything except the mounts you declared as Read/Write will be read-only. Read/Write
-is there for your data, for your uploads, for logs and temporary files. Not for
-your code. In order to change code on Platform.sh you have to go through Git.
-
-This is what gives you all of the benefits of having repeatable deployments,
-consistent backups, traceability, magic creation of staging/dev environments.
-
-In Platform.sh you can not just "hack production". It is a constraint, but it
-is a good constraint.
-
-During the build phase of your application everything is still read/write so
-you can while deploying do whatever you want (compile stuff or generate
-anything you need on the storage). But once deployed the main file-system
-will turn read-only.
-
 ## Do you add custom HTTP headers?
 
 We add the following custom HTTP headers to give the application information about the connection.
@@ -88,12 +72,6 @@ We do not allow changing the system timezone of your application, though you can
 * PostgreSQL - You can change the timezone of current session by running SQL `SET TIME ZONE <timezone>;`.
 
 You may also refer to the list of [supported timezones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-
-## I am using Drupal and  I see "File not found" why?
-
-If you see the "File not found" when accessing your site within a browser, this means that you’ve pushed your code as a vanilla project but no *index.php* has been found.
-
-Make sure your repository contains an *index.php* file as the root, or that your make files are properly named.
 
 ## What happens if I push a local branch to my project?
 
