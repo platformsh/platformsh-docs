@@ -174,7 +174,7 @@ solrsearch:
                 core: mideast_index
 ```
 
-In this example, the directory `.platform/configsets/solr6` contains the configuration definition for multiple cores.  There are then two cores created: `na_index` uses the defined configset, but specifically the `.platform/configsets/solr6/english/schema.xml` file, while `mideast_index` is identical except for using the `.platform/configsets/solr6/english/schema.xml` file.  Note that not all of Solrs core.properties file is available in the `core_properties` key.
+In this example, the directory `.platform/configsets/solr6` contains the configuration definition for multiple cores.  There are then two cores created: `na_index` uses the defined configset, but specifically the `.platform/configsets/solr6/english/schema.xml` file, while `mideast_index` is identical except for using the `.platform/configsets/solr6/arabic/schema.xml` file.  Note that not all of Solr's core.properties file is available in the `core_properties` key.
 
 ### Default configuration
 
