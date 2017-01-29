@@ -63,7 +63,7 @@ Here would be an example of your `routes.yaml` for the
 > **note**
 > You can test those routes on your development environments with:
 > * `http://[branch]-[project-id].[region].platform.sh`
-> * `http://www-[branch]-[project-id].[region].platform.sh`
+> * `http://www---[branch]-[project-id].[region].platform.sh`
 
 ### HTTPS
 
@@ -101,8 +101,8 @@ to find the machine name is to use `platform environment:info`.
 
 If you use multiple hostnames for your site, you need to add a CNAME
 record for each of them. For example:
-`master-k4ywtmwigmmgc.eu.platform.sh` and
-`www-master-k4ywtmwigmmgc.eu.platform.sh`.
+`master-7rqtwti-8gkmq3bvyvakd.eu.platform.sh` and
+`www---master-7rqtwti-8gkmq3bvyvakd.eu.platform.sh`.
 
 Note: This will **not** work for an apex (or "naked") domain. In that
 case, you need to use a DNS provider that supports forwarding DNS
