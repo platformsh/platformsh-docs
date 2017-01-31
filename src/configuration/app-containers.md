@@ -474,7 +474,7 @@ hooks:
     drush -y updatedb
 ```
 
-## Crons / Cron jobs
+## Crons and Cron jobs
 
 Cron jobs allow you to run scheduled tasks at specified times or intervals. The `crons` object describes these tasks and the schedule when they are triggered.  Each item in the list is a unique name identifying a separate cron job.
 
