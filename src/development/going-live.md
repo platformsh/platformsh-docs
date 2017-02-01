@@ -11,6 +11,7 @@ This page assumes you already have the following:
 3. If your domain is currently active elsewhere, the Time-To-Live (TTL) on your domain is set to the lowest possible value in order to minimize transition time.
 4. You have the auto-generated domain for your master branch.  This is the domain you see in the Location bar after selecting "Access site" in the UI.  You can also retrieve this value from the command line by running `platform environment:url` to see a list of all URLs that Platform.sh will serve for the current environment.  Write this down.
 5. Optional: If you want to guarantee that you have access to  your master environment before the domain name has switched over, use `ping` or any similar tool to determine the IP address of the master environment.  The IP address is not guaranteed stable but is unlikely to change during the course of the go-live process.
+6. Optional: If you want to use an SSL certificate to encrypt your production site (you do), you can obtain one from any number of 3rd party SSL issuers.  Platform.sh does not charge anything to use SSL in production, although at this time we do not issue our own certificates.
 
 ## Set your domain
 
@@ -62,6 +63,34 @@ These ALIAS/CNAME/ANAME records resolves on request the IP address of the destin
 changes, the IP address for the mapped domain changes automatically as well.
 
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.
+
+## SSL in Production
+
+Platform.sh fully supports using SSL certificate in production and strongly encourages all of our customers to do so.  We do not charge for SSL support.  We do not at this time issue our own SSL certificates but you can "bring your own" from the SSL issuer of your choice.  Please consult your SSL issuer for instructions on how to generate an SSL certificate.
+
+A BYO-certificate is not necessary for development environments.  Platform.sh provides wildcard certificates that covers all *.platform.sh domains, including development environments.
+
+Platform.sh supports all kinds of certificates including domain-validated certificates, extended validation (EV) certificates, high-assurance certificates and wildcard certificates.
+
+> **note**
+> Private key should be in the old style, which means it should begin with BEGIN RSA PRIVATE KEY. If it starts with BEGIN PRIVATE KEY that means it is bundled with the identifier for key type. To convert it to the old style RSA key:
+> openssl rsa -in private.key -out private.rsa.key
+
+### Use the Platform.sh Web Interface to add the certificate
+
+You can also add your certificate via the Platform.sh [Web Interface](/administration/web.md). Just go to the [project configuration page](/administration/web/configure-project.md) in the web interface and click on Domains. If you already have a domain, you can edit the domain and then click on the Add SSL certificate button. You can then add your private key, public key certificate and optional certificate chain.
+
+![UI configuration for SSL](/images/ui-ssl.png)
+
+### Use the Platform.sh CLI to add the certificate
+
+Example:
+```bash
+platform domain:add secure.example.com --cert=/etc/ssl/private/secure-example-com.crt --key=/etc/ssl/private/secure-example-com.key
+```
+
+See `platform help domain:add` for more information.
+
 
 ## Example setup
 
