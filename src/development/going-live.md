@@ -62,7 +62,7 @@ Many DNS providers offer workarounds for apex domains pointing to non-IP address
 These ALIAS/CNAME/ANAME records resolves on request the IP address of the destination record and serves it as if it would be the IP address for the apex domain requested. If the IP address for the destination
 changes, the IP address for the mapped domain changes automatically as well.
 
-Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.
+Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.  If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
 
 ## SSL in Production
 
@@ -120,10 +120,10 @@ Now, add a single domain to your Platform.sh project for `mysite.com`.  As soon 
 
 On your DNS provider, you would create two CNAMEs:
 
-`mysite.com` should be a CNAME to `master-def456-abc123.us.platform.sh`.
+`mysite.com` should be a redirect to `master-def456-abc123.us.platform.sh`.
 `www.mysite.com` should be a CNAME to `master-def456-abc123.us.platform.sh`.
 
-(Yes, both point to the same place.)
+(Yes, both point to the same place.)  See the note above regarding how different registrars handle dynamic apex domains.
 
 ### Result
 
