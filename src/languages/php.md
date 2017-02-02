@@ -248,6 +248,20 @@ date.timezone = "Europe/Paris"
 
 Environment-specific `php.ini` configuration directives can be provided via environment variables.  See the note in the [Environment variables](/development/variables.md#php-specific-variables) section.
 
+### Default php.ini settings
+
+The default values for some frequently-modified `php.ini` settings are listed below.
+
+<dl>
+<dt>memory_limit=128M</dt> <dd></dd>
+<dt>post_max_size=64M</dt> <dd></dd>
+<dt>upload_max_filesize=64M</dt> <dd></dd>
+<dt>display_errors=On</dt> <dd>This value is on by default to ease setting up a project on Platform.sh. We strongly recommend providing a custom error handler in your application or setting this value to Off before you make your site live.</dd>
+<dt>zend.assertions=-1</dt> <dd>Assertions are optimized out of existence and have no impact at runtime. You should have assertions set to `1` for your local development system.</dd>
+<dt>opcache.memory_consumption=64</dt> <dd>This is the number of megabytes available for the opcache. Large applications with many files may want to increase this value.</dd>
+<dt>opcache.validate_timestamps=On</dt> <dd>The opcache will check for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost.</dd>
+</dl>
+
 ------------------------------------------------------------------------
 
 > **warning**
