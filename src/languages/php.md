@@ -211,11 +211,9 @@ you observe.
 
 ## Custom php.ini
 
-You can also create and push a `php.ini` file that will be appended to
-the configuration maintained by Platform.sh.
+You can also create and push a `php.ini` file that will be appended to the configuration maintained by Platform.sh.
 
-In your repository, the `php.ini` file should be added to the root of
-the application (normally the repository root).
+In your repository, the `php.ini` file should be added to the root of the application (where your `.platform.app.yaml` file is).
 
 For example, if you need to increase the PHP memory limit:
 
@@ -233,11 +231,10 @@ Another example is to set the timezone of the PHP runtime (though, the timezone 
 date.timezone = "Europe/Paris"
 ```
 
-After pushing your file, you can check that the custom PHP configuration
-has been added to your environment by logging in via SSH and type:
+After pushing your file, you can check that the custom PHP configuration has been added to your environment by logging in via SSH and type:
 
 ```
-web@kjh43kbobssae-master--php:~$ cat /etc/php5/fpm/php.ini
+web@kjh43kbobssae-master--php:~$ cat /etc/php7.1-zts/fpm/php.ini
 
 ; =============== Custom configuration from `/app/php.ini`
 ; Increase PHP memory limit
@@ -246,6 +243,8 @@ memory_limit = 256M
 ; Set PHP runtime timezone
 date.timezone = "Europe/Paris"
 ```
+
+(The PHP version in the path will vary depending on your PHP container version.)
 
 Environment-specific `php.ini` configuration directives can be provided via environment variables.  See the note in the [Environment variables](/development/variables.md#php-specific-variables) section.
 
