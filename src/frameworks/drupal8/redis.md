@@ -1,8 +1,8 @@
 # Using Redis with Drupal 8.x
 
 > **note**
-> Redis support for Drupal 8 is still in alpha. The instructions below assume
-> you are OK with running an alpha-version of a Drupal module. It should be
+> Redis support for Drupal 8 is still in beta. The instructions below assume
+> you are OK with running a beta-version of a Drupal module. It should be
 > stable and has been deployed in production, but more cautious users may prefer
 > to wait for the module to have a stable release. The instructions below are
 > unlikely to change at that time, but it is possible. See https://www.drupal.org/project/redis
@@ -105,7 +105,7 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
         ],
         'cache.backend.redis' => [
           'class' => 'Drupal\redis\Cache\CacheBackendFactory',
-          'arguments' => ['@redis.factory', '@cache_tags_provider.container'],
+          'arguments' => ['@redis.factory', '@cache_tags_provider.container', '@serialization.phpserialize'],
         ],
         'cache.container' => [
           'class' => '\Drupal\redis\Cache\PhpRedis',
@@ -116,12 +116,11 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
           'class' => 'Drupal\redis\Cache\RedisCacheTagsChecksum',
           'arguments' => ['@redis.factory'],
         ],
+        'serialization.phpserialize' => [
+          'class' => 'Drupal\Component\Serialization\PhpSerialize',
+        ],
       ],
     ];
-
-    // Set a fixed prefix so that all requests share the same prefix, even if
-    // on different domains.
-    $settings['cache_prefix'] = 'prefix_';
   }
 }
 ```
