@@ -87,6 +87,10 @@ This will result (if we consider we are on the `http://example.com` domain):
 * `http://example.com/` and all the urls below it to be served by the AngularJS
 one.
 
+> **note**
+> In the specific case of a prefix, the development environments will be accessible by adding three `-` instead of a `.`:
+> http://back-end---BRANCH-RANDOMSTRING-PROJECTID-.REGION.platformsh.site
+
 ### SSH in each application
 
 You can SSH in any application that is deployed.
@@ -140,7 +144,7 @@ content_api/
     [...]
 front_end/
   .platform.app.yaml
-  public/
+  public/{
     index.php
     assets/
     [...]
