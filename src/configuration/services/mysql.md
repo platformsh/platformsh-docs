@@ -81,7 +81,7 @@ foreach ($relationships['database'] as $endpoint) {
 
 ## Multiple databases
 
-On the 10.0 version and later of MariaDB it is possible to define multiple databases as well as multiple users with different permissions.  To do so requires defining multiple endpoints.  Under the `configuration` key of your service there are two additional keys:
+If you are using version `10.0` or later of this service it is possible to define multiple databases as well as multiple users with different permissions.  To do so requires defining multiple endpoints.  Under the `configuration` key of your service there are two additional keys:
 
 * `schemas`:  This is a YAML array listing the databases that should be created.  If not specified, a single database named `main` will be created.
 * `endpoints`: This is a nested YAML array defining different credentials.  Each endpoint may have access to one or more schemas (databases), and may have different levels of permission on each.  The valid permission levels are:
@@ -89,7 +89,7 @@ On the 10.0 version and later of MariaDB it is possible to define multiple datab
 ** `rw` - Using this endpoint SELECT queries as well INSERT/UPDATE/DELETE queries are allowed.
 ** 'admin`' - Using this endpoint all queries are allowed, including DDL queries (CREATE TABLE, DROP TABLE, etc.).
 
-If no endpoints are defined, a single endpoint will be created named `mysql` that has `admin` access to all defined databases.
+If no endpoints are defined, a single endpoint named `mysql` will be created named that has `admin` access to all defined databases.
 
 Consider the following illustrative example:
 
