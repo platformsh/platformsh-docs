@@ -59,7 +59,7 @@ Each route can be configured separately. It has the following properties
 > **note**
 > For the moment, the value of upstream is always in the form: `<application-name>:http`.
 > `<application-name>` is the `name` defined in `.platform.app.yaml` file.
-> `:php` is a deprecated application endpoint, use `:http` instead.
+> `:php` is a deprecated application endpoint; use `:http` instead.
 > In the future, Platform.sh will support multiple endpoints per application.
 
 ## Routes examples
@@ -113,6 +113,24 @@ section for a detailed view on how to define routes that work with
 [redirects](/configuration/routes/redirects.md) section for details on how you can set up complex
 redirection rules including **partial redirects**.
 
+### HTTPS
+
+All development environments on Platform.sh support both HTTP and HTTPS requests automatically.  For production, you can provide your own SSL certificate from the issuer of your choice at no charge from us.
+
+If you would like to force your whole site to use HTTPS at all times, that can be done with the following `routes.yaml` configuration:
+
+```yaml
+"https://{default}/":
+    type: upstream
+    upstream: "app:http"
+
+"http://{default}/":
+    type: redirect
+    to: "https://{default}/"
+```
+
+Alternatively, if you define only routes that use HTTPS Platform.sh will automatically create redirects from the HTTP to HTTPS version of each route.
+
 ## Configuring routes on the Web Interface
 
 Routes can also be configured using the web interface in
@@ -139,17 +157,7 @@ For your master environment, this would function as a catch-all domain.
 
 For development environments, we will also be able to handle this. Here is how:
 
-Let's say we have a project on the EU cluster whose ID is "vmwklxcpbi6zq" and
-we created a branch called "add-theme". The generated apex domain of this
-environment will be `add-theme-vmwklxcpbi6zq.eu.platform.sh`.
-If we have a `http://*.{default}/` route defined, the generated route will
-be `http://*---add-theme-vmwklxcpbi6zq.eu.platform.sh/`. This means you could
-put any subdomain before the triple dashes to reach your application.
-HTTP request to both `http://foo---add-theme-vmwklxcpbi6zq.eu.platform.sh/` and
-`http://bar---add-theme-vmwklxcpbi6zq.eu.platform.sh/` URLs will be routed
-to your application properly. However, request to
-`*---add-theme-vmwklxcpbi6zq.eu.platform.sh` will not be routed since it is not
-a legitimate domain name.
+Let's say we have a project on the EU cluster whose ID is "vmwklxcpbi6zq" and we created a branch called "add-theme". It's environment name will be similar to `add-theme-def123`.  The generated apex domain of this environment will be `add-theme-def123-vmwklxcpbi6zq.eu.platform.sh`. If we have a `http://*.{default}/` route defined, the generated route will be `http://*---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/`. This means you could put any subdomain before the triple dashes to reach your application. HTTP request to both `http://foo---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` and `http://bar---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` URLs will be routed to your application properly. However, request to `http://*---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` will not be routed since it is not a legitimate domain name.
 
 > **note**
 > Triple dash (`---`) is used as a separator for the subdomain in development

@@ -52,9 +52,7 @@ will be accessible at.
 
 ![Manage domains of your Platform.sh project.](/images/ui-conf-project-domains.png)
 
-More information on how to [setup your domain](https://docs.platform.sh/user_guide/using/going-live.html).
+More information on how to [setup your domain](/development/going-live.md).
 
 > **note**
 > Platform.sh expects an ASCII representation of the domain here. In case you want to use an internationalized domain name you can use the [conversion tool provided by Verisign](http://mct.verisign-grs.com/) to convert your IDN domain to ASCII.
-
-

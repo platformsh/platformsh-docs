@@ -1,290 +1,86 @@
 # Going Live
 
-Here are the steps you need to follow when your site is ready to go
-live.
+There's a few short steps to go through to launch a site into production on Platform.sh.
 
-## 1 - Domains
+## Prerequisites
+
+This page assumes you already have the following:
+
+1. Your site is running and configured as you want it to be, on your master branch.  In particular, see the [Routes documentation](/configuration/routes.md). You will need your routes configured appropriately before you begin.
+2. You have a domain name registered for your site with a Registrar of your choice. The registrar must allow you to use CNAMEs for your domain.  (Some registrars may call these Aliases or similar.)
+3. If your domain is currently active elsewhere, the Time-To-Live (TTL) on your domain is set to the lowest possible value in order to minimize transition time.
+4. You have the auto-generated domain for your master branch.  This is the domain you see in the Location bar after selecting "Access site" in the UI.  You can also retrieve this value from the command line by running `platform environment:url` to see a list of all URLs that Platform.sh will serve for the current environment.  Write this down.
+5. Optional: If you want to guarantee that you have access to  your master environment before the domain name has switched over, use `ping` or any similar tool to determine the IP address of the master environment.  The IP address is not guaranteed stable but is unlikely to change during the course of the go-live process.
+6. Optional: If you want to use an SSL certificate to encrypt your production site (you do), you can obtain one from any number of 3rd party SSL issuers.  Platform.sh does not charge anything to use SSL in production, although at this time we do not issue our own certificates.
+
+## Set your domain
 
 First step is to [add your domain](/administration/web/configure-project.html#domains).
 
-You can add multiple domains to point to your project. Each domain can
-have its own SSL certificate.
+You can add multiple domains to point to your project. Each domain can have its own [SSL certificate](/development/going-live/ssl.md).
 
-After you have added your domain, your Master environment will no longer
-be accessible at `master-<project_id>.<cluster>.platform.sh`.
+After you have added your domain, your Master environment will no longer be accessible at `<environment>-<project>.<region>.platform.sh`.
 
-If you require access to the site, you can create a hosts file entry and
-point it to the IP address that resolves when you access your master
-project branch.
+If you require access to the site before the domain name becomes active you can create a hosts file entry and point it to the IP address that resolves when you access your master project branch.
 
 > **note**
 > If you are on a Development plan, you cannot add a domain. You would need to upgrade your subscription to a production plan.
 
-## 2 - Routes
 
-You can configure the routes of your project directly within the
-Web Interface or within your `.platform/routes.yaml` file.
+## Configure your DNS provider
 
-### Single hostname
+Configure your DNS provider to point your domain to your Platform.sh Master environment.
 
-If you want your site to only be available at `http://mydomain.com` and
-have `http://www.mydomain.com` redirect to `http://mydomain.com`, you
-need define your `routes.yaml` as follow:
+The way to do so will vary somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.  Some will call it an Alias or similar alternate name, but either way the intent is to say "this domain should always resolve to... this other domain".  Add a CNAME record from your desired domain (`www.example.com`) to the master environment hostname you wrote down earlier.
 
-```yaml
-"http://{default}/":
-    type: upstream
-    upstream: "app:http"
+If you have multiple domains you want to be served by the same application you will need to add a CNAME record for each of them.
 
-"http://www.{default}/":
-    type: redirect
-    to: "http://{default}/"
-```
+Note that depending on your registrar and the TTL you set, it could take anywhere from 15 minutes to 12 hours for the DNS change to fully propagate across the Internet.
 
-### Multiple hostnames
+### Apex domains
 
-If you want your site to be available at both `http://mydomain.com` and
-`http://www.mydomain.com`, you need to define one upstream for each
-hostname.
+One of the challenges of using a cloud hosting service like Amazon Web Services (AWS) Elastic Cloud (EC2) is that you need to point your DNS to a CNAME. The problem is the DNS RFC (RFC1033) requires the "zone apex" (sometimes called the "root domain" or "naked domain") to be an "A Record," not a CNAME. Some DNS providers allow you to do so anyway while others do not. Some provide an alternative means of registering an indirect apex domain.
 
-Here would be an example of your `routes.yaml` for the
-`http://mydomain.com` URL:
+In other words, with many DNS providers:
 
-```yaml
-"http://{default}/":
-    type: upstream
-    upstream: "app:http"
+----------------- ------------------- ------ ----------------------------------------------
+you can do this   `www.domain.tld`    CNAME  `<environment>-<project>.<region>.platform.sh`
+you can't do this `domain.tld`        CNAME  `<environment>-<project>.<region>.platform.sh`
+----------------- ------------------- ------ ----------------------------------------------
 
-"http://www.{default}/":
-    type: upstream
-    upstream: "app:http"
-```
+However, using an A Record is not possible as the IP address of the server may change from time to time, especially with frequent redeployments as in Platform.sh's case.
+
+Many DNS providers offer workarounds for apex domains pointing to non-IP addresses.  Such records include:
+
+* ACNAME at [CloudFlare](https://www.cloudflare.com/)
+* ANAME at [easyDNS](https://www.easydns.com/)
+* ANAME at [DNS Made Easy](http://www.dnsmadeeasy.com/)
+* ALIAS at [DNSimple](https://dnsimple.com/)
+* @ records at [PairNIC.com](https://www.pairnic.com/)
+* ALIAS at [PointDNS](https://pointhq.com/)
+
+These ALIAS/CNAME/ANAME records resolves on request the IP address of the destination record and serves it as if it would be the IP address for the apex domain requested. If the IP address for the destination
+changes, the IP address for the mapped domain changes automatically as well.
+
+Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.  If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
+
+## SSL in Production
+
+Platform.sh fully supports using SSL certificate in production and strongly encourages all of our customers to do so.  We do not charge for SSL support.  We do not at this time issue our own SSL certificates but you can "bring your own" from the SSL issuer of your choice.  Please consult your SSL issuer for instructions on how to generate an SSL certificate.
+
+A BYO-certificate is not necessary for development environments.  Platform.sh provides wildcard certificates that covers all *.platform.sh domains, including development environments.
+
+Platform.sh supports all kinds of certificates including domain-validated certificates, extended validation (EV) certificates, high-assurance certificates and wildcard certificates.
 
 > **note**
-> You can test those routes on your development environments with:
-> * `http://[branch]-[project-id].[region].platform.sh`
-> * `http://www-[branch]-[project-id].[region].platform.sh`
-
-### HTTPS
-
-If you have uploaded your SSL certificate and you want to serve your
-entire site with HTTPS, here is what your routes would look like:
-
-```yaml
-"https://{default}/":
-    type: upstream
-    upstream: "app:http"
-
-"http://{default}/":
-    type: redirect
-    to: "https://{default}/"
-```
-
-### Wildcard domains
-
-To configure a wildcard domain (*.mydomain.com):
-
-- Add your domain to your project (in form of mydomain.com).
-- Add a route to your master branch serving `http://*.mydomain.com` with the upstream app:http.
-
-
-## 3 - DNS
-
-Configure your DNS provider to point your domain to your
-[Platform.sh](https://platform.sh) Master environment.
-
-Once you've checked with your registrar about where to change your DNS
-settings, add a CNAME record that references the Master environment's
-hostname: `<environment>-<project>.<region>.platform.sh` in which
-`<environment>` is the **machine name** of the environment. The best way
-to find the machine name is to use `platform environment:info`.
-
-If you use multiple hostnames for your site, you need to add a CNAME
-record for each of them. For example:
-`master-k4ywtmwigmmgc.eu.platform.sh` and
-`www-master-k4ywtmwigmmgc.eu.platform.sh`.
-
-Note: This will **not** work for an apex (or "naked") domain. In that
-case, you need to use a DNS provider that supports forwarding DNS
-queries (such as the [CNAME with ALIAS record from
-Dyn](https://help.dyn.com/standard-dns/), or the ANAME
-record on [DNS Made
-Easy](http://www.dnsmadeeasy.com/services/anamerecords/)). Many other
-providers also offer work arounds to accomplish this goal. The most common is
-to add a CNAME record for the `www` host on the domain and then use the
-DNS provider's redirection service to redirect the apex over to the
-`www` version of the domain. Check with your DNS provider to see how
-they support this.
-
-### Naked domain (without www)
-
-The www portion of your domain is a subdomain. In fact, any part of your
-domain that precedes domain.tld can be called a subdomain, not just
-“obvious” subdomains like shop.domain.tld.
-
-One of the challenges of using a cloud hosting service like Amazon Web
-Services (AWS) Elastic Cloud (EC2) is that you need to point your DNS to
-a CNAME. The problem is the DNS RFC (RFC1033) requires the "zone apex"
-(sometimes called the "root domain" or "naked domain") to be an "A
-Record," not a CNAME. This means that with most DNS providers you can
-setup a subdomain CNAME to point to EC2, but you cannot setup your root
-domain as a CNAME to point to EC2.
-
-In other words, with most DNS providers:
-
-  ----------------- ------------------- ------ ----------------------------------------------
-  you can do this   `www.domain.tld`    CNAME  `<environment>-<project>.<region>.platform.sh`
-  you can't do this `domain.tld`        CNAME  `<environment>-<project>.<region>.platform.sh`
-  ----------------- ------------------- ------ ----------------------------------------------
-
-You also cannot reliably point your root A Record to an IP address
-within the cloud providers network since they reserve the right to
-reallocate the IP address dedicated to your instance.
-
-Some DNS hosts provide a way to get CNAME-like functionality at the zone
-apex using a custom record type. Such records include:
-
--   ALIAS at [DNSimple](https://dnsimple.com/)
--   ANAME at [DNS Made Easy](http://www.dnsmadeeasy.com/)
--   ANAME at [easyDNS](https://www.easydns.com/)
--   ACNAME at [CloudFlare](https://www.cloudflare.com/)
--   ALIAS at [PointDNS](https://pointhq.com/)
-
-These ALIAS/CNAME/ANAME records resolves on request the IP address of
-the destination record and serves it as if it would be the IP address
-for the apex domain requested. If the IP address for the destination
-changes, the IP address for the mapped domain changes automatically as
-well.
-
-## 4 - SSL/TLS
-
--   Generate private key
--   Use openssl to generate a new private key
--   Generate CSR
--   Submit CSR to SSL provider
--   Subdomain
--   Root domain
--   Testing SSL
--   Add / change certificate
-
-### General SSL Information
-
-Staging, and other development environments can use a wildcard
-certificate provided by Platform.sh.
-
-Purchasing an SSL cert varies in cost and process depending on the
-vendor. Using SSL providers will require some or all of the following
-steps:
-
-Generate private key Before requesting an SSL cert, you need to generate
-a private key in your local environment using the openssl tool. If you
-aren’t able to execute the openssl command from the terminal you may
-need to install it.
-
-####Mac OS X
-Your OS X installation should come with OpenSSL installed, but
-you might consider installing  a more recent version using homebrew:
- `brew install openssl`
-
-####Windows
-
-[Windows executable](http://slproweb.com/products/Win32OpenSSL.html)
-
-####Ubuntu Linux
-
-apt-get install openssl
-
-### Use openssl to generate a new private key
-
-When prompted, enter an easy password value as it will only be used when
-generating the CSR and not by your app at runtime.
-
-```bash
-openssl genrsa -des3 -out server.pass.key 2048
-```
-
-The private key needs to be stripped of its password so it can be loaded
-without manually entering the password.
-
-```bash
-openssl rsa -in server.pass.key -out server.key
-```
-
-You now have a `server.key` private key file in your current working
-directory.
-
-### Generate CSR
-
-A CSR is a certificate signing request and is also required when
-purchasing an SSL cert. Using the private key from the previous step,
-generate the CSR. This will require you to enter identifying information
-about your organization and domain.
-
-Though most fields are self-explanatory, pay close attention to the
-following:
-
-* Country Name: The two letter code, in ISO 3166-1 format, of the country
-in which your organization is based.
-
-* Common Name: This is the fully qualified domain name that you wish to
-secure.
-  - For a single subdomain: `www.example.com`
-  - For all subdomains, specify the wildcard URL: `*.example.com`
-  - For the root domain only: `example.com`
-
-  The Common Name field must match the secure domain. You cannot purchase
-a certificate for the root domain, e.g. `example.com`, and expect to
-secure `www.example.com`. The inverse is also true. Each domain can have
-one certificate and it can be attached to the main domain or subdomain.
-
-Generate the CSR:
-
-```bash
-openssl req -new -key server.key -out server.csr
-```
-
-The result of this operation will be a server.csr file in your local
-directory (alongside the server.key private key file from the previous
-step).
-
-### Submit CSR to SSL provider
-
-Next, begin the process of creating a new SSL certificate with your
-chosen certificate provider. This will vary depending on your provider,
-but at some point you will need to upload the CSR generated in the
-previous step.
-
-You may also be asked for what web server to create the certificate. If
-so, select Nginx as the web server for use on Platform.sh. If Nginx is
-not an option, Apache 2.x will also suffice.
-
-If you’re given an option of what certificate format to use (PKCS, X.509
-etc…) choose X.509.
-
-If you want to secure more than one subdomain you will need to purchase
-a wildcard certificate from your provider. While these certificates are
-typically more expensive, they allow you to serve requests for all
-subdomains of *.example.com over SSL.
-
-On completion of the SSL certificate purchase process you should have
-several files including:
-
-* The SSL certificate for the domain specified in your CSR, downloaded from your certificate provider. This file will have either a .pem or .crt extension.
-* The private key you generated in the first step, server.key.
-
-Once you have the SSL certificate file and private key you are ready to
-configure SSL for your project.
+> Private key should be in the old style, which means it should begin with BEGIN RSA PRIVATE KEY. If it starts with BEGIN PRIVATE KEY that means it is bundled with the identifier for key type. To convert it to the old style RSA key:
+> openssl rsa -in private.key -out private.rsa.key
 
 ### Use the Platform.sh Web Interface to add the certificate
 
 You can also add your certificate via the Platform.sh [Web Interface](/administration/web.md). Just go to the [project configuration page](/administration/web/configure-project.md) in the web interface and click on Domains. If you already have a domain, you can edit the domain and then click on the Add SSL certificate button. You can then add your private key, public key certificate and optional certificate chain.
 
 ![UI configuration for SSL](/images/ui-ssl.png)
-
-> **note**
-> Private key should be in the old style, which means it should begin with BEGIN RSA PRIVATE KEY. If it starts with BEGIN PRIVATE KEY that means it is bundled with the identifier for key type. To convert it to the old style RSA key:
-> openssl rsa -in private.key -out private.rsa.key
-
 
 ### Use the Platform.sh CLI to add the certificate
 
@@ -293,79 +89,51 @@ Example:
 platform domain:add secure.example.com --cert=/etc/ssl/private/secure-example-com.crt --key=/etc/ssl/private/secure-example-com.key
 ```
 
-Type `platform help domain:add` for more information.
+See `platform help domain:add` for more information.
 
-### Subdomain
 
-If you’re securing a subdomain, e.g., www.example.com, modify your DNS
-settings and create a CNAME record to the endpoint or modify the CNAME
-target if you already have a CNAME record.
+## Example setup
 
-Record Name Target
+For example, suppose your project ID is `abc123` in the US region, and you've registered `mysite.com`.  You want `www.mysite.com` to be the "real" site and `mysite.com` to redirect to it.
 
-`CNAME www ENVIRONMENT-PROJECT-ID.REGION.platform.sh.`
+### Configure `routes.yaml`
 
-If you’re using a wildcard certificate your DNS setup will look similar.
+First, configure your `routes.yaml` file like so:
 
-Record Name Target
+```yaml
+"http://www.{default}/":
+  type: upstream
+  upstream: "app:http"
 
-`CNAME * ENVIRONMENT-PROJECT-ID.REGION.platform.sh.`
-
-### Root domain
-
-If you’re securing a root domain, e.g., example.com, you must be using a
-DNS provider that provides CNAME-like functionality at the zone apex.
-
-Modify your DNS settings and create an ALIAS or ANAME record to the
-endpoint.
-
-Record Name Target
-
-ALIAS or ANAME empty or @
-`ENVIRONMENT-PROJECT-ID.REGION.platform.sh`
-
-In case you want to change an already added certificate, you will have
-to remove the domain and add it again with the new certificate.
-
-### Testing SSL
-
-Use a command line utility like curl to test that everything is
-configured correctly for your secure domain.
-
-The -k option tells curl to ignore untrusted certificates.
-
-```bash
-$ curl -kvI https://www.example.com
-About to connect() to www.example.com port 443 (#0)
-Trying 50.16.234.21... connected
-Connected to www.example.com (50.16.234.21) port 443 (#0)
-SSLv3, TLS handshake, Client hello (1):
-SSLv3, TLS handshake, Server hello (2):
-SSLv3, TLS handshake, CERT (11):
-SSLv3, TLS handshake, Server finished (14):
-SSLv3, TLS handshake, Client key exchange (16):
-SSLv3, TLS change cipher, Client hello (1):
-SSLv3, TLS handshake, Finished (20):
-SSLv3, TLS change cipher, Client hello (1):
-SSLv3, TLS handshake, Finished (20):
-SSL connection using AES256-SHA
-Server certificate:
-subject: C=US; ST=CA; L=SF; O=SFDC; OU=Heroku; CN=www.example.com
-start date: 2011-11-01 17:18:11 GMT
-expire date: 2012-10-31 17:18:11 GMT
-common name: www.example.com (matched)
-issuer: C=US; ST=CA; L=SF; O=SFDC; OU=Heroku; CN=www.heroku.com
-SSL certificate verify ok.
-> GET / HTTP/1.1
-> User-Agent: curl/7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.8r zlib/1.2.3
-> Host: www.example.com
-> Accept: */*
+"http://{default}/":
+  type: redirect
+  to: "http://www.{default}/"
 ```
 
-Pay attention to the output. It should print SSL certificate verify ok.
-If it prints something like common name: www.example.com (does not match
-'www.somedomain.com') then something is not configured correctly.
+That will result in two domains being created on Platform.sh: `master-def456-abc123.us.platform.sh` and `www---master-def456-abc123.us.platform.sh`.  The former will automatically redirect to the latter.  In the `routes.yaml` file, `{default}` will automatically be replaced with `master-def456-abc123.us.platform.sh`.  In domain prefixes (like `www`), the `.` will be replaced with `---`.
 
-> **note**
-> Platform.sh supports all kinds of certificates including domain-validated certificates, extended validation (EV) certificates, high-assurance certificates and wildcard certificates.
+### Set your domain
 
+Now, add a single domain to your Platform.sh project for `mysite.com`.  As soon as you do, Platform.sh will no longer serve `master-def456-abc123.us.platform.sh` at all.  Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywhere it appears when generating routes to respond to.
+
+### Configure your DNS provider
+
+On your DNS provider, you would create two CNAMEs:
+
+`mysite.com` should be a redirect to `master-def456-abc123.us.platform.sh`.
+`www.mysite.com` should be a CNAME to `master-def456-abc123.us.platform.sh`.
+
+(Yes, both point to the same place.)  See the note above regarding how different registrars handle dynamic apex domains.
+
+### Result
+
+Now, an incoming request for `mysite.com` will result in the following:
+
+1) Your browser asks the DNS network for `mysite.com`'s DNS record.  It responds with "it's an alias for `www---master-def456-abc123.us.platform.sh`".
+2) your browser asks the DNS network for `www---master-def456-abc123.us.platform.sh`'s DNS record.  It responds with "that's IP address 1.2.3.4".  (Or whatever the actual address is.)
+3) Your browser sends a request to `1.2.3.4` for domain `mysite.com`.
+4) Your router responds with an HTTP 301 redirect to `www.mysite.com`.
+5) Your browser looks up `www.mysite.com` and, as above, gets an alias for `www---master-def456-abc123.us.platform.sh`, which is IP 1.2.3.4.
+6) Your browser sends a request to `1.2.3.4` for domain `www.mysite.com`.  Your router passes the request through to your application which in turn responds with whatever it's supposed to do.
+
+On subsequent requests, your browser will know to simply connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.  The entire process takes only a few milliseconds.
