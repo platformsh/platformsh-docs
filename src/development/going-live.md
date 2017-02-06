@@ -66,14 +66,14 @@ Platform.sh recommends ensuring that your DNS Provider supports dynamic apex dom
 
 ## SSL in Production
 
-Platform.sh fully supports using SSL certificate in production and strongly encourages all of our customers to do so.  We do not charge for SSL support.  We do not at this time issue our own SSL certificates but you can "bring your own" from the SSL issuer of your choice.  Please consult your SSL issuer for instructions on how to generate an SSL certificate.
-
-A BYO-certificate is not necessary for development environments.  Platform.sh provides wildcard certificates that covers all *.platform.sh domains, including development environments.
+Platform.sh fully supports using SSL certificates in production; we strongly encourage all our customers to do so.  We do not charge for SSL support.  We do not at this time issue our own SSL certificates but you can "bring your own" from the SSL issuer of your choice.  Please consult your SSL issuer for instructions on how to generate an SSL certificate.
 
 Platform.sh supports all kinds of certificates including domain-validated certificates, extended validation (EV) certificates, high-assurance certificates and wildcard certificates.
 
+A custom certificate is not necessary for development environments.  Platform.sh automatically provides wildcard certificates that cover all \*.platform.sh domains, including development environments.
+
 > **note**
-> Private key should be in the old style, which means it should begin with BEGIN RSA PRIVATE KEY. If it starts with BEGIN PRIVATE KEY that means it is bundled with the identifier for key type. To convert it to the old style RSA key:
+> The private key should be in the old style, which means it should start with BEGIN RSA PRIVATE KEY. If it starts with BEGIN PRIVATE KEY that means it is bundled with the identifier for key type. To convert it to the old-style RSA key:
 > openssl rsa -in private.key -out private.rsa.key
 
 ### Use the Platform.sh Web Interface to add the certificate
