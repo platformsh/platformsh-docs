@@ -159,22 +159,24 @@ solrsearch:
         configsets:
             mainconfig: !archive "configsets/solr6"
         cores:
-            na_index:
+            english_index:
                 core_properties: |
                     configSet=mainconfig
                     schema=english/schema.xml
-            mideast_index:
+            arabic_index:
                 core_properties: |
                     configSet=mainconfig
                     schema=arabic/schema.xml
         endpoints:
-            na:
-                core: na_index
-            mideast:
-                core: mideast_index
+            english:
+                core: english_index
+            arabic:
+                core: arabic_index
 ```
 
-In this example, the directory `.platform/configsets/solr6` contains the configuration definition for multiple cores.  There are then two cores created: `na_index` uses the defined configset, but specifically the `.platform/configsets/solr6/english/schema.xml` file, while `mideast_index` is identical except for using the `.platform/configsets/solr6/arabic/schema.xml` file.  Note that not all of Solr's core.properties file is available in the `core_properties` key.
+In this example, the directory `.platform/configsets/solr6` contains the configuration definition for multiple cores.  There are then two cores created: `english_index` uses the defined configset, but specifically the `.platform/configsets/solr6/english/schema.xml` file, while `arabic_index` is identical except for using the `.platform/configsets/solr6/arabic/schema.xml` file.  Each of those cores is then exposed as its own endpoint.
+
+Note that not all core.properties features make sense to specify in the core_properties. Some keys, such as name and dataDir, are not supported, and may result in a solrconfig that fails to work as intended, or at all.
 
 ### Default configuration
 
