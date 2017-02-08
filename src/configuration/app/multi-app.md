@@ -252,5 +252,5 @@ in its environment variables everything that is needed for it to be used
 dynamically in its configuration.
 
 > **note**
-> The names `database`, `user_service` and `content_service are freely chosen
+> The names `database`, `user_service` and `content_service` are freely chosen
 > by us. It's often better to stick to a simple naming scheme.
