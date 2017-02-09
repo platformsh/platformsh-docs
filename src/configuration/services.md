@@ -74,6 +74,8 @@ In order for a service to be available to an application in your project (Platfo
 
 Once a service is running and exposed as a relationship, its appropriate credentials (host name, username if appropriate, etc.) will be exposed through the `PLATFORM_RELATIONSHIPS` environment variable.  The structure of each is documented on the appropriate service's page, along with sample code for how to connect to it from your application. Note that different applications manage configuration differently so the exact code will vary from one application to another.
 
+Be aware that the keys in the `PLATFORM_RELATIONSHIPS` structure are fixed but the values they hold may change on any deployment or restart.  Never hard-code connection credentials for a service into your application.  You should re-check the environment variable every time your script or application starts.
+
 To connect to a remote service from your local computer, the easiest way is to use the [Platform CLI](/overview/cli.md) to open an SSH tunnel.
 
 ```bash
