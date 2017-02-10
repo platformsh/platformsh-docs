@@ -79,6 +79,71 @@ foreach ($relationships['database'] as $endpoint) {
 2. MySQL Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).
 
 
+## Multiple databases
+
+If you are using version `10.0` or later of this service it is possible to define multiple databases as well as multiple users with different permissions.  To do so requires defining multiple endpoints.  Under the `configuration` key of your service there are two additional keys:
+
+* `schemas`:  This is a YAML array listing the databases that should be created.  If not specified, a single database named `main` will be created.
+* `endpoints`: This is a nested YAML array defining different credentials.  Each endpoint may have access to one or more schemas (databases), and may have different levels of permission on each.  The valid permission levels are:
+** `ro` - Using this endpoint only SELECT queries are allowed.
+** `rw` - Using this endpoint SELECT queries as well INSERT/UPDATE/DELETE queries are allowed.
+** 'admin`' - Using this endpoint all queries are allowed, including DDL queries (CREATE TABLE, DROP TABLE, etc.).
+
+If no endpoints are defined, a single endpoint named `mysql` will be created named that has `admin` access to all defined databases.
+
+Consider the following illustrative example:
+
+```yaml
+mysqldb:
+    type: mysql:10.0
+    disk: 2048
+    configuration:
+        schemas:
+            - main
+            - legacy
+        endpoints:
+            admin:
+                default_schema: main
+                privileges:
+                    main: admin
+                    legacy: admin
+            reporter:
+                privileges:
+                    main: ro
+            importer:
+                privileges:
+                    legacy: rw
+```
+
+This example creates a single MySQL/MariaDB service named `mysqldb`.  That server will have two databases, `main` and `legacy`.  There will be three endpoints created.  The first, named `admin`, will have full access to both databases.  The second, `reporter`, will have SELECT query access to the `main` DB but no access to `legacy` at all.  The `importer` user will have SELECT/INSERT/UPDATE/DELETE access (but not DDL access) to the `legacy` database but no access to `main`.
+
+If a given endpoint has access to multiple databases you should also specify which will be listed by default in the relationships array.  If one isn't specified the `path` property of the relationship will be null.  If there is only one database listed it will be used and `default_schema` is unnecessary.
+
+Once those endpoints are defined, you need to expose them to your application as a relationship.  Continuing with our example, this would be a possible corresponding block from `.platform.app.yaml`:
+
+```yaml
+relationships:
+    database: "mysqldb:admin"
+    reports: "mysqldb:reporter"
+    imports: "mysqldb:importer"
+```
+
+This block defines three relationships, `database`, `reports`, and `imports`.  They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials.  You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+
+If no `configuration` block is specified at all, it is equivalent to the following default:
+
+```yaml
+configuration:
+    schemas:
+        - main
+    endpoints:
+        mysql:
+          default_schema: main
+          privileges:
+            main: admin
+```
+
+
 ## Access your MariaDB service
 
 Assuming your MariaDB relationship is named `database`, you can access it by connecting
