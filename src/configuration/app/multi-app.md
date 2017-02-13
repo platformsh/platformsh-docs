@@ -89,7 +89,7 @@ one.
 
 > **note**
 > In the specific case of a prefix, the development environments will be accessible by adding three `-` instead of a `.`:
-> http://back-end---BRANCH-RANDOMSTRING-PROJECTID-.REGION.platformsh.site
+> http://back-end---BRANCH-MACHINE_NAME-PROJECTID-.REGION.platformsh.site
 
 ### SSH in each application
 
@@ -144,7 +144,7 @@ content_api/
     [...]
 front_end/
   .platform.app.yaml
-  public/{
+  public/
     index.php
     assets/
     [...]
