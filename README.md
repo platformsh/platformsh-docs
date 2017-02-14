@@ -8,7 +8,7 @@ Every pull request is automatically built on Platform.sh, and a link provided to
 
 ## Tools
 
-Our documentation site is built using [GitBook](https://www.gitbook.com/), a Node.js static site generator especially focused on documentation.  We rerun the build script on every deploy to produce a fresh static site instance.
+Our documentation site is built using [GitBook](https://github.com/GitbookIO/gitbook/), a Node.js static site generator especially focused on documentation.  We rerun the build script on every deploy to produce a fresh static site instance.
 
 ## Contributing
 
