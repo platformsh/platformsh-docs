@@ -96,6 +96,6 @@ Note the `settings.php` and `settings.platformsh.php` files.  Both should be ide
 
 ## Configuring Platform.sh for Drupal
 
-The ideal `.platform.app.yaml` file will vary from project project, and you are free to customize yours as needed.  A recommended baseline Drupal 7 configuration is listed below, and can also be found in our [Drupal 8 template project](https://github.com/platformsh/platformsh-example-drupal8).
+The ideal `.platform.app.yaml` file will vary from project project, and you are free to customize yours as needed.  A recommended baseline Drupal 8 configuration is listed below, and can also be found in our [Drupal 8 template project](https://github.com/platformsh/platformsh-example-drupal8).
 
 {% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-example-drupal8/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}

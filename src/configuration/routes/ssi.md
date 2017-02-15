@@ -1,6 +1,6 @@
 # Server Side Includes
 Server side includes is a powerful mechanism by which you can at the same time
-leverage caching.. and serve dynamic content.
+leverage caching and serve dynamic content.
 
 You can activate or deactivate SSI on a per-route basis in your
 `.platform/routes.yaml` for example:
