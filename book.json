@@ -10,7 +10,10 @@
     "gtm",
     "edit-link",
     "toc",
-    "-sharing"
+    "-sharing",
+    "-lunr",
+    "-search",
+    "search-pro"
   ],
   "pluginsConfig": {
     "edit-link": {
