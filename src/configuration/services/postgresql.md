@@ -141,7 +141,7 @@ In this cas you will have pg_trgm installed giving functions to determine the si
 ### List of supported extensions
 
 The following is the extensive list of supported extensions. Note that you cannot currently add custom 
-extensions not list here.
+extensions not listed here.
 
 * **adminpack**       - File and log manipulation routines, used by pgAdmin
 * **btree_gist**      - B-Tree indexing using GiST (Generalised Search Tree)
