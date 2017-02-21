@@ -1,7 +1,8 @@
-# Using Solr with Drupal 7.x
+# Using Solr with the module Search API on Drupal 7.x
+
+This page is about configuring Solr with the module [Search API](https://www.drupal.org/project/search_api). If your project uses [Apache Solr Search](https://www.drupal.org/project/apachesolr) then you should follow the instructions [Apache Solr Search](apachesolr-module.md).
 
 ## Requirements
-
 You will need to add the [Search API](https://www.drupal.org/project/search_api) and [Search API
 Solr](https://www.drupal.org/project/search_api_solr) modules to your project. The [Search API Override](https://www.drupal.org/project/search_api_override) module is strongly recommended in order to allow the Solr configuration to be populated from `settings.php`.
 
@@ -46,4 +47,13 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
 
 Replace `MACHINE_NAME_OF_SOLR_SERVER` with the Drupal machine name of the server you want to override.  The solr server must already be defined in Drupal and ideally exported to a Feature.
 
-If you did not name the relationship `solr` in your `.platform.app.yaml` file, adjust the name accordingly above.  Also, if you have multiple Solr cores defined the above `foreach()` loop will not work.  Most likely you will want to name the relationships by the machine name of the Search API server they should map to and then map each one individually.
+## Relationships configuration
+
+If you did not name the relationship `solr` in your `.platform.app.yaml` file, adjust the name accordingly.  Also, if you have multiple Solr cores defined the above `foreach()` loop will not work.  Most likely you will want to name the relationships by the machine name of the Solr server they should map to and then map each one individually.
+
+The file `.platform.app.yaml` must have the Solr relationship enabled, such as this snippet:
+
+```ini
+relationships:
+    solr: 'solrsearch:solr'
+```
