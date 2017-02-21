@@ -54,9 +54,9 @@ Note that if your repository belongs to an organization, use ``--repository=ORGA
 Copy the Payload URL that is returned by the previous command.
 
 Go to your GitHub repository and click `Settings`. Select the *Webhooks
-and Services* tab and click `Add webhook`. Paste the Payload URL, Choose
-"Send me everything" for the events you want to receive and click
-`Add webhook`.
+and Services* tab and click `Add webhook`. Paste the Payload URL, choose 
+"application/json" for the content type, choose "Send me everything" 
+for the events you want to receive and click `Add webhook`.
 
 You can now start pushing code, creating new branches or opening pull
 requests directly on your GitHub repository.
