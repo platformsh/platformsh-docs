@@ -67,10 +67,10 @@ The example below is intended as a "most common case".  (Note: This example assu
 
 ```php
 // Set redis configuration.
-if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
+if (!empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
   $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
 
-  if (!empty($relationships['redis'][0])) {
+  if (!empty($relationships['redis'][0]) && !drupal_installation_attempted() && extension_loaded('redis')) {
     $redis = $relationships['redis'][0];
 
     // Set Redis as the default backend for any cache bin not otherwise specified.
