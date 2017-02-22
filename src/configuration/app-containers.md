@@ -328,10 +328,14 @@ web:
         # Set a 5 min expiration time for static files here; a missing URL
         # will passthru to the "/" location above and hit the application
         # front-controller.
-        "/sites/default/files":
+        "/images":
             expires: 300
             passthru: true
-            allow: true
+            allow: false
+            rules:
+                # Only allow static image files from the images directory.
+                '\.(jpe?g|png|gif|svgz?|ico|bmp)$':
+                    allow: true
 ```
 
 ### [Example] Advanced rewrite rules
