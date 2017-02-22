@@ -31,9 +31,8 @@ angular/
 
 ## Submodules
 Platform.sh supports Git submodules, so each application can be in a separate
-repository. This is a powerful feature which allows you to create to create a
-`Staging` server with different versions of each application in a single
-commit.
+repository. This is a powerful feature which allows you to create a `Staging`
+server with different versions of each application in a single commit.
 
 However, there is currently a notable limitation: the `.platform.app.yaml`
 files must be in the top-level repository. For now, you'll have to implement a
