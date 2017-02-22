@@ -306,7 +306,7 @@ It has a few subkeys listed below:
     example regular expressions that you could use to provide rules:
     *\\.css$,\\.js$,\\.gif$,\\.jpe?g$,\\.png$,\\.tiff?$,\\.wbmp$,\\.ico$,\\.jng$,\\.bmp$,\\.svgz?$,\\.midi?$,\\.mpe?ga$,\\.mp2$,\\.mp3$,\\.m4a$,\\.ra$,\\.weba$,\\.3gpp?$,\\.mp4$,\\.mpe?g$,\\.mpe$,\\.ogv$,\\.mov$,\\.webm$,\\.flv$,\\.mng$,\\.asx$,\\.asf$,\\.wmv$,\\.avi$,\\.ogx$,\\.swf$,\\.jar$,\\.ttf$,\\.eot$,\\.woff$,\\.otf$,/robots\\.txt$*.
 
-*Example*
+### [Example] A basic `web` block for PHP
 
 ```yaml
 web:
@@ -316,10 +316,12 @@ web:
             passthru: "/index.php"
             index:
                 - index.php
+            # No caching, unless the PHP script sends a cache header.
             expires: -1
             scripts: true
             allow: true
             rules:
+                # Disallow .mp4 files specifically.
                 \.mp4$:
                     allow: false
                     expires: -1
@@ -330,6 +332,25 @@ web:
             expires: 300
             passthru: true
             allow: true
+```
+
+### [Example] Advanced rewrite rules
+
+Rules blocks support regular expression capture groups that can be referenced in a passthru command.  For example, the following configuration will result in requests to `/project/123` being seen by the application as a request to `/index.php?projectid=123` without causing a redirect.  Note that query parameters present in the request are unaffected and will, unconditionally, appear in the request as seen by the application.
+
+```yaml
+web:
+    locations:
+        "/":
+            root: "public"
+            passthru: "/index.php"
+            index:
+                - index.php
+            scripts: true
+            allow: true
+            rules:
+                "^/project/(?<projectid>)$":
+                    passthru: "/index.php?projectid=$projectid"
 ```
 
 ## Disk
