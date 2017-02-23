@@ -85,9 +85,9 @@ If you are using version `10.0` or later of this service it is possible to defin
 
 * `schemas`:  This is a YAML array listing the databases that should be created.  If not specified, a single database named `main` will be created.
 * `endpoints`: This is a nested YAML array defining different credentials.  Each endpoint may have access to one or more schemas (databases), and may have different levels of permission on each.  The valid permission levels are:
-** `ro` - Using this endpoint only SELECT queries are allowed.
-** `rw` - Using this endpoint SELECT queries as well INSERT/UPDATE/DELETE queries are allowed.
-** 'admin`' - Using this endpoint all queries are allowed, including DDL queries (CREATE TABLE, DROP TABLE, etc.).
+  * `ro`: Using this endpoint only SELECT queries are allowed.
+  * `rw`: Using this endpoint SELECT queries as well INSERT/UPDATE/DELETE queries are allowed.
+  * `admin`: Using this endpoint all queries are allowed, including DDL queries (CREATE TABLE, DROP TABLE, etc.).
 
 If no endpoints are defined, a single endpoint named `mysql` will be created named that has `admin` access to all defined databases.
 
