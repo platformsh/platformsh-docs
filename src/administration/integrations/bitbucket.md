@@ -25,7 +25,7 @@ On your Bitbucket account, click on your avatar, select ``Manage Account``, and 
 
 To connect your Bitbucket repository to Platform.sh, go to the repository page *as an administrator* on Bitbucket and click on the ``Settings`` icon. Then Click on ``Platform.sh integration`` under ``PLATFORM.SH``.
 
-You can then *Create a new project* or even connect to an existing project if you already have a project on Platform.sh.
+You can then *Create a new project* or even connect to an existing project on Platform.sh if you are the owner of it.
 
 The add-on needs access to some information on your repository. Click on ``Grant access``. Choose the region where you want your Platform.sh project to be hosted and click ``Create free project``.
 
