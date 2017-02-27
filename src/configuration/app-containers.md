@@ -25,7 +25,7 @@ type: 'php:7.0'
 # On PHP, there are multiple build flavors available. Pretty much everyone
 # except Drupal 7 users will want the composer flavor.
 build:
-  flavor: 'composer'
+  flavor: composer
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
@@ -165,19 +165,14 @@ variable. The right-hand side is in the form
  `.platform/services.yaml` and  "endpoint name" should be the same as the
  value of "type" declared in that same file.
 
-> **Note**
-> In the first example above you could very well have something
-> like `mycache: "arediscache:redis"` instead of `redis: "redis:redis"` (if in
-> `services.yaml` you named a service of the type `redis` with `arediscache`.
-
 *Example*
 
 ```yaml
 relationships:
-    database: "mysqldb:mysql"
-    database2: "mysqldb2:mysql"
-    cache: "arediscache:redis"
-    search: "searchengine:solr"
+    database: 'mysqldb:mysql'
+    database2: 'mysqldb2:mysql'
+    cache: 'arediscache:redis'
+    search: 'searchengine:solr'
 ```
 
 > **Note**
@@ -207,7 +202,7 @@ It has a few subkeys listed below:
 ```yaml
 web:
     commands:
-        start: "uwsgi --ini conf/server.ini"
+        start: 'uwsgi --ini conf/server.ini'
 ```
 
 ### Upstream
@@ -250,16 +245,16 @@ connect to your web site.
 
 ### Locations
 
-The `locations` key allows you to provide specific parameters for different URL prefixes. Each entry's key is an absolute URI path (with leading `/`) and its value includes the configuration directives for that path.  That is, if your domain is `example.com` then `"/"` means "requests for `example.com/`", while `"/admin"` means "requests for `example.com/admin`".
+The `locations` key allows you to provide specific parameters for different URL prefixes. Each entry's key is an absolute URI path (with leading `/`) and its value includes the configuration directives for that path.  That is, if your domain is `example.com` then `'/'` means "requests for `example.com/`", while `'/admin'` means "requests for `example.com/admin`".
 
 *Example*
 
 ```yaml
 web:
     locations:
-        "/":
+        '/':
             ...
-        "/sites/default/files":
+        '/sites/default/files':
             ...
 ```
 
@@ -269,7 +264,7 @@ It has a few subkeys listed below:
     The folder from which to serve static assets for this location
     relative to the application root. The application root is the directory
     in which the `.platform.app.yaml` file is located.  Typical values for this
-    property include `public` or `web`.  Setting it to `""` is not recommended,
+    property include `public` or `web`.  Setting it to `''` is not recommended,
     and its behavior may vary depending on the type of application.  Absolute
     paths are not supported.
 * `passthru`:
@@ -311,9 +306,9 @@ It has a few subkeys listed below:
 ```yaml
 web:
     locations:
-        "/":
-            root: "public"
-            passthru: "/index.php"
+        '/':
+            root: 'public'
+            passthru: '/index.php'
             index:
                 - index.php
             # No caching for static files.
@@ -327,9 +322,9 @@ web:
                     allow: false
                     expires: -1
         # Set a 5 min expiration time for static files here; a missing URL
-        # will passthru to the "/" location above and hit the application
+        # will passthru to the '/' location above and hit the application
         # front-controller.
-        "/images":
+        '/images':
             expires: 300
             passthru: true
             allow: false
@@ -346,16 +341,16 @@ Rules blocks support regular expression capture groups that can be referenced in
 ```yaml
 web:
     locations:
-        "/":
-            root: "public"
-            passthru: "/index.php"
+        '/':
+            root: 'public'
+            passthru: '/index.php'
             index:
                 - index.php
             scripts: true
             allow: true
             rules:
-                "^/project/(?<projectid>)$":
-                    passthru: "/index.php?projectid=$projectid"
+                '^/project/(?<projectid>.*)$':
+                    passthru: '/index.php?projectid=$projectid'
 ```
 
 ## Disk
@@ -377,7 +372,7 @@ mounted under a shared resource which is writable.
 
 The format is below:
 
-* `"/web/sites/default/files": "shared:files/files"`
+* `'/web/sites/default/files': 'shared:files/files'`
 
 > **Note**
 > `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
@@ -405,13 +400,13 @@ You can specify those dependencies as shown below:
 ```yaml
 dependencies:
   php:
-    drush/drush: "6.4.0"
+    drush/drush: '6.4.0'
   python:
-    behave: "*"
+    behave: '*'
   ruby:
-    sass: "3.4.7"
+    sass: '3.4.7'
   nodejs:
-    grunt-cli: "~0.1.13"
+    grunt-cli: '~0.1.13'
 ```
 
 ## Hooks
@@ -464,9 +459,9 @@ Your `.platform.app.yaml` file should include:
 ```yaml
 dependencies:
   ruby:
-    sass: "3.4.7"
+    sass: '3.4.7'
   nodejs:
-    grunt-cli: "~0.1.13"
+    grunt-cli: '~0.1.13'
 
 hooks:
   build: |
@@ -488,7 +483,7 @@ Your `.platform.app.yaml` file should include:
 ```yaml
 hooks:
   deploy: |
-    if [ $PLATFORM_BRANCH = "master" ]; then
+    if [ "$PLATFORM_BRANCH" = master ]; then
       # Use Drush to disable the Devel module on the Master environment.
       drush dis devel -y
     else
@@ -523,7 +518,7 @@ crons:
     # But also run pending queue tasks every 5 minutes.
     drush-queue:
         spec: '*/5 * * * *'
-        cmd: 'cd web ; drush queue-run aggregator_feeds
+        cmd: 'cd web ; drush queue-run aggregator_feeds'
 ```
 
 Also note that all server times are in UTC, and hence so are the cron schedules.
