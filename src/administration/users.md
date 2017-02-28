@@ -186,9 +186,9 @@ Use `platform list` to get the full list of commands.
 
 ## Transfer ownership
 
-If you want to transfer ownership of your project to a different user,
-first invite this user as a project administrator and then submit a
-support ticket to ask for the ownership transfer.
+If you want to transfer ownership of a project to a different user,
+first invite that user as a project administrator and then submit a
+support ticket from the current project owner to ask for the transfer.
 
 This action will automatically transfer the subscription charges to the
 new owner.
