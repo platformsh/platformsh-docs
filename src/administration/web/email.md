@@ -2,7 +2,7 @@
 
 By default only the master environment can send emails.
 For the non-master environments, you can configure outgoing emails via the
-[Web Interface](../overview/web-ui/configure-environment.html#settings).
+[Web Interface](/administration/web/configure-environment.html#settings).
 
 Emails from Platform.sh are sent via a SendGrid-based SMTP proxy.
 Each Platform.sh project is provisioned as a SendGrid sub-account.
