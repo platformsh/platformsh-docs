@@ -35,19 +35,19 @@ Here is an example:
 ```yaml
 http://{default}/:
   type: upstream
-  upstream: php:http
+  upstream: app:http
   cache:
     enabled: true
 
 http://{default}/foo/:
   type: upstream
-  upstream: php:http
+  upstream: app:http
   cache:
     enabled: false
 
 http://{default}/foo/bar/:
   type: upstream
-  upstream: php:http
+  upstream: app:http
   cache:
     enabled: true
 ```
