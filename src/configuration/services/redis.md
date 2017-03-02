@@ -43,7 +43,7 @@ The `disk` key is required for redis-persistent to tell Platform.sh how much dis
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 ```json
 {

@@ -12,7 +12,7 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 ```json
 {
