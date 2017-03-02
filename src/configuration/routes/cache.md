@@ -2,15 +2,11 @@
 
 ## Rationale
 
-Many hosting solutions are adding an additional layer (Varnish...) to
-handle caching. Platform.sh allows you to enable HTTP caching right at
-the web server level.
+Many hosting solutions are adding an additional layer (Varnish...) to handle caching. Platform.sh supports HTTP caching right at the web server level.
 
-If you disable caching, Platform.sh serves the files that are stored in
-the application directly. For example with Drupal, this means that all
-HTTP requests will bootstrap Drupal and query the database. When the
-cache is enabled, if the page has been stored in the Nginx cache, it
-won't access Drupal.
+By default, the router will respect whatever cache headers are sent by the application (either from your application code or from the `.platform.app.yaml` configuration), but the presence of any cookie headers will cause the cache to be bypassed.
+
+If you disable caching, Platform.sh serves the files that are stored in the application directly. For example with Drupal, this means that all HTTP requests will bootstrap Drupal and query the database. When the cache is enabled, if the page has been stored in the Nginx cache, it won't access Drupal.
 
 ## Reference
 
@@ -178,3 +174,5 @@ default value.
 If the response does not have a `Cache-Control` header, the
 `default_ttl` key is used to define the cache duration, in seconds. The
 default value is `0`.
+
+If the application code returns a Cache-Control header, or if your `.platform.app.yaml` file is configured to set a cache lifetime for static assets, then this value is ignored in favor of the application container's headers.
