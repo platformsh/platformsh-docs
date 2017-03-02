@@ -11,7 +11,7 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/static/in
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 ```json
 {

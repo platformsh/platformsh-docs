@@ -11,7 +11,7 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 ```json
 {

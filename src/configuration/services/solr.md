@@ -14,7 +14,7 @@ See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) fo
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/configuration/environment-variables.md):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 ```json
 {
