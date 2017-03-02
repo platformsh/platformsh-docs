@@ -15,13 +15,15 @@ Cache can be enabled in your `.platform/routes.yaml` file like below:
 ```yaml
 http://{default}/:
     type: upstream
-    upstream: php:http
+    upstream: app:http
     cache:
         enabled: true
         headers: [ "Accept", "Accept-Language", "X-Language-Locale" ]
         cookies: ["*"]
         default_ttl: 60
 ```
+
+In this example, requests will be cached based on the URI, the `Accept` header, `Accept-Language` header, and `X-Language-Locale` header; Any response that lacks a `Cache-Control` header will be cached for 60 seconds; and the presence of any cookie in the response will disable caching of that response.
 
 ## Cache Per Route
 
