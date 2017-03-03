@@ -15,4 +15,4 @@ An environment which is not deployed. You can activate an inactive environment f
 environment configuration page on Platform.sh Web Interface.
 
 ## Production plan
-A subscription level which allows you to host your production website by adding a domain and an SSL certificate.
+A subscription level which allows you to host your production website by adding a domain and a custom SSL certificate.
