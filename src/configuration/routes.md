@@ -67,12 +67,12 @@ Each route can be configured separately. It has the following properties
 Here is an example of a `.platform/routes.yaml` file:
 
 ```yaml
-"http://{default}/":
+"https://{default}/":
   type: upstream
   upstream: "app:http"
-"http://www.{default}/":
+"https://www.{default}/":
   type: redirect
-  to: "http://{default}/"
+  to: "https://{default}/"
 ```
 
 In this example, we will route both the apex domain and the www subdomain to an
@@ -84,25 +84,25 @@ In the following example, we are not redirecting from the www subdomain to the
 apex domain but serving from both:
 
 ```yaml
-"http://{default}/":
+"https://{default}/":
     type: upstream
     upstream: "app:http"
 
-"http://www.{default}/":
+"https://www.{default}/":
     type: upstream
     upstream: "app:http"
 ```
 
 The server in the former example will respond directly to a request in the form
-`http://example.com/hello`. And, it will issue a HTTP 301 redirect from
-`http://www.example.com/foo/bar` to `http://example.com/foo/bar`, which is not
+`https://example.com/hello`. And, it will issue a HTTP 301 redirect from
+`https://www.example.com/foo/bar` to `https://example.com/foo/bar`, which is not
 the case in the latter example.
 
 Here is an example of using wildcard configuration (see details on [wildcard
 routes](#wildcard-routes)):
 
 ```yaml
-"http://*.{default}/":
+"https://*.{default}/":
     type: upstream
     upstream: "app:http"
 ```
@@ -194,7 +194,7 @@ incompatible with buffering, which is a requirement of caching on our router.
 Here is an example to define a route that serves WebSocket:
 
 ```yaml
-"http://{default}/ws":
+"https://{default}/ws":
     type: upstream
     upstream: "app:http"
     cache:

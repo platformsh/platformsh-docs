@@ -103,13 +103,13 @@ For example, suppose your project ID is `abc123` in the US region, and you've re
 First, configure your `routes.yaml` file like so:
 
 ```yaml
-"http://www.{default}/":
+"https://www.{default}/":
   type: upstream
   upstream: "app:http"
 
-"http://{default}/":
+"https://{default}/":
   type: redirect
-  to: "http://www.{default}/"
+  to: "https://www.{default}/"
 ```
 
 That will result in two domains being created on Platform.sh: `master-def456-abc123.us.platform.sh` and `www---master-def456-abc123.us.platform.sh`.  The former will automatically redirect to the latter.  In the `routes.yaml` file, `{default}` will automatically be replaced with `master-def456-abc123.us.platform.sh`.  In domain prefixes (like `www`), the `.` will be replaced with `---`.

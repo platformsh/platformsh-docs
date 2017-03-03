@@ -81,15 +81,11 @@ at the end).
 
 6. Setup the routes to your nodejs application in `.platform/routes.yaml`.
 
-   ```yaml
-   "http://{default}/":
-     type: upstream
-     upstream: "node:http"
-
-   "https://{default}/":
-     type: upstream
-     upstream: "node:http"
-   ```
+```yaml
+"https://{default}/":
+  type: upstream
+  upstream: "app:http"
+```
 
 Here's a complete example that also serves static assets (.png from the /public directory):
 

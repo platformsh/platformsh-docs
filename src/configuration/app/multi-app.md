@@ -73,10 +73,10 @@ Drupal one `name: drupal`, you need to configure your `.platform/routes.yaml`
 like the following (names need to match):
 
 ```yaml
-"http://back-end.{default}/":
+"https://back-end.{default}/":
     type: upstream
     upstream: "drupal:http"
-"http://{default}/":
+"https://{default}/":
     type: upstream
     upstream: "angular:http"
 ```
@@ -152,8 +152,8 @@ front_end/
 ### Routes
 
 In our use case the User API is accessible through a URL like
-`http://api.example.com/v1/users`, and the Content API is accessible through
-`http://api.example.com/v1/content`.
+`https://api.example.com/v1/users`, and the Content API is accessible through
+`https://api.example.com/v1/content`.
 
 In this case we are not doing HTTP caching on the two APIs, but we are caching
 on the *front* application.
@@ -161,17 +161,17 @@ on the *front* application.
 The `.platform/routes.yaml` may look like:
 
 ````yaml
-"http://api.{default}/v1/users":
+"https://api.{default}/v1/users":
     type: upstream
     upstream: "user:http"
     cache:
         enabled: false
-"http://api.{default}/v1/content":
+"https://api.{default}/v1/content":
     type: upstream
     upstream: "content:http"
     cache:
         enabled: false
-"http://{default}/":
+"https://{default}/":
     type: upstream
     upstream: "front:http"
     cache:

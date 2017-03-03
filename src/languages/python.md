@@ -80,10 +80,6 @@ as listed below, a complete example is included at the end of this section.
 Then, set up the routes to your application in `.platform/routes.yaml`.
 
    ```yaml
-   "http://{default}/":
-     type: upstream
-     upstream: "app:http"
-
    "https://{default}/":
      type: upstream
      upstream: "app:http"

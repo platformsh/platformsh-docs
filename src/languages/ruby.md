@@ -105,7 +105,7 @@ too.
 6. Then, setup the routes to your application in `.platform/routes.yaml`.
 
 ```yaml
-"http://{default}/":
+"https://{default}/":
     type: upstream
     # the first part should be your project name
     upstream: "app:http"
