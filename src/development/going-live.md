@@ -13,20 +13,6 @@ This page assumes you already have the following:
 5. Optional: If you want to guarantee that you have access to  your master environment before the domain name has switched over, use `ping` or any similar tool to determine the IP address of the master environment.  The IP address is not guaranteed stable but is unlikely to change during the course of the go-live process.
 6. Optional: If you want to use an SSL certificate to encrypt your production site (you do), you can obtain one from any number of 3rd party SSL issuers.  Platform.sh does not charge anything to use SSL in production, although at this time we do not issue our own certificates.
 
-## Set your domain
-
-First step is to [add your domain](/administration/web/configure-project.html#domains).
-
-You can add multiple domains to point to your project. Each domain can have its own [SSL certificate](/development/going-live/ssl.md).
-
-After you have added your domain, your Master environment will no longer be accessible at `<environment>-<project>.<region>.platform.sh`.
-
-If you require access to the site before the domain name becomes active you can create a hosts file entry and point it to the IP address that resolves when you access your master project branch.
-
-> **note**
-> If you are on a Development plan, you cannot add a domain. You would need to upgrade your subscription to a production plan.
-
-
 ## Configure your DNS provider
 
 Configure your DNS provider to point your domain to your Platform.sh Master environment.
@@ -63,6 +49,19 @@ These ALIAS/CNAME/ANAME records resolves on request the IP address of the destin
 changes, the IP address for the mapped domain changes automatically as well.
 
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.  If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
+
+## Set your domain
+
+First step is to [add your domain](/administration/web/configure-project.html#domains).
+
+You can add multiple domains to point to your project. Each domain can have its own [SSL certificate](/development/going-live/ssl.md).
+
+After you have added your domain, your Master environment will no longer be accessible at `<environment>-<project>.<region>.platform.sh`.
+
+If you require access to the site before the domain name becomes active you can create a hosts file entry and point it to the IP address that resolves when you access your master project branch.
+
+> **note**
+> If you are on a Development plan, you cannot add a domain. You would need to upgrade your subscription to a production plan.
 
 ## SSL in Production
 
