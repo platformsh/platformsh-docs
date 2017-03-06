@@ -73,7 +73,7 @@ mysearch:
             
 ```
 
-In this example you'd have the ICU analysis plugin and 
+In this example you'd have the ICU analysis plugin and Python script support plugin.
 
 ### Available plugins
 
