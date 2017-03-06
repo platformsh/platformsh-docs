@@ -88,7 +88,7 @@ This will result (if we consider we are on the `http://example.com` domain):
 one.
 
 > **note**
-> In the specific case of a prefix, the development environments will be accessible by adding three `-` instead of a `.`:
+> Subdomain routes in development environments will be accessible using three dashes (---) instead of a dot (.), e.g:
 > http://back-end---BRANCH-MACHINE_NAME-PROJECTID-.REGION.platformsh.site
 
 ### SSH in each application
