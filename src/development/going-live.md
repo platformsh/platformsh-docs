@@ -15,9 +15,7 @@ This page assumes you already have the following:
 
 ## Set your domain
 
-First, make note of the URL used to serve your Master environment. You will need to know this when you configure DNS.
-
-Once you've noted the URL, [add your domain](/administration/web/configure-project.html#domains). 
+First step is to [add your domain](/administration/web/configure-project.html#domains).
 
 You can add multiple domains to point to your project. Each domain can have its own [SSL certificate](/development/going-live/ssl.md).
 
