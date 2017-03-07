@@ -11,7 +11,7 @@ This page assumes you already have the following:
 3. If your domain is currently active elsewhere, the Time-To-Live (TTL) on your domain is set to the lowest possible value in order to minimize transition time.
 4. You have the auto-generated domain for your master branch.  This is the domain you see in the Location bar after selecting "Access site" in the UI.  You can also retrieve this value from the command line by running `platform environment:url` to see a list of all URLs that Platform.sh will serve for the current environment.  Write this down.
 5. Optional: If you want to guarantee that you have access to  your master environment before the domain name has switched over, use `ping` or any similar tool to determine the IP address of the master environment.  The IP address is not guaranteed stable but is unlikely to change during the course of the go-live process.
-6. Optional: If you want to use a 3rd party SSL certificate to encrypt your production site, you can obtain one from any number of 3rd party SSL issuers.  Platform.sh automatically provides SSL certificates for all sites issued by LetsEncrypt.
+6. Optional: If you want to use a 3rd party SSL certificate to encrypt your production site, you can obtain one from any number of 3rd party SSL issuers.  Platform.sh automatically provides SSL certificates for all sites issued by [Let's Encrypt](https://letsencrypt.org/) at no charge, and there is no charge for using a 3rd party SSL cert instead.
 
 ## Set your domain
 
@@ -68,7 +68,7 @@ Platform.sh recommends ensuring that your DNS Provider supports dynamic apex dom
 
 Platform.sh automatically provides standard SSL certificates issued by [Let's Encrypt](https://letsencrypt.org/) to all production instances. No further action is required to use SSL-encrypted connections beyond [specifying HTTPS routes](/configuration/routes.md#HTTPS) in your `routes.yaml` file.
 
-Alternatively, you may provide your own third party SSL certificate from the SSL issuer of your choide.  Please consult your SSL issuer for instructions on how to generate an SSL certificate.
+Alternatively, you may provide your own third party SSL certificate from the SSL issuer of your choice at no charge from us.  Please consult your SSL issuer for instructions on how to generate an SSL certificate.
 
 Platform.sh supports all kinds of certificates including domain-validated certificates, extended validation (EV) certificates, high-assurance certificates and wildcard certificates.  (The use of HA or EV certificates is the main reason why you may wish to use a third party issuer rather than the default certificate.)
 
