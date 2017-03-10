@@ -60,7 +60,7 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
 
 ## Plugins
 
-The Elasticsearch 2.4 and later containers offer a number of plugins.  To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
+The Elasticsearch 2.4 and later services offer a number of plugins.  To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
 
 ```yaml
 mysearch:
@@ -80,14 +80,14 @@ In this example you'd have the ICU analysis plugin and Python script support plu
 The following official Elasticsearch plugins are supported.
 
 * **analysis-icu** - Support ICU Unicode text analysis
-* **analysis-kuromoji** - Japanese langauge support
+* **analysis-kuromoji** - Japanese language support
 * **analysis-phonetic** - Phonetic analysis
 * **analysis-smartcn** - Smart Chinese Analysis Plugins
 * **analysis-stempel** - Stempel Polish Analysis Plugin
 * **cloud-aws** - AWS Cloud plugin, allows storing indices on AWS S3
 * **cloud-azure** - Micorosoft Azure plugin, allows storing indices on Azure
 * **cloud-gce** - Google Cloud Engine plugin, allows storing indices on GCE
-* **delete-by-query** - Support for deleting documents matching a givenquery
+* **delete-by-query** - Support for deleting documents matching a given query
 * **lang-python** - Python language plugin, allows the use of Python in Elasticsearch scripts
 * **mapper-attachments** - (Elasticsearch 2.x only) Mapper attachments plugin for indexing common file types 
 * **mapper-murmur3** - Murmur3 mapper plugin for computing hashes at index-time
