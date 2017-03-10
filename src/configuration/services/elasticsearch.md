@@ -60,14 +60,14 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
 
 ## Plugins
 
-The Elasticsearch 2.4 and later services offer a number of plugins.  To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
+The Elasticsearch 2.4 and later services offer a number of plugins.  To enable them, list them under the `configuration.plugins` key in your `services.yaml` file, like so:
 
 ```yaml
 mysearch:
     type: "elasticsearch:2.4"
     disk: 1024
     configuration:
-        extensions:
+        plugins:
             - analysis-icu
             - lang-python
             
