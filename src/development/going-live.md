@@ -52,7 +52,7 @@ Platform.sh recommends ensuring that your DNS Provider supports dynamic apex dom
 
 ## Set your domain
 
-First step is to [add your domain](/administration/web/configure-project.html#domains).
+The next step is to [add your domain](/administration/web/configure-project.html#domains).
 
 You can add multiple domains to point to your project. Each domain can have its own [SSL certificate](/development/going-live/ssl.md).
 
