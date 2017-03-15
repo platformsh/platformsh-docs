@@ -1,6 +1,6 @@
 # Influx DB(Database service)
 
-InfluxDB is a time series database optimized for high-write-volume use cases such as logs, sensor data, and real-time analytics.  It exposes a HTTP API for client interaction.
+InfluxDB is a time series database optimized for high-write-volume use cases such as logs, sensor data, and real-time analytics.  It exposes an HTTP API for client interaction.
 
 See the [InfluxDB documentation](https://docs.influxdata.com/influxdb/v1.2/) for more information.
 
