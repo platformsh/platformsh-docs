@@ -20,6 +20,7 @@
   * [MySQL](configuration/services/mysql.md)
   * [PostgreSQL](configuration/services/postgresql.md)
   * [MongoDB](configuration/services/mongodb.md)
+  * [InfluxDB](configuration/services/influxdb.md)
   * [Redis](configuration/services/redis.md)
   * [Solr](configuration/services/solr.md)
   * [Elasticsearch](configuration/services/elasticsearch.md)
