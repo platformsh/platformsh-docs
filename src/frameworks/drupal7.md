@@ -88,19 +88,24 @@ translations/
 
 ### Vanilla mode
 
-Platform.sh accepts your project's files. You are expected to have an
-`index.php` file at the root of your repository.
+In Vanilla mode, Platform.sh just takes your repository as-is without any additional reorganization.  This is the behavior when there is no `.make` or `.profile` file, or when the build mode is set to `none` or `composer` rather than to `drupal`.
+
+It's best to keep your docroot separate from your repository root, as that allows you to store private files outside of the docroot when needed.  For example, your repository layout will likely resemble the following:
 
 ```
 .git/
-index.php
-... (other Drupal core files)
-sites/
-  all/
-    modules/
-    themes/
-  default/
+private/
+web/
+  index.php
+  ... (other Drupal core files)
+  sites/
+    all/
+      modules/
+      themes/
+    default/
 ```
+
+If you already have a Drupal 7 site built from a `tar.gz` download from Drupal.org, this is likely the best path forward.
 
 ## Configuring Platform.sh for Drupal
 
