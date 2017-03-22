@@ -75,9 +75,9 @@ mysearch:
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
 
-### Available plugins
+### Available plugins (Elasticsearch 2.4)
 
-The following official Elasticsearch plugins are supported.
+The following official Elasticsearch plugins are supported on Elasticsearch 2.4.
 
 * **analysis-icu** - Support ICU Unicode text analysis
 * **analysis-kuromoji** - Japanese language support
@@ -89,6 +89,6 @@ The following official Elasticsearch plugins are supported.
 * **cloud-gce** - Google Cloud Engine plugin, allows storing indices on GCE
 * **delete-by-query** - Support for deleting documents matching a given query
 * **lang-python** - Python language plugin, allows the use of Python in Elasticsearch scripts
-* **mapper-attachments** - (Elasticsearch 2.x only) Mapper attachments plugin for indexing common file types 
+* **mapper-attachments** - Mapper attachments plugin for indexing common file types
 * **mapper-murmur3** - Murmur3 mapper plugin for computing hashes at index-time
 * **mapper-size** - Size mapper plugin, enables the `_size` meta field
