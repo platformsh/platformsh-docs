@@ -75,6 +75,8 @@ mysearch:
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
 
+If there is a publicly available plugin you need that is not listed here, please contact our support  team.
+
 ### Available plugins (Elasticsearch 2.4)
 
 The following official Elasticsearch plugins are supported on Elasticsearch 2.4.
