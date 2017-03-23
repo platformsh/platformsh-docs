@@ -76,7 +76,7 @@ mysearch:
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
 
-If there is a publicly available plugin you need that is not listed here, please contact our support  team.
+If there is a publicly available plugin you need that is not listed here, please contact our support team.
 
 ### Available plugins
 
