@@ -95,6 +95,7 @@ This is the complete list of official Elasticsearch plugins that can be enabled:
 | discovery-multicast | Ability to form a cluster using TCP/IP multicast messages                         | *   |     |
 | ingest-attachment   | Extract file attachments in common formats (such as PPT, XLS, and PDF)            |     | *   |
 | ingest-user-agent   | Extracts details from the user agent string a browser sends with its web requests |     | *   |
+| lang-javascript     | Javascript language plugin, allows the use of Javascript in Elasticsearch scripts |     | *   |
 | lang-python         | Python language plugin, allows the use of Python in Elasticsearch scripts         | *   | *   |
 | mapper-attachments  | Mapper attachments plugin for indexing common file types                          | *   | *   |
 | mapper-murmur3      | Murmur3 mapper plugin for computing hashes at index-time                          | *   | *   |
