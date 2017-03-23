@@ -122,9 +122,9 @@ platform sql --relationship database -e master < my_database_snapshot.sql
 > Importing a database snapshot is a destructive operation. It will overwrite data already in your database.
 > Taking a snapshot or a database export before doing so is strongly recommended.
 
-## PostgreSQL Extensions
-We have full support for running PostgreSQL Extensions on Platform.sh. In your `services.yaml` 
-file you can simply add a configuration subkey with the following structure:
+## Extensions
+
+Platform.sh supports a number of PostgreSQL extensions.  To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
 
 ```yaml
 postgresql:
@@ -136,9 +136,9 @@ postgresql:
             - hstore
 ```
 
-In this cas you will have pg_trgm installed giving functions to determine the similarity of text based on trigram matching and hstore, giving you a key-value store.
+In this case you will have `pg_trgm` installed, providing functions to determine the similarity of text based on trigram matching, and `hstore` providing a key-value store.
 
-### List of supported extensions
+### Available extensions
 
 The following is the extensive list of supported extensions. Note that you cannot currently add custom 
 extensions not listed here.
