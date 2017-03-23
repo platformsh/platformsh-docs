@@ -136,7 +136,7 @@ postgresql:
             - hstore
 ```
 
-In this case you will have pg_trgm installed giving functions to determine the similarity of text based on trigram matching and hstore, giving you a key-value store.
+In this case you will have `pg_trgm` installed, providing functions to determine the similarity of text based on trigram matching, and `hstore` providing a key-value store.
 
 ### Available extensions
 
