@@ -91,13 +91,10 @@ This is the complete list of official Elasticsearch plugins that can be enabled:
 | analysis-stempel    | Stempel Polish Analysis Plugin                                                    | *   | *   |
 | analysis-ukrainian  | Ukrainian language support                                                        |     | *   |
 | cloud-aws           | AWS Cloud plugin, allows storing indices on AWS S3                                | *   |     |
-| cloud-azure         | Micorosoft Azure plugin, allows storing indices on Azure                          | *   |     |
-| cloud-gce           | Google Cloud Engine plugin, allows storing indices on GCE                         | *   |     |
 | delete-by-query     | Support for deleting documents matching a given query                             | *   |     |
 | discovery-multicast | Ability to form a cluster using TCP/IP multicast messages                         | *   |     |
 | ingest-attachment   | Extract file attachments in common formats (such as PPT, XLS, and PDF)            |     | *   |
 | ingest-user-agent   | Extracts details from the user agent string a browser sends with its web requests |     | *   |
-| lang-javascript     | Javascript language plugin, allows the use of Javascript in Elasticsearch scripts | *   | *   |
 | lang-python         | Python language plugin, allows the use of Python in Elasticsearch scripts         | *   | *   |
 | mapper-attachments  | Mapper attachments plugin for indexing common file types                          | *   | *   |
 | mapper-murmur3      | Murmur3 mapper plugin for computing hashes at index-time                          | *   | *   |
