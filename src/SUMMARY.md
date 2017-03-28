@@ -25,8 +25,8 @@
   * [Solr](configuration/services/solr.md)
   * [Elasticsearch](configuration/services/elasticsearch.md)
   * [RabbitMQ](configuration/services/rabbitmq.md)
-* [App Containers](configuration/app-containers.md)
-  * [Multiple Apps](configuration/app/multi-app.md)
+* [Applications](configuration/app-containers.md)
+  * [Multiple Applications](configuration/app/multi-app.md)
   * [Upgrading](configuration/app/upgrading.md)
 
 ## Languages
