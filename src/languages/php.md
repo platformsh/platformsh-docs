@@ -22,6 +22,8 @@ Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
 * 3.9
 * 3.12
+* 3.15
+* 3.18
 
 To select a PHP version, specify a `type` such as `php:7.0` or `hhvm:3.9`:
 
