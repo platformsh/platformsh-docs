@@ -35,6 +35,7 @@
 * [Node.js](languages/nodejs.md)
 * [Python (beta)](languages/python.md)
 * [Ruby (beta)](languages/ruby.md)
+* [Go (beta)](languages/go.md)
 
 ## Development
 
