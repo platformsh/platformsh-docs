@@ -65,6 +65,7 @@
   * [Environments](administration/web/environments.md)
   * [Configure environments (tmp)](administration/web/configure-environment.md)
   * [Email](administration/web/email.md)
+  * [Adding vouchers](administration/vouchers.md)
 
 ## Featured frameworks
 
