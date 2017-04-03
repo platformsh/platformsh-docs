@@ -8,6 +8,7 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 * 5.5
 * 10.0
+* 10.1
 
 ## Relationship
 
