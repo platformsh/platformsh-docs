@@ -1,4 +1,4 @@
-# Ruby
+# Go
 
 
 Platform.sh supports building and deploying applications written in Go.  They are compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
