@@ -523,22 +523,6 @@ crons:
 
 Also note that all server times are in UTC, and hence so are the cron schedules.
 
-## URL rewriting
-
-Platform.sh supports using URL rewriting in your application. To do so, you have to add a `rules` block to a location.
-An example to rewrite `/blog/20140513` to `/blog.php?bid=20140513` is below:
-
-```
-web:
-    locations:
-        '/':
-            root: 'public'
-            passthru: '/index.php'
-            rules:
-                '^/blog/(?<bid>.*)$':
-                    passthru: '/blog.php?bid=$bid'
-```
-
 ## Runtime
 
 The `.platform.app.yaml` file also supports a `runtime` key that allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate language documentation.
