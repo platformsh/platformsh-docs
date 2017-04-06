@@ -519,14 +519,9 @@ crons:
         cmd: 'cd web ; drush queue-run aggregator_feeds'
 ```
 
-> ** Cron notes **
-> 
-> Cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. 
-> In most cases that makes no difference but may impact some more involved cron scripts.
->
-> A variable delay is added to each cron job in each project in order to prevent host overloading
-> at midnight every night when every project runs their nightlies.  Your crons will *not* run exactly
-> at the time that you specify, but will be delayed by 0-300 seconds.
+Cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
+
+A variable delay is added to each cron job in each project in order to prevent host overloading at midnight every night when every project runs their nightlies.  Your crons will *not* run exactly at the time that you specify, but will be delayed by 0-300 seconds.
 
 All server times are in UTC, and hence so are the cron schedules.
 
