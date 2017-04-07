@@ -59,7 +59,7 @@ web:
 
     commands:
         start: |
-          ./bin/myapp
+            ./bin/myapp
           
     locations:
         /:
