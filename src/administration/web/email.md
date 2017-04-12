@@ -27,7 +27,7 @@ In Symfony, if you use the default `SwiftMailer` service, we recommend the follo
 
 ```yaml
 parameters:
-  mailer_transport: sendmail
+  mailer_transport: mail
   mailer_host: null
   mailer_user: null
   mailer_password: null
