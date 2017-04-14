@@ -20,12 +20,13 @@
   * [MySQL](configuration/services/mysql.md)
   * [PostgreSQL](configuration/services/postgresql.md)
   * [MongoDB](configuration/services/mongodb.md)
+  * [InfluxDB](configuration/services/influxdb.md)
   * [Redis](configuration/services/redis.md)
   * [Solr](configuration/services/solr.md)
   * [Elasticsearch](configuration/services/elasticsearch.md)
   * [RabbitMQ](configuration/services/rabbitmq.md)
-* [App Containers](configuration/app-containers.md)
-  * [Multiple Apps](configuration/app/multi-app.md)
+* [Applications](configuration/app-containers.md)
+  * [Multiple Applications](configuration/app/multi-app.md)
   * [Upgrading](configuration/app/upgrading.md)
 
 ## Languages
@@ -34,6 +35,7 @@
 * [Node.js](languages/nodejs.md)
 * [Python (beta)](languages/python.md)
 * [Ruby (beta)](languages/ruby.md)
+* [Go (beta)](languages/go.md)
 
 ## Development
 
@@ -64,6 +66,7 @@
   * [Environments](administration/web/environments.md)
   * [Configure environments (tmp)](administration/web/configure-environment.md)
   * [Email](administration/web/email.md)
+  * [Adding vouchers](administration/vouchers.md)
 
 ## Featured frameworks
 

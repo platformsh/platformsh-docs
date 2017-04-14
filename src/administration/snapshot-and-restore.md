@@ -63,4 +63,4 @@ $ platform snapshot:create --yes
 
 ### Retention
 
-Your snapshots are kept for 14 days.
+Your snapshots are kept for 7 days.

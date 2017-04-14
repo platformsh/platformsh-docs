@@ -507,8 +507,6 @@ It has a few subkeys listed below:
 
 The minimum interval between cron runs is 5 minutes, even if specified as less.
 
-Note that cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
-
 ```yaml
 crons:
     # Run Drupal's cron tasks every 20 minutes.
@@ -521,23 +519,12 @@ crons:
         cmd: 'cd web ; drush queue-run aggregator_feeds'
 ```
 
-Also note that all server times are in UTC, and hence so are the cron schedules.
+Cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
 
-## URL rewriting
+A variable delay is added to each cron job in each project in order to prevent host overloading at midnight every night when every project runs their nightlies.  Your crons will *not* run exactly at the time that you specify, but will be delayed by 0-300 seconds.
 
-Platform.sh supports using URL rewriting in your application. To do so, you have to add a `rules` block to a location.
-An example to rewrite `/blog/20140513` to `/blog.php?bid=20140513` is below:
+All server times are in UTC, and hence so are the cron schedules.
 
-```
-web:
-    locations:
-        '/':
-            root: 'public'
-            passthru: '/index.php'
-            rules:
-                '^/blog/(?<bid>.*)$':
-                    passthru: '/blog.php?bid=$bid'
-```
 
 ## Runtime
 
