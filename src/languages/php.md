@@ -257,3 +257,29 @@ The default values for some frequently-modified `php.ini` settings are listed be
 > We do not limit what you can put in your `php.ini` file, but many
 > settings can break your application. This is a facility for advanced
 > users.
+
+## Project templates
+
+A number of project templates for major PHP applications are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
+
+### Applications
+
+* [EZ Platform](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Drupal 7](https://github.com/platformsh/platformsh-example-drupal7)
+* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
+* [Drupal 8](https://github.com/platformsh/platformsh-example-drupal8)
+* [Drupal 8 (Multisite variant)](https://github.com/platformsh/platformsh-example-drupal8-multisite)
+* [Moodle](https://github.com/platformsh/platformsh-example-moodle)
+* [Magento 1](https://github.com/platformsh/platformsh-example-laravel)
+* [Magento 2](https://github.com/platformsh/platformsh-example-magento)
+* [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
+* [Typo 3](https://github.com/platformsh/platformsh-example-typo3)
+* [Wordpress](https://github.com/platformsh/platformsh-example-wordpress)
+
+### Frameworks
+
+* [AmPHP](https://github.com/platformsh/platformsh-example-amphp)
+* [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
+* [Symfony 2.8](https://github.com/platformsh/platformsh-example-symfony/tree/2.8)
+* [Symfony 3.x](https://github.com/platformsh/platformsh-example-symfony/tree/3.0)
+
