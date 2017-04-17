@@ -138,3 +138,13 @@ var server = http.createServer(function (request, response) {
 
 server.listen(config.port);
 ```
+
+## Project templates
+
+A number of project templates for Node.js applications and typical configurations are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
+
+Platform.sh also provides a [helper library](https://github.com/platformsh/platformsh-nodejs-helper) for Node.js applications that simplifies presenting environment information to your application.  It is not required to run Node.js applications on Platform.sh but is recommended.
+ 
+* [Generic Node.js](https://github.com/platformsh/platformsh-example-nodejs)
+* [Parse](https://github.com/platformsh/platformsh-example-parseit)
+* [Node.js-based microservices](https://github.com/platformsh/platformsh-example-nodejs-microservices)
