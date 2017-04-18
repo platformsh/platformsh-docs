@@ -59,7 +59,7 @@ We add the following custom HTTP headers to give the application information abo
 * "X-Forwarded-Proto": The protocol forwarded to the application, e.g. "http", "https".
 * "X-Client-IP": The remote IP address of the request.
 * "X-Client-SSL": Set "on" only if the client is using SSL connection, otherwise the header is not added.
-* "X-Original-Route": The route in `.platform/routes.yaml` which is used currently, e.g. "http://{default}/".
+* "X-Original-Route": The route in `.platform/routes.yaml` which is used currently, e.g. "https://{default}/".
 
 ## How do I change timezone settings?
 
