@@ -30,7 +30,7 @@ https://{default}/:
     expires: 1d
     paths:
       "/from": { "to": "https://example.com/" }
-      "/regexp/(.*)/matching": { "to": "http://sexample.com/$1", regexp: true }
+      "/regexp/(.*)/matching": { "to": "https://example.com/$1", regexp: true }
 ```
 
 This format is more rich and works with any type of route, including routes served directly by the application.
