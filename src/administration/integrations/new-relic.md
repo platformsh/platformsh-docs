@@ -38,13 +38,11 @@ That's it! You need to wait a little bit for your New Relic dashboard to be gene
 
 ## Troubleshoot
 
-Additionally, you can check that your application is properly connected to New Relic by looking at the application logs:
+Additionally, you can check that your application is properly connected to New Relic by looking at the `/var/log/app.log` file:
 
 ```bash
-platform ssh
-tail /var/log/app.log
-...
+platform log app
+
 2017/04/19 14:00:16.706450 (93) Info: Reporting to: https://rpm.newrelic.com/accounts/xxx/applications/xxx
 2017/04/19 14:00:16.706668 (93) Info: app 'xxx-master-7rqtwti.app' connected with run id 'xxx'
-...
 ```
