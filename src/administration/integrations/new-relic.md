@@ -44,5 +44,5 @@ Additionally, you can check that your application is properly connected to New R
 platform log app
 
 2017/04/19 14:00:16.706450 (93) Info: Reporting to: https://rpm.newrelic.com/accounts/xxx/applications/xxx
-2017/04/19 14:00:16.706668 (93) Info: app 'xxx-master-7rqtwti.app' connected with run id 'xxx'
+2017/04/19 14:00:16.706668 (93) Info: app 'xxx-master-xxx.app' connected with run id 'xxx'
 ```
