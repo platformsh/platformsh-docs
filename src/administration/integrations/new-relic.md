@@ -18,7 +18,7 @@ runtime:
         - newrelic
 ```
 
-Push the changes to your Platform environment to enable Blackfire as follows:
+Push the changes to your Platform.sh environment to enable New Relic as follows:
 
 ```bash
 git add .platform.app.yaml
