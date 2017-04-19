@@ -35,3 +35,16 @@ platform project:variable:set --no-visible-build php:newrelic.license <your-new-
 ```
 
 That's it! You need to wait a little bit for your New Relic dashboard to be generated.
+
+## Troubleshoot
+
+Additionally, you can check that your application is properly connected to New Relic by looking at the application logs:
+
+```bash
+platform ssh
+tail /var/log/app.log
+...
+2017/04/19 14:00:16.706450 (93) Info: Reporting to: https://rpm.newrelic.com/accounts/xxx/applications/xxx
+2017/04/19 14:00:16.706668 (93) Info: app 'xxx-master-7rqtwti.app' connected with run id 'xxx'
+...
+```
