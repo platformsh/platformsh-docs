@@ -54,8 +54,8 @@ if (!$relationships) {
 $relationships = json_decode(base64_decode($relationships), TRUE);
 
 foreach ($relationships['timedb'] as $endpoint) {
-  $continer->setParameter('influx_host', $endpoint['host']);
-  $continer->setParameter('influx_port', $endpoint['port']);
+  $container->setParameter('influx_host', $endpoint['host']);
+  $container->setParameter('influx_port', $endpoint['port']);
 }
 ```
 
