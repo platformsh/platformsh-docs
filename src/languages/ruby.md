@@ -195,3 +195,13 @@ Which should give you something like:
    ]
 }
 ```
+
+## Project templates
+
+A number of project templates for Ruby applications and typical configurations are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
+
+Platform.sh also provides a [helper library](https://github.com/platformsh/platformsh-ruby-helper) for Ruby applications that simplifies presenting environment information to your application.  It is not required to run Ruby applications on Platform.sh but is recommended.
+
+* [Sinatra](https://github.com/platformsh/platformsh-example-sinatra)
+* [Sinatra (with all services enabled)](https://github.com/platformsh/platformsh-example-ruby-sinatra-all-the-services)
+* [Ruby on Rails](https://github.com/platformsh/platformsh-example-rails)
