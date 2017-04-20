@@ -67,12 +67,12 @@ Each route can be configured separately. It has the following properties
 Here is an example of a `.platform/routes.yaml` file:
 
 ```yaml
-"http://{default}/":
+"https://{default}/":
   type: upstream
   upstream: "app:http"
-"http://www.{default}/":
+"https://www.{default}/":
   type: redirect
-  to: "http://{default}/"
+  to: "https://{default}/"
 ```
 
 In this example, we will route both the apex domain and the www subdomain to an
@@ -84,25 +84,25 @@ In the following example, we are not redirecting from the www subdomain to the
 apex domain but serving from both:
 
 ```yaml
-"http://{default}/":
+"https://{default}/":
     type: upstream
     upstream: "app:http"
 
-"http://www.{default}/":
+"https://www.{default}/":
     type: upstream
     upstream: "app:http"
 ```
 
 The server in the former example will respond directly to a request in the form
-`http://example.com/hello`. And, it will issue a HTTP 301 redirect from
-`http://www.example.com/foo/bar` to `http://example.com/foo/bar`, which is not
+`https://example.com/hello`. And, it will issue a HTTP 301 redirect from
+`https://www.example.com/foo/bar` to `https://example.com/foo/bar`, which is not
 the case in the latter example.
 
 Here is an example of using wildcard configuration (see details on [wildcard
 routes](#wildcard-routes)):
 
 ```yaml
-"http://*.{default}/":
+"https://*.{default}/":
     type: upstream
     upstream: "app:http"
 ```
@@ -115,21 +115,45 @@ redirection rules including **partial redirects**.
 
 ### HTTPS
 
-All development environments on Platform.sh support both HTTP and HTTPS requests automatically.  For production, you can provide your own SSL certificate from the issuer of your choice at no charge from us.
+All environments on Platform.sh support both HTTP and HTTPS automatically.  Production SSL certificates are provided by [Let's Encrypt](https://letsencrypt.org/).  You may alternatively provide your own SSL certificate from a 3rd party issuer of your choice at no charge from us.
 
-If you would like to force your whole site to use HTTPS at all times, that can be done with the following `routes.yaml` configuration:
+Platform.sh recommends using HTTPS requests for all sites exclusively.  Doing so provides better security, access to certain features that web browsers only permit over HTTPS, and access to HTTP/2 connections on all sites which can greatly improve performance.
+
+How HTTPS redirection is handled depends on the routes you have defined.  Platform.sh recommends specifying all HTTPS routes in your `routes.yaml` file.  That will result in all pages being served over SSL, and any requests for an HTTP URL will automatically be redirected to HTTPS.
 
 ```yaml
 "https://{default}/":
     type: upstream
     upstream: "app:http"
 
-"http://{default}/":
+"https://www.{default}/":
     type: redirect
     to: "https://{default}/"
 ```
 
-Alternatively, if you define only routes that use HTTPS Platform.sh will automatically create redirects from the HTTP to HTTPS version of each route.
+Specifying only HTTP routes will result in duplicate HTTPS routes being created automatically, allowing the site to be served from both HTTP and HTTPS without redirects.
+
+Although Platform.sh does not recommend it, you can also redirect HTTPS requests to HTTP explicitly to serve the site over HTTP only.  The use cases for this configuration are few.
+
+```yaml
+"http://{default}/":
+    type: upstream
+    upstream: "app:http"
+
+"http://www.{default}/":
+    type: redirect
+    to: "http://{default}/"
+
+"https://{default}/":
+    type: redirect
+    to: "http://{default}/"
+
+"https://www.{default}/":
+    type: redirect
+    to: "http://{default}/"
+```
+
+Of course, more complex routing logic is possible if the situation calls for it.  However, we recommend defining HTTPS routes exclusively.
 
 ## Configuring routes on the Web Interface
 
@@ -159,6 +183,8 @@ For development environments, we will also be able to handle this. Here is how:
 
 Let's say we have a project on the EU cluster whose ID is "vmwklxcpbi6zq" and we created a branch called "add-theme". It's environment name will be similar to `add-theme-def123`.  The generated apex domain of this environment will be `add-theme-def123-vmwklxcpbi6zq.eu.platform.sh`. If we have a `http://*.{default}/` route defined, the generated route will be `http://*---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/`. This means you could put any subdomain before the triple dashes to reach your application. HTTP request to both `http://foo---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` and `http://bar---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` URLs will be routed to your application properly. However, request to `http://*---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` will not be routed since it is not a legitimate domain name.
 
+Be aware, however, that Let's Encrypt does not support wildcard certificates.  That means if you want to use a wildcard route and protect it with SSL you will need to provide a [custom SSL certificate](/development/going-live.md#ssl-in-production). 
+
 > **note**
 > Triple dash (`---`) is used as a separator for the subdomain in development
 > environments. It replaces the dot (`.`).
@@ -170,7 +196,7 @@ incompatible with buffering, which is a requirement of caching on our router.
 Here is an example to define a route that serves WebSocket:
 
 ```yaml
-"http://{default}/ws":
+"https://{default}/ws":
     type: upstream
     upstream: "app:http"
     cache:

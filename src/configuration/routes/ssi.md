@@ -6,16 +6,16 @@ You can activate or deactivate SSI on a per-route basis in your
 `.platform/routes.yaml` for example:
 
 ```yaml
-"http://{default}/":
+"https://{default}/":
     type: upstream
-    upstream: "myapp:http"
+    upstream: "app:http"
     cache:
       enabled: false
     ssi:
         enabled: true
-"http://{default}/time.php":
+"https://{default}/time.php":
     type: upstream
-    upstream: "myapp:http"
+    upstream: "app:http"
     cache:
       enabled: true
 ```

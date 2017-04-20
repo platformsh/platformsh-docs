@@ -11,7 +11,7 @@ You can have branches that are not tied to a running instance of your applicatio
 
 Every Platform.sh project starts with a Master environment which corresponds to the Master branch in Git.
 
-If you subscribed to a production plan, this environment is your **live site** and can be mapped to a domain name and an SSL certificate.
+If you subscribed to a production plan, this environment is your **live site** and can be mapped to a domain name and a custom SSL certificate.
 
 > **note**
 > Your project must have a `master` branch: it will not function properly without one.
