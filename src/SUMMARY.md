@@ -12,11 +12,11 @@
 
 ## Configuration
 
-* [Routes](configuration/routes.md)
+* [Routes (routes.yaml)](configuration/routes.md)
   * [HTTP Cache](configuration/routes/cache.md)
   * [Redirects](configuration/routes/redirects.md)
   * [Server Side Includes](configuration/routes/ssi.md)
-* [Services](configuration/services.md)
+* [Services (services.yaml)](configuration/services.md)
   * [MySQL](configuration/services/mysql.md)
   * [PostgreSQL](configuration/services/postgresql.md)
   * [MongoDB](configuration/services/mongodb.md)
@@ -25,7 +25,7 @@
   * [Solr](configuration/services/solr.md)
   * [Elasticsearch](configuration/services/elasticsearch.md)
   * [RabbitMQ](configuration/services/rabbitmq.md)
-* [Applications](configuration/app-containers.md)
+* [Applications (.platform.app.yaml)](configuration/app-containers.md)
   * [Multiple Applications](configuration/app/multi-app.md)
   * [Upgrading](configuration/app/upgrading.md)
 
