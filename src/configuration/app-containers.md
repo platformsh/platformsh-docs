@@ -143,31 +143,6 @@ build:
     flavor: composer
 ```
 
-## Relationships
-
-The `relationships` define how services are mapped within your
-application.
-
-The left-hand side is the name of the relationship as it will be exposed
-to the application in the *PLATFORM_RELATIONSHIPS* environment
-variable. The right-hand side is in the form
-`<service name>:<endpoint name>` where "service name" comes from the
- `.platform/services.yaml` and  "endpoint name" should be the same as the
- value of "type" declared in that same file.
-
-*Example*
-
-```yaml
-relationships:
-    database: 'mysqldb:mysql'
-    database2: 'mysqldb2:mysql'
-    cache: 'arediscache:redis'
-    search: 'searchengine:solr'
-```
-
-> **Note**
-> See  the [Services](/configuration/services.md) documentation
-> for a full list of currently supported service types and service endpoints.
 
 ## Web
 
