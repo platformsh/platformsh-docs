@@ -143,16 +143,6 @@ build:
     flavor: composer
 ```
 
-## Access
-
-The `access` defines the user roles who can log in via SSH to the environments they have permission to access.
-
-Possible values are below:
-
-* ssh: admin
-* ssh: contributor
-* ssh: viewer
-
 ## Relationships
 
 The `relationships` define how services are mapped within your
@@ -494,8 +484,6 @@ hooks:
     fi
     drush -y updatedb
 ```
-
-
 
 ## Runtime
 
