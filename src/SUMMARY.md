@@ -26,6 +26,7 @@
   * [Elasticsearch](configuration/services/elasticsearch.md)
   * [RabbitMQ](configuration/services/rabbitmq.md)
 * [Applications (.platform.app.yaml)](configuration/app-containers.md)
+  * [Cron and scheduled tasks](configuration/app/cron.md)
   * [Multiple Applications](configuration/app/multi-app.md)
   * [Upgrading](configuration/app/upgrading.md)
 

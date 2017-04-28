@@ -495,35 +495,6 @@ hooks:
     drush -y updatedb
 ```
 
-## Crons and Cron jobs
-
-Cron jobs allow you to run scheduled tasks at specified times or intervals. The `crons` object describes these tasks and the schedule when they are triggered.  Each item in the list is a unique name identifying a separate cron job.
-
-It has a few subkeys listed below:
-
--   **spec**: The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). For example: `*/20 * * * *` to run every 20 minutes.
--   **cmd**: The command that is executed, for example
-    `cd public ; drush core-cron`
-
-The minimum interval between cron runs is 5 minutes, even if specified as less.
-
-```yaml
-crons:
-    # Run Drupal's cron tasks every 20 minutes.
-    drupal:
-        spec: '*/20 * * * *'
-        cmd: 'cd web ; drush core-cron'
-    # But also run pending queue tasks every 5 minutes.
-    drush-queue:
-        spec: '*/5 * * * *'
-        cmd: 'cd web ; drush queue-run aggregator_feeds'
-```
-
-Cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
-
-A variable delay is added to each cron job in each project in order to prevent host overloading at midnight every night when every project runs their nightlies.  Your crons will *not* run exactly at the time that you specify, but will be delayed by 0-300 seconds.
-
-All server times are in UTC, and hence so are the cron schedules.
 
 
 ## Runtime
