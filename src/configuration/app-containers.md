@@ -30,6 +30,25 @@ build:
 relationships:
     database: 'mysqldb:mysql'
 
+# The hooks that will be triggered when the package is deployed.
+hooks:
+    # Build hooks can modify the application files on disk but not access any services like databases.
+    build: |
+      rm web/app_dev.php
+    # Deploy hooks can access services but the file system is now read-only.
+    deploy: |
+      app/console --env=prod cache:clear
+
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The 'mounts' describe writable, persistent filesystem mounts in the application.
+# The keys are directory paths relative to the application root. The values are
+# strings such as 'shared:files/NAME' where NAME is just a unique name for the mount.
+mounts:
+    '/web/files': 'shared:files/web-files'
+
 # The configuration of the application when it is exposed to the web.
 web:
     locations:
@@ -46,24 +65,6 @@ web:
             scripts: false
             allow: true
             passthru: '/app.php'
-
-# The size of the persistent disk of the application (in MB).
-disk: 2048
-
-# The 'mounts' describe writable, persistent filesystem mounts in the application.
-# The keys are directory paths relative to the application root. The values are
-# strings such as 'shared:files/NAME' where NAME is just a unique name for the mount.
-mounts:
-    '/web/files': 'shared:files/web-files'
-
-# The hooks that will be triggered when the package is deployed.
-hooks:
-    # Build hooks can modify the application files on disk but not access any services like databases.
-    build: |
-      rm web/app_dev.php
-    # Deploy hooks can access services but the file system is now read-only.
-    deploy: |
-      app/console --env=prod cache:clear
 ```
 
 > **Note**
