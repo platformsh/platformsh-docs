@@ -78,19 +78,9 @@ hooks:
 
 ## Name
 
-The `name` is the unique identifier of the application. Platform.sh
-supports multiple applications within a project, so each application
-must have a **unique name** within a project. The name may only be
-composed of lower case alpha-numeric characters (a-z0-9).  *Be advised
-that changing the `name` of your application after it has been deployed will
-destroy all storage volumes, and thus is typically a Very Bad Thing to do.*
-It could be useful under certain circumstances in the early stages
-of development but you almost certainly don't want to change it on
-a live project.
+The `name` is the unique identifier of the application. Platform.sh supports multiple applications within a project, so each application must have a **unique name** within a project. The name may only be composed of lower case alpha-numeric characters (a-z0-9).  *Be advised that changing the `name` of your application after it has been deployed will destroy all storage volumes, and thus is typically a Very Bad Thing to do.* It could be useful under certain circumstances in the early stages of development but you almost certainly don't want to change it on a live project.
 
-This name is used in the `.platform/routes.yaml` file to define the HTTP upstream
-(by default `php:http`).  For instance, if you called your application `app` you will
-need to use `app:http` in the upstream field.
+This name is used in the `.platform/routes.yaml` file to define the HTTP upstream (by default `php:http`).  For instance, if you called your application `app` you will need to use `app:http` in the upstream field.
 
 You can also use this name in multi-application relationships.
 
@@ -378,8 +368,7 @@ dependencies:
 
 The `hooks` let you define shell commands to run during the build and deployment processes.
 
-They can be executed at various points in the lifecycle of the
-application (build/deploy).
+They can be executed at various points in the lifecycle of the application (build/deploy).
 
 Possible hooks are below:
 
@@ -390,17 +379,11 @@ Possible hooks are below:
     deployed and started. You can access other services at this stage
     (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.
 
-Each hook is executed as a single script, so they will be considered failed
-only if the final command in them fails. To cause them to fail on the first
-failed command, add `set -e` to the beginning of the hook.
+Each hook is executed as a single script, so they will be considered failed only if the final command in them fails. To cause them to fail on the first failed command, add `set -e` to the beginning of the hook.
 
-The `home` directory for each hook is the application root. If your scripts
-need to be run from the doc root of your application, you will need to `cd` to it
-first; e.g.: `cd web`.
+The `home` directory for each hook is the application root. If your scripts need to be run from the doc root of your application, you will need to `cd` to it first; e.g.: `cd web`.
 
-After a Git push, you can see the results of the `deploy` hook in the
-`/var/log/deploy.log` file when logged in to the environment via SSH. It
-contains the log of the execution of the deployment hook. For example:
+After a Git push, you can see the results of the `deploy` hook in the `/var/log/deploy.log` file when logged in to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
 
 ```bash
 [2014-07-03 10:03:51.100476] Launching hook 'cd public ; drush -y updatedb'.
@@ -414,10 +397,7 @@ Finished performing updates.
 
 ### [Example] Compile SASS files using Grunt
 
-As a good example of combining dependencies and hooks, you can compile your
-SASS files using Grunt. The `|` character tells YAML that the following lines
-should be read as a single string, which allows us to run multiple commands or
-even use bash syntax for conditionals, as in the second example.
+As a good example of combining dependencies and hooks, you can compile your SASS files using Grunt. The `|` character tells YAML that the following lines should be read as a single string, which allows us to run multiple commands or even use bash syntax for conditionals, as in the second example.
 
 Your `.platform.app.yaml` file should include:
 
@@ -435,13 +415,11 @@ hooks:
     grunt
 ```
 
-This requires the `package.json` and `Gruntfile.js` files to be
-correctly setup in the theme folder.
+This requires the `package.json` and `Gruntfile.js` files to be correctly setup in the theme folder.
 
 ### [Example] Trigger deploy hook on a specific environment
 
-To trigger a deploy hook only on a specific environment/branch, use the following
-environment variable: `$PLATFORM_BRANCH` which you should put in an `if/then` statement.
+To trigger a deploy hook only on a specific environment/branch, use the following environment variable: `$PLATFORM_BRANCH` which you should put in an `if/then` statement.
 
 Your `.platform.app.yaml` file should include:
 
