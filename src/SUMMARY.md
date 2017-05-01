@@ -29,6 +29,7 @@
   * [Relationships](configuration/app/relationships.md)
   * [Access](configuration/app/access.md)
   * [Storage](configuration/app/storage.md)
+  * [Hooks](configuration/app/hooks.md)
   * [Web configuration](configuration/app/web.md)
   * [Cron and scheduled tasks](configuration/app/cron.md)
   * [Multiple Applications](configuration/app/multi-app.md)
