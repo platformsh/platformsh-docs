@@ -133,7 +133,6 @@ build:
     flavor: composer
 ```
 
-
 ## Web
 
 The `web` key defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content, including static files, front-controller scripts, index files, index scripts, and so on. We support any directory structure, so the static files can be in a subdirectory and the `index.php` file can be further down.
@@ -308,29 +307,7 @@ web:
                     passthru: '/index.php?projectid=$projectid'
 ```
 
-## Disk
 
-The `disk` defines the size of the persistent disk of the
-application (in MB).
-
-> **Note**
-> The minimum recommended disk size is 256MB. If you see the error `UserError: Error building the project: Disk size may not be smaller than 128MB`, increase the size to 256MB.
-
-## Mounts
-
-The `mounts` is an object whose keys are paths relative to the root of
-the application (that is, where the `.platform.app.yaml` file lives). It's in the form `volume_id[/subpath]`.
-At this time, the only legal `volume_id` is `shared:files`.
-
-For example, with Drupal, you'll want your `sites/default/files` to be
-mounted under a shared resource which is writable.
-
-The format is below:
-
-* `'/web/sites/default/files': 'shared:files/files'`
-
-> **Note**
-> `shared` means that the volume is shared between your applications inside an environment. The `disk` key defines the size available for that `shared` volume.
 
 ## Build dependencies
 

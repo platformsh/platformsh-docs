@@ -28,6 +28,7 @@
 * [Applications (.platform.app.yaml)](configuration/app-containers.md)
   * [Relationships](configuration/app/relationships.md)
   * [Access](configuration/app/access.md)
+  * [Storage](configuration/app/storage.md)
   * [Cron and scheduled tasks](configuration/app/cron.md)
   * [Multiple Applications](configuration/app/multi-app.md)
   * [Upgrading](configuration/app/upgrading.md)
