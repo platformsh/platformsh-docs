@@ -5,11 +5,7 @@ search:
 
 # Configure your Application
 
-<!-- toc -->
-
-You control your application and the way it will be built and deployed on
-Platform.sh via a single configuration file, `.platform.app.yaml`, located at
-the root of your application folder inside your Git repository.
+You control your application and the way it will be built and deployed on Platform.sh via a single configuration file, `.platform.app.yaml`, located at the root of your application folder inside your Git repository.
 
 An example of a minimalist `.platform.app.yaml` file for PHP is below:
 
@@ -76,40 +72,38 @@ hooks:
 > front-end, or a main web site and a blog), you need `.platform.app.yaml`
 > at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
 
+The `.platform.app.yaml` file is extremely flexible.  Depending on your needs it could be less than 10 lines long or over 100.  The only required keys are `name`, `type`, `disk`, and a minimal `web` block.  All others are optional.
+ 
+ The basic properties are described below, and other blocks are described in their own pages. 
+
 ## Name
 
-The `name` is the unique identifier of the application. Platform.sh supports multiple applications within a project, so each application must have a **unique name** within a project. The name may only be composed of lower case alpha-numeric characters (a-z0-9).  *Be advised that changing the `name` of your application after it has been deployed will destroy all storage volumes, and thus is typically a Very Bad Thing to do.* It could be useful under certain circumstances in the early stages of development but you almost certainly don't want to change it on a live project.
+The `name` is the unique identifier of the application. Platform.sh supports multiple applications within a project, so each application must have a **unique name** within a project. The name may only be composed of lower case alpha-numeric characters (a-z0-9).
+
+> **Warning**
+> Changing the `name` of your application after it has been deployed will destroy all storage volumes and result in the loss of all persistent data.  This is typically a Very Bad Thing to do. It could be useful under certain circumstances in the early stages of development but you almost certainly don't want to change it on a live project.
 
 This name is used in the `.platform/routes.yaml` file to define the HTTP upstream (by default `php:http`).  For instance, if you called your application `app` you will need to use `app:http` in the upstream field.
 
 You can also use this name in multi-application relationships.
 
-> **Note**
-> Changing the name of an application is the same as deleting it and replacing
-> it. Your application's data (static files) will be deleted.
->
-> If you change the name, you should think about updating your other
-> configuration files. This includes `.platform/routes.yaml` and any other
-> `.platform.app.yaml` files you have in a multi-application project.
-
 ## Type
 
-The `type` defines what language will run your application.
-
-The `type` can be one of the following:
+The `type` key defines the base container image that will be used to run the application.  There is a separate base container image for each primary language for the application, often in multiple versions.  Supported languages include:
 
 * [`php`](/languages/php.md)
 * [`hhvm`](/languages/php.md)
 * [`nodejs`](/languages/nodejs.md)
 * [`python`](/languages/python.md)
 * [`ruby`](/languages/ruby.md)
+* [`golang`](/languages/go.md)
 
-followed by a version.  See the appropriate language page for all available versions.
+See the appropriate language page for all available versions.
 
 **Example**
 
 ```yaml
-type: php:5.6
+type: php:7.1
 ```
 
 ## Runtime
@@ -118,10 +112,6 @@ The `.platform.app.yaml` file also supports a `runtime` key that allows selected
 
 * [PHP](/languages/php.md)
 
-## Top level document roots
-
-Platform.sh requires that the document root not be at the root of the project.  It is important for security that
-private file mounts are not web-accessible.
 
 ## Upgrading from previous versions of the configuration file.
 

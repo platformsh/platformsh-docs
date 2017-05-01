@@ -171,3 +171,8 @@ web:
                 '^/project/(?<projectid>.*)$':
                     passthru: '/index.php?projectid=$projectid'
 ```
+
+## Top level document roots
+
+Platform.sh requires that the document root not be at the root of the project.  It is important for security that
+private file mounts are not web-accessible.
