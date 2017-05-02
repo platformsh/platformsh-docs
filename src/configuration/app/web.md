@@ -1,22 +1,18 @@
 # Web
 
+Every application container includes a single web server process (currently Nginx), behind which runs your application.  The `web` key configures the web server, including what requests should be served directly (such as static files) and which should be passed to your application.  The server is extremely flexible, which means that some configurations will be more involved than others.  Additionally, defaults may vary somewhat between different language base images (specified by the `type` key of `.platform.app.yaml`).
+
+The first section on this page explains the various options the file supports.  If you prefer, the later sections include various example configurations to demonstrate common patterns and configurations.
+
+You can also examine the `.platform.app.yaml` files of the provided project templates for various common Free Software applications.  See the various language pages for an index of available examples.
+
 The `web` key defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content, including static files, front-controller scripts, index files, index scripts, and so on. We support any directory structure, so the static files can be in a subdirectory and the `index.php` file can be further down.
-
-> **Note**
-> Gzip compression is enabled only for serving precompressed static files with the ".gz" filename extension.
-> However, dynamic content is not automatically compressed due to a [well known security issue](https://en.wikipedia.org/wiki/BREACH_%28security_exploit%29).
-
-It has the following subkeys:
 
 ## Commands
 
-The `commands` key defines the command to launch the application.
+The `commands` key defines the command to launch the application.  For now there is only a single command, `start`, but more will be added in the future.
 
-It has a few subkeys listed below:
-
-* `start`: The command used to launch the application. This can be a string or *null* if the application is only made of static files. On PHP containers this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).
-
-*Example*
+The `start` key specifies the command to use to launch your application.  That could be running a uwsgi command for a Python application or a unicorn command for a Ruby application, or simply running your compiled Go application.  If the command specified by the `start` key terminates it will be restarted automatically.
 
 ```yaml
 web:
@@ -24,18 +20,26 @@ web:
         start: 'uwsgi --ini conf/server.ini'
 ```
 
+On PHP containers this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).  On all other containers it should be treated as required.  It can also be set explicitly on a PHP container in order to run a dedicated process such as [React PHP](https://github.com/platformsh/platformsh-example-reactphp) or [AmPHP](https://github.com/platformsh/platformsh-example-amphp). 
+
+Setting `start` to `null` will result in no additional process being started at all.  That can be useful for a container that is only serving static files, as no resources will be consumed by an unused background process.
+
+```yaml
+web:
+    commands:
+        start: null
+```
+
 ## Upstream
 
-`upstream` is an optional key that describes how your application listens to requests and what protocol it speaks.
+`upstream` specifies how the front server will connect to your application (the process started by `commands.start` above).  It has two keys:
 
-The following subkeys can be defined:
 * `socket_family`:
     Default: `tcp`. Describes whether your application will listen on a Unix socket (`unix`) or a TCP socket (`tcp`).
 * `protocol`:
     Specifies whether your application is going to receive incoming requests over HTTP (`http`) or FastCGI (`fastcgi`). The default varies depending on which application runtime you're using. Other values will be supported in the future.
 
-
-*Example*
+On a PHP container with FPM there is almost never a reason to set the `upstream` explicitly, as the defaults are already configured properly for PHP-FPM.  On all other containers the default is `tcp` and `http`.
 
 ```yaml
 web:
@@ -44,23 +48,23 @@ web:
         protocol: http
 ```
 
-The above block will instruct the container to pass incoming requests to your application as straight HTTP over a TCP socket.
+The above configuration (which is the default on non-PHP containers) will forward connections to the process started by `commands.start` as a raw HTTP request to a TCP port, as though the process were listening to the incoming request directly.
 
 ### Socket family
 
-The value of the `socket_family` key controls whether your application will
-receive requests over a Unix socket or a network socket.
+If the `socket_family` is set to `tcp`, then your application should listen on the port specified by the `PORT` environment variable.
 
-If it's set to `unix`, the runtime will set the `SOCKET` environment variable
-to contain the path to the socket where you should configure your application to
-listen.
+If the `socket_family` is set to `unix`, then your application should open the unix socket file specified by the `SOCKET` environment variable. 
 
-If it's set to `tcp`, the runtime will set the `PORT` environment variable with
-the port where you should configure your application to listen.
+If your application isn't listening at the same place that the runtime is sending requests, you'll see *502 Bad Gateway* errors when you try to connect to your web site.
 
-If your application isn't listening at the same place that the runtime is
-sending requests, you'll see *502 Bad Gateway* errors when you try to
-connect to your web site.
+
+
+> **Note**
+> Gzip compression is enabled only for serving precompressed static files with the ".gz" filename extension.
+> However, dynamic content is not automatically compressed due to a [well known security issue](https://en.wikipedia.org/wiki/BREACH_%28security_exploit%29).
+
+
 
 ## Locations
 
