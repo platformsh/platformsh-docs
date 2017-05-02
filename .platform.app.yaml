@@ -4,21 +4,48 @@
 # The name of this app. Must be unique within a project.
 name: app
 
-# The toolstack used to build the application.
+# There is no no-runtime container, so any container would do here.
 type: php:7.0
+# Because there is no composer.json file we deactivate the build flavor.
 build:
     flavor: none
 
-# The configuration of app when it is exposed to the web.
+# The documentation is built using GitBook. Install the latest version
+# of it globally.
+dependencies:
+  nodejs:
+    gitbook-cli: "*"
+
+# Use a build hook to install the GitBook plugins specified by the book.json file,
+# then build the book. The generated files will be placed in the _book directory
+# by default.
+hooks:
+    build: |
+      gitbook install
+      gitbook build
+      # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
+      cp src/images/favicon.ico _book/gitbook/images/favicon.ico
+
+# There is no need for a writeable file mount, so set it to the smallest possible size.
+disk: 256
+
+# Configure the web server to serve our static site.
 web:
     locations:
         "/":
+            # The generated static site lives in _book, so make that the docroot.
             root: "_book"
             index:
                 - "index.html"
+            # Set a 5 minute cache lifetime on all static files.
             expires: 300s
-            scripts: true
+            # Disable all scripts, since we don't have any anyway.
+            scripts: false
+            # By default do not allow any files to be served.
             allow: false
+            # Whitelist common image file formats, plus HTML files, robots.txt, and
+            # The search_index.json file that is used by GitBook's search plugin.
+            # All other requests will be rejected.
             rules:
                 \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|html|ico|svg?)$:
                     allow: true
@@ -26,18 +53,3 @@ web:
                     allow: true
                 search_index\.json$:
                     allow: true
-# The size of the persistent disk of the application (in MB).
-disk: 2048
-
-# Build time dependencies.
-dependencies:
-  nodejs:
-    gitbook-cli: "*"
-
-# The hooks that will be performed when the package is deployed.
-hooks:
-    build: |
-      gitbook install
-      gitbook build
-      # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
-      cp src/images/favicon.ico _book/gitbook/images/favicon.ico
