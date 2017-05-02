@@ -37,6 +37,8 @@ web:
         "/":
             # The generated static site lives in _book, so make that the docroot.
             root: "_book"
+            # Set an index file of "index.html" for any directory. We could also
+            # list multiple fallbacks here if desired.
             index:
                 - "index.html"
             # Set a 5 minute cache lifetime on all static files.
