@@ -64,65 +64,80 @@ If your application isn't listening at the same place that the runtime is sendin
 > Gzip compression is enabled only for serving precompressed static files with the ".gz" filename extension.
 > However, dynamic content is not automatically compressed due to a [well known security issue](https://en.wikipedia.org/wiki/BREACH_%28security_exploit%29).
 
-
-
 ## Locations
 
-The `locations` key allows you to provide specific parameters for different URL prefixes. Each entry's key is an absolute URI path (with leading `/`) and its value includes the configuration directives for that path.  That is, if your domain is `example.com` then `'/'` means "requests for `example.com/`", while `'/admin'` means "requests for `example.com/admin`".
-
-*Example*
+The `locations` block is the most powerful, and potentially most involved, section of the `.platform.app.yaml` file.  It allows you to control how the application container responds to incoming requests at a very fine-grained level.  Common patterns also vary between language containers due to the way PHP-FPM handles incoming requests.
+ 
+Each entry of the `locations` block is an absolute URI path (with leading `/`) and its value includes the configuration directives for how the web server should handle matching requests.  That is, if your domain is `example.com` then `'/'` means "requests for `example.com/`", while `'/admin'` means "requests for `example.com/admin`".  If multiple blocks could match an incoming request then the most-specific will apply.
 
 ```yaml
 web:
     locations:
         '/':
+           # Rules for all requests that don't otherwise match.
             ...
         '/sites/default/files':
+            # Rules for any requests that begin with /sites/default/files.
             ...
 ```
 
-It has a few subkeys listed below:
+The simplest possible locations configuration is one that simply passes all requests on to your application unconditionally:
 
-* `root`:
-    The folder from which to serve static assets for this location
-    relative to the application root. The application root is the directory
-    in which the `.platform.app.yaml` file is located.  Typical values for this
-    property include `public` or `web`.  Setting it to `''` is not recommended,
-    and its behavior may vary depending on the type of application.  Absolute
-    paths are not supported.
-* `passthru`:
-    Whether to forward disallowed and missing resources from this location to
-    the application and can be true, false or an absolute URI path (with leading
-    `/`). The default value is `false`. For non-PHP applications it will
-    generally be just `true` or `false`.  In a PHP application this will typically
-    be the front controller such as `/index.php` or `/app.php`.  This entry
-    works similar to `mod_rewrite` under Apache.  Note: If the value of
-    `passthru` does not begin with the same value as the location key it is
-    under, the passthru may evaluate to another entry. That may be useful when
-    you want different cache settings for different paths, for instance, but
-    want missing files in all of them to map back to the same front controller.
-    See the example block below.
-* `index`:
-    The file or files to consider when serving a request for a directory and can
-    be a file name, an array of file names, or *null*. (Typically `index.html`).
-    Note that in order for this to work, access to the static file(s) named
-    must be allowed by the `allow` or `rules` keys for this location.
-* `expires`:
-    How long to allow static assets from this location to be cached (this
-    enables the `Cache-Control` and `Expires` headers) and can be a time or *-1*
-    for no caching (default). Times can be suffixed with "ms" (milliseconds), "s"
-    (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M"
-    (months, 30d) or "y" (years, 365d).
-* `scripts`:
-    Whether to allow loading scripts in that location (*true* or *false*).
-* `allow`:
-    Whether to allow serving files which don't match a rule (*true* or *false*,
-    default: *true*).
-* `rules`:
-    Specific overrides for a specific location. The key is a PCRE (regular
-    expression) that is matched against the full request path. Below is a list of
-    example regular expressions that you could use to provide rules:
-    *\\.css$,\\.js$,\\.gif$,\\.jpe?g$,\\.png$,\\.tiff?$,\\.wbmp$,\\.ico$,\\.jng$,\\.bmp$,\\.svgz?$,\\.midi?$,\\.mpe?ga$,\\.mp2$,\\.mp3$,\\.m4a$,\\.ra$,\\.weba$,\\.3gpp?$,\\.mp4$,\\.mpe?g$,\\.mpe$,\\.ogv$,\\.mov$,\\.webm$,\\.flv$,\\.mng$,\\.asx$,\\.asf$,\\.wmv$,\\.avi$,\\.ogx$,\\.swf$,\\.jar$,\\.ttf$,\\.eot$,\\.woff$,\\.otf$,/robots\\.txt$*.
+```yaml
+web:
+    locations:
+        '/':
+            passthru: true
+```
+
+That is, all requests to `/*` should be forwarded to the process started by `web.commands.start` above.  Note that for PHP containers the `passthru` key must specify what PHP file the request should be forwarded to, and must also specify a docroot under which the file lives.  For example:
+
+```yaml
+web:
+    locations:
+        '/':
+            root: 'web'
+            passthru: '/app.php'
+```
+
+This block will serve requests to `/` from the `web` directory in the application, and if a file doesn't exist on disk then the request will be forwarded to the `/app.php` script.
+
+A full list of the possible subkeys for `locations` is below.
+
+* `root`: The folder from which to serve static assets for this location relative to the application root. The application root is the directory in which the `.platform.app.yaml` file is located.  Typical values for this property include `public` or `web`.  Setting it to `''` is not recommended, and its behavior may vary depending on the type of application.  Absolute paths are not supported.
+* `passthru`: Whether to forward disallowed and missing resources from this location to the application and can be true, false or an absolute URI path (with leading `/`). The default value is `false`. For non-PHP applications it will generally be just `true` or `false`.  In a PHP application this will typically be the front controller such as `/index.php` or `/app.php`.  This entry works similar to `mod_rewrite` under Apache.  Note: If the value of `passthru` does not begin with the same value as the location key it is under, the passthru may evaluate to another entry. That may be useful when you want different cache settings for different paths, for instance, but want missing files in all of them to map back to the same front controller. See the example block below.
+* `index`: The file or files to consider when serving a request for a directory and can be a file name, an array of file names, or *null*. (Typically `index.html`). Note that in order for this to work, access to the static file(s) named must be allowed by the `allow` or `rules` keys for this location.
+* `expires`: How long to allow static assets from this location to be cached (this enables the `Cache-Control` and `Expires` headers) and can be a time or *-1* for no caching (default). Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d).
+* `scripts`: Whether to allow loading scripts in that location (*true* or *false*).  This directive is only meaningful on PHP.
+* `allow`: Whether to allow serving files which don't match a rule (*true* or *false*, default: *true*).
+* `rules`: Specific overrides for a specific location. The key is a PCRE (regular expression) that is matched against the full request path.
+
+### Rules
+
+The rules block warrants its own discussion as it allows overriding most other keys according to a regular expression. The key of each item under the `rules` block is a regular expression matching paths more specifically than the `locations` block entries.  If an incoming request matches the rule, then its handling will be overridden by the properties under the rule.
+
+For example, the following file will serve dynamic requests from `index.php` in the `public` directory and disallow requests for static files anywhere.  Then it sets a rule to explicitly whitelist common image file formats, and sets a cache lifetime for them of 5 minutes.
+
+
+```yaml
+web:
+    locations:
+        '/':
+            root: 'public'
+            passthru: '/index.php'
+            allow: false
+            rules:
+                # Allow common image files only.
+                '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+                    allow: true
+                    expires: 300s
+```
+
+As you can imagine the `locations` and `rules` blocks can be used to create highly involved and powerful configurations, but obeys Parker's Law.  (With great power comes great responsibility.)  The examples below demonstrate various common configurations and recommended defaults.
+
+## How can I serve a static-only site?
+
+
 
 ## [Example] A basic `web` block for PHP
 
