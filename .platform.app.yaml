@@ -28,8 +28,6 @@ disk: 256
 
 # Configure the web server to serve our static site.
 web:
-    commands:
-        start: null
     locations:
         "/":
             # The generated static site lives in _book, so make that the docroot.
