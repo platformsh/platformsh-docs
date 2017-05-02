@@ -118,7 +118,6 @@ The rules block warrants its own discussion as it allows overriding most other k
 
 For example, the following file will serve dynamic requests from `index.php` in the `public` directory and disallow requests for static files anywhere.  Then it sets a rule to explicitly whitelist common image file formats, and sets a cache lifetime for them of 5 minutes.
 
-
 ```yaml
 web:
     locations:
@@ -135,11 +134,9 @@ web:
 
 As you can imagine the `locations` and `rules` blocks can be used to create highly involved and powerful configurations, but obeys Parker's Law.  (With great power comes great responsibility.)  The examples below demonstrate various common configurations and recommended defaults.
 
-## How can I serve a static-only site?
+## How do I setup a basic PHP application with front-controller?
 
-
-
-## [Example] A basic `web` block for PHP
+The following `web` block is a reasonable starting point for a custom PHP application.  It sets the directory `public` as the docroot, and any missing files will get mapped to the `/index.php` file.  mp4 files are forbidden entirely.  Image files from the `images` URL (which will be served from the `/public/images` directory) will have an expiration time set, but non-image files will be disallowed.
 
 ```yaml
 web:
@@ -172,9 +169,16 @@ web:
                     allow: true
 ```
 
-## [Example] Advanced rewrite rules
+## How can I serve a static-only site?
 
-Rules blocks support regular expression capture groups that can be referenced in a passthru command.  For example, the following configuration will result in requests to `/project/123` being seen by the application as a request to `/index.php?projectid=123` without causing a redirect.  Note that query parameters present in the request are unaffected and will, unconditionally, appear in the request as seen by the application.
+Although most websites today have some dynamic component, static site generators are a valid way to build a site.  This documentation is built using a Node.js tool called GitBook, and served by Platform.sh as a static site.  You can see the [entire repository](https://github.com/platformsh/platformsh-docs) on GitHub.  The `.platform.app.yaml` file it uses is listed below.  Note in particular that we explicitly disable the application process (as it's not needed), run our own build process, and then whitelist the files to serve.
+
+{% codesnippet "../../../.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
+
+
+## How can I rewrite an incoming request without a redirect?
+
+Rules blocks support regular expression capture groups that can be referenced in a passthru command.  For example, the following configuration will result in requests to `/project/123` being seen by the application as a request to `/index.php?projectid=123` without causing an HTTP redirect.  Note that query parameters present in the request are unaffected and will, unconditionally, appear in the request as seen by the application.
 
 ```yaml
 web:
@@ -191,7 +195,55 @@ web:
                     passthru: '/index.php?projectid=$projectid'
 ```
 
-## Top level document roots
+## How can I serve directories at different paths than in my application?
 
-Platform.sh requires that the document root not be at the root of the project.  It is important for security that
-private file mounts are not web-accessible.
+Although it's common for the directories on disk to be served directly by the web server, that's not actually a requirement.  If desired it is quite possible to create a web URL structure that does not map 1:1 to the structure on disk.
+
+Consider the following example.  The git repository is structured like so:
+
+```text
+.platform/
+  services.yaml
+  routes.yaml
+.platform.app.yaml
+application/
+  conf/
+    server.ini
+  application.py
+gitbook-src/
+old-docs/
+```
+
+The `application` directory contains a Python application.  The `gitbook-src` directory contains a GitBook project that is the public documentation for the application.  The `old-docs` directory contains a static HTML snapshot of legacy documentation for an older version of the application that is still needed.
+
+Assume that the GitBook source is compiled by the build process into the `_book` directory, as in the example above.  The following `web` block will:
+
+* Start your Python application using uwsgi.
+* Route all requests to '/' to the Python application unconditionally, unless one of the following two rules apply.
+* Route requests to the `/docs` path to the `_book` directory, which contains our generated documentation, with a short cache lifetime.
+* Route requests to the `/docs/legacy` path to the `old-docs` directory, which contains plain old HTML, with a very long cache lifetime since those files should never change.
+
+```yaml
+web:
+    commands:
+        start: 'uwsgi --ini application/conf/server.ini'
+    locations:
+        '/':
+            passthru: true
+        '/docs':
+            root: '_book'
+            index:
+                - "index.html"
+            expires: 300s
+            scripts: false
+            allow: true
+        '/docs/legacy':
+            root: 'old-docs'
+            index:
+                - "index.html"
+            expires: 4w
+            scripts: false
+            allow: true
+```
+
+Even though the URL structure doesn't match the directory names or hierarchy on disk, that's no issue.  It also means the application can safely coexist with static files as if it were a single site hierarchy without the need to mix the static pages in with your Python code.
