@@ -173,7 +173,7 @@ web:
 
 Although most websites today have some dynamic component, static site generators are a valid way to build a site.  This documentation is built using a Node.js tool called GitBook, and served by Platform.sh as a static site.  You can see the [entire repository](https://github.com/platformsh/platformsh-docs) on GitHub.  The `.platform.app.yaml` file it uses is listed below.  Note in particular that we explicitly disable the application process (as it's not needed), run our own build process, and then whitelist the files to serve.
 
-{% codesnippet "../../../.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
+{% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-docs/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 
 ## How can I rewrite an incoming request without a redirect?
