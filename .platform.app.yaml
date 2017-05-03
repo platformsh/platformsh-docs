@@ -28,6 +28,8 @@ disk: 256
 
 # Configure the web server to serve our static site.
 web:
+    commands:
+        start: sleep 365d
     locations:
         "/":
             # The generated static site lives in _book, so make that the docroot.
