@@ -49,3 +49,5 @@ web:
             scripts: false
             allow: true
 ```
+
+See the [web locations](/configuration/app/web.md) documentation for more details.
