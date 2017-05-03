@@ -1,4 +1,4 @@
-# Controlling the process
+# Build and deploy
 
 The `.platform.app.yaml` file provides a number of ways to control how an application gets turned from a directory in Git into a running application.  There are three blocks that control different parts of the process: the build flavor, dependencies, and hooks.  The build process will run the build flavor, then install dependencies, then run the user-provided build hook.  The deploy process will run the deploy hook.
 
