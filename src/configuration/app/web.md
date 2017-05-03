@@ -22,14 +22,6 @@ web:
 
 On PHP containers this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).  On all other containers it should be treated as required.  It can also be set explicitly on a PHP container in order to run a dedicated process such as [React PHP](https://github.com/platformsh/platformsh-example-reactphp) or [AmPHP](https://github.com/platformsh/platformsh-example-amphp). 
 
-Setting `start` to `null` will result in no additional process being started at all.  That can be useful for a container that is only serving static files, as no resources will be consumed by an unused background process.
-
-```yaml
-web:
-    commands:
-        start: null
-```
-
 ## Upstream
 
 `upstream` specifies how the front server will connect to your application (the process started by `commands.start` above).  It has two keys:
@@ -171,7 +163,7 @@ web:
 
 ## How can I serve a static-only site?
 
-Although most websites today have some dynamic component, static site generators are a valid way to build a site.  This documentation is built using a Node.js tool called GitBook, and served by Platform.sh as a static site.  You can see the [entire repository](https://github.com/platformsh/platformsh-docs) on GitHub.  The `.platform.app.yaml` file it uses is listed below.  Note in particular that we explicitly disable the application process (as it's not needed), run our own build process, and then whitelist the files to serve.
+Although most websites today have some dynamic component, static site generators are a valid way to build a site.  This documentation is built using a Node.js tool called GitBook, and served by Platform.sh as a static site.  You can see the [entire repository](https://github.com/platformsh/platformsh-docs) on GitHub.  The `.platform.app.yaml` file it uses is listed below.  Note in particular the `web.commands.start` directive. There needs to be some background process so it's set to the `sleep` shell command, which will simply block forever (or some really long time, as computers don't know about forever) and restart if needed.  The file also run the GitBook build process, and then whitelists the files to serve.
 
 {% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-docs/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
 
