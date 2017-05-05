@@ -77,14 +77,14 @@ The `.platform.app.yaml` file is extremely flexible.  Depending on your needs it
 
 The basic properties are described on their own pages.
 
-* [`name`](/configuration/app/name.php) (required)
-* [`type`](/configuration/app/type.php) (required)
-* [`relationships`](/configuration/app/name.php)
-* [`access`](/configuration/app/access.php)
-* [`disk` and `mount`](/configuration/app/storage.php) (required)
-* [`build`, `dependencies`, and `hooks`](/configuration/app/build.php)
-* [`web`](/configuration/app/web.php) (required)
-* [`cron`](/configuration/app/cron.php)
+* [`name`](/configuration/app/name.php) (required) - Sets the unique name of the application container.
+* [`type`](/configuration/app/type.php) (required) - Sets the container base image to use, including application language.
+* [`relationships`](/configuration/app/name.php) - Defines connections to other services and applications.
+* [`access`](/configuration/app/access.php) - Restricts SSH access with more granularity than the UI.
+* [`disk` and `mount`](/configuration/app/storage.php) (required) - Defines writeable file directories for the application.
+* [`build`, `dependencies`, and `hooks`](/configuration/app/build.php) - Control how the application gets compiled.
+* [`web`](/configuration/app/web.php) (required) - Controls how the application is served.
+* [`cron`](/configuration/app/cron.php) - Defines scheduled tasks for the application.
 
 ## Upgrading from previous versions of the configuration file.
 
