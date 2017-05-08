@@ -7,7 +7,23 @@ search:
 
 You control your application and the way it will be built and deployed on Platform.sh via a single configuration file, `.platform.app.yaml`, located at the root of your application folder inside your Git repository.
 
-An example of a minimalist `.platform.app.yaml` file for PHP is below:
+
+The `.platform.app.yaml` file is extremely flexible.  Depending on your needs it could be less than 10 lines long or over 100.  The only required keys are `name`, `type`, `disk`, and a minimal `web` block.  All others are optional.
+
+The basic properties are described on their own pages.
+
+* [`name`](/configuration/app/name.md) *(required)* - Sets the unique name of the application container.
+* [`type`](/configuration/app/type.md) *(required)* - Sets the container base image to use, including application language.
+* [`relationships`](/configuration/app/name.md) - Defines connections to other services and applications.
+* [`access`](/configuration/app/access.md) - Restricts SSH access with more granularity than the UI.
+* [`disk` and `mount`](/configuration/app/storage.md) *(required)* - Defines writeable file directories for the application.
+* [`build`, `dependencies`, and `hooks`](/configuration/app/build.md) - Control how the application gets compiled.
+* [`web`](/configuration/app/web.md) *(required)* - Controls how the application is served.
+* [`cron`](/configuration/app/cron.md) - Defines scheduled tasks for the application.
+
+## Example configuration
+
+An example of a minimalist `.platform.app.yaml` file for PHP, heavily commented, is below:
 
 ```yaml
 # .platform.app.yaml
@@ -72,19 +88,6 @@ web:
 > applications inside your Git repository (such as a RESTful web service and a
 > front-end, or a main web site and a blog), you need `.platform.app.yaml`
 > at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
-
-The `.platform.app.yaml` file is extremely flexible.  Depending on your needs it could be less than 10 lines long or over 100.  The only required keys are `name`, `type`, `disk`, and a minimal `web` block.  All others are optional.
-
-The basic properties are described on their own pages.
-
-* [`name`](/configuration/app/name.md) (required) - Sets the unique name of the application container.
-* [`type`](/configuration/app/type.md) (required) - Sets the container base image to use, including application language.
-* [`relationships`](/configuration/app/name.md) - Defines connections to other services and applications.
-* [`access`](/configuration/app/access.md) - Restricts SSH access with more granularity than the UI.
-* [`disk` and `mount`](/configuration/app/storage.md) (required) - Defines writeable file directories for the application.
-* [`build`, `dependencies`, and `hooks`](/configuration/app/build.md) - Control how the application gets compiled.
-* [`web`](/configuration/app/web.md) (required) - Controls how the application is served.
-* [`cron`](/configuration/app/cron.md) - Defines scheduled tasks for the application.
 
 ## Upgrading from previous versions of the configuration file.
 
