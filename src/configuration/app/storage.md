@@ -1,3 +1,8 @@
+---
+search:
+    keywords: ['.platform.app.yaml', 'disk', 'mounts']
+---
+
 # Storage
 
 The built file system image that results from your build process is mounted read-only.  That means it cannot be edited in production, even by accident.
