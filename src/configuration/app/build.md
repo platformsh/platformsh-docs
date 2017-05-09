@@ -117,7 +117,7 @@ hooks:
 
 The `deploy` hook has access to all of the same [environment variables](/development/variables.md) as the application does normally, which makes it possible to vary the deploy hook based on the environment.  A common example is to enable certain modules only in non-production environments.  Because the hook is simply a shell script we have full access to all shell scripting capabilities, such as `if/then` directives.
 
-The following Drupal example checks the `$PLATFORM_BRANCH` variable to see if we're in a production environment (the `master` branch) or not.  If so, it forces the `devel` module to be enabled.  If not, it forces the `devel` module to be disabled, and also uses the `drush` Drupal command line tool to strip user-specific information from the database.
+The following Drupal example checks the `$PLATFORM_BRANCH` variable to see if we're in a production environment (the `master` branch) or not.  If so, it forces the `devel` module to be disabled.  If not, it forces the `devel` module to be enabled, and also uses the `drush` Drupal command line tool to strip user-specific information from the database.
 
 ```yaml
 hooks:
