@@ -37,9 +37,18 @@ projects[simplesamlphp_auth][version] = 2.0-alpha2
 
 (Adjust the version to whatever is current.)
 
+Much of the module configuration will depend on your Identity Provider (IdP).  However, the module also need to know the location of your `simplesamlphp_auth` module.  The easiest way to set it is to include the following at the end of your `settings.platformsh.php` file:
+
+```php
+// Set the path for the SimpleSAMLphp library dynamically.
+if (isset($_ENV['PLATFORM_APP_DIR'])) {
+  $conf['simplesamlphp_auth_installdir'] = dirname(realpath(__FILE__)) . '/simplesamlphp';
+}
+```
+
 Deploy the site and enable the `simplesamlphp_auth` module.
 
-@todo document how to setup the SimpleSaml module properly.  May be better to use settings.platformsh.php.
+Consult the module documentation for further information on how to configure the module itself.  Note that you should not check the "Activate authentication via SimpleSAMLphp" checkbox in the module configuration until you have the rest of the configuration completed or you may be locked out of the site.
 
 ## Configure SimpleSAML to use the database
 
@@ -89,3 +98,18 @@ if (isset($_ENV['PLATFORM_PROJECT_ENTROPY'])) {
 }
 ```
 
+## Recovering from a locked site
+
+If SimpleSAML is misconfigured it is possible to find yourself locked out of the site, as it will try to authenticate against a SimpleSAML server, fail, and then disallow other logins.  If that happens, the easiest way to recover it is to disable the SimpleSAML login.  That can be done with the following command:
+
+```bash
+platform ssh "cd public && drush vset simplesamlphp_auth_activate 0"
+```
+
+Alternatively you could log into the server and run the drush command there yourself.
+
+If that doesn't work it is likely that the configuration is "pinned" using Features or via `settings.php`.  Instead disable the module entirely, then remove the "pin" and re-enable it.
+
+```bash
+platform ssh "cd public && drush pm-disable simplesamlphp_auth -y"
+```
