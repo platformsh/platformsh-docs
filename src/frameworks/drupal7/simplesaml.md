@@ -42,7 +42,7 @@ Much of the module configuration will depend on your Identity Provider (IdP).  H
 ```php
 // Set the path for the SimpleSAMLphp library dynamically.
 if (isset($_ENV['PLATFORM_APP_DIR'])) {
-  $conf['simplesamlphp_auth_installdir'] = dirname(realpath(__FILE__)) . '/simplesamlphp';
+  $conf['simplesamlphp_auth_installdir'] = __DIR__ . '/simplesamlphp';
 }
 ```
 
