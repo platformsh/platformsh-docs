@@ -52,7 +52,7 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-```php
+{% codetabs name="PHP", type="php" -%}
 <?php
 $relationships = getenv("PLATFORM_RELATIONSHIPS");
 if (!$relationships) {
@@ -73,7 +73,12 @@ foreach ($relationships['database'] as $endpoint) {
   $container->setParameter('database_password', $endpoint['password']);
   $container->setParameter('database_path', '');
 }
-```
+{%- language name="JavaScript", type="js" -%}
+var msg = "Hello World";
+console.log(msg);
+{%- language name="HTML", type="html" -%}
+<b>Hello World</b>
+{%- endcodetabs %}
 
 **notes**
 1. There is a single MySQL user, so you can not use "DEFINER" Access Control mechanism for Stored Programs and Views.
