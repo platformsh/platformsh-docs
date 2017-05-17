@@ -73,11 +73,33 @@ foreach ($relationships['database'] as $endpoint) {
   $container->setParameter('database_password', $endpoint['password']);
   $container->setParameter('database_path', '');
 }
-{%- language name="JavaScript", type="js" -%}
-var msg = "Hello World";
-console.log(msg);
-{%- language name="HTML", type="html" -%}
-<b>Hello World</b>
+{%- language name="Python", type="py" -%}
+relationships = os.getenv('PLATFORM_RELATIONSHIPS')
+if relationships:
+    relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
+    db_settings = relationships['database'][0]
+    DATABASES = {
+        "default": {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': db_settings['path'],
+            'USER': db_settings['username'],
+            'PASSWORD': db_settings['password'],
+            'HOST': db_settings['host'],
+            'PORT': db_settings['port'],
+        }
+    }
+{%- language name="Go", type="go" -%}
+// Using the Platform.sh Go helper library: https://github.com/platformsh/gohelper
+
+dbString, err := pi.SqlDsn("database")
+if (err != nil) {
+  panic(err)
+}
+
+db, err := sql.Open("mysql", dbString)
+if (err != nil) {
+  panic(err)
+}
 {%- endcodetabs %}
 
 **notes**
