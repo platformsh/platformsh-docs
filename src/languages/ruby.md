@@ -9,6 +9,7 @@ a Sinatra app is very straight forward.
 ### Ruby MRI
 
 * 2.3
+* 2.4
 
 ## Unicorn based Rails configuration
 
