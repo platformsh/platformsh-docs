@@ -7,6 +7,7 @@ WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.
 
 * 2.7
 * 3.5
+* 3.6
 
 ## WSGI-based configuration
 
