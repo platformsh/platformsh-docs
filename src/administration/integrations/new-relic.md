@@ -6,9 +6,17 @@ Platform.sh supports [New Relic APM](https://newrelic.com/application-monitoring
 
 ### 1. Get your license key
 
-**Sign up for free** at [https://newrelic.com](https://newrelic.com/signup) and get your license key.
+Sign up at [https://newrelic.com](https://newrelic.com/signup) and get your license key.
 
-### 2. Enable the New Relic extension
+### 2. Add your license key
+
+Add your New Relic license key as a project level variable:
+
+```bash
+platform project:variable:set --no-visible-build php:newrelic.license <your-new-relic-license-key>
+```
+
+### 3. Enable the New Relic extension
 
 Enable the New Relic extension in your `.platform.app.yaml` as follows:
 
@@ -24,14 +32,6 @@ Push the changes to your Platform.sh environment to enable New Relic as follows:
 git add .platform.app.yaml
 git commit -m "Enable New Relic."
 git push
-```
-
-### 3. Add your license key
-
-Add your New Relic license key as a project level variable:
-
-```bash
-platform project:variable:set --no-visible-build php:newrelic.license <your-new-relic-license-key>
 ```
 
 That's it! You need to wait a little bit for your New Relic dashboard to be generated.
