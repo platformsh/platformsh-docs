@@ -7,6 +7,7 @@ WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.
 
 * 2.7
 * 3.5
+* 3.6
 
 ## WSGI-based configuration
 
@@ -174,3 +175,10 @@ relationships = json.loads(str(base64.b64decode(relationships), 'utf-8'))
 #   'query': {'is_master': True},
 # }]
 ```
+
+## Project templates
+
+A number of project templates for Python applications are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
+
+* [Generic Python application](https://github.com/platformsh/platformsh-example-python) - Includes variants for uwsgi, gunicorn over TCP port, and gunicorn over Unix socket.
+* [Django](https://github.com/platformsh/platformsh-example-django)
