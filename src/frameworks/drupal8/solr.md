@@ -1,7 +1,30 @@
 # Using Solr with Drupal 8.x
 
-## Requirements
+## Steps
+  - Enable Solr Service
+  - Enable the Solr relationship
+  - Download and enable the modules
+  - Configure Search API Solr
 
+### Enable Solr Service
+Different Solr versions are supported. Advanced configuration may be found at the [Solr Service documentation page](../../configuration/services/solr.md).
+
+Basically, uncomment or add these lines to your ``.platform/services.yaml``:
+```yaml
+solrsearch:
+    type: "solr:4.10"
+    disk: 1024
+```
+### Enable the Solr relationship
+Again, this is the basic configuration. For multi core and additional information read the [Solr Service documentation page](../../configuration/services/solr.md).
+
+In your ``.platform/services.yaml``, uncomment or add:
+```yaml
+relationships:
+    solr: 'solrsearch:solr'
+```
+
+### Download and enable the modules
 You will need to add the [Search API](https://www.drupal.org/project/search_api) and [Search API Solr](https://www.drupal.org/project/search_api_solr) modules to your project.
 
 If you are using composer, the easiest way to add them is to simply run:
@@ -12,7 +35,9 @@ $ composer require drupal/search_api drupal/search_api_solr
 
 And then commit the changes to `composer.json` and `composer.lock`.
 
-## Configuration
+Now, enable the modules in your Platform website via the Drupal UI or via a command line tool like Drush or Drupal Console.
+
+### Configuration
 
 Go to `/admin/config/search/search_api` and click on *Add Server*. Give
 the server a name and a description.
