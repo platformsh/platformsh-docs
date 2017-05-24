@@ -214,11 +214,15 @@ you observe.
 
 ## Custom php.ini
 
-You can also create and push a `php.ini` file that will be appended to the configuration maintained by Platform.sh.
+There are two ways to customize `php.ini` values for your application.  The recommended method is to use the [`variables` property](/configuration/app/variables.md) of `.platform.app.yaml` to set ini values using the `php` prefix.  For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
+ 
+ ```yaml
+ variables:
+    php:
+        memory_limit: 256M
+ ```
 
-In your repository, the `php.ini` file should be added to the root of the application (where your `.platform.app.yaml` file is).
-
-For example, if you need to increase the PHP memory limit:
+It's also possible to provide a custom `php.ini` file in the repository in the root of the application (where your `.platform.app.yaml` file is).
 
 ```
 ; php.ini
@@ -234,7 +238,7 @@ Another example is to set the timezone of the PHP runtime (though, the timezone 
 date.timezone = "Europe/Paris"
 ```
 
-Environment-specific `php.ini` configuration directives can be provided via environment variables.  See the note in the [Environment variables](/development/variables.md#php-specific-variables) section.
+Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code.  See the note in the [Environment variables](/development/variables.md#php-specific-variables) section.
 
 ### Default php.ini settings
 
@@ -283,4 +287,3 @@ A number of project templates for major PHP applications are available on GitHub
 * [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
 * [Symfony 2.8](https://github.com/platformsh/platformsh-example-symfony/tree/2.8)
 * [Symfony 3.x](https://github.com/platformsh/platformsh-example-symfony/tree/3.0)
-
