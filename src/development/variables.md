@@ -4,7 +4,9 @@ Platform.sh allows a high degree of control over both the build process and the 
 
 ## Types of variables
 
-There are three different types of variable: User-provided project variables, user-provided environment variables, and Platform.sh-provided environment variables.  All of those may be simple strings or base64-encoded JSON-serialized values.
+There are four different types of variable: User-provided project variables, user-provided environment variables, application-provided variables, and Platform.sh-provided environment variables.  All of those may be simple strings or base64-encoded JSON-serialized values.
+
+In case of name collisions, Platform.sh-provided values override user-provided environment variables, which override project-level variables, which override application-provided variables.
 
 ### Project variables
 
@@ -36,9 +38,13 @@ That will set a variable on the currently active environment (that is, the branc
 
 Changing an environment variable will cause that environment to be redeployed so that it gets the new value.  However, it will *not* redeploy any child environments. If you want those to get the new value you will need to redeploy them yourself.
 
-Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" toggle, etc.
+Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" runtime toggle, etc.
+
+### Application-provided variables
 
 It is also possible to [set Environment variables in code](/configuration/app/variables.md), using the `.platform.app.yaml` file.  These values of course will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, the Symfony framework has a `SYMFONY_ENV` property that users may wish to set to `prod` on all environments to ensure a consistent build, or it may be used to set [PHP configuration values](#php-specific-variables).
+
+Application-provided variables are available at both build time and runtime.
 
 ## Platform.sh-provided variables
 
@@ -215,4 +221,4 @@ You can also provide a `.environment` file as part of your application, in your 
 export PATH=/app/vendor/bin:$PATH
  ```
 
-Note that the file is sourced after all other environment variables above are defined, so they will be available to the script.  
+Note that the file is sourced after all other environment variables above are defined, so they will be available to the script.  That also means the .environment script has the "last word" on environment variable values and can override anything it wants to.
