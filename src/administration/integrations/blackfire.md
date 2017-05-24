@@ -3,6 +3,11 @@
 Platform.sh supports [Blackfire Profiler](https://blackfire.io/)
 developed by [SensioLabs](https://sensiolabs.com/).
 
+## Version
+
+* Agent/Client: `1.12.0`
+* Probe: `1.16.1` (when using `php:7.0` or `php:7.1`)
+
 ## Get Started
 
 ### 1. Get your credentials
@@ -47,7 +52,7 @@ php --ri blackfire
 blackfire
 
 blackfire => enabled
-blackfire => 1.4.1
+blackfire => 1.16.1
 Timing measurement => gtod
 Num of CPU => 8
 ...
