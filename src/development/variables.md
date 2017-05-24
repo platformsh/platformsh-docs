@@ -38,6 +38,8 @@ Changing an environment variable will cause that environment to be redeployed so
 
 Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" toggle, etc.
 
+It is also possible to [set Environment variables in code](/configuration/app/variables.md), using the `.platform.app.yaml` file.  These values of course will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, the Symfony framework has a `SYMFONY_ENV` property that users may wish to set to `prod` on all environments to ensure a consistent build, or it may be used to set [PHP configuration values](#php-specific-variables).
+
 ## Platform.sh-provided variables
 
 Platform.sh also provides a series of variables by default.  These inform an application about its runtime configuration.  The most important of these is relationship information, which tells the application how to connect to databases and other services defined in `services.yaml`.  They are always prefixed with `PLATFORM_*` to differentiate them from user-provided values.
@@ -191,7 +193,7 @@ Any variable with the prefix `php:` will also be added to the `php.ini` configur
 display_errors = On
 ```
 
-This feature is primarily useful to override debug configuration on development environments, such as enabling errors or configuring the XDebug extension.  For applying a configuration setting to all environments, or to vary them between different PHP containers in the same project, use a custom `php.ini` file in your repository.  See the [PHP configuration page](/languages/php.md#custom-phpini) for more information.
+This feature is primarily useful to override debug configuration on development environments, such as enabling errors or configuring the XDebug extension.  For applying a configuration setting to all environments, or to vary them between different PHP containers in the same project, specify the variables in the `.platform.app.yaml` file for your application.  See the [PHP configuration page](/languages/php.md#custom-phpini) for more information.
 
 ### Drupal-specific variables
 

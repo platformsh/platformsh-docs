@@ -31,6 +31,7 @@
   * [Relationships](configuration/app/relationships.md)
   * [Access](configuration/app/access.md)
   * [Storage](configuration/app/storage.md)
+  * [Variables](configuration/app/variables.md)
   * [Build and deploy tasks](configuration/app/build.md)
   * [Web configuration](configuration/app/web.md)
   * [Cron and scheduled tasks](configuration/app/cron.md)
