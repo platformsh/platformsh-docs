@@ -53,5 +53,5 @@ web:
                     allow: true
                 ^/robots\.txt$:
                     allow: true
-                search_index\.json$:
+                search_plus_index\.json$:
                     allow: true
