@@ -285,7 +285,7 @@ section.normal p strong,
 }
 /* Code Tabs */
 .codetabs .codetabs-header .tab {
-  padding: 3px 15px;
+  padding: 3px 14px 5px;
   font-weight: 600;
   text-transform: uppercase;
   font-size: 13px;
@@ -293,17 +293,24 @@ section.normal p strong,
   color: #364149;
   position: relative;
   z-index: 2;
+  margin-right: 5px;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  margin-bottom: -1px;
+  background: #ebebeb;
+  border-radius: 3px 3px 0 0;
 }
 .codetabs .codetabs-header .tab:hover {
   color: #4183c4;
+  background: #e5e5e5;
 }
 .codetabs .codetabs-header .tab.active {
-  background: #f7f7f7;
   color: #4183c4;
   border: 1px solid #ddd;
   border-bottom: none;
   margin-bottom: -1px;
   padding: 3px 14px 6px;
+  background: #f7f7f7;
 }
 .codetabs-body .tab pre {
   border: 1px solid #ddd;
