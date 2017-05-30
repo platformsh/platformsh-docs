@@ -1,6 +1,6 @@
 # Variables
 
-Platform.sh provides a number of ways to set [environment variables](/development/variables.md), either globally or specific to a single environment.  For values that should be consistent between different environments (because they're configuring the application or runtime itself, generally) the easiest way to control them is to set them in the `.platform.app.yaml` file.
+Platform.sh provides a number of ways to set [variables](/development/variables.md), either globally or specific to a single environment.  For values that should be consistent between different environments (because they're configuring the application or runtime itself, generally) the easiest way to control them is to set them in the `.platform.app.yaml` file.
 
 Only prefixed variables may be set from the `.platform.app.yaml` file.  Some prefixes have specific meaning while others are only significant to a particular application.  Nested variables will be automatically converted into a nested array or list structure as appropriate to the language.
 
@@ -9,13 +9,13 @@ For example, the following section in `.platform.app.yaml` will set a single var
 ```yaml
 variables:
     env:
-        AUTHOR: 'Larry'
+        AUTHOR: 'Juan'
 ```
 
-That will have the exact same runtime effect as setting the variable via the CLI as follows, except it will be versioned along with the code:
+That will have the exact same runtime effect as setting a project variable via the CLI as follows, except it will be versioned along with the code:
 
 ```bash
-$ platform variable:set env:AUTHOR Larry
+$ platform project:variable:set env:AUTHOR Juan
 ```
 
 The variable name may itself have punctuation in it.  For example, to set a Drupal 8 configuration override (assuming you're using the recommended `settings.platformsh.php` file) you can do the following:
@@ -30,7 +30,7 @@ This will create a Platform.sh variable, that is, an item in the `$PLATFORM_VARI
 
 ## Complex values
 
-The value for a variable may be more than just a string; it may also be a nested structure.  If the variable is in the `env` namespace, it will be mapped to a Unix environment variable as a JSON string.  If not, it will be included in the `PLATFORM_VARIABLES` environment variable as the native data type appropriate for the equivalent JSON structure.
+The value for a variable may be more than just a string; it may also be a nested structure.  If the variable is in the `env` namespace, it will be mapped to a Unix environment variable as a JSON string.  If not, it will be included in the `PLATFORM_VARIABLES` environment variable.
 
 For example, the following variable definitions:
 
