@@ -42,7 +42,7 @@ Environment variables are a good place to store values that apply only on Platfo
 
 ### Application-provided variables
 
-It is also possible to [set Environment variables in code](/configuration/app/variables.md), using the `.platform.app.yaml` file.  These values of course will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, the Symfony framework has a `SYMFONY_ENV` property that users may wish to set to `prod` on all environments to ensure a consistent build, or it may be used to set [PHP configuration values](#php-specific-variables).
+It is also possible to [set Environment variables in code](/configuration/app/variables.md), using the `.platform.app.yaml` file.  These values of course will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, the PHP Symfony framework has a `SYMFONY_ENV` property that users may wish to set to `prod` on all environments to ensure a consistent build, or it may be used to set [PHP configuration values](#php-specific-variables).
 
 Application-provided variables are available at both build time and runtime.
 
@@ -221,4 +221,4 @@ You can also provide a `.environment` file as part of your application, in your 
 export PATH=/app/vendor/bin:$PATH
  ```
 
-Note that the file is sourced after all other environment variables above are defined, so they will be available to the script.  That also means the .environment script has the "last word" on environment variable values and can override anything it wants to.
+Note that the file is sourced after all other environment variables above are defined, so they will be available to the script.  That also means the `.environment` script has the "last word" on environment variable values and can override anything it wants to.
