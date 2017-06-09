@@ -17,6 +17,7 @@ The basic properties are described on their own pages.
 * [`relationships`](/configuration/app/relationships.md) - Defines connections to other services and applications.
 * [`access`](/configuration/app/access.md) - Restricts SSH access with more granularity than the UI.
 * [`disk` and `mount`](/configuration/app/storage.md) *(required)* - Defines writeable file directories for the application.
+* [`variables`](/configuration/app/variables.md) - Sets environment variables that control application behavior.
 * [`build`, `dependencies`, and `hooks`](/configuration/app/build.md) - Control how the application gets compiled.
 * [`web`](/configuration/app/web.md) *(required)* - Controls how the application is served.
 * [`cron`](/configuration/app/cron.md) - Defines scheduled tasks for the application.
