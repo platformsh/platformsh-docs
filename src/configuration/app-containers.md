@@ -7,8 +7,9 @@ search:
 
 You control your application and the way it will be built and deployed on Platform.sh via a single configuration file, `.platform.app.yaml`, located at the root of your application folder inside your Git repository.
 
-
 The `.platform.app.yaml` file is extremely flexible.  Depending on your needs it could be less than 10 lines long or over 100.  The only required keys are `name`, `type`, `disk`, and a minimal `web` block.  All others are optional.
+
+The `.platform.app.yaml` file can, in fact, spawn multiple containers off of the same code base with different runtime configuration.  The main use case for that is to create a dedicated copy of the codebase for running persistent background tasks independently of the web front-end.
 
 The basic properties are described on their own pages.
 
