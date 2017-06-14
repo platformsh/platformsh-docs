@@ -35,19 +35,34 @@ memcache:
     type: memcache:1.4
 ```
 
+Now add a relationship in your `.platform.app.yaml` file:
+
+```yaml
+relationships:
+    cache: "memcache:memcache"
+```
+
+{% codetabs name="PHP", type="text" -%}
 If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php.md#php-extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 
 ```yaml
 runtime:
     extensions:
         - memcached
-
-relationships:
-    cache: "memcache:memcache"
 ```
 
-You can then use the service in a configuration file of your application with something like:
+{%- language name="Python", type="text" -%}
+For Python you will need to include a dependency for a Memcache library, either via your requirements.txt file or a global dependency.  As a global dependency you would add the following to `.platform.app.yaml`:
 
+```yaml
+dependencies:
+    python:
+       python-memcached: '*'
+```
+
+{%- endcodetabs %}
+
+You can then use the service in a configuration file of your application with something like:
 
 {% codetabs name="PHP", type="php" -%}
 <?php
