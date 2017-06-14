@@ -74,6 +74,10 @@ foreach ($relationships['database'] as $endpoint) {
   $container->setParameter('database_path', '');
 }
 {%- language name="Python", type="py" -%}
+import os
+import json
+import base64
+
 relationships = os.getenv('PLATFORM_RELATIONSHIPS')
 if relationships:
     relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
