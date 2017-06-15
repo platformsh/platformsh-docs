@@ -47,7 +47,7 @@ dependencies:
     behave: '*'
   ruby: # Specify one Bundler package per line.
     sass: '3.4.7'
-  nodejs: # Specify one NPM package per line.
+  nodejs:6.9 # Specify one NPM package per line.
     grunt-cli: '~0.1.13'
 ```
 
@@ -103,7 +103,7 @@ The following blocks will download a specific version of Sass and Grunt pre-buil
 dependencies:
   ruby:
     sass: '3.4.7'
-  nodejs:
+  nodejs:6.9
     grunt-cli: '~0.1.13'
 
 hooks:

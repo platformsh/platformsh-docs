@@ -28,11 +28,11 @@ Here is an example of a `services.yaml` file:
 
 ```yaml
 database1:
-  type: mysql:10.0
+  type: mysql:10.1
   disk: 2048
 
 database2:
-  type: postgresql:9.3
+  type: postgresql:9.6
   disk: 1024
 ```
 

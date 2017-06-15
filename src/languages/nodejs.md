@@ -9,7 +9,9 @@ Javascript and PHP applications.
 
 * 0.12
 * 4.7
+* 4.8
 * 6.9
+* 6.10
 
 See https://github.com/platformsh/platformsh-example-nodejs/tree/mongodb for a
 full example with MongoDB support.
@@ -24,7 +26,7 @@ at the end).
 
    ```yaml
    # .platform.app.yaml
-   type: "nodejs:4.4"
+   type: "nodejs:6.9"
    ```
 
 2. Specify your dependencies under the `nodejs` key, like this:
@@ -32,7 +34,7 @@ at the end).
    ```yaml
    dependencies:
      nodejs:
-       pm2: "^0.15.10"
+       pm2: "^2.5.0"
    ```
 
    These are the global dependencies of your project (the ones you would have
@@ -91,7 +93,7 @@ Here's a complete example that also serves static assets (.png from the /public 
 
 ```yaml
 name: node
-type: nodejs:4.4
+type: nodejs:6.9
 
 web:
   commands:
@@ -109,7 +111,7 @@ web:
           expires: -1
 dependencies:
   nodejs:
-    pm2: "^0.15.10"
+    pm2: "^2.5.0"
 mounts:
   "/run": "shared:files/run"
 disk: 512
