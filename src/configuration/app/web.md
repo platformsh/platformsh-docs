@@ -107,7 +107,7 @@ A full list of the possible subkeys for `locations` is below.
 * `expires`: How long to allow static assets from this location to be cached (this enables the `Cache-Control` and `Expires` headers) and can be a time or *-1* for no caching (default). Times can be suffixed with "ms" (milliseconds), "s" (seconds), "m" (minutes), "h" (hours), "d" (days), "w" (weeks), "M" (months, 30d) or "y" (years, 365d).
 * `scripts`: Whether to allow loading scripts in that location (*true* or *false*).  This directive is only meaningful on PHP.
 * `allow`: Whether to allow serving files which don't match a rule (*true* or *false*, default: *true*).
-* `headers`: Any additional headers to apply to static assests (not responses from the application).  This section is a mapping from the header name to the value to send for it.
+* `headers`: Any additional headers to apply to static assets (not responses from the application).  This section is a mapping from the header name to the value to send for it.
 * `rules`: Specific overrides for a specific location. The key is a PCRE (regular expression) that is matched against the full request path.
 
 ### Rules
