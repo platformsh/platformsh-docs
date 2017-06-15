@@ -9,6 +9,7 @@ a Sinatra app is very straight forward.
 ### Ruby MRI
 
 * 2.3
+* 2.4
 
 ## Unicorn based Rails configuration
 
@@ -20,7 +21,7 @@ as listed below, a complete example is included at the end of this section.
 
    ```yaml
    # .platform.app.yaml
-   type: "ruby:2.3"
+   type: "ruby:2.4"
    ```
 
 2. Build your application with the build hook.
@@ -115,7 +116,7 @@ Here is the complete `.platform.app.yaml` file:
 
 ```yaml
 name: 'app'
-type: "ruby:2.3"
+type: "ruby:2.4"
 
 web:
     upstream:

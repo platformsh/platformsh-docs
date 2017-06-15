@@ -41,9 +41,10 @@
 
 * [PHP](languages/php.md)
 * [Node.js](languages/nodejs.md)
-* [Python (beta)](languages/python.md)
-* [Ruby (beta)](languages/ruby.md)
-* [Go (beta)](languages/go.md)
+* [Python](languages/python.md)
+* [Ruby](languages/ruby.md)
+* [Go (beta))](languages/go.md)
+* [Java (alpha)](languages/java.md)
 
 ## Development
 

@@ -2,7 +2,7 @@
 
 PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
 
-Platform.sh also supports HHVM, an alternative PHP engine developed by Facebook that includes several extensions to the PHP language, collectivelly called "Hack".
+Platform.sh also supports HHVM, an alternative PHP engine developed by Facebook that includes several extensions to the PHP language, collectively called "Hack".
 
 Both are interchangeable from a configuration perspective, although code that uses Hack will only run on HHVM.
 

@@ -7,6 +7,7 @@ WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.
 
 * 2.7
 * 3.5
+* 3.6
 
 ## WSGI-based configuration
 
@@ -18,7 +19,7 @@ as listed below, a complete example is included at the end of this section.
 
    ```yaml
    # .platform.app.yaml
-   type: "python:3.5"
+   type: "python:3.6"
    ```
 
 2. Build your application with the build hook.
@@ -121,7 +122,7 @@ disk: 512
 The above Gunicorn based WSGI example can be modified to
 use the Python 3.5+ asyncio module.
 
-1. Change the `type` to `python:3.5`.
+1. Change the `type` to `python:3.6`.
 2. Change the start command to use asyncio.
 
    ```yaml
