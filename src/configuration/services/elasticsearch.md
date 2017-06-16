@@ -59,6 +59,10 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
 }
 ```
 
+**note**
+When you create an index on Elasticsearch, you should not specify `number_of_shards` and `number_of_replicas` settings in your Elasticsearch API call. These values will be set automatically based on available resources.
+
+
 ## Plugins
 
 The Elasticsearch 2.4 and later services offer a number of plugins.  To enable them, list them under the `configuration.plugins` key in your `services.yaml` file, like so:
