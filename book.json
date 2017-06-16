@@ -7,10 +7,14 @@
     "anchors",
     "reveal",
     "codesnippet",
+    "codetabs",
     "gtm",
     "edit-link",
     "toc",
-    "-sharing"
+    "-sharing",
+    "-lunr",
+    "-search",
+    "search-plus"
   ],
   "pluginsConfig": {
     "edit-link": {

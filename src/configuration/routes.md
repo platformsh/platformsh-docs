@@ -171,13 +171,9 @@ You can get a list of the configured routes of an environment by running
 
 ## Wildcard routes
 
-Platform.sh supports wildcard routes, so you can map multiple subdomains to the
-same application. This works both for redirect and upstream routes. You can
-simply prefix the route with a star (`*`), for example `*.example.com`, and
-HTTP request to `www.example.com`, `blog.example.com`, `us.example.com` will all get
-routed to the same endpoint.
+Platform.sh supports wildcard routes, so you can map multiple subdomains to the same application. This works both for redirect and upstream routes. You can simply prefix the route with a star (`*`), for example `*.example.com`, and HTTP request to `www.example.com`, `blog.example.com`, `us.example.com` will all get routed to the same endpoint.
 
-For your master environment, this would function as a catch-all domain.
+For your master environment, this would function as a catch-all domain once you [added the parent domain](/administration/web/configure-project.md#domains) to the project settings.
 
 For development environments, we will also be able to handle this. Here is how:
 
