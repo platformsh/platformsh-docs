@@ -103,7 +103,7 @@ The following blocks will download a specific version of Sass and Grunt pre-buil
 dependencies:
   ruby:
     sass: '3.4.7'
-  nodejs:
+  nodejs:6.9
     grunt-cli: '~0.1.13'
 
 hooks:
