@@ -47,7 +47,7 @@ dependencies:
     behave: '*'
   ruby: # Specify one Bundler package per line.
     sass: '3.4.7'
-  nodejs:6.9 # Specify one NPM package per line.
+  nodejs: # Specify one NPM package per line.
     grunt-cli: '~0.1.13'
 ```
 
