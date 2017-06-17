@@ -45,7 +45,7 @@ solrsearch:
             main:
                 core: maincore
 ```
-The above definition defines a single Solr 6.3 server.  That server has 1 core defined: `maincore` &mdash; the configuration for which is in the `.platform/solr-conf/6.x` directory.
+The above definition defines a single Solr 6.3 server.  That server has 1 core defined: `maincore` - the configuration for which is in the `.platform/solr-conf/6.x` directory.
 
 It then defines one endpoints: `main` is connected to the `maincore`.
 
@@ -83,7 +83,7 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
   if (!empty($relationships[$relationship_name][0])) {
     // Edit this value to use the the machine name of the Solr server in Drupal
     // if you are using a different server than the default one automatically
-    // created by Search API, which is named 'default_solr_server'.
+    // created by the module Search API Solr, which is named 'default_solr_server'.
     $solr_server_name = 'default_solr_server';
 
     $solr = $relationships[$relationship_name][0];
@@ -106,7 +106,5 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
 ```
 
 > **note**
-> At this time, bugs in Drupal 8 configuration system prevent new Solr servers from being added via configuration. The default server is automatically created by Search API Solr module, so this configuration will work fine for it. For multiple Solr servers or a different one other than the default you must add the new server(s) at the Search API administration page `/admin/config/search/search-api/add-server`. The newly created server(s) will use its configuration from code. See [these](https://www.drupal.org/node/2682369) [issues](https://www.drupal.org/node/2744057) for more information.
-
-> **note**
-> The configuration in effect will always be the configuration in code, even if a matching server is edited via the Search API Solr administration pages.
+> At this time, bugs in Drupal 8 configuration system prevent new Solr servers from being added via configuration. The default server is automatically created by Search API Solr module if you enable its Solr Search Defaults sub-module, so this configuration will work fine for it. For multiple Solr servers or a different one other than the default you must add the new server(s) at the Search API administration page `/admin/config/search/search-api/add-server`. The newly created server(s) will use its configuration from code. See this [issue](https://www.drupal.org/node/2744057) for more information.
+> Moreover, the configuration in effect will always be the configuration in code, even if a matching server is edited via the Search API Solr administration pages.
