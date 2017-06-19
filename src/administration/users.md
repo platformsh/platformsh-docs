@@ -21,7 +21,7 @@ the environment level:
 -   **Environment Administrator** - An environment administrator can
     change settings and execute actions on this environment.
 -   **Environment Contributor** - An environment contributor can push
-    code to this environment. He or she can also branch the environment.
+    code to this environment and branch the environment.
 -   **Environment Reader** - An environment reader can only view this
     environment.
 
@@ -47,11 +47,10 @@ If you want your users to be able to see everything (Reader), but only
 commit to a specific branch, change their permission level on that
 environment to "Contributor".
 
-> **Important!**
-> An environment contributor can push code to the environment but that user
-> role does not have SSH access to the environment.** by default only
-> environment Administrators have SSH access**. You can change the default
-> in `.platform.app.yaml` by example by specifying `ssh: contributor`
+> **SSH Access Control**
+> An environment contributor can push code to the environment and has
+> SSH access to the environment. You can change this by [specifying
+> user types](/configuration/app/access.md) with ssh access.
 
 > **note**
 > The project owner - the person licensed to use Platform.sh - doesn't have
