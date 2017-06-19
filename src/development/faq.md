@@ -14,27 +14,6 @@ If you want to delete your project and cancel your subscription, simply go to yo
 
 This will delete your project and stop invoicing for this project. If you have multiple projects, your subscription will continue until you don't have any projects left.
 
-## Can I skip waiting for a build in Git push?
-
-Yes, with Git version 2.3+, use the following one-liner and your Git push will skip waiting for the build and deploy processes to finish.
-
-```
-GIT_SSH_COMMAND='ssh -o "SendEnv PLATFORMSH_PUSH_NO_WAIT"' PLATFORMSH_PUSH_NO_WAIT=1 git push
-```
-
-If you have to use an older Git client, first modify your SSH client configuration by adding the following to the `$HOME/.ssh/config` file:
-
-```
-Host *.platform.sh
-  SendEnv PLATFORMSH_PUSH_*
-```
-
-Then, perform the Git push as follows:
-
-```
-PLATFORMSH_PUSH_NO_WAIT=1 git push
-```
-
 ## Do you support MySQL?
 
 [Platform.sh](https://platform.sh) uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
