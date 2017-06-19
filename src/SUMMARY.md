@@ -51,6 +51,7 @@
 
 * [Local development](development/local.md)
 * [Variables](development/variables.md)
+* [Headers](development/headers.md)
 * [Accessing logs](development/logs.md)
 * [Private repositories](development/private-repository.md)
 * [Git submodules](development/submodules.md)
