@@ -165,7 +165,7 @@ While you can call it manually that is generally not necessary.  Note that PHP-F
 
 ## PHP Worker sizing hints
 
-Platform.sh uses a heuristic to automatically set the number of workers of a PHP runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more or less memory.  In most cases, however, you should not need to change them.
+Platform.sh uses a heuristic to automatically set the number of workers of a PHP runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more memory.  In most cases, however, you should not need to change them unless your application container is swapping a lot.
 
 ### The heuristic
 

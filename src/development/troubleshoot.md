@@ -22,7 +22,6 @@ Otherwise, you may check if the following options are applicable:
 
 * Find the most visited pages and see if they can be cached and/or put behind a CDN.  You may refer to [how caching works](/configuration/routes/cache.md).
 * Upgrade your subscription on Platform.sh to get more computing resources.  To do so, log into your [account](https://accounts.platform.sh) and edit the project.
-* Provide [sizing hints](/languages/php.md#php-worker-sizing-hints) to PHP FPM workers.
 
 
 ## MySQL lock wait timeout
