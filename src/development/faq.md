@@ -31,14 +31,7 @@ on a distributed file system (which is transparent for you). When you back-up
 your environment they will be backed up as well. When you create a new staging
 environment... these will be cloned with the rest of your data.
 
-## Do you add custom HTTP headers?
 
-We add the following custom HTTP headers to give the application information about the connection.
-
-* "X-Forwarded-Proto": The protocol forwarded to the application, e.g. "http", "https".
-* "X-Client-IP": The remote IP address of the request.
-* "X-Client-SSL": Set "on" only if the client is using SSL connection, otherwise the header is not added.
-* "X-Original-Route": The route in `.platform/routes.yaml` which is used currently, e.g. "https://{default}/".
 
 ## How do I change timezone settings?
 
