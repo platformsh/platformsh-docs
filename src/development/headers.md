@@ -9,7 +9,7 @@ Platform.sh adds the following HTTP headers in the router to give the applicatio
 * `X-Forwarded-Proto`: The protocol forwarded to the application, e.g. "http", "https".
 * `X-Client-IP`: The remote IP address of the request.
 * `X-Client-SSL`: Set "on" only if the client is using SSL connection, otherwise the header is not added.
-* `X-Original-Rout`: The route in `.platform/routes.yaml` which is used currently, e.g. "https://{default}/".
+* `X-Original-Route`: The route in `.platform/routes.yaml` which is used currently, e.g. "https://{default}/".
 
 
 ## Response headers
