@@ -1,10 +1,10 @@
-# Memcache (Object cache)
+# Memcached (Object cache)
 
-Memcache is a simple in-memory object store well-suited for application level caching.
+Memcached is a simple in-memory object store well-suited for application level caching.
 
-See the [Memcache documentation](https://memcached.org/) for more information.
+See the [Memcached documentation](https://memcached.org/) for more information.
 
-Both Memcache and Redis can be used for application caching.  As a general rule, Memcache is simpler and thus more widely supported while Redis is more robust.  Platform.sh recommends using Redis if possible but Memcache is fully supported if an application favors that cache service.
+Both Memcached and Redis can be used for application caching.  As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust.  Platform.sh recommends using Redis if possible but Memcached is fully supported if an application favors that cache service.
 
 ## Supported versions
 
@@ -19,7 +19,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
     "cache": [
         {
             "host": "248.0.65.198",
-            "scheme": "memcache",
+            "scheme": "memcached",
             "port": 11211
         }
     ]
@@ -31,15 +31,15 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 In your ``.platform/services.yaml``:
 
 ```yaml
-memcache:
-    type: memcache:1.4
+memcached:
+    type: memcached:1.4
 ```
 
 Now add a relationship in your `.platform.app.yaml` file:
 
 ```yaml
 relationships:
-    cache: "memcache:memcache"
+    cache: "memcached:memcached"
 ```
 
 {% codetabs name="PHP", type="text" -%}
@@ -52,7 +52,7 @@ runtime:
 ```
 
 {%- language name="Python", type="text" -%}
-For Python you will need to include a dependency for a Memcache library, either via your requirements.txt file or a global dependency.  As a global dependency you would add the following to `.platform.app.yaml`:
+For Python you will need to include a dependency for a Memcached library, either via your requirements.txt file or a global dependency.  As a global dependency you would add the following to `.platform.app.yaml`:
 
 ```yaml
 dependencies:
@@ -111,9 +111,9 @@ if relationships:
 {%- endcodetabs %}
 
 
-## Accessing Memcache directly
+## Accessing Memcached directly
 
-To access the Memcache service directly you can simply use `netcat` as Memcache does not have a dedicated client tool.  Assuming your Memcache relationship is named `cache`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh.md) and access the Memcache server as follows:
+To access the Memcached service directly you can simply use `netcat` as Memcached does not have a dedicated client tool.  Assuming your Memcached relationship is named `cache`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh.md) and access the Memcached server as follows:
 
 ```bash
 netcat cache.internal 11211

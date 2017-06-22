@@ -22,7 +22,7 @@
   * [MongoDB](configuration/services/mongodb.md)
   * [InfluxDB](configuration/services/influxdb.md)
   * [Redis](configuration/services/redis.md)
-  * [Memcache](configuration/services/memcache.md)
+  * [Memcached](configuration/services/memcached.md)
   * [Solr](configuration/services/solr.md)
   * [Elasticsearch](configuration/services/elasticsearch.md)
   * [RabbitMQ](configuration/services/rabbitmq.md)
