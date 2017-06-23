@@ -133,3 +133,8 @@ page](http://documentation.mamp.info/en/documentation/mamp/).
 > substitute the actual build folder path. This means that when you
 > rebuild your project locally, you will need to repoint the docroot to
 > the symlink again so it will refresh the build path.
+
+## Do you two-factor authentication ? 
+
+Yes we do, and it is easy to enable.
+To do so please go to your **Account Settings** on our [Account site][https://accounts.platform.sh/]. Then click on the left tab called **Security** which will propose you to enable **TFA Application**. 
