@@ -7,6 +7,9 @@ type: php:7.0
 build:
     flavor: none
 
+# A static site has only minimal CPU and memory needs, so don't ask for much.
+size: S
+
 # The documentation is built using GitBook. Install the latest version
 # of it globally.
 dependencies:
