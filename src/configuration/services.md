@@ -68,6 +68,15 @@ For example, the current default storage amount per project is 5GB (meaning 5120
 
 By default Platform.sh will allocate CPU and memory resources approximately equally to each service and application container.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing](/configuration/app/size.md) page for more details.
 
+### Timezone
+
+All services have their system timezone set to UTC by default.  In most cases that is the best option.  If it's necessary to change the system timezone, however, it may be set with the `timezone` property, whose value is one of the [tz database region codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) such as `Europe/Paris` or `America/New_York`.
+
+For SQL servers it's also possible to set the timezone within the application, which will avoid making changes to the system timezone used by loggers and such.
+
+* MySQL - You can change the per-connection timezone by running SQL `SET time_zone = <timezone>;`.
+* PostgreSQL - You can change the timezone of current session by running SQL `SET TIME ZONE <timezone>;`.
+
 ## Using the services
 
 In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml](/configuration/app-containers.md) file which configures the *relationships* between applications and services.

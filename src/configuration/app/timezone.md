@@ -6,7 +6,8 @@ All Platform.sh containers default to running in UTC time.  Applications and app
 
 The system timezone for any service or app container may be set with the `timezone` property, whose value is one of the [tz database region codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) such as `Europe/Paris` or `America/New_York`.
 
-Note that setting the timezone of different services differently may result in date mismatches between different services and thus is not recommended.
+> **warning**
+> Note that setting the timezone of different services differently may result in date mismatches between different services and thus is not recommended.
 
 ## Setting an application runtime timezone
 
@@ -15,9 +16,8 @@ The application runtime timezone can also be set, although the mechanism varies 
 * PHP runtime - You can change the timezone by providing a [custom php.ini](https://docs.platform.sh/user_guide/reference/toolstacks/php/configure-php.html#custom-php-ini).
 * Node.js runtime - You can change the timezone by starting the server with `env TZ='<timezone>' node server.js`.
 * Python runtime - You can change the timezone by starting the server with `env TZ='<timezone>' python server.py`.
-* MySQL - You can change the per-connection timezone by running SQL `SET time_zone = <timezone>;`.
-* PostgreSQL - You can change the timezone of current session by running SQL `SET TIME ZONE <timezone>;`.
 
 Setting the application timezone will only affect the application itself, not system operations such as log files.
 
-In the vast majority of cases it's best to leave all timezones in UTC and store user data with an associated timezone instead.
+> **note**
+> In the vast majority of cases it's best to leave all timezones in UTC and store user data with an associated timezone instead.
