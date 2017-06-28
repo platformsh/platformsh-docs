@@ -59,7 +59,7 @@ E: Error parsing configuration files:
 
 The `disk` attribute is the size of the persistent disk (in MB) allocated to the service.
 
-For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between your application (as defined in `.platform.app.yaml`) and each of its services.
+For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between your application (as defined in `.platform.app.yaml`) and each of its services.  For memory-resident-only services such as `memcache` or `redis`, the `disk` key is not available and will generate an error if present.
 
 > **notes**
 > Currently we do not support downsizing the persistent disk of a service.
