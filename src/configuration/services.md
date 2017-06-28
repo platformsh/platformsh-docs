@@ -47,8 +47,6 @@ The `name` you want to give to your service. You are free to name each service a
 
 The `type` of your service. It's using the format ``type:version``.
 
-The version number is optional. If you don't specify a version number, the *default* version will be loaded.
-
 If you specify a version number which is not available, you'll see this error when pushing your changes:
 
 ```bash
