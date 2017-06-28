@@ -64,6 +64,10 @@ For example, the current default storage amount per project is 5GB (meaning 5120
 > **notes**
 > Currently we do not support downsizing the persistent disk of a service.
 
+### Size
+
+By default Platform.sh will allocate CPU and memory resources approximately equally to each service and application container.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing](/configuration/app/size.md) page for more details.
+
 ## Using the services
 
 In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml](/configuration/app-containers.md) file which configures the *relationships* between applications and services.
