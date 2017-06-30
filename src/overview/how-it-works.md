@@ -1,8 +1,19 @@
 # How it works
 
-Every time you push to a live branch or activate a cluster for a branch there are two main processes that happen: *Build* and *Deploy*.  The build process looks through the configuration files in your repository and assembles the necessary LXC containers.  The deploy process makes those containers live, replacing the previous versions, with virtually no interruption in service.
+Every time you push to a live branch or activate a cluster for a branch there are two main processes that happen: *Build* and *Deploy*.  The build process looks through the configuration files in your repository and assembles the necessary containers.  The deploy process makes those containers live, replacing the previous versions, with virtually no interruption in service.
 
-![The Build and Deploy pipeline](/images/build-pipeline.svg)
+[Better Build Pipe-Line Image]
+
+## Good Practices and Constraints
+
+Platform.sh promotes the practice of using a build-oriented structure; This  means that instead of comitting to your Git repository the final state of your application, you would only commit the files specific to it, any frameworks, libraries and dependcies should be pulled at build-time as should any assets that should be compiled. 
+
+The follwing three constraints make sure you have, fast, repeatable builds:
+
+1. You have to use the Git version control system to deploy your application.
+2. The build step should be environment independent (this is paramount to ensure development environments are truly perfect copy of production). This means you can not connect to services (like the database) during the build.
+2. The resulting built application must be Read-Only, if your application requires writing to the file-system, you must specify which are the directories that require Read/Write access.
+
 
 ## Building the application
 
