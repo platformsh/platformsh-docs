@@ -87,3 +87,19 @@ Options:
  --no (-n)             Answer "no" to all prompts
  --shell (-s)          Launch the shell
 ```
+
+## Installing the CLI on Windows 10
+
+To install the CLI on a Windows 10, 64-bit machine, BASH needs to be installed. Otherwise, you will need to install a Virtual Machine running Linux. The Windows 10 Anniversary Update is needed for support for git and apt/apt-get.
+
+To install Bashm you need to:
+
+1 ) Activate the Developer Mode in "Update & Security" in the Windows Settings. This will prompt you to restart your computer.
+2 ) Activate the Windows Subsystem for Linux (Beta) in "Turn Windows features on or off" in the Programs and Features section of the Windows Control Panel. Once again, you will need to restart your computer.
+3 ) In the start menu, search for the program "bash.exe", which will prompt you to install it from thw Windows Store.
+
+Bash is now installed. 
+
+You can read more here: https://www.windowscentral.com/how-install-bash-shell-command-line-windows-10
+
+Upon starting it, you will be asked to choose a user name. According to the article, it doesn't have to be the same username as your current username, but if the username don't exist, the Linux system might not be able to create the Linux directory (depending on your protection scheme on your Windows 10 machine). It is therefore recommended you use the same username for Linux as your Windows machine, provided your Windows user name isn't "Admin".
