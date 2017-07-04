@@ -78,6 +78,7 @@ Production plans come in three flavors:
 * Large: with 7GB of dedicated memory
 
 ### Multiple Applications in a single project
+
 All Platform.sh plans support multiple applications in a single cluster but
 they all share the global resource of the cluster.
 
@@ -107,4 +108,14 @@ Please [contact our sales department](https://platform.sh/contact/#form) to disc
 
 The Platform.sh Agency Plan (PAP) waives developer license fees, lets anyone on your team start projects, and permits all-hands access to any site. In addition you get a 10% commission when you recommend Platform.sh to your customers.
 
-Please [contact our sales department](https://platform.sh/contact/#form) to discuss how we can help you.
+Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
+
+## Sovereign German Cloud and Australian Region
+
+In our current checkout flow the region selection happens after the plan selection. When you go through the checkout process (https://accounts.platform.sh/platform/buy-now) the prices shown in the estimation page are for our default cloud regions (EU and US). Plans on the Sovereign German Cloud region and the Australian region have different prices. 
+
+The prices for Germany and Australia are currently set at 30% above the EU and US plan prices. So a "Production Standard" environment on the Sovereign German Cloud will be $65 instead of $50.
+
+Our estimation page (which you can reach by clicking on your account dashboard on the edit link for a project) will soon be updated to reflect these new options.
+
+If you have any questions don't hesitate to [contact our sales department](https://platform.sh/contact/).
