@@ -31,11 +31,6 @@ can then choose which branch you want to clone first.
 
 ```bash
 ~/htdocs $ platform get [project-id] my-project
-  Enter a number to choose which environment to checkout:
-  [0] : Master
-  [1] : Sprint1
-  [2] : test
-  1
   Cloning into 'my-project/repository'...
   remote: counting objects: 11, done.
   Receiving objects: 100% (11/11), 1.36 KiB | 0 bytes/s, done.
