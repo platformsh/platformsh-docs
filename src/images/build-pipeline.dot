@@ -1,40 +1,54 @@
-digraph "Build pipeline" {
-    graph [rankdir=TB]
+digraph "Build & Deploy Pipeline" {
     compound=true
-
+    layout=dot
+ 
     node[
-        shape=record
+        shape=record;
+        fontname="Open Sans";
+        style="filled";
+        fillcolor="#3BA9E0";
+        fontcolor="white"
+        color="#3BA9E0";
+        fontsize=14;
     ]
 
 
     subgraph cluster_build {
-      label="Build Phase"
+      label="1. Build Phase";
+      fontname="Open Sans";
+      fontcolor="#33333300";
+      color="white";
 
-      Push[label="Git Push"]
-      Container[label="Assemble container"]
-      PshBuild[label="Run Build Flavor commands"]
-      Dependencies[label="Install dependencies"]
-      BuildHook[label="Run build hook"]
-      Freeze[label="Freeze app container"]
+      
+      Push[label="Git Push", shape=circle, fontsize=12]
+      Validate[label="Validate configuration", fontsize=9]
+      Container[label="Pull container image", fontsize=9]
+      PshBuild[label="Run Build Flavor commands", fontsize=9]
+      Dependencies[label="Install dependencies", fontsize=9]
+      BuildHook[label="Run build hook", fontsize=9]
+      Freeze[label="Freeze app container", fontsize=9]
     }
 
     subgraph cluster_deploy {
-      label="Deploy Phase"
-
-      Close[label="Hold requests"]
-      Unmount[label="Unmount current containers"]
-      Mount[label="Mount file systems"]
-      Services[label="Expose services"]
-      Start[label="Run start command"]
-      DeployHook[label="Run Deploy hook"]
-      Open[label="Serve requests"]
+      label="2. Deploy Phase";
+      fontname="Open Sans";
+      fontcolor="#33333300";
+      color="white";
+      
+      Close[label="Hold requests", fontsize=9]
+      Unmount[label="Unmount current containers", fontsize=9]
+      Mount[label="Mount file systems", fontsize=9]
+      Services[label="Expose services", fontsize=9]
+      Start[label="Run start command", fontsize=9]
+      DeployHook[label="Run Deploy hook", fontsize=9]
+      Open[label="Serve requests", shape=circle, fontsize=12]
     }
 
     /* Build process */
-    Push->Container->Dependencies->PshBuild->BuildHook->Freeze
+    Push->Container->Validate->Dependencies->PshBuild->BuildHook->Freeze
 
     /* Deploy process */
-    Freeze->Close[lhead=cluster_deploy]
+    Freeze->Close[lhead=cluster_deploy, constraint=false, penwidth = 6, color="#3BA9E0";]
     Close->Unmount->Mount->Services->Start->DeployHook->Open
 }
 

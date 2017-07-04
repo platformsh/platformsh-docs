@@ -94,17 +94,15 @@ contact our support.
 
 Enterprise plans start at around $1000 a month.
 
-So for a price lower than traditional managed hosting, you get included
-development and staging environments and triple redundancy on every element of
-the stack.
+For a price lower than traditional managed hosting, you get included
+development and staging environments, triple redundancy on every element of
+the stack with:
 
-> With 99.99% Uptime Guaranteed
+>  99.99% Uptime Guaranteed
 > And 24/7 White Glove On-boarding and Support
 
-Please [contact our sales department](https://platform.sh/contact/#form) to discuss how we can help you.
+Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
 
-## Agency
+## Agencies
 
-The Platform.sh Agency Plan (PAP) waives developer license fees, lets anyone on your team start projects, and permits all-hands access to any site. In addition you get a 10% commission when you recommend Platform.sh to your customers.
-
-Please [contact our sales department](https://platform.sh/contact/#form) to discuss how we can help you.
+We propose three tiers for agencies with many perks. Free user licenses, a free site for your own agency,  up to 10% customer lifetime referral fees and 15% discounts, access to an agency speciﬁc "Small" price plan, free Medium or Large plan website for your own agency site and free Small plan for every Enterprise project sold ... and more !   [Learn more and join today...](https://platform.sh/solutions/agency)  
