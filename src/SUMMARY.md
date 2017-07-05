@@ -1,9 +1,9 @@
 
 ## The Big Picture
 
-* [How we think](overview/basics.md)
-* [How it looks](overview/structure.md)
-* [How it works](overview/how-it-works.md)
+* [Basics](overview/basics.md)
+* [Structure](overview/structure.md)
+* [Build & Deploy](overview/how-it-works.md)
 * [Tools](overview/tools.md)
 * [Platform CLI](overview/cli.md)
 * [Pricing](overview/pricing.md)

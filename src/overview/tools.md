@@ -1,4 +1,4 @@
-# Technical Requirements Git and SSH
+# Technical Requirements: Git and SSH
 
 ## Git
 

@@ -4,8 +4,7 @@ Every application you deploy on Platform.sh is built as a *virtual cluster*, con
 
 There are three types of containers within your cluster: One *Router*, one or more *Applications*, and zero or more *Services*.  When deployed, they conceptually look like this:
 
-
-[Better Service Grid Image]
+![](https://platform.sh/sites/default/files/scalable-images/architecture-simple.svg)
 
 
 All of those containers are managed by three special files in your Git repository: `.platform/routes.yaml`, `.platform/services.yaml`, and `.platform.app.yaml`.
@@ -32,6 +31,6 @@ Service containers are configured by the `services.yaml` file.  There may be zer
 
 ## Application
 
-There is always at least one Application container per cluster, but there may be more.  Each application container corresponds to a `.platform.app.yaml` file in the repository.  If there are 3 `.platform.app.yaml` files, there will be three Application containers.  Application containers hold the code you provide via your Git repository.  Application containers are always built off of one of the Platform.sh-provided language-specific images, such as “PHP 5.6”, “PHP 7.0”, or “Python 3.5”. And different application containers can be running different languages or versions.
+There is always at least one Application container per cluster, but there may be more.  Each application container corresponds to a `.platform.app.yaml` file in the repository.  If there are 3 `.platform.app.yaml` files, there will be three Application containers.  Application containers hold the code you provide via your Git repository.  Application containers are always built off of one of the Platform.sh-provided language-specific images, such as “PHP 5.6”, “PHP 7.2”, or “Python 3.6”. And different application containers can be running different languages or versions.
 
 For most typical applications there is only one `.platform.app.yaml` file, which is generally placed at the repository root.
