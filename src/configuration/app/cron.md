@@ -5,14 +5,13 @@ Cron jobs allow you to run scheduled tasks at specified times or intervals. The 
 It has a few subkeys listed below:
 
 -   **spec**: The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). For example: `*/20 * * * *` to run every 20 minutes.
+-   **timezone**: The timezone in which the `spec` should be interpreted.  Its value is one of the [tz database region codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) such as `Europe/Paris` or `America/New_York`.  If not specified UTC time is used.  This entry is only meaningful on cron specs that specify a particular time of day, rather than a "time past each hour".  For example, `25 1 * * *` would run every day at 1:25 am in the timezone specified. 
 -   **cmd**: The command that is executed, for example
     `cd public ; drush core-cron`
 
-The minimum interval between cron runs is 5 minutes, even if specified as less.  Additionally, a variable delay is added to each cron job in each project in order to prevent host overloading at midnight every night when every project runs their nightlies.  Your crons will *not* run exactly at the time that you specify, but will be delayed by 0-300 seconds.
+The minimum interval between cron runs is 5 minutes, even if specified as less.  Additionally, a variable delay is added to each cron job in each project in order to prevent host overloading should every project try to run their nightly tasks at the same time.  Your crons will *not* run exactly at the time that you specify, but will be delayed by 0-300 seconds.
 
 Cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
-
-All server times are in UTC, and hence so are the cron schedules.
 
 ## How do I setup Cron for a typical Drupal site?
 

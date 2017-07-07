@@ -70,9 +70,7 @@ By default Platform.sh will allocate CPU and memory resources approximately equa
 
 ### Timezone
 
-All services have their system timezone set to UTC by default.  In most cases that is the best option.  If it's necessary to change the system timezone, however, it may be set with the `timezone` property, whose value is one of the [tz database region codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) such as `Europe/Paris` or `America/New_York`.
-
-For SQL servers it's also possible to set the timezone within the application, which will avoid making changes to the system timezone used by loggers and such.
+All services have their system timezone set to UTC by default.  In most cases that is the best option.  For some applications it's possible to change the application timezone, which will affect only the running application itself.
 
 * MySQL - You can change the per-connection timezone by running SQL `SET time_zone = <timezone>;`.
 * PostgreSQL - You can change the timezone of current session by running SQL `SET TIME ZONE <timezone>;`.

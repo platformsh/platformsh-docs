@@ -1,13 +1,12 @@
-# System timezone
+# Cron timezone
 
-All Platform.sh containers default to running in UTC time.  Applications and application runtimes may elect to use a different timezone but the container itself runs in UTC.  That is usually fine and a correct configuration but occasionally there is cause to run the server in a specific timezone.
+All Platform.sh containers default to running in UTC time.  Applications and application runtimes may elect to use a different timezone but the container itself runs in UTC.  That includes the `spec` parameter for cron tasks that  
 
-## Setting the system timezone
+That is generally fine but sometimes it's necessary to run cron tasks in a different timezone.
 
-The system timezone for any service or app container may be set with the `timezone` property, whose value is one of the [tz database region codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) such as `Europe/Paris` or `America/New_York`.
+## Setting the system timezone for cron tasks
 
-> **warning**
-> Note that setting the timezone of different services differently may result in date mismatches between different services and thus is not recommended.
+The `timezone` property sets the timezone for which the `spec` property of any [cron tasks](/configuration/app/cron.md) defined by the application will be interpreted.  Its value is one of the [tz database region codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) such as `Europe/Paris` or `America/New_York`.  In most cases it's more self-descriptive to set the timezone on the cron task itself, however.
 
 ## Setting an application runtime timezone
 
