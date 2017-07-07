@@ -36,7 +36,7 @@ database2:
   disk: 1024
 ```
 
-## Name
+### Name
 
 The `name` you want to give to your service. You are free to name each service as you wish
 (*lowercase alphanumeric only*).
@@ -68,7 +68,7 @@ For example, the current default storage amount per project is 5GB (meaning 5120
 
 By default Platform.sh will allocate CPU and memory resources approximately equally to each service and application container.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing](/configuration/app/size.md) page for more details.
 
-### Timezone
+## Service timezones
 
 All services have their system timezone set to UTC by default.  In most cases that is the best option.  For some applications it's possible to change the application timezone, which will affect only the running application itself.
 
