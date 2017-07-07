@@ -4,11 +4,11 @@ By default, Platform.sh will automatically select appropriate resource sizes (CP
 
 Usually that's fine, but sometimes it's undesirable.  You may, for instance, want to have a queue worker container that you know has low memory and CPU needs, so it's helpful to give that one fewer resources and another container more.  Or a given service may be very heavily used in your architecture so it needs all the resources it can take.  In those cases you can provide sizing hints to the system on a per-service basis.
 
-Every application container as well as every service in `.platform/services.yaml` supports a `size` key, which instructs the system how many resources to allocate to it.  The exact CPU and memory allocated will depend on the application or service type.
+Every application container as well as every service in `.platform/services.yaml` supports a `size` key, which instructs the system how many resources to allocate to it.  The exact CPU and memory allocated will depend on the application or service type, and we may adjust these values over time to give .
 
 Legal values for the `size` key are `AUTO` (the default), `S`, `M`, `L`, `XL`.
 
-Note that in a development environment this value is ignored and always set to `S`.  It will only take effect in a production deployment.  If the total resources requested by all apps and services is smaller than what the plan size allows then a production deployment will fail with an error.
+Note that in a development environment this value is ignored and always set to `S`.  It will only take effect in a production deployment (a master branch with an associated domain).  If the total resources requested by all apps and services is smaller than what the plan size allows then a production deployment will fail with an error.
 
 # How do I make a queue worker container smaller to save resources?
 

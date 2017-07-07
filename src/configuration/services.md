@@ -66,7 +66,7 @@ For example, the current default storage amount per project is 5GB (meaning 5120
 
 ### Size
 
-By default Platform.sh will allocate CPU and memory resources approximately equally to each service and application container.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing](/configuration/app/size.md) page for more details.
+By default, Platform.sh will allocate CPU and memory resources to each container automatically.  Some services are optimized for high CPU load, some for high memory load.  By default, Platform.sh will try to allocate the largest "fair" size possible to all services, given the available resources on the plan.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing](/configuration/app/size.md) page for more details.
 
 ## Service timezones
 
