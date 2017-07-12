@@ -44,6 +44,28 @@ drush will then be available at vendor/bin/drush, in the exact same version on y
 
 > -   [Install Drush](https://github.com/drush-ops/drush)
 
+## Install Drush in custom projects
+
+### Make Drush a project requirement
+
+Run this command in the project's repository folder:
+```bash
+$ composer require drupal/drush
+```
+Then, commit and push.
+
+### Add Drush to the project's $PATH
+
+Add a new file named `.environment` to the root of your your project's git repository with this code:
+```bash
+# Statements in this file will be executed (sourced) by the shell in SSH
+# sessions, in deploy hooks, in cron jobs, and in the application's runtime
+# environment.
+
+# Allow executable app dependencies from Composer to be run from the path.
+export PATH=/app/vendor/bin:$PATH
+```
+
 ## Use drush aliases
 
 ### Create Drush aliases
