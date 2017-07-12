@@ -40,7 +40,7 @@ You can also install Drush as part of your application, by running the following
 $ composer require drupal/drush
 ```
 
-drush will then be available at vendor/bin/drush, in the exact same version on your local system and on Platform.sh.
+drush will then be available at `vendor/bin/drush`, in the exact same version on your local system and on Platform.sh.
 
 > -   [Install Drush](https://github.com/drush-ops/drush)
 
