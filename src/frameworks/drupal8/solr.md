@@ -42,7 +42,7 @@ solrsearch:
             maincore:
                 conf_dir: !archive "solr-conf/6.x"
         endpoints:
-            main:
+            solr:
                 core: maincore
 ```
 The above definition defines a single Solr 6.3 server.  That server has 1 core defined: `maincore` - the configuration for which is in the `.platform/solr-conf/6.x` directory.
@@ -96,7 +96,7 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
     $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config']['core'] = $core;
 
     // The path is always 'solr'.
-    $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config']['path'] = 'solr';
+    $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config']['path'] = '/solr';
 
     // Gets the host and port from the values returned from the relationship.
     $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config']['host'] = $solr['host'];
