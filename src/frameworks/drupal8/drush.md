@@ -11,10 +11,12 @@ Drush before, you can learn more about it on the [Drush GitHub
 Repository](https://github.com/drush-ops/drush#description)
 
 
-Platform.sh Drupal templates have Drush installed automatically. All custom environments can utilize Drush commands in the development process if they have `drush` configured as a composer requirement and added it to the environment's `$PATH`. In addition, you can use the CLI to set up Drush aliases to easily run Drush commands on specific remote Platform.sh environments.
+Platform.sh Drupal templates have Drush installed automatically. All custom environments can utilize Drush commands in the development process if they have `drush` configured as a composer requirement and added it to the environment's `$PATH`. In addition, you can use the Platform CLI to set up Drush aliases to easily run Drush commands on specific remote Platform.sh environments.
 
 > **note**
-> Platform's CLI requires **Drush 6 or greater**.
+> * Platform's CLI requires **Drush 6 or greater**.
+>
+> * The Platform CLI command to automatically set up Drush aliases is: `platform drush-aliases -r`
 
 ## Install Drush locally
 
