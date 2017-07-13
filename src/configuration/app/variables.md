@@ -4,7 +4,7 @@ Platform.sh provides a number of ways to set [variables](/development/variables.
 
 Only prefixed variables may be set from the `.platform.app.yaml` file.  Some prefixes have specific meaning while others are only significant to a particular application.  Nested variables will be automatically converted into a nested array or list structure as appropriate to the language.
 
-For example, the following section in `.platform.app.yaml` will set a single variable named `env:AUTHOR` to the value `Larry`.
+For example, the following section in `.platform.app.yaml` will set a single variable named `env:AUTHOR` to the value `Juan`.
 
 ```yaml
 variables:
