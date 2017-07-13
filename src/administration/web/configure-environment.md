@@ -28,6 +28,9 @@ The access control is very helpful if you need your development
 environments to be restricted by a login/password, or be accessible by
 only a certain range of IP addresses. Changes to access control will
 only become active on the environment's next deployment.
+You can allow or deny access to specific IPs by switchin `ON` the access control button and then adding IPs followed by `allow` or `deny` mention as you want.
+
+![Allowing or denying specific ips to project settings](/images/ui-conf-project-access-ip-settings.png)
 
 ## Variables
 
