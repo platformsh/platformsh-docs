@@ -10,11 +10,15 @@ commands at [Drush.org](http://www.drush.org). If you have never used
 Drush before, you can learn more about it on the [Drush GitHub
 Repository](https://github.com/drush-ops/drush#description)
 
+- Platform.sh Drupal templates have Drush installed automatically.
 
-Platform.sh Drupal templates have Drush installed automatically. All custom environments can utilize Drush commands in the development process if they have `drush` configured as a composer requirement and added it to the environment's `$PATH`. In addition, you can use the [Platform.sh CLI](/overview/cli.md) to set up Drush aliases easily for all of your project's environments.
+- All custom environments can utilize Drush commands in the development process if they have `drush` configured as a composer requirement and added it to the environment's `$PATH`.[¹](#install-drush-in-custom-projects)
+
+- In addition, you can use the [Platform.sh CLI](/overview/cli.md) to set up Drush aliases easily for all of your project's environments.[²](#use-drush-aliases)
 
 > **note**
-> * The Platform.sh CLI command to automatically set up Drush aliases is: `platform drush-aliases -r`
+>
+> Platform's CLI requires **Drush 6 or greater**.
 
 ## Install Drush locally
 
@@ -32,25 +36,19 @@ $ drush
 
 And see a list of available commands.
 
-You can also install Drush as part of your application, by running the following command in your application root:
-
-```bash
-$ composer require drupal/drush
-```
-
-drush will then be available at `vendor/bin/drush`, in the exact same version on your local system and on Platform.sh.
-
-> -   [Install Drush](https://github.com/drush-ops/drush)
+> -   [Drush repository on Github](https://github.com/drush-ops/drush)
 
 ## Install Drush in custom projects
 
 ### Make Drush a project requirement
 
-Run this command in the project's repository folder:
+Run this command in the project's repository root folder:
 ```bash
 $ composer require drupal/drush
 ```
 Then, commit and push.
+
+Drush will then be available at `vendor/bin/drush`, in the exact same version on your local system and on Platform.sh.
 
 ### Add Drush to the project's $PATH
 
@@ -72,7 +70,9 @@ export PATH=/app/vendor/bin:$PATH
 example of a [Drush alias
 file](https://github.com/drush-ops/drush/blob/master/examples/example.aliases.drushrc.php).
 
-The Platform.sh CLI generates Drush aliases for you automatically when you run `platform get [project_id]`. To see the aliases that are created, run `platform drush-aliases` and you should get output similar to that below:
+The Platform.sh CLI generates Drush aliases for you automatically when you run `platform get [project_id]`. 
+
+To see the aliases that are created, run `platform drush-aliases` and you should get output similar to that below:
 
 ```bash
 $ platform drush-aliases
@@ -82,3 +82,5 @@ Aliases for My Site (tqmd2kvitnoly):
     @my-site.staging
     @my-site.sprint1
 ```
+
+To recreate existing aliases, or after pushing a new branch via git to create the new alias, run `platform drush-aliases -r`
