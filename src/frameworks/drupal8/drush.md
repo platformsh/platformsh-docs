@@ -10,11 +10,11 @@ commands at [Drush.org](http://www.drush.org). If you have never used
 Drush before, you can learn more about it on the [Drush GitHub
 Repository](https://github.com/drush-ops/drush#description)
 
-- Platform.sh Drupal templates have Drush installed automatically.
+- Platform.sh's Drupal templates have Drush installed automatically.
 
-- All custom environments can utilize Drush commands in the development process if they have `drush` configured as a composer requirement and added it to the environment's `$PATH`.[¹](#install-drush-in-custom-projects)
+- All custom environments can utilize Drush commands in the development process if they have `drush` configured as a composer requirement and added it to the environment's `$PATH`. See the section below on [install Drush in custom projects](#install-drush-in-custom-projects)
 
-- In addition, you can use the [Platform.sh CLI](/overview/cli.md) to set up Drush aliases easily for all of your project's environments.[²](#use-drush-aliases)
+- In addition, you can use the [Platform.sh CLI](/overview/cli.md) to set up Drush aliases easily for all of your project's environments. See the section below on [use drush aliases](#use-drush-aliases)
 
 > **note**
 >
