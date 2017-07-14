@@ -1,6 +1,6 @@
 # Using Solr with Drupal 8.x
 
-Platform.sh recommends using Solr version 6.3, yet we support [other versions](../../configuration/services/solr.md#supported-versions). The following instructions are for Solr 6, but they also work for the previous versions if you change the version numbers accordingly.
+Platform.sh recommends using Solr version 6.6, yet we support [other versions](../../configuration/services/solr.md#supported-versions). The following instructions are for Solr 6, but they also work for the previous versions if you change the version numbers accordingly.
 
 Advanced Solr service configuration and implementation in other frameworks other than Drupal can be found at the [Solr services page](../../configuration/services/solr.md)
 
@@ -35,7 +35,7 @@ First you need to create a Solr service.  In your `.platform/services.yaml` file
 
 ```yaml
 solrsearch:
-    type: solr:6.3
+    type: solr:6.6
     disk: 1024
     configuration:
         cores:
@@ -45,7 +45,7 @@ solrsearch:
             solr:
                 core: maincore
 ```
-The above definition defines a single Solr 6.3 server.  That server has 1 core defined: `maincore` - the configuration for which is in the `.platform/solr-conf/6.x` directory.
+The above definition defines a single Solr 6.6 server.  That server has 1 core defined: `maincore` - the configuration for which is in the `.platform/solr-conf/6.x` directory.
 
 It then defines one endpoints: `main` is connected to the `maincore`.
 
