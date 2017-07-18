@@ -15,15 +15,14 @@ Platform.sh promotes the practice of using a build-oriented structure; This  mea
 
 The following two constraints make sure you have, fast, repeatable builds:
 
-
 1. The build step should be environment independent (this is paramount to ensure development environments are truly perfect copies of production). This means you can not connect to services (like the database) during the build.
 2. The resulting built application must be Read-Only, if your application requires writing to the file-system,  this can easily be done by specifying which are the directories that require Read/Write access. These should not be directories that have code because that would be a security risk.
 
 ## Building the application
 
-After you push your code the first build step is to validate your configuration files (.platform.app.yaml, .platform/services.yaml and .platform/routes.yaml). The git server will issue an error if validation fails, and nothing will have happened on the server.
+After you push your code the first build step is to validate your configuration files (`.platform.app.yaml`, `.platform/services.yaml` and `.platform/routes.yaml`). The git server will issue an error if validation fails, and nothing will have happened on the server.
 
->Most projects have a single `.platform.app.yaml` file  Platform.sh supports multiple applications in a single project, it will scan the repository for `.platform.app.yaml` in subdirectories and will build each subdirectory that contains one as an independent application (the built application will not contain any directories above the one in which it is found); The system is smart enough not to rebuild applications that have already been built, so if you have multiple applications, only the one that changed will be rebuilt and redeployed.
+> Most projects have a single `.platform.app.yaml` file  Platform.sh supports multiple applications in a single project.  It will scan the repository for `.platform.app.yaml` files in subdirectories and will build each subdirectory that contains one as an independent application. The built application will not contain any directories above the one in which it is found. The system is smart enough not to rebuild applications that have already been built, so if you have multiple applications, only the one that changed will be rebuilt and redeployed.
 
 The live environment is composed of multiple containers - both for your application(s) and for  the services it depends on. It also has a virtual network that connects them as well as a router that routes incoming requests to you application(s).
 
@@ -35,7 +34,7 @@ Based on your application type the system will select one of our pre-built conta
 
 3. Finally, run the “build hook” from the configuration file.  The build hook is simply one or more shell commands that you write to finish creating your production code base.  That could be compiling Sass files, running a Gulp or Grunt script, rearranging files on disk, compiling an application in a compiled language, or whatever else you want.  Note that at this point all you have access to is the file system; there are no services or other databases available.
 
-Once all of that is completed, we freeze the file system and produce a read-only container image.  That container is the final build artefact: A reliable, repeatable snapshot of your application, built the way you want, with the environment you want.
+Once all of that is completed, we freeze the file system and produce a read-only container image.  That container is the final build artifact: A reliable, repeatable snapshot of your application, built the way you want, with the environment you want.
 
 Because  container configuration (both for your application and its underlying services) is exclusively based on your configuration files, and your configuration files are managed through Git, we know that a given container has a 1:1 relationship with a Git commit.  That means builds are always repeatable.  It also means we can, if we detect that there are no changes that would affect a given container, simply skip the build step entirely and reuse the existing container image, saving a great deal of time.
 
@@ -47,9 +46,9 @@ Deploying the application also has several steps, although they’re much quicke
 
 First, we pause all incoming requests and hold them so that there’s no interruption of service.  Then we disconnect the current containers from their file system mounts, if any, and connect the file systems to the new containers instead.  If it’s a new branch and there is no existing file system, we clone it from the parent branch.
 
-We then open networking connections between the various containers, but only those that were specified in the configuration files (within the `relationships` key).  No configuration, no connection. That helps with security, as only those connections that are actually needed even exist.  The connection information for each service is available in an application as environment variables.
+We then open networking connections between the various containers, but only those that were specified in the configuration files (using the `relationships` key).  No configuration, no connection. That helps with security, as only those connections that are actually needed even exist.  The connection information for each service is available in an application as environment variables.
 
-Now that we have working, running containers there are two more steps to run.  First, if there is a “start” command specified in your `.platform.app.yaml` file to start the application we run that (with PHP this is optional.)
+Now that we have working, running containers there are two more steps to run.  First, if there is a “start” command specified in your `.platform.app.yaml` file to start the application we run that. (With PHP this is optional.)
 
 Then we run your deploy hook.  Just like the build hook, the deploy hook is any number of shell commands you need to prepare your application.  Usually this includes clearing caches, running database migrations, and so on.  You have complete access to all services here as your application is up and running, but the file system where your code lives will now be read-only.
 

@@ -23,11 +23,9 @@ We offer a free trial period so you can test the service and see how great it
 is. If ever you need more time to evaluate Platform.sh please contact our sales
 representatives. They can issue you an extra voucher to prolong your test.
 
-> In this section we describe the billing in US Dollars, you will be billed in
-> Dollars, Euros or British Pounds depending on where your billing address is.
+> Prices below are listed in US Dollars.  You will be billed in US Dollars, Euros, or British Pounds depending on where your billing address is.
 
-> Euro Prices are presented excluding VAT, in your bill, as appropriate we will
-> include the correct VAT rate.
+> Euro Prices are presented excluding VAT.  In your bill, as appropriate we will include the correct VAT rate.
 
 ## Extras
 
@@ -82,8 +80,7 @@ Production plans come in three flavors:
 All Platform.sh plans support multiple applications in a single cluster but
 they all share the global resource of the cluster.
 
-The resources of a **Standard plan are not sufficient to run more then one
-application** in the same cluster if there is also a MySQL database as a service. So useful multi-apps start at Medium.
+The resources of a **Standard plan are not sufficient to run more then one application** in the same cluster if there is also a MySQL database as a service. So useful multi-apps start at Medium.
 
 A Medium plan for example can support 3 Apps with a MySQL Instance and a Redis
 instance.
