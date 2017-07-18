@@ -103,11 +103,21 @@ Please [contact our sales department](https://platform.sh/contact/) to discuss h
 
 ## Agencies
 
-We propose three tiers for agencies with many perks. Free user licenses, a free site for your own agency,  up to 10% customer lifetime referral fees and 15% discounts, access to an agency speciﬁc "Small" price plan, free Medium or Large plan website for your own agency site and free Small plan for every Enterprise project sold ... and more !   [Learn more and join today...](https://platform.sh/solutions/agency)  
+We propose three tiers for agencies with many perks.
+
+* Free user licenses
+* A free site for your own agency
+* Up to 10% customer lifetime referral fees and 15% discounts
+* Access to an agency speciﬁc "Small" price plan
+* Free Medium or Large plan website for your own agency site
+* Free Small plan for every Enterprise project sold
+* &hellip;and more!
+
+[Learn more and join today...](https://platform.sh/solutions/agency)
 
 ## Sovereign German Cloud and Australian Region
 
-In our current checkout flow the region selection happens after the plan selection. When you go through the checkout process (https://accounts.platform.sh/platform/buy-now) the prices shown in the estimation page are for our default cloud regions (EU and US). Plans on the Sovereign German Cloud region and the Australian region have different prices. 
+In our current checkout flow the region selection happens after the plan selection. When you go through the [checkout process](https://accounts.platform.sh/platform/buy-now) the prices shown in the estimation page are for our default cloud regions (EU and US). Plans on the Sovereign German Cloud region and the Australian region have different prices.
 
 The prices for Germany and Australia are currently set at 30% above the EU and US plan prices. So a "Production Standard" environment on the Sovereign German Cloud will be $65 instead of $50.
 
