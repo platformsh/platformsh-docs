@@ -11,7 +11,7 @@ Every time you push to a live branch (a git branch with an active environment at
 
 ## Good Practices and Constraints
 
-Platform.sh promotes the practice of using a build-oriented structure; This  means that instead of committing to your Git repository the final state of your application, you would only commit the files specific to it, any frameworks, libraries and dependencies should be pulled at build-time as should any assets that should be compiled. 
+Platform.sh promotes the practice of using a build-oriented structure; This  means that whenever possible you should avoid committing build assets to your repository that can be regenerated at build time.  Depending on your application that may include 3rd party libraries and frameworks, generated and optimized CSS and JS files, generated source code, etc.
 
 The following two constraints make sure you have, fast, repeatable builds:
 
