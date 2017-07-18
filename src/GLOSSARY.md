@@ -16,3 +16,12 @@ environment configuration page on Platform.sh Web Interface.
 
 ## Production plan
 A subscription level which allows you to host your production website by adding a domain and a custom SSL certificate.
+
+## PaaS
+A Platform as a Service is an end-to-end hosting solution that includes workflow tools, APIs, and other functionality above and beyond basic hosting.  The best example is Platform.sh (although we are a little biased).
+
+## YAML
+[YAML](https://en.wikipedia.org/wiki/YAML) ("YAML Ain't Markup Language") is a human-readable data file format, well suited to human-edited configuration files.  All user-configuration files at Platform.sh use YAML.
+
+## Cluster
+Every active environment is deployed as a cluster, that is, a collection of independent containers representing different services that make up your web application.  That may include a database container, an Elasticsearch container, a container for your application, etc.  They are always deployed together as a single unit.
