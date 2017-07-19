@@ -23,11 +23,9 @@ We offer a free trial period so you can test the service and see how great it
 is. If ever you need more time to evaluate Platform.sh please contact our sales
 representatives. They can issue you an extra voucher to prolong your test.
 
-> In this section we describe the billing in US Dollars, you will be billed in
-> Dollars, Euros or British Pounds depending on where your billing address is.
+> Prices below are listed in US Dollars.  You will be billed in US Dollars, Euros, or British Pounds depending on where your billing address is.
 
-> Euro Prices are presented excluding VAT, in your bill, as appropriate we will
-> include the correct VAT rate.
+> Euro Prices are presented excluding VAT.  In your bill, as appropriate we will include the correct VAT rate.
 
 ## Extras
 
@@ -82,8 +80,7 @@ Production plans come in three flavors:
 All Platform.sh plans support multiple applications in a single cluster but
 they all share the global resource of the cluster.
 
-The resources of a **Standard plan are not sufficient to run more then one
-application** in the same cluster if there is also a MySQL database as a service. So useful multi-apps start at Medium.
+The resources of a **Standard plan are not sufficient to run more then one application** in the same cluster if there is also a MySQL database as a service. So useful multi-apps start at Medium.
 
 A Medium plan for example can support 3 Apps with a MySQL Instance and a Redis
 instance.
@@ -95,24 +92,32 @@ contact our support.
 
 Enterprise plans start at around $1000 a month.
 
-So for a price lower than traditional managed hosting, you get included
-development and staging environments and triple redundancy on every element of
-the stack.
+For a price lower than traditional managed hosting, you get included
+development and staging environments, triple redundancy on every element of
+the stack with:
 
-> With 99.99% Uptime Guaranteed
+>  99.99% Uptime Guaranteed
 > And 24/7 White Glove On-boarding and Support
-
-Please [contact our sales department](https://platform.sh/contact/#form) to discuss how we can help you.
-
-## Agency
-
-The Platform.sh Agency Plan (PAP) waives developer license fees, lets anyone on your team start projects, and permits all-hands access to any site. In addition you get a 10% commission when you recommend Platform.sh to your customers.
 
 Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
 
+## Agencies
+
+We propose three tiers for agencies with many perks.
+
+* Free user licenses
+* A free site for your own agency
+* Up to 10% customer lifetime referral fees and 15% discounts
+* Access to an agency speciﬁc "Small" price plan
+* Free Medium or Large plan website for your own agency site
+* Free Small plan for every Enterprise project sold
+* &hellip;and more!
+
+[Learn more and join today...](https://platform.sh/solutions/agency)
+
 ## Sovereign German Cloud and Australian Region
 
-In our current checkout flow the region selection happens after the plan selection. When you go through the checkout process (https://accounts.platform.sh/platform/buy-now) the prices shown in the estimation page are for our default cloud regions (EU and US). Plans on the Sovereign German Cloud region and the Australian region have different prices. 
+In our current checkout flow the region selection happens after the plan selection. When you go through the [checkout process](https://accounts.platform.sh/platform/buy-now) the prices shown in the estimation page are for our default cloud regions (EU and US). Plans on the Sovereign German Cloud region and the Australian region have different prices.
 
 The prices for Germany and Australia are currently set at 30% above the EU and US plan prices. So a "Production Standard" environment on the Sovereign German Cloud will be $65 instead of $50.
 

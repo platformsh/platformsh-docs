@@ -2,7 +2,7 @@
 
 This repository holds the public user documentation for [Platform.sh](https://platform.sh/).
 
-Our documentation site ([Docs.Platform.sh](https://docs.platform.sh/)) is itself hosted on Platform.sh, and built using our powerful build-and-deploy system.
+Our documentation site ([docs.platform.sh](https://docs.platform.sh/)) is itself hosted on Platform.sh, and built using our powerful build-and-deploy system.
 
 Every pull request is automatically built on Platform.sh, and a link provided to a fully built environment just for that PR.  Have a look in any open pull request at the Checks section, on the Platform.sh row, then click on the "Details" link on the right side of the row.  That will take you to a fully functional site based on the changes in the PR.  We offer the same functionality to all of our customers!
 
