@@ -72,14 +72,17 @@ have properly been imported.
 
 ### Without Drush
 
-Go to your "files" folder on your local machine and synchronize them to
-your remote Platform environment:
+Go to your Drupal root on your local machine and synchronize the `files` folder to your remote Platform environment:
 
 ```bash
-$ rsync -r files/. [SSH-URL]:public/sites/default/files/
+$ rsync -r sites/default/files/. [SSH-URL]:public/sites/default/files/
 ```
 
-Note that the path in URL may vary depending on what your `.platform.app.yaml` file specifies as the root path and files mount.
+> **note**
+>
+>  The local `files` path may depend of your installation.
+>
+>  The path in URL may vary depending on what your `.platform.app.yaml` file specifies as the root path and files mount.
 
 #### Directly from server to platform.sh
 If the files folder is too large to fit on your computer, you can transfer them directly from server to server. If you have a firewall between the origin server and platform.sh, you can use agent-forwarding to enable a direct connection:
