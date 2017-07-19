@@ -22,7 +22,7 @@ The following two constraints make sure you have, fast, repeatable builds:
 
 After you push your code the first build step is to validate your configuration files (`.platform.app.yaml`, `.platform/services.yaml` and `.platform/routes.yaml`). The git server will issue an error if validation fails, and nothing will have happened on the server.
 
-> Most projects have a single `.platform.app.yaml` file  Platform.sh supports multiple applications in a single project.  It will scan the repository for `.platform.app.yaml` files in subdirectories and will build each subdirectory that contains one as an independent application. The built application will not contain any directories above the one in which it is found. The system is smart enough not to rebuild applications that have already been built, so if you have multiple applications, only the one that changed will be rebuilt and redeployed.
+> While most projects have a single `.platform.app.yaml` file, Platform.sh supports multiple applications in a single project.  It will scan the repository for `.platform.app.yaml` files in subdirectories and will build each subdirectory that contains one as an independent application. The built application will not contain any directories above the one in which it is found. The system is smart enough not to rebuild applications that have already been built, so if you have multiple applications, only the one that changed will be rebuilt and redeployed.
 
 The live environment is composed of multiple containers - both for your application(s) and for  the services it depends on. It also has a virtual network that connects them as well as a router that routes incoming requests to you application(s).
 
