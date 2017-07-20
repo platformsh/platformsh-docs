@@ -140,34 +140,45 @@ This is the complete list of extensions that can be enabled:
 > see the up-to-date complete list of extensions after you SSH into
 > your environment. For PHP 7, use `ls /etc/php/*/mods-available`.
 
-To use **custom PHP extensions** not supported by default, here is how to proceed:
+## Custom PHP extensions
+
+It is possible to use an extension not listed here, but there are a few steps involved.
 
 1. Either download the extension .so file in your build hook or Git commit that to your Git repository.
 
-2. Provide a custom php.ini at the root of your GIt repository and load the extension with absolute path, e.g. /app/extension.so.
+2. Provide a custom `php.ini` file in the application root (as a sibling of your `.platform.app.yaml` file) that loads the extension using an absolute path.  For example, if the extension is named `spiffy.so` and is in the root of your application, you would have a `php.ini` file that reads:
 
-3. Update your build flavor to none in your .platform.app.yaml file.
+```ini
+extension=/app/spiffy.so
 ```
+
+3. Update your build flavor to none in your `.platform.app.yaml` file. You will need to provide a custom Composer command to use the extra extension. 
+
+```yaml
 build:
- flavor: none
+    flavor: none
 ```
 
 4. Add `PHP_INI_SCAN_DIR` environment variable and run `composer install` in your build hook.
-```
+
+```yaml
 hooks:
-  build: |
-    export PHP_INI_SCAN_DIR="$(pwd):"
-    composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
+    build: |
+        export PHP_INI_SCAN_DIR="$(pwd):"
+        composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
 ```
+
+If your extension is not in the application root then modify the directory accordingly.  (For instance, `export PHP_INI_SCAN_DIR="$(pwd)/my_extensions:"`)
+
 5. Then, in your `.platform.app.yaml` file, you also need the following in the web key so that PHP-FPM loads your .ini file first.
 
-```
+```yaml
 web:
-  commands:
-    start: 'PHP_INI_SCAN_DIR="$(pwd):" /usr/sbin/php-fpm7.0'    # Switch to php-fpm5.0 if you're on PHP5.
+    commands:
+        start: 'PHP_INI_SCAN_DIR="$(pwd):" /usr/sbin/php-fpm7.0'
 ```
-If you need to call PHP CLI, you need to prefix PHP_INI_SCAN_DIR="$(pwd):" as well, e.g. PHP_INI_SCAN_DIR="$(pwd):" php -i.
 
+If you need to call PHP CLI, you need to prefix `PHP_INI_SCAN_DIR="$(pwd):"` as well, e.g. `PHP_INI_SCAN_DIR="$(pwd):" php -i`.  See below for the specific start command to use on different versions of PHP.
 
 ## Alternate start commands
 
