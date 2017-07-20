@@ -92,6 +92,7 @@ This is the complete list of extensions that can be enabled:
 | intl         | *   | *   | *   | *   | *   |
 | json         |     |     | *   | *   | *   |
 | ldap         | *   | *   | *   | *   | *   |
+| mailparse    |     |     |     | *   | *   |
 | mcrypt       | *   | *   | *   | *   | *   |
 | memcache     | *   | *   | *   |     |     |
 | memcached    | *   | *   | *   | *   | *   |
@@ -127,11 +128,13 @@ This is the complete list of extensions that can be enabled:
 | sqlite3      | *   | *   | *   | *   | *   |
 | ssh2         | *   | *   | *   |     |     |
 | tidy         | *   | *   | *   | *   | *   |
+| uuid         |     |     |     |     | *   |
 | xcache       | *   | *   |     |     |     |
 | xdebug       | *   | *   | *   | *   | *   |
 | xhprof       | *   | *   | *   |     |     |
 | xmlrpc       | *   | *   | *   | *   | *   |
 | xsl          | *   | *   | *   | *   | *   |
+| yaml         |     |     |     |     | *   |
 | zendopcache  | *   |     |     |     |     |
 
 
