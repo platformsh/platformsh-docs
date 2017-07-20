@@ -27,7 +27,7 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
       // Replace the machine name of the server here.
       $environment_machine_name = 'MACHINE_NAME_OF_SOLR_SERVER';
 
-      $environment_url = "http://" . $endpoint['host'] . ":" . $endpoint['port'] . "/solr";
+      $environment_url = "http://" . $endpoint['host'] . ":" . $endpoint['port'] . "/" . $endpoint['path'];
       $conf['apachesolr_default_environment'] = $environment_machine_name;
       $conf['apachesolr_environments'][$environment_machine_name]['url'] = $environment_url;
     }
