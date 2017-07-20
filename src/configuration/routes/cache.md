@@ -168,7 +168,7 @@ default value.
 
 > **note**
 > You can not  use wildcards in the cookie name, either use a precise cookie
-> name, or match all cookies with a "*". "SESS*" or "~SESS" are currently
+> name, or match all cookies with a `"*"`. `"SESS*"` or `"~SESS"` are currently
 > not valid values.
 
 ### `default_ttl`
