@@ -3,6 +3,7 @@
 
 * [Structure](overview/structure.md)
 * [Build & Deploy](overview/build-deploy.md)
+* [Tools](overview/tools.md)
 * [Pricing](overview/pricing.md)
 * [Getting help](overview/getting-help.md)
 
@@ -12,6 +13,7 @@
 * [Platform.sh in practice](/gettingstarted/platformsh-in-practice.md)
 * [Tools](gettingstarted/tools.md)
 * [CLI](gettingstarted/cli.md)
+  * [Commands](gettingstarted/cli-commands.md)
 * [Local development](gettingstarted/local.md)
   * [Tethered](gettingstarted/local/tethered.md)
   * [Untethered](gettingstarted/local/untethered.md)
