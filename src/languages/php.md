@@ -272,6 +272,14 @@ memory_limit = 256M
 
 Another example is to set the timezone of the PHP runtime (though, the timezone settings of containers/services would remain in UTC):
 
+ ```yaml
+ variables:
+    php:
+        "date.timezone": "Europe/Paris"
+ ```
+
+or
+
 ```
 ; php.ini
 ; Set PHP runtime timezone
