@@ -100,6 +100,9 @@
   * [FAQ](frameworks/drupal8/faq.md)
 * [Symfony](frameworks/symfony.md)
   * [FAQ](frameworks/symfony/faq.md)
+* [TYPO3](framworks/TYPO3.md)
+  * [FAQ](frameworks/TYPO3/faq.md)
+
 
 ## Tutorials
 
