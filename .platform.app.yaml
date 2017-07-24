@@ -22,8 +22,6 @@ dependencies:
 hooks:
     build: |
       gitbook install
-      # Get third party list ressources
-      wget https://raw.githubusercontent.com/xtfer/platformsh-third-party-resources/master/README.md -O src/overview/third-party-ressources.md
       gitbook build
       # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
       cp src/images/favicon.ico _book/gitbook/images/favicon.ico
