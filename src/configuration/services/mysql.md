@@ -122,8 +122,6 @@ If you are using version `10.0` or later of this service it is possible to defin
   * `rw`: Using this endpoint SELECT queries as well INSERT/UPDATE/DELETE queries are allowed.
   * `admin`: Using this endpoint all queries are allowed, including DDL queries (CREATE TABLE, DROP TABLE, etc.).
 
-If no endpoints are defined, a single endpoint named `mysql` will be created named that has `admin` access to all defined databases.
-
 Consider the following illustrative example:
 
 ```yaml
@@ -176,6 +174,7 @@ configuration:
             main: admin
 ```
 
+If either schemas or endpoints are defined, then no default will be applied and you must specify the full configuration.
 
 ## Access your MariaDB service
 
