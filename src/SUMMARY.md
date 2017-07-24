@@ -8,6 +8,7 @@
 * [Platform CLI](overview/cli.md)
 * [Pricing](overview/pricing.md)
 * [Getting help](overview/getting-help.md)
+* [Third party ressources](overview/third-party-ressources.md)
 
 
 ## Configuration
