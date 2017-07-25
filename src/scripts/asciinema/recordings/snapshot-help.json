@@ -1,0 +1,274 @@
+{
+  "env": {
+    "SHELL": "/bin/bash",
+    "TERM": "xterm-256color"
+  },
+  "command": null,
+  "stdout": [
+    [
+      0.500927,
+      "\u001b]0;crell@vulcan: ~\u0007\u001b[01;32mcrell@vulcan\u001b[00m:\u001b[01;34m~\u001b[00m$ "
+    ],
+    [
+      1.370839,
+      "p"
+    ],
+    [
+      0.150853,
+      "l"
+    ],
+    [
+      0.096733,
+      "a"
+    ],
+    [
+      0.062906,
+      "t"
+    ],
+    [
+      0.18474,
+      "f"
+    ],
+    [
+      0.103023,
+      "o"
+    ],
+    [
+      0.097202,
+      "r"
+    ],
+    [
+      0.07993,
+      "m"
+    ],
+    [
+      0.278804,
+      " "
+    ],
+    [
+      0.409178,
+      "s"
+    ],
+    [
+      0.15183,
+      "n"
+    ],
+    [
+      0.12002,
+      "a"
+    ],
+    [
+      0.192301,
+      "p"
+    ],
+    [
+      0.215886,
+      "s"
+    ],
+    [
+      0.152008,
+      "h"
+    ],
+    [
+      0.055881,
+      "o"
+    ],
+    [
+      0.120797,
+      "t"
+    ],
+    [
+      0.239739,
+      ":"
+    ],
+    [
+      0.191374,
+      "c"
+    ],
+    [
+      0.175327,
+      "r"
+    ],
+    [
+      0.041098,
+      "e"
+    ],
+    [
+      0.056085,
+      "a"
+    ],
+    [
+      0.079858,
+      "t"
+    ],
+    [
+      0.039803,
+      "e"
+    ],
+    [
+      0.142675,
+      " "
+    ],
+    [
+      0.233382,
+      "-"
+    ],
+    [
+      0.136008,
+      "-"
+    ],
+    [
+      0.208123,
+      "h"
+    ],
+    [
+      0.128053,
+      "e"
+    ],
+    [
+      0.079841,
+      "l"
+    ],
+    [
+      0.192107,
+      "p"
+    ],
+    [
+      0.56005,
+      "\r\n"
+    ],
+    [
+      0.423594,
+      "\u001b[33mCommand:\u001b[39m snapshot:create\r\n\u001b[33mDescription:\u001b[39m Make a snapshot of an environment\r\n\r\n"
+    ],
+    [
+      2.7e-05,
+      "\u001b[33mUsage:\u001b[39m\r\n"
+    ],
+    [
+      0.000113,
+      " platform snapshot:create [-p|--project PROJECT] [--host HOST] [-e|--environment ENVIRONMENT] [--no-wait] [--] [<environment>]\r\n\r\n"
+    ],
+    [
+      0.00015,
+      "\u001b[33mArguments:\u001b[39m\r\n"
+    ],
+    [
+      7.8e-05,
+      "  \u001b[32menvironment\u001b[39m                    The environment\r\n"
+    ],
+    [
+      2.2e-05,
+      "\r\n"
+    ],
+    [
+      2.6e-05,
+      "\u001b[33mOptions:\u001b[39m\r\n"
+    ],
+    [
+      7e-05,
+      "  \u001b[32m-p, --project=PROJECT\u001b[39m          The project ID\r\n"
+    ],
+    [
+      4.8e-05,
+      "  \u001b[32m    --host=HOST\u001b[39m                The project's API hostname"
+    ],
+    [
+      1.6e-05,
+      "\r\n"
+    ],
+    [
+      4.3e-05,
+      "  \u001b[32m-e, --environment=ENVIRONMENT\u001b[39m  The environment ID"
+    ],
+    [
+      1.6e-05,
+      "\r\n"
+    ],
+    [
+      3.8e-05,
+      "  \u001b[32m    --no-wait\u001b[39m                  Do not wait for the snapshot to complete"
+    ],
+    [
+      1.6e-05,
+      "\r\n"
+    ],
+    [
+      3.7e-05,
+      "  \u001b[32m-h, --help\u001b[39m                     Display this help message"
+    ],
+    [
+      1.8e-05,
+      "\r\n"
+    ],
+    [
+      3.6e-05,
+      "  \u001b[32m-q, --quiet\u001b[39m                    Do not output any message"
+    ],
+    [
+      1.6e-05,
+      "\r\n"
+    ],
+    [
+      4.1e-05,
+      "  \u001b[32m-V, --version\u001b[39m                  Display this application version"
+    ],
+    [
+      1.5e-05,
+      "\r\n"
+    ],
+    [
+      3.8e-05,
+      "  \u001b[32m-y, --yes\u001b[39m                      Answer \"yes\" to all prompts; disable interaction"
+    ],
+    [
+      1.7e-05,
+      "\r\n"
+    ],
+    [
+      3.6e-05,
+      "  \u001b[32m-n, --no\u001b[39m                       Answer \"no\" to all prompts"
+    ],
+    [
+      8.8e-05,
+      "\r\n  \u001b[32m-v|vv|vvv, --verbose\u001b[39m           Increase the verbosity of messages\r\n\r\n"
+    ],
+    [
+      3.1e-05,
+      "\u001b[33mExamples:\u001b[39m"
+    ],
+    [
+      3.6e-05,
+      "\r\n Make a snapshot of the current environment:\r\n   \u001b[32mplatform snapshot:create \u001b[39m\r\n"
+    ],
+    [
+      0.006364,
+      "\u001b]0;crell@vulcan: ~\u0007\u001b[01;32mcrell@vulcan\u001b[00m:\u001b[01;34m~\u001b[00m$ "
+    ],
+    [
+      1.368839,
+      "e"
+    ],
+    [
+      0.159679,
+      "x"
+    ],
+    [
+      0.142995,
+      "i"
+    ],
+    [
+      0.097036,
+      "t"
+    ],
+    [
+      0.863838,
+      "\r\n"
+    ]
+  ],
+  "title": null,
+  "height": 50,
+  "version": 1,
+  "duration": 9.914352,
+  "width": 80
+}
