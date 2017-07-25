@@ -5,7 +5,6 @@ Cron jobs allow you to run scheduled tasks at specified times or intervals. The 
 It has a few subkeys listed below:
 
 -   **spec**: The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). For example: `*/20 * * * *` to run every 20 minutes.
--   **timezone**: The timezone in which the `spec` should be interpreted.  Its value is one of the [tz database region codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) such as `Europe/Paris` or `America/New_York`.  If not specified UTC time is used.  This entry is only meaningful on cron specs that specify a particular time of day, rather than a "time past each hour".  For example, `25 1 * * *` would run every day at 1:25 am in the timezone specified. 
 -   **cmd**: The command that is executed, for example
     `cd public ; drush core-cron`
 
