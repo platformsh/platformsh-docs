@@ -63,7 +63,7 @@ Once you have the CLI installed, run `platform list` to see all of the available
 
 You can preface any command with `help` to see more information on how to use that command.
 
-{% asciinema %}https://asciinema.org/a/wrPVGSQXpTgGp6AV0wptFVSsw{% endasciinema %}
+{% asciinema %}wrPVGSQXpTgGp6AV0wptFVSsw{% endasciinema %}
 
 ```bash
 $ platform help domain:add
