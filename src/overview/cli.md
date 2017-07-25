@@ -63,6 +63,8 @@ Once you have the CLI installed, run `platform list` to see all of the available
 
 You can preface any command with `help` to see more information on how to use that command.
 
+{% asciinema %}/scripts/asciinema/recordings/snapshot-help.json{% endasciinema %}
+
 ```bash
 $ platform help domain:add
 Command: domain:add
