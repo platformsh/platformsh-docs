@@ -42,12 +42,12 @@ solrsearch:
             maincore:
                 conf_dir: !archive "solr-conf/6.x"
         endpoints:
-            solr:
+            main:
                 core: maincore
 ```
 The above definition defines a single Solr 6.6 server.  That server has 1 core defined: `maincore` - the configuration for which is in the `.platform/solr-conf/6.x` directory.
 
-It then defines one endpoints: `main` is connected to the `maincore`.
+It then defines one endpoint: `main` is connected to the `maincore`.
 
 ### Expose the Solr service to your application
 
@@ -58,7 +58,7 @@ relationships:
     solr: 'solrsearch:main'
 ```
 
-That is, the application's environment would include a `solr` relationship that connects to the `main` endpoint, which is the `maincore` core
+That is, the application's environment would include a `solr` relationship that connects to the `main` endpoint, which is the `maincore` core.
 
 The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service we specified above (`solrsearch`) and the endpoint (`main`).  If you named the service something different above, change `solrsearch` to that. The same rule is valid for the value of the endpoint named `main`.
 
