@@ -18,7 +18,7 @@ $ mkdir .platform
 $ touch .platform/routes.yaml
 ```
 
-![](/images/config_diagrams/routes.jpg)
+![Routes](/images/config_diagrams/routes.svg)
 
 ## Route templates
 
@@ -58,7 +58,7 @@ Each route can be configured separately. It has the following properties
 * `redirects` controls [redirect rules](/configuration/routes/redirects.html) associated with the
   route.
   
-![](/images/config_diagrams/routes2.jpg)
+![Routes files](/images/config_diagrams/routes2.svg)
 
 > **note**
 > For the moment, the value of upstream is always in the form: `<application-name>:http`.
