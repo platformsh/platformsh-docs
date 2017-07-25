@@ -14,7 +14,8 @@
     "-sharing",
     "-lunr",
     "-search",
-    "search-plus"
+    "search-plus",
+    "asciinema"
   ],
   "pluginsConfig": {
     "edit-link": {
