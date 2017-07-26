@@ -30,6 +30,8 @@
 * [Apps (.platform.app.yaml)](configuration/app-containers.md)
   * [Name](configuration/app/name.md)
   * [Type](configuration/app/type.md)
+  * [Size](configuration/app/size.md)
+  * [Timezone](configuration/app/timezone.md)
   * [Relationships](configuration/app/relationships.md)
   * [Access](configuration/app/access.md)
   * [Storage](configuration/app/storage.md)

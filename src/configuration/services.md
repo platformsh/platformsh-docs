@@ -36,7 +36,7 @@ database2:
   disk: 1024
 ```
 
-## Name
+### Name
 
 The `name` you want to give to your service. You are free to name each service as you wish
 (*lowercase alphanumeric only*).
@@ -46,8 +46,6 @@ The `name` you want to give to your service. You are free to name each service a
 ### Type
 
 The `type` of your service. It's using the format ``type:version``.
-
-The version number is optional. If you don't specify a version number, the *default* version will be loaded.
 
 If you specify a version number which is not available, you'll see this error when pushing your changes:
 
@@ -61,10 +59,21 @@ E: Error parsing configuration files:
 
 The `disk` attribute is the size of the persistent disk (in MB) allocated to the service.
 
-For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between your application (as defined in `.platform.app.yaml`) and each of its services.
+For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between your application (as defined in `.platform.app.yaml`) and each of its services.  For memory-resident-only services such as `memcache` or `redis`, the `disk` key is not available and will generate an error if present.
 
 > **notes**
 > Currently we do not support downsizing the persistent disk of a service.
+
+### Size
+
+By default, Platform.sh will allocate CPU and memory resources to each container automatically.  Some services are optimized for high CPU load, some for high memory load.  By default, Platform.sh will try to allocate the largest "fair" size possible to all services, given the available resources on the plan.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing](/configuration/app/size.md) page for more details.
+
+## Service timezones
+
+All services have their system timezone set to UTC by default.  In most cases that is the best option.  For some applications it's possible to change the application timezone, which will affect only the running application itself.
+
+* MySQL - You can change the per-connection timezone by running SQL `SET time_zone = <timezone>;`.
+* PostgreSQL - You can change the timezone of current session by running SQL `SET TIME ZONE <timezone>;`.
 
 ## Using the services
 

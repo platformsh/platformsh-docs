@@ -8,11 +8,9 @@ It has a few subkeys listed below:
 -   **cmd**: The command that is executed, for example
     `cd public ; drush core-cron`
 
-The minimum interval between cron runs is 5 minutes, even if specified as less.  Additionally, a variable delay is added to each cron job in each project in order to prevent host overloading at midnight every night when every project runs their nightlies.  Your crons will *not* run exactly at the time that you specify, but will be delayed by 0-300 seconds.
+The minimum interval between cron runs is 5 minutes, even if specified as less.  Additionally, a variable delay is added to each cron job in each project in order to prevent host overloading should every project try to run their nightly tasks at the same time.  Your crons will *not* run exactly at the time that you specify, but will be delayed by 0-300 seconds.
 
 Cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
-
-All server times are in UTC, and hence so are the cron schedules.
 
 ## How do I setup Cron for a typical Drupal site?
 

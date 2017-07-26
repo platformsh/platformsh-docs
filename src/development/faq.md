@@ -31,20 +31,6 @@ on a distributed file system (which is transparent for you). When you back-up
 your environment they will be backed up as well. When you create a new staging
 environment... these will be cloned with the rest of your data.
 
-
-
-## How do I change timezone settings?
-
-We do not allow changing the system timezone of your application, though you can change the timezone in your services.
-
-* PHP runtime - You can change the timezone by providing a [custom php.ini](https://docs.platform.sh/user_guide/reference/toolstacks/php/configure-php.html#custom-php-ini).
-* Node.js runtime - You can change the timezone by starting the server with `env TZ='<timezone>' node server.js`.
-* Python runtime - You can change the timezone by starting the server with `env TZ='<timezone>' python server.py`.
-* MySQL - You can change the per-connection timezone by running SQL `SET time_zone = <timezone>;`.
-* PostgreSQL - You can change the timezone of current session by running SQL `SET TIME ZONE <timezone>;`.
-
-You may also refer to the list of [supported timezones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-
 ## What happens if I push a local branch to my project?
 
 If you push a local branch that you created with Git, you create what we call an `inactive environment`, ie. an environment that is not deployed.
