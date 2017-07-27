@@ -155,7 +155,7 @@ workers:
         variables:
             env:
                 type: 'worker'
-        disk: 128
+        disk: 256
         mounts: {}
         relationships:
             emails: 'rabbitqueue:rabbitmq'

@@ -12,6 +12,8 @@ The minimum interval between cron runs is 5 minutes, even if specified as less. 
 
 Cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
 
+If an application defines both a `web` instance and a `worker` instance, cron tasks will be run only on the `web` instance.
+
 ## How do I setup Cron for a typical Drupal site?
 
 The following example runs Drupal's normal cron hook every 20 minutes, using Drush.  It also sets up a second cron task to run Drupal's queue runner on the aggregator_feeds queue every 5 minutes.
