@@ -7,10 +7,7 @@ Javascript and PHP applications.
 
 ## Supported versions
 
-* 0.12
-* 4.7
 * 4.8
-* 6.9
 * 6.10
 * 8.2
 
