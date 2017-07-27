@@ -59,7 +59,12 @@ Add a new file named `.environment` to the root of your your project's git repos
 # environment.
 
 # Allow executable app dependencies from Composer to be run from the path.
-export PATH=/app/vendor/bin:$PATH
+# Enterprise has a slightly different set of include paths.
+if [ "${PLATFORM_MODE}" == "enterprise" ]; then
+  export PATH="/app/${PLATFORM_PROJECT}/vendor/bin:${PATH}"
+else
+  export PATH=/app/vendor/bin:$PATH
+fi
 ```
 
 ## Use drush aliases
