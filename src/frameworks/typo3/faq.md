@@ -4,7 +4,7 @@
 
 The TYPO3 install tool doesn't yet fully understand when you are working on a cloud envirionment and may warn you that some folders are not writable.
 
-Don't worry, your TYPO3 installation will be fully function.
+Don't worry, your TYPO3 installation will be fully functional.
 
 ## How do I add extensions?
 
