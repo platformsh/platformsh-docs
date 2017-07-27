@@ -8,7 +8,7 @@ Javascript and PHP applications.
 ## Supported versions
 
 * 4.8
-* 6.10
+* 6.11
 * 8.2
 
 See https://github.com/platformsh/platformsh-example-nodejs/tree/mongodb for a
