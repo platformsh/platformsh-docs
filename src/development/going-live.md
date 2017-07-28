@@ -111,18 +111,18 @@ First, configure your `routes.yaml` file like so:
   to: "https://www.{default}/"
 ```
 
-That will result in two domains being created on Platform.sh: `master-def456-abc123.us.platform.sh` and `www---master-def456-abc123.us.platform.sh`.  The former will automatically redirect to the latter.  In the `routes.yaml` file, `{default}` will automatically be replaced with `master-def456-abc123.us.platform.sh`.  In domain prefixes (like `www`), the `.` will be replaced with `---`.
+That will result in two domains being created on Platform.sh: `master-def456-abc123.us.platform.sh` and `www---master-def456-abc123.us.platform.sh` (Note, these are just examples).  The former will automatically redirect to the latter.  In the `routes.yaml` file, `{default}` will automatically be replaced with `master-def456-abc123.us.platform.sh` (Again, this is just an example).  In domain prefixes (like `www`), the `.` will be replaced with `---`.
 
 ### Set your domain
 
-Now, add a single domain to your Platform.sh project for `mysite.com`.  As soon as you do, Platform.sh will no longer serve `master-def456-abc123.us.platform.sh` at all.  Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywhere it appears when generating routes to respond to.
+Now, add a single domain to your Platform.sh project for `mysite.com`.  As soon as you do, Platform.sh will no longer serve `master-def456-abc123.us.platform.sh` (if we follow the same example as above) at all.  Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywhere it appears when generating routes to respond to.
 
 ### Configure your DNS provider
 
 On your DNS provider, you would create two CNAMEs:
 
-`mysite.com` should be a redirect to `master-def456-abc123.us.platform.sh`.
-`www.mysite.com` should be a CNAME to `master-def456-abc123.us.platform.sh`.
+`mysite.com` should be a redirect to `master-def456-abc123.us.platform.sh` (For the example above, for your site, you will have your own custom DNS entries).
+`www.mysite.com` should be a CNAME to `master-def456-abc123.us.platform.sh` (Again, for the example above. Use your own custom DNS entry).
 
 (Yes, both point to the same place.)  See the note above regarding how different registrars handle dynamic apex domains.
 
@@ -130,8 +130,8 @@ On your DNS provider, you would create two CNAMEs:
 
 Now, an incoming request for `mysite.com` will result in the following:
 
-1) Your browser asks the DNS network for `mysite.com`'s DNS record.  It responds with "it's an alias for `www---master-def456-abc123.us.platform.sh`".
-2) your browser asks the DNS network for `www---master-def456-abc123.us.platform.sh`'s DNS record.  It responds with "that's IP address 1.2.3.4".  (Or whatever the actual address is.)
+1) Your browser asks the DNS network for `mysite.com`'s DNS record.  It responds with "it's an alias for `www---master-def456-abc123.us.platform.sh`" (for the example above, in your case, it would use your own DNS record).
+2) your browser asks the DNS network for `www---master-def456-abc123.us.platform.sh`'s DNS record (or your own DNS record in your case).  It responds with "that's IP address 1.2.3.4".  (Or whatever the actual address is.)
 3) Your browser sends a request to `1.2.3.4` for domain `mysite.com`.
 4) Your router responds with an HTTP 301 redirect to `www.mysite.com`.
 5) Your browser looks up `www.mysite.com` and, as above, gets an alias for `www---master-def456-abc123.us.platform.sh`, which is IP 1.2.3.4.
