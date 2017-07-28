@@ -87,3 +87,29 @@ Options:
  --no (-n)             Answer "no" to all prompts
  --shell (-s)          Launch the shell
 ```
+
+## Installing the CLI on Windows 10
+
+There are multiple ways to install the CLI on Windows 10. Platform.sh recommends using Bash for Windows (Windows Subsystem for Linux).
+
+### Installing Bash for Windows
+
+You can install Bash to use the CLI on a Windows 10, 64-bit machine. The Windows 10 Anniversary Update is needed to support Git.
+
+To install Bash on Windows 10 Anniversary Edition you need to:
+
+1. Activate the Developer Mode in "Update & Security" in Windows Settings. This will prompt you to restart your computer.
+2. Activate the "Windows Subsystem for Linux (Beta)", under "Turn Windows features on or off" in the Programs and Features section of the Control Panel. Once again, you will need to restart your computer.
+3. In the Start Menu, search for the program "bash.exe", which will prompt you to install it from the Windows Store.
+
+Bash is now installed.
+
+You can read more on [WindowsCentral](https://www.windowscentral.com/how-install-bash-shell-command-line-windows-10).
+
+Upon starting Bash, you will be asked to choose a username. According to the article, it doesn't have to be the same as your current username. However, if the username don't exist, the Linux system might not be able to create the Linux directory (depending on your permissions level). It is therefore recommended you use the same username for Linux as your Windows machine (provided your Windows user name isn't "Admin", as that will not be allowed).
+
+Once Bash for Windows is installed, you can install the Platform.sh CLI with the same command as above:
+
+```bash
+curl -sS https://platform.sh/cli/installer | php
+```
