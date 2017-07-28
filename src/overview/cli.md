@@ -90,9 +90,13 @@ Options:
 
 ## Installing the CLI on Windows 10
 
-To install the CLI on a Windows 10, 64-bit machine, BASH needs to be installed. Otherwise, you will need to install a Virtual Machine running Linux. The Windows 10 Anniversary Update is needed for support for git and apt/apt-get.
+There are multiple ways to connect to the CLI from Windows 10. Platform.sh recommends using BASH for Windows (Windows Subsystem for Linux).
 
-To install Bash you need to:
+## installating BASH on Windows 10
+
+You can install BASH to use the CLI on a Windows 10, 64-bit machine. The Windows 10 Anniversary Update is needed for support for git and apt/apt-get.
+
+To install Bash on Windows 10 Anniversary Edition you need to:
 
 1. Activate the Developer Mode in "Update & Security" in the Windows Settings. This will prompt you to restart your computer.
 2. Activate the Windows Subsystem for Linux (Beta) in "Turn Windows features on or off" in the Programs and Features section of the Windows Control Panel. Once again, you will need to restart your computer.
