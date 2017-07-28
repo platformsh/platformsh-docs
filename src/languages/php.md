@@ -144,13 +144,17 @@ This is the complete list of extensions that can be enabled:
 
 It is possible to use an extension not listed here, but there are a few steps involved.
 
-1. Either download the extension .so file in your build hook or Git commit that to your Git repository.
+1. Download the .so file for the extension as part of your build hook using `curl` or similar.  It can also be added to your Git repository if the file is not publicly downloadable, although committing large binary blobs to Git is generally not recommended.
 
 2. Provide a custom `php.ini` file in the application root (as a sibling of your `.platform.app.yaml` file) that loads the extension using an absolute path.  For example, if the extension is named `spiffy.so` and is in the root of your application, you would have a `php.ini` file that reads:
 
 ```ini
 extension=/app/spiffy.so
 ```
+
+### Extensions needed by Composer
+
+In a few very rare cases, an extension may be needed by Composer itself, due to a Composer plugin depending on it.  If so, there's a few extra steps that are needed.
 
 3. Update your build flavor to none in your `.platform.app.yaml` file. You will need to provide a custom Composer command to use the extra extension. 
 
