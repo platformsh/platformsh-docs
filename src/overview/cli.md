@@ -104,7 +104,7 @@ To install Bash on Windows 10 Anniversary Edition you need to:
 
 Bash is now installed.
 
-You can read more here: https://www.windowscentral.com/how-install-bash-shell-command-line-windows-10
+You can read more on [WindowsCentral](https://www.windowscentral.com/how-install-bash-shell-command-line-windows-10).
 
 Upon starting Bash, you will be asked to choose a username. According to the article, it doesn't have to be the same as your current username. However, if the username don't exist, the Linux system might not be able to create the Linux directory (depending on your permissions level). It is therefore recommended you use the same username for Linux as your Windows machine (provided your Windows user name isn't "Admin", as that will not be allowed).
 
