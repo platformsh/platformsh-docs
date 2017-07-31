@@ -9,7 +9,7 @@ You control your application and the way it will be built and deployed on Platfo
 
 The `.platform.app.yaml` file is extremely flexible.  Depending on your needs it could be less than 10 lines long or over 100.  The only required keys are `name`, `type`, `disk`, and at least one "instance definition", either a `web` or `worker` block.  All others are optional.
 
-Your application code can generate one or more application instances; zero or one web instance &mdash; which is exposed to the router &mdash; and zero or more worker instances &mdash; which are not.  Otherwise they are very similar.
+Your application code can generate one or more application instances. Web instances can be accessed from the outside world, while workers can only be accessed by other application instances. Otherwise they are very similar.
 
 Different configuration properties can be applied to individual web and worker instances, or globally to all of them.  In the most typical case, with one web instance and no workers, it's common to just list each of the configuration directives below as a top-level property.  However, they can also be specified within the `web` or `worker` blocks to apply to just those instances.
 
