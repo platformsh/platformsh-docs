@@ -142,7 +142,7 @@ This is the complete list of extensions that can be enabled:
 
 ## Custom PHP extensions
 
-It is possible to use an extension not listed here, but there are a few steps involved.
+It is possible to use an extension not listed here but it takes slightly more work:
 
 1. Download the .so file for the extension as part of your build hook using `curl` or similar.  It can also be added to your Git repository if the file is not publicly downloadable, although committing large binary blobs to Git is generally not recommended.
 
@@ -151,38 +151,6 @@ It is possible to use an extension not listed here, but there are a few steps in
 ```ini
 extension=/app/spiffy.so
 ```
-
-### Extensions needed by Composer
-
-In a few very rare cases, an extension may be needed by Composer itself, due to a Composer plugin depending on it.  If so, there's a few extra steps that are needed.
-
-3. Update your build flavor to none in your `.platform.app.yaml` file. You will need to provide a custom Composer command to use the extra extension. 
-
-```yaml
-build:
-    flavor: none
-```
-
-4. Add `PHP_INI_SCAN_DIR` environment variable and run `composer install` in your build hook.
-
-```yaml
-hooks:
-    build: |
-        export PHP_INI_SCAN_DIR="$(pwd):"
-        composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
-```
-
-If your extension is not in the application root then modify the directory accordingly.  (For instance, `export PHP_INI_SCAN_DIR="$(pwd)/my_extensions:"`)
-
-5. Then, in your `.platform.app.yaml` file, you also need the following in the web key so that PHP-FPM loads your .ini file first.
-
-```yaml
-web:
-    commands:
-        start: 'PHP_INI_SCAN_DIR="$(pwd):" /usr/sbin/php-fpm7.0'
-```
-
-If you need to call PHP CLI, you need to prefix `PHP_INI_SCAN_DIR="$(pwd):"` as well, e.g. `PHP_INI_SCAN_DIR="$(pwd):" php -i`.  See below for the specific start command to use on different versions of PHP.
 
 ## Alternate start commands
 
