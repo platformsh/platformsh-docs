@@ -34,6 +34,10 @@ The `.platform.app.yaml` file needs at least one of the following to define an i
 * [`web`](/configuration/app/web.md) - Controls how the web application is served.
 * [`worker`](/configuration/app/web.md) - Defines alternate copies of the application to run as background processes.
 
+## Available resources
+
+Each web or worker instance is its own running container, which takes its own resources.  The `size` key allows some control over how many resources each container gets and if omitted the system will select one of a few fixed sizes for each container automatically.  All application and service containers are given resources out of a common pool defined by your plan size.  That means the more containers you define, the fewer resources each one will get and you may need to increase your plan size.
+
 ## Example configuration
 
 An example of a minimalist `.platform.app.yaml` file for PHP, heavily commented, is below:
