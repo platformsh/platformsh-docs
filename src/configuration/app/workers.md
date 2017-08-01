@@ -5,7 +5,7 @@ search:
 
 # Workers
 
-Every application may optionally define zero or more worker instances.  A worker instance runs as its own container independently of the web instance and has no Nginx instance running.  The router service cannot direct public requests to it, either, so running your own web server on a worker (using Node.js or Go) is not useful.
+Every application may also define zero or more worker instances.  A worker instance runs as its own container independently of the web instance and has no Nginx instance running.  The router service cannot direct public requests to it, either, so running your own web server on a worker (using Node.js or Go) is not useful.
 
 A worker instance is the exact same code and compilation output as a web instance.  The container image is built only once, and then deployed multiple times if needed.  That is, the `build` hook and `dependencies` may not vary from one instance to another.  What may vary is how the container is then configured and how resources are allocated.
 
@@ -25,6 +25,25 @@ workers:
 That defines a single worker named `queue`, which will be a "small" container, and wil run the command `php worker.php` on startup.  If `worker.php` ever exits it will be automatically restarted.
 
 Any number of workers may be defined with their own distinct name, subject to available resources on your plan.
+
+## Workers vs Cron
+
+Both worker instances and cron tasks address similar use cases: They both address out-of-band work that an application needs to do but that should not or cannot be done as part of a normal web request.  They do so in different ways, however, and so are fit for different use cases.
+
+A Cron job is well suited for tasks when:
+
+* They need to happen on a fixed schedule, not continually.
+* The task itself is not especially long, as a running cron job will block a new deployment.
+* Or it is long, but can be easily divided into many small queued tasks.
+* A delay between when a task is registered and when it actually happens is acceptable.
+
+A dedicated worker instance is a better fit if:
+
+* Tasks should happen "now", but not block a web request.
+* Tasks are large enough that they risk blocking a deploy, even if they are subdivided.
+* The task in question is a continually running process rather than a stream of discrete units of work.
+
+The appropriateness of one approach over the other also varys by language; single-threaded languages would benefit more from either cron or workers than a language with native multi-threading, for instance.  If a given task seems like it would run equally well as a worker or as a cron, cron will generally be more efficient as it does not require its own container.
 
 ## Commands
 
