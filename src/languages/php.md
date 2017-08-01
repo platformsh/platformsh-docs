@@ -143,6 +143,18 @@ This is the complete list of extensions that can be enabled:
 > see the up-to-date complete list of extensions after you SSH into
 > your environment. For PHP 7, use `ls /etc/php/*/mods-available`.
 
+## Custom PHP extensions
+
+It is possible to use an extension not listed here but it takes slightly more work:
+
+1. Download the .so file for the extension as part of your build hook using `curl` or similar.  It can also be added to your Git repository if the file is not publicly downloadable, although committing large binary blobs to Git is generally not recommended.
+
+2. Provide a custom `php.ini` file in the application root (as a sibling of your `.platform.app.yaml` file) that loads the extension using an absolute path.  For example, if the extension is named `spiffy.so` and is in the root of your application, you would have a `php.ini` file that reads:
+
+```ini
+extension=/app/spiffy.so
+```
+
 ## Alternate start commands
 
 PHP is most commonly run in a CGI mode, using PHP-FPM.  That is the default on Platform.sh.  However, you can also start alternative processes if desired, such as if you're running an Async PHP daemon, a thread-based worker process, etc.  To do so, simply specify an alternative start command in `platform.app.yaml`, similar to the following:
@@ -156,7 +168,7 @@ web:
             protocol: http
 ```
 
-The above configuration will execute the `run.php` script in the application root when the container starts using the PHP-CLI SAPI, just before the deploy hook runs, but will *not* launch PHP-FPM.  It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the 'PORT' environment variable.
+The above configuration will execute the `run.php` script in the application root when the container starts using the PHP-CLI SAPI, just before the deploy hook runs, but will *not* launch PHP-FPM.  It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the `PORT` environment variable.
 
 If not specified, the effective default start command varies by PHP version:
 
@@ -234,6 +246,14 @@ memory_limit = 256M
 ```
 
 Another example is to set the timezone of the PHP runtime (though, the timezone settings of containers/services would remain in UTC):
+
+ ```yaml
+ variables:
+    php:
+        "date.timezone": "Europe/Paris"
+ ```
+
+or
 
 ```
 ; php.ini
