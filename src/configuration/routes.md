@@ -18,6 +18,8 @@ $ mkdir .platform
 $ touch .platform/routes.yaml
 ```
 
+![Routes](/images/config_diagrams/routes.svg)
+
 ## Route templates
 
 The YAML file is composed of a list of routes and their configuration.
@@ -55,6 +57,8 @@ Each route can be configured separately. It has the following properties
   For more information: see [SSI](/configuration/routes/ssi.html).
 * `redirects` controls [redirect rules](/configuration/routes/redirects.html) associated with the
   route.
+  
+![Routes files](/images/config_diagrams/routes2.svg)
 
 > **note**
 > For the moment, the value of upstream is always in the form: `<application-name>:http`.
