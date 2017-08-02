@@ -49,7 +49,7 @@
 * [Node.js](languages/nodejs.md)
 * [Python](languages/python.md)
 * [Ruby](languages/ruby.md)
-* [Go (beta))](languages/go.md)
+* [Go (beta)](languages/go.md)
 * [Java (alpha)](languages/java.md)
 
 ## Development
@@ -110,10 +110,10 @@
 
 ## Tutorials
 
-* [Authenticated Composer](/tutorials/composer-auth.md)
-* [Exporting data](/tutorials/exporting.md)
-* [Migrating to Platform.sh](/tutorials/migrating.md)
-* [Setting up Dropbox](/tutorials/dropbox.md)
+* [Authenticated Composer](tutorials/composer-auth.md)
+* [Exporting data](tutorials/exporting.md)
+* [Migrating to Platform.sh](tutorials/migrating.md)
+* [Setting up Dropbox](tutorials/dropbox.md)
 
 ## Changelog
 

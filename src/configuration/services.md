@@ -17,6 +17,8 @@ Services are configured through the `.platform/services.yaml`
 file you will need to commit to your Git repository. This section describes
 specifics you might want to know about for each service.
 
+![Services](/images/config_diagrams/services.svg)
+
 If you don't have a `.platform` folder, you need to create one:
 
 ```bash
