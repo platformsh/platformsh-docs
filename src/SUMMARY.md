@@ -5,7 +5,7 @@
 * [Structure](overview/structure.md)
 * [Build & Deploy](overview/how-it-works.md)
 * [Tools](overview/tools.md)
-* [Platform CLI](overview/cli.md)
+* [CLI](overview/cli.md)
 * [Pricing](overview/pricing.md)
 * [Getting help](overview/getting-help.md)
 
@@ -110,7 +110,7 @@
 * [Exporting data](tutorials/exporting.md)
 * [Migrating to Platform.sh](tutorials/migrating.md)
 * [Setting up Dropbox](tutorials/dropbox.md)
-* [Third party resources](overview/third-party.md)
+* [Third-party resources](overview/third-party.md)
 
 ## Changelog
 
