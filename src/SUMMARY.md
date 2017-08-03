@@ -1,11 +1,10 @@
 
 ## The Big Picture
 
-* [Basics](overview/basics.md)
 * [Structure](overview/structure.md)
 * [Build & Deploy](overview/how-it-works.md)
 * [Tools](overview/tools.md)
-* [Platform CLI](overview/cli.md)
+  * [Platform CLI](overview/cli.md)
 * [Pricing](overview/pricing.md)
 * [Getting help](overview/getting-help.md)
 * [Third party resources](overview/third-party-resources.md)

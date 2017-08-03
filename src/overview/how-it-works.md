@@ -9,9 +9,13 @@ Every time you push to a live branch (a git branch with an active environment at
 
 ![The Build and Deploy pipeline](/images/build-pipeline.svg)
 
-## Good Practices and Constraints
+## Always Be Compiling
 
-Platform.sh promotes the practice of using a build-oriented structure; This  means that whenever possible you should avoid committing build assets to your repository that can be regenerated at build time.  Depending on your application that may include 3rd party libraries and frameworks, generated and optimized CSS and JS files, generated source code, etc.
+Interpreted languages like PHP or Node.js may not seem like they have to be compiled, but with modern package management tools like Composer or npm and with the growing use of CSS preprocessors such as Sass, most modern web applications need a "build" step between their source code and their production execution code.  At Platform.sh, we aim to make that easy.  That build step includes the entire application container, from language version to build tools to your code, rebuilt every time.
+
+That build process is under your control, and reruns on every Git push.  Every Git push is a validation not only of your code but of your build process.  Whether that's installing packages using Composer or Bundler, compiling TypeScript or Sass, or building your application code in Go or Java, your build process is vetted every time you push.
+
+Whenever possible you should avoid committing build assets to your repository that can be regenerated at build time.  Depending on your application that may include 3rd party libraries and frameworks, generated and optimized CSS and JS files, generated source code, etc.
 
 The following two constraints make sure you have, fast, repeatable builds:
 

@@ -15,6 +15,7 @@ https://{default}/:
     paths:
       # The following were the most common paths on the old site; redirect to the
       # corresponding new page. These redirects should be safe to remove in 2017.
+      "/overview/basics.html": { "to": "/overview/structure.html", "code": 301, "prefix": false}
       "/overview/how-it-looks.html": { "to": "/overview/structure.html", "code": 301, "prefix": false}
       "/overview/how-we-think.html": { "to": "/overview/basics.html", "code": 301, "prefix": false}
       "/user_guide/reference/platform-app-yaml.html": { "to": "/configuration/app-containers.html", "code": 301, "prefix": false}
