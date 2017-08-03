@@ -5,11 +5,9 @@
 * [Structure](overview/structure.md)
 * [Build & Deploy](overview/how-it-works.md)
 * [Tools](overview/tools.md)
-* [Platform CLI](overview/cli.md)
+* [CLI](overview/cli.md)
 * [Pricing](overview/pricing.md)
 * [Getting help](overview/getting-help.md)
-* [Third party resources](overview/third-party-resources.md)
-
 
 ## Configuration
 
@@ -106,13 +104,13 @@
 * [TYPO3](frameworks/typo3.md)
   * [FAQ](frameworks/typo3/faq.md)
 
-
 ## Tutorials
 
 * [Authenticated Composer](tutorials/composer-auth.md)
 * [Exporting data](tutorials/exporting.md)
 * [Migrating to Platform.sh](tutorials/migrating.md)
 * [Setting up Dropbox](tutorials/dropbox.md)
+* [Third-party resources](overview/third-party.md)
 
 ## Changelog
 
