@@ -121,6 +121,6 @@ In our current checkout flow the region selection happens after the plan selecti
 
 The prices for Germany and Australia are currently set at 30% above the EU and US plan prices. So a "Production Standard" environment on the Sovereign German Cloud will be $65 instead of $50.
 
-Our estimation page (which you can reach by clicking on your account dashboard on the edit link for a project) will soon be updated to reflect these new options.
+Our estimation page (which you can reach by clicking on your account dashboard on the edit link for a project) does reflect these new options.
 
 If you have any questions don't hesitate to [contact our sales department](https://platform.sh/contact/).
