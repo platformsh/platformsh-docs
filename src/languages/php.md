@@ -77,6 +77,7 @@ This is the complete list of extensions that can be enabled:
 | apc          | *   |     |     |     |     |
 | apcu         |     | *   | *   | *   | *   |
 | apcu_bc      |     |     |     | *   | *   |
+| applepay     |     |     |     | *   | *   |
 | blackfire    | *   | *   | *   | *   | *   |
 | bz2          |     |     |     | *   | *   |
 | curl         | *   | *   | *   | *   | *   |
@@ -105,6 +106,7 @@ This is the complete list of extensions that can be enabled:
 | mysql        | *   | *   | *   |     |     |
 | mysqli       | *   | *   | *   | *   | *   |
 | mysqlnd      | *   | *   | *   |     |     |
+| oauth        |     |     |     | *   | *   |
 | odbc         | *   | *   | *   | *   | *   |
 | opcache      |     | *   | *   | *   | *   |
 | pdo          | *   | *   | *   | *   | *   |
@@ -137,6 +139,7 @@ This is the complete list of extensions that can be enabled:
 | xmlrpc       | *   | *   | *   | *   | *   |
 | xsl          | *   | *   | *   | *   | *   |
 | yaml         |     |     |     |     | *   |
+| zbarcode     |     |     |     | *   | *   |
 | zendopcache  | *   |     |     |     |     |
 
 
