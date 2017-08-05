@@ -1,11 +1,12 @@
 # Going Live
 
-Going live on platform.sh is a one or two step process.
+Going live on platform.sh is a simple two or three step process.
 
-1. If you are on a development plan. Change plans to a production plan. 
-2. Configure your domain name to point to your Platform.sh master environment.
+1. If you are on a development plan, change plans to a production plan. 
+2. Add your domain to your platform.sh project
+3. Configure your domain name to point to your Platform.sh master environment.
 
-You can either use the Platform.sh UI or the CLI to configure your project for production. Let us now delve into some details.
+You can either use the Platform.sh UI or the CLI to configure your project for production. Once you have went through it once, the whole process usually takes a couple of minutes, but in order to help you cover all the bases we will delve into some details in this document.
 
 <!-- toc -->
 
@@ -33,6 +34,8 @@ Make sure your site is running and configured as you want it to be, on your mast
 
 ### 4.  Optionally configure SSL
 Optional: If you want to use a 3rd party SSL certificate to encrypt your production site, you can obtain one from any number of 3rd party SSL issuers.  Platform.sh automatically provides SSL certificates for all sites issued by [Let's Encrypt](https://letsencrypt.org/) at no charge, and there is no charge for using a 3rd party SSL cert instead.
+
+---
 
 ## Everything Fine? Let's Go Live. 
 
@@ -73,7 +76,7 @@ To get the ip you can run `ping <environment>-<project>.<region>.platform.sh` (w
 > Do not put the IP address you see here, but the one you got from the ping command.
 > **Remember to remove this entry after you have configured DNS!**
 
-### 1.3 Choose and configure your DNS provider
+### 1.3 Configure your DNS provider
 
 Configure your DNS provider to point your domain to your Platform.sh Master environment domain name.
 
@@ -83,11 +86,9 @@ If you have multiple domains you want to be served by the same application you w
 
 Note that depending on your registrar and the TTL you set, it could take anywhere from 15 minutes to 72 hours for the DNS change to fully propagate across the Internet.
 
-### 1.4 Zone Apex / Naked Domain / Root Domain (the one without the www.)
+#### 1.3.1 Zone Apex / Naked Domain / Root Domain (the one without the www.)
 
-The DNS RFC (RFC1033) requires the "zone apex" (sometimes called the "root domain" or "naked domain") to be an "A Record," not a CNAME. But many DNS providers have found a way around this limitation. If you want your site to be accessible with **https://example.com** and not only **https://www.example.com**  you *must* use a DNS provider that knows how to do that.
-
-Many DNS providers offer workarounds for apex domains pointing to non-IP addresses.  Such records include:
+The DNS RFC (RFC1033) requires the "zone apex" (sometimes called the "root domain" or "naked domain") to be an "A Record," not a CNAME. But many DNS providers have found a way around this limitation. If you want your site to be accessible with **https://example.com** and not only **https://www.example.com**  you *must* use a DNS provider that knows how to do that. Examples of such workaround records include:
 
 * ACNAME at [CloudFlare](https://www.cloudflare.com/)
 * ANAME at [easyDNS](https://www.easydns.com/)
@@ -100,9 +101,10 @@ These ALIAS/CNAME/ANAME records resolves on request the IP address of the destin
 
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.  If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
 
-Although as a stop-gap measure configuring an  A Record to one of the public IPs of the region you are hosted in would work. It is highly unrecommended. The IP address of the server may change from time to time, especially with frequent redeployments as in Platform.sh's case which will break your site.
+> **note**
+> Although as a stop-gap measure configuring an  A Record to one of the public IPs of the region you are hosted in would work. It is highly unrecommended. The IP address of the server may change from time to time, especially with frequent redeployments as in Platform.sh's case which will break your site.
 
-### 1.5 Optional: Configure a third-party SSL certificate
+### 1.4 Optional: Configure a third-party SSL certificate
 
 Platform.sh automatically provides standard SSL certificates issued by [Let's Encrypt](https://letsencrypt.org/) to all production instances. No further action is required to use SSL-encrypted connections beyond [specifying HTTPS routes](/configuration/routes.md#HTTPS) in your `routes.yaml` file. 
 
@@ -131,6 +133,10 @@ platform domain:add secure.example.com --cert=/etc/ssl/private/secure-example-co
 
 See `platform help domain:add` for more information.
 
+> **Success**
+> Everything should be fine and dandy. Congratulations. 
+> If not, well, we are here to support you, but first, you should try to figure-out by yourself what went wrong. Which is what the next section is about.
+
 ## Initial Troubleshooting
 
 You did all of the above and when you visit your website at https://www.example.com (or whatever your real domain name) something is wrong? Here are some simple self-help steps you can do.
@@ -143,7 +149,6 @@ The response should be something like
 www.example.com is an alias for master-t2xxqeifuhpzg.eu.platform.sh.
 master-t2xxqeifuhpzg.eu.platform.sh has address 54.76.136.188
 ```
-If this is fine, jump to step 2.
 
 1. If it is not either you have not configured correctly your DNS server, or the DNS configuration did not propagate yet. As a first step you can try and remove your local DNS cache. 
 2. You can also try to set your DNS server to the Google public DNS server (8.8.8.8/8.8.4.4) to see if the issue is with the DNS server you are using.
@@ -213,10 +218,10 @@ So you would understand what is happening under the hood.
 
 An incoming request for `mysite.com` will result in the following:
 
-1) Your browser asks the DNS network for `mysite.com`'s DNS A record (the IP address of this host).  It responds with "it's an alias for `www---master-def456-abc123.us.platform.sh`" (the CNAME) which itself resolves to the A record with IP address "1.2.3.4"  (Or whatever the actual address is). By default DNS requests by browsers are recursive, so there is no performance penalty for using CNAMEs.
-3) Your browser sends a request to `1.2.3.4` for domain `mysite.com`.
-4) Your router responds with an HTTP 301 redirect to `www.mysite.com` (because in our `routes.yaml` we defined such a redirect).
-5) Your browser looks up `www.mysite.com` and, as above, gets an alias for `www---master-def456-abc123.us.platform.sh`, which is IP 1.2.3.4.
-6) Your browser sends a request to `1.2.3.4` for domain `www.mysite.com`.  Your router passes the request through to your application which in turn responds with whatever it's supposed to do.
+1. Your browser asks the DNS network for `mysite.com`'s DNS A record (the IP address of this host).  It responds with "it's an alias for `www---master-def456-abc123.us.platform.sh`" (the CNAME) which itself resolves to the A record with IP address "1.2.3.4"  (Or whatever the actual address is). By default DNS requests by browsers are recursive, so there is no performance penalty for using CNAMEs.
+3. Your browser sends a request to `1.2.3.4` for domain `mysite.com`.
+4. Your router responds with an HTTP 301 redirect to `www.mysite.com` (because in our `routes.yaml` we defined such a redirect).
+5. Your browser looks up `www.mysite.com` and, as above, gets an alias for `www---master-def456-abc123.us.platform.sh`, which is IP 1.2.3.4.
+6. Your browser sends a request to `1.2.3.4` for domain `www.mysite.com`.  Your router passes the request through to your application which in turn responds with whatever it's supposed to do.
 
 On subsequent requests, your browser will know to simply connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.  The entire process takes only a few milliseconds.
