@@ -1,17 +1,19 @@
 # Going Live - Pre-Launch Checklist
 
-Before you  go live you should go through the following check-list.
+Before you can take your site live there are a few preparation steps to take.
 
 <!--toc-->
 
 ## 1. Register a domain name with a supported provider
+
 You have a domain name registered for your site with a Registrar of your choice. The registrar must allow you to use CNAMEs for your domain.  (Some registrars may call these Aliases or similar.). If your domain is currently active elsewhere, the Time-To-Live (TTL) on your domain is set to the lowest possible value in order to minimize transition time.
 
 > **note**
-> You will not be able to use a `A` record. Verify your DNS provider supports CNAMES (if it does not you will want to run away from it anyway). Also You will be much happier if it supports Apex domains (more in the next chapter).
+> You will not be able to use a `A` record. Verify your DNS provider supports CNAMES. (If it does not you will want to run away from it anyway). Also you will be much happier if it supports Apex domains (more in the next chapter).
 
 ## 2. Note the target address (CNAME) for your DNS configuration
- You have the auto-generated domain for your master branch.  This is the domain you see in "Access site" in the UI.
+
+You have the auto-generated domain for your master branch.  This is the domain you see in "Access site" in the UI.
 
  ![Master Access](/images/master-access.png)
 
@@ -21,14 +23,18 @@ You can also retrieve this value from the command line by running `platform envi
  
 Write this down. This is what you will be using as the target for the CNAME you will configure with your DNS provider. Note that what you will see there is the URL, so you will need to remove http:// or https:// to get the name of the environment. 
 
-
 ## 3. Test your site!
+
 Make sure your site is running and configured as you want it to be, on your master branch.  In particular, see the [Routes documentation](/configuration/routes.md). You will need your routes configured appropriately before you begin.  Make sure you have turned off [basic-authentication](https://docs.platform.sh/administration/web/configure-environment.html) if it was turned on during development.
 
-> **4.  Optionally configure SSL**
-> If you want to use a 3rd party SSL certificate to encrypt your production site, you can obtain one from any number of 3rd party 
-> SSL issuers.  Platform.sh automatically provides SSL certificates for all sites issued by [Let's Encrypt](https://letsencrypt.org/) at no charge, and there is no charge for using a 3rd party SSL cert instead.
+## 4. Optionally obtain a 3rd party SSL certificate
+
+Platform.sh automatically provides SSL certificates for all sites issued by [Let's Encrypt](https://letsencrypt.org/) at no charge.  In most cases this is sufficient and no further action is necessary.  However, if you want to use a 3rd party SSL certificate to encrypt your production site you can obtain one from any number of 3rd party SSL issuers.  Platform.sh does not charge for using a 3rd party SSL certificate, although the issuer may.
+
+Platform.sh supports all kinds of certificates including domain-validated certificates, extended validation (EV) certificates, high-assurance certificates and wildcard certificates.  The use of HA or EV certificates is the main reason why you may wish to use a third party issuer rather than the default certificate.  You will also need a custom certificate if you use wildcard routes, as Let's Encrypt does not support wildcard certificates.
+
+If you do wish to use a 3rd party certificate, ensure it is purchased and active prior to going live.
 
 ---
 
-**Everything Fine? [Let's Go Live.](/golive/steps.md)**
+**Everything Fine? [Go Live](/golive/steps.md).**
