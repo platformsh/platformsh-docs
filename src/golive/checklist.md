@@ -1,12 +1,8 @@
 # Going Live - Pre-Launch Checklist
 
-<ol>
-<li><a href="#1-register-a-domain-name-with-a-supported-provider">Register a domain name with a supported provider</a></li>
-<li><a href="#2-note-the-target-address-cname-for-your-dns-configuration">Note the target address (CNAME) for your DNS configuration</a></li>
-<li><a href="#3-test-your-site">Test your site!</a></li>
-</ol>
-
 Before you  go live you should go through the following check-list.
+
+<!--toc-->
 
 ## 1. Register a domain name with a supported provider
 You have a domain name registered for your site with a Registrar of your choice. The registrar must allow you to use CNAMEs for your domain.  (Some registrars may call these Aliases or similar.). If your domain is currently active elsewhere, the Time-To-Live (TTL) on your domain is set to the lowest possible value in order to minimize transition time.

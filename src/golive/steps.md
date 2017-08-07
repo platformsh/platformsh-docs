@@ -2,12 +2,8 @@
 
 Going live on platform.sh is a simple two or three step process.
 
-<ol>
-<li><a href="#1-change-your-plan-to-a-production-plan">Change your plan to a production plan</a></li>
-<li><a href="#2-set-your-domain-in-platformsh">Set your domain in Platform.sh</a></li>
-<li><a href="#3-configure-your-dns-provider"> Configure your DNS provider</a></li>
-</ol>
-  
+<!--toc-->
+
 You can either use the Platform.sh UI or the CLI to configure your project for production. Once you have went through it once, the whole process usually takes a couple of minutes, but in order to help you cover all the bases we will delve into some details in this document.
 
 > The order of operations is not really important, but if you are migrating a site from an existing provider, you should first 
