@@ -1,7 +1,6 @@
 
 ## The Big Picture
 
-* [Basics](overview/basics.md)
 * [Structure](overview/structure.md)
 * [Build & Deploy](overview/how-it-works.md)
 * [Tools](overview/tools.md)
