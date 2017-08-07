@@ -51,7 +51,7 @@
 
 ## Development
 
-* [Local development](development/local.md)  
+* [Local development](development/local.md)
 * [Variables](development/variables.md)
 * [Headers](development/headers.md)
 * [Accessing logs](development/logs.md)
