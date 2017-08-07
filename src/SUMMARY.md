@@ -52,6 +52,11 @@
 ## Development
 
 * [Local development](development/local.md)
+* [Going live](development/going-live.md)
+  * [Pre-Launch Checklist](development/going-live-checklist.md) 
+  * [Steps](development/going-live-steps.md) 
+  * [Troubleshoot](development/going-live-troubleshoot.md) 
+  * [Example](development/going-live-example.md)   
 * [Variables](development/variables.md)
 * [Headers](development/headers.md)
 * [Accessing logs](development/logs.md)
@@ -60,7 +65,6 @@
 * [Using SSH](development/ssh.md)
 * [Public IPs](development/public-ips.md)
 * [Protective block](development/protective-block.md)
-* [Going live](development/going-live.md)
 * [FAQ](development/faq.md)
 * [Troubleshooting](development/troubleshoot.md)
 
