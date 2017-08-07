@@ -1,6 +1,10 @@
 # Going Live - Pre-Launch Checklist
 
-<!-- toc -->
+<ol>
+<li><a href="#1-register-a-domain-name-with-a-supported-provider">Register a domain name with a supported provider</a></li>
+<li><a href="#2-note-the-target-address-cname-for-your-dns-configuration">Note the target address (CNAME) for your DNS configuration</a></li>
+<li><a href="#3-test-your-site">Test your site!</a></li>
+</ol>
 
 Before you  go live you should go through the following check-list.
 

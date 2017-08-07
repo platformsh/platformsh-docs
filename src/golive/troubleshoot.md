@@ -1,6 +1,10 @@
 # Going Live - Troubleshoot
 
-<!-- toc -->
+<ol>
+<li><a href="#1-change-your-plan-to-a-production-plan">Change your plan to a production plan</a></li>
+<li><a href="#2-set-your-domain-in-platformsh">Set your domain in Platform.sh</a></li>
+<li><a href="#3-configure-your-dns-provider"> Configure your DNS provider</a></li>
+</ol>
 
 You did all of the above and when you visit your website at https://www.example.com (or whatever your real domain name) something is wrong? Here are some simple self-help steps you can do.
 
