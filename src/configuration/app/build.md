@@ -59,7 +59,7 @@ Platform.sh supports two "hooks", or points in the deployment of a new version o
 
 The `build` hook is run after the build flavor (if any).  The file system is fully writeable, but no services are available (such as a database) nor any persistent file mounts, as the application has not yet been deployed.
 
-The `deploy` hook is run after the application container has been started.  You can access other services at this stage (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.
+The `deploy` hook is run after the application container has been started.  You can access other services at this stage (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.  Note that the deploy hook will only run on a [`web`](/configuration/app/web.md) instance, not on a [`worker`](/configuration/app/worker.md) instance.
 
 Each hook is executed as a single script, so they will be considered failed only if the final command in them fails. To cause them to fail on the first failed command, add `set -e` to the beginning of the hook.  If a build hook fails for any reason then the build is aborted and the deploy will not happen.
 

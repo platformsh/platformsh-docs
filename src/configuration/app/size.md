@@ -10,14 +10,14 @@ Legal values for the `size` key are `AUTO` (the default), `S`, `M`, `L`, `XL`.
 
 Note that in a development environment this value is ignored and always set to `S`.  It will only take effect in a production deployment (a master branch with an associated domain).  If the total resources requested by all apps and services is smaller than what the plan size allows then a production deployment will fail with an error.
 
-# How do I make a queue worker container smaller to save resources?
+# How do I make a a background processing container smaller to save resources?
 
 Simply set the `size` key to `S` to ensure that the container gets fewer resources, leaving more to be allocated to other containers.
 
 ```yaml
-name: worker
+name: processing
 
-type: nodejs:6.10
+type: nodejs:6.11
 size: S
 
 ...

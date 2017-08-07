@@ -5,7 +5,7 @@ search:
 
 # Web
 
-Every application container includes a single web server process (currently Nginx), behind which runs your application.  The `web` key configures the web server, including what requests should be served directly (such as static files) and which should be passed to your application.  The server is extremely flexible, which means that some configurations will be more involved than others.  Additionally, defaults may vary somewhat between different language base images (specified by the `type` key of `.platform.app.yaml`).
+The `web` key defines a single web instance container running a single web server process (currently Nginx), behind which runs your application.  The `web` key configures the web server, including what requests should be served directly (such as static files) and which should be passed to your application.  The server is extremely flexible, which means that some configurations will be more involved than others.  Additionally, defaults may vary somewhat between different language base images (specified by the `type` key of `.platform.app.yaml`).
 
 The first section on this page explains the various options the file supports.  If you prefer, the later sections include various example configurations to demonstrate common patterns and configurations.
 

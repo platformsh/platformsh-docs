@@ -35,6 +35,7 @@
   * [Variables](configuration/app/variables.md)
   * [Build and deploy tasks](configuration/app/build.md)
   * [Web configuration](configuration/app/web.md)
+  * [Worker configuration](configuration/app/workers.md)
   * [Cron and scheduled tasks](configuration/app/cron.md)
   * [Multiple Applications](configuration/app/multi-app.md)
   * [Upgrading](configuration/app/upgrading.md)

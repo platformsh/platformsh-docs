@@ -9,21 +9,36 @@ You control your application and the way it will be built and deployed on Platfo
 
 ![Applications](/images/config_diagrams/applications.svg)
 
-The `.platform.app.yaml` file is extremely flexible.  Depending on your needs it could be less than 10 lines long or over 100.  The only required keys are `name`, `type`, `disk`, and a minimal `web` block.  All others are optional.
+The `.platform.app.yaml` file is extremely flexible.  Depending on your needs it could be less than 10 lines long or over 100.  The only required keys are `name`, `type`, `disk`, and at least one "instance definition", either a `web` or `worker` block.  All others are optional.
 
-The basic properties are described on their own pages.
+Your application code can generate one or more application instances. Web instances can be accessed from the outside world, while workers cannot and just run a persistent background process. Otherwise they are very similar.
+
+Different configuration properties can be applied to individual web and worker instances, or globally to all of them.  In the most typical case, with one web instance and no workers, it's common to just list each of the configuration directives below as a top-level property.  However, they can also be specified within the `web` or `worker` blocks to apply to just those instances.
+
+The following properties apply only at the global level, and cannot be replicated inside an instance definition.
 
 * [`name`](/configuration/app/name.md) *(required)* - Sets the unique name of the application container.
 * [`type`](/configuration/app/type.md) *(required)* - Sets the container base image to use, including application language.
-* [`size`](/configuration/app/size.md) - Sets an explicit sizing hint for the application.
 * [`timezone`](/configuration/app/timezone.md) - Sets the timezone of cron tasks in application container.
+* [`build`, `dependencies`, and `hooks`](/configuration/app/build.md) - Control how the application gets compiled.  Note that this compilation happens before the application is copied into different instances, so any steps here will apply to all web and worker instances.
+* [`cron`](/configuration/app/cron.md) - Defines scheduled tasks for the application.  Cron tasks will, technically, run as part of the web instance regardless of how many workers are defined.
+
+The following properties can be set at the top level of the `.platform.app.yaml` file and apply to all application instances, or set within a given instance definition and apply just to that one.  If set in both places then the instance-specific one will take precidence, and completely replace the global one.  That is, if you want to make a change to just one sub-property of one of the following keys you need to replicate the entire block.
+
+* [`size`](/configuration/app/size.md) - Sets an explicit sizing hint for the application.
 * [`relationships`](/configuration/app/relationships.md) - Defines connections to other services and applications.
 * [`access`](/configuration/app/access.md) - Restricts SSH access with more granularity than the UI.
 * [`disk` and `mount`](/configuration/app/storage.md) *(required)* - Defines writeable file directories for the application.
 * [`variables`](/configuration/app/variables.md) - Sets environment variables that control application behavior.
-* [`build`, `dependencies`, and `hooks`](/configuration/app/build.md) - Control how the application gets compiled.
-* [`web`](/configuration/app/web.md) *(required)* - Controls how the application is served.
-* [`cron`](/configuration/app/cron.md) - Defines scheduled tasks for the application.
+
+The `.platform.app.yaml` file needs at least one of the following to define an instance, but may define both.
+
+* [`web`](/configuration/app/web.md) - Controls how the web application is served.
+* [`worker`](/configuration/app/web.md) - Defines alternate copies of the application to run as background processes.
+
+## Available resources
+
+Each web or worker instance is its own running container, which takes its own resources.  The `size` key allows some control over how many resources each container gets and if omitted the system will select one of a few fixed sizes for each container automatically.  All application and service containers are given resources out of a common pool defined by your plan size.  That means the more containers you define, the fewer resources each one will get and you may need to increase your plan size.
 
 ## Example configuration
 
