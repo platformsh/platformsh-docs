@@ -78,7 +78,7 @@
 * [Web interface](administration/web.md)
   * [Project configuration](administration/web/configure-project.md)
   * [Environments](administration/web/environments.md)
-  * [Configure environments (tmp)](administration/web/configure-environment.md)
+  * [Configure environments](administration/web/configure-environment.md)
   * [Email](administration/web/email.md)
   * [Adding vouchers](administration/vouchers.md)
 
