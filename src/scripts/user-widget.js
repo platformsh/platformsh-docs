@@ -20,4 +20,11 @@ $(document).ready(function () {
   var containerWrapper = '#platform-bar';
   var navbar = '<div class="platform-links" ng-app="userWidget"><div ng-include="' + sourcePath + 'user-widget.html\'"></div></div>';
   $(containerWrapper).prepend(navbar);
+  
+  docsearch({
+  apiKey: '742a81bc5ee3a3d26c042f63976eda13',
+  indexName: 'platform-sh',
+  inputSelector: '#search',
+  debug: false // Set debug to true if you want to inspect the dropdown
+  });
   });
