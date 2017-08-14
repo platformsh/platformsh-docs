@@ -1,4 +1,4 @@
-# Notifications
+# Health Notifications
 
 Platform.sh can notify you when various events happen on your project, in any environment.  At this time the only notification provided is low disk space available but others may be added in the future.
 
