@@ -106,6 +106,7 @@ This is the complete list of extensions that can be enabled:
 | mysql        | *   | *   | *   |     |     |
 | mysqli       | *   | *   | *   | *   | *   |
 | mysqlnd      | *   | *   | *   |     |     |
+| newrelic     |     |     | *   | *   | *   |
 | oauth        |     |     |     | *   | *   |
 | odbc         | *   | *   | *   | *   | *   |
 | opcache      |     | *   | *   | *   | *   |
@@ -131,6 +132,7 @@ This is the complete list of extensions that can be enabled:
 | spplus       | *   | *   |     |     |     |
 | sqlite3      | *   | *   | *   | *   | *   |
 | ssh2         | *   | *   | *   |     |     |
+| tideways     |     |     |     | *   | *   |
 | tidy         | *   | *   | *   | *   | *   |
 | uuid         |     |     |     |     | *   |
 | xcache       | *   | *   |     |     |     |

@@ -74,6 +74,7 @@
   * [New Relic](administration/integrations/new-relic.md)
   * [GitHub](administration/integrations/github.md)
   * [HipChat](administration/integrations/hipchat.md)
+  * [Tideways](administration/integrations/tideways.md)
   * [Web hooks](administration/integrations/webhooks.md)
 * [Web interface](administration/web.md)
   * [Project configuration](administration/web/configure-project.md)
