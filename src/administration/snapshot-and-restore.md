@@ -58,7 +58,7 @@ If you want to automate your snapshots, you can use Jenkins and trigger
 with the CLI command as follows:
 
 ```bash
-$ platform snapshot:create --yes
+$ platform snapshot:create --yes --no-wait
 ```
 
 ### Retention
