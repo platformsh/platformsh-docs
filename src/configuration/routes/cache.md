@@ -81,7 +81,7 @@ cache:
   enabled: true
   cookies: ["foo"]
 ```
-The cache key will depend on the value of the `foo` cookie in the request.
+The cache key will depend on the value of the `foo` cookie in the request.  Other cookies will be ignored.
 
 **Type:** List
 
@@ -98,7 +98,7 @@ The cache key will depend on the value of the `foo` cookie in the request.
 
 Defines the default time-to-live for the cache in seconds. The cache duration is decided based on the `Cache-Control` response header value. If no `Cache-Control` header is in the response, then the value of `default_ttl` key (`0`) is used.
 
-The `default_ttl` only applies to **non-static responses**. 
+The `default_ttl` only applies to **non-static responses**, that is, those generated your application. To set a cache lifetime for static resources configure that in your [.platform.app.yaml](/configuration/app/web.md#locations) file.
 
 **Type:** integer
 
