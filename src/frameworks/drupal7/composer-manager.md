@@ -11,7 +11,7 @@ If you're installing it via Drush Make, add the appropriate lines to your `.make
 ```ini
 projects[composer_manager][version] = "1.8"
 projects[composer_manager][patch][] = "https://www.drupal.org/files/issues/composer_manager-2620348-3.patch"
-projects[composer_manager][patch][] = "https://www.drupal.org/files/issues/composer_manager-relative_realpath-2864297-2.patch"
+projects[composer_manager][patch][] = "https://www.drupal.org/files/issues/composer_manager-relative_realpath-2864297-5.patch"
 ```
 
 If you're checking the entire codebase into Git, do so with Composer Manager as well.  Then download and apply the two patches in the issues above and commit the result.
