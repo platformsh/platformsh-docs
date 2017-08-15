@@ -8,9 +8,9 @@ To decide how to cache a response, Platform.sh will build a cache key depending 
 
 If you enable caching...
 
-* you can configure cache behaviour for different location blocks in your `.platform.app.yaml`
-* the router will respect whatever cache headers are sent by the application
-* cookies will not bypass the cache unless the `cookie` property is set or the `Set-Cookie` header is present
+* you can configure cache behaviour for different location blocks in your `.platform.app.yaml`;
+* the router will respect whatever cache headers are sent by the application;
+* cookies will not bypass the cache unless the `cookie` property is set or the `Set-Cookie` header is present;
 * responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` are not cached. 
 
 The Platform.sh HTTP cache is an implementation of the Nginx HTTP cache.
@@ -68,7 +68,7 @@ cache:
 
 **Type:** List
 
-> See [Header behaviours](#Header_behaviours) for information on how specific headers affect the request.
+> See [Header behaviors](#Header_behaviors) for information on how specific headers affect the request.
 
 ### `cookies`
 
@@ -126,11 +126,11 @@ cache:
   cookies: ["*"]
 ```
 
-### Header behaviours
+### Header behaviors
 
 The cache is only applied to `GET` and `HEAD` requests. Some headers trigger specific behaviours in the cache.
 
-Header field | Cache behaviour
+Header field | Cache behavior
 -------------|----------------
 `Cache-Control`|Responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` are not cached. All other values override `default_ttl`.
 `Vary`|A list of header fields to be taken into account when constructing the cache key. Multiple header fields can be listed, separted by commas. The Cache key is the union of the values of the Header fields listed in Vary header, and whatever's listed in the `routes.yaml` file.
@@ -141,7 +141,7 @@ Header field | Cache behaviour
 `Cache-Control`|Overrides the default time-to-live.
 `Accept-Encoding`, `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`, `Pragma`|Ignored
 
-A full list of HTTP headers is available on (Wikipedia)[https://en.wikipedia.org/wiki/List_of_HTTP_header_fields].
+A full list of HTTP headers is available on [Wikipedia]([https://en.wikipedia.org/wiki/List_of_HTTP_header_fields).
 
 ### Duration
 
@@ -198,6 +198,7 @@ And the following routes are **not** cached:
 -   `https://{default}/foo/baz/`
 
 > **note**
+>
 > Regular expressions in routes are **not** supported.
 
 ### Allowing only specific cookies
