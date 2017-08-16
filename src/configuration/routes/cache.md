@@ -10,7 +10,7 @@ When caching is on...
 
 * you can configure cache behaviour for different location blocks in your `.platform.app.yaml`;
 * the router will respect whatever cache headers are sent by the application;
-* cookies will not bypass the cache unless the `cookie` property is set or the `Set-Cookie` header is present;
+* cookies will bypass the cache;
 * responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` are not cached. 
 
 The Platform.sh HTTP cache is an implementation of the Nginx HTTP cache.
@@ -80,7 +80,7 @@ cache:
 
 ### `cookies`
 
-Defines which cookie names to include values for in the cache key.
+Defines which cookie names to include values for in the cache key. Using the defaults, cookies will bypass the cache unless the `cookie` property is set and the cookie name is in the list, or the `Set-Cookie` header is present
 
 For example:
 
@@ -169,6 +169,12 @@ application with `If-Modified-Since` header. Also, `If-None-Match` header is sen
 ### Flushing
 
 The HTTP cache does not support a complete cache flush, however, you can invalidate the cache by setting `cache:false`.
+
+## Debugging requests using the cache
+
+Platform.sh add `X-Platform-Cache` headers to each request which show whether your request is a cache HIT, MISS or BYPASS. This can be useful when trying to determine whether it is your application, the HTTP cache, or another proxy or CDN which is not behaving as expected.
+
+If in doubt, disable the cache using `cache:false`.
 
 ## Advanced caching strategies
 
