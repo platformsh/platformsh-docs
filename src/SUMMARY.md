@@ -60,9 +60,15 @@
 * [Using SSH](development/ssh.md)
 * [Public IPs](development/public-ips.md)
 * [Protective block](development/protective-block.md)
-* [Going live](development/going-live.md)
 * [FAQ](development/faq.md)
 * [Troubleshooting](development/troubleshoot.md)
+
+## Going Live
+
+* [Pre-Launch Checklist](/golive/checklist.md) 
+* [Going Live Steps](/golive/steps.md) 
+* [Troubleshooting](/golive/troubleshoot.md) 
+* [Example](/golive/example.md)   
 
 ## Administration
 
