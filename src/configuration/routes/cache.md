@@ -51,13 +51,11 @@ https://{default}/:
 
 Turns the cache on or off for a route.
 
-**Type:** Boolean
-
-**Required:** Yes
-
-**Values**
-* `true`: enable the cache for this route [default, but only if the `cache` key is not actually specified]
-* `false`: disable the cache for this route 
+> **Type:** Boolean
+> **Required:** Yes
+> **Values**
+> * `true`: enable the cache for this route [default, but only if the `cache` key is not actually specified]
+> * `false`: disable the cache for this route 
 
 ### `headers`
 
@@ -71,12 +69,11 @@ cache:
   headers: ["Accept"]
 ```
 
-**Type:** List
+> **Type:** List
+> **Values:**
+> * `['Accept', 'Accept-Language']`: Cache on Accept & Accept-Language [default]
 
-**Values:**
-* `['Accept', 'Accept-Language']`: Cache on Accept & Accept-Language [default]
-
-> See [Header behaviors](#Header_behaviors) for information on how specific headers affect the request.
+See [Header behaviors](#Header_behaviors) for information on how specific headers affect the request.
 
 ### `cookies`
 
@@ -91,16 +88,15 @@ cache:
 ```
 The cache key will depend on the value of the `foo` cookie in the request.  Other cookies will be ignored.
 
-**Type:** List
+> **Type:** List
+> **Values:**
+> * `['*']`: any request with a cookie will bypass the cache [default]
+> * _user defined_: A valid cookie name
 
-**Values:**
-* `['*']`: any request with a cookie will bypass the cache [default]
-* _user defined_: A valid cookie name
+**Wildcards are not supported**
+You can not use wildcards in the cookie name. Either use a precise cookie name, or match all cookies with a `"*"`. 
 
-> **Wildcards are not supported**
-> You can not use wildcards in the cookie name. Either use a precise cookie
-> name, or match all cookies with a `"*"`. `"SESS*"` or `"~SESS"` are currently
-> not valid values.
+`"SESS*"` or `"~SESS"` are currently not valid values.
 
 ### `default_ttl`
 
@@ -108,10 +104,9 @@ Defines the default time-to-live for the cache in seconds, when the response doe
 
 The `default_ttl` only applies to **non-static responses**, that is, those generated your application. To set a cache lifetime for static resources configure that in your [.platform.app.yaml](/configuration/app/web.md#locations) file.
 
-**Type:** integer
-
-**Values:**
-* `0`: Do not cache [default]. This prevents the cache from working _unless_ the response specifies a `Cache-Control` header value.
+> **Type:** integer
+> **Values:**
+> * `0`: Do not cache [default]. This prevents the cache from working _unless_ the response specifies a `Cache-Control` header value.
 
 All static assets will have a Cache-Control header with a max age defaulting to 0 (which is the default for `expires` in the `.platform.app.yaml`).
 
