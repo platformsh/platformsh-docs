@@ -8,6 +8,11 @@
 * [Pricing](overview/pricing.md)
 * [Getting help](overview/getting-help.md)
 
+## Getting Started
+
+* [Your first project](/gettingstarted/first-project.md)
+* [Platform.sh in practice](/gettingstarted/platformsh-in-practice.md)
+
 ## Configuration
 
 * [Routes (routes.yaml)](configuration/routes.md)
