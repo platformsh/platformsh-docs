@@ -13,8 +13,7 @@
     "toc",
     "-sharing",
     "-lunr",
-    "-search",
-    "search-plus"
+    "-search"
   ],
   "pluginsConfig": {
     "edit-link": {
