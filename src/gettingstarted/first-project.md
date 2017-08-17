@@ -54,7 +54,7 @@ You can also initialize your project using any of the pre-made templates below. 
 <!-- Python -->
 <td>
 
-<a href="https://github.com/platformsh/platformsh-example-python">Generic Python application</a> - Includes variants for uwsgi, gunicorn over TCP port, and gunicorn over Unix socket.<br />
+<a href="https://github.com/platformsh/platformsh-example-python">Generic Python application</a><br />
 <a href="https://github.com/platformsh/platformsh-example-django">Django</a>
 
 </td> 
@@ -63,7 +63,7 @@ You can also initialize your project using any of the pre-made templates below. 
 <td>
 
 <a href="https://github.com/platformsh/platformsh-example-sinatra">Sinatra</a><br />
-<a href="https://github.com/platformsh/platformsh-example-ruby-sinatra-all-the-services">Sinatra (with all services enabled)</a><br />
+<a href="https://github.com/platformsh/platformsh-example-ruby-sinatra-all-the-services">Sinatra (all services)</a><br />
 <a href="https://github.com/platformsh/platformsh-example-rails">Ruby on Rails</a>
 
 </td> 
@@ -73,7 +73,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <a href="https://github.com/platformsh/platformsh-example-nodejs">Generic Node.js</a><br />
 <a href="https://github.com/platformsh/platformsh-example-parseit">Parse</a><br />
-<a href="https://github.com/platformsh/platformsh-example-nodejs-microservices">Node.js-based microservices</a>
+<a href="https://github.com/platformsh/platformsh-example-nodejs-microservices">Node.js microservices</a>
 
 
 </td> 
