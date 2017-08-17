@@ -27,50 +27,62 @@ You can also initialize your project using any of the pre-made templates below. 
 <!-- PHP -->
 <td>
 
-### Applications
+<h3>Applications</h3>
 
-* [EZ Platform](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Drupal 7](https://github.com/platformsh/platformsh-example-drupal7)
-* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8](https://github.com/platformsh/platformsh-example-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/platformsh-example-drupal8-multisite)
-* [Laravel](https://github.com/platformsh/platformsh-example-laravel)
-* [Moodle](https://github.com/platformsh/platformsh-example-moodle)
-* [Magento 1](https://github.com/platformsh/platformsh-example-laravel)
-* [Magento 2](https://github.com/platformsh/platformsh-example-magento)
-* [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
-* [Typo 3](https://github.com/platformsh/platformsh-example-typo3)
-* [Wordpress](https://github.com/platformsh/platformsh-example-wordpress)
+<a href="https://github.com/platformsh/platformsh-example-ezplatform">EZ Platform</a></a><br />
+<a href="https://github.com/platformsh/platformsh-example-drupal7">Drupal 7</a></a><br />
+<a href="https://github.com/platormsh/platformsh-example-drupalcommerce7">Drupal 7 Commerce Kickstart</a>)</a><br />
+<a href="https://github.com/platformsh/platformsh-example-drupal8">Drupal 8</a><br />
+<a href="https://github</a>.com/plaformsh/platformsh-example-drupal8-multisite">Drupal 8 (Multisite variant)</a><br />
+<a href="https://github.com/platformsh/platformsh-example-laravel">Laravel</a><br />
+<a href="https://github.com/platformsh/platformsh-example-moodle">Moodle</a><br />
+<a href="https://github.com/platformsh/platformsh-example-laravel">Magento 1</a><br />
+<a href="https://github.com/platformsh/platformsh-example-magento">Magento 2</a><br />
+<a href="https://github.com/platformsh/platformsh-example-sculpin">Sculpin</a><br />
+<a href="https://github.com/platformsh/platformsh-example-typo3">Typo 3</a><br />
+<a href="https://github.com/platformsh/platformsh-example-wordpress">Wordpress</a>
 
-### Frameworks
+<h3>Frameworks</h3>
 
-* [AmPHP](https://github.com/platformsh/platformsh-example-amphp)
-* [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
-* [Symfony 2.8](https://github.com/platformsh/platformsh-example-symfony/tree/2.8)
-* [Symfony 3.x](https://github.com/platformsh/platformsh-example-symfony/tree/3.0)
+<a href="https://github.com/platformsh/platformsh-example-amphp">AmPHP</a><br />
+<a href="https://github.com/platformsh/platformsh-example-reactphp">React PHP</a><br />
+<a href="https://github.com/platformsh/platformsh-example-symfony/tree/2.8">Symfony 2.8</a><br />
+<a href="https://github.com/platformsh/platformsh-example-symfony/tree/3.0">Symfony 3.x</a><br />
 
 </td> 
 
 <!-- Python -->
 <td>
-* [Generic Python application](https://github.com/platformsh/platformsh-example-python) - Includes variants for uwsgi, gunicorn over TCP port, and gunicorn over Unix socket.
-* [Django](https://github.com/platformsh/platformsh-example-django)
+
+<a href="https://github.com/platformsh/platformsh-example-python">Generic Python application</a> - Includes variants for uwsgi, gunicorn over TCP port, and gunicorn over Unix socket.<br />
+<a href="https://github.com/platformsh/platformsh-example-django">Django</a>
+
 </td> 
 
 <!-- Ruby -->
 <td>
+
+<a href="https://github.com/platformsh/platformsh-example-sinatra">Sinatra</a><br />
+<a href="https://github.com/platformsh/platformsh-example-ruby-sinatra-all-the-services">Sinatra (with all services enabled)</a><br />
+<a href="https://github.com/platformsh/platformsh-example-rails">Ruby on Rails</a>
+
 </td> 
 
 <!-- Node.js -->
 <td>
-* [Sinatra](https://github.com/platformsh/platformsh-example-sinatra)
-* [Sinatra (with all services enabled)](https://github.com/platformsh/platformsh-example-ruby-sinatra-all-the-services)
-* [Ruby on Rails](https://github.com/platformsh/platformsh-example-rails)
+
+<a href="https://github.com/platformsh/platformsh-example-nodejs">Generic Node.js</a><br />
+<a href="https://github.com/platformsh/platformsh-example-parseit">Parse</a><br />
+<a href="https://github.com/platformsh/platformsh-example-nodejs-microservices">Node.js-based microservices</a>
+
+
 </td> 
 
 <!-- Go -->
 <td>
-[Generic Go application](https://github.com/platformsh/platformsh-example-golang)
+
+<a href="https://github.com/platformsh/platformsh-example-golang">Generic Go application</a>
+
 </td> 
 
 </tr>
