@@ -122,3 +122,4 @@ platform tunnel:close
 Alternatively, you can also run the entire site locally on your computer.  That is more performant as there's no lag time to connect to a remote database and doesn't require an active Internet connection to work.  However, it does require running all necessary services (databases, search servers, etc.) locally.  These can be setup however you prefer, although Platform.sh recommends using a virtual machine to make it easier to share configuration between developers.
 
 To synchronize data from an environment on Platform.sh, consult the documentation for each [service](/configuration/services.md).  Each service type has its own native data import/export process and Platform.sh does not get in the way of that.  It's also straightforward to [download user files](/tutorials/exporting.md#downloading-files) from your application using rsync.
+
