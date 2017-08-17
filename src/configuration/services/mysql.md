@@ -142,6 +142,7 @@ mysqldb:
                 privileges:
                     main: ro
             importer:
+                default_schema: legacy
                 privileges:
                     legacy: rw
 ```
