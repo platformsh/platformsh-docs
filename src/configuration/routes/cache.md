@@ -13,8 +13,6 @@ When caching is on...
 * cookies will bypass the cache;
 * responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` are not cached. 
 
-The Platform.sh HTTP cache is an implementation of the Nginx HTTP cache.
-
 ## Basic usage
 
 The HTTP cache is enabled by default, however you may wish to override this behaviour.
