@@ -137,9 +137,21 @@ ul.summary li ul ul {
   -moz-transition: left 250ms ease;
   -o-transition: left 250ms ease;
   transition: left 250ms ease;
+  background: #ebebeb;
+  top: 79px;
+  padding: 0;
+}
+.with-summary + #book-search-input {
+  left: 0 !important;
 }
 .book.with-summary .book-summary #book-search-input {
   left: 0;
+  padding: 0;
+}
+#book-search-input input,
+#book-search-input input:focus,
+#book-search-input input:hover {
+  padding: 13px;
 }
 #book-search-input:before {
   color: #8e8e8e;
@@ -150,6 +162,21 @@ ul.summary li ul ul {
   position: absolute;
   top: 16px;
   right: 16px;
+}
+.algolia-autocomplete {
+  width: 100%;
+}
+.algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu {
+  margin-left: 10px;
+}
+/* Override default algolia CSS to make results more responsive. */
+.algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu,
+.algolia-autocomplete .ds-dropdown-menu [class^=ds-dataset-],
+.algolia-autocomplete .ds-dropdown-menu .ds-suggestions,
+.algolia-autocomplete .ds-dropdown-menu .ds-suggestion {
+  width: 600px;
+  max-width: 100%;
+  min-width: auto;
 }
 .book .book-header .btn {
   color: #757575;
@@ -326,6 +353,12 @@ section.normal p strong,
   #book-search-input {
     left: -300px;
     width: 299px;
+  }
+  .algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu,
+  .algolia-autocomplete .ds-dropdown-menu [class^=ds-dataset-],
+  .algolia-autocomplete .ds-dropdown-menu .ds-suggestions,
+  .algolia-autocomplete .ds-dropdown-menu .ds-suggestion {
+    min-width: 600px;
   }
 }
 @media (min-width: 768px) {
