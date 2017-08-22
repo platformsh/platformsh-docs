@@ -13,12 +13,14 @@ https://{default}/:
     enabled: false
   redirects:
     paths:
-      # The following were the most common paths on the old site; redirect to the
-      # corresponding new page. These redirects should be safe to remove in 2017.
+      # Reorganizations in mid 2017.  Should be safe to remove around end of year.
       "/development/going-live.html": { "to": "/golive/checklist.html", "code": 301, "prefix": false}
       "/overview/basics.html": { "to": "/overview/structure.html", "code": 301, "prefix": false}
       "/overview/how-it-looks.html": { "to": "/overview/structure.html", "code": 301, "prefix": false}
       "/overview/how-we-think.html": { "to": "/overview/basics.html", "code": 301, "prefix": false}
+
+      # The following were the most common paths on the old site; redirect to the
+      # corresponding new page. These redirects should be safe to remove in 2017.
       "/user_guide/reference/platform-app-yaml.html": { "to": "/configuration/app-containers.html", "code": 301, "prefix": false}
       "/user_guide/overview/configuring-project-environments.html": { "to": "/administration/web/configure-environment.html", "code": 301, "prefix": false}
       "/user_guide/using/going-live.html": { "to": "/development/going-live.html", "code": 301, "prefix": false}
@@ -36,7 +38,7 @@ https://{default}/:
       "/drupal_migrate/guides/type/php/drupal/migrate/import-database.html": { "to": "/drupal7/migrating.html", "code": 301, "prefix": false}
       "/user_guide/reference/toolstacks/php/configure-php.html": { "to": "/languages/php.html", "code": 301, "prefix": false}
       "/user_guide/overview/services.html": { "to": "/configuration/services.html", "code": 301, "prefix": false}
-      "/drupal/guides/prerequisites/platform-cli.html": { "to": "/overview/cli.html", "code": 301, "prefix": false} 
+      "/drupal/guides/prerequisites/platform-cli.html": { "to": "/overview/cli.html", "code": 301, "prefix": false}
       "/user_guide/using/integrations/blackfire.html": { "to": "/administration/integrations/blackfire.html", "code": 301, "prefix": false}
       "/user_guide/reference/toolstacks/php/symfony/migrate-existing-site.html": { "to": "/frameworks/symfony/migrating.html", "code": 301, "prefix": false}
       "/discover/overview/pricing.html": { "to": "/overview/pricing.html", "code": 301, "prefix": false}

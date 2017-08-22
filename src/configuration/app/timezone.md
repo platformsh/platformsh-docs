@@ -14,7 +14,7 @@ This entry is only meaningful on cron specs that specify a particular time of da
 
 The application runtime timezone can also be set, although the mechanism varies a bit by the runtime.
 
-* PHP runtime - You can change the timezone by providing a [custom php.ini](https://docs.platform.sh/user_guide/reference/toolstacks/php/configure-php.html#custom-php-ini).
+* PHP runtime - You can change the timezone by providing a [custom php.ini](https://docs.platform.sh/languages/php.md#custom-php-ini).
 * Node.js runtime - You can change the timezone by starting the server with `env TZ='<timezone>' node server.js`.
 * Python runtime - You can change the timezone by starting the server with `env TZ='<timezone>' python server.py`.
 
