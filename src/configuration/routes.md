@@ -117,6 +117,9 @@ section for a detailed view on how to define routes that work with
 [redirects](/configuration/routes/redirects.md) section for details on how you can set up complex
 redirection rules including **partial redirects**.
 
+> **note**
+> `routes.yaml` does not support redirecting wildcard subdomains from http to https
+
 ### HTTPS
 
 All environments on Platform.sh support both HTTP and HTTPS automatically.  Production SSL certificates are provided by [Let's Encrypt](https://letsencrypt.org/).  You may alternatively provide your own SSL certificate from a 3rd party issuer of your choice at no charge from us.
