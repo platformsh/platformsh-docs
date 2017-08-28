@@ -23,7 +23,7 @@ crons:
     # Run Drupal's cron tasks every 20 minutes.
     drupal:
         spec: '*/20 * * * *'
-        cmd: 'cd web ; drush core-cron'
+        cmd: 'cd web ; drush core-cron --uri=your.drupalsite.org --root=/web'
     # But also run pending queue tasks every 5 minutes.
     drush-queue:
         spec: '*/5 * * * *'
