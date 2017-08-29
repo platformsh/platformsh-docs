@@ -70,8 +70,9 @@ The simplest way to run a project locally is to use a local web server, but keep
 For the local web server the approach will vary depending on your language.
 
 * For a self-serving language (Go or Node.js), simply run the program locally.
-* For PHP, you may install your own copy of Apache and Nginx/PHP-FPM or simply use the built-in PHP web server: `php -S localhost:8001` will start a basic web server capable of running PHP, serving the current directory, on port 8001.  See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
-* For other languages it is recommended that you install your own copy of Apache or Nginx.  A virtual machine or Docker image is also a viable option.
+* For PHP, you may install your own copy of Nginx (or Apache) and PHP-FPM, or simply use the built-in PHP web server: `php -S localhost:8001` will start a basic web server capable of running PHP, serving the current directory, on port 8001.  See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
+* For other languages it is recommended that you install your own copy of Nginx or Apache.
+* A virtual machine or Docker image is also a viable option.
 
 ### SSH tunneling
 
@@ -89,7 +90,7 @@ Close tunnels with: platform tunnel:close
 ```
 
 > **note**
-> platform tunnel: requires the pcntl and posix PHP extensions. Run `php -m | grep -E 'posix|pcntl'` to check if they're there.
+> The `platform tunnel:` commands require the pcntl and posix PHP extensions. Run `php -m | grep -E 'posix|pcntl'` to check if they're there.
 
 Now you can connect to the remote database normally, as if it were local.
 
@@ -119,7 +120,7 @@ platform tunnel:close
 
 ## Untethered Local
 
-Alternatively, you can also run the entire site locally on your computer.  That is more performant as there's no extra latency to connect to a remote database and doesn't require an active Internet connection to work.  However, it does require running all necessary services (databases, search servers, etc.) locally.  These can be setup however you prefer, although Platform.sh recommends using a virtual machine to make it easier to share configuration between developers.
+Alternatively, you can also run the entire site locally on your computer.  That is more performant as there's no extra latency to connect to a remote database and doesn't require an active Internet connection to work.  However, it does require running all necessary services (databases, search servers, etc.) locally.  These can be set up however you prefer, although Platform.sh recommends using a virtual machine to make it easier to share configuration between developers.
 
 To synchronize data from an environment on Platform.sh, consult the documentation for each [service](/configuration/services.md).  Each service type has its own native data import/export process and Platform.sh does not get in the way of that.  It's also straightforward to [download user files](/tutorials/exporting.md#downloading-files) from your application using rsync.
 
