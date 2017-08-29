@@ -96,7 +96,24 @@ Now you can connect to the remote database normally, as if it were local.
 $ mysql --host=127.0.0.1 --port=30001 --user='user' --password='' --database='main'
 ```
 
-The specific port that each service uses may vary project to project, but it will not change within a single project unless you change your services or relationship definition.  That makes it safe to add a local-configuration file for your application that connects to, in this case, `localhost:30001` for the SQL database and `localhost:30000` for Redis.
+The specific port that each service uses is not guaranteed, but is unlikely to change unless you add an additional service or connect to multiple projects at once.  In most cases it's safe to add a local-configuration file for your application that connects to, in this case, `localhost:30001` for the SQL database and `localhost:30000` for Redis.
+
+Alternatively, you can read the relationship information directly from the Platform.sh CLI in your application using `platform tunnel:info --encode`, at the cost of that process call each time you do so.  The return value is a string encoded exactly the same way as the `PLATFORM_RELATIONSHIPS` environment variable on Platform.sh.
+
+{% codetabs name="PHP", type="php" -%}
+<?php
+if ($relationships_encoded = shell_exec('platform tunnel:info --encode')) {
+  $relationships = json_decode(base64_decode($relationships_encoded, TRUE), TRUE);
+  // ...
+}
+
+{%- language name="Python", type="py" -%}
+
+{%- language name="Go", type="go" -%}
+
+{%- endcodetabs %}
+
+
 
 After the tunnel(s) are opened, you can confirm their presence:
 
