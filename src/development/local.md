@@ -6,9 +6,7 @@ You must have an [SSH key](/overview/tools.md#ssh) already configured on your ac
 
 ## Download the code
 
-If you don't already have a local Git clone of your code, you can easily download it.  From the Platform.sh UI copy the `platform get` command listed just under the action buttons on the right and run it locally on your system.
-
-Alternatively, you can use the CLI to get a copy of the code directly.  Run `platform projects` to list all of the projects in your account.
+If you don't already have a local copy of your project's code, run `platform get` to download one. You can also run `platform projects` to list all of the projects in your account.
 
 ```bash
 ~/htdocs $ platform projects
