@@ -18,7 +18,7 @@ You can also provide your own code, either cloned from one of our other example 
 
 You can also initialize your project using any of the pre-made templates below.  For each one, simply Git Clone the repository from GitHub then push it to Platform.sh using the instructions for a custom repository in the UI, as seen in the video above.
 
-<table>
+<table class="example-index">
 
 <thead><tr><th>PHP</th> <th>Python</th> <th>Ruby</th> <th>Node.js</th> <th>Go</th> </tr></thead>
 

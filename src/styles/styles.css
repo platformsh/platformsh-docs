@@ -385,3 +385,7 @@ section.normal p strong,
     padding: 15px 30px;
   }
 }
+
+table.example-index td {
+  vertical-align: top;
+}
