@@ -54,3 +54,5 @@ Platform.sh.
 Your public key is uploaded to your Platform.sh user
 account, and it then governs authentication for Git, SSH sessions (shell access),
 and other tools that connect to your Platform.sh project.
+
+GitHub has a good [walk-through of creating an SSH keypair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) on various operating systems.
