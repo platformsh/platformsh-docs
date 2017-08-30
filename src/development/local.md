@@ -103,14 +103,18 @@ Alternatively, you can read the relationship information directly from the Platf
 {% codetabs name="PHP", type="php" -%}
 <?php
 if ($relationships_encoded = shell_exec('platform tunnel:info --encode')) {
-  $relationships = json_decode(base64_decode($relationships_encoded, TRUE), TRUE);
-  // ...
+    $relationships = json_decode(base64_decode($relationships_encoded, TRUE), TRUE);
+    // ...
 }
-
 {%- language name="Python", type="py" -%}
+import json
+import base64
+import subprocess
 
-{%- language name="Go", type="go" -%}
-
+encoded = subprocess.check_output(['platform', 'tunnel:info', '--encode'])
+if (encoded):
+    json.loads(base64.b64decode(relationships).decode('utf-8'))
+    # ...
 {%- endcodetabs %}
 
 
