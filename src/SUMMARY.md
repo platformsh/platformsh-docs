@@ -12,6 +12,8 @@
 * [Platform.sh in practice](/gettingstarted/platformsh-in-practice.md)
 * [Tools](gettingstarted/tools.md)
 * [CLI](gettingstarted/cli.md)
+* [Local development](gettingstarted/local.md)
+
 
 ## Configuration
 
@@ -56,7 +58,6 @@
 
 ## Development
 
-* [Local development](development/local.md)
 * [Variables](development/variables.md)
 * [Headers](development/headers.md)
 * [Accessing logs](development/logs.md)
