@@ -219,7 +219,7 @@ And the following routes are **not** cached:
 
 ### Allowing only specific cookies
 
-Some applications use cookies to invalidate cache responses, but expect other cookies to be ignored. This is a simple case of allowing only a subset of cookies.
+Some applications use cookies to invalidate cache responses, but expect other cookies to be ignored. This is a simple case of allowing only a subset of cookies to invalidate the cache.
 
 ```yaml
 cache:
