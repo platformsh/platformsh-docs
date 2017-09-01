@@ -126,7 +126,7 @@ Header field | Cache behavior
 `Cookie`|Not allowed, and will throw an error. Use the `cookies` value, instead.
 `Pragma`|Ignored
 
-A full list of HTTP headers is available on [Wikipedia]([https://en.wikipedia.org/wiki/List_of_HTTP_header_fields).
+A full list of HTTP headers is available on [Wikipedia](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields).
 
 ### `cookies`
 
