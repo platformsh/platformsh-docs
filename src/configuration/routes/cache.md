@@ -121,12 +121,11 @@ Header field | Cache behavior
 `Cache-Control`|Responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` are not cached. All other values override `default_ttl`.
 `Vary`|A list of header fields to be taken into account when constructing the cache key. Multiple header fields can be listed, separted by commas. The Cache key is the union of the values of the Header fields listed in Vary header, and whatever's listed in the `routes.yaml` file.
 `Set-Cookie`|Not cached
-`Cache-Control`|Overrides the default time-to-live.
 `Accept-Encoding`, `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`|Not allowed, and will throw an error
 `Cookie`|Not allowed, and will throw an error. Use the `cookies` value, instead.
 `Pragma`|Ignored
 
-A full list of HTTP headers is available on [Wikipedia]([https://en.wikipedia.org/wiki/List_of_HTTP_header_fields).
+A full list of HTTP headers is available on [Wikipedia](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields).
 
 ### `cookies`
 
