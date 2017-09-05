@@ -2,15 +2,13 @@
 
 The best way to understand a tool is to use it.  We believe that the best marketing we can offer for Platform.sh is to let you try it out, which is why we offer a free one month trial.
 
-To begin, create a new [free trial account](https://accounts.platform.sh/platform/trial/general/setup).  You can sign up with a new user and password or login using an existing GitHub, Bitbucket, or Google account.  If you use a 3rd party login you will be able to set a password for your Platform.sh account later.
+To begin, create a new [free trial account](https://accounts.platform.sh/platform/trial/general/setup).
 
-You'll be asked to select the region your website should live in.  Select the region closest to you.  (Note that Australia and the German sovereign region have a higher base monthly cost after the first month.)
+* Sign up with a new user and password or login using an existing GitHub, Bitbucket, or Google account.  If you use a 3rd party login you will be able to set a password for your Platform.sh account later.
+* Select the region of the world where your site should live.
+* Select one of the pre-made project templates or bring your own code.
 
-After account creation, you'll be asked how to create your first project.  You can either start from one of the existing pre-made templates or provide your own.
-
-For our featured projects and frameworks, simply select one from the list to initialize your project using that application.
-
-You can also provide your own code, either cloned from one of our other example repositories or one that you create yourself.  The video below shows how to setup your own initial project using the Silex PHP microframework.
+The video below shows how to setup your own initial project using the Silex PHP microframework.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/upxdYc3Ti88" frameborder="0" allowfullscreen></iframe>
 
