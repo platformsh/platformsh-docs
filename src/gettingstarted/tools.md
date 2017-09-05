@@ -16,9 +16,7 @@ Before getting started, make sure you have it installed on your computer to be a
 
 ## SSH
 
-One of the ways [Platform.sh](https://platform.sh/) keeps things secure is by using SSH behind the scenes. Users connect to their Platform.sh Git repository and to their Command Line Interface (CLI) using SSH.
-
-SSH requires two [RSA keys](https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29):
+You connect to your Platform.sh Git repository and to your applications and services using SSH.  SSH requires two [RSA keys](https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29):
 
 * A **private key** kept secret by the user
 * A **public key** stored within the Platform.sh account
