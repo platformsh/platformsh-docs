@@ -52,6 +52,8 @@ You can also initialize your project using any of the pre-made templates below. 
 <!-- Python -->
 <td>
 
+<h3>Frameworks</h3>
+
 <a href="https://github.com/platformsh/platformsh-example-python">Generic Python application</a><br />
 <a href="https://github.com/platformsh/platformsh-example-django">Django</a>
 
@@ -59,6 +61,8 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <!-- Ruby -->
 <td>
+
+<h3>Frameworks</h3>
 
 <a href="https://github.com/platformsh/platformsh-example-sinatra">Sinatra</a><br />
 <a href="https://github.com/platformsh/platformsh-example-ruby-sinatra-all-the-services">Sinatra (all services)</a><br />
@@ -69,6 +73,8 @@ You can also initialize your project using any of the pre-made templates below. 
 <!-- Node.js -->
 <td>
 
+<h3>Examples</h3>
+
 <a href="https://github.com/platformsh/platformsh-example-nodejs">Generic Node.js</a><br />
 <a href="https://github.com/platformsh/platformsh-example-parseit">Parse</a><br />
 <a href="https://github.com/platformsh/platformsh-example-nodejs-microservices">Node.js microservices</a>
@@ -78,6 +84,8 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <!-- Go -->
 <td>
+
+<h3>Examples</h3>
 
 <a href="https://github.com/platformsh/platformsh-example-golang">Generic Go application</a>
 
