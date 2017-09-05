@@ -28,7 +28,7 @@ Note that whether a mounted directory is web-accessible or not depends on the co
 
 If you have multiple application instances defined (using both `web` and `workers`), each instance will have its own disk mounts.  That's the case even if they are named the same, and even if there is only a single top-level mounts directive.  In that case, every instance will have an identical configuration, but separate, independent file spaces.  Shared file storage between different application instances is not supported at this time.
 
-## How do I setup both public and private file uploads?
+## How do I set up both public and private file uploads?
 
 The following example sets up two file mounts.  One is mounted at `/private` within the application container, the other at `/web/uploads`.  The two file mounts together have a limit of 1024 MB of storage.
 
