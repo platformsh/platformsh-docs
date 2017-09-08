@@ -23,13 +23,13 @@ You can also initialize your project using any of the pre-made templates below. 
 <tbody><tr>
 
 <!-- PHP -->
-<td>
+<td rowspan="3">
 
 <h3>Applications</h3>
 
 <a href="https://github.com/platformsh/platformsh-example-ezplatform">EZ Platform</a></a><br />
 <a href="https://github.com/platformsh/platformsh-example-drupal7">Drupal 7</a></a><br />
-<a href="https://github.com/platormsh/platformsh-example-drupalcommerce7">Drupal 7 Commerce Kickstart</a></a><br />
+<a href="https://github.com/platormsh/platformsh-example-drupalcommerce7">Drupal 7 (Commerce Kickstart)</a></a><br />
 <a href="https://github.com/platformsh/platformsh-example-drupal8">Drupal 8</a><br />
 <a href="https://github</a>.com/plaformsh/platformsh-example-drupal8-multisite">Drupal 8 (Multisite variant)</a><br />
 <a href="https://github.com/platformsh/platformsh-example-laravel">Laravel</a><br />

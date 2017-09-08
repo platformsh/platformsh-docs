@@ -14,7 +14,6 @@
 * [CLI](gettingstarted/cli.md)
 * [Local development](gettingstarted/local.md)
 
-
 ## Configuration
 
 * [Routes (routes.yaml)](configuration/routes.md)
