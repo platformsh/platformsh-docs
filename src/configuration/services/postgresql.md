@@ -219,6 +219,7 @@ extensions not listed here.
 * **pgcrypto**        - Cryptographic functions
 * **pgrowlocks**      - A function to return row locking information
 * **pgstattuple**     - Returns the percentage of dead tuples in a table; this indicates whether a vacuum is required.
+* ** postgis**        - A GIS geographic data library
 * **postgresql_fdw**  - foreign data wrapper for PostgreSQL
 * **seg**             - Confidence-interval datatype (GiST indexing example)
 * **sepgsql**         - mandatory access control (MAC) based on SELinux
