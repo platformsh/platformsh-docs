@@ -92,46 +92,6 @@ The following extensions are enabled by default:
 * zip (7.1 and later)
 
 
-
-____________________
-openssl/Sockets not in 7.1/7.2 !
-
-
-Not in 7.2
-mcrypt
-
-PDO lib in 7.2/7.1?
-
-
-7.0 
-* mysql 7.0 ??
-
-7.1 et 7.2 Pas present dans tableau 
-* common 
-* dba
-* mbstring
-* soap
-* sybase
-* zip
-* xml
-
-
-7.1 and later/maybe before
-common/dba/enchant/gmp/imap/interbase/ldap/mbstirng/odbc/pgsql/pspell/readline/recode/snmp/soap/sybase/tidy/xml/xmlrpc/zip
-
-
-
-Services pas present tableau?
-10gen 7.1
-mariaDB 
-amqp
-
-
-_____________________
-
-
-
-
 You can disable those by adding them to the `disabled_extensions` list.
 
 This is the complete list of extensions that can be enabled:
