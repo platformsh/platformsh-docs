@@ -16,82 +16,91 @@ The video below shows how to setup your own initial project using the Silex PHP 
 
 You can also initialize your project using any of the pre-made templates below.  For each one, simply Git Clone the repository from GitHub then push it to Platform.sh using the instructions for a custom repository in the UI, as seen in the video above.
 
-<table class="example-index">
+### PHP
 
-<thead><tr><th>PHP</th> <th>Python</th> <th>Ruby</th> <th>Node.js</th> <th>Go</th> </tr></thead>
+<section style="display: flex">
 
-<tbody><tr>
+<div>
+  <h4>Applications<h4>
+  <a href="https://github.com/platformsh/platformsh-example-ezplatform">EZ Platform</a></a><br />
+  <a href="https://github.com/platformsh/platformsh-example-drupal7">Drupal 7</a></a><br />
+  <a href="https://github.com/platormsh/platformsh-example-drupalcommerce7">Drupal 7 (Commerce Kickstart)</a></a><br />
+  <a href="https://github.com/platformsh/platformsh-example-drupal8">Drupal 8</a><br />
+  <a href="https://github.com/plaformsh/platformsh-example-drupal8-multisite">Drupal 8 (Multisite variant)</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-laravel">Laravel</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-moodle">Moodle</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-laravel">Magento 1</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-magento">Magento 2</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-sculpin">Sculpin</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-typo3">Typo 3</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-wordpress">Wordpress</a>
+</div>
 
-<!-- PHP -->
-<td rowspan="3">
-
-<h3>Applications</h3>
-
-<a href="https://github.com/platformsh/platformsh-example-ezplatform">EZ Platform</a></a><br />
-<a href="https://github.com/platformsh/platformsh-example-drupal7">Drupal 7</a></a><br />
-<a href="https://github.com/platormsh/platformsh-example-drupalcommerce7">Drupal 7 (Commerce Kickstart)</a></a><br />
-<a href="https://github.com/platformsh/platformsh-example-drupal8">Drupal 8</a><br />
-<a href="https://github</a>.com/plaformsh/platformsh-example-drupal8-multisite">Drupal 8 (Multisite variant)</a><br />
-<a href="https://github.com/platformsh/platformsh-example-laravel">Laravel</a><br />
-<a href="https://github.com/platformsh/platformsh-example-moodle">Moodle</a><br />
-<a href="https://github.com/platformsh/platformsh-example-laravel">Magento 1</a><br />
-<a href="https://github.com/platformsh/platformsh-example-magento">Magento 2</a><br />
-<a href="https://github.com/platformsh/platformsh-example-sculpin">Sculpin</a><br />
-<a href="https://github.com/platformsh/platformsh-example-typo3">Typo 3</a><br />
-<a href="https://github.com/platformsh/platformsh-example-wordpress">Wordpress</a>
-
-<h3>Frameworks</h3>
-
-<a href="https://github.com/platformsh/platformsh-example-amphp">AmPHP</a><br />
-<a href="https://github.com/platformsh/platformsh-example-reactphp">React PHP</a><br />
-<a href="https://github.com/platformsh/platformsh-example-symfony/tree/2.8">Symfony 2.8</a><br />
-<a href="https://github.com/platformsh/platformsh-example-symfony/tree/3.0">Symfony 3.x</a><br />
-
-</td> 
-
-<!-- Python -->
-<td>
-
-<h3>Frameworks</h3>
-
-<a href="https://github.com/platformsh/platformsh-example-python">Generic Python application</a><br />
-<a href="https://github.com/platformsh/platformsh-example-django">Django</a>
-
-</td> 
-
-<!-- Ruby -->
-<td>
-
-<h3>Frameworks</h3>
-
-<a href="https://github.com/platformsh/platformsh-example-sinatra">Sinatra</a><br />
-<a href="https://github.com/platformsh/platformsh-example-ruby-sinatra-all-the-services">Sinatra (all services)</a><br />
-<a href="https://github.com/platformsh/platformsh-example-rails">Ruby on Rails</a>
-
-</td> 
-
-<!-- Node.js -->
-<td>
-
-<h3>Examples</h3>
-
-<a href="https://github.com/platformsh/platformsh-example-nodejs">Generic Node.js</a><br />
-<a href="https://github.com/platformsh/platformsh-example-parseit">Parse</a><br />
-<a href="https://github.com/platformsh/platformsh-example-nodejs-microservices">Node.js microservices</a>
+<div>
+  <h4>Frameworks</h4>
+  <a href="https://github.com/platformsh/platformsh-example-php">Generic PHP application</a><br />
+</div>
 
 
-</td> 
+<div>
+  <h4>Frameworks</h4>
+  <a href="https://github.com/platformsh/platformsh-example-amphp">AmPHP</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-reactphp">React PHP</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-symfony/tree/2.8">Symfony 2.8</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-symfony/tree/3.0">Symfony 3.x</a><br />
+</div>
 
-<!-- Go -->
-<td>
+</section>
 
-<h3>Examples</h3>
+### Python
 
-<a href="https://github.com/platformsh/platformsh-example-golang">Generic Go application</a>
+<section style="display: flex">
 
-</td> 
+<div>
+  <h4>Examples</h4>
+  <a href="https://github.com/platformsh/platformsh-example-python">Generic Python application</a><br />
+</div>
 
-</tr>
-</tbody>
+<div>
+  <h4>Frameworks</h4>
+  <a href="https://github.com/platformsh/platformsh-example-django">Django</a>
+</div>
 
-</table>
+</section>
+
+### Ruby
+
+<section style="display: flex">
+
+<div>
+  <h4>Frameworks</h4>
+  <a href="https://github.com/platformsh/platformsh-example-sinatra">Sinatra</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-ruby-sinatra-all-the-services">Sinatra (all services)</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-rails">Ruby on Rails</a>
+</div>
+
+</section>
+
+### Node.js
+
+<section style="display: flex">
+
+<div>
+  <h4>Examples</h4>
+  <a href="https://github.com/platformsh/platformsh-example-nodejs">Generic Node.js</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-parseit">Parse</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-nodejs-microservices">Node.js microservices</a>
+</div>
+
+</section>
+
+### Go
+
+<section style="display: flex">
+
+<div>
+  <h4>Examples</h4>
+  <a href="https://github.com/platformsh/platformsh-example-golang">Generic Go application</a>
+</div>
+
+</section>
