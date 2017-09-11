@@ -386,6 +386,10 @@ section.normal p strong,
   }
 }
 
-table.example-index td {
-  vertical-align: top;
+section.examples-lists {
+  display: flex;
+}
+
+section.examples-list div {
+  margin-right: 1em;
 }

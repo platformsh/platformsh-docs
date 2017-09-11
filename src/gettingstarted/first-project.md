@@ -18,7 +18,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 ### PHP
 
-<section style="display: flex">
+<section class="examples-lists">
 
 <div>
   <h4>Applications<h4>
@@ -37,7 +37,7 @@ You can also initialize your project using any of the pre-made templates below. 
 </div>
 
 <div>
-  <h4>Frameworks</h4>
+  <h4>Examples</h4>
   <a href="https://github.com/platformsh/platformsh-example-php">Generic PHP application</a><br />
 </div>
 
@@ -54,7 +54,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 ### Python
 
-<section style="display: flex">
+<section class="examples-lists">
 
 <div>
   <h4>Examples</h4>
@@ -70,7 +70,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 ### Ruby
 
-<section style="display: flex">
+<section class="examples-lists">
 
 <div>
   <h4>Frameworks</h4>
@@ -83,7 +83,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 ### Node.js
 
-<section style="display: flex">
+<section class="examples-lists">
 
 <div>
   <h4>Examples</h4>
@@ -96,7 +96,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 ### Go
 
-<section style="display: flex">
+<section class="examples-lists">
 
 <div>
   <h4>Examples</h4>
