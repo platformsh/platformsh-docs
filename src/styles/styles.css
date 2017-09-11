@@ -390,6 +390,6 @@ section.examples-lists {
   display: flex;
 }
 
-section.examples-list div {
+section.examples-lists > div {
   margin-right: 1em;
 }

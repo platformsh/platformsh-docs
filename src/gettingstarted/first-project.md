@@ -21,10 +21,10 @@ You can also initialize your project using any of the pre-made templates below. 
 <section class="examples-lists">
 
 <div>
-  <h4>Applications<h4>
-  <a href="https://github.com/platformsh/platformsh-example-ezplatform">EZ Platform</a></a><br />
-  <a href="https://github.com/platformsh/platformsh-example-drupal7">Drupal 7</a></a><br />
-  <a href="https://github.com/platormsh/platformsh-example-drupalcommerce7">Drupal 7 (Commerce Kickstart)</a></a><br />
+  <h4>Applications</h4>
+  <a href="https://github.com/platformsh/platformsh-example-ezplatform">EZ Platform</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-drupal7">Drupal 7</a><br />
+  <a href="https://github.com/platormsh/platformsh-example-drupalcommerce7">Drupal 7 (Commerce Kickstart)</a><br />
   <a href="https://github.com/platformsh/platformsh-example-drupal8">Drupal 8</a><br />
   <a href="https://github.com/plaformsh/platformsh-example-drupal8-multisite">Drupal 8 (Multisite variant)</a><br />
   <a href="https://github.com/platformsh/platformsh-example-laravel">Laravel</a><br />
