@@ -33,7 +33,7 @@ You can also initialize your project using any of the pre-made templates below. 
   <a href="https://github.com/platformsh/platformsh-example-magento">Magento 2</a><br />
   <a href="https://github.com/platformsh/platformsh-example-sculpin">Sculpin</a><br />
   <a href="https://github.com/platformsh/platformsh-example-typo3">TYPO3</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-wordpress">Wordpress</a>
+  <a href="https://github.com/platformsh/platformsh-example-wordpress">WordPress</a>
 </div>
 
 <div>

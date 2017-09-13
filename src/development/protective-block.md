@@ -20,7 +20,7 @@ access to these sites.
 known security vulnerabilities in open-source software that are commonly
 deployed on our infrastructure. The security check only analyze known
 vulnerabilities in open-source projects like Drupal, Symfony or
-Wordpress. It cannot examine customizations written by
+WordPress. It cannot examine customizations written by
 [Platform.sh](https://platform.sh) customers.
 
 We analyze the code of your application:
