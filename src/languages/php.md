@@ -183,7 +183,7 @@ If not specified, the effective default start command varies by PHP version:
 * On PHP 7.0, it's `/usr/sbin/php-fpm7.0`.
 * On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`.
 
-While you can call it manually that is generally not necessary.  Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or AmPHP).  If you need both they will have to run in separate containers.
+While you can call it manually that is generally not necessary.  Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or Amp).  If you need both they will have to run in separate containers.
 
 ## PHP Worker sizing hints
 
@@ -313,7 +313,7 @@ A number of project templates for major PHP applications are available on GitHub
 
 ### Frameworks
 
-* [AmPHP](https://github.com/platformsh/platformsh-example-amphp)
+* [Amp/Aerys](https://github.com/platformsh/platformsh-example-amphp)
 * [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
 * [Symfony 2.8](https://github.com/platformsh/platformsh-example-symfony/tree/2.8)
 * [Symfony 3.x](https://github.com/platformsh/platformsh-example-symfony/tree/3.0)
