@@ -308,7 +308,7 @@ A number of project templates for major PHP applications are available on GitHub
 * [Magento 1](https://github.com/platformsh/platformsh-example-laravel)
 * [Magento 2](https://github.com/platformsh/platformsh-example-magento)
 * [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
-* [Typo 3](https://github.com/platformsh/platformsh-example-typo3)
+* [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
 * [Wordpress](https://github.com/platformsh/platformsh-example-wordpress)
 
 ### Frameworks
