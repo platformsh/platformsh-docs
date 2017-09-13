@@ -385,3 +385,11 @@ section.normal p strong,
     padding: 15px 30px;
   }
 }
+
+section.examples-lists {
+  display: flex;
+}
+
+section.examples-lists > div {
+  margin-right: 1em;
+}
