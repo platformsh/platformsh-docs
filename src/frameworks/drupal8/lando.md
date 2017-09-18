@@ -68,7 +68,7 @@ Assuming you're using a standard Drupal 8 configuration, the following commands 
 
 ```bash
 # Download a database snapshot and import it into Lando.
-platform db:dump -f database.sql.gz
+platform db:dump --gzip -f database.sql.gz
 lando db-import database.sql.gz
 
 # Download all user files locally, skipping those already found locally.
