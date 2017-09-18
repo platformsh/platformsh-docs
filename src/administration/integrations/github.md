@@ -46,6 +46,7 @@ platform integration:add --type=github --project=PROJECT_ID --token=GITHUB-USER-
 Optional parameters:
 * `fetch-branches`: Track and deploy branches (true by default)
 * `build-pull-requests`: Track and deploy pull-requests (true by default)
+* `build_pull_requests_post_merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`false` by default)
 
 Note that if your repository belongs to an organization, use ``--repository=ORGANISATION/REPOSITORY``.
 
