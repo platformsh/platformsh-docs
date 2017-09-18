@@ -8,6 +8,8 @@ Lando will ask you to create a `.lando.yml` file in your application root, which
 
 If your application is one of those with a specific "recipe" available from Lando, you can use that directly in your `.lando.yml` file.  It can be customized further as needed for your application, and some customizations are specific to certain applications.
 
+## `.lando.yml` configuration
+
 In particular, we recommend:
 
 ```yaml
@@ -44,11 +46,6 @@ config:
   # Lando defaults to the latest MySQL release, but Platform.sh uses MariaDB.
   # Specify the version to match what's in services.yaml.
   database: mariadb:10.1
-  
-  # If you are providing a custom php.ini configuration for Platform.sh, specifying 
-  # the same file here will allow the one file to drive both environments. 
-  conf:
-    php: php.ini
 ```
 
 ## Downloading data from Platform.sh into Lando
