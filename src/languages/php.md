@@ -193,7 +193,7 @@ Platform.sh uses a heuristic to automatically set the number of workers of a PHP
 
 The heuristic is based on three input parameters:
 
- * The memory available for the container, which depends on the size of the container (`S`, `M`, `L`, `XL`, `XXL`),
+ * The memory available for the container, which depends on the size of the container (`S`, `M`, `L`, `XL`),
  * The memory that an average request is expected to require,
  * The memory that should be reserved for things that are not specific to a request (memory for `nginx`, the op-code cache, some OS page cache, etc.)
 
