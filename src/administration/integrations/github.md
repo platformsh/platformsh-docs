@@ -34,15 +34,15 @@ Note that only `project owner` or `project admin` can manage the integrations.
 Open a terminal window (you need to have the Platform.sh CLI installed). Enable the GitHub integration as follows:
 
 ```bash
-platform integration:add --type=github --project=PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY --build-pull-requests=true --fetch-branches=true
+platform integration:add --type=github --project=PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 ```
 
 Optional parameters:
-* `fetch-branches`: Track and deploy branches (true by default)
-* `build-pull-requests`: Track and deploy pull-requests (true by default)
-* `build_pull_requests_post_merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`false` by default)
+* `--fetch-branches`: Track and deploy branches (true by default)
+* `--build-pull-requests`: Track and deploy pull-requests (true by default)
+* `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`true` by default)
 
-Note that if your repository belongs to an organization, use ``--repository=ORGANISATION/REPOSITORY``.
+Note that if your repository belongs to an organization, use ``--repository=ORGANIZATION/REPOSITORY``.
 
 ### 3. Add the webhook
 
