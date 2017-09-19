@@ -60,7 +60,7 @@ $databases['default']['default'] = [
 ];
 ```
 
-If you need to add additional services (Redis cache, Solr, Elasticsearch, etc.) see the Lando documentation.  Place any additional configuration necessary for those in the `settings.local.php` file as well.
+If you need to add additional services (Redis cache, Solr, Elasticsearch, etc.) see the [Lando documentation](https://docs.lndo.io/config/services.html).  Place any additional configuration necessary for those in the `settings.local.php` file as well.
 
 ## Downloading data from Platform.sh to Lando
 
