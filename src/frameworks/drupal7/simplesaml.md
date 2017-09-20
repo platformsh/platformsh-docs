@@ -62,9 +62,11 @@ Others are a little more involved.  In the interest of simplicity we recommend s
 
 ```php
 
-// Set SimpleSAML to log to a file in the Platform.sh log directory.
+// Set SimpleSAML to log to the shared app.log file, which also
+// gets any PHP-generated log messages.
 $config['logging.handler'] = 'file';
 $config['loggingdir'] = '/var/log';
+$config['logging.logfile'] = 'app.log';
 
 // Setup the database connection for all parts of SimpleSAML.
 if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
