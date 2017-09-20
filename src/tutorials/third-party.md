@@ -36,6 +36,10 @@ This is a Big List of known third party resources for Platform.sh. These resourc
 
 * [Deploying Magento 2 with Redis on Platform.sh](https://rafaelstz.github.io/magento2/Deploying-Magento2-Redis-Platformsh.html) by [@rafaelcgstz](https://twitter.com/rafaelcgstz)
 
+### Sylius
+
+* The [Sylius documentation](http://docs.sylius.org/en/latest/cookbook/platform-sh.html) has a solid set of instructions for setting up Sylius with Platform.sh.
+
 ## Examples
 
 Platform.sh lists maintained examples on its Github page, with some cross-referencing from http://docs.platform.sh. Examples listed below could work fine, or may be out-of-date or unmaintained. Use at your own risk.
