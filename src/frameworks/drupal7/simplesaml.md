@@ -61,12 +61,27 @@ Open the file `simplesamlphp/config/config.php`.  It contains a number of config
 Others are a little more involved.  In the interest of simplicity we recommend simply pasting the following code snippet at the end of the file, as it will override the default values in the array.
 
 ```php
-
-// Set SimpleSAML to log to the shared app.log file, which also
-// gets any PHP-generated log messages.
+// Set SimpleSAML to log to a file.
 $config['logging.handler'] = 'file';
-$config['loggingdir'] = '/var/log';
-$config['logging.logfile'] = 'app.log';
+
+// Use the shared app.log file on Platform.sh, but a stub file when
+// running locally.
+if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
+  $config['loggingdir'] = '/var/log';
+  $config['logging.logfile'] = 'app.log';
+}
+else {
+  // Log to the project root.  You can modify this if desired.
+  // Make sure the resulting file is excluded from Git.
+  $config['loggingdir'] = __DIR__ . '/..';
+  $config['logging.logfile'] = 'simplesamlphp.log';
+}
+
+// Set SimpleSAML to use the metadata directory in Git, rather than
+// the empty one in the vendor directory.
+$config['metadata.sources'] = [
+   ['type' => 'flatfile', 'directory' =>  __DIR__ . '../metadata'],
+];
 
 // Setup the database connection for all parts of SimpleSAML.
 if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
