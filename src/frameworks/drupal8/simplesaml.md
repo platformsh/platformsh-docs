@@ -1,0 +1,121 @@
+# SimpleSAML
+
+SimpleSAMLphp is a library for authenticating a PHP-based application against a SAML server, such as Shibboleth.  Although Drupal has modules available to authenticate using SimpleSAML some additional setup is required.
+
+The following configuration assumes you are building Drupal 8 using Composer.  If not, you will need to download the library manually and adjust some paths accordingly.
+
+## Download the library and Drupal module
+
+The easiest way to download SimpleSAMLphp is via Composer.  The following lines will add both the Drupal module and the PHP library to your `composer.json` file.
+
+```bash
+composer require simplesamlphp/simplesamlphp drupal/simplesamlphp_auth
+```
+
+Once that's run, commit both `composer.json` and `composer.lock` to your repository.
+
+## Expose the SimpleSAML endpoint
+
+The SimpleSAML library's `www` directory needs to be publicly accessible.  That can be done by mapping it directly to a path in the Application configuration.  Add the following block to the `web.locations` section of `.platform.app.yaml`:
+
+```yaml
+ web:
+    locations:
+        '/simplesaml':
+            root: 'vendor/simplesamlphp/simplesamlphp/www'
+            allow: true
+            scripts: true
+            index:
+                - index.php
+```
+
+That will map all requests to `example.com/simplesaml/` to the `simplesamlphp/www` directory, allowing static files there to be served, PHP scripts to execute, and defaulting to index.php.
+
+## Create a configuration directory
+
+Your SimpleSAMLphp configuration will need to be outside of the `vendor` directory.  The `composer require` will download a template configuration file to `vendor/simplesamlphp/simplesamlphp/config`.
+
+Rather than modifying that file in place (as it won't be included in Git), copy the `vendor/simplesamlphp/simplesamlphp/config` directory to `simplesamlphp/config` (in your application root).  It should contain two files, `config.php` and `authsources.php`.
+
+Additionally, create a `simplesamplephp/metadata` directory.  This directory will hold your idp definitions.  Consult the SimpleSAMLphp documentation and see the examples in `vendor/simplesamplephp/simplesamlphp/metadata-templates`.
+
+Next, you need to tell SimpleSAMLphp where to find that directory using an environment variable.  The simplest way to set that is to add the following block to your `.platform.app.yaml` file:
+
+```yaml
+variables:
+    env:
+        SIMPLESAMLPHP_CONFIG_DIR: /app/simplesamlphp/config
+```
+
+Commit the whole `simplesamplphp` directory and `.platform.app.yaml` to Git.
+
+## Configure SimpleSAML to use the database
+
+SimpleSAMLphp is able to store its data either on disk or in the Drupal database.  Platform.sh strongly recommends using the database.
+
+Open the file `simplesamlphp/config/config.php` that you created earlier.  It contains a number of configuration properties that you can adjust as needed.  Some are best edited in-place and the file already includes ample documentation, specifically:
+
+* `auth.adminpassword`
+* `technicalcontact_name`
+* `technicalcontact_email`
+
+Others are a little more involved.  In the interest of simplicity we recommend simply pasting the following code snippet at the end of the file, as it will override the default values in the array.
+
+```php
+// Set SimpleSAML to log to a file.
+$config['logging.handler'] = 'file';
+
+// Use the shared app.log file on Platform.sh, but a stub file when
+// running locally.
+if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
+  $config['loggingdir'] = '/var/log';
+  $config['logging.logfile'] = 'app.log';
+}
+else {
+  // Log to the project root.  You can modify this if desired.
+  // Make sure the resulting file is excluded from Git.
+  $config['loggingdir'] = __DIR__ . '/..';
+  $config['logging.logfile'] = 'simplesamlphp.log';
+}
+
+// Set SimpleSAML to use the metadata directory in Git, rather than
+// the empty one in the vendor directory.
+$config['metadata.sources'] = [
+   ['type' => 'flatfile', 'directory' =>  __DIR__ . '../metadata'],
+];
+
+// Setup the database connection for all parts of SimpleSAML.
+if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
+  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
+  foreach ($relationships['database'] as $instance) {
+    if (!empty($instance['query']['is_master'])) {
+      $dsn = sprintf("%s:host=%s;dbname=%s", 
+        $instance['schema'], 
+        $instance['host'], 
+        $instance['path']
+      );
+      $config['database.dsn'] = $dsn; 
+      $config['database.username'] = $instance['username'];
+      $config['database.password'] = $instance['password'];
+      
+      $config['store.type'] = 'sql';
+      $config['store.sql.dsn'] = $dsn;
+      $config['store.sql.username'] = $instance['username'];
+      $config['store.sql.password'] = $instance['password'];
+      $config['store.sql.prefix'] = 'simplesaml';
+
+    }
+  }
+}
+
+// Set the salt value from the Platform.sh entropy value, provided for this purpose.
+if (isset($_ENV['PLATFORM_PROJECT_ENTROPY'])) {
+  $config['secretsalt'] = $_ENV['PLATFORM_PROJECT_ENTROPY'];
+}
+```
+
+## Deploy
+
+Commit all changes and deploy the site, then enable the `simplesamlphp_auth` module within Drupal.
+
+Consult the module documentation for further information on how to configure the module itself.  Note that you should not check the "Activate authentication via SimpleSAMLphp" checkbox in the module configuration until you have the rest of the configuration completed or you may be locked out of the site.
