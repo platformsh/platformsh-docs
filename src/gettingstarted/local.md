@@ -65,4 +65,4 @@ Platform.sh supports whatever local development environment you wish to use.  Th
 
 For quick changes, you can also run your code locally but use the services hosted on Platform.sh.  That is, your site is "[tethered](/gettingstarted/local/tethered.md)" to Platform.sh.  While this approach requires installing less on your system it can be quite slow as all communication with the database or cache server will need to travel from your computer to Platform.sh's servers.
 
-Specific documentation is also available for the [Lando](/gettingstarted/local/untethered.md) local development toolchain, which supports most applications that Platform.sh supports.
+Specific documentation is also available for the [Lando](/gettingstarted/local/lando.md) local development toolchain, which supports most applications that Platform.sh supports.
