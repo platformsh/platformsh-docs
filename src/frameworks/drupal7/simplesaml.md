@@ -101,6 +101,22 @@ if (isset($_ENV['PLATFORM_PROJECT_ENTROPY'])) {
 }
 ```
 
+## Generate SSL certs (optional)
+
+Depending on your SimpleSAML Service Provider (SP), you may need to generate an SSL/TLS certificate to connect to the SP.  If so, you should generate the cert locally following the instructions in the [SimpleSAMLphp documentation](https://simplesamlphp.org/docs/stable/simplesamlphp-sp).  Whatever your resulting idP file is should be placed in the simplesamlphp/metadata directory.  The certificate should be placed in the `simplesamlphp/cert` directory.  (Create it if needed.)
+
+Then add the following line to your `simplesamlphp/config/config.php` file to tell the library where to find the cert:
+
+```php
+$config['certdir'] = dirname(__DIR__) . '/cert';
+```
+
+## Deploy
+
+Commit all changes and deploy the site, then enable the `simplesamlphp_auth` module within Drupal.
+
+Consult the module documentation for further information on how to configure the module itself.  Note that you should not check the "Activate authentication via SimpleSAMLphp" checkbox in the module configuration until you have the rest of the configuration completed or you may be locked out of the site.
+
 ## Recovering from a locked site
 
 If SimpleSAML is misconfigured it is possible to find yourself locked out of the site, as it will try to authenticate against a SimpleSAML server, fail, and then disallow other logins.  If that happens, the easiest way to recover it is to disable the SimpleSAML login.  That can be done with the following command:

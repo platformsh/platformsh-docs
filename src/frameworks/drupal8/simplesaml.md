@@ -37,7 +37,7 @@ Your SimpleSAMLphp configuration will need to be outside of the `vendor` directo
 
 Rather than modifying that file in place (as it won't be included in Git), copy the `vendor/simplesamlphp/simplesamlphp/config` directory to `simplesamlphp/config` (in your application root).  It should contain two files, `config.php` and `authsources.php`.
 
-Additionally, create a `simplesamplephp/metadata` directory.  This directory will hold your idp definitions.  Consult the SimpleSAMLphp documentation and see the examples in `vendor/simplesamplephp/simplesamlphp/metadata-templates`.
+Additionally, create a `simplesamplephp/metadata` directory.  This directory will hold your idP definitions.  Consult the SimpleSAMLphp documentation and see the examples in `vendor/simplesamplephp/simplesamlphp/metadata-templates`.
 
 Next, you need to tell SimpleSAMLphp where to find that directory using an environment variable.  The simplest way to set that is to add the following block to your `.platform.app.yaml` file:
 
@@ -100,6 +100,16 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
 if (isset($_ENV['PLATFORM_PROJECT_ENTROPY'])) {
   $config['secretsalt'] = $_ENV['PLATFORM_PROJECT_ENTROPY'];
 }
+```
+
+## Generate SSL certs (optional)
+
+Depending on your SimpleSAML Service Provider (SP), you may need to generate an SSL/TLS certificate to connect to the SP.  If so, you should generate the cert locally following the instructions in the [SimpleSAMLphp documentation](https://simplesamlphp.org/docs/stable/simplesamlphp-sp).  Whatever your resulting idP file is should be placed in the simplesamlphp/metadata directory.  The certificate should be placed in the `simplesamlphp/cert` directory.  (Create it if needed.)
+
+Then add the following line to your `simplesamlphp/config/config.php` file to tell the library where to find the cert:
+
+```php
+$config['certdir'] = dirname(__DIR__) . '/cert';
 ```
 
 ## Deploy
