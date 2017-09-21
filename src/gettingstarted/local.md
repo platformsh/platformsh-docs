@@ -35,7 +35,7 @@ You should now have a repository folder, based on what you used for *[folder-nam
 
 You will also notice a new directory in your project, `.platform/local`, which is excluded from Git.  This directory contains builds and any local metadata about your project needed by the CLI.
 
-### Building the site locally
+## Building the site locally
 
 Run the `platform build` command to run through the same build process as would be run on Platform.sh.  That will produce a `_www` directory in your project root that is a symlink to the currently active build in the `.platform/local/builds` folder. It should be used as the document root for your local web server.
 
@@ -59,87 +59,10 @@ Be aware, of course, that the `platform build` command will run locally, and so 
 
 If that is undesireable, a local virtual machine will let you create an enclosed local development environment that won't affect your main system.
 
-## Tethered Local
+## Running the code
 
-The simplest way to run a project locally is to use a local web server, but keep all other services on Platform.sh and connect to them over an SSH tunnel.  This approach requires very little setup, but depending on the speed of your connection and how I/O intensive your application is may not be performant enough to use regularly.  It will also require an active Internet connection, of course.
+Platform.sh supports whatever local development environment you wish to use.  There is no dependency on any particular tool so if you already have a local development workflow you're comfortable with you can keep using it without changes.  That's the "[untethered](/gettingstarted/local/untethered.md)" option.
 
-### Local web server
+For quick changes, you can also run your code locally but use the services hosted on Platform.sh.  That is, your site is "[tethered](/gettingstarted/local/tethered.md)" to Platform.sh.  While this approach requires installing less on your system it can be quite slow as all communication with the database or cache server will need to travel from your computer to Platform.sh's servers.
 
-For the local web server the approach will vary depending on your language.
-
-* For a self-serving language (Go or Node.js), simply run the program locally.
-* For PHP, you may install your own copy of Nginx (or Apache) and PHP-FPM, or simply use the built-in PHP web server: `php -S localhost:8001` will start a basic web server capable of running PHP, serving the current directory, on port 8001.  See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
-* For other languages it is recommended that you install your own copy of Nginx or Apache.
-* A virtual machine or Docker image is also a viable option.
-
-### SSH tunneling
-
-Now that we have the code running, we need to connect it to our services.  To do so, open an SSH tunnel to the current project.
-
-```bash
-$ platform tunnel:open
-SSH tunnel opened on port 30000 to relationship: redis
-SSH tunnel opened on port 30001 to relationship: database
-Logs are written to: ~/.platformsh/tunnels.log
-
-List tunnels with: platform tunnels
-View tunnel details with: platform tunnel:info
-Close tunnels with: platform tunnel:close
-```
-
-> **note**
-> The `platform tunnel:` commands require the pcntl and posix PHP extensions. Run `php -m | grep -E 'posix|pcntl'` to check if they're there.
-
-Now you can connect to the remote database normally, as if it were local.
-
-```
-$ mysql --host=127.0.0.1 --port=30001 --user='user' --password='' --database='main'
-```
-
-The specific port that each service uses is not guaranteed, but is unlikely to change unless you add an additional service or connect to multiple projects at once.  In most cases it's safe to add a local-configuration file for your application that connects to, in this case, `localhost:30001` for the SQL database and `localhost:30000` for Redis.
-
-Alternatively, you can read the relationship information directly from the Platform.sh CLI in your application using `platform tunnel:info --encode`, at the cost of that process call each time you do so.  The return value is a string encoded exactly the same way as the `PLATFORM_RELATIONSHIPS` environment variable on Platform.sh.
-
-{% codetabs name="PHP", type="php" -%}
-<?php
-if ($relationships_encoded = shell_exec('platform tunnel:info --encode')) {
-    $relationships = json_decode(base64_decode($relationships_encoded, TRUE), TRUE);
-    // ...
-}
-{%- language name="Python", type="py" -%}
-import json
-import base64
-import subprocess
-
-encoded = subprocess.check_output(['platform', 'tunnel:info', '--encode'])
-if (encoded):
-    json.loads(base64.b64decode(relationships).decode('utf-8'))
-    # ...
-{%- endcodetabs %}
-
-
-
-After the tunnel(s) are opened, you can confirm their presence:
-
-```bash
-platform tunnel:list
-```
-
-You can show more information about the open tunnel(s) with:
-
-```bash
-platform tunnel:info
-```
-
-and you can close tunnels with:
-
-```bash
-platform tunnel:close
-```
-
-## Untethered Local
-
-Alternatively, you can also run the entire site locally on your computer.  That is more performant as there's no extra latency to connect to a remote database and doesn't require an active Internet connection to work.  However, it does require running all necessary services (databases, search servers, etc.) locally.  These can be set up however you prefer, although Platform.sh recommends using a virtual machine to make it easier to share configuration between developers.
-
-To synchronize data from an environment on Platform.sh, consult the documentation for each [service](/configuration/services.md).  Each service type has its own native data import/export process and Platform.sh does not get in the way of that.  It's also straightforward to [download user files](/tutorials/exporting.md#downloading-files) from your application using rsync.
-
+Specific documentation is also available for the [Lando](/gettingstarted/local/lando.md) local development toolchain, which supports most applications that Platform.sh supports.
