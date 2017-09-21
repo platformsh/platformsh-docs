@@ -69,7 +69,7 @@ $config['logging.handler'] = 'errorlog';
 // Set SimpleSAML to use the metadata directory in Git, rather than
 // the empty one in the vendor directory.
 $config['metadata.sources'] = [
-   ['type' => 'flatfile', 'directory' =>  dirname(__DIR__) . '../metadata'],
+   ['type' => 'flatfile', 'directory' =>  dirname(__DIR__) . '/metadata'],
 ];
 
 // Setup the database connection for all parts of SimpleSAML.
