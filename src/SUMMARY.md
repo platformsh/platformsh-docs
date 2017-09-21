@@ -13,6 +13,9 @@
 * [Tools](gettingstarted/tools.md)
 * [CLI](gettingstarted/cli.md)
 * [Local development](gettingstarted/local.md)
+  * [Tethered](gettingstarted/local/tethered.md)
+  * [Untethered](gettingstarted/local/untethered.md)
+  * [Lando](gettingstarted/local/lando.md)
 
 ## Configuration
 
@@ -70,9 +73,9 @@
 
 ## Going Live
 
-* [Pre-Launch Checklist](/golive/checklist.md) 
-* [Going Live Steps](/golive/steps.md) 
-* [Troubleshooting](/golive/troubleshoot.md) 
+* [Pre-Launch Checklist](/golive/checklist.md)
+* [Going Live Steps](/golive/steps.md)
+* [Troubleshooting](/golive/troubleshoot.md)
 * [Example](/golive/example.md)   
 
 ## Administration
