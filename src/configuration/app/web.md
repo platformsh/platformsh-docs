@@ -55,12 +55,6 @@ If the `socket_family` is set to `unix`, then your application should open the u
 
 If your application isn't listening at the same place that the runtime is sending requests, you'll see *502 Bad Gateway* errors when you try to connect to your web site.
 
-
-
-> **Note**
-> Gzip compression is enabled only for serving precompressed static files with the ".gz" filename extension.
-> However, dynamic content is not automatically compressed due to a [well known security issue](https://en.wikipedia.org/wiki/BREACH_%28security_exploit%29).
-
 ## Locations
 
 The `locations` block is the most powerful, and potentially most involved, section of the `.platform.app.yaml` file.  It allows you to control how the application container responds to incoming requests at a very fine-grained level.  Common patterns also vary between language containers due to the way PHP-FPM handles incoming requests.
