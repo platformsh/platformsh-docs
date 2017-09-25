@@ -10,13 +10,15 @@ body,
 #platform-bar {
   background: #000;
   color: #fff;
-  padding: 28px 0 24px;
+  padding: 23px 0;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
   min-height: 53px;
+  display: flex;
+  justify-content: space-between;
 }
 .branding {
   text-transform: uppercase;
