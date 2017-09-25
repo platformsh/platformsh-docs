@@ -15,6 +15,7 @@ size: S
 dependencies:
   nodejs:
     gitbook-cli: "*"
+    platformsh-user-widget: "^1.0.12"
 
 # Use a build hook to install the GitBook plugins specified by the book.json file,
 # then build the book. The generated files will be placed in the _book directory
@@ -22,6 +23,7 @@ dependencies:
 hooks:
     build: |
       gitbook install
+      npm run build
       gitbook build
       # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
       cp src/images/favicon.ico _book/gitbook/images/favicon.ico

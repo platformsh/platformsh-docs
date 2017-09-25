@@ -16,5 +16,5 @@ $(document).ready(function () {
   });
 
   var userWidgetTarget = document.getElementById("user-widget");
-  userWidget.init(userWidgetTarget, { accountUrl: "https://accounts.internal.platform.sh" } )
+  userWidget.init(userWidgetTarget, { accountUrl: "https://accounts.platform.sh" } )
   });

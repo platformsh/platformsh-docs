@@ -17,8 +17,6 @@ body,
   width: 100%;
   z-index: 3;
   min-height: 53px;
-  display: flex;
-  justify-content: space-between;
 }
 .branding {
   text-transform: uppercase;
@@ -46,6 +44,18 @@ body,
 }
 .title-bar {
   padding-left: 10px;
+  float: left;
+}
+#user-widget {
+  float: right;
+}
+.user-widget>div {
+  min-height: 32px;
+}
+.user-widget__dropdown__menu--account,
+.user-widget__dropdown__menu--projects,
+.user-widget__mega_menu {
+  position: absolute;
 }
 .platform-links {
   padding-right: 10px;
@@ -344,6 +354,9 @@ section.normal p strong,
 .codetabs-body .tab pre {
   border: 1px solid #ddd;
 }
+.user-widget__user_name {
+  display: none;
+}
 /* Responsive Fixes */
 @media (min-width: 600px) {
   .site-name {
@@ -361,6 +374,11 @@ section.normal p strong,
   .algolia-autocomplete .ds-dropdown-menu .ds-suggestions,
   .algolia-autocomplete .ds-dropdown-menu .ds-suggestion {
     min-width: 600px;
+  }
+}
+@media (max-width: 768px) {
+  .user-widget__mega_menu__projects {
+    padding-top: 20px;
   }
 }
 @media (min-width: 768px) {
