@@ -72,7 +72,7 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
   foreach ($relationships['database'] as $instance) {
     if (!empty($instance['query']['is_master'])) {
       $dsn = sprintf("%s:host=%s;dbname=%s", 
-        $instance['schema'], 
+        $instance['scheme'], 
         $instance['host'], 
         $instance['path']
       );
