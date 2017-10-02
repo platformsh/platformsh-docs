@@ -31,7 +31,7 @@ routes will be resolved to `http://www.example.com/` and
 `https://example.com/blog` in the master environment.
 
 Platform.sh will also generate a domain for every active development environment.
-It will receive a domain name based on the region, project ID, branch name, and 
+It will receive a domain name based on the region, project ID, branch name, and
 a per-environment random string. The domain name itself is not guaranteed stable,
 although the pattern is consistent.
 
@@ -57,7 +57,7 @@ Each route can be configured separately. It has the following properties
   For more information: see [SSI](/configuration/routes/ssi.html).
 * `redirects` controls [redirect rules](/configuration/routes/redirects.html) associated with the
   route.
-  
+
 ![Routes files](/images/config_diagrams/routes2.svg)
 
 > **note**
@@ -124,6 +124,9 @@ redirection rules including **partial redirects**.
 
 All environments on Platform.sh support both HTTP and HTTPS automatically.  Production SSL certificates are provided by [Let's Encrypt](https://letsencrypt.org/).  You may alternatively provide your own SSL certificate from a 3rd party issuer of your choice at no charge from us.
 
+> **note**
+> Let's Encrypt certificate renewals are attempted each time your environment is deployed. If your project does not receive regular code commits, you will need to manually issue a re-deployment to ensure the certificate remains valid. We suggest that you do when your project doesn't receive any updates for over 1 month. This can be done by pushing a code change via git or issuing the following command from your **local** environment: `platform variable:set -W -y force-le-renewal true && platform variable:delete -W -y force-le-renewal`
+
 Platform.sh recommends using HTTPS requests for all sites exclusively.  Doing so provides better security, access to certain features that web browsers only permit over HTTPS, and access to HTTP/2 connections on all sites which can greatly improve performance.
 
 How HTTPS redirection is handled depends on the routes you have defined.  Platform.sh recommends specifying all HTTPS routes in your `routes.yaml` file.  That will result in all pages being served over SSL, and any requests for an HTTP URL will automatically be redirected to HTTPS.
@@ -186,7 +189,7 @@ For development environments, we will also be able to handle this. Here is how:
 
 Let's say we have a project on the EU cluster whose ID is "vmwklxcpbi6zq" and we created a branch called "add-theme". It's environment name will be similar to `add-theme-def123`.  The generated apex domain of this environment will be `add-theme-def123-vmwklxcpbi6zq.eu.platform.sh`. If we have a `http://*.{default}/` route defined, the generated route will be `http://*---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/`. This means you could put any subdomain before the triple dashes to reach your application. HTTP request to both `http://foo---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` and `http://bar---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` URLs will be routed to your application properly. However, request to `http://*---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` will not be routed since it is not a legitimate domain name.
 
-Be aware, however, that Let's Encrypt does not support wildcard certificates.  That means if you want to use a wildcard route and protect it with SSL you will need to provide a [custom SSL certificate](/golive/steps.md#ssl-in-production). 
+Be aware, however, that Let's Encrypt does not support wildcard certificates.  That means if you want to use a wildcard route and protect it with SSL you will need to provide a [custom SSL certificate](/golive/steps.md#ssl-in-production).
 
 > **note**
 > Triple dash (`---`) is used as a separator for the subdomain in development
