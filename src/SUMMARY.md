@@ -85,6 +85,7 @@
 * [External integrations](administration/integrations.md)
   * [Bitbucket](administration/integrations/bitbucket.md)
   * [Blackfire](administration/integrations/blackfire.md)
+  * [Health notifications](administration/integrations/notifications.md)
   * [New Relic](administration/integrations/new-relic.md)
   * [GitHub](administration/integrations/github.md)
   * [HipChat](administration/integrations/hipchat.md)

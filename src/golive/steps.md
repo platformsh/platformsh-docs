@@ -105,3 +105,7 @@ See `platform help domain:add` for more information.
 > Your site should now be live, and accessible to the world (as soon as the DNS propagates).
 
 If something is not working see the [troubleshooting guide](/golive/troubleshoot.md) for common issues.  If that doesn't help feel feel free to contact support.
+
+## 5. Bonus step: Configure health notifications
+
+While not required, it's strongly recommended that you setup [health notifications](/administration/integrations/notifications.md) to advise you if your site is experiencing issues such as running low on disk space.  Notifications can be sent via email, Slack, or Pager Duty.
