@@ -148,11 +148,15 @@ cache:
 > * `[]`: Ignore all cookies
 > * `['cookie_1','cookie_2']`: A whitelist of cookies to include in the cache key. All other cookies are ignored.
 
-**Wildcards are not supported**
+A cookie value may also be a regular expression.  An entry that begins and ends with a `/` will be interpreted as a PCRE regular expression to match the cookie name.  For example:
 
-You can not use wildcards in the cookie name. Either use a precise cookie name, or match all cookies with a `"*"`. 
+```yaml
+cache:
+  enabled: true
+  cookies: ["/^SESS.*/"]
+```
 
-`"SESS*"` or `"~SESS"` are currently not valid values.
+Will cause all cookies beginning with `SESS` to be part of the cache key, as a single value.  Other cookies will be ignored for caching.  If your site uses a session cookie as well as 3rd party cookies, say from an analytics service, this is the recommended approach.
 
 ### `default_ttl`
 
