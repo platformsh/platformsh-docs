@@ -1,14 +1,12 @@
 # MongoDB (Database service)
 
-MongoDB is a cross-platform document-oriented database.
-
-See the [MongoDB documentation](https://docs.mongodb.com/manual/) for more information.
+MongoDB is a cross-platform, document-oriented database.
 
 ## Supported versions
 
 * 3.0
 
-## Relationship
+## Relationships
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
@@ -88,7 +86,9 @@ MongoClient.connect(url, function(err, db) {
 
 ## Exporting data
 
-The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and simply export the data directly using MongoDB's tools.  First, open an SSH tunnel with the Platform.sh CLI:
+The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and simply export the data directly using MongoDB's tools.  
+
+First, open an SSH tunnel with the Platform.sh CLI:
 
 ```bash
 platform tunnel:open
@@ -106,3 +106,7 @@ The port may vary in your case.  Then, simply connect to that port locally using
 ```bash
 mongodbump --port 30000
 ```
+
+## Other resources
+
+See [MongoDB's own documentation](https://docs.mongodb.com/manual/) for more information.
