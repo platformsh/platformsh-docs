@@ -64,7 +64,7 @@ foreach ($relationships['database'] as $endpoint) {
   if (empty($endpoint['query']['is_master'])) {
     continue;
   }
-  $container->setParameter('mongodb_server', $endpoint['scheme'] . '://' . $endpoint['host'] . ':' . $endpoint['port']);
+  $container->setParameter('mongodb_server', $endpoint['scheme'] . '://' . $endpoint['ip'] . ':' . $endpoint['port']);
   $container->setParameter('database_name', $endpoint['path']);
   $container->setParameter('database_user', $endpoint['username']);
   $container->setParameter('database_password', $endpoint['password']);
@@ -72,7 +72,7 @@ foreach ($relationships['database'] as $endpoint) {
 {%- language name="JavaScript", type="js" -%}
 var config= require("platformsh").config();
 var db = config.relationships.database[0];
-var url = db["scheme"] + '://' + db["username"] + ':' + db['password']+ "@" + db['host']+ ":" + db['port']+ '/' + db['path'];
+var url = db["scheme"] + '://' + db["username"] + ':' + db['password']+ "@" + db['ip']+ ":" + db['port']+ '/' + db['path'];
 
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
