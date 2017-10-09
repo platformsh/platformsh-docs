@@ -14,19 +14,21 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ```json
 {
-  "database": [
-    {
-      "username": "main",
-      "password": "main",
-      "host": "248.0.81.46",
-      "query": {
-        "is_master": true
-      },
-      "path": "main",
-      "scheme": "mongodb",
-      "port": 27017
-    }
-  ]
+   "database" : [
+      {
+         "scheme" : "mongodb",
+         "path" : "main",
+         "port" : 27017,
+         "query" : {
+            "is_master" : true
+         },
+         "rel" : "mongodb",
+         "password" : "main",
+         "username" : "main",
+         "ip" : "123.123.123.123",
+         "host" : "database.internal"
+      }
+   ]
 }
 ```
 
@@ -49,7 +51,7 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-```php
+{% codetabs name="PHP", type="php" -%}
 <?php
 $relationships = getenv('PLATFORM_RELATIONSHIPS');
 if (!$relationships) {
@@ -67,7 +69,22 @@ foreach ($relationships['database'] as $endpoint) {
   $container->setParameter('database_user', $endpoint['username']);
   $container->setParameter('database_password', $endpoint['password']);
 }
-```
+{%- language name="JavaScript", type="js" -%}
+var config= require("platformsh").config();
+var db = config.relationships.database[0];
+var url = db["scheme"] + '://' + db["username"] + ':' + db['password']+ "@" + db['host']+ ":" + db['port']+ '/' + db['path'];
+
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
+
+// Use connect method to connect to the server
+MongoClient.connect(url, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected successfully to server");
+
+  db.close();
+});
+{%- endcodetabs %}
 
 ## Exporting data
 
