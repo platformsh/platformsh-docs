@@ -29,7 +29,7 @@ Using the CLI type:
 ```platform domain:add mysite.com```
 ```platform domain:add www.mysite.com```
 
-You can also you the UI for that.
+You can also use the UI for that.
 
 As soon as you do, Platform.sh will no longer serve `master-def456-abc123.us.platform.sh` at all.  Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywhere it appears when generating routes to respond to. 
 
