@@ -33,7 +33,7 @@ Naturally in practice you'll want to use only one or the other, or allow the var
 
 ### Platform.sh Environment variables
 
-Environment-level variables can also be set [through the web interface](administration/web/configure-environment.html#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to set the environment variable "foo" to the value "bar" on the currently checked out environment/branch, run:
+Environment-level variables can also be set [through the web interface](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to set the environment variable "foo" to the value "bar" on the currently checked out environment/branch, run:
 
 ```bash
 $ platform variable:set foo bar

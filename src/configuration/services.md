@@ -95,7 +95,7 @@ Once a service is running and exposed as a relationship, its appropriate credent
 
 Be aware that the keys in the `PLATFORM_RELATIONSHIPS` structure are fixed but the values they hold may change on any deployment or restart.  Never hard-code connection credentials for a service into your application.  You should re-check the environment variable every time your script or application starts.
 
-To connect to a remote service from your local computer, the easiest way is to use the [Platform CLI](/overview/cli.md) to open an SSH tunnel.
+To connect to a remote service from your local computer, the easiest way is to use the [Platform CLI](/gettingstarted/cli.md) to open an SSH tunnel.
 
 ```bash
 platform tunnel:open

@@ -48,4 +48,4 @@ rsync -az ./web/uploads `platform ssh --pipe`:/app/web/uploads
 > **notes**
 > If you're running `rsync` on MacOS, you should add `--iconv=utf-8-mac,utf-8` to your `rsync` call.
 
-See the [`rsync` documentation](http://linuxcommand.org/man_pages/rsync1.html) for more details on how to adjust the upload process.
+See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html) for more details on how to adjust the upload process.
