@@ -1,22 +1,22 @@
 # Accessing your site
 
-Once you have an environment running, there are many ways to access it to perform needed tasks. The most obvious of course is to view it in a web browser; the available URLs are show in the Platform.sh UI and on the command line after every Git push.
+Once you have an environment running, there are many ways to access it to perform needed tasks. The most obvious of course is to view it in a web browser; the available URLs are shown in the Platform.sh UI and on the command line after every Git push.
 
 By design, the only way to deploy new code is to push to the corresponding branch.  That ensures a consistent, repeatable, auditable application instance at all times.
 
 ## SSH
 
-Most interactions with Platform.sh require SSH key authentication, and you will need to [setup your SSH](/development/ssh.md) keys before working on a site.
+Most interactions with Platform.sh require SSH key authentication, and you will need to [setup your SSH keys](/development/ssh.md) before working on a site.
 
-Once that's done, you can easily access the command line on your application container over SSH.  Simply type
+Once that's done, you can easily access the command line on your application container over SSH. To login to the environment that corresponds to your current branch, simply type:
 
 ```bash
 platform ssh
 ```
 
-To login to the environment that corresponds to your current branch.  To login to some other environment, use the `-e` flag to specify the environment.  
+To login to some other environment, use the `-e` flag to specify the environment.  
 
-The application container is a fully working Unix environment using the `bash` shell.  Most of the system consists of a read-only file system (either the underlying container image or your built application image), so you cannot edit code live, but otherwise the full system is available to read and peruse.  Any file mounts you have declared in your `.platform.app.yaml` will be writeable.
+The application container is a fully working Linux environment using the `bash` shell.  Most of the system consists of a read-only file system (either the underlying container image or your built application image), so you cannot edit code live, but otherwise the full system is available to read and peruse.  Any file mounts you have declared in your `.platform.app.yaml` will be writeable.
 
 Additionally, you will be logged in as the same user that the web server runs as; that means you needn't worry about the common problem of editing a file from the command line and from your application resulting in inconsistent and broken file ownership and permissions.
 
@@ -48,4 +48,4 @@ For copying a whole directory tree's worth of files at once `rsync` is the best 
 rsync -az `platform ssh --pipe`:web/uploads/ ./uploads/
 ```
 
-This command will copy all files in the `web/uploads` directory on the current environment to the `uploads` directory locally.  Note that `rsync` is very sensitive about trailing `/` characters so that may change the meaning of a command.  Consult the `rsync` documentation for more details.  Also see our [migrating](/tutorials/migrating.md) and [exporting](/tutorials/exporting.md) guides for more examples using `rsync`.
+This command will copy all files in the `web/uploads` directory on the current environment to the `uploads` directory locally.  Note that `rsync` is very sensitive about trailing `/` characters, so that may change the meaning of a command.  Consult the `rsync` documentation for more details.  Also see our [migrating](/tutorials/migrating.md) and [exporting](/tutorials/exporting.md) guides for more examples using `rsync`.
