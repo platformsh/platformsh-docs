@@ -20,6 +20,7 @@
 ## Configuration
 
 * [Routes (routes.yaml)](configuration/routes.md)
+  * [HTTPS](configuration/routes/https.md)
   * [HTTP Cache](configuration/routes/cache.md)
   * [Redirects](configuration/routes/redirects.md)
   * [Server Side Includes](configuration/routes/ssi.md)
