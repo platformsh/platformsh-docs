@@ -100,22 +100,28 @@ Note: If multiple routes for the same domain specify different HSTS settings, th
 
 In some non-browser applications (such as mobile applications, IoT devices, or other restricted-client-list use cases), it is beneficial to restrict access to selected devices using TLS.  This process is known as client-authenticated TLS, and functions effectively as a more secure alternative to HTTP Basic Auth.
 
-Platform.sh allows you to set the server-side portion of such a configuration via the `routes.yaml` file.  Doing so entails setting client authentication to required, and then providing a signed certificate either inline or via a file reference.
-
-```yaml
-tls:
-    client_authentication: "require"
-    client_certificate_authorities: !file cert.key
-```
-
-In this case, `cert.key` is resolved relative to the `.platform` directory.  Alternatively, the key can be specified inline in the file:
+By default, any valid SSL cert issued by one of the common certificate issuing authorities will be accepted.  Alternatively, you can restrict access to SSL certs issued by just those certificate authorities you specify, including a custom authority.  (The latter is generally only applicable if you are building a mass-market IoT device or similar.)  To do so, set `client_authentication` required and then provide a list of the certificates of the certificate authorities you wish to allow.
 
 ```yaml
 tls:
     client_authentication: "require"
     client_certificate_authorities:
-    - |
-        -----BEGIN CERTIFICATE-----
-        ### Several lines of random characters here###
-        -----END CERTIFICATE-----
+        - !file cert1.key
+        - !file cert2.key
+```
+
+In this case, the key files are resolved relative to the `.platform` directory.  Alternatively, the keys can be specified inline in the file:
+
+```yaml
+tls:
+    client_authentication: "require"
+    client_certificate_authorities:
+        - |
+            -----BEGIN CERTIFICATE-----
+            ### Several lines of random characters here ###
+            -----END CERTIFICATE-----
+        - |
+            -----BEGIN CERTIFICATE-----
+            ### Several lines of different random characters here ###
+            -----END CERTIFICATE-----
 ```
