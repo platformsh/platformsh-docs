@@ -2,11 +2,13 @@
 
 MongoDB is a cross-platform, document-oriented database.
 
+For more information on using MongoDB, see [MongoDB's own documentation](https://docs.mongodb.com/manual/).
+
 ## Supported versions
 
 * 3.0
 
-## Relationships
+## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
@@ -106,7 +108,3 @@ The port may vary in your case.  Then, simply connect to that port locally using
 ```bash
 mongodbump --port 30000
 ```
-
-## Other resources
-
-See [MongoDB's own documentation](https://docs.mongodb.com/manual/) for more information.
