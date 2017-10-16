@@ -91,3 +91,27 @@ There are three sub-properties for the `strict_transport_security` property:
 * `preload`: Can be `true` or `false`.  Defaults to `false`.  If `true`, Google and others may add your site to a lookup reference of sites that should only ever be connected to over HTTPS.  Many although not all browsers will consult this list before connecting to a site over HTTP and switch to HTTPS if instructed.  Although not part of the HSTS specification it is supported by most browsers.
 
 If enabled, the `Strict-Transport-Security` header will always be sent with a lifetime of 1 year.  The [Mozilla Developer Network]((https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)) has more detailed information on HSTS.
+
+### Client authenticated TLS
+
+In some non-browser applications (such as mobile applications, IoT devices, or other restricted-client-list use cases), it is beneficial to restrict access to selected devices using TLS.  This process is known as client-authenticated TLS, and functions effectively as a more secure alternative to HTTP Basic Auth.
+
+Platform.sh allows you to set the server-side portion of such a configuration via the `routes.yaml` file.  Doing so entails setting client authentication to required, and then providing a signed certificate either inline or via a file reference.
+
+```yaml
+tls:
+    client_authentication: "require"
+    client_certificate_authorities: !file cert.key
+```
+
+In this case, `cert.key` is resolved relative to the `.platform` directory.  Alternatively, the key can be specified inline in the file:
+
+```yaml
+tls:
+    client_authentication: "require"
+    client_certificate_authorities:
+    - |
+        -----BEGIN CERTIFICATE-----
+        ### Several lines of random characters here###
+        -----END CERTIFICATE-----
+```
