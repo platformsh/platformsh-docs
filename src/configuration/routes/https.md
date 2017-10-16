@@ -1,5 +1,7 @@
 # HTTPS
 
+## Let's Encrypt
+
 All environments on Platform.sh support both HTTP and HTTPS automatically.  Production SSL certificates are provided by [Let's Encrypt](https://letsencrypt.org/).  You may alternatively provide your own SSL certificate from a 3rd party issuer of your choice at no charge from us.
 
 > **note**
@@ -46,3 +48,46 @@ Although Platform.sh does not recommend it, you can also redirect HTTPS requests
 ```
 
 Of course, more complex routing logic is possible if the situation calls for it.  However, we recommend defining HTTPS routes exclusively.
+
+## TLS configuration
+
+Optionally, it's possible to further refine how secure TLS connections are handled on your cluster via the `tls` route property.
+
+```yaml
+https://{default}/:
+    type: upstream
+    upstream: app:http
+    tls:
+        # ...
+```
+
+### `min_version`
+
+Setting a minimum version of TLS will cause the server to automatically reject any connections using an older version of TLS.  While the vast majority of modern browsers will default to TLS 1.2, there are some older browsers that still use insecure older versions of TLS.  Rejecting older versions with known security vulnerabilities is necessary for some security compliance processes.
+
+```yaml
+tls:
+    min_version: TLSv1.2
+```
+
+The above configuration will result in requests using TLS 1.1, TLS 1.0, or older SSL versions to be rejected.
+
+### `strict_transport_security`
+
+HTTP Strict Transport Security (HSTS) is a mechanism for telling browsers to use HTTPS exclusively with a particular website.  You can toggle it on for your site at the router level without having to touch your application, and configure it's behavior from `routes.yaml`.
+
+```yaml
+tls:
+    strict_transport_security:
+        enabled: true
+        include_subdomains: true
+        preload: true
+```
+
+There are three sub-properties for the `strict_transport_security` property:
+
+* `enabled`: Can be `true` or `false`.  Defaults to `false`.  If `false`, the other properties wil be ignored.
+* `include_subdomains`: Can be `true` or `false`.  Defaults to `false`. If `true`, browsers will be instructed to apply HSTS restrictions to all subdomains as well.
+* `preload`: Can be `true` or `false`.  Defaults to `false`.  If `true`, Google and others may add your site to a lookup reference of sites that should only ever be connected to over HTTPS.  Many although not all browsers will consult this list before connecting to a site over HTTP and switch to HTTPS if instructed.  Although not part of the HSTS specification it is supported by most browsers.
+
+If enabled, the `Strict-Transport-Security` header will always be sent with a lifetime of 1 year.  The [Mozilla Developer Network]((https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)) has more detailed information on HSTS.
