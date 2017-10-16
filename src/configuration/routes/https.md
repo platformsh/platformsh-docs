@@ -70,7 +70,7 @@ tls:
     min_version: TLSv1.2
 ```
 
-The above configuration will result in requests using TLS 1.1, TLS 1.0, or older SSL versions to be rejected.
+The above configuration will result in requests using TLS 1.1, TLS 1.0, or older SSL versions to be rejected.  Legal values are `TLSv1.0`, `TLSv1.1`, and `TLSv1.2`.
 
 ### `strict_transport_security`
 
