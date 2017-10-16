@@ -85,7 +85,7 @@ User-agent: *
 Disallow: /
 ```
 
-That tells search engines to ignore sites on non-production environments entirely, even if they are publicly visible.  To disable that feature for a non-production environment, use the [Platform.sh CLI](/overview/cli.md) command below:
+That tells search engines to ignore sites on non-production environments entirely, even if they are publicly visible.  To disable that feature for a non-production environment, use the [Platform.sh CLI](/gettingstarted/cli.md) command below:
 
 ```
 platform environment:info restrict_robots false
@@ -99,4 +99,4 @@ platform environment:info -e ENVNAME restrict_robots false
 
 where `ENVNAME` is the name of the environment.
 
-On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`](/configuration/app-container.md#locations).
+On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`](/configuration/app/web.md#locations).

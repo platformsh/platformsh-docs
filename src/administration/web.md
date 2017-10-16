@@ -1,6 +1,6 @@
 # Web Interface
 
-[Platform.sh](https://platform.sh/) provides a responsive Web Interface which allows you to interact with your projects and manage your environments. Everything you can do with this interface you can also achieve with the  [CLI (Command Line Interface)](/overview/cli.md) and vice versa.
+[Platform.sh](https://platform.sh/) provides a responsive Web Interface which allows you to interact with your projects and manage your environments. Everything you can do with this interface you can also achieve with the  [CLI (Command Line Interface)](/gettingstarted/cli.md) and vice versa.
 
 ![Web Interface](/images/platform-ui.png)
 

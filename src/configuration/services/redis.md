@@ -69,7 +69,7 @@ rediscache:
     type: redis:3.2
 ```
 
-If you are using PHP, configure the relationship and enable the [PHP redis extension](/languages/php.md#php-extensions.md) in your `.platform.app.yaml`.
+If you are using PHP, configure the relationship and enable the [PHP redis extension](/languages/php.md#php-extensions) in your `.platform.app.yaml`.
 
 ```yaml
 runtime:

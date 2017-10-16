@@ -20,7 +20,7 @@ https://{default}/:
 
 ## Partial redirects
 
-In the [`.platform/routes.yaml`](routes-yaml.html) file you can also add partial redirect rules
+In the [`.platform/routes.yaml`](/configuration/routes.md) file you can also add partial redirect rules
 to existing routes:
 
 ```yaml
