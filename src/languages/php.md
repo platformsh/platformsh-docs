@@ -305,7 +305,7 @@ A number of project templates for major PHP applications are available on GitHub
 * [Drupal 8 (Multisite variant)](https://github.com/platformsh/platformsh-example-drupal8-multisite)
 * [Laravel](https://github.com/platformsh/platformsh-example-laravel)
 * [Moodle](https://github.com/platformsh/platformsh-example-moodle)
-* [Magento 1](https://github.com/platformsh/platformsh-example-laravel)
+* [Magento 1](https://github.com/platformsh/platformsh-example-magento1)
 * [Magento 2](https://github.com/platformsh/platformsh-example-magento)
 * [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
 * [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
