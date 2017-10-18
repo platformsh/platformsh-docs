@@ -49,3 +49,9 @@ rsync -az `platform ssh --pipe`:web/uploads/ ./uploads/
 ```
 
 This command will copy all files in the `web/uploads` directory on the current environment to the `uploads` directory locally.  Note that `rsync` is very sensitive about trailing `/` characters, so that may change the meaning of a command.  Consult the `rsync` documentation for more details.  Also see our [migrating](/tutorials/migrating.md) and [exporting](/tutorials/exporting.md) guides for more examples using `rsync`.
+
+If you have the [Platform.sh CLI](/gettingstarted/cli.md) installed, rsync can be used via the `mount:download` and `mount:upload` commands. This example achieves the same result as above:
+
+```bash
+platform mount:download --mount web/uploads --target ./uploads
+```

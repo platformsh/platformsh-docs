@@ -60,3 +60,58 @@ web:
 ```
 
 See the [web locations](/configuration/app/web.md) documentation for more details.
+
+## Using the Platform.sh CLI with mounts
+
+The [CLI](/gettingstarted/cli.md) can list mounts inside an application:
+
+```
+$ platform mount:list
+Mounts in the app drupal (environment master):
++-------------------------+----------------------+
+| Path                    | Definition           |
++-------------------------+----------------------+
+| web/sites/default/files | shared:files/files   |
+| private                 | shared:files/private |
+| tmp                     | shared:files/tmp     |
++-------------------------+----------------------+
+```
+
+The CLI also helps transferring files to and from a mount, using the
+`mount:upload` and `mount:download` commands. For example, to download files
+from the 'private' mount:
+
+```
+$ platform mount:download --mount private --target ./private
+
+This will add, replace, and delete files in the local directory 'private'.
+
+Are you sure you want to continue? [Y/n]
+Downloading files from the remote mount /app/private to /Users/alice/Projects/foo/private
+  receiving file list ...   done
+
+  sent 16 bytes  received 3.73K bytes  2.50K bytes/sec
+  total size is 1.77M  speedup is 471.78
+  time: 0.91s
+The download completed successfully.
+```
+
+Uploading files to a mount is similar:
+
+```
+$ platform mount:upload --mount private --source ./private
+
+This will add, replace, and delete files in the remote mount 'private'.
+
+Are you sure you want to continue? [Y/n]
+Uploading files from /Users/alice/Projects/foo/private to the remote mount /app/private
+  building file list ...   done
+
+  sent 2.35K bytes  received 20 bytes  1.58K bytes/sec
+  total size is 1.77M  speedup is 745.09
+  time: 0.72s
+The upload completed successfully.
+```
+
+See [Accessing your site](/development/access-site.md) for more information
+about uploading and downloading files from your application.
