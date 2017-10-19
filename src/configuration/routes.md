@@ -102,6 +102,17 @@ The server in the former example will respond directly to a request in the form
 `https://www.example.com/foo/bar` to `https://example.com/foo/bar`, which is not
 the case in the latter example.
 
+The example below uses absolute URL in the route:
+
+```yaml
+"https://www.example.com/":
+    type: upstream
+    upstream: "app:http"
+"https://blog.example.com/":
+    type: upstream
+    upstream: "blog:http"
+```
+
 Here is an example of using wildcard configuration (see details on [wildcard
 routes](#wildcard-routes)):
 
