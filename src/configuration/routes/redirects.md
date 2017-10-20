@@ -59,7 +59,11 @@ keys:
             to: "https://example.com/$1"
             regexp: true
    ```
-   Note that the special arguments in the `to` statement are also valid: `$is_arg` will evaluate to `?` or empty string, `$args` will evaluate to the full query string if any, `$arg_foo` will evaluate to the value of the query parameter `foo`, and `$uri` will evaluate to the full URI of the request.
+   Note that the special arguments in the `to` statement are also valid:
+    * `$is_arg` will evaluate to `?` or empty string
+    * `$args` will evaluate to the full query string if any
+    * `$arg_foo` will evaluate to the value of the query parameter `foo`
+    * `$uri` will evaluate to the full URI of the request.
  * `prefix`: optional, specifies whether we should redirect both the path and all its children or just the path itself. Defaults to `true`, but not supported if `regexp` is `true`. For example,
 
    ```yaml
