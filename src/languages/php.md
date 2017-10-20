@@ -237,7 +237,7 @@ you observe.
 ## Custom php.ini
 
 There are two ways to customize `php.ini` values for your application.  The recommended method is to use the [`variables` property](/configuration/app/variables.md) of `.platform.app.yaml` to set ini values using the `php` prefix.  For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
- 
+
  ```yaml
  variables:
     php:
@@ -291,6 +291,22 @@ The default values for some frequently-modified `php.ini` settings are listed be
 > We do not limit what you can put in your `php.ini` file, but many
 > settings can break your application. This is a facility for advanced
 > users.
+
+### Debug PHP-FPM
+
+If you want to inspect what's going on with PHP-FPM, you can install this [small CLI](https://github.com/wizaplace/php-fpm-status-cli):
+
+```yaml
+dependencies:
+  php:
+    wizaplace/php-fpm-status-cli: "^1.0"
+```
+
+Then when you are connected to your project over SSH you can run:
+
+```shell
+$ php-fpm-status --socket=unix:///run/app.sock --path=/-/status --full
+```
 
 ## Project templates
 
