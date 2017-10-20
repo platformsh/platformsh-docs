@@ -61,6 +61,32 @@ The memory usage of your container exceeds the limit, the kernel thus kills the 
 * Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project subscription.
 
 
+## Stuck build or deployment
+
+If you see a build or deployment running longer than expected, that may be one of the following cases:
+
+1. The build is blocked by a process in your build hook.
+2. The deployment is blocked by a long running process in your deploy hook.
+3. The deployment is blocked by a long running cron job in the environment.
+4. The deployment is blocked by a long running cron job in the parent environment.
+
+To determine if your environment is being stuck in the build or the deployment, you should look at the build log available on the UI. When you see a log line like below, your application is built and the deployment is stuck.
+
+```
+Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
+```
+
+Here are the things you should do when you see your build or deployment is stuck:
+
+For build being blocked (which you don't find the `Re-deployment environment ...` log), you have to create a support ticket to let us kill it.
+
+When deployment is being blocked, you should try the following:
+
+1. Use the SSH endpoint to connect to your environment. Find any long running cron job on the environment by `ps afx`. Once you identified the long running process on the environment, kill it.
+2. If you're performing "Sync", "Merge", or "Activate" a new environment and the process is stuck, use the SSH endpoint to the parent environment and identify any long running cron job by `ps afx`. Kill it if you see any.
+3. If you couldn't find any long running process on your environment or parent environment, or you cannot use the SSH endpoint to connect to your environment, please create a support ticket.
+
+
 ## MySQL lock wait timeout
 
 If you receive MySQL error messages like this:
