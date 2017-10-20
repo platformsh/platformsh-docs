@@ -1,13 +1,5 @@
 # Using Redis with Drupal 8.x
 
-> **note**
-> Redis support for Drupal 8 is still in beta. The instructions below assume
-> you are OK with running a beta-version of a Drupal module. It should be
-> stable and has been deployed in production, but more cautious users may prefer
-> to wait for the module to have a stable release. The instructions below are
-> unlikely to change at that time, but it is possible. See https://www.drupal.org/project/redis
-> for more information.
-
 The Drupal 8 Redis module currently only supports the [PhpRedis](https://github.com/nicolasff/phpredis) option, which relies on a PHP extension. Fortunately, that extension is trivial to enable on Platform.sh.
 
 ## Requirements
