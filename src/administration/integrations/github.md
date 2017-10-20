@@ -1,12 +1,10 @@
 # GitHub
 
-The [GitHub](https://github.com) integration allows you to manage your
-Platform.sh environments directly from your GitHub repository.
+The [GitHub](https://github.com) integration allows you to manage your Platform.sh environments directly from your GitHub repository.
 
 Features supported:
 
-* Create a new environment when creating a branch or opening a
-    pull request on GitHub.
+* Create a new environment when creating a branch or opening a pull request on GitHub.
 * Rebuild the environment when pushing new code to GitHub.
 * Delete the environment when merging a pull request.
 
@@ -14,19 +12,15 @@ Features supported:
 
 ### 1. Generate a token
 
-To integrate your Platform.sh project with an existing GitHub
-repository, you first need to generate a token on your GitHub user
-profile. Simply go to your account page on GitHub and click
-`Edit profile`.
+To integrate your Platform.sh project with an existing GitHub repository, you first need to generate a token on your GitHub user profile. Simply go to your account page on GitHub and click `Edit profile`.
 
-Select the *Personal access tokens* tab and click on [Generate new
-token](https://github.com/settings/tokens/new).
+Select the *Personal access tokens* tab and click on [Generate new token](https://github.com/settings/tokens/new).
 
 Give it a description and then ensure the token has the following scopes:
 
--   To integrate with public repositories: `public_repo`
--   To integrate with your own private repositories: `repo`
--   To integrate with your organization's private repositories: `repo`
+* To integrate with public repositories: `public_repo`
+* To integrate with your own private repositories: `repo`
+* To integrate with your organization's private repositories: `repo`
     and `read:org`
 
 Copy the token and make a note of it (temporarily).
@@ -40,26 +34,24 @@ Note that only `project owner` or `project admin` can manage the integrations.
 Open a terminal window (you need to have the Platform.sh CLI installed). Enable the GitHub integration as follows:
 
 ```bash
-platform integration:add --type=github --project=PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY --build-pull-requests=true --fetch-branches=true
+platform integration:add --type=github --project=PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 ```
 
 Optional parameters:
-* `fetch-branches`: Track and deploy branches (true by default)
-* `build-pull-requests`: Track and deploy pull-requests (true by default)
+* `--fetch-branches`: Track and deploy branches (true by default)
+* `--build-pull-requests`: Track and deploy pull-requests (true by default)
+* `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`true` by default)
+* `--pull-requests-clone-parent-data`: Set to `false` to disable cloning of parent environment data when creating a PR environment, so each PR environment starts with no data. (`true` by default)
 
-Note that if your repository belongs to an organization, use ``--repository=ORGANISATION/REPOSITORY``.
+Note that if your repository belongs to an organization, use ``--repository=ORGANIZATION/REPOSITORY``.
 
 ### 3. Add the webhook
 
 Copy the Payload URL that is returned by the previous command.
 
-Go to your GitHub repository and click `Settings`. Select the *Webhooks
-and Services* tab and click `Add webhook`. Paste the Payload URL, choose 
-"application/json" for the content type, choose "Send me everything" 
-for the events you want to receive and click `Add webhook`.
+Go to your GitHub repository and click `Settings`. Select the *Webhooks and Services* tab and click `Add webhook`. Paste the Payload URL, choose  "application/json" for the content type, choose "Send me everything"  for the events you want to receive and click `Add webhook`.
 
-You can now start pushing code, creating new branches or opening pull
-requests directly on your GitHub repository.
+You can now start pushing code, creating new branches or opening pull requests directly on your GitHub repository.
 
 Note that if you have created your account using the GitHub oAuth Login then in order to use the Platform CLI, you will need to [setup a password](https://accounts.platform.sh/user/password).
 
