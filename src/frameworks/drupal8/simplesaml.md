@@ -29,7 +29,7 @@ The SimpleSAML library's `www` directory needs to be publicly accessible.  That 
                 - index.php
 ```
 
-That will map all requests to `example.com/simplesaml/` to the `simplesamlphp/www` directory, allowing static files there to be served, PHP scripts to execute, and defaulting to index.php.
+That will map all requests to `example.com/simplesaml/` to the `vendor/simplesamlphp/www` directory, allowing static files there to be served, PHP scripts to execute, and defaulting to index.php.
 
 ## Create a configuration directory
 
