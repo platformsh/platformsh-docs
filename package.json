@@ -1,0 +1,24 @@
+{
+  "name": "platformsh-docs",
+  "version": "1.0.0",
+  "description": "This repository holds the public user documentation for [Platform.sh](https://platform.sh/).",
+  "main": "index.js",
+  "dependencies": {
+    "platformsh-user-widget": "^1.0.31"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "cp -R ./node_modules/platformsh-user-widget ./src/scripts/user-widget",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/platformsh/platformsh-docs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/platformsh/platformsh-docs/issues"
+  },
+  "homepage": "https://github.com/platformsh/platformsh-docs#readme"
+}
