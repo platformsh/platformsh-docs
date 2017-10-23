@@ -1,6 +1,6 @@
 # Using Lando for local development
 
-[Lando](https://github.com/lando/lando) is a container-based local development toolchain that plays nicely with Platform.sh.  It is maintained by a 3rd party but is a viable option for most Platform.sh projects.
+[Lando](https://github.com/lando/lando) is a container-based local development toolchain that plays nicely with Platform.sh.  It is maintained by [Tandem](https://thinktandem.io) but is a viable option for most Platform.sh projects.
 
 See the [Lando documentation](https://docs.lndo.io/) for installing and setting up Lando on your system.
 
