@@ -68,7 +68,7 @@ Each route can be configured separately. It has the following properties
 
 ## Routes examples
 
-Here is an example of a `.platform/routes.yaml` file:
+Here is an example of a basic `.platform/routes.yaml` file:
 
 ```yaml
 "https://{default}/":
@@ -79,13 +79,9 @@ Here is an example of a `.platform/routes.yaml` file:
   to: "https://{default}/"
 ```
 
-In this example, we will route both the apex domain and the www subdomain to an
-application we called "app", the www subdomain being redirected to the
-apex domain. Note, we also generate HTTPS routes automatically using the
-configuration of each HTTP route.
+In this example, we will route both the apex domain and the www subdomain to an [application called "app"](/configuration/app/name.md), the www subdomain being redirected to the apex domain using an HTTP 301 `Moved Permanently` response.
 
-In the following example, we are not redirecting from the www subdomain to the
-apex domain but serving from both:
+In the following example, we are not redirecting from the www subdomain to the apex domain but serving from both:
 
 ```yaml
 "https://{default}/":
@@ -97,12 +93,9 @@ apex domain but serving from both:
     upstream: "app:http"
 ```
 
-The server in the former example will respond directly to a request in the form
-`https://example.com/hello`. And, it will issue a HTTP 301 redirect from
-`https://www.example.com/foo/bar` to `https://example.com/foo/bar`, which is not
-the case in the latter example.
+The magic value '{default}' will be replaced with the production domain name configured on your account in the production branch.  In a non-production branch it will be replaced with the project ID and environment ID so that it is always unique.
 
-The example below uses absolute URL in the route:
+It's also entirely possible to use an absolute URL in the route. In that case, it will be used as-is in a production environment.  On a development environment it will be mangled to include the project ID and environment name.  For example:
 
 ```yaml
 "https://www.example.com/":
@@ -113,23 +106,14 @@ The example below uses absolute URL in the route:
     upstream: "blog:http"
 ```
 
-Here is an example of using wildcard configuration (see details on [wildcard
-routes](#wildcard-routes)):
+In this case, there are two application containers `app` and `blog`.  In a production environment, they would be accessible at `www.example.com` and `blog.example.com`, respectively.  On a development branch named `sprint`, however, they would be accessible at URLs something like:
 
-```yaml
-"https://*.{default}/":
-    type: upstream
-    upstream: "app:http"
+```bash
+https://www---example---com---sprint-7onpvba-tvh56f275i3um.us.platform.sh/
+https://blog---example---com---sprint-7onpvba-tvh56f275i3um.us.platform.sh/
 ```
 
-You can see the [Configuring Multiple Applications](/configuration/app/multi-app.md)
-section for a detailed view on how to define routes that work with
-**multiple applications in the same project**. Also, look at the
-[redirects](/configuration/routes/redirects.md) section for details on how you can set up complex
-redirection rules including **partial redirects**.
-
-> **note**
-> `routes.yaml` does not support redirecting wildcard subdomains from http to https
+If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generlaly easier to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains then you will need to use a static domain for all but one of them.
 
 ### HTTPS
 
