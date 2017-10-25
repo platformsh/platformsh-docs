@@ -2,6 +2,14 @@
 
 <!-- toc -->
 
+## Force a redeploy
+
+There are times where you might want to trigger a redeployment of your application. As with every other action on Platform.sh, this requires a git commit, however this can be empty. It is not recommended to do this if there are builds in a pending state, as these will block deployment. Wait for those builds to complete.
+
+```
+$ git commit --allow-empty -m 'force redeploy'
+$ git push platform <branch-name>
+```
 
 ## HTTP 502 response
 
