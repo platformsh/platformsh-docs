@@ -93,7 +93,13 @@ In the following example, we are not redirecting from the www subdomain to the a
     upstream: "app:http"
 ```
 
-The magic value '{default}' will be replaced with the production domain name configured on your account in the production branch.  In a non-production branch it will be replaced with the project ID and environment ID so that it is always unique.
+## Route placeholders
+
+You can configure any number of domains on a project when you are ready to make it live.  Only one of them may be set as the "default" domain.  In the `routes.yaml` file a route can be defined either literally or using one of two special placeholders: `{default}` and `{all}`.
+
+The magic value `{default}` will be replaced with the production domain name configured as the default on your account in the production branch.  In a non-production branch it will be replaced with the project ID and environment ID so that it is always unique.
+
+The magic value `{all}` will be replaced by all of the domain names configured on the account in the production branch. That is, if two domains `example1.com` and `example2.com` are configured, then a route named `https://www.{all}/` will result in two routes in production: `https://www.example1.com` and `https://www.example2.com`.  That can be useful in cases when a single application is serving two different websites simultaneously.  In a non-production branch it will be replaced with the project ID and environment ID, just like `{default}`.
 
 It's also entirely possible to use an absolute URL in the route. In that case, it will be used as-is in a production environment.  On a development environment it will be mangled to include the project ID and environment name.  For example:
 
@@ -113,7 +119,7 @@ https://www.example.com.sprint-7onpvba-tvh56f275i3um.us.platform.sh/
 https://blog.example.com.sprint-7onpvba-tvh56f275i3um.us.platform.sh/
 ```
 
-If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generally easier to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains then you will need to use a static domain for all but one of them.
+If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generally best to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains then you will need to use a static domain for all but one of them.
 
 ## Configuring routes on the Web Interface
 
