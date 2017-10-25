@@ -113,7 +113,7 @@ https://www---example---com---sprint-7onpvba-tvh56f275i3um.us.platform.sh/
 https://blog---example---com---sprint-7onpvba-tvh56f275i3um.us.platform.sh/
 ```
 
-If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generlaly easier to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains then you will need to use a static domain for all but one of them.
+If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generally easier to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains then you will need to use a static domain for all but one of them.
 
 ### HTTPS
 
