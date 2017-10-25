@@ -1,6 +1,4 @@
-# How it works
-
-## Building and deploying applications
+# Building and deploying applications
 
 Every time you push to a live branch (a git branch with an active environment attached to it) or activate an [environment](administration/web/environments.md) for a branch, there are two main processes that happen: *Build* and *Deploy*.  
 

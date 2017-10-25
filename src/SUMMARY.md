@@ -2,7 +2,7 @@
 ## The Big Picture
 
 * [Structure](overview/structure.md)
-* [Build & Deploy](overview/how-it-works.md)
+* [Build & Deploy](overview/build-deploy.md)
 * [Pricing](overview/pricing.md)
 * [Getting help](overview/getting-help.md)
 
