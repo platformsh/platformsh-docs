@@ -326,6 +326,7 @@ A number of project templates for major PHP applications are available on GitHub
 * [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
 * [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
 * [WordPress](https://github.com/platformsh/platformsh-example-wordpress)
+* [GravCMS](https://github.com/platformsh/platformsh-example-gravcms)
 
 ### Frameworks
 
