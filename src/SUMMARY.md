@@ -19,6 +19,7 @@
 
 ## Configuration
 
+* [YAML](configuration/yaml.md)
 * [Routes (routes.yaml)](configuration/routes.md)
   * [HTTP Cache](configuration/routes/cache.md)
   * [Redirects](configuration/routes/redirects.md)
