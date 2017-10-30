@@ -26,6 +26,8 @@ This example defines a key `name` with value `app`, a key `type` with value `php
 
 Keys are always strings, and may be quoted or not.  Values may be strings, numbers, or booleans.  Alphanumeric strings may be quoted or not.  More complex strings (with punctuation, etc.) must be quoted.  Numbers should not be quoted.  The boolean values `true` and `false` should never be quoted.
 
+For quoted values, both single quotes (`'`) and double quotes (`"`) are valid.  Double quotes, however, will interpolate common escape characters such as `\n` and so forth.  For that reason using single quotes is generally recommended unless you want escape characters to be processed rather than taken literally.
+
 In general the order of keys in a YAML file does not matter.  Neither do blank lines.  Indentation may be with any number of spaces, as long as it is consistent throughout the file.  Platform.sh examples by convention use four-space indentation.
 
 ## Multi-line strings
