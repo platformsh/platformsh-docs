@@ -99,7 +99,7 @@ You can configure any number of domains on a project when you are ready to make 
 
 The magic value `{default}` will be replaced with the production domain name configured as the default on your account in the production branch.  In a non-production branch it will be replaced with the project ID and environment ID so that it is always unique.
 
-The magic value `{all}` will be replaced by all of the domain names configured on the account in the production branch. That is, if two domains `example1.com` and `example2.com` are configured, then a route named `https://www.{all}/` will result in two routes in production: `https://www.example1.com` and `https://www.example2.com`.  That can be useful in cases when a single application is serving two different websites simultaneously.  In a non-production branch it will be replaced with the project ID and environment ID, just like `{default}`.
+The magic value `{all}` will be replaced by all of the domain names configured on the account. That is, if two domains `example1.com` and `example2.com` are configured, then a route named `https://www.{all}/` will result in two routes in production: `https://www.example1.com` and `https://www.example2.com`.  That can be useful in cases when a single application is serving two different websites simultaneously.  In a non-production branch it will be replaced with the project ID and environment ID for each domain, in the same fashion as a static route below.
 
 It's also entirely possible to use an absolute URL in the route. In that case, it will be used as-is in a production environment.  On a development environment it will be mangled to include the project ID and environment name.  For example:
 
