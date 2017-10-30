@@ -22,7 +22,7 @@ You only need to write your code, including a few YAML files that specify your d
 
 Every branch you push is a fully running environment &mdash; complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything &mdash; and its automatically generated URL can be sent to stakeholders or to automated CI systems.  It really is "what would my site look like if I merged this to production?"  Every time.
 
-You can use those concepts to replicate a traditional development/staging/production workflow, or to give every feature its own effective staging environment before merging to production (empowering you to use git-flow like methodologies even better). You cold also have an intermediary integration branch for several other branches. Platform.sh respects the structure of branches. It’s entirely up to you.
+You can use those concepts to replicate a traditional development/staging/production workflow, or to give every feature its own effective staging environment before merging to production (empowering you to use git-flow like methodologies even better). You could also have an intermediary integration branch for several other branches. Platform.sh respects the structure of branches. It’s entirely up to you.
 
 ## Full stack management
 
