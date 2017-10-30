@@ -41,27 +41,11 @@ hooks:
 
 creates a nested property `hooks.build`, which has the value `set -e\ncp a.txt b.txt`.  (That is, a string with a line break in it.)  That is useful primarily for hooks, which allow the user to enter small shell scripts within the YAML file.
 
-## Local tags
+## Includes
 
-YAML allows for special "tags" on values that change their meaning.  These tags may be customized for individual applications so may vary from one system to another.  For Platform.sh there are two that are useful to know about.
+YAML allows for special "tags" on values that change their meaning.  These tags may be customized for individual applications so may vary from one system to another.  The main Platform.sh "local tag" is `!include`, which allows for external files to be logically embedded within the YAML file.  The referenced file is always relative to the YAML file's directory.
 
-### !archive
-
-The `!archive` tag specifies that the value it tags is a reference to a directory on disk, relative to the location of the YAML file.  Essentially it defines the value of key as "this entire directory".  For example:
-
-```yaml
-mysearch:
-    type: solr:6.6
-    disk: 1024
-    configuration:
-        core_config: !archive "solr/conf"
-```
-
-In this case, the `mysearch.configuration.core_config` value is not the string "solr/conf", but the contents of the `solr/conf` directory.  On Platform.sh, that is used primarily for service definitions in [`services.yaml`](/configuration/services.md) to provide a directory of configuration files for the service (such as Solr in this case).  Platform.sh will use that directive to copy the entire specified directory into our management system so that it can be deployed with the specified service.
-
-### !include
-
-The Platform.sh-specific `!include` tag is a more generic version of `!archive`.  It allows for a variety of other files to be logically inlined into the YAML file.  The referenced file is always relative to the YAML file's directory.  It has two versions, both a short-form and a long-form, and has four possible include types: `string`, `binary`, `yaml`, and `archive`.
+### `string`
 
 The `string` type allows an external file to be inlined in the YAML file as though it had been entered as a multi-line string.  For example, given this file on disk named `build.sh`:
 
@@ -88,6 +72,8 @@ hooks:
 
 That is primarily useful for breaking longer build scripts or inlined configuration files out to a separate file for easier maintenance.
 
+### `binary`
+
 The `binary` type allows an external binary file to be inlined in the YAML file.  The file will be base64 encoded.  For example:
 
 ```yaml
@@ -99,15 +85,9 @@ properties:
 
 will reference the `favicon.ico` file, which will be provided to Platform.sh's management system.
 
-The `archive` type allows an external directory to be inlined into the file.  It has the same effect as the `!archive` tag above.  That is, the following two YAML fragments are equivalent:
+### `archive`
 
-```yaml
-mysearch:
-    type: solr:6.6
-    disk: 1024
-    configuration:
-        core_config: !archive "solr/conf"
-```
+The `archive` type specifies that the value it tags is a reference to a directory on disk, relative to the location of the YAML file.  Essentially it defines the value of key as "this entire directory".  Consider this `services.yaml` fragment:
 
 ```yaml
 mysearch:
@@ -118,6 +98,20 @@ mysearch:
             type: archive
             path: "solr/conf"
 ```
+
+In this case, the `mysearch.configuration.core_config` value is not the string "solr/conf", but the contents of the `solr/conf` directory (relative to the `services.yaml` file).  On Platform.sh, that is used primarily for service definitions in [`services.yaml`](/configuration/services.md) to provide a directory of configuration files for the service (such as Solr in this case).  Platform.sh will use that directive to copy the entire specified directory into our management system so that it can be deployed with the specified service.
+
+Alternatively, an older short-hand version of `archive` is still available.  The following fragment has exactly the same meaning as the one above:
+
+```yaml
+mysearch:
+    type: solr:6.6
+    disk: 1024
+    configuration:
+        core_config: !archive "solr/conf"
+```
+
+### `yaml`
 
 Finally, the `yaml` type allows an external YAML file to be inlined into the file as though it had been typed in directly.  That can help simplify more complex files, such a `.platform.app.yaml` file with many highly-customized `web.locations` blocks.
 
