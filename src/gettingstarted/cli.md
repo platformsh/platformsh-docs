@@ -43,7 +43,7 @@ The CLI uses Platform.sh API to trigger commands (*Branch, Merge...*) on your pr
 
 It's also very useful when you work locally since it can simulate a local build of your codebase as if you were pushing a change to Platform.sh.
 
-Once you have the CLI installed, run `platform list` to see all of [the available commands](/overview/cli-commands.md).
+Once you have the CLI installed, run `platform list` to see all of the available commands.
 
 You can preface any command with `help` to see more information on how to use that command.
 

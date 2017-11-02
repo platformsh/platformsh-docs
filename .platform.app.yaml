@@ -21,11 +21,6 @@ dependencies:
 # by default.
 hooks:
     build: |
-      # Generate the CLI command index page.
-      curl -sS https://platform.sh/cli/installer | php
-      [ -f .environment ] && . ./.environment
-      platform list --format md > src/overview/cli-commands.md
-
       # Install and compile GitBook
       gitbook install
       npm install

@@ -13,7 +13,6 @@
 * [Platform.sh in practice](/gettingstarted/platformsh-in-practice.md)
 * [Tools](gettingstarted/tools.md)
 * [CLI](gettingstarted/cli.md)
-  * [Commands](gettingstarted/cli-commands.md)
 * [Local development](gettingstarted/local.md)
   * [Tethered](gettingstarted/local/tethered.md)
   * [Untethered](gettingstarted/local/untethered.md)
