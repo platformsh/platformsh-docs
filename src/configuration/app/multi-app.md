@@ -88,10 +88,6 @@ This will result (if we consider we are on the `http://example.com` domain):
 * `http://example.com/` and all the urls below it to be served by the AngularJS
 one.
 
-> **note**
-> Subdomain routes in development environments will be accessible using three dashes (---) instead of a dot (.), e.g:
-> http://back-end---BRANCH-MACHINE_NAME-PROJECTID-.REGION.platformsh.site
-
 ### SSH in each application
 
 You can SSH in any application that is deployed.
