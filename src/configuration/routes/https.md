@@ -106,8 +106,12 @@ By default, any valid SSL cert issued by one of the common certificate issuing a
 tls:
     client_authentication: "require"
     client_certificate_authorities:
-        - !file cert1.key
-        - !file cert2.key
+        - !include
+            type: string
+            path: file1.key
+        - !include
+            type: string
+            path: file2.key
 ```
 
 In this case, the key files are resolved relative to the `.platform` directory.  Alternatively, the keys can be specified inline in the file:
