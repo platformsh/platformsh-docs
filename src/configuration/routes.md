@@ -109,8 +109,8 @@ It's also entirely possible to use an absolute URL in the route. In that case, i
 In this case, there are two application containers `app` and `blog`.  In a production environment, they would be accessible at `www.example.com` and `blog.example.com`, respectively.  On a development branch named `sprint`, however, they would be accessible at URLs something like:
 
 ```bash
-https://www---example---com---sprint-7onpvba-tvh56f275i3um.us.platform.sh/
-https://blog---example---com---sprint-7onpvba-tvh56f275i3um.us.platform.sh/
+https://www.example.com.sprint-7onpvba-tvh56f275i3um.us.platform.sh/
+https://blog.example.com.sprint-7onpvba-tvh56f275i3um.us.platform.sh/
 ```
 
 If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generally easier to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains then you will need to use a static domain for all but one of them.
@@ -186,13 +186,12 @@ For your master environment, this would function as a catch-all domain once you 
 
 For development environments, we will also be able to handle this. Here is how:
 
-Let's say we have a project on the EU cluster whose ID is "vmwklxcpbi6zq" and we created a branch called "add-theme". It's environment name will be similar to `add-theme-def123`.  The generated apex domain of this environment will be `add-theme-def123-vmwklxcpbi6zq.eu.platform.sh`. If we have a `http://*.{default}/` route defined, the generated route will be `http://*---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/`. This means you could put any subdomain before the triple dashes to reach your application. HTTP request to both `http://foo---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` and `http://bar---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` URLs will be routed to your application properly. However, request to `http://*---add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` will not be routed since it is not a legitimate domain name.
+Let's say we have a project on the EU cluster whose ID is "vmwklxcpbi6zq" and we created a branch called "add-theme". It's environment name will be similar to `add-theme-def123`.  The generated apex domain of this environment will be `add-theme-def123-vmwklxcpbi6zq.eu.platform.sh`. If we have a `http://*.{default}/` route defined, the generated route will be `http://*.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/`. This means you could put any subdomain before the left-most `.` to reach your application. HTTP request to both `http://foo.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` and `http://bar.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` URLs will be routed to your application properly. However, request to `http://*.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` will not be routed since it is not a legitimate domain name.
 
 Be aware, however, that Let's Encrypt does not support wildcard certificates.  That means if you want to use a wildcard route and protect it with SSL you will need to provide a [custom SSL certificate](/golive/steps.md#ssl-in-production).
 
 > **note**
-> Triple dash (`---`) is used as a separator for the subdomain in development
-> environments. It replaces the dot (`.`).
+> In projects created before November 2017 the `.` in subdomains was replaced with a triple dash (`---`).  It was switched to preserve `.` to simplify SSL handling and improve support for longer domains.  If your project was created before November 2017 then it will still use `---` to the left of the environment name.  If you wish to switch to dotted-domains please file a support ticket and we can do that for you.  Be aware that doing so may change the domain name that your production domain name should CNAME to.
 
 ## WebSocket routes
 

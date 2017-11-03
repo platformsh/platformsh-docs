@@ -40,7 +40,7 @@ On your DNS provider, you would create two CNAMEs:
 `mysite.com` should be an ALIAS/CNAME/ANAME  to `master-def456-abc123.us.platform.sh`.
 `www.mysite.com` should be a CNAME to `master-def456-abc123.us.platform.sh`.
 
->  Both point to the same name see the note above regarding how different registrars handle dynamic apex domains.
+>  Both point to the same name. See the note above regarding how different registrars handle dynamic apex domains.
 
 ### Result
 
@@ -48,10 +48,10 @@ So you would understand what is happening under the hood.
 
 An incoming request for `mysite.com` will result in the following:
 
-1. Your browser asks the DNS network for `mysite.com`'s DNS A record (the IP address of this host).  It responds with "it's an alias for `www---master-def456-abc123.us.platform.sh`" (the CNAME) which itself resolves to the A record with IP address "1.2.3.4"  (Or whatever the actual address is). By default DNS requests by browsers are recursive, so there is no performance penalty for using CNAMEs.
+1. Your browser asks the DNS network for `mysite.com`'s DNS A record (the IP address of this host).  It responds with "it's an alias for `www.master-def456-abc123.us.platform.sh`" (the CNAME) which itself resolves to the A record with IP address "1.2.3.4"  (Or whatever the actual address is). By default DNS requests by browsers are recursive, so there is no performance penalty for using CNAMEs.
 3. Your browser sends a request to `1.2.3.4` for domain `mysite.com`.
 4. Your router responds with an HTTP 301 redirect to `www.mysite.com` (because in our `routes.yaml` we defined such a redirect).
-5. Your browser looks up `www.mysite.com` and, as above, gets an alias for `www---master-def456-abc123.us.platform.sh`, which is IP 1.2.3.4.
+5. Your browser looks up `www.mysite.com` and, as above, gets an alias for `www.master-def456-abc123.us.platform.sh`, which is IP 1.2.3.4.
 6. Your browser sends a request to `1.2.3.4` for domain `www.mysite.com`.  Your router passes the request through to your application which in turn responds with whatever it's supposed to do.
 
 On subsequent requests, your browser will know to simply connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.  The entire process takes only a few milliseconds.
