@@ -38,5 +38,7 @@ to setup a read/write mount for it in `.platform.app.yaml`, for example:
 
 ```yaml
 mounts:
-    "/app/spool": "shared:files/spool"
+    '/app/spool':
+        source: local
+        source_path: spool
 ```

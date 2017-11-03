@@ -71,8 +71,12 @@ as listed below, a complete example is included at the end of this section.
 
    ```yaml
    mounts:
-     "/tmp": "shared:files/tmp"
-     "/logs": "shared:files/logs"
+       tmp:
+           source: local
+           source_path: tmp
+       logs:
+           source: local
+           source_path: logs
    ```
 
    This setting allows your application writing files to `/app/tmp` and
@@ -111,8 +115,12 @@ hooks:
     pip install gunicorn
 
 mounts:
-  "/tmp": "shared:files/tmp"
-  "/logs": "shared:files/logs"
+   tmp:
+       source: local
+       source_path: tmp
+   logs:
+       source: local
+       source_path: logs
 
 disk: 512
 ```

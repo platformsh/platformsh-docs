@@ -91,8 +91,12 @@ while everything else are forwarded to your application server.
 
 ```yaml
 mounts:
-  "/tmp": "shared:files/tmp"
-  "/logs": "shared:files/logs"
+    tmp:
+        source: local
+        source_path: tmp
+    logs:
+        source: local
+        source_path: logs
 ```
 
 This setting allows your application writing files to `/app/tmp` and
@@ -143,8 +147,12 @@ hooks:
   deploy: RACK_ENV=production bundle exec rake db:migrate
 
 mounts:
-   "/log": "shared:files/log"
-   "/tmp": "shared:files/tmp"
+    tmp:
+        source: local
+        source_path: tmp
+    logs:
+        source: local
+        source_path: logs
 ```
 
 ## Configuring services

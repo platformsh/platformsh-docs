@@ -69,7 +69,9 @@ at the end).
 
    ```yaml
    mounts:
-     "/run": "shared:files/run"
+       run:
+           source: local
+           source_path: run
    ```
 
 5. Include any relevant commands needed to build and setup your application in
@@ -115,7 +117,9 @@ dependencies:
   nodejs:
     pm2: "^2.5.0"
 mounts:
-  "/run": "shared:files/run"
+   run:
+       source: local
+       source_path: run
 disk: 512
 ```
 
