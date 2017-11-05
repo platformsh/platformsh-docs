@@ -8,7 +8,8 @@ Emails from Platform.sh are sent via a SendGrid-based SMTP proxy.
 Each Platform.sh project is provisioned as a SendGrid sub-account.
 These SendGrid sub-accounts are capped at 12k emails per month.
 You can use `/usr/sbin/sendmail` on your application container to send emails
-with the assigned SendGrid sub-account.
+with the assigned SendGrid sub-account. Alternatively, you can use the `PLATFORM_SMTP_HOST` 
+environment variable to use in your SMTP configuration.
 
 We do not guarantee the deliverability of emails, and we do not support white-labeling them.  Our SMTP proxy is intended as a zero-configuration, best effort service.  If needed, you can instead use your own SMTP server or email delivery service provider. In that case, please bear in mind that TCP port 25 is blocked for security reasons; use TCP port 465 or 587 instead.
 
@@ -27,8 +28,8 @@ In Symfony, if you use the default `SwiftMailer` service, we recommend the follo
 
 ```yaml
 parameters:
-  mailer_transport: sendmail
-  mailer_host: null
+  mailer_transport: smtp
+  mailer_host: "%env(PLATFORM_SMTP_HOST)%"
   mailer_user: null
   mailer_password: null
 ```
