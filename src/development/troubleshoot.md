@@ -4,8 +4,15 @@
 
 ## Force a redeploy
 
-There are times where you might want to trigger a redeployment of your application. As with every other action on Platform.sh, this requires a git commit, however this can be empty. It is not recommended to do this if there are builds in a pending state, as these will block deployment. Wait for those builds to complete.
+There are times where you might want to trigger a redeployment of your application. As with every other action on Platform.sh, this requires a git commit or setting a variable, however this can be empty. It is not recommended to do this if there are builds in a pending state, as these will block deployment. Wait for those builds to complete.
 
+
+Using the Platform.sh CLI:
+```
+platform vset redeploy "$(date)"
+```
+
+Using Git only:
 ```
 $ git commit --allow-empty -m 'force redeploy'
 $ git push platform <branch-name>
