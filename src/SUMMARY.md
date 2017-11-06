@@ -118,6 +118,7 @@
   * [Drush](frameworks/drupal8/drush.md)
   * [Redis](frameworks/drupal8/redis.md)
   * [Solr](frameworks/drupal8/solr.md)
+  * [SimpleSAML](frameworks/drupal8/simplesaml.md)
   * [FAQ](frameworks/drupal8/faq.md)
 * [Symfony](frameworks/symfony.md)
   * [FAQ](frameworks/symfony/faq.md)
