@@ -98,7 +98,7 @@ That will output the connection string for SSH, including the username and host 
 
 ### SFTP
 
-SFTP is another way to upload and download files to and from a remote environment. There are many SFTP clients available for every possible operating system - graphical and command-line - use whichever one works for you.
+SFTP is another way to upload and download files to and from a remote environment. There are many SFTP clients available for every operating system; use whichever one works for you.
 
 ### SCP
 
