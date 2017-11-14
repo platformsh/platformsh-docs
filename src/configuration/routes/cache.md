@@ -229,10 +229,6 @@ cache:
   enabled: true
   cookies: ["MYCOOKIE"]
 ```
-> **note**
-> You can not use wildcards in the cookie name. Either use a precise cookie
-> name, or match all cookies with a `"*"`. `"SESS*"` or `"~SESS"` are currently
-> not valid values.
 
 ### Cache HTTP and HTTPS separately using the `Vary` header
 
