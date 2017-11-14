@@ -1,6 +1,6 @@
 # Authenticated Composer repositories
 
-Some PHP projects may need to leverage a private, third party Composer repository in addition to the public Packagist.org repository.  Often, such third party repositories require authentication in order to download packages, and not everyone is comfortable putting those credentials into their Git repository source code (for obvious reasons). 
+Some PHP projects may need to leverage a private, third party Composer repository in addition to the public Packagist.org repository.  Often, such third party repositories require authentication in order to download packages, and not everyone is comfortable putting those credentials into their Git repository source code (for obvious reasons).
 
 To handle that situation, you can define a `env:COMPOSER_AUTH` [project variable](/development/variables.md#project-variables) which allows you to set up authentication as an environment variable. The contents of the variable should be a JSON formatted object containing an `http-basic` object (see [composer-auth specifications](https://getcomposer.org/doc/03-cli.md#composer-auth)).
 
@@ -8,7 +8,7 @@ The advantage is that you can control who in your team has access to those varia
 
 ## Specify a third party repository in `composer.json`
 
-For this example, consider that there are several packages we want to install from a private repository hosted at `my-private-repos.example.com`.  List that repository in your `composer.json` file. 
+For this example, consider that there are several packages we want to install from a private repository hosted at `my-private-repos.example.com`.  List that repository in your `composer.json` file.
 
 ```json
 {
@@ -23,9 +23,9 @@ For this example, consider that there are several packages we want to install fr
 
 ## Set the env:COMPOSER_AUTH project variable
 
-Set the Composer authentication by adding a project level variable called `env:COMPOSER_AUTH` as JSON and availabe only during build time. 
+Set the Composer authentication by adding a project level variable called `env:COMPOSER_AUTH` as JSON and available only during build time.
 
-That can be done through the web UI or via the command line, like so:
+That can be done through the [web UI](/administration/web.md) or via the command line, like so:
 
 ```bash
 platform project:variable:set env:COMPOSER_AUTH '{"http-basic": {"my-private-repos.example.com": {"username": "your-username", "password": "your-password"}}}' --json --no-visible-runtime
