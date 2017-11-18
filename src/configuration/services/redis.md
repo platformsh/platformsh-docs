@@ -111,5 +111,17 @@ relationships:
 The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `myredis.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
 
 ```bash
-redis-cli -h rediscache.internal -p 6379
+redis-cli -h myredis.internal -p 6379
+```
+
+### Using Redis as handler for native PHP sessions
+
+In the same configuration, with your Redis relationship named `myredis`:
+
+```yaml
+# .platform.app.yaml
+variables:
+    php:
+        session.save_handler: redis
+        session.save_path: "tcp://myredis.internal:6379"
 ```
