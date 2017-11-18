@@ -77,7 +77,7 @@ runtime:
         - redis
 
 relationships:
-    myredis: "rediscache:redis"
+    fooredis: "rediscache:redis"
 ```
 
 You can then use the service in a configuration file of your application with something like:
@@ -87,16 +87,16 @@ You can then use the service in a configuration file of your application with so
 if (getenv('PLATFORM_RELATIONSHIPS')) {
     $relationships = json_decode(base64_decode(getenv('PLATFORM_RELATIONSHIPS')), true);
 
-    if (!empty($relationships['myredis'][0])) {
-        $container->setParameter('redis_host', $relationships['myredis'][0]['host']);
-        $container->setParameter('redis_port', $relationships['myredis'][0]['port']);
+    if (!empty($relationships['fooredis'][0])) {
+        $container->setParameter('redis_host', $relationships['fooredis'][0]['host']);
+        $container->setParameter('redis_port', $relationships['fooredis'][0]['port']);
     }
 }
 ```
 
 ## Using redis-cli to access your Redis service
 
-Assuming your Redis relationship is named `myredis`.
+Assuming your Redis relationship is named `fooredis`.
 
 ```yaml
 # .platform/services.yaml
@@ -107,23 +107,23 @@ rediscache:
 ```yaml
 # .platform.app.yaml
 relationships:
-    myredis: "rediscache:redis"
+    fooredis: "rediscache:redis"
 ```
 
-The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `myredis.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
+The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `fooredis.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
 
 ```bash
-redis-cli -h myredis.internal -p 6379
+redis-cli -h fooredis.internal -p 6379
 ```
 
 ### Using Redis as handler for native PHP sessions
 
-In the same configuration, with your Redis relationship named `myredis`:
+In the same configuration, with your Redis relationship named `fooredis`:
 
 ```yaml
 # .platform.app.yaml
 variables:
     php:
         session.save_handler: redis
-        session.save_path: "tcp://myredis.internal:6379"
+        session.save_path: "tcp://fooredis.internal:6379"
 ```
