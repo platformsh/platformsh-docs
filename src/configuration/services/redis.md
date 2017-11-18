@@ -69,7 +69,7 @@ rediscache:
     type: redis:3.2
 ```
 
-If you are using PHP, configure the relationship and enable the [PHP redis extension](/languages/php.md#php-extensions) in your `.platform.app.yaml`.
+If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php.md#php-extensions) in your `.platform.app.yaml`.
 
 ```yaml
 runtime:
@@ -77,7 +77,7 @@ runtime:
         - redis
 
 relationships:
-    redis: "rediscache:redis"
+    myredis: "rediscache:redis"
 ```
 
 You can then use the service in a configuration file of your application with something like:
@@ -87,8 +87,10 @@ You can then use the service in a configuration file of your application with so
 if (getenv('PLATFORM_RELATIONSHIPS')) {
     $relationships = json_decode(base64_decode(getenv('PLATFORM_RELATIONSHIPS')), true);
 
-    $container->setParameter('redis_host', $relationships['redis'][0]['host']);
-    $container->setParameter('redis_port', $relationships['redis'][0]['port']);
+    if (!empty($relationships['myredis'][0])) {
+        $container->setParameter('redis_host', $relationships['myredis'][0]['host']);
+        $container->setParameter('redis_port', $relationships['myredis'][0]['port']);
+    }
 }
 ```
 
