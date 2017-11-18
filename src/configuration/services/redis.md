@@ -94,7 +94,21 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 
 ## Using redis-cli to access your Redis service
 
-Assuming your Redis relationship is named `rediscache`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `rediscache.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
+Assuming your Redis relationship is named `myredis`.
+
+```yaml
+# .platform/services.yaml
+rediscache:
+    type: redis:3.2
+```
+
+```yaml
+# .platform.app.yaml
+relationships:
+    myredis: "rediscache:redis"
+```
+
+The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `myredis.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
 
 ```bash
 redis-cli -h rediscache.internal -p 6379
