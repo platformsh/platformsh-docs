@@ -3,7 +3,6 @@
 
 * [Structure](overview/structure.md)
 * [Build & Deploy](overview/build-deploy.md)
-* [Tools](overview/tools.md)
 * [Pricing](overview/pricing.md)
 * [Getting help](overview/getting-help.md)
 
