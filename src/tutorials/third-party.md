@@ -25,6 +25,7 @@ This is a Big List of known third party resources for Platform.sh. These resourc
 * Official [Sylius](http://docs.sylius.org/en/latest/cookbook/platform-sh.html) documentation on deploying to Platform.sh
 * How to set up [SSL with Cloudflare](https://www.ignoredbydinosaurs.com/posts/307-setting-up-ssl-on-your-platformsh-site-with-cloudflare)
 * Introduction to [using PostgreSQL](https://www.ignoredbydinosaurs.com/posts/296-postgres-on-platform)
+* How to install [Apache Tika on Platform.sh](https://thinktandem.io/blog/2017/11/10/apache-tika-on-platform-sh/)
 
 ### Drupal
 
