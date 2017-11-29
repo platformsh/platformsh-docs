@@ -39,13 +39,13 @@ Note that only `project owner` or `project admin` can manage the integrations.
 Open a terminal window (you need to have the Platform.sh CLI installed). Enable the GitLab integration as follows:
 
 ```bash
-platform integration:add --type=gitlab --token=THE-TOKEN-YOU-WROTE-DOWN --base-url=https://THE-URL-OF-YOUR-GITLAB/ --gitlab-project=MY-NAMESPACE/MY-PROJECTNAME --merge-requests-clone-parent-data=true --build-merge-requests=true --fetch-branches=true
+platform integration:add --type=gitlab --token=THE-TOKEN-YOU-WROTE-DOWN --base-url=https://THE-URL-OF-YOUR-GITLAB/ --gitlab-project=MY-NAMESPACE/MY-PROJECTNAME
 ```
 
 Optional parameters:
-* `fetch-branches`: Track and deploy branches (true by default)
-* `build-merge-requests`: Track and deploy merge-requests (true by default)
-* `merge-requests-clone-parent-data` : should merge requests clone the data from the parent environment
+* `--fetch-branches`: Track and deploy branches (true by default)
+* `--build-merge-requests`: Track and deploy merge-requests (true by default)
+* `--merge-requests-clone-parent-data` : should merge requests clone the data from the parent environment (true by default)
 
 ### 3. Add the webhook
 
