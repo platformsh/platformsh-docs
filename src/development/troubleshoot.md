@@ -138,7 +138,7 @@ This is what gives you all of the benefits of having repeatable deployments, con
 
 In Platform.sh, you cannot just "hack production".  It is a constraint, but it is a good constraint.
 
-During the [build phase](/overview/how-it-works.md#building-the-application) of your application, the main filesystem is writable.  So you can do whatever you want (e.g. compile code or generate anything you need).  But during and after the [deploy phase](/overview/how-it-works.md#deploying-the-application), the main filesystem will be read-only.
+During the [build phase](/overview/build-deploy.md#building-the-application) of your application, the main filesystem is writable.  So you can do whatever you want (e.g. compile code or generate anything you need).  But during and after the [deploy phase](/overview/build-deploy.md#deploying-the-application), the main filesystem will be read-only.
 
 
 ## "File not found" in Drupal
