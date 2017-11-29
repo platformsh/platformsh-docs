@@ -49,13 +49,16 @@ Optional parameters:
 
 ### 3. Add the webhook
 
-The previous command, if succesful should output the configuration of the integration. The last element would look like
-```| hook_url                         | https://{region}.platform.sh/api/projects/{projectid}/integrations/{hook_id}/hook |`
+The previous command, if succesful should output the configuration of the integration. The last element would look like:
 
-Now, copy the hook URL 
+```
+| hook_url | https://{region}.platform.sh/api/projects/{projectid}/integrations/{hook_id}/hook |
+```
 
-Go to your GitLab repository and click `Settings > Integrations` and paste the Payload URL, in the Triggers secrion choose 
-`Push events`, `Tag push events` and `Merge Request events`. And click on `Add bebhook`.
+Now, copy the hook URL.
+
+Go to your GitLab repository and click `Settings > Integrations` and paste the Payload URL, in the Triggers section choose 
+`Push events`, `Tag push events` and `Merge Request events`. And click on `Add webhook`.
 
 You can now start pushing code, creating new branches or opening merge
 requests directly on your GitLab repository. You will see environments get automatically created and updated on the Platform.sh side.
