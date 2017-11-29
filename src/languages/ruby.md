@@ -10,10 +10,12 @@ a Sinatra app is very straight forward.
 
 * 2.3
 * 2.4
+* 2.5
 
 ## Unicorn based Rails configuration
 
-In this example, we use Unicorn to run our Ruby application.
+In this example, we use Unicorn to run our Ruby application. You could use any 
+Ruby application server such as Puma or Thin.
 Configure the `.platform.app.yaml` file with a few key settings
 as listed below, a complete example is included at the end of this section.
 
@@ -21,7 +23,7 @@ as listed below, a complete example is included at the end of this section.
 
    ```yaml
    # .platform.app.yaml
-   type: "ruby:2.4"
+   type: "ruby:2.5"
    ```
 
 2. Build your application with the build hook.
@@ -31,9 +33,7 @@ application folder to execute build steps:
 
 ```yaml
 hooks:
-  build: |
-    gem install bundler
-    bundle install --jobs 6 --without development test
+  build: bundle install --without development test
   deploy: RACK_ENV=production bundle exec rake db:migrate
 ```
 
@@ -137,9 +137,7 @@ relationships:
 disk: 2048
 
 hooks:
-  build: |
-    gem install bundler
-    bundle install --jobs 6 --without development test
+  build: bundle install --without development test
   deploy: RACK_ENV=production bundle exec rake db:migrate
 
 mounts:
