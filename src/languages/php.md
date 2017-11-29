@@ -17,7 +17,7 @@ Both are interchangeable from a configuration perspective, although code that us
 * 5.6
 * 7.0
 * 7.1
-* 7.2 (Beta)
+* 7.2
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
@@ -28,11 +28,11 @@ Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 * 3.15
 * 3.18
 
-To select a PHP version, specify a `type` such as `php:7.0` or `hhvm:3.9`:
+To select a PHP version, specify a `type` such as `php:7.1` or `hhvm:3.9`:
 
 ```yaml
 # .platform.app.yaml
-type: "php:7.0"
+type: "php:7.1"
 ```
 
 ## PHP extensions
