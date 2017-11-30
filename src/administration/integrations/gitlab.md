@@ -1,12 +1,10 @@
 # GitLab
 
-The [GitLab](https://gitlab.com) integration allows you to manage your
-Platform.sh environments directly from your GitLab repository.
+The [GitLab](https://gitlab.com) integration allows you to manage your Platform.sh environments directly from your GitLab repository.
 
 Features supported:
 
-* Create a new environment when creating a branch or opening a
-    pull request on GitLab.
+* Create a new environment when creating a branch or opening a pull request on GitLab.
 * Rebuild the environment when pushing new code to GitLab.
 * Delete the environment when merging a pull request.
 
@@ -14,13 +12,9 @@ Features supported:
 
 ### 1. Generate a token
 
-To integrate your Platform.sh project with an existing GitLab
-repository, you first need to generate a token on your GitLab user
-profile. Simply go to your Settings page on GitLab and click
-`Access Tokens`.
+To integrate your Platform.sh project with an existing GitLab repository, you first need to generate a token on your GitLab user profile. Simply go to your Settings page on GitLab and click `Access Tokens`.
 
-Fill the `Name` field for example with "Platform.sh Integration" and optionally
-set an expiration time.
+Fill the `Name` field for example with "Platform.sh Integration" and optionally set an expiration time.
 
 Give it a description and then ensure the token has the following scopes:
 
@@ -60,13 +54,11 @@ Now, copy the hook URL.
 Go to your GitLab repository and click `Settings > Integrations` and paste the Payload URL, in the Triggers section choose 
 `Push events`, `Tag push events` and `Merge Request events`. And click on `Add webhook`.
 
-You can now start pushing code, creating new branches or opening merge
-requests directly on your GitLab repository. You will see environments get automatically created and updated on the Platform.sh side.
+You can now start pushing code, creating new branches or opening merge requests directly on your GitLab repository. You will see environments get automatically created and updated on the Platform.sh side.
 
 
 ## Types of environments
 
-Environments based on GitLab **merge requests** will have the correct 'parent' environment on Platform.sh; they will be activated automatically with a 
-copy of the parent's data (unless you have set the option `merge-requests-clone-parent-data` to false).
+Environments based on GitLab **merge requests** will have the correct 'parent' environment on Platform.sh; they will be activated automatically with a copy of the parent's data (unless you have set the option `merge-requests-clone-parent-data` to false).
 
 However, environments based on (non-merge-request) **branches** cannot have parents; they will inherit directly from `master` and start inactive by default.
