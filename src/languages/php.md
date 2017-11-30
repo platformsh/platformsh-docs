@@ -162,7 +162,7 @@ This is the complete list of extensions that can be enabled:
 | spplus       | *   | *   |     |     |     |     |
 | sqlite3      | *   | *   | *   | *   | *   | *   |
 | ssh2         | *   | *   | *   |     | *   | *   |
-| tideways     |     |     |     | *   | *   |     |
+| tideways     |     |     |     | *   | *   | *   |
 | tidy         | *   | *   | *   | *   | *   | *   |
 | uuid         |     |     |     |     | *   |     |
 | xcache       | *   | *   |     |     |     |     |
