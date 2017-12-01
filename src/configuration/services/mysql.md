@@ -44,6 +44,8 @@ mydatabase:
     disk: 1024
 ```
 
+Note that the minimum disk size for mysql is 256MB.
+
 In your `.platform.app.yaml`:
 
 ```yaml
