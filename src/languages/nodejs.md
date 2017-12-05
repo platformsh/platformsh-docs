@@ -13,7 +13,7 @@ Javascript and PHP applications.
 * 6.9
 * 6.10
 * 6.11
-* 8.2
+* 8.9
 
 See https://github.com/platformsh/platformsh-example-nodejs/tree/mongodb for a
 full example with MongoDB support.
