@@ -90,6 +90,7 @@
   * [Health notifications](administration/integrations/notifications.md)
   * [New Relic](administration/integrations/new-relic.md)
   * [GitHub](administration/integrations/github.md)
+  * [GitLab](administration/integrations/gitlab.md)
   * [HipChat](administration/integrations/hipchat.md)
   * [Tideways](administration/integrations/tideways.md)
   * [Webhooks](administration/integrations/webhooks.md)
