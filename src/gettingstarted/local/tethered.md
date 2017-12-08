@@ -2,6 +2,11 @@
 
 The simplest way to run a project locally is to use a local web server, but keep all other services on Platform.sh and connect to them over an SSH tunnel.  This approach requires very little setup, but depending on the speed of your connection and how I/O intensive your application is may not be performant enough to use regularly.  It will also require an active Internet connection, of course.
 
+## Quick Start
+In your application directory run ```platform tunnel:open &&  export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"```. This will open an SSH tunnel to  your current platform.sh environment (based on your active git branch). 
+
+You can now run your application locally (for example by running `php -S localhost:8001`). If it is configured to take its configuration from the Platform.sh environment you should be fine.  Just visit in your browser http://locahost:8001.
+
 ## Local web server
 
 For the local web server the approach will vary depending on your language.
