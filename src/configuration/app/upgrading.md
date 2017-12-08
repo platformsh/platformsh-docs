@@ -1,5 +1,50 @@
 # Upgrading
 
+## Changes in version 2017.11 (2017-11-09)
+
+* The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/configuration/yaml.md).  For example, the following `services.yaml` snippet:
+
+```yaml
+mysearch:
+    type: solr:6.3
+    disk: 1024
+    configuration:
+        core_config: !archive "myconfdir"
+```
+
+Can now be written as:
+
+```yaml
+mysearch:
+    type: solr:6.3
+    disk: 1024
+    configuration:
+        core_config: !include
+            type: archive
+            path: "myconfdir"
+```
+
+* The syntax for the `mounts` key in `.platform.app.yaml` has changed.  Rather than a parsed string, the value of each mount is a [multi-key definition](/configuration/app/storage.md).  That is, the following example:
+
+```yaml
+mounts:
+    "/tmp": "shared:files/tmp"
+    "/logs": "shared:files/logs"
+ ```
+
+Can now be written as:
+
+```yaml
+mounts:
+    tmp:
+        source: local
+        source_path: tmp
+    logs:
+        source: local
+        source_path: logs
+
+```
+
 ## Changes in version 2016.6 (2016-11-18)
 
 * Application containers now include the latest LTS version of Node.js, 6.9.1. The previously included version was 4.6.1.
