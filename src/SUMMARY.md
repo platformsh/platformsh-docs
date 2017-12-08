@@ -2,7 +2,7 @@
 ## The Big Picture
 
 * [Structure](overview/structure.md)
-* [Build & Deploy](overview/how-it-works.md)
+* [Build & Deploy](overview/build-deploy.md)
 * [Pricing](overview/pricing.md)
 * [Getting help](overview/getting-help.md)
 
@@ -21,6 +21,7 @@
 
 * [YAML](configuration/yaml.md)
 * [Routes (routes.yaml)](configuration/routes.md)
+  * [HTTPS](configuration/routes/https.md)
   * [HTTP Cache](configuration/routes/cache.md)
   * [Redirects](configuration/routes/redirects.md)
   * [Server Side Includes](configuration/routes/ssi.md)
@@ -90,9 +91,10 @@
   * [Health notifications](administration/integrations/notifications.md)
   * [New Relic](administration/integrations/new-relic.md)
   * [GitHub](administration/integrations/github.md)
+  * [GitLab](administration/integrations/gitlab.md)
   * [HipChat](administration/integrations/hipchat.md)
   * [Tideways](administration/integrations/tideways.md)
-  * [Web hooks](administration/integrations/webhooks.md)
+  * [Webhooks](administration/integrations/webhooks.md)
 * [Web interface](administration/web.md)
   * [Project configuration](administration/web/configure-project.md)
   * [Environments](administration/web/environments.md)
@@ -118,6 +120,7 @@
   * [Drush](frameworks/drupal8/drush.md)
   * [Redis](frameworks/drupal8/redis.md)
   * [Solr](frameworks/drupal8/solr.md)
+  * [SimpleSAML](frameworks/drupal8/simplesaml.md)
   * [FAQ](frameworks/drupal8/faq.md)
 * [Symfony](frameworks/symfony.md)
   * [FAQ](frameworks/symfony/faq.md)

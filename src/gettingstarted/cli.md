@@ -1,14 +1,12 @@
 # CLI (Command Line Interface)
 
-## What is the CLI?
-
 The CLI is the official tool to use and manage your Platform.sh projects directly from your terminal. Anything you can do within the Web Interface can be done with the CLI. Behinds the scenes it uses both the Git interface and our REST API.
 
 The source code of the CLI is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
 
 Find detailed information on [setting up a local development environment](/gettingstarted/local.md).
 
-## How do I get it?
+## Installation
 
 You can install the CLI easily using this command:
 
@@ -18,7 +16,7 @@ curl -sS https://platform.sh/cli/installer | php
 
 You can find the system requirements and more information in the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md#installation).
 
-## Authenticate the CLI locally
+## Authentication
 
 The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will
 authenticate you with Platform.sh and show your projects. Just type this
@@ -39,27 +37,13 @@ tips for getting started.
 
 **Your command-line tools are now ready to use with Platform.sh.**
 
-## Updating the CLI
+## Usage
 
-To update the CLI at any time, run:
-
-```bash
-platform self-update
-```
-
-## What can I do with the CLI?
-
-The CLI uses the platform API to trigger commands (*Branch, Merge...*) on your Platform.sh project.
-
-![Platform.sh CLI In Project](/images/platform-cli-in-project.png)
+The CLI uses Platform.sh API to trigger commands (*Branch, Merge...*) on your projects.
 
 It's also very useful when you work locally since it can simulate a local build of your codebase as if you were pushing a change to Platform.sh.
 
-![Platform.sh CLI Logged In](/images/platform-cli-logged-in.png)
-
 Once you have the CLI installed, run `platform list` to see all of the available commands.
-
-![Platform.sh CLI List](/images/platform-cli-list.png)
 
 You can preface any command with `help` to see more information on how to use that command.
 

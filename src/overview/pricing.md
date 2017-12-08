@@ -73,7 +73,7 @@ Production plans come in three flavors:
 
 * Standard: with 2GB of dedicated memory
 * Medium: with 4GB of dedicated memory
-* Large: with 7GB of dedicated memory
+* Large: with 6GB of dedicated memory
 
 ### Multiple Applications in a single project
 
@@ -117,7 +117,6 @@ We propose three tiers for agencies with many perks.
 
 ## Sovereign German Cloud and Australian Region
 
-In our current checkout flow the region selection happens after the plan selection. When you go through the [checkout process](https://accounts.platform.sh/platform/buy-now) the prices shown in the estimation page are for our default cloud regions (EU and US). Plans on the Sovereign German Cloud region and the Australian region have different prices.
 
 The prices for Germany and Australia are currently set at 30% above the EU and US plan prices. So a "Production Standard" environment on the Sovereign German Cloud will be $65 instead of $50.
 

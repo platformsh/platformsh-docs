@@ -28,8 +28,12 @@ Because Dropbox files are mirrored on your writable disk mount, your application
 disk: 2048
 # the needed mounts for the Dropbox daemon
 mounts:
-  "/Dropbox": "shared:files/dropbox"
-  "/.dropbox": "shared:files/dropbox-meta"
+    Dropbox:
+        source: local
+        source_path: dropbox
+    '.dropbox':
+        source: local
+        source_path: 'dropbox-meta'
 ```
 
 **Make sure you've `git push`ed these configuration changes to Platform.sh if you haven't already.**

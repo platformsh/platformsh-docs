@@ -61,10 +61,15 @@ Open the file `simplesamlphp/config/config.php`.  It contains a number of config
 Others are a little more involved.  In the interest of simplicity we recommend simply pasting the following code snippet at the end of the file, as it will override the default values in the array.
 
 ```php
+// Set SimpleSAML to log using error_log(), which on Platform.sh will
+// be mapped to the /var/log/app.log file.
+$config['logging.handler'] = 'errorlog';
 
-// Set SimpleSAML to log to a file in the Platform.sh log directory.
-$config['logging.handler'] = 'file';
-$config['loggingdir'] = '/var/log';
+// Set SimpleSAML to use the metadata directory in Git, rather than
+// the empty one in the vendor directory.
+$config['metadata.sources'] = [
+   ['type' => 'flatfile', 'directory' =>  dirname(__DIR__) . '/metadata'],
+];
 
 // Setup the database connection for all parts of SimpleSAML.
 if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
@@ -95,6 +100,22 @@ if (isset($_ENV['PLATFORM_PROJECT_ENTROPY'])) {
   $config['secretsalt'] = $_ENV['PLATFORM_PROJECT_ENTROPY'];
 }
 ```
+
+## Generate SSL certs (optional)
+
+You may need to generate an SSL/TLS certificate, depending on your Identity Provider (IdP).  If so, you should generate the certificate locally following the instructions in the [SimpleSAMLphp documentation](https://simplesamlphp.org/docs/stable/simplesamlphp-sp).  Your resulting IdP file should be placed in the simplesamlphp/metadata directory.  The certificate should be placed in the `simplesamlphp/cert` directory.  (Create it if needed.)
+
+Then add the following line to your `simplesamlphp/config/config.php` file to tell the library where to find the certificate:
+
+```php
+$config['certdir'] = dirname(__DIR__) . '/cert';
+```
+
+## Deploy
+
+Commit all changes and deploy the site, then enable the `simplesamlphp_auth` module within Drupal.
+
+Consult the module documentation for further information on how to configure the module itself.  Note that you should not check the "Activate authentication via SimpleSAMLphp" checkbox in the module configuration until you have the rest of the configuration completed or you may be locked out of the site.
 
 ## Recovering from a locked site
 

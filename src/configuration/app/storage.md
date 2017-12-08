@@ -15,14 +15,30 @@ The `disk` key is required, and defines the size of the persistent disk of the a
 
 ## Mounts
 
-The `mounts` key is an object whose keys are paths relative to the root of the application (that is, where the `.platform.app.yaml` file lives). It's in the form `volume_id[/subpath]`. At this time, the only legal `volume_id` is `shared:files`.
+The `mounts` key is an object whose keys are paths relative to the root of the application (that is, where the `.platform.app.yaml` file lives), and values are a 2-line mount definition.
 
 This section is optional; if your application does not need writeable local file storage simply omit the `mounts` section and set `disk` to a value to the minimum of 256.
 
 Note that whether a mounted directory is web-accessible or not depends on the configuration of the `web.locations` block in `.platform.app.yaml`.  It may be accessible, or not, and have different rules for different file types as desired.
 
-> **Warning**
-> The `subpath` portion of the mount is the unique identifier of the files area. If changed, files at the old location will be *permanently lost*.  Do not change this value once your site has data unless you really want to lose all existing data.
+## Basic mounts
+
+The following block defines a single writeable directory, `web/uploads`:
+
+```yaml
+mounts:
+    'web/uploads':
+        source: local
+        source_path: uploads
+```
+
+The `source` specifies where the writeable mount is.  `source_path` specifies the subdirectory from within the source that the mount should point at.  It is often easiest to have it match the name of the mount point itself but that is not required.
+
+### `local` mounts
+
+At this time `local` is the only legal source but more will be added in the future.  The `local` source indicates that the mount point will point to a local directory on the application container.  The `source_path` is then a subpath of that.  That means they may overlap.
+
+Be aware that the entire `local` space for a single app container is a common directory, and the directory is not wiped.  That means if you create a mount point with a `source_path` of "uploads", then write files there, then remove the mount point, the files will still exist on disk indefinitely until manually removed.
 
 ## Multi-instance disk mounts
 
@@ -36,8 +52,12 @@ The following example sets up two file mounts.  One is mounted at `/private` wit
 disk: 1024
 
 mounts:
-    '/private': 'shared:files/private'
-    '/web/uploads': 'shared:files/uploads'
+    private:
+        source: local
+        source_path: private
+    '/web/uploads':
+        source: local
+        source_path: uploads
 ```
 
 Then in the `web.locations` block, you'd specify that the `/web/uploads` path is accessible.  For example, this fragment would specify the `/web` path as the docroot but provide a more locked-down access to the `/web/uploads` path.
@@ -60,3 +80,21 @@ web:
 ```
 
 See the [web locations](/configuration/app/web.md) documentation for more details.
+
+## How do I setup overlapping mount paths?
+
+While not recommended it is possible to setup multiple mount points whose source paths overlap.  Consider the following example:
+
+```yaml
+mounts:
+    private:
+        source: local
+        source_path: stuff
+    secret:
+        source: local
+        source_path:  stuff/secret
+```
+
+In this configuration, there will be two mount points as seen from the application: `~/private` and `~/secret`.  However, the `secret` mount will point to a directory that is also under the mount point for `private`.  That is, the `secret` path and the `private/secret` path will be the exact same directory.
+
+Although this configuration won't cause any technical issues, it may be quite confusing so is generally not recommended.

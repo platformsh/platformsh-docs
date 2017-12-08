@@ -69,7 +69,7 @@ rediscache:
     type: redis:3.2
 ```
 
-If you are using PHP, configure the relationship and enable the [PHP redis extension](/languages/php.md#php-extensions) in your `.platform.app.yaml`.
+If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php.md#php-extensions) in your `.platform.app.yaml`.
 
 ```yaml
 runtime:
@@ -77,7 +77,7 @@ runtime:
         - redis
 
 relationships:
-    redis: "rediscache:redis"
+    applicationcache: "rediscache:redis"
 ```
 
 You can then use the service in a configuration file of your application with something like:
@@ -87,15 +87,55 @@ You can then use the service in a configuration file of your application with so
 if (getenv('PLATFORM_RELATIONSHIPS')) {
     $relationships = json_decode(base64_decode(getenv('PLATFORM_RELATIONSHIPS')), true);
 
-    $container->setParameter('redis_host', $relationships['redis'][0]['host']);
-    $container->setParameter('redis_port', $relationships['redis'][0]['port']);
+    if (!empty($relationships['applicationcache'][0])) {
+        $container->setParameter('redis_host', $relationships['applicationcache'][0]['host']);
+        $container->setParameter('redis_port', $relationships['applicationcache'][0]['port']);
+    }
 }
 ```
 
 ## Using redis-cli to access your Redis service
 
-Assuming your Redis relationship is named `rediscache`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `rediscache.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
+With a Redis relationship named `applicationcache`.
+
+```yaml
+# .platform/services.yaml
+rediscache:
+    type: redis:3.2
+```
+
+```yaml
+# .platform.app.yaml
+relationships:
+    applicationcache: "rediscache:redis"
+```
+
+The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `applicationcache.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
 
 ```bash
-redis-cli -h rediscache.internal -p 6379
+redis-cli -h applicationcache.internal -p 6379
+```
+
+### Using Redis as handler for native PHP sessions
+
+Using the same configuration but with your Redis relationship named `sessionstorage`:
+
+```yaml
+# .platform/services.yaml
+rediscache:
+    type: redis:3.2
+```
+
+```yaml
+# .platform.app.yaml
+relationships:
+    sessionstorage: "rediscache:redis"
+```
+
+```yaml
+# .platform.app.yaml
+variables:
+    php:
+        session.save_handler: redis
+        session.save_path: "tcp://sessionstorage.internal:6379"
 ```

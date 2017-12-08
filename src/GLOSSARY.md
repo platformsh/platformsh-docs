@@ -22,3 +22,6 @@ A Platform as a Service is an end-to-end hosting solution that includes workflow
 
 ## Production plan
 A subscription level which allows you to host your production website by adding a domain and a custom SSL certificate.
+
+## TLS
+[Transport Layer Security](https://en.wikipedia.org/wiki/Transport_Layer_Security) is the successor of SSL (Secure Socket Layer).  It provides the cryptographic "S" in HTTPS.  It's often still referred to as SSL even though it has largely replaced SSL for online encrypted connections.
