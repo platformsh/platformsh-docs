@@ -14,8 +14,12 @@ The only files to download are from any writeable file mounts you may have defin
 
 ```yaml
 mounts:
-    '/web/uploads': 'shared:files/uploads'
-    '/private': 'shared:files/private'
+    '/web/uploads':
+        source: local
+        source_path: uploads
+    '/private':
+        source: local
+        source_path: private
 ```
 
 To use `rsync` to download each directory, we can use the following commands.  The `platform ssh --pipe` command will return the SSH URL for the current environment as an inline string that `rsync` can recognize. To use a non-default environment, use the `-e` switch after `--pipe`.  Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself.

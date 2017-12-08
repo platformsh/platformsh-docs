@@ -64,7 +64,9 @@ type: python:3.5
 
 disk: 256
 mounts:
-    "test": "shared:files/test"
+    test:
+        source: local
+        source_path: test
 
 relationships:
     database: 'mysqldb:mysql'
@@ -92,7 +94,9 @@ workers:
                 python queue-worker.py
         disk: 256
         mounts:
-            "test": "shared:files/test"
+            test:
+                source: local
+                source_path: test
         relationships:
             database: 'mysqldb:mysql'
     mail:
@@ -101,7 +105,9 @@ workers:
                 python mail-worker.py
         disk: 256
         mounts:
-            "test": "shared:files/test"
+            test:
+                source: local
+                source_path: test
         relationships:
             database: 'mysqldb:mysql'
 ```
@@ -142,7 +148,9 @@ web:
         env:
             type: 'web'
     mounts:
-        "uploads": "shared:files/uploads"
+        uploads:
+            source: local
+            source_path: uploads
     locations:
          "/":
              root: ""
@@ -163,7 +171,10 @@ workers:
                 type: 'worker'
         disk: 512
         mounts:
-            "scratch": "shared:files/scratch"
+            scratch:
+                source: local
+                source_path: scratch
+
 
         
     mail:

@@ -19,7 +19,9 @@ Simply edit your `.platform.app.yaml` and add a mounts there:
 ```bash
 mounts:
 ...
-    "/app/sessions": "shared:files/sessions"
+    "/app/sessions":
+        source: local
+        source_path: sessions
 ...
 ```
 
