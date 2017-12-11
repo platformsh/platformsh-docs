@@ -29,7 +29,7 @@ Note that for the integration to work, your GitHub user needs to have permission
 
 ### 2. Enable the integration
 
-Note that only `project owner` or `project admin` can manage the integrations.
+Note that only the project owner can manage integrations.
 
 Open a terminal window (you need to have the Platform.sh CLI installed). Enable the GitHub integration as follows:
 
