@@ -6,10 +6,10 @@ All environments on Platform.sh support both HTTP and HTTPS automatically.  Prod
 
 > **note**
 > Let's Encrypt certificate renewals are attempted each time your environment is deployed. If your project does not receive regular code commits, you will need to manually issue a re-deployment to ensure the certificate remains valid. We suggest that you do so when your project doesn't receive any updates for over 1 month. This can be done by pushing a code change via git or issuing the following command from your **local** environment:
+> ```sh
+> platform variable:set -W redeploy "$(date)"
 > ```
-> NOW=$(date +"%F_%H:%M:%S") && platform variable:set -W -y force-le-renewal $NOW
-> ```
-> This command sets a [variable](/development/variables.html) for the current branch with the key `force-le-renewal`. The value is the current date and time. You can inspect this variable to know when the last the re-deployment was triggered.
+> This command sets a [variable](/development/variables.html) for the current branch with the key `_redeploy`. The value is the current date and time. You can inspect this variable to know when the last the re-deployment was triggered.
 
 Platform.sh recommends using HTTPS requests for all sites exclusively.  Doing so provides better security, access to certain features that web browsers only permit over HTTPS, and access to HTTP/2 connections on all sites which can greatly improve performance.
 

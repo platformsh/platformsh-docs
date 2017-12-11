@@ -8,7 +8,7 @@ There are times where you might want to trigger a redeployment of your applicati
 
 Redeploying using the Platform.sh CLI:
 ```sh
-platform vset redeploy "$(date)"
+platform vset -W redeploy "$(date)"
 ```
 
 Using Git only:
