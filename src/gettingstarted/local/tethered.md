@@ -6,16 +6,16 @@ The simplest way to run a project locally is to use a local web server, but keep
 
 In your application directory run `platform tunnel:open &&  export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"`. This will open an SSH tunnel to your current Platform.sh environment and expose a local environment variable that mimics the relationships array on Platform.sh.
 
-You can now run your application locally (for example by running `php -S localhost:8001` for PHP), assuming it is configured to read its configuration from the Platform.sh environment variables.
+You can now run your application locally (for example by running `php -d variables_order=EGPCS -S localhost:8001` for PHP), assuming it is configured to read its configuration from the Platform.sh environment variables.
 
-Note that other Platform.sh environment configuration such as the routes or application secret value will still not be available.
+Note that other Platform.sh environment configuration such as the routes or application secret value will still not be available.  Also be aware that the environment variable exists only in your current shell.  If you are starting multiple local command shells you will need to rerun the `export` command above in each of them.
 
 ## Local web server
 
 For the local web server the approach will vary depending on your language.
 
 * For a self-serving language (Go or Node.js), simply run the program locally.
-* For PHP, you may install your own copy of Nginx (or Apache) and PHP-FPM, or simply use the built-in PHP web server: `php -S localhost:8001` will start a basic web server capable of running PHP, serving the current directory, on port 8001.  See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
+* For PHP, you may install your own copy of Nginx (or Apache) and PHP-FPM, or simply use the built-in PHP web server.  Be aware however that by default the PHP web server will ignore environment variables by default.  You will need to explicitly instruct it to read them, like so: `php -S -d variables_order=EGPCS localhost:8001`.  That will start a basic web server capable of running PHP, serving the current directory, on port 8001, using available environment variables.  See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
 * For other languages it is recommended that you install your own copy of Nginx or Apache.
 * A virtual machine or Docker image is also a viable option.
 
