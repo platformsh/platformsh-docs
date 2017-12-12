@@ -12,8 +12,6 @@ Both are interchangeable from a configuration perspective, although code that us
 
 ### PHP
 
-* 5.4
-* 5.5
 * 5.6
 * 7.0
 * 7.1
@@ -34,6 +32,15 @@ To select a PHP version, specify a `type` such as `php:7.1` or `hhvm:3.9`:
 # .platform.app.yaml
 type: "php:7.1"
 ```
+
+## Deprecated versions
+
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended.  They will be removed at some point in the future.
+
+### PHP
+
+* 5.4
+* 5.5
 
 ## PHP extensions
 
