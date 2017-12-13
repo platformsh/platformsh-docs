@@ -119,6 +119,7 @@
   * [Developing with Drupal](frameworks/drupal8/developing-with-drupal.md)
   * [Drush](frameworks/drupal8/drush.md)
   * [Redis](frameworks/drupal8/redis.md)
+  * [Memcached](frameworks/drupal8/memcached.md)
   * [Solr](frameworks/drupal8/solr.md)
   * [SimpleSAML](frameworks/drupal8/simplesaml.md)
   * [FAQ](frameworks/drupal8/faq.md)
