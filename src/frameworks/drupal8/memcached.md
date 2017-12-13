@@ -133,15 +133,3 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
   }
 }
 ```
-
-The `example.services.yml` file noted above will also use Redis for the lock and flood
-control systems.
-
-The redis module is able to use Redis as a queue backend, however, that should not be done on an ephemeral Redis instance as that could result in lost items when the Redis service instance is restarted or fills up.  If you wish to use Redis for the queue we recommend using a separate persistent Redis instance.  See the [Redis documentation page](/configuration/services/redis.md) for more information.
-
-### Verifying Redis is running
-Run this command in a SSH session in your environment `redis-cli -h redis.internal info`. You should run it before you push all this new code to your repository.
-
-This should give you a baseline of activity on your Redis installation. There should be very little memory allocated to the Redis cache.
-
-After you push this code, you should run the command and notice that allocated memory will start jumping.
