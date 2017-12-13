@@ -36,6 +36,8 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.deactivate`: A branch has been "deactivated". The code is still there but the environment was destroyed.
 * `environment.synchronize`: An environment has had its data re-copied from its parent environment.
 * `environment.delete`: A branch was deleted.
+* `environment.merge`: A branch was merged through the UI or Platform.sh API. A basic Git merge will not trigger this event.
+* `environment.merge-pr`: A branch was merged via an accepted Pull Request on GitHub. 
 * `environment.update.http_access`: HTTP access rules for an environment have been modified.
 * `environment.update.smtp`: Sending of emails has been enabled/disabled for an environment.
 * `environment.update.restrict_robots`: The block-all-robots feature has been enabled/disabled.
