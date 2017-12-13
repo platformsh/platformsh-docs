@@ -29,8 +29,11 @@ https://{default}/:
   redirects:
     expires: 1d
     paths:
-      "/from": { "to": "https://example.com/" }
-      "/regexp/(.*)/matching": { "to": "https://example.com/$1", regexp: true }
+      '/from':
+        to: 'https://example.com/'
+      '^/regexp/(.*)/matching':
+        to: 'https://example.com/$1'
+        regexp: true
 ```
 
 This format is more rich and works with any type of route, including routes served directly by the application.
@@ -45,7 +48,7 @@ request path and a value object describing both the destination to redirect to w
 detail on how to handle the redirection. The value object is defined with the following
 keys:
 
- * `to`: required, a relative URL - `"/destination"`, or absolute URL - `"https://example.com/"`.
+ * `to`: required, a relative URL - `'/destination'`, or absolute URL - `'https://example.com/'`.
  * `regexp`: optional, defaults to `false`. Specifies whether the path key should be interpreted as
    a PCRE regular expression. In the following example, a request to `https://example.com/regexp/a/b/c/match`
    would redirect to `https://example.com/a/b/c`:
@@ -55,12 +58,12 @@ keys:
      type: upstream
      redirects:
        paths:
-         "/regexp/(.*)/match":
-            to: "https://example.com/$1"
+         '^/regexp/(.*)/match':
+            to: 'https://example.com/$1'
             regexp: true
    ```
-   Note that the special arguments in the `to` statement are also valid:
-    * `$is_arg` will evaluate to `?` or empty string
+   Note that special arguments in the `to` statement are also valid:
+    * `$is_args` will evaluate to `?` or empty string
     * `$args` will evaluate to the full query string if any
     * `$arg_foo` will evaluate to the value of the query parameter `foo`
     * `$uri` will evaluate to the full URI of the request.
@@ -71,8 +74,8 @@ keys:
      type: upstream
      redirects:
        paths:
-         "/from":
-            to: "https://{default}/to"
+         '/from':
+            to: 'https://{default}/to'
             prefix: true
    ```
    with `prefix` set to `true`, `/from` will redirect to `/to` and `/from/another/path` will redirect to `/to/another/path`.
@@ -86,8 +89,8 @@ keys:
      type: upstream
      redirects:
        paths:
-         "/from":
-            to: "https://{default}/to"
+         '/from':
+            to: 'https://{default}/to'
             append_suffix: false
    ```
    would result in `/from/path/suffix` redirecting to just `/to`. If `append_suffix` was left on its default value of `true`, then `/from/path/suffix` would have redirected to `/to/path/suffix`.
@@ -101,8 +104,11 @@ keys:
      redirects:
        expires: 1d
        paths:
-         "/from": { "to": "https://example.com/" }
-         "/here": { "to": "https://example.com/there", "expires": "2w" }
+         '/from':
+           to: 'https://example.com/'
+         '/here':
+           to: 'https://example.com/there'
+           expires: 2w
    ```
    In this example, redirects from `/from` would be set to expire in one day, but redirects from `/here` would
    expire in two weeks.
