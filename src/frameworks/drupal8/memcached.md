@@ -9,7 +9,7 @@ Although Platform.sh recommends using Redis with Drupal 8 for caching, Memcached
 First you need to create a  Memcache service.  In your `.platform/services.yaml` file, add or uncomment the following:
 
 ```yaml
-cache:
+cacheservice:
     type: memcached:1.4
 ```
 
@@ -21,7 +21,7 @@ In your `.platform.app.yaml` file, we now need to open a connection to the new R
 
 ```yaml
 relationships:
-    cache: "cache:memcached"
+    cache: "cacheservice:memcached"
 ```
 
 The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service we specified above (`cache`) and the endpoint (`memcached`).  If you named the service something different above, change `cache` to that.
