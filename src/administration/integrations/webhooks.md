@@ -1,8 +1,6 @@
 # Generic Webhook
 
-This hook will allow you to capture any push events on platform and POST
-a JSON file describing the activity to the url of your choice. You can
-use this to further automate your Platform.sh workflow. 
+This hook will allow you to capture any push events on platform and POST a JSON file describing the activity to the url of your choice. You can use this to further automate your Platform.sh workflow.
 
 For example the `routes` object keys will give you urls against which you can 
 launch automated user testing.
@@ -11,7 +9,71 @@ launch automated user testing.
 $ platform integration:add --type=webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
 ```
 
-Here you can see an example of the response:
+The webhook URL will receive a POST message for every "Activity" that is triggered, and the message will contain complete information about the entire state of the project at that time.  In practice most of the message can be ignored but is available if needed.  The most commonly used values are documented below.
+
+It's also possible to set the integration to only send certain activity types, or only activities on certain branches.  The CLI will prompt you to specify which to include or exclude.  Leave at the default values to get all events on all environments in a project.
+
+## Webhook schema
+
+### `id`
+
+A unique opaque value to identify the activity.
+
+### `project`
+
+The Project ID for which the activity was triggered.  Use this value if you want to have multiple projects POST to the same URL.
+
+### `type`
+
+The `type` property specifies the event that happened.  Its value is one of:
+
+* `environment.push`: A user has pushed code to a branch, either existing or new.
+* `environment.branch`: A new branch has been created via the UI. (A branch created via a push will show up only as an `environment.push`.)
+* `environment.backup`: A user triggered a [snapshot](/administration/snapshot-and-restore.md)
+* `environment.restore`: A user triggered a [snapshot](/administration/snapshot-and-restore.md)
+* `environment.subscription.update`: I don't know what this is.
+* `environment.activate`: A branch has been "activated", and an environment created for it.
+* `environment.deactivate`: A branch has been "deactivated". The code is still there but the environment was destroyed.
+* `environment.synchronize`: An environment has had its data re-copied from its parent environment.
+* `environment.delete`: A branch was deleted.
+* `environment.update.http_access`: HTTP access rules for an environment have been modified.
+* `environment.update.smtp`: Sending of emails has been enabled/disabled for an environment.
+* `environment.update.restrict_robots`: The block-all-robots feature has been enabled/disabled.
+
+## `environments`
+
+An array listing the environments that were involved in the activity. This is usually single-value.
+
+### `result`
+
+Whether the activity was completed successfully or not. It should be `success` if all went as planned.
+
+### `created_at`, `started_at`, `completed_at`
+
+These values are all timestamps in UTC.  If you need only a point in time when the action happened, use `completed_at`.  You can also combine it with `started_at` to see how long the activity took.
+
+### `log`
+
+A text description of the action that happened.  This is a human-friendly string that may be displayed to a user but should not be parsed for data as its structure is not guaranteed.
+
+### `payload.environment`
+
+This block contains information about the environment itself, after the action has taken place.  Most notable properties of this key are `name` (the name of the branch) `machine_name` (the name of the environment) and `head_commit` (the Git commit ID that produced the current environment).
+
+### `payload.user`
+
+The Platform.sh user that triggered the activity.
+
+### `deployment`
+
+This large block details all information about all services in the environment.  That includes the resulting configuration objects derived from [`routes.yaml`](/configuration/routes.md), [`services.yaml`](/configuration/services.md), and [`.platform.app.yaml`](/configuration/app-containers.md).
+
+Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.  Note that some will be redirects.  To find those that are live URLs filter to those objects whose `type` property is `upstream`.
+
+
+## Example webhook payload
+
+The following is an example of a webhook message.  Specifically, this one was created by a "push" event.
 
 ```javascript
 {
