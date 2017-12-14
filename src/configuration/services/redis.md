@@ -8,7 +8,7 @@ Platform.sh supports two different Redis configurations: One persistent (useful 
 
 ## Supported versions
 
-* 2.8 (ephemeral only)
+* 2.8
 * 3.0
 * 3.2
 
@@ -17,7 +17,7 @@ Platform.sh supports two different Redis configurations: One persistent (useful 
 
 ### Ephemeral Redis
 
-The `redis` service type, available for all supported Redis versions, is configured to serve as a LRU cache with the eviction policy `allkeys-lru` - its storage is not persistent.  It is not suitable for use except as a disposable cache.
+The `redis` service type is configured to serve as a LRU cache with the eviction policy `allkeys-lru` - its storage is not persistent.  It is not suitable for use except as a disposable cache.
 
 To add an Ephemeral Redis service, specify it in your `.platform/services.yaml` file like so:
 
@@ -30,7 +30,7 @@ Data in an Ephemeral Redis instance is stored only in memory, and thus requires 
 
 ### Persistent Redis
 
-The `redis-persistent` service type, available only for Redis 3.0 and higher, is configured for persistent storage. That makes it a good choice for fast application-level key-value storage.
+The `redis-persistent` service type is configured for persistent storage. That makes it a good choice for fast application-level key-value storage.
 
 To add a Persistent Redis service, specify it in your `.platform/services.yaml` file like so:
 
