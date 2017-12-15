@@ -13,7 +13,7 @@ Javascript and PHP applications.
 
 ## Deprecated versions
 
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended.  They will be removed at some point in the future.
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
 * 0.12
 * 4.7
@@ -147,9 +147,9 @@ server.listen(config.port);
 
 ## Project templates
 
-A number of project templates for Node.js applications and typical configurations are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
+A number of project templates for Node.js applications and typical configurations are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
-Platform.sh also provides a [helper library](https://github.com/platformsh/platformsh-nodejs-helper) for Node.js applications that simplifies presenting environment information to your application.  It is not required to run Node.js applications on Platform.sh but is recommended.
+Platform.sh also provides a [helper library](https://github.com/platformsh/platformsh-nodejs-helper) for Node.js applications that simplifies presenting environment information to your application. It is not required to run Node.js applications on Platform.sh but is recommended.
  
 * [Generic Node.js](https://github.com/platformsh/platformsh-example-nodejs)
 * [Parse](https://github.com/platformsh/platformsh-example-parseit)

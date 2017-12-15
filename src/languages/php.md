@@ -35,7 +35,7 @@ type: "php:7.1"
 
 ## Deprecated versions
 
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended.  They will be removed at some point in the future.
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
 ### PHP
 
@@ -190,9 +190,9 @@ This is the complete list of extensions that can be enabled:
 
 It is possible to use an extension not listed here but it takes slightly more work:
 
-1. Download the .so file for the extension as part of your build hook using `curl` or similar.  It can also be added to your Git repository if the file is not publicly downloadable, although committing large binary blobs to Git is generally not recommended.
+1. Download the .so file for the extension as part of your build hook using `curl` or similar. It can also be added to your Git repository if the file is not publicly downloadable, although committing large binary blobs to Git is generally not recommended.
 
-2. Provide a custom `php.ini` file in the application root (as a sibling of your `.platform.app.yaml` file) that loads the extension using an absolute path.  For example, if the extension is named `spiffy.so` and is in the root of your application, you would have a `php.ini` file that reads:
+2. Provide a custom `php.ini` file in the application root (as a sibling of your `.platform.app.yaml` file) that loads the extension using an absolute path. For example, if the extension is named `spiffy.so` and is in the root of your application, you would have a `php.ini` file that reads:
 
 ```ini
 extension=/app/spiffy.so
@@ -200,7 +200,7 @@ extension=/app/spiffy.so
 
 ## Alternate start commands
 
-PHP is most commonly run in a CGI mode, using PHP-FPM.  That is the default on Platform.sh.  However, you can also start alternative processes if desired, such as if you're running an Async PHP daemon, a thread-based worker process, etc.  To do so, simply specify an alternative start command in `platform.app.yaml`, similar to the following:
+PHP is most commonly run in a CGI mode, using PHP-FPM. That is the default on Platform.sh. However, you can also start alternative processes if desired, such as if you're running an Async PHP daemon, a thread-based worker process, etc. To do so, simply specify an alternative start command in `platform.app.yaml`, similar to the following:
 
 ```yaml
 web:
@@ -211,7 +211,7 @@ web:
             protocol: http
 ```
 
-The above configuration will execute the `run.php` script in the application root when the container starts using the PHP-CLI SAPI, just before the deploy hook runs, but will *not* launch PHP-FPM.  It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the `PORT` environment variable.
+The above configuration will execute the `run.php` script in the application root when the container starts using the PHP-CLI SAPI, just before the deploy hook runs, but will *not* launch PHP-FPM. It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the `PORT` environment variable.
 
 If not specified, the effective default start command varies by PHP version:
 
@@ -219,11 +219,11 @@ If not specified, the effective default start command varies by PHP version:
 * On PHP 7.0, it's `/usr/sbin/php-fpm7.0`.
 * On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`.
 
-While you can call it manually that is generally not necessary.  Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or Amp).  If you need both they will have to run in separate containers.
+While you can call it manually that is generally not necessary. Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or Amp). If you need both they will have to run in separate containers.
 
 ## PHP Worker sizing hints
 
-Platform.sh uses a heuristic to automatically set the number of workers of a PHP runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more memory.  In most cases, however, you should not need to change them unless your application container is swapping a lot.
+Platform.sh uses a heuristic to automatically set the number of workers of a PHP runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more memory. In most cases, however, you should not need to change them unless your application container is swapping a lot.
 
 ### The heuristic
 
@@ -272,7 +272,7 @@ you observe.
 
 ## Custom php.ini
 
-There are two ways to customize `php.ini` values for your application.  The recommended method is to use the [`variables` property](/configuration/app/variables.md) of `.platform.app.yaml` to set ini values using the `php` prefix.  For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
+There are two ways to customize `php.ini` values for your application. The recommended method is to use the [`variables` property](/configuration/app/variables.md) of `.platform.app.yaml` to set ini values using the `php` prefix. For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
 
  ```yaml
  variables:
@@ -304,7 +304,7 @@ or
 date.timezone = "Europe/Paris"
 ```
 
-Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code.  See the note in the [Environment variables](/development/variables.md#php-specific-variables) section.
+Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code. See the note in the [Environment variables](/development/variables.md#php-specific-variables) section.
 
 ### Default php.ini settings
 
@@ -346,7 +346,7 @@ $ php-fpm-status --socket=unix:///run/app.sock --path=/-/status --full
 
 ## Project templates
 
-A number of project templates for major PHP applications are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
+A number of project templates for major PHP applications are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
 ### Applications
 
