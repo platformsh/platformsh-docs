@@ -13,7 +13,7 @@ cacheservice:
     type: memcached:1.4
 ```
 
-That will create a service named `cache`, of type `memcached`, specifically version `1.4`.
+That will create a service named `cacheservice`, of type `memcached`, specifically version `1.4`.
 
 ### Expose the Memcached service to your application
 
@@ -24,7 +24,7 @@ relationships:
     cache: "cacheservice:memcached"
 ```
 
-The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service we specified above (`cache`) and the endpoint (`memcached`).  If you named the service something different above, change `cache` to that.
+The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service we specified above (`cacheservice`) and the endpoint (`memcached`).  If you named the service something different above, change `cacheservice` to that.
 
 ### Add the Memcached PHP extension
 
