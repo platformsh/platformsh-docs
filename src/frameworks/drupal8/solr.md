@@ -108,28 +108,3 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
 > **note**
 > At this time, bugs in Drupal 8 configuration system prevent new Solr servers from being added via configuration. The default server is automatically created by Search API Solr module if you enable its Solr Search Defaults sub-module, so this configuration will work fine for it. For multiple Solr servers or a different one other than the default you must add the new server(s) at the Search API administration page `/admin/config/search/search-api/add-server`. The newly created server(s) will use its configuration from code. See this [issue](https://www.drupal.org/node/2744057) for more information.
 > Moreover, the configuration in effect will always be the configuration in code, even if a matching server is edited via the Search API Solr administration pages.
-
-## Accessing the Solr admin interface
-
-Because Solr uses HTTP for both its API and admin interface it's possible to access the admin interface over an SSH tunnel.
-
-```
-platform tunnel:open
-```
-
-```
-That will open an SSH tunnel to all services on the current environment, and give an output similar to:
-
-SSH tunnel opened on port 30000 to relationship: solr
-SSH tunnel opened on port 30001 to relationship: database
-Logs are written to: /home/myuser/.platformsh/tunnels.log
-
-List tunnels with: platform tunnels
-View tunnel details with: platform tunnel:info
-Close tunnels with: platform tunnel:close
-```
-
-In this example, you can now open `http://localhost:30000/solr/` in a browser to access the Solr admin interface.  Note that you cannot create indexes or users this way, but you can browse the existing indexes and manipulate the stored data.
-
-> **Note**
-> Platform.sh Enterprise users can use `ssh -L 8888:localhost:<port> <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead.
