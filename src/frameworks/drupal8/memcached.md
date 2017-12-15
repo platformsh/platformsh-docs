@@ -6,7 +6,7 @@ Although Platform.sh recommends using Redis with Drupal 8 for caching, Memcached
 
 ### Add a Memcached service
 
-First you need to create a  Memcache service.  In your `.platform/services.yaml` file, add or uncomment the following:
+First you need to create a  Memcached service.  In your `.platform/services.yaml` file, add or uncomment the following:
 
 ```yaml
 cacheservice:
