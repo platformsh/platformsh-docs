@@ -2,22 +2,21 @@
 
 ## Snapshots
 
-Snapshots are triggered directly via the Web Interface or via the CLI. The snapshot
-creates a complete backup of the environment. It includes all persistent data from
-all running services (MySQL, SOLR,...) and any files stored on the mounted volumes.
+Snapshots are triggered directly via the Web Interface or via the CLI. The snapshot creates a complete backup of the environment. It includes all persistent data from all running services (MySQL, SOLR,...) and any files stored on the mounted volumes.
+
+You will need the "admin" role on the project/environment to be snapshotted in order to do so.
 
 > **note**
 > We advise you to make snapshots of your live environment before merging an environment
 > to the live environment, or each time you increase the storage space of your services.
-
-> **note**
-> You need "admin" role to take a snapshot of your environment.
 
 Using the CLI:
 
 ```bash
 $ platform snapshot:create
 ```
+
+Please be aware that triggering a snapshot will cause a momentary pause in site availability so that all requests can complete, allowing the snapshot to be taken against a known consistent state.  The total interruption is usually only 1-2 seconds and any requests during that time are held temporarily, not dropped.
 
 ## Restore
 
