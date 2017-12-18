@@ -1,8 +1,6 @@
 # Snapshot and Restore
 
-## Snapshot
-
-### Manual snapshot
+## Snapshots
 
 Snapshots are triggered directly via the Web Interface or via the CLI. The snapshot
 creates a complete backup of the environment. It includes all persistent data from
@@ -21,14 +19,16 @@ Using the CLI:
 $ platform snapshot:create
 ```
 
-### Manual Restore
+## Restore
 
 You will see the snapshot in the activity feed of you environment in the Platform.sh
 Web Interface. You can trigger the restore by clicking on the `restore` link.
 
-You can list existing snapshots with the CLI as follows:
+From the CLI, you can list existing snapshots with the CLI as follows:
+
 ```bash
 $ platform snapshots
+
 Finding snapshots for the environment master
 +---------------------+------------+----------------------+
 | Created             | % Complete | Snapshot name        |
@@ -42,6 +42,7 @@ Finding snapshots for the environment master
 ```
 
 You can restore a specific snapshot with the CLI as follows:
+
 ```bash
 $ platform snapshot:restore 92c9a4b2aa75422efb3d
 ```
@@ -49,17 +50,42 @@ $ platform snapshot:restore 92c9a4b2aa75422efb3d
 > **note**
 > You need "admin" role to restore your environment from a snapshot.
 
-### Automated snapshots
+## Automated snapshots
 
-No snapshot is triggered automatically on Platform.sh Standard. You can
-trigger your snapshot via the Web Interface or via the CLI.
+No snapshot is triggered automatically on Platform.sh Standard. You can trigger your snapshot via the Web Interface or via the CLI.
 
-If you want to automate your snapshots, you can use Jenkins and trigger
-with the CLI command as follows:
+Snapshots may be triggered from an automated system, such as cron, Jenkins, or another CI service by calling the CLI.  That requires first obtaining an [API token for authentication](/gettingstarted/cli.md#api-tokens).  Add the token to your Platform.sh project as listed there.
 
-```bash
-$ platform snapshot:create --yes --no-wait
+Now add a build hook to your `.platform.app.yaml` file to download the CLI as part of the build process.  
+
+```yaml
+hooks:
+    build: |
+        curl -sS https://platform.sh/cli/installer | php
 ```
+
+That will download the CLI to the root of your application.  Because the API Token is available it will now be able to run authenticated commands against any project available to the user who created the token.
+
+Now add a cron task to run once a day and trigger a snapshot.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on.  However, in most cases such backups are only useful on the `master` production environment.  That can be achieved like so:
+
+```yaml
+crons:
+    snapshot:
+        spec: '0 5 * * *'
+        cmd: |
+        if [ "$PLATFORM_BRANCH" = master ]; then
+            platform snapshot:create --yes --no-wait
+        fi
+```
+
+The above cron task will run once a day at 5 am, and, if the current environment is the master branch it will run `platform snapshot:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the snapshot to complete.
+
+> **note**
+> 
+> It is very important to include the `--no-wait` flag.  If you do not, the cron process will block and you will be unable to deploy new versions of the site until the snapshot creation process is complete.
+
+We ask that you not schedule a backup task more than once a day to minimize data usage. As a snapshot does cause a momentary pause in service we recommend running during non-peak hours for your site.
+
 
 ### Retention
 
