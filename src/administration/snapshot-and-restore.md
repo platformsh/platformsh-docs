@@ -72,9 +72,9 @@ crons:
     snapshot:
         spec: '0 5 * * *'
         cmd: |
-        if [ "$PLATFORM_BRANCH" = master ]; then
-            platform snapshot:create --yes --no-wait
-        fi
+            if [ "$PLATFORM_BRANCH" = master ]; then
+                platform snapshot:create --yes --no-wait
+            fi
 ```
 
 The above cron task will run once a day at 5 am, and, if the current environment is the master branch it will run `platform snapshot:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the snapshot to complete.
