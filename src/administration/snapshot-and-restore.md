@@ -63,7 +63,7 @@ hooks:
         curl -sS https://platform.sh/cli/installer | php
 ```
 
-That will download the CLI to a known directory within the `.platform` directory, which is available in the path.  Because the API Token is available it will now be able to run authenticated commands against any project available to the user who created the token.
+This will download the CLI to a known directory, `.platformsh/bin`, which will be added to the PATH at runtime (via the .environment file). Because the API token is available, the CLI will now be able to run authenticated commands, acting as the user who created the token.
 
 Now add a cron task to run once a day and trigger a snapshot.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on.  However, in most cases such backups are only useful on the `master` production environment.  That can be achieved like so:
 

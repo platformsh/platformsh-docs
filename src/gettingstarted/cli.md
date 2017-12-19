@@ -100,7 +100,7 @@ curl -sS https://platform.sh/cli/installer | php
 
 ## API Tokens
 
-The CLI can also be used from 3rd party CI services or other automation tools, and supports an API Token authentication option for that purpose.
+The CLI can also be used from CI services or other automation tools, and supports an API Token authentication option for that purpose.
 
 An API token can be created through the UI.  Go to the "User" page from your accounts drop-down, then select the "Account Settings" tab, then the "API Tokens".
 
