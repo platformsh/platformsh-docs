@@ -154,7 +154,7 @@ Then the CLI hasn't been able to determine the project to use.  To fix that, run
 platform project:set-remote <project_id>
 ```
 
-where `<project_id>` is the random-character ID of the project.  That can be found in the UI after the `platform get` command shown or in the URL of the UI or project domain.
+where `<project_id>` is the random-character ID of the project.  That can be found by running `platform projects` from the command line to list all accessible projects.  Alternatively, it can be found in the UI after the `platform get` command shown or in the URL of the UI or project domain.
 
 ## "File not found" in Drupal
 
