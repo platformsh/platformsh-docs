@@ -8,6 +8,7 @@ WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.
 * 2.7
 * 3.5
 * 3.6
+* 3.7
 
 ## WSGI-based configuration
 
@@ -19,7 +20,7 @@ as listed below, a complete example is included at the end of this section.
 
    ```yaml
    # .platform.app.yaml
-   type: "python:3.6"
+   type: "python:3.7"
    ```
 
 2. Build your application with the build hook.
@@ -94,7 +95,7 @@ Here is the complete `.platform.app.yaml` file:
 
 ```yaml
 name: app
-type: python:2.7
+type: python:3.7
 
 web:
   commands:
