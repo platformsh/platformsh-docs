@@ -197,7 +197,7 @@ solrsearch:
 
 The Solr 6.x Drupal 8 configuration files are reasonably generic and should work in many other circumstances, but explicitly defining a core, configuration, and endpoint is generally recommended.
 
-## Accessing the Solr admin interface
+## Accessing the Solr server administrative interface
 
 Because Solr uses HTTP for both its API and admin interface it's possible to access the admin interface over an SSH tunnel.
 
