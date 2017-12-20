@@ -3,7 +3,7 @@
 This page is about configuring Solr with the module [Apache Solr Search](https://www.drupal.org/project/apachesolr). If your project uses [Search API](https://www.drupal.org/project/search_api) then you should follow the instructions [Search API](search-api-module.md).
 
 ## Requirements
-ou will need either the module  [Apache Solr Search](https://www.drupal.org/project/apachesolr)
+You will need either the module  [Apache Solr Search](https://www.drupal.org/project/apachesolr)
 
 If you are using a make file, you can add those lines to your
 `project.make`:
@@ -35,7 +35,7 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
 }
 ```
 
-Replace `MACHINE_NAME_OF_SOLR_SERVER` with the Drupal machine name of the server you want to override.  The solr server must already be defined in Drupal and ideally exported to a Feature. The most comon machine name used is just `solr`.
+Replace `MACHINE_NAME_OF_SOLR_SERVER` with the Drupal machine name of the server you want to override.  The Solr server must already be defined in Drupal and ideally exported to a Feature. The most common machine name used is just `solr`.
 
 ## Relationships configuration
 
@@ -47,4 +47,3 @@ The file `.platform.app.yaml` must have the Solr relationship enabled, such as t
 relationships:
     solr: 'solrsearch:solr'
 ```
-
