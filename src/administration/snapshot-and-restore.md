@@ -4,7 +4,7 @@
 
 Snapshots are triggered directly via the Web Interface or via the CLI. The snapshot creates a complete backup of the environment. It includes all persistent data from all running services (MySQL, SOLR,...) and any files stored on the mounted volumes.
 
-You will need the "admin" role on the project/environment to be snapshotted in order to do so.
+You need to have the "admin" role in order to create a snapshot of an environment.
 
 > **note**
 > We advise you to make snapshots of your live environment before merging an environment
