@@ -104,11 +104,9 @@ The CLI can also be used from CI services or other automation tools, and support
 
 An API token can be created through the UI.  Go to the "User" page from your accounts drop-down, then select the "Account Settings" tab, then the "API Tokens".
 
-Click the "Create an API Token" link.  You may be asked to reverify your password.
+Click the "Create an API Token" link.  You may be asked to reverify your password, then enter a unique application name to identify the token.
 
-Enter a unique application name to identify the token.  The API token can authorize the CLI to access project information, or project information and account information.  In most cases it's not necessary to give the CLI access to change account settings so that checkbox can be unchecked.  
-
-![Create an API Token](images/api-token-create.png)
+![API Token screen](/images/api-token-list.png)
 
 After creating the token, you may view it by clicking the "view" link next to the token name.  You will be asked to reverify your password as well.
 
