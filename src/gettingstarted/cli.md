@@ -97,27 +97,3 @@ Once Bash for Windows is installed, you can install the Platform.sh CLI with the
 ```bash
 curl -sS https://platform.sh/cli/installer | php
 ```
-
-## API Tokens
-
-The CLI can also be used from CI services or other automation tools, and supports an API Token authentication option for that purpose.
-
-An API token can be created through the UI.  Go to the "User" page from your accounts drop-down, then select the "Account Settings" tab, then the "API Tokens".
-
-Click the "Create an API Token" link.  You may be asked to reverify your password, then enter a unique application name to identify the token.
-
-![API Token screen](/images/api-token-list.png)
-
-After creating the token it will be displayed once at the top of the page in a green banner.  You may also view it later by clicking the "view" link next to the token name.  You will be asked to reverify your password as well when viewing the token.
-
-Now set that token to an environment variable named `PLATFORMSH_CLI_TOKEN` on your system where the CLI will run.  Consult the documentation for your CI system to see how to do that.
-
-If you're setting up the CLI to run from a cron task on Platform.sh, be sure to include the `env:` prefix so that it registers as a top-level environment variable, like so:
-
-```bash
-platform project:variable:set env:PLATFORMSH_CLI_TOKEN <value>
-```
-
-> **note**
->
-> If running CLI commands from any automated system, including a Platform.sh cron task, we urge you to use the `--no-wait` flag on any commands that may take more than a second or two to avoid blocking the process.

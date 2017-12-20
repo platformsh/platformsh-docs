@@ -53,19 +53,9 @@ $ platform snapshot:restore 92c9a4b2aa75422efb3d
 
 No snapshot is triggered automatically on Platform.sh Standard. You can trigger your snapshot via the Web Interface or via the CLI.
 
-Snapshots may be triggered from an automated system, such as cron, Jenkins, or another CI service by calling the CLI.  That requires first obtaining an [API token for authentication](/gettingstarted/cli.md#api-tokens).  Add the token to your Platform.sh project as listed there.
+Snapshots may be triggered from an automated system, such as cron, Jenkins, or another CI service by calling the CLI.  To enable backups automatically using just Platform.sh, see the section on [API tokens](/gettingstarted/cli/api-tokens.md).  For installing the CLI in the app container.
 
-Now add a build hook to your `.platform.app.yaml` file to download the CLI as part of the build process.  
-
-```yaml
-hooks:
-    build: |
-        curl -sS https://platform.sh/cli/installer | php
-```
-
-This will download the CLI to a known directory, `.platformsh/bin`, which will be added to the PATH at runtime (via the .environment file). Because the API token is available, the CLI will now be able to run authenticated commands, acting as the user who created the token.
-
-Now add a cron task to run once a day and trigger a snapshot.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on.  However, in most cases such backups are only useful on the `master` production environment.  That can be achieved like so:
+Once the CLI is installed an API token configured you can add a cron task to run once a day and trigger a snapshot.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on.  However, in most cases such backups are only useful on the `master` production environment.  That can be achieved like so:
 
 ```yaml
 crons:
@@ -77,7 +67,7 @@ crons:
             fi
 ```
 
-The above cron task will run once a day at 5 am, and, if the current environment is the master branch it will run `platform snapshot:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the snapshot to complete.
+The above cron task will run once a day at 5 am (UTC), and, if the current environment is the master branch, it will run `platform snapshot:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the snapshot to complete.
 
 > **note**
 > 

@@ -12,6 +12,7 @@
 * [Platform.sh in practice](/gettingstarted/platformsh-in-practice.md)
 * [Tools](gettingstarted/tools.md)
 * [CLI](gettingstarted/cli.md)
+  * [API Tokens](gettingstarted/cli/api-tokens.md)
 * [Local development](gettingstarted/local.md)
   * [Tethered](gettingstarted/local/tethered.md)
   * [Untethered](gettingstarted/local/untethered.md)
