@@ -23,7 +23,7 @@ as listed below, a complete example is included at the end of this section.
 
    ```yaml
    # .platform.app.yaml
-   type: "ruby:2.5"
+   type: "ruby:2.4"
    ```
 
 2. Build your application with the build hook.
