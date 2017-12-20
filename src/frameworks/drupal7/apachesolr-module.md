@@ -24,8 +24,9 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
   if (!empty($relationships['solr'])) {
     // Override search API server settings fetched from default configuration.
     foreach ($relationships['solr'] as $endpoint) {
-      // Replace the machine name of the server here.
-      $environment_machine_name = 'MACHINE_NAME_OF_SOLR_SERVER';
+
+      // If your Solr server's machine name is not "solr", update the following line.
+      $environment_machine_name = 'solr';
 
       $environment_url = "http://" . $endpoint['host'] . ":" . $endpoint['port'] . "/" . $endpoint['path'];
       $conf['apachesolr_default_environment'] = $environment_machine_name;
@@ -35,7 +36,7 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
 }
 ```
 
-Replace `MACHINE_NAME_OF_SOLR_SERVER` with the Drupal machine name of the server you want to override.  The Solr server must already be defined in Drupal and ideally exported to a Feature. The most common machine name used is just `solr`.
+Note that the Solr server must already be defined in Drupal and ideally exported to a Feature. The most common machine name used is just `solr`, as above.  If you used a different name adjust the code as appropriate.
 
 ## Relationships configuration
 
