@@ -22,7 +22,7 @@ Now set that token to an environment variable named `PLATFORMSH_CLI_TOKEN` on yo
 
 For projects with more than one user it is often a good idea to create a dedicated "automation user" to run automation tasks such as backups.  That way, that user can be given a very restrictive set of permissions limited to just its needed tasks.  It will also show up in logs and activity streams as a separate entry from human users.
 
-Every user account needs its own unique email address.  This account will not need an SSH key, however.  The permissions it needs on a given project will depend on what automation tasks it will be running.  Backups, for instance, require `admin` access, while checking out code from a CI server to run tests on it would require only `reader` access.
+Every user account needs its own unique email address.  This account may not need an SSH key, however, depending on the task to be run.  The permissions it needs on a given project will depend on what automation tasks it will be running.  Backups, for instance, require `admin` access but no SSH key, while checking out code from a CI server to run tests on it would require an SSH key but only `reader` access.
 
 We recommend having a separate automation user for each project to be automated.
 
