@@ -140,6 +140,21 @@ In Platform.sh, you cannot just "hack production".  It is a constraint, but it i
 
 During the [build phase](/overview/build-deploy.md#building-the-application) of your application, the main filesystem is writable.  So you can do whatever you want (e.g. compile code or generate anything you need).  But during and after the [deploy phase](/overview/build-deploy.md#deploying-the-application), the main filesystem will be read-only.
 
+## RootNotFoundException from the CLI
+
+If you check out a project via Git directly and not using the `platform get` command, you may end up with the CLI unable to determine what project it's in.  If you run a CLI command from within the project directory you've checked out but get an error like this:
+
+```
+[RootNotFoundException] Project root not found. This can only be run from inside a project directory.
+```
+
+Then the CLI hasn't been able to determine the project to use.  To fix that, run:
+
+```
+platform project:set-remote <project_id>
+```
+
+where `<project_id>` is the random-character ID of the project.  That can be found by running `platform projects` from the command line to list all accessible projects.  Alternatively, it can be found in the UI after the `platform get` command shown or in the URL of the UI or project domain.
 
 ## "File not found" in Drupal
 
