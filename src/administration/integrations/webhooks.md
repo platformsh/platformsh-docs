@@ -31,13 +31,12 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.branch`: A new branch has been created via the UI. (A branch created via a push will show up only as an `environment.push`.)
 * `environment.backup`: A user triggered a [snapshot](/administration/snapshot-and-restore.md)
 * `environment.restore`: A user triggered a [snapshot](/administration/snapshot-and-restore.md)
-* `environment.subscription.update`: I don't know what this is.
+* `environment.subscription.update`: The master environment has been resized because the subscription has changed.  There are no content changes.
 * `environment.activate`: A branch has been "activated", and an environment created for it.
 * `environment.deactivate`: A branch has been "deactivated". The code is still there but the environment was destroyed.
 * `environment.synchronize`: An environment has had its data re-copied from its parent environment.
 * `environment.delete`: A branch was deleted.
 * `environment.merge`: A branch was merged through the UI or Platform.sh API. A basic Git merge will not trigger this event.
-* `environment.merge-pr`: A branch was merged via an accepted Pull Request on GitHub. 
 * `environment.update.http_access`: HTTP access rules for an environment have been modified.
 * `environment.update.smtp`: Sending of emails has been enabled/disabled for an environment.
 * `environment.update.restrict_robots`: The block-all-robots feature has been enabled/disabled.
