@@ -2,9 +2,6 @@
 
 This hook will allow you to capture any push events on platform and POST a JSON file describing the activity to the url of your choice. You can use this to further automate your Platform.sh workflow.
 
-For example the `routes` object keys will give you urls against which you can 
-launch automated user testing.
-
 ```bash
 $ platform integration:add --type=webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
 ```
@@ -27,21 +24,41 @@ The Project ID for which the activity was triggered.  Use this value if you want
 
 The `type` property specifies the event that happened.  Its value is one of:
 
+* `project.modify.title`: The human-friendly title of the project has been changed.
+* `project.create`: A project has been created.  Although it will appear in the activity feed exactly once, it will not be sent via a webhook as it will always happen before a webhook can be configured.
+* `project.domain.create`: A new domain has been added to the project.
+* `project.domain.delete`: A domain associated with the project has been removed.
+* `project.domain.update`: A domain associated with the project has been updated, including modifying it's SSL certificate.
+
+* `environment.access.add`: A new user has been given access to the environment.
+* `environment.access.remove`: A user has been removed from the environment.
+
+* `environment.backup`: A user triggered a [snapshot](/administration/snapshot-and-restore.md)
+* `environment.restore`: A user restored a [snapshot](/administration/snapshot-and-restore.md)
+
 * `environment.push`: A user has pushed code to a branch, either existing or new.
 * `environment.branch`: A new branch has been created via the UI. (A branch created via a push will show up only as an `environment.push`.)
-* `environment.backup`: A user triggered a [snapshot](/administration/snapshot-and-restore.md)
-* `environment.restore`: A user triggered a [snapshot](/administration/snapshot-and-restore.md)
-* `environment.subscription.update`: The master environment has been resized because the subscription has changed.  There are no content changes.
 * `environment.activate`: A branch has been "activated", and an environment created for it.
+* `environment.initialize`: The master branch of the project has just been initialized with its first commit.
 * `environment.deactivate`: A branch has been "deactivated". The code is still there but the environment was destroyed.
 * `environment.synchronize`: An environment has had its data re-copied from its parent environment.
-* `environment.delete`: A branch was deleted.
 * `environment.merge`: A branch was merged through the UI or Platform.sh API. A basic Git merge will not trigger this event.
+* `environment.delete`: A branch was deleted.
+
+* `environment.route.create`: A new route has been created through the UI.  This will not fire for route edits made to the `routes.yaml` file directly.
+* `environment.route.delete`: A route has been deleted through the UI.  This will not fire for route edits made to the `routes.yaml` file directly.
+* `environment.route.update`: A route has been modified through the UI.  This will not fire for route edits made to the `routes.yaml` file directly.
+
+* `environment.variable.create`: A new variable has been created.
+* `environment.variable.delete`: A variable has been deleted.
+* `environment.variable.update`: A variable has been modified.
+
 * `environment.update.http_access`: HTTP access rules for an environment have been modified.
 * `environment.update.smtp`: Sending of emails has been enabled/disabled for an environment.
 * `environment.update.restrict_robots`: The block-all-robots feature has been enabled/disabled.
+* `environment.subscription.update`: The master environment has been resized because the subscription has changed.  There are no content changes.
 
-## `environments`
+### `environments`
 
 An array listing the environments that were involved in the activity. This is usually single-value.
 
