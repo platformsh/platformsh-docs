@@ -75,32 +75,6 @@ The memory usage of your container exceeds the limit, the kernel thus kills the 
 * Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
 
 
-## Stuck build or deployment
-
-If you see a build or deployment running longer than expected, that may be one of the following cases:
-
-1. The build is blocked by a process in your build hook.
-2. The deployment is blocked by a long running process in your deploy hook.
-3. The deployment is blocked by a long running cron job in the environment.
-4. The deployment is blocked by a long running cron job in the parent environment.
-
-To determine if your environment is being stuck in the build or the deployment, you should look at the build log available on the UI. When you see a log line like below, your application is built and the deployment is stuck:
-
-```
-Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
-```
-
-Here are the things you should do when you see your build or deployment is stuck:
-
-For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), you have to create a [support ticket](https://platform.sh/support) to let us kill it.
-
-When a _deployment_ is blocked, you should try the following:
-
-1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it.
-2. If you're performing "Sync", "Merge", or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
-3. If you couldn't find any long running process on your environment or parent environment, or you cannot use SSH to connect to your environment, please create a [support ticket](https://platform.sh/support).
-
-
 ## MySQL lock wait timeout
 
 If you receive MySQL error messages like this:
@@ -161,3 +135,72 @@ where `<project_id>` is the random-character ID of the project.  That can be fou
 If you see a bare "File not found" error when accessing your Drupal site with a browser, this means that you've pushed your code as a vanilla project but no *index.php* has been found.
 
 Make sure your repository contains an *index.php* file in the [web location root](/configuration/app-containers.md#locations), or that your [Drush](/frameworks/drupal7/drush.md) make files are properly named.
+
+
+## Stuck build (or deployment)
+
+If you see a build or deployment running longer than expected, that may be one of the following cases:
+
+1. The build is blocked by a process in your build hook.
+2. The deployment is blocked by a long running process in your deploy hook.
+3. The deployment is blocked by a long running cron job in the environment.
+4. The deployment is blocked by a long running cron job in the parent environment.
+
+To determine if your environment is being stuck in the build or the deployment, you should look at the build log available on the UI. When you see a log line like below, your application is built and the deployment is stuck:
+
+```
+Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
+```
+
+Here are the things you should do when you see your build or deployment is stuck:
+
+For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), you have to create a [support ticket](https://platform.sh/support) to let us kill it.
+
+When a _deployment_ is blocked, you should try the following:
+
+1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it.
+2. If you're performing "Sync", "Merge", or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
+3. If you couldn't find any long running process on your environment or parent environment, or you cannot use SSH to connect to your environment, please create a [support ticket](https://platform.sh/support).
+
+
+## Slow or failing build (or deployment)
+
+Build that take long time or fail is a common problem. Most of the time it's related to application issue and they can be hard to troubleshoot without guidance.
+
+Here are a few tips that can help you solve the issues you are experiencing.
+
+### Check for errors in the logs
+
+Invisible errors during the build and deploy phase can cause increase wait times, failed builds and other problems. Investigating each log and fixing errors is essential.
+
+Related documentation: [Accessing logs](https://docs.platform.sh/development/logs.html#accessing-logs)
+
+### Check php.access.log
+
+The php.access.log contains the page executions by php-fpm. It also includes the execution time and peak memory usage of each request. This can be used to find pages and scripts that use to much memory or to much time to finish.
+
+Show 10 slowest page loads in the last 1000 requests: `tail -n 1000 php.access.log | sort -n -k 4 | tail`
+
+### Build and deploy hooks
+
+Hooks are almost always the cause of long build time. If they run into problem they can cause the build to fail or hang indefinitely.
+
+You should test each hook and deploy command in your container (via SSH) with the command `php /app/your_public_folder/your_script.php`.
+
+Furthermore, you can test your hooks with those linux commands to help figure out any problems
+`time $cmd` # Print execution time
+`strace -T $cmd` # Print a system call report
+
+Ps.: Only use these commands in hooks or scripts if you redirect the output to a file by appending ` 2>&1 > strace.log` to your command.
+
+Related documentation: [Build and deploy hooks](https://docs.platform.sh/configuration/app/build.html#hooks)
+
+### Cron jobs
+
+In order to switch containers, we need to wait for all the current running tasks to finish. Long running or failing cron jobs will prevent the container to switch.
+
+First, make sure your custom cron jobs’ execution times are low and that they are running properly. Second, investigate your application cron jobs, as they can invoke other services in unexpected ways, which may increase execution time.
+
+**About Drupal**: `drush core-cron` run insalled module’s cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to constantly benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
+
+Related documentation: [Cron and scheduled tasks](https://docs.platform.sh/configuration/app/cron.html#cron-jobs)
