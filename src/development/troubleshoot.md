@@ -162,6 +162,8 @@ When a _deployment_ is blocked, you should try the following:
 2. If you're performing "Sync", "Merge", or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
 3. If you couldn't find any long running process on your environment or parent environment, or you cannot use SSH to connect to your environment, please create a [support ticket](https://platform.sh/support).
 
+Stuck builds should automaticly be killed after one hour. If they are stuck for a longer period please create [support ticket](https://platform.sh/support).
+
 
 ## Slow or failing build (or deployment)
 
