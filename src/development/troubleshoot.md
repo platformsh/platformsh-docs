@@ -165,7 +165,7 @@ When a _deployment_ is blocked, you should try the following:
 
 ## Slow or failing build (or deployment)
 
-Build that take long time or fail is a common problem. Most of the time it's related to application issue and they can be hard to troubleshoot without guidance.
+Builds that take long time or fail is a common problem. Most of the time it's related to an application issue and they can be hard to troubleshoot without guidance.
 
 Here are a few tips that can help you solve the issues you are experiencing.
 
@@ -177,7 +177,7 @@ Related documentation: [Accessing logs](https://docs.platform.sh/development/log
 
 ### Check php.access.log
 
-The php.access.log contains the page executions by php-fpm. It also includes the execution time and peak memory usage of each request. This can be used to find pages and scripts that use to much memory or time to finish.
+The php.access.log contains the page executions by php-fpm. It also includes the execution time and peak memory usage of each request. This can be used to find pages and scripts that use too much memory or time to finish.
 
 Show 10 slowest page loads in the last 1000 requests: `tail -n 1000 php.access.log | sort -n -k 4 | tail`
 
@@ -185,7 +185,7 @@ Show 10 slowest page loads in the last 1000 requests: `tail -n 1000 php.access.l
 
 Hooks are almost always the cause of long build time. If they run into problem they can cause the build to fail or hang indefinitely.
 
-You should test each hook and deploy command in your environment (via SSH) with the command `php /app/your_public_folder/your_script.php`.
+You should test each hook and deploy command in your local development environment.
 
 Furthermore, you can test your hooks with those linux commands to help figure out any problems
 
@@ -203,6 +203,6 @@ In order to switch containers, we need to wait for all the current running tasks
 First, make sure your custom cron jobs execution times are low and that they are running properly. Second, investigate your application cron jobs, as they can invoke other services in unexpected ways, which may increase execution time.
 
 **note**
-Drupal `drush core-cron` run installed module’s cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to constantly benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
+Drupal `drush core-cron` run installed module's cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to constantly benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
 
 Related documentation: [Cron and scheduled tasks](https://docs.platform.sh/configuration/app/cron.html#cron-jobs)
