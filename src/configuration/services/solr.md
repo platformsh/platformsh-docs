@@ -220,4 +220,4 @@ Close tunnels with: platform tunnel:close
 In this example, you can now open `http://localhost:30000/solr/` in a browser to access the Solr admin interface.  Note that you cannot create indexes or users this way, but you can browse the existing indexes and manipulate the stored data.
 
 > **Note**
-> Platform.sh Enterprise users can use `ssh -L 8888:localhost:<port> <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead.
+> Platform.sh Enterprise users can use `ssh -L 8888:localhost:8983 <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead, after which the Solr server administrative interface will be available at `http://localhost:8888/solr/`.
