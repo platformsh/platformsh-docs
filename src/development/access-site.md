@@ -14,6 +14,8 @@ They can also be found on the command line, using the [Platform.sh CLI](/getting
 platform url
 ```
 
+Generally there will be two URLs created per route in your `routes.yaml` file: One HTTPS and one HTTP route that just redirects to HTTPS.  If you are using the `{all}` placeholder in your `routes.yaml` file then there will be more, depending on how many domains you have configured in your project.
+
 ## Accessing the application with SSH
 
 Most interactions with Platform.sh require SSH key authentication, and you will need to [set up your SSH keys](/development/ssh.md) before working on a site.
