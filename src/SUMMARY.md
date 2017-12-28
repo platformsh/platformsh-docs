@@ -128,6 +128,8 @@
   * [FAQ](frameworks/symfony/faq.md)
 * [TYPO3](frameworks/typo3.md)
   * [FAQ](frameworks/typo3/faq.md)
+* [WordPress](frameworks/wordpress.md)
+  * [Redis](frameworks/wordpress/redis.md)
 
 ## Tutorials
 
