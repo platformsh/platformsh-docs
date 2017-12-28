@@ -6,6 +6,8 @@ We support native integrations with multiple services, first and foremost Git ho
 
 You can also easily add our native integrations with performance monitoring tools such as Blackfire, New Relic, or Tideways, as well as setting up health notifications.  Or create your own integration using our webhooks.
 
+Be aware that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.  See [User administration](/administration/users.md) for more details.
+
 With the CLI, you can list all your active integrations:
 
 ```bash
