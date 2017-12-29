@@ -2,6 +2,10 @@
 
 Platform.sh can notify you when various events happen on your project, in any environment.  At this time the only notification provided is a low disk space warning, but others may be added in the future.
 
+> **Note**
+>
+> Remember that you must have `admin` access to a project in order to add or modify an integration.  See [User administration](/administration/users.md) for more details.
+
 ## Available notifications
 
 ### Low-disk warning
