@@ -5,20 +5,22 @@ developed by [SensioLabs](https://sensiolabs.com/).
 
 ## Version
 
-* Agent/Client: `1.12.0`
-* Probe: `1.16.1` (when using `php:7.0` or `php:7.1`)
+* Agent/Client: `1.15.0`
+* Probe: `1.18.0` (when using `php:7.0` or `php:7.1`)
+* Chrome Companion: `1.15.0`
 
 ## Get Started
 
 ### 1. Get your credentials
 
-**Sign up for free** at [blackfire.io](https://blackfire.io/signup) and
+**Sign up for the free 15 days trial** at [blackfire.io](https://blackfire.io/signup) and
 install the **Blackfire Companion** web browser extension
 ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld)).
 
-Get your server credentials on your [Blackfire
-account](https://blackfire.io/account/credentials).
+Go to your Dashboard and create a new environment.
+![Blackfire environments](/images/blackfire-environments.png)
 
+Get your server credentials.
 ![Blackfire credentials](/images/blackfire-credentials.png)
 
 ### 2. Enable the Blackfire extension
