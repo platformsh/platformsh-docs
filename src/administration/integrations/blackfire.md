@@ -17,6 +17,9 @@ developed by [SensioLabs](https://sensiolabs.com/).
 install the **Blackfire Companion** web browser extension
 ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld)).
 
+> **note**
+> Blackfire also offers a perpetually-free edition but it is for local development only and will not run on Platform.sh
+
 Go to your Dashboard and create a new environment.
 ![Blackfire environments](/images/blackfire-environments.png)
 
