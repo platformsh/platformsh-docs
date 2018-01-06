@@ -146,7 +146,7 @@ If you see a build or deployment running longer than expected, that may be one o
 3. The deployment is blocked by a long running cron job in the environment.
 4. The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment, you should look at the build log available on the UI. When you see a log line like below, your application is built and the deployment is stuck:
+To determine if your environment is being stuck in the build or the deployment, you can look at the build log available on the UI. When you see a log line like below, your application is built and the deployment is stuck:
 
 ```
 Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
@@ -158,7 +158,7 @@ For a blocked _build_ (when you don't find the `Re-deployment environment ...` l
 
 When a _deployment_ is blocked, you should try the following:
 
-1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it.
+1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id showned by `ps afx`.
 2. If you're performing "Sync", "Merge", or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
 
 Stuck builds should automaticly be killed after one hour. If they are stuck for a longer period please create [support ticket](https://platform.sh/support).
@@ -178,13 +178,13 @@ Related documentation: [Accessing logs](https://docs.platform.sh/development/log
 
 ### Check php.access.log
 
-The php.access.log contains the page executions by php-fpm. It also includes the execution time and peak memory usage of each request. This can be used to find pages and scripts that use too much memory or time to finish.
+If you are using PHP, the php.access.log contains the page executions by PHP-FPM. It also includes the execution time and peak memory usage of each request. This can be used to find pages and scripts that use too much memory or time to finish.
 
 Show 10 slowest page loads in the last 1000 requests: `tail -n 1000 php.access.log | sort -n -k 4 | tail`
 
 ### Build and deploy hooks
 
-Hooks are almost always the cause of long build time. If they run into problem they can cause the build to fail or hang indefinitely.
+Hooks are frequently the cause of long build time. If they run into problem they can cause the build to fail or hang indefinitely.
 
 You should test each hook and deploy command in your local development environment.
 
@@ -204,6 +204,6 @@ In order to switch containers, we need to wait for all the current running tasks
 First, make sure your custom cron jobs execution times are low and that they are running properly. Second, investigate your application cron jobs, as they can invoke other services in unexpected ways, which may increase execution time.
 
 **note**
-Drupal `drush core-cron` run installed module's cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to constantly benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
+Drupal's `drush core-cron` run installed module's cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to frequently benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
 
 Related documentation: [Cron and scheduled tasks](https://docs.platform.sh/configuration/app/cron.html#cron-jobs)
