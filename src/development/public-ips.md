@@ -32,7 +32,8 @@ Outbound IPs:
 
 Inbound IP (gw.nl-1.platformsh.site):
 
-* 13.73.161.47
+Inbound traffic is managed by the load balancer. 
+You should not rely on Inbound IP for this region because it is changing over time.
 
 ### German Sovereign Cloud (de-1.platform.sh)
 
@@ -44,7 +45,8 @@ Outbound IPs:
 
 Inbound IP (gw.de-1.platformsh.site):
 
-* 51.4.227.171
+Inbound traffic is managed by the load balancer. 
+You should not rely on Inbound IP for this region because it is changing over time.
 
 ## United States
 
