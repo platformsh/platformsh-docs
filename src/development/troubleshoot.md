@@ -186,9 +186,11 @@ Show 10 slowest page loads in the last 1000 requests: `tail -n 1000 php.access.l
 
 Hooks are frequently the cause of long build time. If they run into problem they can cause the build to fail or hang indefinitely.
 
-You should test each hook and deploy command in your local development environment.
+The build hook can be tested in your local environment.  Because the deployed environment on Platform.sh is read-only the build hooks cannot be rerun there.
 
-Furthermore, you can test your hooks with those linux commands to help figure out any problems
+Deploy hooks can be tested either locally or by logging into the application over SSH and running them there.  They should execute safely but be aware that depending on what your scripts are doing they may have an adverse impact on the running application (e.g., flushing all caches).
+
+Furthermore, you can test your hooks with these Linux commands to help figure out any problems:
 
 ```
 time $cmd # Print execution time
