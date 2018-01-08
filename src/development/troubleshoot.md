@@ -146,15 +146,15 @@ If you see a build or deployment running longer than expected, that may be one o
 3. The deployment is blocked by a long running cron job in the environment.
 4. The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment, you can look at the build log available on the UI. When you see a log line like below, your application is built and the deployment is stuck:
+To determine if your environment is being stuck in the build or the deployment, you can look at the build log available on the UI.  If you see a line similar to the following:
 
 ```
 Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
 ```
 
-Here are the things you should do when you see your build or deployment is stuck:
+It means the build has completed successfully and the system is trying to deploy.  If that line never appears then it means the build is stuck.
 
-For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), you have to create a [support ticket](https://platform.sh/support) to let us kill it.
+For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed.
 
 When a _deployment_ is blocked, you should try the following:
 
