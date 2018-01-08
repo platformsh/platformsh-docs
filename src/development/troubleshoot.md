@@ -199,9 +199,9 @@ Related documentation: [Build and deploy hooks](https://docs.platform.sh/configu
 
 ### Cron jobs
 
-In order to switch containers, we need to wait for all the current running tasks to finish. Long running cron jobs prevent the container from switching.
+Containers cannot be shutdown while long-running tasks are active.  That means long-running cron jobs will block a container from being shut down to make way for a new deploy.
 
-First, make sure your custom cron jobs execution times are low and that they are running properly. Second, investigate your application cron jobs, as they can invoke other services in unexpected ways, which may increase execution time.
+For that reason, make sure your custom cron jobs execution times are low and that they are running properly.  Be aware that cron jobs may invoke other services in unexpected ways, which can increase execution time.
 
 **note**
 Drupal's `drush core-cron` run installed module's cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to frequently benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
