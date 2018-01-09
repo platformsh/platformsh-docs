@@ -25,6 +25,12 @@ web:
         start: 'uwsgi --ini conf/server.ini'
 ```
 
+> **NB: Never Background Processes!**
+>
+> Your start command _must_ run as a **foreground process** or all hell will break loose. Platform.sh supervises your started
+> process. If it is backgrounded (your command ends with `&` or starts with `bg`) our superviser will consider it is dead
+> and try to restart it. You will soon be out of resources. And the whole environment will become unresponsive.
+
 On PHP containers this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).  On all other containers it should be treated as required.  It can also be set explicitly on a PHP container in order to run a dedicated process such as [React PHP](https://github.com/platformsh/platformsh-example-reactphp) or [Amp](https://github.com/platformsh/platformsh-example-amphp).
 
 ## Upstream
