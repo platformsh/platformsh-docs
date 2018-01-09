@@ -44,7 +44,7 @@ And see a list of available commands.
 
 Run this command in the project's repository root folder:
 ```bash
-$ composer require drupal/drush
+$ composer require drush/drush
 ```
 Then, commit and push.
 
