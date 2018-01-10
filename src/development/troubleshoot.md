@@ -137,7 +137,7 @@ If you see a bare "File not found" error when accessing your Drupal site with a 
 Make sure your repository contains an *index.php* file in the [web location root](/configuration/app-containers.md#locations), or that your [Drush](/frameworks/drupal7/drush.md) make files are properly named.
 
 
-## Stuck build (or deployment)
+## Stuck build or deployment
 
 If you see a build or deployment running longer than expected, that may be one of the following cases:
 
@@ -161,7 +161,7 @@ When a _deployment_ is blocked, you should try the following:
 1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id showned by `ps afx`.
 2. If you're performing "Sync", "Merge", or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
 
-## Slow or failing build (or deployment)
+## Slow or failing build or deployment
 
 Builds that take long time or fail is a common problem. Most of the time it's related to an application issue and they can be hard to troubleshoot without guidance.
 
