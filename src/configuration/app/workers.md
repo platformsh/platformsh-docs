@@ -26,6 +26,24 @@ That defines a single worker named `queue`, which will be a "small" container, a
 
 Any number of workers may be defined with their own distinct name, subject to available resources on your plan.
 
+## Accessing the Worker Container
+
+Like with any other application container Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
+
+To do so simply add the name of the worker to the user name after the application name part of the SSH url preceded by a double dash (`--`).
+
+For example given a project with id `3seb7f2j6ogbm` you would connect to its master environment for an app called `app` with a url such as: 
+
+```
+ssh 3seb7f2j6ogbm-master-7rqtwti--app@ssh.us-2.platform.sh
+```
+
+To connect to a worker called `queue` (as in the example above) you would use an ssh url that would look as follows:
+
+```
+ssh 3seb7f2j6ogbm-master-7rqtwti--app--queue@ssh.us-2.platform.sh
+```
+
 ## Workers vs Cron
 
 Both worker instances and cron tasks address similar use cases: They both address out-of-band work that an application needs to do but that should not or cannot be done as part of a normal web request.  They do so in different ways, however, and so are fit for different use cases.
