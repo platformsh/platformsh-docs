@@ -39,7 +39,7 @@ This is a Big List of known third party resources for Platform.sh. These resourc
 
 ### Sylius
 
-* The [Sylius documentation](http://docs.sylius.org/en/latest/cookbook/platform-sh.html) has a solid set of instructions for setting up Sylius with Platform.sh.
+* The [Sylius documentation](http://docs.sylius.org/en/latest/cookbook/deployment/platform-sh.html) has a solid set of instructions for setting up Sylius with Platform.sh.
 
 ## Examples
 
