@@ -49,7 +49,7 @@ func main() {
 
 ## Running the application
 
-Your compiled Go application will be placed in the bin directory by the Makefile's build command, and named according to the `IMPORT_PATH` specified in the file.  It should be executed by the `web.commands.start` directive in `.platform.app.yaml`.  Should the program terminate for any reason it will be automatically restarted.
+Your compiled Go application will be placed in the bin directory by the Makefile's build command, and named according to the `IMPORT_PATH` specified in the file.  It should be executed by the `web.commands.start` directive in `.platform.app.yaml`. Note that the start command _must_ run in the foreground. Should the program terminate for any reason it will be automatically restarted.
 
 ```yaml
 web:

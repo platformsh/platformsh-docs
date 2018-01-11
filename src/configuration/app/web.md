@@ -25,6 +25,10 @@ web:
         start: 'uwsgi --ini conf/server.ini'
 ```
 
+> **Note**
+>
+> Never "background" a start process using &.  That will be interpreted as the command terminating and the supervisor process will start a second copy, creating an infinite loop until the container crashes.  Just run it as normal and allow the Platform.sh supervisor to manage it.
+
 On PHP containers this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).  On all other containers it should be treated as required.  It can also be set explicitly on a PHP container in order to run a dedicated process such as [React PHP](https://github.com/platformsh/platformsh-example-reactphp) or [Amp](https://github.com/platformsh/platformsh-example-amphp).
 
 ## Upstream
