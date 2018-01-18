@@ -40,7 +40,7 @@ platform integration:add --type=github --project=PROJECT_ID --token=GITHUB-USER-
 Optional parameters:
 * `--fetch-branches`: Track and deploy branches (true by default)
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
-* `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`true` by default)
+* `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`false` by default)
 * `--pull-requests-clone-parent-data`: Set to `false` to disable cloning of parent environment data when creating a PR environment, so each PR environment starts with no data. (`true` by default)
 
 Note that if your repository belongs to an organization, use ``--repository=ORGANIZATION/REPOSITORY``.
