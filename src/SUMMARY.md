@@ -124,6 +124,7 @@
   * [Solr](frameworks/drupal8/solr.md)
   * [SimpleSAML](frameworks/drupal8/simplesaml.md)
   * [FAQ](frameworks/drupal8/faq.md)
+* [eZ Platform](frameworks/ez.md)
 * [Symfony](frameworks/symfony.md)
   * [FAQ](frameworks/symfony/faq.md)
 * [TYPO3](frameworks/typo3.md)
