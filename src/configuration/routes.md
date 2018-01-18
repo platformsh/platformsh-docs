@@ -66,6 +66,13 @@ Each route can be configured separately. It has the following properties
 > `:php` is a deprecated application endpoint; use `:http` instead.
 > In the future, Platform.sh will support multiple endpoints per application.
 
+> **limitations**
+> The amount of routes per-environment is limited, the limit depends on the length of the
+> generated routes. As a ballpark figure you should not have more than 300 routes configured.
+> If you are using `routes.yaml` for redirects, consider using application driven redirects 
+> instead if the list has become too long. This also limits the amount of domains you can use 
+> if you are using the {all} place-holder.
+
 ## Routes examples
 
 Here is an example of a basic `.platform/routes.yaml` file:
