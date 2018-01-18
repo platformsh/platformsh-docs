@@ -71,7 +71,8 @@ Each route can be configured separately. It has the following properties
 > generated routes. As a ballpark figure you should not have more than 300 routes configured.
 > If you are using `routes.yaml` for redirects, consider using application driven redirects 
 > instead if the list has become too long. This also limits the amount of domains you can use 
-> if you are using the {all} place-holder.
+> if you are using the {all} place-holder, on top of the Let's Encrypt limit (100 domains
+> per environment).
 
 ## Routes examples
 
