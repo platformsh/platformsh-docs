@@ -66,13 +66,11 @@ Each route can be configured separately. It has the following properties
 > `:php` is a deprecated application endpoint; use `:http` instead.
 > In the future, Platform.sh will support multiple endpoints per application.
 
-> **limitations**
-> The amount of routes per-environment is limited, the limit depends on the length of the
-> generated routes. As a ballpark figure you should not have more than 300 routes configured.
-> If you are using `routes.yaml` for redirects, consider using application driven redirects 
-> instead if the list has become too long. This also limits the amount of domains you can use 
-> if you are using the {all} place-holder, on top of the Let's Encrypt limit (100 domains
-> per environment).
+## Route limits
+
+Although there is no fixed limit on the number of routes that can be defined, larger lists of routes can cause issues on deployment.  As a ballpark figure avoid having more than 300 routes.  However, be aware that many more routes may be created than are literally defined in your `routes.yaml` file.  For example, by default all HTTPS routes will be duplicated to create an HTTP redirect route.  Also, the `{all}` placeholder will create two routes (one HTTP, one HTTPS) for each domain that is configured.  Let's Encrypt also limits an environment to 100 configured domains.
+
+Should you find yourself with an excessive number of routes the best alternative is to move any redirect logic to the application rather than relying on the router.
 
 ## Routes examples
 
