@@ -195,7 +195,7 @@ web:
                       X-Specialness: low
 ```
 
-First, the `headers` directive sets the `X-Frame-Options` header to `SAMEORIGIN` for all static files.  That directive is then overriden by the two rules blocks.  For `*.mp4` files, two custom headers will be sent: `X-Frame-Options` and `Content-Type`.  The repeated `X-Frame-Options` is necessary as the `headers` directive in the rule overrides the parent, rather than extending it.  Therefore, the rule for `*.mp3` files will and *only* an `X-Specialness` header, and no `X-Frame-Options` header.
+First, the `headers` directive sets the `X-Frame-Options` header to `SAMEORIGIN` for all static files.  That directive is then overriden by the two rules blocks.  For `*.mp4` files, two custom headers will be sent: `X-Frame-Options` and `Content-Type`.  The repeated `X-Frame-Options` is necessary as the `headers` directive in the rule overrides the parent, rather than extending it.  Therefore, the rule for `*.mp3` files will add *only* an `X-Specialness` header, and no `X-Frame-Options` header.
 
 This example also demonstrates an effective way to set custom `Content-Type` headers for unusual file types using rules.
 
