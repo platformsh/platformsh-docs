@@ -10,22 +10,6 @@ By default, eZ Platform is configured to use a single Redis instance for both th
 
 To do so, uncomment the `redissession` entry in the `.platform/services.yaml` file and the corresponding relationship in the `.platform.app.yaml` file.  The bridge code that is provided with eZ Platform 1.13 and later will automatically detect the additional Redis service and use it for session storage.
 
-## Symfony build mode
-
-By default, eZ Platform will be build and run in production mode.  That means, for instance, Composer development dependencies will be skipped.  In most cases that is desireable.
-
-If for one reason or another you wish eZ Platform to build and run in development mode then you will need to set a project-level variable so that it is accessible at build time.  From your local checkout, run:
-
-```bash
-platform project:variable:set env:SYMFONY_ENV dev
-```
-
-That will change *all* environments (as of their next build and deploy) to use dev mode, including production.  To switch back to production mode, either set that variable to `prod` or delete it outright:
-
-```bash
-platform project:variable:delete env:SYMFONY_ENV
-```
-
 ## Modifying an existing eZ Platform project
 
 If you have an existing eZ Platform project that was upgraded from a previous version, or want to resynchronize with the latest recommended configuration, please see the [eZ Platform official repository](https://github.com/ezsystems/ezplatform).
