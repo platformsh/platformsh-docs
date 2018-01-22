@@ -20,15 +20,6 @@ platform variable:set -e master env:FASTLY_KEY YOUR_ID_HERE
 
 Replacing `YOUR_ID_HERE` with the Fastly Service ID and Key obtained from Fastly.
 
-## Disable Platform.sh caching
+## Configure Fastly and Platform.sh
 
-When using a CDN the Platform.sh router's HTTP cache becomes redundant.  In most cases it's best to disable it outright.  Modify your route in `.platform/routes.yaml` like so to disable the cache:
-
-```yaml
-"https://{default}/":
-    type: upstream
-    upstream: "app:http"
-    cache:
-        # Disable the HTTP cache on this route. It will be handled by Fastly instead.
-        enabled: false
-```
+See the alternate [Go-live process for Fastly](/golive/steps/fastly.md) on Platform.sh.  This process is the same for any application.
