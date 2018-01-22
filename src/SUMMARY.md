@@ -79,7 +79,7 @@
 
 * [Pre-Launch Checklist](/golive/checklist.md)
 * [Going Live Steps](/golive/steps.md)
-  * [Custom SSL](/golive/steps/ssl.md)
+  * [Custom TLS](/golive/steps/tls.md)
 * [Troubleshooting](/golive/troubleshoot.md)
 * [Example](/golive/example.md)   
 
