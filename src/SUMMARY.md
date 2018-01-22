@@ -80,6 +80,7 @@
 * [Pre-Launch Checklist](/golive/checklist.md)
 * [Going Live Steps](/golive/steps.md)
   * [Custom TLS](/golive/steps/tls.md)
+  * [Fastly](/golive/steps/fastly.md)
 * [Troubleshooting](/golive/troubleshoot.md)
 * [Example](/golive/example.md)   
 
