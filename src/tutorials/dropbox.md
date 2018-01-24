@@ -28,10 +28,10 @@ Because Dropbox files are mirrored on your writable disk mount, your application
 disk: 2048
 # the needed mounts for the Dropbox daemon
 mounts:
-    Dropbox:
+    '/Dropbox':
         source: local
         source_path: dropbox
-    '.dropbox':
+    '/.dropbox':
         source: local
         source_path: 'dropbox-meta'
 ```
