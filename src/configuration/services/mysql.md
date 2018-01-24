@@ -179,6 +179,23 @@ configuration:
 
 If either schemas or endpoints are defined, then no default will be applied and you must specify the full configuration.
 
+## Adjusting MariaDB configuration
+
+For version 10.2 and later, a select few MariaDB configuration properties from the `my.cnf` file are available for adjustment.
+
+At this time, only the `max_allowed_packet` size is available, and defaults to `16` (in MB).
+
+```yaml
+mysqldb:
+    type: mysql:10.2
+    disk: 2048
+    configuration:
+        properties:
+            max_allowed_packet: 64
+```
+
+The above code will increase the maximum allowed packet size (the size of a query or response) to 64 MB.  However, increasing the size of the maximum packet will also automatically decrease the `max_connections` value.  The number of connections allowed will depend on the packet size and the memory available to the service.  In most cases leaving this value at the default is recommended.
+
 ## Access your MariaDB service
 
 Assuming your MariaDB relationship is named `database`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `database.internal` and `3306`. Open an [SSH session](/development/ssh.md) and run the MySQL command line client.
