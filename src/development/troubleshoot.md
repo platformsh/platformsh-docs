@@ -76,34 +76,18 @@ The memory usage of your container exceeds the limit, the kernel thus kills the 
 
 ## Low disk space
 
-If you suspect you are running low on disk space on your application container, the easiest way to check it is to login using `platform ssh` and run `df -haT`.  That will give you a list of the available space on all mounts in the system, similar to:
+If you suspect you are running low on disk space on your application container, the easiest way to check it is to login using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writeable space the simplest option is: `df -h -x tmpfs -x squashfs | grep -v /run/shared`
+
+That will show only the writeable mounts on the system, similar to:
 
 ```
-Filesystem                                                      Type      Size  Used Avail Use% Mounted on
-/dev/loop120                                                    squashfs  448M  448M     0 100% /
-proc                                                            proc         0     0     0    - /proc
-proc                                                            proc         0     0     0    - /proc/sys
-tmpfs                                                           tmpfs      12K     0   12K   0% /dev
-tmpfs                                                           tmpfs     5.0M     0  5.0M   0% /dev/shm
-sysfs                                                           sysfs        0     0     0    - /sys
-tmpfs                                                           tmpfs      50M  288K   50M   1% /run
-/dev/loop186                                                    squashfs  241M  241M     0 100% /app
-/dev/mapper/platform-syu7watyy6n2q--master--7rqtwti----app      ext4      2.0G   37M  1.9G   2% /app/.drush
-/dev/mapper/platform-syu7watyy6n2q--master--7rqtwti----app      ext4      2.0G   37M  1.9G   2% /app/drush-backups
-/dev/mapper/platform-syu7watyy6n2q--master--7rqtwti----app      ext4      2.0G   37M  1.9G   2% /app/private
-/dev/mapper/platform-syu7watyy6n2q--master--7rqtwti----app      ext4      2.0G   37M  1.9G   2% /app/tmp
-/dev/mapper/platform-syu7watyy6n2q--master--7rqtwti----app      ext4      2.0G   37M  1.9G   2% /app/web/sites/default/files
-/dev/mapper/platform-tmp--syu7watyy6n5q--master--7rqtwti----app ext4      3.9G   42M  3.8G   2% /tmp
-/dev/disk/by-uuid/69b45758-c944-41b9-9470-6134aca29518          ext4       32G   16G   15G  52% /run/shared
-devpts                                                          devpts       0     0     0    - /dev/console
-devpts                                                          devpts       0     0     0    - /dev/pts
-
+Filesystem                                                       Size  Used Avail Use% Mounted on
+/dev/mapper/platform-syd7waxqy4n5q--master--7rqtwti----app       2.0G   37M  1.9G   2% /app/tmp
+/dev/mapper/platform-tmp--syd7waxqy4n5q--master--7rqtwti----app  3.9G   42M  3.8G   2% /tmp
 ```
 
-* The two `squashfs` entries are the OS image (the `type` from `.platform.app.yaml`) and your built application (in `/app`).  They will always show 100% as they're read-only.
-* The `tmpfs`, `sysfs` and `devpts` entries are operating system artifacts and can be safely ignored.
-* The entry that begins `platform-tmp` is for the temporary file system available to the OS.  While you can write values here they are not guaranteed to persist.
-* The other `platform-<project ID>` entries are a shared network device used by all of your disk mounts.  It will be reported multiple times with the same size for each.  This is the line you really care about.  In this example, there are 2 GB of total disk allocated to the app container of which only 2% (37 MB) has been used.
+* The first entry shows the storage device that is shared by all of your disk mounts.  Only one path will be shown under `Mounted on` but the disk space reported is common to all defined mounts in a single pool.  In this example, there are 2 GB of total disk allocated to the app container of which only 2% (37 MB) has been used total by all defined mounts.
+* The second entry is the operating system temp directory, which is always the same size.  While you can write to this directory files there are not guaranteed to persist and may be deleted on deploy.
 
 For a MariaDB database, the command `platform db:size` will give an approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percentage points.
 
