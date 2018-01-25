@@ -19,7 +19,7 @@ git push platform <branch-name>
 
 ## HTTP 502 response
 
-If you receive HTTP 502 responses from your site, it means that your site is running out of workers, or the application process is crashing.  Here are the typical causes:
+If you receive HTTP 502 responses from your site, it means that your site is running out of workers or the application process is crashing.  Here are the typical causes:
 
 * The amount of traffic coming to your site exceeds the processing power of your application.
 * Certain code path(s) in your application are too slow.
