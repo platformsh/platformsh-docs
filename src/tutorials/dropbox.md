@@ -22,7 +22,7 @@ The build hook runs when your application's codebase is being assembled for depl
 
 You'll need to add two writable/mounted directories that Dropbox expects to be there and to be writable.  The main one is `~/Dropbox`, which contains **your entire Dropbox**.  The other is a metadata directory at `~/.dropbox`.  This is typically modestly sized, on the order of less than 100MB.  
 
-Because Dropbox files are mirrored on your writable disk mount, your application container's disk size needs to be large enough to accommodate all of your Dropbox files as well as any user-uploaded files and your own code. You should also include sufficient extra space to allow for growth over time.
+Because Dropbox files are mirrored to your writable disk mount, your application container's disk size needs to be large enough to accommodate all of your Dropbox files as well as any user-uploaded files and your own code. You should also include sufficient extra space to allow for growth over time.
 
 ```yaml
 disk: 2048
