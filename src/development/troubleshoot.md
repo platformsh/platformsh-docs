@@ -76,7 +76,7 @@ The memory usage of your container exceeds the limit, the kernel thus kills the 
 
 ## Low disk space
 
-If you suspect you are running low on disk space on your application container, the easiest way to check it is to login using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writeable space the most direct option is: `df -h -x tmpfs -x squashfs | grep -v /run/shared`
+If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writeable space the most direct option is: `df -h -x tmpfs -x squashfs | grep -v /run/shared`
 
 That will show only the writeable mounts on the system, similar to:
 
@@ -89,7 +89,7 @@ Filesystem                                                       Size  Used Avai
 * The first entry shows the storage device that is shared by all of your disk mounts.  Only one path will be shown under `Mounted on` but the disk space reported is common to all defined mounts in a single pool.  In this example, there are 2 GB of total disk allocated to the app container of which only 2% (37 MB) has been used total by all defined mounts.
 * The second entry is the operating system temp directory, which is always the same size.  While you can write to this directory files there are not guaranteed to persist and may be deleted on deploy.
 
-For a MariaDB database, the command `platform db:size` will give an approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percentage points.
+For a MariaDB database, the command `platform db:size` will give approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percent
 
 ```
 +--------------+--------+
