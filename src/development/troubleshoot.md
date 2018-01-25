@@ -76,7 +76,7 @@ The memory usage of your container exceeds the limit, the kernel thus kills the 
 
 ## Low disk space
 
-If you suspect you are running low on disk space on your application container, the easiest way to check it is to login using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writeable space the simplest option is: `df -h -x tmpfs -x squashfs | grep -v /run/shared`
+If you suspect you are running low on disk space on your application container, the easiest way to check it is to login using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writeable space the most direct option is: `df -h -x tmpfs -x squashfs | grep -v /run/shared`
 
 That will show only the writeable mounts on the system, similar to:
 
