@@ -89,7 +89,7 @@ Filesystem                                                       Size  Used Avai
 * The first entry shows the storage device that is shared by all of your disk mounts.  Only one path will be shown under `Mounted on` but the disk space reported is common to all defined mounts in a single pool.  In this example, there are 2 GB of total disk allocated to the app container of which only 2% (37 MB) has been used total by all defined mounts.
 * The second entry is the operating system temp directory, which is always the same size.  While you can write to this directory files there are not guaranteed to persist and may be deleted on deploy.
 
-For a MariaDB database, the command `platform db:size` will give approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percent
+For a MariaDB database, the command `platform db:size` will give approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percent.
 
 ```
 +--------------+--------+
