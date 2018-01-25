@@ -110,7 +110,7 @@ This is the complete list of extensions that can be enabled:
 | apcu         |     | *   | *   | *   | *   | *   |
 | apcu_bc      |     |     |     | *   | *   | *   |
 | applepay     |     |     |     | *   | *   | *   |
-| blackfire    | *   | *   | *   | *   | *   |     |
+| blackfire    | *   | *   | *   | *   | *   | *   |
 | bcmath       |     |     |     | *   | *   | *   |
 | bz2          |     |     |     | *   | *   | *   |
 | curl         | *   | *   | *   | *   | *   | *   |
