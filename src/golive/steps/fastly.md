@@ -10,7 +10,9 @@ Note that individual applications may have their own Fastly setup instructions o
 
 ## Set the Platform.sh domain on Fastly
 
-Rather than create a DNS CNAME for your Platform.sh master branch (for instance `master-7rqtwti-qwertyqwerty.eu.platform.sh`), point your Fastly account to the same domain.  Then configure your DNS to point your domain at Fastly instead.  See the [Fastly documentation](https://docs.fastly.com/guides/basic-configuration/connecting-to-origins) for further details.  Be sure to enable TLS for the backend connection to Platform.sh.
+Rather than create a DNS CNAME for your Platform.sh master branch (for instance `master-7rqtwti-qwertyqwerty.eu.platform.sh`), [configure Fastly](https://docs.fastly.com/guides/basic-configuration/working-with-domains) to respond to requests for your domain name and to treat the Platform.sh master branch as its backend server.  Be sure to enable TLS for the backend connection to Platform.sh.  Then configure your DNS to point your domain at Fastly instead.  See the [Fastly documentation](https://docs.fastly.com/guides/basic-configuration/connecting-to-origins) for further details.
+
+Note that you will still need to configure the domain on Platform.sh for it to respond to requests properly.
 
 ## Disable Platform.sh caching
 
