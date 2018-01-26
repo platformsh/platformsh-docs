@@ -3,14 +3,32 @@
 The [HipChat](https://hipchat.com) integration allows you to send
 notifications about your Platform.sh activity directly to HipChat.
 
-To enable the HipChat webhook with the CLI:
+1.  Find the HipChat ROOM-ID.
 
-```bash
-$ platform integration:add --type=hipchat --room=ROOM-ID --token=HIPCHAT-TOKEN
-```
+    *   In the HipChat web administrative UI, go to _Admin > Rooms_ 
+        and click on the room to link notifications.
+    *   Note down the "APP ID" listed in the _Room Details_ on the
+        Room's 'Summary' page (you can also find the ID from the URL).
+    
+2.  Generate a room-specific HIPCHAT-TOKEN.
+    
+    *   Click on the Room's 'Tokens' page in the sidebar.
+    *   In the _Create New Token_ section specify 'PlatformSH' as the
+        token's label and click "Create" button.
+    *   Note down the Token value.
+    
+3.  Create the HipChat webhook with Platform CLI.
 
-The two optional parameters control what events and states you want to
-track:
+        $ platform integration:add --type=hipchat --room=ROOM-ID --token=HIPCHAT-TOKEN
 
--   `events`: ["*"]
--   `states`: ["pending", "in_progress", "complete"]
+    There are a number of optional parameters as well who's **default values** include: 
+
+    *  `--events=*`  (All Events)
+    *  `--environments=*`  (All Environments)
+    *  `--excluded-environments=` (Empty)
+    *  `--states=complete`  (Complete state only)
+    
+    You're given a chance to customize these parameters in an interactive
+    shell prompt, or you may **override the defaults on the command line**:
+    
+    *  `--states=pending,in_progress,complete` (All states)
