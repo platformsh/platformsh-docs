@@ -36,11 +36,12 @@ mounts:
         source_path: 'dropbox-meta'
 ```
 
-If your .platform.app.yaml file still uses the old syntax for mounts, this is equivalent to:
+If your `.platform.app.yaml` file still uses the old syntax for mounts, this is equivalent to:
 
 ```yaml
-"/Dropbox": "shared:files/dropbox"
-"/.dropbox": "shared:files/dropbox-meta"
+mounts:
+    "/Dropbox": "shared:files/dropbox"
+    "/.dropbox": "shared:files/dropbox-meta"
 ```
 
 **Make sure you've `git push`ed these configuration changes to Platform.sh if you haven't already.**
