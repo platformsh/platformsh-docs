@@ -66,7 +66,6 @@ The following extensions are enabled by default:
 * dba (7.1 and later)
 * enchant (7.1 and later)
 * gd
-* gmp (7.1 and later)
 * imap (7.1 and later)
 * interbase (7.1 and later)
 * intl
