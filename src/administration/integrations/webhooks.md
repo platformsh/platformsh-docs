@@ -1,6 +1,6 @@
 # Generic Webhook
 
-This hook will allow you to capture any push events on platform and POST a JSON file describing the activity to the url of your choice. You can use this to further automate your Platform.sh workflow.
+This hook allows you to capture any push events on platform and POST a JSON message describing the activity to the url of your choice. You can use this to further automate your Platform.sh workflow.
 
 ```bash
 $ platform integration:add --type=webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
@@ -41,7 +41,7 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.activate`: A branch has been "activated", and an environment created for it.
 * `environment.initialize`: The master branch of the project has just been initialized with its first commit.
 * `environment.deactivate`: A branch has been "deactivated". The code is still there but the environment was destroyed.
-* `environment.synchronize`: An environment has had its data re-copied from its parent environment.
+* `environment.synchronize`: An environment has had its data and/or code re-copied from its parent environment.
 * `environment.merge`: A branch was merged through the UI or Platform.sh API. A basic Git merge will not trigger this event.
 * `environment.delete`: A branch was deleted.
 
@@ -76,7 +76,11 @@ A text description of the action that happened.  This is a human-friendly string
 
 ### `payload.environment`
 
-This block contains information about the environment itself, after the action has taken place.  Most notable properties of this key are `name` (the name of the branch) `machine_name` (the name of the environment) and `head_commit` (the Git commit ID that produced the current environment).
+This block contains information about the environment itself, after the action has taken place.  The most notable properties of this key are 
+
+* `name` (the name of the branch)
+* `machine_name` (the name of the environment)
+* `head_commit` (the Git commit ID that triggered the event)
 
 ### `payload.user`
 
