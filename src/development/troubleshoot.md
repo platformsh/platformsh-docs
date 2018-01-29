@@ -19,7 +19,7 @@ git push platform <branch-name>
 
 ## HTTP 502 response
 
-If you receive HTTP 502 responses from your site, it means that your site is running out of workers, or the application process is crashing.  Here are the typical causes:
+If you receive HTTP 502 responses from your site, it means that your site is running out of workers or the application process is crashing.  Here are the typical causes:
 
 * The amount of traffic coming to your site exceeds the processing power of your application.
 * Certain code path(s) in your application are too slow.
@@ -73,6 +73,35 @@ The memory usage of your container exceeds the limit, the kernel thus kills the 
 * Check if the memory usage of your application is expected and try to optimize it.
 * Use [sizing hints](https://docs.platform.sh/languages/php.html#php-worker-sizing-hints) to reduce the amount of PHP workers which reduces the memory footprint.
 * Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
+
+## Low disk space
+
+If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writeable space the most direct option is: `df -h -x tmpfs -x squashfs | grep -v /run/shared`
+
+That will show only the writeable mounts on the system, similar to:
+
+```
+Filesystem                                                       Size  Used Avail Use% Mounted on
+/dev/mapper/platform-syd7waxqy4n5q--master--7rqtwti----app       2.0G   37M  1.9G   2% /app/tmp
+/dev/mapper/platform-tmp--syd7waxqy4n5q--master--7rqtwti----app  3.9G   42M  3.8G   2% /tmp
+```
+
+* The first entry shows the storage device that is shared by all of your disk mounts.  Only one path will be shown under `Mounted on` but the disk space reported is common to all defined mounts in a single pool.  In this example, there are 2 GB of total disk allocated to the app container of which only 2% (37 MB) has been used total by all defined mounts.
+* The second entry is the operating system temp directory, which is always the same size.  While you can write to this directory files there are not guaranteed to persist and may be deleted on deploy.
+
+For a MariaDB database, the command `platform db:size` will give approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percentage points.
+
+```
++--------------+--------+
+| Property     | Value  |
++--------------+--------+
+| max          | 2048MB |
+| used         | 189MB  |
+| percent_used | 9%     |
++--------------+--------+
+```
+
+For the most reliable disk usage warnings, we strongly recommend all customers enable [Health notifications](/administration/integrations/notifications.md) on all projects.  That will provide you with a push-notification through your choice of channel when the available disk space on any service drops too low.
 
 
 ## MySQL lock wait timeout
