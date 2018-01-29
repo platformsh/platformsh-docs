@@ -171,6 +171,76 @@ Although most websites today have some dynamic component, static site generators
 
 {% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-docs/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
 
+## How can I configure my Single-Page App?
+
+Many single-page applications (SPAs, things built primarily with Angular, React, or similar) can be served as essentially a static site, but need to have a configuration file that contains information only available at deploy time such as the name of the URL the client-side application should call back to.  In that case the most effective solution is to generate that file in a writeable mount in a deploy hook, where it can then be served statically by the webserver.
+
+The following example should be modified for your particular application but demonstrates the basic process.
+
+```yaml
+# .platform.app.yaml
+
+# The Nodejs helper will be used by make-config.js later.
+dependencies:
+    nodejs:
+        platformsh: '*'
+
+web:
+    locations:
+        '/':
+            root: 'web'
+            # Additional configuration here
+        '/config':
+            root: 'web/config'
+            allow: false
+            rules:
+                # Only serve the one config file from this directory.
+                '\.config.json$':
+                    allow: true
+
+mounts:
+    'web/config':
+        type: local
+        source_path: 'web-config'
+
+hooks:
+  deploy: |
+      make-config.js
+```
+
+```javascript
+// make-config.js
+// Modify this script as appropriate for your application.
+
+const config = require('platformsh').config();
+const routes = config.routes;
+var fs = require("fs");
+
+// Modify this file name as appropriate for your application.
+const configFileName = "./web/config/config.json";
+
+for (var url in routes) {
+  if (routes.hasOwnProperty(url)) {
+    route = routes[url];
+    if (route.type == 'upstream' && route.upstream == config.application_name) {
+      var backendUrl = url;
+      break;
+    }
+  }
+}
+
+// Modify this object to match the structure needed by your application.
+var configOutput = {
+  "url": backendUrl
+};
+
+fs.writeFileSync(configFileName, JSON.stringify(configOutput));
+```
+
+The above configuration and script will produce a single JSON file in the `web/config` directory that contains the URL of the application, which the client-side code can then request from that known location and leverage as needed.
+
+In practice the `url` propery in the configuration will need to be some API endpoint, such as the base URL above concatenated with `/api`.  Modify the above code as appropriate for how your application is built.
+
 ## How can I control the headers sent with my files?
 
 There are many use cases for setting custom headers on static content, such as custom content type headers, limiting cross-origin usage, etc.  Consider the following example:
