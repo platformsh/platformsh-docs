@@ -189,7 +189,7 @@ solrsearch:
     configuration:
         cores:
             collection1:
-                conf_dir: <default Drupal 8 configuration>
+                conf_dir: {}  # This will pick up the default Drupal 8 configuration
         endpoints:
             solr:
                 core: collection1
