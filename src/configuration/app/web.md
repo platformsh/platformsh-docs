@@ -205,7 +205,7 @@ mounts:
 
 hooks:
   deploy: |
-      make-config.js
+      node make-config.js
 ```
 
 ```javascript
