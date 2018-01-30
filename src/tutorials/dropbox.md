@@ -6,7 +6,7 @@ Dropbox has a very useful [Linux version](https://www.dropbox.com/install-linux)
 
 Per the instructions on [installing the Linux client](https://www.dropbox.com/install-linux) you can install the client via a simple one-liner shell command, but you'll need to modify it slightly in order to make it work with our version of `tar`.
 
-Add this to your build hook -
+Add this to your build hook:
 
 ```yaml
 hooks:
@@ -22,7 +22,7 @@ The build hook runs when your application's codebase is being assembled for depl
 
 You'll need to add two writable/mounted directories that Dropbox expects to be there and to be writable.  The main one is `~/Dropbox`, which contains **your entire Dropbox**.  The other is a metadata directory at `~/.dropbox`.  This is typically modestly sized, on the order of less than 100MB.  
 
-Because Dropbox files are mirrored on your writable disk mount, your application container's disk size needs to be large enough to accommodate all of your Dropbox files as well as any user-uploaded files and your own code. You should also include sufficient extra space to allow for growth over time.
+Because Dropbox files are mirrored to your writable disk mount, your application container's disk size needs to be large enough to accommodate all of your Dropbox files as well as any user-uploaded files and your own code. You should also include sufficient extra space to allow for growth over time.
 
 ```yaml
 disk: 2048
@@ -34,6 +34,14 @@ mounts:
     '.dropbox':
         source: local
         source_path: 'dropbox-meta'
+```
+
+If your `.platform.app.yaml` file still uses the old syntax for mounts, this is equivalent to:
+
+```yaml
+mounts:
+    'Dropbox': 'shared:files/dropbox'
+    '.dropbox': 'shared:files/dropbox-meta'
 ```
 
 **Make sure you've `git push`ed these configuration changes to Platform.sh if you haven't already.**
