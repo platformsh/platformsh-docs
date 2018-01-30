@@ -6,7 +6,7 @@ Dropbox has a very useful [Linux version](https://www.dropbox.com/install-linux)
 
 Per the instructions on [installing the Linux client](https://www.dropbox.com/install-linux) you can install the client via a simple one-liner shell command, but you'll need to modify it slightly in order to make it work with our version of `tar`.
 
-Add this to your build hook -
+Add this to your build hook:
 
 ```yaml
 hooks:
@@ -40,8 +40,8 @@ If your `.platform.app.yaml` file still uses the old syntax for mounts, this is 
 
 ```yaml
 mounts:
-    "/Dropbox": "shared:files/dropbox"
-    "/.dropbox": "shared:files/dropbox-meta"
+    'Dropbox': 'shared:files/dropbox'
+    '.dropbox': 'shared:files/dropbox-meta'
 ```
 
 **Make sure you've `git push`ed these configuration changes to Platform.sh if you haven't already.**
