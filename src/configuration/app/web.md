@@ -200,7 +200,7 @@ web:
 
 mounts:
     'web/config':
-        type: local
+        source: local
         source_path: 'web-config'
 
 hooks:
