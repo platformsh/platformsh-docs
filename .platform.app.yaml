@@ -21,6 +21,8 @@ dependencies:
 # by default.
 hooks:
     build: |
+      set -e
+
       # Install and compile GitBook
       gitbook install
       npm install
