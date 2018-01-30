@@ -106,5 +106,5 @@ SSH tunnel opened on port 30001 to relationship: redis
 The port may vary in your case.  Then, simply connect to that port locally using `mongodump` (or your favorite MongoDB tools) to export all data in that server:
 
 ```bash
-mongodbump --port 30000
+mongodump --port 30000
 ```
