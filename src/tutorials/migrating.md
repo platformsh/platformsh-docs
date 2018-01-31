@@ -34,10 +34,10 @@ The best way to load content files (that is, files that are not intended as part
 
 ```yaml
 mounts:
-    '/web/uploads':
+    'web/uploads':
         source: local
         source_path: uploads
-    '/private':
+    'private':
         source: local
         source_path: private
 ```

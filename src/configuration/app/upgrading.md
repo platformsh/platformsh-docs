@@ -28,8 +28,8 @@ mysearch:
 
 ```yaml
 mounts:
-    "/tmp": "shared:files/tmp"
-    "/logs": "shared:files/logs"
+    "tmp": "shared:files/tmp"
+    "logs": "shared:files/logs"
  ```
 
 Can now be written as:
@@ -115,9 +115,9 @@ web:
     passthru: "/index.php"
 disk: 2048
 mounts:
-    "/public/sites/default/files": "shared:files/files"
-    "/tmp": "shared:files/tmp"
-    "/private": "shared:files/private"
+    "public/sites/default/files": "shared:files/files"
+    "tmp": "shared:files/tmp"
+    "private": "shared:files/private"
 crons:
     drupal:
         spec: "*/20 * * * *"

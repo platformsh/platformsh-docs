@@ -55,12 +55,12 @@ mounts:
     private:
         source: local
         source_path: private
-    '/web/uploads':
+    'web/uploads':
         source: local
         source_path: uploads
 ```
 
-Then in the `web.locations` block, you'd specify that the `/web/uploads` path is accessible.  For example, this fragment would specify the `/web` path as the docroot but provide a more locked-down access to the `/web/uploads` path.
+Then in the `web.locations` block, you'd specify that the `web/uploads` path is accessible.  For example, this fragment would specify the `/web` path as the docroot but provide a more locked-down access to the `/web/uploads` path.
 
 ```yaml
 web:

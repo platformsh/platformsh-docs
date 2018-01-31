@@ -20,9 +20,9 @@ This will delete your project and stop invoicing for this project. If you have m
 
 ## Does branching an environment duplicate services?
 
-Yes ! Branching an environment creates an exact copy (snapshot) of the parent environment, containing the files, the database, the services...
+Yes! Branching an environment creates an exact copy (snapshot) of the parent environment, containing the files, the database, the services...
 
-##Do you have a local writable file-system?
+## Do you have a local writable file-system?
 
 Yes! Unlike other PaaS providers Platform.sh supports non-ephemeral
 storage. When you configure your application you can tell us what directories

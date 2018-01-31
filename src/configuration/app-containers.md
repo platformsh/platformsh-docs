@@ -95,7 +95,7 @@ disk: 2048
 # The keys are directory paths relative to the application root. The values are a
 # mount definition. In this case, `web-files` is just a unique name for the mount.
 mounts:
-    '/web/files':
+    'web/files':
         source: local
         source_path: 'web-files'
 
