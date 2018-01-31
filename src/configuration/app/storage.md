@@ -52,7 +52,7 @@ The following example sets up two file mounts.  One is mounted at `/private` wit
 disk: 1024
 
 mounts:
-    private:
+    'private':
         source: local
         source_path: private
     'web/uploads':
@@ -87,10 +87,10 @@ While not recommended it is possible to setup multiple mount points whose source
 
 ```yaml
 mounts:
-    private:
+    'private':
         source: local
         source_path: stuff
-    secret:
+    'secret':
         source: local
         source_path:  stuff/secret
 ```
