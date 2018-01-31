@@ -1,7 +1,6 @@
 # Python
 
-Platform.sh supports deploying Python applications. Your application can use
-WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
+Platform.sh supports deploying Python applications. Your application can use WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
 
 ## Supported versions
 
@@ -11,9 +10,7 @@ WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.
 
 ## WSGI-based configuration
 
-In this example, we use Gunicorn to run our WSGI application.
-Configure the `.platform.app.yaml` file with a few key settings
-as listed below, a complete example is included at the end of this section.
+In this example, we use Gunicorn to run our WSGI application.  Configure the `.platform.app.yaml` file with a few key settings as listed below, a complete example is included at the end of this section.
 
 1. Specify the language of your application (available versions are listed above):
 
@@ -22,9 +19,7 @@ as listed below, a complete example is included at the end of this section.
    type: "python:3.6"
    ```
 
-2. Build your application with the build hook.
-   Assuming you have your pip dependencies stored in `requirements.txt` and
-   a `setup.py` at the root of your application folder to execute build steps:
+2. Build your application with the build hook. Assuming you have your pip dependencies stored in `requirements.txt` and a `setup.py` at the root of your application folder to execute build steps:
 
    ```yaml
    hooks:
@@ -36,8 +31,7 @@ as listed below, a complete example is included at the end of this section.
 
    These are installed as global dependencies in your environment.
 
-3. Configure the command you use to start serving your application (this must
-   be a foreground-running process) under the `web` section, e.g.:
+3. Configure the command you use to start serving your application (this must be a foreground-running process) under the `web` section, e.g.:
 
    ```yaml
    web:
@@ -45,8 +39,7 @@ as listed below, a complete example is included at the end of this section.
        start: "gunicorn -b $PORT project.wsgi:application"
    ```
 
-   This assumes the WSGI file is `project/wsgi.py` and
-   the WSGI application object is named `application` in the WSGI file.
+   This assumes the WSGI file is `project/wsgi.py` and the WSGI application object is named `application` in the WSGI file.
 
 4. Define the web locations your application is using:
 
@@ -62,12 +55,9 @@ as listed below, a complete example is included at the end of this section.
          allow: true
    ```
 
-   This configuration asks our web server to handle HTTP requests at "/static"
-   to serve static files stored in `/app/static/` folder
-   while everything else is forwarded to your application server.
+   This configuration asks our web server to handle HTTP requests at "/static" to serve static files stored in `/app/static/` folder while everything else is forwarded to your application server.
 
-5. Create any Read/Write mounts. The root file system is read only.
-   You must explicitly describe writable mounts.
+5. Create any Read/Write mounts. The root file system is read only.  You must explicitly describe writable mounts.
 
    ```yaml
    mounts:
@@ -79,8 +69,7 @@ as listed below, a complete example is included at the end of this section.
            source_path: logs
    ```
 
-   This setting allows your application writing files to `/app/tmp` and
-   have logs stored in `/app/logs`.
+   This setting allows your application writing files to `/app/tmp` and have logs stored in `/app/logs`.
 
 Then, set up the routes to your application in `.platform/routes.yaml`.
 
@@ -127,8 +116,7 @@ disk: 512
 
 ## Using the asyncio module
 
-The above Gunicorn based WSGI example can be modified to
-use the Python 3.5+ asyncio module.
+The above Gunicorn based WSGI example can be modified to use the Python 3.5+ asyncio module.
 
 1. Change the `type` to `python:3.6`.
 2. Change the start command to use asyncio.
@@ -151,16 +139,14 @@ use the Python 3.5+ asyncio module.
 
 ## Connecting to services
 
-You can [define services](/configuration/services.md) in your environment.
-And, link to the services using `.platform.app.yaml`:
+You can [define services](/configuration/services.md) in your environment.  And, link to the services using `.platform.app.yaml`:
 
 ```yaml
 relationships:
     database: "mysqldb:mysql"
 ```
 
-By using the following Python function calls, you can obtain the
-database details.
+By using the following Python function calls, you can obtain the database details.
 
 ```python
 import base64

@@ -7,9 +7,7 @@ search:
 
 Platform.sh allows you to define the routes used in your environments.
 
-A route describes how an incoming HTTP request is going to be processed by
-Platform.sh. The routes are defined using `.platform/routes.yaml` file
-in your Git repository.
+A route describes how an incoming HTTP request is going to be processed by Platform.sh. The routes are defined using `.platform/routes.yaml` file in your Git repository.
 
 If you don't have one, use the commands below to create it:
 
@@ -22,23 +20,12 @@ $ touch .platform/routes.yaml
 
 ## Route templates
 
-The YAML file is composed of a list of routes and their configuration.
-A route can either be an absolute URL or a URL template that looks like:
-`http://www.{default}/` or `https://{default}/blog` where `{default}`
-will be substituted by the default fully qualified domain name configured
-in the project. So if your default domain is `example.com`, these
-routes will be resolved to `http://www.example.com/` and
-`https://example.com/blog` in the master environment.
+The YAML file is composed of a list of routes and their configuration. A route can either be an absolute URL or a URL template that looks like: `http://www.{default}/` or `https://{default}/blog` where `{default}` will be substituted by the default fully qualified domain name configured in the project. So if your default domain is `example.com`, these routes will be resolved to `http://www.example.com/` and `https://example.com/blog` in the master environment.
 
-Platform.sh will also generate a domain for every active development environment.
-It will receive a domain name based on the region, project ID, branch name, and
-a per-environment random string. The domain name itself is not guaranteed stable,
-although the pattern is consistent.
+Platform.sh will also generate a domain for every active development environment.  It will receive a domain name based on the region, project ID, branch name, and a per-environment random string. The domain name itself is not guaranteed stable, although the pattern is consistent.
 
 > **note**
-> Platform.sh supports running multiple applications per environment.
-> The `.platform/routes.yaml` file defines how to route requests to
-> different applications.
+> Platform.sh supports running multiple applications per environment. The `.platform/routes.yaml` file defines how to route requests to different applications.
 
 ## Route configuration
 
@@ -46,25 +33,17 @@ Each route can be configured separately. It has the following properties
 
 * `type` can be:
   * `upstream` serves an application
-    * It will then also have an `upstream` property which will be the name of
-      the application (as defined in `.platform.app.yaml`),
-      followed by ":http" (see examples below).
+    * It will then also have an `upstream` property which will be the name of the application (as defined in `.platform.app.yaml`), followed by ":http" (see examples below).
   * `redirect` redirects to another route
-    * It will then be followed by a `to` property, this defines a HTTP 301
-      redirect to any URL or another route (see examples below).
+    * It will then be followed by a `to` property, this defines a HTTP 301 redirect to any URL or another route (see examples below).
 * `cache` controls [caching behavior of the route](/configuration/routes/cache.html).
-* `ssi` controls whether Server Side Includes are enabled.
-  For more information: see [SSI](/configuration/routes/ssi.html).
-* `redirects` controls [redirect rules](/configuration/routes/redirects.html) associated with the
-  route.
+* `ssi` controls whether Server Side Includes are enabled. For more information: see [SSI](/configuration/routes/ssi.html).
+* `redirects` controls [redirect rules](/configuration/routes/redirects.html) associated with the route.
 
 ![Routes files](/images/config_diagrams/routes2.svg)
 
 > **note**
-> For the moment, the value of upstream is always in the form: `<application-name>:http`.
-> `<application-name>` is the `name` defined in `.platform.app.yaml` file.
-> `:php` is a deprecated application endpoint; use `:http` instead.
-> In the future, Platform.sh will support multiple endpoints per application.
+> For the moment, the value of upstream is always in the form: `<application-name>:http`.  `<application-name>` is the `name` defined in `.platform.app.yaml` file.  `:php` is a deprecated application endpoint; use `:http` instead.  In the future, Platform.sh will support multiple endpoints per application.
 
 ## Route limits
 
@@ -133,15 +112,11 @@ If your project involves only a single apex domain with one app or multiple apps
 
 ## Configuring routes on the Web Interface
 
-Routes can also be configured using the web interface in
-the [routes section](/administration/web/configure-environment.html#routes)
-of the environment settings. If you have edited the routes via the web interface,
-you will have to `git pull` the updated `.platform/routes.yaml` file from us.
+Routes can also be configured using the web interface in the [routes section](/administration/web/configure-environment.html#routes) of the environment settings. If you have edited the routes via the web interface, you will have to `git pull` the updated `.platform/routes.yaml` file from us.
 
 ## CLI Access
 
-You can get a list of the configured routes of an environment by running
-`platform environment:routes`.
+You can get a list of the configured routes of an environment by running `platform environment:routes`.
 
 ![Platform Routes CLI](/images/platform-routes-cli.png)
 
@@ -162,9 +137,7 @@ Be aware, however, that Let's Encrypt does not support wildcard certificates.  T
 
 ## WebSocket routes
 
-To use WebSocket on a route, `cache` must be disabled because WebSocket is
-incompatible with buffering, which is a requirement of caching on our router.
-Here is an example to define a route that serves WebSocket:
+To use WebSocket on a route, `cache` must be disabled because WebSocket is incompatible with buffering, which is a requirement of caching on our router.  Here is an example to define a route that serves WebSocket:
 
 ```yaml
 "https://{default}/ws":

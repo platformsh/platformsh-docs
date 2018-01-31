@@ -72,8 +72,7 @@ Conditional requests using `If-Modified-Since` and `If-None-Match` are both supp
 
 ### Cache revalidation
 
-When the cache is expired (indicated by `Last-Modified` header in the response) the web server will send a request to your
-application with `If-Modified-Since` header.
+When the cache is expired (indicated by `Last-Modified` header in the response) the web server will send a request to your application with `If-Modified-Since` header.
 
 If the `If-None-Match` header is sent in the conditional request when `Etag` header is set in the cached response, your application can extend the validity of the cache by replying `HTTP 304 Not Modified`.
 

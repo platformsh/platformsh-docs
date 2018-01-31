@@ -118,10 +118,7 @@ web:
 ```
 
 > **Note**
-> This configuration file is specific to one application. If you have multiple
-> applications inside your Git repository (such as a RESTful web service and a
-> front-end, or a main web site and a blog), you need `.platform.app.yaml`
-> at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
+> This configuration file is specific to one application. If you have multiple applications inside your Git repository (such as a RESTful web service and a front-end, or a main web site and a blog), you need `.platform.app.yaml` at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
 
 ## Upgrading from previous versions of the configuration file.
 

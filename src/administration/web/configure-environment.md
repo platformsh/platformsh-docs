@@ -1,19 +1,16 @@
 # Environment configuration
 
-You can access the configuration page of an environment by clicking the
-configure link under the environment name.
+You can access the configuration page of an environment by clicking the configure link under the environment name.
 
 ![image](/images/ui-conf-environment.png)
 
 ## Settings
 
-The `Settings` screen allows you to extend the behavior of a specific
-environment.
+The `Settings` screen allows you to extend the behavior of a specific environment.
 
 ![Configure Platform.sh environment settings](/images/ui-conf-environment-settings.png)
 
-The *Delete* action will destroy all services running on this environment (PHP, MySQL, volumes, etc.)
-so that only the Git branch remains. You can reactivate the environment later if needed.
+The *Delete* action will destroy all services running on this environment (PHP, MySQL, volumes, etc.) so that only the Git branch remains. You can reactivate the environment later if needed.
 
 To delete the branch as well, you need to execute the following:
 
@@ -26,14 +23,11 @@ git push origin :BRANCH-NAME
 
 ## Basic Autentication / Restrict access to IPs
 
-You should not expose your development environments to the whole wide world. Platform.sh allows you to simply
-implement access control, either by login/password (the equivalent to .htaccess) or by filtering IP addresses.
+You should not expose your development environments to the whole wide world. Platform.sh allows you to simply implement access control, either by login/password (the equivalent to .htaccess) or by filtering IP addresses.
 
 > Changes to access control will only become active on the environment's next deployment.
 
-These settings get inherited by branches below the one you are one. So if you create a `staging` environment, 
-and you create branches from this one, they will all inherit the same authentication information. So you only
-have to set-it up once.
+These settings get inherited by branches below the one you are one. So if you create a `staging` environment, and you create branches from this one, they will all inherit the same authentication information. So you only have to set-it up once.
 
 You can also setup authentication with the CLI using the following command `platform environment:http-access` which also allows you to read the current setup. This eases the integration of CI jobs with Platform.sh as you will not need to hardcode the values in the CI.
 
@@ -43,15 +37,13 @@ You can allow or deny access to specific IPs by switchin `ON` the access control
 
 ## Variables
 
-The `Variables` screen allows you to define the variables that will be
-available on a specific environment.
+The `Variables` screen allows you to define the variables that will be available on a specific environment.
 
 ![Configure Platform.sh environment variables](/images/ui-conf-environment-variables.png)
 
 ## Routes
 
-The `Routes` screen allows you to configure the routes of your
-environments.
+The `Routes` screen allows you to configure the routes of your environments.
 
 ![Configure Platform.sh environment routes](/images/ui-conf-environment-routes.png)
 
@@ -59,22 +51,17 @@ environments.
 
 The `Users` screen allows you to manage the users' access on your project.
 
-You can invite new users to a specific environment by clicking the
-`Add user` link and entering their email address, or modify permissions
-of existing users by clicking the `Edit` link when hovering the user.
+You can invite new users to a specific environment by clicking the `Add user` link and entering their email address, or modify permissions of existing users by clicking the `Edit` link when hovering the user.
 
 ![Manage users of your Platform.sh environments](/images/ui-conf-environment-users.png)
 
 > **note**
-> Currently, permission changes that grant or revoke SSH access to an
-> environment take effect only after the next time that environment is
-> deployed.
+>
+> Currently, permission changes that grant or revoke SSH access to an environment take effect only after the next time that environment is deployed.
 
-Selecting a user will allow you to either edit or remove access to that
-environment.
+Selecting a user will allow you to either edit or remove access to that environment.
 
-You can also manage access to users on multiple environments using the
-project configuration screen.
+You can also manage access to users on multiple environments using the project configuration screen.
 
 ## Robots.txt
 

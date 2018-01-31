@@ -257,17 +257,11 @@ runtime:
 
 ### Measuring PHP worker memory usage
 
-To see how much memory your PHP worker processes are using, you can open an
-[SSH session](/development/ssh.md) and look at the PHP access log:
+To see how much memory your PHP worker processes are using, you can open an [SSH session](/development/ssh.md) and look at the PHP access log:
 
     less /var/log/php.access.log
 
-In the fifth column, you'll see the peak memory usage that occurred while each
-request was handled. The peak usage will probably vary between requests, but in
-order to avoid the severe performance costs that come from swapping, your size
-hint should be somewhere between the average and worst case memory usages that
-you observe.
-
+In the fifth column, you'll see the peak memory usage that occurred while each request was handled. The peak usage will probably vary between requests, but in order to avoid the severe performance costs that come from swapping, your size hint should be somewhere between the average and worst case memory usages that you observe.
 
 ## Custom php.ini
 

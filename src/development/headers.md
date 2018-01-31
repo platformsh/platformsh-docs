@@ -18,5 +18,5 @@ Platform.sh adds a number of response headers automatically to assist in debuggi
 
 * `X-Platform-Cache`: Either `HIT` or `MISS` to indicate if the router in your cluster served the response from its own cache or if the request was passed through to the application.
 * `X-Platform-Cluster`: The ID of the cluster that received the request.  The cluster name is formed from the project ID and environment ID.
-* `X-Platform-Processor`: The ID of the container that generated the response.  The container ID is the cluster ID  plus the container name.
+* `X-Platform-Processor`: The ID of the container that generated the response.  The container ID is the cluster ID plus the container name.
 * `X-Platform-Router`: The ID of the router that served the request.  The router ID is the processor ID of the router container, specifically.

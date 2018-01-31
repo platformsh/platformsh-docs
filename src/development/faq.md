@@ -24,12 +24,7 @@ Yes! Branching an environment creates an exact copy (snapshot) of the parent env
 
 ## Do you have a local writable file-system?
 
-Yes! Unlike other PaaS providers Platform.sh supports non-ephemeral
-storage. When you configure your application you can tell us what directories
-you want to be read/write (these are called mounts). These will be mounted
-on a distributed file system (which is transparent for you). When you back-up
-your environment they will be backed up as well. When you create a new staging
-environment... these will be cloned with the rest of your data.
+Yes! Unlike other PaaS providers Platform.sh supports non-ephemeral storage. When you configure your application you can tell us what directories you want to be read/write (these are called mounts). These will be mounted on a distributed file system (which is transparent for you). When you back-up your environment they will be backed up as well. When you create a new staging environment... these will be cloned with the rest of your data.
 
 ## What happens if I push a local branch to my project?
 
@@ -64,7 +59,8 @@ Platform.sh is built on Debian.
 ## If I choose the Development plan, can I use that plan for production?
 
 The Development plan provides all the tools to build your website. You can create as many development profiles as you wish for yourself and for your team.
-Once your project is built and ready for production, you can choose another plan to go live. These plans are listed on the [pricing page](<https://platform.sh/pricing/).
+
+Once your project is built and ready for production, you can choose another plan to go live. These plans are listed on the [pricing page](https://platform.sh/pricing/).
 
 ## Can I please use tabs in my YAML files?
 
@@ -76,32 +72,22 @@ Please validate the syntax of your YAML file. Don't use tabs. And if all fails, 
 
 ## Which geographic zones does Platform.sh cover?
 
-Platform leverages the powerful AWS Infrastructure.
-We can deploy your site in a  [datacenter](https://aws.amazon.com/about-aws/globalinfrastructure/regional-product-services/) that is very close to your target audience.
+Platform leverages the powerful AWS Infrastructure.  We can deploy your site in a [datacenter](https://aws.amazon.com/about-aws/globalinfrastructure/regional-product-services/) that is very close to your target audience.
 
 ## Why did you choose the .sh extension for your domain?
 
 'sh' is the short version of shell.
-According to Wikipedia™, in computing, a [shell](http://en.wikipedia.org/wiki/Shell_(computing)) is a user interface  for access
-to an operating system's services. Generally, operating system shells use either a [command-line interface ](http://en.wikipedia.org/wiki/Command-line_interface) (CLI) or
-[graphical user interface](http://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).
-This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy,
-and run great websites!
 
-".sh" is also the TLD for Saint Helena that looks like a lovely island, and whose motto is:
-"Loyal and Unshakeable" which we also strive to be.
+According to Wikipedia™, in computing, a [shell](http://en.wikipedia.org/wiki/Shell_(computing)) is a user interface for access to an operating system's services. Generally, operating system shells use either a [command-line interface ](http://en.wikipedia.org/wiki/Command-line_interface) (CLI) or [graphical user interface](http://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).  This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy, and run great websites!
+
+".sh" is also the TLD for Saint Helena that looks like a lovely island, and whose motto is: "Loyal and Unshakeable" which we also strive to be.
 
 
 ## IDE Specific Tips
 
 MAMP pro:
 
-In order for MAMP to work well with the symlinks created by the
-[Platform.sh CLI](https://github.com/platformsh/platformsh-cli), add the
-following to the section under Hosts \> Advanced called “Customized
-virtual host general settings.” For more details visit [MAMP Pro
-documentation
-page](http://documentation.mamp.info/en/documentation/mamp/).
+In order for MAMP to work well with the symlinks created by the [Platform.sh CLI](https://github.com/platformsh/platformsh-cli), add the following to the section under Hosts \> Advanced called “Customized virtual host general settings.” For more details visit [MAMP Pro documentation page](http://documentation.mamp.info/en/documentation/mamp/).
 
 ```bash
 <Directory>
@@ -110,17 +96,12 @@ page](http://documentation.mamp.info/en/documentation/mamp/).
 </Directory>
 ```
 
-> [Laravel Forum
-> Archives](http://forumsarchive.laravel.io/viewtopic.php?pid=11232#p11232)
+> [Laravel Forum Archives](http://forumsarchive.laravel.io/viewtopic.php?pid=11232#p11232)
 
 > **note**
 
-> When you specify your document root, MAMP will follow the symlink and
-> substitute the actual build folder path. This means that when you
-> rebuild your project locally, you will need to repoint the docroot to
-> the symlink again so it will refresh the build path.
+> When you specify your document root, MAMP will follow the symlink and substitute the actual build folder path. This means that when you rebuild your project locally, you will need to repoint the docroot to the symlink again so it will refresh the build path.
 
 ## Do you support two-factor authentication? 
 
-Yes we do, and it is easy to enable.
-To do so please go to your **Account Settings** on our [Account site][https://accounts.platform.sh/]. Then click on the left tab called **Security** which will propose you to enable **TFA Application**. 
+Yes we do, and it is easy to enable.  To do so please go to your **Account Settings** on our [Account site][https://accounts.platform.sh/]. Then click on the left tab called **Security** which will propose you to enable **TFA Application**. 
