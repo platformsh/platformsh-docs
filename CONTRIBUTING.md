@@ -41,6 +41,8 @@ The goal of Platform.sh's documentation is to help tech-savvy users self-educate
 * "We" should, if used, always refer to Platform.sh the company.  However, avoid its use where feasible.
 * The reader is assumed to be a developer, and should be addressed as "you".  E.g., "Once you add this file to your repository...".
 * Avoid the use of gender-specific pronouns (he/she, his/her).  The "singular they" (they/their) should be used when it is necessary to refer to a person in the 3rd person.
+* When referring to a file path in a YAML code example, do not include a leading `/` prefix unless it truly is based on the absolute root of the file tree.  In most cases it is relative to some other location so the `/` should not be used.
+* When referring to a URL path in a YAML code example, assume it is relative to the domain root and therefore should include a leading `/`.
 
 ## Process
 
