@@ -87,7 +87,8 @@ Framework  | Credit | Date added
 ## Integrations
 
 * [Integrate GitLab with Platform.sh using Gitlab-CI](https://github.com/axelerant/pushtoplatformsh), by [@Axelerant](https://github.com/axelerant)
-* Platform.sh's original (unsupported) scripts for **GitLab** https://gist.github.com/pjcdawkins/0b3f7a6da963c129030961f0947746c4 
+* [Running Behat tests from CircleCI to a Platform.sh environment](https://glamanate.com/blog/running-behat-tests-circleci-platformsh-environment), by [Matt Glaman](https://github.com/mglaman)
+* Platform.sh's original (unsupported) scripts for **GitLab** https://gist.github.com/pjcdawkins/0b3f7a6da963c129030961f0947746c4. Platform.sh now supports Gitlab natively. 
 * **Scrutinizer CI** https://scrutinizer-ci.com/docs/guides/deploying/platform_sh
 * An adapter from platform.sh webhook to **slack** incoming webhook that can be hosted on a platform.sh app https://github.com/hanoii/platformsh2slack
 * How to [call the NewRelic API on deploy](https://github.com/platformsh/platformsh-docs/pull/536#issuecomment-295578188) (by @christopher-hopper)
