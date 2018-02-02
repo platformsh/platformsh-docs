@@ -4,9 +4,8 @@ Cron jobs allow you to run scheduled tasks at specified times or intervals. The 
 
 It has a few subkeys listed below:
 
--   **spec**: The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). For example: `*/20 * * * *` to run every 20 minutes.
--   **cmd**: The command that is executed, for example
-    `cd public ; drush core-cron`
+* **spec**: The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). For example: `*/20 * * * *` to run every 20 minutes.
+* **cmd**: The command that is executed, for example `cd public ; drush core-cron`
 
 The minimum interval between cron runs is 5 minutes, even if specified as less.  Additionally, a variable delay is added to each cron job in each project in order to prevent host overloading should every project try to run their nightly tasks at the same time.  Your crons will *not* run exactly at the time that you specify, but will be delayed by 0-300 seconds.
 

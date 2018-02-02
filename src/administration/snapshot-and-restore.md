@@ -7,8 +7,8 @@ Snapshots are triggered directly via the Web Interface or via the CLI. The snaps
 You need to have the "admin" role in order to create a snapshot of an environment.
 
 > **note**
-> We advise you to make snapshots of your live environment before merging an environment
-> to the live environment, or each time you increase the storage space of your services.
+>
+> We advise you to make snapshots of your live environment before merging an environment to the live environment, or each time you increase the storage space of your services.
 
 Using the CLI:
 
@@ -20,8 +20,7 @@ Please be aware that triggering a snapshot will cause a momentary pause in site 
 
 ## Restore
 
-You will see the snapshot in the activity feed of you environment in the Platform.sh
-Web Interface. You can trigger the restore by clicking on the `restore` link.
+You will see the snapshot in the activity feed of you environment in the Platform.sh Web Interface. You can trigger the restore by clicking on the `restore` link.
 
 From the CLI, you can list existing snapshots with the CLI as follows:
 

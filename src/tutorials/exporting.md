@@ -14,10 +14,10 @@ The only files to download are from any writeable file mounts you may have defin
 
 ```yaml
 mounts:
-    '/web/uploads':
+    'web/uploads':
         source: local
         source_path: uploads
-    '/private':
+    'private':
         source: local
         source_path: private
 ```

@@ -2,8 +2,7 @@
 
 [Platform.sh](https://platform.sh) helps a coder with the development workflow by making it easy to manage multiple environments, including the Master environment which runs the production website. It's precisely like a "development" or a "staging" server.. except they are created on the fly, and they are absolutely identical copies of their parent environments.
 
-An environment is tied to a Git branch, plus all the services that are serving that branch. You can see that as a **complete working website**. With Bitbucket and GitHub integrations you can even get a "development server"
-for each and every pull request.
+An environment is tied to a Git branch, plus all the services that are serving that branch. You can see that as a **complete working website**. With Bitbucket and GitHub integrations you can even get a "development server" for each and every pull request.
 
 You can have branches that are not tied to a running instance of your application; these are what we call "inactive environments".
 
@@ -45,14 +44,10 @@ Since you can organize your environments as you want, you have complete flexibil
 
 There are no rules you must follow when branching the master environment. You simply need a structure that best fits your workflow:
 
--   **Agile**: a child environment per sprint. Each story in the sprint
-    can have its own environment as a child of the sprint environment.
--   **Developer-centric**: one QA environment and a few development
-    environments (*per developer, per task...*).
--   **Testing**: an operational test environment, a user test
-    environment and a few unit test environments.
--   **Hotfix**: one environment for every bug, security, or hotfix that
-    needs deployment.
+* **Agile**: a child environment per sprint. Each story in the sprint can have its own environment as a child of the sprint environment.
+* **Developer-centric**: one QA environment and a few development environments (*per developer, per task...*).
+* **Testing**: an operational test environment, a user test environment and a few unit test environments.
+* **Hotfix**: one environment for every bug, security, or hotfix that needs deployment.
 
 Here is an example of a possible Agile workflow.
 
@@ -92,7 +87,7 @@ The name should represent the purpose of the environment. Is it a Staging site t
 
 If you use Agile, for example, you could create hierarchical environments and name them like this:
 
-```
+```text
 Sprint1
   Feature1
    Feature2
@@ -105,7 +100,7 @@ Sprint2
 
 If you prefer splitting your environments per developer and having a specific environment per task or per ticket, you could use something like this:
 
-```
+```text
 Staging
   Developer1
     Ticket-526

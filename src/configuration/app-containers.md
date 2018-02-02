@@ -95,7 +95,7 @@ disk: 2048
 # The keys are directory paths relative to the application root. The values are a
 # mount definition. In this case, `web-files` is just a unique name for the mount.
 mounts:
-    '/web/files':
+    'web/files':
         source: local
         source_path: 'web-files'
 
@@ -118,10 +118,7 @@ web:
 ```
 
 > **Note**
-> This configuration file is specific to one application. If you have multiple
-> applications inside your Git repository (such as a RESTful web service and a
-> front-end, or a main web site and a blog), you need `.platform.app.yaml`
-> at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
+> This configuration file is specific to one application. If you have multiple applications inside your Git repository (such as a RESTful web service and a front-end, or a main web site and a blog), you need `.platform.app.yaml` at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
 
 ## Upgrading from previous versions of the configuration file.
 

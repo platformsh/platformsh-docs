@@ -52,15 +52,15 @@ The following example sets up two file mounts.  One is mounted at `/private` wit
 disk: 1024
 
 mounts:
-    private:
+    'private':
         source: local
         source_path: private
-    '/web/uploads':
+    'web/uploads':
         source: local
         source_path: uploads
 ```
 
-Then in the `web.locations` block, you'd specify that the `/web/uploads` path is accessible.  For example, this fragment would specify the `/web` path as the docroot but provide a more locked-down access to the `/web/uploads` path.
+Then in the `web.locations` block, you'd specify that the `web/uploads` path is accessible.  For example, this fragment would specify the `/web` path as the docroot but provide a more locked-down access to the `/web/uploads` path.
 
 ```yaml
 web:
@@ -87,10 +87,10 @@ While not recommended it is possible to setup multiple mount points whose source
 
 ```yaml
 mounts:
-    private:
+    'private':
         source: local
         source_path: stuff
-    secret:
+    'secret':
         source: local
         source_path:  stuff/secret
 ```

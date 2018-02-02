@@ -1,25 +1,24 @@
 # Bitbucket
 
-The [Bitbucket add-on](https://platform.sh/bitbucket/) allows you to manage your
-Platform.sh environments directly from your Bitbucket repository.
+The [Bitbucket add-on](https://platform.sh/bitbucket/) allows you to manage your Platform.sh environments directly from your Bitbucket repository.
 
 Supported:
 
--   Create a new environment when creating a branch or opening a
-    pull request on Bitbucket.
--   Rebuild the environment when pushing new code to Bitbucket.
--   Delete the environment when merging a pull request.
+* Create a new environment when creating a branch or opening a pull request on Bitbucket.
+* Rebuild the environment when pushing new code to Bitbucket.
+* Delete the environment when merging a pull request.
 
 ## Install the add-on
 
 On your Bitbucket account, click on your avatar, select ``Manage Account``, and simply install the Platform.sh add-on by selecting ``Find new add-ons`` from the left menu. The Platform.sh add-on is under the *Deployment* category.
 
 > **note**
+>
 > We recommend you install the add-on at the *team*   level (select ``Manage Team`` instead) so that every repository that belongs to the team can use the add-on.
 
 > **note**
-> If you have created your account using the bitbucket oAuth Login in order to use the Platform CLI you will need to setup a
-> password which you can do by visiting this page [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password)
+>
+> If you have created your account using the bitbucket oAuth Login in order to use the Platform CLI you will need to setup a password which you can do by visiting this page [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password)
 
 ## Get started
 

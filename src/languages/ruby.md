@@ -1,8 +1,6 @@
 # Ruby
 
-Platform.sh supports deploying any Ruby application. Your application can use
-any Ruby application server such as Unicorn or Puma and deploying a Rails or
-a Sinatra app is very straight forward.
+Platform.sh supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
 
 ## Supported versions
 
@@ -14,10 +12,9 @@ a Sinatra app is very straight forward.
 
 ## Unicorn based Rails configuration
 
-In this example, we use Unicorn to run our Ruby application. You could use any 
-Ruby application server such as Puma or Thin.
-Configure the `.platform.app.yaml` file with a few key settings
-as listed below, a complete example is included at the end of this section.
+In this example, we use Unicorn to run our Ruby application. You could use any Ruby application server such as Puma or Thin.
+
+Configure the `.platform.app.yaml` file with a few key settings as listed below, a complete example is included at the end of this section.
 
 1. Specify the language of your application (available versions are listed above):
 
@@ -28,8 +25,7 @@ as listed below, a complete example is included at the end of this section.
 
 2. Build your application with the build hook.
 
-Assuming you have your  dependencies stored in the `Gemfile` at the root of your 
-application folder to execute build steps:
+Assuming you have your  dependencies stored in the `Gemfile` at the root of your application folder to execute build steps:
 
 ```yaml
 hooks:
@@ -37,12 +33,9 @@ hooks:
   deploy: RACK_ENV=production bundle exec rake db:migrate
 ```
 
-These are installed as your project dependencies in your environment. 
-You can also use the `dependecies` key to install global dependecies
-theses can be Ruby, Python, NodeJS or PHP libraries.
+These are installed as your project dependencies in your environment. You can also use the `dependecies` key to install global dependecies theses can be Ruby, Python, NodeJS or PHP libraries.
 
-3. Configure the command you use to start serving your application (this must
-   be a foreground-running process) under the `web` section, e.g.:
+3. Configure the command you use to start serving your application (this must be a foreground-running process) under the `web` section, e.g.:
 
 ```yaml
 web:
@@ -61,8 +54,7 @@ group :production do
 end
 ```
 
-and that you have a rackup file `config.ru` at the root of your
-repository, for example for a rails application you would put:
+and that you have a rackup file `config.ru` at the root of your repository, for example for a rails application you would put:
 
 ```ruby
 require "rubygems"
@@ -82,12 +74,9 @@ web:
            allow: true
 ```
 
-This configuration asks our web server to handle HTTP requests at "/static"
-to serve static files stored in `/app/static/` folder
-while everything else are forwarded to your application server.
+This configuration asks our web server to handle HTTP requests at "/static" to serve static files stored in `/app/static/` folder while everything else are forwarded to your application server.
 
-5. Create any Read/Write mounts. The root file system is read only.
-   You must explicitly describe writable mounts.
+5. Create any Read/Write mounts. The root file system is read only. You must explicitly describe writable mounts.
 
 ```yaml
 mounts:
@@ -99,13 +88,9 @@ mounts:
         source_path: logs
 ```
 
-This setting allows your application writing files to `/app/tmp` and
-have logs stored in `/app/logs`.
+This setting allows your application writing files to `/app/tmp` and have logs stored in `/app/logs`.
 
-You can define other read/writre mounts (your application code itself
-being deployed to a read-only file system). Note that the file system
-is persistent, and when you backup your cluster these mounts get backed-up
-too.
+You can define other read/writre mounts (your application code itself being deployed to a read-only file system). Note that the file system is persistent, and when you backup your cluster these mounts get backed-up too.
 
 6. Then, setup the routes to your application in `.platform/routes.yaml`.
 
@@ -154,8 +139,7 @@ mounts:
 ```
 
 ## Configuring services
-7. In this example we assue in the `relationships` key that we have a mysql instance. To configure
-    it we need to create a `.platform/services.yaml` with for eample:
+7. In this example we assue in the `relationships` key that we have a mysql instance. To configure it we need to create a `.platform/services.yaml` with for eample:
 
 ```yaml
 database:
@@ -165,16 +149,14 @@ database:
 
 ## Connecting to services
 
-You can [define services](/configuration/services.md) in your environment.
-And, link to the services using `.platform.app.yaml`:
+You can [define services](/configuration/services.md) in your environment. And, link to the services using `.platform.app.yaml`:
 
 ```yaml
 relationships:
     database: "mysqldb:mysql"
 ```
 
-By using the following ruby function calls, you can obtain the
-database details.
+By using the following ruby function calls, you can obtain the database details.
 
 ```ruby
 require "base64"

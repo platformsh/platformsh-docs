@@ -59,8 +59,9 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
 }
 ```
 
-**note**
-When you create an index on Elasticsearch, you should not specify `number_of_shards` and `number_of_replicas` settings in your Elasticsearch API call. These values will be set automatically based on available resources.
+> **note**
+>
+> When you create an index on Elasticsearch, you should not specify `number_of_shards` and `number_of_replicas` settings in your Elasticsearch API call. These values will be set automatically based on available resources.
 
 
 ## Plugins

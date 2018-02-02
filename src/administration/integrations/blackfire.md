@@ -1,7 +1,6 @@
 # Blackfire
 
-Platform.sh supports [Blackfire Profiler](https://blackfire.io/)
-developed by [SensioLabs](https://sensiolabs.com/).
+Platform.sh supports [Blackfire Profiler](https://blackfire.io/) developed by [SensioLabs](https://sensiolabs.com/).
 
 ## Version
 
@@ -13,24 +12,25 @@ developed by [SensioLabs](https://sensiolabs.com/).
 
 ### 1. Get your credentials
 
-**Sign up for the free 15 days trial** at [blackfire.io](https://blackfire.io/signup) and
-install the **Blackfire Companion** web browser extension
-([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld)).
+**Sign up for the free 15 days trial** at [blackfire.io](https://blackfire.io/signup) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld)).
 
 > **note**
+>
 > Blackfire also offers a perpetually-free edition but it is for local development only and will not run on Platform.sh.
 
 Go to your Dashboard and create a new environment.
+
 ![Blackfire environments](/images/blackfire-environments.png)
 
 Get your server credentials.
+
 ![Blackfire credentials](/images/blackfire-credentials.png)
 
 ### 2. Enable the Blackfire extension
 
 Paste the credentials above in your `.platform.app.yaml` as follows:
 
-```bash
+```yaml
 runtime:
     extensions:
         - name: 'blackfire'
@@ -65,10 +65,8 @@ Num of CPU => 8
 
 ## Profile
 
-Access your site via your browser and click `Profile` in the Blackfire
-Companion.
+Access your site via your browser and click `Profile` in the Blackfire Companion.
 
 ![Blackfire Companion](/images/blackfire-companion.png)
 
-That's it! Your site will be profiled and you should get all the
-results in your Blackfire account.
+That's it! Your site will be profiled and you should get all the results in your Blackfire account.

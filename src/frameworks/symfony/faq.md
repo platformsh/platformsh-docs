@@ -16,10 +16,10 @@ sessions in that folder.
 
 Simply edit your `.platform.app.yaml` and add a mounts there:
 
-```bash
+```yaml
 mounts:
 ...
-    "/app/sessions":
+    "app/sessions":
         source: local
         source_path: sessions
 ...

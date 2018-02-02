@@ -233,9 +233,7 @@ extensions not listed here.
 
 ### Could not find driver
 
-If you see this error: ``Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'``,
-this means you are missing the ``pdo_pgsql`` PHP extension. You simply need to enable it in your ``.platform.app.yaml``
-(see above).
+If you see this error: ``Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'``, this means you are missing the ``pdo_pgsql`` PHP extension. You simply need to enable it in your ``.platform.app.yaml`` (see above).
 
 ## Upgrading
 

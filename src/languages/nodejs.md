@@ -1,9 +1,6 @@
 # Node.js
 
-Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine.
-Platform.sh supports deploying Node.js applications quickly and easily. Using
-our Multi-App support you can build a micro-service oriented system mixing both
-Javascript and PHP applications.
+Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine.  Platform.sh supports deploying Node.js applications quickly and easily. Using our Multi-App support you can build a micro-service oriented system mixing both Javascript and PHP applications.
 
 ## Supported versions
 
@@ -21,14 +18,11 @@ The following versions are available but are not receiving security updates from
 * 6.10
 * 8.2
 
-See https://github.com/platformsh/platformsh-example-nodejs/tree/mongodb for a
-full example with MongoDB support.
+See https://github.com/platformsh/platformsh-example-nodejs/tree/mongodb for a full example with MongoDB support.
 
 ## Configuration
 
-To use Platform.sh and Node.js together, configure the ``.platform.app.yaml``
-file with a few key settings, as described here (a complete example is included
-at the end).
+To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` file with a few key settings, as described here (a complete example is included at the end).
 
 1. Specify the language of your application (available versions are listed above):
 
@@ -45,12 +39,9 @@ at the end).
        pm2: "^2.5.0"
    ```
 
-   These are the global dependencies of your project (the ones you would have
-   installed with `npm install -g`). Here we specify the `pm2` process manager
-   that will allow us to run the node process.
+   These are the global dependencies of your project (the ones you would have installed with `npm install -g`). Here we specify the `pm2` process manager that will allow us to run the node process.
 
-3. Configure the command you use to start serving your application (this must
-   be a foreground-running process) under the `web` section, e.g.:
+3. Configure the command you use to start serving your application (this must be a foreground-running process) under the `web` section, e.g.:
 
    ```yaml
    web:
@@ -58,10 +49,7 @@ at the end).
        start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
    ```
 
-   If there is a package.json file present at the root of your repository,
-   Platform.sh will automatically install the dependencies. We suggest including
-   the `platformsh` helper npm module, which makes it trivial to access the
-   running environement.
+   If there is a package.json file present at the root of your repository, Platform.sh will automatically install the dependencies. We suggest including the `platformsh` helper npm module, which makes it trivial to access the running environement.
 
    ```javascript
    "dependencies": {
@@ -69,9 +57,7 @@ at the end).
    }
    ```
 
-4. Create any Read/Write mounts. The root file system is read only.
-   You must explicitly describe writable mounts. In (3) we set the
-   home of the process manager to `/app/run` so this needs to be writable.
+4. Create any Read/Write mounts. The root file system is read only. You must explicitly describe writable mounts. In (3) we set the home of the process manager to `/app/run` so this needs to be writable.
 
    ```yaml
    mounts:
@@ -80,8 +66,7 @@ at the end).
            source_path: run
    ```
 
-5. Include any relevant commands needed to build and setup your application in
-   the `hooks` section, e.g.:
+5. Include any relevant commands needed to build and setup your application in the `hooks` section, e.g.:
 
    ```yaml
    hooks:
@@ -130,10 +115,8 @@ disk: 512
 ```
 
 ## In your application...
-Finally, make sure your Node.js application is configured to listen over the
-port given by the environment (here we use the platformsh helper and get it
-from config.port) that is available in the environment variable ``PORT``.
-Here's an example:
+
+Finally, make sure your Node.js application is configured to listen over the port given by the environment (here we use the platformsh helper and get it from config.port) that is available in the environment variable ``PORT``.  Here's an example:
 
 ```javascript
 // Load the http module to create an http server.
