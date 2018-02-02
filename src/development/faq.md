@@ -102,6 +102,6 @@ In order for MAMP to work well with the symlinks created by the [Platform.sh CLI
 
 > When you specify your document root, MAMP will follow the symlink and substitute the actual build folder path. This means that when you rebuild your project locally, you will need to repoint the docroot to the symlink again so it will refresh the build path.
 
-## Do you support two-factor authentication? 
+## Do you support two-factor authentication?
 
-Yes we do, and it is easy to enable.  To do so please go to your **Account Settings** on our [Account site][https://accounts.platform.sh/]. Then click on the left tab called **Security** which will propose you to enable **TFA Application**. 
+Yes we do, and it is easy to enable.  To do so please go to your **Account Settings** on our [Account site](https://accounts.platform.sh/). Then click on the left tab called **Security** which will propose you to enable **TFA Application**.
