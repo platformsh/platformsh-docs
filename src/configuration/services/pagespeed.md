@@ -1,10 +1,8 @@
-# PageSpeed Module
+# PageSpeed Service (beta)
 
-PageSpeed is a family of 4 tools developped by Google Inc to optimize of websites performance.
+The PageSpeed service speeds up your site and reduces page load time by automatically applying web performance best practices to pages and associated assets (CSS, JavaScript, images) without requiring you to modify your existing content or workflow. It is based on the Open Source PageSpeed project by Google. See the [PageSpeed docs](https://developers.google.com/speed/).
 
-Pagespeed module, also known as mod_pagespeed, is an open source HTTP module for Apache or Nginx, which runs several optimizations on the resources of your website, on the server side.
-
-See the [PageSpeed docs](https://developers.google.com/speed/) for more information.
+This service is very much fire-and-forget and does not currently allow for any configuration. It is also currently experimental. So your mileage may vary.
 
 ## Supported versions
 
@@ -24,9 +22,9 @@ pagespeed:
         app: "myapp:http"
 ```
 
-The pagespeed proxy exposes an endpoint app and this endpoint uses the upstream relationship named app.
+This is basically a proxy service that sits between our router (the web server) and your application. It exposes an end-point (here confusingly named `app`) and has a relationship to the application also called app.
 
-In your .platform/routes.yaml, use pagespeed:http-app instead of app:http:
+Usually in your  `.platform/routes.yaml` you would have an `upstream` composed of the name of the application (the one you put in `.platform.app.yaml` and the protocol (currently always `http`). To use the PageSpeed service we make the router use it as its upstream rather than directly the app. In this example `pagespeed:http-app` (the `app` part being the name of the application) instead of `app:http`. 
 
 ```yaml
 https://{default}/":
@@ -35,7 +33,3 @@ https://{default}/":
     cache:
         enabled: false
 ```
-
-## Configuration
-
-We recommend to use the default configuration of the PageSpeed module which should work with any application. More intense optimizations (for example: automatically resizing images depending on the context, re-prioritizing CSS rules, etc.) are not supported yet.
