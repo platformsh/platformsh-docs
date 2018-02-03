@@ -56,7 +56,7 @@
 
 * [PHP](languages/php.md)
 * [Node.js](languages/nodejs.md)
-  * [Changing the Node.js version](languages/nodejs-nvm.md)
+  * [Changing the Node.js version](languages/nodejs/nvm.md)
 * [Python](languages/python.md)
 * [Ruby](languages/ruby.md)
 * [Go (beta)](languages/go.md)
