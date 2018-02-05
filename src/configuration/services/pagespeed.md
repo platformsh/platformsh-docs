@@ -1,10 +1,8 @@
-# PageSpeed Module
+# PageSpeed Service (beta)
 
-Pagespeed module, also known as mod_pagespeed, is an open source HTTP module for Apache or Nginx, which runs several optimizations on the resources of your website, on the server side.
+The PageSpeed service speeds up your site and reduces page load time by automatically applying web performance best practices to pages and associated assets (CSS, JavaScript, images) without requiring you to modify your existing content or workflow. It is based on the Open Source PageSpeed project by Google. See the [PageSpeed docs](https://developers.google.com/speed/).
 
-Because Pagespeed module is a proxy service, it will take place in between the router and your application. See below in the routes.yaml example how to set up this additional layer.
-
-See the [PageSpeed docs](https://developers.google.com/speed/) for more information.
+This service is very much fire-and-forget and does not currently allow for any configuration. It is also currently experimental. So your mileage may vary.
 
 ## Supported versions
 
@@ -14,30 +12,26 @@ See the [PageSpeed docs](https://developers.google.com/speed/) for more informat
 
 To describe the relationship between Pagespeed and your application, you need to set up an endpoint and a relationship to your application. Both will carry the same name, `<relationship to app>` in the services.yaml example.
 
-Example of a `.platform/services.yaml`:
+Example of a `.platform/services.yaml`, where you need to fill `<relationship to your app>` and `<name of your app>` with your own:
 
 ```yaml
 pagespeed:
     type: pagespeed:1.12
     configuration:
         endpoints:
-            <relationship to app>: {}
+            <relationship to your app>: {}
     relationships:
-        <relationship to app>: "<name of the app>:http" # the name if the app is the same one as in .platform.app.yaml
+        <relationship to your app>: "<name of your app>:http"
 ```
 
-The place of the Pagespeed service, between the router and the application, is described in the routes.yaml, using the same name `<relationship to app>`, in the expression "pagespeed:http-<relationship to app>".
+This is basically a proxy service that sits between our router (the web server) and your application. It exposes an end-point (here confusingly named `app`) and has a relationship to the application also called app.
 
-Example of a `.platform/routes.yaml`:
+Usually in your  `.platform/routes.yaml` you would have an `upstream` composed of the name of the application (the one you put in `.platform.app.yaml` and the protocol (currently always `http`). To use the PageSpeed service we make the router use it as its upstream rather than directly the app. In this example: `pagespeed:http-<relationship to your app>` instead of `app:http`. 
 
 ```yaml
 https://{default}/":
     type: upstream
-    upstream: "pagespeed:http-<relationship to app>"
+    upstream: "pagespeed:http-<relationship to your app>"
     cache:
         enabled: false
 ```
-
-## Configuration
-
-We recommend using the default configuration of the PageSpeed module which should work with any application. More intense optimizations (for example: automatically resizing images depending on the context, re-prioritizing CSS rules, etc.) are not supported yet.
