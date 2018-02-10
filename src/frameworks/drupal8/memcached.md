@@ -17,7 +17,7 @@ That will create a service named `cacheservice`, of type `memcached`, specifical
 
 ### Expose the Memcached service to your application
 
-In your `.platform.app.yaml` file, we now need to open a connection to the new Redis service.  Under the `relationships` section, add the following:
+In your `.platform.app.yaml` file, we now need to open a connection to the new Memcached service.  Under the `relationships` section, add the following:
 
 ```yaml
 relationships:
