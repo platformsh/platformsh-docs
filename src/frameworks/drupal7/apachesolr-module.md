@@ -3,7 +3,7 @@
 This page is about configuring Solr with the module [Apache Solr Search](https://www.drupal.org/project/apachesolr). If your project uses [Search API](https://www.drupal.org/project/search_api) then you should follow the instructions [Search API](search-api-module.md).
 
 ## Requirements
-You will need either the module  [Apache Solr Search](https://www.drupal.org/project/apachesolr)
+You will need the module  [Apache Solr Search](https://www.drupal.org/project/apachesolr)
 
 If you are using a make file, you can add those lines to your
 `project.make`:
