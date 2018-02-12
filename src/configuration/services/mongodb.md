@@ -108,3 +108,12 @@ The port may vary in your case.  Then, simply connect to that port locally using
 ```bash
 mongodump --port 30000
 ```
+
+Depending on the actual mongodb setup it can be required to pass additional parameters:
+
+```bash
+mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
+```
+
+For further references please see the [official mongodump documentation](https://docs.mongodb.com/manual/reference/program/mongodump/#bin.mongodump).
+
