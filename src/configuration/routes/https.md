@@ -147,7 +147,7 @@ crons:
         spec: '0 10 3 * *'
         cmd: |
             if [ "$PLATFORM_BRANCH" = master ]; then
-                platform variable:set _redeploy "$(date)" --no-wait
+                platform variable:set _redeploy "$(date)" --yes --no-wait
             fi
 ```
 
@@ -155,6 +155,6 @@ The above cron task will run on the 3rd of the month at 10 am (UTC), and, if the
 
 > **warning**
 >
-> It is very important to include the `--no-wait` flag.  If you do not, the cron process will block waiting on the deployment to finish, but the deployment will be blocked by the running cron task.  That will take your site offline until you login and manually terminate the running cron task.  You want the `--no-wait` flag.  We're not joking.
+> It is very important to include the `--no-wait` flag.  If you do not, the cron process will block waiting on the deployment to finish, but the deployment will be blocked by the running cron task.  That will take your site offline until you log in and manually terminate the running cron task.  You want the `--no-wait` flag.  We're not joking.
 
 The certificate will not renew unless it has less than one month remaining, so forcing a deploy more than once a month is pointless.  As the redeploy does cause a momentary pause in service we recommend running during non-peak hours for your site.
