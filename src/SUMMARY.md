@@ -118,7 +118,6 @@
   * [Apache Solr Search](frameworks/drupal7/apachesolr-module.md)
   * [Search API](frameworks/drupal7/search-api-module.md)
   * [SimpleSAML](frameworks/drupal7/simplesaml.md)
-  * [Backup & Migrate](frameworks/drupal7/backup-migrate.md)
   * [FAQ](frameworks/drupal7/faq.md)
 * [Drupal 8](frameworks/drupal8.md)
   * [Developing with Drupal](frameworks/drupal8/developing-with-drupal.md)
