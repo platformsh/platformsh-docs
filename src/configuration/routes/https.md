@@ -143,7 +143,7 @@ Once the CLI is installed and an API token configured you can add a cron task to
 ```yaml
 crons:
     renewcert:
-        # Force a redeploy on the 3rd of every month
+        # Force a redeploy at 10 am (UTC) on the 3rd of every month.
         spec: '0 10 3 * *'
         cmd: |
             if [ "$PLATFORM_BRANCH" = master ]; then
