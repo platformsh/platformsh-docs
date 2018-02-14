@@ -1,6 +1,6 @@
 # Going Live - Steps
 
-Going live on platform.sh is a simple two or three step process.
+Going live on Platform.sh is a simple two or three step process.
 
 <!--toc-->
 
@@ -69,8 +69,32 @@ These ALIAS/CNAME/ANAME records resolves on request the IP address of the destin
  
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.  If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
  
-Although as a stop-gap measure configuring an  A Record to one of the public IPs of the region you are hosted in would work. It is highly unrecommended. The IP address of the server may change from time to time, especially with frequent redeployments as in Platform.sh's case which will break your site.
+Although as a stop-gap measure configuring an `A` Record to one of the public IPs of the region you are hosted in would work, it is highly unrecommended. The IP address of the server may change from time to time, especially with frequent redeployments as in Platform.sh's case which will break your site.
 
-## 4. Bonus step: Configure health notifications
+## 4. Bonus steps (Optional)
 
-While not required, it's strongly recommended that you setup [health notifications](/administration/integrations/notifications.md) to advise you if your site is experiencing issues such as running low on disk space.  Notifications can be sent via email, Slack, or Pager Duty.
+### Configure health notifications
+
+While not required, it's strongly recommended that you set up [health notifications](/administration/integrations/notifications.md) to advise you if your site is experiencing issues such as running low on disk space.  Notifications can be sent via email, Slack, or PagerDuty.
+
+### Configure production cron tasks
+
+It's strongly recommend that you [set up automatic snapshots](/administration/snapshot-and-restore.md#automated-snapshots) and [automatic certificate renewal](/configuration/routes/https.md#automatic-certificate-renewal) cron tasks.  You will first need to set up an [API token](/gettingstarted/cli/api-tokens.md) and install the CLI as part of the build hook.  Then you can easily configure the appropriate cron tasks.  The following snippet is generally sufficient but see the the links above for more details, and please modify the cron schedules listed to match your use case.
+
+```yaml
+crons:
+    snapshot:
+        # Take a snapshot automatically every night at 3 am (UTC).
+        spec: '0 3 * * *'
+        cmd: |
+            if [ "$PLATFORM_BRANCH" = master ]; then
+                platform snapshot:create --yes --no-wait
+            fi
+    renewcert:
+        # Force a redeploy at 9 am (UTC) on the 14th of every month.
+        spec: '0 9 14 * *'
+        cmd: |
+            if [ "$PLATFORM_BRANCH" = master ]; then
+                platform variable:set _redeploy "$(date)" --yes --no-wait
+            fi
+```

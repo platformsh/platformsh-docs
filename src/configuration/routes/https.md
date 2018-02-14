@@ -10,6 +10,8 @@ All environments on Platform.sh support both HTTP and HTTPS automatically.  Prod
 > platform variable:set -W redeploy "$(date)"
 > ```
 > This command sets a [variable](/development/variables.html) for the current branch with the key `_redeploy`. The value is the current date and time. You can inspect this variable to know when the last the re-deployment was triggered.
+>
+> Alternatively, see the [section below](#automatic-certificate-renewal) on automatically redeploying the site in order to renew the certificate.
 
 Platform.sh recommends using HTTPS requests for all sites exclusively.  Doing so provides better security, access to certain features that web browsers only permit over HTTPS, and access to HTTP/2 connections on all sites which can greatly improve performance.
 
@@ -129,3 +131,30 @@ tls:
             ### Several lines of different random characters here ###
             -----END CERTIFICATE-----
 ```
+
+## Automatic certificate renewal
+
+It is possible to set a variable from a cron task, which in turn will cause the site to redeploy.  If the Let's Encrypt certificate is due to expire in less than one month it will automatically renew at that time.  That makes it feasible to set up auto-renewal of the Let's Encrypt certificate.  The caveat is that, like any deploy, there is a very brief downtime (a few seconds, usually) so it's best to do during off-hours.
+
+You will first need to install the CLI in your application container.  See the section on [API tokens](/gettingstarted/cli/api-tokens.md) for instructions on how to do so.
+
+Once the CLI is installed and an API token configured you can add a cron task to run once a month and set a placeholder variable.  For example:
+
+```yaml
+crons:
+    renewcert:
+        # Force a redeploy at 10 am (UTC) on the 3rd of every month.
+        spec: '0 10 3 * *'
+        cmd: |
+            if [ "$PLATFORM_BRANCH" = master ]; then
+                platform variable:set _redeploy "$(date)" --yes --no-wait
+            fi
+```
+
+The above cron task will run on the 3rd of the month at 10 am (UTC), and, if the current environment is the master branch, it will run `platform variable:set` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the snapshot to complete.  We recommend adjusting the cron schedule to whenever is off-peak time for your site, and to a random day within the month.
+
+> **warning**
+>
+> It is very important to include the `--no-wait` flag.  If you do not, the cron process will block waiting on the deployment to finish, but the deployment will be blocked by the running cron task.  That will take your site offline until you log in and manually terminate the running cron task.  You want the `--no-wait` flag.  We're not joking.
+
+The certificate will not renew unless it has less than one month remaining, so forcing a deploy more than once a month is pointless.  As the redeploy does cause a momentary pause in service we recommend running during non-peak hours for your site.
