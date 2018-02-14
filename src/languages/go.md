@@ -15,7 +15,7 @@ type: 'golang:1.8'
 
 ## GOPATH
 
-Platform.sh recommends a modified version of the [CloudFlare Hellogpher](https://github.com/cloudflare/hellogopher) Makefile to manage compilation with the GOPATH.  When run on Platform.sh in the build step, the [Makefile](https://github.com/platformsh/platformsh-example-golang/blob/master/Makefile) will download any dependencies not already present in the `vendor` directory, set a fake GOPATH, and build the application.
+Platform.sh recommends a modified version of the [CloudFlare Hellogopher](https://github.com/cloudflare/hellogopher) Makefile to manage compilation with the GOPATH.  When run on Platform.sh in the build step, the [Makefile](https://github.com/platformsh/platformsh-example-golang/blob/master/Makefile) will download any dependencies not already present in the `vendor` directory, set a fake GOPATH, and build the application.
 
 
 ## Platform.sh variables
