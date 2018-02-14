@@ -111,7 +111,7 @@ Then, simply connect to that port locally using `mongodump` (or your favorite Mo
 mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
 ```
 
-(If necessary, vary the `-u`, '-p`, `--authenticationDatabase` and `--db` flags.)
+(If necessary, vary the `-u`, `-p`, `--authenticationDatabase` and `--db` flags.)
 
 As with any other shell command it can be piped to another command to compress the output or redirect it to a specific file.
 
