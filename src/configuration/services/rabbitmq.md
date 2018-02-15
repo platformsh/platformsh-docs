@@ -55,11 +55,15 @@ if (!$relationships) {
 
 $relationships = json_decode(base64_decode($relationships), TRUE);
 
+// This will work only if there's a single endpoint defined,
+// which is usually the case..
 foreach ($relationships['mq'] as $endpoint) {
-  $container->setParameter('rabbitmq_host', $endpoint['host']);
-  $container->setParameter('rabbitmq_port', $endpoint['port']);
+  $mySettings['rabbitmq_host'] = $endpoint['host'];
+  $mySettings['rabbitmq_port'] = $endpoint['port'];
 }
 ```
+
+(The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)
 
 # Connecting to RabbitMQ
 
