@@ -103,8 +103,16 @@ SSH tunnel opened on port 30000 to relationship: mongodb
 SSH tunnel opened on port 30001 to relationship: redis
 ```
 
-The port may vary in your case.  Then, simply connect to that port locally using `mongodump` (or your favorite MongoDB tools) to export all data in that server:
+The port may vary in your case.  You will also need to obtain the user, password, and database name from the relationships array, as above.
+
+Then, simply connect to that port locally using `mongodump` (or your favorite MongoDB tools) to export all data in that server:
 
 ```bash
-mongodump --port 30000
+mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
 ```
+
+(If necessary, vary the `-u`, `-p`, `--authenticationDatabase` and `--db` flags.)
+
+As with any other shell command it can be piped to another command to compress the output or redirect it to a specific file.
+
+For further references please see the [official mongodump documentation](https://docs.mongodb.com/manual/reference/program/mongodump/#bin.mongodump).
