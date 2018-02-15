@@ -51,16 +51,18 @@ You can then use the service in a configuration file of your application with so
 
 ```php
 <?php
-$relationships = getenv("PLATFORM_RELATIONSHIPS");
-if (!$relationships) {
-  return;
-}
+// This assumes a fictional application with an array named $settings.
+if (getenv('PLATFORM_RELATIONSHIPS')) {
+	$relationships = json_decode(base64_decode($relationships), TRUE);
 
-$relationships = json_decode(base64_decode($relationships), TRUE);
-
-foreach ($relationships['solr'] as $endpoint) {
-  $container->setParameter('solr_host', $endpoint['host']);
-  $container->setParameter('solr_port', $endpoint['port']);
+	// For a relationship named 'solr' referring to one endpoint.
+	if (!empty($relationships['solr'])) {
+		foreach ($relationships['solr'] as $endpoint) {
+			$settings['solr_host'] = $endpoint['host'];
+			$settings['solr_port'] = $endpoint['port'];
+			break;
+		}
+	}
 }
 ```
 

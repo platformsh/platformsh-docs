@@ -48,18 +48,22 @@ You can then use the service in a configuration file of your application with so
 
 ```php
 <?php
-$relationships = getenv("PLATFORM_RELATIONSHIPS");
-if (!$relationships) {
-  return;
-}
+// This assumes a fictional application with an array named $settings.
+if (getenv('PLATFORM_RELATIONSHIPS')) {
+	$relationships = json_decode(base64_decode($relationships), TRUE);
 
-$relationships = json_decode(base64_decode($relationships), TRUE);
-
-foreach ($relationships['mq'] as $endpoint) {
-  $container->setParameter('rabbitmq_host', $endpoint['host']);
-  $container->setParameter('rabbitmq_port', $endpoint['port']);
+	// For a relationship named 'mq' referring to one endpoint.
+	if (!empty($relationships['mq'])) {
+		foreach ($relationships['mq'] as $endpoint) {
+			$settings['rabbitmq_host'] = $endpoint['host'];
+			$settings['rabbitmq_port'] = $endpoint['port'];
+			break;
+		}
+	}
 }
 ```
+
+(The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)
 
 # Connecting to RabbitMQ
 

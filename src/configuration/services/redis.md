@@ -84,13 +84,18 @@ You can then use the service in a configuration file of your application with so
 
 ```php
 <?php
+// This assumes a fictional application with an array named $settings.
 if (getenv('PLATFORM_RELATIONSHIPS')) {
-    $relationships = json_decode(base64_decode(getenv('PLATFORM_RELATIONSHIPS')), true);
+	$relationships = json_decode(base64_decode($relationships), TRUE);
 
-    if (!empty($relationships['applicationcache'][0])) {
-        $container->setParameter('redis_host', $relationships['applicationcache'][0]['host']);
-        $container->setParameter('redis_port', $relationships['applicationcache'][0]['port']);
-    }
+	// For a relationship named 'applicationcache' referring to one endpoint.
+	if (!empty($relationships['applicationcache'])) {
+		foreach ($relationships['applicationcache'] as $endpoint) {
+			$settings['redis_host'] = $endpoint['host'];
+			$settings['redis_port'] = $endpoint['port'];
+			break;
+		}
+	}
 }
 ```
 
