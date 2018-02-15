@@ -53,21 +53,20 @@ You can then use the service in a configuration file of your application with so
 
 {% codetabs name="PHP", type="php" -%}
 <?php
-$relationships = getenv('PLATFORM_RELATIONSHIPS');
-if (!$relationships) {
-  return;
-}
+// This assumes a fictional application with an array named $settings.
+if (getenv('PLATFORM_RELATIONSHIPS')) {
+	$relationships = json_decode(base64_decode($relationships), TRUE);
 
-$relationships = json_decode(base64_decode($relationships), TRUE);
-
-foreach ($relationships['database'] as $endpoint) {
-  if (empty($endpoint['query']['is_master'])) {
-    continue;
-  }
-  $container->setParameter('mongodb_server', $endpoint['scheme'] . '://' . $endpoint['ip'] . ':' . $endpoint['port']);
-  $container->setParameter('database_name', $endpoint['path']);
-  $container->setParameter('database_user', $endpoint['username']);
-  $container->setParameter('database_password', $endpoint['password']);
+	// For a relationship named 'database' referring to one endpoint.
+	if (!empty($relationships['database'])) {
+		foreach ($relationships['database'] as $endpoint) {
+			$settings['mongodb_server'] = sprintf('%s://%s:%s', $endpoint['scheme'], $endpoint['host'], $endpoint['port']);
+			$settings['database_name'] = $endpoint['path'];
+			$settings['database_user'] = $endpoint['user'];
+			$settings['database_password'] = $endpoint['password'];
+			break;
+		}
+	}
 }
 {%- language name="JavaScript", type="js" -%}
 var config= require("platformsh").config();

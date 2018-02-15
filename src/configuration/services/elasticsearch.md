@@ -49,13 +49,18 @@ You can then use the service in a configuration file of your application with so
 
 ```php
 <?php
-if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
-  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
+// This assumes a fictional application with an array named $settings.
+if (getenv('PLATFORM_RELATIONSHIPS')) {
+	$relationships = json_decode(base64_decode($relationships), TRUE);
 
-  foreach ($relationships['elasticsearch'] as $endpoint) {
-    $container->setParameter('elasticsearch_host', $endpoint['host']);
-    $container->setParameter('elasticsearch_port', $endpoint['port']);
-  }
+	// For a relationship named 'elasticsearch' referring to one endpoint.
+	if (!empty($relationships['elasticsearch'])) {
+		foreach ($relationships['elasticsearch'] as $endpoint) {
+			$settings['elasticsearch_host'] = $endpoint['host'];
+			$settings['elasticsearch_port'] = $endpoint['port'];
+			break;
+		}
+	}
 }
 ```
 
