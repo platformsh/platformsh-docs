@@ -63,16 +63,15 @@ Selecting a user will allow you to either edit or remove access to that environm
 
 You can also manage access to users on multiple environments using the project configuration screen.
 
-## Robots.txt
+## X-Robots-Tag
 
-By default, Platform.sh serves the following default and restrictive `robots.txt` on all non-production environments:
+By default, Platform.sh includes an additional `X-Robots-Tag` header on all non-production environments:
 
 ```
-User-agent: *
-Disallow: /
+X-Robots-Tag: noindex, nofollow
 ```
 
-That tells search engines to ignore sites on non-production environments entirely, even if they are publicly visible.  To disable that feature for a non-production environment, use the [Platform.sh CLI](/gettingstarted/cli.md) command below:
+That tells search engines to not index sites on non-production environments entirely nor traverse links from those sites, even if they are publicly visible.  That keeps non-production sites out of search engine indexes that would dilute the SEO of the production site.  To disable that feature for a non-production environment, use the [Platform.sh CLI](/gettingstarted/cli.md) command below:
 
 ```
 platform environment:info restrict_robots false
