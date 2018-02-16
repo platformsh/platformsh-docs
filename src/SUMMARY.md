@@ -115,6 +115,7 @@
   * [Customizing settings.php](frameworks/drupal7/customizing-settings-php.md)
   * [Drush](frameworks/drupal7/drush.md)
   * [Redis](frameworks/drupal7/redis.md)
+  * [Memcached](frameworks/drupal7/memcached.md)
   * [Apache Solr Search](frameworks/drupal7/apachesolr-module.md)
   * [Search API](frameworks/drupal7/search-api-module.md)
   * [SimpleSAML](frameworks/drupal7/simplesaml.md)
