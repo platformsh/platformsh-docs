@@ -46,6 +46,8 @@ After authenticating, you'll notice that the client just hangs there because by 
 
 Now, execute, still in your SSH session `echo $PLATFORM_APP_COMMAND`. This will give you the default start command used in your application. Take note of this. It should be something like `/usr/sbin/php-fpm7.2-zts` for PHP 7.2 for example.
 
+## Deploying the final solution
+
 Return to you editor and open `.platform.app.yaml` again. Add this startup command to `web.commands.start`, modified to run in the background.
 
 Edit your `web` section to look like this -
