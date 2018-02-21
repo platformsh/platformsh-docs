@@ -48,9 +48,7 @@ Now, execute, still in your SSH session `echo $PLATFORM_APP_COMMAND`. This will 
 
 ## Deploying the final solution
 
-Return to you editor and open `.platform.app.yaml` again. Add this startup command to `web.commands.start`, modified to run in the background.
-
-Edit your `web` section to look like this -
+Return to you editor and open `.platform.app.yaml` again. Add the startup command to `web.commands.start`, modified to run in the background. After you edit your `web` section it should look like this -
 
 ```yaml
 web:
@@ -61,7 +59,9 @@ web:
   locations:
     # rest of config...
 ```
-The first command will run the Dropbox daemon in the background, the second will run the PHP process in the foreground (you must never ever run a command in `start` in the background or it will enter an infinite loop. You should notice we add `HOME=/app/dropbox-dir` before running the Dropbox daemon. This is because by default Dropbox wants to use `~/.dropbox` for its meta-data directory and mounts in Platform.sh may not be hidden.
+The first command will run the Dropbox daemon in the background, the second will run the PHP process in the foreground (you must never ever run a command in `start` in the background or it will enter an infinite loop). 
+
+> **notice** You should notice we add `HOME=/app/dropbox-dir` before running the Dropbox daemon. This is because by default Dropbox wants to use `~/.dropbox` for its meta-data directory and mounts in Platform.sh may not be hidden.
 
 Commit this to your project and push it to Platform.sh.  This will download a fresh copy of the Dropbox daemon and run the startup command every time you deploy from now on.
 
