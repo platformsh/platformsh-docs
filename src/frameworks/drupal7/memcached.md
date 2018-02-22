@@ -68,7 +68,7 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
   $relationship_name = 'cache';
 
   if (!empty($relationships[$relationship_name])) {
-    // These lines tells Drupal to use memcached as a backend.
+    // These lines tell Drupal to use memcached as a backend.
     // Comment out just these lines if you need to disable it for some reason and
     // fall back to the default database cache.
     $conf['cache_backends'][] = 'sites/all/modules/contrib/memcache/memcache.inc';
