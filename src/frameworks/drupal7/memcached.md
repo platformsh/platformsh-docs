@@ -65,9 +65,9 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
   $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), true);
 
   // If you named your memcached relationship something other than "cache", set that here.
-  $realtionship_name = 'cache';
+  $relationship_name = 'cache';
 
-  if (!empty($relationships[$realtionship_name])) {
+  if (!empty($relationships[$relationship_name])) {
     // These lines tells Drupal to use memcached as a backend.
     // Comment out just these lines if you need to disable it for some reason and
     // fall back to the default database cache.
@@ -76,9 +76,9 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
     $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 
     // While we're at it, use Memcache for locking, too.
-    $conf['lock_inc'] = 'sites/all/modules/contrib//memcache/memcache-lock.inc';
+    $conf['lock_inc'] = 'sites/all/modules/contrib/memcache/memcache-lock.inc';
 
-    foreach ($relationships[$realtionship_name] as $endpoint) {
+    foreach ($relationships[$relationship_name] as $endpoint) {
       $host = sprintf("%s:%d", $endpoint['host'], $endpoint['port']);
       $conf['memcache_servers'][$host] = 'default';
     }
