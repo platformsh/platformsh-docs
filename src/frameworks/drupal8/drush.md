@@ -1,4 +1,4 @@
-# Work with Drush in Drupal 8
+# Working with Drush in Drupal 8
 
 Drush is a command-line shell and scripting interface for Drupal, a
 veritable Swiss Army knife designed to make life easier for those who
