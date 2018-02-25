@@ -1,4 +1,4 @@
-# Work with Drush
+# Work with Drush in Drupal 8
 
 Drush is a command-line shell and scripting interface for Drupal, a
 veritable Swiss Army knife designed to make life easier for those who
@@ -20,23 +20,11 @@ Repository](https://github.com/drush-ops/drush#description)
 >
 > Platform's CLI requires **Drush 6 or greater**.
 
-## Install Drush locally
+## Installing Drush
 
-Install drush with Composer:
+## Install Drush on Platform.sh-provided Drupal examples
 
-```bash
-$ composer global require drush/drush
-```
-
-At the end of the installation, you should be able to run:
-
-```bash
-$ drush
-```
-
-And see a list of available commands.
-
-> -   [Drush repository on Github](https://github.com/drush-ops/drush)
+Platform.sh's Drupal templates have Drush installed automatically via Composer and should not require you to add it.
 
 ## Install Drush in custom projects
 
@@ -61,6 +49,24 @@ Add a new file named `.environment` to the root of your your project's git repos
 # Allow executable app dependencies from Composer to be run from the path.
 export PATH=/app/vendor/bin:$PATH
 ```
+
+## Install Drush locally
+
+Install drush with Composer:
+
+```bash
+$ composer global require drush/drush
+```
+
+At the end of the installation, you should be able to run:
+
+```bash
+$ drush
+```
+
+And see a list of available commands.
+
+> -   [Drush repository on Github](https://github.com/drush-ops/drush)
 
 ## Use drush aliases
 
