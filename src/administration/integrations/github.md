@@ -47,7 +47,7 @@ Note that if your repository belongs to an organization, use ``--repository=ORGA
 
 ### 3. Add the webhook
 
-Copy the Payload URL that is returned by the previous command.
+If you don't see the CLI outputs `Webhook created successfully`, you need to add the webhook manually. Copy the Payload URL that is returned by the previous command and continue the below. 
 
 Go to your GitHub repository and click `Settings`. Select the *Webhooks and Services* tab and click `Add webhook`. Paste the Payload URL, choose  "application/json" for the content type, choose "Send me everything"  for the events you want to receive and click `Add webhook`.
 
