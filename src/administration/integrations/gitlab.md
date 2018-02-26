@@ -49,7 +49,7 @@ The previous command, if succesful should output the configuration of the integr
 | hook_url | https://{region}.platform.sh/api/projects/{projectid}/integrations/{hook_id}/hook |
 ```
 
-Now, copy the hook URL.
+If you don't see the CLI outputs `Webhook created successfully`, you need to add the webhook manually. Copy the hook URL and continue the below.
 
 Go to your GitLab repository and click `Settings > Integrations` and paste the Payload URL, in the Triggers section choose 
 `Push events`, `Tag push events` and `Merge Request events`. And click on `Add webhook`.
