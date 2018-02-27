@@ -14,15 +14,11 @@ Drush is a command-line shell and scripting interface for Drupal, a veritable Sw
 
 ## Installing Drush on Platform.sh
 
-### Installation methods
-
-**1. Install Drush on Platform.sh-provided Drupal examples**
+### Install Drush in Platform.sh-provided Drupal examples
 
 Platform.sh's Drupal templates have Drush installed automatically via Composer and should not require you to add it.
 
-**2. Install Drush in custom projects**
-
-**2a. Using Composer**
+### Install Drush in custom projects using _Composer_
 
 Run this command in the project's repository root folder:
 ```bash
@@ -32,7 +28,7 @@ Then, commit and push.
 
 Drush will then be available at `vendor/bin/drush`, in the exact same version on your local system and on Platform.sh.
 
-**2b Using Build Dependencies**
+### Install Drush in custom projects using _Build Dependencies_
 
 Platform.sh supports installing some as system-level tools as [build dependencies](/configuration/app/build.html#build-dependencies).
 
@@ -43,7 +39,7 @@ dependencies:
     php:
         "drush/drush": "^8.0"
 ```
-### Accessing Drush within the project
+## Accessing Drush within the project
 
 For Drush to be available on the command line, **it must be added to the project's $PATH**.
 
