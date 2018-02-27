@@ -6,12 +6,12 @@ Platform.sh allows a high degree of control over both the build process and the 
 
 There are four different types of variable: 
 
+* application-provided variables
 * user-provided project variables
 * user-provided environment variables
-* application-provided variables
 * Platform.sh-provided environment variables
 
-All of those may be simple strings or base64-encoded JSON-serialized values.  In case of name collisions, Platform.sh-provided values override user-provided environment variables, which override project-level variables, which override application-provided variables.
+All of those may be simple strings or base64-encoded JSON-serialized values.  In case of name collisions, Platform.sh-provided values override user-provided environment variables, which override project-level variables, which override application-provided variables.  (That is, lower items in the list above take precedence.)
 
 ### Project variables
 
