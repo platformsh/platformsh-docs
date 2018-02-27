@@ -22,7 +22,7 @@ The cron log contains the output of all recent cron executions.  If there is no 
 
 ## `deploy.log`
 
-The deploy log contains the output of the most recent run of the deploy hook for the container.  If there is no deploy hook then this file will be absent.
+The deploy log contains the output of the most recent run of the `deploy` hook for the container.  If there is no `deploy` hook then this file will be absent.
 
 ## `nginx/error.log`
 
@@ -35,3 +35,7 @@ nginx-level errors that occur once nginx has fully started will be recorded here
 ## `php.access.log`
 
 On a PHP container, the php.access.log contains a record of all requests to the PHP service.
+
+## `post_deploy.log`
+
+The post_deploy log contains the output of the most recent run of the `post_deploy` hook for the container.  If there is no `post_deploy` hook then this file will be absent.

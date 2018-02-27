@@ -55,11 +55,7 @@ Note that the package name format for each language is defined by the package ma
 
 ## Hooks
 
-Platform.sh supports two "hooks", or points in the deployment of a new version of an application that you can inject a custom script into.  Specifically, there is one hook for `build` and one for `deploy`.  Both hooks are optional.
-
-The `build` hook is run after the build flavor (if any).  The file system is fully writeable, but no services are available (such as a database) nor any persistent file mounts, as the application has not yet been deployed.
-
-The `deploy` hook is run after the application container has been started.  You can access other services at this stage (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.  Note that the deploy hook will only run on a [`web`](/configuration/app/web.md) instance, not on a [`worker`](/configuration/app/worker.md) instance.
+Platform.sh supports three "hooks", or points in the deployment of a new version of an application that you can inject a custom script into.  Each runs at a different stage of the process.
 
 Each hook is executed as a single script, so they will be considered failed only if the final command in them fails. To cause them to fail on the first failed command, add `set -e` to the beginning of the hook.  If a build hook fails for any reason then the build is aborted and the deploy will not happen.
 
@@ -72,10 +68,26 @@ hooks:
         cd web
         cp some_file.php some_other_file.php
     deploy: |
+        update_schema.sh
+    post_deploy: |
+        set -e
+        import_new_content.sh
         clear_cache.sh
 ```
 
 The `|` character tells YAML that the lines that follow should be interpreted literally as a newline-containing string rather than as multiple lines of YAML properties.
+
+Hooks are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved scripts.
+
+### Build hook
+
+The `build` hook is run after the build flavor (if any).  The file system is fully writeable, but no services are available (such as a database) nor any persistent file mounts, as the application has not yet been deployed.
+
+### Deploy hook
+
+The `deploy` hook is run after the application container has been started, but before it has started accepting requests.  You can access other services at this stage (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.  Note that the deploy hook will only run on a [`web`](/configuration/app/web.md) instance, not on a [`worker`](/configuration/app/worker.md) instance.
+
+Be aware: The deploy hook blocks the site accepting new requests.  If your deploy hook is only a few seconds then incoming requests in that time are paused and will continue when the hook completes, effectively appearing as the site just took a few extra seconds to respond.  If it takes too long, however, requests cannot be held and will appear as dropped connections.  Only run tasks in your deploy hook that have to be run exclusively, such as database schema updates.  A post-deploy task that can safely run concurrently with new incoming requests should be run as a `post_deploy` hook instead.
 
 After a Git push, you can see the results of the `deploy` hook in the `/var/log/deploy.log` file when logged in to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
 
@@ -89,7 +101,13 @@ Performed update: my_custom_profile_update_7001
 Finished performing updates.
 ```
 
-Hooks are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved scripts.
+### Post-Deploy hook
+
+The `post_deploy` hook functions exactly the same as the `deploy` hook, but after the container is accepting connections.  That is, it will run concurrently with normal incoming traffic.  That makes it well suited to any updates that do not require exclusive database access.
+
+What is "safe" to run in a `post_deploy` hook vs. in a `deploy` hook will vary by the application.  Often times cache clears, content imports, and other such tasks are good candidates for a `post_deploy` hook.
+
+The `post_deploy` hook logs to its own file, `/var/log/post_deploy.log`.
 
 ## How do I compile Sass files as part of a build?
 
@@ -115,7 +133,7 @@ hooks:
 
 ## How can I run certain commands only on certain environments?
 
-The `deploy` hook has access to all of the same [environment variables](/development/variables.md) as the application does normally, which makes it possible to vary the deploy hook based on the environment.  A common example is to enable certain modules only in non-production environments.  Because the hook is simply a shell script we have full access to all shell scripting capabilities, such as `if/then` directives.
+The `deploy` and `post_deploy` hooks have access to all of the same [environment variables](/development/variables.md) as the application does normally, which makes it possible to vary those hooks based on the environment.  A common example is to enable certain modules only in non-production environments.  Because the hook is simply a shell script we have full access to all shell scripting capabilities, such as `if/then` directives.
 
 The following Drupal example checks the `$PLATFORM_BRANCH` variable to see if we're in a production environment (the `master` branch) or not.  If so, it forces the `devel` module to be disabled.  If not, it forces the `devel` module to be enabled, and also uses the `drush` Drupal command line tool to strip user-specific information from the database.
 
