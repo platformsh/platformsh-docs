@@ -31,7 +31,7 @@ mounts:
     Dropbox:
         source: local
         source_path: dropbox
-    '.dropbox':
+    '/.dropbox':
         source: local
         source_path: 'dropbox-meta'
 ```
@@ -61,7 +61,7 @@ web:
   commands:
     start: |
       ~/.dropbox-dist/dropboxd >/dev/null 2>&1 &
-      /usr/sbin/php-fpm7.0 # we do this by default for PHP7,
+      /usr/sbin/php-fpm7.2-zts # we do this by default for PHP7,
       # but you're overwriting the default web.commands.start so
       # you'll need to add it in manually.  Adjust according to your 
       # language and version.
