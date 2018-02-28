@@ -146,7 +146,7 @@ crons:
         spec: '0 10 3 * *'
         cmd: |
             if [ "$PLATFORM_BRANCH" = master ]; then
-                platform redploy --yes --no-wait
+                platform redeploy --yes --no-wait
             fi
 ```
 
