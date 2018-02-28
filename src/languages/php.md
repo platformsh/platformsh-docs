@@ -4,10 +4,6 @@
 
 PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
 
-Platform.sh also supports HHVM, an alternative PHP engine developed by Facebook that includes several extensions to the PHP language, collectively called "Hack".
-
-Both are interchangeable from a configuration perspective, although code that uses Hack will only run on HHVM.
-
 ## Supported versions
 
 ### PHP
@@ -19,18 +15,11 @@ Both are interchangeable from a configuration perspective, although code that us
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
-### HHVM
-
-* 3.9
-* 3.12
-* 3.15
-* 3.18
-
-To select a PHP version, specify a `type` such as `php:7.1` or `hhvm:3.9`:
+To select a PHP version, specify a `type` such as `php:7.2`:
 
 ```yaml
 # .platform.app.yaml
-type: "php:7.1"
+type: "php:7.2"
 ```
 
 ## Deprecated versions
