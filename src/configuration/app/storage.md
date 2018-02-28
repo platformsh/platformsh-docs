@@ -34,6 +34,8 @@ mounts:
 
 The `source` specifies where the writeable mount is.  `source_path` specifies the subdirectory from within the source that the mount should point at.  It is often easiest to have it match the name of the mount point itself but that is not required.
 
+> **note** mount names may not be hidden paths (directories that start with the `.` character). These will be silently ignored. i.e. you can not name a mount `.hidden` or `.dropbox`.
+
 ### `local` mounts
 
 At this time `local` is the only legal source but more will be added in the future.  The `local` source indicates that the mount point will point to a local directory on the application container.  The `source_path` is then a subpath of that.  That means they may overlap.
