@@ -114,6 +114,7 @@ This is the complete list of extensions that can be enabled:
 | imap         | *   | *   | *   | *   | *   | *   |
 | interbase    | *   | *   | *   | *   | *   | *   |
 | intl         | *   | *   | *   | *   | *   | *   |
+| ioncube      |     |     |     | *   | *   |     |
 | json         |     |     | *   | *   | *   | *   |
 | ldap         | *   | *   | *   | *   | *   | *   |
 | mailparse    |     |     |     | *   | *   | *   |
@@ -128,7 +129,6 @@ This is the complete list of extensions that can be enabled:
 | mysqli       | *   | *   | *   | *   | *   | *   |
 | mysqlnd      | *   | *   | *   |     |     |     |
 | newrelic     |     |     | *   | *   | *   | *   |
-| ioncube      |     |     |     | *   | *   |     |
 | oauth        |     |     |     | *   | *   |     |
 | odbc         | *   | *   | *   | *   | *   | *   |
 | opcache      |     | *   | *   | *   | *   | *   |
