@@ -23,7 +23,7 @@ git push origin :BRANCH-NAME
 
 ## Basic Autentication / Restrict access to IPs
 
-You should not expose your development environments to the whole wide world. Platform.sh allows you to simply implement access control, either by login/password (the equivalent to .htaccess) or by filtering IP addresses / [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+You should not expose your development environments to the whole wide world. Platform.sh allows you to simply implement access control, either by login/password (the equivalent to .htaccess) or by filtering IP addresses or a network using the [CIDR format](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 
 > Changes to access control will only become active on the environment's next deployment.
 
@@ -31,7 +31,7 @@ These settings get inherited by branches below the one you are one. So if you cr
 
 You can also setup authentication with the CLI using the following command `platform environment:http-access` which also allows you to read the current setup. This eases the integration of CI jobs with Platform.sh as you will not need to hardcode the values in the CI.
 
-You can allow or deny access to specific IPs / CIDRs by switchin `ON` the access control button and then adding IPs followed by `allow` or `deny` mention as you want.
+You can allow or deny access to specific IPs / networks by switchin `ON` the access control button and then adding IPs followed by `allow` or `deny` mention as you want.
 
 ![Allowing or denying specific ips to project settings](/images/ui-conf-project-access-ip-settings.png)
 
