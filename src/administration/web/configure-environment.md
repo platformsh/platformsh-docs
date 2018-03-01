@@ -31,7 +31,7 @@ These settings get inherited by branches below the one you are one. So if you cr
 
 You can also setup authentication with the CLI using the following command `platform environment:http-access` which also allows you to read the current setup. This eases the integration of CI jobs with Platform.sh as you will not need to hardcode the values in the CI.
 
-You can allow or deny access to specific IPs / networks by switchin `ON` the access control button and then adding IPs followed by `allow` or `deny` mention as you want.
+You can allow or deny access to specific IPs / networks by switching `ON` the access control button and then adding IPs followed by `allow` or `deny` mention as you want.
 
 ![Allowing or denying specific ips to project settings](/images/ui-conf-project-access-ip-settings.png)
 
