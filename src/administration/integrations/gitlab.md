@@ -43,16 +43,18 @@ Optional parameters:
 
 ### 3. Add the webhook
 
-The previous command, if succesful should output the configuration of the integration. The last element would look like:
+The previous command, if successful should output the configuration of the integration. The last element would look like:
 
 ```
 | hook_url | https://{region}.platform.sh/api/projects/{projectid}/integrations/{hook_id}/hook |
 ```
 
-If you don't see the CLI outputs `Webhook created successfully`, you need to add the webhook manually. Copy the hook URL and continue the below.
+The CLI will create the necessary webhook using the above URL for you when there's correct permission set in the given token. If you see the message `Failed to read or write webhooks`, you will need to add a webhook manually:
 
-Go to your GitLab repository and click `Settings > Integrations` and paste the Payload URL, in the Triggers section choose 
-`Push events`, `Tag push events` and `Merge Request events`. And click on `Add webhook`.
+1. Copy the hook URL shown in the message.
+2. Go to your GitLab repository and click Settings > Integrations.
+3. Paste the hook URL. In the Triggers section choose Push events, Tag push events and Merge Request events. Click on Add webhook.
+
 
 You can now start pushing code, creating new branches or opening merge requests directly on your GitLab repository. You will see environments get automatically created and updated on the Platform.sh side.
 
