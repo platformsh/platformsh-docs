@@ -37,6 +37,7 @@
   * [Redis](configuration/services/redis.md)
   * [RabbitMQ](configuration/services/rabbitmq.md)
   * [Solr](configuration/services/solr.md)
+  * [Varnish](configuration/services/varnish.md)  
 * [Apps (.platform.app.yaml)](configuration/app-containers.md)
   * [Name](configuration/app/name.md)
   * [Type](configuration/app/type.md)
