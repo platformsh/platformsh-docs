@@ -1,18 +1,17 @@
 # Blackfire
 
-Platform.sh supports [Blackfire Profiler](https://blackfire.io/) developed by [SensioLabs](https://sensiolabs.com/).
+Platform.sh supports [Blackfire Profiler](https://blackfire.io/).
 
 ## Version
 
 * Agent/Client: `1.15.0`
 * Probe: `1.18.0` (when using `php:7.0` or `php:7.1`)
-* Chrome Companion: `1.15.0`
 
 ## Get Started
 
 ### 1. Get your credentials
 
-**Sign up for the free 15 days trial** at [blackfire.io](https://blackfire.io/signup) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld)).
+**Sign up for the free 15 days trial** at [blackfire.io](https://blackfire.io/signup) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld) or [Firefox](https://addons.mozilla.org/firefox/addon/blackfire/)).
 
 > **note**
 >
