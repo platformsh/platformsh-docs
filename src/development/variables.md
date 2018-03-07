@@ -6,12 +6,12 @@ Platform.sh allows a high degree of control over both the build process and the 
 
 There are four different types of variable: 
 
+* application-provided variables
 * user-provided project variables
 * user-provided environment variables
-* application-provided variables
 * Platform.sh-provided environment variables
 
-All of those may be simple strings or base64-encoded JSON-serialized values.  In case of name collisions, Platform.sh-provided values override user-provided environment variables, which override project-level variables, which override application-provided variables.
+All of those may be simple strings or base64-encoded JSON-serialized values.  In case of name collisions, Platform.sh-provided values override user-provided environment variables, which override project-level variables, which override application-provided variables.  (That is, lower items in the list above take precedence.)
 
 ### Project variables
 
@@ -40,6 +40,17 @@ $ platform variable:set foo bar
 ```
 
 That will set a variable on the currently active environment (that is, the branch you have checked out).  To set a variable on a different environment include the `-e` switch to specify the environment name.
+
+There are two additional flags available on environment variables: `--no-inherit` and `--sensitive`.
+
+* The `--no-inherit` flag will cause the variable to not be inherited by child environments.  That is useful for setting production-only values on the `master` branch, and allowing all other environments to use a project-level variable of the same name.
+* The `--sensitive` flag will mark the variable to not be readable through the UI once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
+
+For example, the following command will set a PayPal secret value on the master branch only; other environments will not inherit it and either get a project variable of the same name if it exists or no value at all.  It will also not be readable through the API.
+
+```bash
+$ platform variable:set paypal_id this_is_super_secret --no-inherit --sensitive
+```
 
 Changing an environment variable will cause that environment to be redeployed so that it gets the new value.  However, it will *not* redeploy any child environments. If you want those to get the new value you will need to redeploy them yourself.
 
