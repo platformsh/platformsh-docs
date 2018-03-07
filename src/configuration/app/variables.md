@@ -15,7 +15,7 @@ variables:
 That will have the exact same runtime effect as setting a project variable via the CLI as follows, except it will be versioned along with the code:
 
 ```bash
-$ platform project:variable:set env:AUTHOR Juan
+$ platform variable:create env:AUTHOR --level project --value Juan
 ```
 
 The variable name may itself have punctuation in it.  For example, to set a Drupal 8 configuration override (assuming you're using the recommended `settings.platformsh.php` file) you can do the following:

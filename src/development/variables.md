@@ -15,10 +15,10 @@ All of those may be simple strings or base64-encoded JSON-serialized values.  In
 
 ### Project variables
 
-Project variables are defined by the user and bound to a whole project.  They are available both at build time (and therefore from a build hook) and at runtime, and are the same for all environments in the project.  New project variables can be added using the CLI.  For example, the following command sets a project-level variable "foo" to the value "bar":
+Project variables are defined by the user and bound to a whole project.  They are available both at build time (and therefore from a build hook) and at runtime, and are the same for all environments in the project.  New project variables can be added using the CLI.  For example, the following command creates a project-level variable "foo" with the value "bar":
 
 ```bash
-platform project:variable:set foo bar
+platform variable:create --level project --name foo --value bar
 ```
 
 Project variables are a good place to store secret information that is needed at build time, such as credentials for a private 3rd party code repository.
@@ -26,20 +26,33 @@ Project variables are a good place to store secret information that is needed at
 By default, project variables will be available at both build time and runtime. You can suppress one or the other with the `--no-visible-build` and `--no-visible-runtime` flags, such as if you want to hide certain credentials from runtime entirely.  For example, the following (silly) example will define a project variable but hide it from both build and runtime:
 
 ```bash
-platform project:variable:set foo bar --no-visible-build --no-visible-runtime
+platform variable:create --level project --name foo --value bar --visible-build false --visible-runtime false
 ```
 
 Naturally in practice you'll want to use only one or the other, or allow the variable to be visible in both cases.
 
 ### Platform.sh Environment variables
 
-Environment-level variables can also be set [through the web interface](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to set the environment variable "foo" to the value "bar" on the currently checked out environment/branch, run:
+Environment-level variables can also be set [through the web interface](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to create an environment variable "foo" with the value "bar" on the currently checked out environment/branch, run:
 
 ```bash
-$ platform variable:set foo bar
+$ platform variable:create --level environment --name foo --value bar
 ```
 
 That will set a variable on the currently active environment (that is, the branch you have checked out).  To set a variable on a different environment include the `-e` switch to specify the environment name.
+
+There are two additional flags available on environment variables: `--inheritable` and `--sensitive`.
+
+* Setting `--inheritable false` will cause the variable to not be inherited by child environments.  That is useful for setting production-only values on the `master` branch, and allowing all other environments to use a project-level variable of the same name.
+* Setting `--sensitive true` flag will mark the variable to not be readable through the UI once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
+
+For example, the following command will allow you to set a PayPal secret value on the master branch only; other environments will not inherit it and either get a project variable of the same name if it exists or no value at all.  It will also not be readable through the API.
+
+```bash
+$ platform variable:create --name paypal_id --inheritable false --sensitive true
+```
+
+If you omit the variable `--value` from the command line as above, you will be prompted to enter the value interactively.
 
 Changing an environment variable will cause that environment to be redeployed so that it gets the new value.  However, it will *not* redeploy any child environments. If you want those to get the new value you will need to redeploy them yourself.
 
@@ -144,20 +157,34 @@ In a running container, which includes the deploy hook, your Project variables, 
 
 Platform.sh-defined variables will be exposed directly with the names listed above.  Project and environment variables will be merged together into a single JSON array and exposed in the `$PLATFORM_VARIABLES` environment variable.  In case of a matching name, an environment variable will override a variable of the same name in a parent environment, and both will override a project variable.
 
-For example, suppose we have the following project variables defined:
+For example, suppose we have the following variables defined:
 
-```bash
-platform project:variable:set system_name Spiffy
-platform project:variable:set system_version 1.5
+```
+$ platform variables -e master
+Variables on the project Example (abcdef123456), environment master:
++----------------+-------------+--------+
+| Name           | Level       | Value  |
++----------------+-------------+--------+
+| system_name    | project     | Spiffy |
+| system_version | project     | 1.5    |
+| api_key        | environment | abc123 |
++----------------+-------------+--------+
 ```
 
-And the following environment variables defined, where `feature-x` is a child environment (and branch off of) `master`:
+And the following variables defined on the branch `feature-x`, a child environment (and branch of) `master`:
 
-```bash
-platform variable:set -e master api_key abc123
-platform variable:set -e feature-x api_key def456
-platform variable:set -e feature-x system_version 1.7
-platform variable:set -e feature-x debug_mode 1
+```
+$ platform variables -e master
+Variables on the project Example (abcdef123456), environment feature-x:
++----------------+-------------+--------+
+| Name           | Level       | Value  |
++----------------+-------------+--------+
+| system_name    | project     | Spiffy |
+| system_version | project     | 1.5    |
+| api_key        | environment | def456 |
+| system_version | environment | 1.7    |
+| debug_mode     | environment | 1      |
++----------------+-------------+--------+
 ```
 
 In this case, on the `master` environment `$PLATFORM_VARIABLES` would look like this:
@@ -193,10 +220,10 @@ Certain variable name prefixes have special meaning.  A few of these are defined
 
 By default, project and environment variables are only added as part of the `$PLATFORM_VARIABLES` Unix environment variable.  However, you can also expose a variable as its own Unix environment variable by giving it the prefix `env:`.  
 
-For example, the variable `env:foo` will create an environment variable called `FOO`.  (Note the automatic upper-casing.)
+For example, the variable `env:foo` will create a Unix environment variable called `FOO`.  (Note the automatic upper-casing.)
 
 ```ini
-$ platform variable:set env:foo bar
+$ platform variable:create --name env:foo --value bar
 ```
 
 With PHP, you can then access that variable with `getenv('FOO')`.
@@ -227,8 +254,8 @@ As the above logic is defined in a file in your Git repository you are free to c
 
 You can also provide a `.environment` file as part of your application, in your application root (as a sibling of your `.platform.app.yaml` file, or files in the case of a multi-app configuration).  That file will be sourced as a bash script when the container starts and on all SSH logins.  It can be used to set any environment variables directly, such as the PATH variable.  For example, the following `.environment` file will allow any executable installed using Composer as part of a project to be run regardless of the current directory:
 
- ```bash
+```bash
 export PATH=/app/vendor/bin:$PATH
- ```
+```
 
 Note that the file is sourced after all other environment variables above are defined, so they will be available to the script.  That also means the `.environment` script has the "last word" on environment variable values and can override anything it wants to.

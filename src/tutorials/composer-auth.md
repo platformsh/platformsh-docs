@@ -28,7 +28,9 @@ Set the Composer authentication by adding a project level variable called `env:C
 That can be done through the [web UI](/administration/web.md) or via the command line, like so:
 
 ```bash
-platform project:variable:set env:COMPOSER_AUTH '{"http-basic": {"my-private-repos.example.com": {"username": "your-username", "password": "your-password"}}}' --json --no-visible-runtime
+platform variable:create --level project --name env:COMPOSER_AUTH \
+  --json true --visible-runtime false \
+  --value '{"http-basic": {"my-private-repos.example.com": {"username": "your-username", "password": "your-password"}}}'
 ```
 
 The `env:` prefix will make that variable appear as its own Unix environment variable available by Composer during the build process. The optional `--no-visible-runtime` flag means the variable will only be defined during the build hook, which offers slightly better security.
