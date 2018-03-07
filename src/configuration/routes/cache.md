@@ -32,7 +32,7 @@ https://{default}/:
 
 ## Example
 
-In this example, requests will be cached based on the URI, the `Accept` header, `Accept-Language` header, and `X-Language-Locale` header; Any response that lacks a `Cache-Control` header will be cached for 60 seconds; and the presence of any cookie in the response will disable caching of that response.
+In this example, requests will be cached based on the URI, the `Accept` header, `Accept-Language` header, and `X-Language-Locale` header; Any response that lacks a `Cache-Control` header will be cached for 60 seconds; and the presence of any cookie in the request will disable caching of that response.
 
 ```yaml
 https://{default}/:
