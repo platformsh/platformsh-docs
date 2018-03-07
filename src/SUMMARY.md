@@ -105,6 +105,7 @@
   * [Configure environments](administration/web/configure-environment.md)
   * [Email](administration/web/email.md)
   * [Adding vouchers](administration/vouchers.md)
+  * [Deleting a project](administration/web/delete.md)
 
 ## Featured frameworks
 
