@@ -30,4 +30,4 @@ See `platform help domain:add` for more information.
 > **Success!**
 > Your site should now be live, and accessible to the world (as soon as the DNS propagates).
 
-If something is not working see the [troubleshooting guide](/golive/troubleshoot.md) for common issues.  If that doesn't help feel feel free to contact support.
+If something is not working see the [troubleshooting guide](/golive/troubleshoot.md) for common issues.  If that doesn't help feel free to contact support.
