@@ -77,4 +77,4 @@ We ask that you not schedule a backup task more than once a day to minimize data
 
 ### Retention
 
-Your snapshots are kept for 7 days.
+We guarantee that your snapshots are kept for at least 7 days.
