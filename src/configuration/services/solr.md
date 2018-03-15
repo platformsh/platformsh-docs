@@ -79,7 +79,9 @@ mysearch:
     type: solr:4.10
     disk: 1024
     configuration:
-        core_config: !archive "<directory>"
+        core_config: !include
+            type: archive
+            path: "<directory>"
 ```
 
 The `directory` parameter points to a directory in the Git repository, in or below the `.platform/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.  For example, place them in `.platform/solr/conf/` such that the `schema.xml` file is located at `.platform/solr/conf/schema.xml`.   You can then reference that path like this -
@@ -89,7 +91,9 @@ mysearch:
     type: solr:4.10
     disk: 1024
     configuration:
-        core_config: !archive "solr/conf"
+        core_config: !include
+            type: archive
+            path: "solr/conf"
 ```
 
 ## Solr 6
@@ -103,9 +107,13 @@ solrsearch:
     configuration:
         cores:
             mainindex:
-                conf_dir: !archive "core1-conf"
+                conf_dir: !include
+                    type: archive
+                    path: "core1-conf"
             extraindex:
-                conf_dir: !archive "core2-conf"
+                conf_dir: !include
+                    type: archive
+                    path: "core2-conf"
         endpoints:
             main:
                 core: mainindex
@@ -160,7 +168,9 @@ solrsearch:
     disk: 1024
     configuration:
         configsets:
-            mainconfig: !archive "configsets/solr6"
+            mainconfig: !include
+                type: archive
+                path: "configsets/solr6"
         cores:
             english_index:
                 core_properties: |
