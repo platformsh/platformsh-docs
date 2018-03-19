@@ -152,10 +152,10 @@ A cookie value may also be a regular expression.  An entry that begins and ends 
 ```yaml
 cache:
   enabled: true
-  cookies: ['/^SESS/']
+  cookies: ['/^SS?ESS/']
 ```
 
-Will cause all cookies beginning with `SESS` to be part of the cache key, as a single value.  Other cookies will be ignored for caching.  If your site uses a session cookie as well as 3rd party cookies, say from an analytics service, this is the recommended approach.
+Will cause all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.  Other cookies will be ignored for caching.  If your site uses a session cookie as well as 3rd party cookies, say from an analytics service, this is the recommended approach.
 
 ### `default_ttl`
 
