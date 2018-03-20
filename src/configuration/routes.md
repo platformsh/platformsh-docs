@@ -47,7 +47,9 @@ Each route can be configured separately. It has the following properties
 
 ## Route limits
 
-Although there is no fixed limit on the number of routes that can be defined, there is a cap of 131072 bytes on the size of generated route information.  If your `routes.yaml` file would result in too large of a route information value it will be rejected.
+Although there is no fixed limit on the number of routes that can be defined, there is a cap on the size of generated route information.
+This limitation comes from the Linux kernel, which caps the size of environment variables at 131072 bytes.
+If your `routes.yaml` file would result in too large of a route information value it will be rejected.
 
 The full list of generated route information is often much larger than what is literally specified in the `routes.yaml` file.  For example, by default all HTTPS routes will be duplicated to create an HTTP redirect route.  Also, the `{all}` placeholder will create two routes (one HTTP, one HTTPS) for each domain that is configured.
 
