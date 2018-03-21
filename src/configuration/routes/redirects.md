@@ -50,7 +50,7 @@ Each rule under `paths` is defined by its key describing the expression to match
             to: 'https://example.com/$1'
             regexp: true
    ```
-   Note that special arguments in the `to` statement are also valid:
+   Note that special arguments in the `to` statement are also valid when `regexp` is set to `true`:
     * `$is_args` will evaluate to `?` or empty string
     * `$args` will evaluate to the full query string if any
     * `$arg_foo` will evaluate to the value of the query parameter `foo`
