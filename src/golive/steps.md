@@ -95,6 +95,6 @@ crons:
         spec: '0 9 14 * *'
         cmd: |
             if [ "$PLATFORM_BRANCH" = master ]; then
-                platform variable:set _redeploy "$(date)" --yes --no-wait
+                platform redeploy --yes --no-wait
             fi
 ```

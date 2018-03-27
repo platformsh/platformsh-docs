@@ -4,18 +4,14 @@
 
 ## Force a redeploy
 
-There are times where you might want to trigger a redeployment of your application. This requires pushing a new Git commit (which can be empty) or setting a variable. It is not recommended to do this if there are builds in a "Pending" state, as these will block deployment. Wait for those builds to complete.
+There are times where you might want to trigger a redeployment of your application. That can be done with the following command:
 
-Redeploying using the Platform.sh CLI:
 ```sh
-platform vset -W redeploy "$(date)"
+platform redeploy
 ```
 
-Using Git only:
-```sh
-git commit --allow-empty -m 'force redeploy'
-git push platform <branch-name>
-```
+Do not trigger a redeploy if there are builds in a "Pending" state, as these will block deployment. Wait for those builds to complete.
+
 
 ## HTTP 502 response
 
