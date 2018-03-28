@@ -1,0 +1,12 @@
+src
+e2e_tests
+bin
+test
+tools
+reports
+webpack*
+.babelrc
+.eslintrc
+*.log*
+nightwatch.json
+yarn.lock

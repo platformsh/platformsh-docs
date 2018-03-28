@@ -29,7 +29,7 @@ If you want your users to be able to see everything (Reader), but only commit to
 
 > **SSH Access Control**
 >
-> An environment contributor can push code to the environment and has SSH access to the environment. You can change this by [specifying user types](/configuration/app/access.md) with ssh access.
+> An environment contributor can push code to the environment and has SSH access to the environment. You can change this by [specifying user types](/administration/app/access.md) with ssh access.
 
 > **note**
 >

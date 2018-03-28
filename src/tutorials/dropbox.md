@@ -1,6 +1,6 @@
 # Setting up the Dropbox daemon
 
-Dropbox has a very useful [Linux version](https://www.dropbox.com/install-linux) that can be installed into your Platform.sh application with a bit of intermediate [build hook](/configuration/app-containers.html#hooks) hacking.  This could be useful if you are building a small application and don't want to build file upload functionality into it.  It could also prove useful to an editorial team to use images from a shared Dropbox rather than each individual uploading their own images.  
+Dropbox has a very useful [Linux version](https://www.dropbox.com/install-linux) that can be installed into your Platform.sh application with a bit of intermediate [build hook](/administration/app-containers.html#hooks) hacking.  This could be useful if you are building a small application and don't want to build file upload functionality into it.  It could also prove useful to an editorial team to use images from a shared Dropbox rather than each individual uploading their own images.  
 
 ## Install the daemon
 
@@ -48,7 +48,7 @@ mounts:
 
 ## Starting the daemon
 
-You'll eventually be building this step in to [`web.commands.start`](/configuration/app-containers.html#commands), but first you'll need to start it manually so that you can login to Dropbox from your application's container.  `ssh` into your application's container, either by grabbing the URL from the "access site" link in your project's admin UI or by running `platform ssh` if you've installed the [Platform CLI](/gettingstarted/cli.md) (recommended).
+You'll eventually be building this step in to [`web.commands.start`](/administration/app-containers.html#commands), but first you'll need to start it manually so that you can login to Dropbox from your application's container.  `ssh` into your application's container, either by grabbing the URL from the "access site" link in your project's admin UI or by running `platform ssh` if you've installed the [Platform CLI](/administration/cli.md) (recommended).
 
 You should see a `~/.dropbox-dist` directory as a result of your build hook.  Run this - `~/.dropbox-dist/dropboxd` and you'll be presented with some text in `stdout` that asks you to visit a tokenized Dropbox URL that will authenticate your new Dropbox client against your account and store the results in the `~/.dropbox` directory.
 

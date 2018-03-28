@@ -1,8 +1,8 @@
 # Using Solr with Drupal 8.x
 
-Platform.sh recommends using Solr version 6.6, yet we support [other versions](../../configuration/services/solr.md#supported-versions). The following instructions are for Solr 6, but they also work for the previous versions if you change the version numbers accordingly.
+Platform.sh recommends using Solr version 6.6, yet we support [other versions](../../services/solr.md#supported-versions). The following instructions are for Solr 6, but they also work for the previous versions if you change the version numbers accordingly.
 
-Advanced Solr service configuration and implementation in other frameworks other than Drupal can be found at the [Solr services page](../../configuration/services/solr.md)
+Advanced Solr service configuration and implementation in other frameworks other than Drupal can be found at the [Solr services page](../../services/solr.md)
 
 ## Requirements
 
@@ -60,7 +60,7 @@ relationships:
 
 That is, the application's environment would include a `solr` relationship that connects to the `main` endpoint, which is the `maincore` core.
 
-The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service we specified above (`solrsearch`) and the endpoint (`main`).  If you named the service something different above, change `solrsearch` to that. The same rule is valid for the value of the endpoint named `main`.
+The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/administration/variables.md).  The right hand side is the name of the service we specified above (`solrsearch`) and the endpoint (`main`).  If you named the service something different above, change `solrsearch` to that. The same rule is valid for the value of the endpoint named `main`.
 
 ## Configuration
 

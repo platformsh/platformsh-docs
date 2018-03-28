@@ -22,7 +22,7 @@ Platform.sh recommends a modified version of the [CloudFlare Hellogopher](https:
 
 ## Platform.sh variables
 
-Platform.sh exposes relationships and other configuration as [environment variables](/development/variables.md).  To make them easier to access you should use the provided [GoHelper library](https://github.com/platformsh/gohelper).  Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services.md).
+Platform.sh exposes relationships and other configuration as [environment variables](/administration/variables.md).  To make them easier to access you should use the provided [GoHelper library](https://github.com/platformsh/gohelper).  Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/services.md).
 
 ```go
 package main

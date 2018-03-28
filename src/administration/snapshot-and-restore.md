@@ -52,7 +52,7 @@ $ platform snapshot:restore 92c9a4b2aa75422efb3d
 
 No snapshot is triggered automatically on Platform.sh Standard. You can trigger your snapshot via the Web Interface or via the CLI.
 
-Snapshots may be triggered from an automated system, such as cron, Jenkins, or another CI service by calling the CLI.  To enable backups automatically using just Platform.sh, see the section on [API tokens](/gettingstarted/cli/api-tokens.md) for installing the CLI in the app container.
+Snapshots may be triggered from an automated system, such as cron, Jenkins, or another CI service by calling the CLI.  To enable backups automatically using just Platform.sh, see the section on [API tokens](/administration/cli/api-tokens.md) for installing the CLI in the app container.
 
 Once the CLI is installed and an API token configured you can add a cron task to run once a day and trigger a snapshot.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on.  However, in most cases such backups are only useful on the `master` production environment.  That can be achieved like so:
 

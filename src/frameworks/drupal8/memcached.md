@@ -24,7 +24,7 @@ relationships:
     cache: "cacheservice:memcached"
 ```
 
-The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service we specified above (`cacheservice`) and the endpoint (`memcached`).  If you named the service something different above, change `cacheservice` to that.
+The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/administration/variables.md).  The right hand side is the name of the service we specified above (`cacheservice`) and the endpoint (`memcached`).  If you named the service something different above, change `cacheservice` to that.
 
 ### Add the Memcached PHP extension
 

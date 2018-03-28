@@ -1,0 +1,1032 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="32ae48f4-6dba-4936-9355-37453719350c" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/languages/nodejs-nvm.md" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/integrations/bitbucket.md" afterPath="$PROJECT_DIR$/src/integrations/bitbucket.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/integrations/blackfire.md" afterPath="$PROJECT_DIR$/src/integrations/blackfire.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/integrations/github.md" afterPath="$PROJECT_DIR$/src/integrations/github.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/integrations/gitlab.md" afterPath="$PROJECT_DIR$/src/integrations/gitlab.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/integrations/hipchat.md" afterPath="$PROJECT_DIR$/src/integrations/hipchat.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/integrations/new-relic.md" afterPath="$PROJECT_DIR$/src/integrations/new-relic.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/integrations/notifications.md" afterPath="$PROJECT_DIR$/src/administration/notifications.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/integrations/tideways.md" afterPath="$PROJECT_DIR$/src/integrations/tideways.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/integrations/webhooks.md" afterPath="$PROJECT_DIR$/src/integrations/webhooks.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/web.md" afterPath="$PROJECT_DIR$/src/gettingstarted/web.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/web/configure-environment.md" afterPath="$PROJECT_DIR$/src/administration/environments/configuration.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/web/configure-project.md" afterPath="$PROJECT_DIR$/src/administration/projects.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/web/delete.md" afterPath="$PROJECT_DIR$/src/administration/projects/delete.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/web/email.md" afterPath="$PROJECT_DIR$/src/administration/email.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/administration/web/environments.md" afterPath="$PROJECT_DIR$/src/administration/environments.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app-containers.md" afterPath="$PROJECT_DIR$/src/administration/app.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/access.md" afterPath="$PROJECT_DIR$/src/administration/app/access.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/build.md" afterPath="$PROJECT_DIR$/src/administration/app/build.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/cron.md" afterPath="$PROJECT_DIR$/src/administration/app/cron.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/multi-app.md" afterPath="$PROJECT_DIR$/src/administration/app/multi-app.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/name.md" afterPath="$PROJECT_DIR$/src/administration/app/name.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/relationships.md" afterPath="$PROJECT_DIR$/src/administration/app/relationships.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/size.md" afterPath="$PROJECT_DIR$/src/administration/app/size.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/storage.md" afterPath="$PROJECT_DIR$/src/administration/app/storage.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/timezone.md" afterPath="$PROJECT_DIR$/src/administration/app/timezone.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/type.md" afterPath="$PROJECT_DIR$/src/administration/app/type.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/upgrading.md" afterPath="$PROJECT_DIR$/src/administration/app/upgrading.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/variables.md" afterPath="$PROJECT_DIR$/src/administration/app/variables.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/web.md" afterPath="$PROJECT_DIR$/src/administration/app/web.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/app/workers.md" afterPath="$PROJECT_DIR$/src/administration/app/workers.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/routes.md" afterPath="$PROJECT_DIR$/src/administration/routes.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/routes/cache.md" afterPath="$PROJECT_DIR$/src/administration/routes/cache.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/routes/https.md" afterPath="$PROJECT_DIR$/src/administration/routes/https.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/routes/redirects.md" afterPath="$PROJECT_DIR$/src/administration/routes/redirects.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/routes/ssi.md" afterPath="$PROJECT_DIR$/src/administration/routes/ssi.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/services.md" afterPath="$PROJECT_DIR$/src/services.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/services/elasticsearch.md" afterPath="$PROJECT_DIR$/src/services/elasticsearch.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/services/influxdb.md" afterPath="$PROJECT_DIR$/src/services/influxdb.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/services/memcached.md" afterPath="$PROJECT_DIR$/src/services/memcached.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/services/mongodb.md" afterPath="$PROJECT_DIR$/src/services/mongodb.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/services/mysql.md" afterPath="$PROJECT_DIR$/src/services/mysql.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/services/postgresql.md" afterPath="$PROJECT_DIR$/src/services/postgresql.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/services/rabbitmq.md" afterPath="$PROJECT_DIR$/src/services/rabbitmq.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/services/redis.md" afterPath="$PROJECT_DIR$/src/services/redis.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/configuration/services/solr.md" afterPath="$PROJECT_DIR$/src/services/solr.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/development/access-site.md" afterPath="$PROJECT_DIR$/src/administration/access-site.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/development/faq.md" afterPath="$PROJECT_DIR$/src/resources/faq.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/development/headers.md" afterPath="$PROJECT_DIR$/src/administration/http-headers.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/development/logs.md" afterPath="$PROJECT_DIR$/src/administration/logs.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/development/private-repository.md" afterPath="$PROJECT_DIR$/src/administration/private-repository.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/development/protective-block.md" afterPath="$PROJECT_DIR$/src/administration/protective-block.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/development/public-ips.md" afterPath="$PROJECT_DIR$/src/administration/public-ips.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/development/ssh.md" afterPath="$PROJECT_DIR$/src/administration/ssh.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/development/submodules.md" afterPath="$PROJECT_DIR$/src/administration/submodules.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/development/troubleshoot.md" afterPath="$PROJECT_DIR$/src/administration/troubleshoot.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/development/variables.md" afterPath="$PROJECT_DIR$/src/administration/variables.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gettingstarted/cli-commands.md" afterPath="$PROJECT_DIR$/src/administration/cli/cli-commands.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gettingstarted/cli.md" afterPath="$PROJECT_DIR$/src/administration/cli.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gettingstarted/cli/api-tokens.md" afterPath="$PROJECT_DIR$/src/administration/cli/api-tokens.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gettingstarted/local.md" afterPath="$PROJECT_DIR$/src/administration/local.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gettingstarted/local/lando.md" afterPath="$PROJECT_DIR$/src/administration/local/lando.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gettingstarted/local/tethered.md" afterPath="$PROJECT_DIR$/src/administration/local/tethered.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gettingstarted/local/untethered.md" afterPath="$PROJECT_DIR$/src/administration/local/untethered.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gettingstarted/platformsh-in-practice.md" afterPath="$PROJECT_DIR$/src/overview/platformsh-in-practice.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/tutorials/exporting.md" afterPath="$PROJECT_DIR$/src/administration/exporting.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/tutorials/migrating.md" afterPath="$PROJECT_DIR$/src/gettingstarted/migrating.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/tutorials/third-party.md" afterPath="$PROJECT_DIR$/src/resources/third-party.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SUMMARY.md" afterPath="$PROJECT_DIR$/src/SUMMARY.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/administration/snapshot-and-restore.md" afterPath="$PROJECT_DIR$/src/administration/snapshot-and-restore.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/administration/users.md" afterPath="$PROJECT_DIR$/src/administration/users.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/changelog/2014.md" afterPath="$PROJECT_DIR$/src/changelog/2014.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/changelog/2015.md" afterPath="$PROJECT_DIR$/src/changelog/2015.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/changelog/2016.md" afterPath="$PROJECT_DIR$/src/changelog/2016.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/changelog/2017.md" afterPath="$PROJECT_DIR$/src/changelog/2017.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/changelog/2018.md" afterPath="$PROJECT_DIR$/src/changelog/2018.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/configuration/yaml.md" afterPath="$PROJECT_DIR$/src/configuration/yaml.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frameworks/drupal7/memcached.md" afterPath="$PROJECT_DIR$/src/frameworks/drupal7/memcached.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frameworks/drupal7/search-api-module.md" afterPath="$PROJECT_DIR$/src/frameworks/drupal7/search-api-module.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frameworks/drupal8/lando.md" afterPath="$PROJECT_DIR$/src/frameworks/drupal8/lando.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frameworks/drupal8/memcached.md" afterPath="$PROJECT_DIR$/src/frameworks/drupal8/memcached.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frameworks/drupal8/redis.md" afterPath="$PROJECT_DIR$/src/frameworks/drupal8/redis.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frameworks/drupal8/solr.md" afterPath="$PROJECT_DIR$/src/frameworks/drupal8/solr.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frameworks/wordpress.md" afterPath="$PROJECT_DIR$/src/frameworks/wordpress.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frameworks/wordpress/redis.md" afterPath="$PROJECT_DIR$/src/frameworks/wordpress/redis.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/golive/checklist.md" afterPath="$PROJECT_DIR$/src/golive/checklist.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/golive/steps.md" afterPath="$PROJECT_DIR$/src/golive/steps.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/golive/steps/tls.md" afterPath="$PROJECT_DIR$/src/golive/steps/tls.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/languages/go.md" afterPath="$PROJECT_DIR$/src/languages/go.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/languages/php.md" afterPath="$PROJECT_DIR$/src/languages/php.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/languages/python.md" afterPath="$PROJECT_DIR$/src/languages/python.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/languages/ruby.md" afterPath="$PROJECT_DIR$/src/languages/ruby.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/overview/build-deploy.md" afterPath="$PROJECT_DIR$/src/overview/build-deploy.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tutorials/composer-auth.md" afterPath="$PROJECT_DIR$/src/tutorials/composer-auth.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tutorials/dropbox.md" afterPath="$PROJECT_DIR$/src/tutorials/dropbox.md" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="platform-sh-docs" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="SUMMARY.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/SUMMARY.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="1380">
+                <caret line="104" column="34" lean-forward="false" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="34" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".platform.app.yaml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.platform.app.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-195">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>development</find>
+      <find>(/development/</find>
+      <find>administration/faq.md</find>
+      <find>(administration/integrations/</find>
+      <find>(/administration/integrations/</find>
+      <find>integrations/notifications.md</find>
+      <find>/administration/web/configure-project</find>
+      <find>administration/web/delete.md</find>
+      <find>administration/web/environments.md</find>
+      <find>administration/web/configure-environment.md</find>
+      <find>tutorials/exporting.md</find>
+      <find>gettingstarted/cli</find>
+      <find>gettingstarted/local</find>
+      <find>administration/web.md</find>
+      <find>platformsh-in-practice</find>
+      <find>configuration/app</find>
+      <find>configuration/routes</find>
+      <find>configuration/yaml</find>
+      <find>configuration/services</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>administration</replace>
+      <replace>(/administration/</replace>
+      <replace>resources/faq.md</replace>
+      <replace>(integrations/</replace>
+      <replace>(/integrations/</replace>
+      <replace>administration/notifications.md</replace>
+      <replace>/administration/projects</replace>
+      <replace>administration/projects/delete.md</replace>
+      <replace>administration/environments.md</replace>
+      <replace>administration/environments/configuration.md</replace>
+      <replace>administration/exporting.md</replace>
+      <replace>administration/cli</replace>
+      <replace>administration/local</replace>
+      <replace>gettingstarted/web.md</replace>
+      <replace>administration/app</replace>
+      <replace>administration/routes</replace>
+      <replace>administration/yaml</replace>
+      <replace>services</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/src/administration</dir>
+      <dir>$PROJECT_DIR$/src</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/administration/access-site.md" />
+        <option value="$PROJECT_DIR$/src/configuration/routes/cache.md" />
+        <option value="$PROJECT_DIR$/src/administration/troubleshoot.md" />
+        <option value="$PROJECT_DIR$/src/configuration/routes.md" />
+        <option value="$PROJECT_DIR$/src/golive/steps.md" />
+        <option value="$PROJECT_DIR$/src/golive/steps/tls.md" />
+        <option value="$PROJECT_DIR$/src/administration/environments/configuration.md" />
+        <option value="$PROJECT_DIR$/src/administration/variables.md" />
+        <option value="$PROJECT_DIR$/src/SUMMARY.md" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/.platform/local/deps/nodejs/node_modules" />
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1838" />
+    <option name="y" value="32" />
+    <option name="width" value="1529" />
+    <option name="height" value="918" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="configuration" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="administration" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="administration" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="platform-sh-docs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="editor.config.accepted" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/services" />
+      <recent name="$PROJECT_DIR$/src/administration" />
+      <recent name="$PROJECT_DIR$/src/overview" />
+      <recent name="$PROJECT_DIR$/src/gettingstarted" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="32ae48f4-6dba-4936-9355-37453719350c" name="Default" comment="" />
+      <created>1522203396261</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1522203396261</updated>
+      <workItem from="1522203398865" duration="5574000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="5574000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1838" y="32" width="1529" height="918" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24983649" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979977" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24983649" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979977" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/administration/routes/cache.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="589">
+            <caret line="233" column="68" lean-forward="false" selection-start-line="233" selection-start-column="68" selection-end-line="233" selection-end-column="68" />
+            <folding>
+              <marker date="1522207677775" expanded="true" signature="1038:1225" ph="https://{default}/: &lt;3 keys&gt;" />
+              <marker date="1522207677775" expanded="true" signature="1068:1076" ph="upstream" />
+              <marker date="1522207677775" expanded="true" signature="1091:1099" ph="app:http" />
+              <marker date="1522207677775" expanded="true" signature="1104:1225" ph="cache: &lt;4 keys&gt;" />
+              <marker date="1522207677775" expanded="true" signature="1128:1132" ph="true" />
+              <marker date="1522207677775" expanded="true" signature="1164:1178" ph="cookies: [1 item]" />
+              <marker date="1522207677775" expanded="true" signature="1174:1177" ph="*" />
+              <marker date="1522207677775" expanded="true" signature="1187:1225" ph="headers: [2 items]" />
+              <marker date="1522207677775" expanded="true" signature="1197:1205" ph="Accept" />
+              <marker date="1522207677775" expanded="true" signature="1207:1224" ph="Accept-Language" />
+              <marker date="1522207677775" expanded="true" signature="1555:1764" ph="https://{default}/: &lt;3 keys&gt;" />
+              <marker date="1522207677775" expanded="true" signature="1585:1593" ph="upstream" />
+              <marker date="1522207677775" expanded="true" signature="1608:1616" ph="app:http" />
+              <marker date="1522207677775" expanded="true" signature="1621:1764" ph="cache: &lt;4 keys&gt;" />
+              <marker date="1522207677775" expanded="true" signature="1645:1649" ph="true" />
+              <marker date="1522207677775" expanded="true" signature="1658:1717" ph="headers: [3 items]" />
+              <marker date="1522207677775" expanded="true" signature="1668:1676" ph="Accept" />
+              <marker date="1522207677775" expanded="true" signature="1678:1695" ph="Accept-Language" />
+              <marker date="1522207677775" expanded="true" signature="1697:1716" ph="X-Language-Locale" />
+              <marker date="1522207677775" expanded="true" signature="1726:1740" ph="cookies: [1 item]" />
+              <marker date="1522207677775" expanded="true" signature="1736:1739" ph="*" />
+              <marker date="1522207677775" expanded="true" signature="1762:1764" ph="60" />
+              <marker date="1522207677775" expanded="true" signature="2167:2253" ph="cache: &lt;3 keys&gt;" />
+              <marker date="1522207677775" expanded="true" signature="2187:2191" ph="true" />
+              <marker date="1522207677775" expanded="true" signature="2196:2210" ph="cookies: [1 item]" />
+              <marker date="1522207677775" expanded="true" signature="2206:2209" ph="*" />
+              <marker date="1522207677775" expanded="true" signature="2215:2253" ph="headers: [2 items]" />
+              <marker date="1522207677775" expanded="true" signature="2225:2233" ph="Accept" />
+              <marker date="1522207677775" expanded="true" signature="2235:2252" ph="Accept-Language" />
+              <marker date="1522207677775" expanded="true" signature="3745:3789" ph="cache: &lt;2 keys&gt;" />
+              <marker date="1522207677775" expanded="true" signature="3763:3767" ph="true" />
+              <marker date="1522207677775" expanded="true" signature="3770:3789" ph="headers: [1 item]" />
+              <marker date="1522207677775" expanded="true" signature="3780:3788" ph="Accept" />
+              <marker date="1522207677775" expanded="true" signature="7598:7682" ph="https://{default}/: &lt;3 keys&gt;" />
+              <marker date="1522207677775" expanded="true" signature="7626:7634" ph="upstream" />
+              <marker date="1522207677775" expanded="true" signature="7647:7655" ph="app:http" />
+              <marker date="1522207677775" expanded="true" signature="7658:7682" ph="cache: &lt;1 key&gt;" />
+              <marker date="1522207677775" expanded="true" signature="7678:7682" ph="true" />
+              <marker date="1522207677775" expanded="true" signature="7684:7773" ph="https://{…ault}/foo/: &lt;3 keys&gt;" />
+              <marker date="1522207677775" expanded="true" signature="7716:7724" ph="upstream" />
+              <marker date="1522207677775" expanded="true" signature="7737:7745" ph="app:http" />
+              <marker date="1522207677775" expanded="true" signature="7748:7773" ph="cache: &lt;1 key&gt;" />
+              <marker date="1522207677775" expanded="true" signature="7768:7773" ph="false" />
+              <marker date="1522207677775" expanded="true" signature="7775:7867" ph="https://{…}/foo/bar/: &lt;3 keys&gt;" />
+              <marker date="1522207677775" expanded="true" signature="7811:7819" ph="upstream" />
+              <marker date="1522207677775" expanded="true" signature="7832:7840" ph="app:http" />
+              <marker date="1522207677775" expanded="true" signature="7843:7867" ph="cache: &lt;1 key&gt;" />
+              <marker date="1522207677775" expanded="true" signature="7863:7867" ph="true" />
+              <marker date="1522207677775" expanded="true" signature="8436:8482" ph="cache: &lt;2 keys&gt;" />
+              <marker date="1522207677775" expanded="true" signature="8454:8458" ph="true" />
+              <marker date="1522207677775" expanded="true" signature="8461:8482" ph="cookies: [1 item]" />
+              <marker date="1522207677775" expanded="true" signature="8471:8481" ph="MYCOOKIE" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/protective-block.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/private-repository.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/integrations.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="75">
+            <caret line="4" column="134" lean-forward="false" selection-start-line="4" selection-start-column="134" selection-end-line="4" selection-end-column="134" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/integrations/webhooks.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/access-site.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="98">
+            <caret line="16" column="78" lean-forward="true" selection-start-line="16" selection-start-column="78" selection-end-line="16" selection-end-column="78" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/projects/delete.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/ssh.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/email.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="135">
+            <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <folding>
+              <marker date="1517627177802" expanded="true" signature="1811:1934" ph="parameters: &lt;4 keys&gt;" />
+              <marker date="1517627177802" expanded="true" signature="1843:1847" ph="smtp" />
+              <marker date="1517627177802" expanded="true" signature="1863:1890" ph="%env(PLAT…MTP_HOST)%" />
+              <marker date="1517627177802" expanded="true" signature="1906:1910" ph="null" />
+              <marker date="1517627177802" expanded="true" signature="1930:1934" ph="null" />
+              <marker date="1517627177802" expanded="true" signature="2085:2158" ph="mounts: &lt;1 key&gt;" />
+              <marker date="1517627177802" expanded="true" signature="2097:2158" ph="app/spool: &lt;2 keys&gt;" />
+              <marker date="1517627177802" expanded="true" signature="2126:2131" ph="local" />
+              <marker date="1517627177802" expanded="true" signature="2153:2158" ph="spool" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/projects.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="15">
+            <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/golive/steps/tls.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="210">
+            <caret line="14" column="138" lean-forward="false" selection-start-line="14" selection-start-column="138" selection-end-line="14" selection-end-column="138" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/golive/steps.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="167">
+            <caret line="26" column="198" lean-forward="false" selection-start-line="26" selection-start-column="198" selection-end-line="26" selection-end-column="198" />
+            <folding>
+              <marker date="1522207677804" expanded="true" signature="6290:6787" ph="crons: &lt;2 keys&gt;" />
+              <marker date="1522207677804" expanded="true" signature="6301:6543" ph="snapshot: &lt;2 keys&gt;" />
+              <marker date="1522207677804" expanded="true" signature="6392:6403" ph="0 3 * * *" />
+              <marker date="1522207677804" expanded="true" signature="6417:6543" ph="if [ &quot;$PL…o-wait&#10;fi&#10;" />
+              <marker date="1522207677804" expanded="true" signature="6548:6787" ph="renewcert: &lt;2 keys&gt;" />
+              <marker date="1522207677804" expanded="true" signature="6642:6654" ph="0 9 14 * *" />
+              <marker date="1522207677804" expanded="true" signature="6668:6787" ph="if [ &quot;$PL…o-wait&#10;fi&#10;" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/routes.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="334">
+            <caret line="131" column="106" lean-forward="false" selection-start-line="131" selection-start-column="106" selection-end-line="131" selection-end-column="106" />
+            <folding>
+              <marker date="1522207677761" expanded="true" signature="4138:4199" ph="https://{default}/: &lt;2 keys&gt;" />
+              <marker date="1522207677761" expanded="true" signature="4168:4176" ph="upstream" />
+              <marker date="1522207677761" expanded="true" signature="4189:4199" ph="app:http" />
+              <marker date="1522207677761" expanded="true" signature="4200:4269" ph="https://w…{default}/: &lt;2 keys&gt;" />
+              <marker date="1522207677761" expanded="true" signature="4234:4242" ph="redirect" />
+              <marker date="1522207677761" expanded="true" signature="4249:4269" ph="https://{default}/" />
+              <marker date="1522207677761" expanded="true" signature="4638:4703" ph="https://{default}/: &lt;2 keys&gt;" />
+              <marker date="1522207677761" expanded="true" signature="4670:4678" ph="upstream" />
+              <marker date="1522207677761" expanded="true" signature="4693:4703" ph="app:http" />
+              <marker date="1522207677761" expanded="true" signature="4705:4774" ph="https://w…{default}/: &lt;2 keys&gt;" />
+              <marker date="1522207677761" expanded="true" signature="4741:4749" ph="upstream" />
+              <marker date="1522207677761" expanded="true" signature="4764:4774" ph="app:http" />
+              <marker date="1522207677761" expanded="true" signature="6331:6402" ph="https://w…ample.com/: &lt;2 keys&gt;" />
+              <marker date="1522207677761" expanded="true" signature="6369:6377" ph="upstream" />
+              <marker date="1522207677761" expanded="true" signature="6392:6402" ph="app:http" />
+              <marker date="1522207677761" expanded="true" signature="6403:6476" ph="https://b…ample.com/: &lt;2 keys&gt;" />
+              <marker date="1522207677761" expanded="true" signature="6442:6450" ph="upstream" />
+              <marker date="1522207677761" expanded="true" signature="6465:6476" ph="blog:http" />
+              <marker date="1522207677761" expanded="true" signature="10237:10338" ph="https://{default}/ws: &lt;3 keys&gt;" />
+              <marker date="1522207677761" expanded="true" signature="10271:10279" ph="upstream" />
+              <marker date="1522207677761" expanded="true" signature="10294:10304" ph="app:http" />
+              <marker date="1522207677761" expanded="true" signature="10309:10338" ph="cache: &lt;1 key&gt;" />
+              <marker date="1522207677761" expanded="true" signature="10333:10338" ph="false" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/environments.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="-1046">
+            <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/environments/configuration.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="300">
+            <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/variables.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="167">
+            <caret line="35" column="73" lean-forward="false" selection-start-line="35" selection-start-column="73" selection-end-line="35" selection-end-column="73" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/web/vouchers.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/faq.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="-386">
+            <caret line="46" column="63" lean-forward="false" selection-start-line="46" selection-start-column="63" selection-end-line="46" selection-end-column="63" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/third-party.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="-119">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/exporting.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="270">
+            <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+            <folding>
+              <marker date="1522217525441" expanded="true" signature="991:1134" ph="mounts: &lt;2 keys&gt;" />
+              <marker date="1522217525441" expanded="true" signature="1003:1068" ph="web/uploads: &lt;2 keys&gt;" />
+              <marker date="1522217525441" expanded="true" signature="1034:1039" ph="local" />
+              <marker date="1522217525441" expanded="true" signature="1061:1068" ph="uploads" />
+              <marker date="1522217525441" expanded="true" signature="1073:1134" ph="private: &lt;2 keys&gt;" />
+              <marker date="1522217525441" expanded="true" signature="1100:1105" ph="local" />
+              <marker date="1522217525441" expanded="true" signature="1127:1134" ph="private" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/http-headers.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="165">
+            <caret line="9" column="35" lean-forward="false" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/cli.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="-794">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/cli/api-tokens.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="631">
+            <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <folding>
+              <marker date="1516921156600" expanded="true" signature="2665:2741" ph="hooks: &lt;1 key&gt;" />
+              <marker date="1516921156600" expanded="true" signature="2683:2741" ph="curl -sS …ler | php&#10;" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/cli/cli-commands.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="570">
+            <caret line="38" column="7" lean-forward="true" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/web.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/troubleshoot.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="-1244">
+            <caret line="41" column="154" lean-forward="false" selection-start-line="41" selection-start-column="154" selection-end-line="41" selection-end-column="154" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/migrating.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="-134">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding>
+              <marker date="1522217525416" expanded="true" signature="2779:2922" ph="mounts: &lt;2 keys&gt;" />
+              <marker date="1522217525416" expanded="true" signature="2791:2856" ph="web/uploads: &lt;2 keys&gt;" />
+              <marker date="1522217525416" expanded="true" signature="2822:2827" ph="local" />
+              <marker date="1522217525416" expanded="true" signature="2849:2856" ph="uploads" />
+              <marker date="1522217525416" expanded="true" signature="2861:2922" ph="private: &lt;2 keys&gt;" />
+              <marker date="1522217525416" expanded="true" signature="2888:2893" ph="local" />
+              <marker date="1522217525416" expanded="true" signature="2915:2922" ph="private" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/overview/platformsh-in-practice.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/administration/app/workers.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding>
+              <marker date="1522207677782" expanded="true" signature="1068:1173" ph="workers: &lt;1 key&gt;" />
+              <marker date="1522207677782" expanded="true" signature="1081:1173" ph="queue: &lt;2 keys&gt;" />
+              <marker date="1522207677782" expanded="true" signature="1112:1173" ph="commands: &lt;1 key&gt;" />
+              <marker date="1522207677782" expanded="true" signature="1141:1173" ph="php worker.php&#10;" />
+              <marker date="1522207677782" expanded="true" signature="4555:4558" ph="app" />
+              <marker date="1522207677782" expanded="true" signature="4566:4576" ph="python:3.5" />
+              <marker date="1522207677782" expanded="true" signature="4584:4587" ph="256" />
+              <marker date="1522207677782" expanded="true" signature="4588:4653" ph="mounts: &lt;1 key&gt;" />
+              <marker date="1522207677782" expanded="true" signature="4600:4653" ph="test: &lt;2 keys&gt;" />
+              <marker date="1522207677782" expanded="true" signature="4622:4627" ph="local" />
+              <marker date="1522207677782" expanded="true" signature="4649:4653" ph="test" />
+              <marker date="1522207677782" expanded="true" signature="4655:4699" ph="relationships: &lt;1 key&gt;" />
+              <marker date="1522207677782" expanded="true" signature="4684:4699" ph="mysqldb:mysql" />
+              <marker date="1522207677782" expanded="true" signature="4701:4885" ph="workers: &lt;2 keys&gt;" />
+              <marker date="1522207677782" expanded="true" signature="4714:4798" ph="queue: &lt;1 key&gt;" />
+              <marker date="1522207677782" expanded="true" signature="4729:4798" ph="commands: &lt;1 key&gt;" />
+              <marker date="1522207677782" expanded="true" signature="4758:4798" ph="python qu…worker.py&#10;" />
+              <marker date="1522207677782" expanded="true" signature="4803:4885" ph="mail: &lt;1 key&gt;" />
+              <marker date="1522207677782" expanded="true" signature="4817:4885" ph="commands: &lt;1 key&gt;" />
+              <marker date="1522207677782" expanded="true" signature="4846:4885" ph="python ma…worker.py&#10;" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.platform.app.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-195">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="60">
+            <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <folding>
+              <marker date="1522207677796" expanded="true" signature="925:967" ph="database1: &lt;2 keys&gt;" />
+              <marker date="1522207677796" expanded="true" signature="944:954" ph="mysql:10.1" />
+              <marker date="1522207677796" expanded="true" signature="963:967" ph="2048" />
+              <marker date="1522207677796" expanded="true" signature="969:1015" ph="database2: &lt;2 keys&gt;" />
+              <marker date="1522207677796" expanded="true" signature="988:1002" ph="postgresql:9.6" />
+              <marker date="1522207677796" expanded="true" signature="1011:1015" ph="1024" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SUMMARY.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="1380">
+            <caret line="104" column="34" lean-forward="false" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="34" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

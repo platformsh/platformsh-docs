@@ -139,7 +139,7 @@ The above Gunicorn based WSGI example can be modified to use the Python 3.5+ asy
 
 ## Connecting to services
 
-You can [define services](/configuration/services.md) in your environment.  And, link to the services using `.platform.app.yaml`:
+You can [define services](/services.md) in your environment.  And, link to the services using `.platform.app.yaml`:
 
 ```yaml
 relationships:

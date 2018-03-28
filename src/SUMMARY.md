@@ -1,6 +1,7 @@
 
 ## The Big Picture
 
+* [Platform.sh in practice](overview/platformsh-in-practice.md)
 * [Structure](overview/structure.md)
 * [Build & Deploy](overview/build-deploy.md)
 * [Pricing](overview/pricing.md)
@@ -8,49 +9,78 @@
 
 ## Getting Started
 
-* [Your first project](/gettingstarted/first-project.md)
-* [Platform.sh in practice](/gettingstarted/platformsh-in-practice.md)
+* [Your first project](gettingstarted/first-project.md)
+* [Using the Web interface](gettingstarted/web.md)
 * [Tools](gettingstarted/tools.md)
-* [CLI](gettingstarted/cli.md)
-  * [API Tokens](gettingstarted/cli/api-tokens.md)
-* [Local development](gettingstarted/local.md)
-  * [Tethered](gettingstarted/local/tethered.md)
-  * [Untethered](gettingstarted/local/untethered.md)
-  * [Lando](gettingstarted/local/lando.md)
+* [Migrating to Platform.sh](gettingstarted/migrating.md)
 
-## Configuration
+## Working with Platform.sh
 
-* [YAML](configuration/yaml.md)
-* [Routes (routes.yaml)](configuration/routes.md)
-  * [HTTPS](configuration/routes/https.md)
-  * [HTTP Cache](configuration/routes/cache.md)
-  * [Redirects](configuration/routes/redirects.md)
-  * [Server Side Includes](configuration/routes/ssi.md)
-* [Services (services.yaml)](configuration/services.md)
-  * [MySQL](configuration/services/mysql.md)
-  * [PostgreSQL](configuration/services/postgresql.md)
-  * [MongoDB](configuration/services/mongodb.md)
-  * [InfluxDB](configuration/services/influxdb.md)
-  * [Redis](configuration/services/redis.md)
-  * [Memcached](configuration/services/memcached.md)
-  * [Solr](configuration/services/solr.md)
-  * [Elasticsearch](configuration/services/elasticsearch.md)
-  * [RabbitMQ](configuration/services/rabbitmq.md)
-* [Apps (.platform.app.yaml)](configuration/app-containers.md)
-  * [Name](configuration/app/name.md)
-  * [Type](configuration/app/type.md)
-  * [Size](configuration/app/size.md)
-  * [Timezone](configuration/app/timezone.md)
-  * [Relationships](configuration/app/relationships.md)
-  * [Access](configuration/app/access.md)
-  * [Storage](configuration/app/storage.md)
-  * [Variables](configuration/app/variables.md)
-  * [Build and deploy tasks](configuration/app/build.md)
-  * [Web configuration](configuration/app/web.md)
-  * [Worker configuration](configuration/app/workers.md)
-  * [Cron and scheduled tasks](configuration/app/cron.md)
-  * [Multiple Applications](configuration/app/multi-app.md)
-  * [Upgrading](configuration/app/upgrading.md)
+* [Account](#)
+  * [Vouchers](administration/web/vouchers.md)
+* [Projects](administration/projects.md)
+  * [Deleting a project](administration/projects/delete.md)
+* [Environments](administration/environments.md)
+  * [Managing environments](administration/environments/configuration.md)
+* [Users](administration/users.md)
+
+* [Applications (.platform.app.yaml)](administration/app.md)
+  * [Name](administration/app/name.md)
+  * [Type](administration/app/type.md)
+  * [Size](administration/app/size.md)
+  * [Timezone](administration/app/timezone.md)
+  * [Relationships](administration/app/relationships.md)
+  * [Access](administration/app/access.md)
+  * [Storage](administration/app/storage.md)
+  * [Variables](administration/app/variables.md)
+  * [Build and deploy tasks](administration/app/build.md)
+  * [Web configuration](administration/app/web.md)
+  * [Worker configuration](administration/app/workers.md)
+  * [Cron and scheduled tasks](administration/app/cron.md)
+  * [Multiple applications](administration/app/multi-app.md)
+  * [Upgrading](administration/app/upgrading.md)
+* [Services (services.yaml)](services.md)
+* [Routes (routes.yaml)](administration/routes.md)
+  * [HTTPS](administration/routes/https.md)
+  * [HTTP cache](administration/routes/cache.md)
+  * [Redirects](administration/routes/redirects.md)
+  * [Server Side Includes](administration/routes/ssi.md)
+
+* [Accessing your site](administration/access-site.md)
+* [CLI](administration/cli.md)
+  * [API Tokens](administration/cli/api-tokens.md)
+* [Cron and scheduled tasks](administration/app/cron.md)
+* [Email](administration/email.md)
+* [Exporting data](administration/exporting.md)
+* [Git](#)
+  * [Git submodules](administration/submodules.md)
+  * [Private repositories](administration/private-repository.md)
+* [Health notifications](administration/notifications.md)
+* [HTTP headers](administration/http-headers.md)
+* [Local development](administration/local.md)
+  * [Tethered](administration/local/tethered.md)
+  * [Untethered](administration/local/untethered.md)
+  * [Lando](administration/local/lando.md)
+* [Logs](administration/logs.md)
+* [Protective block](administration/protective-block.md)
+* [Public IPs](administration/public-ips.md)
+* [Snapshot and restore](administration/snapshot-and-restore.md)
+* [SSH](administration/ssh.md)
+* [Variables](administration/variables.md)
+* [YAML guide](administration/yaml.md)
+* [Webhooks](integrations/webhooks.md)
+* [Workers](administration/app/workers.md)
+
+* [Troubleshooting](administration/troubleshoot.md)
+
+## Going Live
+
+* [Pre-Launch checklist](/golive/checklist.md)
+* [Going live steps](/golive/steps.md)
+  * [Custom TLS](/golive/steps/tls.md)
+  * [Fastly](/golive/steps/fastly.md)
+* [Troubleshooting](/golive/troubleshoot.md)
+* [Example](/golive/example.md)   
 
 ## Languages
 
@@ -62,50 +92,17 @@
 * [Go (beta)](languages/go.md)
 * [Java (alpha)](languages/java.md)
 
-## Development
+## Services
 
-* [Variables](development/variables.md)
-* [Accessing your site](development/access-site.md)
-* [Headers](development/headers.md)
-* [Accessing logs](development/logs.md)
-* [Private repositories](development/private-repository.md)
-* [Git submodules](development/submodules.md)
-* [Using SSH](development/ssh.md)
-* [Public IPs](development/public-ips.md)
-* [Protective block](development/protective-block.md)
-* [FAQ](development/faq.md)
-* [Troubleshooting](development/troubleshoot.md)
-
-## Going Live
-
-* [Pre-Launch Checklist](/golive/checklist.md)
-* [Going Live Steps](/golive/steps.md)
-  * [Custom TLS](/golive/steps/tls.md)
-  * [Fastly](/golive/steps/fastly.md)
-* [Troubleshooting](/golive/troubleshoot.md)
-* [Example](/golive/example.md)   
-
-## Administration
-
-* [Users](administration/users.md)
-* [Snapshot and restore](administration/snapshot-and-restore.md)
-* [External integrations](administration/integrations.md)
-  * [Bitbucket](administration/integrations/bitbucket.md)
-  * [Blackfire](administration/integrations/blackfire.md)
-  * [Health notifications](administration/integrations/notifications.md)
-  * [New Relic](administration/integrations/new-relic.md)
-  * [GitHub](administration/integrations/github.md)
-  * [GitLab](administration/integrations/gitlab.md)
-  * [HipChat](administration/integrations/hipchat.md)
-  * [Tideways](administration/integrations/tideways.md)
-  * [Webhooks](administration/integrations/webhooks.md)
-* [Web interface](administration/web.md)
-  * [Project configuration](administration/web/configure-project.md)
-  * [Environments](administration/web/environments.md)
-  * [Configure environments](administration/web/configure-environment.md)
-  * [Email](administration/web/email.md)
-  * [Adding vouchers](administration/web/vouchers.md)
-  * [Deleting a project](administration/web/delete.md)
+* [MySQL](services/mysql.md)
+* [PostgreSQL](services/postgresql.md)
+* [MongoDB](services/mongodb.md)
+* [InfluxDB](services/influxdb.md)
+* [Redis](services/redis.md)
+* [Memcached](services/memcached.md)
+* [Solr](services/solr.md)
+* [Elasticsearch](services/elasticsearch.md)
+* [RabbitMQ](services/rabbitmq.md)
 
 ## Featured frameworks
 
@@ -138,13 +135,25 @@
 * [WordPress](frameworks/wordpress.md)
   * [Redis](frameworks/wordpress/redis.md)
 
-## Tutorials
+## Integrations
+
+* [All integrations](integrations/integrations.md)
+* [Bitbucket](integrations/bitbucket.md)
+* [Blackfire](integrations/blackfire.md)
+* [GitHub](integrations/github.md)
+* [GitLab](integrations/gitlab.md)
+* [HipChat](integrations/hipchat.md)
+* [New Relic](integrations/new-relic.md)
+* [Tideways](integrations/tideways.md)
+* [Webhooks](integrations/webhooks.md)
+ 
+## Resources & Tutorials
+ 
+* [FAQ](resources/faq.md)
+* [Third-party resources](resources/third-party.md)
 
 * [Authenticated Composer](tutorials/composer-auth.md)
-* [Exporting data](tutorials/exporting.md)
-* [Migrating to Platform.sh](tutorials/migrating.md)
 * [Setting up Dropbox](tutorials/dropbox.md)
-* [Third-party resources](tutorials/third-party.md)
 
 ## Changelog
 

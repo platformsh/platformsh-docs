@@ -246,7 +246,7 @@ runtime:
 
 ### Measuring PHP worker memory usage
 
-To see how much memory your PHP worker processes are using, you can open an [SSH session](/development/ssh.md) and look at the PHP access log:
+To see how much memory your PHP worker processes are using, you can open an [SSH session](/administration/ssh.md) and look at the PHP access log:
 
     less /var/log/php.access.log
 
@@ -254,7 +254,7 @@ In the fifth column, you'll see the peak memory usage that occurred while each r
 
 ## Custom php.ini
 
-There are two ways to customize `php.ini` values for your application. The recommended method is to use the [`variables` property](/configuration/app/variables.md) of `.platform.app.yaml` to set ini values using the `php` prefix. For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
+There are two ways to customize `php.ini` values for your application. The recommended method is to use the [`variables` property](/administration/app/variables.md) of `.platform.app.yaml` to set ini values using the `php` prefix. For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
 
  ```yaml
  variables:
@@ -286,7 +286,7 @@ or
 date.timezone = "Europe/Paris"
 ```
 
-Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code. See the note in the [Environment variables](/development/variables.md#php-specific-variables) section.
+Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code. See the note in the [Environment variables](/administration/variables.md#php-specific-variables) section.
 
 ### Default php.ini settings
 

@@ -149,7 +149,7 @@ database:
 
 ## Connecting to services
 
-You can [define services](/configuration/services.md) in your environment. And, link to the services using `.platform.app.yaml`:
+You can [define services](/services.md) in your environment. And, link to the services using `.platform.app.yaml`:
 
 ```yaml
 relationships:

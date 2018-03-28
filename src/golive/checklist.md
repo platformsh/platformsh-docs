@@ -25,7 +25,7 @@ Write this down. This is what you will be using as the target for the CNAME you 
 
 ## 3. Test your site!
 
-Make sure your site is running and configured as you want it to be, on your master branch.  In particular, see the [Routes documentation](/configuration/routes.md). You will need your routes configured appropriately before you begin.  Make sure you have turned off [basic-authentication](https://docs.platform.sh/administration/web/configure-environment.html) if it was turned on during development.
+Make sure your site is running and configured as you want it to be, on your master branch.  In particular, see the [Routes documentation](/administration/routes.md). You will need your routes configured appropriately before you begin.  Make sure you have turned off [basic-authentication](https://docs.platform.sh/administration/web/configure-environment.html) if it was turned on during development.
 
 ## 4. Optionally obtain a 3rd party SSL certificate
 
