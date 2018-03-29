@@ -33,7 +33,7 @@ platform project:variable:set env:COMPOSER_AUTH '{"http-basic": {"my-private-rep
 
 The `env:` prefix will make that variable appear as its own Unix environment variable available by Composer during the build process. The optional `--no-visible-runtime` flag means the variable will only be defined during the build hook, which offers slightly better security.
 
-*Note:* The authentication credentials may be cached in your project's build container, so please make sure you clear the Composer cache upon changing any authentication credentials.  You can add `composer clear-cache` to your build hook the first time that you deploy with the updated credentials, and then remove it after the build succeeds.
+*Note:* The authentication credentials may be cached in your project's build container, so please make sure you clear the Composer cache upon changing any authentication credentials. You can use the `platform project:clear-build-cache` command.
 
 ## Build your application with Composer
 
