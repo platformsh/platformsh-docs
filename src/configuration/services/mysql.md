@@ -68,7 +68,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 			$settings['database_host'] = $endpoint['host'];
 			$settings['database_name'] = $endpoint['path'];
 			$settings['database_port'] = $endpoint['port'];
-			$settings['database_user'] = $endpoint['user'];
+			$settings['database_user'] = $endpoint['username'];
 			$settings['database_password'] = $endpoint['password'];
 			break;
 		}
