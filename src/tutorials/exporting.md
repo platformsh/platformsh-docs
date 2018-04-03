@@ -21,7 +21,21 @@ mounts:
         source: local
         source_path: private
 ```
+### Using the CLI
 
+The CLI provides a useful `mount` command for accessing mount data.
+
+```
+platform mount:list
+```
+
+Downloading a mount is then as simple as running the following:
+
+```
+platform mount:download
+```
+
+### Using rsync
 To use `rsync` to download each directory, we can use the following commands.  The `platform ssh --pipe` command will return the SSH URL for the current environment as an inline string that `rsync` can recognize. To use a non-default environment, use the `-e` switch after `--pipe`.  Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself.
 
 ```bash
