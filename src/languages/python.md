@@ -36,7 +36,7 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
    ```yaml
    web:
      commands:
-       start: "gunicorn -b $PORT project.wsgi:application"
+       start: "gunicorn -b 0.0.0.0:$PORT project.wsgi:application"
    ```
 
    This assumes the WSGI file is `project/wsgi.py` and the WSGI application object is named `application` in the WSGI file.
