@@ -13,7 +13,7 @@ Sign up at [https://newrelic.com](https://newrelic.com/signup) and get your lice
 Add your New Relic license key as a project level variable:
 
 ```bash
-platform project:variable:set --no-visible-build php:newrelic.license <your-new-relic-license-key>
+platform variable:create --visible-build false php:newrelic.license --value '<your-new-relic-license-key>'
 ```
 
 ### 3. Enable the New Relic extension

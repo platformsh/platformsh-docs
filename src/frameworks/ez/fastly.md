@@ -13,9 +13,9 @@ The best way to provide the Fastly credentials and configuration to eZ Platform 
 Using the CLI, run the following commands to set the configuration on your master environment.  (Note that they will inherit to all other environments by default unless overridden.)
 
 ```bash
-platform variable:set -e master env:HTTPCACHE_PURGE_TYPE fastly
-platform variable:set -e master env:FASTLY_SERVICE_ID YOUR_ID_HERE
-platform variable:set -e master env:FASTLY_KEY YOUR_ID_HERE
+platform variable:create -e master --level environment env:HTTPCACHE_PURGE_TYPE --value 'fastly'
+platform variable:create -e master --level environment env:FASTLY_SERVICE_ID --value 'YOUR_ID_HERE'
+platform variable:create -e master --level environment env:FASTLY_KEY --value 'YOUR_ID_HERE'
 ```
 
 Replacing `YOUR_ID_HERE` with the Fastly Service ID and Key obtained from Fastly.
