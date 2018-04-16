@@ -15,7 +15,7 @@ Do not trigger a redeploy if there are builds in a "Pending" state, as these wil
 
 ## HTTP responses "502 bad gateway" or "503 service unavailable"
 
-If you receive HTTP 502 or 503 responses from your site, it means that your site is running out of workers or the application process is crashing.  Here are the typical causes:
+If you receive these HTTP responses from your site, it suggests that your site is running out of workers or the application process is crashing.  Here are the typical causes:
 
 * The amount of traffic coming to your site exceeds the processing power of your application.
 * Certain code path(s) in your application are too slow.
