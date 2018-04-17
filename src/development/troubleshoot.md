@@ -64,10 +64,23 @@ If your PHP process is killed by the kernel, you should see log lines in `/var/l
 WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 seconds from start
 ```
 
-The memory usage of your container exceeds the limit, the kernel thus kills the offending process. You should try the following:
+That means the memory usage of your container exceeds the limit allowed on your plan so the kernel kills the offending process. You should try the following:
 
 * Check if the memory usage of your application is expected and try to optimize it.
 * Use [sizing hints](https://docs.platform.sh/languages/php.html#php-worker-sizing-hints) to reduce the amount of PHP workers which reduces the memory footprint.
+* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
+
+## PHP "server reached max_children" error in logs
+
+You may see a line like the following in the `/var/log/app.log` file:
+
+`WARNING: [pool web] server reached max_children setting (2), consider raising it`
+
+That indicates that the server is receiving more concurrent requests than it has PHP processes allocated to, which means some requests will have to wait until another finishes.  In this example there are 2 PHP processes that can run concurrently.
+
+Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process.  There are two ways to increase the number of workers:
+
+* Adjust the [worker sizing hints](/languages/php.html#php-worker-sizing-hints) for your project.
 * Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
 
 ## Low disk space
