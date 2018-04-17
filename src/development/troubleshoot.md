@@ -76,7 +76,7 @@ You may see a line like the following in the `/var/log/app.log` file:
 
 `WARNING: [pool web] server reached max_children setting (2), consider raising it`
 
-That indicates that the server is receiving more concurrent requests than it has PHP processes allocated to, which means some requests will have to wait until another finishes.  In this example there are 2 PHP processes that can run concurrently.
+That indicates that the server is receiving more concurrent requests than it has PHP processes allocated, which means some requests will have to wait until another finishes.  In this example there are 2 PHP processes that can run concurrently.
 
 Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process.  There are two ways to increase the number of workers:
 
