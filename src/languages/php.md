@@ -248,6 +248,8 @@ runtime:
         request_memory: 110
 ```
 
+The `request_memory` has a lower limit of 10 MB while `reserved_memory` has a lower limit of 70 MB.  Values lower than those will be replaced with those minimums.
+
 ### Measuring PHP worker memory usage
 
 To see how much memory your PHP worker processes are using, you can open an [SSH session](/development/ssh.md) and look at the PHP access log:
