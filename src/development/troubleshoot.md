@@ -12,6 +12,15 @@ platform redeploy
 
 Do not trigger a redeploy if there are builds in a "Pending" state, as these will block deployment. Wait for those builds to complete.
 
+## Clear the build cache
+
+In rare circumstances the build cache, used to speed up the build process, may become corrupted.  That may happen if, for example, code is being downloaded from a 3rd party language service like Packagist or NPM while that service is experiencing issues.  To flush the build cache entirely run the following command:
+
+```sh
+platform project:clear-build-cache
+```
+
+That will wipe the build cache for the current project entirely.  Naturally the next build for each environment will likely be longer as the cache rebuilds.
 
 ## HTTP responses "502 bad gateway" or "503 service unavailable"
 
