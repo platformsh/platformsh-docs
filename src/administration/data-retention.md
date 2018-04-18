@@ -37,3 +37,4 @@ Platform.sh takes a backup of Platform.sh Enterprise environments every 6 hours.
 When a project is deleted Platform.sh takes a final snapshot of active environments as well as the Git repository holding user code.  This final snapshot is to allow Platform.sh to recover a recently-deleted project in case of accident.
 
 These "tombstone" backups are retained for between _7 days_ and _6 months_.
+
