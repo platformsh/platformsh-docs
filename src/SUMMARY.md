@@ -106,6 +106,7 @@
   * [Email](administration/web/email.md)
   * [Adding vouchers](administration/web/vouchers.md)
   * [Deleting a project](administration/web/delete.md)
+* [Data retention](administration/data-retention.md)
 
 ## Featured frameworks
 
