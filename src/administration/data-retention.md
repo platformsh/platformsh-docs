@@ -30,10 +30,10 @@ Snapshots on Platform.sh Professional are retained for at least _7 days_.  They 
 
 ## Enterprise backups
 
-Platform.sh takes a backup of Platform.sh Enterprise environments ever 6 hours.  These snapshots are retained for _2 weeks_.
+Platform.sh takes a backup of Platform.sh Enterprise environments every 6 hours.  These snapshots are retained for _2 weeks_.
 
 ## Tombstone backups
 
 When a project is deleted Platform.sh takes a final snapshot of active environments as well as the Git repository holding user code.  This final snapshot is to allow Platform.sh to recover a recently-deleted project in case of accident.
 
-These "tombstone" backups are retained for X days.
+These "tombstone" backups are retained for 7 days.
