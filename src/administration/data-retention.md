@@ -40,4 +40,4 @@ These "tombstone" backups are retained for between _7 days_ and _6 months_.
 
 ## Analytics
 
-Platform.sh uses Google Analytics on various web pages, and therefore Google Analytics will store collected data for a period of time.  We have configured our Google Analytics account to store data for 14 months from the time you last accessed our site, which is the minimum Google allows.
+Platform.sh uses Google Analytics on various web pages, and therefore Google Analytics will store collected data for a period of time.  We have configured our Google Analytics account to store data for _14 months_ from the time you last accessed our site, which is the minimum Google allows.
