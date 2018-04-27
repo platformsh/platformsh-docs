@@ -164,6 +164,8 @@ database:
 
 That indicates that the `database` relationship can be accessed at host `database.internal`, user `user`, and an empty password.  The `path` key contains the database name, `main`.  THe other values can be ignored.
 
+Consult the [services page](/configuration/services.yaml) to see details for each service's relationship information.
+
 > **note**
 > When using the default endpoint on MySQL/MariaDB, the password is usually empty. It will be filled in if you define any custom endpoings. As there is only the one user and port access is tightly restricted anyway the lack of a password does not create a security risk.
 
