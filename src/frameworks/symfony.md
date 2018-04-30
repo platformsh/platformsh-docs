@@ -10,6 +10,8 @@ Composer is a tool for dependency management in PHP. It allows you to declare th
 
 ## Configure your app
 
-The ideal `.platform.app.yaml` file will vary from project project, and you are free to customize yours as needed.  A recommended baseline Symfony configuration is listed below, and can also be found in our [Symfony template project](https://github.com/platformsh/platformsh-example-symfony).
+The ideal `.platform.app.yaml` file will vary from project project, and you are free to customize yours as needed.  It also varies somewhat from one Symfony version to the next as Symfony has evolved.  See the appropriate repository below for your Symfony version.
 
-{% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-example-symfony3/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
+* [Symfony 2](https://github.com/platformsh/platformsh-example-symfony2)
+* [Symfony 3](https://github.com/platformsh/platformsh-example-symfony3)
+* [Symfony 4](https://github.com/platformsh/template-symfony4)
