@@ -6,8 +6,6 @@ PHP is a popular scripting language designed especially for the web. It currentl
 
 ## Supported versions
 
-### PHP
-
 * 5.6
 * 7.0
 * 7.1
