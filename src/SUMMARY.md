@@ -57,7 +57,7 @@
 * [PHP](languages/php.md)
   * [Extensions](languages/php/extensions.md)
   * [PHP.ini settings](languages/php/ini.md)
-  * [PHP-FPM sizing](languages/php/sizing.md)
+  * [PHP-FPM sizing](languages/php/fpm.md)
 * [Node.js](languages/nodejs.md)
   * [Changing the Node.js version](languages/nodejs/nvm.md)
 * [Python](languages/python.md)
