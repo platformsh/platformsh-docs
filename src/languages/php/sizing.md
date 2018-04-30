@@ -1,4 +1,4 @@
-# PHP Worker sizing hints
+# PHP-FPM workers
 
 Platform.sh uses a heuristic to automatically set the number of workers of the PHP-FPM runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more or less memory.
 
