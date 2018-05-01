@@ -107,7 +107,7 @@ The `post_deploy` hook functions exactly the same as the `deploy` hook, but afte
 
 What is "safe" to run in a `post_deploy` hook vs. in a `deploy` hook will vary by the application.  Often times content imports, some types of cache warmups, and other such tasks are good candidates for a `post_deploy` hook.
 
-The `post_deploy` hook logs to its own file, `/var/log/post_deploy.log`.
+The `post_deploy` hook logs to its own file, `/var/log/post-deploy.log`.
 
 ## How do I compile Sass files as part of a build?
 
