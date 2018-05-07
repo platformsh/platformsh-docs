@@ -220,12 +220,6 @@ Invisible errors during the build and deploy phase can cause increased wait time
 
 Related documentation: [Accessing logs](https://docs.platform.sh/development/logs.html#accessing-logs)
 
-### Check php.access.log
-
-If you are using PHP, the php.access.log contains the page executions by PHP-FPM. It also includes the execution time and peak memory usage of each request. This can be used to find pages and scripts that use too much memory or time to finish.
-
-Show 10 slowest page loads in the last 1000 requests: `tail -n 1000 php.access.log | sort -n -k 4 | tail`
-
 ### Build and deploy hooks
 
 Hooks are frequently the cause of long build time. If they run into problem they can cause the build to fail or hang indefinitely.
