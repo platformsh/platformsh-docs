@@ -110,6 +110,7 @@ if (err != nil) {
 **notes**
 1. There is a single MySQL user, so you can not use "DEFINER" Access Control mechanism for Stored Programs and Views.
 2. MySQL Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).
+3. MySQL schema names can not use system reserved namespace. (mysql, information_schema, etc)
 
 
 ## Multiple databases
