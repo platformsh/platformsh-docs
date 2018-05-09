@@ -56,7 +56,7 @@ A snapshot does cause a momentary pause in service. We recommend running during 
 
 Snapshots are not triggered automatically on Platform.sh Professional. 
 
-Snapshots may be triggered from an automated system by calling the CLI, such Jenkins, or another CI service, or by installing the CLI tool into your application container and triggering the snapshot via cron.
+Snapshots may be triggered by calling the CLI from an automated system, such as Jenkins or another CI service, or by installing the CLI tool into your application container and triggering the snapshot via cron.
 
 ### Automated snapshots using Cron
 
