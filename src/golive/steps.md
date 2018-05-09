@@ -62,7 +62,6 @@ The DNS RFC (RFC1033) requires the "zone apex" (sometimes called the "root domai
  * ANAME at [easyDNS](https://www.easydns.com/)
  * ANAME at [DNS Made Easy](http://www.dnsmadeeasy.com/)
  * ALIAS at [DNSimple](https://dnsimple.com/)
- * @ records at [PairNIC.com](https://www.pairnic.com/)
  * ALIAS at [PointDNS](https://pointhq.com/)
  
 These ALIAS/CNAME/ANAME records resolves on request the IP address of the destination record and serves it as if it would be the IP address for the apex domain requested. If the IP address for the destination changes, the IP address for the mapped domain changes automatically as well.
