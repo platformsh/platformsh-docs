@@ -79,14 +79,14 @@ If you are willing to make the `www.` version of your site the canonical version
 
 If you absolutely cannot use a DNS provider that supports aliases or a redirection service, it is possible to use A records with Platform.sh.  They will result in a sub-optimal experience, however.
 
-See the [Public IP](/development/public-ips.md) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request.
-
 This process has a few limitations:
 
 * Should we ever need to change one of those IPs your configuration will need to be manually updated.  Until it is some requests will be lost.
 * Directly pointing at the edge routers bypasses their load-balancing functionality.  Should one of them go offline for maintenance (as happens periodically for upgrades) approximately 1/3 of requests to your site will go to the offline router and be lost, making the site appear offline.
 
-For that reason using A records is strongly discouraged and should only be used as a last resort.
+> For that reason using A records is _strongly discouraged_ and should only be used as a last resort.
+
+See the [Public IP](/development/public-ips.md) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request.
 
 ## 4. Bonus steps (Optional)
 
