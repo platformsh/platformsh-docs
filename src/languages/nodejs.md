@@ -31,7 +31,7 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
 
    ```yaml
    # .platform.app.yaml
-   type: "nodejs:10.1.0"
+   type: "nodejs:10"
    ```
 
 2. Specify your dependencies under the `nodejs` key, like this:
@@ -91,7 +91,7 @@ Here's a complete example that also serves static assets (.png from the /public 
 
 ```yaml
 name: node
-type: nodejs:10.1.0
+type: nodejs:10
 
 web:
   commands:
