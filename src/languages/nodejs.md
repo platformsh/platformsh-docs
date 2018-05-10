@@ -6,7 +6,7 @@ Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine. 
 
 * 6.11
 * 8.9
-* 10.1.0
+* 10
 
 If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.html).
 
