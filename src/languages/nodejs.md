@@ -6,6 +6,7 @@ Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine. 
 
 * 6.11
 * 8.9
+* 10.1.0
 
 If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.html).
 
@@ -30,7 +31,7 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
 
    ```yaml
    # .platform.app.yaml
-   type: "nodejs:6.9"
+   type: "nodejs:10.1.0"
    ```
 
 2. Specify your dependencies under the `nodejs` key, like this:
@@ -90,7 +91,7 @@ Here's a complete example that also serves static assets (.png from the /public 
 
 ```yaml
 name: node
-type: nodejs:6.9
+type: nodejs:10.1.0
 
 web:
   commands:
