@@ -62,14 +62,31 @@ The DNS RFC (RFC1033) requires the "zone apex" (sometimes called the "root domai
  * ANAME at [easyDNS](https://www.easydns.com/)
  * ANAME at [DNS Made Easy](http://www.dnsmadeeasy.com/)
  * ALIAS at [DNSimple](https://dnsimple.com/)
- * @ records at [PairNIC.com](https://www.pairnic.com/)
  * ALIAS at [PointDNS](https://pointhq.com/)
  
 These ALIAS/CNAME/ANAME records resolves on request the IP address of the destination record and serves it as if it would be the IP address for the apex domain requested. If the IP address for the destination changes, the IP address for the mapped domain changes automatically as well.
  
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.  If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
  
-Although as a stop-gap measure configuring an `A` Record to one of the public IPs of the region you are hosted in would work, it is highly unrecommended. The IP address of the server may change from time to time, especially with frequent redeployments as in Platform.sh's case which will break your site.
+### (Alternate) Using a www redirection service
+
+If you are willing to make the `www.` version of your site the canonical version (which is recommended), there are various free services that provide blind redirects from `example.com` to `www.example.com` domains for any requests sent to their IP.  Most of these services are free, and allow you to use a CNAME record to Platform.sh for `www.example.com` and an A record to their service at `example.com`, which will in turn send a redirect.  Examples of such services include:
+
+* [WWWizer](http://wwwizer.com/)
+* [301Redirect](https://www.301redirect.it/)
+
+### (Alternate) Using A records
+
+If you absolutely cannot use a DNS provider that supports aliases or a redirection service, it is possible to use A records with Platform.sh.  They will result in a sub-optimal experience, however.
+
+This process has a few limitations:
+
+* Should we ever need to change one of those IPs your configuration will need to be manually updated.  Until it is some requests will be lost.
+* Directly pointing at the edge routers bypasses their load-balancing functionality.  Should one of them go offline for maintenance (as happens periodically for upgrades) approximately 1/3 of requests to your site will go to the offline router and be lost, making the site appear offline.
+
+> For that reason using A records is _strongly discouraged_ and should only be used as a last resort.
+
+See the [Public IP](/development/public-ips.md) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request.
 
 ## 4. Bonus steps (Optional)
 
