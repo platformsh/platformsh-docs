@@ -80,7 +80,7 @@ Production plans come in three flavors:
 All Platform.sh plans support multiple applications in a single cluster but
 they all share the global resource of the cluster.
 
-The resources of a **Standard plan are not sufficient to run more then one application** in the same cluster if there is also a MySQL database as a service. So useful multi-apps start at Medium.
+The resources of a **Standard plan are not sufficient to run more than one application** in the same cluster if there is also a MySQL database as a service. So useful multi-apps start at Medium.
 
 A Medium plan for example can support 3 Apps with a MySQL Instance and a Redis
 instance.
