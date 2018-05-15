@@ -12,9 +12,7 @@ Features supported:
 
 ### 1. Generate a token
 
-To integrate your Platform.sh project with an existing GitHub repository, you first need to generate a token on your GitHub user profile. Simply go to your account page on GitHub and click `Edit profile`.
-
-Select the *Personal access tokens* tab and click on [Generate new token](https://github.com/settings/tokens/new).
+To integrate your Platform.sh project with an existing GitHub repository, you first need to generate a token on your GitHub user profile. Simply go to your Settings, then select `Developer settings` and click `Personal access tokens`. Here you can [Generate a new token](https://github.com/settings/tokens/new).
 
 Give it a description and then ensure the token has the following scopes:
 
