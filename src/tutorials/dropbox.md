@@ -41,7 +41,7 @@ If your `.platform.app.yaml` file still uses the old syntax for mounts, this is 
 ```yaml
 mounts:
     'Dropbox': 'shared:files/dropbox'
-    '.dropbox': 'shared:files/dropbox-meta'
+    '/.dropbox': 'shared:files/dropbox-meta'
 ```
 
 **Make sure you've `git push`ed these configuration changes to Platform.sh if you haven't already.**
