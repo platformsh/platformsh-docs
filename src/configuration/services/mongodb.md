@@ -7,6 +7,7 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 ## Supported versions
 
 * 3.0
+* 3.6
 
 ## Relationship
 
@@ -38,7 +39,7 @@ In your `.platform/services.yaml`:
 
 ```yaml
 mydatabase:
-    type: mongodb:3.0
+    type: mongodb:3.6
     disk: 1024
 ```
 
