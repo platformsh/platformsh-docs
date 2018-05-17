@@ -74,6 +74,8 @@ hooks:
     tar xzvf archive.tar && rm archive.tar
 ```
 
+Be well aware of the used [php-fpm](/languages/php.md) in your `web.commands.start`. This should match the version in your `.platform.app.yaml`.
+
 Commit this to your project and push it to Platform.sh.  This will download a fresh copy of the Dropbox daemon and run the startup command every time you deploy from now on.
 
 ## Caveat
