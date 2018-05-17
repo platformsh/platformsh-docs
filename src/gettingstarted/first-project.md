@@ -58,12 +58,16 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <div>
   <h4>Examples</h4>
-  <a href="https://github.com/platformsh/platformsh-example-python">Generic Python application</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-python-uwsgi">Python UWSGI with Unix Sockets</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-python-elasticsearch">Python Elastic Search</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-python">[deprecated] Generic Python application</a><br />
 </div>
 
 <div>
   <h4>Frameworks</h4>
   <a href="https://github.com/platformsh/platformsh-example-django">Django</a>
+  <a href="https://github.com/platformsh/platformsh-example-python-2.7">Platform.sh Python 2.7 Django</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-python-3.6">Platform.sh Python 3.6 Django</a><br />
 </div>
 
 </section>
