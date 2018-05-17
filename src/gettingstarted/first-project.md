@@ -66,8 +66,8 @@ You can also initialize your project using any of the pre-made templates below. 
 <div>
   <h4>Frameworks</h4>
   <a href="https://github.com/platformsh/platformsh-example-django">Django</a>
-  <a href="https://github.com/platformsh/platformsh-example-python-2.7">Platform.sh Python 2.7 Django</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-python-3.6">Platform.sh Python 3.6 Django</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-python-2.7">Platform.sh Python 2.7 Flask</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-python-3.6">Platform.sh Python 3.6 Flask</a><br />
 </div>
 
 </section>
