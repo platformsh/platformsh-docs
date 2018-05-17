@@ -60,7 +60,6 @@ You can also initialize your project using any of the pre-made templates below. 
   <h4>Examples</h4>
   <a href="https://github.com/platformsh/platformsh-example-python-uwsgi">Python UWSGI with Unix Sockets</a><br />
   <a href="https://github.com/platformsh/platformsh-example-python-elasticsearch">Python Elastic Search</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-python">[deprecated] Generic Python application</a><br />
 </div>
 
 <div>
