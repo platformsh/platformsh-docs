@@ -98,3 +98,21 @@ mounts:
 In this configuration, there will be two mount points as seen from the application: `~/private` and `~/secret`.  However, the `secret` mount will point to a directory that is also under the mount point for `private`.  That is, the `secret` path and the `private/secret` path will be the exact same directory.
 
 Although this configuration won't cause any technical issues, it may be quite confusing so is generally not recommended.
+
+## Checking the size of mounts
+
+You can use standard commands such as `df -ah` to find the total disk usage of mounts (which are usually all on the same filesystem) and `du -hs /path/to/dir` to check the size of individual directories.
+
+The CLI provides a command that combines these checks:
+
+```
+$ platform mount:size
+Checking disk usage for all mounts of the application 'app'...
++-------------------------+-----------+---------+-----------+-----------+----------+
+| Mount(s)                | Size(s)   | Disk    | Used      | Available | Capacity |
++-------------------------+-----------+---------+-----------+-----------+----------+
+| private                 | 55.2 MiB  | 1.9 GiB | 301.5 MiB | 1.6 GiB   | 15.5%    |
+| tmp                     | 34.1 MiB  |         |           |           |          |
+| web/sites/default/files | 212.2 MiB |         |           |           |          |
++-------------------------+-----------+---------+-----------+-----------+----------+
+```
