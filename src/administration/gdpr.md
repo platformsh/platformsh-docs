@@ -14,8 +14,8 @@ As part of our measures we have implemented the following:
 * **Data Flows**: We have identified data, mapped the high level data flow, and mapped data shared with vendors - including cross-border transfers.
 * **PIA**: We have performed an internal Privacy Impact Analysis (PIA) using the [CNIL’s PIA Software](https://www.cnil.fr/en/open-source-pia-software-helps-carry-out-data-protection-impact-assesment) to ensure we comply with the GDPR.
 * **Security**: We have created [https://platform.sh/security](https://platform.sh/security) to document our security features.
-* **Data Collection**: We’ve documented information about [what data we collect](/administration/data-collection.html).
-* **Data Retention**: We documented information about our [data retention](/administration/data-retention.html).
+* **Data Collection**: We’ve documented information about [what data we collect](/administration/gdpr/data-collection.md).
+* **Data Retention**: We documented information about our [data retention](/administration/gdpr/data-retention.md).
 * **DPA**: We have revised our [Terms of Service](https://platform.sh/tos) and [Privacy Policy](https://platform.sh/privacy-policy) to align with the GDPR and we offer a GDPR Data Processing Agreement for those Customers who need it.
 
 And we have more items on the roadmap. GDPR work doesn’t end on 25 May. There is a sustainability effort to ensure we protect our clients data.
