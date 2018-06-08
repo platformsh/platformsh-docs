@@ -8,7 +8,7 @@
 
 ## Getting Started
 
-* [Getting started](/gettingstarted/getting-started.md)
+* [Getting started](/gettingstarted/index.md)
 * [Git](gettingstarted/git.md)
 * [Local development](gettingstarted/local.md)
   * [Tethered](gettingstarted/local/tethered.md)
@@ -71,11 +71,11 @@
 * [Private repositories](development/private-repository.md)
 * [Git submodules](development/submodules.md)
 * [Using SSH](development/ssh.md)
-  * [Setting up](ssh/setting-up.md)
-  * [Managing SSH keys on Platform.sh](ssh/managing-ssh-keys.md)
-  * [Working with SSH keys](ssh/local-ssh-keys.md)
-  * [Accessing your service](ssh/access.md)
-  * [Troubleshooting SSH](ssh/troubleshooting.md)
+  * [Setting up](development/ssh/setting-up.md)
+  * [Managing SSH keys on Platform.sh](development/ssh/managing-ssh-keys.md)
+  * [Working with SSH keys](development/ssh/local-ssh-keys.md)
+  * [Accessing your service](development/ssh/access.md)
+  * [Troubleshooting SSH](development/ssh/troubleshooting.md)
 * [Public IPs](development/public-ips.md)
 * [Protective block](development/protective-block.md)
 * [FAQ](development/faq.md)
