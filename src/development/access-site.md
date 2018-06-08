@@ -1,5 +1,7 @@
 # Accessing your site
 
+<!-- toc -->
+
 Once you have an environment running, there are many ways to access it to perform needed tasks. The most obvious of course is to view it in a web browser; the available URLs are shown in the Platform.sh UI and on the command line after every Git push.
 
 By design, the only way to deploy new code is to push to the corresponding branch.  That ensures a consistent, repeatable, auditable application instance at all times.
