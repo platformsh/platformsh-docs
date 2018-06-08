@@ -8,9 +8,8 @@
 
 ## Getting Started
 
-* [Your first project](/gettingstarted/first-project.md)
-* [Platform.sh in practice](/gettingstarted/platformsh-in-practice.md)
-* [Tools](gettingstarted/tools.md)
+* [Getting started](/gettingstarted/getting-started.md)
+* [Git](gettingstarted/git.md)
 * [Local development](gettingstarted/local.md)
   * [Tethered](gettingstarted/local/tethered.md)
   * [Untethered](gettingstarted/local/untethered.md)
@@ -118,8 +117,9 @@
   * [Data collection](administration/gdpr/data-collection.md)
   * [Data retention](administration/gdpr/data-retention.md)
 
-## Featured frameworks
+## Frameworks
 
+* [Project templates](frameworks/project-templates.md)
 * [Drupal 7](frameworks/drupal7.md)
   * [Developing with Drupal](frameworks/drupal7/developing-with-drupal.md)
   * [Using Composer Manager](frameworks/drupal7/composer-manager.md))
