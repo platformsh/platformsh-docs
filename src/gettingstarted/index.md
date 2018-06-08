@@ -8,24 +8,32 @@ A "day in the life" with Platform.sh includes using Git-style workflow for your 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/LJE3cd3X2N8" frameborder="0" allowfullscreen></iframe>
 
-## Requirements
+## Setting up
 
 Before you can start working with Platform.sh, you'll need a couple of tools set up on your local environment.
 
-* [Git](/gettingstarted/git.md)
-* [The Platform.sh CLI](/development/cli.md)
-
-## Add an SSH key
-
-[SSH key](/gettingstarted/tools.md#ssh)
+* Install [Git](/gettingstarted/git.md)
+* Install the [Platform.sh CLI](/development/cli.md)
+* Add an [SSH key](/development/ssh.md)
+* Set up your [local environment](gettingstarted/local.html)
 
 ## Configuring your project
 
+### Choose a project template
+
 @todo
 
-## Set up a local development environment
+### Create a new environment
 
-[Set up your local environment](gettingstarted/local.html)
+@todo
+
+### Your first commit
+
+@todo
+
+### Deploy to production
+
+@todo
 
 ## Practical example
 
