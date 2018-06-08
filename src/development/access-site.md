@@ -18,25 +18,13 @@ Generally there will be two URLs created per route in your `routes.yaml` file: O
 
 ## Accessing the application with SSH
 
-Most interactions with Platform.sh require SSH key authentication, and you will need to [set up your SSH keys](/development/ssh.md) before working on a site.
-
-Once that's done, you can easily access the command line on your application over SSH. To log in to the environment that corresponds to your current branch, simply type:
-
-```bash
-platform ssh
-```
-
-To log in to some other environment, use the `-e` flag to specify the environment.  
-
-The application container is a fully working Linux environment using the `bash` shell.  Most of the system consists of a read-only file system (either the underlying container image or your built application image), so you cannot edit code live, but otherwise the full system is available to read and peruse. Any file [mounts](/configuration/app/storage.md) you have declared in your `.platform.app.yaml` will be writable.
-
-Additionally, you will be logged in as the same user that the web server runs as; that means you needn't worry about the common problem of editing a file from the command line and from your application resulting in inconsistent and broken file ownership and permissions.
+See [SSH > Accessing your service with SSH](/development/ssh/access.md).
 
 ## Uploading and downloading files
 
 The writable static files in an application - including uploads, temporary and private files - are stored in [mounts](/configuration/app/storage.md).
 
-The [CLI](/gettingstarted/cli.md) can list mounts inside an application:
+The [CLI](/development/cli.md) can list mounts inside an application:
 
 ```
 $ platform mounts

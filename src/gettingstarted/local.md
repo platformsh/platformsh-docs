@@ -2,7 +2,7 @@
 
 While Platform.sh is great as a tool for hosting an application during both development and production, it's naturally not the ideal place to edit code.  You can't, in fact, as the file system is read-only (as it should be).  The proper place to edit your code is on your computer.
 
-You must have an [SSH key](/gettingstarted/tools.md#ssh) already configured on your account, and have both [Git](/gettingstarted/tools.md#git) and the [Platform.sh CLI](/gettingstarted/cli.md) installed before continuing.
+You must have an [SSH key](/development/ssh.md) already configured on your account, and have both [Git](/gettingstarted/git.md) and the [Platform.sh CLI](/development/cli.md) installed before continuing.
 
 ## Download the code
 
