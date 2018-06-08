@@ -62,7 +62,7 @@ Snapshots may be triggered by calling the CLI from an automated system such as J
 
 > **note**
 >
-> Snapshots using cron requires you to [install the CLI in your container and set up an API token](/gettingstarted/cli/api-tokens.md).
+> Snapshots using cron requires you to [install the CLI in your container and set up an API token](/development/cli/api-tokens.md).
 
 We ask that you not schedule a backup task more than once a day to minimize data usage. 
 

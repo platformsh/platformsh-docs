@@ -20,7 +20,7 @@ Notifications are generated every 5 minutes, so there may be a brief delay betwe
 
 ## Configuring notifications
 
-Health notifications can be set up via the [Platform.sh CLI](/gettingstarted/cli.html), through a number of different channels.
+Health notifications can be set up via the [Platform.sh CLI](/development/cli.html), through a number of different channels.
 
 ### Email notifications
 

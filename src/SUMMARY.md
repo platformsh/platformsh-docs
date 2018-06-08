@@ -11,8 +11,6 @@
 * [Your first project](/gettingstarted/first-project.md)
 * [Platform.sh in practice](/gettingstarted/platformsh-in-practice.md)
 * [Tools](gettingstarted/tools.md)
-* [CLI](gettingstarted/cli.md)
-  * [API Tokens](gettingstarted/cli/api-tokens.md)
 * [Local development](gettingstarted/local.md)
   * [Tethered](gettingstarted/local/tethered.md)
   * [Untethered](gettingstarted/local/untethered.md)
@@ -83,6 +81,8 @@
 * [Protective block](development/protective-block.md)
 * [FAQ](development/faq.md)
 * [Troubleshooting](development/troubleshoot.md)
+* [CLI](development/cli.md)
+  * [API Tokens](development/cli/api-tokens.md)
 
 ## Going Live
 

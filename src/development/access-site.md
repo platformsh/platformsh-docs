@@ -8,7 +8,7 @@ By design, the only way to deploy new code is to push to the corresponding branc
 
 The web URL(s) for the site are listed in the [web UI](/administration/web.md) under "Access site".
 
-They can also be found on the command line, using the [Platform.sh CLI](/gettingstarted/cli.md):
+They can also be found on the command line, using the [Platform.sh CLI](/development/cli.md):
 
 ```bash
 platform url
