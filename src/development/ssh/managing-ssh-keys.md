@@ -4,11 +4,11 @@
 
 Platform.sh allows you to add SSH keys for more than one computer. You can also add more than one SSH key per computer if necessary. For example, you might use one SSH key for Platform.sh, and one for another service.
 
-### Using the web interface
+## Using the web interface
 
 Your SSH keys can be found at User > Account settings > SSH keys.
 
-### Using the CLI
+## Using the CLI
 
 The CLI provides several commands for working with your SSH keys.
 
