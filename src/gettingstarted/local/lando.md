@@ -33,8 +33,6 @@ tooling:
     description: Run Platform CLI commands
     cmd:
       - /var/www/.platformsh/bin/platform
-    options:
-      passthrough: true
 
 config:
   # Lando defaults to Apache. Switch to nginx to match Platform.sh.
