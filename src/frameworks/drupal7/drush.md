@@ -10,11 +10,21 @@ commands at [Drush.org](http://www.drush.org). If you have never used
 Drush before, you can learn more about it on the [Drush GitHub
 Repository](https://github.com/drush-ops/drush#description)
 
-Platform.sh has Drush installed by default, so all environments can utilize Drush commands in the development process. You can use the CLI to set up Drush aliases, to easily run Drush commands on
+You can use the CLI to set up Drush aliases, to easily run Drush commands on
 specific remote Platform.sh environments.
 
 > **note**
 > Platform's CLI requires **Drush 6 or greater**.
+
+## Include Drush in your project
+
+You can easily add Drush to your project using the `dependencies` property in `.platform.app.yaml`.
+
+```
+dependencies:
+    php:
+        "drush/drush": "^8.0"
+```
 
 ## Install Drush locally
 
