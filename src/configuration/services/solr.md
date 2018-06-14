@@ -236,7 +236,7 @@ In this example, you can now open `http://localhost:30000/solr/` in a browser to
 
 ## Upgrading
 
-The Solr data format sometimes changes between versions in incompatible ways.  Solr does not include a data upgrade mechanism as it is expected that all indexes can be regenerated from stable data if needed.  To upgrade Solr you will need to use a new service from scratch.
+The Solr data format sometimes changes between versions in incompatible ways.  Solr does not include a data upgrade mechanism as it is expected that all indexes can be regenerated from stable data if needed.  To upgrade (or downgrade) Solr you will need to use a new service from scratch.
 
 There are two ways of doing that.
 
@@ -246,7 +246,7 @@ In your `services.yaml` file, change the version of your Solr service *and* its 
 
 When you push that to Platform.sh, the old service will be deleted and a new one with the name name created, with no data.  You can then have your application reindex data as appropriate.
 
-This approach is simple, but has the downside of temporarily having no Solr instance, which your application may or may not handle gracefully, and needing to rebuild your index aftereward.  Depending on the size of your data that could take a while.
+This approach is simple but has the downside of temporarily having an empty Solr instance, which your application may or may not handle gracefully, and needing to rebuild your index afterward.  Depending on the size of your data that could take a while.
 
 ### Transitional
 
