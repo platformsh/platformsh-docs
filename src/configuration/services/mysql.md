@@ -6,10 +6,19 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 ## Supported versions
 
-* 5.5
 * 10.0
 * 10.1
 * 10.2
+
+> **note**
+>
+> Downgrades of MariaDB are not supported. MariaDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version of MariaDB without committing to it use a non-master environment.
+
+## Deprecated versions
+
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+
+* 5.5
 
 ## Relationship
 
