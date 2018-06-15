@@ -27,7 +27,6 @@ Now, add a single domain to your Platform.sh project for `mysite.com`.
 Using the CLI type:
 
 ```platform domain:add mysite.com```
-```platform domain:add www.mysite.com```
 
 You can also use the UI for that.
 
@@ -44,11 +43,9 @@ On your DNS provider, you would create two CNAMEs:
 
 ### Result
 
-So you would understand what is happening under the hood.
+Here's what will now happen under the hood.  Assume for a moment that all caches everywhere are empty.  An incoming request for `mysite.com` will result in the following:
 
-An incoming request for `mysite.com` will result in the following:
-
-1. Your browser asks the DNS network for `mysite.com`'s DNS A record (the IP address of this host).  It responds with "it's an alias for `www.master-def456-abc123.us.platform.sh`" (the CNAME) which itself resolves to the A record with IP address "1.2.3.4"  (Or whatever the actual address is). By default DNS requests by browsers are recursive, so there is no performance penalty for using CNAMEs.
+1. Your browser asks the DNS network for `mysite.com`'s DNS A record (the IP address of this host).  It responds with "it's an alias for `www.master-def456-abc123.us.platform.sh`" (the CNAME) which itself resolves to the A record with IP address `1.2.3.4`  (Or whatever the actual address is). By default DNS requests by browsers are recursive, so there is no performance penalty for using CNAMEs.
 3. Your browser sends a request to `1.2.3.4` for domain `mysite.com`.
 4. Your router responds with an HTTP 301 redirect to `www.mysite.com` (because that's what `routes.yaml` specified).
 5. Your browser looks up `www.mysite.com` and, as above, gets an alias for `www.master-def456-abc123.us.platform.sh`, which is IP 1.2.3.4.

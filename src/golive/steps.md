@@ -28,9 +28,6 @@ This is a required step, it will tell the Platform.sh edge layer where to route 
 
 You can add multiple domains to point to your project. Each domain can have its own custom SSL certificate, or use the default one provided.
 
-> **note**
-> After you have added your domain, your Master environment will no longer be accessible at `<environment>-<project>.<region>.platform.sh`.  That's why you should write it down first.
-
 If you require access to the site before the domain name becomes active you can create a `hosts` file entry on your computer and point it to the IP address that resolves when you access your master project branch.
 
 To get the IP you can run `ping <environment>-<project>.<region>.platform.sh` (with the DNS name you noted in step 2 of the pre-launch check list). In OS X and Linux this will usually be the hosts file in `/etc/hosts` in Windows `c:\Windows\System32\Drivers\etc\hosts`. You will need to be a admin user to be able to change that file. So in OS X you will usually run something like `sudo vi /etc/hosts`. After adding the line the file will look something like:
@@ -48,7 +45,9 @@ Sometimes it can take Let's Encrypt a couple of minutes to provision the certifi
 
 Configure your DNS provider to point your domain to your Platform.sh Master environment domain name.
 
-The way to do so will vary somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.  Some will call it an Alias or similar alternate name, but either way the intent is to say "this domain should always resolve to... this other domain".  Add a CNAME record from your desired domain (`www.example.com`) to the master environment hostname you wrote down earlier.
+The way to do so will vary somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.  Some will call it an Alias or similar alternate name, but either way the intent is to say "this domain should always resolve to... this other domain".  
+
+You can access the CNAME target by running `platform environment:info` and looking for the `environment_hostname` property.  That is the host name by which Platform.sh knows your environment.  Add a CNAME record from your desired domain (`www.example.com`) to the value of the `environment_hostname`.
 
 If you have multiple domains you want to be served by the same application you will need to add a CNAME record for each of them. 
 
