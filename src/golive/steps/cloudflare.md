@@ -1,8 +1,8 @@
 # (Optional) Cloudflare configuration
 
-One of the main features that a modern DNS provider needs to have in order to work well with Platform.sh is somethat that's colloquially known as "Cname Flattening".  This solves the problem of being able to point your "root domain" (example.com) to a domain name (cname) rather than an IP address (A record).  [This post](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/) explains it well.
+One of the main features that a modern DNS provider needs to have in order to work well with Platform.sh is somethat that's colloquially known as "Cname Flattening".  This solves the problem of being able to point your "root domain" (example.com) to a domain name (CNAME) rather than an IP address (A record).  [This post](https://blog.cloudflare.com/introducing-CNAME-flattening-rfc-compliant-cnames-at-a-domains-root/) explains it well.
 
-In order to correctly point DNS to your Platform.sh project, you'll need at the very least the master environment cname, in other words the domain of your site before you add a custom domain in the project admin UI (or otherwise in the CLI).  It will look something like 
+In order to correctly point DNS to your Platform.sh project, you'll need at the very least the master environment CNAME, in other words the domain of your site before you add a custom domain in the project admin UI (or otherwise in the CLI).  It will look something like
 
 TODO - get example
 
