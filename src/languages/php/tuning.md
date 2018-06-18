@@ -42,10 +42,10 @@ The most important values to set are
 To determine how many files you have, run this command from the root of your application:
 
 ```bash
-find . -type f -print | grep php | wc -l
+find . -type f -name '*.php' | wc -l
 ```
 
-That will report the number of files in your file tree that contain the string "php" in their name.  That may not be perfectly accurate (some applications have PHP code in files that don't end in `.php`, some files may contain "php" in their name but not actually be PHP code, etc.) but it's a reasonable approximation.  Set the `opcache.max_accelerated_files` option to a value slightly higher than this.
+That will report the number of files in your file tree that end in `.php`.  That may not be perfectly accurate (some applications have PHP code in files that don't end in `.php`, it may not catch generated files that haven't been generated yet, etc.) but it's a reasonable approximation.  Set the `opcache.max_accelerated_files` option to a value slightly higher than this.  Note that PHP will automatically round the value you specify up to the next highest prime number, for reasons long lost to the sands of time.
 
 Determining an optimal `opcache.memory_consumption` is a bit harder, unfortunately, as it requires executing code via a web request to get adequate statistics.  Additionally, pushing new code clears the opcache so the statistics will be non-representative for a while.
 
