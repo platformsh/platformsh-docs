@@ -6,7 +6,7 @@ In order to correctly point DNS to your Platform.sh project, you'll need at the 
 
 TODO - get example
 
-Assuming that you are using both a www. subdomain as well as the bare domain, you'll want to point both of those DNS entries to the same place. Whether you choose the bare domain version or the www subdomain doesn't make any practical difference, as they both will reach Platform.sh and be handled correctly.
+Assuming that you are using both a `www.` subdomain as well as the bare domain, you'll want to point both of those DNS entries to the same place. Whether you choose the bare domain version or the www subdomain doesn't make any practical difference, as they both will reach Platform.sh and be handled correctly.
 
 ## Enable "Full SSL" option in the Cloudflare admin
 
@@ -18,7 +18,6 @@ This means that traffic to your site is encrypted from the client (browser) to C
 # Cloudflare's Full SSL option
 		   https                       https
 User <---------------> Cloudflare <-------------> Platform.sh
-
 ```
 
 The other option known as "Flexible SSL" will cause issues if you intend to redirect all traffic to HTTPS.  The "Flexible SSL" option will use Cloudflare's TLS/SSL certificate to encrypt traffic between your users and the CDN, but will pass requests from the CDN back to your project at Platform.sh via HTTP.  This can make it easy for sites that don't have a TLS/SSL certificate to begin ofering their users a more secure experience, by at the least eliminating the unencrypted attack vector on the the "last mile" to the user's browser.
@@ -27,7 +26,6 @@ The other option known as "Flexible SSL" will cause issues if you intend to redi
 # Cloudflare's Flexible SSL option
 		   https                       http
 User <---------------> Cloudflare <-------------> Platform.sh
-
 ```
 
 This will cause all traffic from Cloudflare to your project to be redirected to HTTPS, which will set off an endless loop as HTTPS traffic will be presented as HTTP to your project no matter what.
