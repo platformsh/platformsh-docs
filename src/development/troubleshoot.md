@@ -22,30 +22,50 @@ platform project:clear-build-cache
 
 That will wipe the build cache for the current project entirely.  Naturally the next build for each environment will likely be longer as the cache rebuilds.
 
-## HTTP responses "502 bad gateway" or "503 service unavailable"
+## HTTP responses 502 Bad Gateway or 503 Service Unavailable
 
-If you receive these HTTP responses from your site, it suggests that your site is running out of workers or the application process is crashing.  Here are the typical causes:
+These errors indicate your application (or application runner, like PHP-FPM) is crashing or unavailable.  Typical causes include:
 
+* Your `.platform.app.yaml` configuration has an error and the process is not starting or requests are not able to be forwarded to it correctly.  Check your `web.commands.start` entry or that your `passthru` configuration is correct.
 * The amount of traffic coming to your site exceeds the processing power of your application.
-* Certain code path(s) in your application are too slow.
-* A PHP process is crashing because of a segmentation fault.
-* A PHP process is killed by the kernel out-of-memory killer.
+* Certain code path(s) in your application are too slow and timing out.
+* A PHP process is crashing because of a segmentation fault (see below).
+* A PHP process is killed by the kernel out-of-memory killer (see below).
 
-### Too much traffic or a slow application
+## PHP-specific error messages
+
+### server reached max_children (PHP)
+
+You may see a line like the following in the `/var/log/app.log` file:
+
+```
+WARNING: [pool web] server reached max_children setting (2), consider raising it
+```
+
+That indicates that the server is receiving more concurrent requests than it has PHP processes allocated, which means some requests will have to wait until another finishes.  In this example there are 2 PHP processes that can run concurrently.
+
+Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process.  There are two ways to increase the number of workers:
+
+* Adjust the [worker sizing hints](/languages/php/fpm.md) for your project.
+* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
+
+
+### Execution timeout
 
 If your PHP application is not able to handle the amount of traffic or it is slow, you should see log lines from `/var/log/app.log` like any of the below:
 
 ```
-WARNING: [pool web] server reached max_children setting (2), consider raising it
 WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /index.php") execution timed out (358.009855 sec), terminating
 ```
 
-When you see "execution timed out", that means your application is probably having a infinite loop or the work itself requires a long time to complete. For the latter case, you should consider putting the task into a background job.
+That means your PHP process is running longer than allowed.  You can adjust the `max_execution_time` value in `php.ini`, but there is still a 5 minute hard cap on any web request that cannot be adjusted.
 
-When you see "server reached max_children setting", the web traffic exceeded the capacity that your application can handle. You can use the below example [Platform.sh CLI](/overview/cli.md) command to find the top 20 slowest requests in the last hour.
+The most common cause of a timeout is either an infinite loop (which is a bug that you should fix) or the work itself requires a long time to complete. For the latter case, you should consider putting the task into a background job.
 
-```
-platform ssh "grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20"
+The following command will identify the 20 slowest requests in the last hour, which can provide an indication of what code paths to investigate.
+
+```bash
+grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20
 ```
 
 If you see that the processing time of certain requests is slow (e.g. taking more than 1000ms), you may wish to consider using a profiler like [Blackfire](/administration/integrations/blackfire.md) to debug the performance issue.
@@ -76,25 +96,17 @@ WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 secon
 That means the memory usage of your container exceeds the limit allowed on your plan so the kernel kills the offending process. You should try the following:
 
 * Check if the memory usage of your application is expected and try to optimize it.
-* Use [sizing hints](https://docs.platform.sh/languages/php.html#php-worker-sizing-hints) to reduce the amount of PHP workers which reduces the memory footprint.
+* Use [sizing hints](/languages/php/fpm.md) to reduce the amount of PHP workers which reduces the memory footprint.
 * Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
 
-## PHP "server reached max_children" error in logs
-
-You may see a line like the following in the `/var/log/app.log` file:
-
-`WARNING: [pool web] server reached max_children setting (2), consider raising it`
-
-That indicates that the server is receiving more concurrent requests than it has PHP processes allocated, which means some requests will have to wait until another finishes.  In this example there are 2 PHP processes that can run concurrently.
-
-Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process.  There are two ways to increase the number of workers:
-
-* Adjust the [worker sizing hints](/languages/php.html#php-worker-sizing-hints) for your project.
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
 
 ## Low disk space
 
-If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writeable space the most direct option is: `df -h -x tmpfs -x squashfs | grep -v /run/shared`
+If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writeable space the most direct option is:
+
+```
+df -h -x tmpfs -x squashfs | grep -v /run/shared`
+```
 
 That will show only the writeable mounts on the system, similar to:
 
