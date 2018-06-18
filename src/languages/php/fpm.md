@@ -49,9 +49,11 @@ In the fifth column, you'll see the peak memory usage that occurred while each r
 
 A good way to determine an optimal request memory is with the following command:
 
-`cat /var/log/php.access.log | awk '{print $6}' | sort -n | uniq -c`
+```
+grep $(date +%Y-%m-%dT%H --date='-7 days') /var/log/php.access.log | awk '{print $6}' | sort -n | uniq -c
+```
 
-This will print out a table of how many requests used how much memory, in KB.  As an example, consider the following output:
+This will print out a table of how many requests used how much memory, in KB, over the last 7 days.  (Adjust the timeframe if desired).  As an example, consider the following output:
 
 ```
       1 
