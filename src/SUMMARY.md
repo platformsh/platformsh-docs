@@ -56,6 +56,7 @@
 
 * [PHP](languages/php.md)
   * [Extensions](languages/php/extensions.md)
+  * [Performance tuning](languages/php/tuning.md)
   * [PHP.ini settings](languages/php/ini.md)
   * [PHP-FPM sizing](languages/php/fpm.md)
 * [Node.js](languages/nodejs.md)

@@ -1,0 +1,110 @@
+# Performance tuning PHP
+
+Once your application is up and running it still needs to be kept fast.  Platform.sh offers a wide degree of flexibility in how PHP behaves, but that does mean you may need to take a few steps to ensure your site is running optimally.
+
+The following recommendations are guidelines only.  They're also listed in approximately the order we recommend investigating them, although your mileage may vary.
+
+## Upgrade to PHP 7.1+
+
+There is very little purpose to trying to optimize a PHP application on PHP 5.  PHP 7 is generally twice as fast and uses half as much memory as PHP 5, making it unquestionably the first step to take when trying to make a PHP-based site run faster.
+
+To change your PHP version, simply change the `type` key in your `.platform.app.yaml` to the desired PHP version.  As always, test it on a branch first before merging to `master`.
+
+## Ensure that the router cache is properly configured
+
+Although not PHP-specific, a common source of performance issues is a misconfigured cache.  The most common issue is not whitelisting session cookies, which results in a site with any cookies at all, including from analytics tools, never being cached.  See the [router cache](/configuration/routes/cache.md) documentation, and the [cookie entry](/configuration/routes/cache.md#cookies) specifically.
+
+You will also need to ensure that your application is sending the correct `cache-control` header.  The router cache will obey whatever cache headers your application sends, so send it good ones.
+
+## Optimize the FPM worker count
+
+PHP-FPM reserves a fixed number of simultaneous worker processes to handle incoming requests.  If more simultaneous requests are received than the number of workers then some requests will wait.  The default worker count is deliberately set rather conservative but can be improved in many cases.  See the [PHP-FPM sizing](/languages/php/fpm.md) page for how to determine and set a more optimal value.
+
+If your `/var/log/app.log` file contains a lot of entries like 
+
+```
+WARNING: [pool web] server reached max_children setting (2), consider raising it
+```
+
+That means your worker count is too low.  If you have already set an optimal worker size and still see that message frequently consider upgrading your project resources.
+
+## Configure opcache
+
+PHP 5.5 and later include an opcache that is enabled at all times, as it should be.  It may still need to be tuned, however.  The opcache can be configured using `php.ini` values, which in this case are best set using the `variables` block in `.platform.app.yaml`.
+
+The most important values to set are 
+
+* `opcache.max_accelerated_files`: The max number of files that the opcache may cache at once.  If this is lower than the number of files in the application it will begin thrashing and become less effective.
+* `opcache.memory_consumption`: The total memory that the opcache may use.  If the application is larger than this the cache will start thrashing and become less effective.
+
+To determine how many files you have, run this command from the root of your application:
+
+```bash
+find . -type f -print | grep php | wc -l
+```
+
+That will report the number of files in your file tree that contain the string "php" in their name.  That may not be perfectly accurate (some applications have PHP code in files that don't end in `.php`, some files may contain "php" in their name but not actually be PHP code, etc.) but it's a reasonable approximation.  Set the `opcache.max_accelerated_files` option to a value slightly higher than this.
+
+Determining an optimal `opcache.memory_consumption` is a bit harder, unfortunately, as it requires executing code via a web request to get adequate statistics.  Additionally, pushing new code clears the opcache so the statistics will be non-representative for a while.
+
+Add a a PHP file to your project that is web-accessible containing this line:
+
+```php
+<?php print "<pre>" . print_r(opcache_get_status(false), 1) . "</pre>";
+```
+
+Commit and push it.  Then let the site run for a while (10-20 minutes is probably adequate) and visit that page in a browser.  It should show output similar to the following:
+
+``` 
+Array
+(
+    [opcache_enabled] => 1
+    [cache_full] => 
+    [restart_pending] => 
+    [restart_in_progress] => 
+    [memory_usage] => Array
+        (
+            [used_memory] => 30869976
+            [free_memory] => 36238888
+            [wasted_memory] => 0
+            [current_wasted_percentage] => 0
+        )
+
+    [opcache_statistics] => Array
+        (
+            [num_cached_scripts] => 1518
+            [num_cached_keys] => 2599
+            [max_cached_keys] => 32531
+            [hits] => 5133
+            [start_time] => 1529345972
+            [last_restart_time] => 0
+            [oom_restarts] => 0
+            [hash_restarts] => 0
+            [manual_restarts] => 0
+            [misses] => 1580
+            [blacklist_misses] => 0
+            [blacklist_miss_ratio] => 0
+            [opcache_hit_rate] => 76.463578131983
+        )
+)
+```
+
+The most important values for now are the `used_memory`, `free_memory`, and `oom_restarts` (Out Of Memory Restarts).  If the `oom_restarts` number is high (meaning more than a handful) it means you don't have enough memory allocated to the opcache.  In this example the opcache is using about half of the 64 MB given to it by default, which is fine.  If `free_memory` is too low or `oom_restarts` too high, set a higher value for the memory consumption.
+
+When you're done, be sure to remove the test script we created before.
+
+Your `.platform.app.yaml` file will end up including a block similar to:
+
+```yaml
+variables:
+    php:
+        'opcache.max_accelerated_files': 22000
+        'opcache.memory_consumtion': 96
+```
+
+(Memory consumption is set in megabytes.)
+
+## Optimize your code
+
+It's also possible that your own code is doing more work than it needs to.  Profiling and optimizing a PHP application is a much larger topic than will fit here, but Platform.sh recommends enabling [Blackfire.io](/administration/integrations/blackfire.md) on your project to determine what slow spots can be found and addressed.
+
