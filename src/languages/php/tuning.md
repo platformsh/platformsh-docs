@@ -16,6 +16,8 @@ Although not PHP-specific, a common source of performance issues is a misconfigu
 
 You will also need to ensure that your application is sending the correct `cache-control` header.  The router cache will obey whatever cache headers your application sends, so send it good ones.
 
+Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.  See the [`web.locations`](/configuration/app/web.md#locations) documentation for more details.
+
 ## Optimize the FPM worker count
 
 PHP-FPM reserves a fixed number of simultaneous worker processes to handle incoming requests.  If more simultaneous requests are received than the number of workers then some requests will wait.  The default worker count is deliberately set rather conservative but can be improved in many cases.  See the [PHP-FPM sizing](/languages/php/fpm.md) page for how to determine and set a more optimal value.
