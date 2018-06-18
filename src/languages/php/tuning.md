@@ -47,53 +47,48 @@ find . -type f -name '*.php' | wc -l
 
 That will report the number of files in your file tree that end in `.php`.  That may not be perfectly accurate (some applications have PHP code in files that don't end in `.php`, it may not catch generated files that haven't been generated yet, etc.) but it's a reasonable approximation.  Set the `opcache.max_accelerated_files` option to a value slightly higher than this.  Note that PHP will automatically round the value you specify up to the next highest prime number, for reasons long lost to the sands of time.
 
-Determining an optimal `opcache.memory_consumption` is a bit harder, unfortunately, as it requires executing code via a web request to get adequate statistics.  Additionally, pushing new code clears the opcache so the statistics will be non-representative for a while.
+Determining an optimal `opcache.memory_consumption` is a bit harder, unfortunately, as it requires executing code via a web request to get adequate statistics.  Fortunately there is a command line tool that will handle most of that.
 
-Add a a PHP file to your project that is web-accessible containing this line:
+Change to the `/tmp` directory (or any other non-web-accessible writeable directory) and install ['CacheTool`](https://github.com/gordalina/cachetool).  It has a large number of commands and options but we're only interested in the opcache status for FastCGI command.  The really short version of downloading and using it would be:
 
-```php
-<?php print "<pre>" . print_r(opcache_get_status(false), 1) . "</pre>";
+```bash
+cd /tmp
+curl -sO http://gordalina.github.io/cachetool/downloads/cachetool.phar
+php cachetool.phar opcache:status --fcgi=$SOCKET
 ```
 
-Commit and push it.  Then let the site run for a while (10-20 minutes is probably adequate) and visit that page in a browser.  It should show output similar to the following:
+The `--fcgi=$SOCKET` option tells the command how to connect to the PHP-FPM process on the server through the Platform.sh-defined socket.  That command will output something similar to the following:
 
-``` 
-Array
-(
-    [opcache_enabled] => 1
-    [cache_full] => 
-    [restart_pending] => 
-    [restart_in_progress] => 
-    [memory_usage] => Array
-        (
-            [used_memory] => 30869976
-            [free_memory] => 36238888
-            [wasted_memory] => 0
-            [current_wasted_percentage] => 0
-        )
-
-    [opcache_statistics] => Array
-        (
-            [num_cached_scripts] => 1518
-            [num_cached_keys] => 2599
-            [max_cached_keys] => 32531
-            [hits] => 5133
-            [start_time] => 1529345972
-            [last_restart_time] => 0
-            [oom_restarts] => 0
-            [hash_restarts] => 0
-            [manual_restarts] => 0
-            [misses] => 1580
-            [blacklist_misses] => 0
-            [blacklist_miss_ratio] => 0
-            [opcache_hit_rate] => 76.463578131983
-        )
-)
+```bash
++----------------------+---------------------------------+
+| Name                 | Value                           |
++----------------------+---------------------------------+
+| Enabled              | Yes                             |
+| Cache full           | No                              |
+| Restart pending      | No                              |
+| Restart in progress  | No                              |
+| Memory used          | 29.65 MiB                       |
+| Memory free          | 34.35 MiB                       |
+| Memory wasted (%)    | 0 b (0%)                        |
++----------------------+---------------------------------+
+| Cached scripts       | 1528                            |
+| Cached keys          | 2609                            |
+| Max cached keys      | 32531                           |
+| Start time           | Mon, 18 Jun 2018 18:19:32 +0000 |
+| Last restart time    | Never                           |
+| Oom restarts         | 0                               |
+| Hash restarts        | 0                               |
+| Manual restarts      | 0                               |
+| Hits                 | 8554                            |
+| Misses               | 1594                            |
+| Blacklist misses (%) | 0 (0%)                          |
+| Opcache hit rate     | 84.29247142294                  |
++----------------------+---------------------------------+
 ```
 
-The most important values for now are the `used_memory`, `free_memory`, and `oom_restarts` (Out Of Memory Restarts).  If the `oom_restarts` number is high (meaning more than a handful) it means you don't have enough memory allocated to the opcache.  In this example the opcache is using about half of the 64 MB given to it by default, which is fine.  If `free_memory` is too low or `oom_restarts` too high, set a higher value for the memory consumption.
+The most important values for now are the `Memory used`, `Memory free`, and `Oom restarts` (Out Of Memory Restarts).  If the `Oom restarts` number is high (meaning more than a handful) it means you don't have enough memory allocated to the opcache.  In this example the opcache is using about half of the 64 MB given to it by default, which is fine.  If `Memory free` is too low or `Oom Restarts` too high, set a higher value for the memory consumption.
 
-When you're done, be sure to remove the test script we created before.
+Remember to remove the `cachetools.phar` file once you're done with it.
 
 Your `.platform.app.yaml` file will end up including a block similar to:
 
