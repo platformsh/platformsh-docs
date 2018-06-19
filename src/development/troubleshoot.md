@@ -34,7 +34,7 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 
 ## PHP-specific error messages
 
-### server reached max_children (PHP)
+### server reached max_children
 
 You may see a line like the following in the `/var/log/app.log` file:
 
