@@ -21,7 +21,7 @@ git push origin :BRANCH-NAME
 > **note**
 > Deleting the Master environment is forbidden.
 
-## Basic Autentication / Restrict access to IPs
+## Basic Authentication / Restrict access to IPs
 
 You should not expose your development environments to the whole wide world. Platform.sh allows you to simply implement access control, either by login/password (the equivalent to .htaccess) or by filtering IP addresses or a network using the [CIDR format](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).  That is, `4.5.6.7` and `4.5.6.0/8` are both legal formats.
 
@@ -31,7 +31,7 @@ These settings get inherited by branches below the one you are one. That means i
 
 You can also setup authentication with the CLI using the following command `platform environment:http-access` which also allows you to read the current setup. This eases the integration of CI jobs with Platform.sh as you will not need to hardcode the values in the CI.
 
-You can allow or deny access to specific IPs / networks by switching `ON` the access control button and then adding IP addresses or CIDR network masks followed by `allow` or `deny` mention as you want.
+You can allow or deny access to specific IPs / networks by switching `ON` the access control button and then adding `allow` or `deny` followed by the IP addresses or CIDR network masks. You can mention as many as you want.
 
 ![Allowing or denying specific ips to project settings](/images/ui-conf-project-access-ip-settings.png)
 
