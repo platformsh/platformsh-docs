@@ -86,6 +86,7 @@
 * [Going Live Steps](/golive/steps.md)
   * [Custom TLS](/golive/steps/tls.md)
   * [Fastly](/golive/steps/fastly.md)
+  * [Cloudflare](/golive/steps/cloudflare.md)
 * [Troubleshooting](/golive/troubleshoot.md)
 * [Example](/golive/example.md)   
 
