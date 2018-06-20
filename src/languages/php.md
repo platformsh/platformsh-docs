@@ -94,5 +94,5 @@ A number of project templates for major PHP applications are available on GitHub
 
 * [Amp/Aerys](https://github.com/platformsh/platformsh-example-amphp)
 * [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
-* [Symfony 2.8](https://github.com/platformsh/platformsh-example-symfony/tree/2.8)
-* [Symfony 3.x](https://github.com/platformsh/platformsh-example-symfony/tree/3.0)
+* [Symfony 3.x](https://github.com/platformsh/platformsh-example-symfony3)
+* [Symfony 4.x](https://github.com/platformsh/template-symfony4)
