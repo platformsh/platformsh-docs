@@ -28,4 +28,4 @@ User <---------------> Cloudflare <-------------> Platform.sh
 
 This will cause all traffic from Cloudflare to your project to be redirected to HTTPS, which will set off an endless loop as HTTPS traffic will be presented as HTTP to your project no matter what.
 
-**Always use "Full SSL"**
+In short: *Always use "Full SSL" unless you have a very clear reason to do otherwise*
