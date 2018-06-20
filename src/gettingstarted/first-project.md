@@ -46,8 +46,8 @@ You can also initialize your project using any of the pre-made templates below. 
   <h4>Frameworks</h4>
   <a href="https://github.com/platformsh/platformsh-example-amphp">AmPHP</a><br />
   <a href="https://github.com/platformsh/platformsh-example-reactphp">React PHP</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-symfony/tree/2.8">Symfony 2.8</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-symfony/tree/3.0">Symfony 3.x</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-symfony3">Symfony 3.x</a><br />
+  <a href="https://github.com/platformsh/template-symfony4">Symfony 4.x</a><br />
 </div>
 
 </section>
