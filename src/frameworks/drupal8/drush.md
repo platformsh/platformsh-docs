@@ -45,19 +45,7 @@ For Drush to be available on the command line, **it must be added to the project
 
 Add a new file named `.environment` to the root of your your project's git repository with this code:
 
-```bash
-# Statements in this file will be executed (sourced) by the shell in SSH
-# sessions, in deploy hooks, in cron jobs, and in the application's runtime
-# environment. This file must be placed in the root of the application, not
-# necessarily the git repository's root. In case of multiple applications,
-# each application can have its own .environment file.
-
-# Allow executable app dependencies from Composer to be run from the path.
-if [ -n "$PLATFORM_APP_DIR" -a -f "$PLATFORM_APP_DIR"/composer.json ] ; then
-  bin=$(composer config bin-dir --working-dir="$PLATFORM_APP_DIR" --no-interaction 2>/dev/null)
-  export PATH="${PLATFORM_APP_DIR}/${bin:-vendor/bin}:${PATH}"
-fi
-```
+{% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-example-drupal8/master/.environment", language="bash" %}{% endcodesnippet %}
 
 ## Install Drush locally
 
