@@ -90,6 +90,10 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
   if ($memcache_exists || $memcached_exists) {
     $class_loader->addPsr4('Drupal\\memcache\\', 'modules/contrib/memcache/src');
 
+    // If using a multisite configuration, adapt this line to include a site-unique
+    // value.
+    $settings['memcache']['key_prefix'] = $PLATFORM_ENVIRONMENT;
+
     // Define custom bootstrap container definition to use Memcache for cache.container.
     $settings['bootstrap_container_definition'] = [
       'parameters' => [],

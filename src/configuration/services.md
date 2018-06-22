@@ -88,25 +88,63 @@ Once a service is running and exposed as a relationship, its appropriate credent
 
 Be aware that the keys in the `PLATFORM_RELATIONSHIPS` structure are fixed but the values they hold may change on any deployment or restart.  Never hard-code connection credentials for a service into your application.  You should re-check the environment variable every time your script or application starts.
 
-To connect to a remote service from your local computer, the easiest way is to use the [Platform CLI](/gettingstarted/cli.md) to open an SSH tunnel.
+Access to the database or other services is only available from within the cluster.  For security reasons they cannot be accessed directly.  However, they can be accessed over an SSH tunnel.  There are two ways to do so.  (The example here uses MariaDB but the process is largely identical for any service.)
 
-```bash
-platform tunnel:open
+### Obtaining service credentials
+
+In either case, you will also need the service credentials.  For that, run `platform relationships`.  That will give output similar to the following:
+
+```yaml
+redis:
+    -
+        service: rediscache
+        ip: 246.0.82.19
+        cluster: jyu7waly36ncj-master-7rqtwti
+        host: redis.internal
+        rel: redis
+        scheme: redis
+        port: 6379
+database:
+    -
+        username: user
+        scheme: mysql
+        service: mysqldb
+        ip: 246.0.80.37
+        cluster: jyu7waly36ncj-master-7rqtwti
+        host: database.internal
+        rel: mysql
+        path: main
+        query:
+            is_master: true
+        password: ''
+        port: 3306
 ```
 
-That will open an SSH tunnel to all services on the current environment, and give an output similar to:
+That indicates that the `database` relationship can be accessed at host `database.internal`, user `user`, and an empty password.  The `path` key contains the database name, `main`.  The other values can be ignored.
+
+> **note**
+> When using the default endpoint on MySQL/MariaDB, the password is usually empty. It will be filled in if you define any custom endpoints. As there is only the one user and port access is tightly restricted anyway the lack of a password does not create a security risk.
+
+### Open an SSH tunnel directly
+
+The first option is to open an SSH tunnel for all of your services.  You can do so with the Platform.sh CLI, like so:
 
 ```bash
+$ platform tunnel:open
 SSH tunnel opened on port 30000 to relationship: redis
 SSH tunnel opened on port 30001 to relationship: database
-Logs are written to: /home/myuser/.platformsh/tunnels.log
+Logs are written to: ~/.platformsh/tunnels.log
 
 List tunnels with: platform tunnels
 View tunnel details with: platform tunnel:info
 Close tunnels with: platform tunnel:close
 ```
 
-In this example, we can now securely connect to the database or redis server on our environment by connecting to the specified local ports.  The `platform tunnels` command will list all open tunnels:
+The `tunnel:open` command will connect all relationships defined in the `.platform.app.yaml` file to local ports, starting at 30000.  You can then connect to those ports on `localhost` using the program of your choice.
+
+In this example, we would connect to `localhost:30001`, database name `main`, with username `user` and an empty password.
+
+The `platform tunnels` command will list all open tunnels:
 
 ```text
 +-------+---------------+-------------+-----------+--------------+
@@ -116,3 +154,15 @@ In this example, we can now securely connect to the database or redis server on 
 | 30001 | a43m75zns6k4c | master      | [default] | database     |
 +-------+---------------+-------------+-----------+--------------+
 ```
+
+### Using an application tunnel
+
+Alternatively, many database applications (such as MySQL Workbench and similar tools) support establishing their own SSH tunnel.  Consult the documentation for your application for how to enter SSH credentials, including telling it where your SSH private key is.  (Platform.sh does not support password-based SSH authentication.)
+
+To get the values to use, the easiest way is to run `platform ssh --pipe`.  That will return a command line that can be used to connect over SSH, from which you can pull the appropriate information.  For example:
+
+`jyu7waly36ncj-master-7rqtwti--app@ssh.us.platform.sh`
+
+In this case, the username is `jyu7waly36ncj-master-7rqtwti--app` and the host is `ssh.us.platform.sh`.  Note that the host will vary per region, and the username will vary per-*environment*.
+
+In this example, we would configure our database application to setup a tunnel to `ssh.us.platform.sh` as user `jyu7waly36ncj-master-7rqtwti--app`, and then connect to the database on host `database.internal`, username `user`, empty password, and database name `main`.

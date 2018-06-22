@@ -7,6 +7,9 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 ## Supported versions
 
 * 3.0
+* 3.2
+* 3.4
+* 3.6
 
 ## Relationship
 
@@ -38,7 +41,7 @@ In your `.platform/services.yaml`:
 
 ```yaml
 mydatabase:
-    type: mongodb:3.0
+    type: mongodb:3.6
     disk: 1024
 ```
 
@@ -115,3 +118,9 @@ mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
 As with any other shell command it can be piped to another command to compress the output or redirect it to a specific file.
 
 For further references please see the [official mongodump documentation](https://docs.mongodb.com/manual/reference/program/mongodump/#bin.mongodump).
+
+## Upgrading
+
+To upgrade to 3.6 from a version earlier than 3.4, you must successively upgrade major releases until you have upgraded to 3.4. For example, if you are running a 3.0 image, you must upgrade first to 3.2 and then upgrade to 3.4 before you can upgrade to 3.6.
+
+For more details on upgrading and how to handle potential application backward compatibility issues, please see [Release Notes for MongoDB](https://docs.mongodb.com/manual/release-notes).

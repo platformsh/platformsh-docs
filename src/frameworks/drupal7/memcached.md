@@ -82,6 +82,10 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
       $host = sprintf("%s:%d", $endpoint['host'], $endpoint['port']);
       $conf['memcache_servers'][$host] = 'default';
     }
+
+    // If using a multisite configuration, adapt this line to include a site-unique
+    // value.
+    $conf['memcache_key_prefix'] = $PLATFORM_ENVIRONMENT;
   }
 }
 ```

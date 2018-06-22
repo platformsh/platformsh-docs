@@ -77,8 +77,8 @@ $ drush
 
 ### Create Drush aliases
 
-[Drush aliases](http://drush.readthedocs.org/en/master/usage/index.html#site-aliases) make it easy to manage your development websites. Here's an example of a [Drush alias
-file](https://github.com/drush-ops/drush/blob/master/examples/example.aliases.drushrc.php).
+[Drush aliases](http://drush.readthedocs.org/en/master/usage/index.html#site-aliases) make it easy to manage your development websites. Here's an
+example of a [Drush alias file](https://github.com/drush-ops/drush/blob/8.x/examples/example.aliases.drushrc.php).
 
 The Platform.sh CLI generates Drush aliases for you automatically when you run `platform get [project_id]`. 
 

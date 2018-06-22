@@ -12,9 +12,7 @@ Features supported:
 
 ### 1. Generate a token
 
-To integrate your Platform.sh project with an existing GitHub repository, you first need to generate a token on your GitHub user profile. Simply go to your account page on GitHub and click `Edit profile`.
-
-Select the *Personal access tokens* tab and click on [Generate new token](https://github.com/settings/tokens/new).
+To integrate your Platform.sh project with an existing GitHub repository, you first need to generate a token on your GitHub user profile. Simply go to your Settings, then select `Developer settings` and click `Personal access tokens`. Here you can [Generate a new token](https://github.com/settings/tokens/new).
 
 Give it a description and then ensure the token has the following scopes:
 
@@ -47,9 +45,12 @@ Note that if your repository belongs to an organization, use ``--repository=ORGA
 
 ### 3. Add the webhook
 
-Copy the Payload URL that is returned by the previous command.
+The CLI will create the necessary webhook for you when there's correct permission set in the given token. If you see the message `Failed to read or write webhooks`, you will need to add a webhook manually:
 
-Go to your GitHub repository and click `Settings`. Select the *Webhooks and Services* tab and click `Add webhook`. Paste the Payload URL, choose  "application/json" for the content type, choose "Send me everything"  for the events you want to receive and click `Add webhook`.
+1. Copy the hook URL shown in the message.
+2. Go to your GitHub repository and click Settings, select the Webhooks and Services tab, and click Add webhook.
+3. Paste the hook URL, choose application/json for the content type, choose "Send me everything" for the events you want to receive, and click Add webhook.
+
 
 You can now start pushing code, creating new branches or opening pull requests directly on your GitHub repository.
 

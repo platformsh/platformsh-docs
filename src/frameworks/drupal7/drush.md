@@ -2,11 +2,54 @@
 
 Drush is a command-line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those who spend their working hours hacking away at the command prompt. 
 
-## Installation & Drush Aliases
+You can use the CLI to set up Drush aliases, to easily run Drush commands on specific remote Platform.sh environments.
 
 See the [documentation on Drush in Drupal 8](frameworks/drupal8/drush.html) for installation, drush aliases, and other general information
 
 ## Working with Make files
+
+You can easily add Drush to your project using the `dependencies` property in `.platform.app.yaml`.
+
+```
+dependencies:
+    php:
+        "drush/drush": "^8.0"
+```
+
+## Install Drush locally
+
+Install drush with Composer:
+
+```bash
+$ composer global require drush/drush
+```
+
+At the end of the installation, you should be able to run:
+
+```bash
+$ drush
+```
+
+And see a list of available commands.
+
+> -   [Install Drush](https://github.com/drush-ops/drush)
+
+## Use drush aliases
+
+### Create Drush aliases
+
+[Drush aliases](http://drush.readthedocs.org/en/master/usage/index.html#site-aliases) make it easy to manage your development websites. Here's an example of a [Drush alias file](https://github.com/drush-ops/drush/blob/master/examples/example.aliases.drushrc.php).
+
+The CLI generates Drush aliases for you automatically, when you run `platform get [project_id]`. To see the aliases that are created, run `platform drush-aliases` and you should get output similar to that below:
+
+```bash
+$ platform drush-aliases
+Aliases for My Site (tqmd2kvitnoly):
+    @my-site._local
+    @my-site.master
+    @my-site.staging
+    @my-site.sprint1
+```
 
 ### Create a make file
 

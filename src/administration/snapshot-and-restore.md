@@ -48,13 +48,27 @@ $ platform snapshot:restore 92c9a4b2aa75422efb3d
 > **note**
 > You need "admin" role to restore your environment from a snapshot.
 
-## Automated snapshots
+## Snapshots and downtime
 
-No snapshot is triggered automatically on Platform.sh Standard. You can trigger your snapshot via the Web Interface or via the CLI.
+A snapshot does cause a momentary pause in service. We recommend running during non-peak hours for your site.
 
-Snapshots may be triggered from an automated system, such as cron, Jenkins, or another CI service by calling the CLI.  To enable backups automatically using just Platform.sh, see the section on [API tokens](/gettingstarted/cli/api-tokens.md) for installing the CLI in the app container.
+## Automating snapshots
 
-Once the CLI is installed and an API token configured you can add a cron task to run once a day and trigger a snapshot.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on.  However, in most cases such backups are only useful on the `master` production environment.  That can be achieved like so:
+Snapshots are not triggered automatically on Platform.sh Professional. 
+
+Snapshots may be triggered by calling the CLI from an automated system such as Jenkins or another CI service, or by installing the CLI tool into your application container and triggering the snapshot via cron.
+
+### Automated snapshots using Cron
+
+> **note**
+>
+> Snapshots using cron requires you to [install the CLI in your container and set up an API token](/gettingstarted/cli/api-tokens.md).
+
+We ask that you not schedule a backup task more than once a day to minimize data usage. 
+
+Once the CLI is installed and an API token configured you can add a cron task to run once a day and trigger a snapshot.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on. In most cases such backups are only useful on the `master` production environment.
+
+A common cron specification for a daily backup on the `master` environment looks like this:
 
 ```yaml
 crons:
@@ -72,9 +86,6 @@ The above cron task will run once a day at 5 am (UTC), and, if the current envir
 > 
 > It is very important to include the `--no-wait` flag.  If you do not, the cron process will block and you will be unable to deploy new versions of the site until the snapshot creation process is complete.
 
-We ask that you not schedule a backup task more than once a day to minimize data usage. As a snapshot does cause a momentary pause in service we recommend running during non-peak hours for your site.
-
-
 ### Retention
 
-Your snapshots are kept for 7 days.
+We guarantee that your snapshots are kept for at least 7 days.

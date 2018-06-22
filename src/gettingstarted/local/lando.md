@@ -33,8 +33,6 @@ tooling:
     description: Run Platform CLI commands
     cmd:
       - /var/www/.platformsh/bin/platform
-    options:
-      passthrough: true
 
 config:
   # Lando defaults to Apache. Switch to nginx to match Platform.sh.
@@ -53,7 +51,7 @@ config:
 In most cases downloading data from Platform.sh and loading it into Lando is straightforward.  If you have a single MySQL database then the following two commands, run from your application root, will download a compressed database snapshot and load it into the local Lando database container (and give you a cheap backup of the database in the process).
 
 ```bash
-platform db:dump -f database.sql.gz
+platform db:dump --gzip -f database.sql.gz
 lando db-import database.sql.gz
 ```
 

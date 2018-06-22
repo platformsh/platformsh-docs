@@ -31,7 +31,7 @@ mounts:
     Dropbox:
         source: local
         source_path: dropbox
-    '.dropbox':
+    '/.dropbox':
         source: local
         source_path: 'dropbox-meta'
 ```
@@ -41,7 +41,7 @@ If your `.platform.app.yaml` file still uses the old syntax for mounts, this is 
 ```yaml
 mounts:
     'Dropbox': 'shared:files/dropbox'
-    '.dropbox': 'shared:files/dropbox-meta'
+    '/.dropbox': 'shared:files/dropbox-meta'
 ```
 
 **Make sure you've `git push`ed these configuration changes to Platform.sh if you haven't already.**
@@ -61,7 +61,7 @@ web:
   commands:
     start: |
       ~/.dropbox-dist/dropboxd >/dev/null 2>&1 &
-      /usr/sbin/php-fpm7.0 # we do this by default for PHP7,
+      /usr/sbin/php-fpm7.2-zts # we do this by default for PHP7,
       # but you're overwriting the default web.commands.start so
       # you'll need to add it in manually.  Adjust according to your 
       # language and version.
@@ -73,6 +73,8 @@ hooks:
     wget "https://www.dropbox.com/download?plat=lnx.x86_64" -O archive.tar
     tar xzvf archive.tar && rm archive.tar
 ```
+
+Be well aware of the used [php-fpm](/languages/php.md) in your `web.commands.start`. This should match the version in your `.platform.app.yaml`.
 
 Commit this to your project and push it to Platform.sh.  This will download a fresh copy of the Dropbox daemon and run the startup command every time you deploy from now on.
 

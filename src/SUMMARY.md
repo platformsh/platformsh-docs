@@ -55,6 +55,10 @@
 ## Languages
 
 * [PHP](languages/php.md)
+  * [Extensions](languages/php/extensions.md)
+  * [Performance tuning](languages/php/tuning.md)
+  * [PHP.ini settings](languages/php/ini.md)
+  * [PHP-FPM sizing](languages/php/fpm.md)
 * [Node.js](languages/nodejs.md)
   * [Changing the Node.js version](languages/nodejs/nvm.md)
 * [Python](languages/python.md)
@@ -82,6 +86,7 @@
 * [Going Live Steps](/golive/steps.md)
   * [Custom TLS](/golive/steps/tls.md)
   * [Fastly](/golive/steps/fastly.md)
+  * [Cloudflare](/golive/steps/cloudflare.md)
 * [Troubleshooting](/golive/troubleshoot.md)
 * [Example](/golive/example.md)   
 
@@ -104,7 +109,11 @@
   * [Environments](administration/web/environments.md)
   * [Configure environments](administration/web/configure-environment.md)
   * [Email](administration/web/email.md)
-  * [Adding vouchers](administration/vouchers.md)
+  * [Adding vouchers](administration/web/vouchers.md)
+  * [Deleting a project](administration/web/delete.md)
+* [GDPR](administration/gdpr.md)
+  * [Data collection](administration/gdpr/data-collection.md)
+  * [Data retention](administration/gdpr/data-retention.md)
 
 ## Featured frameworks
 
@@ -129,7 +138,7 @@
   * [SimpleSAML](frameworks/drupal8/simplesaml.md)
   * [FAQ](frameworks/drupal8/faq.md)
 * [eZ Platform](frameworks/ez.md)
-  * [Fastly](frameworks/ez.md)
+  * [Fastly](frameworks/ez/fastly.md)
 * [Symfony](frameworks/symfony.md)
   * [FAQ](frameworks/symfony/faq.md)
 * [TYPO3](frameworks/typo3.md)
@@ -147,6 +156,7 @@
 
 ## Changelog
 
+* [2018](changelog/2018.md)
 * [2017](changelog/2017.md)
 * [2016](changelog/2016.md)
 * [2015](changelog/2015.md)
