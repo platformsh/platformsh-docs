@@ -1,17 +1,35 @@
 # Variables
 
-Platform.sh allows a high degree of control over both the build process and the runtime environment of a project.  Part of that control comes in the form of *variables* that are set independently of the project's code base but available either at build or runtime for your code to leverage.  Platform.sh also exposes additional information to your application that way, including information like database credentials, the host or port it can use, and so forth.
+<!-- toc -->
 
-## Types of variables
+Platform.sh allows a high degree of control over both the build process and the runtime environment of a project.  Part of that control comes in the form of *variables* that are set independently of the project's code base but available either at build or runtime for your code to leverage.  Platform.sh also exposes additional information to your application that way, including information like database credentials, the host or port it can use, and so forth.
 
 There are four different types of variable: 
 
-* application-provided variables
-* user-provided project variables
-* user-provided environment variables
-* Platform.sh-provided environment variables
+* [application-provided variables](/variables.html#application-provided-variables)
+* [user-provided project variables](/development/variables.html#project-variables)
+* [user-provided environment variables](/development/variables.html#environment-variables)
+* [Platform.sh-provided environment variables](/development/variables.html#platformsh-provided-variables)
 
-All of those may be simple strings or base64-encoded JSON-serialized values.  In case of name collisions, Platform.sh-provided values override user-provided environment variables, which override project-level variables, which override application-provided variables.  (That is, lower items in the list above take precedence.)
+All of those may be simple strings or base64-encoded JSON-serialized values.  In case of name collisions, Platform.sh-provided values override user-provided environment variables, which override user-provided project-level variables, which override application-provided variables.  (That is, lower items in the list above take precedence.)
+
+## Comparison of variable types
+
+| Type          | Definer     | Scope       | Inheritance | Build | Runtime  |
+| ------------- | ----------- | ----------- | ----------- |:-----:|:--------:|
+| Application   | Application | Application | n/a         | Yes   | Yes      |
+| Project       | User        | Project     | n/a         | Yes   | Yes      |
+| Environment   | User        | Environment | Optional    | Yes   | Yes      |
+| Platform.sh   | Pre-defined | Project     | n/a         | Some  | Yes      |   
+
+## Types
+
+### Application-provided variables
+
+It is also possible to [set Environment variables in code](/configuration/app/variables.md), using the `.platform.app.yaml` file.  These values of course will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, the PHP Symfony framework has a `SYMFONY_ENV` property that users may wish to set to `prod` on all environments to ensure a consistent build, or it may be used to set [PHP configuration values](#php-specific-variables).
+
+Application-provided variables are available at both build time and runtime.
+
 
 ### Project variables
 
@@ -33,7 +51,7 @@ Naturally in practice you'll want to use only one or the other, or allow the var
 
 Project variables may also be marked `--sensitive true`.  That flag will mark the variable to not be readable through the UI once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
 
-### Platform.sh Environment variables
+### Environment variables
 
 Environment-level variables can also be set [through the web interface](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to create an environment variable "foo" with the value "bar" on the currently checked out environment/branch, run:
 
@@ -59,12 +77,6 @@ If you omit the variable `--value` from the command line as above, you will be p
 Changing an environment variable will cause that environment to be redeployed so that it gets the new value.  However, it will *not* redeploy any child environments. If you want those to get the new value you will need to redeploy them yourself.
 
 Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" runtime toggle, etc.
-
-### Application-provided variables
-
-It is also possible to [set Environment variables in code](/configuration/app/variables.md), using the `.platform.app.yaml` file.  These values of course will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, the PHP Symfony framework has a `SYMFONY_ENV` property that users may wish to set to `prod` on all environments to ensure a consistent build, or it may be used to set [PHP configuration values](#php-specific-variables).
-
-Application-provided variables are available at both build time and runtime.
 
 ## Platform.sh-provided variables
 
@@ -213,6 +225,15 @@ While the same command on the `feature-x` branch would produce:
     "debug_mode": "1"
 }
 ```
+
+### In your application
+
+Check the individual documentation pages for accessing environment variables for your given application language...
+
+* [PHP: the getenv() function](http://php.net/manual/en/function.getenv.php)
+* [Node.js: the process.env object](https://nodejs.org/api/process.html#process_process_env)
+* [Python: the os.environ object](https://docs.python.org/3/library/os.html#os.environ)
+* [Ruby: the ENV accessor](https://ruby-doc.org/core-2.1.4/ENV.html)
 
 ## Variable prefixes
 
