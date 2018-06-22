@@ -20,6 +20,20 @@ Inbound IPs (gw.eu.platform.sh):
 * 54.76.137.151
 * 54.76.136.188
 
+### France (fr-1.platform.sh)
+
+Outbound IPs:
+
+* 90.84.47.148
+* 90.84.46.222
+* 90.84.46.40
+
+Inbound IPs (gw.fr-1.platformsh.site):
+
+* 90.84.47.148
+* 90.84.46.222
+* 90.84.46.40
+
 ### Netherlands (nl-1.platform.sh)
 
 Outbound IPs:
