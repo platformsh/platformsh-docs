@@ -6,7 +6,7 @@ Platform.sh allows a high degree of control over both the build process and the 
 
 There are four different types of variable: 
 
-* [application-provided variables](/variables.html#application-provided-variables)
+* [application-provided variables](/development/variables.html#application-provided-variables)
 * [user-provided project variables](/development/variables.html#project-variables)
 * [user-provided environment variables](/development/variables.html#environment-variables)
 * [Platform.sh-provided environment variables](/development/variables.html#platformsh-provided-variables)
@@ -78,7 +78,7 @@ Changing an environment variable will cause that environment to be redeployed so
 
 Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" runtime toggle, etc.
 
-## Platform.sh-provided variables
+### Platform.sh-provided variables
 
 Platform.sh also provides a series of variables by default.  These inform an application about its runtime configuration.  The most important of these is relationship information, which tells the application how to connect to databases and other services defined in `services.yaml`.  They are always prefixed with `PLATFORM_*` to differentiate them from user-provided values.
 
