@@ -81,8 +81,7 @@ $ drush make-generate project.make
 This will output a make file containing all your contributed modules,
 themes and libraries.
 
-> -   [Make generate
->     command](http://www.drushcommands.com/drush-6x/make/make-generate)
+> [Make generate command](http://www.drushcommands.com/drush-6x/make/make-generate)
 
 ### Apply patches
 
