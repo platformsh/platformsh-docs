@@ -44,6 +44,20 @@ Inbound IP (gw.de-1.platformsh.site):
 
 * 51.4.227.171
 
+### French Sovereign Cloud (fr-1.platform.sh)
+
+Outbound IPs:
+
+* 90.84.47.148
+* 90.84.46.222
+* 90.84.46.40
+
+Inbound IPs (gw.fr-1.platformsh.site):
+
+* 90.84.47.148
+* 90.84.46.222
+* 90.84.46.40
+
 ## United States
 
 ### East (us.platform.sh)
