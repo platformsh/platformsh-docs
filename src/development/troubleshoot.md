@@ -140,15 +140,24 @@ WARNING: [pool web] server reached max_children setting (2), consider raising it
 
 That indicates that the server is receiving more concurrent requests than it has PHP processes allocated, which means some requests will have to wait until another finishes.  In this example there are 2 PHP processes that can run concurrently.
 
-Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process.  There are two ways to increase the number of workers:
+The following command will identify the 20 slowest requests in the last hour, which can provide an indication of what code paths to investigate.
 
-* Adjust the [worker sizing hints](/languages/php/fpm.md) for your project.
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
+```bash
+grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20
+```
 
+If you see that the processing time of certain request is slow while its CPU usage is high (e.g. taking more than 500ms while 65% of time spent on CPU), you may consider using a profiler like [Blackfire](/administration/integrations/blackfire.md) to troubleshoot the application performance issue. You may refer to [FPM access log explained](/languages/php/fpm.md) for details on the log field.
+
+Otherwise there is not any code path being slow, you may find the most visited pages and see if that can be cached and/or put behind a CDN. Refer to [how caching works](/configuration/routes/cache.md) for further instructions.
+
+Also, increasing the number of PHP workers would help. Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process. There are two ways to increase the number of workers:
+
+* Adjust the [worker sizing hints](/languages/php/fpm.md) for your project when the processing time of the application is low.
+* Upgrade your subscription on Platform.sh to get more computing resources when you find the traffic volume exceed the computing capacity. To do so, log into your [account](https://accounts.platform.sh) and edit the project subscription.
 
 ### Execution timeout
 
-If your PHP application is not able to handle the amount of traffic or it is slow, you should see log lines from `/var/log/app.log` like any of the below:
+If you see log lines from `/var/log/app.log` like any of the below:
 
 ```
 WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /index.php") execution timed out (358.009855 sec), terminating
@@ -157,19 +166,6 @@ WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /in
 That means your PHP process is running longer than allowed.  You can adjust the `max_execution_time` value in `php.ini`, but there is still a 5 minute hard cap on any web request that cannot be adjusted.
 
 The most common cause of a timeout is either an infinite loop (which is a bug that you should fix) or the work itself requires a long time to complete. For the latter case, you should consider putting the task into a background job.
-
-The following command will identify the 20 slowest requests in the last hour, which can provide an indication of what code paths to investigate.
-
-```bash
-grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20
-```
-
-If you see that the processing time of certain requests is slow (e.g. taking more than 1000ms), you may wish to consider using a profiler like [Blackfire](/administration/integrations/blackfire.md) to debug the performance issue.
-
-Otherwise, you may check if the following options are applicable:
-
-* Find the most visited pages and see if they can be cached and/or put behind a CDN.  You may refer to [how caching works](/configuration/routes/cache.md).
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project subscription.
 
 ### PHP process crashed
 

@@ -1,10 +1,26 @@
-# PHP-FPM workers
+# PHP-FPM
+
+## Access log explained
+
+The PHP-FPM access log format defined as: `%{%FT%TZ}t %m %s %{mili}d ms %{kilo}M kB %C%% %{REQUEST_URI}e`.
+Its fields corresponds to `{time} {http_method} {http_status_code} {duration} ms {memory} kB {CPU%} {request_uri}`.
+
+Here are some notes to certain fields that may be interesting:
+
+ * `time` is when the request is accepted by the FPM process.
+ * `duration` is the total amount of wall clock time spent in processing the request.
+ * `memory` is the peak amount of memory allocated to process the request.
+ * `CPU%` is the percentage of time spent running the PHP Zend Engine compared to `duration`.
+
+Whenever you see a low `CPU%`, it means the request is either I/O bound or the FPM process is CPU-throttled by the container resource limit. I/O bound refers to any operation on disk or the network (e.g. request to MySQL / Redis / external calls).
+
+## PHP-FPM workers
 
 Platform.sh uses a heuristic to automatically set the number of workers of the PHP-FPM runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more or less memory.
 
 Note that this value is independent of the `memory_limit` set in `php.ini`, which is the maximum amount of memory a single PHP process can use before it is automatically terminated.  These estimates are used only for determining the number of PHP-FPM workers to start.
 
-## The heuristic
+### The heuristic
 
 The heuristic is based on three input parameters:
 
@@ -20,7 +36,7 @@ workers = max|---------------------------------, 2|
              \           RequestMemory            /
 ```
 
-## Defaults
+### Defaults
 
 The default assumptions are:
 
@@ -39,7 +55,7 @@ runtime:
 
 The `request_memory` has a lower limit of 10 MB while `reserved_memory` has a lower limit of 70 MB.  Values lower than those will be replaced with those minimums.
 
-## Measuring PHP worker memory usage
+### Measuring PHP worker memory usage
 
 To see how much memory your PHP worker processes are using, you can open an [SSH session](/development/ssh.md) and look at the PHP access log:
 
