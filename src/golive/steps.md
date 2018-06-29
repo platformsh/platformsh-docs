@@ -108,8 +108,8 @@ crons:
                 platform snapshot:create --yes --no-wait
             fi
     renewcert:
-        # Force a redeploy at 9 am (UTC) on the 14th of every month.
-        spec: '0 9 14 * *'
+        # Force a redeploy at 8 am (UTC) on the 14th and 28th of every month.
+        spec: '0 8 14,28 * *'
         cmd: |
             if [ "$PLATFORM_BRANCH" = master ]; then
                 platform redeploy --yes --no-wait
