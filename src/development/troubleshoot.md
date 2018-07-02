@@ -37,7 +37,7 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writeable space the most direct option is:
 
 ```
-df -h -x tmpfs -x squashfs | grep -v /run/shared`
+df -h -x tmpfs -x squashfs | grep -v /run/shared
 ```
 
 That will show only the writeable mounts on the system, similar to:
