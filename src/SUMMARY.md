@@ -111,9 +111,12 @@
   * [Email](administration/web/email.md)
   * [Adding vouchers](administration/web/vouchers.md)
   * [Deleting a project](administration/web/delete.md)
-* [GDPR](administration/gdpr.md)
-  * [Data collection](administration/gdpr/data-collection.md)
-  * [Data retention](administration/gdpr/data-retention.md)
+
+## Security and compliance
+
+* [GDPR](security/gdpr.md)
+* [Data collection](security/data-collection.md)
+* [Data retention](security/data-retention.md)
 
 ## Featured frameworks
 
