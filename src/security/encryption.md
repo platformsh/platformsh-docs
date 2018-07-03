@@ -10,6 +10,4 @@ Data in transit on Platform.sh controlled networks (eg. between the application 
 
 ## Data at Rest
 
-### Volume Encryption
-
 Platform Professional and Development plans do not utilize disk encryption for customer data.  If that is a requirement please consider [Platform.sh Enterprise](https://ent.docs.platform.sh/).
