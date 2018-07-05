@@ -76,7 +76,6 @@
 * [Git submodules](development/submodules.md)
 * [Using SSH](development/ssh.md)
 * [Public IPs](development/public-ips.md)
-* [Protective block](development/protective-block.md)
 * [FAQ](development/faq.md)
 * [Troubleshooting](development/troubleshoot.md)
 
@@ -118,6 +117,7 @@
 * [Data collection](security/data-collection.md)
 * [Data retention](security/data-retention.md)
 * [Encryption](security/encryption.md)
+* [Protective block](security/protective-block.md)
 
 ## Featured frameworks
 
