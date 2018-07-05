@@ -3,9 +3,10 @@
 Every application you deploy on Platform.sh is built as a *virtual cluster*, containing a set of containers.  The master branch of your Git repository is always deployed as the production cluster.  Any other branch can be deployed as a development cluster.  By default, you can have up to three live development clusters at once, but you can buy more on a per-project basis.
 
 There are three types of containers within your cluster:
-- one *Router*
-- one or more *Application* containers
-- zero or more *Service* containers
+
+* one *Router*
+* one or more *Application* containers
+* zero or more *Service* containers
 
 When deployed, they conceptually look like this:
 
@@ -13,9 +14,10 @@ When deployed, they conceptually look like this:
 
 
 All of those containers are managed by three special files in your Git repository:
-- `.platform/routes.yaml`
-- `.platform/services.yaml`
-- `.platform.app.yaml`
+
+* `.platform/routes.yaml`
+* `.platform/services.yaml`
+* `.platform.app.yaml`
 
 In most cases, that means your repository will look like this:
 
@@ -26,7 +28,7 @@ yourproject/
     services.yaml
     routes.yaml
   .platform.app.yaml
-  <your application code>
+  <your application files>
 ```
 
 ## Router
@@ -47,4 +49,4 @@ There always must be one Application container in a cluster, but there may be mo
 
 Each Application container corresponds to a `.platform.app.yaml` file in the repository.  If there are 3 `.platform.app.yaml` files, there will be three Application containers.  Application containers hold the code you provide via your Git repository.  Application containers are always built off of one of the Platform.sh-provided language-specific images, such as “PHP 5.6”, “PHP 7.2”, or “Python 3.6”. It is also possible to have multiple Application containers running different languages or versions.
 
-For many applications, there is only one `.platform.app.yaml` file, which is generally placed at the repository root.
+For typical applications, there is only one `.platform.app.yaml` file, which is generally placed at the repository root.
