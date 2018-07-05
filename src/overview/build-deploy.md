@@ -34,7 +34,7 @@ Based on your application type the system will select one of our pre-built conta
 
 2. Then, depending on the “build flavor” specified in the configuration file, we run a series of standard commands. The default for PHP containers, for example, is simply to run `composer install`.
 
-3. Finally, we run the “build hook” from the configuration file.  The build hook comprises one or more shell commands that you write to finish creating your production code base.  That could be compiling Sass files, running a Gulp or Grunt script, rearranging files on disk, compiling an application in a compiled language, or whatever else you want.  Note that at this point, all you are able to access is the file system; there are no services or other databases available.
+3. Finally, we run the “build hook” from the configuration file.  The build hook comprises one or more shell commands that you write to finish creating your production code base.  That could be compiling Sass files, running a Gulp or Grunt script, rearranging files on disk, compiling an application in a compiled language, or whatever else you want.  Note that, at this point, all you are able to access is the file system; there are no services or other databases available.
 
 Once all of that is completed, we freeze the file system and produce a read-only container image.  That image is the final build artifact: a reliable, repeatable snapshot of your application, built the way you want, with the environment you want.
 
