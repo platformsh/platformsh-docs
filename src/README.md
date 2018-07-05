@@ -18,9 +18,9 @@ As a Platform as a Service, or PaaS, Platform.sh automatically manages everythin
 
 Platform.sh covers not only all of your hosting needs but also most of your DevOps needs. It is a simple, single tool that covers the application life-cycle from development to production and scaling.
 
-You only need to write your code, including a few YAML files that specify your desired infrastructure, commit it to Git, and push.  You don't need to setup anything manually. The web server is already setup and configured, as is any database, search engine or cache that you specify.
+You only need to write your code, including a few YAML files that specify your desired infrastructure, commit it to Git, and push.  You don't need to setup anything manually. The web server is already setup and configured, as is any database, search engine, or cache that you specify.
 
-Every branch you push is a full copy of a production environment&mdash;complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything&mdash;and its automatically generated URL can be sent to stakeholders or to automated CI systems.  It really is "what would my site look like if I merged this to production?"  Every time.
+Every branch you push is a fully independent environment&mdash;complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything&mdash;and its automatically generated URL can be sent to stakeholders or to automated CI systems.  It really is "what would my site look like if I merged this to production?"  Every time.
 
 You can use these concepts to replicate a traditional development/staging/production workflow or even to give every feature its own effective staging environment before merging to production (empowering you to use git-flow like methodologies even better). You could also have an intermediary integration branch for several other branches.
 
