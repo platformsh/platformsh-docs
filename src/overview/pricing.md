@@ -8,20 +8,13 @@ All Platform.sh plans include:
 * multiple Backend services (MySQL, PostgreSQL, Elasticsearch, Redis, Solr..)
 * support
 
-You can switch between plans (downgrade or upgrade) freely, but note that
-reducing storage is currently not supported for technical reasons. If you need
-to reduce storage, please create a support ticket. You will always be billed the
-prorated rate of your plan over the period it was used.
+You can switch between plans (downgrade or upgrade) freely, but note that reducing storage is currently not supported for technical reasons. If you need to reduce storage, please create a support ticket. You will always be billed the prorated rate of your plan over the period it was used.
 
-You may cancel your plan at any time and you will only be billed for the actual
-period used.
+You may cancel your plan at any time and you will only be billed for the actual period used.
 
-For Enterprise and Agency Plans you can pay by purchase order. For all other
-plans you need to add a credit card to your account.
+For Enterprise and Agency Plans you can pay by purchase order. For all other plans you need to add a credit card to your account.
 
-We offer a free trial period so you can test the service and see how great it
-is. If ever you need more time to evaluate Platform.sh, please contact our sales
-representatives. They can issue you an extra voucher to prolong your test.
+We offer a free trial period so you can test the service and see how great it is. If ever you need more time to evaluate Platform.sh, please contact our sales representatives. They can issue you an extra voucher to prolong your test.
 
 > Prices below are listed in US Dollars.  You will be billed in US Dollars, Euros, or British Pounds depending on where your billing address is.
 
@@ -39,15 +32,13 @@ Adding a developer to your project will add $10 per month.
 
 ### Extra environments
 
-You can add extra staging/development environments to any plan by multiples of 3
-for $21 / month.
+You can add extra staging/development environments to any plan by multiples of 3 for $21 / month.
 
 > For example, if you want to have 12 staging environments you would pay additional $63 per month on top of your basic plan price.
 
 ### Extra storage
 
-You can add additional storage at $2.50 per 5GB  per staging/development
-environment.
+You can add additional storage at $2.50 per 5GB  per staging/development environment.
 
 >For example, if you have the default plan (with 3 staging environments) and you add 10GB (for a total of 15GB per environment), you would pay an extra $15 a month.
 
@@ -63,11 +54,9 @@ Development environments have less resources than production environments.
 
 ## Production - Standard / Medium / Large
 
-The live environment (master) of a production plan has more resources
-than the development environments of the project.
+The live environment (master) of a production plan has more resources than the development environments of the project.
 
-You can map domain names to your master environment. SSL support is always
-included.
+You can map domain names to your master environment. SSL support is always included.
 
 Production plans come in three flavors:
 
@@ -77,24 +66,19 @@ Production plans come in three flavors:
 
 ### Multiple Applications in a single project
 
-All Platform.sh plans support multiple applications in a single cluster, but
-they share the global resources of the cluster.
+All Platform.sh plans support multiple applications in a single cluster, but they share the global resources of the cluster.
 
 The resources of a **Standard plan are not sufficient to run more than one application** in the same cluster if there is also a MySQL database as a Service. Useful multi-apps start at Medium.
 
-A Medium plan, for example, can support 3 Apps with a MySQL instance and a Redis
-instance.
+A Medium plan, for example, can support 3 Apps with a MySQL instance and a Redis instance.
 
-If you wonder if a specific setup would fit in a plan, don't hesitate to
-contact our support.
+If you wonder if a specific setup would fit in a plan, don't hesitate to contact our support.
 
 ## Enterprise
 
 Enterprise plans start at around $1000 a month.
 
-For a price lower than traditional managed hosting, you get included
-development and staging environments, as well as triple redundancy on every element of
-the stack with:
+For a price lower than traditional managed hosting, you get included development and staging environments, as well as triple redundancy on every element of the stack with:
 
 > 99.99% Uptime Guaranteed
 > 24/7 White Glove On-boarding and Support
