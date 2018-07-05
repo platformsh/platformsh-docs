@@ -30,7 +30,7 @@ Platform.sh respects the structure of branches. It’s entirely up to you.
 
 Managing your full stack internally gives Platform.sh some unique features:
 
-1.**Unified Environment:** All of your services (MySQL, ElasticSearch, MongoDB, etc...) are managed inside the cluster and included in the price, with no external single-points-of-failure. When you backup an environment, you get a fully consistent snapshot of your whole application.
+1. **Unified Environment:** All of your services (MySQL, ElasticSearch, MongoDB, etc...) are managed inside the cluster and included in the price, with no external single-points-of-failure. When you backup an environment, you get a fully consistent snapshot of your whole application.
 2. **Multi-Services & Multi-App:** You can deploy multiple applications (for example, in a microservice-based architecture), using multiple data backends (MySQL, Postgres, Redis etc..) written in multiple frameworks (Drupal + NodeJS + Flask, for example) in multiple languages, all in the same cluster.
 3. **Full Cluster Cloning Technology:** The full production cluster can be cloned in under a minute&mdash;including all of its data&mdash;to create on-the-fly, ephemeral development environments that are a byte-level copy of production.
 4. **Fail-Proof Deployments:** Every time you test a new feature, you also test the deployment process.
