@@ -18,22 +18,6 @@ name: app
 # Use the recipe appropriate for your application.
 recipe: drupal8
 
-# The following additional build step will install the Platform CLI
-# in the application container.
-services:
-  appserver:
-    build:
-      - "curl -sS https://platform.sh/cli/installer | php"
-
-# The following entry creates a `lando platform` command that will run
-# any Platform CLI command from inside the container if desired. 
-tooling:
-  platform:
-    service: appserver
-    description: Run Platform CLI commands
-    cmd:
-      - /var/www/.platformsh/bin/platform
-
 config:
   # Lando defaults to Apache. Switch to nginx to match Platform.sh.
   via: nginx
