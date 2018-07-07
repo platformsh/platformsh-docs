@@ -124,3 +124,10 @@ For further references please see the [official mongodump documentation](https:/
 To upgrade to 3.6 from a version earlier than 3.4, you must successively upgrade major releases until you have upgraded to 3.4. For example, if you are running a 3.0 image, you must upgrade first to 3.2 and then upgrade to 3.4 before you can upgrade to 3.6.
 
 For more details on upgrading and how to handle potential application backward compatibility issues, please see [Release Notes for MongoDB](https://docs.mongodb.com/manual/release-notes).
+
+
+## Troubleshooting
+
+### The "SCRAM-SHA-1" authentication mechanism requires libmongoc built with --enable-ssl
+
+MongoDB deprecated password authentication in MongoDB 3.6 and replaced it with [SCRAM] (https://docs.mongodb.com/v3.6/core/security-scram/). As Platform.sh PHP containers are not currently built with this option, the workaround is to [set the authentication mechanism](https://docs.mongodb.com/v3.6/reference/parameters/#param.authenticationMechanism) (MONGO-CR) explicitly, or use a lower version.
