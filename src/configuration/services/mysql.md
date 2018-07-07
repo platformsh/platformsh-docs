@@ -273,6 +273,6 @@ SELECT
 
 Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).
 
-The current disk usage can be checked using the CLI command `platform db:size`. It is usually advisable to have at least double the reported size available.
+The current disk usage can be checked using the CLI command `platform db:size`. Because of issues with the way InnoDB reports its size, this can out by up to 20%. As table space can grow rapidly, *it is usually advisable to make your database mount size twice the size reported by the `db:size` command*.
 
 
