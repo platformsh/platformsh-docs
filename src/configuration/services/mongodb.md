@@ -130,4 +130,4 @@ For more details on upgrading and how to handle potential application backward c
 
 ### The "SCRAM-SHA-1" authentication mechanism requires libmongoc built with --enable-ssl
 
-MongoDB deprecated password authentication in MongoDB 3.6 and replaced it with [SCRAM] (https://docs.mongodb.com/v3.6/core/security-scram/). As Platform.sh PHP containers are not currently built with this option, the workaround is to set the authentication mechanism (MONGO-CR) explicitly using https://docs.mongodb.com/v3.6/reference/parameters/#param.authenticationMechanisms, or use a lower version.
+MongoDB deprecated password authentication in MongoDB 3.6 and replaced it with [SCRAM] (https://docs.mongodb.com/v3.6/core/security-scram/). As Platform.sh PHP containers are not currently built with this option, the workaround is to [set the authentication mechanism](https://docs.mongodb.com/v3.6/reference/parameters/#param.authenticationMechanism) (MONGO-CR) explicitly, or use a lower version.
