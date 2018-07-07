@@ -71,6 +71,7 @@
 * [Variables](development/variables.md)
 * [Accessing your site](development/access-site.md)
 * [Headers](development/headers.md)
+* [Email](development/email.md)
 * [Accessing logs](development/logs.md)
 * [Private repositories](development/private-repository.md)
 * [Git submodules](development/submodules.md)
@@ -107,7 +108,6 @@
   * [Project configuration](administration/web/configure-project.md)
   * [Environments](administration/web/environments.md)
   * [Configure environments](administration/web/configure-environment.md)
-  * [Email](administration/web/email.md)
   * [Adding vouchers](administration/web/vouchers.md)
   * [Deleting a project](administration/web/delete.md)
 
