@@ -96,7 +96,7 @@ This is the complete list of extensions that can be enabled:
 | mysqli       | *   | *   | *   | *   | *   | *   |
 | mysqlnd      | *   | *   | *   |     |     |     |
 | newrelic     |     |     | *   | *   | *   | *   |
-| oauth        |     |     |     | *   | *   |     |
+| oauth        |     |     |     | *   | *   | *   |
 | odbc         | *   | *   | *   | *   | *   | *   |
 | opcache      |     | *   | *   | *   | *   | *   |
 | openssl      |     |     |     |     |     |     |
@@ -119,7 +119,7 @@ This is the complete list of extensions that can be enabled:
 | recode       | *   | *   | *   | *   | *   | *   |
 | redis        | *   | *   | *   | *   | *   | *   |
 | snmp         | *   | *   | *   | *   | *   | *   |
-| sockets      |     |     | *   | *   | *   |     |
+| sockets      |     |     | *   | *   |     |     |
 | sodium       |     |     |     |     |     | *   |
 | spplus       | *   | *   |     |     |     |     |
 | sqlite3      | *   | *   | *   | *   | *   | *   |
@@ -127,7 +127,7 @@ This is the complete list of extensions that can be enabled:
 | ssh2         | *   | *   | *   |     | *   | *   |
 | tideways     |     |     |     | *   | *   | *   |
 | tidy         | *   | *   | *   | *   | *   | *   |
-| uuid         |     |     |     |     | *   |     |
+| uuid         |     |     |     |     | *   | *   |
 | xcache       | *   | *   |     |     |     |     |
 | xdebug       | *   | *   | *   | *   | *   | *   |
 | xhprof       | *   | *   | *   |     |     |     |
