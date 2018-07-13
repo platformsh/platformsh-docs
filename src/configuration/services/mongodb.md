@@ -11,6 +11,10 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 * 3.4
 * 3.6
 
+> **note**
+>
+> Downgrades of MongoDB are not supported. MongoDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):

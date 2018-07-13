@@ -9,6 +9,10 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/static/in
 * 9.3
 * 9.6
 
+> **note**
+>
+> Downgrades of PostgreSQL are not supported. PostgreSQL will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
