@@ -73,7 +73,7 @@ This is the complete list of extensions that can be enabled:
 | event        |     |     |     |     | *   | *   |
 | gd           | *   | *   | *   | *   | *   | *   |
 | gearman      | *   | *   | *   |     |     |     |
-| geoip        | *   | *   | *   |     |     |     |
+| geoip        | *   | *   | *   | *   |     |     |
 | gmp          | *   | *   | *   | *   | *   | *   |
 | http         | *   | *   |     |     |     |     |
 | igbinary     |     |     |     | *   | *   | *   |
@@ -107,6 +107,7 @@ This is the complete list of extensions that can be enabled:
 | pdo_odbc     | *   | *   | *   | *   | *   | *   |
 | pdo_pgsql    | *   | *   | *   | *   | *   | *   |
 | pdo_sqlite   | *   | *   | *   | *   | *   | *   |
+| pdo_sqlsrv   | *   | *   | *   | *   |     |     |
 | pecl-http    |     |     | *   |     |     |     |
 | pgsql        | *   | *   | *   | *   | *   | *   |
 | pinba        | *   | *   | *   |     |     |     |
@@ -123,6 +124,7 @@ This is the complete list of extensions that can be enabled:
 | sodium       |     |     |     |     |     | *   |
 | spplus       | *   | *   |     |     |     |     |
 | sqlite3      | *   | *   | *   | *   | *   | *   |
+| sqlsrv       | *   | *   | *   | *   |     |     |
 | ssh2         | *   | *   | *   |     | *   | *   |
 | tideways     |     |     |     | *   | *   | *   |
 | tidy         | *   | *   | *   | *   | *   | *   |
