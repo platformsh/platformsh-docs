@@ -120,7 +120,6 @@ This is the complete list of extensions that can be enabled:
 | redis        | *   | *   | *   | *   | *   | *   |
 | snmp         | *   | *   | *   | *   | *   | *   |
 | sockets      |     |     | *   | *   | *   |     |
-| sockets      |     |     | *   | *   | *   |
 | sodium       |     |     |     |     |     | *   |
 | spplus       | *   | *   |     |     |     |     |
 | sqlite3      | *   | *   | *   | *   | *   | *   |
