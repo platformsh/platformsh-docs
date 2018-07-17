@@ -67,7 +67,8 @@ You can then use the service in a configuration file of your application with so
 {% codetabs name="PHP", type="php" -%}
 <?php
 // This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
+$relationships = getenv('PLATFORM_RELATIONSHIPS');
+if ($relationships) {
 	$relationships = json_decode(base64_decode($relationships), TRUE);
 
 	// For a relationship named 'database' referring to one endpoint.
