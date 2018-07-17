@@ -12,7 +12,7 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 > **note**
 >
-> Downgrades of MariaDB are not supported. MariaDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version of MariaDB without committing to it use a non-master environment.
+> Downgrades of MariaDB are not supported. MariaDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
 
 ### Deprecated versions
 
