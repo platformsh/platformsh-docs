@@ -56,6 +56,17 @@ relationships:
     database: "mydatabase:mongodb"
 ```
 
+
+For PHP, in your `.platform.app.yaml` add:
+
+```yaml
+runtime:
+    extensions:
+        - mongodb
+```
+
+(Before PHP 7, use `mongo` instead.)
+
 You can then use the service in a configuration file of your application with something like:
 
 {% codetabs name="PHP", type="php" -%}
