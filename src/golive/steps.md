@@ -30,7 +30,9 @@ You can add multiple domains to point to your project. Each domain can have its 
 
 If you require access to the site before the domain name becomes active you can create a `hosts` file entry on your computer and point it to the IP address that resolves when you access your master project branch.
 
-To get the IP you can run `ping <environment>-<project>.<region>.platform.sh` (with the DNS name you noted in step 2 of the pre-launch check list). In OS X and Linux this will usually be the hosts file in `/etc/hosts` in Windows `c:\Windows\System32\Drivers\etc\hosts`. You will need to be a admin user to be able to change that file. So in OS X you will usually run something like `sudo vi /etc/hosts`. After adding the line the file will look something like:
+To get the IP address, first run `platform environment:info`.  Check the output for the `edge_hostname` value.  That's the "internal" domain name for your project.  Run `ping <that domain name>` to get its IP address.
+
+In OS X and Linux you can add that IP  to your `/etc/hosts` file.  In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`. You will need to be a admin user to be able to change that file. So in OS X you will usually run something like `sudo vi /etc/hosts`. After adding the line the file will look something like:
 
  
 ![Hosts File](/images/hosts-file.png)
