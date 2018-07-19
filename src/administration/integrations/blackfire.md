@@ -98,10 +98,9 @@ builds at the commit status level
 
 Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for more information.
 
-Those features may require a Premium or an Enterprise subscription.
-
 > **note**
 >
+> Those features may require a Premium or an Enterprise subscription.
 > We offer attractive bundles of Platform.sh and Blackfire.io subscriptions.
 > Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
 
