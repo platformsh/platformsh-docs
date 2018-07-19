@@ -12,7 +12,7 @@ In addition, it can profile your code automatically and notify you whenever your
 code does not comply with best practices for PHP, Symfony, Drupal, eZPlatform,
 Typo3 & Magento code performance management. 
 
-For a high level overview and demo of Blackfire, check out the [full video tutorial](https://www.youtube.com/watch?v=-5icUW9pUH8){:target="_blank"}.
+For a high level overview and demo of Blackfire, check out the [full video tutorial](https://www.youtube.com/watch?v=-5icUW9pUH8).
 
 ## Version
 
