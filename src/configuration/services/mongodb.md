@@ -56,25 +56,52 @@ relationships:
     database: "mydatabase:mongodb"
 ```
 
+
+For PHP, in your `.platform.app.yaml` add:
+
+```yaml
+runtime:
+    extensions:
+        - mongodb
+```
+
+(Before PHP 7, use `mongo` instead.)
+
 You can then use the service in a configuration file of your application with something like:
 
 {% codetabs name="PHP", type="php" -%}
 <?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+// First run `composer require mongodb/mongodb` to get the userspace
+// library, and autoload it.  Then:
 
-	// For a relationship named 'database' referring to one endpoint.
-	if (!empty($relationships['database'])) {
-		foreach ($relationships['database'] as $endpoint) {
-			$settings['mongodb_server'] = sprintf('%s://%s:%s', $endpoint['scheme'], $endpoint['host'], $endpoint['port']);
-			$settings['database_name'] = $endpoint['path'];
-			$settings['database_user'] = $endpoint['user'];
-			$settings['database_password'] = $endpoint['password'];
-			break;
-		}
-	}
+if ($relationships = getenv('PLATFORM_RELATIONSHIPS')) {
+    $relationships = json_decode(base64_decode($relationships), TRUE);
+
+    // For a relationship named 'database' referring to one endpoint.
+    if (!empty($relationships['database'])) {
+        foreach ($relationships['database'] as $endpoint) {
+            $settings = $endpoint;
+            break;
+        }
+    }
 }
+
+$server = sprintf('%s://%s:%s@%s:%d/%s',
+    $settings['scheme'],
+    $settings['username'],
+    $settings['password'],
+    $settings['host'],
+    $settings['port'],
+    $settings['path'],
+);
+
+$client = new MongoDB\Client($server);
+$collection = $client->main->starwars;
+
+$result = $collection->insertOne( [ 'name' => 'Rey', 'occupation' => 'Jedi' ] );
+
+echo "Inserted with Object ID '{$result->getInsertedId()}'";
+
 {%- language name="JavaScript", type="js" -%}
 var config= require("platformsh").config();
 var db = config.relationships.database[0];
@@ -128,10 +155,3 @@ For further references please see the [official mongodump documentation](https:/
 To upgrade to 3.6 from a version earlier than 3.4, you must successively upgrade major releases until you have upgraded to 3.4. For example, if you are running a 3.0 image, you must upgrade first to 3.2 and then upgrade to 3.4 before you can upgrade to 3.6.
 
 For more details on upgrading and how to handle potential application backward compatibility issues, please see [Release Notes for MongoDB](https://docs.mongodb.com/manual/release-notes).
-
-
-## Troubleshooting
-
-### The "SCRAM-SHA-1" authentication mechanism requires libmongoc built with --enable-ssl
-
-MongoDB deprecated password authentication in MongoDB 3.6 and replaced it with [SCRAM] (https://docs.mongodb.com/v3.6/core/security-scram/). As Platform.sh PHP containers are not currently built with this option, the workaround is to [set the authentication mechanism](https://docs.mongodb.com/v3.6/reference/parameters/#param.authenticationMechanism) (MONGO-CR) explicitly, or use a lower version.
