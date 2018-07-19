@@ -71,21 +71,37 @@ You can then use the service in a configuration file of your application with so
 
 {% codetabs name="PHP", type="php" -%}
 <?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+// First run `composer require mongodb/mongodb` to get the userspace
+// library, and autoload it.  Then:
 
-	// For a relationship named 'database' referring to one endpoint.
-	if (!empty($relationships['database'])) {
-		foreach ($relationships['database'] as $endpoint) {
-			$settings['mongodb_server'] = sprintf('%s://%s:%s', $endpoint['scheme'], $endpoint['host'], $endpoint['port']);
-			$settings['database_name'] = $endpoint['path'];
-			$settings['database_user'] = $endpoint['user'];
-			$settings['database_password'] = $endpoint['password'];
-			break;
-		}
-	}
+if ($relationships = getenv('PLATFORM_RELATIONSHIPS')) {
+    $relationships = json_decode(base64_decode($relationships), TRUE);
+
+    // For a relationship named 'database' referring to one endpoint.
+    if (!empty($relationships['database'])) {
+        foreach ($relationships['database'] as $endpoint) {
+            $settings = $endpoint;
+            break;
+        }
+    }
 }
+
+$server = sprintf('%s://%s:%s@%s:%d/%s',
+    $settings['scheme'],
+    $settings['username'],
+    $settings['password'],
+    $settings['host'],
+    $settings['port'],
+    $settings['path'],
+);
+
+$client = new MongoDB\Client($server);
+$collection = $client->main->starwars;
+
+$result = $collection->insertOne( [ 'name' => 'Rey', 'occupation' => 'Jedi' ] );
+
+echo "Inserted with Object ID '{$result->getInsertedId()}'";
+
 {%- language name="JavaScript", type="js" -%}
 var config= require("platformsh").config();
 var db = config.relationships.database[0];
