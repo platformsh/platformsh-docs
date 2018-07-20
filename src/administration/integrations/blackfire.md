@@ -112,7 +112,7 @@ Something like:
 ```yaml
 cache:
     enabled: true
-    cookies: [“/SESS.*/“, “__blackfire”]
+    cookies: ["/SESS.*/", "__blackfire"]
 ```
 
 ## Reaching out to the Blackfire support
