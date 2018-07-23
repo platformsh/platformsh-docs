@@ -20,6 +20,20 @@ Inbound IPs (gw.eu.platform.sh):
 * 54.76.137.151
 * 54.76.136.188
 
+### West 2 (eu-2.platform.sh)
+
+Outbound IPs:
+
+* 52.208.123.9
+* 52.214.63.84
+* 52.30.200.164
+
+Inbound IPs (gw.eu-2.platformsh.site):
+
+* 34.248.104.12
+* 34.241.191.143
+* 52.210.208.94
+
 ### Netherlands (nl-1.platform.sh)
 
 Outbound IPs:
