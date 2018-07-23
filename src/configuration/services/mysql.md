@@ -276,4 +276,4 @@ Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply t
 
 The current disk usage can be checked using the CLI command `platform db:size`. Because of issues with the way InnoDB reports its size, this can out by up to 20%. As table space can grow rapidly, *it is usually advisable to make your database mount size twice the size reported by the `db:size` command*.
 
-
+You are encouraged to add a [low-disk warning notification](/administration/integrations/notifications.html#low-disk-warning) to proactively warn of low disk space before it becomes an issue.
