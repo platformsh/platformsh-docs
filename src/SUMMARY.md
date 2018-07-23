@@ -118,6 +118,7 @@
 * [Data retention](security/data-retention.md)
 * [Encryption](security/encryption.md)
 * [Protective block](security/protective-block.md)
+* [Troubleshooting](security/troubleshooting.md)
 
 ## Featured frameworks
 
