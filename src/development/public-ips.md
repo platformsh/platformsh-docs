@@ -88,6 +88,20 @@ Inbound IPs (gw.us.platform.sh):
 * 54.210.55.162
 * 54.88.225.116
 
+### East 2 (us-2.platform.sh)
+
+Outbound IPs:
+
+* 52.4.246.137
+* 34.238.64.193
+* 34.238.64.193
+
+Inbound IPs (gw.us-2.platformsh.site):
+
+* 34.226.46.235
+* 34.238.11.122
+* 54.89.106.200
+
 ## Australia (au.platform.sh)
 
 Outbound IPs:
