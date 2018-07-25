@@ -118,7 +118,7 @@
 * [Data retention](security/data-retention.md)
 * [Encryption](security/encryption.md)
 * [Protective block](security/protective-block.md)
-* [Security Scans](security/pen-test.md)
+* [Security scans](security/pen-test.md)
 * [Troubleshooting](security/troubleshooting.md)
 
 ## Featured frameworks
