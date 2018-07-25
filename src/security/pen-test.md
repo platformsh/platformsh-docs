@@ -19,4 +19,4 @@ Platform.sh understands the need for application owners to ensure the integrity,
 * Infrastructure penetration tests for non-Enterprise customers. This includes SSH and database testing.
 
 
-If your vulnerability scanning suggests there may be an issue with Platform.sh’s service, please see the Security and Compliance (Troubleshooting)[/security/troubleshooting.md] section for common resolutions.
+If your vulnerability scanning suggests there may be an issue with Platform.sh’s service, please see the Security and Compliance [Troubleshooting](/security/troubleshooting.md) section for common resolutions.
