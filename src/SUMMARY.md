@@ -88,7 +88,7 @@
   * [Fastly](/golive/steps/fastly.md)
   * [Cloudflare](/golive/steps/cloudflare.md)
 * [Troubleshooting](/golive/troubleshoot.md)
-* [Example](/golive/example.md)   
+* [Example](/golive/example.md)
 
 ## Administration
 
