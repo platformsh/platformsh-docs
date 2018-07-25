@@ -88,7 +88,7 @@
   * [Fastly](/golive/steps/fastly.md)
   * [Cloudflare](/golive/steps/cloudflare.md)
 * [Troubleshooting](/golive/troubleshoot.md)
-* [Example](/golive/example.md)   
+* [Example](/golive/example.md)
 
 ## Administration
 
@@ -118,6 +118,7 @@
 * [Data retention](security/data-retention.md)
 * [Encryption](security/encryption.md)
 * [Protective block](security/protective-block.md)
+* [Security scans](security/pen-test.md)
 * [Troubleshooting](security/troubleshooting.md)
 
 ## Featured frameworks
