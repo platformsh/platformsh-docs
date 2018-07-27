@@ -116,6 +116,7 @@
 * [GDPR](security/gdpr.md)
 * [Data collection](security/data-collection.md)
 * [Data retention](security/data-retention.md)
+* [Data deletion](security/data-deletion.md)
 * [Encryption](security/encryption.md)
 * [Protective block](security/protective-block.md)
 * [Security scans](security/pen-test.md)
