@@ -1,8 +1,6 @@
-# Data Deletion
+# Data deletion
 
-## Data deletion
-
-Data deletion is handled via our backend providers. When a volume is released back to the provider, the provider will perform a wipe on the data utilizing either NIST 800-88 or DoD 5220.22-M depending upon the offering. This wipe is done immediately before reuse.
+Data deletion is handled via our backend providers. When a volume is released back to the provider, the provider will perform a wipe on the data utilizing either [NIST 800-88](https://csrc.nist.gov/publications/detail/sp/800-88/rev-1/final) or [DoD 5220.22-M](http://www.dss.mil/documents/odaa/nispom2006-5220.pdf) depending upon the offering. This wipe is done immediately before reuse.
 
 If your project is utilizing encrypted volumes, the encryption key is destroyed when we release the volume back to the provider adding another layer of protection.
 
