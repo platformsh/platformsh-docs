@@ -13,7 +13,7 @@ You have a domain name registered for your site with a Registrar of your choice.
 
 ## 2. Test your site!
 
-Make sure your site is running and configured as you want it to be, on your master branch.  In particular, see the [Routes documentation](/configuration/routes.md). You will need your routes configured appropriately before you begin.  Make sure you have turned off [basic-authentication](https://docs.platform.sh/administration/web/configure-environment.html) if it was turned on during development.
+Make sure your site is running and configured as you want it to be, on your master branch.  In particular, see the [Routes documentation](/configuration/routes.md). You will need your routes configured appropriately before you begin.  Make sure you have turned off [basic-authentication](/administration/web/configure-environment.md) if it was turned on during development.
 
 ## 3. Optionally obtain a 3rd party SSL certificate
 
