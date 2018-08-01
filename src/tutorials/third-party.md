@@ -84,6 +84,10 @@ Framework  | Credit | Date added
 -----------|--------|-----------
 [**Jekyll** example](https://github.com/JGrubb/platformsh-jekyll)|[@JGrubb](https://github.com/JGrubb)|May 2017
 
+### Rust
+
+[***Rust with Rocket**](https://github.com/royallthefourth/platformsh-rust-rocket)
+
 ## Integrations
 
 * [Integrate GitLab with Platform.sh using Gitlab-CI](https://github.com/axelerant/pushtoplatformsh), by [@Axelerant](https://github.com/axelerant)
