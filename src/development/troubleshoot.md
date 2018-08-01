@@ -22,79 +22,23 @@ platform project:clear-build-cache
 
 That will wipe the build cache for the current project entirely.  Naturally the next build for each environment will likely be longer as the cache rebuilds.
 
-## HTTP responses "502 bad gateway" or "503 service unavailable"
+## HTTP responses 502 Bad Gateway or 503 Service Unavailable
 
-If you receive these HTTP responses from your site, it suggests that your site is running out of workers or the application process is crashing.  Here are the typical causes:
+These errors indicate your application (or application runner, like PHP-FPM) is crashing or unavailable.  Typical causes include:
 
+* Your `.platform.app.yaml` configuration has an error and the process is not starting or requests are not able to be forwarded to it correctly.  Check your `web.commands.start` entry or that your `passthru` configuration is correct.
 * The amount of traffic coming to your site exceeds the processing power of your application.
-* Certain code path(s) in your application are too slow.
-* A PHP process is crashing because of a segmentation fault.
-* A PHP process is killed by the kernel out-of-memory killer.
-
-### Too much traffic or a slow application
-
-If your PHP application is not able to handle the amount of traffic or it is slow, you should see log lines from `/var/log/app.log` like any of the below:
-
-```
-WARNING: [pool web] server reached max_children setting (2), consider raising it
-WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /index.php") execution timed out (358.009855 sec), terminating
-```
-
-When you see "execution timed out", that means your application is probably having a infinite loop or the work itself requires a long time to complete. For the latter case, you should consider putting the task into a background job.
-
-When you see "server reached max_children setting", the web traffic exceeded the capacity that your application can handle. You can use the below example [Platform.sh CLI](/overview/cli.md) command to find the top 20 slowest requests in the last hour.
-
-```
-platform ssh "grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20"
-```
-
-If you see that the processing time of certain requests is slow (e.g. taking more than 1000ms), you may wish to consider using a profiler like [Blackfire](/administration/integrations/blackfire.md) to debug the performance issue.
-
-Otherwise, you may check if the following options are applicable:
-
-* Find the most visited pages and see if they can be cached and/or put behind a CDN.  You may refer to [how caching works](/configuration/routes/cache.md).
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project subscription.
-
-### PHP process crashed
-
-If your PHP process crashed with a segmentation fault, you should see log lines in `/var/log/app.log` like below:
-
-```
-WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 seconds from start
-```
-
-This is complicated, either a PHP extension is hitting a segmentation fault or your PHP application code is crashing. You should review recent changes in your application and try to find the cause of it, probably with the help of XDebug.
-
-### PHP process is killed
-
-If your PHP process is killed by the kernel, you should see log lines in `/var/log/app.log` like this:
-
-```
-WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 seconds from start
-```
-
-That means the memory usage of your container exceeds the limit allowed on your plan so the kernel kills the offending process. You should try the following:
-
-* Check if the memory usage of your application is expected and try to optimize it.
-* Use [sizing hints](/languages/php.md#php-worker-sizing-hints) to reduce the amount of PHP workers which reduces the memory footprint.
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
-
-## PHP "server reached max_children" error in logs
-
-You may see a line like the following in the `/var/log/app.log` file:
-
-`WARNING: [pool web] server reached max_children setting (2), consider raising it`
-
-That indicates that the server is receiving more concurrent requests than it has PHP processes allocated, which means some requests will have to wait until another finishes.  In this example there are 2 PHP processes that can run concurrently.
-
-Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process.  There are two ways to increase the number of workers:
-
-* Adjust the [worker sizing hints](/languages/php.html#php-worker-sizing-hints) for your project.
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
+* Certain code path(s) in your application are too slow and timing out.
+* A PHP process is crashing because of a segmentation fault (see below).
+* A PHP process is killed by the kernel out-of-memory killer (see below).
 
 ## Low disk space
 
-If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writeable space the most direct option is: `df -h -x tmpfs -x squashfs | grep -v /run/shared`
+If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writeable space the most direct option is:
+
+```
+df -h -x tmpfs -x squashfs | grep -v /run/shared
+```
 
 That will show only the writeable mounts on the system, similar to:
 
@@ -184,6 +128,73 @@ If you see a bare "File not found" error when accessing your Drupal site with a 
 Make sure your repository contains an *index.php* file in the [web location root](/configuration/app-containers.md#locations), or that your [Drush](/frameworks/drupal7/drush.md) make files are properly named.
 
 
+## PHP-specific error messages
+
+### server reached max_children
+
+You may see a line like the following in the `/var/log/app.log` file:
+
+```
+WARNING: [pool web] server reached max_children setting (2), consider raising it
+```
+
+That indicates that the server is receiving more concurrent requests than it has PHP processes allocated, which means some requests will have to wait until another finishes.  In this example there are 2 PHP processes that can run concurrently.
+
+Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process.  There are two ways to increase the number of workers:
+
+* Adjust the [worker sizing hints](/languages/php/fpm.md) for your project.
+* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
+
+
+### Execution timeout
+
+If your PHP application is not able to handle the amount of traffic or it is slow, you should see log lines from `/var/log/app.log` like any of the below:
+
+```
+WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /index.php") execution timed out (358.009855 sec), terminating
+```
+
+That means your PHP process is running longer than allowed.  You can adjust the `max_execution_time` value in `php.ini`, but there is still a 5 minute hard cap on any web request that cannot be adjusted.
+
+The most common cause of a timeout is either an infinite loop (which is a bug that you should fix) or the work itself requires a long time to complete. For the latter case, you should consider putting the task into a background job.
+
+The following command will identify the 20 slowest requests in the last hour, which can provide an indication of what code paths to investigate.
+
+```bash
+grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20
+```
+
+If you see that the processing time of certain requests is slow (e.g. taking more than 1000ms), you may wish to consider using a profiler like [Blackfire](/administration/integrations/blackfire.md) to debug the performance issue.
+
+Otherwise, you may check if the following options are applicable:
+
+* Find the most visited pages and see if they can be cached and/or put behind a CDN.  You may refer to [how caching works](/configuration/routes/cache.md).
+* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project subscription.
+
+### PHP process crashed
+
+If your PHP process crashed with a segmentation fault, you should see log lines in `/var/log/app.log` like below:
+
+```
+WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 seconds from start
+```
+
+This is complicated, either a PHP extension is hitting a segmentation fault or your PHP application code is crashing. You should review recent changes in your application and try to find the cause of it, probably with the help of XDebug.
+
+### PHP process is killed
+
+If your PHP process is killed by the kernel, you should see log lines in `/var/log/app.log` like this:
+
+```
+WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 seconds from start
+```
+
+That means the memory usage of your container exceeds the limit allowed on your plan so the kernel kills the offending process. You should try the following:
+
+* Check if the memory usage of your application is expected and try to optimize it.
+* Use [sizing hints](/languages/php/fpm.md) to reduce the amount of PHP workers which reduces the memory footprint.
+* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
+
 ## Stuck build or deployment
 
 If you see a build or deployment running longer than expected, that may be one of the following cases:
@@ -218,7 +229,7 @@ Here are a few tips that can help you solve the issues you are experiencing.
 
 Invisible errors during the build and deploy phase can cause increased wait times, failed builds and other problems. Investigating each log and fixing errors is essential.
 
-Related documentation: [Accessing logs](/development/logs.md#accessing-logs)
+Related documentation: [Accessing logs](https://docs.platform.sh/development/logs.html#accessing-logs)
 
 ### Build and deploy hooks
 
@@ -235,7 +246,7 @@ time $cmd # Print execution time
 strace -T $cmd # Print a system call report
 ```
 
-Related documentation: [Build and deploy hooks](/configuration/app/build.md#hooks)
+Related documentation: [Build and deploy hooks](https://docs.platform.sh/configuration/app/build.html#hooks)
 
 ### Cron jobs
 
@@ -246,4 +257,4 @@ For that reason, make sure your custom cron jobs execution times are low and tha
 **note**
 Drupal's `drush core-cron` run installed module's cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to frequently benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
 
-Related documentation: [Cron and scheduled tasks](/configuration/app/cron.md#cron-jobs)
+Related documentation: [Cron and scheduled tasks](https://docs.platform.sh/configuration/app/cron.html#cron-jobs)
