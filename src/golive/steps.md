@@ -47,11 +47,11 @@ Sometimes it can take Let's Encrypt a couple of minutes to provision the certifi
 
 Configure your DNS provider to point your domain to your Platform.sh Master environment domain name.
 
-The way to do so will vary somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.  Some will call it an Alias or similar alternate name, but either way the intent is to say "this domain should always resolve to... this other domain".  
+The way to do so will vary somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.  Some will call it an Alias or similar alternate name, but either way the intent is to say "this domain should always resolve to... this other domain".
 
 You can access the CNAME target by running `platform environment:info edge_hostname`.  That is the host name by which Platform.sh knows your environment.  Add a CNAME record from your desired domain (`www.example.com`) to the value of the `edge_hostname`.
 
-If you have multiple domains you want to be served by the same application you will need to add a CNAME record for each of them. 
+If you have multiple domains you want to be served by the same application you will need to add a CNAME record for each of them.
 
 Note that depending on your registrar and the TTL you set, it could take anywhere from 15 minutes to 72 hours for the DNS change to fully propagate across the Internet.
 

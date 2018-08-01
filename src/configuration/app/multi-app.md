@@ -100,7 +100,7 @@ If you are not sure how to construct the SSH URL, you can use the generic one
 provided by the Platform.sh UI:
 
 ```bash
-ssh 3bdcrrivykjsm-master@git.eu.platform.sh
+ssh 3bdcrrivykjsm-master@git.eu-2.platform.sh
 
 The user name '3bdcrrivykjsm-master' resolves to multiple services, use one of
 those more specific names:
