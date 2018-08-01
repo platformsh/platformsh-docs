@@ -30,7 +30,7 @@ You can add multiple domains to point to your project. Each domain can have its 
 
 If you require access to the site before the domain name becomes active you can create a `hosts` file entry on your computer and point it to the IP address that resolves when you access your master project branch.
 
-To get the IP address, first run `platform environment:info`.  Check the output for the `edge_hostname` value.  That's the "internal" domain name for your project.  Run `ping <that domain name>` to get its IP address.
+To get the IP address, first run `platform environment:info edge_hostname`.  That will print the "internal" domain name for your project.  Run `ping <that domain name>` to get its IP address.
 
 In OS X and Linux you can add that IP  to your `/etc/hosts` file.  In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`. You will need to be a admin user to be able to change that file. So in OS X you will usually run something like `sudo vi /etc/hosts`. After adding the line the file will look something like:
 
@@ -49,7 +49,7 @@ Configure your DNS provider to point your domain to your Platform.sh Master envi
 
 The way to do so will vary somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.  Some will call it an Alias or similar alternate name, but either way the intent is to say "this domain should always resolve to... this other domain".  
 
-You can access the CNAME target by running `platform environment:info` and looking for the `edge_hostname` property.  That is the host name by which Platform.sh knows your environment.  Add a CNAME record from your desired domain (`www.example.com`) to the value of the `edge_hostname`.
+You can access the CNAME target by running `platform environment:info edge_hostname`.  That is the host name by which Platform.sh knows your environment.  Add a CNAME record from your desired domain (`www.example.com`) to the value of the `edge_hostname`.
 
 If you have multiple domains you want to be served by the same application you will need to add a CNAME record for each of them. 
 
