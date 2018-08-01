@@ -109,8 +109,8 @@ It's also entirely possible to use an absolute URL in the route. In that case, i
 In this case, there are two application containers `app` and `blog`.  In a production environment, they would be accessible at `www.example.com` and `blog.example.com`, respectively.  On a development branch named `sprint`, however, they would be accessible at URLs something like:
 
 ```bash
-https://www.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platform.site/
-https://blog.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platform.site/
+https://www.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platformsh.site/
+https://blog.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platformsh.site/
 ```
 
 If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generally best to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains then you will need to use a static domain for all but one of them.
