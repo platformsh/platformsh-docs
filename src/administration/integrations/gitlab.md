@@ -40,9 +40,10 @@ Please note that the `--base-url` option is used as the base to call the Gitlab 
 Do **not** append your namespace and project name!
 
 Optional parameters:
-* `--fetch-branches`: Track and deploy branches (true by default)
 * `--build-merge-requests`: Track and deploy merge-requests (true by default)
 * `--merge-requests-clone-parent-data` : should merge requests clone the data from the parent environment (true by default)
+* `--fetch-branches`: Track and deploy branches (true by default)
+* `--prune-branches`: Delete branches that do not exist in the remote GitLab repository (true by default)
 
 ### 3. Add the webhook
 
