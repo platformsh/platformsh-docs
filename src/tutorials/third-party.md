@@ -66,6 +66,7 @@ Framework  | Credit | Date added
 [**API Platform** with a **ReactJS** client](https://github.com/GuGuss/platformsh-api-platform-admin) admin |[@GuGuss](https://github.com/GuGuss)|May 2017
 [**Backdrop** example](https://github.com/gmoigneu/platformsh-example-backdrop)|[@gmoigneu](https://github.com/gmoigneu)|May 2017
 [**Headless Drupal 8 with Angular**](https://github.com/GuGuss/headless-drupal8-platformsh)|[@GuGuss](https://github.com/GuGuss)|May 2017
+[**Headless Drupal 8 with React.js**](https://github.com/systemseed/drupal_reactjs_boilerplate)|[@systemseed](https://github.com/systemseed)|Aug 2018
 [**Joomla** example](https://github.com/gmoigneu/platformsh-example-joomla)|[@gmoigneu](https://github.com/gmoigneu)|May 2017
 [**Laravel** example](https://github.com/JGrubb/platformsh-laravel-example)|[@JGrubb](https://github.com/JGrubb)|May 2017
 [**Moodle** example](https://github.com/JGrubb/platform-sh-moodle-example)|[@JGrubb](https://github.com/JGrubb)|May 2017
