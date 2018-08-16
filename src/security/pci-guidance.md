@@ -1,6 +1,5 @@
 # PCI DSS Responsibility Guidance
 
-
 Platform.sh has many PCI certified customers using our services. Below we will attempt to clarify the PCI compliance responsibilities for Platform.sh and our customers.
 
 Simple audit questions can be handled via support tickets however in-depth support for your audit may required additional arrangements. Please contact your Platform.sh account manager to discuss your needs.
@@ -8,13 +7,10 @@ Simple audit questions can be handled via support tickets however in-depth suppo
 
 ## Overview
 
-
 Platform.sh provides a Platform as a Service (PaaS) solution which our customers may use to store, process, or transmit cardholder data.
 
 
-
 ## Security & Compensating Controls
-
 
  * For those customers needing to meet SAQ C or SAQ D, a Platform.sh Enterprise Plan may be needed in order to fully meet your needs. Please [contact us](https://platform.sh/contact) for more information.
 
@@ -22,14 +18,10 @@ Platform.sh provides a Platform as a Service (PaaS) solution which our customers
 
  * Please take note that customer environments are deployed in a read-only instance, segregated with GRE and IPSEC tunnels, which often permits compensating controls to be claimed for several PCI requirements.
 
-
  * Because customers can use our PaaS in a variety of ways, the best approach with auditors is to focus is on “What do I, the customer, control/configure and how is it managed in a compliant manner?”
 
 
-
-
 ## Responsibility
-
 
 Platform.sh customers are ultimately responsible for their own PCI DSS compliance.
 
@@ -37,7 +29,6 @@ The following sections provide guidance on shared responsibilities to achieve PC
 
 
 ### Requirement 1
-
 
 |Requirement|Responsibility|Comments|
 |---|---|---|
@@ -48,9 +39,7 @@ The following sections provide guidance on shared responsibilities to achieve PC
 |1.4 to 1.5|Shared|Customers are responsible for their devices accessing the environment|
 
 
-
 ### Requirement 2
-
 
 |Requirement|Responsibility|Comments|
 |---|---|---|
@@ -66,7 +55,6 @@ The following sections provide guidance on shared responsibilities to achieve PC
 
 ### Requirement 3
 
-
 |Requirement|Responsibility|Comments|
 |---|---|---|
 |3.1|Shared|Platform.sh is responsible that storage is securely deleted. Customer is responsible for all other provisions.|
@@ -76,14 +64,12 @@ The following sections provide guidance on shared responsibilities to achieve PC
 
 ### Requirement 4
 
-
 |Requirement|Responsibility|Comments|
 |---|---|---|
 |All|Customer|Customer is responsible for internet transmission of cardholder data. See also our docs about [Encryption](https://docs.platform.sh/security/encryption.html)|
 
 
 ### Requirement 5
-
 
 |Requirement|Responsibility|Comments|
 |---|---|---|
@@ -92,7 +78,6 @@ The following sections provide guidance on shared responsibilities to achieve PC
 
 ### Requirement 6
 
-
 |Requirement|Responsibility|Comments|
 |---|---|---|
 |All|Shared|Customer is responsible for their application. Platform.sh is responsible for the infrastructure.|
@@ -100,14 +85,12 @@ The following sections provide guidance on shared responsibilities to achieve PC
 
 ### Requirement 7
 
-
 |Requirement|Responsibility|Comments|
 |---|---|---|
 |All|Shared|Customer is responsible for their application and also their project access control. Platform.sh is responsible for the infrastructure.|
 
 
 ### Requirement 8
-
 
 |Requirement|Responsibility|Comments|
 |---|---|---|
@@ -118,14 +101,12 @@ The following sections provide guidance on shared responsibilities to achieve PC
 
 ### Requirement 9
 
-
 |Requirement|Responsibility|Comments|
 |---|---|---|
 |All|N/A|Platform uses PCI compliant cloud hosting providers|
 
 
 ### Requirement 10
-
 
 |Requirement|Responsibility|Comments|
 |---|---|---|
@@ -136,7 +117,6 @@ The following sections provide guidance on shared responsibilities to achieve PC
 
 ### Requirement 11
 
-
 |Requirement|Responsibility|Comments|
 |---|---|---|
 |11.1 to 11.1.2|N/A|There are no wireless APs in the Platform.sh hosting providers|
@@ -145,8 +125,8 @@ The following sections provide guidance on shared responsibilities to achieve PC
 |11.4 to 11.6|Shared|Customer is responsible for their application. Platform.sh is responsible for the infrastructure.|
 
 
-
 ### Requirement 12
+
 |Requirement|Responsibility|Comments|
 |---|---|---|
 |12.1 to 12.4|Shared|Customer is responsible for their organization. Platform.sh is responsible for its organization.|
@@ -156,12 +136,16 @@ The following sections provide guidance on shared responsibilities to achieve PC
 |12.10 to 12.10.6|Customer is responsible for their organization. Platform.sh is responsible for its organization.|
 |12.11|Platform|Service provider only requirement|
 
+
 ### Appendix A1
+
 |Requirement|Responsibility|Comments|
 |---|---|---|
 |All|Platform|Service provider only requirement|
 
+
 ### Appendix A2
+
 |Requirement|Responsibility|Comments|
 |---|---|---|
 |All|Customer|This is only applicable if the customer uses POS terminals accessing their environment, otherwise it is likely considered N/A|
