@@ -119,6 +119,7 @@
 * [Data deletion](security/data-deletion.md)
 * [Encryption](security/encryption.md)
 * [Protective block](security/protective-block.md)
+* [PCI Guidance](security/pci-guidance.md)
 * [Security scans](security/pen-test.md)
 * [Troubleshooting](security/troubleshooting.md)
 
