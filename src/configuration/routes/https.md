@@ -109,13 +109,13 @@ tls:
     client_certificate_authorities:
         - !include
             type: string
-            path: file1.key
+            path: root-ca1.crt
         - !include
             type: string
-            path: file2.key
+            path: root-ca2.crt
 ```
 
-In this case, the key files are resolved relative to the `.platform` directory.  Alternatively, the keys can be specified inline in the file:
+In this case, the certificate files are resolved relative to the `.platform` directory.  Alternatively, the certificates can be specified inline in the file:
 
 ```yaml
 tls:
