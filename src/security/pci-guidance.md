@@ -1,8 +1,8 @@
 # PCI DSS Responsibility Guidance
 
-Platform.sh has many PCI certified customers using our services. Below we will attempt to clarify the PCI compliance responsibilities for Platform.sh and our customers.
+Platform.sh has many PCI certified customers using our services. Some aspects of PCI compliance are the responsibility of the host and others are the responsibility of the application developer.
 
-Simple audit questions can be handled via support tickets however in-depth support for your audit may required additional arrangements. Please contact your Platform.sh account manager to discuss your needs.
+Basic PCI questions can be handled by our support team via a ticket. For more advanced questions or walk-through of a full audit please contact your Platform.sh Account Manager.
 
 
 ## Overview
