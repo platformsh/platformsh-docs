@@ -71,12 +71,12 @@
 * [Variables](development/variables.md)
 * [Accessing your site](development/access-site.md)
 * [Headers](development/headers.md)
+* [Email](development/email.md)
 * [Accessing logs](development/logs.md)
 * [Private repositories](development/private-repository.md)
 * [Git submodules](development/submodules.md)
 * [Using SSH](development/ssh.md)
 * [Public IPs](development/public-ips.md)
-* [Protective block](development/protective-block.md)
 * [FAQ](development/faq.md)
 * [Troubleshooting](development/troubleshoot.md)
 
@@ -88,7 +88,7 @@
   * [Fastly](/golive/steps/fastly.md)
   * [Cloudflare](/golive/steps/cloudflare.md)
 * [Troubleshooting](/golive/troubleshoot.md)
-* [Example](/golive/example.md)   
+* [Example](/golive/example.md)
 
 ## Administration
 
@@ -108,12 +108,19 @@
   * [Project configuration](administration/web/configure-project.md)
   * [Environments](administration/web/environments.md)
   * [Configure environments](administration/web/configure-environment.md)
-  * [Email](administration/web/email.md)
   * [Adding vouchers](administration/web/vouchers.md)
   * [Deleting a project](administration/web/delete.md)
-* [GDPR](administration/gdpr.md)
-  * [Data collection](administration/gdpr/data-collection.md)
-  * [Data retention](administration/gdpr/data-retention.md)
+
+## Security and compliance
+
+* [GDPR](security/gdpr.md)
+* [Data collection](security/data-collection.md)
+* [Data retention](security/data-retention.md)
+* [Data deletion](security/data-deletion.md)
+* [Encryption](security/encryption.md)
+* [Protective block](security/protective-block.md)
+* [Security scans](security/pen-test.md)
+* [Troubleshooting](security/troubleshooting.md)
 
 ## Featured frameworks
 

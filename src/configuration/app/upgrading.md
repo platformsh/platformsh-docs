@@ -65,7 +65,7 @@ whatever caching headers were set by the application..
 
 To enable caching on your static files, make sure you include an `expires` key
 in your [web
-configuration](https://docs.platform.sh/configuration/app-containers.html#locations),
+configuration](/configuration/app-containers.md#locations),
 as shown below:
 
 ```

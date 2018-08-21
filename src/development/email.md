@@ -10,11 +10,29 @@ We do not guarantee the deliverability of emails, and we do not support white-la
 >
 > You may follow the [SPF setup guidelines on SendGrid](https://sendgrid.com/docs/Glossary/spf.html) to improve email deliverability with our SMTP proxy.
 
+## Enabling/disabling email
+
+Email support can be enabled/disabled per-environment.  By default, it is enabled on the `master` environment and disabled elsewhere.  That can be toggled in through the web UI or via the command line, like so:
+
+```bash
+platform environment:info enable_smtp true
+
+platform environment:info enable_smtp false
+```
+
+When SMTP support is enabled the environment variable `PLATFORM_SMTP_HOST` will be populated with the address of the SMTP host that should be used.  When SMTP support is disabled that environment variable will be empty.
+
+> **note**
+>
+> Changing the SMTP status will not take effect immediately.  You will need to issue a new *build*, not just a new deploy, for the changes to take effect.
+
 ## Sending email in PHP
 
-When you send email, you can simply use the built-in `mail()` function in PHP. The PHP runtime is configured to send email automatically via the assigned SendGrid sub-account.
+When you send email, you can simply use the built-in `mail()` function in PHP. The PHP runtime is configured to send email automatically via the assigned SendGrid sub-account.  Note that the `From` header is required; email will not send if that header is missing.
 
 Beware of the potential security problems when using the `mail()` function, which arise when using user-supplied input in the fifth (`$additional_parameters`) argument. See the [PHP `mail()` documentation](http://php.net/manual/en/function.mail.php) for more information.
+
+### SwiftMailer
 
 In Symfony, if you use the default `SwiftMailer` service, we recommend the following settings in your `app/config/parameters.yaml`:
 

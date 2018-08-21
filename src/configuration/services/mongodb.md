@@ -11,6 +11,10 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 * 3.4
 * 3.6
 
+> **note**
+>
+> Downgrades of MongoDB are not supported. MongoDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
@@ -52,25 +56,52 @@ relationships:
     database: "mydatabase:mongodb"
 ```
 
+
+For PHP, in your `.platform.app.yaml` add:
+
+```yaml
+runtime:
+    extensions:
+        - mongodb
+```
+
+(Before PHP 7, use `mongo` instead.)
+
 You can then use the service in a configuration file of your application with something like:
 
 {% codetabs name="PHP", type="php" -%}
 <?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+// First run `composer require mongodb/mongodb` to get the userspace
+// library, and autoload it.  Then:
 
-	// For a relationship named 'database' referring to one endpoint.
-	if (!empty($relationships['database'])) {
-		foreach ($relationships['database'] as $endpoint) {
-			$settings['mongodb_server'] = sprintf('%s://%s:%s', $endpoint['scheme'], $endpoint['host'], $endpoint['port']);
-			$settings['database_name'] = $endpoint['path'];
-			$settings['database_user'] = $endpoint['user'];
-			$settings['database_password'] = $endpoint['password'];
-			break;
-		}
-	}
+if ($relationships = getenv('PLATFORM_RELATIONSHIPS')) {
+    $relationships = json_decode(base64_decode($relationships), TRUE);
+
+    // For a relationship named 'database' referring to one endpoint.
+    if (!empty($relationships['database'])) {
+        foreach ($relationships['database'] as $endpoint) {
+            $settings = $endpoint;
+            break;
+        }
+    }
 }
+
+$server = sprintf('%s://%s:%s@%s:%d/%s',
+    $settings['scheme'],
+    $settings['username'],
+    $settings['password'],
+    $settings['host'],
+    $settings['port'],
+    $settings['path'],
+);
+
+$client = new MongoDB\Client($server);
+$collection = $client->main->starwars;
+
+$result = $collection->insertOne( [ 'name' => 'Rey', 'occupation' => 'Jedi' ] );
+
+echo "Inserted with Object ID '{$result->getInsertedId()}'";
+
 {%- language name="JavaScript", type="js" -%}
 var config= require("platformsh").config();
 var db = config.relationships.database[0];

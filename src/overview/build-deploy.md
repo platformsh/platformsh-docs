@@ -9,36 +9,36 @@ Every time you push to a live branch (a git branch with an active environment at
 
 ## Always Be Compiling
 
-Interpreted languages like PHP or Node.js may not seem like they have to be compiled, but with modern package management tools like Composer or npm and with the growing use of CSS preprocessors such as Sass, most modern web applications need a "build" step between their source code and their production execution code.  At Platform.sh, we aim to make that easy.  That build step includes the entire application container, from language version to build tools to your code, rebuilt every time.
+Interpreted languages like PHP or Node.js may not seem like they have to be compiled, but with modern package management tools like Composer or npm, as well as the growing use of CSS preprocessors such as Sass, most modern web applications need a "build" step between their source code and their production execution code.  At Platform.sh, we aim to make that easy.  The build step includes the entire application container&mdash;from language version to build tools to your code&mdash;rebuilt every time.
 
-That build process is under your control, and reruns on every Git push.  Every Git push is a validation not only of your code but of your build process.  Whether that's installing packages using Composer or Bundler, compiling TypeScript or Sass, or building your application code in Go or Java, your build process is vetted every time you push.
+That build process is under your control and runs on every Git push.  Every Git push is a validation not only of your code, but of your build process.  Whether that's installing packages using Composer or Bundler, compiling TypeScript or Sass, or building your application code in Go or Java, your build process is vetted every time you push.
 
-Whenever possible you should avoid committing build assets to your repository that can be regenerated at build time.  Depending on your application that may include 3rd party libraries and frameworks, generated and optimized CSS and JS files, generated source code, etc.
+Whenever possible, you should avoid committing build assets to your repository that can be regenerated at build time.  Depending on your application, that may include 3rd party libraries and frameworks, generated and optimized CSS and JS files, generated source code, etc.
 
-The following two constraints make sure you have, fast, repeatable builds:
+The following two constraints make sure you have fast, repeatable builds:
 
-1. The build step should be environment independent (this is paramount to ensure development environments are truly perfect copies of production). This means you can not connect to services (like the database) during the build.
-2. The resulting built application must be Read-Only, if your application requires writing to the file-system,  this can easily be done by specifying which are the directories that require Read/Write access. These should not be directories that have code because that would be a security risk.
+1. **The build step should be environment-independent.** This is paramount to ensure development environments are truly perfect copies of production. This means you can not connect to services (like the database) during the build.
+2. **The final built application must be read-only.** If your application requires writing to the filesystem, you can specify the directories that require Read/Write access. These should not be directories that have code, because that would be a security risk.
 
 ## Building the application
 
-After you push your code the first build step is to validate your configuration files (`.platform.app.yaml`, `.platform/services.yaml` and `.platform/routes.yaml`). The git server will issue an error if validation fails, and nothing will have happened on the server.
+After you push your code, the first build step is to validate your configuration files (i.e. `.platform.app.yaml`, `.platform/services.yaml`, and `.platform/routes.yaml`). The Git server will issue an error if validation fails, and nothing will happen on the server.
 
-> While most projects have a single `.platform.app.yaml` file, Platform.sh supports multiple applications in a single project.  It will scan the repository for `.platform.app.yaml` files in subdirectories and will build each subdirectory that contains one as an independent application. The built application will not contain any directories above the one in which it is found. The system is smart enough not to rebuild applications that have already been built, so if you have multiple applications, only the one that changed will be rebuilt and redeployed.
+> While most projects have a single `.platform.app.yaml` file, Platform.sh supports multiple applications in a single project.  It will scan the repository for `.platform.app.yaml` files in subdirectories and each directory containing one will be built as an independent application. A built application will not contain any directories above the one in which it is found. The system is smart enough not to rebuild applications that have already been built, so if you have multiple applications, only changed applications will be rebuilt and redeployed.
 
-The live environment is composed of multiple containers - both for your application(s) and for  the services it depends on. It also has a virtual network that connects them as well as a router that routes incoming requests to you application(s).
+The live environment is composed of multiple containers&mbdash;both for your application(s) and for the services it depends on. It also has a virtual network connecting them, as well as a router to route incoming requests to the appropriate application.
 
 Based on your application type the system will select one of our pre-built container images and run the following:
 
-1. First, any dependencies specified in the `.platform.app.yaml` file are installed.  Those include tools like Sass, Gulp, Drupal Console, or many others that you may need.  
+1. First, any dependencies specified in the `.platform.app.yaml` file are installed.  Those include tools like Sass, Gulp, Drupal Console, or any others that you may need.  
 
-2. Second, depending on the “build flavor” specified in the configuration file we run a series of standard commands. The default for PHP containers, for example, is simply to run `composer install`.
+2. Then, depending on the “build flavor” specified in the configuration file, we run a series of standard commands. The default for PHP containers, for example, is simply to run `composer install`.
 
-3. Finally, run the “build hook” from the configuration file.  The build hook is simply one or more shell commands that you write to finish creating your production code base.  That could be compiling Sass files, running a Gulp or Grunt script, rearranging files on disk, compiling an application in a compiled language, or whatever else you want.  Note that at this point all you have access to is the file system; there are no services or other databases available.
+3. Finally, we run the “build hook” from the configuration file.  The build hook comprises one or more shell commands that you write to finish creating your production code base.  That could be compiling Sass files, running a Gulp or Grunt script, rearranging files on disk, compiling an application in a compiled language, or whatever else you want.  Note that, at this point, all you are able to access is the file system; there are no services or other databases available.
 
-Once all of that is completed, we freeze the file system and produce a read-only container image.  That container is the final build artifact: A reliable, repeatable snapshot of your application, built the way you want, with the environment you want.
+Once all of that is completed, we freeze the file system and produce a read-only container image.  That image is the final build artifact: a reliable, repeatable snapshot of your application, built the way you want, with the environment you want.
 
-Because  container configuration (both for your application and its underlying services) is exclusively based on your configuration files, and your configuration files are managed through Git, we know that a given container has a 1:1 relationship with a Git commit.  That means builds are always repeatable.  It also means we can, if we detect that there are no changes that would affect a given container, simply skip the build step entirely and reuse the existing container image, saving a great deal of time.
+Because  container configuration (both for your application and its underlying services) is exclusively based on your configuration files, and your configuration files are managed through Git, we know that a given container has a 1:1 relationship with a Git commit.  That means builds are always repeatable.  It also means that if we detect that there are no changes that would affect a given container, we can skip the build step entirely and reuse the existing container image, saving a great deal of time.
 
 In practice, the entire build process usually takes less than a minute.
 
@@ -50,10 +50,10 @@ First, we pause all incoming requests and hold them so that there’s no interru
 
 We then open networking connections between the various containers, but only those that were specified in the configuration files (using the `relationships` key).  No configuration, no connection. That helps with security, as only those connections that are actually needed even exist.  The connection information for each service is available in an application as environment variables.
 
-Now that we have working, running containers there are two more steps to run.  First, if there is a “start” command specified in your `.platform.app.yaml` file to start the application we run that. (With PHP this is optional.)
+Now that we have working, running containers there are two more steps to run.  First, if there is a “start” command specified in your `.platform.app.yaml` file to start the application, we run that. (With PHP, this is optional.)
 
 Then we run your deploy hook.  Just like the build hook, the deploy hook is any number of shell commands you need to prepare your application.  Usually this includes clearing caches, running database migrations, and so on.  You have complete access to all services here as your application is up and running, but the file system where your code lives will now be read-only.
 
-Finally once the deploy hooks are done, we open the floodgates and let incoming requests through your newly deployed application.  You’re done!
+Finally, once the deploy hooks are done, we open the floodgates and let incoming requests through to your newly deployed application.  You’re done!
 
-In practice, the deploy process takes only a few seconds plus whatever time is required for your deploy hook, if any.
+In practice, the deploy process takes only a few seconds, plus whatever time is required for your deploy hook, if any.

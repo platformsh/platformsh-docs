@@ -27,7 +27,7 @@ You can also initialize your project using any of the pre-made templates below. 
   <a href="https://github.com/platformsh/platformsh-example-drupalcommerce7">Drupal 7 (Commerce Kickstart)</a><br />
   <a href="https://github.com/platformsh/platformsh-example-drupal8">Drupal 8</a><br />
   <a href="https://github.com/platformsh/platformsh-example-drupal8-multisite">Drupal 8 (Multisite variant)</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-laravel">Laravel</a><br />
+  <a href="https://github.com/platformsh/template-laravel">Laravel</a><br />
   <a href="https://github.com/platformsh/platformsh-example-moodle">Moodle</a><br />
   <a href="https://github.com/platformsh/platformsh-example-magento1">Magento 1</a><br />
   <a href="https://github.com/platformsh/platformsh-example-magento">Magento 2</a><br />
@@ -46,7 +46,7 @@ You can also initialize your project using any of the pre-made templates below. 
   <h4>Frameworks</h4>
   <a href="https://github.com/platformsh/platformsh-example-amphp">AmPHP</a><br />
   <a href="https://github.com/platformsh/platformsh-example-reactphp">React PHP</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-symfony3">Symfony 3.x</a><br />
+  <a href="https://github.com/platformsh/template-symfony3">Symfony 3.x</a><br />
   <a href="https://github.com/platformsh/template-symfony4">Symfony 4.x</a><br />
 </div>
 

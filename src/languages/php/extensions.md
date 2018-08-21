@@ -60,7 +60,7 @@ This is the complete list of extensions that can be enabled:
 
 | Extension    | 5.4 | 5.5 | 5.6 | 7.0 | 7.1 | 7.2 |
 |--------------|-----|-----|-----|-----|-----|-----|
-| amqp         |     |     |     | *   | *   |     |
+| amqp         |     |     |     | *   | *   | *   |
 | apc          | *   |     |     |     |     |     |
 | apcu         |     | *   | *   | *   | *   | *   |
 | apcu_bc      |     |     |     | *   | *   | *   |
@@ -73,7 +73,7 @@ This is the complete list of extensions that can be enabled:
 | event        |     |     |     |     | *   | *   |
 | gd           | *   | *   | *   | *   | *   | *   |
 | gearman      | *   | *   | *   |     |     |     |
-| geoip        | *   | *   | *   |     |     |     |
+| geoip        | *   | *   | *   | *   |     |     |
 | gmp          | *   | *   | *   | *   | *   | *   |
 | http         | *   | *   |     |     |     |     |
 | igbinary     |     |     |     | *   | *   | *   |
@@ -96,7 +96,7 @@ This is the complete list of extensions that can be enabled:
 | mysqli       | *   | *   | *   | *   | *   | *   |
 | mysqlnd      | *   | *   | *   |     |     |     |
 | newrelic     |     |     | *   | *   | *   | *   |
-| oauth        |     |     |     | *   | *   |     |
+| oauth        |     |     |     | *   | *   | *   |
 | odbc         | *   | *   | *   | *   | *   | *   |
 | opcache      |     | *   | *   | *   | *   | *   |
 | openssl      |     |     |     |     |     |     |
@@ -107,6 +107,7 @@ This is the complete list of extensions that can be enabled:
 | pdo_odbc     | *   | *   | *   | *   | *   | *   |
 | pdo_pgsql    | *   | *   | *   | *   | *   | *   |
 | pdo_sqlite   | *   | *   | *   | *   | *   | *   |
+| pdo_sqlsrv   | *   | *   | *   | *   |     |     |
 | pecl-http    |     |     | *   |     |     |     |
 | pgsql        | *   | *   | *   | *   | *   | *   |
 | pinba        | *   | *   | *   |     |     |     |
@@ -118,22 +119,22 @@ This is the complete list of extensions that can be enabled:
 | recode       | *   | *   | *   | *   | *   | *   |
 | redis        | *   | *   | *   | *   | *   | *   |
 | snmp         | *   | *   | *   | *   | *   | *   |
-| sockets      |     |     | *   | *   | *   |     |
-| sockets      |     |     | *   | *   | *   |
+| sockets      |     |     | *   | *   |     |     |
 | sodium       |     |     |     |     |     | *   |
 | spplus       | *   | *   |     |     |     |     |
 | sqlite3      | *   | *   | *   | *   | *   | *   |
+| sqlsrv       | *   | *   | *   | *   |     |     |
 | ssh2         | *   | *   | *   |     | *   | *   |
 | tideways     |     |     |     | *   | *   | *   |
 | tidy         | *   | *   | *   | *   | *   | *   |
-| uuid         |     |     |     |     | *   |     |
+| uuid         |     |     |     |     | *   | *   |
 | xcache       | *   | *   |     |     |     |     |
 | xdebug       | *   | *   | *   | *   | *   | *   |
 | xhprof       | *   | *   | *   |     |     |     |
 | xmlrpc       | *   | *   | *   | *   | *   | *   |
-| xsl          | *   | *   | *   | *   | *   |     |
-| yaml         |     |     |     |     | *   |     |
-| zbarcode     |     |     |     | *   | *   |     |
+| xml          | *   | *   | *   | *   | *   | *   |
+| yaml         |     |     |     |     | *   | *   |
+| zbarcode     |     |     |     | *   | *   | *   |
 | zendopcache  | *   |     |     |     |     |     |
 
 > **note**
