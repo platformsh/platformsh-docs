@@ -4,29 +4,20 @@
 
 Platform.sh allows a high degree of control over both the build process and the runtime environment of a project.  Part of that control comes in the form of *variables* that are set independently of the project's code base but available either at build or runtime for your code to leverage.  Platform.sh also exposes additional information to your application that way, including information like database credentials, the host or port it can use, and so forth.
 
-There are four different types of variable: 
-
-* [application-provided variables](/development/variables.html#application-provided-variables)
-* [user-provided project variables](/development/variables.html#project-variables)
-* [user-provided environment variables](/development/variables.html#environment-variables)
-* [Platform.sh-provided environment variables](/development/variables.html#platformsh-provided-variables)
-
-All of those may be simple strings or base64-encoded JSON-serialized values.  In case of name collisions, Platform.sh-provided values override user-provided environment variables, which override user-provided project-level variables, which override application-provided variables.  (That is, lower items in the list above take precedence.)
-
-## Comparison of variable types
-
 | Type          | Definer     | Scope       | Inheritance | Build | Runtime  |
 | ------------- | ----------- | ----------- | ----------- |:-----:|:--------:|
-| Application   | Application | Application | n/a         | Yes   | Yes      |
-| Project       | User        | Project     | n/a         | Yes   | Yes      |
-| Environment   | User        | Environment | Optional    | Yes   | Yes      |
-| Platform.sh   | Pre-defined | Project     | n/a         | Some  | Yes      |   
+| [Application](/development/variables.html#application-provided-variables)   | Application | Application | n/a         | Yes   | Yes      |
+| [Project](/development/variables.html#project-variables)       | User        | Project     | n/a         | Yes   | Yes      |
+| [Environment](/development/variables.html#environment-variables)   | User        | Environment | Optional    | No    | Yes      |
+| [Platform.sh](/development/variables.html#platformsh-provided-variables)   | Pre-defined | Environment     | n/a         | Some  | Yes      |   
+
+All of those may be simple strings or base64-encoded JSON-serialized values.  In case of name collisions, Platform.sh-provided values override user-provided environment variables, which override user-provided project-level variables, which override application-provided variables.  (That is, lower items in the list above take precedence.)
 
 ## Types
 
 ### Application-provided variables
 
-It is also possible to [set Environment variables in code](/configuration/app/variables.md), using the `.platform.app.yaml` file.  These values of course will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, the PHP Symfony framework has a `SYMFONY_ENV` property that users may wish to set to `prod` on all environments to ensure a consistent build, or it may be used to set [PHP configuration values](#php-specific-variables).
+Variables may be [set in code](/configuration/app/variables.md), using the `.platform.app.yaml` file.  These values of course will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, the PHP Symfony framework has a `SYMFONY_ENV` property that users may wish to set to `prod` on all environments to ensure a consistent build, or it may be used to set [PHP configuration values](#php-specific-variables).
 
 Application-provided variables are available at both build time and runtime.
 
