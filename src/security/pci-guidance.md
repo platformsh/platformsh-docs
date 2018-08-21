@@ -31,7 +31,7 @@ The following sections provide guidance on shared responsibilities to achieve PC
 ### Requirement 1
 
 |Requirement   |Responsibility|Comments                                                                                                     |
-|---|---|---|
+|--------------|--------------|---------|
 |1.1 to 1.3.3  |Platform      |Infrastructure cannot be modified by the customer                                                            |
 |1.3.4         |Shared        |Platform is responsible for the infrastructure. Customer is responsible for correct routes.yaml configuration|
 |1.3.5 to 1.3.6|Platform      |Infrastructure cannot be modified by the customer                                                            |
@@ -42,7 +42,7 @@ The following sections provide guidance on shared responsibilities to achieve PC
 ### Requirement 2
 
 |Requirement   |Responsibility|Comments                                                                                                                                   |
-|---|---|---|
+|--------------|--------------|---------|
 |2.1           |Shared        |Customer is responsible to change vendor-supplied defaults in their app                                                                    |
 |2.1.1         |N/A           |There are no wireless environments connected to the CDE                                                                                    |
 |2.2 to 2.2.1  |Platform      |Infrastructure cannot be modified by the customer                                                                                          |
@@ -56,7 +56,7 @@ The following sections provide guidance on shared responsibilities to achieve PC
 ### Requirement 3
 
 |Requirement |Responsibility|Comments                                                                                                                                                                                                                                                        |
-|---|---|---|
+|------------|--------------|---------|
 |3.1         |Shared        |Platform.sh is responsible that storage is securely deleted. Customer is responsible for all other provisions.                                                                                                                                                  |
 |3.2 to 3.4.1|Customer      |                                                                                                                                                                                                                                                                |
 |3.5 to 3.7  |Shared        |Customer is responsible for data encryption and non-infrastructure key management. We recommend column-level database encryption. If you need data at rest protection, please see our docs about [Encryption](https://docs.platform.sh/security/encryption.html)|
@@ -65,35 +65,35 @@ The following sections provide guidance on shared responsibilities to achieve PC
 ### Requirement 4
 
 |Requirement|Responsibility|Comments                                                                                                                                                     |
-|---|---|---|
+|-----------|--------------|---------|
 |All        |Customer      |Customer is responsible for internet transmission of cardholder data. See also our docs about [Encryption](https://docs.platform.sh/security/encryption.html)|
 
 
 ### Requirement 5
 
 |Requirement|Responsibility|Comments                                  |
-|---|---|---|
+|-----------|--------------|---------|
 |All        |Shared        |Customer is responsible for their systems.|
 
 
 ### Requirement 6
 
 |Requirement|Responsibility|Comments                                                                                         |
-|---|---|---|
+|-----------|--------------|---------|
 |All        |Shared        |Customer is responsible for their application. Platform.sh is responsible for the infrastructure.|
 
 
 ### Requirement 7
 
 |Requirement|Responsibility|Comments                                                                                                                               |
-|---|---|---|
+|-----------|--------------|---------|
 |All        |Shared        |Customer is responsible for their application and also their project access control. Platform.sh is responsible for the infrastructure.|
 
 
 ### Requirement 8
 
 |Requirement|Responsibility|Comments                                                                                         |
-|---|---|---|
+|-----------|--------------|---------|
 |8.1 to 8.5 |Shared        |Customer is responsible for their application. Platform.sh is responsible for the infrastructure.|
 |8.5.1      |N/A           |There is no remote access.                                                                       |
 |8.6 to 8.8 |Shared        |Customer is responsible for their application. Platform.sh is responsible for the infrastructure.|
@@ -102,14 +102,14 @@ The following sections provide guidance on shared responsibilities to achieve PC
 ### Requirement 9
 
 |Requirement|Responsibility|Comments                                           |
-|---|---|---|
+|-----------|--------------|---------|
 |All        |N/A           |Platform uses PCI compliant cloud hosting providers|
 
 
 ### Requirement 10
 
 |Requirement |Responsibility|Comments                                                                                         |
-|---|---|---|
+|-----------|--------------|---------|
 |10.1 to 10.7|Shared        |Customer is responsible for their application. Platform.sh is responsible for the infrastructure.|
 |10.8        |Platform      |Service provider only requirement                                                                |
 |10.9        |Shared        |Customer is responsible for their application. Platform.sh is responsible for the infrastructure.|
@@ -118,7 +118,7 @@ The following sections provide guidance on shared responsibilities to achieve PC
 ### Requirement 11
 
 |Requirement   |Responsibility|Comments                                                                                         |
-|---|---|---|
+|--------------|--------------|---------|
 |11.1 to 11.1.2|N/A           |There are no wireless APs in the Platform.sh hosting providers                                   |
 |11.2 to 11.3.4|Shared        |Customer is responsible for their application. Platform.sh is responsible for the infrastructure.|
 |11.3.4.1      |Platform      |Service provider only requirement                                                                |
@@ -128,7 +128,7 @@ The following sections provide guidance on shared responsibilities to achieve PC
 ### Requirement 12
 
 |Requirement     |Responsibility|Comments                                                                                  |
-|---|---|---|
+|----------------|--------------|---------|
 |12.1 to 12.4    |Shared  |Customer is responsible for their organization. Platform.sh is responsible for its organization.|
 |12.4.1          |Platform|Service provider only requirement                                                               |
 |12.5 to 12.8.5  |Shared  |Customer is responsible for their organization. Platform.sh is responsible for its organization.|
@@ -140,12 +140,12 @@ The following sections provide guidance on shared responsibilities to achieve PC
 ### Appendix A1
 
 |Requirement|Responsibility|Comments                         |
-|---|---|---|
+|-----------|--------------|---------|
 |All        |Platform      |Service provider only requirement|
 
 
 ### Appendix A2
 
 |Requirement|Responsibility|Comments                                                                                                                     |
-|---|---|---|
+|-----------|--------------|---------|
 |All        |Customer      |This is only applicable if the customer uses POS terminals accessing their environment, otherwise it is likely considered N/A|
