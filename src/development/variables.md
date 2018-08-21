@@ -219,12 +219,73 @@ While the same command on the `feature-x` branch would produce:
 
 ### In your application
 
-Check the individual documentation pages for accessing environment variables for your given application language...
+Check the individual documentation pages for accessing environment variables for your given application language.
 
 * [PHP: the getenv() function](http://php.net/manual/en/function.getenv.php)
 * [Node.js: the process.env object](https://nodejs.org/api/process.html#process_process_env)
 * [Python: the os.environ object](https://docs.python.org/3/library/os.html#os.environ)
 * [Ruby: the ENV accessor](https://ruby-doc.org/core-2.1.4/ENV.html)
+
+
+{% codetabs name="PHP", type="php" -%}
+<?php
+
+// A simple variable.
+$projectId = getenv('PLATFORM_PROJECT');
+
+// A JSON-encoded value.
+$variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), TRUE);
+
+{%- language name="Python", type="py" -%}
+import os
+import json
+import base64
+
+// A simple variable.
+project_id = os.getenv('PLATFORM_PROJECT')
+
+// A JSON-encoded value.
+variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode('utf-8'))
+
+{%- language name="Node.js", type="js" -%}
+
+// Utility to assist in decoding a packed JSON variable.
+function read_base64_json(varName) {
+  try {
+    return JSON.parse(new Buffer(process.env[varName], 'base64').toString());
+  } catch (err) {
+    throw new Error(`no ${varName} environment variable`);
+  }
+};
+
+// A simple variable.
+let projectId = process.env.PLATFORM_PROJECT;
+
+// A JSON-encoded value.
+let variables = read_base64_json('PLATFORM_VARIABLES');
+{%- language name="Node.js Library", type="js" -%}
+
+// Install the utility library:
+// https://github.com/platformsh/platformsh-nodejs-helper
+// $ npm install platformsh --save
+
+const config = require('platformsh').config();
+
+// This is a string.
+let projectId = config.project;
+
+// This is a bare object.
+let variables = config.variables;
+
+{%- language name="Ruby", type="rb" -%}
+
+// A simple variable.
+project_id = ENV["PLATFORM_PROJECT"] || nil
+
+// A JSON-encoded value.
+variables = JSON.parse(Base64.decode64(ENV["PLATFORM_VARIABLES"]))
+{%- endcodetabs %}
+
 
 ## Variable prefixes
 
