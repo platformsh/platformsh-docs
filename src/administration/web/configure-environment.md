@@ -31,11 +31,12 @@ These settings get inherited by branches below the one you are on. That means if
 
 You can also setup authentication with the CLI using the following command `platform environment:http-access` which also allows you to read the current setup. This eases the integration of CI jobs with Platform.sh as you will not need to hardcode the values in the CI.
 
-You can allow or deny access to specific IPs / networks by switching `ON` the access control button and then adding `allow` or `deny` followed by the IP addresses or CIDR network masks. You can mention as many as you want.
+You can allow or deny access to specific IPs / networks by switching `ON` the access control button and then adding `allow` or `deny` after the IP addresses or CIDR network masks. You can mention as many as you want.
 
 ![Allowing or denying specific ips to project settings](/images/ui-conf-project-access-ip-settings.png)
 
 For example, the following configuration will only allow the 1.2.3.4 IP to access your website.
+
 ```
 1.2.3.4/32 allow
 0.0.0.0/0 deny
