@@ -27,13 +27,20 @@ You should not expose your development environments to the whole wide world. Pla
 
 > Changes to access control will only become active on the environment's next deployment.
 
-These settings get inherited by branches below the one you are one. That means if you create a `staging` environment, and you create branches from this one, they will all inherit the same authentication information and you only have to set-it up once.
+These settings get inherited by branches below the one you are on. That means if you create a `staging` environment, and you create branches from this one, they will all inherit the same authentication information and you only have to set-it up once.
 
 You can also setup authentication with the CLI using the following command `platform environment:http-access` which also allows you to read the current setup. This eases the integration of CI jobs with Platform.sh as you will not need to hardcode the values in the CI.
 
-You can allow or deny access to specific IPs / networks by switching `ON` the access control button and then adding `allow` or `deny` followed by the IP addresses or CIDR network masks. You can mention as many as you want.
+You can allow or deny access to specific IPs or IP ranges. First switch the access control section to ON. Then add one or more IPs or CIDR IP masks, followed by allow or deny. See the example below. Note that allow entries should come before deny entries in case both of them would match.
 
 ![Allowing or denying specific ips to project settings](/images/ui-conf-project-access-ip-settings.png)
+
+For example, the following configuration will only allow the 1.2.3.4 IP to access your website.
+
+```
+1.2.3.4/32 allow
+0.0.0.0/0 deny
+```
 
 ## Variables
 
