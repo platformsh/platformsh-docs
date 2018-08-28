@@ -161,6 +161,7 @@
 * [Migrating to Platform.sh](tutorials/migrating.md)
 * [Setting up Dropbox](tutorials/dropbox.md)
 * [Third-party resources](tutorials/third-party.md)
+* [Changing regions](tutorials/region-migration.md)
 
 ## Changelog
 
