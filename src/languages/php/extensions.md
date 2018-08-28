@@ -118,7 +118,7 @@ This is the complete list of extensions that can be enabled:
 | pdo_pgsql     | *   | *   | *   | *   | *   | *   |
 | pdo_sqlite    | *   | *   | *   | *   | *   | *   |
 | pdo_sqlsrv    |     |     |     | *   | *   | *   |
-| pecl-http     |     |     | *   |     |     |     |
+| http          |     |     | *   |     |     |     |
 | pgsql         | *   | *   | *   | *   | *   | *   |
 | phar          |     |     |     | *   | *   | *   |
 | pinba         | *   | *   | *   |     |     |     |
