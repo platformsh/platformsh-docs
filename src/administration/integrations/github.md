@@ -49,6 +49,7 @@ platform integration:add --type=github --project=abcde12345 --token=xxx --reposi
 
 Optional parameters:
 * `--fetch-branches`: Track and deploy branches (true by default)
+* `--prune-branches`: Delete branches that do not exist in the remote GitHub repository (true by default)
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`false` by default)
 * `--pull-requests-clone-parent-data`: Set to `false` to disable cloning of parent environment data when creating a PR environment, so each PR environment starts with no data. (`true` by default)
