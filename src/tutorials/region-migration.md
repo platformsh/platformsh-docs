@@ -23,6 +23,8 @@ Create a new Platform.sh project in the desired region.  You can initially creat
 
 Make a Git clone of your existing project.  Then add a Git remote to the new project, using the Git URL shown in the UI.  Push the code for at least your master branch to the new project.  (You can also transfer other branches if desired.  That's optional.)
 
+Alternatively, if you are using a 3rd party Git repository (GitHub, BitBucket, GitLab, etc.), you can add an integration to the new project just as you did the old one.  It will automatically mirror your 3rd party repository exactly the same way as the old project and you won't need to update it manually.
+
 Copy your existing user files on the old project to your computer using `rsync`.  See the [exporting](/tutorials/exporting.md) page for details.  Then use `rsync` to copy them to the same directory on the new project.  See the [migrating](/tutorials/migrating.md) page for details.
 
 Export your database from the old project and import it into the new project.  Again, see the exporting and migration pages, as well as the instructions for your specific database services.
