@@ -4,8 +4,8 @@ Platform.sh understands the need for application owners to ensure the integrity,
 
 ## Approved Activities
 
-* Vulnerability scanning of your web application. You a free to perform this as often as required without approval from Platform.sh.
-* Web application penetration tests that do not result in high network load.  You a free to perform this as often as required without approval from Platform.sh.
+* Vulnerability scanning of your web application. You are free to perform this as often as required without approval from Platform.sh.
+* Web application penetration tests that do not result in high network load.  You are free to perform this as often as required without approval from Platform.sh.
 
 ## Approved Activities by Prior Arrangement
 
