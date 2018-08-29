@@ -24,23 +24,29 @@ There's a [detailed thread](https://serverfault.com/questions/613829/why-cant-a-
 
 There are a number of ways of handling the CNAME-on-Apex limitation of DNS.
 
-### Use a DNS provider with custom records
+### Using a DNS provider with custom records
 
 Many DNS providers have found a way around the CNAME-on-Apex limitation.  Some DNS registrars now offer custom, non-standard records (sometimes called `ANAME` or `ALIAS`) that you can manage like a CNAME but will do their own internal lookup behind the scenes and then respond to DNS lookups as if they were an `A` record.  As these are non-standard their behavior (and quality) can vary, and not all DNS registrars offer such a feature.
- 
+
 If you want your site to be accessible with `https://example.com` and not only `https://www.example.com` this is the best way to do so.  Examples of such workaround records include:
- 
+
  * ACNAME at [CloudFlare](https://www.cloudflare.com/)
  * ANAME at [easyDNS](https://www.easydns.com/)
  * ANAME at [DNS Made Easy](http://www.dnsmadeeasy.com/)
  * ALIAS at [DNSimple](https://dnsimple.com/)
  * ALIAS at [PointDNS](https://pointhq.com/)
- 
+
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.  If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
- 
+
+### (Alternate) Using a DNS provider with apex domain forwarding
+
+If you are willing to make the `www.` version of your site the canonical version (which is recommended), some registrars or DNS providers may provide a domain redirect feature—also known as domain forwarding—from the apex domain `example.com` to `www.example.com`.  Before looking to change registrars, check whether your current provider supports both domain forwarding for the TLD *and* the DNS CNAME record to Platform.sh for the `www.` at the same time.  The following DNS providers are known to support both apex forwarding and advanced DNS configurations simultaneously:
+
+* [Namecheap](https://www.namecheap.com/support/knowledgebase/article.aspx/385/2237/how-do-i-set-up-a-url-redirect-for-a-domain)
+
 ### (Alternate) Using a www redirection service
 
-If you are willing to make the `www.` version of your site the canonical version (which is recommended), there are various free services that provide blind redirects from `example.com` to `www.example.com` domains for any requests sent to their IP.  Most of these services are free, and allow you to use a CNAME record to Platform.sh for `www.example.com` and an `A` record to their service at `example.com`, which will in turn send a redirect.  Examples of such services include:
+If your preferred registrar/DNS provider doesn't support either custom records or the apex domain forwarding options above, the following free services both allow blind redirects and allow you to use a CNAME record to Platform.sh for `www.example.com` and an `A` record to their service at `example.com`, which will in turn send a redirect.
 
 * [WWWizer](http://wwwizer.com/)
 * [301Redirect](https://www.301redirect.it/)
