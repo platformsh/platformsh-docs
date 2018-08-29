@@ -1,14 +1,14 @@
 # Region migration
 
-Platform.sh is available in a number of different *Regions*.  Each region is a self-contained copy of Platform.sh in a single datacenter.  When you first create a project you can specify what region it should be in.
+Platform.sh is available in a number of different *Regions*.  Each region is a self-contained copy of Platform.sh in a single datacenter.  When you first create a project you can specify which region it should be in.
 
 There is no automated way to migrate a project from one region to another after it is created.  However, the process to do so manually is fairly straightforward.
 
-## Why migrate regions?
+## Why migrate between regions?
 
 * Different datacenters are located in different geographic areas, and you may want to keep your site physically close to the bulk of your user base for reduced latency.
 * Only selected regions offer European Sovereign hosting.  If you created a project in a non-Sovereign region you may need to migrate to a Sovereign region.
-* Some regions are running older versions of the Platform.sh codebase that offers fewer features.  In particular, the US-1 and EU-1 regions do not offer XL and 2XL plans, self-terminating builds in case of a build process that runs too long, or distributing environments across different grid hosts.  If you are on one of those regions and desire those features you will need to migrate to the newer US-2 or EU-2 regions.
+* Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.  In particular, the US-1 and EU-1 regions do not offer XL and 2XL plans, self-terminating builds in case of a build process that runs too long, or distributing environments across different grid hosts.  If you are on one of those regions and desire those features you will need to migrate to the newer US-2 or EU-2 regions.
 
 ## Migration process
 
