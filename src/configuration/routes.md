@@ -151,3 +151,35 @@ To use WebSocket on a route, `cache` must be disabled because WebSocket is incom
     cache:
         enabled: false
 ```
+
+## Order of precedence of the routes
+
+When you have more than one route declared you have to keep in mind the order of precedence.
+The YAML file is parsed in the order of the declaration and a rule coming next may overwrite a preceding rule.
+
+In the example below:
+
+```yaml
+"https://www.domain1.com":
+    type: redirect
+    to: "https://www.domain2.com"
+
+"https://www.{all}/":
+    type: upstream
+    upstream: "app:http"
+```
+
+when asking for the URL `https://www.domain1.com` there will be no redirect applied as the first half of the file would suggest but rather an application hit and the second rule will also match and override the fist rule.
+
+To have `https://www.domain1.com` redirected to `https://www.domain2.com` you would need to change the order of the rules like this:
+```yaml
+"https://www.{all}/":
+    type: upstream
+    upstream: "app:http"
+    
+"https://www.domain1.com":
+    type: redirect
+    to: "https://www.domain2.com"
+
+```
+
