@@ -45,14 +45,13 @@ Depending on your site's size and your schedule, you can have the old and new pr
 
 ### 3. Launch the new site
 
-Once your new project is on the right production plan size you can cut over to it.  You will first need to *remove* your domain name(s) from your old project, as the system only allows a domain to be attached to one project at a time.  Then immediately add it to the new project.  If you have a custom SSL certificate you will need to add that at the same time.
+Once your new project is on the right production plan size you can cut over to it.  Add your domain name(s) to your new project.  If you have a custom SSL certificate you will need to add that at the same time.  (Because the projects are in separate regions it's safe to add the domain name to both at the same time, which reduces apparent downtime.)
 
-Once you remove the domain from the old project your site will be temporarily offline.  This is also a good time to do one final data sync (code and database) to ensure the new project starts with all fo the data from the old one.
+If possible, put your site into read-only mode or maintenance mode.  Then do one final data sync (code and database) to ensure the new project starts with all fo the data from the old one.
 
 Once the domain is set, update your DNS provider's records to point to the new site.  Run `platform environment:info edge_hostname -p <NEW_PROJECT_ID>` to get the domain name to point the CNAME at.
 
 It may take some time for the DNS change and SSL change to propagate.  Until it does, some browsers may not see the new site or may get an SSL mismatch error.  In most cases that will resolve itself in 1-3 hours.
-
 
 ### 4. Remove the old project
 
