@@ -31,6 +31,8 @@ Re-enter any project or environment variables you've defined on your old project
 
 Add any users to your new project that you want to continue to have access.
 
+If you have any 3rd party integrations active, especially the [Health Notification](/administration/integrations.notifications.md) checks, add them to the new project.
+
 ### 2. Maintain the mirror
 
 Most sites have generated data in Solr, Elasticsearch, or similar that needs to be regenerated.  Take whatever steps are needed to reindex such systems.  That may simply be allowing cron to run for a while, or your system may have a command to reindex everything faster.  That will vary by your application.
