@@ -40,7 +40,7 @@ Platform.sh recommends ensuring that your DNS Provider supports dynamic apex dom
 
 ### (Alternate) Using a DNS provider with apex domain forwarding
 
-If you are willing to make the `www.` version of your site the canonical version (which is recommended), some registrars or DNS providers may provide a domain redirect feature—also known as domain forwarding—from the apex domain `example.com` to `www.example.com`.  Before looking to change registrars, check whether your current provider supports both domain forwarding for the TLD *and* the DNS CNAME record to Platform.sh for the `www.` at the same time.  The following DNS providers are known to support both apex forwarding and advanced DNS configurations simultaneously:
+If you are willing to make the `www.` version of your site the canonical version (which is recommended), some registrars or DNS providers may provide a domain redirect feature—also known as domain forwarding—from the apex domain `example.com` to `www.example.com`.  Before looking to change registrars, check whether your current provider supports both domain forwarding for the Apex *and* the DNS CNAME record to Platform.sh for the `www.` at the same time.  The following DNS providers are known to support both apex forwarding and advanced DNS configurations simultaneously:
 
 * [Namecheap](https://www.namecheap.com/support/knowledgebase/article.aspx/385/2237/how-do-i-set-up-a-url-redirect-for-a-domain)
 
