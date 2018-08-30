@@ -161,6 +161,7 @@
 * [Exporting data](tutorials/exporting.md)
 * [Migrating to Platform.sh](tutorials/migrating.md)
 * [Third-party resources](tutorials/third-party.md)
+* [Changing regions](tutorials/region-migration.md)
 
 ## Changelog
 
