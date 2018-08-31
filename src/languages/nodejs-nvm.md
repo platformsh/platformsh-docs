@@ -24,9 +24,9 @@ hooks:
 And in a `.environment` file in the root of your project:
  
 ``` 
-# This is necessary for nvm to work
+# This is necessary for nvm to work.
 unset NPM_CONFIG_PREFIX
-# Disable npm update notifier, being a read only system it will probably annoy you.
+# Disable npm update notifier; being a read only system it will probably annoy you.
 export NO_UPDATE_NOTIFIER=1
 # This loads nvm for general usage.
 export NVM_DIR="$HOME/.nvm"
