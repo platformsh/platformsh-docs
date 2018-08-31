@@ -88,4 +88,4 @@ The above cron task will run once a day at 5 am (UTC), and, if the current envir
 
 ### Retention
 
-We guarantee that your snapshots are kept for at least 7 days.
+Please see our [Data Retention Page](/security/data-retention.md).
