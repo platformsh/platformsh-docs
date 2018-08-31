@@ -1,5 +1,5 @@
 
-# How to use NVM to run different version of Node.js
+# How to use NVM to run different versions of Node.js
 
 [Node Version Manager](https://github.com/creationix/nvm) or NVM is a tool for managing multiple versions of Node.js in one installation. 
 
