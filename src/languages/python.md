@@ -7,6 +7,7 @@ Platform.sh supports deploying Python applications. Your application can use WSG
 * 2.7
 * 3.5
 * 3.6
+* 3.7
 
 ## WSGI-based configuration
 
