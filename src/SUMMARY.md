@@ -60,7 +60,7 @@
   * [PHP.ini settings](languages/php/ini.md)
   * [PHP-FPM sizing](languages/php/fpm.md)
 * [Node.js](languages/nodejs.md)
-  * [Changing the Node.js version](languages/nodejs/nvm.md)
+  * [Alternative Node.js install](languages/nodejs/nvm.md)
 * [Python](languages/python.md)
 * [Ruby](languages/ruby.md)
 * [Go (beta)](languages/go.md)
