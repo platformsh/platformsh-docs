@@ -32,16 +32,16 @@ Like with any other application container Platform.sh allows you to connect to t
 
 Like with any other application container Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
 
-As always, simplest is to use the CLI, simply add the worker name to the ssh command. For example:
+Using the Platform CLI you would use the `--worker` switch, like so:
 
 ```
-platform ssh --worker=my_worker
+platform ssh --worker=queue
 ```
 
 To output the SSH command you can use:
 
 ```
-platform ssh --worker=sidekiq-1 --pipe
+platform ssh --worker=queue --pipe
 ```
 
 You will see the url is the name of the worker added to the user name after the application name part of the SSH url preceded by a double dash (`--`).
