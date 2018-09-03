@@ -30,7 +30,21 @@ Any number of workers may be defined with their own distinct name, subject to av
 
 Like with any other application container Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
 
-To do so simply add the name of the worker to the user name after the application name part of the SSH url preceded by a double dash (`--`).
+Like with any other application container Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
+
+Using the Platform CLI you would use the `--worker` switch, like so:
+
+```
+platform ssh --worker=queue
+```
+
+To output the SSH command you can use:
+
+```
+platform ssh --worker=queue --pipe
+```
+
+You will see the url is the name of the worker added to the user name after the application name part of the SSH url preceded by a double dash (`--`).
 
 For example given a project with id `3seb7f2j6ogbm` you would connect to its master environment for an app called `app` with a url such as: 
 
