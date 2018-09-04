@@ -35,3 +35,4 @@ Access by customers and Platform.sh support personnel to customer environments i
 ## Vendor data sharing
 
 We have identified and mapped all data we collect and share with vendors (such as AWS, Azure, and Orange). We know what we capture and where it goes. All of our vendors have been vetted for security and GDPR compliance.  We have enacted contract amendments and Data Processing Agreements (DPAs) where applicable.
+
