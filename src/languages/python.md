@@ -7,6 +7,7 @@ Platform.sh supports deploying Python applications. Your application can use WSG
 * 2.7
 * 3.5
 * 3.6
+* 3.7
 
 ## WSGI-based configuration
 
@@ -16,7 +17,7 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
    ```yaml
    # .platform.app.yaml
-   type: "python:3.6"
+   type: "python:3.7"
    ```
 
 2. Build your application with the build hook. Assuming you have your pip dependencies stored in `requirements.txt` and a `setup.py` at the root of your application folder to execute build steps:
