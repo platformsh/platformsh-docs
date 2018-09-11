@@ -38,8 +38,8 @@ You can still access the original internal domain by running `platform environme
 
 On your DNS provider, you would create two CNAMEs:
 
-`mysite.com` should be an ALIAS/CNAME/ANAME  to `master-def456-abc123.eu-2.platformsh.site`.
-`www.mysite.com` should be a CNAME to `master-def456-abc123.eu-2.platformsh.site`.
+`mysite.com` should be an ALIAS/CNAME/ANAME  to `master-def456-abc123.eu-2.platformsh.site.`
+`www.mysite.com` should be a CNAME to `master-def456-abc123.eu-2.platformsh.site.`
 
 >  Both point to the same name. See the note above regarding how different registrars handle dynamic apex domains.
 
