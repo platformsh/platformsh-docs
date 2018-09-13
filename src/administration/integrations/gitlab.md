@@ -20,7 +20,7 @@ Give it a description and then ensure the token has the following scopes:
 
  * `api`  - Access your API
  * `read_user` - Read user information
- * `read_registry` - Read Registry
+ * `read_repository` - Read repositories
 
 Copy the token and make a note of it (temporarily).
 
