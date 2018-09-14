@@ -19,7 +19,7 @@ python3 -m venv py3-venv --system-site-packages --without-pip
 
 # Install pip using the standard pip bootstrapping script
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
+python3 get-pip.py
 ```
 
 To create and access the virtual environment, source the file in your build hook. From there, you can install Python 3 dependencies with `pip3`:
