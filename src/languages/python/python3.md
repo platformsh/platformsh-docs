@@ -1,9 +1,6 @@
 # How to run Python 3 in the build hook of a non-Python application
 
-> **Caution**
-> This method of running Python 3 in non-Python applications should only be used *[in an application's build hook](/configuration/app/build.md#build-hook)* when Python 3 is necessary to build or configure your application (e.g. pre-compiling static files). If you need a full Python application to run alongside another type of application (PHP, Node.js, etc.), you should deploy it as part of a [multi-application project](/configuration/app/multi-app.md).
->
-> **Don't attempt to use this method to run Python 3 in your [deploy hook](/configuration/app/build.md#deploy-hook) or your [web configuration](configuration/app/web.md)!**
+This method of running Python 3 in non-Python applications should only be used [in an application's build hook](/configuration/app/build.md#build-hook) when Python 3 is necessary to build or configure your application (e.g. pre-compiling static files). If you need a full Python application to run alongside another type of application (PHP, Node.js, etc.), you should deploy it as part of a [multi-application project](/configuration/app/multi-app.md).
 
 The version of Python 3 [distributed with the most recent release of Debian](https://wiki.debian.org/Python#Supported_Python_Versions) is available in the build hook of non-Python applications. However, packages cannot be installed directly in the distribution's `site-packages` folder, so using Python 3 will require creating a virtual environment for package installation.
 
@@ -11,6 +8,8 @@ At the top level of your application (where `.platform.app.yaml` is located), cr
 
 ```shell
 #!/bin/dash
+
+unset PIP_USER
 
 # Create a virtual environment for running Python 3 and installing packages
 python3 -m venv py3-venv --system-site-packages --without-pip
