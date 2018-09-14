@@ -42,9 +42,4 @@ hooks:
 
       # And run Python 3 using the activated virtual environment:
       python3 --version
-
-      # After it's no longer needed, deactivate the venv:
-      deactivate
 ```
-
-After you have run all the `python3`/`pip3` commands that you need to run in your build hook, you can add the command `deactivate` to deactivate your Python 3 virtual environment. This will revert the bare `python` and `pip` commands to the distribution's version of Python 2.
