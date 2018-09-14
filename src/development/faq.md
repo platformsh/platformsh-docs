@@ -38,52 +38,6 @@ You are able to convert an `inactive environment` into an `active environment` a
 
 Master gets all the resources that are divided into each service (PHP 40%, MySQL 30%, Redis 10%, Solr 20%…). Each Development environment gets the Development plan resources.
 
-## Can I run Python 3 in the build hook of a non-Python application?
-
-Yes. The version of Python 3 [distributed with the most recent release of Debian](https://wiki.debian.org/Python#Supported_Python_Versions) is available in the build hook of non-Python applications. However, packages cannot be installed directly in the distribution's `site-packages` folder, so using Python 3 will require creating a virtual environment for package installation.
-
-At the top level of your application (where `.platform.app.yaml` is located), create a file called `python3.sh`, and paste in the following contents:
-
-```shell
-#!/bin/dash
-
-# Create a virtual environment for running Python 3 and installing packages
-python3 -m venv py3-venv --system-site-packages --without-pip
-
-# Source the activation file to activate the virtual environment
-. py3-venv/bin/activate
-
-# Install pip using the standard pip bootstrapping script
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
-
-# (Optionally) Install dependencies using pip3 and a requirements.txt file
-# pip3 install -r requirements.txt
-
-# Or install dependencies with pip3 directly
-# pip3 install pyyaml
-```
-
-To create and access the virtual environment, source the file in your build hook:
-
-```yaml
-hooks:
-    build: |
-      set -e
-
-      # Source the python3.sh venv creation script
-      . ./python3.sh
-
-      # Now you can install dependencies with pip3. For example:
-      pip3 install requests
-
-      # And run Python 3 using the activated virtual environment
-      python3 --version
-```
-
-> **Caution**
-> This method of running Python 3 in non-Python applications should only be used *[in an application's build hook](/configuration/app/build.md#build)* when Python 3 is necessary to build or configure your application (e.g. pre-compiling static files). If you need a full Python application to run alongside another type of application (PHP, Node.js, etc.), you should deploy it as part of a [multi-application project](/configuration/app/multi-app.md).
-
 ## What exactly am I sshing into?
 
 You're logged in to the PHP service. It's a read-only file system.

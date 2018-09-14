@@ -62,6 +62,7 @@
 * [Node.js](languages/nodejs.md)
   * [Alternative Node.js install](languages/nodejs/nvm.md)
 * [Python](languages/python.md)
+  * [Using Python 3 in build hooks](languages/python/python3.md)
 * [Ruby](languages/ruby.md)
 * [Go (beta)](languages/go.md)
 * [Java (alpha)](languages/java.md)
