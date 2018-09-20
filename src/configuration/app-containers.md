@@ -34,7 +34,7 @@ The following properties can be set at the top level of the `.platform.app.yaml`
 The `.platform.app.yaml` file needs at least one of the following to define an instance, but may define both.
 
 * [`web`](/configuration/app/web.md) - Controls how the web application is served.
-* [`worker`](/configuration/app/web.md) - Defines alternate copies of the application to run as background processes.
+* [`worker`](/configuration/app/workers.md) - Defines alternate copies of the application to run as background processes.
 
 ## Available resources
 
