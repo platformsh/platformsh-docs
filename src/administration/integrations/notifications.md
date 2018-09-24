@@ -48,7 +48,7 @@ That will trigger the corresponding bot to post a notification to the `#channeln
 
 ### PagerDuty notifications
 
-A notification can trigger a message to be sent via PagerDuty, if you are using that service.  First, create a new PagerDuty "[integration](https://www.pagerduty.com/integrations/)" using the v2 API.  Copy the routing key it provides.
+A notification can trigger a message to be sent via PagerDuty, if you are using that service.  First, create a new PagerDuty "[integration](https://support.pagerduty.com/docs/services-and-integrations)" that uses the Events API v2.  Copy the "Integration Key" as known as the "routing key" for the integration.
 
 Now register a `health.pagerduty` integration as follows:
 
