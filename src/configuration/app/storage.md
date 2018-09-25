@@ -7,7 +7,7 @@ search:
 
 The built file system image that results from your build process is mounted read-only.  That means it cannot be edited in production, even by accident.
 
-Many applications still require the ability to write and store files, however.  For that, applications can specify one or more mount points, that is, directories that will be mounted from a writeable network file system cluster.  They may be mounted anywhere within the file system of your application.  If the specified directory already exists the contents of it will be masked by the writeable mount and inaccessible at runtime.
+Many applications still require the ability to write and store files, however.  For that, applications can specify one or more mount points, that is, directories that will be mounted from a writable network file system cluster.  They may be mounted anywhere within the file system of your application.  If the specified directory already exists the contents of it will be masked by the writable mount and inaccessible at runtime.
 
 ## Disk
 
@@ -17,13 +17,13 @@ The `disk` key is required, and defines the size of the persistent disk of the a
 
 The `mounts` key is an object whose keys are paths relative to the root of the application (that is, where the `.platform.app.yaml` file lives), and values are a 2-line mount definition.
 
-This section is optional; if your application does not need writeable local file storage simply omit the `mounts` section and set `disk` to a value to the minimum of 256.
+This section is optional; if your application does not need writable local file storage simply omit the `mounts` section and set `disk` to a value to the minimum of 256.
 
 Note that whether a mounted directory is web-accessible or not depends on the configuration of the `web.locations` block in `.platform.app.yaml`.  It may be accessible, or not, and have different rules for different file types as desired.
 
 ## Basic mounts
 
-The following block defines a single writeable directory, `web/uploads`:
+The following block defines a single writable directory, `web/uploads`:
 
 ```yaml
 mounts:
@@ -32,7 +32,7 @@ mounts:
         source_path: uploads
 ```
 
-The `source` specifies where the writeable mount is.  `source_path` specifies the subdirectory from within the source that the mount should point at.  It is often easiest to have it match the name of the mount point itself but that is not required.
+The `source` specifies where the writable mount is.  `source_path` specifies the subdirectory from within the source that the mount should point at.  It is often easiest to have it match the name of the mount point itself but that is not required.
 
 ### `local` mounts
 
