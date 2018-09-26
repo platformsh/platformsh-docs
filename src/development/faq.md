@@ -72,7 +72,7 @@ Please validate the syntax of your YAML file. Don't use tabs. And if all fails, 
 
 ## Which geographic zones does Platform.sh cover?
 
-Platform leverages the powerful AWS Infrastructure.  We can deploy your site in a [datacenter](https://aws.amazon.com/about-aws/globalinfrastructure/regional-product-services/) that is very close to your target audience.
+Platform leverages the power of public cloud infrastructures like AWS, Microsoft Azure, or Huawei/Orange. We can deploy your site in a region that is very close to your target audience.
 
 ## Why did you choose the .sh extension for your domain?
 
