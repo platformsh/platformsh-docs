@@ -18,7 +18,7 @@ If you're checking the entire codebase into Git, do so with Composer Manager as 
 
 ## 2. Configure file locations
 
-Composer Manager works by using a Drush command to aggregate all module-provided `composer.json` files into a single file, which can then be installed via a normal Composer command.  Both the generated file and the resulting `vendor` directory must be in the application portion of the file system, that is, not in a writeable file mount.  As that is not the default configuration for Composer Manager it will need to be changed.  Add the following lines to your `settings.php` file:
+Composer Manager works by using a Drush command to aggregate all module-provided `composer.json` files into a single file, which can then be installed via a normal Composer command.  Both the generated file and the resulting `vendor` directory must be in the application portion of the file system, that is, not in a writable file mount.  As that is not the default configuration for Composer Manager it will need to be changed.  Add the following lines to your `settings.php` file:
 
 ```php
 $conf['composer_manager_vendor_dir'] = '../composer/vendor';
