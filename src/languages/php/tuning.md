@@ -49,7 +49,7 @@ That will report the number of files in your file tree that end in `.php`.  That
 
 Determining an optimal `opcache.memory_consumption` is a bit harder, unfortunately, as it requires executing code via a web request to get adequate statistics.  Fortunately there is a command line tool that will handle most of that.
 
-Change to the `/tmp` directory (or any other non-web-accessible writeable directory) and install [`CacheTool`](https://github.com/gordalina/cachetool).  It has a large number of commands and options but we're only interested in the opcache status for FastCGI command.  The really short version of downloading and using it would be:
+Change to the `/tmp` directory (or any other non-web-accessible writable directory) and install [`CacheTool`](https://github.com/gordalina/cachetool).  It has a large number of commands and options but we're only interested in the opcache status for FastCGI command.  The really short version of downloading and using it would be:
 
 ```bash
 cd /tmp
