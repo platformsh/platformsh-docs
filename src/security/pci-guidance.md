@@ -58,7 +58,7 @@ The following sections provide guidance on shared responsibilities to achieve PC
 |Requirement |Responsibility|Comments                                                                                                                                                                                                                                                        |
 |------------|--------------|---------|
 |3.1         |Shared        |Platform.sh is responsible that storage is securely deleted. Customer is responsible for all other provisions.                                                                                                                                                  |
-|3.2 to 3.4.1|Customer      |                                                                                                                                                                                                                                                                |
+|3.2 to 3.4.1|Customer      |Customer responsibility. Customer is also responsible for sanitizing cardholder data copied to non-production sources.                                                                                                                                          |
 |3.5 to 3.7  |Shared        |Customer is responsible for data encryption and non-infrastructure key management. We recommend column-level database encryption. If you need data at rest protection, please see our docs about [Encryption](https://docs.platform.sh/security/encryption.html)|
 
 
