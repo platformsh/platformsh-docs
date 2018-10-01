@@ -5,10 +5,10 @@ An environment which is deployed. You can deactivate an active environment from 
 Every active environment is deployed as a cluster, that is, a collection of independent containers representing different services that make up your web application.  That may include a database container, an Elasticsearch container, a container for your application, etc.  They are always deployed together as a single unit.
 
 ## Drush
-[Drush](http://www.drush.org/) is a command-line shell and scripting interface for Drupal.
+[Drush](https://www.drush.org/) is a command-line shell and scripting interface for Drupal.
 
 ## Drush aliases
-Drush [site aliases](http://docs.drush.org/en/master/usage/#site-aliases) allow you to define short names that let you run Drush commands on specific local or remote Drupal installations. The Platform.sh CLI configures Drush aliases for you on your local environment (via `platform get` or `platform drush-aliases`). You can also configure them manually.
+Drush [site aliases](https://docs.drush.org/en/master/usage/#site-aliases) allow you to define short names that let you run Drush commands on specific local or remote Drupal installations. The Platform.sh CLI configures Drush aliases for you on your local environment (via `platform get` or `platform drush-aliases`). You can also configure them manually.
 
 ## Inactive environment
 An environment which is not deployed. You can activate an inactive environment from the
