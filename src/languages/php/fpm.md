@@ -70,7 +70,7 @@ This will print out a table of how many requests used how much memory, in KB, fo
       6 131072
 ```
 
-This indicates that the majority of requests (4800) used 2048 KB of memory.  Those are mainly static files so ignore them.  Most requests used up to around 10 MB of memory, while a few used as much as 18 MB and a very very few (6 requests) peaked at 131 MB.  (In this example those are probably cache clears.)
+This indicates that the majority of requests (4800) used 2048 KB of memory.  In this case that's likely application caching at work.  Most requests used up to around 10 MB of memory, while a few used as much as 18 MB and a very very few (6 requests) peaked at 131 MB.  (In this example those are probably cache clears.)
 
 A conservative approach would suggest an average request memory of 16 MB should be sufficient.  A more aggressive stance would suggest 10 MB.  The more aggressive approach would potentially allow for more concurrent requests at the risk of some requests needing to use swap memory, thus slowing them down.
 
