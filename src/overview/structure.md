@@ -47,6 +47,6 @@ There may be zero or more Service containers in a cluster, depending on the `ser
 
 There always must be one Application container in a cluster, but there may be more.
 
-Each Application container corresponds to a `.platform.app.yaml` file in the repository.  If there are 3 `.platform.app.yaml` files, there will be three Application containers.  Application containers hold the code you provide via your Git repository.  Application containers are always built off of one of the Platform.sh-provided language-specific images, such as “PHP 5.6”, “PHP 7.2”, or “Python 3.6”. It is also possible to have multiple Application containers running different languages or versions.
+Each Application container corresponds to a `.platform.app.yaml` file in the repository.  If there are 3 `.platform.app.yaml` files, there will be three Application containers.  Application containers hold the code you provide via your Git repository.  Application containers are always built off of one of the Platform.sh-provided language-specific images, such as “PHP 5.6”, “PHP 7.2”, or “Python 3.7”. It is also possible to have multiple Application containers running different languages or versions.
 
 For typical applications, there is only one `.platform.app.yaml` file, which is generally placed at the repository root.
