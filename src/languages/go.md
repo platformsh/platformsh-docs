@@ -8,6 +8,7 @@ Platform.sh supports building and deploying applications written in Go.  They ar
 * 1.8
 * 1.9
 * 1.10
+* 1.11
 
 To specify a Go container, use the `type` property in your `.platform.app.yaml`.
 
