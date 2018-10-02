@@ -155,7 +155,7 @@ For example, consider this `.platform.app.yaml`:
 ```yaml
 name: app
 
-type: "python:3.6"
+type: "python:3.7"
 
 disk: 2048
 
@@ -223,7 +223,7 @@ workers:
             emails: 'rabbitqueue:rabbitmq'
 ```
 
-There's a lot going on here, but it's all reasonably straightforward.  This configuration will take a single Python 3.6 code base from your repository, download all dependencies in `requirements.txt`, and the install Gunicorn.  That artifact (your code plus the downloaded dependencies) will be deployed as three separate container instances, all running Python 3.6.
+There's a lot going on here, but it's all reasonably straightforward.  This configuration will take a single Python 3.7 code base from your repository, download all dependencies in `requirements.txt`, and the install Gunicorn.  That artifact (your code plus the downloaded dependencies) will be deployed as three separate container instances, all running Python 3.7.
 
 The `web` instance will start a gunicorn process to serve a web application.  
 
