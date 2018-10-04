@@ -62,8 +62,8 @@ The example below is intended as a "most common case".
 
 ```php
 
-if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
-  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
+if (getenv('PLATFORM_RELATIONSHIPS') && extension_loaded('memcached')) {
+  $relationships = json_decode(base64_decode(getenv('PLATFORM_RELATIONSHIPS')), TRUE);
 
   // If you named your memcached relationship something other than "cache", set that here.
   $relationship_name = 'cache';
@@ -92,7 +92,7 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
 
     // If using a multisite configuration, adapt this line to include a site-unique
     // value.
-    $settings['memcache']['key_prefix'] = $PLATFORM_ENVIRONMENT;
+    $settings['memcache']['key_prefix'] = getenv('PLATFORM_ENVIRONMENT');
 
     // Define custom bootstrap container definition to use Memcache for cache.container.
     $settings['bootstrap_container_definition'] = [
@@ -107,17 +107,17 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
           'class' => 'Drupal\Core\Site\Settings',
           'factory' => 'Drupal\Core\Site\Settings::getInstance',
         ],
-        'memcache.config' => [
-          'class' => 'Drupal\memcache\DrupalMemcacheConfig',
+        'memcache.settings' => [
+          'class' => 'Drupal\memcache\MemcacheSettings',
           'arguments' => ['@settings'],
         ],
-        'memcache.backend.cache.factory' => [
-          'class' => 'Drupal\memcache\DrupalMemcacheFactory',
-          'arguments' => ['@memcache.config']
+        'memcache.factory' => [
+          'class' => 'Drupal\memcache\Driver\MemcacheDriverFactory',
+          'arguments' => ['@memcache.settings'],
         ],
         'memcache.backend.cache.container' => [
-          'class' => 'Drupal\memcache\DrupalMemcacheFactory',
-          'factory' => ['@memcache.backend.cache.factory', 'get'],
+          'class' => 'Drupal\memcache\DrupalMemcacheInterface',
+          'factory' => ['@memcache.factory', 'get'],
           'arguments' => ['container'],
         ],
         'lock.container' => [
