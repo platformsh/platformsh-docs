@@ -47,7 +47,7 @@ For Drush to be available on the command line, **it must be added to the project
 
 Add a new file named `.environment` to the root of your your project's git repository with this code:
 
-{% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-example-drupal8/master/.environment", language="bash" %}{% endcodesnippet %}
+{% codesnippet "https://raw.githubusercontent.com/platformsh/template-drupal8/master/.environment", language="bash" %}{% endcodesnippet %}
 
 ## Install Drush locally
 
