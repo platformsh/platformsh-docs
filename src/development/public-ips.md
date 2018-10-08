@@ -92,9 +92,9 @@ Inbound IPs (gw.us.platform.sh):
 
 Outbound IPs:
 
+* 34.238.64.193
 * 52.4.246.137
-* 34.238.64.193
-* 34.238.64.193
+* 54.157.66.30
 
 Inbound IPs (gw.us-2.platformsh.site):
 
