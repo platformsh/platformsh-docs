@@ -119,7 +119,7 @@ If your project involves only a single apex domain with one app or multiple apps
 
 All routes defined for an environment are available to the application in its `PLATFORM_ROUTES` environment variable, which contains a base64-encoded JSON object. This object can be parsed by the language of your choice to give your application access to the generated routes.
 
-When routes are generated, all placeholders will be replaced with appropriate domains names, and if your configuration specifies them, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects). To make it easier to locate routes in a standardized fashion, you may specify an `id` key on each route which remains stable across environments. You may also specify a single route as `primary`, which will cause it to be highlighted in the web interface but will have no impact on the runtime environment.
+When routes are generated, all placeholders will be replaced with appropriate domains names, and depending on your configuration, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects). To make it easier to locate routes in a standardized fashion, you may specify an `id` key on each route which remains stable across environments. You may also specify a single route as `primary`, which will cause it to be highlighted in the web interface but will have no impact on the runtime environment.
 
 Consider this `routes.yaml` configuration example:
 
