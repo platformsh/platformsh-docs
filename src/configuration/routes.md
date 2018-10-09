@@ -115,6 +115,85 @@ https://blog.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platformsh.site/
 
 If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generally best to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains then you will need to use a static domain for all but one of them.
 
+## Route identifiers
+
+All routes defined for an environment are available to the application in its `PLATFORM_ROUTES` environment variable, which contains a base64-encoded JSON object. This object can be parsed by the language of your choice to give your application access to the generated routes.
+
+When routes are generated, all placeholders will be replaced with appropriate domains names, and depending on your configuration, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects). To make it easier to locate routes in a standardized fashion, you may specify an `id` key on each route which remains stable across environments. You may also specify a single route as `primary`, which will cause it to be highlighted in the web interface but will have no impact on the runtime environment.
+
+Consider this `routes.yaml` configuration example:
+
+```yaml
+"https://site1.{default}/":
+    type: upstream
+    upstream: 'site1:http'
+
+"https://site2.{default}/":
+    type: upstream
+    id: 'the-second'
+    upstream: 'site2:http'
+```
+
+This example defines two routes, on two separate subdomains, pointing at two separate app containers. (However, they could just as easily be pointing at the same container for our purposes).  On a branch named `test`, the route array in PHP would look like this:
+
+```text
+Array
+(
+    [https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
+        (
+            [primary] => 1
+            [id] =>
+            [type] => upstream
+            [upstream] => site1
+            [original_url] => https://site1.{default}/
+            // ...
+        )
+
+    [https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
+        (
+            [primary] =>
+            [id] => the-second
+            [type] => upstream
+            [upstream] => site2
+            [original_url] => https://site2.{default}/
+            // ...
+        )
+    [http://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
+        (
+            [to] => https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/
+            [original_url] => http://site1.{default}/
+            [type] => redirect
+            [primary] =>
+            [id] =>
+        )
+
+    [http://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
+        (
+            [to] => https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/
+            [original_url] => http://site2.{default}/
+            [type] => redirect
+            [primary] =>
+            [id] =>
+        )
+)
+```
+
+(Some keys omitted for space.)  Note that the `site2` HTTPS route has an `id` specified as `the-second` while other routes have no ID. Futhermore, because we did not specify a `primary` route, the first non-redirect route defined is marked as the primary route by default. In each case, the `original_url` specified in the configuration file is accessible if desired.
+
+That makes it straightforward to look up the domain of a particular route, regardless of what branch it's on, from within application code.  For example, the following PHP function will retrieve the domain for a specific route id, regardless of the branch it's on.
+
+```php
+function get_domain_for(string $id) {
+  foreach ($routes as $domain => $route) {
+    if ($route['id'] == $id) {
+      return $domain;
+    }
+  }
+}
+```
+
+That can be used, for example, for inbound request whitelisting, a feature of many PHP frameworks.
+
 ## Configuring routes on the Web Interface
 
 Routes can also be configured using the web interface in the [routes section](/administration/web/configure-environment.html#routes) of the environment settings. If you have edited the routes via the web interface, you will have to `git pull` the updated `.platform/routes.yaml` file from us.
