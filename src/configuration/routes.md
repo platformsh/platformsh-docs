@@ -117,11 +117,11 @@ If your project involves only a single apex domain with one app or multiple apps
 
 ## Route identifiers
 
-All routes defined on an environment will be available in the application in the `PLATFORM_ROUTES` environment variable.  That value is a base64-encoded JSON string, which can be extracted in the language of your choice to look up the effective routes that were generated.
+All routes defined for an environment are available to the application in its `PLATFORM_ROUTES` environment variable, which contains a base64-encoded JSON object. This object can be parsed by the language of your choice to give your application access to the generated routes.
 
-"Effective route" here means that all placeholders will be replaced with the appropriate domain name, and depending on your configuration additional route entries may be generated as well (such as the automatic HTTP->HTTPS redirect).  That means the domains will vary from one environment to another.  To make it easier to locate specific routes in a standardized fashion you may also specify an `id` on each route that is stable across all environments.  You may also mark one, and only one route as `primary`.  The primary route may be special cased in the interface but has no impact on the runtime environment.
+When routes are generated, all placeholders will be replaced with appropriate domains names, and if your configuration specifies them, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects). To make it easier to locate routes in a standardized fashion, you may specify an `id` key on each route which remains stable across environments. You may also specify a single route as `primary`, which will cause it to be highlighted in the web interface but will have no impact on the runtime environment.
 
-For example, consider this `routes.yaml` configuration:
+Consider this `routes.yaml` configuration example:
 
 ```yaml
 "https://site1.{default}/":
@@ -134,12 +134,12 @@ For example, consider this `routes.yaml` configuration:
     upstream: 'site2:http'
 ```
 
-This example defines two routes, on two separate subdomains, pointing at two separate app containers.  (They could just as easily be pointing at the same container for our purposes).  On a branch named `test`, the routes array in PHP would look like this:
+This example defines two routes, on two separate subdomains, pointing at two separate app containers. (However, they could just as easily be pointing at the same container for our purposes).  On a branch named `test`, the route array in PHP would look like this:
 
 ```text
 Array
 (
-    [https://site1.test-t6dnbai-ohrscqhfu2xzk.us-2.platformsh.site/] => Array
+    [https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
         (
             [primary] => 1
             [id] =>
@@ -149,7 +149,7 @@ Array
             // ...
         )
 
-    [https://site2.test-t6dnbai-ohrscqhfu2xzk.us-2.platformsh.site/] => Array
+    [https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
         (
             [primary] =>
             [id] => the-second
@@ -158,18 +158,18 @@ Array
             [original_url] => https://site2.{default}/
             // ...
         )
-    [http://site1.test-t6dnbai-ohrscqhfu2xzk.us-2.platformsh.site/] => Array
+    [http://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
         (
-            [to] => https://site1.test-t6dnbai-ohrscqhfu2xzk.us-2.platformsh.site/
+            [to] => https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/
             [original_url] => http://site1.{default}/
             [type] => redirect
             [primary] =>
             [id] =>
         )
 
-    [http://site2.test-t6dnbai-ohrscqhfu2xzk.us-2.platformsh.site/] => Array
+    [http://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
         (
-            [to] => https://site2.test-t6dnbai-ohrscqhfu2xzk.us-2.platformsh.site/
+            [to] => https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/
             [original_url] => http://site2.{default}/
             [type] => redirect
             [primary] =>
@@ -178,7 +178,7 @@ Array
 )
 ```
 
-(Some keys omitted for space.)  Note that the `site2` HTTPS route has the `id` specified, `the-second`.  Other routes have no ID.  Also, we did not specify a `primary` so the first non-redirect route defined is marked as the primary route by default.  In each case the `original_url` is also available if desired.
+(Some keys omitted for space.)  Note that the `site2` HTTPS route has an `id` specified as `the-second` while other routes have no ID. Futhermore, because we did not specify a `primary` route, the first non-redirect route defined is marked as the primary route by default. In each case, the `original_url` specified in the configuration file is accessible if desired.
 
 That makes it straightforward to look up the domain of a particular route, regardless of what branch it's on, from within application code.  For example, the following PHP function will retrieve the domain for a specific route id, regardless of the branch it's on.
 
