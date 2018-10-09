@@ -317,9 +317,9 @@ This feature is primarily useful to override debug configuration on development 
 
 As a convention, our provided Drupal template code will automatically map variables to Drupal's configuration system.  The logic varies slightly depending on the Drupal version.
 
-On [Drupal 7](https://github.com/platformsh/platformsh-example-drupal7/blob/master/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$conf` array, which overrides Drupal's `variable_get()` system.  For instance, to force a site name from the Platform.sh variables (say to set it "This is a Dev site") you would set the `drupal:site_name` variable.
+On [Drupal 7](https://github.com/platformsh/template-drupal7/blob/master/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$conf` array, which overrides Drupal's `variable_get()` system.  For instance, to force a site name from the Platform.sh variables (say to set it "This is a Dev site") you would set the `drupal:site_name` variable.
 
-On [Drupal 8](https://github.com/platformsh/platformsh-example-drupal8/blob/master/web/sites/default/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$settings` array. That is intended for very low-level configuration.
+On [Drupal 8](https://github.com/platformsh/template-drupal8/blob/master/web/sites/default/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$settings` array. That is intended for very low-level configuration.
 
 Also on Drupal 8, any variable that begins with `d8config:` will be mapped to the global `$config` array, which is useful for overriding drupal's exportable configuration system.  The variable name will need to contain two colons, one for `d8config:` and one for the name of the configuration object to override.  For example, a variable named `d8config:system.site:name` will override the `name` property of the `system.site` configuration object.
 

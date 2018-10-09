@@ -23,9 +23,9 @@ You can also initialize your project using any of the pre-made templates below. 
 <div>
   <h4>Applications</h4>
   <a href="https://github.com/platformsh/platformsh-example-ezplatform">EZ Platform</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-drupal7">Drupal 7</a><br />
+  <a href="https://github.com/platformsh/template-drupal7">Drupal 7</a><br />
   <a href="https://github.com/platformsh/platformsh-example-drupalcommerce7">Drupal 7 (Commerce Kickstart)</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-drupal8">Drupal 8</a><br />
+  <a href="https://github.com/platformsh/template-drupal8">Drupal 8</a><br />
   <a href="https://github.com/platformsh/platformsh-example-drupal8-multisite">Drupal 8 (Multisite variant)</a><br />
   <a href="https://github.com/platformsh/template-laravel">Laravel</a><br />
   <a href="https://github.com/platformsh/platformsh-example-moodle">Moodle</a><br />
@@ -33,7 +33,7 @@ You can also initialize your project using any of the pre-made templates below. 
   <a href="https://github.com/platformsh/platformsh-example-magento">Magento 2</a><br />
   <a href="https://github.com/platformsh/platformsh-example-sculpin">Sculpin</a><br />
   <a href="https://github.com/platformsh/platformsh-example-typo3">TYPO3</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-wordpress">WordPress</a>
+  <a href="https://github.com/platformsh/template-wordpress">WordPress</a>
 </div>
 
 <div>

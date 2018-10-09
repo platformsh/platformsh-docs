@@ -95,10 +95,10 @@ If you already have a Drupal 7 site built from a `tar.gz` download from Drupal.o
 
 ## Configuring Platform.sh for Drupal
 
-The ideal `.platform.app.yaml` file will vary from project project, and you are free to customize yours as needed.  A recommended baseline Drupal 7 configuration is listed below, and can also be found in our [Drupal 7 template project](https://github.com/platformsh/platformsh-example-drupal7).
+The ideal `.platform.app.yaml` file will vary from project project, and you are free to customize yours as needed.  A recommended baseline Drupal 7 configuration is listed below, and can also be found in our [Drupal 7 template project](https://github.com/platformsh/template-drupal7).
 
 > **note**
 > Your database for Drupal must be named "database" in the `relationships`.
 
-{% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-example-drupal7/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
+{% codesnippet "https://raw.githubusercontent.com/platformsh/template-drupal7/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
 
