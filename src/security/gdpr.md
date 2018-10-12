@@ -18,4 +18,4 @@ As part of our measures we have implemented the following:
 * **Data Retention**: We documented information about our [data retention](/security/data-retention.md).
 * **DPA**: We have revised our [Terms of Service](https://platform.sh/tos) and [Privacy Policy](https://platform.sh/privacy-policy) to align with the GDPR and we offer a GDPR Data Processing Agreement for those Customers who need it.
 
-And we have more items on the roadmap. GDPR work doesn’t end on 25 May. There is a sustainability effort to ensure we protect our clients data.
+
