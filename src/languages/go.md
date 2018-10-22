@@ -96,5 +96,5 @@ Note that there will still be an Nginx proxy server sitting in front of your app
 
 Platform.sh offers a project templates for Go applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
 
-[Generic Go application](https://github.com/platformsh/platformsh-example-golang)
+[Generic Go application](https://github.com/platformsh/template-golang)
 
