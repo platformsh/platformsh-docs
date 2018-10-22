@@ -30,12 +30,20 @@ It is also possible to install additional system-level dependencies as part of t
 Platform.sh supports pulling any dependencies for the following languages:
 
 * PHP (via [Composer](https://getcomposer.org/))
-* Python (via [Pip](https://packaging.python.org/installing/))
+* Python 2 and 3 (via [Pip](https://packaging.python.org/installing/))
 * Ruby (via [Bundler](https://bundler.io/))
 * Node.js (via [NPM](https://www.npmjs.com/))
 * Java (via [Maven](https://maven.apache.org/), with Ant support)
 
-Those dependencies are independent of the eventual dependencies of your application and are available in the `PATH` during the build process and in the runtime environment of your application.  Note that in many cases a given package can be installed either as a global dependency or as part of your application's own dependencies.  In such cases it's up to you which one to use.
+### Python dependencies
+
+Applications can have both Python 2 and Python 3 dependencies, using the version of each that is packaged with the most recent Debian distribution. The format of Python dependencies complies with [PEP 394](https://www.python.org/dev/peps/pep-0394/). That is, specifying a dependency in a `python` or `python2` block will use `pip2` and Python 2, while specifying a dependency in a `python3` block will use `pip3` and Python 3.
+
+We suggest that you specify your dependencies with the specific version of Python you wish to use (i.e. either `python2` or `python3`), rather than with the generic `python` declaration, to ensure your application will function normally in the future if Debian's default version of Python changes.
+
+### Specifying dependencies
+
+Build dependencies are independent of the eventual dependencies of your application and are available in the `PATH` during the build process and in the runtime environment of your application.  Note that in many cases a given package can be installed either as a global dependency or as part of your application's own dependencies.  In such cases it's up to you which one to use.
 
 You can specify those dependencies as shown below:
 
@@ -43,15 +51,19 @@ You can specify those dependencies as shown below:
 dependencies:
   php: # Specify one Composer package per line.
     drush/drush: '8.0.0'
-  python: # Specify one Pip package per line.
+  python: # Specify one Python 2 package per line.
     behave: '*'
+  python2: # Specify one Python 2 package per line.
+    requests: '*'
+  python3: # Specify one Python 3 package per line.
+    numpy: '*'
   ruby: # Specify one Bundler package per line.
     sass: '3.4.7'
   nodejs: # Specify one NPM package per line.
     grunt-cli: '~0.1.13'
 ```
 
-Note that the package name format for each language is defined by the package manager used; similarly, the version constraint string will be interpreted by the package manager.  Consult the appropriate package manager's documentation for the supported formats. 
+Note that the package name format for each language is defined by the package manager used; similarly, the version constraint string will be interpreted by the package manager.  Consult the appropriate package manager's documentation for the supported formats.
 
 ## Hooks
 
@@ -113,7 +125,7 @@ The `post_deploy` hook logs to its own file, `/var/log/post-deploy.log`.
 
 As a good example of combining dependencies and hooks, you can compile your SASS files using Grunt.
 
-Let's assume that your application has Sass source files (Sass being a Ruby tool) in the `web/styles` directory.  That directory also contains a `package.json` file for npm and `Gruntfile.js` for Grunt (a Node.js tool). 
+Let's assume that your application has Sass source files (Sass being a Ruby tool) in the `web/styles` directory.  That directory also contains a `package.json` file for npm and `Gruntfile.js` for Grunt (a Node.js tool).
 
 The following blocks will download a specific version of Sass and Grunt pre-build, then during the build step will use them to install any Grunt dependencies and then run the grunt command.  This assumes that your Grunt command includes the Sass compile command.
 
