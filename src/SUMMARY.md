@@ -63,7 +63,7 @@
   * [Alternative Node.js install](languages/nodejs/nvm.md)
 * [Python](languages/python.md)
 * [Ruby](languages/ruby.md)
-* [Go (beta)](languages/go.md)
+* [Go](languages/go.md)
 * [Java (alpha)](languages/java.md)
 
 ## Development
