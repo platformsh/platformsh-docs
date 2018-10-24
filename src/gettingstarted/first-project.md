@@ -101,7 +101,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <div>
   <h4>Examples</h4>
-  <a href="https://github.com/platformsh/platformsh-example-golang">Generic Go application</a>
+  <a href="https://github.com/platformsh/template-golang">Generic Go application</a>
 </div>
 
 </section>
