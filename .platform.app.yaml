@@ -25,6 +25,8 @@ hooks:
 
       # Install and compile GitBook
       gitbook install
+      npm install
+      npm run build
       gitbook build
 
       # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
