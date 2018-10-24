@@ -14,7 +14,7 @@ size: S
 # of it globally.
 dependencies:
   nodejs:
-    gitbook-cli: "*"
+    gitbook-cli: "2.3.0"
 
 # Use a build hook to install the GitBook plugins specified by the book.json file,
 # then build the book. The generated files will be placed in the _book directory
@@ -25,8 +25,6 @@ hooks:
 
       # Install and compile GitBook
       gitbook install
-      npm install
-      npm run build
       gitbook build
 
       # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
