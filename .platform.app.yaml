@@ -24,6 +24,8 @@ hooks:
       set -e
 
       # Install and compile GitBook
+      npm install
+      npm run build
       gitbook install
       gitbook build
 
