@@ -67,7 +67,7 @@ dependencies:
 Then when you are connected to your project over SSH you can run:
 
 ```shell
-$ php-fpm-status --socket=unix:///run/app.sock --path=/-/status --full
+$ php-fpm-status --socket=unix://$SOCKET --path=/-/status --full
 ```
 
 ## Project templates
