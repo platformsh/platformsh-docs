@@ -199,6 +199,10 @@ solrsearch:
 
 The Solr 6.x Drupal 8 configuration files are reasonably generic and should work in many other circumstances, but explicitly defining a core, configuration, and endpoint is generally recommended.
 
+### Limitations
+
+Take care to monitor the size of your configuration directories. The `!archive "<directory">` is intended to  gather a collection of related configuration data. The configuration service that backs this is optimised for extremely reliable storage of configuration, like a data dictionary. Typically this involves small collections of key: value stets. As the size of an directory increases, the performance of this data-store will degrade. You should take care to ensure the zipped size of the directory is not too large (anything larger than a couple of Megabytes will perform poorly, and increased past that could contribute to long deployment delays or cause other problems.)
+
 ## Accessing the Solr server administrative interface
 
 Because Solr uses HTTP for both its API and admin interface it's possible to access the admin interface over an SSH tunnel.
