@@ -118,7 +118,7 @@ The above definition defines a single Solr 6.6 server.  That server has 2 cores 
 It then defines two endpoints: `main` is connected to the `mainindex` core while `extra` is connected to the `extraindex` core.  Two endpoints may be connected to the same core but at this time there would be no reason to do so.  Additional options may be defined in the future.
 
 Each endpoint is then available in the relationships definition in `.platform.app.yaml`.  For example, to allow an application to talk to both of the cores defined above its `.platform.app.yaml` file should contain the following:
- 
+
 ```yaml
 relationships:
     solr1: 'solrsearch:main'
