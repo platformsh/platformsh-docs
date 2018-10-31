@@ -8,10 +8,18 @@ Docksal will ask you to create a `.docksal` directory in your application root, 
 
 ## Using Platform.sh CLI within Docksal
 
-To start using the Platform.sh CLI within your docksal project. The `SECRET_PLATFORM_CLI_TOKEN` will need to be set. This will allow for you to interact with your Platform.sh account without the need to download anything locally.
+To start using the Platform.sh CLI within your docksal project. The `SECRET_PLATFORMSH_CLI_TOKEN` will need to be set. This will allow for you to interact with your Platform.sh account without the need to download anything locally.
 
 ```bash
-fin config set --env=local SECRET_PLATFORM_CLI_TOKEN=XXX
+fin config set --global SECRET_PLATFORMSH_CLI_TOKEN=XXX
+```
+
+## Pulling a Platform.sh project
+
+If you do not have the Platform.sh cli tool installed locally that is ok as this has been installed within the Docksal CLI images. To use the tool and pull a project locally, make sure you have uploaded your SSH key to your Platform.sh account. Once that has been done and a `SECRET_PLATFORMSH_CLI_TOKEN` has been added using the above step. The following command can be ran. Replacing `PROJECT_ID` with the project id found within the Platform.sh dashboard and replacing `project_directory` with the name of the directory you'd like the project cloned into.
+
+```bash
+fin run-cli 'platform get PROJECT_ID -e master project_directory'
 ```
 
 ## Initializing a Platform.sh project
@@ -25,7 +33,26 @@ fin start
 
 ## Customizing a Platform.sh project
 
-If your application is one of those with a specific setup available from Docksal, you can use that directly in your `.docksal/docksal.yml` file.  It can be customized further as needed for your application, and some customizations are specific to certain applications.
+By default docksal comes configured with a PHP 7.1 Container, a Web Container, and a Database Container. To change these the following variables can be added within your `.docksal/docksal.env` file.
+
+```
+# Apache Versions 2.2 / 2.4
+#WEB_IMAGE='docksal/web:2.1-apache-2.2'
+WEB_IMAGE='docksal/web:2.1-apache-2.4'
+
+# MySQL Version: 5.6 / 5.7 / 8.0
+#DB_IMAGE='docksal/db:1.2-mysql-5.6'
+DB_IMAGE='docksal/db:1.2-mysql-5.7'
+#DB_IMAGE='docksal/db:1.2-mysql-8.0'
+
+# PHP Versions Available 5.6 / 7.0 / 7.1 / 7.2
+#CLI_IMAGE='docksal/cli:2.4-php5.6'
+#CLI_IMAGE='docksal/cli:2.4-php7.0'
+CLI_IMAGE='docksal/cli:2.4-php7.1'
+#CLI_IMAGE='docksal/cli:2.4-php7.2'
+```
+
+If your application is one of those with a specific setup available from Docksal, you can customize the `.docksal/docksal.yml` file within your project.  This is a docker-compose file and can be customized further as needed for your application, as some customizations are specific to certain applications.
 
 ## Downloading data from Platform.sh into Docksal
 
