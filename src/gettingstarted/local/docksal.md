@@ -1,10 +1,16 @@
 # Using Docksal for local development
 
-[Docksal](https://docksal.io) is a container-based local development toolchain that plays nicely with Platform.sh.  It is maintained by the community but is a viable option for most Platform.sh projects.
+[Docksal](https://docksal.io) is a docker based local development tool that plays nicely with Platform.sh.  It is maintained by a community of developers but is a viable option for most Platform.sh projects.
 
 See the [Docksal documentation](https://docs.docksal.io/) for installing and setting up Docksal on your system.
 
 Docksal will ask you to create a `.docksal` directory in your application root, which functions similarly to the `.platform.app.yaml` file. It is safe to check this directory into your Git repository as Platform.sh will simply ignore it.
+
+All interaction with a Docksal project will happen through the `fin` command. For more info you can type the `help` subcommand to get all available commands and options.
+
+```bash
+fin help
+```
 
 ## Using Platform.sh CLI within Docksal
 
@@ -16,15 +22,15 @@ fin config set --global SECRET_PLATFORMSH_CLI_TOKEN=XXX
 
 ## Pulling a Platform.sh project
 
-If you do not have the Platform.sh cli tool installed locally that is ok as this has been installed within the Docksal CLI images. To use the tool and pull a project locally, make sure you have uploaded your SSH key to your Platform.sh account. Once that has been done and a `SECRET_PLATFORMSH_CLI_TOKEN` has been added using the above step. The following command can be ran. Replacing `PROJECT_ID` with the project id found within the Platform.sh dashboard and replacing `project_directory` with the name of the directory you'd like the project cloned into.
+The Docsal CLI images ship with the Platform.sh CLI tool. To use the tool and pull a project locally, make sure you have uploaded your SSH key to your Platform.sh account. Once that has been done and a `SECRET_PLATFORMSH_CLI_TOKEN` has been added using the above step. The following command can be ran. Replace `PROJECT_ID` with your project's ID, which can found within the Platform.sh dashboard. Replace `PROJECT_DIRECTORY` with the name of the local directory you'd like the project cloned into. With your SSH key and the `SECRET_PLATFORMSH_CLI_TOKEN` set, you can execute the following command.
 
 ```bash
-fin run-cli 'platform get PROJECT_ID -e master project_directory'
+fin run-cli 'platform get PROJECT_ID -e master PROJECT_DIRECTORY'
 ```
 
 ## Initializing a Platform.sh project
 
-To start using Docksal within a project from scratch. The configuration will need to initialized. This can be done by running the `fin config generate` option and specifing the `docroot` flag.
+To start a new Docksal project, initialize the configuration with the `fin config generate` command and specify the `docroot` flag.
 
 ```bash
 fin config generate --docroot=web
@@ -52,15 +58,15 @@ CLI_IMAGE='docksal/cli:2.4-php7.1'
 #CLI_IMAGE='docksal/cli:2.4-php7.2'
 ```
 
-If your application is one of those with a specific setup available from Docksal, you can customize the `.docksal/docksal.yml` file within your project.  This is a docker-compose file and can be customized further as needed for your application, as some customizations are specific to certain applications.
+If your application has a configuration available from Docksal, you can customize the `.docksal/docksal.yml` file within your project.  This is a docker-compose file and can be customized further as needed for your application, as some customizations are specific to certain applications.
 
-## Downloading data from Platform.sh into Docksal
+## Downloading MySQL data from Platform.sh into Docksal
 
-In most cases downloading data from Platform.sh and loading it into your project is straightforward.  If you have a single MySQL database then the following two commands, run from your application root, will download a compressed database snapshot and load it into the local Docksal database container. Using the backup will give you a quicker download.
+In most cases downloading data from Platform.sh and loading it into your project is straightforward. The following commands, run from your application root, will download a compressed database snapshot and load it into the local Docksal database container.
 
 ```bash
 fin platform db:dump --gzip -f /tmp/database.sql.gz
 fin exec 'mysql -u user -puser default /tmp/database.sql.gz'
 ```
 
-Rsync can download user files easily and efficiently.  See the [exporting tutorial](/tutorials/exporting.md) for information on how to use rsync.
+See the [exporting tutorial](/tutorials/exporting.md) for information on how to use rsync.
