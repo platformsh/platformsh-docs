@@ -201,7 +201,9 @@ The Solr 6.x Drupal 8 configuration files are reasonably generic and should work
 
 ### Limitations
 
-Take care to monitor the size of your configuration directories. The `!archive "<directory">` is intended to  gather a collection of related configuration data. The configuration service that backs this is optimised for extremely reliable storage of configuration, like a data dictionary. Typically this involves small collections of key: value stets. As the size of an directory increases, the performance of this data-store will degrade. You should take care to ensure the zipped size of the directory is not too large (anything larger than a couple of Megabytes will perform poorly, and increased past that could contribute to long deployment delays or cause other problems.)
+The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance will decline and deploys will become longer. The directory archives will be compressed and string encoded. You could use this bash pipeline `echo $(($(tar czf - . | base64 | wc -c )/(1024*1024))) Megabytes` inside the directory to get an idea of the archive size.
+
+The `!archive "<directory">` is a collection of configuration data, like a data dictionary, e.g. small collections of key/ value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin .jars will inflate the archive size, and is not recommended.
 
 ## Accessing the Solr server administrative interface
 
