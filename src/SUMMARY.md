@@ -118,6 +118,7 @@
 * [Data collection](security/data-collection.md)
 * [Data retention](security/data-retention.md)
 * [Data deletion](security/data-deletion.md)
+* [Backup and restore](security/backups.md)
 * [Encryption](security/encryption.md)
 * [Protective block](security/protective-block.md)
 * [PCI Guidance](security/pci-guidance.md)
