@@ -2,11 +2,11 @@
 
 Backups vary by our offering and their retention is governed by our [data retention](/security/data-retention.md) policies.
 
-Below are details on our Recovery Point Objective (RPO) and Recovery Time Objective (RTO) for our Platform Standard and Platform Enterprise offerings.
+Below are details on our Recovery Point Objective (RPO) and Recovery Time Objective (RTO) for our Platform Professional and Platform Enterprise offerings.
 
-## Platform Standard
+## Platform Professional
 
-With Platform Standard, we have enabled our clients to manage their own backup and restore functions. Please see the [snapshot and restore](/administration/snapshot-and-restore.md) page for details.
+With Platform Professional, we have enabled our clients to manage their own backup and restore functions. Please see the [snapshot and restore](/administration/snapshot-and-restore.md) page for details.
 
 **RPO**: User defined. The RPO is configured by our clients.
 
