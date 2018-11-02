@@ -17,7 +17,7 @@ See the [Services](/configuration/services.md) documentation for a full list of 
 
 ## How do I get access to multiple services?
 
-In the following example, there is a single MySQL service named `mysqldb` offering two databases, a Redis cache service named `arediscache`, and an Elasticsearch service named `searchserver`.
+In the following example, there is a single MySQL service named `mysqldb` offering two databases, a Redis cache service named `rediscache`, and an Elasticsearch service named `searchserver`.
 
 ```yaml
 relationships:
