@@ -23,6 +23,6 @@ In the following example, there is a single MySQL service named `mysqldb` offeri
 relationships:
     database: 'mysqldb:db1'
     database2: 'mysqldb:db2'
-    cache: 'arediscache:redis'
+    cache: 'rediscache:redis'
     search: 'searchserver:elasticsearch'
 ```
