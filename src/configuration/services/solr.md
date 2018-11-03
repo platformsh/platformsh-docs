@@ -118,7 +118,7 @@ The above definition defines a single Solr 6.6 server.  That server has 2 cores 
 It then defines two endpoints: `main` is connected to the `mainindex` core while `extra` is connected to the `extraindex` core.  Two endpoints may be connected to the same core but at this time there would be no reason to do so.  Additional options may be defined in the future.
 
 Each endpoint is then available in the relationships definition in `.platform.app.yaml`.  For example, to allow an application to talk to both of the cores defined above its `.platform.app.yaml` file should contain the following:
- 
+
 ```yaml
 relationships:
     solr1: 'solrsearch:main'
@@ -198,6 +198,12 @@ solrsearch:
 ```
 
 The Solr 6.x Drupal 8 configuration files are reasonably generic and should work in many other circumstances, but explicitly defining a core, configuration, and endpoint is generally recommended.
+
+### Limitations
+
+The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance will decline and deploys will become longer. The directory archives will be compressed and string encoded. You could use this bash pipeline `echo $(($(tar czf - . | base64 | wc -c )/(1024*1024))) Megabytes` inside the directory to get an idea of the archive size.
+
+The `!archive "<directory">` is a collection of configuration data, like a data dictionary, e.g. small collections of key/ value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin .jars will inflate the archive size, and is not recommended.
 
 ## Accessing the Solr server administrative interface
 
