@@ -66,7 +66,7 @@ This is the complete list of extensions that can be enabled:
 | apcu_bc       |     |     |     | *   | *   | *   |
 | applepay      |     |     |     | *   | *   |     |
 | bcmath        |     |     |     | *   | *   | *   |
-| blackfire     | *   | *   | *   | *   |     |     |
+| blackfire     | *   | *   | *   | *   | *   | *   |
 | bz2           |     |     |     | *   | *   | *   |
 | calendar      |     |     |     | *   | *   | *   |
 | ctype         |     |     |     | *   | *   | *   |
