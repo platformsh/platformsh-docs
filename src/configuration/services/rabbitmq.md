@@ -34,7 +34,7 @@ In your ``.platform/services.yaml``:
 ```yaml
 myrabbitmq:
     type: rabbitmq:3.5
-    disk: 1024
+    disk: 2048
 ```
 
 In your ``.platform.app.yaml``:
@@ -98,3 +98,9 @@ dependencies:
 ```
 
 Then, when you SSH into your container, you can simply type any `amqp-` command available to manage your queues.
+
+## Troubleshooting
+
+### Messages not being recieved
+
+RabbitMQ probably doesn't have enough disk space allocated to it. On Platform.sh, the service writes all of its data to disk, and thus needs a disk value that is >= its RAM allocation. For most Master branches, the service needs at least 1300 MB of disk space to work properly.
