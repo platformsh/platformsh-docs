@@ -115,6 +115,8 @@ https://blog.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platformsh.site/
 
 If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generally best to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains then you will need to use a static domain for all but one of them.
 
+Please note that when there are two routes sharing the same HTTP scheme, domain, and path, where the first route is using the `{default}` placeholder and the other is using the `{all}` placeholder, the route using `{default}` takes precedence.
+
 ## Route identifiers
 
 All routes defined for an environment are available to the application in its `PLATFORM_ROUTES` environment variable, which contains a base64-encoded JSON object. This object can be parsed by the language of your choice to give your application access to the generated routes.
