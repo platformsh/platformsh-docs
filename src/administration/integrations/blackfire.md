@@ -40,9 +40,6 @@ Paste the credentials above in your `.platform.app.yaml` as follows:
 runtime:
     extensions:
         - name: 'blackfire'
-          configuration:
-              server_id: '<insert your Server ID>'
-              server_token: '<Insert your Server Token'
 ```
 
 Push the changes to your Platform environment to enable Blackfire as follows:
@@ -53,7 +50,29 @@ git commit -m "Enable Blackfire."
 git push
 ```
 
-### 3. Confirm it's running
+### 3. Configure your server credentials
+
+Blackfire enables to have a fine grained configuration of server credentials across branches and environments on Platform.sh.
+
+#### Configuring global server credentials
+
+Configuring server credentials on your default branch will enable you to make sure you can profile any other branch:
+
+```bash
+platform variable:create env:BLACKFIRE_SERVER_ID <insert your Server ID>
+platform variable:create env:BLACKFIRE_SERVER_TOKEN <insert your Server Token>
+```
+
+#### Configuring server credentials per branch
+
+A recommendation is to have a [Blackfire environment](https://blackfire.io/docs/reference-guide/environments#documentation) for production, another one for staging, and another one for development/integration. That can be mapped in Platform.sh to one Blackfire environment for the production branch, one for the staging branch, and one for all feature branches.
+
+```bash
+platform variable:create -e=<insert your branch name> env:BLACKFIRE_SERVER_ID <insert your Server ID>
+platform variable:create -e=<insert your branch name> env:BLACKFIRE_SERVER_TOKEN <insert your Server Token>
+```
+
+### 4. Confirm it's running
 
 Login via SSH to your container and confirm that Blackfire is running as follows:
 
@@ -126,8 +145,8 @@ If the above didn't help, collect the following and send it to the [Blackfire su
 
 Please execute the following in the environment where you're facing the issue:
 
-* `platform variable:create --name php:blackfire.log_file --value /tmp/blackfire.log` 
-* `platform variable:create --name php:blackfire.log_level --value 4` 
+* `platform variable:create php:blackfire.log_file /tmp/blackfire.log` 
+* `platform variable:create php:blackfire.log_level 4` 
 * start a profile/build again
 
 You will get the logs with `platform ssh -- cat /tmp/blackfire.log > blackfire.log`.
