@@ -52,7 +52,7 @@ The basic plan (Development) starts at $10 per month, and includes 4 environment
 
 Development environments have less resources than production environments.
 
-## Production - Standard / Medium / Large
+## Production - Standard / Medium / Large / Extra Large / Double Extra Large
 
 The live environment (master) of a production plan has more resources than the development environments of the project.
 
@@ -63,6 +63,8 @@ Production plans come in three flavors:
 * Standard: with 2GB of dedicated memory
 * Medium: with 4GB of dedicated memory
 * Large: with 6GB of dedicated memory
+* Extra Large: with 12GB of dedicated memory
+* Double Extra Large: with 24GB of dedicated memory
 
 ### Multiple Applications in a single project
 
