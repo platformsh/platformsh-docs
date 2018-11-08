@@ -56,11 +56,11 @@ Blackfire enables to have a fine grained configuration of server credentials acr
 
 #### Configuring global server credentials
 
-Configuring server credentials on your default branch will enable you to make sure you can profile any other branch:
+Configuring server credentials on your master branch will enable you to make sure you can profile any other branch:
 
 ```bash
-platform variable:create env:BLACKFIRE_SERVER_ID <insert your Server ID>
-platform variable:create env:BLACKFIRE_SERVER_TOKEN <insert your Server Token>
+platform variable:create -e master env:BLACKFIRE_SERVER_ID <insert your Server ID>
+platform variable:create -e master env:BLACKFIRE_SERVER_TOKEN <insert your Server Token>
 ```
 
 #### Configuring server credentials per branch
