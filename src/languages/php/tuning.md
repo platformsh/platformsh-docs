@@ -96,7 +96,7 @@ Your `.platform.app.yaml` file will end up including a block similar to:
 variables:
     php:
         'opcache.max_accelerated_files': 22000
-        'opcache.memory_consumtion': 96
+        'opcache.memory_consumption': 96
 ```
 
 (Memory consumption is set in megabytes.)
