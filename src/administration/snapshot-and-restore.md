@@ -52,7 +52,7 @@ $ platform snapshot:restore 92c9a4b2aa75422efb3d
 
 A snapshot does cause a momentary pause in service. We recommend running during non-peak hours for your site.
 
-## Automating snapshots
+## Automated snapshots
 
 Snapshots are not triggered automatically on Platform.sh Professional. 
 

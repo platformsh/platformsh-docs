@@ -2,7 +2,7 @@
 
 PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
-See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/static/index.html) for more information.
+See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
 ## Supported versions
 

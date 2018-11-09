@@ -8,7 +8,7 @@ We do not guarantee the deliverability of emails, and we do not support white-la
 
 > **note**
 >
-> You may follow the [SPF setup guidelines on SendGrid](https://sendgrid.com/docs/Glossary/spf.html) to improve email deliverability with our SMTP proxy.
+> You may follow the [SPF setup guidelines on SendGrid](https://sendgrid.com/docs/glossary/spf/) to improve email deliverability with our SMTP proxy.
 
 ## Enabling/disabling email
 

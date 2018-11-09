@@ -33,7 +33,7 @@ Re-enter any project or environment variables you've defined on your old project
 
 Add any users to your new project that you want to continue to have access.
 
-If you have any 3rd party integrations active, especially the [Health Notification](/administration/integrations.notifications.md) checks, add them to the new project.
+If you have any 3rd party integrations active, especially the [Health Notification](/administration/integrations/notifications.md) checks, add them to the new project.
 
 ### 2. Maintain the mirror
 

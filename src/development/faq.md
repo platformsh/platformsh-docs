@@ -60,7 +60,7 @@ Platform.sh is built on Debian.
 
 The Development plan provides all the tools to build your website. You can create as many development profiles as you wish for yourself and for your team.
 
-Once your project is built and ready for production, you can choose another plan to go live. These plans are listed on the [pricing page](https://platform.sh/pricing/).
+Once your project is built and ready for production, you can choose another plan to go live. These plans are listed on the [pricing page](https://platform.sh/pricing).
 
 ## Can I please use tabs in my YAML files?
 
@@ -78,7 +78,7 @@ Platform leverages the power of public cloud infrastructures like AWS, Microsoft
 
 'sh' is the short version of shell.
 
-According to Wikipedia™, in computing, a [shell](http://en.wikipedia.org/wiki/Shell_(computing)) is a user interface for access to an operating system's services. Generally, operating system shells use either a [command-line interface ](http://en.wikipedia.org/wiki/Command-line_interface) (CLI) or [graphical user interface](http://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).  This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy, and run great websites!
+According to Wikipedia™, in computing, a [shell](https://en.wikipedia.org/wiki/Shell_(computing) ) is a user interface for access to an operating system's services. Generally, operating system shells use either a [command-line interface ](https://en.wikipedia.org/wiki/Command-line_interface) (CLI) or [graphical user interface](https://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).  This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy, and run great websites!
 
 ".sh" is also the TLD for Saint Helena that looks like a lovely island, and whose motto is: "Loyal and Unshakeable" which we also strive to be.
 
@@ -87,7 +87,7 @@ According to Wikipedia™, in computing, a [shell](http://en.wikipedia.org/wiki/
 
 MAMP pro:
 
-In order for MAMP to work well with the symlinks created by the [Platform.sh CLI](https://github.com/platformsh/platformsh-cli), add the following to the section under Hosts \> Advanced called “Customized virtual host general settings.” For more details visit [MAMP Pro documentation page](http://documentation.mamp.info/en/documentation/mamp/).
+In order for MAMP to work well with the symlinks created by the [Platform.sh CLI](https://github.com/platformsh/platformsh-cli), add the following to the section under Hosts \> Advanced called “Customized virtual host general settings.” For more details visit [MAMP Pro documentation page](https://documentation.mamp.info/).
 
 ```bash
 <Directory>
@@ -95,8 +95,6 @@ In order for MAMP to work well with the symlinks created by the [Platform.sh CLI
         AllowOverride All
 </Directory>
 ```
-
-> [Laravel Forum Archives](http://forumsarchive.laravel.io/viewtopic.php?pid=11232#p11232)
 
 > **note**
 

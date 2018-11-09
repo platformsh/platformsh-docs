@@ -9,4 +9,4 @@ If you wish to customize either file, we recommend instead using the example fil
 > You should never commit a `settings.local.php` file to your repository.
 
 
-If you need to add additional configuration that is specific to Platform.sh, such as connecting to additional services like [Redis](/frameworks/drupal7/redis.md) or [Solr](/frameworks/drupal7/solr.md), those changes should go in the `settings.platformsh.php` file.
+If you need to add additional configuration that is specific to Platform.sh, such as connecting to additional services like [Redis](/frameworks/drupal7/redis.md) or [Solr](/frameworks/drupal7/apachesolr-module.md), those changes should go in the `settings.platformsh.php` file.

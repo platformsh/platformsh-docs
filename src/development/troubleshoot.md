@@ -97,7 +97,7 @@ Also, please make sure that locks are acquired in a pre-defined order and releas
 
 ## "Read-only file system" error
 
-Everything will be read-only, except the writable [mounts](/configuration/app-containers.md#mounts) you declare.  Writable mounts are there for your data: for file uploads, logs and temporary files. Not for your code.  In order to change code on Platform.sh you have to go through Git.
+Everything will be read-only, except the writable [mounts](/configuration/app/storage.md) you declare.  Writable mounts are there for your data: for file uploads, logs and temporary files. Not for your code.  In order to change code on Platform.sh you have to go through Git.
 
 This is what gives you all of the benefits of having repeatable deployments, consistent backups, traceability, and the magically fast creation of new staging/dev environments.
 

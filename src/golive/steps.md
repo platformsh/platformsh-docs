@@ -20,7 +20,7 @@ Choose the plan you want, it will show you the monthly price you will be paying.
 
 ![Edit Plan Choose](/images/edit-plan-choose.png)
 
-You can find more information on pricing on the [pricing page](https://platform.sh/pricing/).
+You can find more information on pricing on the [pricing page](https://platform.sh/pricing).
 
 ## 2. Set your domain in Platform.sh
 

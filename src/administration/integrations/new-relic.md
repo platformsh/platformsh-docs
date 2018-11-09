@@ -1,6 +1,6 @@
 # New Relic
 
-Platform.sh supports [New Relic APM](https://newrelic.com/application-monitoring).
+Platform.sh supports [New Relic APM](https://newrelic.com/products/application-monitoring).
 
 ## Get Started
 
