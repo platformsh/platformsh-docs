@@ -39,7 +39,7 @@ Paste the credentials above in your `.platform.app.yaml` as follows:
 ```yaml
 runtime:
     extensions:
-        - name: 'blackfire'
+        - 'blackfire'
 ```
 
 Push the changes to your Platform environment to enable Blackfire as follows:
