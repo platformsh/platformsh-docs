@@ -194,42 +194,62 @@ In this case you will have `pg_trgm` installed, providing functions to determine
 
 ### Available extensions
 
-The following is the extensive list of supported extensions. Note that you cannot currently add custom 
+The following is the extensive list of supported extensions. Note that you cannot currently add custom
 extensions not listed here.
 
-* **adminpack**       - File and log manipulation routines, used by pgAdmin
-* **btree_gist**      - B-Tree indexing using GiST (Generalised Search Tree)
-* **chkpass**         - An auto-encrypted password datatype
-* **cube**            - Multidimensional-cube datatype (GiST indexing example)
-* **dblink**          - Functions to return results from a remote database
-* **earthdistance**   - Operator for computing the distance (in miles) between two points on the earth's surface
-* **fuzzystrmatch**   - Levenshtein, metaphone, and soundex fuzzy string matching
-* **hstore**          - Store (key, value) pairs
-* **intagg**          - Integer aggregator/enumerator
-* **_int**            - Index support for arrays of int4, using GiST (benchmark needs the libdbd-pg-perl package)
-* **isn**             - type extensions for ISBN, ISSN, ISMN, EAN13 product numbers
-* **lo**              - Large Object maintenance
-* **ltree**           - Tree-like data structures
-* **oid2name**        - Maps OIDs to table names
-* **pageinspect**     - Inspection of database pages
-* **passwordcheck**   - Simple password strength checker
-* **pg_buffercache**  - Real time queries on the shared buffer cache
-* **pg_freespacemap** - Displays the contents of the free space map (FSM)
-* **pg_trgm**         - Determine the similarity of text based on trigram matching
-* **pg_standby**      - Create a warm stand-by server
-* **pgbench**         - TPC-B like benchmark
-* **pgcrypto**        - Cryptographic functions
-* **pgrowlocks**      - A function to return row locking information
-* **pgstattuple**     - Returns the percentage of dead tuples in a table; this indicates whether a vacuum is required.
-* ** postgis**        - A GIS geographic data library
-* **postgresql_fdw**  - foreign data wrapper for PostgreSQL
-* **seg**             - Confidence-interval datatype (GiST indexing example)
-* **sepgsql**         - mandatory access control (MAC) based on SELinux
-* **spi**             - PostgreSQL Server Programming Interface
-* **tablefunc**       - examples of functions returning tables
-* **uuid-ossp**       - UUID generation functions
-* **vacuumlo**        - Remove orphaned large objects
-
+* **address_standardizer** - Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
+* **address_standardizer_data_us** - Address Standardizer US dataset example
+* **adminpack** - administrative functions for PostgreSQL
+* **autoinc** - functions for autoincrementing fields
+* **bloom** - bloom access method - signature file based index
+* **btree_gin** - support for indexing common datatypes in GIN
+* **btree_gist** - support for indexing common datatypes in GiST
+* **chkpass** - data type for auto-encrypted passwords
+* **citext** - data type for case-insensitive character strings
+* **cube** - data type for multidimensional cubes
+* **dblink** - connect to other PostgreSQL databases from within a database
+* **dict_int** - text search dictionary template for integers
+* **dict_xsyn** - text search dictionary template for extended synonym processing
+* **earthdistance** - calculate great-circle distances on the surface of the Earth
+* **file_fdw** - foreign-data wrapper for flat file access
+* **fuzzystrmatch** - determine similarities and distance between strings
+* **hstore** - data type for storing sets of (key, value) pairs
+* **insert_username** - functions for tracking who changed a table
+* **intagg** - integer aggregator and enumerator (obsolete)
+* **intarray** - functions, operators, and index support for 1-D arrays of integers
+* **isn** - data types for international product numbering standards
+* **lo** - Large Object maintenance
+* **ltree** - data type for hierarchical tree-like structures
+* **moddatetime** - functions for tracking last modification time
+* **pageinspect** - inspect the contents of database pages at a low level
+* **pg_buffercache** - examine the shared buffer cache
+* **pg_freespacemap** - examine the free space map (FSM)
+* **pg_prewarm** - prewarm relation data
+* **pg_stat_statements** - track execution statistics of all SQL statements executed
+* **pg_trgm** - text similarity measurement and index searching based on trigrams
+* **pg_visibility** - examine the visibility map (VM) and page-level visibility info
+* **pgcrypto** - cryptographic functions
+* **pgrouting** - pgRouting Extension
+* **pgrowlocks** - show row-level locking information
+* **pgstattuple** - show tuple-level statistics
+* **plpgsql** - PL/pgSQL procedural language
+* **postgis** - PostGIS geometry, geography, and raster spatial types and functions
+* **postgis_sfcgal** - PostGIS SFCGAL functions
+* **postgis_tiger_geocoder** - PostGIS tiger geocoder and reverse geocoder
+* **postgis_topology** - PostGIS topology spatial types and functions
+* **postgres_fdw** - foreign-data wrapper for remote PostgreSQL servers
+* **refint** - functions for implementing referential integrity (obsolete)
+* **seg** - data type for representing line segments or floating-point intervals
+* **sslinfo** - information about SSL certificates
+* **tablefunc** - functions that manipulate whole tables, including crosstab
+* **tcn** - Triggered change notifications
+* **timetravel** - functions for implementing time travel
+* **tsearch2** - compatibility package for pre-8.3 text search functions
+* **tsm_system_rows** - TABLESAMPLE method which accepts number of rows as a limit
+* **tsm_system_time** - TABLESAMPLE method which accepts time in milliseconds as a limit
+* **unaccent** - text search dictionary that removes accents
+* **uuid-ossp** - generate universally unique identifiers (UUIDs)
+* **xml2** - XPath querying and XSLT
 
 ## Notes
 
