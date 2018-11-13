@@ -2,7 +2,7 @@
 
 [Lando](https://github.com/lando/lando) is a container-based local development toolchain that plays nicely with Platform.sh.  It is maintained by [Tandem](https://thinktandem.io), a 3rd party agency, but is a viable option for most Platform.sh projects.
 
-See the [Lando documentation](https://docs.lndo.io/) for installing and setting up Lando on your system.
+See the [Lando documentation](https://docs.devwithlando.io/) for installing and setting up Lando on your system.
 
 Lando will ask you to create a `.lando.yml` file in your application root, which functions similarly to the `.platform.app.yaml` file.  (Note the different file extension.)  It is safe to check this file into your Git repository as Platform.sh will simply ignore it.
 

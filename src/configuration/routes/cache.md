@@ -231,7 +231,7 @@ cache:
 
 ### Cache HTTP and HTTPS separately using the `Vary` header
 
-Set the Vary header to `X-Forwarded-Proto` [custom request header](/development/faq.md#do-you-add-custom-http-headers) to render content based on the request protocol (i.e. HTTP or HTTPS). By adding `Vary: X-Forwarded-Proto` to the response header, HTTP and HTTPS content would be cached separately.
+Set the Vary header to `X-Forwarded-Proto` [custom request header](/development/headers.md) to render content based on the request protocol (i.e. HTTP or HTTPS). By adding `Vary: X-Forwarded-Proto` to the response header, HTTP and HTTPS content would be cached separately.
 
 ### Cache zipped content separately
 

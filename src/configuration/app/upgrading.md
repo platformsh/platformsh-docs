@@ -64,8 +64,7 @@ directly by the web server. Responses served from passthru URLs continue to use
 whatever caching headers were set by the application..
 
 To enable caching on your static files, make sure you include an `expires` key
-in your [web
-configuration](/configuration/app-containers.md#locations),
+in your [web configuration](/configuration/app/web.md),
 as shown below:
 
 ```

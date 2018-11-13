@@ -33,5 +33,5 @@ More complex projects may have many repositories that they want to include, but 
 If your project needs to access multiple repositories, you can choose to attach an SSH key to an automated user account. Since this account won’t be used by a human, it’s called a machine user. You can then add the machine account as collaborator or add the machine user to a team with access to the repositories it needs to manipulate.
 
 More information about this is available on
-[GitHub](https://developer.github.com/guides/managing-deploy-keys/#machine-users).
+[GitHub](https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users).
 

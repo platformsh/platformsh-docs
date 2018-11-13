@@ -10,7 +10,7 @@ All log files are trimmed to 10 MB automatically.
 
 ## `access.log`
 
-This is the raw access log for the nginx instance running on the application container. That is, it does not include any requests that return a redirect or cache hit from the [router](configuration/routes.md).
+This is the raw access log for the nginx instance running on the application container. That is, it does not include any requests that return a redirect or cache hit from the [router](/configuration/routes.md).
 
 ## `app.log`
 
