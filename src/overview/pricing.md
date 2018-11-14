@@ -58,7 +58,7 @@ The live environment (master) of a production plan has more resources than the d
 
 You can map domain names to your master environment. SSL support is always included.
 
-Production plans come in three flavors:
+Production plans come in five flavors:
 
 * Standard: with 2GB of dedicated memory
 * Medium: with 4GB of dedicated memory
@@ -73,12 +73,13 @@ All Platform.sh plans support multiple applications in a single cluster, but the
 The resources of a **Standard plan are not sufficient to run more than one application** in the same cluster if there is also a MySQL database as a Service. Useful multi-apps start at Medium.
 
 A Medium plan, for example, can support 3 Apps with a MySQL instance and a Redis instance.
+A Double Extra Large plan, for example, can support 40 micro-services with a MySQL instance and a Redis and a RabbitMQ running in the cluster, or it can simply run huge application containers to support high transactional traffic.
 
 If you wonder if a specific setup would fit in a plan, don't hesitate to contact our support.
 
 ## Enterprise
 
-Enterprise plans start at around $1000 a month.
+Enterprise plans start at around $1000 a month. Enterprise clusters can scale to hundreds of CPUs and Terabytes of RAM.
 
 For a price lower than traditional managed hosting, you get included development and staging environments, as well as triple redundancy on every element of the stack with:
 
