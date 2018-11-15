@@ -14,6 +14,10 @@ On your Bitbucket account, click on your avatar, select ``Manage Account``, and 
 
 > **note**
 >
+> The Bitbucket Integration can only be connected by the Platform.sh account owner.
+
+> **note**
+>
 > We recommend you install the add-on at the *team*   level (select ``Manage Team`` instead) so that every repository that belongs to the team can use the add-on.
 
 > **note**
