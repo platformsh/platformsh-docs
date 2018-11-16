@@ -16,7 +16,7 @@ For Enterprise and Agency Plans you can pay by purchase order. For all other pla
 
 We offer a free trial period so you can test the service and see how great it is. If ever you need more time to evaluate Platform.sh, please contact our sales representatives. They can issue you an extra voucher to prolong your test.
 
-> Prices below are listed in US Dollars.  You will be billed in US Dollars, Euros, or British Pounds depending on where your billing address is.
+> Prices below are listed in US Dollars.  You will be billed in US Dollars, Euros, or British Pounds depending on where your billing address is. For a list of current prices please refer to https://platform.sh/pricing
 
 > Euro Prices are presented excluding VAT.  In your bill, as appropriate we will include the correct VAT rate.
 
@@ -24,15 +24,15 @@ We offer a free trial period so you can test the service and see how great it is
 
 All extra consumption is prorated to the time it was actually used.
 
-> For example, if you added an extra developer for 10 days you would be billed around $3 extra at the end of the month.
+> For example, if you added an extra developer for 10 days you would be billed around $3 extra at the end of the month (based on the then-current price of an extra developer seat).
 
 ### Extra developers
 
-Adding a developer to your project will add $10 per month.
+Adding a developer to your project will add a monthly per project per user fee unless you have an agency or an enterprise account. 
 
 ### Extra environments
 
-You can add extra staging/development environments to any plan by multiples of 3 for $21 / month.
+You can add extra staging/development environments to any plan by multiples of 3.
 
 > For example, if you want to have 12 staging environments you would pay additional $63 per month on top of your basic plan price.
 
@@ -52,19 +52,11 @@ The basic plan (Development) starts at $10 per month, and includes 4 environment
 
 Development environments have less resources than production environments.
 
-## Production - Standard / Medium / Large / Extra Large / Double Extra Large
+## Production
 
-The live environment (master) of a production plan has more resources than the development environments of the project.
+The live environment (master) of a production plan has more resources than the development environments of the project. https://platform.sh/pricing lists the resources available per plan (these are always only the production environment resources) the development environment have their own resources, and are not counted towards the limit.
+You can map domain names to your master environment. SSL support is always included. 
 
-You can map domain names to your master environment. SSL support is always included.
-
-Production plans come in three flavors:
-
-* Standard: with 2GB of dedicated memory
-* Medium: with 4GB of dedicated memory
-* Large: with 6GB of dedicated memory
-* Extra Large: with 12GB of dedicated memory
-* Double Extra Large: with 24GB of dedicated memory
 
 ### Multiple Applications in a single project
 
@@ -77,8 +69,6 @@ A Medium plan, for example, can support 3 Apps with a MySQL instance and a Redis
 If you wonder if a specific setup would fit in a plan, don't hesitate to contact our support.
 
 ## Enterprise
-
-Enterprise plans start at around $1000 a month.
 
 For a price lower than traditional managed hosting, you get included development and staging environments, as well as triple redundancy on every element of the stack with:
 
