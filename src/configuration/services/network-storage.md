@@ -82,11 +82,11 @@ mounts:
     'network_dir':
         source: service
         service: files
-        source_path: network
+        source_path: our_stuff
 
     'local_dir':
         source: local
-        source_path: local
+        source_path: my_stuff
 
 web:
     locations:
