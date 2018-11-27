@@ -13,7 +13,7 @@ Sign up at [https://tideways.io](https://app.tideways.io/register/) and get your
 Add your Tideways license key as a project level variable:
 
 ```bash
-platform project:variable:set --no-visible-build php:tideways.api_key <your-license-key>
+platform variable:create --visible-build false php:tideways.api_key --value '<your-license-key>'
 ```
 
 ### 3. Enable the Tideways extension

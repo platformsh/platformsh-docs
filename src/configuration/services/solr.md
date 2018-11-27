@@ -79,9 +79,7 @@ mysearch:
     type: solr:4.10
     disk: 1024
     configuration:
-        core_config: !include
-            type: archive
-            path: "<directory>"
+        core_config: !archive "<directory>"
 ```
 
 The `directory` parameter points to a directory in the Git repository, in or below the `.platform/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.  For example, place them in `.platform/solr/conf/` such that the `schema.xml` file is located at `.platform/solr/conf/schema.xml`.   You can then reference that path like this -
@@ -91,9 +89,7 @@ mysearch:
     type: solr:4.10
     disk: 1024
     configuration:
-        core_config: !include
-            type: archive
-            path: "solr/conf"
+        core_config: !archive "solr/conf"
 ```
 
 ## Solr 6
@@ -107,13 +103,9 @@ solrsearch:
     configuration:
         cores:
             mainindex:
-                conf_dir: !include
-                    type: archive
-                    path: "core1-conf"
+                conf_dir: !archive "core1-conf"
             extraindex:
-                conf_dir: !include
-                    type: archive
-                    path: "core2-conf"
+                conf_dir: !archive "core2-conf"
         endpoints:
             main:
                 core: mainindex
@@ -126,7 +118,7 @@ The above definition defines a single Solr 6.6 server.  That server has 2 cores 
 It then defines two endpoints: `main` is connected to the `mainindex` core while `extra` is connected to the `extraindex` core.  Two endpoints may be connected to the same core but at this time there would be no reason to do so.  Additional options may be defined in the future.
 
 Each endpoint is then available in the relationships definition in `.platform.app.yaml`.  For example, to allow an application to talk to both of the cores defined above its `.platform.app.yaml` file should contain the following:
- 
+
 ```yaml
 relationships:
     solr1: 'solrsearch:main'
@@ -168,9 +160,7 @@ solrsearch:
     disk: 1024
     configuration:
         configsets:
-            mainconfig: !include
-                type: archive
-                path: "configsets/solr6"
+            mainconfig: !archive "configsets/solr6"
         cores:
             english_index:
                 core_properties: |
@@ -209,6 +199,12 @@ solrsearch:
 
 The Solr 6.x Drupal 8 configuration files are reasonably generic and should work in many other circumstances, but explicitly defining a core, configuration, and endpoint is generally recommended.
 
+### Limitations
+
+The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance will decline and deploys will become longer. The directory archives will be compressed and string encoded. You could use this bash pipeline `echo $(($(tar czf - . | base64 | wc -c )/(1024*1024))) Megabytes` inside the directory to get an idea of the archive size.
+
+The `!archive "<directory">` is a collection of configuration data, like a data dictionary, e.g. small collections of key/ value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin .jars will inflate the archive size, and is not recommended.
+
 ## Accessing the Solr server administrative interface
 
 Because Solr uses HTTP for both its API and admin interface it's possible to access the admin interface over an SSH tunnel.
@@ -233,3 +229,25 @@ In this example, you can now open `http://localhost:30000/solr/` in a browser to
 
 > **Note**
 > Platform.sh Enterprise users can use `ssh -L 8888:localhost:8983 <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead, after which the Solr server administrative interface will be available at `http://localhost:8888/solr/`.
+
+## Upgrading
+
+The Solr data format sometimes changes between versions in incompatible ways.  Solr does not include a data upgrade mechanism as it is expected that all indexes can be regenerated from stable data if needed.  To upgrade (or downgrade) Solr you will need to use a new service from scratch.
+
+There are two ways of doing that.
+
+### Destructive
+
+In your `services.yaml` file, change the version of your Solr service *and* its name.  Then update the name in the `.platform.app.yaml` relationships block.
+
+When you push that to Platform.sh, the old service will be deleted and a new one with the name name created, with no data.  You can then have your application reindex data as appropriate.
+
+This approach is simple but has the downside of temporarily having an empty Solr instance, which your application may or may not handle gracefully, and needing to rebuild your index afterward.  Depending on the size of your data that could take a while.
+
+### Transitional
+
+For a transitional approach you will temporarily have two Solr services.  Add a second Solr service with the new version a new name and give it a new relationship in `.platform.app.yaml`.  You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
+
+Once you're ready to cut over, remove the old Solr service and relationship.  You may optionally have the new Solr service use the old relationship name if that's easier for your application to handle.  Your application is now using the new Solr service.
+
+This approach has the benefit of never being without a working Solr instance.  On the downside, it requires two running Solr servers temporarily, each of which will consume resources and need adequate disk space.  Depending on the size of your data that may be a lot of disk space.

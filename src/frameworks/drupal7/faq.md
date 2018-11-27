@@ -91,7 +91,7 @@ If you find B&M failing or the temp directory filling up mysteriously, try incre
 ```yaml
 variables:
     php:
-        memory_limit: 512MB
+        memory_limit: 512M
 ```
 
 If that is still insufficient, your site may simply be too large to work effectively with B&M.  We recommend setting up [automated scheduled snapshots](/administration/snapshot-and-restore.md#automated-snapshots) instead.

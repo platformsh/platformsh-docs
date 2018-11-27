@@ -24,7 +24,7 @@ https://{default}/:
     paths:
       '/from':
         to: 'https://example.com/'
-      '^/regexp/(.*)/matching':
+      '^/foo/(.*)/bar':
         to: 'https://example.com/$1'
         regexp: true
 ```
@@ -39,18 +39,18 @@ Two keys are available under `redirects`:
 Each rule under `paths` is defined by its key describing the expression to match against the request path and a value object describing both the destination to redirect to with detail on how to handle the redirection. The value object is defined with the following keys:
 
  * `to`: required, a relative URL - `'/destination'`, or absolute URL - `'https://example.com/'`.
- * `regexp`: optional, defaults to `false`. Specifies whether the path key should be interpreted as a PCRE regular expression. In the following example, a request to `https://example.com/regexp/a/b/c/match` would redirect to `https://example.com/a/b/c`:
+ * `regexp`: optional, defaults to `false`. Specifies whether the path key should be interpreted as a PCRE regular expression. In the following example, a request to `https://example.com/foo/a/b/c/bar` would redirect to `https://example.com/a/b/c`:
 
    ```yaml
    https://{default}/:
      type: upstream
      redirects:
        paths:
-         '^/regexp/(.*)/match':
+         '^/foo/(.*)/bar':
             to: 'https://example.com/$1'
             regexp: true
    ```
-   Note that special arguments in the `to` statement are also valid:
+   Note that special arguments in the `to` statement are also valid when `regexp` is set to `true`:
     * `$is_args` will evaluate to `?` or empty string
     * `$args` will evaluate to the full query string if any
     * `$arg_foo` will evaluate to the value of the query parameter `foo`

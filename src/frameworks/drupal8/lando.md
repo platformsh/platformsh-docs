@@ -2,7 +2,7 @@
 
 [Lando](/gettingstarted/local/lando.md) is a local development platform that works well with Platform.sh.  Once installed locally it is a simple matter to create an approximate equivalent of your Platform.sh environment for development.
 
-If using Drupal 8 there is a [`drupal8`](https://docs.lndo.io/tutorials/drupal8.html) recipe available that is a good starting point for your site.
+If using Drupal 8 there is a [`drupal8`](https://docs.devwithlando.io/tutorials/drupal8.html) recipe available that is a good starting point for your site.
 
 ## Setting up the Lando environment
 

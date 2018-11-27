@@ -62,19 +62,19 @@ The example below is intended as a "most common case".
 
 ```php
 
-if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
-  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
+if (getenv('PLATFORM_RELATIONSHIPS') && extension_loaded('memcached')) {
+  $relationships = json_decode(base64_decode(getenv('PLATFORM_RELATIONSHIPS')), TRUE);
 
   // If you named your memcached relationship something other than "cache", set that here.
-  $realtionship_name = 'cache';
+  $relationship_name = 'cache';
 
-  if (!empty($relationships[$realtionship_name])) {
+  if (!empty($relationships[$relationship_name])) {
     // This is the line that tells Drupal to use memcached as a backend.
     // Comment out just this line if you need to disable it for some reason and
     // fall back to the default database cache. 
     $settings['cache']['default'] = 'cache.backend.memcache';
 
-    foreach ($relationships[$realtionship_name] as $endpoint) {
+    foreach ($relationships[$relationship_name] as $endpoint) {
       $host = sprintf("%s:%d", $endpoint['host'], $endpoint['port']);
       $settings['memcache']['servers'][$host] = 'default';
     }
@@ -90,6 +90,10 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
   if ($memcache_exists || $memcached_exists) {
     $class_loader->addPsr4('Drupal\\memcache\\', 'modules/contrib/memcache/src');
 
+    // If using a multisite configuration, adapt this line to include a site-unique
+    // value.
+    $settings['memcache']['key_prefix'] = getenv('PLATFORM_ENVIRONMENT');
+
     // Define custom bootstrap container definition to use Memcache for cache.container.
     $settings['bootstrap_container_definition'] = [
       'parameters' => [],
@@ -103,17 +107,17 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
           'class' => 'Drupal\Core\Site\Settings',
           'factory' => 'Drupal\Core\Site\Settings::getInstance',
         ],
-        'memcache.config' => [
-          'class' => 'Drupal\memcache\DrupalMemcacheConfig',
+        'memcache.settings' => [
+          'class' => 'Drupal\memcache\MemcacheSettings',
           'arguments' => ['@settings'],
         ],
-        'memcache.backend.cache.factory' => [
-          'class' => 'Drupal\memcache\DrupalMemcacheFactory',
-          'arguments' => ['@memcache.config']
+        'memcache.factory' => [
+          'class' => 'Drupal\memcache\Driver\MemcacheDriverFactory',
+          'arguments' => ['@memcache.settings'],
         ],
         'memcache.backend.cache.container' => [
-          'class' => 'Drupal\memcache\DrupalMemcacheFactory',
-          'factory' => ['@memcache.backend.cache.factory', 'get'],
+          'class' => 'Drupal\memcache\DrupalMemcacheInterface',
+          'factory' => ['@memcache.factory', 'get'],
           'arguments' => ['container'],
         ],
         'lock.container' => [

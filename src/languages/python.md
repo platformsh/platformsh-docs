@@ -7,6 +7,7 @@ Platform.sh supports deploying Python applications. Your application can use WSG
 * 2.7
 * 3.5
 * 3.6
+* 3.7
 
 ## WSGI-based configuration
 
@@ -16,7 +17,7 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
    ```yaml
    # .platform.app.yaml
-   type: "python:3.6"
+   type: "python:3.7"
    ```
 
 2. Build your application with the build hook. Assuming you have your pip dependencies stored in `requirements.txt` and a `setup.py` at the root of your application folder to execute build steps:
@@ -36,7 +37,7 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
    ```yaml
    web:
      commands:
-       start: "gunicorn -b $PORT project.wsgi:application"
+       start: "gunicorn -b 0.0.0.0:$PORT project.wsgi:application"
    ```
 
    This assumes the WSGI file is `project/wsgi.py` and the WSGI application object is named `application` in the WSGI file.
@@ -175,7 +176,7 @@ relationships = json.loads(str(base64.b64decode(relationships), 'utf-8'))
 A number of project templates for Python applications are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
 * [Starter kit Python 2.7 minimal example](https://github.com/platformsh/platformsh-example-python-2.7)
-* [Starter kit Python 3.6 minimal example](https://github.com/platformsh/platformsh-example-python-3.6)
+* [Starter kit Python 3 minimal example](https://github.com/platformsh/platformsh-example-python-3)
 * [Starter kit Python with uwsgi](https://github.com/platformsh/platformsh-example-python-uwsgi)
 * [Starter kit Python and Elastic Search](https://github.com/platformsh/platformsh-example-python-elasticsearch)
 * [Starter kit Django project](https://github.com/platformsh/platformsh-example-django)

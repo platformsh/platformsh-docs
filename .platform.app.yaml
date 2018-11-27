@@ -14,7 +14,7 @@ size: S
 # of it globally.
 dependencies:
   nodejs:
-    gitbook-cli: "*"
+    gitbook-cli: "2.3.0"
 
 # Use a build hook to install the GitBook plugins specified by the book.json file,
 # then build the book. The generated files will be placed in the _book directory
@@ -24,15 +24,15 @@ hooks:
       set -e
 
       # Install and compile GitBook
-      gitbook install
       npm install
       npm run build
+      gitbook install
       gitbook build
 
       # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
       cp src/images/favicon.ico _book/gitbook/images/favicon.ico
 
-# There is no need for a writeable file mount, so set it to the smallest possible size.
+# There is no need for a writable file mount, so set it to the smallest possible size.
 disk: 256
 
 # Configure the web server to serve our static site.
@@ -64,5 +64,3 @@ web:
                     allow: true
                 search_plus_index\.json$:
                     allow: true
-
-_deploy: 1

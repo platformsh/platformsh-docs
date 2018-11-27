@@ -20,7 +20,7 @@ Give it a description and then ensure the token has the following scopes:
 
  * `api`  - Access your API
  * `read_user` - Read user information
- * `read_registry` - Read Registry
+ * `read_repository` - Read repositories
 
 Copy the token and make a note of it (temporarily).
 
@@ -33,13 +33,17 @@ Note that only `project owner` or `project admin` can manage the integrations.
 Open a terminal window (you need to have the Platform.sh CLI installed). Enable the GitLab integration as follows:
 
 ```bash
-platform integration:add --type=gitlab --token=THE-TOKEN-YOU-WROTE-DOWN --base-url=https://THE-URL-OF-YOUR-GITLAB/ --gitlab-project=MY-NAMESPACE/MY-PROJECTNAME
+platform integration:add --type=gitlab --token=THE-TOKEN-YOU-WROTE-DOWN --base-url=https://THE-URL-OF-YOUR-GITLAB --gitlab-project=MY-NAMESPACE/MY-PROJECTNAME
 ```
 
+Please note that the `--base-url` option is used as the base to call the Gitlab API; you should point it to `https://gitlab.com` if your project is hosted on Gitlab, or the URL for your own Gitlab instance otherwise.
+Do **not** append your namespace and project name!
+
 Optional parameters:
-* `--fetch-branches`: Track and deploy branches (true by default)
 * `--build-merge-requests`: Track and deploy merge-requests (true by default)
 * `--merge-requests-clone-parent-data` : should merge requests clone the data from the parent environment (true by default)
+* `--fetch-branches`: Track and deploy branches (true by default)
+* `--prune-branches`: Delete branches that do not exist in the remote GitLab repository (true by default)
 
 ### 3. Add the webhook
 

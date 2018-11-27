@@ -4,13 +4,13 @@ Logs for various tasks on an application container are available in the `/var/lo
 
 A number of different log files are available depending on the application container in use.
 
-Although the `/var/log` directory is writeable, it should not be written to directly. Only write to it via standard logging mechanisms, such as your application's logging facility.
+Although the `/var/log` directory is writable, it should not be written to directly. Only write to it via standard logging mechanisms, such as your application's logging facility.
 
 All log files are trimmed to 10 MB automatically.
 
 ## `access.log`
 
-This is the raw access log for the nginx instance running on the application container. That is, it does not include any requests that return a redirect or cache hit from the [router](configuration/routes.md).
+This is the raw access log for the nginx instance running on the application container. That is, it does not include any requests that return a redirect or cache hit from the [router](/configuration/routes.md).
 
 ## `app.log`
 

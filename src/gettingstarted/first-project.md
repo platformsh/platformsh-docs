@@ -23,17 +23,17 @@ You can also initialize your project using any of the pre-made templates below. 
 <div>
   <h4>Applications</h4>
   <a href="https://github.com/platformsh/platformsh-example-ezplatform">EZ Platform</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-drupal7">Drupal 7</a><br />
+  <a href="https://github.com/platformsh/template-drupal7">Drupal 7</a><br />
   <a href="https://github.com/platformsh/platformsh-example-drupalcommerce7">Drupal 7 (Commerce Kickstart)</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-drupal8">Drupal 8</a><br />
+  <a href="https://github.com/platformsh/template-drupal8">Drupal 8</a><br />
   <a href="https://github.com/platformsh/platformsh-example-drupal8-multisite">Drupal 8 (Multisite variant)</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-laravel">Laravel</a><br />
+  <a href="https://github.com/platformsh/template-laravel">Laravel</a><br />
   <a href="https://github.com/platformsh/platformsh-example-moodle">Moodle</a><br />
   <a href="https://github.com/platformsh/platformsh-example-magento1">Magento 1</a><br />
   <a href="https://github.com/platformsh/platformsh-example-magento">Magento 2</a><br />
   <a href="https://github.com/platformsh/platformsh-example-sculpin">Sculpin</a><br />
   <a href="https://github.com/platformsh/platformsh-example-typo3">TYPO3</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-wordpress">WordPress</a>
+  <a href="https://github.com/platformsh/template-wordpress">WordPress</a>
 </div>
 
 <div>
@@ -46,8 +46,8 @@ You can also initialize your project using any of the pre-made templates below. 
   <h4>Frameworks</h4>
   <a href="https://github.com/platformsh/platformsh-example-amphp">AmPHP</a><br />
   <a href="https://github.com/platformsh/platformsh-example-reactphp">React PHP</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-symfony/tree/2.8">Symfony 2.8</a><br />
-  <a href="https://github.com/platformsh/platformsh-example-symfony/tree/3.0">Symfony 3.x</a><br />
+  <a href="https://github.com/platformsh/template-symfony3">Symfony 3.x</a><br />
+  <a href="https://github.com/platformsh/template-symfony4">Symfony 4.x</a><br />
 </div>
 
 </section>
@@ -58,12 +58,13 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <div>
   <h4>Examples</h4>
-  <a href="https://github.com/platformsh/platformsh-example-python">Generic Python application</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-python-uwsgi">Python UWSGI with Unix Sockets</a><br />
 </div>
 
 <div>
   <h4>Frameworks</h4>
   <a href="https://github.com/platformsh/platformsh-example-django">Django</a>
+  <a href="https://github.com/platformsh/template-flask">Platform.sh Python 2.7 Flask</a><br />
 </div>
 
 </section>
@@ -100,7 +101,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <div>
   <h4>Examples</h4>
-  <a href="https://github.com/platformsh/platformsh-example-golang">Generic Go application</a>
+  <a href="https://github.com/platformsh/template-golang">Generic Go application</a>
 </div>
 
 </section>

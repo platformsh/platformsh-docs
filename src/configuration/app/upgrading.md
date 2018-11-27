@@ -64,8 +64,7 @@ directly by the web server. Responses served from passthru URLs continue to use
 whatever caching headers were set by the application..
 
 To enable caching on your static files, make sure you include an `expires` key
-in your [web
-configuration](https://docs.platform.sh/configuration/app-containers.html#locations),
+in your [web configuration](/configuration/app/web.md),
 as shown below:
 
 ```
@@ -237,7 +236,7 @@ still supported, but customers are invited to move to the new format.
 
 For an example upgrade path, see the [Drupal 7.x branch of the
 Platformsh-examples
-repository](https://github.com/platformsh/platformsh-example-drupal/blob/7.x/.platform.app.yaml)
+repository](https://github.com/platformsh/template-drupal7/blob/master/.platform.app.yaml)
 on GitHub.
 
 Configuration items for PHP that previously was part of

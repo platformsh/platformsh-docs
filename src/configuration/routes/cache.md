@@ -152,10 +152,10 @@ A cookie value may also be a regular expression.  An entry that begins and ends 
 ```yaml
 cache:
   enabled: true
-  cookies: ['/^SESS/']
+  cookies: ['/^SS?ESS/']
 ```
 
-Will cause all cookies beginning with `SESS` to be part of the cache key, as a single value.  Other cookies will be ignored for caching.  If your site uses a session cookie as well as 3rd party cookies, say from an analytics service, this is the recommended approach.
+Will cause all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.  Other cookies will be ignored for caching.  If your site uses a session cookie as well as 3rd party cookies, say from an analytics service, this is the recommended approach.
 
 ### `default_ttl`
 
@@ -231,7 +231,7 @@ cache:
 
 ### Cache HTTP and HTTPS separately using the `Vary` header
 
-Set the Vary header to `X-Forwarded-Proto` [custom request header](/development/faq.md#do-you-add-custom-http-headers) to render content based on the request protocol (i.e. HTTP or HTTPS). By adding `Vary: X-Forwarded-Proto` to the response header, HTTP and HTTPS content would be cached separately.
+Set the Vary header to `X-Forwarded-Proto` [custom request header](/development/headers.md) to render content based on the request protocol (i.e. HTTP or HTTPS). By adding `Vary: X-Forwarded-Proto` to the response header, HTTP and HTTPS content would be cached separately.
 
 ### Cache zipped content separately
 

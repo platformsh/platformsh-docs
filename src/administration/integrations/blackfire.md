@@ -1,27 +1,34 @@
 # Blackfire
 
-Platform.sh supports [Blackfire Profiler](https://blackfire.io/).
+Platform.sh supports [Blackfire.io](https://blackfire.io/).
+
+Blackfire is a PHP profiler and automated performance testing tool that can be used in the development Integration, Staging, and Production environments.
+
+It grants details information on your PHP code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
+
+In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Symfony, Drupal, eZPlatform, Typo3 & Magento code performance management. 
+
+For a high level overview and demo of Blackfire, check out the [full video tutorial](https://www.youtube.com/watch?v=-5icUW9pUH8).
 
 ## Version
 
-* Agent/Client: `1.15.0`
-* Probe: `1.18.0` (when using `php:7.0` or `php:7.1`)
+Check the latest versions of the probe and CLI tool on [Blackfire's documentation](https://blackfire.io/docs/up-and-running/upgrade#latest-versions).
 
 ## Get Started
 
 ### 1. Get your credentials
 
-**Sign up for the free 15 days trial** at [blackfire.io](https://blackfire.io/signup) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld) or [Firefox](https://addons.mozilla.org/firefox/addon/blackfire/)).
+**Sign up for the free 15 days Premium trial** at [blackfire.io](https://blackfire.io/pricing) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld) or [Firefox](https://addons.mozilla.org/firefox/addon/blackfire/)).
 
 > **note**
 >
 > Blackfire also offers a perpetually-free edition but it is for local development only and will not run on Platform.sh.
 
-Go to your Dashboard and create a new environment.
+Go to your Dashboard and create a new environment [under the Environments tab](https://blackfire.io/my/environments).
 
 ![Blackfire environments](/images/blackfire-environments.png)
 
-Get your server credentials.
+You will need to store the server credentials for further configuration. You can find them any time under the "Settings" tab of your environment in Blackfire.
 
 ![Blackfire credentials](/images/blackfire-credentials.png)
 
@@ -32,10 +39,7 @@ Paste the credentials above in your `.platform.app.yaml` as follows:
 ```yaml
 runtime:
     extensions:
-        - name: 'blackfire'
-          configuration:
-              server_id: 'bad10394-bbaf-436e-9ee9-c6090cb45eb2'
-              server_token: '692203ae8755da6b57b8161d3f20dd1be71502f77adebf3363d164033d74d29b'
+        - blackfire
 ```
 
 Push the changes to your Platform environment to enable Blackfire as follows:
@@ -46,7 +50,29 @@ git commit -m "Enable Blackfire."
 git push
 ```
 
-### 3. Confirm it's running
+### 3. Configure your server credentials
+
+Blackfire enables to have a fine grained configuration of server credentials across branches and environments on Platform.sh.
+
+#### Configuring global server credentials
+
+Configuring server credentials on your master branch will enable you to make sure you can profile any other branch:
+
+```bash
+platform variable:create -e master env:BLACKFIRE_SERVER_ID <insert your Server ID>
+platform variable:create -e master env:BLACKFIRE_SERVER_TOKEN <insert your Server Token>
+```
+
+#### Configuring server credentials per branch
+
+A recommendation is to have a [Blackfire environment](https://blackfire.io/docs/reference-guide/environments#documentation) for production, another one for staging, and another one for development/integration. That can be mapped in Platform.sh to one Blackfire environment for the production branch, one for the staging branch, and one for all feature branches.
+
+```bash
+platform variable:create -e=<insert your branch name> env:BLACKFIRE_SERVER_ID <insert your Server ID>
+platform variable:create -e=<insert your branch name> env:BLACKFIRE_SERVER_TOKEN <insert your Server Token>
+```
+
+### 4. Confirm it's running
 
 Login via SSH to your container and confirm that Blackfire is running as follows:
 
@@ -69,3 +95,66 @@ Access your site via your browser and click `Profile` in the Blackfire Companion
 ![Blackfire Companion](/images/blackfire-companion.png)
 
 That's it! Your site will be profiled and you should get all the results in your Blackfire account.
+
+## Going further with Blackfire
+
+Blackfire also enables to:
+
+* collaborate with the rest of your team
+* write performance tests
+* automate profiling with periodic builds
+* integrate further with Platform.sh by enabling to automate profiling as each code commit
+* integrate with New Relic for combined benefits of monitoring and profiling
+* integrate with GitHub, Bitbucket and GitLab to show the results of Blackfire builds at the commit status level
+
+Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for more information.
+
+> **note**
+>
+> Those features may require a Premium or an Enterprise subscription.
+> We offer attractive bundles of Platform.sh and Blackfire.io subscriptions.
+> Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
+
+## Troubleshooting
+
+### Bypassing Reverse Proxy, Cache, and Content Delivery Networks (CDN)
+
+If you are using one of those, you will need them to let Blackfire access your servers.
+[More information on how to configure a bypass](More information on how to configure a bypass).
+
+### HTTP Cache configuration
+
+If you are using the HTTP cache with cookies , please update in your `.platform.app.yaml` the cookies that are allowed to go through the cache. You need to allow the `__blackfire` cookie name.
+
+Something like:
+
+```yaml
+cache:
+    enabled: true
+    cookies: ["/SESS.*/", "__blackfire"]
+```
+
+## Reaching out to the Blackfire support
+
+If the above didn't help, collect the following and send it to the [Blackfire support](https://support.blackfire.io):
+
+* The output of `platform ssh -- php -d display_startup_errors=on --ri blackfire` command
+* The Blackfire logs
+
+### Getting the Blackfire logs
+
+Please execute the following in the environment where you're facing the issue:
+
+* `platform variable:create php:blackfire.log_file /tmp/blackfire.log` 
+* `platform variable:create php:blackfire.log_level 4` 
+* start a profile/build again
+
+You will get the logs with `platform ssh -- cat /tmp/blackfire.log > blackfire.log`.
+
+### Disabling the Blackfire logs
+
+Once you are done, please disable logging with:
+
+* `platform variable:delete php:blackfire.log_file` 
+* `platform variable:delete php:blackfire.log_level`
+  

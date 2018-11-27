@@ -7,9 +7,8 @@ All environments on Platform.sh support both HTTP and HTTPS automatically.  Prod
 > **note**
 > Let's Encrypt certificate renewals are attempted each time your environment is deployed. If your project does not receive regular code commits, you will need to manually issue a re-deployment to ensure the certificate remains valid. We suggest that you do so when your project doesn't receive any updates for over 1 month. This can be done by pushing a code change via git or issuing the following command from your **local** environment:
 > ```sh
-> platform variable:set -W _redeploy "$(date)"
+> platform redeploy
 > ```
-> This command sets a [variable](/development/variables.html) for the current branch with the key `_redeploy`. The value is the current date and time. You can inspect this variable to know when the last the re-deployment was triggered.
 >
 > Alternatively, see the [section below](#automatic-certificate-renewal) on automatically redeploying the site in order to renew the certificate.
 
@@ -110,13 +109,13 @@ tls:
     client_certificate_authorities:
         - !include
             type: string
-            path: file1.key
+            path: root-ca1.crt
         - !include
             type: string
-            path: file2.key
+            path: root-ca2.crt
 ```
 
-In this case, the key files are resolved relative to the `.platform` directory.  Alternatively, the keys can be specified inline in the file:
+In this case, the certificate files are resolved relative to the `.platform` directory.  Alternatively, the certificates can be specified inline in the file:
 
 ```yaml
 tls:
@@ -138,23 +137,23 @@ It is possible to set a variable from a cron task, which in turn will cause the 
 
 You will first need to install the CLI in your application container.  See the section on [API tokens](/gettingstarted/cli/api-tokens.md) for instructions on how to do so.
 
-Once the CLI is installed and an API token configured you can add a cron task to run once a month and set a placeholder variable.  For example:
+Once the CLI is installed and an API token configured you can add a cron task to run twice a month to trigger a redeploy.  For example:
 
 ```yaml
 crons:
     renewcert:
-        # Force a redeploy at 10 am (UTC) on the 3rd of every month.
-        spec: '0 10 3 * *'
+        # Force a redeploy at 10 am (UTC) on the 1st and 15th of every month.
+        spec: '0 10 1,15 * *'
         cmd: |
             if [ "$PLATFORM_BRANCH" = master ]; then
-                platform variable:set _redeploy "$(date)" --yes --no-wait
+                platform redeploy --yes --no-wait
             fi
 ```
 
-The above cron task will run on the 3rd of the month at 10 am (UTC), and, if the current environment is the master branch, it will run `platform variable:set` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the snapshot to complete.  We recommend adjusting the cron schedule to whenever is off-peak time for your site, and to a random day within the month.
+The above cron task will run on the 1st and 15th of the month at 10 am (UTC), and, if the current environment is the master branch, it will run `platform redeploy` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the redeploy to complete.  We recommend adjusting the cron schedule to whenever is off-peak time for your site, and to random days within the month.
 
 > **warning**
 >
 > It is very important to include the `--no-wait` flag.  If you do not, the cron process will block waiting on the deployment to finish, but the deployment will be blocked by the running cron task.  That will take your site offline until you log in and manually terminate the running cron task.  You want the `--no-wait` flag.  We're not joking.
 
-The certificate will not renew unless it has less than one month remaining, so forcing a deploy more than once a month is pointless.  As the redeploy does cause a momentary pause in service we recommend running during non-peak hours for your site.
+The certificate will not renew unless it has less than one month remaining; trying twice a month is sufficient to ensure a certificate is never less than 2 weeks from expiring.  As the redeploy does cause a momentary pause in service we recommend running during non-peak hours for your site.

@@ -8,9 +8,16 @@ Platform.sh supports two different Redis configurations: One persistent (useful 
 
 ## Supported versions
 
+* 3.2
+* 4.0
+* 5.0
+
+### Deprecated versions
+
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+
 * 2.8
 * 3.0
-* 3.2
 
 > **note**
 > Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database
@@ -69,7 +76,7 @@ rediscache:
     type: redis:3.2
 ```
 
-If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php.md#php-extensions) in your `.platform.app.yaml`.
+If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php/extensions.md) in your `.platform.app.yaml`.
 
 ```yaml
 runtime:

@@ -6,10 +6,19 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 ## Supported versions
 
-* 5.5
 * 10.0
 * 10.1
 * 10.2
+
+> **note**
+>
+> Downgrades of MariaDB are not supported. MariaDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+
+### Deprecated versions
+
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+
+* 5.5
 
 ## Relationship
 
@@ -58,7 +67,8 @@ You can then use the service in a configuration file of your application with so
 {% codetabs name="PHP", type="php" -%}
 <?php
 // This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
+$relationships = getenv('PLATFORM_RELATIONSHIPS');
+if ($relationships) {
 	$relationships = json_decode(base64_decode($relationships), TRUE);
 
 	// For a relationship named 'database' referring to one endpoint.
@@ -68,7 +78,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 			$settings['database_host'] = $endpoint['host'];
 			$settings['database_name'] = $endpoint['path'];
 			$settings['database_port'] = $endpoint['port'];
-			$settings['database_user'] = $endpoint['user'];
+			$settings['database_user'] = $endpoint['username'];
 			$settings['database_password'] = $endpoint['password'];
 			break;
 		}
@@ -107,10 +117,8 @@ if (err != nil) {
 }
 {%- endcodetabs %}
 
-**notes**
-1. There is a single MySQL user, so you can not use "DEFINER" Access Control mechanism for Stored Programs and Views.
-2. MySQL Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).
-
+> **note**
+> MySQL schema names can not use system reserved namespace. (mysql, information_schema, etc)
 
 ## Multiple databases
 
@@ -247,3 +255,25 @@ platform sql --relationship database -e master < my_database_snapshot.sql
 > **note**
 > Importing a database snapshot is a destructive operation. It will overwrite data already in your database.
 > Taking a snapshot or a database export before doing so is strongly recommended.
+
+## Troubleshooting
+
+### definer/invoker of view lack rights to use them
+
+There is a single MySQL user, so you can not use "DEFINER" Access Control mechanism for Stored Programs and Views.
+
+When creating a VIEW, you may need to explicitly set the SECURITY parameter to INVOKER, e.g...
+
+```
+CREATE OR REPLACE SQL SECURITY INVOKER 
+VIEW `view_name` AS 
+SELECT 
+```
+
+### MySQL server has gone away
+
+Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).
+
+The current disk usage can be checked using the CLI command `platform db:size`. Because of issues with the way InnoDB reports its size, this can out by up to 20%. As table space can grow rapidly, *it is usually advisable to make your database mount size twice the size reported by the `db:size` command*.
+
+You are encouraged to add a [low-disk warning notification](/administration/integrations/notifications.html#low-disk-warning) to proactively warn of low disk space before it becomes an issue.

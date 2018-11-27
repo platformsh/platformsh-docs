@@ -10,7 +10,7 @@ Your application's code is maintained in Git.  Because Git is a distributed syst
 
 Your application runs on a read-only file system, so it cannot be edited.  That means there's nothing to download from most of it that isn't already in your Git repository.
 
-The only files to download are from any writeable file mounts you may have defined in your `.platform.app.yaml` file.  The easiest way to download those is using the `rsync` tool.  For instance, suppose you have a mounts section that defines one web-accessible directory and one non-web-accessible directory:
+The only files to download are from any writable file mounts you may have defined in your `.platform.app.yaml` file.  The easiest way to download those is using the `rsync` tool.  For instance, suppose you have a mounts section that defines one web-accessible directory and one non-web-accessible directory:
 
 ```yaml
 mounts:
@@ -21,7 +21,21 @@ mounts:
         source: local
         source_path: private
 ```
+### Using the CLI
 
+The CLI provides a useful `mount` command for accessing mount data.
+
+```
+platform mount:list
+```
+
+Downloading a mount is then as simple as running the following:
+
+```
+platform mount:download
+```
+
+### Using rsync
 To use `rsync` to download each directory, we can use the following commands.  The `platform ssh --pipe` command will return the SSH URL for the current environment as an inline string that `rsync` can recognize. To use a non-default environment, use the `-e` switch after `--pipe`.  Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself.
 
 ```bash

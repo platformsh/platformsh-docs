@@ -55,11 +55,15 @@
 ## Languages
 
 * [PHP](languages/php.md)
+  * [Extensions](languages/php/extensions.md)
+  * [Performance tuning](languages/php/tuning.md)
+  * [PHP.ini settings](languages/php/ini.md)
+  * [PHP-FPM sizing](languages/php/fpm.md)
 * [Node.js](languages/nodejs.md)
-  * [Changing the Node.js version](languages/nodejs/nvm.md)
+  * [Alternative Node.js install](languages/nodejs/nvm.md)
 * [Python](languages/python.md)
 * [Ruby](languages/ruby.md)
-* [Go (beta)](languages/go.md)
+* [Go](languages/go.md)
 * [Java (alpha)](languages/java.md)
 
 ## Development
@@ -67,12 +71,12 @@
 * [Variables](development/variables.md)
 * [Accessing your site](development/access-site.md)
 * [Headers](development/headers.md)
+* [Email](development/email.md)
 * [Accessing logs](development/logs.md)
 * [Private repositories](development/private-repository.md)
 * [Git submodules](development/submodules.md)
 * [Using SSH](development/ssh.md)
 * [Public IPs](development/public-ips.md)
-* [Protective block](development/protective-block.md)
 * [FAQ](development/faq.md)
 * [Troubleshooting](development/troubleshoot.md)
 
@@ -80,10 +84,12 @@
 
 * [Pre-Launch Checklist](/golive/checklist.md)
 * [Going Live Steps](/golive/steps.md)
+  * [DNS and CNAMEs](/golive/steps/dns.md)
   * [Custom TLS](/golive/steps/tls.md)
   * [Fastly](/golive/steps/fastly.md)
+  * [Cloudflare](/golive/steps/cloudflare.md)
 * [Troubleshooting](/golive/troubleshoot.md)
-* [Example](/golive/example.md)   
+* [Example](/golive/example.md)
 
 ## Administration
 
@@ -103,9 +109,21 @@
   * [Project configuration](administration/web/configure-project.md)
   * [Environments](administration/web/environments.md)
   * [Configure environments](administration/web/configure-environment.md)
-  * [Email](administration/web/email.md)
   * [Adding vouchers](administration/web/vouchers.md)
   * [Deleting a project](administration/web/delete.md)
+
+## Security and compliance
+
+* [GDPR](security/gdpr.md)
+* [Data collection](security/data-collection.md)
+* [Data retention](security/data-retention.md)
+* [Data deletion](security/data-deletion.md)
+* [Backup and restore](security/backups.md)
+* [Encryption](security/encryption.md)
+* [Protective block](security/protective-block.md)
+* [PCI Guidance](security/pci-guidance.md)
+* [Security scans](security/pen-test.md)
+* [Troubleshooting](security/troubleshooting.md)
 
 ## Featured frameworks
 
@@ -130,7 +148,7 @@
   * [SimpleSAML](frameworks/drupal8/simplesaml.md)
   * [FAQ](frameworks/drupal8/faq.md)
 * [eZ Platform](frameworks/ez.md)
-  * [Fastly](frameworks/ez.md)
+  * [Fastly](frameworks/ez/fastly.md)
 * [Symfony](frameworks/symfony.md)
   * [FAQ](frameworks/symfony/faq.md)
 * [TYPO3](frameworks/typo3.md)
@@ -143,11 +161,12 @@
 * [Authenticated Composer](tutorials/composer-auth.md)
 * [Exporting data](tutorials/exporting.md)
 * [Migrating to Platform.sh](tutorials/migrating.md)
-* [Setting up Dropbox](tutorials/dropbox.md)
 * [Third-party resources](tutorials/third-party.md)
+* [Changing regions](tutorials/region-migration.md)
 
 ## Changelog
 
+* [2018](changelog/2018.md)
 * [2017](changelog/2017.md)
 * [2016](changelog/2016.md)
 * [2015](changelog/2015.md)

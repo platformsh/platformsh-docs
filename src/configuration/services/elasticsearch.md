@@ -111,3 +111,26 @@ This is the complete list of official Elasticsearch plugins that can be enabled:
 | mapper-murmur3      | Murmur3 mapper plugin for computing hashes at index-time                          | *   | *   |
 | mapper-size         | Size mapper plugin, enables the `_size` meta field                                | *   | *   |
 | repository-s3       | Support for using S3 as a repository for Snapshot/Restore                         |     | *   |
+
+
+## Upgrading
+
+The Elasticsearch data format sometimes changes between versions in incompatible ways.  Elasticsearch does not include a data upgrade mechanism as it is expected that all indexes can be regenerated from stable data if needed.  To upgrade (or downgrade) Elasticsearch you will need to use a new service from scratch.
+
+There are two ways of doing that.
+
+### Destructive
+
+In your `services.yaml` file, change the version of your Elasticsearch service *and* its name.  Then update the name in the `.platform.app.yaml` relationships block.
+
+When you push that to Platform.sh, the old service will be deleted and a new one with the name name created, with no data.  You can then have your application reindex data as appropriate.
+
+This approach is simple but has the downside of temporarily having an empty Elasticsearch instance, which your application may or may not handle gracefully, and needing to rebuild your index afterward.  Depending on the size of your data that could take a while.
+
+### Transitional
+
+For a transitional approach you will temporarily have two Elasticsearch services.  Add a second Elasticsearch service with the new version a new name and give it a new relationship in `.platform.app.yaml`.  You can optionally run in that configuration for a while to allow your application to populate indexes in the new service as well.
+
+Once you're ready to cut over, remove the old Elasticsearch service and relationship.  You may optionally have the new Elasticsearch service use the old relationship name if that's easier for your application to handle.  Your application is now using the new Elasticsearch service.
+
+This approach has the benefit of never being without a working Elasticsearch instance.  On the downside, it requires two running Elasticsearch servers temporarily, each of which will consume resources and need adequate disk space.  Depending on the size of your data that may be a lot of disk space.

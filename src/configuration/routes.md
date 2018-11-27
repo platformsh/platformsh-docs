@@ -47,7 +47,10 @@ Each route can be configured separately. It has the following properties
 
 ## Route limits
 
-Although there is no fixed limit on the number of routes that can be defined, there is a cap on the size of generated route information.  If your `routes.yaml` file would result in too large of a route information value it will be rejected.
+Although there is no fixed limit on the number of routes that can be defined, there is a cap on the size of generated route information.
+This limitation comes from the Linux kernel, which caps the size of environment variables.
+The kernel limit on environment variables is 32 pages. Each page is 4k on x86 processors, resulting in a maximum environment variable length of 131072 bytes.
+If your `routes.yaml` file would result in too large of a route information value it will be rejected.
 
 The full list of generated route information is often much larger than what is literally specified in the `routes.yaml` file.  For example, by default all HTTPS routes will be duplicated to create an HTTP redirect route.  Also, the `{all}` placeholder will create two routes (one HTTP, one HTTPS) for each domain that is configured.
 
@@ -106,11 +109,92 @@ It's also entirely possible to use an absolute URL in the route. In that case, i
 In this case, there are two application containers `app` and `blog`.  In a production environment, they would be accessible at `www.example.com` and `blog.example.com`, respectively.  On a development branch named `sprint`, however, they would be accessible at URLs something like:
 
 ```bash
-https://www.example.com.sprint-7onpvba-tvh56f275i3um.us.platform.sh/
-https://blog.example.com.sprint-7onpvba-tvh56f275i3um.us.platform.sh/
+https://www.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platformsh.site/
+https://blog.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platformsh.site/
 ```
 
 If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generally best to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains then you will need to use a static domain for all but one of them.
+
+Please note that when there are two routes sharing the same HTTP scheme, domain, and path, where the first route is using the `{default}` placeholder and the other is using the `{all}` placeholder, the route using `{default}` takes precedence.
+
+## Route identifiers
+
+All routes defined for an environment are available to the application in its `PLATFORM_ROUTES` environment variable, which contains a base64-encoded JSON object. This object can be parsed by the language of your choice to give your application access to the generated routes.
+
+When routes are generated, all placeholders will be replaced with appropriate domains names, and depending on your configuration, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects). To make it easier to locate routes in a standardized fashion, you may specify an `id` key on each route which remains stable across environments. You may also specify a single route as `primary`, which will cause it to be highlighted in the web interface but will have no impact on the runtime environment.
+
+Consider this `routes.yaml` configuration example:
+
+```yaml
+"https://site1.{default}/":
+    type: upstream
+    upstream: 'site1:http'
+
+"https://site2.{default}/":
+    type: upstream
+    id: 'the-second'
+    upstream: 'site2:http'
+```
+
+This example defines two routes, on two separate subdomains, pointing at two separate app containers. (However, they could just as easily be pointing at the same container for our purposes).  On a branch named `test`, the route array in PHP would look like this:
+
+```text
+Array
+(
+    [https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
+        (
+            [primary] => 1
+            [id] =>
+            [type] => upstream
+            [upstream] => site1
+            [original_url] => https://site1.{default}/
+            // ...
+        )
+
+    [https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
+        (
+            [primary] =>
+            [id] => the-second
+            [type] => upstream
+            [upstream] => site2
+            [original_url] => https://site2.{default}/
+            // ...
+        )
+    [http://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
+        (
+            [to] => https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/
+            [original_url] => http://site1.{default}/
+            [type] => redirect
+            [primary] =>
+            [id] =>
+        )
+
+    [http://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
+        (
+            [to] => https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/
+            [original_url] => http://site2.{default}/
+            [type] => redirect
+            [primary] =>
+            [id] =>
+        )
+)
+```
+
+(Some keys omitted for space.)  Note that the `site2` HTTPS route has an `id` specified as `the-second` while other routes have no ID. Futhermore, because we did not specify a `primary` route, the first non-redirect route defined is marked as the primary route by default. In each case, the `original_url` specified in the configuration file is accessible if desired.
+
+That makes it straightforward to look up the domain of a particular route, regardless of what branch it's on, from within application code.  For example, the following PHP function will retrieve the domain for a specific route id, regardless of the branch it's on.
+
+```php
+function get_domain_for(string $id) {
+  foreach ($routes as $domain => $route) {
+    if ($route['id'] == $id) {
+      return $domain;
+    }
+  }
+}
+```
+
+That can be used, for example, for inbound request whitelisting, a feature of many PHP frameworks.
 
 ## Configuring routes on the Web Interface
 
@@ -132,7 +216,7 @@ For development environments, we will also be able to handle this. Here is how:
 
 Let's say we have a project on the EU cluster whose ID is "vmwklxcpbi6zq" and we created a branch called "add-theme". It's environment name will be similar to `add-theme-def123`.  The generated apex domain of this environment will be `add-theme-def123-vmwklxcpbi6zq.eu.platform.sh`. If we have a `http://*.{default}/` route defined, the generated route will be `http://*.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/`. This means you could put any subdomain before the left-most `.` to reach your application. HTTP request to both `http://foo.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` and `http://bar.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` URLs will be routed to your application properly. However, request to `http://*.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` will not be routed since it is not a legitimate domain name.
 
-Be aware, however, that Let's Encrypt does not support wildcard certificates.  That means if you want to use a wildcard route and protect it with SSL you will need to provide a [custom SSL certificate](/golive/steps.md#ssl-in-production).
+Be aware, however, that Let's Encrypt does not support wildcard certificates.  That means if you want to use a wildcard route and protect it with HTTPS you will need to provide a [custom TLS certificate](/golive/steps/tls.md).
 
 > **note**
 > In projects created before November 2017 the `.` in subdomains was replaced with a triple dash (`---`).  It was switched to preserve `.` to simplify SSL handling and improve support for longer domains.  If your project was created before November 2017 then it will still use `---` to the left of the environment name.  If you wish to switch to dotted-domains please file a support ticket and we can do that for you.  Be aware that doing so may change the domain name that your production domain name should CNAME to.

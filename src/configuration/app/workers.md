@@ -30,7 +30,21 @@ Any number of workers may be defined with their own distinct name, subject to av
 
 Like with any other application container Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
 
-To do so simply add the name of the worker to the user name after the application name part of the SSH url preceded by a double dash (`--`).
+Like with any other application container Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
+
+Using the Platform CLI you would use the `--worker` switch, like so:
+
+```
+platform ssh --worker=queue
+```
+
+To output the SSH command you can use:
+
+```
+platform ssh --worker=queue --pipe
+```
+
+You will see the url is the name of the worker added to the user name after the application name part of the SSH url preceded by a double dash (`--`).
 
 For example given a project with id `3seb7f2j6ogbm` you would connect to its master environment for an app called `app` with a url such as: 
 
@@ -141,7 +155,7 @@ For example, consider this `.platform.app.yaml`:
 ```yaml
 name: app
 
-type: "python:3.6"
+type: "python:3.7"
 
 disk: 2048
 
@@ -209,13 +223,13 @@ workers:
             emails: 'rabbitqueue:rabbitmq'
 ```
 
-There's a lot going on here, but it's all reasonably straightforward.  This configuration will take a single Python 3.6 code base from your repository, download all dependencies in `requirements.txt`, and the install Gunicorn.  That artifact (your code plus the downloaded dependencies) will be deployed as three separate container instances, all running Python 3.6.
+There's a lot going on here, but it's all reasonably straightforward.  This configuration will take a single Python 3.7 code base from your repository, download all dependencies in `requirements.txt`, and the install Gunicorn.  That artifact (your code plus the downloaded dependencies) will be deployed as three separate container instances, all running Python 3.7.
 
 The `web` instance will start a gunicorn process to serve a web application.  
 
 * It will run the gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application`definition. 
 * It will have an environment variable named `TYPE` with value `web`.
-* It will have a writeable mount at `/app/uploads` with a maximum space of 2048 MB.
+* It will have a writable mount at `/app/uploads` with a maximum space of 2048 MB.
 * It will have access to both a MySQL database and a RabbitMQ server, both of which are defined in `services.yaml`.
 * Platform.sh will automatically allocate resources to it as available on the plan, once all fixed-size containers are allocated.
 
@@ -223,7 +237,7 @@ The `queue` instance will be a worker that is not web-accessible.
 
 * It will run the `queue-worker.py` script, and restart it automatically if it ever terminates.
 * It will have an environment variable named `TYPE` with value `worker`.
-* It will have a writeable mount at `/app/scratch` with a maximum space of 512 MB.
+* It will have a writable mount at `/app/scratch` with a maximum space of 512 MB.
 * It will have access to both a MySQL database and a RabbitMQ server, both of which are defined in `services.yaml` (because it doesn't specify otherwise).
 * It will have "Medium" levels of CPU and RAM allocated to it, always.
 
@@ -231,8 +245,8 @@ The `mail` instance will be a worker that is not web-accessible.
 
 * It will run the `mail-worker.py` script, and restart it automatically if it ever terminates.
 * It will have an environment variable named `TYPE` with value `worker`.
-* It will have no writeable file mounts at all.
+* It will have no writable file mounts at all.
 * It will have access only to the RabbitMQ server, through a different relationship name than on the `web` instance.  It will have no access to MySQL whatsoever.
 * It will have "Small" levels of CPU and RAM allocated to it, always.
 
-This way, the web instance has a large upload space, the queue instance has a small amount of scratch space for temporary files, and the mail instance has no persistent writeable disk space at all as it doesn't need it.  The mail instance also does not need any access to the SQL database so for security reasons it has none.  The workers have known fixed sizes, while web can scale to as large as the plan allows.  Each instance can also check the `TYPE` environment variable to detect how it's running and, if appropriate, vary its behavior accordingly.
+This way, the web instance has a large upload space, the queue instance has a small amount of scratch space for temporary files, and the mail instance has no persistent writable disk space at all as it doesn't need it.  The mail instance also does not need any access to the SQL database so for security reasons it has none.  The workers have known fixed sizes, while web can scale to as large as the plan allows.  Each instance can also check the `TYPE` environment variable to detect how it's running and, if appropriate, vary its behavior accordingly.
