@@ -44,7 +44,7 @@ In your `.platform/services.yaml` add:
 
 ```yaml
 mydatabase:
-    type: postgresql:10
+    type: postgresql:11
     disk: 1024
 ```
 
@@ -185,7 +185,7 @@ Platform.sh supports a number of PostgreSQL extensions.  To enable them, list th
 
 ```yaml
 postgresql:
-    type: "postgresql:10.0"
+    type: "postgresql:11"
     disk: 1025
     configuration:
         extensions:
