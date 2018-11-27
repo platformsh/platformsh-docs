@@ -263,4 +263,4 @@ Simply change the version in your services.yaml file, Platform.sh will transpare
 
 ## Downgrading
 
-Downgrading is not supported. If you want, for whatever reason, to downgrade you should dump to SQL. Remove the service. Recreate the service and import your dump.
+Downgrading is not supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
