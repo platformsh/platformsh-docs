@@ -6,7 +6,7 @@ Snapshots are triggered directly via the Web Interface or via the CLI. The snaps
 
 You need to have the "admin" role in order to create a snapshot of an environment.
 
-Snapshots on Platform.sh Professional are retained for at least 7 days. They will be purged between 7 days and 6 months, at Platform.sh's discretion.
+Snapshots on Platform.sh Professional are retained for at least 7 days. They will be purged between 7 days and 6 months, at Platform.sh's discretion. Please see the [data retention](/security/data-retention.md) page for more information.
 
 > **note**
 >
