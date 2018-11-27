@@ -256,7 +256,9 @@ If you see this error: `Fatal error: Uncaught exception 'PDOException' with mess
 
 ## Upgrading
 
-Simply change the version in your services.yaml file, Platform.sh will transparently migrate the data. 
+PostgreSQL 10 and later include an upgrade utility that can convert databases from previous versions to version 10 or 11.  If you upgrade your service from a previous version of PostgreSQL to version 10 or above (by modifying the `services.yaml` file) the upgrader will run automatically.
+
+The upgrader does not work to upgrade to PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 are not supported.  Upgrade straight to version 11 instead.
 
 > Warning: Make sure you first test your migration on a separate branch
 > Warning: be sure to take a snapshot of your master environment **before** you merge this change.
