@@ -8,7 +8,7 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 * 9.3
 * 9.6
-* 10.0
+* 10
 
 ## Relationship
 
@@ -38,7 +38,7 @@ In your `.platform/services.yaml` add:
 
 ```yaml
 mydatabase:
-    type: postgresql:10.0
+    type: postgresql:10
     disk: 1024
 ```
 
