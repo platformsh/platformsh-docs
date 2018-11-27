@@ -6,9 +6,15 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 ## Supported versions
 
-* 9.3
 * 9.6
 * 10
+* 11
+
+### Deprecated versions
+
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+
+* 9.3
 
 ## Relationship
 
