@@ -263,6 +263,4 @@ The upgrader does not work to upgrade to PostgreSQL 9 versions, so upgrades from
 > Warning: Make sure you first test your migration on a separate branch
 > Warning: be sure to take a snapshot of your master environment **before** you merge this change.
 
-## Downgrading
-
 Downgrading is not supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
