@@ -57,7 +57,7 @@ mounts:
     source_path: uploads
 ```
 
-This assumes that a `network-storage` service named `files` has already been defined.  See the [Network Storage](configuration/services/network-storage.md) page for more details and examples.
+This assumes that a `network-storage` service named `files` has already been defined.  See the [Network Storage](/configuration/services/network-storage.md) page for more details and examples.
 
 ## Multi-instance disk mounts
 

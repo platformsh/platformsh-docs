@@ -2,8 +2,13 @@
 
 Platform.sh supports internal "storage as a service" to provide a file store that can be shared between different application containers.
 
-The network storage service enables a new kind of `mount` that refers to a shared service rather than to a local directory.  Any application can use both `local` or `service` mounts, or either/or, or neither.
+The network storage service enables a new kind of `mount` that refers to a shared service rather than to a local directory.  Any application can use both `local` and/or `service` mounts, or neither.
 
+## Supported versions
+
+* 0.2
+
+(This is a reference to a version of our network storage implementation, not to a version of a 3rd party application.)
 
 ## Define the service
 
@@ -69,7 +74,7 @@ In this example, `app1` will have access to the entire `uploads` directory by wr
 
 ## Worker instances
 
-When defining a [Worker](configuration/app/workers.md) instance it is important to keep in mind what mount behavior is desired.  Unless the `mounts` block is defined within the `web` and `workers` sections separately, a top level `mounts` block will apply to both instances.  However, `local` mounts will be separate for each instance while `service` mounts will refer to the same file system.  For example:
+When defining a [Worker](/configuration/app/workers.md) instance it is important to keep in mind what mount behavior is desired.  Unless the `mounts` block is defined within the `web` and `workers` sections separately, a top level `mounts` block will apply to both instances.  However, `local` mounts will be separate for each instance while `service` mounts will refer to the same file system.  For example:
 
 ```yaml
 name: app
@@ -110,7 +115,7 @@ In this case, both the web instance and the `queue` worker will have two mount p
 
 The most common use case for `network-storage` is to allow a CMS-driven site to use a worker that has access to the same file mounts as the web-serving application.  For that case, all that is needed is to set the necessary file mounts as `service` mounts.
 
-For example, the following `.platform.app.yaml` file (fragment) will keep a Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).  (This assumes a service named `files` has already been defined in `services.yaml`.)
+For example, the following `.platform.app.yaml` file (fragment) will keep Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).  (This assumes a service named `files` has already been defined in `services.yaml`.)
 
 
 ```yaml
@@ -131,7 +136,8 @@ web:
 disk: 1024
 
 mounts:
-    # The public and private files directories are network mounts shared by web and workers.
+    # The public and private files directories are
+    # network mounts shared by web and workers.
     'web/sites/default/files':
         source: service
         service: files
@@ -140,8 +146,10 @@ mounts:
         source: service
         service: files
         source_path: private
-    # The backup, temp, and cache directories for Drupal's CLI tools don't need to be shared.
-    # It wouldn't hurt anything to make them network shares, however.
+    # The backup, temp, and cache directories for
+    # Drupal's CLI tools don't need to be shared.
+    # It wouldn't hurt anything to make them network
+    # shares, however.
     '/.drush':
         source: local
         source_path: drush
@@ -155,13 +163,16 @@ mounts:
         source: local
         source_path: console
 
-# Crons run on the web container, so they have the same mounts as the web container.
+# Crons run on the web container, so they have the
+# same mounts as the web container.
 crons:
     drupal:
         spec: '*/20 * * * *'
         cmd: 'cd web ; drush core-cron'
 
-# The worker defined here will also have 6 mounts; 2 of them will be shared with the web container, the other 4 will be local to the worker.
+# The worker defined here will also have the same 6 mounts;
+# 2 of them will be shared with the web container,
+# the other 4 will be local to the worker.
 workers:
     queue:
         commands:
