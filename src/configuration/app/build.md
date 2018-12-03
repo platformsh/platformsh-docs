@@ -4,7 +4,9 @@ The `.platform.app.yaml` file provides a number of ways to control how an applic
 
 ## Build
 
-The `build` defines what happens when building the application.  Its only property is `flavor`, which specifies a default set of build tasks to run. Flavors are language-specific.
+The `build` defines what happens when building the application.  It has two properties, `flavor`, which specifies a default set of build tasks to run, and `caches`, which allows fine-grained control of the build cache.
+
+The available flavors are language specific:
 
 ### PHP (`composer` by default)
 
@@ -22,6 +24,114 @@ In all languages you can also specify a flavor of `none` (which is the default f
 build:
     flavor: composer
 ```
+
+## Build cache
+
+The build cache is an opt-in feature that lets you cache certain portions of the built output to speed up the build process.  Frequently, some portion of the build process is highly stable between builds and so it's wasteful to recompile it every time.  That includes downloading 3rd party dependencies as well as some other compilation tasks, like Sass or Less compilation.
+
+The build cache is specified in the `build` block under the `caches` heading.  It has one required property, `watch`, and a few optional parameters.  There is no limit on the number of cache items that can be defined.
+
+A basic PHP build cache block would look like this:
+
+```yaml
+build:
+    caches:
+        vendor:
+            watch: composer.*
+```
+
+The key of the cache definition (`vendor` in this case) is the identifier of the cache, and also the name of the directory to be cached.  `watch` specifies what file or files will trigger a new cache item should they change.  That is, the example above would reuse the `vendor` directory, and trigger a new build of it every time the `composer.json` or `composer.lock` files change.
+
+### `watch`
+
+The `watch` property specifies the file or files that control a given cacheable directory.  It may either be a single string or multiple strings in glob format.  That is, the following are all legal:
+
+```yaml
+watch: composer.*
+```
+
+```yaml
+watch: 
+    - composer.json
+    - composer.lock
+```
+
+```yaml
+watch:
+    - "assets/**/*.sass"
+    - "assets/**/*.svg"
+```
+
+The hash of all matching files form the cache key for the cache entry.
+
+### `directory`
+
+The `directory` property specifies the directory, relative to the application root, that should be cached.  While it can be any directory, it should ideally be set to a directory that does not exist in the Git repository and is created in the build process.  (Setting it to a directory that is in Git and doesn't change in build won't break anything, but is rather pointless.)
+
+If not specified, the cache key is the directory name.  That is, the following are equivalent:
+
+```yaml
+build:
+    cache:
+        build/assets:
+            watch: "assets/**/*.sass"
+```
+
+```yaml
+build:
+    cache:
+        my_asset_cache:
+            directory: "build/assets"
+            watch: "assets/**/*.sass"
+```
+
+### `allow_stale`
+
+Defaults to `false`.  If set to `true`, then on a cache miss the directory will be populated by the most recently created cache version, even if it's out of date.  That allows build processes capable of incremental builds to start from a mostly-complete state and just recompute part of the build, saving time.  Not all build processes are capable of that, however, so it defaults to false.
+
+### `share_between_apps`
+
+Defaults to `false`.  If set to `true`, then in a [multi-application project](/configuration/app/multi-app.md) the same cache is used by all application instances.  If not, each application cache is independent of each other.  This flag may be useful in cases where the same code base or nearly the same code base is running in two different applications and thus 3rd party dependencies for both are nearly the same.  In that case, using an already-built cache (likely with the `allow_stale` flag) from another application instance may speed up the build process.  Note, however, that if the applications differ significantly in their dependencies or build output then this flag may cause increased cache thrashing and reduce the effectiveness of the build cache.
+
+### Recommended configurations
+
+The build cache can be configured for any build task or script your application uses.  However, the most common case is caching 3rd party dependency installation as those tend to be stable over time and thus easy to cache.  Recommended build cache settings for different dependency managers are shown below.  If your application uses multiple dependency managers (such as Composer for the application but NPM for some of the build tooling or Ruby for Sass compilation) then you can include multiple directives to cover all of them.
+
+
+{% codetabs name="PHP", type="yaml" -%}
+build:
+    caches:
+        vendor:
+            watch: composer.*
+            allow_stale: true
+{%- language name="Node/NPM", type="yaml" -%}
+build:
+    caches:
+        node_modules:
+            watch: package-lock.json
+{%- language name="Python", type="yaml" -%}
+build:
+    caches:
+        what_dir_is_this:
+            watch:
+                - Pipfile
+                - Pipfile.lock
+{%- language name="Ruby", type="yaml" -%}
+build:
+    caches:
+        what_dir_is_this:
+            watch:
+                - Gemfile
+                - Gemfile.lock
+{%- language name="Go", type="yaml" -%}
+build:
+    caches:
+        vendor:
+            watch:
+                - go.mod
+                - go.sum
+            allow_stale: true
+{%- endcodetabs %}
 
 ## Build dependencies
 
