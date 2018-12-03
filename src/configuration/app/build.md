@@ -97,7 +97,6 @@ Defaults to `false`.  If set to `true`, then in a [multi-application project](/c
 
 The build cache can be configured for any build task or script your application uses.  However, the most common case is caching 3rd party dependency installation as those tend to be stable over time and thus easy to cache.  Recommended build cache settings for different dependency managers are shown below.  If your application uses multiple dependency managers (such as Composer for the application but NPM for some of the build tooling or Ruby for Sass compilation) then you can include multiple directives to cover all of them.
 
-
 {% codetabs name="PHP", type="yaml" -%}
 build:
     caches:
