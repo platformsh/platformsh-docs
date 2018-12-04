@@ -32,7 +32,6 @@
   * [Memcached](configuration/services/memcached.md)
   * [MongoDB](configuration/services/mongodb.md)
   * [MySQL](configuration/services/mysql.md)
-  * [MongoDB](configuration/services/mongodb.md)
   * [Network Storage](configuration/services/network-storage.md)
   * [PostgreSQL](configuration/services/postgresql.md)
   * [Redis](configuration/services/redis.md)
