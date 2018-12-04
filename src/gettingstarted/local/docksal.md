@@ -6,7 +6,7 @@ See the [Docksal documentation](https://docs.docksal.io/) for installing and set
 
 Docksal will ask you to create a `.docksal` directory in your application root, which functions similarly to the `.platform.app.yaml` file. It is safe to check this directory into your Git repository as Platform.sh will simply ignore it.
 
-Docksal Fin (`fin`) is a command line tool for controlling a Docksal project. For more information on the use of the `fin` command, type the `help` subcommand to get all available commands and options.
+Docksal Fin (`fin`) is a command line tool for controlling Docksal and used for interacting with a Docksal project. For more information on the use of the `fin` command, type the `help` subcommand to get all available commands and options.
 
 ```bash
 fin help
