@@ -277,3 +277,6 @@ Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply t
 The current disk usage can be checked using the CLI command `platform db:size`. Because of issues with the way InnoDB reports its size, this can out by up to 20%. As table space can grow rapidly, *it is usually advisable to make your database mount size twice the size reported by the `db:size` command*.
 
 You are encouraged to add a [low-disk warning notification](/administration/integrations/notifications.html#low-disk-warning) to proactively warn of low disk space before it becomes an issue.
+
+Another issue might be in context of long running worker processes that try to re-use a timed out connection. In such cases it can happen to see the same error popping up in your logs. If possible try to establish a new connection in your application or - in case of workers - ensure a shorter execution/idle time or enforce some sort of restart by exiting the current command. 
+In PHP environments you can also try to increase the `mysql.connect_timeout` and/or `default_socket_timeout` in your [php.ini](/languages/php/ini.html).
