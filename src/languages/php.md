@@ -6,29 +6,27 @@ PHP is a popular scripting language designed especially for the web. It currentl
 
 ## Supported versions
 
-* 5.6
-* 7.0
 * 7.1
 * 7.2
+* 7.3
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
-To select a PHP version, specify a `type` such as `php:7.2`:
+To select a PHP version, specify a `type` such as `php:7.3`:
 
 ```yaml
 # .platform.app.yaml
-type: "php:7.2"
+type: "php:7.3"
 ```
 
 ## Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-### PHP
-
 * 5.4
 * 5.5
-
+* 5.6
+* 7.0
 
 ## Alternate start commands
 
@@ -51,6 +49,7 @@ If not specified, the effective default start command varies by PHP version:
 * On PHP 7.0, it's `/usr/sbin/php-fpm7.0`.
 * On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`.
 * On PHP 7.2, it's `/usr/sbin/php-fpm7.2-zts`.
+* On PHP 7.3, it's `/usr/sbin/php-fpm7.3-zts`.
 
 While you can call it manually that is generally not necessary. Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or Amp). If you need both they will have to run in separate containers.
 
