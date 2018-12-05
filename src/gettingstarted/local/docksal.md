@@ -43,8 +43,14 @@ platform get PROJECT_ID -e master PROJECT_DIRECTORY
 To start a new Docksal project, initialize the configuration with the `fin config generate` command and specify the `docroot` flag.
 
 ```bash
-fin config set docroot=web
-fin start
+fin config generate --docroot=web
+fin project start
+```
+
+The `web` directory is one of the many different items that can be set for the document. If this is different or changes over time running the following will fix this.
+
+```bash
+fin config set docroot=XXX # Replacing XXX with the new document root.
 ```
 
 ## Customizing a Platform.sh project
@@ -62,10 +68,10 @@ DB_IMAGE='docksal/db:1.2-mysql-5.7'
 #DB_IMAGE='docksal/db:1.2-mysql-8.0'
 
 # PHP Versions Available 5.6 / 7.0 / 7.1 / 7.2
-#CLI_IMAGE='docksal/cli:2.4-php5.6'
-#CLI_IMAGE='docksal/cli:2.4-php7.0'
-CLI_IMAGE='docksal/cli:2.4-php7.1'
-#CLI_IMAGE='docksal/cli:2.4-php7.2'
+#CLI_IMAGE='docksal/cli:2.5-php5.6'
+#CLI_IMAGE='docksal/cli:2.5-php7.0'
+CLI_IMAGE='docksal/cli:2.5-php7.1'
+#CLI_IMAGE='docksal/cli:2.5-php7.2'
 ```
 
 You can further create and customize a `.docksal/docksal.yml` file within your project. This is a docker-compose file and can be customized as needed for your application, as some customizations are specific to certain applications. See Docksal documentation on [extending stock images](https://docs.docksal.io/stack/extend-images).
@@ -76,7 +82,19 @@ In most cases, downloading data from Platform.sh and loading it into your projec
 
 ```bash
 fin platform db:dump --gzip -f /tmp/database.sql.gz
-fin exec 'mysql -u user -puser default /tmp/database.sql.gz'
+fin exec 'zcat < /tmp/database.sql.gz | mysql -u user -puser -h db default'
 ```
+
+### Connecting Projects to the Database
+
+After importing your database into the project the next step is connecting to the database server. The following information can be used for setting up a connection for your application.
+
+Key | Value
+----|-----
+DB Name | default
+Username | user
+Password | user
+Host | db
+Port | 3306
 
 See the [exporting tutorial](/tutorials/exporting.md) for information on how to use rsync.
