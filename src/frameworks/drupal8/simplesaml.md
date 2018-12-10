@@ -6,7 +6,7 @@ The following configuration assumes you are building Drupal 8 using Composer.  I
 
 ## Download the library and Drupal module
 
-The easiest way to download SimpleSAMLphp is via Composer.  The following lines will add both the Drupal module and the PHP library to your `composer.json` file.
+The easiest way to download SimpleSAMLphp is via Composer.  The following command will add both the Drupal module and the PHP library to your `composer.json` file.
 
 ```bash
 composer require simplesamlphp/simplesamlphp drupal/simplesamlphp_auth
