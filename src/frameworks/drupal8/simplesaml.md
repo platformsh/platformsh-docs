@@ -14,6 +14,21 @@ composer require simplesamlphp/simplesamlphp drupal/simplesamlphp_auth
 
 Once that's run, commit both `composer.json` and `composer.lock` to your repository.
 
+## Include SimpleSAML cookies in the cache key
+
+The SimpleSAML client uses additional cookies besides the Drupal session cookie that need to be whitelisted for the cache.  To do so, modify your `routes.yaml` file for the route that points to your Drupal site and add two additional cookies to the `cache.cookies` line.  It should end up looking approximately like this:
+
+```yaml
+"https://{default}/":
+    type: upstream
+    upstream: "app:http"
+    cache:
+      enabled: true
+      cookies: ['/^SS?ESS/', '/^Drupal.visitor/', 'SimpleSAMLSessionID', 'SimpleSAMLAuthToken']
+```
+
+Commit this change to the Git repository.
+
 ## Expose the SimpleSAML endpoint
 
 The SimpleSAML library's `www` directory needs to be publicly accessible.  That can be done by mapping it directly to a path in the Application configuration.  Add the following block to the `web.locations` section of `.platform.app.yaml`:
