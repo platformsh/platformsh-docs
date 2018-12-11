@@ -49,12 +49,14 @@ platform integration:add --type=github --project=abcde12345 --token=xxx --reposi
 
 Optional parameters:
 * `--fetch-branches`: Track and deploy branches (true by default)
-* `--prune-branches`: Delete branches that do not exist in the remote GitHub repository (true by default, requires --fetch-branches set to true to enable)
+* `--prune-branches`: Delete branches that do not exist in the remote GitHub repository (true by default)
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`false` by default)
 * `--pull-requests-clone-parent-data`: Set to `false` to disable cloning of parent environment data when creating a PR environment, so each PR environment starts with no data. (`true` by default)
 
-The CLI will create the necessary webhook for you when there's correct permission set in the given token. 
+The CLI will create the necessary webhook for you when there's correct permission set in the given token.
+
+Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.  If `--fetch-branches` is disabled, `--prune-branches` will automatically be set to false, even if specifically set to true.
 
 ### 3. Add the webhook
 

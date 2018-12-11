@@ -43,7 +43,10 @@ Optional parameters:
 * `--build-merge-requests`: Track and deploy merge-requests (true by default)
 * `--merge-requests-clone-parent-data` : should merge requests clone the data from the parent environment (true by default)
 * `--fetch-branches`: Track and deploy branches (true by default)
-* `--prune-branches`: Delete branches that do not exist in the remote GitLab repository (true by default, requires --fetch-branches set to true to enable)
+* `--prune-branches`: Delete branches that do not exist in the remote GitLab repository (true by default)
+
+
+Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.  If `--fetch-branches` is disabled, `--prune-branches` will automatically be set to false, even if specifically set to true.
 
 ### 3. Add the webhook
 
