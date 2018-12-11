@@ -6,13 +6,28 @@ The following configuration assumes you are building Drupal 8 using Composer.  I
 
 ## Download the library and Drupal module
 
-The easiest way to download SimpleSAMLphp is via Composer.  The following lines will add both the Drupal module and the PHP library to your `composer.json` file.
+The easiest way to download SimpleSAMLphp is via Composer.  The following command will add both the Drupal module and the PHP library to your `composer.json` file.
 
 ```bash
 composer require simplesamlphp/simplesamlphp drupal/simplesamlphp_auth
 ```
 
 Once that's run, commit both `composer.json` and `composer.lock` to your repository.
+
+## Include SimpleSAML cookies in the cache key
+
+The SimpleSAML client uses additional cookies besides the Drupal session cookie that need to be whitelisted for the cache.  To do so, modify your `routes.yaml` file for the route that points to your Drupal site and add two additional cookies to the `cache.cookies` line.  It should end up looking approximately like this:
+
+```yaml
+"https://{default}/":
+    type: upstream
+    upstream: "app:http"
+    cache:
+      enabled: true
+      cookies: ['/^SS?ESS/', '/^Drupal.visitor/', 'SimpleSAMLSessionID', 'SimpleSAMLAuthToken']
+```
+
+Commit this change to the Git repository.
 
 ## Expose the SimpleSAML endpoint
 
