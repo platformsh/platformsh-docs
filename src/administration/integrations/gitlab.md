@@ -45,6 +45,9 @@ Optional parameters:
 * `--fetch-branches`: Track and deploy branches (true by default)
 * `--prune-branches`: Delete branches that do not exist in the remote GitLab repository (true by default)
 
+
+Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.  If `--fetch-branches` is disabled, `--prune-branches` will automatically be set to false, even if specifically set to true.
+
 ### 3. Add the webhook
 
 The previous command, if successful should output the configuration of the integration. The last element would look like:

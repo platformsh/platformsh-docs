@@ -54,7 +54,9 @@ Optional parameters:
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`false` by default)
 * `--pull-requests-clone-parent-data`: Set to `false` to disable cloning of parent environment data when creating a PR environment, so each PR environment starts with no data. (`true` by default)
 
-The CLI will create the necessary webhook for you when there's correct permission set in the given token. 
+The CLI will create the necessary webhook for you when there's correct permission set in the given token.
+
+Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.  If `--fetch-branches` is disabled, `--prune-branches` will automatically be set to false, even if specifically set to true.
 
 ### 3. Add the webhook
 
