@@ -94,6 +94,7 @@ Each rule under `paths` is defined by its key describing the expression to match
        paths:
          '/from':
            to: 'https://example.com/'
+           code: 301
          '/here':
            to: 'https://example.com/there'
            expires: 2w
