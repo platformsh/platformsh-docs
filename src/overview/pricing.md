@@ -91,10 +91,10 @@ We propose three tiers for agencies with many perks.
 
 [Learn more and join today...](https://platform.sh/solutions/agency)
 
-## Sovereign German Cloud and Australian Region
+## Sovereign German Cloud
 
 
-The prices for Germany and Australia are currently set at 30% above the EU and US plan prices. Thus, a "Production Standard" environment on the Sovereign German Cloud will be $65 instead of $50.
+The prices for Germany are currently set at 30% above the EU and US plan prices. Thus, a "Production Standard" environment on the Sovereign German Cloud will be $65 instead of $50.
 
 Our estimation page (which you can reach by clicking on your account dashboard on the edit link for a project) does reflect these new options.
 
