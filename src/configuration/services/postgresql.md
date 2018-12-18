@@ -6,12 +6,15 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 ## Supported versions
 
-* 9.3
 * 9.6
+* 10
+* 11
 
-> **note**
->
-> Downgrades of PostgreSQL are not supported. PostgreSQL will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+### Deprecated versions
+
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+
+* 9.3
 
 ## Relationship
 
@@ -41,7 +44,7 @@ In your `.platform/services.yaml` add:
 
 ```yaml
 mydatabase:
-    type: postgresql:9.6
+    type: postgresql:11
     disk: 1024
 ```
 
@@ -182,7 +185,7 @@ Platform.sh supports a number of PostgreSQL extensions.  To enable them, list th
 
 ```yaml
 postgresql:
-    type: "postgresql:9.6"
+    type: "postgresql:11"
     disk: 1025
     configuration:
         extensions:
@@ -255,66 +258,15 @@ extensions not listed here.
 
 ### Could not find driver
 
-If you see this error: ``Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'``, this means you are missing the ``pdo_pgsql`` PHP extension. You simply need to enable it in your ``.platform.app.yaml`` (see above).
+If you see this error: `Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'`, this means you are missing the `pdo_pgsql` PHP extension. You simply need to enable it in your `.platform.app.yaml` (see above).
 
 ## Upgrading
 
-Although PostgreSQL includes the `pg_upgrade` command for direct migration of data between versions, the process for using it requires both the old and new versions to be installed side by side, and sometimes requires user intervention. For that reason, we don't support transparent updates from one PostgreSQL version to another (such as from 9.3 to 9.6). Accordingly, upgrading between major versions of PostgreSQL requires a manual dump and restore of the data.
+PostgreSQL 10 and later include an upgrade utility that can convert databases from previous versions to version 10 or 11.  If you upgrade your service from a previous version of PostgreSQL to version 10 or above (by modifying the `services.yaml` file) the upgrader will run automatically.
 
-To minimize the downtime associated with such upgrades, we suggest the following process:
+The upgrader does not work to upgrade to PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 are not supported.  Upgrade straight to version 11 instead.
 
-1. Create a development environment that you can use to test the upgrade process.
-2. Create a new service for the new PostgreSQL version (alongside the existing one), and point your application container's existing relationship at the new service.
-3. Add a new relationship to expose the service running the older PostgreSQL version
-4. Add a [deploy hook](#example-deploy-hook) that migrates the data from the old service to the new one. This prevents the application from loading and modifying the database during the migration.
-5. Make a Git commit with these changes, and push it into the development environment that you're testing with.
-6. In the development environment, review `/var/log/deploy.log` to confirm that the migration was successful, inspect the database, and test your application as needed to confirm that the migration was successful and that the application works with the new PostgreSQL version.
-7. When you're ready to upgrade the database on your master environment, start off by triggering a fresh snapshot of the master environment's data. This will give you the ability to roll back the upgrade process in case something goes wrong.
-8. Push the same commit from step 5 into your project's master branch. This will carry out the migration in your production environment.
-9. Finally, push out another commit that removes the old database service and the deploy hook used for migration, which is no longer needed now that the upgrade process is finished.
+> Warning: Make sure you first test your migration on a separate branch
+> Warning: be sure to take a snapshot of your master environment **before** you merge this change.
 
-**Note**
-If your database is too large to duplicate within your plan size, we'd suggest temporarily raising your plan limits. Charges are prorated, so you'll only be billed for a single day of increased usage. However, you can also use a development environment to perform the migration:
-1. Put your master environment's application into maintenance mode, if possible, to prevent it from trying to read from or write to the database during the migration.
-2. Create an up-to-date copy of your database by cloning a development environment from master.
-3. Rename the master environment's postgresql service, and switch the version to 9.6. Renaming ensures that the service's storage is reset, which is necessary to avoid exposing the 9.6 server to incompatible data from version 9.3.
-4. Open an SSH session in your master environment, with agent forwarding enabled (so you can SSH from master to your development environment).
-5. Now, use SSH to run `pg_dump` on the development environment, and pipe the data from SSH into a `pg_restore` command running in the master environment. You can use the [sample deploy hook](#example-deploy-hook) below as a starting point. You'll need to create a .pgpass file on the development environment, and also wrap the `pg_dump` invocation in a call to `ssh`.
-
-### Example deploy hook
-
-Here's a sample deploy hook that you can use to implement the migration between versions:
-
-```yaml
-hooks:
-    deploy: |
-        OLD_RELATIONSHIP_NAME=postgresql_9.3.internal
-        NEW_RELATIONSHIP_NAME=postgresql_9.6.internal
-        export PGPASSFILE=/tmp/pgpass/.pgpass
-        mkdir -p /tmp/pgpass
-        chmod -R go-rwx /tmp/pgpass
-        cat > $PGPASSFILE <<EOF
-        $OLD_RELATIONSHIP_NAME:5432:main:main:main
-        $NEW_RELATIONSHIP_NAME:5432:main:main:main
-        EOF
-        chmod go-rwx $PGPASSFILE
-
-        pg_dump \
-            --format custom \
-            --host=$OLD_RELATIONSHIP_NAME \
-            --port=5432 \
-            --dbname=main \
-            --username=main \
-            --no-password \
-        | pg_restore \
-            --format custom \
-            --no-owner \
-            --no-privileges \
-            --host=$NEW_RELATIONSHIP_NAME \
-            --port=5432 \
-            --dbname=main \
-            --username=main \
-            --no-password
-
-        rm -r /tmp/pgpass
-```
+Downgrading is not supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
