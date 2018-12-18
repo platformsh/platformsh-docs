@@ -17,6 +17,7 @@
   * [Tethered](gettingstarted/local/tethered.md)
   * [Untethered](gettingstarted/local/untethered.md)
   * [Lando](gettingstarted/local/lando.md)
+  * [Docksal](gettingstarted/local/docksal.md)
 
 ## Configuration
 
