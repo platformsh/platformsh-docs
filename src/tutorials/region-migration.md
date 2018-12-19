@@ -2,7 +2,7 @@
 
 Platform.sh is available in a number of different *Regions*.  Each region is a self-contained copy of Platform.sh in a single datacenter.  When you first create a project you can specify which region it should be in.
 
-There is no automated way to migrate a project from one region to another after it is created.  However, the process to do so manually is fairly straightforward.
+Platform.sh does not offer an automated way to migrate a project from one region to another after it is created.  However, the process to do so manually is fairly straightforward and scriptable.
 
 ## Why migrate between regions?
 
@@ -10,7 +10,31 @@ There is no automated way to migrate a project from one region to another after 
 * Only selected regions offer European Sovereign hosting.  If you created a project in a non-Sovereign region you may need to migrate to a Sovereign region.
 * Some regions are running older versions of the Platform.sh orchestration system that offers fewer features.  In particular, the US-1 and EU-1 regions do not offer XL and 2XL plans, self-terminating builds in case of a build process that runs too long, or distributing environments across different grid hosts.  If you are on one of those regions and desire those features you will need to migrate to the newer US-2 or EU-2 regions.
 
-## Migration process
+## Scripted migration process
+
+Although not directly supported by Platform.sh, an agency named [Contextual Code](https://www.contextualcode.com/) has built a bash migration script to automate most common configurations.  If your site is a typical single application with a single SQL database, the script should take care of most of the process for you.  (If you have additional backend systems you may need to do some additional work manually, as documented below.)
+
+### 0. Preparation
+
+* Plan a timeframe in which to handle the migration.  You will want to avoid developing any new code during that period (as your Git repository will change) and be prepared for a brief site outage when you migrate.  You are essentially relaunching the site, just with the same host as previously.  Plan accordingly.
+* Set your DNS Time-to-Live as low as possible.
+
+### 1. Create a new project
+
+Create a new Platform.sh Project in the desired region.  You can initially create it as a Development project and change the plan size immediately before switching over or go ahead and use the desired size from the beginning.  When the system asks if you want to use an existing template or provide your own code, select provide your own code.  However, you do not need to push any code to it yet.  Note the new project's ID from the URL.
+
+### 2. Download and invoke the script
+
+Download the [Platform Migration](https://gitlab.com/contextualcode/platformsh-migration) tool from Contextual Code.  The README file explains the step it uses in more detail.  With a typical site it will carry you through the full process of transfering code, data, configuration, and the domain name to your new project.
+
+Note: You will still need to update your DNS record with your registrar to point to the new project when you are ready to go live.  Also be aware that the script does not transfer external integrations &mdash; such as health notifications or 3rd party Git provider integrations &mdash; so you will need to re-enable those manually.
+
+### 3. Remove the old project
+
+Once the new project is running and the DNS has fully propagated you can delete the old project.
+
+
+## Manual migration process
 
 ### 0. Preparation
 
