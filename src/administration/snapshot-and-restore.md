@@ -18,7 +18,7 @@ Using the CLI:
 $ platform snapshot:create
 ```
 
-Please be aware that triggering a snapshot will cause a momentary pause in site availability so that all requests can complete, allowing the snapshot to be taken against a known consistent state.  The total interruption is usually only 1-2 seconds and any requests during that time are held temporarily, not dropped.
+Please be aware that triggering a snapshot will cause a momentary pause in site availability so that all requests can complete, allowing the snapshot to be taken against a known consistent state.  The total interruption is usually only 15 to 30 seconds and any requests during that time are held temporarily, not dropped.
 
 ## Restore
 
