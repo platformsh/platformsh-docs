@@ -60,7 +60,7 @@ This is the complete list of extensions that can be enabled:
 
 | Extension     | 5.4 | 5.5 | 5.6 | 7.0 | 7.1 | 7.2 | 7.3 |
 |---------------|-----|-----|-----|-----|-----|-----|-----|
-| amqp          |     |     |     | *   | *   | *   | *   |
+| amqp          |     |     |     | *   | *   | *   |     |
 | apc           | *   | *   |     |     |     |     |     |
 | apcu          | *   |     | *   | *   | *   | *   | *   |
 | apcu_bc       |     |     |     | *   | *   | *   | *   |
@@ -90,17 +90,17 @@ This is the complete list of extensions that can be enabled:
 | imap          | *   | *   | *   | *   | *   | *   | *   |
 | interbase     | *   | *   | *   | *   | *   | *   | *   |
 | intl          | *   | *   | *   | *   | *   | *   | *   |
-| ioncube       |     |     |     | *   | *   |     |     |
+| ioncube       |     |     |     | *   | *   | *   |     |
 | json          |     |     | *   | *   | *   | *   | *   |
 | ldap          | *   | *   | *   | *   | *   | *   | *   |
-| mailparse     |     |     |     | *   | *   | *   | *   |
+| mailparse     |     |     |     | *   | *   | *   |     |
 | mbstring      |     |     |     | *   | *   | *   | *   |
 | mcrypt        | *   | *   | *   | *   | *   |     |     |
 | memcache      | *   | *   | *   |     |     |     |     |
 | memcached     | *   | *   | *   | *   | *   | *   |     |
 | mongo         | *   | *   | *   |     |     |     |     |
 | mongodb       |     |     |     | *   | *   | *   | *   |
-| msgpack       |     |     | *   | *   | *   | *   | *   |
+| msgpack       |     |     | *   | *   | *   | *   |     |
 | mssql         | *   | *   | *   |     |     |     |     |
 | mysql         | *   | *   | *   |     |     |     |     |
 | mysqli        | *   | *   | *   | *   | *   | *   | *   |
@@ -117,7 +117,7 @@ This is the complete list of extensions that can be enabled:
 | pdo_odbc      | *   | *   | *   | *   | *   | *   | *   |
 | pdo_pgsql     | *   | *   | *   | *   | *   | *   | *   |
 | pdo_sqlite    | *   | *   | *   | *   | *   | *   | *   |
-| pdo_sqlsrv    |     |     |     | *   | *   | *   | *   |
+| pdo_sqlsrv    |     |     |     | *   | *   | *   |     |
 | http          |     |     | *   |     |     |     |     |
 | pgsql         | *   | *   | *   | *   | *   | *   | *   |
 | phar          |     |     |     | *   | *   | *   | *   |
@@ -125,7 +125,7 @@ This is the complete list of extensions that can be enabled:
 | posix         |     |     |     | *   | *   | *   | *   |
 | propro        |     |     | *   |     |     |     |     |
 | pspell        | *   | *   | *   | *   | *   | *   | *   |
-| pthreads      |     |     |     |     | *   | *   | *   |
+| pthreads      |     |     |     |     | *   | *   |     |
 | raphf         |     |     | *   |     |     |     |     |
 | readline      | *   | *   | *   | *   | *   | *   | *   |
 | recode        | *   | *   | *   | *   | *   | *   | *   |
@@ -139,18 +139,18 @@ This is the complete list of extensions that can be enabled:
 | sourceguardian|     |     |     | *   | *   |     |     |
 | spplus        | *   | *   |     |     |     |     |     |
 | sqlite3       | *   | *   | *   | *   | *   | *   | *   |
-| sqlsrv        |     |     |     | *   | *   | *   | *   |
+| sqlsrv        |     |     |     | *   | *   | *   |     |
 | ssh2          | *   | *   | *   | *   | *   | *   | *   |
 | sysvmsg       |     |     |     | *   | *   | *   | *   |
 | sysvsem       |     |     |     | *   | *   | *   | *   |
 | sysvshm       |     |     |     | *   | *   | *   | *   |
-| tideways      |     |     |     | *   | *   | *   | *   |
+| tideways      |     |     |     | *   | *   | *   |     |
 | tidy          | *   | *   | *   | *   | *   | *   | *   |
 | tokenizer     |     |     |     | *   | *   | *   | *   |
 | uuid          |     |     |     |     | *   | *   | *   |
 | wddx          |     |     |     | *   | *   | *   | *   |
 | xcache        | *   | *   |     |     |     |     |     |
-| xdebug        | *   | *   | *   | *   | *   | *   | *   |
+| xdebug        | *   | *   | *   | *   | *   | *   |     |
 | xhprof        | *   | *   | *   |     |     |     |     |
 | xml           |     |     |     | *   | *   | *   | *   |
 | xmlreader     |     |     |     | *   | *   | *   | *   |
