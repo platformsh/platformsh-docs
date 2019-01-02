@@ -111,14 +111,17 @@ build:
 {%- language name="Python", type="yaml" -%}
 build:
     caches:
-        what_dir_is_this:
+        pip:
+            # Modify this based on your Python version as needed.
+            directory: '.global/lib/python3.7/site-packages'
             watch:
                 - Pipfile
                 - Pipfile.lock
 {%- language name="Ruby", type="yaml" -%}
 build:
     caches:
-        what_dir_is_this:
+        gem-spec:
+            directory: '.gem/specs'
             watch:
                 - Gemfile
                 - Gemfile.lock
