@@ -105,7 +105,7 @@ This is the complete list of extensions that can be enabled:
 | mysql         | *   | *   | *   |     |     |     |     |
 | mysqli        | *   | *   | *   | *   | *   | *   | *   |
 | mysqlnd       | *   | *   | *   | *   | *   | *   | *   |
-| newrelic      |     |     | *   | *   |     |     |     |
+| newrelic      |     |     | *   | *   | *   | *   | *   |
 | oauth         |     |     |     | *   | *   | *   | *   |
 | odbc          | *   | *   | *   | *   | *   | *   | *   |
 | opcache       |     | *   | *   | *   | *   | *   | *   |
