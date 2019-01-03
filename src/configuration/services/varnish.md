@@ -27,16 +27,16 @@ Add the following to your `.platform/services.yaml` file:
 varnish:
     type: varnish:5.2
     relationships:
-        app: 'app:http'
+        application: 'app:http'
     configuration:
         vcl: !include
             type: string
             path: config.vcl
 ```
 
-In the `relationships` block, define a relationship to the application container (here `app`) using the `http` endpoint, and name the relationship the same.  That allows Varnish to talk to the application container.
+In the `relationships` block, define a relationship (`application`) to the application container (`app`) using the `http` endpoint, and name the relationship the same.  That allows Varnish to talk to the application container.
 
-There is no default VCL file provided.  The configuration block is required, and must reference a VCL file (here `config.vcl`).  The file name is relative to the `.platform` directory.
+The configuration block is required, and must reference a VCL file (here `config.vcl`).  The file name is relative to the `.platform` directory.
 
 ### Create a VCL template file
 
@@ -50,11 +50,11 @@ The absolute bare minimum VCL file is:
 
 ```
 sub vcl_recv {
-    set req.backend_hint = app.backend();
+    set req.backend_hint = application.backend();
 }
 ```
 
-Where `app` is the name of the relationship defined in `services.yaml`.  (If the relationship was named differently, use that name instead.)
+Where `application` is the name of the relationship defined in `services.yaml`.  (If the relationship was named differently, use that name instead.)
 
 If you have multiple applications fronted by the same Varnish instance then you will need to include logic to determine to which application a request is forwarded.  For example:
 
@@ -91,15 +91,6 @@ For example:
 
 That will map all incoming requests to the Varnish service rather than the application.  Varnish will then, based on the VCL file, forward requests to the application as appropriate.
 
-### Expose Varnish to the application
+## Circular relationships
 
-In some situations it is necessary for the application container to send messages to the Varnish server directly, such as for forced cache purge situations.  In that case you will also need to add a relationship from the application to the Varnish service.  That is the same as any other relationship in `.platform.app.yaml`:
-
-```yaml
-relationships:
-    varnish: `varnish:http`
-```
-
-(Assuming your service is named `varnish` in `services.yaml`.)
-
-Your application will then be able to send HTTP requests to the Varnish instance using the credentials provided in that relationship.
+At this time Platform.sh does not support circular relationships between a service and an application.  That means you cannot add a relationship in your `.platform.app.yaml` that points to the Varnish service.  If you do so then one of the relationships will be skipped and the connection will not work.
