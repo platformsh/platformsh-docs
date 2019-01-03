@@ -14,8 +14,8 @@ https://platform.sh maintains a database of signatures of known security vulnera
 
 We analyze the code of your application:
 
-* When you push new code to Git
-* Regularly when new vulnerabilities are added to our database
+- When you push new code to Git
+- Regularly when new vulnerabilities are added to our database
 
 If a vulnerability deemed as critical is detected in your application, Platform.sh is going to reject the Git push.
 
@@ -35,13 +35,13 @@ If nonetheless you want to opt out of the protective block, you simply need to s
 
 ```yaml
 preflight:
-   enabled: false
+  enabled: false
 ```
 
 You can also explicitly opt-out of some specific check like this:
 
 ```yaml
 preflight:
-   enabled: true
-   ignore_rules: [ "drupal:SA-CORE-2014-005" ]
+  enabled: true
+  ignore_rules: ["drupal:SA-CORE-2014-005"]
 ```

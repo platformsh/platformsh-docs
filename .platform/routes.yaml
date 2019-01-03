@@ -8,68 +8,244 @@ https://{default}/:
   redirects:
     paths:
       # Reorganizations in mid 2017.  Should be safe to remove around end of year.
-      "/development/going-live.html": { "to": "/golive/checklist.html", "code": 301, "prefix": false}
-      "/overview/basics.html": { "to": "/overview/structure.html", "code": 301, "prefix": false}
-      "/overview/how-it-looks.html": { "to": "/overview/structure.html", "code": 301, "prefix": false}
-      "/overview/how-we-think.html": { "to": "/overview/basics.html", "code": 301, "prefix": false}
+      "/development/going-live.html":
+        { "to": "/golive/checklist.html", "code": 301, "prefix": false }
+      "/overview/basics.html":
+        { "to": "/overview/structure.html", "code": 301, "prefix": false }
+      "/overview/how-it-looks.html":
+        { "to": "/overview/structure.html", "code": 301, "prefix": false }
+      "/overview/how-we-think.html":
+        { "to": "/overview/basics.html", "code": 301, "prefix": false }
 
       # The following were the most common paths on the old site; redirect to the
       # corresponding new page. These redirects should be safe to remove in 2017.
-      "/user_guide/reference/platform-app-yaml.html": { "to": "/configuration/app-containers.html", "code": 301, "prefix": false}
-      "/user_guide/overview/configuring-project-environments.html": { "to": "/administration/web/configure-environment.html", "code": 301, "prefix": false}
-      "/user_guide/using/going-live.html": { "to": "/development/going-live.html", "code": 301, "prefix": false}
-      "/user_guide/using/set-up-local-development.html": { "to": "/development/local.html", "code": 301, "prefix": false}
-      "/user_guide/reference/configuration-files.html": { "to": "/configuration/app-containers.html", "code": 301, "prefix": false}
-      "/user_guide/use-SSH.html": { "to": "/development/ssh.html", "code": 301, "prefix": false}
-      "/user_guide/overview/web-ui/configure-environments.html": { "to": "/administration/web/environments.html", "code": 301, "prefix": false}
-      "/user_guide/overview/web-ui/configure-project.html": { "to": "/administration/web/configure-project.html", "code": 301, "prefix": false}
-      "/user_guide/overview/cli/index.html": { "to": "/overview/cli.html", "code": 301, "prefix": false}
-      "/user_guide/reference/toolstacks/php/index.html": { "to": "/languages/php.html", "code": 301, "prefix": false}
-      "/user_guide/reference/environment-variables.html": { "to": "/development/environment-variables.html", "code": 301, "prefix": false}
-      "/user_guide/using/index.html": { "to": "/administration/users.html", "code": 301, "prefix": false}
-      "/user_guide/overview/technical-requirements.html": { "to": "/overview/tools.html", "code": 301, "prefix": false}
-      "/user_guide/reference/faq/known-issues.html": { "to": "/development/faq.html", "code": 301, "prefix": false}
-      "/drupal_migrate/guides/type/php/drupal/migrate/import-database.html": { "to": "/drupal7/migrating.html", "code": 301, "prefix": false}
-      "/user_guide/reference/toolstacks/php/configure-php.html": { "to": "/languages/php.html", "code": 301, "prefix": false}
-      "/user_guide/overview/services.html": { "to": "/configuration/services.html", "code": 301, "prefix": false}
-      "/drupal/guides/prerequisites/platform-cli.html": { "to": "/overview/cli.html", "code": 301, "prefix": false}
-      "/user_guide/using/integrations/blackfire.html": { "to": "/administration/integrations/blackfire.html", "code": 301, "prefix": false}
-      "/user_guide/reference/toolstacks/php/symfony/migrate-existing-site.html": { "to": "/frameworks/symfony/migrating.html", "code": 301, "prefix": false}
-      "/discover/overview/pricing.html": { "to": "/overview/pricing.html", "code": 301, "prefix": false}
-      "/user_guide/reference/cache.html": { "to": "/configuration/routes/cache.html", "code": 301, "prefix": false}
-      "/user_guide/reference/services/mysql.html": { "to": "/configuration/services/mysql.html", "code": 301, "prefix": false}
-      "/user_guide/reference/platform-app-yaml-multi-app.html": { "to": "/configuration/app/multi-app.html", "code": 301, "prefix": false}
-      "/user_guide/overview/environments.html": { "to": "/administration/web/environments.html", "code": 301, "prefix": false}
-      "/user_guide/reference/routes-yaml.html": { "to": "/configuration/routes.html", "code": 301, "prefix": false}
-      "/drupal/guides/type/php/drupal/sql-sync.html": { "to": "/frameworks/drupal8/developing-with-drupal.html", "code": 301, "prefix": false}
-      "/user_guide/reference/redirects.html": { "to": "/configuration/routes/redirects.html", "code": 301, "prefix": false}
-      "/user_guide/reference/services/solr.html": { "to": "/user_guide/reference/services/solr.html", "code": 301, "prefix": false}
-      "/drupal_migrate/guides/type/php/drupal/migrate/import-files.html": { "to": "/frameworks/drupal7/migrating.html", "code": 301, "prefix": false}
-      "/user_guide/using/integrations/webhooks.html": { "to": "/administration/integrations/webhooks.html", "code": 301, "prefix": false}
-      "/user_guide/reference/services-yaml.html": { "to": "/configuration/services.html", "code": 301, "prefix": false}
-      "/user_guide/reference/services/redis.html": { "to": "/configuration/services/redis.html", "code": 301, "prefix": false}
-      "/drupal/": { "to": "/frameworks/drupal8.html", "code": 301, "prefix": false}
-      "/user_guide/reference/toolstacks/nodejs/index.html": { "to": "/languages/nodejs.html", "code": 301, "prefix": false}
-      "/user_guide/reference/email.html": { "to": "/administration/web/email.html", "code": 301, "prefix": false}
-      "/user_guide/using/backup-and-restore.html": { "to": "/administration/snapshot-and-restore.html", "code": 301, "prefix": false}
-      "/handbook/mysql.html": { "to": "/configuration/services/mysql.html", "code": 301, "prefix": false}
-      "/user_guide/reference/public-ip-addresses.html": { "to": "/development/public-ips.html", "code": 301, "prefix": false}
-      "/user_guide/using/integrations/github.html": { "to": "/administration/integrations/github.html", "code": 301, "prefix": false}
-      "/drupal_migrate": { "to": "/frameworks/drupal7/migrating.html", "code": 301, "prefix": false}
-      "/user_guide/using/private-repository.html": { "to": "/development/private-repository.html", "code": 301, "prefix": false}
-      "/drupal/guides/type/php/drupal/drush-aliases.html": { "to": "/frameworks/drupal8/drush.html", "code": 301, "prefix": false}
-      "/user_guide/reference/services/elasticsearch.html": { "to": "/configuration/services/elasticsearch.html", "code": 301, "prefix": false}
-      "/user_guide/reference/toolstacks/php/drupal/redis-drupal-7.html": { "to": "/frameworks/drupal7/redis.html", "code": 301, "prefix": false}
-      "/handbook/migrating_files.html": { "to": "/frameworks/drupal7/migrating.html", "code": 301, "prefix": false}
-      "/symfony/": { "to": "/frameworks/symfony.html", "code": 301, "prefix": false}
-      "/drupal_migrate/guides/type/php/drupal/rebuild-site-registry.html": { "to": "/frameworks/drupal7/faq.html", "code": 301, "prefix": false}
-      "/drupal/guides/type/php/drupal/local-settings-php.html": { "to": "/frameworks/drupal7/customizing-settings-php.html", "code": 301, "prefix": false}
-      "/user_guide/using/user-administration.html": { "to": "/user_guide/using/user-administration.html", "code": 301, "prefix": false}
-      "/drupal_migrate/guides/local/git-initialize-repository.html": { "to": "/frameworks/drupal7.html", "code": 301, "prefix": false}
-      "/user_guide/using/submodules.html": { "to": "/development/submodules.html", "code": 301, "prefix": false}
-      "/user_guide/index.html": { "to": "/administration/users.html", "code": 301, "prefix": false}
-      "/discover/overview/deployment.html": { "to": "/administration/web/environments.html", "code": 301, "prefix": false}
-      "/user_guide/reference/toolstacks/php/drupal/solr.html": { "to": "/configuration/services/solr.html", "code": 301, "prefix": false}
+      "/user_guide/reference/platform-app-yaml.html":
+        {
+          "to": "/configuration/app-containers.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/overview/configuring-project-environments.html":
+        {
+          "to": "/administration/web/configure-environment.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/using/going-live.html":
+        { "to": "/development/going-live.html", "code": 301, "prefix": false }
+      "/user_guide/using/set-up-local-development.html":
+        { "to": "/development/local.html", "code": 301, "prefix": false }
+      "/user_guide/reference/configuration-files.html":
+        {
+          "to": "/configuration/app-containers.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/use-SSH.html":
+        { "to": "/development/ssh.html", "code": 301, "prefix": false }
+      "/user_guide/overview/web-ui/configure-environments.html":
+        {
+          "to": "/administration/web/environments.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/overview/web-ui/configure-project.html":
+        {
+          "to": "/administration/web/configure-project.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/overview/cli/index.html":
+        { "to": "/overview/cli.html", "code": 301, "prefix": false }
+      "/user_guide/reference/toolstacks/php/index.html":
+        { "to": "/languages/php.html", "code": 301, "prefix": false }
+      "/user_guide/reference/environment-variables.html":
+        {
+          "to": "/development/environment-variables.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/using/index.html":
+        { "to": "/administration/users.html", "code": 301, "prefix": false }
+      "/user_guide/overview/technical-requirements.html":
+        { "to": "/overview/tools.html", "code": 301, "prefix": false }
+      "/user_guide/reference/faq/known-issues.html":
+        { "to": "/development/faq.html", "code": 301, "prefix": false }
+      "/drupal_migrate/guides/type/php/drupal/migrate/import-database.html":
+        { "to": "/drupal7/migrating.html", "code": 301, "prefix": false }
+      "/user_guide/reference/toolstacks/php/configure-php.html":
+        { "to": "/languages/php.html", "code": 301, "prefix": false }
+      "/user_guide/overview/services.html":
+        { "to": "/configuration/services.html", "code": 301, "prefix": false }
+      "/drupal/guides/prerequisites/platform-cli.html":
+        { "to": "/overview/cli.html", "code": 301, "prefix": false }
+      "/user_guide/using/integrations/blackfire.html":
+        {
+          "to": "/administration/integrations/blackfire.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/reference/toolstacks/php/symfony/migrate-existing-site.html":
+        {
+          "to": "/frameworks/symfony/migrating.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/discover/overview/pricing.html":
+        { "to": "/overview/pricing.html", "code": 301, "prefix": false }
+      "/user_guide/reference/cache.html":
+        {
+          "to": "/configuration/routes/cache.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/reference/services/mysql.html":
+        {
+          "to": "/configuration/services/mysql.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/reference/platform-app-yaml-multi-app.html":
+        {
+          "to": "/configuration/app/multi-app.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/overview/environments.html":
+        {
+          "to": "/administration/web/environments.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/reference/routes-yaml.html":
+        { "to": "/configuration/routes.html", "code": 301, "prefix": false }
+      "/drupal/guides/type/php/drupal/sql-sync.html":
+        {
+          "to": "/frameworks/drupal8/developing-with-drupal.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/reference/redirects.html":
+        {
+          "to": "/configuration/routes/redirects.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/reference/services/solr.html":
+        {
+          "to": "/user_guide/reference/services/solr.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/drupal_migrate/guides/type/php/drupal/migrate/import-files.html":
+        {
+          "to": "/frameworks/drupal7/migrating.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/using/integrations/webhooks.html":
+        {
+          "to": "/administration/integrations/webhooks.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/reference/services-yaml.html":
+        { "to": "/configuration/services.html", "code": 301, "prefix": false }
+      "/user_guide/reference/services/redis.html":
+        {
+          "to": "/configuration/services/redis.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/drupal/":
+        { "to": "/frameworks/drupal8.html", "code": 301, "prefix": false }
+      "/user_guide/reference/toolstacks/nodejs/index.html":
+        { "to": "/languages/nodejs.html", "code": 301, "prefix": false }
+      "/user_guide/reference/email.html":
+        { "to": "/administration/web/email.html", "code": 301, "prefix": false }
+      "/user_guide/using/backup-and-restore.html":
+        {
+          "to": "/administration/snapshot-and-restore.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/handbook/mysql.html":
+        {
+          "to": "/configuration/services/mysql.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/reference/public-ip-addresses.html":
+        { "to": "/development/public-ips.html", "code": 301, "prefix": false }
+      "/user_guide/using/integrations/github.html":
+        {
+          "to": "/administration/integrations/github.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/drupal_migrate":
+        {
+          "to": "/frameworks/drupal7/migrating.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/using/private-repository.html":
+        {
+          "to": "/development/private-repository.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/drupal/guides/type/php/drupal/drush-aliases.html":
+        { "to": "/frameworks/drupal8/drush.html", "code": 301, "prefix": false }
+      "/user_guide/reference/services/elasticsearch.html":
+        {
+          "to": "/configuration/services/elasticsearch.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/reference/toolstacks/php/drupal/redis-drupal-7.html":
+        { "to": "/frameworks/drupal7/redis.html", "code": 301, "prefix": false }
+      "/handbook/migrating_files.html":
+        {
+          "to": "/frameworks/drupal7/migrating.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/symfony/":
+        { "to": "/frameworks/symfony.html", "code": 301, "prefix": false }
+      "/drupal_migrate/guides/type/php/drupal/rebuild-site-registry.html":
+        { "to": "/frameworks/drupal7/faq.html", "code": 301, "prefix": false }
+      "/drupal/guides/type/php/drupal/local-settings-php.html":
+        {
+          "to": "/frameworks/drupal7/customizing-settings-php.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/using/user-administration.html":
+        {
+          "to": "/user_guide/using/user-administration.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/drupal_migrate/guides/local/git-initialize-repository.html":
+        { "to": "/frameworks/drupal7.html", "code": 301, "prefix": false }
+      "/user_guide/using/submodules.html":
+        { "to": "/development/submodules.html", "code": 301, "prefix": false }
+      "/user_guide/index.html":
+        { "to": "/administration/users.html", "code": 301, "prefix": false }
+      "/discover/overview/deployment.html":
+        {
+          "to": "/administration/web/environments.html",
+          "code": 301,
+          "prefix": false,
+        }
+      "/user_guide/reference/toolstacks/php/drupal/solr.html":
+        {
+          "to": "/configuration/services/solr.html",
+          "code": 301,
+          "prefix": false,
+        }
 
       # File rename in December 2016.
-      "/development/environment-variables.html": { "to": "/development/variables.html", "code": 301, "prefix": false}
+      "/development/environment-variables.html":
+        { "to": "/development/variables.html", "code": 301, "prefix": false }

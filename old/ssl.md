@@ -1,23 +1,23 @@
 # SSL in Production
 
-Platform.sh fully supports using SSL certificate in production and strongly encourages all of our customers to do so.  We do not charge for SSL support.  We do not at this time issue our own SSL certificates but you can "bring your own" from the SSL issuer of your choice.
+Platform.sh fully supports using SSL certificate in production and strongly encourages all of our customers to do so. We do not charge for SSL support. We do not at this time issue our own SSL certificates but you can "bring your own" from the SSL issuer of your choice.
 
-A BYO-certificate is not necessary for development environments.  Platform.sh provides wildcard certificates that covers all *.platform.sh domains, including development environments.
+A BYO-certificate is not necessary for development environments. Platform.sh provides wildcard certificates that covers all \*.platform.sh domains, including development environments.
 
 Platform.sh supports all kinds of certificates including domain-validated certificates, extended validation (EV) certificates, high-assurance certificates and wildcard certificates.
 
-The information below is provided as a generic guide for generating and signing your own certificates.  However, we strongly recommend consulting the documentation for your chosen SSL issuer.
+The information below is provided as a generic guide for generating and signing your own certificates. However, we strongly recommend consulting the documentation for your chosen SSL issuer.
 
 ## SSL/TLS
 
--   Generate private key
--   Use openssl to generate a new private key
--   Generate CSR
--   Submit CSR to SSL provider
--   Subdomain
--   Root domain
--   Testing SSL
--   Add / change certificate
+- Generate private key
+- Use openssl to generate a new private key
+- Generate CSR
+- Submit CSR to SSL provider
+- Subdomain
+- Root domain
+- Testing SSL
+- Add / change certificate
 
 ## General SSL Information
 
@@ -29,8 +29,8 @@ Generate private key Before requesting an SSL cert, you need to generate a priva
 
 ### Mac OS X
 
-Your OS X installation should come with OpenSSL installed, but you might consider installing  a more recent version using homebrew:
- `brew install openssl`
+Your OS X installation should come with OpenSSL installed, but you might consider installing a more recent version using homebrew:
+`brew install openssl`
 
 ### Windows
 
@@ -62,9 +62,10 @@ A CSR is a certificate signing request and is also required when purchasing an S
 
 Though most fields are self-explanatory, pay close attention to the following:
 
-* Country Name: The two letter code, in ISO 3166-1 format, of the country in which your organization is based.
+- Country Name: The two letter code, in ISO 3166-1 format, of the country in which your organization is based.
 
-* Common Name: This is the fully qualified domain name that you wish to secure.
+- Common Name: This is the fully qualified domain name that you wish to secure.
+
   - For a single subdomain: `www.example.com`
   - For all subdomains, specify the wildcard URL: `*.example.com`
   - For the root domain only: `example.com`
@@ -87,12 +88,12 @@ You may also be asked for what web server to create the certificate. If so, sele
 
 If you’re given an option of what certificate format to use (PKCS, X.509 etc…) choose X.509.
 
-If you want to secure more than one subdomain you will need to purchase a wildcard certificate from your provider. While these certificates are typically more expensive, they allow you to serve requests for all subdomains of *.example.com over SSL.
+If you want to secure more than one subdomain you will need to purchase a wildcard certificate from your provider. While these certificates are typically more expensive, they allow you to serve requests for all subdomains of \*.example.com over SSL.
 
 On completion of the SSL certificate purchase process you should have several files including:
 
-* The SSL certificate for the domain specified in your CSR, downloaded from your certificate provider. This file will have either a .pem or .crt extension.
-* The private key you generated in the first step, server.key.
+- The SSL certificate for the domain specified in your CSR, downloaded from your certificate provider. This file will have either a .pem or .crt extension.
+- The private key you generated in the first step, server.key.
 
 Once you have the SSL certificate file and private key you are ready to configure SSL for your project.
 
@@ -106,10 +107,10 @@ You can also add your certificate via the Platform.sh [Web Interface](/administr
 > Private key should be in the old style, which means it should begin with BEGIN RSA PRIVATE KEY. If it starts with BEGIN PRIVATE KEY that means it is bundled with the identifier for key type. To convert it to the old style RSA key:
 > openssl rsa -in private.key -out private.rsa.key
 
-
 ## Use the Platform.sh CLI to add the certificate
 
 Example:
+
 ```bash
 platform domain:add secure.example.com --cert=/etc/ssl/private/secure-example-com.crt --key=/etc/ssl/private/secure-example-com.key
 ```

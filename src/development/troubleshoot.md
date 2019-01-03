@@ -14,27 +14,27 @@ Do not trigger a redeploy if there are builds in a "Pending" state, as these wil
 
 ## Clear the build cache
 
-In rare circumstances the build cache, used to speed up the build process, may become corrupted.  That may happen if, for example, code is being downloaded from a 3rd party language service like Packagist or NPM while that service is experiencing issues.  To flush the build cache entirely run the following command:
+In rare circumstances the build cache, used to speed up the build process, may become corrupted. That may happen if, for example, code is being downloaded from a 3rd party language service like Packagist or NPM while that service is experiencing issues. To flush the build cache entirely run the following command:
 
 ```sh
 platform project:clear-build-cache
 ```
 
-That will wipe the build cache for the current project entirely.  Naturally the next build for each environment will likely be longer as the cache rebuilds.
+That will wipe the build cache for the current project entirely. Naturally the next build for each environment will likely be longer as the cache rebuilds.
 
 ## HTTP responses 502 Bad Gateway or 503 Service Unavailable
 
-These errors indicate your application (or application runner, like PHP-FPM) is crashing or unavailable.  Typical causes include:
+These errors indicate your application (or application runner, like PHP-FPM) is crashing or unavailable. Typical causes include:
 
-* Your `.platform.app.yaml` configuration has an error and the process is not starting or requests are not able to be forwarded to it correctly.  Check your `web.commands.start` entry or that your `passthru` configuration is correct.
-* The amount of traffic coming to your site exceeds the processing power of your application.
-* Certain code path(s) in your application are too slow and timing out.
-* A PHP process is crashing because of a segmentation fault (see below).
-* A PHP process is killed by the kernel out-of-memory killer (see below).
+- Your `.platform.app.yaml` configuration has an error and the process is not starting or requests are not able to be forwarded to it correctly. Check your `web.commands.start` entry or that your `passthru` configuration is correct.
+- The amount of traffic coming to your site exceeds the processing power of your application.
+- Certain code path(s) in your application are too slow and timing out.
+- A PHP process is crashing because of a segmentation fault (see below).
+- A PHP process is killed by the kernel out-of-memory killer (see below).
 
 ## Low disk space
 
-If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writable space the most direct option is:
+If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command. `df` has numerous options to tweak its output, but for just checking the available writable space the most direct option is:
 
 ```
 df -h -x tmpfs -x squashfs | grep -v /run/shared
@@ -48,10 +48,10 @@ Filesystem                                                       Size  Used Avai
 /dev/mapper/platform-tmp--syd7waxqy4n5q--master--7rqtwti----app  3.9G   42M  3.8G   2% /tmp
 ```
 
-* The first entry shows the storage device that is shared by all of your disk mounts.  Only one path will be shown under `Mounted on` but the disk space reported is common to all defined mounts in a single pool.  In this example, there are 2 GB of total disk allocated to the app container of which only 2% (37 MB) has been used total by all defined mounts.
-* The second entry is the operating system temp directory, which is always the same size.  While you can write to this directory files there are not guaranteed to persist and may be deleted on deploy.
+- The first entry shows the storage device that is shared by all of your disk mounts. Only one path will be shown under `Mounted on` but the disk space reported is common to all defined mounts in a single pool. In this example, there are 2 GB of total disk allocated to the app container of which only 2% (37 MB) has been used total by all defined mounts.
+- The second entry is the operating system temp directory, which is always the same size. While you can write to this directory files there are not guaranteed to persist and may be deleted on deploy.
 
-For a MariaDB database, the command `platform db:size` will give approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percentage points.
+For a MariaDB database, the command `platform db:size` will give approximate disk usage as reported by MariaDB. However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percentage points.
 
 ```
 +--------------+--------+
@@ -63,8 +63,7 @@ For a MariaDB database, the command `platform db:size` will give approximate dis
 +--------------+--------+
 ```
 
-For the most reliable disk usage warnings, we strongly recommend all customers enable [Health notifications](/administration/integrations/notifications.md) on all projects.  That will provide you with a push-notification through your choice of channel when the available disk space on any service drops too low.
-
+For the most reliable disk usage warnings, we strongly recommend all customers enable [Health notifications](/administration/integrations/notifications.md) on all projects. That will provide you with a push-notification through your choice of channel when the available disk space on any service drops too low.
 
 ## MySQL lock wait timeout
 
@@ -74,12 +73,12 @@ If you receive MySQL error messages like this:
 SQLSTATE[HY000]: General error: 1205 Lock wait timeout exceeded;
 ```
 
-This means a process running in your application acquired a lock from MySQL for a long period of time.  That is typically caused by one of the following:
+This means a process running in your application acquired a lock from MySQL for a long period of time. That is typically caused by one of the following:
 
-* There are multiple places acquiring locks in different order. For example, code path 1 first locks record A and then locks record B.  Code path 2, in contrast, first locks record B and then locks record A.
-* There is a long running background process executed by your application that holds the lock until it ends.
+- There are multiple places acquiring locks in different order. For example, code path 1 first locks record A and then locks record B. Code path 2, in contrast, first locks record B and then locks record A.
+- There is a long running background process executed by your application that holds the lock until it ends.
 
-If you're using [MariaDB 10+](/configuration/services/mysql.md), you can use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.  Find output like the following, and start debugging.
+If you're using [MariaDB 10+](/configuration/services/mysql.md), you can use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks. Find output like the following, and start debugging.
 
 ```
 < skipped >
@@ -94,39 +93,37 @@ To find active background processes, run `ps aufx` on your application container
 
 Also, please make sure that locks are acquired in a pre-defined order and released as soon as possible.
 
-
 ## "Read-only file system" error
 
-Everything will be read-only, except the writable [mounts](/configuration/app/storage.md) you declare.  Writable mounts are there for your data: for file uploads, logs and temporary files. Not for your code.  In order to change code on Platform.sh you have to go through Git.
+Everything will be read-only, except the writable [mounts](/configuration/app/storage.md) you declare. Writable mounts are there for your data: for file uploads, logs and temporary files. Not for your code. In order to change code on Platform.sh you have to go through Git.
 
 This is what gives you all of the benefits of having repeatable deployments, consistent backups, traceability, and the magically fast creation of new staging/dev environments.
 
-In Platform.sh, you cannot just "hack production".  It is a constraint, but it is a good constraint.
+In Platform.sh, you cannot just "hack production". It is a constraint, but it is a good constraint.
 
-During the [build phase](/overview/build-deploy.md#building-the-application) of your application, the main filesystem is writable.  So you can do whatever you want (e.g. compile code or generate anything you need).  But during and after the [deploy phase](/overview/build-deploy.md#deploying-the-application), the main filesystem will be read-only.
+During the [build phase](/overview/build-deploy.md#building-the-application) of your application, the main filesystem is writable. So you can do whatever you want (e.g. compile code or generate anything you need). But during and after the [deploy phase](/overview/build-deploy.md#deploying-the-application), the main filesystem will be read-only.
 
 ## RootNotFoundException from the CLI
 
-If you check out a project via Git directly and not using the `platform get` command, you may end up with the CLI unable to determine what project it's in.  If you run a CLI command from within the project directory you've checked out but get an error like this:
+If you check out a project via Git directly and not using the `platform get` command, you may end up with the CLI unable to determine what project it's in. If you run a CLI command from within the project directory you've checked out but get an error like this:
 
 ```
 [RootNotFoundException] Project root not found. This can only be run from inside a project directory.
 ```
 
-Then the CLI hasn't been able to determine the project to use.  To fix that, run:
+Then the CLI hasn't been able to determine the project to use. To fix that, run:
 
 ```
 platform project:set-remote <project_id>
 ```
 
-where `<project_id>` is the random-character ID of the project.  That can be found by running `platform projects` from the command line to list all accessible projects.  Alternatively, it can be found in the UI after the `platform get` command shown or in the URL of the UI or project domain.
+where `<project_id>` is the random-character ID of the project. That can be found by running `platform projects` from the command line to list all accessible projects. Alternatively, it can be found in the UI after the `platform get` command shown or in the URL of the UI or project domain.
 
 ## "File not found" in Drupal
 
-If you see a bare "File not found" error when accessing your Drupal site with a browser, this means that you've pushed your code as a vanilla project but no *index.php* has been found.
+If you see a bare "File not found" error when accessing your Drupal site with a browser, this means that you've pushed your code as a vanilla project but no _index.php_ has been found.
 
-Make sure your repository contains an *index.php* file in the [web location root](/configuration/app-containers.md#locations), or that your [Drush](/frameworks/drupal7/drush.md) make files are properly named.
-
+Make sure your repository contains an _index.php_ file in the [web location root](/configuration/app-containers.md#locations), or that your [Drush](/frameworks/drupal7/drush.md) make files are properly named.
 
 ## PHP-specific error messages
 
@@ -138,13 +135,12 @@ You may see a line like the following in the `/var/log/app.log` file:
 WARNING: [pool web] server reached max_children setting (2), consider raising it
 ```
 
-That indicates that the server is receiving more concurrent requests than it has PHP processes allocated, which means some requests will have to wait until another finishes.  In this example there are 2 PHP processes that can run concurrently.
+That indicates that the server is receiving more concurrent requests than it has PHP processes allocated, which means some requests will have to wait until another finishes. In this example there are 2 PHP processes that can run concurrently.
 
-Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process.  There are two ways to increase the number of workers:
+Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process. There are two ways to increase the number of workers:
 
-* Adjust the [worker sizing hints](/languages/php/fpm.md) for your project.
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
-
+- Adjust the [worker sizing hints](/languages/php/fpm.md) for your project.
+- Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
 
 ### Execution timeout
 
@@ -154,7 +150,7 @@ If your PHP application is not able to handle the amount of traffic or it is slo
 WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /index.php") execution timed out (358.009855 sec), terminating
 ```
 
-That means your PHP process is running longer than allowed.  You can adjust the `max_execution_time` value in `php.ini`, but there is still a 5 minute hard cap on any web request that cannot be adjusted.
+That means your PHP process is running longer than allowed. You can adjust the `max_execution_time` value in `php.ini`, but there is still a 5 minute hard cap on any web request that cannot be adjusted.
 
 The most common cause of a timeout is either an infinite loop (which is a bug that you should fix) or the work itself requires a long time to complete. For the latter case, you should consider putting the task into a background job.
 
@@ -168,8 +164,8 @@ If you see that the processing time of certain requests is slow (e.g. taking mor
 
 Otherwise, you may check if the following options are applicable:
 
-* Find the most visited pages and see if they can be cached and/or put behind a CDN.  You may refer to [how caching works](/configuration/routes/cache.md).
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project subscription.
+- Find the most visited pages and see if they can be cached and/or put behind a CDN. You may refer to [how caching works](/configuration/routes/cache.md).
+- Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project subscription.
 
 ### PHP process crashed
 
@@ -191,9 +187,9 @@ WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 secon
 
 That means the memory usage of your container exceeds the limit allowed on your plan so the kernel kills the offending process. You should try the following:
 
-* Check if the memory usage of your application is expected and try to optimize it.
-* Use [sizing hints](/languages/php/fpm.md) to reduce the amount of PHP workers which reduces the memory footprint.
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
+- Check if the memory usage of your application is expected and try to optimize it.
+- Use [sizing hints](/languages/php/fpm.md) to reduce the amount of PHP workers which reduces the memory footprint.
+- Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
 
 ## Stuck build or deployment
 
@@ -204,15 +200,15 @@ If you see a build or deployment running longer than expected, that may be one o
 3. The deployment is blocked by a long running cron job in the environment.
 4. The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment, you can look at the build log available on the UI.  If you see a line similar to the following:
+To determine if your environment is being stuck in the build or the deployment, you can look at the build log available on the UI. If you see a line similar to the following:
 
 ```
 Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
 ```
 
-It means the build has completed successfully and the system is trying to deploy.  If that line never appears then it means the build is stuck.
+It means the build has completed successfully and the system is trying to deploy. If that line never appears then it means the build is stuck.
 
-For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed.  In some regions the build will self-terminate after one hour.  In other regions (US and EU) the build will need to be killed by our support team.
+For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed. In some regions the build will self-terminate after one hour. In other regions (US and EU) the build will need to be killed by our support team.
 
 When a _deployment_ is blocked, you should try the following:
 
@@ -235,9 +231,9 @@ Related documentation: [Accessing logs](https://docs.platform.sh/development/log
 
 Hooks are frequently the cause of long build time. If they run into problem they can cause the build to fail or hang indefinitely.
 
-The build hook can be tested in your local environment.  Because the deployed environment on Platform.sh is read-only the build hooks cannot be rerun there.
+The build hook can be tested in your local environment. Because the deployed environment on Platform.sh is read-only the build hooks cannot be rerun there.
 
-Deploy hooks can be tested either locally or by logging into the application over SSH and running them there.  They should execute safely but be aware that depending on what your scripts are doing they may have an adverse impact on the running application (e.g., flushing all caches).
+Deploy hooks can be tested either locally or by logging into the application over SSH and running them there. They should execute safely but be aware that depending on what your scripts are doing they may have an adverse impact on the running application (e.g., flushing all caches).
 
 Furthermore, you can test your hooks with these Linux commands to help figure out any problems:
 
@@ -250,9 +246,9 @@ Related documentation: [Build and deploy hooks](https://docs.platform.sh/configu
 
 ### Cron jobs
 
-Containers cannot be shutdown while long-running tasks are active.  That means long-running cron jobs will block a container from being shut down to make way for a new deploy.
+Containers cannot be shutdown while long-running tasks are active. That means long-running cron jobs will block a container from being shut down to make way for a new deploy.
 
-For that reason, make sure your custom cron jobs execution times are low and that they are running properly.  Be aware that cron jobs may invoke other services in unexpected ways, which can increase execution time.
+For that reason, make sure your custom cron jobs execution times are low and that they are running properly. Be aware that cron jobs may invoke other services in unexpected ways, which can increase execution time.
 
 **note**
 Drupal's `drush core-cron` run installed module's cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to frequently benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.

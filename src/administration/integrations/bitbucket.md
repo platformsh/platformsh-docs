@@ -4,13 +4,13 @@ The [Bitbucket add-on](https://platform.sh/bitbucket/) allows you to manage your
 
 Supported:
 
-* Create a new environment when creating a branch or opening a pull request on Bitbucket.
-* Rebuild the environment when pushing new code to Bitbucket.
-* Delete the environment when merging a pull request.
+- Create a new environment when creating a branch or opening a pull request on Bitbucket.
+- Rebuild the environment when pushing new code to Bitbucket.
+- Delete the environment when merging a pull request.
 
 ## Install the add-on
 
-On your Bitbucket account, click on your avatar, select ``Manage Account``, and simply install the Platform.sh add-on by selecting ``Find new add-ons`` from the left menu. The Platform.sh add-on is under the *Deployment* category.
+On your Bitbucket account, click on your avatar, select `Manage Account`, and simply install the Platform.sh add-on by selecting `Find new add-ons` from the left menu. The Platform.sh add-on is under the _Deployment_ category.
 
 > **note**
 >
@@ -18,7 +18,7 @@ On your Bitbucket account, click on your avatar, select ``Manage Account``, and 
 
 > **note**
 >
-> We recommend you install the add-on at the *team*   level (select ``Manage Team`` instead) so that every repository that belongs to the team can use the add-on.
+> We recommend you install the add-on at the _team_ level (select `Manage Team` instead) so that every repository that belongs to the team can use the add-on.
 
 > **note**
 >
@@ -26,11 +26,11 @@ On your Bitbucket account, click on your avatar, select ``Manage Account``, and 
 
 ## Get started
 
-To connect your Bitbucket repository to Platform.sh, go to the repository page *as an administrator* on Bitbucket and click on the ``Settings`` icon. Then Click on ``Platform.sh integration`` under ``PLATFORM.SH``.
+To connect your Bitbucket repository to Platform.sh, go to the repository page _as an administrator_ on Bitbucket and click on the `Settings` icon. Then Click on `Platform.sh integration` under `PLATFORM.SH`.
 
-You can then *Create a new project* or even connect to an existing project on Platform.sh if you are the owner of it.
+You can then _Create a new project_ or even connect to an existing project on Platform.sh if you are the owner of it.
 
-The add-on needs access to some information on your repository. Click on ``Grant access``. Choose the region where you want your Platform.sh project to be hosted and click ``Create free project``.
+The add-on needs access to some information on your repository. Click on `Grant access`. Choose the region where you want your Platform.sh project to be hosted and click `Create free project`.
 
 That's it! The bot will build your Platform.sh project and connect it to your Bitbucket repository.
 

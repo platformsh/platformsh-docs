@@ -1,15 +1,15 @@
 # Variables
 
-Platform.sh provides a number of ways to set [variables](/development/variables.md), either globally or specific to a single environment.  For values that should be consistent between different environments (because they're configuring the application or runtime itself, generally) the easiest way to control them is to set them in the `.platform.app.yaml` file.
+Platform.sh provides a number of ways to set [variables](/development/variables.md), either globally or specific to a single environment. For values that should be consistent between different environments (because they're configuring the application or runtime itself, generally) the easiest way to control them is to set them in the `.platform.app.yaml` file.
 
-Only prefixed variables may be set from the `.platform.app.yaml` file.  Some prefixes have specific meaning while others are only significant to a particular application.  Nested variables will be automatically converted into a nested array or list structure as appropriate to the language.
+Only prefixed variables may be set from the `.platform.app.yaml` file. Some prefixes have specific meaning while others are only significant to a particular application. Nested variables will be automatically converted into a nested array or list structure as appropriate to the language.
 
 For example, the following section in `.platform.app.yaml` will set a single variable named `env:AUTHOR` to the value `Juan`.
 
 ```yaml
 variables:
-    env:
-        AUTHOR: 'Juan'
+  env:
+    AUTHOR: "Juan"
 ```
 
 That will have the exact same runtime effect as setting a project variable via the CLI as follows, except it will be versioned along with the code:
@@ -18,43 +18,44 @@ That will have the exact same runtime effect as setting a project variable via t
 $ platform variable:create env:AUTHOR --level project --value Juan
 ```
 
-The variable name may itself have punctuation in it.  For example, to set a Drupal 8 configuration override (assuming you're using the recommended `settings.platformsh.php` file) you can do the following:
+The variable name may itself have punctuation in it. For example, to set a Drupal 8 configuration override (assuming you're using the recommended `settings.platformsh.php` file) you can do the following:
 
 ```yaml
 variables:
-    d8config:
-        "system.site:name": 'My site rocks'
+  d8config:
+    "system.site:name": "My site rocks"
 ```
 
 This will create a Platform.sh variable, that is, an item in the `$PLATFORM_VARIABLES` environment variable, named `d8config:system.site:name` with value "My site rocks".
 
 ## Complex values
 
-The value for a variable may be more than just a string; it may also be a nested structure.  If the variable is in the `env` namespace, it will be mapped to a Unix environment variable as a JSON string.  If not, it will be included in the `PLATFORM_VARIABLES` environment variable.
+The value for a variable may be more than just a string; it may also be a nested structure. If the variable is in the `env` namespace, it will be mapped to a Unix environment variable as a JSON string. If not, it will be included in the `PLATFORM_VARIABLES` environment variable.
 
 For example, the following variable definitions:
 
 ```yaml
 variables:
-    env:
-        BASIC: "a string"
-        INGREDIENTS:
-            - 'peanut butter'
-            - 'jelly'
-        QUANTITIES:
-            "milk": "1 liter"
-            "cookies": "1 kg"
-    stuff:
-        STEPS: ['un', 'deux', 'trois']
-        COLORS:
-            red: '#FF0000'
-            green: '#00FF00'
-            blue: '#0000FF'
+  env:
+    BASIC: "a string"
+    INGREDIENTS:
+      - "peanut butter"
+      - "jelly"
+    QUANTITIES:
+      "milk": "1 liter"
+      "cookies": "1 kg"
+  stuff:
+    STEPS: ["un", "deux", "trois"]
+    COLORS:
+      red: "#FF0000"
+      green: "#00FF00"
+      blue: "#0000FF"
 ```
 
 Would appear this way in various languages:
 
 {% codetabs name="PHP", type="php" -%}
+
 <?php
 var_dump($_ENV['BASIC']);
 // string(8) "a string"

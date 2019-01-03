@@ -8,7 +8,7 @@ Here, we'll see how to make code changes to an environment.
 > You should never be working on the Master branch since it's supposed to be your production environment.
 
 Make sure you're on a working environment. In this example we're on the
-*sprint1* branch:
+_sprint1_ branch:
 
 ```bash
 $ git checkout sprint1
@@ -22,7 +22,7 @@ There are three common ways you will be making code changes to Platform:
 
 1.  Add contributed modules, themes, distributions, third-party
     libraries in the make file
-2.  Create custom code (*modules, themes, profiles, libraries*) and
+2.  Create custom code (_modules, themes, profiles, libraries_) and
     commit them to your Platform.sh codebase
 3.  Modify the services grid configuration
 
@@ -34,7 +34,7 @@ and run the Composer command if a proper `composer.json` file has been found.
 #### Add a Drupal module or theme
 
 Each Drupal module or theme you want to install on your project should be
-included in your `composer.json` file.  For example:
+included in your `composer.json` file. For example:
 
 ```bash
 $ composer require drupal/token
@@ -75,7 +75,7 @@ When it's completed, you can see your changes on your site by clicking
 Platform.sh Web Interface.
 
 > **note**
-> The build process makes no changes to your Git repository.  Your Git repository is the *input* of the process. A PHP container containing your code and dependencies is the *output*. You can see the directory structure that has been created by connecting via SSH to the environment. See the information in the `Access information` below the title of the environment
+> The build process makes no changes to your Git repository. Your Git repository is the _input_ of the process. A PHP container containing your code and dependencies is the _output_. You can see the directory structure that has been created by connecting via SSH to the environment. See the information in the `Access information` below the title of the environment
 
 ## Merge code changes to Master
 

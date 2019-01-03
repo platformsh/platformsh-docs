@@ -1,6 +1,6 @@
 # Web Interface
 
-[Platform.sh](https://platform.sh/) provides a responsive Web Interface which allows you to interact with your projects and manage your environments. Everything you can do with this interface you can also achieve with the  [CLI (Command Line Interface)](/gettingstarted/cli.md) and vice versa.
+[Platform.sh](https://platform.sh/) provides a responsive Web Interface which allows you to interact with your projects and manage your environments. Everything you can do with this interface you can also achieve with the [CLI (Command Line Interface)](/gettingstarted/cli.md) and vice versa.
 
 ![Web Interface](/images/platform-ui.png)
 
@@ -16,7 +16,6 @@ The Web Interface displays all the activity happening on your environments. You 
 
 ## Header
 
-
 The Web Interface exposes 5 main actions that you can use to interface with your environments.
 
 ![Header](/images/ui-header.png)
@@ -25,7 +24,7 @@ The Web Interface exposes 5 main actions that you can use to interface with your
 
 The Git icon displays the commands to use to get your project set up locally with the CLI or clone the codebase via Git.
 
-------------------------------------------------------------------------
+---
 
 ![Branch](/images/icon-branch.png)
 
@@ -37,11 +36,11 @@ The new branch includes code, all of the data that is stored on disk (database, 
 
 During a `branch`, three things happen:
 
-* A new branch is created in Git.
-* The application is rebuilt on the new branch, if necessary.
-* The new branch is deployed.
+- A new branch is created in Git.
+- The application is rebuilt on the new branch, if necessary.
+- The new branch is deployed.
 
-------------------------------------------------------------------------
+---
 
 ![Merge](/images/icon-merge.png)
 
@@ -51,13 +50,13 @@ Merging an environment means introducing the code changes from a branch to its p
 
 During a `merge`:
 
-* The code changes are merged via Git to the parent branch.
-* The application is rebuilt on the parent branch, if necessary.
-* The parent branch is deployed.
+- The code changes are merged via Git to the parent branch.
+- The application is rebuilt on the parent branch, if necessary.
+- The parent branch is deployed.
 
-Rebuilding the application is not necessary if the same code was already built (for any environment): in this case you will see the message ``Slug already built for this tree id, skipping``.
+Rebuilding the application is not necessary if the same code was already built (for any environment): in this case you will see the message `Slug already built for this tree id, skipping`.
 
-------------------------------------------------------------------------
+---
 
 ![Sync](/images/icon-sync.png)
 

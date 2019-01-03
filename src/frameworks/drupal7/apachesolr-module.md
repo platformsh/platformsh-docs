@@ -3,11 +3,11 @@
 This page is about configuring Solr with the module [Apache Solr Search](https://www.drupal.org/project/apachesolr). If your project uses [Search API](https://www.drupal.org/project/search_api) then you should follow the instructions [Search API](search-api-module.md).
 
 ## Requirements
-You will need the module  [Apache Solr Search](https://www.drupal.org/project/apachesolr)
+
+You will need the module [Apache Solr Search](https://www.drupal.org/project/apachesolr)
 
 If you are using a make file, you can add those lines to your
 `project.make`:
-
 
 ```ini
 projects[apachesolr][version] = 1.8
@@ -15,7 +15,7 @@ projects[apachesolr][version] = 1.8
 
 ## Configuration
 
-The Apache Solr Search module allows configuration to be overridden from `settings.php`.  Just add the following to your `settings.platformsh.php` file:
+The Apache Solr Search module allows configuration to be overridden from `settings.php`. Just add the following to your `settings.platformsh.php` file:
 
 ```php
 if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
@@ -36,11 +36,11 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
 }
 ```
 
-Note that the Solr server must already be defined in Drupal and ideally exported to a Feature. The most common machine name used is just `solr`, as above.  If you used a different name adjust the code as appropriate.
+Note that the Solr server must already be defined in Drupal and ideally exported to a Feature. The most common machine name used is just `solr`, as above. If you used a different name adjust the code as appropriate.
 
 ## Relationships configuration
 
-If you did not name the relationship `solr` in your `.platform.app.yaml` file, adjust the name accordingly.  Also, if you have multiple Solr cores defined the above `foreach()` loop will not work.  Most likely you will want to name the relationships by the machine name of the Solr server they should map to and then map each one individually.
+If you did not name the relationship `solr` in your `.platform.app.yaml` file, adjust the name accordingly. Also, if you have multiple Solr cores defined the above `foreach()` loop will not work. Most likely you will want to name the relationships by the machine name of the Solr server they should map to and then map each one individually.
 
 The file `.platform.app.yaml` must have the Solr relationship enabled, such as this snippet:
 

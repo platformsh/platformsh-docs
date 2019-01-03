@@ -2,9 +2,9 @@
 
 ## Clone submodules during deployment
 
-Platform.sh allows you to use submodules in your Git repository. They are usually listed in a ``.gitmodules`` file at the root of your Git repository. When you push via Git, Platform.sh will try to clone them automatically.
+Platform.sh allows you to use submodules in your Git repository. They are usually listed in a `.gitmodules` file at the root of your Git repository. When you push via Git, Platform.sh will try to clone them automatically.
 
-Here is an example of a ``.gitmodules`` file:
+Here is an example of a `.gitmodules` file:
 
 ```ini
 [submodule "app/Oro"]
@@ -18,7 +18,7 @@ Here is an example of a ``.gitmodules`` file:
 	url = https://github.com/orocommerce/orocommerce.git
 ```
 
-When you run ``git push``, you can see the output of the log:
+When you run `git push`, you can see the output of the log:
 
 ```bash
 Validating submodules.
@@ -42,4 +42,4 @@ E: Error validating submodules in tree:
     - git@github.com:orocommerce/orocommerce.git: HangupException: The remote server unexpectedly closed the connection.
 ```
 
-Since the Platform.sh Git server cannot connect to Github via SSH without being granted an SSH key to do so, you should not be using an SSH URL: ``git@github.com:...``, but you should use an HTTPS URL instead: ``https://github.com/...``.
+Since the Platform.sh Git server cannot connect to Github via SSH without being granted an SSH key to do so, you should not be using an SSH URL: `git@github.com:...`, but you should use an HTTPS URL instead: `https://github.com/...`.

@@ -4,60 +4,60 @@ Memcached is a simple in-memory object store well-suited for application level c
 
 See the [Memcached documentation](https://memcached.org/) for more information.
 
-Both Memcached and Redis can be used for application caching.  As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust.  Platform.sh recommends using Redis if possible but Memcached is fully supported if an application favors that cache service.
+Both Memcached and Redis can be used for application caching. As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust. Platform.sh recommends using Redis if possible but Memcached is fully supported if an application favors that cache service.
 
 ## Supported versions
 
-* 1.4
+- 1.4
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 ```json
 {
-    "cache": [
-        {
-            "host": "248.0.65.198",
-            "scheme": "memcached",
-            "port": 11211
-        }
-    ]
+  "cache": [
+    {
+      "host": "248.0.65.198",
+      "scheme": "memcached",
+      "port": 11211
+    }
+  ]
 }
 ```
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+In your `.platform/services.yaml`:
 
 ```yaml
 memcached:
-    type: memcached:1.4
+  type: memcached:1.4
 ```
 
 Now add a relationship in your `.platform.app.yaml` file:
 
 ```yaml
 relationships:
-    cache: "memcached:memcached"
+  cache: "memcached:memcached"
 ```
 
 {% codetabs name="PHP", type="text" -%}
-If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php.md#php-extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
+If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php.md#php-extensions.md) in your `.platform.app.yaml`. (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 
 ```yaml
 runtime:
-    extensions:
-        - memcached
+  extensions:
+    - memcached
 ```
 
 {%- language name="Python", type="text" -%}
-For Python you will need to include a dependency for a Memcached library, either via your requirements.txt file or a global dependency.  As a global dependency you would add the following to `.platform.app.yaml`:
+For Python you will need to include a dependency for a Memcached library, either via your requirements.txt file or a global dependency. As a global dependency you would add the following to `.platform.app.yaml`:
 
 ```yaml
 dependencies:
-    python:
-       python-memcached: '*'
+  python:
+    python-memcached: "*"
 ```
 
 {%- endcodetabs %}
@@ -65,6 +65,7 @@ dependencies:
 You can then use the service in a configuration file of your application with something like:
 
 {% codetabs name="PHP", type="php" -%}
+
 <?php
 
 if (!isset($_ENV['PLATFORM_RELATIONSHIPS'])) {

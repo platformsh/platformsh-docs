@@ -6,7 +6,7 @@ Blackfire is a PHP profiler and automated performance testing tool that can be u
 
 It grants details information on your PHP code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
 
-In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Symfony, Drupal, eZPlatform, Typo3 & Magento code performance management. 
+In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Symfony, Drupal, eZPlatform, Typo3 & Magento code performance management.
 
 For a high level overview and demo of Blackfire, check out the [full video tutorial](https://www.youtube.com/watch?v=-5icUW9pUH8).
 
@@ -38,8 +38,8 @@ Paste the credentials above in your `.platform.app.yaml` as follows:
 
 ```yaml
 runtime:
-    extensions:
-        - blackfire
+  extensions:
+    - blackfire
 ```
 
 Push the changes to your Platform environment to enable Blackfire as follows:
@@ -100,12 +100,12 @@ That's it! Your site will be profiled and you should get all the results in your
 
 Blackfire also enables to:
 
-* collaborate with the rest of your team
-* write performance tests
-* automate profiling with periodic builds
-* integrate further with Platform.sh by enabling to automate profiling as each code commit
-* integrate with New Relic for combined benefits of monitoring and profiling
-* integrate with GitHub, Bitbucket and GitLab to show the results of Blackfire builds at the commit status level
+- collaborate with the rest of your team
+- write performance tests
+- automate profiling with periodic builds
+- integrate further with Platform.sh by enabling to automate profiling as each code commit
+- integrate with New Relic for combined benefits of monitoring and profiling
+- integrate with GitHub, Bitbucket and GitLab to show the results of Blackfire builds at the commit status level
 
 Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for more information.
 
@@ -130,24 +130,24 @@ Something like:
 
 ```yaml
 cache:
-    enabled: true
-    cookies: ["/SESS.*/", "__blackfire"]
+  enabled: true
+  cookies: ["/SESS.*/", "__blackfire"]
 ```
 
 ## Reaching out to the Blackfire support
 
 If the above didn't help, collect the following and send it to the [Blackfire support](https://support.blackfire.io):
 
-* The output of `platform ssh -- php -d display_startup_errors=on --ri blackfire` command
-* The Blackfire logs
+- The output of `platform ssh -- php -d display_startup_errors=on --ri blackfire` command
+- The Blackfire logs
 
 ### Getting the Blackfire logs
 
 Please execute the following in the environment where you're facing the issue:
 
-* `platform variable:create php:blackfire.log_file /tmp/blackfire.log` 
-* `platform variable:create php:blackfire.log_level 4` 
-* start a profile/build again
+- `platform variable:create php:blackfire.log_file /tmp/blackfire.log`
+- `platform variable:create php:blackfire.log_level 4`
+- start a profile/build again
 
 You will get the logs with `platform ssh -- cat /tmp/blackfire.log > blackfire.log`.
 
@@ -155,6 +155,5 @@ You will get the logs with `platform ssh -- cat /tmp/blackfire.log > blackfire.l
 
 Once you are done, please disable logging with:
 
-* `platform variable:delete php:blackfire.log_file` 
-* `platform variable:delete php:blackfire.log_level`
-  
+- `platform variable:delete php:blackfire.log_file`
+- `platform variable:delete php:blackfire.log_level`

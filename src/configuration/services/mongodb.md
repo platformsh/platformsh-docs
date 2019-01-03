@@ -6,10 +6,10 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 
 ## Supported versions
 
-* 3.0
-* 3.2
-* 3.4
-* 3.6
+- 3.0
+- 3.2
+- 3.4
+- 3.6
 
 > **note**
 >
@@ -17,25 +17,25 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 ```json
 {
-   "database" : [
-      {
-         "scheme" : "mongodb",
-         "path" : "main",
-         "port" : 27017,
-         "query" : {
-            "is_master" : true
-         },
-         "rel" : "mongodb",
-         "password" : "main",
-         "username" : "main",
-         "ip" : "123.123.123.123",
-         "host" : "database.internal"
-      }
-   ]
+  "database": [
+    {
+      "scheme": "mongodb",
+      "path": "main",
+      "port": 27017,
+      "query": {
+        "is_master": true
+      },
+      "rel": "mongodb",
+      "password": "main",
+      "username": "main",
+      "ip": "123.123.123.123",
+      "host": "database.internal"
+    }
+  ]
 }
 ```
 
@@ -45,8 +45,8 @@ In your `.platform/services.yaml`:
 
 ```yaml
 mydatabase:
-    type: mongodb:3.6
-    disk: 1024
+  type: mongodb:3.6
+  disk: 1024
 ```
 
 The minimum disk size for Mongo DB is `512` (MB).
@@ -55,16 +55,15 @@ In your `.platform.app.yaml`:
 
 ```yaml
 relationships:
-    database: "mydatabase:mongodb"
+  database: "mydatabase:mongodb"
 ```
-
 
 For PHP, in your `.platform.app.yaml` add:
 
 ```yaml
 runtime:
-    extensions:
-        - mongodb
+  extensions:
+    - mongodb
 ```
 
 (Before PHP 7, use `mongo` instead.)
@@ -72,6 +71,7 @@ runtime:
 You can then use the service in a configuration file of your application with something like:
 
 {% codetabs name="PHP", type="php" -%}
+
 <?php
 // First run `composer require mongodb/mongodb` to get the userspace
 // library, and autoload it.  Then:

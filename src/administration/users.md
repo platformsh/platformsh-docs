@@ -6,24 +6,24 @@ Every Platform.sh user has a role which controls access and improves security on
 
 At the project level:
 
-* **Project Administrator** - A project administrator can change settings and execute actions on any environment.
-* **Project Reader** - A project reader can view all environments within a project but cannot execute any actions on them.
+- **Project Administrator** - A project administrator can change settings and execute actions on any environment.
+- **Project Reader** - A project reader can view all environments within a project but cannot execute any actions on them.
 
 A Project Reader can have a specific role on different environments. At the environment level:
 
-* **Environment Administrator** - An environment administrator can change settings and execute actions on this environment.
-* **Environment Contributor** - An environment contributor can push code to this environment and branch the environment.
-* **Environment Reader** - An environment reader can only view this environment.
+- **Environment Administrator** - An environment administrator can change settings and execute actions on this environment.
+- **Environment Contributor** - An environment contributor can push code to this environment and branch the environment.
+- **Environment Reader** - An environment reader can only view this environment.
 
 > **Important!**
 >
-> After a new user is added to an environment, it needs to be rebuilt. Rebuilds are triggered when you push a new commit to the environment in question.  To be able to rebuild without new code changes you can issue the command `git commit --allow-empty -m'rebuild' && git push` to create an empty commit and "force" rebuilding the environment.
+> After a new user is added to an environment, it needs to be rebuilt. Rebuilds are triggered when you push a new commit to the environment in question. To be able to rebuild without new code changes you can issue the command `git commit --allow-empty -m'rebuild' && git push` to create an empty commit and "force" rebuilding the environment.
 >
 > When the environment rebuild is complete, allow a minute for the routes to update fully and for the new user to be able to use SSH access.
 
-------------------------------------------------------------------------
+---
 
-When a development team works on a project, the team leader can be the project administrator and decide which roles to give his team members.  One team member can contribute to one environment, another member can administer a different environment and the customer can be a reader of the `master` environment.
+When a development team works on a project, the team leader can be the project administrator and decide which roles to give his team members. One team member can contribute to one environment, another member can administer a different environment and the customer can be a reader of the `master` environment.
 
 If you want your users to be able to see everything (Reader), but only commit to a specific branch, change their permission level on that environment to "Contributor".
 
@@ -35,7 +35,7 @@ If you want your users to be able to see everything (Reader), but only commit to
 >
 > The project owner - the person licensed to use Platform.sh - doesn't have special powers. A project owner usually has a project administrator role.
 
-------------------------------------------------------------------------
+---
 
 ## Manage user permissions at the project level
 
@@ -45,7 +45,7 @@ Access the project-level configuration.
 
 Click the project configuration icon next to the project name in the upper-left corner of the project page.
 
-------------------------------------------------------------------------
+---
 
 Manage users.
 
@@ -65,7 +65,7 @@ In order to push and pull code (or to SSH to one of the project's environments) 
 
 If the user already has an account, they will receive an email with a link to the project.
 
-------------------------------------------------------------------------
+---
 
 ## Manage user permissions at the environment level
 
@@ -75,7 +75,7 @@ Access the environment-level configuration.
 
 Click the environment configuration icon next to the environment name on the project page.
 
-------------------------------------------------------------------------
+---
 
 ![Project user management screenshot](/images/environment_usermanagement.png)
 
@@ -89,21 +89,22 @@ Add a new user by clicking on the `Add user` button.
 >
 > Remember the user will only be able to access the environment once it has been rebuilt (after a `git push`)
 
-------------------------------------------------------------------------
+---
+
 ## Manage user with the CLI
 
 You can user the Platform.sh command line client to fully manage your users and integrate this with any other automated system.
 
 Available commands:
 
-* `user:add`
-  * Add a user to the project
-* `user:delete`
-  * Delete a user
-* `user:list` (`users`)
-  * List project users
-* `user:role`
-  * View or change a user's role
+- `user:add`
+  - Add a user to the project
+- `user:delete`
+  - Delete a user
+- `user:list` (`users`)
+  - List project users
+- `user:role`
+  - View or change a user's role
 
 For example, the following command would add the 'admin' role to alice@example.com in the current project.
 

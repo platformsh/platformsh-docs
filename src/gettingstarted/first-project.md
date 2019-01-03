@@ -1,12 +1,12 @@
 # Your first project
 
-The best way to understand a tool is to use it.  We believe that the best marketing we can offer for Platform.sh is to let you try it out, which is why we offer a free one month trial.
+The best way to understand a tool is to use it. We believe that the best marketing we can offer for Platform.sh is to let you try it out, which is why we offer a free one month trial.
 
 To begin, create a new [free trial account](https://accounts.platform.sh/platform/trial/general/setup).
 
-* Sign up with a new user and password or login using an existing GitHub, Bitbucket, or Google account.  If you use a 3rd party login you will be able to set a password for your Platform.sh account later.
-* Select the region of the world where your site should live.
-* Select one of the pre-made project templates or bring your own code.
+- Sign up with a new user and password or login using an existing GitHub, Bitbucket, or Google account. If you use a 3rd party login you will be able to set a password for your Platform.sh account later.
+- Select the region of the world where your site should live.
+- Select one of the pre-made project templates or bring your own code.
 
 The video below shows how to setup your own initial project using the Silex PHP microframework.
 
@@ -14,7 +14,7 @@ The video below shows how to setup your own initial project using the Silex PHP 
 
 ## Project templates
 
-You can also initialize your project using any of the pre-made templates below.  For each one, simply Git Clone the repository from GitHub then push it to Platform.sh using the instructions for a custom repository in the UI, as seen in the video above.
+You can also initialize your project using any of the pre-made templates below. For each one, simply Git Clone the repository from GitHub then push it to Platform.sh using the instructions for a custom repository in the UI, as seen in the video above.
 
 ### PHP
 
@@ -40,7 +40,6 @@ You can also initialize your project using any of the pre-made templates below. 
   <h4>Examples</h4>
   <a href="https://github.com/platformsh/platformsh-example-php">Generic PHP application</a><br />
 </div>
-
 
 <div>
   <h4>Frameworks</h4>

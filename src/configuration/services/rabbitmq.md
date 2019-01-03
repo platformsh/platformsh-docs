@@ -6,42 +6,42 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 ## Supported versions
 
-* 3.5
+- 3.5
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 ```json
 {
-   "rabbitmq" : [
-      {
-         "password" : "guest",
-         "ip" : "246.0.129.2",
-         "scheme" : "amqp",
-         "port" : 5672,
-         "host" : "rabbitmq.internal",
-         "username" : "guest"
-      }
-   ]
+  "rabbitmq": [
+    {
+      "password": "guest",
+      "ip": "246.0.129.2",
+      "scheme": "amqp",
+      "port": 5672,
+      "host": "rabbitmq.internal",
+      "username": "guest"
+    }
+  ]
 }
 ```
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+In your `.platform/services.yaml`:
 
 ```yaml
 myrabbitmq:
-    type: rabbitmq:3.5
-    disk: 1024
+  type: rabbitmq:3.5
+  disk: 1024
 ```
 
-In your ``.platform.app.yaml``:
+In your `.platform.app.yaml`:
 
 ```yaml
 relationships:
-    mq: "myrabbitmq:rabbitmq"
+  mq: "myrabbitmq:rabbitmq"
 ```
 
 You can then use the service in a configuration file of your application with something like:
@@ -91,7 +91,7 @@ The application container currently doesn't include any useful utilities to conn
 
 For example, you can use [amqp-utils](https://github.com/dougbarth/amqp-utils/) by adding this:
 
- ```yaml
+```yaml
 dependencies:
   ruby:
     amqp-utils: "0.5.1"

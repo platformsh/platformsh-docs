@@ -1,4 +1,4 @@
-#Multiple Drupal  sites in a single Project
+#Multiple Drupal sites in a single Project
 
 Platform.sh supports running [multiple applications in the same project](/user_guide/reference/platform-app-yaml-multi-app.html)
 and these can be two or more Drupal site. But, they would be separate Drupal
@@ -7,7 +7,7 @@ it would be much better for them not to share the same database (though they
 could).
 
 Note, that the same Drupal instance can also use multiple databases (just add
-multiple instances to services.yaml and use  db_select) you will need to
+multiple instances to services.yaml and use db_select) you will need to
 override settings.php [as described here](customizing-settings-php.html) and
 add the other databases you could then use `db_select` to switch between those.
 
@@ -26,6 +26,7 @@ the various "single instance" options available such as [Domain Access](https://
 [Organic Groups](https://www.drupal.org/project/og), or [Workbench Access](https://www.drupal.org/project/workbench_access).
 
 ## Using Domain Access
+
 Of course Platform.sh supports the Domain Access module, as it supports anything Drupal.
 
 If the multiple sites are part of the same project this makes sense.

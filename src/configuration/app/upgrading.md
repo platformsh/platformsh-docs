@@ -2,53 +2,52 @@
 
 ## Changes in version 2017.11 (2017-11-09)
 
-* The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/configuration/yaml.md).  For example, the following `services.yaml` snippet:
+- The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/configuration/yaml.md). For example, the following `services.yaml` snippet:
 
 ```yaml
 mysearch:
-    type: solr:6.3
-    disk: 1024
-    configuration:
-        core_config: !archive "myconfdir"
+  type: solr:6.3
+  disk: 1024
+  configuration:
+    core_config: !archive "myconfdir"
 ```
 
 Can now be written as:
 
 ```yaml
 mysearch:
-    type: solr:6.3
-    disk: 1024
-    configuration:
-        core_config: !include
-            type: archive
-            path: "myconfdir"
+  type: solr:6.3
+  disk: 1024
+  configuration:
+    core_config: !include
+      type: archive
+      path: "myconfdir"
 ```
 
-* The syntax for the `mounts` key in `.platform.app.yaml` has changed.  Rather than a parsed string, the value of each mount is a [multi-key definition](/configuration/app/storage.md).  That is, the following example:
+- The syntax for the `mounts` key in `.platform.app.yaml` has changed. Rather than a parsed string, the value of each mount is a [multi-key definition](/configuration/app/storage.md). That is, the following example:
 
 ```yaml
 mounts:
-    "tmp": "shared:files/tmp"
-    "logs": "shared:files/logs"
- ```
+  "tmp": "shared:files/tmp"
+  "logs": "shared:files/logs"
+```
 
 Can now be written as:
 
 ```yaml
 mounts:
-    tmp:
-        source: local
-        source_path: tmp
-    logs:
-        source: local
-        source_path: logs
-
+  tmp:
+    source: local
+    source_path: tmp
+  logs:
+    source: local
+    source_path: logs
 ```
 
 ## Changes in version 2016.6 (2016-11-18)
 
-* Application containers now include the latest LTS version of Node.js, 6.9.1. The previously included version was 4.6.1.
-* Composer was briefly called with `--no-dev`, but as of 2016-11-21 this change has been reverted, because of the unintended effect it had on projects using the Symfony framework.
+- Application containers now include the latest LTS version of Node.js, 6.9.1. The previously included version was 4.6.1.
+- Composer was briefly called with `--no-dev`, but as of 2016-11-21 this change has been reverted, because of the unintended effect it had on projects using the Symfony framework.
 
 ## Changes in version 2016.5
 
@@ -90,7 +89,7 @@ as shown below:
 
 ## Changes in version 2016.4
 
-As of July 2016, we no longer create default configuration files if one is not provided.  The defaults we used to provide were tailored specifically for Drupal 7, which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites.  They also defaulted to software versions that are no longer current and recommended.  Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `.platform/services.yaml` files.
+As of July 2016, we no longer create default configuration files if one is not provided. The defaults we used to provide were tailored specifically for Drupal 7, which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites. They also defaulted to software versions that are no longer current and recommended. Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `.platform/services.yaml` files.
 
 Additionally, a version for a language or service should always be specified as well. That allows you to control when you upgrade from one version to another without relying on a network default.
 
@@ -102,57 +101,57 @@ The previous default files, for reference, are:
 name: php
 type: "php:5.4"
 build:
-    flavor: "drupal"
+  flavor: "drupal"
 access:
-    ssh: contributor
+  ssh: contributor
 relationships:
-    database: "mysql:mysql"
-    solr: "solr:solr"
-    redis: "redis:redis"
+  database: "mysql:mysql"
+  solr: "solr:solr"
+  redis: "redis:redis"
 web:
-    document_root: "/"
-    passthru: "/index.php"
+  document_root: "/"
+  passthru: "/index.php"
 disk: 2048
 mounts:
-    "public/sites/default/files": "shared:files/files"
-    "tmp": "shared:files/tmp"
-    "private": "shared:files/private"
+  "public/sites/default/files": "shared:files/files"
+  "tmp": "shared:files/tmp"
+  "private": "shared:files/private"
 crons:
-    drupal:
-        spec: "*/20 * * * *"
-        cmd: "cd public ; drush core-cron"
+  drupal:
+    spec: "*/20 * * * *"
+    cmd: "cd public ; drush core-cron"
 ```
 
 ### .platform/routes.yaml
 
 ```yaml
- "http://{default}/":
-     type: upstream
-     upstream: "php:http"
-     cache:
-         enabled: true
-     ssi:
-         enabled: false
+"http://{default}/":
+  type: upstream
+  upstream: "php:http"
+  cache:
+    enabled: true
+  ssi:
+    enabled: false
 
- "http://www.{default}/":
-     type: redirect
-     to: "http://{default}/"
+"http://www.{default}/":
+  type: redirect
+  to: "http://{default}/"
 ```
 
 ### .platform/services.yaml
 
 ```yaml
- mysql:
-     type: mysql:5.5
-     disk: 2048
+mysql:
+  type: mysql:5.5
+  disk: 2048
 
- redis:
-     type: redis:2.8
+redis:
+  type: redis:2.8
 
- solr:
-     type: solr:3.6
-     disk: 1024
- ```
+solr:
+  type: solr:3.6
+  disk: 1024
+```
 
 ## Changes in version 2016.3
 
@@ -214,17 +213,20 @@ Of course, we alway keep backward compatibility with the previous configuration 
 The `.platform.app.yaml` configuration file now allows for a much clearer syntax, which you can (and should) start using now.
 
 The old format had a single string to identify the 'toolstack' you use:
+
 ```yaml
 toolstack: "php:drupal"
 ```
 
 The new syntax allows to separate the concerns of what language you are running
 and the build process that is going to happen on deployment:
+
 ```yaml
 type: php
 build:
-    flavor: drupal
+  flavor: drupal
 ```
+
 Currently we only support `php` in the 'type' key. Current supported build
 flavors are `drupal`, `composer` and `symfony`.
 
@@ -243,9 +245,9 @@ Configuration items for PHP that previously was part of
 `.platform/services.yaml` are now moved into `.platform.app.yaml`, which
 gains the following top-level items:
 
--   `name`: should be `"php"`
--   `relationships`, `access` and `disk`: should be the same as the
-    `relationships` key of PHP in `.platform/services.yaml`
+- `name`: should be `"php"`
+- `relationships`, `access` and `disk`: should be the same as the
+  `relationships` key of PHP in `.platform/services.yaml`
 
 Note that there is now a sane default for `access` (SSH access to PHP is
 granted to all users that have role "collaborator" and above on the
@@ -256,4 +258,3 @@ In addition, version 1.7.0 now has consistency checks for configuration
 files and will reject `git push` operations that contain configuration
 files that are invalid. In this case, just fix the issues as they are
 reported, commit and push again.
-

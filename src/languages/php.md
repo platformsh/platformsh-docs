@@ -6,9 +6,9 @@ PHP is a popular scripting language designed especially for the web. It currentl
 
 ## Supported versions
 
-* 7.1
-* 7.2
-* 7.3
+- 7.1
+- 7.2
+- 7.3
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
@@ -23,10 +23,10 @@ type: "php:7.3"
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 5.4
-* 5.5
-* 5.6
-* 7.0
+- 5.4
+- 5.5
+- 5.6
+- 7.0
 
 ## Alternate start commands
 
@@ -34,22 +34,22 @@ PHP is most commonly run in a CGI mode, using PHP-FPM. That is the default on Pl
 
 ```yaml
 web:
-    commands:
-        start: php run.php
-    upstream:
-            socket_family: tcp
-            protocol: http
+  commands:
+    start: php run.php
+  upstream:
+    socket_family: tcp
+    protocol: http
 ```
 
-The above configuration will execute the `run.php` script in the application root when the container starts using the PHP-CLI SAPI, just before the deploy hook runs, but will *not* launch PHP-FPM. It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the `PORT` environment variable. Note that the start command _must_ run in the foreground.
+The above configuration will execute the `run.php` script in the application root when the container starts using the PHP-CLI SAPI, just before the deploy hook runs, but will _not_ launch PHP-FPM. It will also tell the front-controller (Nginx) to connect to your application via a TCP socket, which will be specified in the `PORT` environment variable. Note that the start command _must_ run in the foreground.
 
 If not specified, the effective default start command varies by PHP version:
 
-* On PHP 5.x, it's `/usr/sbin/php5-fpm`.
-* On PHP 7.0, it's `/usr/sbin/php-fpm7.0`.
-* On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`.
-* On PHP 7.2, it's `/usr/sbin/php-fpm7.2-zts`.
-* On PHP 7.3, it's `/usr/sbin/php-fpm7.3-zts`.
+- On PHP 5.x, it's `/usr/sbin/php5-fpm`.
+- On PHP 7.0, it's `/usr/sbin/php-fpm7.0`.
+- On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`.
+- On PHP 7.2, it's `/usr/sbin/php-fpm7.2-zts`.
+- On PHP 7.3, it's `/usr/sbin/php-fpm7.3-zts`.
 
 While you can call it manually that is generally not necessary. Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or Amp). If you need both they will have to run in separate containers.
 
@@ -75,23 +75,23 @@ A number of project templates for major PHP applications are available on GitHub
 
 ### Applications
 
-* [EZ Platform](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Drupal 7](https://github.com/platformsh/template-drupal7)
-* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8](https://github.com/platformsh/template-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/platformsh-example-drupal8-multisite)
-* [Laravel](https://github.com/platformsh/template-laravel)
-* [Moodle](https://github.com/platformsh/platformsh-example-moodle)
-* [Magento 1](https://github.com/platformsh/platformsh-example-magento1)
-* [Magento 2](https://github.com/platformsh/platformsh-example-magento)
-* [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
-* [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
-* [WordPress](https://github.com/platformsh/template-wordpress)
-* [GravCMS](https://github.com/platformsh/platformsh-example-gravcms)
+- [EZ Platform](https://github.com/platformsh/platformsh-example-ezplatform)
+- [Drupal 7](https://github.com/platformsh/template-drupal7)
+- [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
+- [Drupal 8](https://github.com/platformsh/template-drupal8)
+- [Drupal 8 (Multisite variant)](https://github.com/platformsh/platformsh-example-drupal8-multisite)
+- [Laravel](https://github.com/platformsh/template-laravel)
+- [Moodle](https://github.com/platformsh/platformsh-example-moodle)
+- [Magento 1](https://github.com/platformsh/platformsh-example-magento1)
+- [Magento 2](https://github.com/platformsh/platformsh-example-magento)
+- [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
+- [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
+- [WordPress](https://github.com/platformsh/template-wordpress)
+- [GravCMS](https://github.com/platformsh/platformsh-example-gravcms)
 
 ### Frameworks
 
-* [Amp/Aerys](https://github.com/platformsh/platformsh-example-amphp)
-* [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
-* [Symfony 3.x](https://github.com/platformsh/template-symfony3)
-* [Symfony 4.x](https://github.com/platformsh/template-symfony4)
+- [Amp/Aerys](https://github.com/platformsh/platformsh-example-amphp)
+- [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
+- [Symfony 3.x](https://github.com/platformsh/template-symfony3)
+- [Symfony 4.x](https://github.com/platformsh/template-symfony4)

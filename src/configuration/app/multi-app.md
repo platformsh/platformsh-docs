@@ -1,6 +1,6 @@
 # Multiple Applications
 
-Platform.sh supports building multiple applications per project (for example RESTful web services with a front-end, or a main website and a blog).  For resource allocation reasons, however, that is not supported on Standard plan.
+Platform.sh supports building multiple applications per project (for example RESTful web services with a front-end, or a main website and a blog). For resource allocation reasons, however, that is not supported on Standard plan.
 
 ## Introduction
 
@@ -32,6 +32,7 @@ angular/
 ```
 
 ## Submodules
+
 Platform.sh supports Git submodules, so each application can be in a separate
 repository. This is a powerful feature which allows you to create a `Staging`
 server with different versions of each application in a single commit.
@@ -39,6 +40,7 @@ server with different versions of each application in a single commit.
 However, there is currently a notable limitation: the `.platform.app.yaml`
 files must be in the top-level repository. For now, you'll have to implement a
 repository layout that looks like this:
+
 ```
 .git/
 .platform/
@@ -58,6 +60,7 @@ This puts your applications' files at a different path relative to your
 `.platform.app.yaml` files, so you'll also have to update your web
 configuration to match. For example, your first application's
 `.platform.app.yaml` file would include something like this:
+
 ```
 web:
     locations:
@@ -67,7 +70,6 @@ web:
             passthru: "/index.php"
 ```
 
-
 ### Multi-app Routes
 
 If you setup the AngularJS `.platform.app.yaml` with `name: angular`, and the
@@ -76,17 +78,18 @@ like the following (names need to match):
 
 ```yaml
 "https://back-end.{default}/":
-    type: upstream
-    upstream: "drupal:http"
+  type: upstream
+  upstream: "drupal:http"
 "https://{default}/":
-    type: upstream
-    upstream: "angular:http"
+  type: upstream
+  upstream: "angular:http"
 ```
 
 This will result (if we consider we are on the `http://example.com` domain):
-* `http://back-end.example.com` being served by the Drupal instance
-* `http://example.com/` and all the urls below it to be served by the AngularJS
-one.
+
+- `http://back-end.example.com` being served by the Drupal instance
+- `http://example.com/` and all the urls below it to be served by the AngularJS
+  one.
 
 > **note**
 > Subdomain routes in development environments will be accessible using three dashes (---) instead of a dot (.), e.g:
@@ -113,16 +116,17 @@ Disconnected from 54.76.137.151
 ## Example of a micro-service multi-app
 
 Here is a more detailed and complete example for a project that is designed with
-a *micro-service* architecture.
+a _micro-service_ architecture.
 
 ### Setup
 
-Imagine that our front end (*front*) application depends on two REST services
+Imagine that our front end (_front_) application depends on two REST services
 that both connect to the same PostgreSQL database:
-* User API (*user*)
-* Content API (*content*)
 
-The *front* does not connect directly to the database but does everything
+- User API (_user_)
+- Content API (_content_)
+
+The _front_ does not connect directly to the database but does everything
 through these APIs, and it uses Redis as a Cache.
 
 The directory structure may look something like this:
@@ -162,7 +166,7 @@ In our use case the User API is accessible through a URL like
 `https://api.example.com/v1/content`.
 
 In this case we are not doing HTTP caching on the two APIs, but we are caching
-on the *front* application.
+on the _front_ application.
 
 The `.platform/routes.yaml` may look like:
 
@@ -259,3 +263,4 @@ dynamically in its configuration.
 > **note**
 > The names `database`, `user_service` and `content_service` are freely chosen
 > by us. It's often better to stick to a simple naming scheme.
+````

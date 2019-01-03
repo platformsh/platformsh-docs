@@ -18,7 +18,7 @@ Using the CLI:
 $ platform snapshot:create
 ```
 
-Please be aware that triggering a snapshot will cause a momentary pause in site availability so that all requests can complete, allowing the snapshot to be taken against a known consistent state.  The total interruption is usually only 15 to 30 seconds and any requests during that time are held temporarily, not dropped.
+Please be aware that triggering a snapshot will cause a momentary pause in site availability so that all requests can complete, allowing the snapshot to be taken against a known consistent state. The total interruption is usually only 15 to 30 seconds and any requests during that time are held temporarily, not dropped.
 
 ## Restore
 
@@ -56,7 +56,7 @@ A snapshot does cause a momentary pause in service. We recommend running during 
 
 ## Automated snapshots
 
-Snapshots are not triggered automatically on Platform.sh Professional. 
+Snapshots are not triggered automatically on Platform.sh Professional.
 
 Snapshots may be triggered by calling the CLI from an automated system such as Jenkins or another CI service, or by installing the CLI tool into your application container and triggering the snapshot via cron.
 
@@ -66,27 +66,27 @@ Snapshots may be triggered by calling the CLI from an automated system such as J
 >
 > Snapshots using cron requires you to [install the CLI in your container and set up an API token](/gettingstarted/cli/api-tokens.md).
 
-We ask that you not schedule a backup task more than once a day to minimize data usage. 
+We ask that you not schedule a backup task more than once a day to minimize data usage.
 
-Once the CLI is installed and an API token configured you can add a cron task to run once a day and trigger a snapshot.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on. In most cases such backups are only useful on the `master` production environment.
+Once the CLI is installed and an API token configured you can add a cron task to run once a day and trigger a snapshot. The CLI will read the existing environment variables in the container and default to the project and environment it is running on. In most cases such backups are only useful on the `master` production environment.
 
 A common cron specification for a daily backup on the `master` environment looks like this:
 
 ```yaml
 crons:
-    snapshot:
-        spec: '0 5 * * *'
-        cmd: |
-            if [ "$PLATFORM_BRANCH" = master ]; then
-                platform snapshot:create --yes --no-wait
-            fi
+  snapshot:
+    spec: "0 5 * * *"
+    cmd: |
+      if [ "$PLATFORM_BRANCH" = master ]; then
+          platform snapshot:create --yes --no-wait
+      fi
 ```
 
-The above cron task will run once a day at 5 am (UTC), and, if the current environment is the master branch, it will run `platform snapshot:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the snapshot to complete.
+The above cron task will run once a day at 5 am (UTC), and, if the current environment is the master branch, it will run `platform snapshot:create` on the current project and environment. The `--yes` flag will skip any user-interaction. The `--no-wait` flag will cause the command to complete immediately rather than waiting for the snapshot to complete.
 
 > **note**
-> 
-> It is very important to include the `--no-wait` flag.  If you do not, the cron process will block and you will be unable to deploy new versions of the site until the snapshot creation process is complete.
+>
+> It is very important to include the `--no-wait` flag. If you do not, the cron process will block and you will be unable to deploy new versions of the site until the snapshot creation process is complete.
 
 ### Retention
 

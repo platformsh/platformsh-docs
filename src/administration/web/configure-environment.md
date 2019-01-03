@@ -10,7 +10,7 @@ The `Settings` screen allows you to extend the behavior of a specific environmen
 
 ![Configure Platform.sh environment settings](/images/ui-conf-environment-settings.png)
 
-The *Delete* action will destroy all services running on this environment (PHP, MySQL, volumes, etc.) so that only the Git branch remains. You can reactivate the environment later if needed.
+The _Delete_ action will destroy all services running on this environment (PHP, MySQL, volumes, etc.) so that only the Git branch remains. You can reactivate the environment later if needed.
 
 To delete the branch as well, you need to execute the following:
 
@@ -23,7 +23,7 @@ git push origin :BRANCH-NAME
 
 ## Basic Authentication / Restrict access to IPs
 
-You should not expose your development environments to the whole wide world. Platform.sh allows you to simply implement access control, either by login/password (the equivalent to .htaccess) or by filtering IP addresses or a network using the [CIDR format](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).  That is, `4.5.6.7` and `4.5.6.0/8` are both legal formats.
+You should not expose your development environments to the whole wide world. Platform.sh allows you to simply implement access control, either by login/password (the equivalent to .htaccess) or by filtering IP addresses or a network using the [CIDR format](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). That is, `4.5.6.7` and `4.5.6.0/8` are both legal formats.
 
 > **note**
 > Changing access control will trigger a new deploy of the current environment. However, the changes will not propagate to child environments until they are manually redeployed.
@@ -79,7 +79,7 @@ By default, Platform.sh includes an additional `X-Robots-Tag` header on all non-
 X-Robots-Tag: noindex, nofollow
 ```
 
-That tells search engines to not index sites on non-production environments entirely nor traverse links from those sites, even if they are publicly visible.  That keeps non-production sites out of search engine indexes that would dilute the SEO of the production site.  To disable that feature for a non-production environment, use the [Platform.sh CLI](/gettingstarted/cli.md) command below:
+That tells search engines to not index sites on non-production environments entirely nor traverse links from those sites, even if they are publicly visible. That keeps non-production sites out of search engine indexes that would dilute the SEO of the production site. To disable that feature for a non-production environment, use the [Platform.sh CLI](/gettingstarted/cli.md) command below:
 
 ```
 platform environment:info restrict_robots false
@@ -93,4 +93,4 @@ platform environment:info -e ENVNAME restrict_robots false
 
 where `ENVNAME` is the name of the environment.
 
-On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`](/configuration/app/web.md#locations).
+On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled and your application can serve a `robots.txt` file as normal. However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it. See [the location section in `.platform.app.yaml`](/configuration/app/web.md#locations).

@@ -4,9 +4,9 @@ The [GitLab](https://gitlab.com) integration allows you to manage your Platform.
 
 Features supported:
 
-* Create a new environment when creating a branch or opening a pull request on GitLab.
-* Rebuild the environment when pushing new code to GitLab.
-* Delete the environment when merging a pull request.
+- Create a new environment when creating a branch or opening a pull request on GitLab.
+- Rebuild the environment when pushing new code to GitLab.
+- Delete the environment when merging a pull request.
 
 ## Setup
 
@@ -18,9 +18,9 @@ Fill the `Name` field for example with "Platform.sh Integration" and optionally 
 
 Give it a description and then ensure the token has the following scopes:
 
- * `api`  - Access your API
- * `read_user` - Read user information
- * `read_repository` - Read repositories
+- `api` - Access your API
+- `read_user` - Read user information
+- `read_repository` - Read repositories
 
 Copy the token and make a note of it (temporarily).
 
@@ -40,13 +40,13 @@ Please note that the `--base-url` option is used as the base to call the Gitlab 
 Do **not** append your namespace and project name!
 
 Optional parameters:
-* `--build-merge-requests`: Track and deploy merge-requests (true by default)
-* `--merge-requests-clone-parent-data` : should merge requests clone the data from the parent environment (true by default)
-* `--fetch-branches`: Track and deploy branches (true by default)
-* `--prune-branches`: Delete branches that do not exist in the remote GitLab repository (true by default)
 
+- `--build-merge-requests`: Track and deploy merge-requests (true by default)
+- `--merge-requests-clone-parent-data` : should merge requests clone the data from the parent environment (true by default)
+- `--fetch-branches`: Track and deploy branches (true by default)
+- `--prune-branches`: Delete branches that do not exist in the remote GitLab repository (true by default)
 
-Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.  If `--fetch-branches` is disabled, `--prune-branches` will automatically be set to false, even if specifically set to true.
+Note that the `--prune-branches` option depends on `--fetch-branches` being enabled. If `--fetch-branches` is disabled, `--prune-branches` will automatically be set to false, even if specifically set to true.
 
 ### 3. Add the webhook
 
@@ -62,9 +62,7 @@ The CLI will create the necessary webhook using the above URL for you when there
 2. Go to your GitLab repository and click Settings > Integrations.
 3. Paste the hook URL. In the Triggers section choose Push events, Tag push events and Merge Request events. Click on Add webhook.
 
-
 You can now start pushing code, creating new branches or opening merge requests directly on your GitLab repository. You will see environments get automatically created and updated on the Platform.sh side.
-
 
 ## Types of environments
 

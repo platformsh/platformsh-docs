@@ -5,7 +5,7 @@ name: app
 type: php:7.0
 # Because there is no composer.json file we deactivate the build flavor.
 build:
-    flavor: none
+  flavor: none
 
 # A static site has only minimal CPU and memory needs, so don't ask for much.
 size: S
@@ -20,47 +20,48 @@ dependencies:
 # then build the book. The generated files will be placed in the _book directory
 # by default.
 hooks:
-    build: |
-      set -e
+  build: |
+    set -e
 
-      # Install and compile GitBook
-      npm install
-      npm run build
-      gitbook install
-      gitbook build
+    # Install and compile GitBook
+    npm install
+    npm run test
+    npm run build
+    gitbook install
+    gitbook build
 
-      # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
-      cp src/images/favicon.ico _book/gitbook/images/favicon.ico
+    # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
+    cp src/images/favicon.ico _book/gitbook/images/favicon.ico
 
 # There is no need for a writable file mount, so set it to the smallest possible size.
 disk: 256
 
 # Configure the web server to serve our static site.
 web:
-    commands:
-        # Run a no-op process that uses no CPU resources, since this is a static site.
-        start: sleep infinity
-    locations:
-        "/":
-            # The generated static site lives in _book, so make that the docroot.
-            root: "_book"
-            # Set an index file of "index.html" for any directory. We could also
-            # list multiple fallbacks here if desired.
-            index:
-                - "index.html"
-            # Set a 5 minute cache lifetime on all static files.
-            expires: 300s
-            # Disable all scripts, since we don't have any anyway.
-            scripts: false
-            # By default do not allow any files to be served.
-            allow: false
-            # Whitelist common image file formats, plus HTML files, robots.txt, and
-            # The search_index.json file that is used by GitBook's search plugin.
-            # All other requests will be rejected.
-            rules:
-                \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|html|ico|svg?)$:
-                    allow: true
-                ^/robots\.txt$:
-                    allow: true
-                search_plus_index\.json$:
-                    allow: true
+  commands:
+    # Run a no-op process that uses no CPU resources, since this is a static site.
+    start: sleep infinity
+  locations:
+    "/":
+      # The generated static site lives in _book, so make that the docroot.
+      root: "_book"
+      # Set an index file of "index.html" for any directory. We could also
+      # list multiple fallbacks here if desired.
+      index:
+        - "index.html"
+      # Set a 5 minute cache lifetime on all static files.
+      expires: 300s
+      # Disable all scripts, since we don't have any anyway.
+      scripts: false
+      # By default do not allow any files to be served.
+      allow: false
+      # Whitelist common image file formats, plus HTML files, robots.txt, and
+      # The search_index.json file that is used by GitBook's search plugin.
+      # All other requests will be rejected.
+      rules:
+        \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|html|ico|svg?)$:
+          allow: true
+        ^/robots\.txt$:
+          allow: true
+        search_plus_index\.json$:
+          allow: true

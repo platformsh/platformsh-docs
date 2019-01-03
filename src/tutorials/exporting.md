@@ -4,23 +4,24 @@ Platform.sh aims to be a great host, but we never want to lock you in to our ser
 
 ## Downloading code
 
-Your application's code is maintained in Git.  Because Git is a distributed system it is trivial to download your entire code history with a simple `git clone` or `platform get` command.
+Your application's code is maintained in Git. Because Git is a distributed system it is trivial to download your entire code history with a simple `git clone` or `platform get` command.
 
 ## Downloading files
 
-Your application runs on a read-only file system, so it cannot be edited.  That means there's nothing to download from most of it that isn't already in your Git repository.
+Your application runs on a read-only file system, so it cannot be edited. That means there's nothing to download from most of it that isn't already in your Git repository.
 
-The only files to download are from any writable file mounts you may have defined in your `.platform.app.yaml` file.  The easiest way to download those is using the `rsync` tool.  For instance, suppose you have a mounts section that defines one web-accessible directory and one non-web-accessible directory:
+The only files to download are from any writable file mounts you may have defined in your `.platform.app.yaml` file. The easiest way to download those is using the `rsync` tool. For instance, suppose you have a mounts section that defines one web-accessible directory and one non-web-accessible directory:
 
 ```yaml
 mounts:
-    'web/uploads':
-        source: local
-        source_path: uploads
-    'private':
-        source: local
-        source_path: private
+  "web/uploads":
+    source: local
+    source_path: uploads
+  "private":
+    source: local
+    source_path: private
 ```
+
 ### Using the CLI
 
 The CLI provides a useful `mount` command for accessing mount data.
@@ -36,7 +37,8 @@ platform mount:download
 ```
 
 ### Using rsync
-To use `rsync` to download each directory, we can use the following commands.  The `platform ssh --pipe` command will return the SSH URL for the current environment as an inline string that `rsync` can recognize. To use a non-default environment, use the `-e` switch after `--pipe`.  Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself.
+
+To use `rsync` to download each directory, we can use the following commands. The `platform ssh --pipe` command will return the SSH URL for the current environment as an inline string that `rsync` can recognize. To use a non-default environment, use the `-e` switch after `--pipe`. Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself.
 
 ```bash
 rsync -az `platform ssh --pipe`:/app/private/ ./private/
@@ -50,6 +52,6 @@ See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html)
 
 ## Download data from services
 
-The mechanism for downloading from each service (such as your database) varies.  For services designed to hold non-persistent information (such as Redis or Solr) it's generally not necessary to download data as it can be rebuilt from the primary data store.
+The mechanism for downloading from each service (such as your database) varies. For services designed to hold non-persistent information (such as Redis or Solr) it's generally not necessary to download data as it can be rebuilt from the primary data store.
 
 To download data from persistent services ([MySQL](/configuration/services/mysql.md), [PostgreSQL](/configuration/services/postgresql.md), [MongoDB](/configuration/services/mongodb.md), or [InfluxDB](/configuration/services/influxdb.md)), see each service's page for instructions.

@@ -4,14 +4,14 @@ Platform.sh supports deploying Python applications. Your application can use WSG
 
 ## Supported versions
 
-* 2.7
-* 3.5
-* 3.6
-* 3.7
+- 2.7
+- 3.5
+- 3.6
+- 3.7
 
 ## WSGI-based configuration
 
-In this example, we use Gunicorn to run our WSGI application.  Configure the `.platform.app.yaml` file with a few key settings as listed below, a complete example is included at the end of this section.
+In this example, we use Gunicorn to run our WSGI application. Configure the `.platform.app.yaml` file with a few key settings as listed below, a complete example is included at the end of this section.
 
 1. Specify the language of your application (available versions are listed above):
 
@@ -58,27 +58,27 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
    This configuration asks our web server to handle HTTP requests at "/static" to serve static files stored in `/app/static/` folder while everything else is forwarded to your application server.
 
-5. Create any Read/Write mounts. The root file system is read only.  You must explicitly describe writable mounts.
+5. Create any Read/Write mounts. The root file system is read only. You must explicitly describe writable mounts.
 
    ```yaml
    mounts:
-       tmp:
-           source: local
-           source_path: tmp
-       logs:
-           source: local
-           source_path: logs
+     tmp:
+       source: local
+       source_path: tmp
+     logs:
+       source: local
+       source_path: logs
    ```
 
    This setting allows your application writing files to `/app/tmp` and have logs stored in `/app/logs`.
 
 Then, set up the routes to your application in `.platform/routes.yaml`.
 
-   ```yaml
-   "https://{default}/":
-     type: upstream
-     upstream: "app:http"
-   ```
+```yaml
+"https://{default}/":
+  type: upstream
+  upstream: "app:http"
+```
 
 Here is the complete `.platform.app.yaml` file:
 
@@ -105,12 +105,12 @@ hooks:
     pip install gunicorn
 
 mounts:
-   tmp:
-       source: local
-       source_path: tmp
-   logs:
-       source: local
-       source_path: logs
+  tmp:
+    source: local
+    source_path: tmp
+  logs:
+    source: local
+    source_path: logs
 
 disk: 512
 ```
@@ -140,11 +140,11 @@ The above Gunicorn based WSGI example can be modified to use the Python 3.5+ asy
 
 ## Connecting to services
 
-You can [define services](/configuration/services.md) in your environment.  And, link to the services using `.platform.app.yaml`:
+You can [define services](/configuration/services.md) in your environment. And, link to the services using `.platform.app.yaml`:
 
 ```yaml
 relationships:
-    database: "mysqldb:mysql"
+  database: "mysqldb:mysql"
 ```
 
 By using the following Python function calls, you can obtain the database details.
@@ -173,10 +173,10 @@ relationships = json.loads(str(base64.b64decode(relationships), 'utf-8'))
 
 ## Project templates
 
-A number of project templates for Python applications are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
+A number of project templates for Python applications are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
-* [Starter kit Python 2.7 minimal example](https://github.com/platformsh/platformsh-example-python-2.7)
-* [Starter kit Python 3 minimal example](https://github.com/platformsh/platformsh-example-python-3)
-* [Starter kit Python with uwsgi](https://github.com/platformsh/platformsh-example-python-uwsgi)
-* [Starter kit Python and Elastic Search](https://github.com/platformsh/platformsh-example-python-elasticsearch)
-* [Starter kit Django project](https://github.com/platformsh/platformsh-example-django)
+- [Starter kit Python 2.7 minimal example](https://github.com/platformsh/platformsh-example-python-2.7)
+- [Starter kit Python 3 minimal example](https://github.com/platformsh/platformsh-example-python-3)
+- [Starter kit Python with uwsgi](https://github.com/platformsh/platformsh-example-python-uwsgi)
+- [Starter kit Python and Elastic Search](https://github.com/platformsh/platformsh-example-python-elasticsearch)
+- [Starter kit Django project](https://github.com/platformsh/platformsh-example-django)

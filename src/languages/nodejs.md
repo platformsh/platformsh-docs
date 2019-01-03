@@ -1,12 +1,12 @@
 # Node.js
 
-Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine.  Platform.sh supports deploying Node.js applications quickly and easily. Using our Multi-App support you can build a micro-service oriented system mixing both Javascript and PHP applications.
+Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine. Platform.sh supports deploying Node.js applications quickly and easily. Using our Multi-App support you can build a micro-service oriented system mixing both Javascript and PHP applications.
 
 ## Supported versions
 
-* 6.11
-* 8.9
-* 10
+- 6.11
+- 8.9
+- 10
 
 If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.html).
 
@@ -14,18 +14,18 @@ If you need other versions, take a look at our [options for installing them with
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 0.12
-* 4.7
-* 4.8
-* 6.9
-* 6.10
-* 8.2
+- 0.12
+- 4.7
+- 4.8
+- 6.9
+- 6.10
+- 8.2
 
 See https://github.com/platformsh/platformsh-example-nodejs/tree/mongodb for a full example with MongoDB support.
 
 ## Configuration
 
-To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` file with a few key settings, as described here (a complete example is included at the end).
+To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file with a few key settings, as described here (a complete example is included at the end).
 
 1. Specify the language of your application (available versions are listed above):
 
@@ -64,9 +64,9 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
 
    ```yaml
    mounts:
-       run:
-           source: local
-           source_path: run
+     run:
+       source: local
+       source_path: run
    ```
 
 5. Include any relevant commands needed to build and setup your application in the `hooks` section, e.g.:
@@ -111,25 +111,29 @@ dependencies:
   nodejs:
     pm2: "^2.5.0"
 mounts:
-   run:
-       source: local
-       source_path: run
+  run:
+    source: local
+    source_path: run
 disk: 512
 ```
 
 ## In your application...
 
-Finally, make sure your Node.js application is configured to listen over the port given by the environment (here we use the platformsh helper and get it from config.port) that is available in the environment variable ``PORT``.  Here's an example:
+Finally, make sure your Node.js application is configured to listen over the port given by the environment (here we use the platformsh helper and get it from config.port) that is available in the environment variable `PORT`. Here's an example:
 
 ```javascript
 // Load the http module to create an http server.
-var http = require('http');
+var http = require("http");
 // Load the Platform.sh configuration
-var config= require("platformsh").config();
+var config = require("platformsh").config();
 
-var server = http.createServer(function (request, response) {
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.end("<html><head><title>Hello Node.js</title></head><body><h1><img src='public/js.png'>Hello Node.js</h1><h3>Platform configuration:</h3><pre>"+JSON.stringify(config, null, 4) + "</pre></body></html>");
+var server = http.createServer(function(request, response) {
+  response.writeHead(200, { "Content-Type": "text/html" });
+  response.end(
+    "<html><head><title>Hello Node.js</title></head><body><h1><img src='public/js.png'>Hello Node.js</h1><h3>Platform configuration:</h3><pre>" +
+      JSON.stringify(config, null, 4) +
+      "</pre></body></html>"
+  );
 });
 
 server.listen(config.port);
@@ -140,7 +144,7 @@ server.listen(config.port);
 A number of project templates for Node.js applications and typical configurations are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
 Platform.sh also provides a [helper library](https://github.com/platformsh/platformsh-nodejs-helper) for Node.js applications that simplifies presenting environment information to your application. It is not required to run Node.js applications on Platform.sh but is recommended.
- 
-* [Generic Node.js](https://github.com/platformsh/platformsh-example-nodejs)
-* [Parse](https://github.com/platformsh/platformsh-example-parseit)
-* [Node.js-based microservices](https://github.com/platformsh/platformsh-example-nodejs-microservices)
+
+- [Generic Node.js](https://github.com/platformsh/platformsh-example-nodejs)
+- [Parse](https://github.com/platformsh/platformsh-example-parseit)
+- [Node.js-based microservices](https://github.com/platformsh/platformsh-example-nodejs-microservices)

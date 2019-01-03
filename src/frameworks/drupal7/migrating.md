@@ -6,7 +6,7 @@ Once you've setup the code for your site as a Platform.sh project, you will need
 
 ### With Drush (preferred)
 
-You can use *drush aliases* to import your existing local database into
+You can use _drush aliases_ to import your existing local database into
 Platform.
 
 The aliases here are examples. Use the CLI's `platform drush-aliases` command to find your own aliases.
@@ -55,7 +55,7 @@ web@[PROJECT-ID]-master--php:~$ mysql -h database.internal main < tmp/database.s
 
 ### With Drush
 
-You can use [*Drush site aliases*](http://docs.drush.org/en/master/usage/#site-aliases) to import your existing local files.
+You can use [_Drush site aliases_](http://docs.drush.org/en/master/usage/#site-aliases) to import your existing local files.
 
 ```bash
 $ drush rsync @platform._local:%files @platform.master:%files
@@ -80,12 +80,14 @@ $ rsync -r sites/default/files/. [SSH-URL]:public/sites/default/files/
 
 > **note**
 >
->  The local `files` path may depend of your installation.
+> The local `files` path may depend of your installation.
 >
->  The path in URL may vary depending on what your `.platform.app.yaml` file specifies as the root path and files mount.
+> The path in URL may vary depending on what your `.platform.app.yaml` file specifies as the root path and files mount.
 
 #### Directly from server to platform.sh
+
 If the files folder is too large to fit on your computer, you can transfer them directly from server to server. If you have a firewall between the origin server and platform.sh, you can use agent-forwarding to enable a direct connection:
+
 ```bash
 $ ssh -A -t [USER]@[ORIGIN-SERVER] ssh -A -t [SSH-URL]
 $ rsync -a --delete [USER]@[ORIGIN-SERVER]:/var/www/drupal/sites/default/files/ public/sites/default/files

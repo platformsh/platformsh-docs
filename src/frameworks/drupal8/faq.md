@@ -19,9 +19,9 @@ Normally, this means there is a problem with the MySQL server container
 and you may need to increase the storage available to MySQL to resolve
 the issue. Ballooning MySQL storage can be caused by a number of items:
 
-1)  A large number of watchdog entries being captured. Fix the errors
+1.  A large number of watchdog entries being captured. Fix the errors
     being generated or disable database logging.
-2)  Cron should run at regular intervals to ensure cache
+2.  Cron should run at regular intervals to ensure cache
     tables get cleared out.
 
 ## Why do I get "MySQL cannot connect to the database server"?
@@ -33,6 +33,6 @@ then push.
 
 ## Can I use the name of the session cookie for caching?
 
-For Drupal sites, the name of the session cookie is based on a hash of the 
-domain name. This means that it will actually be consistent for a specific 
+For Drupal sites, the name of the session cookie is based on a hash of the
+domain name. This means that it will actually be consistent for a specific
 website and can safely be used as a fixed value.

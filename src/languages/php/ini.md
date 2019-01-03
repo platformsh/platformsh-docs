@@ -2,11 +2,11 @@
 
 There are two ways to customize `php.ini` values for your application. The recommended method is to use the [`variables` property](/configuration/app/variables.md) of `.platform.app.yaml` to set ini values using the `php` prefix. For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
 
- ```yaml
- variables:
-    php:
-        memory_limit: 256M
- ```
+```yaml
+variables:
+  php:
+    memory_limit: 256M
+```
 
 It's also possible to provide a custom `php.ini` file in the repository in the root of the application (where your `.platform.app.yaml` file is).
 
@@ -18,11 +18,11 @@ memory_limit = 256M
 
 Another example is to set the timezone of the PHP runtime (though, the timezone settings of containers/services would remain in UTC):
 
- ```yaml
- variables:
-    php:
-        "date.timezone": "Europe/Paris"
- ```
+```yaml
+variables:
+  php:
+    "date.timezone": "Europe/Paris"
+```
 
 or
 
@@ -48,7 +48,7 @@ The default values for some frequently-modified `php.ini` settings are listed be
 <dt>opcache.validate_timestamps=On</dt> <dd>The opcache will check for updated files on disk. This is necessary to support applications that generate compiled PHP code from user configuration. If you are certain your application does not do so then you can disable this setting for a small performance boost.</dd>
 </dl>
 
-------------------------------------------------------------------------
+---
 
 > **warning**
 >

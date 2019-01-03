@@ -22,7 +22,7 @@ fin config set --global SECRET_PLATFORMSH_CLI_TOKEN=XXX
 
 ## Pulling a Platform.sh project
 
-The Docksal CLI ships with the Platform.sh CLI tool. To use the tool and pull a project locally, make sure you have uploaded your SSH key to your Platform.sh account. Once that is done and a `SECRET_PLATFORMSH_CLI_TOKEN` has been added using the above step, you can set up your project with the following instructions. 
+The Docksal CLI ships with the Platform.sh CLI tool. To use the tool and pull a project locally, make sure you have uploaded your SSH key to your Platform.sh account. Once that is done and a `SECRET_PLATFORMSH_CLI_TOKEN` has been added using the above step, you can set up your project with the following instructions.
 
 Note: Replace `PROJECT_ID` with your project's ID, which can found within the Platform.sh dashboard. Replace `PROJECT_DIRECTORY` with the name of the local directory you'd like the project cloned into.
 
@@ -89,12 +89,12 @@ fin exec 'zcat < /tmp/database.sql.gz | mysql -u user -puser -h db default'
 
 After importing your database into the project the next step is connecting to the database server. The following information can be used for setting up a connection for your application.
 
-Key | Value
-----|-----
-DB Name | default
-Username | user
-Password | user
-Host | db
-Port | 3306
+| Key      | Value   |
+| -------- | ------- |
+| DB Name  | default |
+| Username | user    |
+| Password | user    |
+| Host     | db      |
+| Port     | 3306    |
 
 See the [exporting tutorial](/tutorials/exporting.md) for information on how to use rsync.

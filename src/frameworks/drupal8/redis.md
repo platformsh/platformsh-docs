@@ -6,40 +6,40 @@ The Drupal 8 Redis module currently only supports the [PhpRedis](https://github.
 
 ### Add a Redis service
 
-First you need to create a Redis service.  In your `.platform/services.yaml` file, add or uncomment the following:
+First you need to create a Redis service. In your `.platform/services.yaml` file, add or uncomment the following:
 
 ```yaml
 rediscache:
-    type: redis:3.2
+  type: redis:3.2
 ```
 
 That will create a service named `rediscache`, of type `redis`, specifically version `3.2`.
 
 ### Expose the Redis service to your application
 
-In your `.platform.app.yaml` file, we now need to open a connection to the new Redis service.  Under the `relationships` section, add the following:
+In your `.platform.app.yaml` file, we now need to open a connection to the new Redis service. Under the `relationships` section, add the following:
 
 ```yaml
 relationships:
-    redis: "rediscache:redis"
+  redis: "rediscache:redis"
 ```
 
-The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service we specified above (`rediscache`) and the endpoint (`redis`).  If you named the service something different above, change `rediscache` to that.
+The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md). The right hand side is the name of the service we specified above (`rediscache`) and the endpoint (`redis`). If you named the service something different above, change `rediscache` to that.
 
 ### Add the Redis PHP extension
 
-You will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
+You will need to enable the PHP Redis extension. In your `.platform.app.yaml` file, add the following right after the `type` block:
 
 ```yaml
 # Additional extensions
 runtime:
-    extensions:
-        - redis
+  extensions:
+    - redis
 ```
 
 ### Add the Drupal module
 
-You will need to add the [Redis](https://www.drupal.org/project/redis) module to your project.  If you are using Composer to manage your Drupal 8 site (which we recommend), simply run:
+You will need to add the [Redis](https://www.drupal.org/project/redis) module to your project. If you are using Composer to manage your Drupal 8 site (which we recommend), simply run:
 
 ```bash
 composer require drupal/redis
@@ -47,15 +47,15 @@ composer require drupal/redis
 
 Then commit the resulting changes to your `composer.json` and `composer.lock` files.
 
-Note that the Redis module does not need to be enabled in Drupal except for diagnostic purposes.  The configuration below is sufficient to leverage its functionality.
+Note that the Redis module does not need to be enabled in Drupal except for diagnostic purposes. The configuration below is sufficient to leverage its functionality.
 
 ## Configuration
 
 To make use of the Redis cache you will need to set some Drupal variables. The configuration is a bit more complex than can be easily represented in Platform.sh's environment variables configuration, so using `settings.php` directly is the recommended approach.
 
-Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize it further.  Also review the `README.txt` file that comes with the redis module, as it has a great deal more information on possible configuration options. For instance, you may wish to not use Redis for the persistent lock if you have a custom module that needs locks to persist for more than a few seconds.
+Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize it further. Also review the `README.txt` file that comes with the redis module, as it has a great deal more information on possible configuration options. For instance, you may wish to not use Redis for the persistent lock if you have a custom module that needs locks to persist for more than a few seconds.
 
-The example below is intended as a "most common case".  (Note: This example assumes Drupal 8.2 or later.)
+The example below is intended as a "most common case". (Note: This example assumes Drupal 8.2 or later.)
 
 ```php
 // Set redis configuration.
@@ -120,9 +120,10 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
 The `example.services.yml` file noted above will also use Redis for the lock and flood
 control systems.
 
-The redis module is able to use Redis as a queue backend, however, that should not be done on an ephemeral Redis instance as that could result in lost items when the Redis service instance is restarted or fills up.  If you wish to use Redis for the queue we recommend using a separate persistent Redis instance.  See the [Redis documentation page](/configuration/services/redis.md) for more information.
+The redis module is able to use Redis as a queue backend, however, that should not be done on an ephemeral Redis instance as that could result in lost items when the Redis service instance is restarted or fills up. If you wish to use Redis for the queue we recommend using a separate persistent Redis instance. See the [Redis documentation page](/configuration/services/redis.md) for more information.
 
 ### Verifying Redis is running
+
 Run this command in a SSH session in your environment `redis-cli -h redis.internal info`. You should run it before you push all this new code to your repository.
 
 This should give you a baseline of activity on your Redis installation. There should be very little memory allocated to the Redis cache.

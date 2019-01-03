@@ -15,6 +15,5 @@ platform get <project id> -e <branch name>
 composer require typo3-ter/[extension name]
 git add composer.*
 git commit
-git push 
+git push
 ```
-

@@ -6,9 +6,9 @@ Platform.sh is very flexible and allows you to structure your files as you wish 
 
 Here are the three build modes that can be used:
 
--   **Profile**: Platform.sh builds your project like Drupal.org does for distributions.
--   **Project**: Platform.sh builds your make file using *drush make*. You don't need any Drupal core files nor any contributed modules, themes or libraries within your Git repository.
--   **Vanilla**: Platform.sh builds your project as it is in your Git repository. You can push all Drupal files and contributed modules, themes or libraries.
+- **Profile**: Platform.sh builds your project like Drupal.org does for distributions.
+- **Project**: Platform.sh builds your make file using _drush make_. You don't need any Drupal core files nor any contributed modules, themes or libraries within your Git repository.
+- **Vanilla**: Platform.sh builds your project as it is in your Git repository. You can push all Drupal files and contributed modules, themes or libraries.
 
 ### Profile mode
 
@@ -18,7 +18,7 @@ This build mode supports having a `project.make` file for your contributed modul
 
 > **note**
 > When building as a profile, you **need a make file for Drupal core** called: `project-core.make`. See
-[drush make files](/frameworks/drupal7/drush.md)
+> [drush make files](/frameworks/drupal7/drush.md)
 
 ```
 .git/
@@ -74,9 +74,9 @@ translations/
 
 ### Vanilla mode
 
-In Vanilla mode, Platform.sh just takes your repository as-is without any additional reorganization.  This is the behavior when there is no `.make` or `.profile` file, or when the build mode is set to `none` or `composer` rather than to `drupal`.
+In Vanilla mode, Platform.sh just takes your repository as-is without any additional reorganization. This is the behavior when there is no `.make` or `.profile` file, or when the build mode is set to `none` or `composer` rather than to `drupal`.
 
-It's best to keep your docroot separate from your repository root, as that allows you to store private files outside of the docroot when needed.  For example, your repository layout will likely resemble the following:
+It's best to keep your docroot separate from your repository root, as that allows you to store private files outside of the docroot when needed. For example, your repository layout will likely resemble the following:
 
 ```
 .git/
@@ -95,10 +95,9 @@ If you already have a Drupal 7 site built from a `tar.gz` download from Drupal.o
 
 ## Configuring Platform.sh for Drupal
 
-The ideal `.platform.app.yaml` file will vary from project project, and you are free to customize yours as needed.  A recommended baseline Drupal 7 configuration is listed below, and can also be found in our [Drupal 7 template project](https://github.com/platformsh/template-drupal7).
+The ideal `.platform.app.yaml` file will vary from project project, and you are free to customize yours as needed. A recommended baseline Drupal 7 configuration is listed below, and can also be found in our [Drupal 7 template project](https://github.com/platformsh/template-drupal7).
 
 > **note**
 > Your database for Drupal must be named "database" in the `relationships`.
 
 {% codesnippet "https://raw.githubusercontent.com/platformsh/template-drupal7/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
-

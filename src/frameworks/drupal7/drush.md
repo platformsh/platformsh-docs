@@ -1,10 +1,10 @@
 # Working with Drush in Drupal 7
 
-Drush is a command-line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those who spend their working hours hacking away at the command prompt. 
+Drush is a command-line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those who spend their working hours hacking away at the command prompt.
 
 You can use the CLI to set up Drush aliases, to easily run Drush commands on specific remote Platform.sh environments.
 
-See the [documentation on Drush in Drupal 8](/frameworks/drupal8/drush.html) for installation, drush aliases, and other general information.  The installation procedure is the same for both Drupal 7 and 8.
+See the [documentation on Drush in Drupal 8](/frameworks/drupal8/drush.html) for installation, drush aliases, and other general information. The installation procedure is the same for both Drupal 7 and 8.
 
 ## Drush make
 

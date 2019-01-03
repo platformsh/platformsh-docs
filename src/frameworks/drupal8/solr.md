@@ -18,40 +18,41 @@ And then commit the changes to `composer.json` and `composer.lock`.
 
 ### Get a Solr configuration files set
 
-Copy the Solr 6.x configuration folder from the  [Search API Solr module](https://www.drupal.org/project/search_api_solr) to your `.platform` folder.
+Copy the Solr 6.x configuration folder from the [Search API Solr module](https://www.drupal.org/project/search_api_solr) to your `.platform` folder.
 
 Assuming you got the module in the [previous step](#add-the-drupal-modules) and your application's web root is set to the default `web` folder, you can get the configuration files from with these commands:
 
 ```bash
 mkdir .platform/solr-conf
 cp -r web/modules/contrib/search_api_solr/solr-conf/6.x .platform/solr-conf
-``` 
+```
 
 Then, the structure in your Platform repository will be `./platform/solr-conf/6.x/`.
 
 ### Add a Solr service
 
-First you need to create a Solr service.  In your `.platform/services.yaml` file, add or uncomment the following:
+First you need to create a Solr service. In your `.platform/services.yaml` file, add or uncomment the following:
 
 ```yaml
 solrsearch:
-    type: solr:6.6
-    disk: 1024
-    configuration:
-        cores:
-            maincore:
-                conf_dir: !archive "solr-conf/6.x"
-        endpoints:
-            main:
-                core: maincore
+  type: solr:6.6
+  disk: 1024
+  configuration:
+    cores:
+      maincore:
+        conf_dir: !archive "solr-conf/6.x"
+    endpoints:
+      main:
+        core: maincore
 ```
-The above definition defines a single Solr 6.6 server.  That server has 1 core defined: `maincore` - the configuration for which is in the `.platform/solr-conf/6.x` directory.
+
+The above definition defines a single Solr 6.6 server. That server has 1 core defined: `maincore` - the configuration for which is in the `.platform/solr-conf/6.x` directory.
 
 It then defines one endpoint: `main` is connected to the `maincore`.
 
 ### Expose the Solr service to your application
 
-In your `.platform.app.yaml` file, we now need to open a connection to the new Solr service.  Under the `relationships` section, add or uncomment the following:
+In your `.platform.app.yaml` file, we now need to open a connection to the new Solr service. Under the `relationships` section, add or uncomment the following:
 
 ```
 relationships:
@@ -60,7 +61,7 @@ relationships:
 
 That is, the application's environment would include a `solr` relationship that connects to the `main` endpoint, which is the `maincore` core.
 
-The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service we specified above (`solrsearch`) and the endpoint (`main`).  If you named the service something different above, change `solrsearch` to that. The same rule is valid for the value of the endpoint named `main`.
+The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md). The right hand side is the name of the service we specified above (`solrsearch`) and the endpoint (`main`). If you named the service something different above, change `solrsearch` to that. The same rule is valid for the value of the endpoint named `main`.
 
 ## Configuration
 

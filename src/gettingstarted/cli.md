@@ -39,7 +39,7 @@ tips for getting started.
 
 ## Usage
 
-The CLI uses Platform.sh API to trigger commands (*Branch, Merge...*) on your projects.
+The CLI uses Platform.sh API to trigger commands (_Branch, Merge..._) on your projects.
 
 It's also very useful when you work locally since it can simulate a local build of your codebase as if you were pushing a change to Platform.sh.
 

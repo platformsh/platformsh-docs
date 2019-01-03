@@ -6,9 +6,9 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 ## Supported versions
 
-* 10.0
-* 10.1
-* 10.2
+- 10.0
+- 10.1
+- 10.2
 
 > **note**
 >
@@ -18,11 +18,11 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 5.5
+- 5.5
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 ```json
 {
@@ -34,7 +34,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
       "path": "main",
       "port": 3306,
       "query": {
-          "is_master": true
+        "is_master": true
       },
       "scheme": "mysql",
       "username": "user"
@@ -49,8 +49,8 @@ In your `.platform/services.yaml`:
 
 ```yaml
 mydatabase:
-    type: mysql:10.0
-    disk: 1024
+  type: mysql:10.0
+  disk: 1024
 ```
 
 Note that the minimum disk size for mysql is 256MB.
@@ -59,12 +59,13 @@ In your `.platform.app.yaml`:
 
 ```yaml
 relationships:
-    database: "mydatabase:mysql"
+  database: "mydatabase:mysql"
 ```
 
 You can then use the service in a configuration file of your application with something like:
 
 {% codetabs name="PHP", type="php" -%}
+
 <?php
 // This assumes a fictional application with an array named $settings.
 $relationships = getenv('PLATFORM_RELATIONSHIPS');

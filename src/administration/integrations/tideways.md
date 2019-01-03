@@ -1,6 +1,6 @@
 # Tideways
 
-Platform.sh supports [Tideways APM](https://tideways.io/) for PHP.  This functionality is only available on PHP 7.0 and later.
+Platform.sh supports [Tideways APM](https://tideways.io/) for PHP. This functionality is only available on PHP 7.0 and later.
 
 ## Get Started
 
@@ -36,8 +36,8 @@ git commit -m "Enable Tideways."
 git push
 ```
 
-Tideways should now be enabled.  Give it a few hours to a day to get a decent set of data before checking your Tideways dashboard.
+Tideways should now be enabled. Give it a few hours to a day to get a decent set of data before checking your Tideways dashboard.
 
 ## Email integration
 
-Once Tideways is enabled, an additional environment variable will be available.  The `PLATFORM_SMTP_HOST` variable will contain the hostname of the Tideways SMTP server should it be needed.
+Once Tideways is enabled, an additional environment variable will be available. The `PLATFORM_SMTP_HOST` variable will contain the hostname of the Tideways SMTP server should it be needed.

@@ -1,45 +1,45 @@
 # Using Memcached with Drupal 8.x
 
-Platform.sh recommends using Redis for caching with Drupal 8 over Memcached, as Redis offers better performance when dealing with larger values as Drupal tends to produce.  However, Memcached is also available if desired and is fully supported.
+Platform.sh recommends using Redis for caching with Drupal 8 over Memcached, as Redis offers better performance when dealing with larger values as Drupal tends to produce. However, Memcached is also available if desired and is fully supported.
 
 ## Requirements
 
 ### Add a Memcached service
 
-First you need to create a  Memcached service.  In your `.platform/services.yaml` file, add or uncomment the following:
+First you need to create a Memcached service. In your `.platform/services.yaml` file, add or uncomment the following:
 
 ```yaml
 cacheservice:
-    type: memcached:1.4
+  type: memcached:1.4
 ```
 
 That will create a service named `cacheservice`, of type `memcached`, specifically version `1.4`.
 
 ### Expose the Memcached service to your application
 
-In your `.platform.app.yaml` file, we now need to open a connection to the new Memcached service.  Under the `relationships` section, add the following:
+In your `.platform.app.yaml` file, we now need to open a connection to the new Memcached service. Under the `relationships` section, add the following:
 
 ```yaml
 relationships:
-    cache: "cacheservice:memcached"
+  cache: "cacheservice:memcached"
 ```
 
-The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service we specified above (`cacheservice`) and the endpoint (`memcached`).  If you named the service something different above, change `cacheservice` to that.
+The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md). The right hand side is the name of the service we specified above (`cacheservice`) and the endpoint (`memcached`). If you named the service something different above, change `cacheservice` to that.
 
 ### Add the Memcached PHP extension
 
-You will need to enable the PHP Memcached extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
+You will need to enable the PHP Memcached extension. In your `.platform.app.yaml` file, add the following right after the `type` block:
 
 ```yaml
 # Additional extensions
 runtime:
-    extensions:
-        - memcached
+  extensions:
+    - memcached
 ```
 
 ### Add the Drupal module
 
-You will need to add the [Memcache](https://www.drupal.org/project/memcache) module to your project.  If you are using Composer to manage your Drupal 8 site (which we recommend), simply run:
+You will need to add the [Memcache](https://www.drupal.org/project/memcache) module to your project. If you are using Composer to manage your Drupal 8 site (which we recommend), simply run:
 
 ```bash
 composer require drupal/memcache
@@ -49,14 +49,14 @@ Then commit the resulting changes to your `composer.json` and `composer.lock` fi
 
 > **note**
 >
-> You must commit and deploy your code before continuing, then enable the module. The memcache 
+> You must commit and deploy your code before continuing, then enable the module. The memcache
 > module must be enabled before it is configured in the `settings.platformsh.php` file.
 
 ## Configuration
 
 The Drupal Memcache module must be configured via `settings.platformsh.php`.
 
-Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize it further.  Also review the `README.txt` file that comes with the memcache module, as it has a more information on possible configuration options. For instance, you may want to consider using memcache for locking as well and configuring cache stampede protection.
+Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize it further. Also review the `README.txt` file that comes with the memcache module, as it has a more information on possible configuration options. For instance, you may want to consider using memcache for locking as well and configuring cache stampede protection.
 
 The example below is intended as a "most common case".
 
@@ -71,7 +71,7 @@ if (getenv('PLATFORM_RELATIONSHIPS') && extension_loaded('memcached')) {
   if (!empty($relationships[$relationship_name])) {
     // This is the line that tells Drupal to use memcached as a backend.
     // Comment out just this line if you need to disable it for some reason and
-    // fall back to the default database cache. 
+    // fall back to the default database cache.
     $settings['cache']['default'] = 'cache.backend.memcache';
 
     foreach ($relationships[$relationship_name] as $endpoint) {

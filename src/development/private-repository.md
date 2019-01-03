@@ -2,7 +2,7 @@
 
 ## Pull code from a private Git repository
 
-Let's say you're building a module (*or theme, library...*) which is stored in a private Git repository that you have access to, and you want to use it on your project. Platform.sh allows you to include code dependencies that are stored in external private Git repositories (e.g. from a Drupal `.make` file, a PHP `composer.json` file).
+Let's say you're building a module (_or theme, library..._) which is stored in a private Git repository that you have access to, and you want to use it on your project. Platform.sh allows you to include code dependencies that are stored in external private Git repositories (e.g. from a Drupal `.make` file, a PHP `composer.json` file).
 
 To grant Platform.sh access to your private Git repository, you need to add the project public SSH key to the deploy keys of your Git repository.
 
@@ -10,7 +10,7 @@ You can find your project's public key by going to the project's configuration o
 
 ![Deploy Key](/images/deploykey.png)
 
-If your private repository is on GitHub, go to the target repository's settings page. Go to *Deploy Keys* and click *Add deploy key*. Paste the public SSH key in and submit. By default, on github, deploy keys are read only, so you don't need to worry about the system pushing code to the private repository.
+If your private repository is on GitHub, go to the target repository's settings page. Go to _Deploy Keys_ and click _Add deploy key_. Paste the public SSH key in and submit. By default, on github, deploy keys are read only, so you don't need to worry about the system pushing code to the private repository.
 
 If you're using Drupal for example, you can now use your private module by adding it to your make file:
 
@@ -34,4 +34,3 @@ If your project needs to access multiple repositories, you can choose to attach 
 
 More information about this is available on
 [GitHub](https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users).
-

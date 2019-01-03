@@ -4,9 +4,9 @@ The [GitHub](https://github.com) integration allows you to manage your Platform.
 
 Features supported:
 
-* Create a new environment when creating a branch or opening a pull request on GitHub.
-* Rebuild the environment when pushing new code to GitHub.
-* Delete the environment when merging a pull request.
+- Create a new environment when creating a branch or opening a pull request on GitHub.
+- Rebuild the environment when pushing new code to GitHub.
+- Delete the environment when merging a pull request.
 
 ## Setup
 
@@ -16,10 +16,10 @@ To integrate your Platform.sh project with an existing GitHub repository, you fi
 
 Give it a description and then ensure the token has the following scopes:
 
-* To integrate with public repositories: `public_repo`
-* To integrate with your own private repositories: `repo`
-* To integrate with your organization's private repositories: `repo`
-    and `read:org`
+- To integrate with public repositories: `public_repo`
+- To integrate with your own private repositories: `repo`
+- To integrate with your organization's private repositories: `repo`
+  and `read:org`
 
 Copy the token and make a note of it (temporarily).
 
@@ -34,29 +34,33 @@ Open a terminal window (you need to have the Platform.sh CLI installed). Enable 
 ```bash
 platform integration:add --type=github --project=PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 ```
-where
-* `PROJECT_ID` is the project ID for your Platform.sh project
-* `GITHUB-USER-TOKEN` is the token you generated in step 1
-* `USER` is your github user name
-* `REPOSITORY` is the name of the repository in github (not the git address)
 
-Note that if your repository belongs to an organization, use ``--repository=ORGANIZATION/REPOSITORY``.
+where
+
+- `PROJECT_ID` is the project ID for your Platform.sh project
+- `GITHUB-USER-TOKEN` is the token you generated in step 1
+- `USER` is your github user name
+- `REPOSITORY` is the name of the repository in github (not the git address)
+
+Note that if your repository belongs to an organization, use `--repository=ORGANIZATION/REPOSITORY`.
 
 e.g.
+
 ```bash
 platform integration:add --type=github --project=abcde12345 --token=xxx --repository=platformsh/platformsh-docs
 ```
 
 Optional parameters:
-* `--fetch-branches`: Track and deploy branches (true by default)
-* `--prune-branches`: Delete branches that do not exist in the remote GitHub repository (true by default)
-* `--build-pull-requests`: Track and deploy pull-requests (true by default)
-* `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`false` by default)
-* `--pull-requests-clone-parent-data`: Set to `false` to disable cloning of parent environment data when creating a PR environment, so each PR environment starts with no data. (`true` by default)
+
+- `--fetch-branches`: Track and deploy branches (true by default)
+- `--prune-branches`: Delete branches that do not exist in the remote GitHub repository (true by default)
+- `--build-pull-requests`: Track and deploy pull-requests (true by default)
+- `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR. (`false` by default)
+- `--pull-requests-clone-parent-data`: Set to `false` to disable cloning of parent environment data when creating a PR environment, so each PR environment starts with no data. (`true` by default)
 
 The CLI will create the necessary webhook for you when there's correct permission set in the given token.
 
-Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.  If `--fetch-branches` is disabled, `--prune-branches` will automatically be set to false, even if specifically set to true.
+Note that the `--prune-branches` option depends on `--fetch-branches` being enabled. If `--fetch-branches` is disabled, `--prune-branches` will automatically be set to false, even if specifically set to true.
 
 ### 3. Add the webhook
 

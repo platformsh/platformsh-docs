@@ -13,6 +13,7 @@ You can also manage SSH keys through the CLI (see below), or through the setting
 If you use Linux, you probably already have keys. The private key is usually in a file named `~/.ssh/id_rsa` and the public key in `~/.ssh/id_rsa.pub`,
 
 Searching for a public key file:
+
 1. Open up a command prompt.
 2. run the following commands:
 
@@ -115,10 +116,10 @@ Permission denied (publickey).
 
 Don't panic! It's an issue which can happen for the following reasons:
 
-* Your environment is inactive
-* You haven't redeployed (i.e. `git push`) your environment since adding the new public key
-* You didn't upload your public key to your user profile
-* Your SSH private key has not been added into your ssh-agent
+- Your environment is inactive
+- You haven't redeployed (i.e. `git push`) your environment since adding the new public key
+- You didn't upload your public key to your user profile
+- Your SSH private key has not been added into your ssh-agent
 
 ### Check your public key
 

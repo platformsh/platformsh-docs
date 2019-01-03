@@ -18,11 +18,10 @@ Simply edit your `.platform.app.yaml` and add a mounts there:
 
 ```yaml
 mounts:
-...
-    "app/sessions":
-        source: local
-        source_path: sessions
-...
+---
+"app/sessions":
+  source: local
+  source_path: sessions
 ```
 
 Then, add this line at the top of your `app_dev.php`:
@@ -48,14 +47,16 @@ composer install
 ## Why do I get 'Permission denied' in a deploy hook?
 
 If you get the following error during a deploy hook:
+
 ```bash
 Launching hook 'app/console cache:clear'.
 /bin/dash: 1: app/console: Permission denied
 ```
 
-This means that you might have committed the executable file (in this case ``app/console``) without the execute bit set.
+This means that you might have committed the executable file (in this case `app/console`) without the execute bit set.
 
 Run this to fix the problem:
+
 ```bash
 chmod a+x app/console
 git add app/console

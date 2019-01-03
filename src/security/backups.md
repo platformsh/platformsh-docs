@@ -14,6 +14,6 @@ With Platform Professional, we have enabled our clients to manage their own back
 
 ## Platform Enterprise
 
-**RPO**: 6 hours.  Platform.sh takes a backup of Platform.sh Enterprise environments every 6 hours.
+**RPO**: 6 hours. Platform.sh takes a backup of Platform.sh Enterprise environments every 6 hours.
 
 **RTO**: Variable. Recovery time will depend upon the size of the data we are recovering

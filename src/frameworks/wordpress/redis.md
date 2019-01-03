@@ -1,40 +1,40 @@
 # Using Redis with WordPress
 
-There are a number of Redis libraries for WordPress, only some of which are compatible with Platform.sh.  We have tested and recommend [devgeniem/wp-redis-object-cache-dropin](https://packagist.org/packages/devgeniem/wp-redis-object-cache-dropin), which requires extremely little configuration.
+There are a number of Redis libraries for WordPress, only some of which are compatible with Platform.sh. We have tested and recommend [devgeniem/wp-redis-object-cache-dropin](https://packagist.org/packages/devgeniem/wp-redis-object-cache-dropin), which requires extremely little configuration.
 
 ## Requirements
 
 ### Add a Redis service
 
-First you need to create a Redis service.  In your `.platform/services.yaml` file, add the following:
+First you need to create a Redis service. In your `.platform/services.yaml` file, add the following:
 
 ```yaml
 rediscache:
-    type: redis:3.2
+  type: redis:3.2
 ```
 
 That will create a service named `rediscache`, of type `redis`, specifically version `3.2`.
 
 ### Expose the Redis service to your application
 
-In your `.platform.app.yaml` file, we now need to open a connection to the new Redis service.  Under the `relationships` section, add the following:
+In your `.platform.app.yaml` file, we now need to open a connection to the new Redis service. Under the `relationships` section, add the following:
 
 ```yaml
 relationships:
-    redis: "rediscache:redis"
+  redis: "rediscache:redis"
 ```
 
-The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service we specified above (`rediscache`) and the endpoint (`redis`).  If you named the service something different above, change `rediscache` to that.
+The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md). The right hand side is the name of the service we specified above (`rediscache`) and the endpoint (`redis`). If you named the service something different above, change `rediscache` to that.
 
 ### Add the Redis PHP extension
 
-You will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
+You will need to enable the PHP Redis extension. In your `.platform.app.yaml` file, add the following right after the `type` block:
 
 ```yaml
 # Additional extensions
 runtime:
-    extensions:
-        - redis
+  extensions:
+    - redis
 ```
 
 ### Add the Redis library
@@ -49,7 +49,7 @@ Then commit the resulting changes to your `composer.json` and `composer.lock` fi
 
 ## Configuration
 
-To enable the WP-Redis cache the `object-cache.php` file needs to be copied from the downloaded package to the `wp-content` directory.  Add the following line to the bottom of your `build` hook:
+To enable the WP-Redis cache the `object-cache.php` file needs to be copied from the downloaded package to the `wp-content` directory. Add the following line to the bottom of your `build` hook:
 
 ```bash
 cp -r vendor/devgeniem/wp-redis-object-cache-dropin/object-cache.php wp/wp-content/object-cache.php
@@ -59,14 +59,14 @@ It should now look something like:
 
 ```yaml
 hooks:
-    build: |
-      mkdir -p wp/wp-content/themes
-      mkdir -p wp/wp-content/plugins
-      mkdir -p wp/wp-content/languages
-      cp -r plugins/* wp/wp-content/plugins/
-      cp -r themes/* wp/wp-content/themes/
-      cp -r languages/* wp/wp-content/languages/
-      cp -r vendor/devgeniem/wp-redis-object-cache-dropin/object-cache.php wp/wp-content/object-cache.php
+  build: |
+    mkdir -p wp/wp-content/themes
+    mkdir -p wp/wp-content/plugins
+    mkdir -p wp/wp-content/languages
+    cp -r plugins/* wp/wp-content/plugins/
+    cp -r themes/* wp/wp-content/themes/
+    cp -r languages/* wp/wp-content/languages/
+    cp -r vendor/devgeniem/wp-redis-object-cache-dropin/object-cache.php wp/wp-content/object-cache.php
 ```
 
 Next, place the following code in the `wp-config.php` file, somewhere before the final `require_once(ABSPATH . 'wp-settings.php');` line.
@@ -86,9 +86,9 @@ if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
 }
 ```
 
-That will define 3 constants that the WP-Redis extension will look for in order to connect to the Redis server.  If you used a different name for the relationship above, change `$relationship_name` accordingly.  This code will have no impact when run on a local development environment.
+That will define 3 constants that the WP-Redis extension will look for in order to connect to the Redis server. If you used a different name for the relationship above, change `$relationship_name` accordingly. This code will have no impact when run on a local development environment.
 
-That's it.  There is no Plugin to enable through the WordPress administrative interface.  Commit the above changes and push.
+That's it. There is no Plugin to enable through the WordPress administrative interface. Commit the above changes and push.
 
 ### Verifying Redis is running
 

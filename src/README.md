@@ -2,9 +2,9 @@
 
 Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
 
-If you're new to Platform.sh, we recommend starting with the **Big Picture**, in particular  [Structure](/overview/structure.md), and [Build & Deploy](/overview/build-deploy.md) will get you started on the right track to best leverage Platform.sh.
+If you're new to Platform.sh, we recommend starting with the **Big Picture**, in particular [Structure](/overview/structure.md), and [Build & Deploy](/overview/build-deploy.md) will get you started on the right track to best leverage Platform.sh.
 
-The main requirement of Platform.sh is that you use Git to manage your application code. Your project's configuration is driven almost entirely by a small number of YAML files in your Git repository.  The **Configuration** section covers those in more detail and can serve as both tutorial and quick-reference.
+The main requirement of Platform.sh is that you use Git to manage your application code. Your project's configuration is driven almost entirely by a small number of YAML files in your Git repository. The **Configuration** section covers those in more detail and can serve as both tutorial and quick-reference.
 
 Platform.sh supports a number of different programming **Languages** and environments, and it features recommended optimizations for a number of **Featured Frameworks**.
 
@@ -12,15 +12,15 @@ Finally, you can also get tips for setting up your own **Development** workflow 
 
 # Git Driven Infrastructure
 
-As a Platform as a Service, or PaaS, Platform.sh automatically manages everything your application needs in order to run.  That means you can, and should, view your infrastructure needs as part of your application, and version-control it as part of your application.
+As a Platform as a Service, or PaaS, Platform.sh automatically manages everything your application needs in order to run. That means you can, and should, view your infrastructure needs as part of your application, and version-control it as part of your application.
 
 ## Infrastructure as code
 
 Platform.sh covers not only all of your hosting needs but also most of your DevOps needs. It is a simple, single tool that covers the application life-cycle from development to production and scaling.
 
-You only need to write your code, including a few YAML files that specify your desired infrastructure, commit it to Git, and push.  You don't need to setup anything manually. The web server is already setup and configured, as is any database, search engine, or cache that you specify.
+You only need to write your code, including a few YAML files that specify your desired infrastructure, commit it to Git, and push. You don't need to setup anything manually. The web server is already setup and configured, as is any database, search engine, or cache that you specify.
 
-Every branch you push is a fully independent environment&mdash;complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything&mdash;and its automatically generated URL can be sent to stakeholders or to automated CI systems.  It really is "what would my site look like if I merged this to production?"  Every time.
+Every branch you push is a fully independent environment&mdash;complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything&mdash;and its automatically generated URL can be sent to stakeholders or to automated CI systems. It really is "what would my site look like if I merged this to production?" Every time.
 
 You can use these concepts to replicate a traditional development/staging/production workflow or even to give every feature its own effective staging environment before merging to production (empowering you to use git-flow like methodologies even better). You could also have an intermediary integration branch for several other branches.
 

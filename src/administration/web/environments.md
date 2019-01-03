@@ -23,7 +23,7 @@ Platform.sh brings the concept of a hierarchy between your environments. Each ne
 
 Each child environment can sync code and/or data down from its parent, and merge code up to its parent. These are used for development, staging, and testing.
 
-When you create a branch or child environment through the Platform.sh UI the branch it was made from will be treated as the parent.  If you create a branch through your local Git checkout and push it to Platform.sh, or synchronize a branch from a 3rd party such as GitHub or Bitbucket, its parent will default to the master branch.
+When you create a branch or child environment through the Platform.sh UI the branch it was made from will be treated as the parent. If you create a branch through your local Git checkout and push it to Platform.sh, or synchronize a branch from a 3rd party such as GitHub or Bitbucket, its parent will default to the master branch.
 
 Any environment's parent can be changed using the Platform.sh CLI with the following command:
 
@@ -31,12 +31,11 @@ Any environment's parent can be changed using the Platform.sh CLI with the follo
 platform environment:info parent NEW_PARENT
 ```
 
-In this case, the current environment (the branch you're on) will be set to have `NEW_PARENT` as its parent environment.  The environment to reparent can be set explicitly with the `-e` option:
+In this case, the current environment (the branch you're on) will be set to have `NEW_PARENT` as its parent environment. The environment to reparent can be set explicitly with the `-e` option:
 
 ```bash
 platform environment:info -e feature-x parent NEW_PARENT
 ```
-
 
 ## Workflows
 
@@ -44,38 +43,36 @@ Since you can organize your environments as you want, you have complete flexibil
 
 There are no rules you must follow when branching the master environment. You simply need a structure that best fits your workflow:
 
-* **Agile**: a child environment per sprint. Each story in the sprint can have its own environment as a child of the sprint environment.
-* **Developer-centric**: one QA environment and a few development environments (*per developer, per task...*).
-* **Testing**: an operational test environment, a user test environment and a few unit test environments.
-* **Hotfix**: one environment for every bug, security, or hotfix that needs deployment.
+- **Agile**: a child environment per sprint. Each story in the sprint can have its own environment as a child of the sprint environment.
+- **Developer-centric**: one QA environment and a few development environments (_per developer, per task..._).
+- **Testing**: an operational test environment, a user test environment and a few unit test environments.
+- **Hotfix**: one environment for every bug, security, or hotfix that needs deployment.
 
 Here is an example of a possible Agile workflow.
 
 ![Branches](/images/branches.png)
 
-
 The administrator creates a Sprint environment and gives each of the developers permission to create new feature environments. Another approach is that the administrator could create an environment for each developer.
 
-------------------------------------------------------------------------
+---
 
 ![Merge](/images/merge.png)
 
-
 As a feature is completed, the administrator can review the work by accessing the website of the feature environment. The new feature is then merged back into the Sprint environment.
 
-------------------------------------------------------------------------
+---
 
 ![Sync](/images/sync.png)
 
 The remaining features will sync with the Sprint environment to ensure their working environment is up-to-date with the latest code.
 
-------------------------------------------------------------------------
+---
 
 ![Live](/images/merge-live.png)
 
 When the objectives of the sprint are complete, the administrator can then make a backup of the live site, then merge the Sprint environment into the live (Master) environment.
 
-------------------------------------------------------------------------
+---
 
 The administrator can then synchronize the next sprint's environment with data from the live (Master) environment to repeat and continue the development process.
 

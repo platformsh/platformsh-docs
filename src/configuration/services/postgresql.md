@@ -6,35 +6,35 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 ## Supported versions
 
-* 9.6
-* 10
-* 11
+- 9.6
+- 10
+- 11
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 9.3
+- 9.3
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 ```json
 {
-    "database": [
-        {
-            "username": "main",
-            "password": "main",
-            "host": "248.0.65.196",
-            "query": {
-                "is_master": true
-            },
-            "path": "main",
-            "scheme": "pgsql",
-            "port": 5432
-        }
-    ]
+  "database": [
+    {
+      "username": "main",
+      "password": "main",
+      "host": "248.0.65.196",
+      "query": {
+        "is_master": true
+      },
+      "path": "main",
+      "scheme": "pgsql",
+      "port": 5432
+    }
+  ]
 }
 ```
 
@@ -44,30 +44,29 @@ In your `.platform/services.yaml` add:
 
 ```yaml
 mydatabase:
-    type: postgresql:11
-    disk: 1024
+  type: postgresql:11
+  disk: 1024
 ```
 
-Add a relationship to the service in your ``.platform.app.yaml``:
+Add a relationship to the service in your `.platform.app.yaml`:
 
 ```yaml
 relationships:
-    database: "mydatabase:postgresql"
+  database: "mydatabase:postgresql"
 ```
 
 For PHP, in your `.platform.app.yaml` add:
 
 ```yaml
 runtime:
-    extensions:
-        - pdo_pgsql
+  extensions:
+    - pdo_pgsql
 ```
 
 You can then use the service in a configuration file of your application with something like:
 
-
-
 {% codetabs name="PHP", type="php" -%}
+
 <?php
 // This assumes a fictional application with an array named $settings.
 if (getenv('PLATFORM_RELATIONSHIPS')) {

@@ -6,10 +6,13 @@
   "dependencies": {
     "platformsh-user-widget": "^1.0.31"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "^1.15.3"
+  },
   "scripts": {
     "build": "cp -R ./node_modules/platformsh-user-widget ./src/scripts/user-widget",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "prettier --list-different '**/*.md' '**/*.yaml' '**/*.json'",
+    "format": "prettier --write '**/*.md' '**/*.yaml' '**/*.json'"
   },
   "repository": {
     "type": "git",
