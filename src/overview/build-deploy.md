@@ -26,7 +26,7 @@ After you push your code, the first build step is to validate your configuration
 
 > While most projects have a single `.platform.app.yaml` file, Platform.sh supports multiple applications in a single project.  It will scan the repository for `.platform.app.yaml` files in subdirectories and each directory containing one will be built as an independent application. A built application will not contain any directories above the one in which it is found. The system is smart enough not to rebuild applications that have already been built, so if you have multiple applications, only changed applications will be rebuilt and redeployed.
 
-The live environment is composed of multiple containers&mbdash;both for your application(s) and for the services it depends on. It also has a virtual network connecting them, as well as a router to route incoming requests to the appropriate application.
+The live environment is composed of multiple containers&mdash;both for your application(s) and for the services it depends on. It also has a virtual network connecting them, as well as a router to route incoming requests to the appropriate application.
 
 Based on your application type the system will select one of our pre-built container images and run the following:
 
