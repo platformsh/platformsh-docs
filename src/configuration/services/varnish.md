@@ -4,26 +4,20 @@ Varnish is a popular HTTP proxy server, often used for caching.  It is usually n
 
 However, it is possible to configure a Varnish instance as part of an application if Varnish-specific functionality is needed.
 
-> **note**
-> This functionality is considered beta and may evolve in the future. It is usable but the configuration options may change.  We will endeavor to provide ample warning should that be the case.
-
 ## Supported versions
 
-* 5.1-rc
+* 5.2
 
 ## How it works
 
-All incoming requests still go through the the environment's router first.  When using Varnish, a varnish service sits between the router and the application server.  Only one application server is supported behind a given Varnish instance.  That means a multi-application project that wants to use Varnish for different backends would need to use multiple Varnish services and route to one or the other at the router layer.
+All incoming requests still go through the the environment's router first.  When using Varnish, a Varnish service sits between the router and the application server or servers.
 
-Note that if you are using both Varnish and [PageSpeed](/configuration/services/pagespeed.md), we recommend putting PageSpeed behind Varnish.  That is:
-
-```text
-router -> varnish -> pagespeed -> application
+```
+web -> router -> varnish -> application
+                         -> application2
 ```
 
-In that case, modify the instructions below to give Varnish the PageSpeed service name instead of the application name.
-
-## Usage example
+## Configuration
 
 ### Add a Varnish service
 
@@ -31,7 +25,7 @@ Add the following to your `.platform/services.yaml` file:
 
 ```yaml
 varnish:
-    type: varnish:5.1-rc
+    type: varnish:5.2
     relationships:
         app: 'app:http'
     configuration:
@@ -46,48 +40,40 @@ There is no default VCL file provided.  The configuration block is required, and
 
 ### Create a VCL template file
 
-The VCL file itself needs to be configured with the relationship information to connect to the backend application.  As that is not known in advance the VCL file is actually processed and deployment time as a template, using the Python [Jinja2](http://jinja.pocoo.org/docs/2.10/) template engine.  
+The VCL file you provide has three specific requirements over and above the VCL syntax itself.
 
-The most important templated variable provided is `relationships`, which is a Python dict in the same format as at runtime, containing the relationship data that corresponds to the relationships array in the `services.yaml` file.  That dict can be iterated over using the Jinja2 template syntax to produce a functional VCL file.
+1) You MUST NOT define a `vcl_init()` function.  Platform.sh will auto-generate that function based on the relationships you define.  In particular, it will define a "backend" for each relationship defined in `services.yaml`, named the same as the relationship.
+2) You MUST NOT include the preamble at the beginning of the file, specifying the VCL version or imports.  That will be auto-generated as well.
+3) You MUST specify the backend to use in `vcl_recv()`.  If you have a single app container/relationship/backend, it's just a single line.  If you want to split requests to different relationships/backends based on some rule then the logic for doing so should be incorporated into the `vcl_recv()` function.
 
-The following example shows the most common configuration.  In many cases it can be used verbatim, but is not a complete VCL.  You are responsible for writing the remainder of the VCL based on your application's needs.
+The absolute bare minimum VCL file is:
 
-```text
-vcl 4.0;
-import std;
-import directors;
-
-# Default backend definition. Points to the application container.
-{% for relationship in relationships %}
-{% for instance in relationship.instances %}
-backend {{relationship.name}}_{{loop.index}} {
-    .host = "{{instance.host}}";
-    .port = "{{instance.port}}";
-}
-{% endfor %}
-{% endfor %}
-
-# Access control list for PURGE requests.
-# Here you need to put the IP address of your web server
-acl purge {
-    {% for relationship in relationships %}
-    {% for instance in relationship.instances %}
-        "{{instance.host}}";
-    {% endfor %}
-    {% endfor %}
-}
-
-sub vcl_init {
-    {% for relationship in relationships %}
-    new {{relationship.name}} = directors.random();
-    {% for instance in relationship.instances %}
-    {{relationship.name}}.add_backend({{relationship.name}}_{{loop.index}}, 1.0);
-    {% endfor %}
-    {% endfor %}
-}
-
-# Your VCL configuration here.
 ```
+sub vcl_recv {
+    set req.backend_hint = app.backend();
+}
+```
+
+Where `app` is the name of the relationship defined in `services.yaml`.  (If the relationship was named differently, use that name instead.)
+
+If you have multiple applications fronted by the same Varnish instance then you will need to include logic to determine to which application a request is forwarded.  For example:
+
+```
+sub vcl_recv {
+    if (req.url ~ "^/foo/") {
+        set req.backend_hint = app.backend();
+    } else {
+        set req.backend_hint = app2.backend();
+    }
+}
+```
+
+This configuration will direct all requests to a URL beginning with a `/foo/` path to the application on the relationship `app`, and all other requests to the application on the relationship `app2`.
+
+Besides that, the VCL file, including the `vcl_recv()` function, can be arbitrarily complex to suit the needs of the project.  See the [Varnish documentation](https://varnish-cache.org/docs/index.html) for more details on the functionality offered by Varnish.
+
+> **note**
+> A misconfigured VCL file can result in incorrect, often mysterious and confusing behavior.  Platform.sh does not provide support for VCL configuration options beyond the basic connection logic documented here.
 
 ### Route incoming requests to Varnish
 
@@ -105,3 +91,15 @@ For example:
 
 That will map all incoming requests to the Varnish service rather than the application.  Varnish will then, based on the VCL file, forward requests to the application as appropriate.
 
+### Expose Varnish to the application
+
+In some situations it is necessary for the application container to send messages to the Varnish server directly, such as for forced cache purge situations.  In that case you will also need to add a relationship from the application to the Varnish service.  That is the same as any other relationship in `.platform.app.yaml`:
+
+```yaml
+relationships:
+    varnish: `varnish:http`
+```
+
+(Assuming your service is named `varnish` in `services.yaml`.)
+
+Your application will then be able to send HTTP requests to the Varnish instance using the credentials provided in that relationship.
