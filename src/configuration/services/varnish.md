@@ -10,7 +10,7 @@ However, it is possible to configure a Varnish instance as part of an applicatio
 
 ## How it works
 
-All incoming requests still go through the the environment's router first.  When using Varnish, a Varnish service sits between the router and the application server or servers.
+All incoming requests still go through the environment's router first.  When using Varnish, a Varnish service sits between the router and the application server or servers.
 
 ```
 web -> router -> varnish -> application
