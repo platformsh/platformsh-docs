@@ -93,4 +93,22 @@ That will map all incoming requests to the Varnish service rather than the appli
 
 ## Circular relationships
 
-At this time Platform.sh does not support circular relationships between a service and an application.  That means you cannot add a relationship in your `.platform.app.yaml` that points to the Varnish service.  If you do so then one of the relationships will be skipped and the connection will not work.
+At this time Platform.sh does not support circular relationships between a service and an application.  That means you cannot add a relationship in your `.platform.app.yaml` that points to the Varnish service.  If you do so then one of the relationships will be skipped and the connection will not work.  This limitation may be lifted in the future.
+
+## Stats endpoint
+
+The Varnish service also offers an `http+stats` endpoint, which provides access to some Varnish analysis and debugging tools.  To access it, from a dedicated app container add the following to `.platform.app.yaml`:
+
+```yaml
+relationships:
+    varnishstats: `varnish:http+stats`
+```
+
+You can then access the `varnishstats` relationship over HTTP at the following paths to get diagnostic information:
+
+* `/`: returns the error if generating the VCL failed with an error
+* `/config`: returns the generated VCL
+* `/stats`: returns the output of `varnishstat`
+* `/logs`: returns a streaming response of `varnishlog`
+
+Note that because of the circular relationship issue noted above this cannot be done on the application that Varnish is forwarding to.  It will need to be run on a separate application container.  As a result it is most useful for debugging in development environments, not in production.
