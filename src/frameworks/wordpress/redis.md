@@ -2,8 +2,6 @@
 
 There are a number of Redis libraries for WordPress, only some of which are compatible with Platform.sh.  We have tested and recommend [devgeniem/wp-redis-object-cache-dropin](https://packagist.org/packages/devgeniem/wp-redis-object-cache-dropin), which requires extremely little configuration.
 
-Alternatively, [the parent package](https://github.com/tillkruss/redis-cache), which will require a slightly other setup.
-
 ## Requirements
 
 ### Add a Redis service
@@ -54,7 +52,7 @@ Then commit the resulting changes to your `composer.json` and `composer.lock` fi
 To enable the WP-Redis cache the `object-cache.php` file needs to be copied from the downloaded package to the `wp-content` directory.  Add the following line to the bottom of your `build` hook:
 
 ```bash
-cp -r vendor/devgeniem/wp-redis-object-cache-dropin/object-cache.php wp/wp-content/object-cache.php
+cp -r wp-content/wp-redis-object-cache-dropin/object-cache.php web/wp/wp-content/object-cache.php
 ```
 
 It should now look something like:
@@ -62,13 +60,12 @@ It should now look something like:
 ```yaml
 hooks:
     build: |
-      mkdir -p wp/wp-content/themes
-      mkdir -p wp/wp-content/plugins
-      mkdir -p wp/wp-content/languages
-      cp -r plugins/* wp/wp-content/plugins/
-      cp -r themes/* wp/wp-content/themes/
-      cp -r languages/* wp/wp-content/languages/
-      cp -r vendor/devgeniem/wp-redis-object-cache-dropin/object-cache.php wp/wp-content/object-cache.php
+    set -e
+    cp -R web/wp/wp-content/plugins/* web/wp-content/plugins/
+    cp -R web/wp/wp-content/themes/* web/wp-content/themes/
+    cp -r wp-content/wp-redis-object-cache-dropin/object-cache.php web/wp/wp-content/object-cache.php
+    # Uncomment this line when you start adding extra language packs.
+    #cp -R web/wp/wp-content/languages/* web/wp-content/languages/
 ```
 
 Next, place the following code in the `wp-config.php` file, somewhere before the final `require_once(ABSPATH . 'wp-settings.php');` line.
