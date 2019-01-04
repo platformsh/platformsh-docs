@@ -2,6 +2,8 @@
 
 There are a number of Redis libraries for WordPress, only some of which are compatible with Platform.sh.  We have tested and recommend [devgeniem/wp-redis-object-cache-dropin](https://packagist.org/packages/devgeniem/wp-redis-object-cache-dropin), which requires extremely little configuration.
 
+Alternatively, [the parent package](https://github.com/tillkruss/redis-cache), which will require a slightly other setup.
+
 ## Requirements
 
 ### Add a Redis service
