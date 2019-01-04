@@ -1,4 +1,4 @@
-Varnish HTTP Proxy (alpha)
+# Varnish HTTP Proxy
 
 Varnish is a popular HTTP proxy server, often used for caching.  It is usually not needed on Platform.sh, as each project's router provides an HTTP cache already and most more advanced use cases will use a CDN instead, both of which render Varnish redundant.
 
@@ -34,7 +34,7 @@ varnish:
             path: config.vcl
 ```
 
-In the `relationships` block, define a relationship (`application`) to the application container (`app`) using the `http` endpoint, and name the relationship the same.  That allows Varnish to talk to the application container.
+In the `relationships` block, define a relationship (`application`) to the application container (`app`) using the `http` endpoint.  That allows Varnish to talk to the application container.
 
 The configuration block is required, and must reference a VCL file (here `config.vcl`).  The file name is relative to the `.platform` directory.
 
@@ -58,17 +58,29 @@ Where `application` is the name of the relationship defined in `services.yaml`. 
 
 If you have multiple applications fronted by the same Varnish instance then you will need to include logic to determine to which application a request is forwarded.  For example:
 
+```yaml
+varnish:
+    type: varnish:5.2
+    relationships:
+        blog: 'blog:http'
+        main: 'app:http'
+    configuration:
+        vcl: !include
+            type: string
+            path: config.vcl
+```
+
 ```
 sub vcl_recv {
-    if (req.url ~ "^/foo/") {
-        set req.backend_hint = app.backend();
+    if (req.url ~ "^/blog/") {
+        set req.backend_hint = blog.backend();
     } else {
-        set req.backend_hint = app2.backend();
+        set req.backend_hint = main.backend();
     }
 }
 ```
 
-This configuration will direct all requests to a URL beginning with a `/foo/` path to the application on the relationship `app`, and all other requests to the application on the relationship `app2`.
+This configuration will direct all requests to a URL beginning with a `/blog/` path to the application on the relationship `blog`, and all other requests to the application on the relationship `main`.
 
 Besides that, the VCL file, including the `vcl_recv()` function, can be arbitrarily complex to suit the needs of the project.  See the [Varnish documentation](https://varnish-cache.org/docs/index.html) for more details on the functionality offered by Varnish.
 
@@ -93,7 +105,7 @@ That will map all incoming requests to the Varnish service rather than the appli
 
 ## Circular relationships
 
-At this time Platform.sh does not support circular relationships between a service and an application.  That means you cannot add a relationship in your `.platform.app.yaml` that points to the Varnish service.  If you do so then one of the relationships will be skipped and the connection will not work.  This limitation may be lifted in the future.
+At this time Platform.sh does not support circular relationships between services or applications.  That means you cannot add a relationship in your `.platform.app.yaml` that points to the Varnish service.  If you do so then one of the relationships will be skipped and the connection will not work.  This limitation may be lifted in the future.
 
 ## Stats endpoint
 
@@ -111,4 +123,4 @@ You can then access the `varnishstats` relationship over HTTP at the following p
 * `/stats`: returns the output of `varnishstat`
 * `/logs`: returns a streaming response of `varnishlog`
 
-Note that because of the circular relationship issue noted above this cannot be done on the application that Varnish is forwarding to.  It will need to be run on a separate application container.  As a result it is most useful for debugging in development environments, not in production.
+Note that because of the circular relationship issue noted above this cannot be done on the application that Varnish is forwarding to.  It will need to be run on a separate application container.
