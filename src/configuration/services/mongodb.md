@@ -49,7 +49,7 @@ mydatabase:
     disk: 1024
 ```
 
-The minimum disk size for Mongo DB is `512` (MB).
+The minimum disk size for MongoDB is `512` (MB).
 
 In your `.platform.app.yaml`:
 
