@@ -37,6 +37,7 @@
   * [Redis](configuration/services/redis.md)
   * [RabbitMQ](configuration/services/rabbitmq.md)
   * [Solr](configuration/services/solr.md)
+  * [Varnish](configuration/services/varnish.md)  
 * [Apps (.platform.app.yaml)](configuration/app-containers.md)
   * [Name](configuration/app/name.md)
   * [Type](configuration/app/type.md)
@@ -167,6 +168,7 @@
 
 ## Changelog
 
+* [2019](changelog/2019.md)
 * [2018](changelog/2018.md)
 * [2017](changelog/2017.md)
 * [2016](changelog/2016.md)
