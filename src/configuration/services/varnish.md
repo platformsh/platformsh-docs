@@ -7,6 +7,7 @@ However, it is possible to configure a Varnish instance as part of an applicatio
 ## Supported versions
 
 * 5.2
+* 6.0
 
 ## How it works
 
@@ -25,7 +26,7 @@ Add the following to your `.platform/services.yaml` file:
 
 ```yaml
 varnish:
-    type: varnish:5.2
+    type: varnish:6.0
     relationships:
         application: 'app:http'
     configuration:
@@ -60,7 +61,7 @@ If you have multiple applications fronted by the same Varnish instance then you 
 
 ```yaml
 varnish:
-    type: varnish:5.2
+    type: varnish:6.0
     relationships:
         blog: 'blog:http'
         main: 'app:http'
@@ -71,6 +72,7 @@ varnish:
 ```
 
 ```
+# config.vcl
 sub vcl_recv {
     if (req.url ~ "^/blog/") {
         set req.backend_hint = blog.backend();
@@ -82,7 +84,7 @@ sub vcl_recv {
 
 This configuration will direct all requests to a URL beginning with a `/blog/` path to the application on the relationship `blog`, and all other requests to the application on the relationship `main`.
 
-Besides that, the VCL file, including the `vcl_recv()` function, can be arbitrarily complex to suit the needs of the project.  See the [Varnish documentation](https://varnish-cache.org/docs/index.html) for more details on the functionality offered by Varnish.
+Besides that, the VCL file, including the `vcl_recv()` function, can be arbitrarily complex to suit the needs of the project.  That includes additional `include` directives if appropriate.  See the [Varnish documentation](https://varnish-cache.org/docs/index.html) for more details on the functionality offered by Varnish.
 
 > **note**
 > A misconfigured VCL file can result in incorrect, often mysterious and confusing behavior.  Platform.sh does not provide support for VCL configuration options beyond the basic connection logic documented here.
