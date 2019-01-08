@@ -168,6 +168,7 @@
 
 ## Changelog
 
+* [2019](changelog/2019.md)
 * [2018](changelog/2018.md)
 * [2017](changelog/2017.md)
 * [2016](changelog/2016.md)
