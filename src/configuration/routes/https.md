@@ -131,7 +131,7 @@ tls:
             -----END CERTIFICATE-----
 ```
 
-## Automatic certificate renewal
+## Automatic SSL certificate renewal
 
 It is possible to set a variable from a cron task, which in turn will cause the site to redeploy.  If the Let's Encrypt certificate is due to expire in less than one month it will automatically renew at that time.  That makes it feasible to set up auto-renewal of the Let's Encrypt certificate.  The caveat is that, like any deploy, there is a very brief downtime (a few seconds, usually) so it's best to do during off-hours.
 
