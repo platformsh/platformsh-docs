@@ -44,7 +44,7 @@ The configuration block is required, and must reference a VCL file (here `config
 The VCL file you provide has three specific requirements over and above the VCL syntax itself.
 
 1) You MUST NOT define a `vcl_init()` function.  Platform.sh will auto-generate that function based on the relationships you define.  In particular, it will define a "backend" for each relationship defined in `services.yaml`, named the same as the relationship.
-2) You MUST NOT include the preamble at the beginning of the file, specifying the VCL version or imports.  That will be auto-generated as well.
+2) You MUST NOT include the preamble at the beginning of the file, specifying the VCL version.  That will be auto-generated as well. You CAN add imports, but not `std` and `directors`.
 3) You MUST specify the backend to use in `vcl_recv()`.  If you have a single app container/relationship/backend, it's just a single line.  If you want to split requests to different relationships/backends based on some rule then the logic for doing so should be incorporated into the `vcl_recv()` function.
 
 The absolute bare minimum VCL file is:
