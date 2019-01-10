@@ -7,6 +7,7 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 ## Supported versions
 
 * 3.5
+* 3.7
 
 ## Relationship
 
@@ -33,7 +34,7 @@ In your ``.platform/services.yaml``:
 
 ```yaml
 myrabbitmq:
-    type: rabbitmq:3.5
+    type: rabbitmq:3.7
     disk: 1024
 ```
 
@@ -87,7 +88,7 @@ Finally, while the session is open, you can launch a RabbitMQ client of your cho
 
 ## From the application container
 
-The application container currently doesn't include any useful utilities to connect to RabbitMQ with. However, you can work around this by adding a client as a dependency in your `.platform.app.yaml` file.
+The application container currently doesn't include any useful utilities to connect to RabbitMQ with. However, you can install your own by adding a client as a dependency in your `.platform.app.yaml` file.
 
 For example, you can use [amqp-utils](https://github.com/dougbarth/amqp-utils/) by adding this:
 
