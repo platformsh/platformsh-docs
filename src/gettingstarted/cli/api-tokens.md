@@ -35,7 +35,8 @@ First, obtain an API token as above.  Set it as the [top-level](https://docs.pla
 ```bash
 platform variable:create -e master --level environment --name env:PLATFORMSH_CLI_TOKEN --sensitive true --value 'your API token'
 ```
-**Note:** It is important to include the `env:` so as to expose `$PLATFORMSH_CLI_TOKEN` on its own as a top level Unix environment variable, rather than as a part of `$PLATFORM_VARIABLES` like normal environment variables.
+> **note**
+> It is important to include the `env:` so as to expose `$PLATFORMSH_CLI_TOKEN` on its own as a top level Unix environment variable, rather than as a part of `$PLATFORM_VARIABLES` like normal environment variables.
 
 Second, add a build hook to your `.platform.app.yaml` file to download the CLI as part of the build process.
 
