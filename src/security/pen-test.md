@@ -18,5 +18,9 @@ Platform.sh understands the need for application owners to ensure the integrity,
 * Social engineering tests of Platform.sh services including falsely representing yourself as a Platform.sh employee.
 * Infrastructure penetration tests for non-Enterprise customers. This includes SSH and database testing.
 
+## Rate Limits
+
+* Please limit scans to a maximum of 20 Mbps and 50 requests per second in order to prevent triggering denial of service bans.
+
 
 If your vulnerability scanning suggests there may be an issue with Platform.sh’s service, please see the Security and Compliance [Troubleshooting](/security/troubleshooting.md) section for common resolutions.
