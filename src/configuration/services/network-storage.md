@@ -6,7 +6,7 @@ The network storage service enables a new kind of `mount` that refers to a share
 
 ## Supported versions
 
-* 0.2
+* 1.0
 
 (This is a reference to a version of our network storage implementation, not to a version of a 3rd party application.)
 
@@ -16,7 +16,7 @@ First, declare a new service in the `services.yaml` file like so:
 
 ```yaml
 files:
-    type: network-storage:0.2
+    type: network-storage:1.0
     disk: 2048
 ```
 
