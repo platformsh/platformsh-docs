@@ -179,3 +179,9 @@ workers:
             start: |
                 cd web && drush queue-run myqueue
 ```
+
+## Why do I get an `invalid service type` error with network storage?
+
+The `network-storage` service is only available on our newer regions.  If you are running on the older `us` or `eu` regions and try to create a `network-storage` service you will receive this error.
+
+To make use of `network-storage` you will need to migrate to the newer `us-2` or `eu-2` regions.  See our [tutorial on how to migrate regions](/tutorials/region-migration.md) for more information.
