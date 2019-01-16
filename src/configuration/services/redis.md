@@ -30,7 +30,7 @@ To add an Ephemeral Redis service, specify it in your `.platform/services.yaml` 
 
 ```yaml
 rediscache:
-    type: redis:3.2
+    type: redis:5.0
 ```
 
 Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items to make room for new ones.
@@ -43,7 +43,7 @@ To add a Persistent Redis service, specify it in your `.platform/services.yaml` 
 
 ```yaml
 redisdata:
-    type: redis-persistent:3.2
+    type: redis-persistent:5.0
     disk: 1024
 ```
 
@@ -73,7 +73,7 @@ In your ``.platform/services.yaml``:
 
 ```yaml
 rediscache:
-    type: redis:3.2
+    type: redis:5.0
 ```
 
 If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php/extensions.md) in your `.platform.app.yaml`.
@@ -113,7 +113,7 @@ With a Redis relationship named `applicationcache`.
 ```yaml
 # .platform/services.yaml
 rediscache:
-    type: redis:3.2
+    type: redis:5.0
 ```
 
 ```yaml
@@ -135,7 +135,7 @@ Using the same configuration but with your Redis relationship named `sessionstor
 ```yaml
 # .platform/services.yaml
 rediscache:
-    type: redis:3.2
+    type: redis:5.0
 ```
 
 ```yaml
