@@ -46,6 +46,8 @@ You can restore a specific snapshot with the CLI as follows:
 ```bash
 $ platform snapshot:restore 92c9a4b2aa75422efb3d
 ```
+> **note**
+> You can use the --target option to restore the snapshot to a different environment, or the --branch-from option if the target branch does not yet exists.
 
 > **note**
 > You need "admin" role to restore your environment from a snapshot.
