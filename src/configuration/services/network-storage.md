@@ -40,6 +40,9 @@ Note that you do *not* need to add a relationship to point to the `files` servic
 
 The application container can now read from and write to the `my/files` path just as if it were a local writeable mount.
 
+> **note**
+> There is a small performance hit for using a network mount over a local mount.  In most cases it should not be noticeable.  However, high-volume sequential file creation (that is, creating a large number of small files in rapid succession) may see a more significant performance hit.  If that is something your application does regularly then a local mount will be more effective.
+
 ## Multi-application usage
 
 If your project contains more than one application (that is, multiple directories with their own `.platform.app.yaml` files), they can all use the same network mounts if desired.  If the `source_path` is the same in both `.platform.app.yaml` files then the files will be shared between both applications, even if the mount location is different.
