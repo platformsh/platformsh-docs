@@ -31,7 +31,7 @@ mounts:
     'my/files':
         source: service
         service: files
-        source_path: network
+        source_path: files
 ```
 
 This block will declare a writeable mount on the application container at the path `my/files`, which will be provided by the `files` service defined above.  The `source_path` specifies the path within the network service that the mount points to.  It is often easiest to have it match the name of the mount point itself but that is not required.
