@@ -43,7 +43,7 @@ To add a Persistent Redis service, specify it in your `.platform/services.yaml` 
 
 ```yaml
 redisdata:
-    type: redis-persistent:3.2
+    type: redis-persistent:5.0
     disk: 1024
 ```
 
