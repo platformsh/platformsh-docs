@@ -2,7 +2,7 @@
 
 Platform.sh supports the deployment of some Java applications. 
 
-## Supported images
+## Supported versions
 
 * 8
 
