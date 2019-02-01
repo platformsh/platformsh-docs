@@ -14,5 +14,6 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below.
 
    ```yaml
    # .platform.app.yaml
+   
    type: "java:8"
    ```
