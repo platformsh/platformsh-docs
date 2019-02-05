@@ -91,7 +91,7 @@ Framework  | Credit | Date added
 
 Framework  | Credit | Date added
 -----------|--------|-----------
-[***Rust with Rocket and webasm**](https://github.com/royallthefourth/platformsh-rust-rocket)|[Royall Spence](https://github.com/royallthefourth)|July 2018
+[**Rust with Rocket and webasm**](https://github.com/royallthefourth/platformsh-rust-rocket)|[Royall Spence](https://github.com/royallthefourth)|July 2018
 
 ## Integrations
 
