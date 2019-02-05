@@ -17,9 +17,9 @@ The `disk` key is required, and defines the size of the persistent disk of the a
 
 The `mounts` key is an object whose keys are paths relative to the root of the application (that is, where the `.platform.app.yaml` file lives), and values are a 2-line mount definition.
 
-This section is optional; if your application does not need writable local file storage simply omit the `mounts` section and set `disk` to a value to the minimum of 256.
+This section is optional: if your application doesn't need writable local file storage, you can omit the `mounts` section and set `disk` to the minimum value of 256.
 
-Note that whether a mounted directory is web-accessible or not depends on the configuration of the `web.locations` block in `.platform.app.yaml`.  It may be accessible, or not, and have different rules for different file types as desired.
+Note that whether a mounted directory is web-accessible or not depends on the configuration of the `web.locations` block in `.platform.app.yaml`.  Depending on the application's needs, it's possible to publish files on writable mounts, leave them private, or have rules for different paths and file types as desired.
 
 ## Basic mounts
 
