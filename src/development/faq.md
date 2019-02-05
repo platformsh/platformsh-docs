@@ -16,7 +16,7 @@ This will delete your project and stop invoicing for this project. If you have m
 
 ## Do you support MySQL?
 
-[Platform.sh](https://platform.sh) uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
+Platform.sh uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
 
 ## Does branching an environment duplicate services?
 
