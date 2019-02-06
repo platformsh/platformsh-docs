@@ -2,7 +2,7 @@
 
 ## Git
 
-Git is the open source version control system that is utilized by [Platform.sh](https://platform.sh/).
+Git is the open source version control system that is utilized by Platform.sh.
 
 Any change you make to your Platform.sh project will need to be committed via Git. You can see all the Git commit messages of an environment in the activity feed of the web interface.
 

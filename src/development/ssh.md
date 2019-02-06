@@ -1,6 +1,6 @@
 # Using SSH keys
 
-One of the ways [Platform.sh](https://platform.sh/) keeps things secure is by using SSH behind the scenes. Users can interact with their environment through a command shell, or push changes to the environment's Git repository, and both of these features rely on SSH.
+One of the ways Platform.sh keeps things secure is by using SSH behind the scenes. Users can interact with their environment through a command shell, or push changes to the environment's Git repository, and both of these features rely on SSH.
 
 When you create a new project, the wizard will propose that you add your ssh key.
 
