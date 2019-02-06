@@ -34,11 +34,6 @@ View tunnel details with: platform tunnel:info
 Close tunnels with: platform tunnel:close
 ```
 
-> **note**
-> The `platform tunnel:` commands require the pcntl and posix PHP extensions. Run `php -m | grep -E 'posix|pcntl'` to check if they're there.
-
-If you don't have these extensions installed, you can try the `platform tunnel:single` command to launch the tunnels.
-
 Now you can connect to the remote database normally, as if it were local.
 
 ```bash
@@ -65,6 +60,11 @@ and you can close tunnels with:
 ```bash
 platform tunnel:close
 ```
+
+> **note**
+> The `platform tunnel:open` command requires the `pcntl` and `posix` PHP extensions. Run `php -m | grep -E 'posix|pcntl'` to check if they're there.
+>
+> If you don't have these extensions installed, you can use the `platform tunnel:single` command to open one tunnel at a time. This command also lets you specify a local port number.
 
 ### Local environment variables
 
