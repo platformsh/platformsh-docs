@@ -4,6 +4,8 @@
   "description": "This repository holds the public user documentation for [Platform.sh](https://platform.sh/).",
   "main": "index.js",
   "dependencies": {
+    "gitbook": "^2.6.9",
+    "gitbook-cli": "^2.3.2",
     "platformsh-user-widget": "^1.0.31"
   },
   "devDependencies": {},
