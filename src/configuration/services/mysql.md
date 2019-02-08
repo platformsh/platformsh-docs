@@ -162,7 +162,7 @@ TABLE;
 
 {% codetabs name="PHP", type="php" -%}
 
-{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="php" %}{% endcodesnippet %}
+{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="plain" %}{% endcodesnippet %}
 
 {%- language name="Python", type="py" -%}
 import os
