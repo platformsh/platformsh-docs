@@ -47,7 +47,13 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
+Source:
+
 {% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="php" %}{% endcodesnippet %}
+
+Output:
+
+{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql/output", language="php" %}{% endcodesnippet %}
 
 {% codetabs name="PHP", type="php" -%}
 
