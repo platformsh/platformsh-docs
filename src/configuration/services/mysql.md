@@ -53,7 +53,9 @@ Source:
 
 Output:
 
-{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql/output", language="php" %}{% endcodesnippet %}
+{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql/output", language="plain" %}{% endcodesnippet %}
+
+{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql/output", language="html" %}{% endcodesnippet %}
 
 {% codetabs name="PHP", type="php" -%}
 
