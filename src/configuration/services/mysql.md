@@ -24,24 +24,7 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-  "database": [
-    {
-      "host": "database.internal",
-      "ip": "246.0.97.91",
-      "password": "",
-      "path": "main",
-      "port": 3306,
-      "query": {
-          "is_master": true
-      },
-      "scheme": "mysql",
-      "username": "user"
-    }
-  ]
-}
-```
+{% codesnippet "https://relationships.master-7rqtwti-dtsla3sy7euhc.us-2.platformsh.site/?service=mysql", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
