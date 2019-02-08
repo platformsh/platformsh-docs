@@ -78,7 +78,8 @@ Output:
 
 -----
 
-\<?php
+```php
+<?php
 
 declare(strict_types=1);
 
@@ -148,7 +149,7 @@ TABLE;
 } catch (\Exception $e) {
     print $e->getMessage();
 }
-
+````
 
 -----
 
