@@ -49,7 +49,9 @@ You can then use the service in a configuration file of your application with so
 
 Source:
 
-{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="php" %}{% endcodesnippet %}
+```php
+{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="plain" %}{% endcodesnippet %}
+```
 
 Output:
 
