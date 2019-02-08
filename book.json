@@ -8,6 +8,7 @@
     "reveal",
     "codesnippet",
     "codetabs",
+    "codegroup",
     "gtm",
     "edit-link",
     "atoc",
@@ -23,6 +24,11 @@
     "gtm": {
       "token": "GTM-MR3BJL",
       "virtualPageViews": true
+    },
+    "codegroup":{
+      "defaultTabName": "Code",
+      "tabNameSeperator": "::",
+      "rememberTabs": true
     }
   }
 }
