@@ -161,12 +161,6 @@ TABLE;
 
 {% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="plain" %}{% endcodesnippet %}
 
-{% codetabs name="PHPCodesnippet-Raw", type="php" -%}
-
-{% raw %}
-{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="plain" %}{% endcodesnippet %}
-{% endraw %}
-
 {% codetabs name="PHPLiteral", type="php" -%}
 
 <?php
