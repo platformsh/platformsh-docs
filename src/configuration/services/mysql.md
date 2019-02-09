@@ -275,14 +275,16 @@ if (err != nil) {
 
 Using Code Group:
 
-{% codegroup %}
-```php::codesnippet
-{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="php" %}{% endcodesnippet %}
+
+{% codegroup rememberTabs=true, defaultTabName="Snippet" %}
+```js::nodejs
+    var s = "sample";
 ```
-```php::codesnippet-plain
-{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="plain" %}{% endcodesnippet %}
+```swift
+    let s: String = "sample";
 ```
 {% endcodegroup %}
+
 
 > **note**
 > MySQL schema names can not use system reserved namespace. (mysql, information_schema, etc)
