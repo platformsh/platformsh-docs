@@ -24,7 +24,7 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://relationships.master-7rqtwti-dtsla3sy7euhc.us-2.platformsh.site/?service=mysql", language="json" %}{% endcodesnippet %}
+{% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/relationships/mysql", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
@@ -50,8 +50,11 @@ You can then use the service in a configuration file of your application with so
 Source:
 
 ```php
-{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="plain" %}{% endcodesnippet %}
+{% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/php/mysql", language="plain" %}{% endcodesnippet %}
 ```
+
+{% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/php/mysql", language="php" %}{% endcodesnippet %}
+
 
 Output:
 
