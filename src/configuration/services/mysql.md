@@ -47,163 +47,80 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-Source:
-
-----
-
-```php
-{% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/php/mysql", language="plain" %}{% endcodesnippet %}
-```
-
----
-
-{% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/php/mysql", language="plain" %}{% endcodesnippet %}
-
----
-
-{% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/php/mysql", language="php" %}{% endcodesnippet %}
 
 
-Output:
-
-```html
-<table>
-<thead>
-<tr><th>Name</th><th>City</th></tr>
-</thead>
-<tbody><tr><td>Neil Armstrong</td><td>Moon</td></tr>
-<tr><td>Buzz Aldrin</td><td>Glen Ridge</td></tr>
-<tr><td>Sally Ride</td><td>La Jolla</td></tr>
-</tbody>
-</table>
-```
-
-<table>
-<thead>
-<tr><th>Name</th><th>City</th></tr>
-</thead>
-<tbody><tr><td>Neil Armstrong</td><td>Moon</td></tr>
-<tr><td>Buzz Aldrin</td><td>Glen Ridge</td></tr>
-<tr><td>Sally Ride</td><td>La Jolla</td></tr>
-</tbody>
-</table>
+<div class="tabs">
+  
+  <input id="php" name="tabs" type="radio" class="input" checked />
+  <label for="php" class="label">PHP</label>
+  <div class="panel">
+  {% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/php/mysql", language="php" %}{% endcodesnippet %}
+  </div>
+  
+  <input id="json" name="tabs" type="radio" class="input" />
+  <label for="json" class="label">JSON</label>
+  <div class="panel">
+  {% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/relationships/mysql", language="json" %}{% endcodesnippet %}
+  </div>
+</div>
 
 
------
+<style>
 
-```php
-<?php
-
-declare(strict_types=1);
-
-use Platformsh\ConfigReader\Config;
-
-// Create a new config object to ease reading the Platform.sh environment variables.
-// You can alternatively use getenv() yourself.
-$config = new Config();
-
-// The 'database' relationship is generally the name of primary SQL database of an application.
-// That's not required, but much of our default automation code assumes it.
-$credentials = $config->credentials('database');
-
-try {
-    // Connect to the database using PDO.  If using some other abstraction layer you would
-    // inject the values from $database into whatever your abstraction layer asks for.
-    $dsn = sprintf('mysql:host=%s;port=%d;dbname=%s', $credentials['host'], $credentials['port'], $credentials['path']);
-    $conn = new \PDO($dsn, $credentials['username'], $credentials['password'], [
-        // Always use Exception error mode with PDO, as it's more reliable.
-        \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-        // So we don't have to mess around with cursors and unbuffered queries by default.
-        \PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => TRUE,
-        // Make sure MySQL returns all matched rows on update queries including
-        // rows that actually didn't have to be updated because the values didn't
-        // change. This matches common behavior among other database systems.
-        \PDO::MYSQL_ATTR_FOUND_ROWS => TRUE,
-    ]);
-
-    // Creating a table.
-    $sql = "CREATE TABLE People (
-      id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-      name VARCHAR(30) NOT NULL,
-      city VARCHAR(30) NOT NULL
-      )";
-    $conn->query($sql);
-
-    // Insert data.
-    $sql = "INSERT INTO People (name, city) VALUES 
-        ('Neil Armstrong', 'Moon'), 
-        ('Buzz Aldrin', 'Glen Ridge'), 
-        ('Sally Ride', 'La Jolla');";
-    $conn->query($sql);
-
-    // Show table.
-    $sql = "SELECT * FROM People";
-    $result = $conn->query($sql);
-    $result->setFetchMode(\PDO::FETCH_OBJ);
-
-    if ($result) {
-        print <<<TABLE
-<table>
-<thead>
-<tr><th>Name</th><th>City</th></tr>
-</thead>
-<tbody>
-TABLE;
-        foreach ($result as $record) {
-            printf("<tr><td>%s</td><td>%s</td></tr>\n", $record->name, $record->city);
-        }
-        print "</tbody>\n</table>\n";
-    }
-
-    // Drop table
-    $sql = "DROP TABLE People";
-    $conn->query($sql);
-
-} catch (\Exception $e) {
-    print $e->getMessage();
-}
-````
-
------
-
-
-
-{% codetabs name="PHPCodesnippet", type="php" -%}
-
-
-
-{%- language name="Python", type="py" -%}
-import os
-import json
-import base64
-
-relationships = os.getenv('PLATFORM_RELATIONSHIPS')
-if relationships:
-    relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
-    db_settings = relationships['database'][0]
-    DATABASES = {
-        "default": {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': db_settings['path'],
-            'USER': db_settings['username'],
-            'PASSWORD': db_settings['password'],
-            'HOST': db_settings['host'],
-            'PORT': db_settings['port'],
-        }
-    }
-{%- language name="Go", type="go" -%}
-// Using the Platform.sh Go helper library: https://github.com/platformsh/gohelper
-
-dbString, err := pi.SqlDsn("database")
-if (err != nil) {
-  panic(err)
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 700px;
+  background: #efefef;
+  box-shadow: 0 48px 80px -32px rgba(0,0,0,0.3);
 }
 
-db, err := sql.Open("mysql", dbString)
-if (err != nil) {
-  panic(err)
+/* Hide the radio button part of the radio button. The label is still clickable. */
+tabs .input {
+  position: absolute;
+  opacity: 0;
 }
-{%- endcodetabs %}
+
+tabs .label {
+  width: 100%;
+  padding: 20px 30px;
+  background: #e5e5e5;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  color: #7f7f7f;
+  transition: background 0.1s, color 0.1s;
+}
+
+tabs .label:hover {
+  background: #d8d8d8;
+}
+
+tabs .label:active {
+  background: #ccc;
+}
+
+tabs .input:focus + .label {
+  box-shadow: inset 0px 0px 0px 3px #2aa1c0;
+  z-index: 1;
+}
+
+tabs .input:checked + .label {
+  background: #fff;
+  color: #000;
+}
+
+tabs .panel {
+  display: none;
+  padding: 20px 30px 30px;
+  background: #fff;
+}
+
+tabs .input:checked + .label + .panel {
+  display: block;
+}
+
+</style>
 
 
 
