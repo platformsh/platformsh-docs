@@ -49,9 +49,17 @@ You can then use the service in a configuration file of your application with so
 
 Source:
 
+----
+
 ```php
 {% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/php/mysql", language="plain" %}{% endcodesnippet %}
 ```
+
+---
+
+{% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/php/mysql", language="plain" %}{% endcodesnippet %}
+
+---
 
 {% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/php/mysql", language="php" %}{% endcodesnippet %}
 
@@ -162,7 +170,7 @@ TABLE;
 
 {% codetabs name="PHPCodesnippet", type="php" -%}
 
-{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="plain" %}{% endcodesnippet %}
+
 
 {%- language name="Python", type="py" -%}
 import os
@@ -198,29 +206,6 @@ if (err != nil) {
 {%- endcodetabs %}
 
 
-
-Using Code Group:
-
-
-{% codegroup %}
-```php::codesnippet
-{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="php" %}{% endcodesnippet %}
-```
-```php::codesnippet-plain
-{% codesnippet "https://php.pr-2-tcs3n7y-dtsla3sy7euhc.us-2.platformsh.site/mysql", language="plain" %}{% endcodesnippet %}
-```
-{% endcodegroup %}
-
-
-
-{% codegroup rememberTabs=true, defaultTabName="Snippet" %}
-```js::nodejs
-    var s = "sample";
-```
-```swift
-    let s: String = "sample";
-```
-{% endcodegroup %}
 
 
 > **note**
