@@ -47,81 +47,15 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
+{% codetabs name="PHP", type="php", url="https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/php/mysql" -%}
 
+Default PHP body.
 
-<div class="tabs">
-  
-  <input id="php" name="tabs" type="radio" class="input" checked />
-  <label for="php" class="label">PHP</label>
-  <div class="panel">
-  {% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/php/mysql", language="php" %}{% endcodesnippet %}
-  </div>
-  
-  <input id="json" name="tabs" type="radio" class="input" />
-  <label for="json" class="label">JSON</label>
-  <div class="panel">
-  {% codesnippet "https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/relationships/mysql", language="json" %}{% endcodesnippet %}
-  </div>
-</div>
+{%- language name="JavaScript", type="js", url="https://pr-4-afnwgxy-t564nmbkrksd6.eu-3.platformsh.site/relationships/mysql" -%}
 
+Default JSON body.
 
-<style>
-
-.tabs {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 700px;
-  background: #efefef;
-  box-shadow: 0 48px 80px -32px rgba(0,0,0,0.3);
-}
-
-/* Hide the radio button part of the radio button. The label is still clickable. */
-tabs .input {
-  position: absolute;
-  opacity: 0;
-}
-
-tabs .label {
-  width: 100%;
-  padding: 20px 30px;
-  background: #e5e5e5;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 18px;
-  color: #7f7f7f;
-  transition: background 0.1s, color 0.1s;
-}
-
-tabs .label:hover {
-  background: #d8d8d8;
-}
-
-tabs .label:active {
-  background: #ccc;
-}
-
-tabs .input:focus + .label {
-  box-shadow: inset 0px 0px 0px 3px #2aa1c0;
-  z-index: 1;
-}
-
-tabs .input:checked + .label {
-  background: #fff;
-  color: #000;
-}
-
-tabs .panel {
-  display: none;
-  padding: 20px 30px 30px;
-  background: #fff;
-}
-
-tabs .input:checked + .label + .panel {
-  display: block;
-}
-
-</style>
-
+{%- endcodetabs %}
 
 
 
