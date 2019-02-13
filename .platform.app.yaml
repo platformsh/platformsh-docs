@@ -2,7 +2,7 @@
 name: app
 
 # There is no no-runtime container, so any container would do here.
-type: php:7.0
+type: php:7.3
 # Because there is no composer.json file we deactivate the build flavor.
 build:
     flavor: none
