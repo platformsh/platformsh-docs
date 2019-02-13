@@ -93,7 +93,7 @@ Hooks are executed using the dash shell, not the bash shell used by normal SSH l
 
 ### Build hook
 
-The `build` hook is run after the build flavor (if any).  The file system is fully writable, but no services are available (such as a database) nor any persistent file mounts, as the application has not yet been deployed.
+The `build` hook is run after the build flavor (if any).  The file system is fully writable, but no services are available (such as a database) nor any persistent file mounts, as the application has not yet been deployed. The `PLATFORM_RELATIONSHIPS` variable is not available in this phase.
 
 ### Deploy hook
 
