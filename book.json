@@ -7,7 +7,7 @@
     "anchors",
     "reveal",
     "codesnippet",
-    "codetabs@git+https://github.com/platformsh/plugin-codetabs.git#remote",
+    "codetabs",
     "gtm",
     "edit-link",
     "atoc",
