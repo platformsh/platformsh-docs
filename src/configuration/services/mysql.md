@@ -32,7 +32,7 @@ In your `.platform/services.yaml`:
 
 ```yaml
 mydatabase:
-    type: mysql:10.0
+    type: mysql:10.2
     disk: 1024
 ```
 
