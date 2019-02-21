@@ -24,24 +24,7 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-  "database": [
-    {
-      "host": "database.internal",
-      "ip": "246.0.97.91",
-      "password": "",
-      "path": "main",
-      "port": 3306,
-      "query": {
-          "is_master": true
-      },
-      "scheme": "mysql",
-      "username": "user"
-    }
-  ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/mysql", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
@@ -49,7 +32,7 @@ In your `.platform/services.yaml`:
 
 ```yaml
 mydatabase:
-    type: mysql:10.0
+    type: mysql:10.2
     disk: 1024
 ```
 

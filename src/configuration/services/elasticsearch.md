@@ -22,17 +22,7 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "elasticsearch": [
-        {
-            "host": "248.0.65.198",
-            "scheme": "http",
-            "port": "9200"
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/elasticsearch", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
