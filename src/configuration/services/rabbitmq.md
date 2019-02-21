@@ -14,20 +14,7 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-   "rabbitmq" : [
-      {
-         "password" : "guest",
-         "ip" : "246.0.129.2",
-         "scheme" : "amqp",
-         "port" : 5672,
-         "host" : "rabbitmq.internal",
-         "username" : "guest"
-      }
-   ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/rabbitmq", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 

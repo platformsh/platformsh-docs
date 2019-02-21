@@ -18,18 +18,7 @@ See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) fo
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "solr": [
-        {
-            "path": "solr",
-            "host": "248.0.65.197",
-            "scheme": "solr",
-            "port": 8080
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/solr", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 

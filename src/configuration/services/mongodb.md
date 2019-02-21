@@ -19,25 +19,7 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-   "database" : [
-      {
-         "scheme" : "mongodb",
-         "path" : "main",
-         "port" : 27017,
-         "query" : {
-            "is_master" : true
-         },
-         "rel" : "mongodb",
-         "password" : "main",
-         "username" : "main",
-         "ip" : "123.123.123.123",
-         "host" : "database.internal"
-      }
-   ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/mongodb", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 

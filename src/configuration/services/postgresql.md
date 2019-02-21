@@ -20,23 +20,7 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "database": [
-        {
-            "username": "main",
-            "password": "main",
-            "host": "248.0.65.196",
-            "query": {
-                "is_master": true
-            },
-            "path": "main",
-            "scheme": "pgsql",
-            "port": 5432
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/postgresql", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 

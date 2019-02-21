@@ -14,17 +14,7 @@ Both Memcached and Redis can be used for application caching.  As a general rule
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "cache": [
-        {
-            "host": "248.0.65.198",
-            "scheme": "memcached",
-            "port": 11211
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/memcached", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 

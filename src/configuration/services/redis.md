@@ -53,17 +53,7 @@ The `disk` key is required for redis-persistent to tell Platform.sh how much dis
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "redis": [
-        {
-            "host": "248.0.65.198",
-            "scheme": "redis",
-            "port": 6379
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/redis", language="json" %}{% endcodesnippet %}
 
 The format is identical regardless of whether it's a persistent or ephemeral service.
 
