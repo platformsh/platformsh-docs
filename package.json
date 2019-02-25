@@ -4,7 +4,7 @@
   "description": "This repository holds the public user documentation for [Platform.sh](https://platform.sh/).",
   "main": "index.js",
   "dependencies": {
-    "platformsh-user-widget": "^1.0.31"
+    "platformsh-user-widget": "1.0.49"
   },
   "devDependencies": {},
   "scripts": {
