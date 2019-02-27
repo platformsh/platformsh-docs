@@ -31,7 +31,7 @@ web:
             index: ['index.html']
 ```
 
-For the application to be accessible you must configure at least one route. For the full documentation of application configuration see [Apps](app-containers.md)
+For the application to be accessible you must configure at least one route. For the full documentation of application configuration see [Apps](app-containers.md).
 
 ### Minimal `.platform/routes.yaml` :
 
@@ -43,7 +43,7 @@ Here, in the `upstream` key we are referencing the name of the application as we
   upstream: "app:http"
 ```
 
-For the full documentation on our routing system see [Routes](routes.md)
+For the full documentation on our routing system see [Routes](routes.md).
 
 ### Minimal `.platform/services.yaml` :
 
@@ -51,7 +51,7 @@ For the full documentation on our routing system see [Routes](routes.md)
  # this file may be empty but must exist
 ```
 
-For the full documentation on our supported services and how to configure them see [Services](services.md)
+For the full documentation on our supported services and how to configure them see [Services](services.md).
 
 ###  That's all
 
