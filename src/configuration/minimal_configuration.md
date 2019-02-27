@@ -58,8 +58,6 @@ For the full documentation on our supported services and how to configure them s
 Assuming you have an `index.html` file in the root of the repository it will now be served at the automatically generated domain that you will see in the UI as well as in the output of the `git push` command.
 
 
----
-
 > * Note that the `web` key in `.platform.app.yaml` is not required, but the site will respond with a `404` error if it is not there.
 > * Note that it is not recommended to serve anything from the root of your Git repository. It would be much better to create a sub-directory such as `public` and move `index.html` to `public/index.html`, add a default `index` and have the `web` block as follows:
 >
