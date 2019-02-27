@@ -28,6 +28,7 @@ web:
     locations:
         '/':
             root: ''
+            index: ['index.html']
 ```
 
 For the application to be accessible you must configure at least one route. For the full documentation of application configuration see [Apps](configuration/app-containers.md)
