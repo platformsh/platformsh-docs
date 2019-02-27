@@ -21,7 +21,8 @@
 
 ## Configuration
 
-* [YAML](configuration/yaml.md)
+* [Minimal Configuration](configuration/minimal_configuration.md)
+* [About the YAML format](configuration/yaml.md)
 * [Routes (routes.yaml)](configuration/routes.md)
   * [HTTPS](configuration/routes/https.md)
   * [HTTP Cache](configuration/routes/cache.md)
