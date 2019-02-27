@@ -54,7 +54,7 @@ For the full documentation on our supported services and how to configure them s
 
 ###  That's all
 
-Assuming you have an index.html file in the root of the repository it will now be served at the automatically generated domain that you will see in the UI as well as in the output of the `git push` command.
+Assuming you have an `index.html` file in the root of the repository it will now be served at the automatically generated domain that you will see in the UI as well as in the output of the `git push` command.
 
 
 ---
