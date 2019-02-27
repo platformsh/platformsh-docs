@@ -4,12 +4,12 @@ search:
 ---
 # Minimal Platform.sh configuration
 
-In order the successfully deploy to platform.sh you must
+In order to successfully deploy to Platform.sh you must
 add three YAML files:
 
 * At least one `.platform.app.yaml`, 
 * a `.platform/routes.yaml` with at least one route, 
-* and an `platform/services.yaml` file that may be empty.
+* and a `.platform/services.yaml` file that may be empty.
 
 ## Minimal static or PHP application:
 
@@ -18,7 +18,7 @@ require to start a daemon.
 
 ### Minimal `.platform.app.yaml` :
 
-You must specify a name for the app (it will be used in `routes.yaml`) specify its type (from the list of supported runtimes), give it some disk space, and define what directory to serve. Here we are serving the root directory of the repository.
+You must specify a name for the app (it will be used in `routes.yaml`), specify its type (from the list of supported runtimes), give it some disk space, and define what directory to serve. Here we are serving the root directory of the repository:
 
 ```yaml
 name: app
