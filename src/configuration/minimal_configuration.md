@@ -62,7 +62,8 @@ Assuming you have an index.html file in the root of the repository it will now b
 > * Note that the `web` key in `.platform.app.yaml` is not required, but the site will respond with a `404` error if it is not there.
 > * Note that it is not recommended to serve anything from the root of your Git repository. It would be much better to create a sub-directory such as `public` and move `index.html` to `public/index.html`, add a default `index` and have the `web` block as follows:
 >
->```yaml
+
+```yaml
 web:
     locations:
         '/':
