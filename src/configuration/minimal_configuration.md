@@ -35,7 +35,7 @@ For the application to be accessible you must configure at least one route. For 
 
 ### Minimal `.platform/routes.yaml` :
 
-Here, in the `upstream` key we are referencing the name of the application as we have configured it above in the `.platform.app.yaml` with the `name` key.
+Here, in the `upstream` key we are referencing the name of the application as we have configured above in the `.platform.app.yaml` with the `name` key.
  
 ```yaml
 "https://{default}/":
