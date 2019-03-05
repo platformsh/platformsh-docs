@@ -54,25 +54,9 @@ dependencies:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php" -%}
-<?php
+{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
 
-if (!isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
-    return;
-}
-
-$relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
-$rel = $relationships['cache'][0];
-
-$m = new Memcached();
-$m->addServer($rel['host'], $rel['port']);
-$m->setOption(Memcached::OPT_BINARY_PROTOCOL, true);
-
-$m->set('int', 99);
-$m->set('string', 'a simple string');
-$m->set('array', array(11, 12));
-/* expire 'object' key in 5 minutes */
-$m->set('object', new stdclass, time() + 300);
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/memcached" -%}
 
 {%- language name="Python", type="py" -%}
 import memcache
@@ -99,7 +83,6 @@ if relationships:
     mc.decr("key")
     #print "Counter Value: {}<br />\n".format(mc.get("key"))
 {%- endcodetabs %}
-
 
 ## Accessing Memcached directly
 

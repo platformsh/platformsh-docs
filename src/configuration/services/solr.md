@@ -39,22 +39,12 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-```php
-<?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
 
-	// For a relationship named 'solr' referring to one endpoint.
-	if (!empty($relationships['solr'])) {
-		foreach ($relationships['solr'] as $endpoint) {
-			$settings['solr_host'] = $endpoint['host'];
-			$settings['solr_port'] = $endpoint['port'];
-			break;
-		}
-	}
-}
-```
+{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/solr" -%}
+
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/solr" -%}
+
+{%- endcodetabs %}
 
 ## Configuration
 

@@ -43,22 +43,12 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-```php
-<?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
 
-	// For a relationship named 'elasticsearch' referring to one endpoint.
-	if (!empty($relationships['elasticsearch'])) {
-		foreach ($relationships['elasticsearch'] as $endpoint) {
-			$settings['elasticsearch_host'] = $endpoint['host'];
-			$settings['elasticsearch_port'] = $endpoint['port'];
-			break;
-		}
-	}
-}
-```
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/elasticsearch" -%}
+
+{%- endcodetabs %}
+
 
 > **note**
 >

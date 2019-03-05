@@ -50,26 +50,10 @@ runtime:
 You can then use the service in a configuration file of your application with something like:
 
 
+{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
 
-{% codetabs name="PHP", type="php" -%}
-<?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/postgresql" -%}
 
-	// For a relationship named 'database' referring to one endpoint.
-	if (!empty($relationships['database'])) {
-		foreach ($relationships['database'] as $endpoint) {
-			$settings['database_driver'] = 'pdo_' . $endpoint['scheme'];
-			$settings['database_host'] = $endpoint['host'];
-			$settings['database_name'] = $endpoint['path'];
-			$settings['database_port'] = $endpoint['port'];
-			$settings['database_user'] = $endpoint['user'];
-			$settings['database_password'] = $endpoint['password'];
-			break;
-		}
-	}
-}
 {%- language name="Python", type="py" -%}
 relationships = os.getenv('PLATFORM_RELATIONSHIPS')
 if relationships:
@@ -85,25 +69,6 @@ if relationships:
             'PORT': db_settings['port'],
         }
     }
-{%- language name="NodeJS", type="js" -%}
-// Using the Platform.sh JS helper library: https://github.com/platformsh/platformsh-nodejs-helper
-
-var config = require("platformsh").config();
-
-if (config.relationships != null) {
-  var db = config.relationships.first_db[0]
-
-  const connObj = {
-      user: database.username,
-      database: database.path,
-      password: database.password,
-      host: database.host
-  };
-
-  const pg = require('pg');
-
-  pg.connectAsync(connObj)...;
-}
 
 {%- language name="Go", type="go" -%}
 // Using the Platform.sh Go helper library: https://github.com/platformsh/gohelper
