@@ -35,8 +35,9 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-
 {% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
+
+{% codetabs name="Python", type="py", url="https://examples.docs.platform.sh/python/rabbitmq" -%}
 
 {%- endcodetabs %}
 

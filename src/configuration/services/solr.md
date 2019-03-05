@@ -39,10 +39,11 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-
 {% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/solr" -%}
 
 {%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/solr" -%}
+
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/solr" -%}
 
 {%- endcodetabs %}
 

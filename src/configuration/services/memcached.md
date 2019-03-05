@@ -58,30 +58,8 @@ You can then use the service in a configuration file of your application with so
 
 {%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/memcached" -%}
 
-{%- language name="Python", type="py" -%}
-import memcache
-import os
-import json
-import base64
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/memcached" -%}
 
-relationships = os.getenv('PLATFORM_RELATIONSHIPS')
-if relationships:
-    relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
-    memcache_settings = relationships['cache'][0]
-
-    mc = memcache.Client([memcache_settings['host'] + ':' + str(memcache_settings['port'])], debug=0)
-
-    mc.set("an_int", 99)
-    #print "Int Value: {}<br />\n".format(mc.get("an_int"))
-
-    mc.set("a_sring", "a simple string")
-    mc.delete("a_string")
-    #print "String Value: {}<br />\n".format(mc.get("a_string"))
-
-    #mc.set("key", "1")   # note that the key used for incr/decr must be a string.
-    mc.incr("key")
-    mc.decr("key")
-    #print "Counter Value: {}<br />\n".format(mc.get("key"))
 {%- endcodetabs %}
 
 ## Accessing Memcached directly

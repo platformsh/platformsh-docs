@@ -47,6 +47,8 @@ You can then use the service in a configuration file of your application with so
 
 {%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/elasticsearch" -%}
 
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
+
 {%- endcodetabs %}
 
 

@@ -49,39 +49,12 @@ runtime:
 
 You can then use the service in a configuration file of your application with something like:
 
-
 {% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
 
 {%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/postgresql" -%}
 
-{%- language name="Python", type="py" -%}
-relationships = os.getenv('PLATFORM_RELATIONSHIPS')
-if relationships:
-    relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
-    db_settings = relationships['database'][0]
-    DATABASES = {
-        "default": {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': db_settings['path'],
-            'USER': db_settings['username'],
-            'PASSWORD': db_settings['password'],
-            'HOST': db_settings['host'],
-            'PORT': db_settings['port'],
-        }
-    }
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/postgresql" -%}
 
-{%- language name="Go", type="go" -%}
-// Using the Platform.sh Go helper library: https://github.com/platformsh/gohelper
-
-dbString, err := pi.SqlDsn("database")
-if (err != nil) {
-  panic(err)
-}
-
-db, err := sql.Open("postgres", dbString)
-if (err != nil) {
-  panic(err)
-}
 {%- endcodetabs %}
 
 ## Exporting data

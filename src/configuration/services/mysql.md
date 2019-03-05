@@ -51,25 +51,8 @@ You can then use the service in a configuration file of your application with so
 
 {%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/mysql" -%}
 
-{%- language name="Python", type="py" -%}
-import os
-import json
-import base64
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/mysql" -%}
 
-relationships = os.getenv('PLATFORM_RELATIONSHIPS')
-if relationships:
-    relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
-    db_settings = relationships['database'][0]
-    DATABASES = {
-        "default": {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': db_settings['path'],
-            'USER': db_settings['username'],
-            'PASSWORD': db_settings['password'],
-            'HOST': db_settings['host'],
-            'PORT': db_settings['port'],
-        }
-    }
 {%- language name="Go", type="go" -%}
 // Using the Platform.sh Go helper library: https://github.com/platformsh/gohelper
 

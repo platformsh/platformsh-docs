@@ -83,6 +83,8 @@ You can then use the service in a configuration file of your application with so
 
 {%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/redis" -%}
 
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/redis" -%}
+
 {%- endcodetabs %}
 
 ## Using redis-cli to access your Redis service
