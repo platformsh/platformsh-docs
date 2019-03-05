@@ -53,6 +53,7 @@ Or even restore the snapshot to a different branch with the CLI as follows:
 ```bash
 $ platform snapshot:restore --target=RESTORE_BRANCH 2ca4d90639f706283fee
 ```
+For this to work, it's important to act on the active branch on which the snapshot was taken. Restoring a snapshot from `develop` when working on the `staging` branch is impossible. Switch to the acting branch and set your `--target` as above snippet mentions.
 
 If no branch already exists, you can specify the parent of the branch that will be created to restore your snapshot to as follows:
 
