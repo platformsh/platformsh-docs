@@ -413,3 +413,8 @@ section.examples-lists {
 section.examples-lists > div {
   margin-right: 1em;
 }
+
+.codetabs-body pre {
+  max-height: 30em;
+  overflow: scroll;
+}

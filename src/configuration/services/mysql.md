@@ -47,45 +47,12 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php" -%}
-<?php
-// This assumes a fictional application with an array named $settings.
-$relationships = getenv('PLATFORM_RELATIONSHIPS');
-if ($relationships) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/mysql" -%}
 
-	// For a relationship named 'database' referring to one endpoint.
-	if (!empty($relationships['database'])) {
-		foreach ($relationships['database'] as $endpoint) {
-			$settings['database_driver'] = 'pdo_' . $endpoint['scheme'];
-			$settings['database_host'] = $endpoint['host'];
-			$settings['database_name'] = $endpoint['path'];
-			$settings['database_port'] = $endpoint['port'];
-			$settings['database_user'] = $endpoint['username'];
-			$settings['database_password'] = $endpoint['password'];
-			break;
-		}
-	}
-}
-{%- language name="Python", type="py" -%}
-import os
-import json
-import base64
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/mysql" -%}
 
-relationships = os.getenv('PLATFORM_RELATIONSHIPS')
-if relationships:
-    relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
-    db_settings = relationships['database'][0]
-    DATABASES = {
-        "default": {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': db_settings['path'],
-            'USER': db_settings['username'],
-            'PASSWORD': db_settings['password'],
-            'HOST': db_settings['host'],
-            'PORT': db_settings['port'],
-        }
-    }
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/mysql" -%}
+
 {%- language name="Go", type="go" -%}
 // Using the Platform.sh Go helper library: https://github.com/platformsh/gohelper
 
