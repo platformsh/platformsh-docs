@@ -9,6 +9,7 @@ Platform.sh supports deploying any Ruby application. Your application can use an
 * 2.3
 * 2.4
 * 2.5
+* 2.6
 
 ## Unicorn based Rails configuration
 
