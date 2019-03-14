@@ -23,7 +23,9 @@ Please be aware that triggering a snapshot will cause a momentary pause in site 
 ## Restore
 
 
-You will see the snapshot in the activity feed of your environment in the Platform.sh Web Interface. You can trigger the restore by clicking on the `restore` link. You can also restore the snapshot to a different environment using the CLI.
+You will see the snapshot in the activity feed of your environment in the Platform.sh Web Interface. You can trigger the restore by clicking on the `restore` link. 
+
+Except for a few regions, you can also restore the snapshot to a different environment using the CLI. If your region does not have this feature, feel free to open a support ticket requesting to restore the snapshot to an environmentof your choice.
 
 You can list existing snapshots with the CLI as follows:
 
