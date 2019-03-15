@@ -4,6 +4,8 @@ SimpleSAMLphp is a library for authenticating a PHP-based application against a 
 
 The following configuration assumes you are building Drupal 8 using Composer.  If not, you will need to download the library manually and adjust some paths accordingly.
 
+Please ensure you have the [External Authentication](https://www.drupal.org/project/externalauth) module installed before proceeding.
+
 ## Download the library and Drupal module
 
 The easiest way to download SimpleSAMLphp is via Composer.  The following command will add both the Drupal module and the PHP library to your `composer.json` file.
