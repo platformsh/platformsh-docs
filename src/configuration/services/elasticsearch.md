@@ -8,6 +8,7 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 * 5.2
 * 5.4
+* 6.5
 
 ### Deprecated versions
 
@@ -30,7 +31,7 @@ In your `.platform/services.yaml`:
 
 ```yaml
 mysearch:
-    type: elasticsearch:5.4
+    type: elasticsearch:6.5
     disk: 1024
 ```
 
@@ -63,7 +64,7 @@ The Elasticsearch 2.4 and later services offer a number of plugins.  To enable t
 
 ```yaml
 mysearch:
-    type: "elasticsearch:5.4"
+    type: "elasticsearch:6.5"
     disk: 1024
     configuration:
         plugins:
