@@ -70,9 +70,12 @@ You have your SSH keys (if not, take a look at the section above), but you need 
 4.  Paste the key that you copied earlier into the 'Key' text box. You can also add a title if you like, otherwise it will be auto-generated.
 5.  Click 'Save'.
 
+![Setting Up Your Project Add SSH Key Done](/images/account-SSH-Key-add.png)
+
+
 That's it! You're all set. Now you'll be able to use Git and command shells with any Platform.sh environment that your user account is authorized to work with.
 
-![Edit Account Ssh](/images/edit-account-ssh.png)
+![Setting Up Your Project Add SSH Key Done](/images/account-SSH-Keys.png)
 
 ## SSH to your Web Server
 
