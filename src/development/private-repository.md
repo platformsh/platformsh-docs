@@ -6,9 +6,9 @@ Let's say you're building a module (*or theme, library...*) which is stored in a
 
 To grant Platform.sh access to your private Git repository, you need to add the project public SSH key to the deploy keys of your Git repository.
 
-You can find your project's public key by going to the project's configuration on the Web Interface and copy it from there:
+You can copy your project’s public key by going to the Settings tab on the Web Interface and then clicking the Deploy Key tab on the left hand side. 
 
-![Deploy Key](/images/deploykey.png)
+![Deploy Key](/images/settings_Deploy Key.png)
 
 If your private repository is on GitHub, go to the target repository's settings page. Go to *Deploy Keys* and click *Add deploy key*. Paste the public SSH key in and submit. By default, on github, deploy keys are read only, so you don't need to worry about the system pushing code to the private repository.
 
