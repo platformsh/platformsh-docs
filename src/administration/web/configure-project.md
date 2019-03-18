@@ -1,24 +1,21 @@
 # Project configuration
 
-You can access the configuration page of your project by clicking the gear icon next to the project name.
+You can access the project-wide configuration settings by selecting the project from your list of projects, then click the `Settings` tab at the top of the screen.
 
-![configure project](/images/ui-conf-project.png)
+## General
 
-## Settings
+From the first page of the project settings, `General`, you can update the project name, or navigate to other project settings options on the left side of the screen.
 
-The `Settings` screen provides the SSH key that Platform.sh will use when trying to access external private Git repository during the build process.
+![configure project](/images/settings_basics_expanded-1.png)
 
-This is useful if you want to reuse some code components across multiple projects and manage those components as dependencies of your project.
 
-![Get the Platform.sh project public SSH key](/images/ui-conf-project-ssh-key.png)
+## Access
 
-## Users
+The `Access` screen allows you to manage users access on your project.
 
-The `Users` screen allows you to manage users access on your project.
+You can invite new users to your project by clicking the `Add` button and entering their email address, or modify permissions of existing users by clicking the `Edit` link when hovering over the user.
 
-You can invite new users to your project by clicking the `Add user` link and entering their email address, or modify permissions of existing users by clicking the `Edit` link when hovering over the user.
-
-![Project configure icon](/images/ui-conf-project-users.png)
+![Project configure icon](/images/settings_project_access.png)
 
 > **note**
 >
@@ -26,9 +23,9 @@ You can invite new users to your project by clicking the `Add user` link and ent
 
 Selecting a user will allow you to either edit that user's permissions or delete the user's access to the project entirely.
 
-![Manage users of your Platform.sh project](/images/ui-conf-project-users-access.png)
+![Manage users of your Platform.sh project](/images/edit_user.png)
 
-If you check the `Super user` box, this user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment.
+If you check the `Project admin` box, this user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment.
 
 > **note**
 > The `Account owner` is locked and you can't change its permissions.
@@ -37,10 +34,37 @@ If you check the `Super user` box, this user will be an administrator of the pro
 
 The `Domains` screen allows you to manage your domains that your project will be accessible at.
 
-![Manage domains of your Platform.sh project.](/images/ui-conf-project-domains.png)
+![project domain](/images/settings_domain.png)
 
 More information on how to [setup your domain](/golive/steps.md).
 
 > **note**
 >
 > Platform.sh expects an ASCII representation of the domain here. In case you want to use an internationalized domain name you can use the [conversion tool provided by Verisign](http://mct.verisign-grs.com/) to convert your IDN domain to ASCII.
+
+
+## Certificates
+
+The `Certificates` screen allows you to manage your project's TLS certificates that enable HTTPS. 
+
+![project certs](/images/settings_certificates.png)
+
+You can view current certificates by hovering over one on the list and clicking the `View` link that appears, or you can add a new certificate by clicking the `Add` button a the top of the page. 
+
+![add certs](/images/add_cert.png)
+
+
+## Deploy Key
+
+The `Deploy Key` page provides the SSH key that Platform.sh will use when trying to access external private Git repository during the build process.
+
+This is useful if you want to reuse some code components across multiple projects and manage those components as dependencies of your project.
+
+![project deploy key](/images/settings_Deploy Key.png)
+
+## Variables
+
+The `Variables` screen allows you to define the variables that will be available project-wide - that is, in each environment.
+
+![project vars](/images/settings_variables-project.png)
+
