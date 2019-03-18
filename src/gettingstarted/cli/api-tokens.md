@@ -6,9 +6,13 @@ The Platform.sh CLI can also be used from CI services or other automation tools,
 
 An API token can be created through the UI.  Go to the "User" page from your accounts drop-down, then select the "Account Settings" tab, then the "API Tokens".
 
-Click the "Create an API Token" link.  You may be asked to reverify your password, then enter a unique application name to identify the token.
+Click the "Create an API Token" link. 
 
-![API Token screen](/images/api-token-list.png)
+![API Token screen](/images/account-API Tokens-new.png)
+
+You may be asked to reverify your password, then enter a unique application name to identify the token.
+
+![API Token screen](/images/account-API Tokens-edit.png)
 
 After creating the token it will be displayed once at the top of the page in a green banner.  You may also view it later by clicking the "view" link next to the token name.  You will be asked to reverify your password as well when viewing the token.
 
