@@ -83,7 +83,7 @@ A number of project templates for major PHP applications are available on GitHub
 * [Laravel](https://github.com/platformsh/template-laravel)
 * [Moodle](https://github.com/platformsh/platformsh-example-moodle)
 * [Magento 1](https://github.com/platformsh/platformsh-example-magento1)
-* [Magento 2](https://github.com/platformsh/platformsh-example-magento)
+* [Magento 2](https://github.com/platformsh/template-magento2ce)
 * [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
 * [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
 * [WordPress](https://github.com/platformsh/template-wordpress)
