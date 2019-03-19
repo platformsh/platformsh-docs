@@ -1,4 +1,4 @@
-# PCI DSS Responsibility Guidance
+# Compliance guidance
 
 Platform.sh has many PCI certified customers using our services. Some aspects of PCI compliance are the responsibility of the host and others are the responsibility of the application developer.
 
