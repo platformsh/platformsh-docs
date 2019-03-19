@@ -9,7 +9,7 @@ The following configuration assumes you are building Drupal 8 using Composer.  I
 The easiest way to download SimpleSAMLphp is via Composer.  The following command will add both the Drupal module and the PHP library to your `composer.json` file.
 
 ```bash
-composer require simplesamlphp/simplesamlphp drupal/simplesamlphp_auth drupal/externalauth
+composer require simplesamlphp/simplesamlphp drupal/externalauth drupal/simplesamlphp_auth
 ```
 
 Once that's run, commit both `composer.json` and `composer.lock` to your repository.
