@@ -32,4 +32,4 @@ type: 'oracle-java:8'
 You can find an example Tomcat based application using Maven here:  https://github.com/platformsh/platformsh-example-java-tomcat-maven and a Spring Boot one using gradle over here: https://github.com/platformsh/platformsh-example-java-spring-gradle
 
 ## Building and running the application
-Note that there will still be an Nginx proxy server sitting in front of your application.  If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Go application unconditionally, as in the example above.
+Note that there will still be an Nginx proxy server sitting in front of your application.  If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Java application unconditionally, as in the example above.
