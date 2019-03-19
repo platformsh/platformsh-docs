@@ -123,7 +123,7 @@
 * [Backup and restore](security/backups.md)
 * [Encryption](security/encryption.md)
 * [Protective block](security/protective-block.md)
-* [PCI Guidance](security/pci-guidance.md)
+* [Compliance guidance](security/compliance-guidance.md)
 * [Security scans](security/pen-test.md)
 * [Troubleshooting](security/troubleshooting.md)
 

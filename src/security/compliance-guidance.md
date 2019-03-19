@@ -1,14 +1,12 @@
-# PCI DSS Responsibility Guidance
+# Compliance guidance
 
 Platform.sh has many PCI certified customers using our services. Some aspects of PCI compliance are the responsibility of the host and others are the responsibility of the application developer.
 
 Basic PCI questions can be handled by our support team via a ticket. For more advanced questions or walk-through of a full audit please contact your Platform.sh Account Manager.
 
-
 ## Overview
 
 Platform.sh provides a Platform as a Service (PaaS) solution which our customers may use to store, process, or transmit cardholder data.
-
 
 ## Security & Compensating Controls
 
@@ -23,10 +21,29 @@ Platform.sh provides a Platform as a Service (PaaS) solution which our customers
 
 ## Responsibility
 
-Platform.sh customers are ultimately responsible for their own PCI DSS compliance.
+Platform.sh and customers have shared responsibility for ensuring an up to date and secure system.  PCI CSS compliance is ultimately the responsibility of the customer, however.
+
+Platform.sh is responsible for:
+
+* **Physical and Environmental controls** - We use third party hosting and thus these requirements are passed through to those providers (e.g. AWS).
+* **Patch Management** - Platform.sh is responsible for patching and fixing underlying system software, management software, and environment images.
+* **Configuration Management** - Platform.sh maintains the configuration of its infrastructure and devices.
+* **Awareness and Training** - Platform.sh trains its own employees in secure software development and management.
+* **Capacity Management** - Platform.sh is responsible for capacity management of the infrastructure, such as server allocation and bandwidth management.
+* **Access Control** - Platform.sh is responsible for providing access control mechanisms to customers and for vetting all Platform.sh personnel access.
+* **Backups** - Platform.sh is responsible for backing up the infrastructure and management components of the system.  On Platform.sh Enterprise (only), Platform.sh will also backup application code and databases on behalf of customers.
+
+Customers are responsible for:
+
+* **Patch Management** - Customers are responsible for maintaining and patching application code uploaded to Platform.sh, either written by them or by a third party.
+* **Configuration Management** - Customers are responsible for the secure configuration of their application, including Platform.sh configuration and routes managed through YAML files.
+* **Awareness and Training** - Customers are responsible for training their own employees and users in secure software practices.
+* **Capacity Management** - Customers are responsible for ensuring their application containers have sufficient resources for their selected tasks.
+* **Access Control** - Customers are responsible for effectively leveraging available access control mechanisms, including proper access control settings, secrets management, ssh keys management, and the use of two-factor authentication.
+* **Backups** - On Platform.sh Professional customers are responsible for all application and database backups.
+
 
 The following sections provide guidance on shared responsibilities to achieve PCI DSS compliance. The list below covers all the sections found in a typical SAQ D although you may not need this level of detail for your efforts. This section is currently using PCI DSS 3.2 as a reference.
-
 
 ### Requirement 1
 
@@ -37,7 +54,6 @@ The following sections provide guidance on shared responsibilities to achieve PC
 |1.3.5 to 1.3.6|Platform      |Infrastructure cannot be modified by the customer                                                            |
 |1.3.7         |Shared        |Customers are responsible for ensuring their application does not leak private IP addresses                  |
 |1.4 to 1.5    |Shared        |Customers are responsible for their devices accessing the environment                                        |
-
 
 ### Requirement 2
 
