@@ -21,8 +21,6 @@ The following versions are available but are not receiving security updates from
 * 6.10
 * 8.2
 
-See https://github.com/platformsh/platformsh-example-nodejs/tree/mongodb for a full example with MongoDB support.
-
 ## Configuration
 
 To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` file with a few key settings, as described here (a complete example is included at the end).
