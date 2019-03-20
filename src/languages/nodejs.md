@@ -154,8 +154,6 @@ To access various [services](/configuration/services.md) with Node.js, see the f
 
 {% language name="PostgreSQL", type="js", url="https://examples.docs.platform.sh/nodejs/postgresql" -%}
 
-{% language name="RabbitMQ", type="js", url="https://examples.docs.platform.sh/nodejs/rabbitmq" -%}
-
 {% language name="Redis", type="js", url="https://examples.docs.platform.sh/nodejs/redis" -%}
 
 {% language name="Solr", type="js", url="https://examples.docs.platform.sh/nodejs/solr" -%}
