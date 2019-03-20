@@ -75,7 +75,7 @@ $ php-fpm-status --socket=unix://$SOCKET --path=/-/status --full
 
 ## Accessing services
 
-To access various [services](/configuration/services.md) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](/configuration/services.md) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
 
 {% codetabs name="Elasticsearch", type="js", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
 
