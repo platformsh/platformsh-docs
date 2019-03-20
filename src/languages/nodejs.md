@@ -140,6 +140,28 @@ const server = http.createServer(function (request, response) {
 server.listen(config.port);
 ```
 
+## Accessing services
+
+To access various [services](/configuration/services.md) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
+
+{% codetabs name="Elasticsearch", type="js", url="https://examples.docs.platform.sh/nodejs/elasticsearch" -%}
+
+{% language name="Memcached", type="js", url="https://examples.docs.platform.sh/nodejs/memcached" -%}
+
+{% language name="MongoDB", type="js", url="https://examples.docs.platform.sh/nodejs/mongodb" -%}
+
+{% language name="MySQL", type="js", url="https://examples.docs.platform.sh/nodejs/mysql" -%}
+
+{% language name="PostgreSQL", type="js", url="https://examples.docs.platform.sh/nodejs/postgresql" -%}
+
+{% language name="RabbitMQ", type="js", url="https://examples.docs.platform.sh/nodejs/rabbitmq" -%}
+
+{% language name="Redis", type="js", url="https://examples.docs.platform.sh/nodejs/redis" -%}
+
+{% language name="Solr", type="js", url="https://examples.docs.platform.sh/nodejs/solr" -%}
+
+{%- endcodetabs %}
+
 ## Project templates
 
 A number of project templates for Node.js applications and typical configurations are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
