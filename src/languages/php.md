@@ -28,6 +28,10 @@ The following versions are available but are not receiving security updates from
 * 5.6
 * 7.0
 
+## Support libraries
+
+While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-php) Composer library which handles decoding of service credential information for you.
+
 ## Alternate start commands
 
 PHP is most commonly run in a CGI mode, using PHP-FPM. That is the default on Platform.sh. However, you can also start alternative processes if desired, such as if you're running an Async PHP daemon, a thread-based worker process, etc. To do so, simply specify an alternative start command in `platform.app.yaml`, similar to the following:
@@ -68,6 +72,28 @@ Then when you are connected to your project over SSH you can run:
 ```shell
 $ php-fpm-status --socket=unix://$SOCKET --path=/-/status --full
 ```
+
+## Accessing services
+
+To access various [services](/configuration/services.md) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
+
+{% codetabs name="Elasticsearch", type="js", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
+
+{% language name="Memcached", type="js", url="https://examples.docs.platform.sh/php/memcached" -%}
+
+{% language name="MongoDB", type="js", url="https://examples.docs.platform.sh/php/mongodb" -%}
+
+{% language name="MySQL", type="js", url="https://examples.docs.platform.sh/php/mysql" -%}
+
+{% language name="PostgreSQL", type="js", url="https://examples.docs.platform.sh/php/postgresql" -%}
+
+{% language name="RabbitMQ", type="js", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
+
+{% language name="Redis", type="js", url="https://examples.docs.platform.sh/php/redis" -%}
+
+{% language name="Solr", type="js", url="https://examples.docs.platform.sh/php/solr" -%}
+
+{%- endcodetabs %}
 
 ## Project templates
 
