@@ -21,6 +21,10 @@ The following versions are available but are not receiving security updates from
 * 6.10
 * 8.2
 
+## Support libraries
+
+While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh-config`](https://github.com/platformsh/config-reader-nodejs) NPM library which handles decoding of service credential information for you.
+
 ## Configuration
 
 To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` file with a few key settings, as described here (a complete example is included at the end).
@@ -50,11 +54,13 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
        start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
    ```
 
-   If there is a package.json file present at the root of your repository, Platform.sh will automatically install the dependencies. We suggest including the `platformsh` helper npm module, which makes it trivial to access the running environement.
+   If there is a package.json file present at the root of your repository, Platform.sh will automatically install the dependencies. We suggest including the `platformsh-config` helper npm module, which makes it trivial to access the running environment.
 
-   ```javascript
-   "dependencies": {
-     "platformsh": "^0.0.1"
+   ```json
+   {
+     "dependencies": {
+       "platformsh-config": "^2.0.0"
+     }
    }
    ```
 
@@ -79,13 +85,13 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
 
 6. Setup the routes to your nodejs application in `.platform/routes.yaml`.
 
-```yaml
-"https://{default}/":
-  type: upstream
-  upstream: "app:http"
-```
+  ```yaml
+  "https://{default}/":
+    type: upstream
+    upstream: "app:http"
+  ```
 
-Here's a complete example that also serves static assets (.png from the /public directory):
+Here's a complete example that also serves static assets (.png from the `/public` directory):
 
 ```yaml
 name: node
@@ -119,13 +125,14 @@ disk: 512
 
 Finally, make sure your Node.js application is configured to listen over the port given by the environment (here we use the platformsh helper and get it from config.port) that is available in the environment variable ``PORT``.  Here's an example:
 
-```javascript
+```js
 // Load the http module to create an http server.
-var http = require('http');
-// Load the Platform.sh configuration
-var config= require("platformsh").config();
+const http = require('http');
 
-var server = http.createServer(function (request, response) {
+// Load the Platform.sh configuration
+const config= require('platformsh-config').config();
+
+const server = http.createServer(function (request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
   response.end("<html><head><title>Hello Node.js</title></head><body><h1><img src='public/js.png'>Hello Node.js</h1><h3>Platform configuration:</h3><pre>"+JSON.stringify(config, null, 4) + "</pre></body></html>");
 });
@@ -137,8 +144,6 @@ server.listen(config.port);
 
 A number of project templates for Node.js applications and typical configurations are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
-Platform.sh also provides a [helper library](https://github.com/platformsh/platformsh-nodejs-helper) for Node.js applications that simplifies presenting environment information to your application. It is not required to run Node.js applications on Platform.sh but is recommended.
- 
 * [Generic Node.js](https://github.com/platformsh/platformsh-example-nodejs)
 * [Parse](https://github.com/platformsh/platformsh-example-parseit)
 * [Node.js-based microservices](https://github.com/platformsh/platformsh-example-nodejs-microservices)
