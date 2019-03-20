@@ -5,11 +5,12 @@ Platform.sh supports building and deploying applications written in Go using Go 
 ## Supported versions
 
 * 1.11
+* 1.12
 
 To specify a Go container, use the `type` property in your `.platform.app.yaml`.
 
 ```yaml
-type: 'golang:1.11'
+type: 'golang:1.12'
 ```
 
 ## Deprecated versions
@@ -62,7 +63,7 @@ The following basic `.platform.app.yaml` file is sufficient to run most Go appli
 ```yaml
 name: app
 
-type: golang:1.11
+type: golang:1.12
 
 hooks:
     build: |
