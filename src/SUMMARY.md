@@ -116,6 +116,7 @@
 
 ## Security and compliance
 
+* [Overview](security/index.md)
 * [GDPR](security/gdpr.md)
 * [Data collection](security/data-collection.md)
 * [Data retention](security/data-retention.md)
