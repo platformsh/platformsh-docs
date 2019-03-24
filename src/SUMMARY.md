@@ -117,14 +117,14 @@
 ## Security and compliance
 
 * [Overview](security/index.md)
-* [GDPR](security/gdpr.md)
+* [Backup and restore](security/backups.md)
+* [Compliance guidance](security/compliance-guidance.md)
 * [Data collection](security/data-collection.md)
 * [Data retention](security/data-retention.md)
 * [Data deletion](security/data-deletion.md)
-* [Backup and restore](security/backups.md)
 * [Encryption](security/encryption.md)
+* [GDPR](security/gdpr.md)
 * [Protective block](security/protective-block.md)
-* [Compliance guidance](security/compliance-guidance.md)
 * [Security scans](security/pen-test.md)
 * [Troubleshooting](security/troubleshooting.md)
 
