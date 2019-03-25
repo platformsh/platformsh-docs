@@ -12,7 +12,7 @@ Here is an example of a ``.gitmodules`` file:
 	url = https://github.com/orocrm/platform.git
 [submodule "src/OroPackages/src/Oro/Bundle/EntitySerializedFieldsBundle"]
 	path = src/OroPackages/src/Oro/Bundle/EntitySerializedFieldsBundle
-	url = https:/github.com/orocrm/OroEntitySerializedFieldsBundle.git
+	url = https://github.com/orocrm/OroEntitySerializedFieldsBundle.git
 [submodule "src/OroB2B"]
 	path = src/OroB2B
 	url = https://github.com/orocommerce/orocommerce.git
