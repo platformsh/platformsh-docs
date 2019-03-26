@@ -57,6 +57,46 @@ If not specified, the effective default start command varies by PHP version:
 
 While you can call it manually that is generally not necessary. Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or Amp). If you need both they will have to run in separate containers.
 
+## Expanded dependencies
+
+In addition to the standard `dependencies` format, it is also possible to specify alternative repositories for use by Composer.  The standard format like so:
+
+```yaml
+dependencies:
+    php:
+        "platformsh/client": "dev-master"
+```
+
+is equivalent to `composer require platform/client dev-master`.  However, you can also specify explicit `require` and `repositories` blocks:
+
+```yaml
+dependencies:
+    php:
+        require:
+            "platformsh/client": "dev-master"
+        repositories:
+            - type: vcs
+              url: "git@github.com:platformsh/platformsh-client-php.git"
+```
+
+That would install `platformsh/client` from the alternate repository specified, as a global dependency.  That is, it is equivalent to the following `composer.json` file:
+
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:platformsh/platformsh-client-php.git"
+        }
+    ],
+    "require": {
+        "platformsh/client": "dev-master"
+    }
+}
+```
+
+That allows you to install a forked version of a global dependency from a custom repository.
+
 ## Debug PHP-FPM
 
 If you want to inspect what's going on with PHP-FPM, you can install this [small CLI](https://github.com/wizaplace/php-fpm-status-cli):
