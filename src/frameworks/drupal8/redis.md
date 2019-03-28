@@ -10,7 +10,7 @@ First you need to create a Redis service.  In your `.platform/services.yaml` fil
 
 ```yaml
 rediscache:
-    type: redis:3.2
+    type: redis:5.0
 ```
 
 That will create a service named `rediscache`, of type `redis`, specifically version `3.2`.
