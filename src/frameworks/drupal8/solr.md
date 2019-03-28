@@ -90,8 +90,6 @@ if ($platformsh->hasRelationship($relationship_name)) {
     // created by the module Search API Solr, which is named 'default_solr_server'.
     $solr_server_name = 'default_solr_server';
 
-    $solr = $platformsh->crendentials($relationship_name);
-
     $platformsh->registerFormatter('drupal-solr', function($solr) {
       // Gets the name of the Solr core from the Platform.sh relationship. Uses
       // 'collection1' if empty to conform with the default Solr service single
