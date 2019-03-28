@@ -30,7 +30,7 @@ In your ``.platform.app.yaml``:
 
 ```yaml
 relationships:
-    mq: "myrabbitmq:rabbitmq"
+    rabbitmq: "myrabbitmq:rabbitmq"
 ```
 
 You can then use the service in a configuration file of your application with something like:
