@@ -85,27 +85,27 @@ The configuration can be managed from `settings.platformsh.php` by adding the fo
 $relationship_name = 'solr';
 
 if ($platformsh->hasRelationship($relationship_name)) {
-    // Edit this value to use the the machine name of the Solr server in Drupal
-    // if you are using a different server than the default one automatically
-    // created by the module Search API Solr, which is named 'default_solr_server'.
-    $solr_server_name = 'default_solr_server';
+  // Edit this value to use the the machine name of the Solr server in Drupal
+  // if you are using a different server than the default one automatically
+  // created by the module Search API Solr, which is named 'default_solr_server'.
+  $solr_server_name = 'default_solr_server';
 
-    $platformsh->registerFormatter('drupal-solr', function($solr) {
-      // Gets the name of the Solr core from the Platform.sh relationship. Uses
-      // 'collection1' if empty to conform with the default Solr service single
-      // core configuration for versions lower than 6.x.
-      $core = substr($solr['path'], 5) ? : 'collection1';
+  $platformsh->registerFormatter('drupal-solr', function($solr) {
+    // Gets the name of the Solr core from the Platform.sh relationship. Uses
+    // 'collection1' if empty to conform with the default Solr service single
+    // core configuration for versions lower than 6.x.
+    $core = substr($solr['path'], 5) ? : 'collection1';
 
-      return [
-        'core' => $core,
-        'path' => '/solr',
-        'host' => $solr['host'],
-        'port' => $solr['port'],
-      ];
-    });
+    return [
+      'core' => $core,
+      'path' => '/solr',
+      'host' => $solr['host'],
+      'port' => $solr['port'],
+    ];
+  });
 
-    // Set the connector configuration to the appropriate value, as defined by the formatter above.
-    $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config'] = $platformsh->formattedCredentials($relationship_name, 'drupal-solr');
+  // Set the connector configuration to the appropriate value, as defined by the formatter above.
+  $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config'] = $platformsh->formattedCredentials($relationship_name, 'drupal-solr');
 }
 ```
 
