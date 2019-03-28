@@ -66,42 +66,48 @@ The key (left side) is the name that will be exposed to the application in the `
 
 The configuration can be managed from `settings.platformsh.php` by adding the following code snippet.
 
+> **note**
+>
+> If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+>
+> ```php
+> $platformsh = new \Platformsh\ConfigReader\Config();
+> if (!$platformsh->inRuntime()) {
+>   return;
+> }
+> ```
+
 - Edit the value of `$relationship_name` if you are using a different relationship.
 
 - Edit the value of `$solr_server_name` if you want to configure a Solr server in Drupal other than the default server automatically created by Search API Solr module.
 
 ```php
-<?php
-// Configures the Solr server.
-if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
-  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
+$relationship_name = 'solr';
 
-  // Edit this value to match the Solr relationship name defined in your
-  // '.platform.app.yaml' file. In this example it is 'solr'.
-  $relationship_name = 'solr';
-
-  if (!empty($relationships[$relationship_name][0])) {
+if ($platformsh->hasRelationship($relationship_name)) {
     // Edit this value to use the the machine name of the Solr server in Drupal
     // if you are using a different server than the default one automatically
     // created by the module Search API Solr, which is named 'default_solr_server'.
     $solr_server_name = 'default_solr_server';
 
-    $solr = $relationships[$relationship_name][0];
+    $solr = $platformsh->crendentials($relationship_name);
 
-    // Gets the name of the Solr core from the Platform.sh relationship. Uses
-    // 'collection1' if empty to conform with the default Solr service single
-    // core configuration for versions lower than 6.x.
-    $core = substr($solr['path'], 5) ? : 'collection1';
+    $platformsh->registerFormatter('drupal-solr', function($solr) {
+      // Gets the name of the Solr core from the Platform.sh relationship. Uses
+      // 'collection1' if empty to conform with the default Solr service single
+      // core configuration for versions lower than 6.x.
+      $core = substr($solr['path'], 5) ? : 'collection1';
 
-    $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config']['core'] = $core;
+      return [
+        'core' => $core,
+        'path' => '/solr',
+        'host' => $solr['host'],
+        'port' => $solr['port'],
+      ];
+    });
 
-    // The path is always 'solr'.
-    $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config']['path'] = '/solr';
-
-    // Gets the host and port from the values returned from the relationship.
-    $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config']['host'] = $solr['host'];
-    $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config']['port'] = $solr['port'];
-  }
+    // Set the connector configuration to the appropriate value, as defined by the formatter above.
+    $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config'] = $platformsh->formattedCredentials($relationship_name, 'drupal-solr');
 }
 ```
 
