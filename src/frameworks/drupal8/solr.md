@@ -45,6 +45,7 @@ solrsearch:
             main:
                 core: maincore
 ```
+
 The above definition defines a single Solr 6.6 server.  That server has 1 core defined: `maincore` - the configuration for which is in the `.platform/solr-conf/6.x` directory.
 
 It then defines one endpoint: `main` is connected to the `maincore`.
@@ -101,6 +102,9 @@ if ($platformsh->hasRelationship($relationship_name)) {
   $config['search_api.server.' . $solr_server_name]['backend_config']['connector_config'] = $platformsh->formattedCredentials($relationship_name, 'drupal-solr');
 }
 ```
+
+Commit that code and push.  The specified cluster will now always point to the Solr service on the specified core.  Then configure Search API as normal.
+
 
 > **note**
 > At this time, bugs in Drupal 8 configuration system prevent new Solr servers from being added via configuration. The default server is automatically created by Search API Solr module if you enable its Solr Search Defaults sub-module, so this configuration will work fine for it. For multiple Solr servers or a different one other than the default you must add the new server(s) at the Search API administration page `/admin/config/search/search-api/add-server`. The newly created server(s) will use its configuration from code. See this [issue](https://www.drupal.org/node/2744057) for more information.
