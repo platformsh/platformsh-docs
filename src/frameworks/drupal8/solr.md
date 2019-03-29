@@ -82,22 +82,15 @@ The configuration can be managed from `settings.platformsh.php` by adding the fo
 - Edit the value of `$solr_server_name` if you want to configure a Solr server in Drupal other than the default server automatically created by Search API Solr module.
 
 ```php
+// Update these values to the relationship name (from .platform.app.yaml)
+// and the machine name of the server from your Drupal configuration.
 $relationship_name = 'solr';
-
+$solr_server_name = 'default_solr_server';
 if ($platformsh->hasRelationship($relationship_name)) {
-  // Edit this value to use the the machine name of the Solr server in Drupal
-  // if you are using a different server than the default one automatically
-  // created by the module Search API Solr, which is named 'default_solr_server'.
-  $solr_server_name = 'default_solr_server';
-
   $platformsh->registerFormatter('drupal-solr', function($solr) {
-    // Gets the name of the Solr core from the Platform.sh relationship. Uses
-    // 'collection1' if empty to conform with the default Solr service single
-    // core configuration for versions lower than 6.x.
-    $core = substr($solr['path'], 5) ? : 'collection1';
-
+    // Default the solr core name to `collection1` for pre-Solr-6.x instances.
     return [
-      'core' => $core,
+      'core' => substr($solr['path'], 5) ? : 'collection1',
       'path' => '/solr',
       'host' => $solr['host'],
       'port' => $solr['port'],
