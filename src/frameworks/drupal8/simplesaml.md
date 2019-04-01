@@ -52,7 +52,7 @@ Your SimpleSAMLphp configuration will need to be outside of the `vendor` directo
 
 Rather than modifying that file in place (as it won't be included in Git), copy the `vendor/simplesamlphp/simplesamlphp/config` directory to `simplesamlphp/config` (in your application root).  It should contain two files, `config.php` and `authsources.php`.
 
-Additionally, create a `simplesamplephp/metadata` directory.  This directory will hold your IdP definitions.  Consult the SimpleSAMLphp documentation and see the examples in `vendor/simplesamplephp/simplesamlphp/metadata-templates`.
+Additionally, create a `simplesamlphp/metadata` directory.  This directory will hold your IdP definitions.  Consult the SimpleSAMLphp documentation and see the examples in `vendor/simplesamlphp/simplesamlphp/metadata-templates`.
 
 Next, you need to tell SimpleSAMLphp where to find that directory using an environment variable.  The simplest way to set that is to add the following block to your `.platform.app.yaml` file:
 
