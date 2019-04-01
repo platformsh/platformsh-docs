@@ -133,6 +133,10 @@ configuration:
             main: admin
 ```
 
+> **note**
+>
+> With no `configuration` block or  `endpoints` defined, the default mysql username is `user`. Otherwise, when `endpoints` are defined, the mysql username assumes the name of the endpoint name.
+
 If either schemas or endpoints are defined, then no default will be applied and you must specify the full configuration.
 
 ## Adjusting MariaDB configuration
@@ -215,9 +219,9 @@ There is a single MySQL user, so you can not use "DEFINER" Access Control mechan
 When creating a VIEW, you may need to explicitly set the SECURITY parameter to INVOKER, e.g...
 
 ```
-CREATE OR REPLACE SQL SECURITY INVOKER 
-VIEW `view_name` AS 
-SELECT 
+CREATE OR REPLACE SQL SECURITY INVOKER
+VIEW `view_name` AS
+SELECT
 ```
 
 ### MySQL server has gone away
