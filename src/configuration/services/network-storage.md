@@ -10,6 +10,15 @@ The network storage service enables a new kind of `mount` that refers to a share
 
 (This is a reference to a version of our network storage implementation, not to a version of a 3rd party application.)
 
+## Supported regions
+
+The Network storage service is available on all regions except:
+
+* eu.platform.sh
+* us.platform.sh
+
+If you are on one of those and require the service we suggest you (migrate)[https://docs.platform.sh/tutorials/region-migration.html#region-migration] your project to one of the newer regions (such as eu-2, us-2, ca, au, fr-1 or de-2).
+
 ## Define the service
 
 First, declare a new service in the `services.yaml` file like so:
