@@ -12,7 +12,7 @@ We do not guarantee the deliverability of emails, and we do not support white-la
 
 ## Enabling/disabling email
 
-Email support can be enabled/disabled per-environment.  By default, it is enabled on the `master` environment and disabled elsewhere.  That can be toggled in through the web UI or via the command line, like so:
+Email support can be enabled/disabled per-environment.  By default, it is enabled on the `master` environment and disabled elsewhere.  That can be toggled in through the Management Console or via the command line, like so:
 
 ```bash
 platform environment:info enable_smtp true

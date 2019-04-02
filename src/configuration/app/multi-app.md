@@ -97,7 +97,7 @@ one.
 You can SSH in any application that is deployed.
 
 If you are not sure how to construct the SSH URL, you can use the generic one
-provided by the Platform.sh UI:
+provided by the Platform.sh Management Console:
 
 ```bash
 ssh 3bdcrrivykjsm-master@git.eu-2.platform.sh

@@ -27,7 +27,7 @@ The following properties can be set at the top level of the `.platform.app.yaml`
 
 * [`size`](/configuration/app/size.md) - Sets an explicit sizing hint for the application.
 * [`relationships`](/configuration/app/relationships.md) - Defines connections to other services and applications.
-* [`access`](/configuration/app/access.md) - Restricts SSH access with more granularity than the UI.
+* [`access`](/configuration/app/access.md) - Restricts SSH access with more granularity than the Management Console.
 * [`disk` and `mounts`](/configuration/app/storage.md) *(required)* - Defines writable file directories for the application.
 * [`variables`](/configuration/app/variables.md) - Sets environment variables that control application behavior.
 

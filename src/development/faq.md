@@ -50,7 +50,7 @@ No ! Since the PHP service you access via SSH is a read-only file system, you'll
 
 We try to make the log as self-explanatory as possible, so you should see the Git output and also output from the drush make...
 
-You can also find it back by clicking on the status of the activity in the `Platform UI`.
+You can also find it back by clicking on the status of the activity in the Platform.sh Management Console.
 
 ## What Linux distribution is Platform.sh using?
 

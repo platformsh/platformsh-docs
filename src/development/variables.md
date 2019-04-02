@@ -40,7 +40,7 @@ platform variable:create --level project --name foo --value bar --visible-build 
 
 Naturally in practice you'll want to use only one or the other, or allow the variable to be visible in both cases.
 
-Project variables may also be marked `--sensitive true`.  That flag will mark the variable to not be readable through the UI once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
+Project variables may also be marked `--sensitive true`.  That flag will mark the variable to not be readable through the Management Console once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
 
 ### Environment variables
 
@@ -55,7 +55,7 @@ That will set a variable on the currently active environment (that is, the branc
 There are two additional flags available on environment variables: `--inheritable` and `--sensitive`.
 
 * Setting `--inheritable false` will cause the variable to not be inherited by child environments.  That is useful for setting production-only values on the `master` branch, and allowing all other environments to use a project-level variable of the same name.
-* Setting `--sensitive true` flag will mark the variable to not be readable through the UI once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
+* Setting `--sensitive true` flag will mark the variable to not be readable through the Management Console once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
 
 For example, the following command will allow you to set a PayPal secret value on the master branch only; other environments will not inherit it and either get a project variable of the same name if it exists or no value at all.  It will also not be readable through the API.
 

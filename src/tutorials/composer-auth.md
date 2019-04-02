@@ -25,7 +25,7 @@ For this example, consider that there are several packages we want to install fr
 
 Set the Composer authentication by adding a project level variable called `env:COMPOSER_AUTH` as JSON and available only during build time.
 
-That can be done through the [web UI](/administration/web.md) or via the command line, like so:
+That can be done through the [Management Console](/administration/web.md) or via the command line, like so:
 
 ```bash
 platform variable:create --level project --name env:COMPOSER_AUTH \

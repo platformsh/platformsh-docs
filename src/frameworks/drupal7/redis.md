@@ -68,7 +68,7 @@ libraries[predis][destination] = libraries
 
 ## Configuration
 
-To make use of the Redis cache you will need to set some Drupal variables. You can either do this in your `settings.php` file or by setting Platform Variables directly via the UI.  In general, using the `settings.php` file is easier.
+To make use of the Redis cache you will need to set some Drupal variables. You can either do this in your `settings.php` file or by setting Platform Variables directly via the Management Console.  In general, using the `settings.php` file is easier.
 
 ### Via settings.php
 
