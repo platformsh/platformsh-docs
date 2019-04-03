@@ -4,7 +4,7 @@
 
 The Platform.sh CLI can also be used from CI services or other automation tools, and supports an API Token authentication option for that purpose.
 
-An API token can be created through the management console. Go to the "User" page from your accounts drop-down, then select the "Account Settings" tab, then the "API Tokens".
+An API token can be created through the management console. Go to the "User" page from your account drop-down, then select the "Account Settings" tab, then "API Tokens".
 
 Click the "Create an API Token" link. 
 

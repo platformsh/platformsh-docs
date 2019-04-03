@@ -119,6 +119,8 @@ The `Variables` screen allows you to define the variables that will be available
 
 ## Routes (to be removed?)
 
-The `Routes` screen allows you to configure the routes of your environments.
+The `Routes` screen describes the configuration features that define the routes of your application. Routes cannot be edited here, but it provides a simple routes configuration example for your project's `.platform/routes.yaml` file.
 
-![Configure Platform.sh environment routes](/images/ui-conf-environment-routes.png)
+![Configure Platform.sh environment routes](/images/routes.png)
+
+Consult the documentation for more information about properly configuring [Routes](/configuration/routes.html) for your project.

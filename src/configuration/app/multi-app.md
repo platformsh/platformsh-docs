@@ -10,7 +10,7 @@ All of the applications share a common configuration through the files present
 in the `.platform/` folder at the root of the Git repository. Then each
 application provides its own configuration via the `.platform.app.yaml` file.
 
-![Multi-app](/images/config_diagrams/multi-app.svg)
+![Multi-app](/images/multiple_applications@2x.png)
 
 When you push via Git, Platform.sh will build each application separately. Only
 the application(s) that have been modified will be rebuilt.
