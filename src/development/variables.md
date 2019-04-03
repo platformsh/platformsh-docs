@@ -44,7 +44,7 @@ Project variables may also be marked `--sensitive true`.  That flag will mark th
 
 ### Environment variables
 
-Environment-level variables can also be set [through the web interface](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to create an environment variable "foo" with the value "bar" on the currently checked out environment/branch, run:
+Environment-level variables can also be set [through the console](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to create an environment variable "foo" with the value "bar" on the currently checked out environment/branch, run:
 
 ```bash
 $ platform variable:create --level environment --name foo --value bar

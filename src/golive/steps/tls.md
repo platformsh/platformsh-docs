@@ -11,9 +11,9 @@ A custom certificate is not necessary for development environments.  Platform.sh
 > `openTLS rsa -in private.key -out private.rsa.key`
 
 
-### Adding a custom certificate through the web interface
+### Adding a custom certificate through the management console
 
-You can add a custom certificate via the Platform.sh [Web Interface](/administration/web.md). In the web interface for the project go to [Settings](/administration/web/configure-project.md) and click Certificates on the left hand side. You can add a certificate with the ‘Add’ button at the top of the page. You can then add your private key, public key certificate and optional certificate chain.
+You can add a custom certificate via the Platform.sh [management console](/administration/web.md). In the console for the project go to [Settings](/administration/web/configure-project.md) and click Certificates on the left hand side. You can add a certificate with the ‘Add’ button at the top of the page. You can then add your private key, public key certificate and optional certificate chain.
 
 ![Console configuration for TLS](/images/settings_certificates.png)
 

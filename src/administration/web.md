@@ -1,10 +1,10 @@
-# Web Interface
+# Management Console
 
-Platform.sh provides a responsive Web Interface which allows you to interact with your projects and manage your environments. 
+Platform.sh provides a responsive management console which allows you to interact with your projects and manage your environments. 
 
-![Web Interface](/images/Project.png)
+![Management Console](/images/Project.png)
 
-Everything you can do with this interface you can also achieve with the  [CLI (Command Line Interface)](/gettingstarted/cli.md) and vice versa.
+Everything you can do with the console you can also achieve with the  [CLI (Command Line Interface)](/gettingstarted/cli.md) and vice versa.
 
 ## Environment List
 
