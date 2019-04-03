@@ -27,7 +27,7 @@ The Web Interface displays all the activity happening on your environments. You 
 
 ## Header
 
-Within a project’s environment, the Management Console exposes 4 main actions and 4 drop-down command options that you can use to interface with your environments. 
+Within a project’s environment, the management console exposes 4 main actions and 4 drop-down command options that you can use to interface with your environments. 
 
 ![Header](/images/header.png)
 

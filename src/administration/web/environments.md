@@ -23,7 +23,7 @@ Platform.sh brings the concept of a hierarchy between your environments. Each ne
 
 Each child environment can sync code and/or data down from its parent, and merge code up to its parent. These are used for development, staging, and testing.
 
-When you create a branch or child environment through the Platform.sh Management Console the branch it was made from will be treated as the parent.  If you create a branch through your local Git checkout and push it to Platform.sh, or synchronize a branch from a 3rd party such as GitHub or Bitbucket, its parent will default to the master branch.
+When you create a branch or child environment through the Platform.sh console the branch it was made from will be treated as the parent.  If you create a branch through your local Git checkout and push it to Platform.sh, or synchronize a branch from a 3rd party such as GitHub or Bitbucket, its parent will default to the master branch.
 
 Any environment's parent can be changed using the Platform.sh CLI with the following command:
 

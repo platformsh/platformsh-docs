@@ -119,7 +119,7 @@ Then the CLI hasn't been able to determine the project to use.  To fix that, run
 platform project:set-remote <project_id>
 ```
 
-where `<project_id>` is the random-character ID of the project.  That can be found by running `platform projects` from the command line to list all accessible projects.  Alternatively, it can be found in the Management Console after the `platform get` command shown or in the URL of the Management Console or project domain.
+where `<project_id>` is the random-character ID of the project.  That can be found by running `platform projects` from the command line to list all accessible projects.  Alternatively, it can be found in the management console after the `platform get` command shown or in the URL of the console or project domain.
 
 ## "File not found" in Drupal
 
@@ -204,7 +204,7 @@ If you see a build or deployment running longer than expected, that may be one o
 3. The deployment is blocked by a long running cron job in the environment.
 4. The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment, you can look at the build log available on the Management Console.  If you see a line similar to the following:
+To determine if your environment is being stuck in the build or the deployment, you can look at the build log available on the management console.  If you see a line similar to the following:
 
 ```
 Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.

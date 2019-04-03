@@ -4,7 +4,7 @@ The [HipChat](https://hipchat.com) integration allows you to send notifications 
 
 1.  Find the HipChat ROOM-ID.
 
-    * In the HipChat web administrative Management Console, go to _Admin > Rooms_ and click on the room to link notifications.
+    * In the HipChat web administrative UI, go to _Admin > Rooms_ and click on the room to link notifications.
     * Note down the "APP ID" listed in the _Room Details_ on the Room's 'Summary' page (you can also find the ID from the URL).
     
 2.  Generate a room-specific HIPCHAT-TOKEN.

@@ -37,17 +37,17 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.restore`: A user restored a [snapshot](/administration/snapshot-and-restore.md)
 
 * `environment.push`: A user has pushed code to a branch, either existing or new.
-* `environment.branch`: A new branch has been created via the Management Console. (A branch created via a push will show up only as an `environment.push`.)
+* `environment.branch`: A new branch has been created via the console. (A branch created via a push will show up only as an `environment.push`.)
 * `environment.activate`: A branch has been "activated", and an environment created for it.
 * `environment.initialize`: The master branch of the project has just been initialized with its first commit.
 * `environment.deactivate`: A branch has been "deactivated". The code is still there but the environment was destroyed.
 * `environment.synchronize`: An environment has had its data and/or code re-copied from its parent environment.
-* `environment.merge`: A branch was merged through the Management Console or Platform.sh API. A basic Git merge will not trigger this event.
+* `environment.merge`: A branch was merged through the console or Platform.sh API. A basic Git merge will not trigger this event.
 * `environment.delete`: A branch was deleted.
 
-* `environment.route.create`: A new route has been created through the Management Console. This will not fire for route edits made to the `routes.yaml` file directly.
-* `environment.route.delete`: A route has been deleted through the Management Console. This will not fire for route edits made to the `routes.yaml` file directly.
-* `environment.route.update`: A route has been modified through the Management Console. This will not fire for route edits made to the `routes.yaml` file directly.
+* `environment.route.create`: A new route has been created through the console. This will not fire for route edits made to the `routes.yaml` file directly.
+* `environment.route.delete`: A route has been deleted through the console. This will not fire for route edits made to the `routes.yaml` file directly.
+* `environment.route.update`: A route has been modified through the console. This will not fire for route edits made to the `routes.yaml` file directly.
 
 * `environment.variable.create`: A new variable has been created.
 * `environment.variable.delete`: A variable has been deleted.

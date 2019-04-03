@@ -4,7 +4,7 @@ Going live on Platform.sh is a simple two or three step process.
 
 <!--toc-->
 
-You can either use the Platform.sh Management Console or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes.
+You can either use the Platform.sh management console or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes.
 
 > The order of operations is not really important, but if you are migrating a site from an existing provider, you should first configure the domain on the Platform.sh side, and only then switch DNS over.
 
@@ -28,7 +28,7 @@ You can find more information on pricing on the [pricing page](https://platform.
 
 ## 2. Set your domain in Platform.sh
 
-This is a required step, it will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the Management Console](/administration/web/configure-project.html#domains).
+This is a required step, it will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
 
 You can add multiple domains to point to your project. Each domain can have its own custom SSL certificate, or use the default one provided.
 

@@ -45,7 +45,7 @@ Once the new project is running and the DNS has fully propagated you can delete 
 
 Create a new Platform.sh project in the desired region.  You can initially create it as a Development project and change the plan size immediately before switching over or go ahead and use the desired size from the beginning.  When the system asks if you want to use an existing template or provide your own code, select provide your own code.
 
-Make a Git clone of your existing project.  Then add a Git remote to the new project, using the Git URL shown in the Management Console.  Push the code for at least your master branch to the new project.  (You can also transfer other branches if desired.  That's optional.)
+Make a Git clone of your existing project.  Then add a Git remote to the new project, using the Git URL shown in the management console.  Push the code for at least your master branch to the new project.  (You can also transfer other branches if desired.  That's optional.)
 
 Alternatively, if you are using a 3rd party Git repository (GitHub, BitBucket, GitLab, etc.), you can add an integration to the new project just as you did the old one.  It will automatically mirror your 3rd party repository exactly the same way as the old project and you won't need to update it manually.
 

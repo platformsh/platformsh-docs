@@ -4,7 +4,7 @@
 
 The Platform.sh CLI can also be used from CI services or other automation tools, and supports an API Token authentication option for that purpose.
 
-An API token can be created through the Management Console. Go to the "User" page from your accounts drop-down, then select the "Account Settings" tab, then the "API Tokens".
+An API token can be created through the management console. Go to the "User" page from your accounts drop-down, then select the "Account Settings" tab, then the "API Tokens".
 
 Click the "Create an API Token" link. 
 
@@ -34,7 +34,7 @@ We recommend having a separate automation user for each project to be automated.
 
 A common use case for an API token is to allow the Platform.sh CLI to be run on an app container, often via a cron hook.  An API token is necessary for authentication, but the CLI will be able to auto-detect the current project and environment.
 
-First, obtain an API token as above.  Set it as the [top-level](https://docs.platform.sh/development/variables.html#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN` either through the Management Console or via the CLI, like so:
+First, obtain an API token as above.  Set it as the [top-level](https://docs.platform.sh/development/variables.html#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN` either through the console or via the CLI, like so:
 
 ```bash
 platform variable:create -e master --level environment --name env:PLATFORMSH_CLI_TOKEN --sensitive true --value 'your API token'
