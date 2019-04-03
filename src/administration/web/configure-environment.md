@@ -117,7 +117,7 @@ The `Variables` screen allows you to define the variables that will be available
 
 ![Configure Platform.sh environment variables](/images/settings_variables-environment.png)
 
-## Routes (to be removed?)
+## Routes
 
 The `Routes` screen describes the configuration features that define the routes of your application. Routes cannot be edited here, but it provides a simple routes configuration example for your project's `.platform/routes.yaml` file.
 
