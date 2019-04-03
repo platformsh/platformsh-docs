@@ -40,7 +40,9 @@ solrsearch:
     configuration:
         cores:
             maincore:
-                conf_dir: !archive "solr-conf/6.x"
+                core_config: !include
+                    type: archive
+                    path: "solr-conf/6.x"
         endpoints:
             main:
                 core: maincore
