@@ -127,7 +127,7 @@ echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
 
 ## Accessing variables
 
-You can get a list of all variables defined on a given environment either [via the Web Interface](/administration/web/configure-environment.html#settings) or using the CLI:
+You can get a list of all variables defined on a given environment either [via the management console](/administration/web/configure-environment.html#settings) or using the CLI:
 
 ```bash
 $ platform variables

@@ -196,7 +196,7 @@ function get_domain_for(string $id) {
 
 That can be used, for example, for inbound request whitelisting, a feature of many PHP frameworks.
 
-## Configuring routes on the Web Interface
+## Configuring routes on the management console
 
 Routes can also be configured using the web console in the [routes section](/administration/web/configure-environment.html#routes) of the environment settings. If you have edited the routes via the console, you will have to `git pull` the updated `.platform/routes.yaml` file from us.
 

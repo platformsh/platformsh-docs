@@ -1,6 +1,6 @@
 # Getting Help
 
-If you're facing any issue with Platform.sh, you can submit a support ticket from the Platform.sh Web Interface.
+If you're facing any issue with Platform.sh, you can submit a support ticket from the Platform.sh management console.
 
 ![Support Ticket](/images/support-ticket-new.png)
 

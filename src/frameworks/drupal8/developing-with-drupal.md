@@ -72,7 +72,7 @@ rebuild your environment.
 
 When it's completed, you can see your changes on your site by clicking
 `View this website` under the name of **Sprint1** environment on the
-Platform.sh Web Interface.
+Platform.sh management console.
 
 > **note**
 > The build process makes no changes to your Git repository.  Your Git repository is the *input* of the process. A PHP container containing your code and dependencies is the *output*. You can see the directory structure that has been created by connecting via SSH to the environment. See the information in the `Access information` below the title of the environment

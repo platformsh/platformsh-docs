@@ -95,9 +95,9 @@ If using Predis, change the `PhpRedis` reference to `Predis` (case-sensitive).
 If your redis module is not installed in `sites/all/modules/contrib`, modify the
 `cache_backends` line accordingly.
 
-### Via the Web Interface
+### Via the management console
 
-Alternatively, add the following environment variables using the Platform.sh Web Interface.
+Alternatively, add the following environment variables using the Platform.sh console.
 Note, if you set a directory in the make file you will need to alter the variables to match.
 
 `drupal:cache_backends`

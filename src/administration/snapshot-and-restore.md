@@ -2,7 +2,7 @@
 
 ## Snapshots
 
-Snapshots are triggered directly via the Web Interface or via the CLI. The snapshot creates a complete backup of the environment. It includes all persistent data from all running services (MySQL, SOLR,...) and any files stored on the mounted volumes.
+Snapshots are triggered directly via the management console or via the CLI. The snapshot creates a complete backup of the environment. It includes all persistent data from all running services (MySQL, SOLR,...) and any files stored on the mounted volumes.
 
 You need to have the "admin" role in order to create a snapshot of an environment.
 
@@ -23,7 +23,7 @@ Please be aware that triggering a snapshot will cause a momentary pause in site 
 ## Restore
 
 
-You will see the snapshot in the activity feed of your environment in the Platform.sh Web Interface. You can trigger the restore by clicking on the `restore` link. You can also restore the snapshot to a different environment using the CLI.
+You will see the snapshot in the activity feed of your environment in the Platform.sh console. You can trigger the restore by clicking on the `restore` link. You can also restore the snapshot to a different environment using the CLI.
 
 You can list existing snapshots with the CLI as follows:
 
