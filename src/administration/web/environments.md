@@ -17,7 +17,7 @@ If you subscribed to a production plan, this environment is your **live site** a
 
 ## Hierarchy
 
-![Hierarchy](/images/clone-hierarchy.png)
+![Hierarchy](/images/envs.png)
 
 Platform.sh brings the concept of a hierarchy between your environments. Each new environment you create is considered a **child** of the **parent** environment from which it was branched.
 

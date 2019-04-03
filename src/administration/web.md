@@ -29,7 +29,7 @@ The console displays all the activity happening on your environments. You can fi
 
 Within a project’s environment, the management console exposes 4 main actions and 4 drop-down command options that you can use to interface with your environments. 
 
-![Header](/images/header.png)
+![Header](/images/header_new.png)
 
 ### Button Actions
 
