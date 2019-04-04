@@ -64,7 +64,7 @@ This is useful if you want to reuse some code components across multiple project
 
 ## Variables
 
-The `Variables` screen allows you to define the variables that will be available project-wide - that is, in each environment.
+The `Variables` screen allows you to define the variables that will be available project-wide - that is, in each environment. It also allows you define variables that will be available during the build process.
 
 ![project vars](/images/settings_variables-project.png)
 
