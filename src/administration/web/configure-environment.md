@@ -14,7 +14,7 @@ The first setting allows you to modify the name of the environment and view its 
 
 ### Status
 
-From the `Status` tab, an active environment can be de-activated. 
+From the `Status` tab, you can activate or de-activate an environment. 
 
 ![env status](/images/env_status.png)
 
