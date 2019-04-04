@@ -11,7 +11,7 @@ From the first page of the project settings, `General`, you can update the proje
 
 ## Access
 
-The `Access` screen allows you to manage users access on your project.
+The `Access` screen allows you to manage users' access on your project.
 
 You can invite new users to your project by clicking the `Add` button and entering their email address, or modify permissions of existing users by clicking the `Edit` link when hovering over the user.
 

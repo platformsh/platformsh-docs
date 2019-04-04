@@ -79,7 +79,7 @@ After clicking `Sync` a dialog box will appear that will provide commands to exe
 
 ![sync confirmation cli](/images/header_sync_box.png)
 
-Note that `sync` is only available if your branch has no unmerged commits, and can be fast-forwarded. On `sync`, your code branch will be fast-forwarded to its parent's tip, and the data (e.g. databases) of the services on the branch will be overwritten with an exact copy of the parent's. Syncing of data and code can be done individually, if desired, so you can benefit from having only code changes applied.
+Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded. On `Sync`, your code branch will be fast-forwarded to its parent's tip, and the data (e.g. databases) of the services on the branch will be overwritten with an exact copy of the parent's. Syncing of data and code can be done individually, if desired, so you can benefit from having only code changes applied.
 
 #### Backup
 
