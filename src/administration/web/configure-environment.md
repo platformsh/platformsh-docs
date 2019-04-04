@@ -35,7 +35,7 @@ From this tab, you can allow your application to send emails via a SendGrid SMTP
 
 ![env email](/images/env_email.png)
 
-Changing this setting will temporarily list the environment's status as "Dirty". Once it has re-deployed, it will appear once again as "Active" in your settings.
+Changing this setting will temporarily list the environment's status as "Building", as the project re-builds with the new setting. Once it has re-deployed, it will appear once again as "Active" in your settings.
 
 
 ### Search engine visibility
