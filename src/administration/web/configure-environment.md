@@ -14,11 +14,11 @@ The first setting allows you to modify the name of the environment and view its 
 
 ### Status
 
-From the `Status` tab, you can activate or de-activate an environment. 
+From the `Status` tab, you can activate or delete an environment. 
 
 ![env status](/images/env_status.png)
 
-The *Delete* action will destroy all services running on this environment (PHP, MySQL, volumes, etc.) so that only the Git branch remains. You can reactivate the environment later if needed.
+The `Delete` action will destroy all services running on this environment (PHP, MySQL, volumes, etc.) so that only the Git branch remains. You can reactivate the environment later if needed.
 
 To delete the branch as well, you need to execute the following:
 
