@@ -10,7 +10,7 @@ The `General` screen allows you to extend the behavior of a specific environment
 
 ### Environment name
 
-The first setting allows you to modify the name of the environment, and view its parent environment.
+The first setting allows you to modify the name of the environment and view its parent environment.
 
 ### Status
 
