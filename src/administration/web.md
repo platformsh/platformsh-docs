@@ -130,4 +130,4 @@ The CLI pull-down displays the commands to get your project set up locally with 
 
 ![Header SSH](/images/header_ssh.png)
 
-The SSH pull-down display the commands to access your project with SSH.
+The SSH pull-down display the commands to access your project over SSH.
