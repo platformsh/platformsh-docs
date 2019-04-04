@@ -53,6 +53,8 @@ You can view current certificates by hovering over one on the list and clicking 
 
 ![add certs](/images/mgmt-console/add-cert.png)
 
+All projects get TLS certificates provided by [Let's Encrypt](/configuration/routes/https.md#lets-encrypt) automatically. In most cases no user action is required. You will only need to add certificates on this page if you are using TLS certificates provided by a third party.
+
 
 ## Deploy Key
 
