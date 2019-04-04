@@ -81,7 +81,7 @@ The following variables are available at both runtime and at build time, and may
 * **PLATFORM_PROJECT**: The ID of the project.
 * **PLATFORM_TREE_ID**: The ID of the tree the application was built from. It's essentially the SHA hash of the tree in Git.  If you need a unique ID for each build for whatever reason this is the value you should use.
 * **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are variables names and values are variable values (see below).  Note that the values available in this structure may vary between build and runtime depending on the variable type as described above.
-* **PLATFORM_PROJECT_ENTROPY**: A random value created when the project is first created, which is then stable throughout the project’s life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
+* **PLATFORM_PROJECT_ENTROPY**: A random value created when the project is first created, which is then stable throughout the project's life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
 
 The following variables exist *only* at runtime.  If used in a build hook they will evaluate to an empty string like any other unset variable:
 

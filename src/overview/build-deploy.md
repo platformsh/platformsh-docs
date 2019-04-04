@@ -44,9 +44,9 @@ In practice, the entire build process usually takes less than a minute.
 
 ## Deploying the application
 
-Deploying the application also has several steps, although they’re much quicker.
+Deploying the application also has several steps, although they're much quicker.
 
-First, we pause all incoming requests and hold them so that there’s no interruption of service.  Then we disconnect the current containers from their file system mounts, if any, and connect the file systems to the new containers instead.  If it’s a new branch and there is no existing file system, we clone it from the parent branch.
+First, we pause all incoming requests and hold them so that there's no interruption of service.  Then we disconnect the current containers from their file system mounts, if any, and connect the file systems to the new containers instead.  If it's a new branch and there is no existing file system, we clone it from the parent branch.
 
 We then open networking connections between the various containers, but only those that were specified in the configuration files (using the `relationships` key).  No configuration, no connection. That helps with security, as only those connections that are actually needed even exist.  The connection information for each service is available in an application as environment variables.
 
@@ -54,6 +54,6 @@ Now that we have working, running containers there are two more steps to run.  F
 
 Then we run your deploy hook.  Just like the build hook, the deploy hook is any number of shell commands you need to prepare your application.  Usually this includes clearing caches, running database migrations, and so on.  You have complete access to all services here as your application is up and running, but the file system where your code lives will now be read-only.
 
-Finally, once the deploy hooks are done, we open the floodgates and let incoming requests through to your newly deployed application.  You’re done!
+Finally, once the deploy hooks are done, we open the floodgates and let incoming requests through to your newly deployed application.  You're done!
 
 In practice, the deploy process takes only a few seconds, plus whatever time is required for your deploy hook, if any.

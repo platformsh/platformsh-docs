@@ -8,7 +8,7 @@ Everything you can do with the management console you can also achieve with the 
 
 ## Environment List
 
-From your project’s main page, each of the environments are available from the pull-down menu ‘ENVIRONMENTS’ at the top of the page. 
+From your project's main page, each of the environments are available from the pull-down menu `ENVIRONMENTS` at the top of the page. 
 
 ![Environment Pull-down](/images/env_pulldown.png)
 
@@ -27,7 +27,7 @@ The management console displays all the activity happening on your environments.
 
 ## Header
 
-Within a project’s environment, the management console exposes 4 main actions and 4 drop-down command options that you can use to interface with your environments. 
+Within a project`s environment, the management console exposes 4 main actions and 4 drop-down command options that you can use to interface with your environments. 
 
 ![Header](/images/header_new.png)
 

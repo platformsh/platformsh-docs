@@ -6,7 +6,7 @@ Let's say you're building a module (*or theme, library...*) which is stored in a
 
 To grant Platform.sh access to your private Git repository, you need to add the project public SSH key to the deploy keys of your Git repository.
 
-You can copy your project’s public key by going to the Settings tab on the management console and then clicking the Deploy Key tab on the left hand side. 
+You can copy your project's public key by going to the Settings tab on the management console and then clicking the Deploy Key tab on the left hand side. 
 
 ![Deploy Key](/images/settings_Deploy Key.png)
 
@@ -30,7 +30,7 @@ projects[module_private][download][url] = "git@github.com:guguss/module_private.
 
 More complex projects may have many repositories that they want to include, but GitHub only allows you to associate a deploy key with a single repository.
 
-If your project needs to access multiple repositories, you can choose to attach an SSH key to an automated user account. Since this account won’t be used by a human, it’s called a machine user. You can then add the machine account as collaborator or add the machine user to a team with access to the repositories it needs to manipulate.
+If your project needs to access multiple repositories, you can choose to attach an SSH key to an automated user account. Since this account won't be used by a human, it's called a machine user. You can then add the machine account as collaborator or add the machine user to a team with access to the repositories it needs to manipulate.
 
 More information about this is available on
 [GitHub](https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users).

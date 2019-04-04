@@ -39,7 +39,7 @@ If you want your users to be able to see everything (Reader), but only commit to
 
 ## Manage user permissions at the project level
 
-From your list of projects, enter into the project where you want to view or edit user permissions. At this point, you will not have entered a particular environment. Click the Settings tab at the top of the page, the click the ‘Access’ tab on the left to show the project-level users and their roles. 
+From your list of projects, enter into the project where you want to view or edit user permissions. At this point, you will not have entered a particular environment. Click the Settings tab at the top of the page, the click the `Access` tab on the left to show the project-level users and their roles. 
 
 ![Project user management screenshot](/images/settings_project_access.png)
 
@@ -49,11 +49,11 @@ Selecting a user will allow you either to edit that user's permissions or delete
 
 Add a new user by clicking on the `Add` button.
 
-If you select the 'Reader' role for the user, you'll have the option of adjusting the user's permissions at the environment level.
+If you select the "Viewer" role for the user, you'll have the option of adjusting the user's permissions at the environment level.
 
-From this view, you can assign the user’s access. Selecting them to become a ‘Project admin’ will give them ‘Admin’ access to every environment in the project. Alternatively, you can give the user ‘Admin’, ‘Viewer’, ‘Contributor’, or ‘No Access’ to each environment separately. 
+From this view, you can assign the user's access. Selecting them to become a "Project admin" will give them "Admin" access to every environment in the project. Alternatively, you can give the user "Admin", "Viewer", "Contributor", or "No Access" to each environment separately. 
 
-If you select the ‘Viewer’ role for the user, you’ll have the option of adjusting the user’s permissions at the environment level. 
+If you select the "Viewer" role for the user, you'll have the option of adjusting the user's permissions at the environment level. 
 
 Once this has been done, if the user does not have a Platform.sh account, they will receive an email asking to confirm their details and register an account name and a password.
 
@@ -66,9 +66,9 @@ If the user already has an account, they will receive an email with a link to th
 
 ## Manage user permissions at the environment level
 
-From within a project select an environment from the ‘ENVIRONMENT’ pull-down menu. 
+From within a project select an environment from the `ENVIRONMENT` pull-down menu. 
 
-Click the ‘Settings’ tab at the top of the screen and then click the ‘Access’ tab on the left hand side.
+Click the `Settings` tab at the top of the screen and then click the `Access` tab on the left hand side.
 
 ![Project user management screenshot](/images/settings_environ_access.png)
 

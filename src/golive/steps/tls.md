@@ -13,7 +13,7 @@ A custom certificate is not necessary for development environments.  Platform.sh
 
 ### Adding a custom certificate through the management console
 
-You can add a custom certificate via the Platform.sh [management console](/administration/web.md). In the management console for the project go to [Settings](/administration/web/configure-project.md) and click Certificates on the left hand side. You can add a certificate with the ‘Add’ button at the top of the page. You can then add your private key, public key certificate and optional certificate chain.
+You can add a custom certificate via the Platform.sh [management console](/administration/web.md). In the management console for the project go to [Settings](/administration/web/configure-project.md) and click Certificates on the left hand side. You can add a certificate with the `Add` button at the top of the page. You can then add your private key, public key certificate and optional certificate chain.
 
 ![Management console configuration for TLS](/images/settings_certificates.png)
 
