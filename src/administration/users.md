@@ -39,7 +39,7 @@ If you want your users to be able to see everything (Reader), but only commit to
 
 ## Manage user permissions at the project level
 
-From your list of projects, enter into the project where you want to view or edit user permissions. At this point, you will not have entered a particular environment. Click the Settings tab at the top of the page, the click the `Access` tab on the left to show the project-level users and their roles. 
+From your list of projects, select the project where you want to view or edit user permissions. At this point, you will not have selected a particular environment. Click the Settings tab at the top of the page, the click the `Access` tab on the left to show the project-level users and their roles. 
 
 ![Project user management screenshot](/images/settings_project_access.png)
 
