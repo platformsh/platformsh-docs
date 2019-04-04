@@ -204,7 +204,7 @@ If you see a build or deployment running longer than expected, that may be one o
 3. The deployment is blocked by a long running cron job in the environment.
 4. The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment, you can look at the build log available on the management console.  If you see a line similar to the following:
+To determine if your environment is being stuck in the build or the deployment, you can look at the build log available in the management console.  If you see a line similar to the following:
 
 ```
 Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
