@@ -6,7 +6,7 @@ You can access the project-wide configuration settings by selecting the project 
 
 From the first page of the project settings, `General`, you can update the project name, or navigate to other project settings options on the left side of the screen.
 
-![configure project](/images/settings_basics_expanded-1.png)
+![configure project](/images/mgmt-console/settings-basics.png)
 
 
 ## Access
@@ -15,7 +15,7 @@ The `Access` screen allows you to manage users' access on your project.
 
 You can invite new users to your project by clicking the `Add` button and entering their email address, or modify permissions of existing users by clicking the `Edit` link when hovering over the user.
 
-![Project configure icon](/images/settings_project_access.png)
+![Project configure icon](/images/mgmt-console/settings-project-access.png)
 
 > **note**
 >
@@ -23,7 +23,7 @@ You can invite new users to your project by clicking the `Add` button and enteri
 
 Selecting a user will allow you to either edit that user's permissions or delete the user's access to the project entirely.
 
-![Manage users of your Platform.sh project](/images/edit_user.png)
+![Manage users of your Platform.sh project](/images/to-replace/edit-user.png)
 
 If you check the `Project admin` box, this user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment.
 
@@ -34,7 +34,7 @@ If you check the `Project admin` box, this user will be an administrator of the 
 
 The `Domains` screen allows you to manage your domains that your project will be accessible at.
 
-![project domain](/images/settings_domain.png)
+![project domain](/images/mgmt-console/settings-domains.png)
 
 More information on how to [setup your domain](/golive/steps.md).
 
@@ -47,11 +47,11 @@ More information on how to [setup your domain](/golive/steps.md).
 
 The `Certificates` screen allows you to manage your project's TLS certificates that enable HTTPS. 
 
-![project certs](/images/settings_certificates.png)
+![project certs](/images/mgmt-console/settings-certificates.png)
 
 You can view current certificates by hovering over one on the list and clicking the `View` link that appears, or you can add a new certificate by clicking the `Add` button a the top of the page. 
 
-![add certs](/images/add_cert.png)
+![add certs](/images/mgmt-console/add-cert.png)
 
 
 ## Deploy Key
@@ -60,11 +60,11 @@ The `Deploy Key` page provides the SSH key that Platform.sh will use when trying
 
 This is useful if you want to reuse some code components across multiple projects and manage those components as dependencies of your project.
 
-![project deploy key](/images/settings_Deploy Key.png)
+![project deploy key](/images/mgmt-console/settings-deploy-key.png)
 
 ## Variables
 
 The `Variables` screen allows you to define the variables that will be available project-wide - that is, in each environment. It also allows you define variables that will be available during the build process.
 
-![project vars](/images/settings_variables-project.png)
+![project vars](/images/mgmt-console/settings-variables-project.png)
 

@@ -8,11 +8,11 @@ An API token can be created through the management console. Go to the "User" pag
 
 Click the "Create an API Token" link. 
 
-![API Token screen](/images/account-API Tokens-new.png)
+![API Token screen](/images/mgmt-console/account-api-tokens-new.png)
 
 You may be asked to reverify your password, then enter a unique application name to identify the token.
 
-![API Token screen](/images/account-API Tokens-edit.png)
+![API Token screen](/images/mgmt-console/account-api-tokens-edit.png)
 
 After creating the token it will be displayed once at the top of the page in a green banner.  You may also view it later by clicking the "view" link next to the token name.  You will be asked to reverify your password as well when viewing the token.
 

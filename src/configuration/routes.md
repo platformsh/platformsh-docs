@@ -16,7 +16,7 @@ $ mkdir .platform
 $ touch .platform/routes.yaml
 ```
 
-![Routes](/images/routes_1@2x.png)
+![Routes](/images/config-diagrams/routes-basic.png)
 
 ## Route templates
 
@@ -40,7 +40,7 @@ Each route can be configured separately. It has the following properties
 * `ssi` controls whether Server Side Includes are enabled. For more information: see [SSI](/configuration/routes/ssi.html).
 * `redirects` controls [redirect rules](/configuration/routes/redirects.html) associated with the route.
 
-![Routes files](/images/routes_2@2x.png)
+![Routes files](/images/config-diagrams/routes-configs.png)
 
 > **note**
 > For the moment, the value of upstream is always in the form: `<application-name>:http`.  `<application-name>` is the `name` defined in `.platform.app.yaml` file.  `:php` is a deprecated application endpoint; use `:http` instead.  In the future, Platform.sh will support multiple endpoints per application.
@@ -204,7 +204,7 @@ Routes can also be configured using the management console in the [routes sectio
 
 You can get a list of the configured routes of an environment by running `platform environment:routes`.
 
-![Platform Routes CLI](/images/platform-routes-cli.png)
+![Platform Routes CLI](/images/cli/platform-routes-cli.png)
 
 ## Wildcard routes
 

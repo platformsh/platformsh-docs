@@ -14,15 +14,15 @@ If you are on a Development plan, you cannot add a domain. You will need to upgr
 
 Go to [your account](https://accounts.platform.sh/user), click on the small wheel next to you project's name and click on edit.
 
-![Edit Plan](/images/edit-plan.png)
+![Edit Plan](/images/to-replace/edit-plan.png)
 
 You can also access information about the project's plan under "Billing", and then by selecting the project from your list of projects. You can make changes to the project by clicking ‘Upgrade Plan’.
 
-![Edit Plan](/images/billing-plan_v3-1.png)
+![Edit Plan](/images/mgmt-console/billing-plan-upgrade.png)
 
 You can make changes to the type of plan, the number of environments, amount of storage and number of users here. When you make changes, it will update the monthly price you will be paying. Click `Upgrade plan` to save the new settings. 
 
-![Edit Plan Choose](/images/settings_basics_expanded.png)
+![Edit Plan Choose](/images/mgmt-console/settings-upgrade-plan.png)
 
 You can find more information on pricing on the [pricing page](https://platform.sh/pricing).
 

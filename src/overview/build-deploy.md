@@ -5,7 +5,7 @@ Every time you push to a live branch (a git branch with an active environment at
 1.  The build process looks through the configuration files in your repository and assembles the necessary containers.  
 2. The deploy process makes those containers live, replacing the previous versions, with virtually no interruption in service.
 
-![The Build and Deploy pipeline](/images/build-pipeline.svg)
+![The Build and Deploy pipeline](/images/workflow/build-pipeline.svg)
 
 ## Always Be Compiling
 
