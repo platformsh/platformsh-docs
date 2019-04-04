@@ -17,6 +17,9 @@ environment configuration page on the Platform.sh management console.
 ## Live Environment
 An environment which is deployed from the `master` branch under a production plan.
 
+## Management console
+The Platform.sh user interface tool that gives user additional control over an application within the browser. See [Management console](/administration/web.md)
+
 ## PaaS
 A Platform as a Service is an end-to-end hosting solution that includes workflow tools, APIs, and other functionality above and beyond basic hosting.  The best example is Platform.sh (although we are a little biased).
 
