@@ -90,7 +90,7 @@ The upload completed successfully.
 
 Many applications and protocols run on top of SSH, including SFTP, scp, and rsync.
 
-To obtain the SSH connection details for the environment either copy them out of the Platform.sh web console (under the "Access site" dropdown) or run:
+To obtain the SSH connection details for the environment either copy them out of the Platform.sh management console (under the "Access site" dropdown) or run:
 
 ```bash
 platform ssh --pipe

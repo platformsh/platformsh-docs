@@ -14,7 +14,7 @@ The video below shows how to setup your own initial project using the Silex PHP 
 
 ## Project templates
 
-You can also initialize your project using any of the pre-made templates below.  For each one, simply Git Clone the repository from GitHub then push it to Platform.sh using the instructions for a custom repository in the console, as seen in the video above.
+You can also initialize your project using any of the pre-made templates below.  For each one, simply Git Clone the repository from GitHub then push it to Platform.sh using the instructions for a custom repository in the management console, as seen in the video above.
 
 ### PHP
 

@@ -121,7 +121,7 @@ Please note that when there are two routes sharing the same HTTP scheme, domain,
 
 All routes defined for an environment are available to the application in its `PLATFORM_ROUTES` environment variable, which contains a base64-encoded JSON object. This object can be parsed by the language of your choice to give your application access to the generated routes.
 
-When routes are generated, all placeholders will be replaced with appropriate domains names, and depending on your configuration, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects). To make it easier to locate routes in a standardized fashion, you may specify an `id` key on each route which remains stable across environments. You may also specify a single route as `primary`, which will cause it to be highlighted in the web console but will have no impact on the runtime environment.
+When routes are generated, all placeholders will be replaced with appropriate domains names, and depending on your configuration, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects). To make it easier to locate routes in a standardized fashion, you may specify an `id` key on each route which remains stable across environments. You may also specify a single route as `primary`, which will cause it to be highlighted in the web management console but will have no impact on the runtime environment.
 
 Consider this `routes.yaml` configuration example:
 
@@ -198,7 +198,7 @@ That can be used, for example, for inbound request whitelisting, a feature of ma
 
 ## Configuring routes on the management console
 
-Routes can also be configured using the web console in the [routes section](/administration/web/configure-environment.html#routes) of the environment settings. If you have edited the routes via the console, you will have to `git pull` the updated `.platform/routes.yaml` file from us.
+Routes can also be configured using the management console in the [routes section](/administration/web/configure-environment.html#routes) of the environment settings. If you have edited the routes via the management console, you will have to `git pull` the updated `.platform/routes.yaml` file from us.
 
 ## CLI Access
 

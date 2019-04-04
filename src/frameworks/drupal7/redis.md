@@ -68,7 +68,7 @@ libraries[predis][destination] = libraries
 
 ## Configuration
 
-To make use of the Redis cache you will need to set some Drupal variables. You can either do this in your `settings.php` file or by setting Platform Variables directly via the console.  In general, using the `settings.php` file is easier.
+To make use of the Redis cache you will need to set some Drupal variables. You can either do this in your `settings.php` file or by setting Platform Variables directly via the management console.  In general, using the `settings.php` file is easier.
 
 ### Via settings.php
 
@@ -97,7 +97,7 @@ If your redis module is not installed in `sites/all/modules/contrib`, modify the
 
 ### Via the management console
 
-Alternatively, add the following environment variables using the Platform.sh console.
+Alternatively, add the following environment variables using the Platform.sh management console.
 Note, if you set a directory in the make file you will need to alter the variables to match.
 
 `drupal:cache_backends`

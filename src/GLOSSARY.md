@@ -1,5 +1,5 @@
 ## Active Environment
-An environment which is deployed. You can deactivate an active environment from the environment configuration page on the Platform.sh console.
+An environment which is deployed. You can deactivate an active environment from the environment configuration page on the Platform.sh management console.
 
 ## Cluster
 Every active environment is deployed as a cluster, that is, a collection of independent containers representing different services that make up your web application.  That may include a database container, an Elasticsearch container, a container for your application, etc.  They are always deployed together as a single unit.

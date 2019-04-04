@@ -79,9 +79,9 @@ That's it! You're all set. Now you'll be able to use Git and command shells with
 
 ## SSH to your Web Server
 
-In the web console, just under the environment name, there is a link you can hover over to copy the SSH URL of that environment:
+In the management console, just under the environment name, there is a link you can hover over to copy the SSH URL of that environment:
 
-![Image of an environment's access information in the console](/images/ssh-access-information.png "The SSH URL is formatted as follows: `<project-id>-<environment-id>@ssh.<region>.platform.sh`")
+![Image of an environment's access information in the management console](/images/ssh-access-information.png "The SSH URL is formatted as follows: `<project-id>-<environment-id>@ssh.<region>.platform.sh`")
 
 1.  Open your Platform.sh management console
 2.  Hover over the `Access info` link

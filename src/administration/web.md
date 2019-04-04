@@ -4,7 +4,7 @@ Platform.sh provides a responsive management console which allows you to interac
 
 ![Management Console](/images/Project.png)
 
-Everything you can do with the console you can also achieve with the  [CLI (Command Line Interface)](/gettingstarted/cli.md) and vice versa.
+Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)](/gettingstarted/cli.md) and vice versa.
 
 ## Environment List
 
@@ -20,7 +20,7 @@ The name of the environment is strikethroughed if it's been disabled. If it has 
 
 ## Activity Feed
 
-The console displays all the activity happening on your environments. You can filter messages per type.
+The management console displays all the activity happening on your environments. You can filter messages per type.
 
 ![Environment Activity](/images/activity.png)
 
@@ -85,7 +85,7 @@ Note that `sync` is only available if your branch has no unmerged commits, and c
 
 ![Header Backup](/images/header_backup.png)
 
-Creating a snapshot for an environment means saving a copy of the database so that it can be restored (in other words, create a backup). You will see the snapshot in the activity feed of you environment in the Platform.sh console where you can trigger the restore by
+Creating a snapshot for an environment means saving a copy of the database so that it can be restored (in other words, create a backup). You will see the snapshot in the activity feed of you environment in the Platform.sh management console where you can trigger the restore by
 clicking on the `restore` link.
 
 After clicking `Backup` a dialog box will appear that will provide commands to execute future merges from the command line using the [Platform.sh CLI](/gettingstarted/cli.md).

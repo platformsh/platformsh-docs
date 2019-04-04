@@ -122,7 +122,7 @@ rebuild your environment.
 
 When it's completed, you can see your changes on your site by clicking
 `View this website` under the name of **Sprint1** environment on the
-Platform.sh console.
+Platform.sh management console.
 
 > **note**
 > The Drush Make processing doesn't create any file in your Git repository. Your Git repository is the *input* of the process and not the *output*. You can see the directory structure that has been created by connecting via SSH to the environment. See the information in the `Access information` below the title of the environment
