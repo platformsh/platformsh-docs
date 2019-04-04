@@ -7,13 +7,13 @@ Every Platform.sh user has a role which controls access and improves security on
 At the project level:
 
 * **Project Administrator** - A project administrator can change settings and execute actions on any environment.
-* **Project Reader** - A project reader can view all environments within a project but cannot execute any actions on them.
+* **Project Viewer** - A project reader can view all environments within a project but cannot execute any actions on them.
 
 A Project Reader can have a specific role on different environments. At the environment level:
 
 * **Environment Administrator** - An environment administrator can change settings and execute actions on this environment.
 * **Environment Contributor** - An environment contributor can push code to this environment and branch the environment.
-* **Environment Reader** - An environment reader can only view this environment.
+* **Environment Viewer** - An environment reader can only view this environment.
 
 > **Important!**
 >
