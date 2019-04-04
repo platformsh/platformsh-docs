@@ -4,7 +4,7 @@ Platform.sh provides a responsive management console which allows you to interac
 
 ![Management Console](/images/mgmt-console/project.png)
 
-Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)](/gettingstarted/cli.md) and vice versa.
+Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)](/gettingstarted/cli.md).
 
 ## Environment List
 

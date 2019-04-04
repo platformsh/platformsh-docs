@@ -84,7 +84,7 @@ You can also setup authentication with the CLI using the following command `plat
 
 You can allow or deny access to specific IPs or IP ranges. First switch the access control section to ON. Then add one or more IPs or CIDR IP masks, followed by allow or deny. See the example below. Note that allow entries should come before deny entries in case both of them would match.
 
-![Allowing or denying specific ips to project settings](/images/mgmt-control/settings-basics-access-control.png)
+![Allowing or denying specific ips to project settings](/images/mgmt-console/settings-basics-access-control.png)
 
 For example, the following configuration will only allow the 1.2.3.4 IP to access your website.
 
