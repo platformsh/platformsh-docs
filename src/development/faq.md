@@ -38,7 +38,7 @@ You are able to convert an `inactive environment` into an `active environment` a
 
 Master gets all the resources that are divided into each service (PHP 40%, MySQL 30%, Redis 10%, Solr 20%…). Each Development environment gets the Development plan resources.
 
-## What exactly am I sshing into?
+## What exactly am I SSHing into?
 
 You're logged in to the PHP service. It's a read-only file system.
 

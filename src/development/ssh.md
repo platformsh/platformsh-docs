@@ -2,7 +2,7 @@
 
 One of the ways Platform.sh keeps things secure is by using SSH behind the scenes. Users can interact with their environment through a command shell, or push changes to the environment's Git repository, and both of these features rely on SSH.
 
-When you create a new project, the wizard will propose that you add your ssh key.
+When you create a new project, the wizard will propose that you add your SSH key.
 
 ![Setting Up Your Project Add SSH Key Done](/images/03-setting-up-your-project-add-ssh-key-done.png)
 
@@ -149,14 +149,14 @@ $ ssh-add path-to-your-key
 
 ### Still having trouble?
 
-If you followed all the steps above, you may also notice an error message similar to below while attempting to ssh to platform.sh:
+If you followed all the steps above, you may also notice an error message similar to below while attempting to SSH to platform.sh:
 
 ```text
 Hello Your Name, you successfully connected, but you do not have access to service 'xxxxxxxxxxxxxx-master': check permissions.
 Received disconnect from 54.210.49.244: 14: No more auth methods available
 ```
 
-This usually means a deployment has not been committed yet. When a new key is added, it only becomes immediately active for use with Git. For use with ssh, it will not be activated until a deployment is made. An easy way to force this is to create and push an empty commit:
+This usually means a deployment has not been committed yet. When a new key is added, it only becomes immediately active for use with Git. For use with SSH, it will not be activated until a deployment is made. An easy way to force this is to create and push an empty commit:
 
 ```bash
 $ git commit --allow-empty -m 'force redeploy'

@@ -42,6 +42,6 @@ Kng4ohG6xHZ/OvC9tq7/THwAvleaxgLZN5GyXfAqNylDdZ0LtSjl
 ```
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2nDRLgPANWParTiaGIgySG+thTtnqFGI1tMWyqDdfvH+5hL91w2tK9PzaP+NJ5hA/cOyh30YRFb52Y64toU16Ko5K1mLqNFJajjWEI5Y4VukG6betrWfqdQ7XBr/s7nBuDOFQ5+eKbvug4rRSCSo8CsEI1eI0VNQkC9HJWYK28k7KurMdTN7X/Z/4vknM4/Rm2bnMk2idoORQgomeZS1p3GkG8dQs/c0j/b4H7azxnqdcCaR4ahbytX3d49BN0WwE84C+ItsnkCt1g5tVADPrab+Ywsm/FTnGY3cJKKdOAHt7Ls5lfpyyug2hNAFeiZF0MoCekjDZ2GH2xdFc7AX/ your_email_address@example.com
 ```
-You will need a ssh *public/private keypair* in order to interact with Platform.sh. Your public key is uploaded to your Platform.sh user account, and it then governs authentication for Git, SSH sessions (shell access), and other tools that connect to your Platform.sh project.
+You will need a SSH *public/private keypair* in order to interact with Platform.sh. Your public key is uploaded to your Platform.sh user account, and it then governs authentication for Git, SSH sessions (shell access), and other tools that connect to your Platform.sh project.
 
 GitHub has a good [walk-through of creating an SSH keypair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) on various operating systems.

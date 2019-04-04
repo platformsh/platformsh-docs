@@ -52,7 +52,7 @@ For example given a project with id `3seb7f2j6ogbm` you would connect to its mas
 ssh 3seb7f2j6ogbm-master-7rqtwti--app@ssh.us-2.platform.sh
 ```
 
-To connect to a worker called `queue` (as in the example above) you would use an ssh url that would look as follows:
+To connect to a worker called `queue` (as in the example above) you would use an SSH url that would look as follows:
 
 ```
 ssh 3seb7f2j6ogbm-master-7rqtwti--app--queue@ssh.us-2.platform.sh
