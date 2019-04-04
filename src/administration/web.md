@@ -4,11 +4,7 @@ Platform.sh provides a responsive Web Interface which allows you to interact wit
 
 ![Web Interface](/images/platform-ui.png)
 
-## Updates - Platform.sh Management Console
-
-Platform.sh has released our newly designed Management Console, which will soon replace this Web Interface. 
-
-You can access the updated documentation on our main site [here](https://docs.platform.sh/).
+> Platform.sh recently launched a new web management console.  This documentation refers to the legacy console.  To re-access the new management console select the user drop-down in the top right and click `New` under the "Console mode" option.  You can access the updated documentation for the management console on our main site [here](https://docs.platform.sh/administration/web.html).
 
 ## Environment List
 
