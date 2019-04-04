@@ -36,7 +36,7 @@ Additionally, you will be logged in as the same user that the web server runs as
 
 The writable static files in an application - including uploads, temporary and private files - are stored in [mounts](/configuration/app/storage.md).
 
-The [CLI](/gettingstarted/cli.md) can list mounts inside an application:
+The Platform.sh CLI can list mounts inside an application:
 
 ```
 $ platform mounts

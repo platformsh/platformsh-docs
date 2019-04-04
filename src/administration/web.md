@@ -47,7 +47,7 @@ During a `branch`, three things happen:
 * The application is rebuilt on the new branch, if necessary.
 * The new branch is deployed.
 
-After clicking `Branch` a dialog box will appear that will provide commands to execute future merges from the command line using the [Platform.sh CLI](/gettingstarted/cli.md).
+After clicking `Branch` a dialog box will appear that will provide commands to execute future merges from the command line using the Platform.sh CLI.
 
 ![Branch confirmation cli](/images/mgmt-console/header-branch-box.png)
 
@@ -65,7 +65,7 @@ During a `merge`:
 
 Rebuilding the application is not necessary if the same code was already built (for any environment): in this case you will see the message ``Slug already built for this tree id, skipping``.
 
-After clicking `Merge` a dialog box will appear that will provide commands to execute future merges from the command line using the [Platform.sh CLI](/gettingstarted/cli.md).
+After clicking `Merge` a dialog box will appear that will provide commands to execute future merges from the command line using the Platform.sh CLI.
 
 ![Merge confirmation cli](/images/mgmt-console/header-merge-box.png)
 
@@ -75,7 +75,7 @@ After clicking `Merge` a dialog box will appear that will provide commands to ex
 
 Synchronizing means updating the child environment with the code and/or data of its parent and redeploying the child environment.
 
-After clicking `Sync` a dialog box will appear that will provide commands to execute future merges from the command line using the [Platform.sh CLI](/gettingstarted/cli.md).
+After clicking `Sync` a dialog box will appear that will provide commands to execute future merges from the command line using the Platform.sh CLI.
 
 ![sync confirmation cli](/images/mgmt-console/header-sync-box.png)
 
@@ -88,7 +88,7 @@ Note that `Sync` is only available if your branch has no unmerged commits, and c
 Creating a snapshot for an environment means saving a copy of the database so that it can be restored (in other words, create a backup). You will see the snapshot in the activity feed of you environment in the Platform.sh management console where you can trigger the restore by
 clicking on the `restore` link.
 
-After clicking `Backup` a dialog box will appear that will provide commands to execute future merges from the command line using the [Platform.sh CLI](/gettingstarted/cli.md).
+After clicking `Backup` a dialog box will appear that will provide commands to execute future merges from the command line using the Platform.sh CLI.
 
 ![Backup confirmation cli](/images/mgmt-console/header-backup-box.png)
 
