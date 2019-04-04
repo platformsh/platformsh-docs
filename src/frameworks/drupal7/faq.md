@@ -29,14 +29,13 @@ Normally, this means there is a problem with the MySQL server container
 and you may need to increase the storage available to MySQL to resolve
 the issue. Ballooning MySQL storage can be caused by a number of items:
 
-1)  A large number of watchdog entries being captured. Fix the errors
+1. A large number of watchdog entries being captured. Fix the errors
     being generated or disable database logging.
-2)  Cron should run at regular intervals to ensure cache
+2. Cron should run at regular intervals to ensure cache
     tables get cleared out.
-3)  If you're using Drupal Commerce Core < 1.10, you may have an
+3. If you're using Drupal Commerce Core < 1.10, you may have an
     [extremely large cache_form
-    table](https://www.drupal.org/node/2057073). Upgrade to Commerce
-    Core 1.10 to resolve.
+    table](https://www.drupal.org/node/2057073). Upgrade to Commerce Core 1.10 to resolve.
 
 ## Why do I get "MySQL cannot connect to the database server"?
 
