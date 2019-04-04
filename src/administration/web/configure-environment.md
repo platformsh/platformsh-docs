@@ -45,7 +45,7 @@ From this tab, you can tell search engines to ignore the site entirely, even if 
 ![env search](/images/env_search.png)
 
 
-#### X-Robots-Tag
+### X-Robots-Tag
 
 By default, Platform.sh includes an additional `X-Robots-Tag` header on all non-production environments:
 
