@@ -18,11 +18,11 @@ Go to [your account](https://accounts.platform.sh/user), click on the small whee
 
 You can also access information about the project's plan under "Billing", and then by selecting the project from your list of projects. You can make changes to the project by clicking ‘Upgrade Plan’.
 
-![Edit Plan](/images/mgmt-console/billing-plan-upgrade.png)
+![Edit Plan](/images/management-console/billing-plan-upgrade.png)
 
 You can make changes to the type of plan, the number of environments, amount of storage and number of users here. When you make changes, it will update the monthly price you will be paying. Click `Upgrade plan` to save the new settings. 
 
-![Edit Plan Choose](/images/mgmt-console/settings-upgrade-plan.png)
+![Edit Plan Choose](/images/management-console/settings-upgrade-plan.png)
 
 You can find more information on pricing on the [pricing page](https://platform.sh/pricing).
 

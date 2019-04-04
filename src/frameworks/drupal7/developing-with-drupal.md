@@ -134,11 +134,11 @@ push those changes up to your live environment. Platform.sh has a great
 button called `Merge` that you can click on and it will push the
 appropriate changes to master.
 
-![Merge your changes.](/images/mgmt-console/header.png)
+![Merge your changes.](/images/management-console/header.png)
 
 A dialog box will appear that will provide commands to execute future merges from the command line using the [Platform.sh CLI](/gettingstarted/cli.md).
 
-![Merge confirmation cli](/images/mgmt-console/header-merge-box.png)
+![Merge confirmation cli](/images/management-console/header-merge-box.png)
 
 Just click on the "Merge" button again and all of the commits you made on your
 branch will be merged into the master environment.

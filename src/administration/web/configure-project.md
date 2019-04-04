@@ -6,7 +6,7 @@ You can access the project-wide configuration settings by selecting the project 
 
 From the first page of the project settings, `General`, you can update the project name, or navigate to other project settings options on the left side of the screen.
 
-![configure project](/images/mgmt-console/settings-basics.png)
+![configure project](/images/management-console/settings-basics.png)
 
 
 ## Access
@@ -15,7 +15,7 @@ The `Access` screen allows you to manage users' access on your project.
 
 You can invite new users to your project by clicking the `Add` button and entering their email address, or modify permissions of existing users by clicking the `Edit` link when hovering over the user.
 
-![Project configure icon](/images/mgmt-console/settings-project-access.png)
+![Project configure icon](/images/management-console/settings-project-access.png)
 
 > **note**
 >
@@ -34,7 +34,7 @@ If you check the `Project admin` box, this user will be an administrator of the 
 
 The `Domains` screen allows you to manage your domains that your project will be accessible at.
 
-![project domain](/images/mgmt-console/settings-domains.png)
+![project domain](/images/management-console/settings-domains.png)
 
 More information on how to [setup your domain](/golive/steps.md).
 
@@ -47,11 +47,11 @@ More information on how to [setup your domain](/golive/steps.md).
 
 The `Certificates` screen allows you to manage your project's TLS certificates that enable HTTPS. 
 
-![project certs](/images/mgmt-console/settings-certificates.png)
+![project certs](/images/management-console/settings-certificates.png)
 
 You can view current certificates by hovering over one on the list and clicking the `View` link that appears, or you can add a new certificate by clicking the `Add` button a the top of the page. 
 
-![add certs](/images/mgmt-console/add-cert.png)
+![add certs](/images/management-console/add-cert.png)
 
 All projects get TLS certificates provided by [Let's Encrypt](/configuration/routes/https.md#lets-encrypt) automatically. In most cases no user action is required. You will only need to add certificates on this page if you are using TLS certificates provided by a third party.
 
@@ -62,11 +62,11 @@ The `Deploy Key` page provides the SSH key that Platform.sh will use when trying
 
 This is useful if you want to reuse some code components across multiple projects and manage those components as dependencies of your project.
 
-![project deploy key](/images/mgmt-console/settings-deploy-key.png)
+![project deploy key](/images/management-console/settings-deploy-key.png)
 
 ## Variables
 
 The `Variables` screen allows you to define the variables that will be available project-wide - that is, in each environment. It also allows you define variables that will be available during the build process.
 
-![project vars](/images/mgmt-console/settings-variables-project.png)
+![project vars](/images/management-console/settings-variables-project.png)
 
