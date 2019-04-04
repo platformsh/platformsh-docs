@@ -6,6 +6,8 @@ Platform.sh provides a responsive management console which allows you to interac
 
 Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)](/gettingstarted/cli.md).
 
+Platform.sh has launched this management console as a replacement for our prior user interface. While we continue to make sure that everything is working as it should, there will be a transitionary period where you will be able to click on the user dropdown in the top right hand corner of the management console and return to the previous UI. During that time, all documentation referencing our old UI will remain avaiable [here](https://pr-1068-yzlkgby-t2llqeifuhpzg.eu.platform.sh/).
+
 ## Environment List
 
 From your project's main page, each of the environments are available from the pull-down menu `ENVIRONMENTS` at the top of the page. 
