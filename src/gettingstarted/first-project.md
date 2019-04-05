@@ -8,10 +8,6 @@ To begin, create a new [free trial account](https://accounts.platform.sh/platfor
 * Select the region of the world where your site should live.
 * Select one of the pre-made project templates or bring your own code.
 
-The video below shows how to setup your own initial project using the Silex PHP microframework.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/upxdYc3Ti88" frameborder="0" allowfullscreen></iframe>
-
 ## Project templates
 
 You can also initialize your project using any of the pre-made templates below.  For each one, simply Git Clone the repository from GitHub then push it to Platform.sh using the instructions for a custom repository in the management console, as seen in the video above.
