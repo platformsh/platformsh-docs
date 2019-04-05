@@ -9,6 +9,7 @@
 ## Getting Started
 
 * [Your first project](/gettingstarted/first-project.md)
+* [Platform.sh in practice](/gettingstarted/platformsh-in-practice.md)
 * [Tools](gettingstarted/tools.md)
 * [CLI](gettingstarted/cli.md)
   * [API Tokens](gettingstarted/cli/api-tokens.md)
