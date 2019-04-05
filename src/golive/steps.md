@@ -14,7 +14,7 @@ If you are on a Development plan, you cannot add a domain. You will need to upgr
 
 Go to [your account](https://accounts.platform.sh/user), click on the small wheel next to you project's name and click on edit.
 
-![Edit Plan](/images/to-replace/edit-plan.png)
+![Edit Plan](/images/management-console/edit-plan.png)
 
 You can also access information about the project's plan under "Billing", and then by selecting the project from your list of projects. You can make changes to the project by clicking ‘Upgrade Plan’.
 

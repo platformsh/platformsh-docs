@@ -12,7 +12,7 @@ Everything you can do with the management console you can also achieve with the 
 
 From your project's main page, each of the environments are available from the pull-down menu `ENVIRONMENTS` at the top of the page. 
 
-![Environment Pull-down](/images/to-replace/env-pulldown.png)
+![Environment Pull-down](/images/management-console/env-pulldown.png)
 
 There is also a graphic view of your environments on the right hand side, where you can view your environments as a list or as a project tree. 
 

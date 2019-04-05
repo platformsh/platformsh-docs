@@ -4,7 +4,7 @@ One of the ways Platform.sh keeps things secure is by using SSH behind the scene
 
 When you create a new project, the wizard will propose that you add your SSH key.
 
-![Setting Up Your Project Add SSH Key Done](/images/to-replace/setting-up-your-project-add-ssh-key-done.png)
+![Setting Up Your Project Add SSH Key Done](/images/management-console/setting-up-your-project-add-ssh-key-done.png)
 
 You can also manage SSH keys through the CLI (see below), or through the settings screen on your account page.
 
@@ -81,7 +81,7 @@ That's it! You're all set. Now you'll be able to use Git and command shells with
 
 In the management console, just under the environment name, there is a link you can hover over to copy the SSH URL of that environment:
 
-![Image of an environment's access information in the management console](/images/to-replace/ssh-access-information.png "The SSH URL is formatted as follows: `<project-id>-<environment-id>@ssh.<region>.platform.sh`")
+![Image of an environment's access information in the management console](/images/management-console/ssh-access-information.png "The SSH URL is formatted as follows: `<project-id>-<environment-id>@ssh.<region>.platform.sh`")
 
 1.  Open your Platform.sh management console
 2.  Hover over the `Access info` link

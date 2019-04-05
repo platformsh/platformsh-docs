@@ -23,7 +23,7 @@ You can invite new users to your project by clicking the `Add` button and enteri
 
 Selecting a user will allow you to either edit that user's permissions or delete the user's access to the project entirely.
 
-![Manage users of your Platform.sh project](/images/to-replace/edit-user.png)
+![Manage users of your Platform.sh project](/images/management-console/edit-user.png)
 
 If you check the `Project admin` box, this user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment.
 
