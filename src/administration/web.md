@@ -55,7 +55,7 @@ After clicking `Branch` a dialog box will appear that will provide commands to e
 
 #### Merge
 
-![Header Merge](/images/managementconsole/header-merge.png)
+![Header Merge](/images/management-console/header-merge.png)
 
 Merging an environment means introducing the code changes from a branch to its parent branch and redeploying the parent.
 
