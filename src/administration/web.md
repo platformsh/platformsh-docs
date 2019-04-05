@@ -75,13 +75,15 @@ After clicking `Merge` a dialog box will appear that will provide commands to ex
 
 ![Header Sync](/images/management-console/header-sync.png)
 
-Synchronizing means updating the child environment with the code and/or data of its parent and redeploying the child environment.
-
-After clicking `Sync` a dialog box will appear that will provide commands to execute future merges from the command line using the Platform.sh CLI.
+`Sync` performs a merge from a parent into a child environment, and then redeploys that environment. 
+You have the option of performing a `Sync` on only the code, replacing the data (i.e. databases) of that environment from its parent, or both.
+These options are provided in a separate dialog box that will appear when you click the `Sync` button, along with the Platform.sh CLI commands that perform the same action.
 
 ![sync confirmation cli](/images/management-console/header-sync-box.png)
 
-Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded. On `Sync`, your code branch will be fast-forwarded to its parent's tip, and the data (e.g. databases) of the services on the branch will be overwritten with an exact copy of the parent's. Syncing of data and code can be done individually, if desired, so you can benefit from having only code changes applied.
+Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded. 
+It is good practice to take a snapshot of your environment before performing a `Sync`.
+
 
 #### Backup
 
