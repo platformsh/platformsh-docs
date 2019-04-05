@@ -75,14 +75,14 @@ After clicking `Merge` a dialog box will appear that will provide commands to ex
 
 ![Header Sync](/images/management-console/header-sync.png)
 
-`Sync` performs a merge from a parent into a child environment, and then redeploys that environment. 
-You have the option of performing a `Sync` on only the code, replacing the data (i.e. databases) of that environment from its parent, or both.
+Synchronization performs a merge from a parent into a child environment, and then redeploys that environment. 
+You have the option of performing a Sync on only the code, replacing the data (i.e. databases) of that environment from its parent, or both.
 These options are provided in a separate dialog box that will appear when you click the `Sync` button, along with the Platform.sh CLI commands that perform the same action.
 
 ![sync confirmation cli](/images/management-console/header-sync-box.png)
 
 Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded. 
-It is good practice to take a snapshot of your environment before performing a `Sync`.
+It is good practice to take a snapshot of your environment before performing a synchronization.
 
 
 #### Backup
