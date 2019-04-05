@@ -39,7 +39,7 @@ To get the IP address, first run `platform environment:info edge_hostname`.  Tha
 In OS X and Linux you can add that IP  to your `/etc/hosts` file.  In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`. You will need to be a admin user to be able to change that file. So in OS X you will usually run something like `sudo vi /etc/hosts`. After adding the line the file will look something like:
 
  
-![Hosts File](/images/hosts-file.png)
+![Hosts File](/images/config-files/hosts-file.png)
 
 > **note**
 > Do not put the IP address you see here, but the one you got from the ping command.
