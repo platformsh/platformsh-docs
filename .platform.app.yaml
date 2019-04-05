@@ -30,7 +30,7 @@ hooks:
       gitbook build
 
       # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
-      cp src/images/logos/favicon.ico _book/gitbook/images/logos/favicon.ico
+      cp src/images/logos/favicon.ico _book/gitbook/images/favicon.ico
 
 # There is no need for a writable file mount, so set it to the smallest possible size.
 disk: 256
