@@ -48,7 +48,7 @@ Although Platform.sh does not recommend it, you can also redirect HTTPS requests
     to: "http://{default}/"
 ```
 
-Of course, more complex routing logic is possible if the situation calls for it.  However, we recommend defining HTTPS routes exclusively.
+Of course, more complex routing logic is possible if the situation calls for it. However, we recommend defining HTTPS routes exclusively.
 
 ## TLS configuration
 
@@ -64,14 +64,18 @@ https://{default}/:
 
 ### `min_version`
 
-Setting a minimum version of TLS will cause the server to automatically reject any connections using an older version of TLS.  While the vast majority of modern browsers will default to TLS 1.2, there are some older browsers that still use insecure older versions of TLS.  Rejecting older versions with known security vulnerabilities is necessary for some security compliance processes.
+> **Note**
+> This directive was put into place when Platform.sh supported older versions of TLS for customers.
+> Currently only TLS v1.2 is supported. Support for TLS v1.3 will be added in the near future.
+
+Setting a minimum version of TLS will cause the server to automatically reject any connections using an older version of TLS.  Rejecting older versions with known security vulnerabilities is necessary for some security compliance processes. 
 
 ```yaml
 tls:
     min_version: TLSv1.2
 ```
 
-The above configuration will result in requests using TLS 1.1, TLS 1.0, or older SSL versions to be rejected.  Legal values are `TLSv1.0`, `TLSv1.1`, and `TLSv1.2`.
+The above configuration will result in requests using older TLS versions to be rejected.  Legal values are `TLSv1.2`.
 
 Note that if multiple routes for the same domain have different `min_version`s specified, the highest specified will be used for the whole domain.
 
