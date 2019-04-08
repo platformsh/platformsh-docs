@@ -125,7 +125,7 @@
 * [Protective block](security/protective-block.md)
 * [Compliance guidance](security/compliance-guidance.md)
 * [Security scans](security/pen-test.md)
-* [Troubleshooting](security/troubleshooting.md)
+* [Updating](security/updates.md)
 
 ## Featured frameworks
 
