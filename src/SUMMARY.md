@@ -9,7 +9,6 @@
 ## Getting Started
 
 * [Your first project](/gettingstarted/first-project.md)
-* [Platform.sh in practice](/gettingstarted/platformsh-in-practice.md)
 * [Tools](gettingstarted/tools.md)
 * [CLI](gettingstarted/cli.md)
   * [API Tokens](gettingstarted/cli/api-tokens.md)
@@ -107,7 +106,7 @@
   * [HipChat](administration/integrations/hipchat.md)
   * [Tideways](administration/integrations/tideways.md)
   * [Webhooks](administration/integrations/webhooks.md)
-* [Web interface](administration/web.md)
+* [Management console](administration/web.md)
   * [Project configuration](administration/web/configure-project.md)
   * [Environments](administration/web/environments.md)
   * [Configure environments](administration/web/configure-environment.md)

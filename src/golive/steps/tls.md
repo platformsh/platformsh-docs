@@ -10,11 +10,13 @@ A custom certificate is not necessary for development environments.  Platform.sh
 > The private key should be in the old style, which means it should start with BEGIN RSA PRIVATE KEY. If it starts with BEGIN PRIVATE KEY that means it is bundled with the identifier for key type. To convert it to the old-style RSA key:
 > `openTLS rsa -in private.key -out private.rsa.key`
 
-### Adding a custom certificate through the web interface
 
-You can add a custom certificate via the Platform.sh [Web Interface](/administration/web.md). Just go to the [project configuration page](/administration/web/configure-project.md) in the web interface and click on Certificates. You can then add your private key, public key certificate and optional certificate chain.
+### Adding a custom certificate through the management console
 
-![UI configuration for TLS](/images/ui-ssl.png)
+You can add a custom certificate via the Platform.sh [management console](/administration/web.md). In the management console for the project go to [Settings](/administration/web/configure-project.md) and click Certificates on the left hand side. You can add a certificate with the `Add` button at the top of the page. You can then add your private key, public key certificate and optional certificate chain.
+
+![Management console configuration for TLS](/images/management-console/settings-certificates.png)
+
 
 ### Adding a custom certificate through the CLI
 

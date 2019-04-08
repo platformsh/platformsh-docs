@@ -17,13 +17,13 @@ If you subscribed to a production plan, this environment is your **live site** a
 
 ## Hierarchy
 
-![Hierarchy](/images/clone-hierarchy.png)
+![Hierarchy](/images/management-console/environments.png)
 
 Platform.sh brings the concept of a hierarchy between your environments. Each new environment you create is considered a **child** of the **parent** environment from which it was branched.
 
 Each child environment can sync code and/or data down from its parent, and merge code up to its parent. These are used for development, staging, and testing.
 
-When you create a branch or child environment through the Platform.sh UI the branch it was made from will be treated as the parent.  If you create a branch through your local Git checkout and push it to Platform.sh, or synchronize a branch from a 3rd party such as GitHub or Bitbucket, its parent will default to the master branch.
+When you create a branch or child environment through the Platform.sh management console the branch it was made from will be treated as the parent.  If you create a branch through your local Git checkout and push it to Platform.sh, or synchronize a branch from a 3rd party such as GitHub or Bitbucket, its parent will default to the master branch.
 
 Any environment's parent can be changed using the Platform.sh CLI with the following command:
 
@@ -51,27 +51,24 @@ There are no rules you must follow when branching the master environment. You si
 
 Here is an example of a possible Agile workflow.
 
-![Branches](/images/branches.png)
+![Branches](/images/workflow/branches.png)
 
 
 The administrator creates a Sprint environment and gives each of the developers permission to create new feature environments. Another approach is that the administrator could create an environment for each developer.
 
 ------------------------------------------------------------------------
 
-![Merge](/images/merge.png)
-
-
 As a feature is completed, the administrator can review the work by accessing the website of the feature environment. The new feature is then merged back into the Sprint environment.
 
 ------------------------------------------------------------------------
 
-![Sync](/images/sync.png)
+![Sync](/images/workflow/sync.png)
 
 The remaining features will sync with the Sprint environment to ensure their working environment is up-to-date with the latest code.
 
 ------------------------------------------------------------------------
 
-![Live](/images/merge-live.png)
+![Live](/images/workflow/merge-live.png)
 
 When the objectives of the sprint are complete, the administrator can then make a backup of the live site, then merge the Sprint environment into the live (Master) environment.
 

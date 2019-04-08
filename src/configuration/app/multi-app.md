@@ -10,7 +10,7 @@ All of the applications share a common configuration through the files present
 in the `.platform/` folder at the root of the Git repository. Then each
 application provides its own configuration via the `.platform.app.yaml` file.
 
-![Multi-app](/images/config_diagrams/multi-app.svg)
+![Multi-app](/images/config-diagrams/multiple-applications.png)
 
 When you push via Git, Platform.sh will build each application separately. Only
 the application(s) that have been modified will be rebuilt.
@@ -97,7 +97,7 @@ one.
 You can SSH in any application that is deployed.
 
 If you are not sure how to construct the SSH URL, you can use the generic one
-provided by the Platform.sh UI:
+provided by the Platform.sh management console:
 
 ```bash
 ssh 3bdcrrivykjsm-master@git.eu-2.platform.sh

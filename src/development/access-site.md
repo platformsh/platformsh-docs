@@ -1,12 +1,12 @@
 # Accessing your site
 
-Once you have an environment running, there are many ways to access it to perform needed tasks. The most obvious of course is to view it in a web browser; the available URLs are shown in the Platform.sh UI and on the command line after every Git push.
+Once you have an environment running, there are many ways to access it to perform needed tasks. The most obvious of course is to view it in a web browser; the available URLs are shown in the Platform.sh management console and on the command line after every Git push.
 
 By design, the only way to deploy new code is to push to the corresponding branch.  That ensures a consistent, repeatable, auditable application instance at all times.
 
 ## Visiting the site on the web
 
-The web URL(s) for the site are listed in the [web UI](/administration/web.md) under "Access site".
+The web URL(s) for the site are listed in the [management console](/administration/web.md) under "Access site".
 
 They can also be found on the command line, using the [Platform.sh CLI](/gettingstarted/cli.md):
 
@@ -36,7 +36,7 @@ Additionally, you will be logged in as the same user that the web server runs as
 
 The writable static files in an application - including uploads, temporary and private files - are stored in [mounts](/configuration/app/storage.md).
 
-The [CLI](/gettingstarted/cli.md) can list mounts inside an application:
+The Platform.sh CLI can list mounts inside an application:
 
 ```
 $ platform mounts
@@ -90,7 +90,7 @@ The upload completed successfully.
 
 Many applications and protocols run on top of SSH, including SFTP, scp, and rsync.
 
-To obtain the SSH connection details for the environment either copy them out of the Platform.sh UI (under the "Access site" dropdown) or run:
+To obtain the SSH connection details for the environment either copy them out of the Platform.sh management console (under the "Access site" dropdown) or run:
 
 ```bash
 platform ssh --pipe
