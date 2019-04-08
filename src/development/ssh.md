@@ -2,11 +2,7 @@
 
 One of the ways Platform.sh keeps things secure is by using SSH behind the scenes. Users can interact with their environment through a command shell, or push changes to the environment's Git repository, and both of these features rely on SSH.
 
-When you create a new project, the wizard will propose that you add your SSH key.
-
-![Setting Up Your Project Add SSH Key Done](/images/management-console/setting-up-your-project-add-ssh-key-done.png)
-
-You can also manage SSH keys through the CLI (see below), or through the settings screen on your account page.
+You can manage SSH keys through the CLI (see below), or through the SSH keys tab under Account Settings.
 
 ## Find your Public-Private Keypair
 
