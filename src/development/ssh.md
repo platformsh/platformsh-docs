@@ -10,7 +10,7 @@ If you use Linux, you probably already have keys. The private key is usually in 
 
 Searching for a public key file:
 1. Open up a command prompt.
-2. run the following commands:
+2. Run the following commands:
 
 ```bash
 $ cd ~/.ssh
