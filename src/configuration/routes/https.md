@@ -48,7 +48,7 @@ Although Platform.sh does not recommend it, you can also redirect HTTPS requests
     to: "http://{default}/"
 ```
 
-Of course, more complex routing logic is possible if the situation calls for it.  However, we recommend defining HTTPS routes exclusively.
+Of course, more complex routing logic is possible if the situation calls for it. However, we recommend defining HTTPS routes exclusively.
 
 ## TLS configuration
 
