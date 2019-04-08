@@ -1,8 +1,8 @@
 # Compliance guidance
 
-Platform.sh has many PCI certified customers using our services. Some aspects of PCI compliance are the responsibility of the host and others are the responsibility of the application developer.
+Platform.sh has many PCI and SOC 2 certified customers using our services. Some requirements are the responsibility of the host and others are the responsibility of the application developer.
 
-Basic PCI questions can be handled by our support team via a ticket. For more advanced questions or walk-through of a full audit please contact your Platform.sh Account Manager.
+Basic compliance questions can be handled by our support team via a ticket. For more advanced questions or walk-through of a full audit please contact your Platform.sh Account Manager.
 
 ## Overview
 
@@ -10,7 +10,7 @@ Platform.sh provides a Platform as a Service (PaaS) solution which our customers
 
 ## Security & Compensating Controls
 
-* For those customers needing to meet SAQ C or SAQ D, a Platform.sh Enterprise Plan may be needed in order to fully meet your needs. Please [contact us](https://platform.sh/contact) for more information.
+* For those customers needing to meet PCI SAQ C or SAQ D, a Platform.sh Enterprise Plan may be needed in order to fully meet your needs. Please [contact us](https://platform.sh/contact) for more information.
 
 * For a list of security measures, please see our [Security page](https://platform.sh/security).
 
@@ -18,10 +18,9 @@ Platform.sh provides a Platform as a Service (PaaS) solution which our customers
 
 * Because customers can use our PaaS in a variety of ways, the best approach with auditors is to focus is on “What do I, the customer, control/configure and how is it managed in a compliant manner?”
 
-
 ## Responsibility
 
-Platform.sh and customers have shared responsibility for ensuring an up to date and secure system.  PCI CSS compliance is ultimately the responsibility of the customer, however.
+Platform.sh and customers have shared responsibility for ensuring an up to date and secure system.  Compliance is ultimately the responsibility of the customer, however.
 
 Platform.sh is responsible for:
 
