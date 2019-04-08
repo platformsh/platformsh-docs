@@ -65,7 +65,7 @@ https://{default}/:
 ### `min_version`
 
 > **Note**
-> This directive was put into place when Platform.sh still supported older versions of TLS for customers.
+> This directive was put into place when Platform.sh supported older versions of TLS for customers.
 > Currently only TLS v1.2 is supported. Support for TLS v1.3 will be added in the near future.
 
 Setting a minimum version of TLS will cause the server to automatically reject any connections using an older version of TLS.  Rejecting older versions with known security vulnerabilities is necessary for some security compliance processes. 
