@@ -58,9 +58,6 @@ The administrator creates a Sprint environment and gives each of the developers 
 
 ------------------------------------------------------------------------
 
-![Merge](/images/management-console/merge.png)
-
-
 As a feature is completed, the administrator can review the work by accessing the website of the feature environment. The new feature is then merged back into the Sprint environment.
 
 ------------------------------------------------------------------------
