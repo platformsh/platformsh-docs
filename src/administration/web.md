@@ -83,7 +83,6 @@ These options are provided in a separate dialog box that will appear when you cl
 Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded. 
 It is good practice to take a snapshot of your environment before performing a synchronization.
 
-
 #### Backup
 
 ![Header Backup](/images/management-console/header-backup.png)
