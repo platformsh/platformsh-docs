@@ -12,7 +12,6 @@ When deployed, they conceptually look like this:
 
 ![](https://platform.sh/sites/default/files/scalable-images/architecture-simple.svg)
 
-
 All of those containers are managed by three special files in your Git repository:
 
 * `.platform/routes.yaml`
