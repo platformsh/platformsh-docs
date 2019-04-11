@@ -5,18 +5,18 @@
 * [Build & Deploy](overview/build-deploy.md)
 * [Pricing](overview/pricing.md)
 * [Getting help](overview/getting-help.md)
-
+  
 ## Getting Started
 
-* [Your first project](/gettingstarted/first-project.md)
-* [Tools](gettingstarted/tools.md)
-* [CLI](gettingstarted/cli.md)
-  * [API Tokens](gettingstarted/cli/api-tokens.md)
-* [Local development](gettingstarted/local.md)
-  * [Tethered](gettingstarted/local/tethered.md)
-  * [Untethered](gettingstarted/local/untethered.md)
-  * [Lando](gettingstarted/local/lando.md)
-  * [Docksal](gettingstarted/local/docksal.md)
+* [Overview](gettingstarted/gettingstarted.md)
+  * [Getting Started with A](/gettingstarted/gs-a/index.md)
+    * [Step One](/gettingstarted/gs-a/steps/gs-a1.md)
+    * [Step Two](/gettingstarted/gs-a/steps/gs-a2.md)
+    * [Step Three](/gettingstarted/gs-a/steps/gs-a3.md)
+    * [Step Four](/gettingstarted/gs-a/steps/gs-a4.md)
+    * [Step Five](/gettingstarted/gs-a/steps/gs-a5.md)
+  * [Getting Started with B](/gettingstarted/gs-b/index.md)
+  * [Getting Started with C](/gettingstarted/gs-c/index.md)
 
 ## Configuration
 
@@ -69,6 +69,13 @@
 
 ## Development
 
+* [CLI](development/cli.md)
+  * [API Tokens](development/cli/api-tokens.md)
+* [Local development](development/local.md)
+  * [Tethered](development/local/tethered.md)
+  * [Untethered](development/local/untethered.md)
+  * [Lando](development/local/lando.md)
+  * [Docksal](development/local/docksal.md)
 * [Variables](development/variables.md)
 * [Accessing your site](development/access-site.md)
 * [Headers](development/headers.md)
