@@ -65,7 +65,7 @@ During a `merge`:
 * The application is rebuilt on the parent branch, if necessary.
 * The parent branch is deployed.
 
-Rebuilding the application is not necessary if the same code was already built (for any environment): in this case you will see the message ``Slug already built for this tree id, skipping``.
+Rebuilding the application is not necessary if the same code was already built (for any environment): in this case you will see the message `Slug already built for this tree id, skipping`.
 
 After clicking `Merge` a dialog box will appear that will provide commands to execute future merges from the command line using the Platform.sh CLI.
 
