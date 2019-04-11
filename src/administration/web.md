@@ -18,7 +18,7 @@ There is also a graphic view of your environments on the right hand side, where 
 
 ![Environment Activity](/images/management-console/environments.png)
 
-The name of the environment is strikethroughed if it's been disabled. If it has an arrow next to it, this means the environment has children.
+The name of the environment is struck out if it's been disabled. If it has an arrow next to it, this means the environment has children.
 
 ## Activity Feed
 
