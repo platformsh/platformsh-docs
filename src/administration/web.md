@@ -26,7 +26,6 @@ The management console displays all the activity happening on your environments.
 
 ![Environment Activity](/images/management-console/activity.png)
 
-
 ## Header
 
 Within a project`s environment, the management console exposes 4 main actions and 4 drop-down command options that you can use to interface with your environments. 
