@@ -36,13 +36,34 @@ The `source` specifies where the writable mount is.  `source_path` specifies the
 
 ### `local` mounts
 
-At this time `local` is the only legal source but more will be added in the future.  The `local` source indicates that the mount point will point to a local directory on the application container.  The `source_path` is then a subpath of that.  That means they may overlap.
+The `local` source indicates that the mount point will point to a local directory on the application container.  The `source_path` is then a subpath of that.  That means they may overlap.  `local` mounts are not shared between different application containers or workers.
 
 Be aware that the entire `local` space for a single app container is a common directory, and the directory is not wiped.  That means if you create a mount point with a `source_path` of "uploads", then write files there, then remove the mount point, the files will still exist on disk indefinitely until manually removed.
 
+### `service` mounts
+
+A `service` mount refers to a `network-storage` service, as defined in `services.yaml`.  They function in essentially the same way as a `local` mount, with two important differences:
+
+1) The disk size of the `service` mount is controlled in `services.yaml`; it is separate from the value of the `disk` key in `.platform.app.yaml`.
+2) Multiple application containers may refer to the same `service` mount and share files.
+
+A `service` mount works like so:
+
+```yaml
+mounts:
+  'web/uploads':
+    source: service
+    service: files
+    source_path: uploads
+```
+
+This assumes that a `network-storage` service named `files` has already been defined.  See the [Network Storage](/configuration/services/network-storage.md) page for more details and examples.
+
 ## Multi-instance disk mounts
 
-If you have multiple application instances defined (using both `web` and `workers`), each instance will have its own disk mounts.  That's the case even if they are named the same, and even if there is only a single top-level mounts directive.  In that case, every instance will have an identical configuration, but separate, independent file spaces.  Shared file storage between different application instances is not supported at this time.
+If you have multiple application instances defined (using both `web` and `workers`), each instance will have its own `local` disk mounts.  That's the case even if they are named the same, and even if there is only a single top-level mounts directive.  In that case, every instance will have an identical configuration, but separate, independent file spaces.
+
+If you want to have multiple application instances share file storage, you will need to use a `service` mount.
 
 ## How do I set up both public and private file uploads?
 

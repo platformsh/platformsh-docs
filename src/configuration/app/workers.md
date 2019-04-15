@@ -30,8 +30,6 @@ Any number of workers may be defined with their own distinct name, subject to av
 
 Like with any other application container Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
 
-Like with any other application container Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
-
 Using the Platform CLI you would use the `--worker` switch, like so:
 
 ```
@@ -75,7 +73,7 @@ A dedicated worker instance is a better fit if:
 * Tasks are large enough that they risk blocking a deploy, even if they are subdivided.
 * The task in question is a continually running process rather than a stream of discrete units of work.
 
-The appropriateness of one approach over the other also varys by language; single-threaded languages would benefit more from either cron or workers than a language with native multi-threading, for instance.  If a given task seems like it would run equally well as a worker or as a cron, cron will generally be more efficient as it does not require its own container.
+The appropriateness of one approach over the other also varies by language; single-threaded languages would benefit more from either cron or workers than a language with native multi-threading, for instance.  If a given task seems like it would run equally well as a worker or as a cron, cron will generally be more efficient as it does not require its own container.
 
 ## Commands
 
@@ -227,7 +225,7 @@ There's a lot going on here, but it's all reasonably straightforward.  This conf
 
 The `web` instance will start a gunicorn process to serve a web application.  
 
-* It will run the gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application`definition. 
+* It will run the gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application` definition.
 * It will have an environment variable named `TYPE` with value `web`.
 * It will have a writable mount at `/app/uploads` with a maximum space of 2048 MB.
 * It will have access to both a MySQL database and a RabbitMQ server, both of which are defined in `services.yaml`.
