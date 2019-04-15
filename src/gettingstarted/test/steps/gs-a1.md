@@ -9,15 +9,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 2. Pellentesque nec interdum neque. Integer eu elementum justo. 
 3. Nunc vulputate, urna imperdiet tristique sagittis, velit ligula tincidunt tellus, sit amet blandit dui arcu id mauris. Aenean lacinia venenatis nisl, ut porttitor tortor. Vivamus ut risus in orci scelerisque hendrerit. 
 
-   {% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
+    ```python
+    import something
 
-   {%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/elasticsearch" -%}
-
-   {%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
-
-   {%- endcodetabs %}
+    thing = something(a, b, c)
+    ```
 
 4. Fusce viverra sodales quam, ut aliquam nibh vulputate sit amet.
+
+    ![Alt Text](/videos/sample.gif)
 
 
 
