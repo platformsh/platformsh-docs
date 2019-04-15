@@ -27,11 +27,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 </head>
 <body>
 
+<br/><br/>
+
 <center>
 
 <a href="/gettingstarted/gettingstarted.html" class="buttongen small">Back to Getting Started Guides</a>
 
 </center>
+
+<br/><br/>
 
 </body>
 </html>

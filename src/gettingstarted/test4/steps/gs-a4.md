@@ -25,12 +25,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 </head>
 <body>
 
+<br/><br/>
+
 <center>
 
 <a href="/gettingstarted/gettingstarted.html" class="buttongen small" aria-label="Previous page: Getting Started Guides">Back to Getting Started Guides</a>
 <a href="/gettingstarted/test4/steps/gs-a5.html" class="buttongen small" aria-label="Next page: Step Five">On to Step Five</a>
 
 </center>
+
+<br/><br/>
 
 </body>
 </html>

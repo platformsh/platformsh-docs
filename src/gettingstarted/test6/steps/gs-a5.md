@@ -27,12 +27,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 </head>
 <body>
 
+<br/><br/>
+
 <center>
 
 <a href="/gettingstarted/gettingstarted.html" class="buttongen small">Back to Getting Started Guides</a>
 <a href="/gettingstarted/test7/index.html" class="buttongen small">Next Guide: Getting Started with the Platform.sh CLI</a>
 
 </center>
+
+<br/><br/>
 
 </body>
 </html>

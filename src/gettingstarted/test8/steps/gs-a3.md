@@ -24,6 +24,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
+<br/><br/>
 
 <center>
 
@@ -31,6 +32,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 <a href="/gettingstarted/test8/steps/gs-a4.html" class="buttongen small" aria-label="Next page: Step Four">On to Step Four</a>
 
 </center>
+
+<br/><br/>
 
 </body>
 </html>

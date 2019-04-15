@@ -11,10 +11,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 
 <center>
 
+<br/><br/>
+
 <a href="/gettingstarted/gettingstarted.html" class="buttongen small">Back to Getting Started Guides</a>
 <a href="/gettingstarted/test4/steps/gs-a1.html" class="buttongen small">On to Step One</a>
 
 </center>
+
+<br/><br/>
 
 </body>
 </html>
