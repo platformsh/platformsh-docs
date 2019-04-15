@@ -13,18 +13,7 @@ See the [InfluxDB documentation](https://docs.influxdata.com/influxdb/v1.2/) for
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-   "servicename" : [
-      {
-         "scheme" : "http",
-         "ip" : "246.0.161.240",
-         "host" : "influx.internal",
-         "port" : 8086
-      }
-   ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/influxdb", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 

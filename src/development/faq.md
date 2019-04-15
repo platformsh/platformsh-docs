@@ -16,7 +16,7 @@ This will delete your project and stop invoicing for this project. If you have m
 
 ## Do you support MySQL?
 
-[Platform.sh](https://platform.sh) uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
+Platform.sh uses MariaDB to manage and store your databases. It's a fork of MySQL which is more stable and has more interesting features.
 
 ## Does branching an environment duplicate services?
 
@@ -38,7 +38,7 @@ You are able to convert an `inactive environment` into an `active environment` a
 
 Master gets all the resources that are divided into each service (PHP 40%, MySQL 30%, Redis 10%, Solr 20%…). Each Development environment gets the Development plan resources.
 
-## What exactly am I sshing into?
+## What exactly am I SSHing into?
 
 You're logged in to the PHP service. It's a read-only file system.
 
@@ -50,7 +50,7 @@ No ! Since the PHP service you access via SSH is a read-only file system, you'll
 
 We try to make the log as self-explanatory as possible, so you should see the Git output and also output from the drush make...
 
-You can also find it back by clicking on the status of the activity in the `Platform UI`.
+You can also find it back by clicking on the status of the activity in the Platform.sh management console.
 
 ## What Linux distribution is Platform.sh using?
 

@@ -53,17 +53,7 @@ The `disk` key is required for redis-persistent to tell Platform.sh how much dis
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "redis": [
-        {
-            "host": "248.0.65.198",
-            "scheme": "redis",
-            "port": 6379
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/redis", language="json" %}{% endcodesnippet %}
 
 The format is identical regardless of whether it's a persistent or ephemeral service.
 
@@ -89,22 +79,13 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-```php
-<?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/redis" -%}
 
-	// For a relationship named 'applicationcache' referring to one endpoint.
-	if (!empty($relationships['applicationcache'])) {
-		foreach ($relationships['applicationcache'] as $endpoint) {
-			$settings['redis_host'] = $endpoint['host'];
-			$settings['redis_port'] = $endpoint['port'];
-			break;
-		}
-	}
-}
-```
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/redis" -%}
+
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/redis" -%}
+
+{%- endcodetabs %}
 
 ## Using redis-cli to access your Redis service
 

@@ -14,17 +14,7 @@ Both Memcached and Redis can be used for application caching.  As a general rule
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "cache": [
-        {
-            "host": "248.0.65.198",
-            "scheme": "memcached",
-            "port": 11211
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/memcached", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
@@ -64,52 +54,13 @@ dependencies:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php" -%}
-<?php
+{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
 
-if (!isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
-    return;
-}
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/memcached" -%}
 
-$relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
-$rel = $relationships['cache'][0];
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/memcached" -%}
 
-$m = new Memcached();
-$m->addServer($rel['host'], $rel['port']);
-$m->setOption(Memcached::OPT_BINARY_PROTOCOL, true);
-
-$m->set('int', 99);
-$m->set('string', 'a simple string');
-$m->set('array', array(11, 12));
-/* expire 'object' key in 5 minutes */
-$m->set('object', new stdclass, time() + 300);
-
-{%- language name="Python", type="py" -%}
-import memcache
-import os
-import json
-import base64
-
-relationships = os.getenv('PLATFORM_RELATIONSHIPS')
-if relationships:
-    relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
-    memcache_settings = relationships['cache'][0]
-
-    mc = memcache.Client([memcache_settings['host'] + ':' + str(memcache_settings['port'])], debug=0)
-
-    mc.set("an_int", 99)
-    #print "Int Value: {}<br />\n".format(mc.get("an_int"))
-
-    mc.set("a_sring", "a simple string")
-    mc.delete("a_string")
-    #print "String Value: {}<br />\n".format(mc.get("a_string"))
-
-    #mc.set("key", "1")   # note that the key used for incr/decr must be a string.
-    mc.incr("key")
-    mc.decr("key")
-    #print "Counter Value: {}<br />\n".format(mc.get("key"))
 {%- endcodetabs %}
-
 
 ## Accessing Memcached directly
 

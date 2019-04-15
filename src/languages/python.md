@@ -9,6 +9,10 @@ Platform.sh supports deploying Python applications. Your application can use WSG
 * 3.6
 * 3.7
 
+## Support libraries
+
+While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformshconfig`](https://github.com/platformsh/config-reader-python) pip library which handles decoding of service credential information for you.
+
 ## WSGI-based configuration
 
 In this example, we use Gunicorn to run our WSGI application.  Configure the `.platform.app.yaml` file with a few key settings as listed below, a complete example is included at the end of this section.
@@ -138,38 +142,27 @@ The above Gunicorn based WSGI example can be modified to use the Python 3.5+ asy
        pip install gunicorn aiohttp
    ```
 
-## Connecting to services
+## Accessing services
 
-You can [define services](/configuration/services.md) in your environment.  And, link to the services using `.platform.app.yaml`:
+To access various [services](/configuration/services.md) with Python, see the following examples.  The individual service pages have more information on configuring each service.
 
-```yaml
-relationships:
-    database: "mysqldb:mysql"
-```
+{% codetabs name="Elasticsearch", type="js", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
 
-By using the following Python function calls, you can obtain the database details.
+{% language name="Memcached", type="js", url="https://examples.docs.platform.sh/python/memcached" -%}
 
-```python
-import base64
-import json
-import os
+{% language name="MongoDB", type="js", url="https://examples.docs.platform.sh/python/mongodb" -%}
 
-# Use str(base64.b64decode()) for py3k compatibility.
-relationships = os.environ['PLATFORM_RELATIONSHIPS']
-relationships = json.loads(str(base64.b64decode(relationships), 'utf-8'))
+{% language name="MySQL", type="js", url="https://examples.docs.platform.sh/python/mysql" -%}
 
-# Sample content of relationships['database']:
-# [{
-#   'scheme': 'mysql',
-#   'host': 'database.internal',
-#   'ip': '246.0.81.164'
-#   'port': 3306,
-#   'path': 'main',
-#   'username': 'main',
-#   'password': 'main',
-#   'query': {'is_master': True},
-# }]
-```
+{% language name="PostgreSQL", type="js", url="https://examples.docs.platform.sh/python/postgresql" -%}
+
+{% language name="RabbitMQ", type="js", url="https://examples.docs.platform.sh/python/rabbitmq" -%}
+
+{% language name="Redis", type="js", url="https://examples.docs.platform.sh/python/redis" -%}
+
+{% language name="Solr", type="js", url="https://examples.docs.platform.sh/python/solr" -%}
+
+{%- endcodetabs %}
 
 ## Project templates
 

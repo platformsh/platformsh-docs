@@ -14,8 +14,14 @@ $ composer require drupal/devel
 
 And then commit just the changes to `composer.json` and `composer.lock` to your repository.  That also means that to get a working copy of your site locally you will need to run `composer install` to download all of the necessary libraries and modules.
 
+We also strongly recommend installing the Platform.sh Config Reader library, which simplifies access to the Platform.sh environment.  The rest of this documentation assumes you have it installed.
+
+```bash
+$ composer require platformsh/config-reader
+```
+
 > **note**
-> When using Composer, your docroot where most of Drupal lives will be called `web`, but the `vendor` directory will be outside of that directory in contrast to how a standard Drupal download .tar.gz file is organized.  The config export directory will also be outside of the web root.  This is normal, expected, and more secure.
+> When using Composer, your docroot where most of Drupal lives will be called `web`, but the `vendor` directory will be outside of that directory in contrast to how a standard Drupal download `.tar.gz` file is organized.  The config export directory will also be outside of the web root.  This is normal, expected, and more secure.
 
 ### File organization
 

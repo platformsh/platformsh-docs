@@ -20,23 +20,7 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "database": [
-        {
-            "username": "main",
-            "password": "main",
-            "host": "248.0.65.196",
-            "query": {
-                "is_master": true
-            },
-            "path": "main",
-            "scheme": "pgsql",
-            "port": 5432
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/postgresql", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
@@ -65,74 +49,12 @@ runtime:
 
 You can then use the service in a configuration file of your application with something like:
 
+{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
 
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/postgresql" -%}
 
-{% codetabs name="PHP", type="php" -%}
-<?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/postgresql" -%}
 
-	// For a relationship named 'database' referring to one endpoint.
-	if (!empty($relationships['database'])) {
-		foreach ($relationships['database'] as $endpoint) {
-			$settings['database_driver'] = 'pdo_' . $endpoint['scheme'];
-			$settings['database_host'] = $endpoint['host'];
-			$settings['database_name'] = $endpoint['path'];
-			$settings['database_port'] = $endpoint['port'];
-			$settings['database_user'] = $endpoint['user'];
-			$settings['database_password'] = $endpoint['password'];
-			break;
-		}
-	}
-}
-{%- language name="Python", type="py" -%}
-relationships = os.getenv('PLATFORM_RELATIONSHIPS')
-if relationships:
-    relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
-    db_settings = relationships['database'][0]
-    DATABASES = {
-        "default": {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': db_settings['path'],
-            'USER': db_settings['username'],
-            'PASSWORD': db_settings['password'],
-            'HOST': db_settings['host'],
-            'PORT': db_settings['port'],
-        }
-    }
-{%- language name="NodeJS", type="js" -%}
-// Using the Platform.sh JS helper library: https://github.com/platformsh/platformsh-nodejs-helper
-
-var config = require("platformsh").config();
-
-if (config.relationships != null) {
-  var db = config.relationships.first_db[0]
-
-  const connObj = {
-      user: database.username,
-      database: database.path,
-      password: database.password,
-      host: database.host
-  };
-
-  const pg = require('pg');
-
-  pg.connectAsync(connObj)...;
-}
-
-{%- language name="Go", type="go" -%}
-// Using the Platform.sh Go helper library: https://github.com/platformsh/gohelper
-
-dbString, err := pi.SqlDsn("database")
-if (err != nil) {
-  panic(err)
-}
-
-db, err := sql.Open("postgres", dbString)
-if (err != nil) {
-  panic(err)
-}
 {%- endcodetabs %}
 
 ## Exporting data

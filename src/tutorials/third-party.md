@@ -27,6 +27,7 @@ This is a Big List of known third party resources for Platform.sh. These resourc
 * Introduction to [using PostgreSQL](https://www.ignoredbydinosaurs.com/posts/296-postgres-on-platform)
 * How to install [Apache Tika on Platform.sh](https://thinktandem.io/blog/2017/11/10/apache-tika-on-platform-sh/)
 * How to [store complete logs at AWS S3](https://gitlab.com/contextualcode/platformsh-store-logs-at-s3) by [Contextual Code](https://www.contextualcode.com/)
+* [Automated SSL Certificates Export on Platform.sh](https://www.contextualcode.com/Blog/Automated-SSL-Certificates-Export-on-Platform.sh) by [Contextual Code](https://www.contextualcode.com/)
 * A Platform.sh [region migration tool](https://gitlab.com/contextualcode/platformsh-migration) by [Contextual Code](https://www.contextualcode.com/)
 
 ### Drupal
@@ -89,7 +90,9 @@ Framework  | Credit | Date added
 
 ### Rust
 
-[***Rust with Rocket**](https://github.com/royallthefourth/platformsh-rust-rocket)
+Framework  | Credit | Date added
+-----------|--------|-----------
+[**Rust with Rocket and webasm**](https://github.com/royallthefourth/platformsh-rust-rocket)|[Royall Spence](https://github.com/royallthefourth)|July 2018
 
 ## Integrations
 

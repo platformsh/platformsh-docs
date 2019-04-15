@@ -9,7 +9,6 @@
 ## Getting Started
 
 * [Your first project](/gettingstarted/first-project.md)
-* [Platform.sh in practice](/gettingstarted/platformsh-in-practice.md)
 * [Tools](gettingstarted/tools.md)
 * [CLI](gettingstarted/cli.md)
   * [API Tokens](gettingstarted/cli/api-tokens.md)
@@ -108,7 +107,7 @@
   * [HipChat](administration/integrations/hipchat.md)
   * [Tideways](administration/integrations/tideways.md)
   * [Webhooks](administration/integrations/webhooks.md)
-* [Web interface](administration/web.md)
+* [Management console](administration/web.md)
   * [Project configuration](administration/web/configure-project.md)
   * [Environments](administration/web/environments.md)
   * [Configure environments](administration/web/configure-environment.md)
@@ -124,9 +123,9 @@
 * [Backup and restore](security/backups.md)
 * [Encryption](security/encryption.md)
 * [Protective block](security/protective-block.md)
-* [PCI Guidance](security/pci-guidance.md)
+* [Compliance guidance](security/compliance-guidance.md)
 * [Security scans](security/pen-test.md)
-* [Troubleshooting](security/troubleshooting.md)
+* [Updating](security/updates.md)
 
 ## Featured frameworks
 
@@ -147,6 +146,7 @@
   * [Drush](frameworks/drupal8/drush.md)
   * [Redis](frameworks/drupal8/redis.md)
   * [Memcached](frameworks/drupal8/memcached.md)
+  * [Elasticsearch](frameworks/drupal8/elasticsearch.md)
   * [Solr](frameworks/drupal8/solr.md)
   * [SimpleSAML](frameworks/drupal8/simplesaml.md)
   * [FAQ](frameworks/drupal8/faq.md)

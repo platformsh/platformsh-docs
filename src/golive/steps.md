@@ -4,7 +4,7 @@ Going live on Platform.sh is a simple two or three step process.
 
 <!--toc-->
 
-You can either use the Platform.sh UI or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes.
+You can either use the Platform.sh management console or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes.
 
 > The order of operations is not really important, but if you are migrating a site from an existing provider, you should first configure the domain on the Platform.sh side, and only then switch DNS over.
 
@@ -14,17 +14,21 @@ If you are on a Development plan, you cannot add a domain. You will need to upgr
 
 Go to [your account](https://accounts.platform.sh/user), click on the small wheel next to you project's name and click on edit.
 
-![Edit Plan](/images/edit-plan.png)
+![Edit Plan](/images/management-console/edit-plan.png)
 
-Choose the plan you want, it will show you the monthly price you will be paying.
+You can also access information about the project's plan under "Billing", and then by selecting the project from your list of projects. You can make changes to the project by clicking ‘Upgrade Plan’.
 
-![Edit Plan Choose](/images/edit-plan-choose.png)
+![Edit Plan](/images/management-console/billing-plan-upgrade.png)
+
+You can make changes to the type of plan, the number of environments, amount of storage and number of users here. When you make changes, it will update the monthly price you will be paying. Click `Upgrade plan` to save the new settings. 
+
+![Edit Plan Choose](/images/management-console/settings-upgrade-plan.png)
 
 You can find more information on pricing on the [pricing page](https://platform.sh/pricing).
 
 ## 2. Set your domain in Platform.sh
 
-This is a required step, it will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the UI](/administration/web/configure-project.html#domains).
+This is a required step, it will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
 
 You can add multiple domains to point to your project. Each domain can have its own custom SSL certificate, or use the default one provided.
 
@@ -35,7 +39,7 @@ To get the IP address, first run `platform environment:info edge_hostname`.  Tha
 In OS X and Linux you can add that IP  to your `/etc/hosts` file.  In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`. You will need to be a admin user to be able to change that file. So in OS X you will usually run something like `sudo vi /etc/hosts`. After adding the line the file will look something like:
 
  
-![Hosts File](/images/hosts-file.png)
+![Hosts File](/images/config-files/hosts-file.png)
 
 > **note**
 > Do not put the IP address you see here, but the one you got from the ping command.

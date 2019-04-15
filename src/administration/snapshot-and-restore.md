@@ -2,7 +2,7 @@
 
 ## Snapshots
 
-Snapshots are triggered directly via the Web Interface or via the CLI. The snapshot creates a complete backup of the environment. It includes all persistent data from all running services (MySQL, SOLR,...) and any files stored on the mounted volumes.
+Snapshots are triggered directly via the management console or via the CLI. The snapshot creates a complete backup of the environment. It includes all persistent data from all running services (MySQL, SOLR,...) and any files stored on the mounted volumes.
 
 You need to have the "admin" role in order to create a snapshot of an environment.
 
@@ -22,9 +22,10 @@ Please be aware that triggering a snapshot will cause a momentary pause in site 
 
 ## Restore
 
-You will see the snapshot in the activity feed of you environment in the Platform.sh Web Interface. You can trigger the restore by clicking on the `restore` link.
 
-From the CLI, you can list existing snapshots with the CLI as follows:
+You will see the snapshot in the activity feed of your environment in the Platform.sh management console. You can trigger the restore by clicking on the `restore` link. You can also restore the snapshot to a different environment using the CLI.
+
+You can list existing snapshots with the CLI as follows:
 
 ```bash
 $ platform snapshots
@@ -41,10 +42,23 @@ Finding snapshots for the environment master
 | 2015-05-19 14:51:18 | 100        | 71051a8fe6ef78bca0eb |
 ```
 
-You can restore a specific snapshot with the CLI as follows:
+You can then restore a specific snapshot with the CLI as follows:
 
 ```bash
-$ platform snapshot:restore 92c9a4b2aa75422efb3d
+$ platform snapshot:restore 2ca4d90639f706283fee
+```
+
+Or even restore the snapshot to a different branch with the CLI as follows:
+
+```bash
+$ platform snapshot:restore --target=RESTORE_BRANCH 2ca4d90639f706283fee
+```
+For this to work, it's important to act on the active branch on which the snapshot was taken. Restoring a snapshot from `develop` when working on the `staging` branch is impossible. Switch to the acting branch and set your `--target` as above snippet mentions.
+
+If no branch already exists, you can specify the parent of the branch that will be created to restore your snapshot to as follows:
+
+```bash
+$ platform snapshot:restore --branch-from=PARENT_BRANCH 2ca4d90639f706283fee
 ```
 
 > **note**

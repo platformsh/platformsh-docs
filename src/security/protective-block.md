@@ -6,11 +6,11 @@ The protective block is meant for high impact, low complexity attacks.
 
 ## The Platform.sh security block
 
-Outdated software often contains known vulnerabilities that can be exploited from the Internet. Sites that can be exploited are protected by [Platform.sh](https://platform.sh). The system partially blocks access to these sites.
+Outdated software often contains known vulnerabilities that can be exploited from the Internet. Sites that can be exploited are protected by Platform.sh. The system partially blocks access to these sites.
 
 ## How the protective block works
 
-https://platform.sh maintains a database of signatures of known security vulnerabilities in open-source software that are commonly deployed on our infrastructure. The security check only analyze known vulnerabilities in open-source projects like Drupal, Symfony or WordPress. It cannot examine customizations written by [Platform.sh](https://platform.sh) customers.
+Platform.sh maintains a database of signatures of known security vulnerabilities in open-source software that are commonly deployed on our infrastructure. The security check only analyze known vulnerabilities in open-source projects like Drupal, Symfony or WordPress. It cannot examine customizations written by Platform.sh customers.
 
 We analyze the code of your application:
 

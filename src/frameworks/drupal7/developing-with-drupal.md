@@ -122,7 +122,7 @@ rebuild your environment.
 
 When it's completed, you can see your changes on your site by clicking
 `View this website` under the name of **Sprint1** environment on the
-Platform.sh Web Interface.
+Platform.sh management console.
 
 > **note**
 > The Drush Make processing doesn't create any file in your Git repository. Your Git repository is the *input* of the process and not the *output*. You can see the directory structure that has been created by connecting via SSH to the environment. See the information in the `Access information` below the title of the environment
@@ -134,9 +134,13 @@ push those changes up to your live environment. Platform.sh has a great
 button called `Merge` that you can click on and it will push the
 appropriate changes to master.
 
-![Merge your changes.](/images/merge.png)
+![Merge your changes.](/images/management-console/header.png)
 
-Just click on the "Merge" button and all of the commits you made on your
+A dialog box will appear that will provide commands to execute future merges from the command line using the [Platform.sh CLI](/gettingstarted/cli.md).
+
+![Merge confirmation cli](/images/management-console/header-merge-box.png)
+
+Just click on the "Merge" button again and all of the commits you made on your
 branch will be merged into the master environment.
 
 ## Synchronizing data

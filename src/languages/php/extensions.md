@@ -125,7 +125,7 @@ This is the complete list of extensions that can be enabled:
 | posix         |     |     |     | *   | *   | *   | *   |
 | propro        |     |     | *   |     |     |     |     |
 | pspell        | *   | *   | *   | *   | *   | *   | *   |
-| pthreads      |     |     |     |     | *   | *   |     |
+| pthreads      |     |     |     |     | *   |     |     |
 | raphf         |     |     | *   |     |     |     |     |
 | readline      | *   | *   | *   | *   | *   | *   | *   |
 | recode        | *   | *   | *   | *   | *   | *   | *   |

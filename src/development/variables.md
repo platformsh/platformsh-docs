@@ -40,11 +40,11 @@ platform variable:create --level project --name foo --value bar --visible-build 
 
 Naturally in practice you'll want to use only one or the other, or allow the variable to be visible in both cases.
 
-Project variables may also be marked `--sensitive true`.  That flag will mark the variable to not be readable through the UI once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
+Project variables may also be marked `--sensitive true`.  That flag will mark the variable to not be readable through the management console once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
 
 ### Environment variables
 
-Environment-level variables can also be set [through the web interface](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to create an environment variable "foo" with the value "bar" on the currently checked out environment/branch, run:
+Environment-level variables can also be set [through the management console](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to create an environment variable "foo" with the value "bar" on the currently checked out environment/branch, run:
 
 ```bash
 $ platform variable:create --level environment --name foo --value bar
@@ -55,7 +55,7 @@ That will set a variable on the currently active environment (that is, the branc
 There are two additional flags available on environment variables: `--inheritable` and `--sensitive`.
 
 * Setting `--inheritable false` will cause the variable to not be inherited by child environments.  That is useful for setting production-only values on the `master` branch, and allowing all other environments to use a project-level variable of the same name.
-* Setting `--sensitive true` flag will mark the variable to not be readable through the UI once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
+* Setting `--sensitive true` flag will mark the variable to not be readable through the management console once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
 
 For example, the following command will allow you to set a PayPal secret value on the master branch only; other environments will not inherit it and either get a project variable of the same name if it exists or no value at all.  It will also not be readable through the API.
 
@@ -81,13 +81,14 @@ The following variables are available at both runtime and at build time, and may
 * **PLATFORM_PROJECT**: The ID of the project.
 * **PLATFORM_TREE_ID**: The ID of the tree the application was built from. It's essentially the SHA hash of the tree in Git.  If you need a unique ID for each build for whatever reason this is the value you should use.
 * **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are variables names and values are variable values (see below).  Note that the values available in this structure may vary between build and runtime depending on the variable type as described above.
-* **PLATFORM_PROJECT_ENTROPY**: A random value created when the project is first created, which is then stable throughout the project’s life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
+* **PLATFORM_PROJECT_ENTROPY**: A random value created when the project is first created, which is then stable throughout the project's life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
 
 The following variables exist *only* at runtime.  If used in a build hook they will evaluate to an empty string like any other unset variable:
 
 * **PLATFORM_BRANCH**: The name of the Git branch.
 * **PLATFORM_DOCUMENT_ROOT**: The absolute path to the web document root, if applicable.
 * **PLATFORM_ENVIRONMENT**: The name of the environment generated by the name of the Git branch.
+* **PLATFORM_SMTP_HOST**: The SMTP host that email messages should be sent through.  This value will be empty if mail is disabled for the current environment.
 * **PLATFORM_RELATIONSHIPS**: A base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. See the documentation for each [Service](/configuration/services.md) for details on each service type's schema.
 * **PLATFORM_ROUTES**: A base64-encoded JSON object that describes the routes that you defined in the environment. It maps the content of the `.platform/routes.yaml` file.
 
@@ -126,7 +127,7 @@ echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
 
 ## Accessing variables
 
-You can get a list of all variables defined on a given environment either [via the Web Interface](/administration/web/configure-environment.html#settings) or using the CLI:
+You can get a list of all variables defined on a given environment either [via the management console](/administration/web/configure-environment.html#settings) or using the CLI:
 
 ```bash
 $ platform variables

@@ -19,25 +19,7 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-   "database" : [
-      {
-         "scheme" : "mongodb",
-         "path" : "main",
-         "port" : 27017,
-         "query" : {
-            "is_master" : true
-         },
-         "rel" : "mongodb",
-         "password" : "main",
-         "username" : "main",
-         "ip" : "123.123.123.123",
-         "host" : "database.internal"
-      }
-   ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/mongodb", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
@@ -71,54 +53,12 @@ runtime:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php" -%}
-<?php
-// First run `composer require mongodb/mongodb` to get the userspace
-// library, and autoload it.  Then:
+{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/mongodb" -%}
 
-if ($relationships = getenv('PLATFORM_RELATIONSHIPS')) {
-    $relationships = json_decode(base64_decode($relationships), TRUE);
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/mongodb" -%}
 
-    // For a relationship named 'database' referring to one endpoint.
-    if (!empty($relationships['database'])) {
-        foreach ($relationships['database'] as $endpoint) {
-            $settings = $endpoint;
-            break;
-        }
-    }
-}
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/mongodb" -%}
 
-$server = sprintf('%s://%s:%s@%s:%d/%s',
-    $settings['scheme'],
-    $settings['username'],
-    $settings['password'],
-    $settings['host'],
-    $settings['port'],
-    $settings['path'],
-);
-
-$client = new MongoDB\Client($server);
-$collection = $client->main->starwars;
-
-$result = $collection->insertOne( [ 'name' => 'Rey', 'occupation' => 'Jedi' ] );
-
-echo "Inserted with Object ID '{$result->getInsertedId()}'";
-
-{%- language name="JavaScript", type="js" -%}
-var config= require("platformsh").config();
-var db = config.relationships.database[0];
-var url = db["scheme"] + '://' + db["username"] + ':' + db['password']+ "@" + db['ip']+ ":" + db['port']+ '/' + db['path'];
-
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
-
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
-
-  db.close();
-});
 {%- endcodetabs %}
 
 ## Exporting data

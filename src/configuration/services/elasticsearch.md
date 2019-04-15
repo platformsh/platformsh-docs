@@ -8,6 +8,7 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 * 5.2
 * 5.4
+* 6.5
 
 ### Deprecated versions
 
@@ -22,17 +23,7 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "elasticsearch": [
-        {
-            "host": "248.0.65.198",
-            "scheme": "http",
-            "port": "9200"
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/elasticsearch", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
@@ -40,7 +31,7 @@ In your `.platform/services.yaml`:
 
 ```yaml
 mysearch:
-    type: elasticsearch:5.4
+    type: elasticsearch:6.5
     disk: 1024
 ```
 
@@ -53,22 +44,14 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-```php
-<?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
 
-	// For a relationship named 'elasticsearch' referring to one endpoint.
-	if (!empty($relationships['elasticsearch'])) {
-		foreach ($relationships['elasticsearch'] as $endpoint) {
-			$settings['elasticsearch_host'] = $endpoint['host'];
-			$settings['elasticsearch_port'] = $endpoint['port'];
-			break;
-		}
-	}
-}
-```
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/elasticsearch" -%}
+
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
+
+{%- endcodetabs %}
+
 
 > **note**
 >
@@ -81,7 +64,7 @@ The Elasticsearch 2.4 and later services offer a number of plugins.  To enable t
 
 ```yaml
 mysearch:
-    type: "elasticsearch:5.4"
+    type: "elasticsearch:6.5"
     disk: 1024
     configuration:
         plugins:

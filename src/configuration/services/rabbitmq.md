@@ -14,20 +14,7 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-   "rabbitmq" : [
-      {
-         "password" : "guest",
-         "ip" : "246.0.129.2",
-         "scheme" : "amqp",
-         "port" : 5672,
-         "host" : "rabbitmq.internal",
-         "username" : "guest"
-      }
-   ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/rabbitmq", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
@@ -43,27 +30,16 @@ In your ``.platform.app.yaml``:
 
 ```yaml
 relationships:
-    mq: "myrabbitmq:rabbitmq"
+    rabbitmq: "myrabbitmq:rabbitmq"
 ```
 
 You can then use the service in a configuration file of your application with something like:
 
-```php
-<?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
 
-	// For a relationship named 'mq' referring to one endpoint.
-	if (!empty($relationships['mq'])) {
-		foreach ($relationships['mq'] as $endpoint) {
-			$settings['rabbitmq_host'] = $endpoint['host'];
-			$settings['rabbitmq_port'] = $endpoint['port'];
-			break;
-		}
-	}
-}
-```
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/rabbitmq" -%}
+
+{%- endcodetabs %}
 
 (The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)
 

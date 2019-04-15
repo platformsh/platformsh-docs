@@ -20,7 +20,7 @@ In the future, we will be rolling out better log segregation to allow a Customer
 
 ## Access logs
 
-There are two main types of access logs: web and ssh.
+There are two main types of access logs: web and SSH.
 
 ### Web access logs
 

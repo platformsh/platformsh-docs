@@ -1,6 +1,6 @@
 # Platform.sh User Documentation
 
-This repository holds the public user documentation for [Platform.sh](https://platform.sh/).
+This repository holds the public user documentation for Platform.sh.
 
 Our documentation site ([docs.platform.sh](https://docs.platform.sh/)) is itself hosted on Platform.sh, and built using our powerful build-and-deploy system.
 

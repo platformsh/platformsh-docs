@@ -48,7 +48,7 @@ translations/
 
 ### Project mode
 
-If your repository doesn’t contain a `.profile` file, but contains a make file called: `project.make` (or even `drupal-org.make`), Platform.sh builds your project using Drush make. Everything you have in your repository will be copied to your `sites/default` folder.
+If your repository doesn't contain a `.profile` file, but contains a make file called: `project.make` (or even `drupal-org.make`), Platform.sh builds your project using Drush make. Everything you have in your repository will be copied to your `sites/default` folder.
 
 ```
 .git/

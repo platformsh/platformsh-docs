@@ -25,7 +25,7 @@ For this example, consider that there are several packages we want to install fr
 
 Set the Composer authentication by adding a project level variable called `env:COMPOSER_AUTH` as JSON and available only during build time.
 
-That can be done through the [web UI](/administration/web.md) or via the command line, like so:
+That can be done through the [management console](/administration/web.md) or via the command line, like so:
 
 ```bash
 platform variable:create --level project --name env:COMPOSER_AUTH \
@@ -50,6 +50,6 @@ In that case, Composer will be able to authenticate and download dependencies fr
 
 ## Private repository hosting
 
-Typically, a private dependency will be hosted in a private Git repository.  While Platform.sh supports [private repositories](/development/private-repository.md) for the site itself, that doesn't help for pulling in third party dependencies from private repositories unless they have the same ssh keys associated with them.
+Typically, a private dependency will be hosted in a private Git repository.  While Platform.sh supports [private repositories](/development/private-repository.md) for the site itself, that doesn't help for pulling in third party dependencies from private repositories unless they have the same SSH keys associated with them.
 
 Fortunately, most private Composer tools (including Satis, Toran Proxy, and [Private Packagist](https://packagist.com/)) mirror tagged releases of dependencies and serve them directly rather than hitting the Git repository.  Therefore as long as your dependencies specify tagged releases there should be no need to authenticate against a remote Git repository and there should be no authentication issue.
