@@ -454,7 +454,7 @@ a.buttongen.small {
 a.buttongen.lang {
   display: inline-block;
   font-weight: 900;
-  height: 40% !important;
+  height: 50% !important;
   width: 20% !important;
   text-align:center;
 }

@@ -13,21 +13,21 @@ Sign up with a new user and password or login using an existing GitHub, Bitbucke
 </head>
 <body>
 
-<h2><center>Choose a language to access the Platform.sh Getting Started guides</center></h2>
+<h2><center>Start developing with Platform.sh and the languages you already use</center></h2>
 
 </br>
 
 <center>
 
-<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/php.svg" alt="PHP"></br></br>PHP</a>
-<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/python.svg" alt="Python"></br></br>Python</a>
-<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/node.svg" alt="Node"></br></br>Node.js</a>
+<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/php.svg" alt="PHP"></br>PHP</a>
+<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/python.svg" alt="Python"></br>Python</a>
+<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/node.svg" alt="Node"></br>Node.js</a>
 
-</br>
+</br></br>
 
-<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/ruby.svg" alt="Ruby"></br></br>Ruby</a>
-<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/php.svg" alt="Go"></br></br>Go</a>
-<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/php.svg" alt="Java"></br></br>Java</a>
+<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/ruby.svg" alt="Ruby"></br>Ruby</a>
+<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/php.svg" alt="Go"></br>Go</a>
+<a href="/gettingstarted/gettingstarted.html" class="buttongen lang"><img src="/images/technologies/php.svg" alt="Java"></br>Java</a>
 
 </center>
 
