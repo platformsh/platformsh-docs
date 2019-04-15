@@ -17,7 +17,7 @@ The Network storage service is available on all regions except:
 * eu.platform.sh
 * us.platform.sh
 
-If you are on one of those and require the service we suggest you (migrate)[https://docs.platform.sh/tutorials/region-migration.html#region-migration] your project to one of the newer regions (such as eu-2, us-2, ca, au, fr-1 or de-2).
+If you are on one of those and require the service we suggest you [migrate](https://docs.platform.sh/tutorials/region-migration.html#region-migration) your project to one of the newer regions (such as eu-2, us-2, ca, au, fr-1 or de-2).
 
 ## Define the service
 
