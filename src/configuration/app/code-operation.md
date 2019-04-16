@@ -3,9 +3,9 @@ search:
     keywords: ['.platform.app.yaml', 'automated', 'code', 'update', 'operation']
 ---
 
-# Automated code operation
+# Code operations
 
-An application can define a number of operations that apply to its source code.
+An application can define a number of operations that apply to its source code and that can be automated.
 
 A basic, common code operation could look like this:
 
