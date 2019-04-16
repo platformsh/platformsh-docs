@@ -30,7 +30,7 @@ platform p:curl environments/staging/code-operation \
     "operation": "update",
     "variables": {}
     }'
-``
+```
 
 The payload has two parameters:
 
