@@ -52,6 +52,7 @@
   * [Worker configuration](configuration/app/workers.md)
   * [Cron and scheduled tasks](configuration/app/cron.md)
   * [Multiple Applications](configuration/app/multi-app.md)
+  * [Code operations](configuration/app/code-operation.md)
   * [Upgrading](configuration/app/upgrading.md)
 
 ## Languages
