@@ -1,6 +1,6 @@
 ---
 search:
-    keywords: ['.platform.app.yaml', 'automated', 'code', 'update', 'operation']
+    keywords: ['.platform.app.yaml', 'automated', 'code', 'source', 'update', 'operation']
 ---
 
 # Code operations
@@ -21,10 +21,10 @@ source:
 
 The `update` key is the name of the operation. It is arbitrary, and multiple code operations can be defined.
 
-The environment resource gets a new `code-operation` action which can be triggered by the API:
+The environment resource gets a new `source-operation` action which can be triggered by the API:
 
-```bash
-platform p:curl environments/staging/code-operation \
+```
+platform p:curl environments/staging/source-operation \
     -X POST \
     -d '{
     "operation": "update",
