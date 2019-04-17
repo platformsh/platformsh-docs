@@ -15,7 +15,7 @@
     "-lunr",
     "-search",
     "search-plus",
-    "asciinema"
+    "asciinema-local"
   ],
   "pluginsConfig": {
     "edit-link": {
