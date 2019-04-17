@@ -13,7 +13,9 @@
     "atoc",
     "-sharing",
     "-lunr",
-    "-search"
+    "-search",
+    "search-plus",
+    "asciinema"
   ],
   "pluginsConfig": {
     "edit-link": {

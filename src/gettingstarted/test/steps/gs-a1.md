@@ -9,11 +9,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 2. Pellentesque nec interdum neque. Integer eu elementum justo. 
 3. Nunc vulputate, urna imperdiet tristique sagittis, velit ligula tincidunt tellus, sit amet blandit dui arcu id mauris. Aenean lacinia venenatis nisl, ut porttitor tortor. Vivamus ut risus in orci scelerisque hendrerit. 
 
-    ```python
-    import something
-
-    thing = something(a, b, c)
-    ```
+    {% asciinema %}/scripts/asciinema/recordings/01-create.cast{% endasciinema %}
 
 4. Fusce viverra sodales quam, ut aliquam nibh vulputate sit amet.
 
