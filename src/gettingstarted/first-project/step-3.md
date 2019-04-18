@@ -38,6 +38,8 @@ Once you have configured the template application in the previous step, Platform
    
    It will open another tab in your browser to your new live site!
    
+   ![New Project verify](/videos/new-project.gif)
+   
    
 > In these few steps you have created a free trial account, configured a maintained template for your project and deployed it using the management console in your browser. 
 >

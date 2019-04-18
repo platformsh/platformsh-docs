@@ -8,9 +8,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 
    Integer ut massa sit amet dolor bibendum ultricies at in est. Pellentesque nec interdum neque. 
    
+   {% asciinema_local %}/scripts/asciinema/recordings/create.json{% endasciinema_local %}
+   {% asciinema %}/scripts/asciinema/recordings/create.json{% endasciinema %}
+
+
 2. **Integer eu elementum justo**
    
    Nunc vulputate, urna imperdiet tristique sagittis, velit ligula tincidunt tellus, sit amet blandit dui arcu id mauris. 
+   
    
 3. **Pellentesque nec interdum neque** 
 

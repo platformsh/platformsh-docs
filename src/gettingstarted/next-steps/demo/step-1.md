@@ -12,6 +12,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
    
    Nunc vulputate, urna imperdiet tristique sagittis, velit ligula tincidunt tellus, sit amet blandit dui arcu id mauris. 
    
+   {% asciinema_local %}/scripts/asciinema/recordings/list.json{% endasciinema_local %}
+   
 3. **Pellentesque nec interdum neque** 
 
    Aenean lacinia venenatis nisl, ut porttitor tortor. Vivamus ut risus in orci scelerisque hendrerit. 

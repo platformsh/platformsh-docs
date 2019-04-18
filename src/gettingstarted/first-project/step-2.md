@@ -15,9 +15,9 @@ First, we want to create our new template project:
 
 2. **Set code base**
 
-   Now you will be able to see the large collection of Platform.sh's supported templates. They are simple applications, but they could also be the starting place for your to build more interesting applications from.
+   Now you will be able to see the large collection of Platform.sh's supported templates. They are simple applications, but they could also be the starting place for you to build more interesting applications from.
 
-   If you are most comfortable with a particular language, click the dropdown labeled `All languages` to select the language you like working with and the templates will update.
+   If you are more comfortable with a particular language, click the dropdown labeled `All languages` to select the language you like working with and the templates will update.
 
    Select a template and click `Next`.
 
@@ -32,6 +32,8 @@ First, we want to create our new template project:
    The last step for setting up our new project is to configure its region.
 
    Select the region that most closely matches the region of where you think most of your traffic will come from and click `Next`.
+   
+   ![New Project verify](/videos/create-project.gif)
 
 
 <html>

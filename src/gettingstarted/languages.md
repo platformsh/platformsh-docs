@@ -5,13 +5,13 @@ By now you have learned how to create templates with the [management console](/g
 
 Additionally, you've learned how to modify your plan to allow for [collaboration and review](/gettingstarted/next-steps/access/start.md) as well as how to [upgrade your plan](/gettingstarted/next-steps/modify-plan/start.md) to accommodate them. If you have not yet completed these guides, make sure to visit them before moving forward.
 
+Now that you have these tools ready, we can get into Platform.sh's capabilities using the languages you already love working with. Select below to find even more Getting Started guides tailored for your language.
+
 <html>
 <head>
 <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-
-<h2><center>Now, we can get into Platform.sh's capabilities using the languages you already love working with!</center></h2>
 
 <center>
 <a href="/gettingstarted/languages/php.html" class="buttongen lang"><img src="/images/technologies/php.svg" alt="PHP"></br></br>PHP</a>

@@ -29,8 +29,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 
 <center>
 
-<a href="/gettingstarted/next-steps/step-2.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/next-steps.html" class="buttongen small">Continue to Getting Started Guides</a>
+<a href="/gettingstarted/next-steps/demo/step-2.html" class="buttongen small">Back</a>
+<a href="/gettingstarted/next-steps.html#onward" class="buttongen small">Continue to Getting Started Guides</a>
 
 </center>
 

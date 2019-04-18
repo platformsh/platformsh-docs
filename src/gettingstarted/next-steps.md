@@ -10,9 +10,9 @@ We're just starting to introduce the tools that will take your development to th
 
 ## CLI
 
-The console provides additional control over your project we did not cover in the previous guide, however as you are developing with Platform.sh you will find yourself wanting even more features than it provides. 
+The management console gives you additional control over your project, however as you are developing with Platform.sh you will find yourself wanting even more features than it provides. 
 
-You can also create new template projects from the command line using the Platform.sh CLI, which will provide you with the ability to control more advanced aspects of your projects and better integration into your existing workflow.
+You can also create new template projects from the command line using the [Platform.sh CLI](/gettingstarted/cli.md), which will provide you with the ability to control more advanced aspects of your projects and better integration into your existing workflow.
 
 <html>
 <head>
@@ -20,7 +20,7 @@ You can also create new template projects from the command line using the Platfo
 </head>
 <body>
 
-<a href="/gettingstarted/next-steps/demo/start.html" class="buttongen full"><b>Getting Started with the Platform.sh CLI</b><br/><br/>Create a template project using the Platform.sh CLI.</a>
+<a href="/gettingstarted/next-steps/cli/start.html" class="buttongen full"><b>Getting Started with the Platform.sh CLI</b><br/><br/>Create a template project using the Platform.sh CLI.</a>
 
 </body>
 </html>
@@ -29,7 +29,7 @@ You can also create new template projects from the command line using the Platfo
 
 Now we get into the feature that really sets Platform.sh apart. 
 
-Platform.sh is based on Git, which you will undoubtedly already be using in your development workflow. Get started here to see how you can turn development branches into live environments to test your new feature, and be confident when you finally merge that feature into production.
+Platform.sh is based on [Git](/gettingstarted/tools.md#git), which you will undoubtedly already be using in your development workflow. Get started here to see how you can turn development branches into live environments to test your new feature, and be confident when you finally merge that feature into production.
 
 <html>
 <head>
@@ -37,7 +37,7 @@ Platform.sh is based on Git, which you will undoubtedly already be using in your
 </head>
 <body>
 
-<a href="/gettingstarted/next-steps/demo/start.html" class="buttongen full"><b>Branch, Deploy, Merge!</b><br/><br/>Create live development environments to test features and merge them into production.</a>
+<a href="/gettingstarted/next-steps/dev-envs/start.html" class="buttongen full"><b>Branch, Deploy, Merge!</b><br/><br/>Create live development environments to test features and merge them into production.</a>
 
 </body>
 </html>
@@ -58,9 +58,9 @@ All of these changes can be made either through the management console or the CL
 </head>
 <body>
 
-<a href="/gettingstarted/next-steps/demo/start.html" class="buttongen full"><b>Make Changes to a Plan</b><br/><br/>Upgrade size, increase the number of environments, and more!</a>
+<a href="/gettingstarted/next-steps/modify-plan/start.html" class="buttongen full"><b>Make Changes to a Plan</b><br/><br/>Upgrade size, increase the number of environments, and more!</a>
 
-<a href="/gettingstarted/next-steps/demo/start.html" class="buttongen full"><b>Get Collaborating</b><br/><br/>Grant additional users with different permissions to project.</a>
+<a href="/gettingstarted/next-steps/access/start.html" class="buttongen full"><b>Get Collaborating</b><br/><br/>Grant additional users with different permissions to project.</a>
 
 <a href="/gettingstarted/next-steps/demo/start.html" class="buttongen full"><b>Getting Started with Domains</b><br/><br/>Add a personalized domain to a project and configure how routes are handled by your application.</a>
 
