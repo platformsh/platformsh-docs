@@ -1,22 +1,46 @@
 # Getting Started with the Platform.sh CLI
 
-## Step Three
+## Install the Platform.sh CLI
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+In the previous steps you checked your requirements on your computer and configured and SSH key on your Platform.sh account. Now all we have to do is install the CLI and you can access your projects from the command line.
 
-1. **Etiam laoreet nulla ac euismod iaculis**
+1. **Installing on OSX or Linux**
 
-   Integer ut massa sit amet dolor bibendum ultricies at in est. Pellentesque nec interdum neque. 
+   ```bash
+   curl -sS https://platform.sh/cli/installer | php
+   ```
    
-2. **Integer eu elementum justo**
-   
-   Nunc vulputate, urna imperdiet tristique sagittis, velit ligula tincidunt tellus, sit amet blandit dui arcu id mauris. 
-   
-3. **Pellentesque nec interdum neque** 
+2. **Installing on Windows**
 
-   Aenean lacinia venenatis nisl, ut porttitor tortor. Vivamus ut risus in orci scelerisque hendrerit. 
+   ```bash
+   curl https://platform.sh/cli/installer -o cli-installer.php
+   php cli-installer.php
+   ```
    
-   Fusce viverra sodales quam, ut aliquam nibh vulputate sit amet.
+3. **Authenticate and Verify**
+
+   Once the installation has completed, you can run the CLI in your terminal with the command `platform`.
+   
+   You can take a quick glance at some of the commands available with the CLI by typing
+   
+   ```bash
+   platform list
+   ```
+   
+   Lastly, to make sure your SSH key is configured correctly, type the command
+   
+      ```bash
+   platform project:list
+   ```
+   
+   You should now be able to see a list of your Platform.sh projects, which includes the template you made in the previous guide.
+   
+   {% asciinema_local %}/scripts/asciinema/recordings/list.json{% endasciinema_local %}
+
+   
+   
+Now that you have installed the CLI and it is communicating with Platform.sh, we can create projects from here just like in the management console before.
+
    
    
 <html>
@@ -30,7 +54,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 <center>
 
 <a href="/gettingstarted/next-steps/cli/step-2.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/next-steps.html#live-development-environments" class="buttongen small">Continue to next Getting Started Guide</a>
+<a href="/gettingstarted/next-steps/cli/step-4.html" class="buttongen small">I have installed the Platform.sh CLI</a>
 
 </center>
 

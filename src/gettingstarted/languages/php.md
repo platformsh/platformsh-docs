@@ -39,7 +39,11 @@ All it takes is including a few configuration files and you're all set to work w
 </body>
 </html>
 
-## Onward
+## Applications
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum vestibulum lorem vitae rhoncus. Nunc a metus rhoncus, aliquet nibh sit amet, bibendum urna. 
+
+Nulla facilisis sollicitudin turpis a commodo. Aliquam ac quam pretium, porta mauris sit amet, venenatis magna. Integer tristique velit sed consequat iaculis.
 
 <html>
 <head>
@@ -49,9 +53,56 @@ All it takes is including a few configuration files and you're all set to work w
 
 <a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Getting Started with Drupal</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
 
+<a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Getting Started with Laravel</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+<a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Getting Started with Magento</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+<a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Getting Started with Wordpress</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+</body>
+</html>
+
+## Frameworks
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum vestibulum lorem vitae rhoncus. Nunc a metus rhoncus, aliquet nibh sit amet, bibendum urna. 
+
+Nulla facilisis sollicitudin turpis a commodo. Aliquam ac quam pretium, porta mauris sit amet, venenatis magna. Integer tristique velit sed consequat iaculis.
+
+<html>
+<head>
+<link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+
+<a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Getting Started with ReactPHP</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+<a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Getting Started with Symfony</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+<a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Getting Started with multi-apps</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+</body>
+</html>
+
+## Onward
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum vestibulum lorem vitae rhoncus. Nunc a metus rhoncus, aliquet nibh sit amet, bibendum urna. 
+
+Nulla facilisis sollicitudin turpis a commodo. Aliquam ac quam pretium, porta mauris sit amet, venenatis magna. Integer tristique velit sed consequat iaculis.
+
+<html>
+<head>
+<link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+
+<a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Getting Started with PHP extensions</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+<a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Updating with Composer</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
 <a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Getting Started with Databases</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
 
 <a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Getting Started with multi-apps</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
 
 </body>
 </html>
+

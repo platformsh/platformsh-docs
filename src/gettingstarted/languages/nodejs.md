@@ -39,7 +39,10 @@ All it takes is including a few configuration files and you're all set to work w
 </body>
 </html>
 
-## Onward
+## Applications
+
+
+Nulla facilisis sollicitudin turpis a commodo. Aliquam ac quam pretium, porta mauris sit amet, venenatis magna. Integer tristique velit sed consequat iaculis.
 
 <html>
 <head>
@@ -47,7 +50,22 @@ All it takes is including a few configuration files and you're all set to work w
 </head>
 <body>
 
-<a href="/gettingstarted/languages/nodejs/demo/start.html" class="buttongen full"><b>Getting Started with Drupal</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+<a href="/gettingstarted/languages/nodejs/demo/start.html" class="buttongen full"><b>Getting Started with Vue.js</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+</body>
+</html>
+
+## Onward
+
+Nulla facilisis sollicitudin turpis a commodo. Aliquam ac quam pretium, porta mauris sit amet, venenatis magna. Integer tristique velit sed consequat iaculis.
+
+<html>
+<head>
+<link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+
+<a href="/gettingstarted/languages/nodejs/demo/start.html" class="buttongen full"><b>Getting Started with Node.js microservices</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
 
 <a href="/gettingstarted/languages/nodejs/demo/start.html" class="buttongen full"><b>Getting Started with Databases</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
 

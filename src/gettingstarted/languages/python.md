@@ -39,7 +39,9 @@ All it takes is including a few configuration files and you're all set to work w
 </body>
 </html>
 
-## Onward
+## Applications
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum vestibulum lorem vitae rhoncus. Nunc a metus rhoncus, aliquet nibh sit amet, bibendum urna. 
 
 <html>
 <head>
@@ -47,7 +49,43 @@ All it takes is including a few configuration files and you're all set to work w
 </head>
 <body>
 
-<a href="/gettingstarted/languages/python/demo/start.html" class="buttongen full"><b>Getting Started with Drupal</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+<a href="/gettingstarted/languages/python/demo/start.html" class="buttongen full"><b>Getting Started with UWSGI</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+</body>
+</html>
+
+
+## Frameworks
+
+Nulla facilisis sollicitudin turpis a commodo. Aliquam ac quam pretium, porta mauris sit amet, venenatis magna. Integer tristique velit sed consequat iaculis.
+
+<html>
+<head>
+<link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+
+<a href="/gettingstarted/languages/python/demo/start.html" class="buttongen full"><b>Getting Started with Django</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+<a href="/gettingstarted/languages/python/demo/start.html" class="buttongen full"><b>Getting Started with Flask</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+</body>
+</html>
+
+
+## Onward
+
+Nulla facilisis sollicitudin turpis a commodo. Aliquam ac quam pretium, porta mauris sit amet, venenatis magna. Integer tristique velit sed consequat iaculis.
+
+<html>
+<head>
+<link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+
+<a href="/gettingstarted/languages/python/demo/start.html" class="buttongen full"><b>Start using Pipenv on Platform.sh</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
+
+<a href="/gettingstarted/languages/python/demo/start.html" class="buttongen full"><b>Get started with microservices and Python</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
 
 <a href="/gettingstarted/languages/python/demo/start.html" class="buttongen full"><b>Getting Started with Databases</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
 

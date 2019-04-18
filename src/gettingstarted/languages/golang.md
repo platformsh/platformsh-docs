@@ -47,8 +47,6 @@ All it takes is including a few configuration files and you're all set to work w
 </head>
 <body>
 
-<a href="/gettingstarted/languages/golang/demo/start.html" class="buttongen full"><b>Getting Started with Drupal</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
-
 <a href="/gettingstarted/languages/golang/demo/start.html" class="buttongen full"><b>Getting Started with Databases</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>
 
 <a href="/gettingstarted/languages/golang/demo/start.html" class="buttongen full"><b>Getting Started with multi-apps</b><br/><br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend.</a>

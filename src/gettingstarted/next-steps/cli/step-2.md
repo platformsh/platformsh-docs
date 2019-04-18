@@ -1,27 +1,37 @@
 # Getting Started with the Platform.sh CLI
 
-## Step Two
+## Add your RSA key to your account
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+Now that we have the requirements out of the way, let's place your RSA key onto Platform.sh so that you can communicate with your projects from your computer.
 
-1. **Etiam laoreet nulla ac euismod iaculis**
+1. **Move to Account Settings**
 
-   Integer ut massa sit amet dolor bibendum ultricies at in est. Pellentesque nec interdum neque. 
+   From your previous project, move to the top right hand corner of the screen and click the dropdown menu to the left of the settings gear box icon.
    
-   {% asciinema_local %}/scripts/asciinema/recordings/create.json{% endasciinema_local %}
-   {% asciinema %}/scripts/asciinema/recordings/create.json{% endasciinema %}
+   In the menu, click on `Account`.
+   
+   On the next page will be a list of all of your projects visible on the management console.
+   
+   Next, click on `Account Settings` link at the top of the page. 
+   
+2. **SSH key Settings**
 
+   From your Account Settings in the management console, you can modify a number of different features of your account if you need to. 
+   
+   Click the `SSH keys` tab to the left of your account information.
 
-2. **Integer eu elementum justo**
-   
-   Nunc vulputate, urna imperdiet tristique sagittis, velit ligula tincidunt tellus, sit amet blandit dui arcu id mauris. 
-   
-   
-3. **Pellentesque nec interdum neque** 
+3. **Add your RSA public key**
 
-   Aenean lacinia venenatis nisl, ut porttitor tortor. Vivamus ut risus in orci scelerisque hendrerit. 
+   At this point you won't see anything listed in the body of the page, because you don't have SSH configured with Platform.sh yet. Click the `+ Add public key` button in the top right hand corner of the screen. 
    
-   Fusce viverra sodales quam, ut aliquam nibh vulputate sit amet.
+   This will open up another window with two fields. Name the key with something memorable, like `home-computer`, and in the field below that, paste the content of the RSA public key you created in the previous step.
+   
+   Click `Save` to save the key.
+   
+   ![SSH key add](/videos/ssh.gif)
+   
+That's it! Now Platform.sh can authenticate your computer and so you can interact with your projects from the command line. All that's left to do now is actually install the Platform.sh CLI.
+
 
 
 <html>
@@ -35,7 +45,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 <center>
 
 <a href="/gettingstarted/next-steps/cli/step-1.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/next-steps/cli/step-3.html" class="buttongen small">I have completed Step Two</a>
+<a href="/gettingstarted/next-steps/cli/step-3.html" class="buttongen small">I have configured my SSH key on my Platform.sh account</a>
 
 </center>
 
