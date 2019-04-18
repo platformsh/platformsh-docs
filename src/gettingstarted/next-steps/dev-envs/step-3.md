@@ -1,6 +1,6 @@
 # Getting Started with Live Development Environments
 
-## Step Three
+## Make changes and push
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
 
@@ -30,7 +30,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 <center>
 
 <a href="/gettingstarted/next-steps/dev-envs/step-2.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/next-steps.html#making-changes-to-a-project" class="buttongen small">Continue to next Getting Started Guide</a>
+<a href="/gettingstarted/next-steps/dev-envs/step-4.html" class="buttongen small">I have made changes and pushed to Platform.sh</a>
 
 </center>
 

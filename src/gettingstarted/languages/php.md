@@ -15,7 +15,7 @@ Developing remotely isn't an option, and it makes sense that you would like to b
 </head>
 <body>
 
-<a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Get Developing Locally</b><br/><br/>Use the CLI to build a project locally.</a>
+<a href="/gettingstarted/languages/php/demo2/start.html" class="buttongen full"><b>Get Developing Locally</b><br/><br/>Use the CLI to build a project locally.</a>
 
 </body>
 </html>
@@ -32,9 +32,13 @@ All it takes is including a few configuration files and you're all set to work w
 </head>
 <body>
 
-<a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Migrate your Application to Platform.sh</b><br/><br/>Configure your existing PHP application for Platform.sh</a>
+<a href="/gettingstarted/languages/php/demo2/start.html" class="buttongen full"><b>Migrate your Application to Platform.sh</b><br/><br/>Configure your existing PHP application for Platform.sh</a>
 
-<a href="/gettingstarted/languages/php/demo/start.html" class="buttongen full"><b>Github Integration</b><br/><br/>Integrate your existing development workflow into Platform.sh</a>
+<a href="/gettingstarted/languages/php/demo2/start.html" class="buttongen full"><b>Github Integration</b><br/><br/>Integrate your existing development workflow into Platform.sh</a>
+
+<a href="/gettingstarted/languages/golang/demo2/start.html" class="buttongen full"><b>Getting Started with Services</b><br/><br/>Configure and use Platform.sh services on your PHP application.</a>
+
+<a href="/gettingstarted/languages/golang/demo2/start.html" class="buttongen full"><b>Getting Started with Routes</b><br/><br/>Configure routes for your PHP application.</a>
 
 </body>
 </html>

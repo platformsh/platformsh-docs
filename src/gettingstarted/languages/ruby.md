@@ -36,6 +36,10 @@ All it takes is including a few configuration files and you're all set to work w
 
 <a href="/gettingstarted/languages/ruby/demo/start.html" class="buttongen full"><b>Github Integration</b><br/><br/>Integrate your existing development workflow into Platform.sh</a>
 
+<a href="/gettingstarted/languages/golang/demo/start.html" class="buttongen full"><b>Getting Started with Services</b><br/><br/>Configure and use Platform.sh services on your Ruby application.</a>
+
+<a href="/gettingstarted/languages/golang/demo/start.html" class="buttongen full"><b>Getting Started with Routes</b><br/><br/>Configure routes for your Ruby application.</a>
+
 </body>
 </html>
 

@@ -1,6 +1,10 @@
 # Getting Started with Live Development Environments
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. Etiam laoreet nulla ac euismod iaculis. Integer ut massa sit amet dolor bibendum ultricies at in est. Pellentesque nec interdum neque. Integer eu elementum justo. Nunc vulputate, urna imperdiet tristique sagittis, velit ligula tincidunt tellus, sit amet blandit dui arcu id mauris. Aenean lacinia venenatis nisl, ut porttitor tortor. Vivamus ut risus in orci scelerisque hendrerit. Fusce viverra sodales quam, ut aliquam nibh vulputate sit amet.
+While you're developing your application, you will at some point create some new features for it. Typically you're going to develop that feature on a separate branch in your Git repository, run some tests, and then merge that feature into your production application.
+
+This is where the stress comes in and where breaking your live site becomes a real worry. 
+
+Platform.sh removes this stress considerably by providing *live development environments* for the features you're working on. 
 
 
 <html>
@@ -14,7 +18,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 <center>
 
 <a href="/gettingstarted/next-steps.html" class="buttongen small">Back to Getting Started Guides</a>
-<a href="/gettingstarted/next-steps/dev-envs/step-1.html" class="buttongen small">On to Step One</a>
+<a href="/gettingstarted/next-steps/dev-envs/step-1.html" class="buttongen small">Create and merge feature environments</a>
 
 </center>
 

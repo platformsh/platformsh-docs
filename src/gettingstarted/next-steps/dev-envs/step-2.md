@@ -1,6 +1,6 @@
 # Getting Started with Live Development Environments
 
-## Step Two
+## Clone template code locally
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
 
@@ -9,7 +9,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
    Integer ut massa sit amet dolor bibendum ultricies at in est. Pellentesque nec interdum neque. 
    
    {% asciinema_local %}/scripts/asciinema/recordings/create.json{% endasciinema_local %}
-   {% asciinema %}/scripts/asciinema/recordings/create.json{% endasciinema %}
 
 
 2. **Integer eu elementum justo**
@@ -35,7 +34,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 <center>
 
 <a href="/gettingstarted/next-steps/dev-envs/step-1.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/next-steps/dev-envs/step-3.html" class="buttongen small">I have completed Step Two</a>
+<a href="/gettingstarted/next-steps/dev-envs/step-3.html" class="buttongen small">I have downloaded the project code</a>
 
 </center>
 
