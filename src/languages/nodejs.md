@@ -130,7 +130,7 @@ Finally, make sure your Node.js application is configured to listen over the por
 const http = require('http');
 
 // Load the Platform.sh configuration
-const config= require('platformsh-config').config();
+const config = require('platformsh-config').config();
 
 const server = http.createServer(function (request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
