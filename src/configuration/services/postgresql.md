@@ -126,7 +126,7 @@ extensions not listed here.
 * **address_standardizer_data_us** - Address Standardizer US dataset example
 * **adminpack** - administrative functions for PostgreSQL
 * **autoinc** - functions for autoincrementing fields
-* **bloom** - bloom access method - signature file based index
+* **bloom** - bloom access method - signature file based index (requires 9.6 or higher)
 * **btree_gin** - support for indexing common datatypes in GIN
 * **btree_gist** - support for indexing common datatypes in GiST
 * **chkpass** - data type for auto-encrypted passwords
@@ -149,12 +149,12 @@ extensions not listed here.
 * **pageinspect** - inspect the contents of database pages at a low level
 * **pg_buffercache** - examine the shared buffer cache
 * **pg_freespacemap** - examine the free space map (FSM)
-* **pg_prewarm** - prewarm relation data
+* **pg_prewarm** - prewarm relation data (requires 9.6 or higher)
 * **pg_stat_statements** - track execution statistics of all SQL statements executed
 * **pg_trgm** - text similarity measurement and index searching based on trigrams
-* **pg_visibility** - examine the visibility map (VM) and page-level visibility info
+* **pg_visibility** - examine the visibility map (VM) and page-level visibility info (requires 9.6 or higher)
 * **pgcrypto** - cryptographic functions
-* **pgrouting** - pgRouting Extension
+* **pgrouting** - pgRouting Extension (requires 9.6 or higher)
 * **pgrowlocks** - show row-level locking information
 * **pgstattuple** - show tuple-level statistics
 * **plpgsql** - PL/pgSQL procedural language
@@ -169,9 +169,9 @@ extensions not listed here.
 * **tablefunc** - functions that manipulate whole tables, including crosstab
 * **tcn** - Triggered change notifications
 * **timetravel** - functions for implementing time travel
-* **tsearch2** - compatibility package for pre-8.3 text search functions
-* **tsm_system_rows** - TABLESAMPLE method which accepts number of rows as a limit
-* **tsm_system_time** - TABLESAMPLE method which accepts time in milliseconds as a limit
+* **tsearch2** - compatibility package for pre-8.3 text search functions (obsolete, only available for 9.6 and 9.3)
+* **tsm_system_rows** - TABLESAMPLE method which accepts number of rows as a limit (requires 9.6 or higher)
+* **tsm_system_time** - TABLESAMPLE method which accepts time in milliseconds as a limit (requires 9.6 or higher)
 * **unaccent** - text search dictionary that removes accents
 * **uuid-ossp** - generate universally unique identifiers (UUIDs)
 * **xml2** - XPath querying and XSLT
