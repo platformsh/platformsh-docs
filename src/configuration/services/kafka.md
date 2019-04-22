@@ -115,3 +115,29 @@ class ProducingConsumer < Racecar::Consumer
 end
 ```
 
+## PHP
+```php
+<?php
+require '../vendor/autoload.php';
+$config = \Kafka\ProducerConfig::getInstance();
+$config->setMetadataBrokerList('kafka.internal:9092');
+
+// Producer
+$producer = new \Kafka\Producer();
+for($i = 0; $i < 100; $i++) {
+    $producer->send([
+        [
+            'topic' => 'test1',
+            'value' => 'test1....message.',
+            'key' => '',
+        ],
+    ]);
+}
+
+// Consumer
+$config = \Kafka\ConsumerConfig::getInstance();
+$config->setTopics(['test1']);
+$consumer = new \Kafka\Consumer();
+$consumer->start(function($topic, $part, $message) {
+    var_dump($message);
+});
