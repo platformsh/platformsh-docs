@@ -140,6 +140,7 @@ mounts:
 ```
 
 ## Configuring services
+
 7. In this example we assue in the `relationships` key that we have a mysql instance. To configure it we need to create a `.platform/services.yaml` with for eample:
 
 ```yaml
