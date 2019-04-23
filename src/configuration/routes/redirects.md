@@ -84,6 +84,20 @@ Each rule under `paths` is defined by its key describing the expression to match
    would result in `/from/path/suffix` redirecting to just `/to`. If `append_suffix` was left on its default value of `true`, then `/from/path/suffix` would have redirected to `/to/path/suffix`.
 
  * `code`: optional, HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`.
+
+   ```yaml
+   https://{default}/:
+     type: upstream
+     redirects:
+       paths:
+         '/from':
+           to: 'https://example.com/'
+           code: 308
+         '/here':
+           to: 'https://example.com/there'
+   ```
+   In this example, redirects from `/from` would use a `308` HTTP status code, but redirects from `/here` would default to `302`.
+
  * `expires`: optional, the duration the redirect will be cached for. Defaults to the `expires` value defined directly under the `redirects` key, but at this level we can fine-tune the expiration of individual partial redirects:
 
    ```yaml

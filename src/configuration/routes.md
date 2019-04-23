@@ -16,7 +16,7 @@ $ mkdir .platform
 $ touch .platform/routes.yaml
 ```
 
-![Routes](/images/config_diagrams/routes.svg)
+![Routes](/images/config-diagrams/routes-basic.png)
 
 ## Route templates
 
@@ -40,7 +40,7 @@ Each route can be configured separately. It has the following properties
 * `ssi` controls whether Server Side Includes are enabled. For more information: see [SSI](/configuration/routes/ssi.html).
 * `redirects` controls [redirect rules](/configuration/routes/redirects.html) associated with the route.
 
-![Routes files](/images/config_diagrams/routes2.svg)
+![Routes files](/images/config-diagrams/routes-configs.png)
 
 > **note**
 > For the moment, the value of upstream is always in the form: `<application-name>:http`.  `<application-name>` is the `name` defined in `.platform.app.yaml` file.  `:php` is a deprecated application endpoint; use `:http` instead.  In the future, Platform.sh will support multiple endpoints per application.
@@ -121,7 +121,7 @@ Please note that when there are two routes sharing the same HTTP scheme, domain,
 
 All routes defined for an environment are available to the application in its `PLATFORM_ROUTES` environment variable, which contains a base64-encoded JSON object. This object can be parsed by the language of your choice to give your application access to the generated routes.
 
-When routes are generated, all placeholders will be replaced with appropriate domains names, and depending on your configuration, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects). To make it easier to locate routes in a standardized fashion, you may specify an `id` key on each route which remains stable across environments. You may also specify a single route as `primary`, which will cause it to be highlighted in the web interface but will have no impact on the runtime environment.
+When routes are generated, all placeholders will be replaced with appropriate domains names, and depending on your configuration, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects). To make it easier to locate routes in a standardized fashion, you may specify an `id` key on each route which remains stable across environments. You may also specify a single route as `primary`, which will cause it to be highlighted in the web management console but will have no impact on the runtime environment.
 
 Consider this `routes.yaml` configuration example:
 
@@ -196,15 +196,15 @@ function get_domain_for(string $id) {
 
 That can be used, for example, for inbound request whitelisting, a feature of many PHP frameworks.
 
-## Configuring routes on the Web Interface
+## Configuring routes on the management console
 
-Routes can also be configured using the web interface in the [routes section](/administration/web/configure-environment.html#routes) of the environment settings. If you have edited the routes via the web interface, you will have to `git pull` the updated `.platform/routes.yaml` file from us.
+Routes can also be configured using the management console in the [routes section](/administration/web/configure-environment.html#routes) of the environment settings. If you have edited the routes via the management console, you will have to `git pull` the updated `.platform/routes.yaml` file from us.
 
 ## CLI Access
 
 You can get a list of the configured routes of an environment by running `platform environment:routes`.
 
-![Platform Routes CLI](/images/platform-routes-cli.png)
+![Platform Routes CLI](/images/cli/platform-routes-cli.png)
 
 ## Wildcard routes
 

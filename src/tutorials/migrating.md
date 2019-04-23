@@ -13,7 +13,7 @@ Now create a new Platform.sh project and when asked if you want to create a blan
 
 ## Push your code
 
-When creating a new project, the UI will provide two commands to copy and paste similar to the following:
+When creating a new project, the management console will provide two commands to copy and paste similar to the following:
 
 ```bash
 git remote add platform nodzrdripcyh6@git.us.platform.sh:nodzrdripcyh6.git

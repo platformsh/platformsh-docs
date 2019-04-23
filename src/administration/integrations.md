@@ -14,7 +14,7 @@ With the CLI, you can list all your active integrations:
 platform integrations
 ```
 
-![Cli Integrations](/images/cli-integrations.png)
+![Cli Integrations](/images/cli/cli-integrations.png)
 
 > **note**
 > If you have created your account using the Bitbucket or GitHub oAuth Login, then in order to use the Platform.sh CLI you will need to set up a password by visiting [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password).

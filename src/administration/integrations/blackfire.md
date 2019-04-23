@@ -26,11 +26,11 @@ Check the latest versions of the probe and CLI tool on [Blackfire's documentatio
 
 Go to your Dashboard and create a new environment [under the Environments tab](https://blackfire.io/my/environments).
 
-![Blackfire environments](/images/blackfire-environments.png)
+![Blackfire environments](/images/integrations/blackfire/blackfire-environments.png)
 
 You will need to store the server credentials for further configuration. You can find them any time under the "Settings" tab of your environment in Blackfire.
 
-![Blackfire credentials](/images/blackfire-credentials.png)
+![Blackfire credentials](/images/integrations/blackfire/blackfire-credentials.png)
 
 ### 2. Enable the Blackfire extension
 
@@ -92,7 +92,7 @@ Num of CPU => 8
 
 Access your site via your browser and click `Profile` in the Blackfire Companion.
 
-![Blackfire Companion](/images/blackfire-companion.png)
+![Blackfire Companion](/images/integrations/blackfire/blackfire-companion.png)
 
 That's it! Your site will be profiled and you should get all the results in your Blackfire account.
 
@@ -157,4 +157,3 @@ Once you are done, please disable logging with:
 
 * `platform variable:delete php:blackfire.log_file` 
 * `platform variable:delete php:blackfire.log_level`
-  

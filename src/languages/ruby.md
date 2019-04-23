@@ -21,7 +21,7 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
 
    ```yaml
    # .platform.app.yaml
-   type: "ruby:2.5"
+   type: "ruby:2.6"
    ```
 
 2. Build your application with the build hook.
@@ -106,7 +106,7 @@ Here is the complete `.platform.app.yaml` file:
 
 ```yaml
 name: 'app'
-type: "ruby:2.4"
+type: "ruby:2.6"
 
 web:
     upstream:
@@ -140,6 +140,7 @@ mounts:
 ```
 
 ## Configuring services
+
 7. In this example we assue in the `relationships` key that we have a mysql instance. To configure it we need to create a `.platform/services.yaml` with for eample:
 
 ```yaml

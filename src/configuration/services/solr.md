@@ -60,7 +60,9 @@ mysearch:
     type: solr:4.10
     disk: 1024
     configuration:
-        core_config: !archive "<directory>"
+                core_config: !include
+                    type: archive
+                    path: "<directory>"
 ```
 
 The `directory` parameter points to a directory in the Git repository, in or below the `.platform/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.  For example, place them in `.platform/solr/conf/` such that the `schema.xml` file is located at `.platform/solr/conf/schema.xml`.   You can then reference that path like this -
@@ -70,7 +72,9 @@ mysearch:
     type: solr:4.10
     disk: 1024
     configuration:
-        core_config: !archive "solr/conf"
+        core_config: !include
+            type: archive
+            path: "solr/conf/"
 ```
 
 ## Solr 6 and later
@@ -84,9 +88,13 @@ solrsearch:
     configuration:
         cores:
             mainindex:
-                conf_dir: !archive "core1-conf"
+                core_config: !include
+                    type: archive
+                    path: "core1-conf"
             extraindex:
-                conf_dir: !archive "core2-conf"
+                core_config: !include
+                    type: archive
+                    path: "core2-conf"
         endpoints:
             main:
                 core: mainindex
@@ -141,7 +149,9 @@ solrsearch:
     disk: 1024
     configuration:
         configsets:
-            mainconfig: !archive "configsets/solr6"
+            mainconfig: : !include
+                type: archive
+                path: "configsets/solr6"
         cores:
             english_index:
                 core_properties: |
@@ -184,7 +194,7 @@ The Solr 6.x Drupal 8 configuration files are reasonably generic and should work
 
 The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance will decline and deploys will become longer. The directory archives will be compressed and string encoded. You could use this bash pipeline `echo $(($(tar czf - . | base64 | wc -c )/(1024*1024))) Megabytes` inside the directory to get an idea of the archive size.
 
-The `!archive "<directory">` is a collection of configuration data, like a data dictionary, e.g. small collections of key/ value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin .jars will inflate the archive size, and is not recommended.
+The configuration directory is a collection of configuration data, like a data dictionary, e.g. small collections of key/value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin `.jar` files will inflate the archive size, and is not recommended.
 
 ## Accessing the Solr server administrative interface
 
