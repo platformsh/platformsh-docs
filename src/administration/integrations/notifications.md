@@ -36,7 +36,7 @@ The `from-address` is whatever address you want the email to appear to be from. 
 
 ### Slack notifications
 
-A notification can trigger a message to be sent to a Slack bot.  First, create a new custom "[bot user](https://api.slack.com/bot-users)" for your Slack group and configure the channels you wish it to live in.  Note the API Token provided by Slack.
+A notification can trigger a message to be sent to a Slack bot.  First, create a new custom "[bot user](https://api.slack.com/bot-users)" for your Slack group and configure the channels you wish it to live in.  Note the API token is the "Bot User OAuth Access Token" provided by Slack.
 
 Then register that Slack bot with Platform.sh using a `health.slack` integration:
 
