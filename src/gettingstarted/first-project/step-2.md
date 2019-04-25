@@ -32,9 +32,19 @@ First, we want to create our new template project:
    The last step for setting up our new project is to configure its region.
 
    Select the region that most closely matches the region of where you think most of your traffic will come from and click `Next`.
-   
-   ![New Project verify](/videos/create-project.gif)
+      
 
+<html>
+<head>
+<link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>   
+   <video autoplay="autoplay" loop="loop" width="400" height="300">
+    <source src="/videos/create-project.mp4" type="video/mp4" />
+    <img src="/videos/create-project.gif" width="400" height="300" />
+   </video>
+</body>
+</html>
 
 <html>
 <head>
