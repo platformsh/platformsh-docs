@@ -34,19 +34,7 @@ Inbound IPs (gw.eu-2.platformsh.site):
 * 34.241.191.143
 * 52.210.208.94
 
-### Netherlands (nl-1.platform.sh)
-
-Outbound IPs:
-
-* 13.73.166.191
-* 13.73.165.217
-* 13.73.164.245
-
-Inbound IP (gw.nl-1.platformsh.site):
-
-* 13.73.161.47
-
-### German Sovereign Cloud (de-1.platform.sh)
+### German Sovereign Cloud (de-1.platform.sh) - Retiring May 2019
 
 Outbound IPs:
 
@@ -57,6 +45,18 @@ Outbound IPs:
 Inbound IP (gw.de-1.platformsh.site):
 
 * 51.4.227.171
+
+### German Sovereign Cloud (de-2.platform.sh)
+
+* 35.246.248.138
+* 35.246.184.45
+* 35.242.229.239
+
+Inbound IP (gw.de-2.platformsh.site):
+
+* 35.246.248.138
+* 35.246.184.45
+* 35.242.229.239
 
 ### French Sovereign Cloud (fr-1.platform.sh)
 
