@@ -1,5 +1,7 @@
 # Platform.sh pricing
 
+You can see our full pricing information at: https://platform.sh/pricing/
+
 All Platform.sh plans include:
 
 * four Environments (3 for staging/development, 1 for the live site).
@@ -91,10 +93,10 @@ We propose three tiers for agencies with many perks.
 
 [Learn more and join today...](https://platform.sh/solutions/agency)
 
-## Sovereign German Cloud
+## German Cloud Pricing
 
 
-The prices for Germany are currently set at 30% above the EU and US plan prices. Thus, a "Production Standard" environment on the Sovereign German Cloud will be $65 instead of $50.
+The prices for Germany are currently set at 10% above the EU and US plan prices. Thus, a "Production Standard" environment on the Sovereign German Cloud will be $55 instead of $50.
 
 Our estimation page (which you can reach by clicking on your account dashboard on the edit link for a project) does reflect these new options.
 
