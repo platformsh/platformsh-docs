@@ -1,4 +1,4 @@
-# Platform.sh from scratch
+# Start with a template
 
 ## Create a new project from a template
 
@@ -56,8 +56,8 @@ First, we want to create our new template project:
 
 <center>
 
-<a href="/gettingstarted/first-project/step-1.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/first-project/step-3.html" class="buttongen small">I have created a new project</a>
+<a href="/gettingstarted/template/step-1.html" class="buttongen small">Back</a>
+<a href="/gettingstarted/template/step-3.html" class="buttongen small">I have created a new project</a>
 
 </center>
 

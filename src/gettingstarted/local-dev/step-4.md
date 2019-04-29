@@ -1,6 +1,6 @@
-# Platform.sh from scratch
+# Local development
 
-## Open a free trial account
+## Connect to services
 
 The best way to understand a tool is to use it.  We believe that the best marketing we can offer for Platform.sh is to let you try it out, which is why we offer a free one month trial.
 
@@ -22,8 +22,8 @@ The best way to understand a tool is to use it.  We believe that the best market
 
 <center>
 
-<a href="/gettingstarted/first-project.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/first-project/step-2.html" class="buttongen small">I have set up my free trial account</a>
+<a href="/gettingstarted/local-dev/step-3.html" class="buttongen small">Back</a>
+<a href="/gettingstarted/local-dev/step-5.html" class="buttongen small">I have set up my free trial account</a>
 
 </center>
 
@@ -31,4 +31,3 @@ The best way to understand a tool is to use it.  We believe that the best market
 
 </body>
 </html>
-

@@ -1,4 +1,4 @@
-# Platform.sh from scratch
+# Start with a template
 
 ## Build, Deploy, Done!
 
@@ -55,8 +55,8 @@ Once you have configured the template application in the previous step, Platform
 
 <center>
 
-<a href="/gettingstarted/first-project/step-2.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/next-steps.html" class="buttongen small">Next Steps</a>
+<a href="/gettingstarted/template/step-2.html" class="buttongen small">Back</a>
+<a href="/gettingstarted/template/step-4.html" class="buttongen small">Next Steps</a>
 
 </center>
 

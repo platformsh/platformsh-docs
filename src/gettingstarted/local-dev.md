@@ -1,5 +1,5 @@
 
-# Platform.sh from scratch
+# Local development
 
 
 Welcome to Platform.sh! Getting started is as easy as opening a free trial account and initializing one of our maintained templates on a new project. 
@@ -16,7 +16,7 @@ There are no requirements on your part at this point. This guide will take you f
 
 <center>
 
-<a href="/gettingstarted/first-project/step-1.html" class="buttongen small">Get started!</a>
+<a href="/gettingstarted/local-dev/step-1.html" class="buttongen small">Get started!</a>
 
 </center>
 
@@ -24,5 +24,4 @@ There are no requirements on your part at this point. This guide will take you f
 
 </body>
 </html>
-
 

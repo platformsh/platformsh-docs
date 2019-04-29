@@ -51,7 +51,7 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
    ```yaml
    web:
      commands:
-       start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
+       start: template
    ```
 
    If there is a package.json file present at the root of your repository, Platform.sh will automatically install the dependencies. We suggest including the `platformsh-config` helper npm module, which makes it trivial to access the running environment.
