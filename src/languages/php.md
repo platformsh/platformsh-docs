@@ -77,21 +77,21 @@ $ php-fpm-status --socket=unix://$SOCKET --path=/-/status --full
 
 To access various [services](/configuration/services.md) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
 
-{% codetabs name="Elasticsearch", type="js", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
+{% codetabs name="Elasticsearch", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
 
-{% language name="Memcached", type="js", url="https://examples.docs.platform.sh/php/memcached" -%}
+{% language name="Memcached", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
 
-{% language name="MongoDB", type="js", url="https://examples.docs.platform.sh/php/mongodb" -%}
+{% language name="MongoDB", type="php", url="https://examples.docs.platform.sh/php/mongodb" -%}
 
-{% language name="MySQL", type="js", url="https://examples.docs.platform.sh/php/mysql" -%}
+{% language name="MySQL", type="php", url="https://examples.docs.platform.sh/php/mysql" -%}
 
-{% language name="PostgreSQL", type="js", url="https://examples.docs.platform.sh/php/postgresql" -%}
+{% language name="PostgreSQL", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
 
-{% language name="RabbitMQ", type="js", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
+{% language name="RabbitMQ", type="php", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
 
-{% language name="Redis", type="js", url="https://examples.docs.platform.sh/php/redis" -%}
+{% language name="Redis", type="php", url="https://examples.docs.platform.sh/php/redis" -%}
 
-{% language name="Solr", type="js", url="https://examples.docs.platform.sh/php/solr" -%}
+{% language name="Solr", type="php", url="https://examples.docs.platform.sh/php/solr" -%}
 
 {%- endcodetabs %}
 
