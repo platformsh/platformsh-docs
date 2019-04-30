@@ -99,12 +99,12 @@ To access various [services](/configuration/services.md) with PHP, see the follo
 
 It is possible to change the PHP-FPM runtime configuration via the `runtime` block on your `.platform.app.yaml`. The PHP-FPM options below are configurable:
 
-* `request_terminate_timeout` - The timeout for serving a single request after which the PHP-FPM worker process will be killed. This option should be used when the `max_execution_time` ini option does not stop script execution for some reason.
+* `request_terminate_timeout` - The timeout for serving a single request after which the PHP-FPM worker process will be killed.  That is separate from the PHP runtime's `max_execution_time` ini option, which is preferred.  This option may be used if the PHP process is dying without cleaning up properly and causing the FPM process to hang.
 
-    ```yaml
-    runtime:
-        request_terminate_timeout: 300
-    ```
+```yaml
+runtime:
+    request_terminate_timeout: 300
+```
 
 ## Project templates
 
