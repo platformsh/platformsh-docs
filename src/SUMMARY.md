@@ -29,6 +29,7 @@
 * [Services (services.yaml)](configuration/services.md)
   * [Elasticsearch](configuration/services/elasticsearch.md)
   * [InfluxDB](configuration/services/influxdb.md)
+  * [Kafka](configuration/services/kafka.md)
   * [Memcached](configuration/services/memcached.md)
   * [MongoDB](configuration/services/mongodb.md)
   * [MySQL](configuration/services/mysql.md)
