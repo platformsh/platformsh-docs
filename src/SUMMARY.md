@@ -168,11 +168,6 @@
 * [Third-party resources](tutorials/third-party.md)
 * [Changing regions](tutorials/region-migration.md)
 
-## Changelog
 
-* [2019](changelog/2019.md)
-* [2018](changelog/2018.md)
-* [2017](changelog/2017.md)
-* [2016](changelog/2016.md)
-* [2015](changelog/2015.md)
-* [2014](changelog/2014.md)
+
+* [Changelog](changelog.md)
