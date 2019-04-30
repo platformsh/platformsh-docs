@@ -35,6 +35,19 @@ You can then use the service in a configuration file of your application with so
 
 {% codetabs name="Python", type="python", url="https://examples.docs.platform.sh/python/kafka" -%}
 
+{%- language name="Ruby", type="ruby"-%}
+## With the ruby-kafka gem
+
+# Producer
+require "kafka"
+kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
+kafka.deliver_message("Hello, World!", topic: "greetings")
+
+# Consumer
+kafka.each_message(topic: "greetings") do |message|
+  puts message.offset, message.key, message.value
+end
+
 {%- endcodetabs %}
 
 (The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)
