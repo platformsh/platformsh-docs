@@ -148,6 +148,8 @@ To access various [services](/configuration/services.md) with Python, see the fo
 
 {% codetabs name="Elasticsearch", type="js", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
 
+{% language name="Kafla", type="js", url="https://examples.docs.platform.sh/python/kafka" -%}
+
 {% language name="Memcached", type="js", url="https://examples.docs.platform.sh/python/memcached" -%}
 
 {% language name="MongoDB", type="js", url="https://examples.docs.platform.sh/python/mongodb" -%}
