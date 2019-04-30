@@ -22,7 +22,6 @@ Please be aware that triggering a snapshot will cause a momentary pause in site 
 
 ## Restore
 
-
 You will see the snapshot in the activity feed of your environment in the Platform.sh management console. You can trigger the restore by clicking on the `restore` link. You can also restore the snapshot to a different environment using the CLI.
 
 You can list existing snapshots with the CLI as follows:
@@ -53,6 +52,7 @@ Or even restore the snapshot to a different branch with the CLI as follows:
 ```bash
 $ platform snapshot:restore --target=RESTORE_BRANCH 2ca4d90639f706283fee
 ```
+
 For this to work, it's important to act on the active branch on which the snapshot was taken. Restoring a snapshot from `develop` when working on the `staging` branch is impossible. Switch to the acting branch and set your `--target` as above snippet mentions.
 
 If no branch already exists, you can specify the parent of the branch that will be created to restore your snapshot to as follows:
@@ -63,6 +63,8 @@ $ platform snapshot:restore --branch-from=PARENT_BRANCH 2ca4d90639f706283fee
 
 > **note**
 > You need "admin" role to restore your environment from a snapshot.
+
+Be aware that the older US and EU regions do not support restoring snapshots to different environments.  If your project is on one of the older regions you may file a support ticket to ask that a snapshot be restored to a different environment for you, or [migrate your project](/tutorials/region-migration.md) to one of the new regions that supports this feature.
 
 ## Snapshots and downtime
 
