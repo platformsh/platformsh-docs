@@ -2,6 +2,13 @@
 
 ## Open a free trial account
 
+The best way to understand a tool is to use it.  We believe that the best marketing we can offer for Platform.sh is to let you try it out, which is why we offer a free one month trial.
+
+Visit the [Platform.sh accounts](https://accounts.platform.sh/platform/trial/general/setup) page and fill our your information to set up your trial account.
+
+   ![Free Trial](/images/getting-started/template/free-trial.png)
+
+Alternatively, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose this option, you will be able to set a password for your Platform.sh account later.
 
 <html>
 <head>

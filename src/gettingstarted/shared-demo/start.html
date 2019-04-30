@@ -1,0 +1,32 @@
+<html>
+<head>
+<link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+
+
+<h1 id="demo">Shared Demo</h1>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    if(window.location.href.indexOf("golang") > -1) {
+       document.getElementById("demo").innerHTML = "Shared Demo for Go";
+    } else if (window.location.href.indexOf("php") > -1) {
+    document.getElementById("demo").innerHTML = "Shared Demo for PHP";
+  }
+});
+</script>
+
+<br/><br/>
+
+<center>
+
+<a href="/gettingstarted/next-steps.html" class="buttongen small">Back to Getting Started Guides</a>
+<a href="/gettingstarted/next-steps/cli/step-1.html" class="buttongen small">Get Started with the Shared Demo</a>
+
+</center>
+
+<br/><br/>
+
+</body>
+</html>

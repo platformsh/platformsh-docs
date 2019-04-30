@@ -1,9 +1,8 @@
-
-# Import your own code
+# Developing with Platform.sh: Live Feature Environments
 
 ## Next steps
 
-In this guide you created a project using the [CLI](/development/cli.md) and configured your project to run on Platform.sh using a few simple configuration files. 
+In this guide you learned how to create and activate live feature environments, test them, and merge them into production safely using [snapshots](/administration/snapshot-and-restore.md).
 
 Don't stop now! There are far more features that make Platform.sh profoundly helpful to developers that you have left to explore.
 
@@ -18,8 +17,6 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 <body>
 
 <a href="/gettingstarted/local-dev.html" class="buttongen full"><b>Local Development</b><br/><br/>Remote connect to services and build your application locally during development.</a>
-
-<a href="/gettingstarted/feature-envs.html" class="buttongen full"><b>Live feature environments</b><br/><br/>Activate development branches and test new features before merging into production</a>
 
 </body>
 </html>

@@ -1,10 +1,11 @@
+# Developing with Platform.sh: Local Development
 
-# Local development
+While you're developing your application, you will at some point create some new features for it. Typically you're going to develop that feature on a separate branch in your Git repository, run some tests, and then merge that feature into your production application.
 
+This is where the stress comes in and where breaking your live site becomes a real worry. 
 
-Welcome to Platform.sh! Getting started is as easy as opening a free trial account and initializing one of our maintained templates on a new project. 
+Platform.sh removes this stress considerably by providing *live development environments* for the features you're working on. 
 
-There are no requirements on your part at this point. This guide will take you from zero to hero - from first glance to a completely built and deployed application entirely in your browser. 
 
 <html>
 <head>
@@ -16,7 +17,7 @@ There are no requirements on your part at this point. This guide will take you f
 
 <center>
 
-<a href="/gettingstarted/local-dev/step-1.html" class="buttongen small">Get started!</a>
+<a href="/gettingstarted/feature-envs/step-1.html" class="buttongen small">Get started!</a>
 
 </center>
 

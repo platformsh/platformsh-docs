@@ -1,29 +1,23 @@
-# Start with a template
+# Getting Started with the Platform.sh CLI
 
-## Next Steps: Installing the Platform.sh CLI
+## Install the Platform.sh CLI
 
 In the previous steps you checked your requirements on your computer and configured and SSH key on your Platform.sh account. Now all we have to do is install the CLI and you can access your projects from the command line.
 
-{% asciinema_local %}/scripts/asciinema/recordings/list.json{% endasciinema_local %}
+1. **Installing on OSX or Linux**
 
-1. **Install the CLI**
-
-    In your terminal run the following command depending on your operating system:
-
-    * **Installing on OSX or Linux**
-    
-       ```bash
-       curl -sS https://platform.sh/cli/installer | php
-       ```
-       
-    * **Installing on Windows**
-    
-       ```bash
-       curl https://platform.sh/cli/installer -o cli-installer.php
-       php cli-installer.php
-       ```
+   ```bash
+   curl -sS https://platform.sh/cli/installer | php
+   ```
    
-2. **Authenticate and Verify**
+2. **Installing on Windows**
+
+   ```bash
+   curl https://platform.sh/cli/installer -o cli-installer.php
+   php cli-installer.php
+   ```
+   
+3. **Authenticate and Verify**
 
    Once the installation has completed, you can run the CLI in your terminal with the command `platform`.
    
@@ -37,6 +31,7 @@ In the previous steps you checked your requirements on your computer and configu
    
       ```bash
    platform project:list
+   ```
    
    You should now be able to see a list of your Platform.sh projects, which includes the template you made in the previous guide.
    
@@ -46,7 +41,8 @@ In the previous steps you checked your requirements on your computer and configu
    
 Now that you have installed the CLI and it is communicating with Platform.sh, we can create projects from here just like in the management console before.
 
-
+   
+   
 <html>
 <head>
 <link rel="stylesheet" href="/styles/styles.css">
@@ -57,8 +53,8 @@ Now that you have installed the CLI and it is communicating with Platform.sh, we
 
 <center>
 
-<a href="/gettingstarted/template/step-4.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/template/step-6.html" class="buttongen small">I have installed the CLI</a>
+<a href="/gettingstarted/next-steps/cli/step-2.html" class="buttongen small">Back</a>
+<a href="/gettingstarted/next-steps/cli/step-4.html" class="buttongen small">I have installed the Platform.sh CLI</a>
 
 </center>
 

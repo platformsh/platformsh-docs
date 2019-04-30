@@ -461,10 +461,10 @@ a.buttongen.lang {
 
 a.buttongen.path {
   display: inline-block;
-  font-weight: 900;
-  height: 50% !important;
+  font-size:22px !important;
+  font-weight: 1200;
+  height: 60% !important;
   width: 40% !important;
   text-align:center;
 }
-
 

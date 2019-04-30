@@ -1,17 +1,24 @@
-# Live feature environments
+# Developing with Platform.sh: Live Feature Environments
 
-## Merge into production
+## Activate environment
 
-The best way to understand a tool is to use it.  We believe that the best marketing we can offer for Platform.sh is to let you try it out, which is why we offer a free one month trial.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
 
-1. Visit the [Platform.sh accounts](https://accounts.platform.sh/platform/trial/general/setup) page to set up your trial account.
+1. **Etiam laoreet nulla ac euismod iaculis**
 
-   ![Free Trial](/images/getting-started/first-project/free-trial.png)
+   Integer ut massa sit amet dolor bibendum ultricies at in est. Pellentesque nec interdum neque. 
+   
+2. **Integer eu elementum justo**
+   
+   Nunc vulputate, urna imperdiet tristique sagittis, velit ligula tincidunt tellus, sit amet blandit dui arcu id mauris. 
+   
+3. **Pellentesque nec interdum neque** 
 
-2. Fill out your information to set up your account.
-
-3. Alternatively, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose this option, you will be able to set a password for your Platform.sh account later.
-
+   Aenean lacinia venenatis nisl, ut porttitor tortor. Vivamus ut risus in orci scelerisque hendrerit. 
+   
+   Fusce viverra sodales quam, ut aliquam nibh vulputate sit amet.
+   
+   
 <html>
 <head>
 <link rel="stylesheet" href="/styles/styles.css">
@@ -23,7 +30,7 @@ The best way to understand a tool is to use it.  We believe that the best market
 <center>
 
 <a href="/gettingstarted/feature-envs/step-3.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/feature-envs/step-5.html" class="buttongen small">I have set up my free trial account</a>
+<a href="/gettingstarted/feature-envs/step-5.html" class="buttongen small">I have activated the feature environment</a>
 
 </center>
 
@@ -31,4 +38,3 @@ The best way to understand a tool is to use it.  We believe that the best market
 
 </body>
 </html>
-

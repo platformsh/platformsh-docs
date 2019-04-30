@@ -8,6 +8,8 @@ Once you have configured the template application in the previous step, Platform
 
    When the build screen has cleared, Platform.sh will return you to the management console. This time, however, you will be on the main page for your new project, `My First Project`.
    
+   ![New Project verify](/videos/new-project.gif)
+   
    From here, you can control the settings of this project, as well as monitor its status.
    
    In the `Environments` box, click on `Master`.
@@ -22,13 +24,13 @@ Once you have configured the template application in the previous step, Platform
       
       Once that status has updated to `Active`, the site is live.
       
-      ![Build status](/images/getting-started/first-project/build-status.png)
+      ![Build status](/images/getting-started/template/build-status.png)
       
    * **Environment Activity**
    
       In this box, you can see what we have done so far has two initial entries: `My First Project` was created, and a template profile was initialized based on the template you chose in the previous step.
       
-      ![Environment activity](/images/getting-started/first-project/env-activity.png)
+      ![Environment activity](/images/getting-started/template/env-activity.png)
    
 3. **Done!**
 
@@ -37,9 +39,7 @@ Once you have configured the template application in the previous step, Platform
    You can view the template now by clicking on the link that is now visible for the `Master` environment under the Overview box. 
    
    It will open another tab in your browser to your new live site!
-   
-   ![New Project verify](/videos/new-project.gif)
-   
+      
    
 > In these few steps you have created a free trial account, configured a maintained template for your project and deployed it using the management console in your browser. 
 >
@@ -56,7 +56,7 @@ Once you have configured the template application in the previous step, Platform
 <center>
 
 <a href="/gettingstarted/template/step-2.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/template/step-4.html" class="buttongen small">Next Steps</a>
+<a href="/gettingstarted/template/step-4.html" class="buttongen small">I have built and deployed a template project</a>
 
 </center>
 

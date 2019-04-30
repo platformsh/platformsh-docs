@@ -1,6 +1,6 @@
 # Developing with Platform.sh: Live Feature Environments
 
-## Make changes and push
+## Merge into production
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
 
@@ -29,8 +29,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 
 <center>
 
-<a href="/gettingstarted/feature-envs/step-2.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/feature-envs/step-4.html" class="buttongen small">I have made changes and pushed to Platform.sh</a>
+<a href="/gettingstarted/feature-envs/step-5.html" class="buttongen small">Back</a>
+<a href="/gettingstarted/feature-envs/step-7.html" class="buttongen small">I have merged the new feature</a>
 
 </center>
 

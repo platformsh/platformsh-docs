@@ -6,6 +6,18 @@ In the previous step, you set up a free trial account with Platform.sh and now y
 
 From here you can create projects, adjust account settings, and a lot more that we will explore throughout these Getting Started guides.
 
+<html>
+<head>
+<link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>   
+   <video autoplay="autoplay" loop="loop" width="400" height="300">
+    <source src="/videos/create-project.mp4" type="video/mp4" />
+    <img src="/videos/create-project.gif" width="400" height="300" />
+   </video>
+</body>
+</html>
+
 First, we want to create our new template project:
 
 
@@ -33,18 +45,6 @@ First, we want to create our new template project:
 
    Select the region that most closely matches the region of where you think most of your traffic will come from and click `Next`.
       
-
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>   
-   <video autoplay="autoplay" loop="loop" width="400" height="300">
-    <source src="/videos/create-project.mp4" type="video/mp4" />
-    <img src="/videos/create-project.gif" width="400" height="300" />
-   </video>
-</body>
-</html>
 
 <html>
 <head>

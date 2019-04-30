@@ -1,9 +1,9 @@
 
 # Import your own code
 
-Welcome to Platform.sh! Getting started is as easy as opening a free trial account and initializing one of our maintained templates on a new project. 
+Importing your own code to Platform.sh is as easy as installing the CLI and configuring your application with a few files. 
 
-There are no requirements on your part at this point. This guide will take you from zero to hero - from first glance to a completely built and deployed application entirely in your browser. 
+In the code examples select the language your application uses, and this guide will take you through the steps to start developing with Platform.sh!
 
 <html>
 <head>
@@ -19,9 +19,8 @@ There are no requirements on your part at this point. This guide will take you f
 
 </center>
 
-<br/><br/>
-
 </body>
 </html>
+
 
 
