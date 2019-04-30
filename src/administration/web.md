@@ -10,7 +10,7 @@ Everything you can do with the management console you can also achieve with the 
 
 ## Environment List
 
-From your project's main page, each of the environments are available from the pull-down menu `ENVIRONMENTS` at the top of the page. 
+From your project's main page, each of the environments are available from the pull-down menu `ENVIRONMENT` at the top of the page. 
 
 ![Environment Pull-down](/images/management-console/env-pulldown.png)
 
@@ -18,14 +18,13 @@ There is also a graphic view of your environments on the right hand side, where 
 
 ![Environment Activity](/images/management-console/environments.png)
 
-The name of the environment is strikethroughed if it's been disabled. If it has an arrow next to it, this means the environment has children.
+The name of the environment is struck out if it's been disabled. If it has an arrow next to it, this means the environment has children.
 
 ## Activity Feed
 
 The management console displays all the activity happening on your environments. You can filter messages per type.
 
 ![Environment Activity](/images/management-console/activity.png)
-
 
 ## Header
 
@@ -65,7 +64,7 @@ During a `merge`:
 * The application is rebuilt on the parent branch, if necessary.
 * The parent branch is deployed.
 
-Rebuilding the application is not necessary if the same code was already built (for any environment): in this case you will see the message ``Slug already built for this tree id, skipping``.
+Rebuilding the application is not necessary if the same code was already built (for any environment): in this case you will see the message `Slug already built for this tree id, skipping`.
 
 After clicking `Merge` a dialog box will appear that will provide commands to execute future merges from the command line using the Platform.sh CLI.
 
@@ -84,7 +83,6 @@ These options are provided in a separate dialog box that will appear when you cl
 Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded. 
 It is good practice to take a snapshot of your environment before performing a synchronization.
 
-
 #### Backup
 
 ![Header Backup](/images/management-console/header-backup.png)
@@ -102,13 +100,13 @@ You can also use the CLI with:
 $ platform environment:backup
 ```
 
-to create a snapshot, and
+to create a snapshot,
 
 ```bash
 $ platform environment:restore
 ```
 
-to restore an existing snapshot.
+and to restore an existing snapshot.
 
 ### Command Pull-downs
 
