@@ -100,13 +100,13 @@ You can also use the CLI with:
 $ platform environment:backup
 ```
 
-to create a snapshot, and
+to create a snapshot,
 
 ```bash
 $ platform environment:restore
 ```
 
-to restore an existing snapshot.
+and to restore an existing snapshot.
 
 ### Command Pull-downs
 
