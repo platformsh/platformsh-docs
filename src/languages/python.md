@@ -146,23 +146,23 @@ The above Gunicorn based WSGI example can be modified to use the Python 3.5+ asy
 
 To access various [services](/configuration/services.md) with Python, see the following examples.  The individual service pages have more information on configuring each service.
 
-{% codetabs name="Elasticsearch", type="js", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
+{% codetabs name="Elasticsearch", type="python", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
 
-{% language name="Kafla", type="js", url="https://examples.docs.platform.sh/python/kafka" -%}
+{% language name="Kafla", type="python", url="https://examples.docs.platform.sh/python/kafka" -%}
 
-{% language name="Memcached", type="js", url="https://examples.docs.platform.sh/python/memcached" -%}
+{% language name="Memcached", type="python", url="https://examples.docs.platform.sh/python/memcached" -%}
 
-{% language name="MongoDB", type="js", url="https://examples.docs.platform.sh/python/mongodb" -%}
+{% language name="MongoDB", type="python", url="https://examples.docs.platform.sh/python/mongodb" -%}
 
-{% language name="MySQL", type="js", url="https://examples.docs.platform.sh/python/mysql" -%}
+{% language name="MySQL", type="python", url="https://examples.docs.platform.sh/python/mysql" -%}
 
-{% language name="PostgreSQL", type="js", url="https://examples.docs.platform.sh/python/postgresql" -%}
+{% language name="PostgreSQL", type="python", url="https://examples.docs.platform.sh/python/postgresql" -%}
 
-{% language name="RabbitMQ", type="js", url="https://examples.docs.platform.sh/python/rabbitmq" -%}
+{% language name="RabbitMQ", type="python", url="https://examples.docs.platform.sh/python/rabbitmq" -%}
 
-{% language name="Redis", type="js", url="https://examples.docs.platform.sh/python/redis" -%}
+{% language name="Redis", type="python", url="https://examples.docs.platform.sh/python/redis" -%}
 
-{% language name="Solr", type="js", url="https://examples.docs.platform.sh/python/solr" -%}
+{% language name="Solr", type="python", url="https://examples.docs.platform.sh/python/solr" -%}
 
 {%- endcodetabs %}
 
