@@ -1,4 +1,3 @@
-
 # Import your own code
 
 ## Configuring projects
@@ -51,16 +50,12 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
     * `.platform/services.yaml` configures the [services](/configuration/services.md) that will be used by the application. Connecting to Platform.sh's *batteries included* services only requires properly writing this file.
     * `.plaform.app.yaml` configures the [application](/configuration/app-containers.md) itself. It provides control over the way the application will be built and deployed on Platform.sh.
 
-    The next steps will explore in more detail what each of these configuration files must include, but for now create empty files in their place inside your application repository.
+    When you set Platform.sh as a remote for your repository in the previous step, the CLI automatically created the hidden configuration directory `.platform` for you. The next steps will explore in more detail what each configuration files must include, but for now create empty files in their place.
 
     ```bash
-    mkdir .platform
     touch .platform/routes.yaml && touch .platform/services.yaml
     touch .platform.app.yaml
     ```
-
-
-Now that you have chosen a template that resembles your application and provided the basic structure of a project, you will next need to configure the services of your application by modifying the `.platform/services.yaml` you just created.
 
 <html>
 <head>

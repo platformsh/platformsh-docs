@@ -1,4 +1,3 @@
-
 # Import your own code
 
 ## Configure application

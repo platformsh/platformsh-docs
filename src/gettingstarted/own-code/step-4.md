@@ -1,46 +1,60 @@
 
-# Start with a template - Next Steps: Requirements for the CLI
+# Import your own code
 
-## Requirements
+## Create a new project
 
-Now that you have created your free trial account, you have access to the Platform.sh [management console](/administration/web.md). From here you can create projects, adjust account settings, and a lot more that you will explore throughout these Getting Started guides.
+With the Platform.sh CLI now installed and configured to communicate with your projects, you can create a new project from the command line and connect it to your application.
 
-Before configuring your application for Platform.sh, there are few requirements that must be met first.
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+  <script src="/asciinema/asciinema-player.js"></script>
+</head>
+<body>
 
-### Git
+  <asciinema-player src="/asciinema/recordings/project-create.cast"></asciinema-player>
 
-[Git](/development/tools.md#git) is the open source version control system that is utilized by Platform.sh. Any change you make to your Platform.sh project will need to be committed via Git. You can see all the Git commit messages of an environment in the `Environment Activity` feed of the [management console](/administration/web.md) for each project you create.
-
-Before getting started, make sure you have it [installed](https://git-scm.com/) on your computer.
-
-### SSH key pair
-
-Once your account has been set up and the [CLI](/development/cli.md) is installed, Platform.sh needs one additional piece of information about your computer so that you can access your projects from the command line.
-If you are unfamiliar with how to generate an RSA public and private key, there are excellent instructions in the documentation about [how to do so](/gettingstarted/tools.md#ssh).
-
-### Add your SSH key to your account
-
-Now that you have the requirements out of the way, place your SSH key onto Platform.sh so that you can communicate with your projects from your computer using the management console.
-
-![SSH key add](/videos/ssh.gif)
-
-1. **Access SSH key settings in the management console**
-
-    From the management console, move to the top right hand corner of the screen and click the dropdown menu to the left of the settings gear box icon. In the menu, click on `Account`. The next page will normally list all of your projects, which at this point will be empty if you're just starting out. 
-    Click on the `Account Settings` link at the top of the page, then click the `SSH keys` tab to the left of your account information.
-
-2. **Add your SSH key to your account**
-
-    At this point you won't see anything listed in the body of the page, because you don't have SSH configured with Platform.sh yet. Click the `+ Add public key` button in the top right hand corner of the screen.
+</body>
+</html>
     
-    This will open up another window with two fields. Name the key with something memorable, like `home-computer`, and in the field below that, paste the content of the public key you created in the previous step.
-    
-    When you have finished, click `Save` to save the key.
-    
+1. **Create an empty project**
 
-That's it! Now that you have met the requirements and configured an SSH key, Platform.sh can authenticate your computer and you can interact with your project from the command line. 
+    Type the command `platform create` in your terminal.
+    
+    The CLI will then ask you to set up some initial project configurations:
+    
+    * `Project title`
+    
+       We need a unique name for each project, so title this one `My CLI Project`.
+    
+    * `Region`
+    
+       In general you will choose the region that is closest to where most of your site's traffic is coming from. Here, go ahead and begin typing `de-2.platform.sh` and the CLI will auto-complete the rest for you.
+      
+    * `Plan`
+    
+       The standard size will be fine for this guide, so type `1` and Enter.
+    
+    * `Environments`
+    
+       The `master` branch in the previous guide once built becomes the `Master` environment, the live production environment for your application. Additionally, you will receive other environments that will be useful for developing new features that you can view in your browser, but we will cover what those are and how to use them in the next guide.
+       
+       For now, press Enter to select the default number of environments.
+    
+    * `Storage`
+    
+       You can modify the amount of storage your application can use from the CLI and from the management console, as well as upgrade that storage later once your project starts growing.
+       
+       For now, press Enter to select the default amount of storage.
 
-Next, you will need to install the Platform.sh CLI so that you can import your code to a project.
+2. **Set Platform.sh as remote for your application**
+
+
+
+That's it! You have now created an empty project from your own computer using the CLI.
+
+At the end of the setup the CLI will output the name of your project along with its region and *project ID*. When you interact with your projects using the CLI, this *project ID* will be the primary identifier for making changes to projects, and you will need to copy it to initialize a template repository in the next step.
+
 
 <html>
 <head>
@@ -53,7 +67,7 @@ Next, you will need to install the Platform.sh CLI so that you can import your c
 <center>
 
 <a href="/gettingstarted/own-code/step-3.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/own-code/step-5.html" class="buttongen small">I have configured my SSH key in the management console</a>
+<a href="/gettingstarted/own-code/step-5.html" class="buttongen small">I have created a project using the CLI</a>
 
 </center>
 

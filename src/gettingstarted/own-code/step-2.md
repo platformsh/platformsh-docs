@@ -1,7 +1,7 @@
 
 # Import your own code
 
-## Requirements
+## Requirements for the CLI
 
 Now that you have created your free trial account, you have access to the Platform.sh [management console](/administration/web.md). From here you can create projects, adjust account settings, and a lot more that you will explore throughout these Getting Started guides.
 
@@ -22,7 +22,17 @@ If you are unfamiliar with how to generate an RSA public and private key, there 
 
 Now that you have the requirements out of the way, place your SSH key onto Platform.sh so that you can communicate with your projects from your computer using the management console.
 
-![SSH key add](/videos/ssh.gif)
+<html>
+<head>
+<link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+  <video width="800" controls autoplay loop>
+    <source src="/videos/add-ssh-mc.mp4" type="video/mp4">
+  </video>
+  <br/><br/> 
+</body>
+</html>
 
 1. **Access SSH key settings in the management console**
 

@@ -1,4 +1,3 @@
-
 # Import your own code
 
 ## Configure routes
@@ -29,6 +28,7 @@ A simple template `.platform/routes.yaml` for all languages will look very simil
 >    The documentation goes into far more extensive detail of which attributes can also be included for route configuration, and should be used as your primary reference.   
 > * **Language-specific templates for Platform.sh Projects** 
 >    Compare the `.platform/routes.yaml` file from the simple template above to other templates when writing your own.
+
 
 <html>
 <head>
