@@ -38,6 +38,9 @@
     
     </body>
     </html>
+    
+    {% asciinema_local %}/asciinema/recordings/verify-cli-extended.cast{% endasciinema_local %}
+    {% asciinema %}/asciinema/recordings/verify-cli-extended.cast{% endasciinema %}
 
    
    You should now be able to see a list of your Platform.sh projects, including the template you made in this guide.
