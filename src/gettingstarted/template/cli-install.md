@@ -1,3 +1,10 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+  <script src="/asciinema/asciinema-player.js"></script>
+</head>
+</html>
+
 # Start with a template
 
 ## Next Steps: Installing the Platform.sh CLI

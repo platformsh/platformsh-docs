@@ -1,3 +1,10 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+  <script src="/asciinema/asciinema-player.js"></script>
+</head>
+</html>
+
 # Import your own code
 
 ## Build, Deploy, Done!

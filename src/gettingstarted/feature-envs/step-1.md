@@ -1,20 +1,17 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+  <script src="/asciinema/asciinema-player.js"></script>
+</head>
+</html>
+
 # Developing with Platform.sh: Live Feature Environments
 
 ## Clone template code locally
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
 
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-  <script src="/asciinema/asciinema-player.js"></script>
-</head>
-<body>
-
-  <asciinema-player src="/asciinema/recordings/local-copy.cast"></asciinema-player>
-
-</body>
-</html>
+{% asciinema_local %}/asciinema/recordings/local-copy.cast{% endasciinema_local %}
 
 1. **Etiam laoreet nulla ac euismod iaculis**
 

@@ -10,19 +10,19 @@
 
     const defaultFontSize = '18px';
 
-//    document.addEventListener('DOMContentLoaded', function() {
-//
-//        // Set some default values on Asciinema players.
-//        let players = document.querySelectorAll('asciinema-player').forEach((player) => {
-//            if (!player.hasAttribute('font-size')) {
-//                player.setAttribute('font-size', defaultFontSize);
-//            }
-//            player.setAttribute('preload', 1);
-//        });
-//
-//        // Set players to start automatically when their slide becomes active.
-//        Reveal.addEventListener( 'slidechanged', startAsciinema);
-//    });
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Set some default values on Asciinema players.
+        let players = document.querySelectorAll('asciinema-player').forEach((player) => {
+            if (!player.hasAttribute('font-size')) {
+                player.setAttribute('font-size', defaultFontSize);
+            }
+            player.setAttribute('preload', 1);
+        });
+
+        // Set players to start automatically when their slide becomes active.
+        Reveal.addEventListener( 'slidechanged', startAsciinema);
+    });
 
     document.addEventListener('DOMContentLoaded', startAsciinema)
 

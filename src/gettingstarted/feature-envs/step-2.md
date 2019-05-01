@@ -1,3 +1,10 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+  <script src="/asciinema/asciinema-player.js"></script>
+</head>
+</html>
+
 # Developing with Platform.sh: Live Feature Environments
 
 ## Create feature branch
