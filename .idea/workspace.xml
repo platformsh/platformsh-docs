@@ -1,0 +1,979 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c314f996-0754-4dff-9629-d68df936801e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/asciinema/recordings/branch.cast" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/asciinema/recordings/build.cast" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/asciinema/recordings/close-tunnel.cast" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/asciinema/recordings/connect.cast" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/asciinema/recordings/notes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/asciinema/recordings/tunnel-open.cast" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/asciinema/recordings/tunnel.cast" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/asciinema/recordings/branch.cast" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/asciinema/recordings/build.cast" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/asciinema/recordings/close-tunnel.cast" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/asciinema/recordings/connect.cast" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/asciinema/recordings/notes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/asciinema/recordings/tunnel-open.cast" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/asciinema/recordings/tunnel.cast" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/SUMMARY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/asciinema/recordings/create-empty.cast" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/asciinema/recordings/create-empty.cast" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/feature-envs/step-2.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/feature-envs/step-2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-2.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-3.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-3.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-4.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-4.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-5.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/SUMMARY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/asciinema/recordings/create-empty.cast" beforeDir="false" afterPath="$PROJECT_DIR$/src/asciinema/recordings/create-empty.cast" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-2.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-4.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-4.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-5.md" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SUMMARY.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="525">
+                <caret line="35" column="69" lean-forward="true" selection-start-line="35" selection-start-column="69" selection-end-line="35" selection-end-column="69" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gettingstarted/feature-envs/step-2.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="64">
+                <caret line="22" column="55" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="210">
+                <caret line="13" selection-start-line="13" selection-end-line="13" selection-end-column="83" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="390">
+                <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/build.cast">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-160">
+              <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/notes">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>architecture-</find>
+      <find>third-par</find>
+      <find>.navi</find>
+      <find>#book-sear</find>
+      <find>nav</find>
+      <find>navigation</find>
+      <find>.i</find>
+      <find>*</find>
+      <find>buttonland</find>
+      <find>buttongen</find>
+      <find>tabs</find>
+      <find>button</find>
+      <find>gs-a</find>
+      <find>we</find>
+      <find>start</find>
+      <find>auto</find>
+      <find>local</find>
+      <find>autoplay</find>
+      <find>myapp</find>
+      <find>first</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>button</replace>
+      <replace>buttongen full</replace>
+      <replace>buttongen small</replace>
+      <replace>buttongen</replace>
+      <replace>test</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/src/</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/gettingstarted/template/step-5.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/template/step-6.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/template/next-steps.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/template.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/template/media-needed" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/template/create-project.md" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/verify-cli.cast" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-2.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-8.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/old/next-steps/cli/step-3.md" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/verify-cli2.cast" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/minimal_config.md" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/project-create2.cast" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-5.md" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/first-push.cast" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/local-copy.cast" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/developing.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/feature-envs.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-5.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/template/free-trial.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-1.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/template/check-status.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/template/cli-requirements.md" />
+        <option value="$PROJECT_DIR$/_book/asciinema/recordings/verify-cli-extended.cast" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/verify-cli-extended.cast" />
+        <option value="$PROJECT_DIR$/.platform/routes.yaml" />
+        <option value="$PROJECT_DIR$/.platform.app.yaml" />
+        <option value="$PROJECT_DIR$/book.json" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-3.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-1.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-4.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-9.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/template/cli-install.md" />
+        <option value="$PROJECT_DIR$/src/asciinema/asciinema-start.js" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-1.md" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/connect.cast" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/close-tunnel.cast" />
+        <option value="$PROJECT_DIR$/src/SUMMARY.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-4.md" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/tunnel.cast" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/create-empty.cast" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/project-create.cast" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/tunnel-open.cast" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/build.cast" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/notes" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-2.md" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="58" />
+    <option name="y" value="23" />
+    <option name="width" value="1556" />
+    <option name="height" value="983" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="asciinema" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="asciinema" type="462c0819:PsiDirectoryNode" />
+              <item name="recordings" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="gettingstarted" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="gettingstarted" type="462c0819:PsiDirectoryNode" />
+              <item name="feature-envs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="gettingstarted" type="462c0819:PsiDirectoryNode" />
+              <item name="local-dev" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/asciinema/recordings" />
+      <recent name="$PROJECT_DIR$/src/asciinema" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/gettingstarted/feature-envs" />
+      <recent name="$PROJECT_DIR$/src/gettingstarted/next-steps/dev-envs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/videos" />
+      <recent name="$PROJECT_DIR$/src/gettingstarted/old" />
+      <recent name="$PROJECT_DIR$/src/images/getting-started" />
+      <recent name="$PROJECT_DIR$/src/development" />
+      <recent name="$PROJECT_DIR$/src/gettingstarted/template" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c314f996-0754-4dff-9629-d68df936801e" name="Default Changelist" comment="" />
+      <created>1554817411655</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1554817411655</updated>
+    </task>
+    <task id="LOCAL-00001" summary="init commit">
+      <created>1554997462875</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1554997462875</updated>
+    </task>
+    <task id="LOCAL-00002" summary="basic flow">
+      <created>1555357326000</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1555357326000</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update cards">
+      <created>1555358053473</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1555358053473</updated>
+    </task>
+    <task id="LOCAL-00004" summary="update cards">
+      <created>1555359146227</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1555359146227</updated>
+    </task>
+    <task id="LOCAL-00005" summary="update lang images">
+      <created>1555361536525</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1555361536525</updated>
+    </task>
+    <task id="LOCAL-00006" summary="test adding screencast">
+      <created>1555362672710</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1555362672710</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add asciinema test">
+      <created>1555513777336</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1555513777336</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update basic structure">
+      <created>1555540088645</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1555540088645</updated>
+    </task>
+    <task id="LOCAL-00009" summary="first-project">
+      <created>1555586215554</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1555586215554</updated>
+    </task>
+    <task id="LOCAL-00010" summary="cli and language topic updates">
+      <created>1555594376435</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1555594376435</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add shared demo feature">
+      <created>1555600976614</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1555600976614</updated>
+    </task>
+    <task id="LOCAL-00012" summary="html5 over gif">
+      <created>1556199233652</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1556199233652</updated>
+    </task>
+    <task id="LOCAL-00013" summary="restructure sections">
+      <created>1556549497918</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1556549497918</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix asciinema and html5. Update template and own-code.">
+      <created>1556731522081</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1556731522081</updated>
+    </task>
+    <task id="LOCAL-00015" summary="update routes">
+      <created>1556735828368</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1556735828368</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Revert routes. Allow cast to be served.">
+      <created>1556736152658</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1556736152658</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Check plugings and vids">
+      <created>1556736819058</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1556736819058</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update ascii calls. check regular plugin formatting">
+      <created>1556737750005</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1556737750005</updated>
+    </task>
+    <task id="LOCAL-00019" summary="update asciinema calls with headers for plugin to work">
+      <created>1556739851647</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1556739851647</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="58" y="23" width="1556" height="983" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15918098" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Project Explorer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="DB Browser" order="4" />
+      <window_info id="Job Explorer" order="5" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32884398" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Console" order="7" />
+      <window_info anchor="bottom" id="DB Execution Console" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="R Packages" />
+      <window_info anchor="right" id="R Graphics" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Cargo" order="3" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15262824" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Project Explorer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="DB Browser" order="4" />
+      <window_info id="Job Explorer" order="5" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32884398" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Console" order="7" />
+      <window_info anchor="bottom" id="DB Execution Console" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="R Graphics" order="0" />
+      <window_info anchor="right" id="R Packages" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+      <window_info anchor="right" id="Cargo" order="5" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init commit" />
+    <MESSAGE value="basic flow" />
+    <MESSAGE value="update cards" />
+    <MESSAGE value="update lang images" />
+    <MESSAGE value="test adding screencast" />
+    <MESSAGE value="add asciinema test" />
+    <MESSAGE value="update basic structure" />
+    <MESSAGE value="first-project" />
+    <MESSAGE value="cli and language topic updates" />
+    <MESSAGE value="add shared demo feature" />
+    <MESSAGE value="html5 over gif" />
+    <MESSAGE value="restructure sections" />
+    <MESSAGE value="structural changes, fill out some feedback content" />
+    <MESSAGE value="fix asciinema and html5. Update template and own-code." />
+    <MESSAGE value="update routes" />
+    <MESSAGE value="Revert routes. Allow cast to be served." />
+    <MESSAGE value="Check plugings and vids" />
+    <MESSAGE value="remove old dirs" />
+    <MESSAGE value="update ascii calls. check regular plugin formatting" />
+    <MESSAGE value="update asciinema calls with headers for plugin to work" />
+    <option name="LAST_COMMIT_MESSAGE" value="update asciinema calls with headers for plugin to work" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/developing.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="240">
+            <caret line="12" column="192" selection-start-line="12" selection-start-column="192" selection-end-line="12" selection-end-column="192" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="330">
+            <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/feature-envs.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="435">
+            <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/template/free-trial.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="60">
+            <caret line="4" selection-start-line="4" selection-end-line="11" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-10.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="45">
+            <caret line="3" selection-start-line="3" selection-end-line="70" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/template/check-status.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="795">
+            <caret line="51" column="130" selection-start-line="51" selection-start-column="130" selection-end-line="51" selection-end-column="130" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_book/asciinema/recordings/verify-cli-extended.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/verify-cli-extended.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/asciinema-player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="34" column="1101" selection-start-line="34" selection-start-column="1101" selection-end-line="34" selection-end-column="1101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/asciinema-player.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.platform/routes.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/book.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.platform.app.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="751">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/old/next-steps/dev-envs/step-2.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/old/next-steps/dev-envs/step-1.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/old/next-steps/dev-envs/start.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/template/cli-requirements.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="960">
+            <caret line="51" selection-start-line="51" selection-end-line="51" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="628">
+            <caret line="72" column="100" selection-start-line="72" selection-start-column="100" selection-end-line="72" selection-end-column="100" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/feature-envs/step-3.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/feature-envs/step-5.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/feature-envs/step-6.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/feature-envs/step-7.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/feature-envs/step-8.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-1.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="195">
+            <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-2.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="45">
+            <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-3.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret selection-end-line="5" selection-end-column="7" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-4.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="90">
+            <caret line="6" selection-start-line="6" selection-end-line="6" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-5.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="900">
+            <caret line="52" column="301" selection-start-line="52" selection-start-column="301" selection-end-line="52" selection-end-column="301" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-8.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="735">
+            <caret line="43" column="98" selection-start-line="43" selection-start-column="98" selection-end-line="43" selection-end-column="98" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-9.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="75">
+            <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/asciinema-start.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/template/cli-install.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="540">
+            <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="95" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/feature-envs/step-1.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="195">
+            <caret line="12" selection-start-line="12" selection-end-line="12" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/close-tunnel.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-1.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="210">
+            <caret line="13" column="19" selection-start-line="13" selection-end-line="14" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-5.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="165">
+            <caret line="9" lean-forward="true" selection-end-line="86" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/tunnel.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="25" selection-end-column="155" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/create-empty.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="758">
+          <caret line="105" column="21" selection-start-line="105" selection-start-column="21" selection-end-line="105" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/first-push.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3945">
+          <caret line="250" column="19" selection-start-line="250" selection-start-column="19" selection-end-line="250" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/project-create.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="773">
+          <caret line="128" selection-start-line="128" selection-end-line="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/add.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="22" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/connect.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="7" selection-end-column="133" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/tunnel-open.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="51" column="21" lean-forward="true" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/feature-envs/step-4.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="60">
+            <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="206" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-4.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="808">
+            <caret line="86" selection-start-line="86" selection-end-line="86" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/notes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/build.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-160">
+          <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="210">
+            <caret line="13" selection-start-line="13" selection-end-line="13" selection-end-column="83" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SUMMARY.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="525">
+            <caret line="35" column="69" lean-forward="true" selection-start-line="35" selection-start-column="69" selection-end-line="35" selection-end-column="69" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="390">
+            <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/feature-envs/step-2.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="64">
+            <caret line="22" column="55" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

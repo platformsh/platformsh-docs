@@ -1,0 +1,10 @@
+<script>
+var location = window.location.pathname;
+var golang = "golang";
+
+if (location.includes(golang) > -1) {
+  document.getElementById("demo").innerHTML = "Shared Demo for Go";
+} else {
+    document.getElementById("demo").innerHTML = "No language found";
+}
+</script>
