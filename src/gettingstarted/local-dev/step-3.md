@@ -1,16 +1,32 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+  <script src="/asciinema/asciinema-player.js"></script>
+</head>
+</html>
+
 # Local development
 
-## Connect to services
+## Build site locally
 
-The best way to understand a tool is to use it.  We believe that the best marketing we can offer for Platform.sh is to let you try it out, which is why we offer a free one month trial.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
 
-1. Visit the [Platform.sh accounts](https://accounts.platform.sh/platform/trial/general/setup) page to set up your trial account.
+{% asciinema_local %}/asciinema/recordings/build.cast{% endasciinema_local %}
 
-   ![Free Trial](/images/getting-started/first-project/free-trial.png)
+1. **Build the site**
 
-2. Fill out your information to set up your account.
+2. **Verify**
 
-3. Alternatively, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose this option, you will be able to set a password for your Platform.sh account later.
+3. **Cleanup**
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+
+    ```bash
+    platform tunnel:close
+    ```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+
 
 <html>
 <head>

@@ -1,0 +1,21 @@
+
+
+
+git branch dev
+git checkout dev
+
+vi hello/views.py
+
+a
+...welcome to MY world
+esc
+:wq
+
+git add .
+git commit -m "Changed welcome message."
+git push platform dev
+
+platform environment:activate dev
+
+platform url
+0

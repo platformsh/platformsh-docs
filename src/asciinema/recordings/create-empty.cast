@@ -103,4 +103,4 @@
 [22.633861, "o", "│   ├── migrations\r\n│   ├── models.py\r\n│   ├── templates\r\n│   ├── tests.py\r\n│   ├── urls.py\r\n│   └── views.py\r\n├── manage.py\r\n"]
 [22.633966, "o", "└── myapp\r\n    ├── __init__.py\r\n    ├── settings.py\r\n    ├── urls.py\r\n    └── wsgi.py\r\n\r\n18 directories, 49 files\r\n"]
 [22.63434, "o", "$ "]
-[25.38432, "o", "exit\r\n"]
+[25.38432, "o", "\r\n"]

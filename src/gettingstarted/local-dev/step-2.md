@@ -1,16 +1,51 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+  <script src="/asciinema/asciinema-player.js"></script>
+</head>
+</html>
+
 # Local development
 
 ## Connect to services
 
-The best way to understand a tool is to use it.  We believe that the best marketing we can offer for Platform.sh is to let you try it out, which is why we offer a free one month trial.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
 
-1. Visit the [Platform.sh accounts](https://accounts.platform.sh/platform/trial/general/setup) page to set up your trial account.
+{% asciinema_local %}/asciinema/recordings/tunnel-open.cast{% endasciinema_local %}
 
-   ![Free Trial](/images/getting-started/first-project/free-trial.png)
+1. **Open an SSH tunnel to connect to your services**
 
-2. Fill out your information to set up your account.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+    
+    ```bash
+    platform tunnel:open
+    ```
 
-3. Alternatively, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose this option, you will be able to set a password for your Platform.sh account later.
+2. **Export environment variables**
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+    
+    ```bash
+    export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
+    ```
+    
+    In order to use these credentials to connect to your services, it is also necessary that those services are locally installed.
+    
+    Additionally, if your application also needs access to the `PORT` environment variable, you can mock the variable used in a Platform.sh environment with
+    
+    ```bash
+    export=8888
+    ```
+
+3. **Verify**
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+    
+    ```bash
+    platform tunnel:list
+    ```
+    
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
 
 <html>
 <head>

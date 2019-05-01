@@ -9,11 +9,26 @@
 
 ## Create feature branch
 
+{% asciinema_local %}/asciinema/recordings/branch.cast{% endasciinema_local %}
+
 You can activate a branch using the CLI or the management console and Platform.sh will build and deploy an environment for the new feature that you can access and test in your browser, and show to investors or collaborators so that you can be confident that it will work great when it is finally merged.
 
 Let's do exactly that with the template projects we created with the [management console](/gettingstarted/first-project.md) and the [CLI](/gettingstarted/next-steps/cli/start.md). If you have not yet completed these Getting Started guides, please click on the links and go back and do so. If you selected a template that has to be installed once it has deployed (i.e. Drupal), make sure to do that as well.
 
 There are two options for creating new environments on Platform.sh, through the management console and through the CLI, so let's create an environment using both methods.
+
+**If your changes need access to your services while you're developing locally, remember to run `platform tunnel:open` to your services. DOCS LINK. GUIDE LINK.**
+
+
+1. **Create branch, make changes, push to Platform.sh**
+
+2. **Activate an environment for the feature branch**
+
+3. **Verify**
+
+
+
+
 
 1. **Create a new branch using the management console**
 
