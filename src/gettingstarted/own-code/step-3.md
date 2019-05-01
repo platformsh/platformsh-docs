@@ -5,19 +5,6 @@
 
 In the previous steps you checked that the requirements on your computer were met and configured an SSH key on your Platform.sh account. Now all we have to do is install the CLI and you can access your projects from the command line.
 
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-  <script src="/asciinema/asciinema-player.js"></script>
-</head>
-<body>
-
-  <asciinema-player src="/asciinema/recordings/01-create.cast"></asciinema-player>
-
-</body>
-</html>
-
-
 1. **Install the CLI**
 
     In your terminal run the following command depending on your operating system:
@@ -42,18 +29,8 @@ In the previous steps you checked that the requirements on your computer were me
    ```bash
    platform
    ```
-
-    <html>
-    <head>
-      <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-      <script src="/asciinema/asciinema-player.js"></script>
-    </head>
-    <body>
     
-      <asciinema-player src="/asciinema/recordings/verify-cli-extended.cast"></asciinema-player>
-    
-    </body>
-    </html>
+   {% asciinema_local %}/asciinema/recordings/verify-cli-extended.cast{% endasciinema_local %}
    
 Now that you have installed the CLI and it is communicating with Platform.sh, you can configure and push your project to Platform.sh.
 

@@ -4,17 +4,7 @@
 
 With your configuration files complete, all that's left to do is to commit the changes and push to Platform.sh.
 
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-  <script src="/asciinema/asciinema-player.js"></script>
-</head>
-<body>
-
-  <asciinema-player src="/asciinema/recordings/first-push.cast"></asciinema-player>
-
-</body>
-</html>
+{% asciinema_local %}/asciinema/recordings/first-push.cast{% endasciinema_local %}
 
 1. **Commit and push**
 
