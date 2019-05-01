@@ -17,7 +17,7 @@ Platform.sh removes this stress considerably by providing *live development envi
 
 <center>
 
-<a href="/gettingstarted/feature-envs/step-1.html" class="buttongen small">Get started!</a>
+<a href="/gettingstarted/local-dev/step-1.html" class="buttongen small">Get started!</a>
 
 </center>
 

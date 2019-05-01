@@ -1,4 +1,4 @@
-# Developing with Platform.sh: Live Feature Environments
+# Developing with Platform.sh: Feature Environments
 
 While you're developing your application, you will at some point create some new features for it. Typically you're going to develop that feature on a separate branch in your Git repository, run some tests, and then merge that feature into your production application.
 
