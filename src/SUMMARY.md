@@ -67,6 +67,7 @@
 * [Python](languages/python.md)
 * [Ruby](languages/ruby.md)
 * [Go](languages/go.md)
+* [C# / .NET Core](languages/dotnet.md)
 * [Java (alpha)](languages/java.md)
 
 ## Development
