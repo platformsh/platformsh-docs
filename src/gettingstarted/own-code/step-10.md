@@ -17,7 +17,7 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 </head>
 <body>
 
-<a href="/gettingstarted/local-dev.html" class="buttongen full"><b>Local Development</b><br/><br/>Remote connect to services and build your application locally during development.</a>
+<a href="/gettingstarted/local-dev.html" class="buttongen full"><b>Local Development</b><br/><br/>Remotely connect to services and build your application locally during development.</a>
 
 <a href="/gettingstarted/feature-envs.html" class="buttongen full"><b>Live feature environments</b><br/><br/>Activate development branches and test new features before merging into production</a>
 

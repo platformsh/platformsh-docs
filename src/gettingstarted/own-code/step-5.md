@@ -1,10 +1,16 @@
+# platform.sh academy
+
+
+
 # Import your own code
 
 ## Configuring projects
 
-In the previous step, you created a new project on Platform.sh using the CLI. Now, there are a few configuration steps that will help Platform.sh know what to do with your application during builds and deployments.
+In the previous step, you created a new project on Platform.sh using the CLI. Now, there are a few configuration steps left that will help Platform.sh know what to do with your application during builds and deployments.
 
 1. **Consult a template alongside this guide**
+
+    The first step is to see how other applications are configured to run on Platform.sh by consulting some maintained template projects. A lot 
 
     As you modify your configuration files, example files will be provided that will give you a good impression of how to configure simple projects on Platform.sh in the language of your choice. 
     
@@ -30,7 +36,7 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
     </body>
     </html>
 
-    Select a language and choose one or more templates that most closely resemble your application. Keep the template in another tab as you continue through this guide, and compare the simple examples that will follow with that template. Using these two resources together is the fastest way to correctly configure your project for Platform.sh.
+     Select a language and choose one or more templates that most closely resemble your application. Keep the template in another tab as you continue through this guide, and compare the simple examples that will follow with that template. Using these two resources together is the fastest way to correctly configure your project for Platform.sh.
 
 2. **Create empty configuration files**
 

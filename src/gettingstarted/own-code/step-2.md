@@ -3,9 +3,7 @@
 
 ## Requirements for the CLI
 
-Now that you have created your free trial account, you have access to the Platform.sh [management console](/administration/web.md). From here you can create projects, adjust account settings, and a lot more that you will explore throughout these Getting Started guides.
-
-Before configuring your application for Platform.sh, there are few requirements that must be met first.
+Now that you have created your free trial account, you are able to push your application to Platform.sh once you have installed the CLI, but there are a few requirements that must be met first.
 
 ### Git
 
@@ -16,11 +14,11 @@ Before getting started, make sure you have it [installed](https://git-scm.com/) 
 ### SSH key pair
 
 Once your account has been set up and the [CLI](/development/cli.md) is installed, Platform.sh needs one additional piece of information about your computer so that you can access your projects from the command line.
-If you are unfamiliar with how to generate an RSA public and private key, there are excellent instructions in the documentation about [how to do so](/gettingstarted/tools.md#ssh).
+If you are unfamiliar with how to generate an RSA public and private key, there are excellent instructions in the documentation about [how to do so](/development/tools.md#ssh).
 
 ### Add your SSH key to your account
 
-Now that you have the requirements out of the way, place your SSH key onto Platform.sh so that you can communicate with your projects from your computer using the management console.
+Now that you have the requirements out of the way, place your SSH key onto Platform.sh so that you can communicate with your projects from your computer using the management console. Log in to your account
 
 <html>
 <head>

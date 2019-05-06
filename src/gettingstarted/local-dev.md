@@ -1,11 +1,15 @@
 # Developing with Platform.sh: Local Development
 
-While you're developing your application, you will at some point create some new features for it. Typically you're going to develop that feature on a separate branch in your Git repository, run some tests, and then merge that feature into your production application.
+Now that you have a project on Platform.sh, it would be helpful to run the same build process on your local machine so tht you can develop and test new features before pushing them.
 
-This is where the stress comes in and where breaking your live site becomes a real worry. 
+The local build process will look similar to a remote build, however if your application requires access to services in order to run properly, there are a few additional steps you will need to go through before you can get started.
 
-Platform.sh removes this stress considerably by providing *live development environments* for the features you're working on. 
+These steps assume that you have already:
 
+* Signed up for a [free trial account](https://accounts.platform.sh/platform/trial/general/setup) with Platform.sh.
+* Started either a [template project](/gettingstarted/template.md) or [pushed your own code](/gettingstarted/own-code.md) to Platform.sh.
+
+If you have not completed these steps by now, click the links and do so before you begin.
 
 <html>
 <head>

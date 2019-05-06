@@ -17,7 +17,7 @@
   * [Next Steps](/gettingstarted/template/next-steps.md)
 * [Import your own code](/gettingstarted/own-code.md)
   * [Open a free trial account](/gettingstarted/own-code/step-1.md)
-  * [Requirements](/gettingstarted/own-code/step-2.md)
+  * [Requirements for the CLI](/gettingstarted/own-code/step-2.md)
   * [Install the CLI](/gettingstarted/own-code/step-3.md)
   * [Create a new project](/gettingstarted/own-code/step-4.md)
   * [Configuring projects](/gettingstarted/own-code/step-5.md)

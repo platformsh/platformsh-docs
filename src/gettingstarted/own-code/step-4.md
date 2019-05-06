@@ -42,15 +42,20 @@ With the Platform.sh CLI now installed and configured to communicate with your p
        You can modify the amount of storage your application can use from the CLI and from the management console, as well as upgrade that storage later once your project starts growing.
        
        For now, press Enter to select the default amount of storage.
+       
+    When the CLI has finished creating a project, it will output your *project ID*. This is the primary identifier for making changes to your projects, and you will need to use it to set Platform.sh as the remote for your repository in the next step. 
+    
+    You can also retrieve the *project ID* with the command `platform project:list`, which lists all of your projects and their IDs in a table.
 
 2. **Set Platform.sh as remote for your application**
 
+    Next you will need to connect your repository to the remote project in order to push your code to Platform.sh. To do this, run the command
+    
+    ```bash
+    platform project:set-remote <project ID>
+    ```
 
-
-That's it! You have now created an empty project from your own computer using the CLI.
-
-At the end of the setup the CLI will output the name of your project along with its region and *project ID*. When you interact with your projects using the CLI, this *project ID* will be the primary identifier for making changes to projects, and you will need to copy it to initialize a template repository in the next step.
-
+That's it! You have now created an empty project and connected your repository to that using the CLI. Move on now to the next step to start configuring your repository to deploy on Platform.sh.
 
 <html>
 <head>

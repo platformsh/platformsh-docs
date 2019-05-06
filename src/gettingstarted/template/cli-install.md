@@ -9,6 +9,8 @@
 
 ## Next Steps: Installing the Platform.sh CLI
 
+With the requirements met, installing the CLI to start developing with Platform.sh
+
 1. **Install the CLI**
 
     In your terminal run the following command:
@@ -38,11 +40,9 @@
    
    You should now be able to see a list of your Platform.sh projects, including the template you made in this guide.
    
+   Take a minute to explore some of the commands available with the CLI by using the command `platform list`.
+   
 That's it! Now that you have the management console set up and the CLI installed on your computer, you're well on your way to exploring all of the ways that Platform.sh can improve your development workflow.
-
-Take a minute to explore some of the commands available with the CLI by using the command `platform list`.
-
-After that, move onto some of the additional guides by advancing below.
 
 <html>
 <head>
@@ -55,7 +55,7 @@ After that, move onto some of the additional guides by advancing below.
 <center>
 
 <a href="/gettingstarted/template/cli-requirements.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/template/next-steps.html" class="buttongen small">I have installed the CLI</a>
+<a href="/gettingstarted/template/next-steps.html" class="buttongen small">I have installed the CLI and want to know more</a>
 
 </center>
 

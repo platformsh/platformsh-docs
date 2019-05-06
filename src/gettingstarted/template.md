@@ -1,8 +1,10 @@
 # Start with a template
 
-Welcome to Platform.sh! Getting started is as easy as opening a free trial account and deploying a template. 
+Welcome to Platform.sh! 
 
-There are no requirements on your part at this point. This guide will take you from zero to hero - from first glance to a completely built and deployed application entirely in your browser. 
+Getting started is as easy as opening a free trial account and initializing a template. 
+
+There are no requirements on your part at this point. This guide will take you from zero to hero - from first glance to a deployed application entirely from your browser. 
 
 <html>
 <head>

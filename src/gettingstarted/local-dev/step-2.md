@@ -5,17 +5,17 @@
 </head>
 </html>
 
-# Local development
+# Developing with Platform.sh: Local Development
 
 ## Connect to services
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+Now that you have a local copy of your application code, it doesn't make sense to make changes to the project by pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
 
 {% asciinema_local %}/asciinema/recordings/tunnel-open.cast{% endasciinema_local %}
 
 1. **Open an SSH tunnel to connect to your services**
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+    The easiest way to build a project with services locally is on a local web server, keeping all other services on Platform.sh and connecting to them using an [SSH tunnel](/development/local/tethered.md#ssh-tunneling). You can consult the documentation if your are interested in other methods as well. 
     
     ```bash
     platform tunnel:open
@@ -23,7 +23,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 
 2. **Export environment variables**
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+    Platform.sh utilizes a number of environment variables within the application container that store the credentials that are used to connect to individual services. In order to connect with them remotely using the SSH tunnel you will need to create the same local environment variables to mimic them. 
     
     ```bash
     export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
@@ -39,13 +39,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 
 3. **Verify**
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+    Lastly, you can visualize the open tunnels for your application with the command 
     
     ```bash
     platform tunnel:list
     ```
     
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+    and when you are finished with your local builds you can close the tunnel
+    
+    ```bash
+    platform tunnel:close
+    ```
+    
+Now that you have created an SSH tunnel to your services, all that's left to do is actually build your application locally.
 
 <html>
 <head>

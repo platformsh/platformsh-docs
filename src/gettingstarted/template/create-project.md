@@ -26,7 +26,7 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
 2. **Set code base**
 
-   Now you will be able to see the large collection of Platform.sh's supported templates. They are simple applications, but they could also be the starting place from which you could build more interesting applications.
+   Now you will be able to see the large collection of Platform.sh's supported templates. They are simple applications, but they could also be the starting place from which you could build something more interesting.
 
    If you are more comfortable with a particular language, click the dropdown labeled `All languages`. Select a language and the template list will update.
 
@@ -44,7 +44,7 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
    Select the region that most closely matches where most of your traffic will come from and click `Next`.
       
-With these few selections Platform.sh will configure and begin to build the template.
+With these few selections Platform.sh will create the project and build the template in less than two minutes.
 
 <html>
 <head>

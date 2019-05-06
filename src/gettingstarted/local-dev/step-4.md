@@ -1,4 +1,4 @@
-# Local development
+# Developing with Platform.sh: Local Development
 
 ## Next steps
 

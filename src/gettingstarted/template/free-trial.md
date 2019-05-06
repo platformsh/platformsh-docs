@@ -4,7 +4,7 @@
 
 The best way to understand a tool is to use it, that's why Platform.sh offers a free one month trial.
 
-Visit the [Platform.sh accounts](https://accounts.platform.sh/platform/trial/general/setup) page and fill our your information to set up your trial account.
+Visit the [Platform.sh accounts](https://accounts.platform.sh/platform/trial/general/setup) page and fill out your information to set up your trial account.
 
 ![Free Trial](/images/getting-started/template/free-trial.png)
 

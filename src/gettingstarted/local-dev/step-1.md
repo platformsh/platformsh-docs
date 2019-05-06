@@ -9,25 +9,27 @@
 
 ## Download the code
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+If you have already [pushed your code](/gettingstarted/own-code.md) to Platform.sh, then you should already have a local repository that you can build from.
 
-{% asciinema_local %}/asciinema/recordings/local-copy.cast{% endasciinema_local %}
+Otherwise, it will be necessary to download a local copy of your project first.
 
-1. **Etiam laoreet nulla ac euismod iaculis**
+1. **Get project ID**
 
-   Integer ut massa sit amet dolor bibendum ultricies at in est. Pellentesque nec interdum neque. 
-   
+    You will need the id of your project. You can retrieve this id at any time using the CLI commands `platform` or `platform project:list`.
+    
+    {% asciinema_local %}/asciinema/recordings/list-projects.cast{% endasciinema_local %}
 
-2. **Integer eu elementum justo**
-   
-   Nunc vulputate, urna imperdiet tristique sagittis, velit ligula tincidunt tellus, sit amet blandit dui arcu id mauris. 
-   
-   
-3. **Pellentesque nec interdum neque** 
+2. **Get a copy of the repository locally**
 
-   Aenean lacinia venenatis nisl, ut porttitor tortor. Vivamus ut risus in orci scelerisque hendrerit. 
-   
-   Fusce viverra sodales quam, ut aliquam nibh vulputate sit amet.
+    {% asciinema_local %}/asciinema/recordings/local-copy.cast{% endasciinema_local %}
+    
+    Next, use the CLI to download the code in your Platform.sh project using the command
+    
+    ```bash
+    platform get <project id>
+    ```
+
+Now that you have a local copy of your application that is configured to the Platform.sh remote repository, you can now connect to its services and build it on your machine.
 
 <html>
 <head>
@@ -40,7 +42,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 <center>
 
 <a href="/gettingstarted/local-dev.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/local-dev/step-2.html" class="buttongen small">I have set up my free trial account</a>
+<a href="/gettingstarted/local-dev/step-2.html" class="buttongen small">I have a copy of my code locally</a>
 
 </center>
 

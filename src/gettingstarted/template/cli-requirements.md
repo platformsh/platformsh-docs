@@ -15,7 +15,7 @@ Before getting started, make sure you have it [installed](https://git-scm.com/) 
 ### SSH key pair
 
 Once your account has been set up and the [CLI](/development/cli.md) is installed, Platform.sh needs one additional piece of information about your computer so that you can access your projects from the command line.
-If you are unfamiliar with how to generate an RSA public and private key, there are excellent instructions in the documentation about [how to do so](/gettingstarted/tools.md#ssh).
+If you are unfamiliar with how to generate an SSH public and private key, there are excellent instructions in the documentation about [how to do so](/development/tools.md#ssh).
 
 ### Add your SSH key to your account
 
@@ -35,15 +35,13 @@ Add your SSH key to your Platform.sh account so that you can communicate with yo
 
 1. **Access SSH key settings in the management console**
 
-    From the management console, move to the top right hand corner of the screen and click the dropdown menu to the left of the settings gear box icon. In the menu, click on `Account`. 
-    
-    The next page will normally list all of your projects, which at this point will be empty if you're just starting out. Click on the `Account Settings` link at the top of the page, then click the `SSH keys` tab to the left of your account information.
+    From the management console, move to the top right hand corner of the screen and click the dropdown menu to the left of the settings gear box icon. In the menu, click on `Account`. This next page lists all of your active projects, which now includes `My First Project`. 
+
+    Click on the `Account Settings` link at the top of the page, then click the `SSH keys` tab to the left of your account information.
 
 2. **Add your SSH key to your account**
 
-    At this point you won't see anything listed in the body of the page, because you don't have SSH configured with Platform.sh yet. Click the `+ Add public key` button in the top right hand corner of the screen.
-    
-    This will open up another window with two fields. Name the key with something memorable, like `home-computer`, and in the field below that, paste the content of your public key.
+    Click the `+ Add public key` button in the top right hand corner of the screen. This will open up another window with two fields. Name the key with something memorable, like `home-computer`, and in the field below that, paste the content of your public key.
     
     When you have finished, click `Save` to save the key.
     

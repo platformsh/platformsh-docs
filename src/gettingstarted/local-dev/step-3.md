@@ -5,11 +5,12 @@
 </head>
 </html>
 
-# Local development
+# Developing with Platform.sh: Local Development
 
 ## Build site locally
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+Now that you've opened tunnels into your services, you'll have access to all of your data in your environment. All that's left now is to actually build the site.
+
 
 {% asciinema_local %}/asciinema/recordings/build.cast{% endasciinema_local %}
 

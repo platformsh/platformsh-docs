@@ -1,9 +1,11 @@
 
 # Import your own code
 
-Importing your own code to Platform.sh is as easy as installing the CLI and configuring your application with a few files. 
+Welcome to Platform.sh!
 
-In the code examples select the language your application uses, and this guide will take you through the steps to start developing with Platform.sh!
+Importing your own code to Platform.sh is as easy as installing the CLI and configuring your application with a few yaml files. 
+
+When code examples are provided in the guide, click the language of your application.  If you consult those examples and a few templates as you go along, your code will be up and running on Platform.sh in no time. 
 
 <html>
 <head>
