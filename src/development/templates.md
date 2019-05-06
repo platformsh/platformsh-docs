@@ -45,12 +45,18 @@ You can also initialize your project using any of the pre-made templates below. 
 <div>
   <h4>Examples</h4>
   <a href="https://github.com/platformsh/platformsh-example-python-uwsgi">Python UWSGI with Unix Sockets</a><br />
+  <a href="https://github.com/platformsh/platformsh/template-moinmoin">Django</a><br />
+  <a href="https://github.com/platformsh/platformsh/template-pelican">Pelican</a><br />
 </div>
 
 <div>
   <h4>Frameworks</h4>
-  <a href="https://github.com/platformsh/platformsh-example-django">Django</a>
-  <a href="https://github.com/platformsh/template-flask">Platform.sh Python 2.7 Flask</a><br />
+  <a href="https://github.com/platformsh/platformsh-example-django">Django</a><br />
+  <a href="https://github.com/platformsh/platformsh/template-django1">Django</a><br />
+  <a href="https://github.com/platformsh/platformsh/template-django2">Django</a><br />
+  <a href="https://github.com/platformsh/platformsh/template-wagtail">Django</a><br />
+  <a href="https://github.com/platformsh/template-flask">Flask</a><br />
+  <a href="https://github.com/platformsh/platformsh/template-pyramid">Pyramid</a><br />
 </div>
 
 </section>
