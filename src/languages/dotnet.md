@@ -25,8 +25,10 @@ For simple applications, we recommend using `dotnet publish --self-contained`, w
 hooks:
     build: |
         set -xe
-        dotnet publish --self-contained --runtime "$DOTNET_DEFAULT_RUNTIME" --output "$PLATFORM_OUTPUT_DIR"
+        dotnet publish --self-contained --runtime "$DOTNET_DEFAULT_RUNTIME" --output "$PLATFORM_OUTPUT_DIR" -p:UseRazorBuildServer=false -p:UseSharedCompilation=false
 ```
+
+When using a custom build hook, make sure to copy the -p toggles over, or builds will take much longer. Alternatively, when making multiple builds within one build hook, you might want to leave the servers enabled and call `dotnet build-server shutdown` at the end of your build hook.
 
 ## Running the application
 
