@@ -2,7 +2,7 @@
 
 ## Next steps
 
-In this guide you created a project using the [CLI](/development/cli.md) and configured your project to run on Platform.sh using a few simple configuration files. 
+In this guide you opened an SSH tunnel to your Platform.sh project and built your application locally.
 
 Don't stop now! There are far more features that make Platform.sh profoundly helpful to developers that you have left to explore.
 
@@ -48,7 +48,7 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 
 <center>
 
-<a href="/gettingstarted/local-dev/step-4.html" class="buttongen small">Back</a>
+<a href="/gettingstarted/local-dev/step-3.html" class="buttongen small">Back</a>
 
 </center>
 
