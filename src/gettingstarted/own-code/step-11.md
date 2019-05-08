@@ -1,4 +1,5 @@
-# Local Development
+
+# Import your own code
 
 ## Next steps
 
@@ -15,6 +16,8 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
+
+<a href="/gettingstarted/local-dev.html" class="buttongen full"><b>Local Development</b><br/><br/>Remotely connect to services and build your application locally during development.</a>
 
 <a href="/gettingstarted/dev-environments.html" class="buttongen full"><b>Live feature environments</b><br/><br/>Activate development branches and test new features before merging into production</a>
 
@@ -38,6 +41,7 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 </body>
 </html>
 
+
 <html>
 <head>
 <link rel="stylesheet" href="/styles/styles.css">
@@ -48,7 +52,7 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 
 <center>
 
-<a href="/gettingstarted/local-dev/step-4.html" class="buttongen small">Back</a>
+<a href="/gettingstarted/own-code/step-10.html" class="buttongen small">Back</a>
 
 </center>
 

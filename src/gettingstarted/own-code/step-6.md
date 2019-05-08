@@ -38,7 +38,7 @@ If you're application does not use any services at this point, you can leave it 
 
   The service `type` specifies the service type and its version using the format `type:version`. Make sure to use an available version of the service type, or else you will receive an error when you try to build your project.
   
-  The services supported by Platform.sh can be found in the [Services documentation](/configuration/services.md), with individual pages lists in the sidebar. Check the page of the service you want to configure for your application, and you will find supported versions and examples for how to connect that service with a particular language in the "Usage example" section.
+  The services supported by Platform.sh can be found in the [Services documentation](/configuration/services.md), with individual service pages listed in the sidebar. Check the page of the service you want to configure for your application, and you will find supported versions and examples for how to connect that service with a particular language in the "Usage example" section.
   
 
 * **Disk**

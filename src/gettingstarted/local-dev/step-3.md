@@ -5,7 +5,7 @@
 </head>
 </html>
 
-# Developing with Platform.sh: Local Development
+# Local Development
 
 ## Build site locally
 

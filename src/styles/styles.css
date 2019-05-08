@@ -414,6 +414,34 @@ section.examples-lists > div {
   margin-right: 1em;
 }
 
+/* More Info Sections */
+
+section.more-info {
+  display: block;
+}
+
+section.more-info > div {
+  background-color: #EDEDEF;
+  font-family: 'Open Sans', sans-serif;
+  padding: 10px 10px;
+  border: 1px solid #49475F;
+  border-radius: 10px;
+  text-align: center;
+}
+
+div.more-info {
+  display: block;
+  background-color: #EDEDEF;
+  font-family: 'Open Sans', sans-serif;
+  padding: 10px 10px;
+  border: 1px solid #49475F;
+  border-radius: 10px;
+  width: 60%;
+  margin: auto;
+}
+
+/* Code tabs */
+
 .codetabs-body pre {
   max-height: 30em;
   overflow: scroll;

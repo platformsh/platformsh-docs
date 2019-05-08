@@ -5,7 +5,7 @@
 </head>
 </html>
 
-# Developing with Platform.sh: Live Feature Environments
+# Development Environments
 
 ## Create feature branch
 
@@ -68,8 +68,8 @@ There are two options for creating new environments on Platform.sh, through the 
 
 <center>
 
-<a href="/gettingstarted/feature-envs/step-1.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/feature-envs/step-3.html" class="buttongen small">I have created a feature branch</a>
+<a href="/gettingstarted/dev-environments/step-1.html" class="buttongen small">Back</a>
+<a href="/gettingstarted/dev-environments/step-3.html" class="buttongen small">I have created a feature branch</a>
 
 </center>
 

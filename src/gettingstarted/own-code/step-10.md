@@ -1,74 +1,57 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+  <script src="/asciinema/asciinema-player.js"></script>
+</head>
+</html>
 
 # Import your own code
 
-## Next steps
+## Build, Deploy, Done!
 
-In this guide you created a project using the [CLI](/development/cli.md) and configured your project to run on Platform.sh using a few simple configuration files. 
+With your configuration files complete, all that's left to do is to commit the changes and push to Platform.sh.
 
-Don't stop now! There are far more features that make Platform.sh profoundly helpful to developers that you have left to explore.
+{% asciinema_local %}/asciinema/recordings/first-push.cast{% endasciinema_local %}
 
-### Developing on Platform.sh
+1. **Commit and push**
 
-Once an application has been migrated to Platform.sh, there's plenty more features that will help improve your development life cycle.
+    Run the commands
+    
+    ```bash
+    git add .
+    git commit -m "Add config files."
+    git push -u platform master
+    ```
+    
+    Platform.sh will detect the presence of your configuration files and use them to build the application.
 
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
+2. **Verify**
 
-<a href="/gettingstarted/local-dev.html" class="buttongen full"><b>Local Development</b><br/><br/>Remotely connect to services and build your application locally during development.</a>
+    When the build is completed, you can verify the deployment by typing the command
+    
+    ```bash
+    platform url
+    ```
+    
+    This will return a list of your routes. Pick the primary route `0` and click Enter, which will open your application in a browser window.
+    
+    Alternatively, you can also log back into the management console in your new project. Select the `Master` environment in the `Environments` list and click the link below the Overview box on the left side of the page.
+    
+    <html>
+    <head>
+    <link rel="stylesheet" href="/styles/styles.css">
+    </head>
+    <body>
+      <video width="800" controls autoplay loop>
+        <source src="/videos/check-status.mp4" type="video/mp4">
+      </video>
+      <br/><br/> 
+    </body>
+    </html>
 
-<a href="/gettingstarted/feature-envs.html" class="buttongen full"><b>Live feature environments</b><br/><br/>Activate development branches and test new features before merging into production</a>
+That's it! Using the Platform.sh CLI and a few properly configured files, pushing your application to run on Platform.sh takes only a few minutes. 
 
-</body>
-</html>
-
-### Going Live
-
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<a href="/gettingstarted/feature-envs.html" class="buttongen full"><b>Going live</b><br/><br/>Register your domains and configure your application for production</a>
-
-</body>
-</html>
-
-### Next Steps
-
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<a href="/gettingstarted/feature-envs.html" class="buttongen full"><b>Github Integration</b><br/><br/>Activate development branches and test new features before merging into production</a>
-
-</body>
-</html>
-
-
-### Additional Resources
-
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-
-<a href="https://community.platform.sh/" class="buttongen full"><b>Community Site</b><br/><br/>Check out how-tos and tutorials, and ask questions about Platform.sh</a>
-
-<a href="https://platform.sh/blog/" class="buttongen full"><b>Platform.sh Blog</b><br/><br/>Read news and how-to posts all about working with Platform.sh</a>
-
-<a href="https://docs.platform.sh/" class="buttongen full"><b>Public Documentation</b><br/><br/>You're already in the greatest reference for working with Platform.sh. Go to the front page.</a>
-
-</body>
-</html>
-
+Now that your code is on Platform.sh, check out some of the Next Steps to get started developing.
 
 <html>
 <head>
@@ -81,6 +64,7 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 <center>
 
 <a href="/gettingstarted/own-code/step-9.html" class="buttongen small">Back</a>
+<a href="/gettingstarted/own-code/step-11.html" class="buttongen small">I have deployed my application</a>
 
 </center>
 

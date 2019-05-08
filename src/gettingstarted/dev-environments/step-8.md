@@ -1,4 +1,4 @@
-# Developing with Platform.sh: Live Feature Environments
+# Development Environments
 
 ## Next steps
 
@@ -21,33 +21,6 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 </body>
 </html>
 
-### Going Live
-
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<a href="/gettingstarted/feature-envs.html" class="buttongen full"><b>Going live</b><br/><br/>Register your domains and configure your application for production</a>
-
-</body>
-</html>
-
-### Next Steps
-
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<a href="/gettingstarted/feature-envs.html" class="buttongen full"><b>Github Integration</b><br/><br/>Activate development branches and test new features before merging into production</a>
-
-</body>
-</html>
-
-
 ### Additional Resources
 
 <html>
@@ -56,12 +29,11 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 </head>
 <body>
 
+<a href="/gettingstarted/next-steps.html" class="buttongen full"><b>Next Steps</b><br/><br/>Set up domains to take your application live, configure external integrations to GitHub, and more!</a>
 
 <a href="https://community.platform.sh/" class="buttongen full"><b>Community Site</b><br/><br/>Check out how-tos and tutorials, and ask questions about Platform.sh</a>
 
 <a href="https://platform.sh/blog/" class="buttongen full"><b>Platform.sh Blog</b><br/><br/>Read news and how-to posts all about working with Platform.sh</a>
-
-<a href="https://docs.platform.sh/" class="buttongen full"><b>Public Documentation</b><br/><br/>You're already in the greatest reference for working with Platform.sh. Go to the front page.</a>
 
 </body>
 </html>
@@ -77,7 +49,7 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 
 <center>
 
-<a href="/gettingstarted/own-code/step-9.html" class="buttongen small">Back</a>
+<a href="/gettingstarted/dev-environments/step-9.html" class="buttongen small">Back</a>
 
 </center>
 

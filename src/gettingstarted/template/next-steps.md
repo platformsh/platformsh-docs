@@ -33,7 +33,7 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 
 <a href="/gettingstarted/local-dev.html" class="buttongen full"><b>Local Development</b><br/><br/>Remote connect to services and build your application locally during development.</a>
 
-<a href="/gettingstarted/feature-envs.html" class="buttongen full"><b>Live feature environments</b><br/><br/>Activate development branches and test new features before merging into production.</a>
+<a href="/gettingstarted/dev-environments.html" class="buttongen full"><b>Live feature environments</b><br/><br/>Activate development branches and test new features before merging into production.</a>
 
 </body>
 </html>
@@ -45,6 +45,8 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
+
+<a href="/gettingstarted/next-steps.html" class="buttongen full"><b>Next Steps</b><br/><br/>Set up domains to take your application live, configure external integrations to GitHub, and more!</a>
 
 <a href="https://community.platform.sh/" class="buttongen full"><b>Platform.sh Community</b><br/><br/>Check out how-tos, tutorials, and get help for your questions about Platform.sh.</a>
 

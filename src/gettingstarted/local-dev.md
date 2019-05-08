@@ -1,8 +1,8 @@
-# Developing with Platform.sh: Local Development
+# Local Development
 
-Now that you have a project on Platform.sh, it would be helpful to run the same build process on your local machine so tht you can develop and test new features before pushing them.
+![Local development](/images/pretty/home-clone.png)
 
-The local build process will look similar to a remote build, however if your application requires access to services in order to run properly, there are a few additional steps you will need to go through before you can get started.
+Now that you have a project on Platform.sh, it would be helpful to run the same build process on your local machine so that you can develop and test new features before pushing them. This guide will take you through the steps of connecting remotely to your services and building your application locally.
 
 These steps assume that you have already:
 
