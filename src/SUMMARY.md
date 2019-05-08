@@ -28,7 +28,7 @@
   * [Build, Deploy, Done!](/gettingstarted/own-code/step-10.md)
   * [Next steps](/gettingstarted/own-code/step-11.md)
 * [Developing on Platform.sh](/gettingstarted/developing.md)
-  * [Local Development](/gettingstarted/local-dev.md)
+  * [Local development](/gettingstarted/local-dev.md)
     * [Download the code](/gettingstarted/local-dev/step-1.md)
     * [Connect to services](/gettingstarted/local-dev/step-2.md)
     * [Build site locally](/gettingstarted/local-dev/step-3.md)

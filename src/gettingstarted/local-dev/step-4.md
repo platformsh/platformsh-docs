@@ -16,7 +16,7 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 </head>
 <body>
 
-<a href="/gettingstarted/dev-environments.html" class="buttongen full"><b>Live feature environments</b><br/><br/>Activate development branches and test new features before merging into production</a>
+<a href="/gettingstarted/dev-environments.html" class="buttongen full"><b>Development environments</b><br/><br/>Activate development branches and test new features before merging into production</a>
 
 </body>
 </html>

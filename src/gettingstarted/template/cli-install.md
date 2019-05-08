@@ -9,7 +9,7 @@
 
 ## Next Steps: Installing the Platform.sh CLI
 
-With the requirements met, installing the CLI to start developing with Platform.sh
+With all of the requirements met, install the CLI to start developing with Platform.sh.
 
 1. **Install the CLI**
 
