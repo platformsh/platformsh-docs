@@ -1,23 +1,51 @@
 # Development Environments
 
-## Make changes and push
+## Merge into production
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+Now that you've had the chance to verify that your application built and deployed correctly on your development environment, you're ready to merge it into your production site. Platform.sh provides [snapshot](/administration/snapshot-and-restore.md) features that protect against any unforeseen consequences of your merges, keeping a historical copy of all of your code and data. 
 
-1. **Etiam laoreet nulla ac euismod iaculis**
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+</head>
+<body>
+  <asciinema-player src="/asciinema/recordings/snap-merge-restore.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+  <script src="/asciinema/asciinema-player.js"></script>
+</body>
+</html>
 
-   Integer ut massa sit amet dolor bibendum ultricies at in est. Pellentesque nec interdum neque. 
-   
-2. **Integer eu elementum justo**
-   
-   Nunc vulputate, urna imperdiet tristique sagittis, velit ligula tincidunt tellus, sit amet blandit dui arcu id mauris. 
-   
-3. **Pellentesque nec interdum neque** 
+> **Note:** In each code example provided, it is not necessary to include the `--project` flag if you are merging from within your local repository and the flags are meant only to be illustrative.
 
-   Aenean lacinia venenatis nisl, ut porttitor tortor. Vivamus ut risus in orci scelerisque hendrerit. 
-   
-   Fusce viverra sodales quam, ut aliquam nibh vulputate sit amet.
-   
+1. **Create a snapshot**
+
+    Before you merge the `dev` feature into `master`, create a [snapshot](/administration/snapshot-and-restore.md) of the `master` environment. The snapshot will preserve both the code and all of its data that can be used to restore the environment later.
+
+    ```bash
+    platform snapshot:create --project <project id>
+    ```
+    
+    Select `master` as the environment you want to back up and the CLI will create your snapshot.
+
+2. **Merge feature into production**
+
+    ```bash
+    platform environment:merge --project <project id>
+    ```
+    
+    Select `dev`, and then Platform.sh will merge `dev` into its parent, `master`. You can once again verify that your changed have been merged when the build process completes with 
+    
+    ```bash
+    platform url
+    ```
+
+3. **Restore a snapshot**
+
+    If for whatever reason the outcome of the merge did not go as you expected and you would like to restore the code and data to the time of your snapshot, you can use the command 
+
+    ```bash
+    platform snapshot:restore --project <project id>
+    ```
+
    
 <html>
 <head>
@@ -30,7 +58,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus
 <center>
 
 <a href="/gettingstarted/dev-environments/step-2.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/dev-environments/step-4.html" class="buttongen small">I have made changes and pushed to Platform.sh</a>
+<a href="/gettingstarted/dev-environments/step-4.html" class="buttongen small">I have merged the new feature</a>
 
 </center>
 

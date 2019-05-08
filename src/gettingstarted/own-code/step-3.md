@@ -1,10 +1,3 @@
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-  <script src="/asciinema/asciinema-player.js"></script>
-</head>
-</html>
-
 # Import your own code
 
 ## Install the CLI
@@ -35,9 +28,17 @@ In the previous steps you checked that the requirements on your computer were me
    ```bash
    platform
    ```
-    
-   {% asciinema_local %}/asciinema/recordings/verify-cli-extended.cast{% endasciinema_local %}
    
+   <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+    </head>
+    <body>
+      <asciinema-player src="/asciinema/recordings/verify-cli-extended.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+      <script src="/asciinema/asciinema-player.js"></script>
+    </body>
+   </html> 
+       
 Now that you have installed the CLI and it is communicating with Platform.sh, you can configure and push your project to Platform.sh.
 
 

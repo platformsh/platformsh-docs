@@ -1,34 +1,34 @@
+# Development Environments
+
+## Download the code
+
+If you have already [pushed your code](/gettingstarted/own-code.md) to Platform.sh, then you should already have a local repository that you can build from.
+
+Otherwise, it will be necessary to download a local copy of your project first.
+
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-  <script src="/asciinema/asciinema-player.js"></script>
 </head>
+<body>
+  <asciinema-player src="/asciinema/recordings/local-copy.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+  <script src="/asciinema/asciinema-player.js"></script>
+</body>
 </html>
 
-# Development Environments
+1. **Get project ID**
 
-## Clone template code locally
+    You will need the your *project ID*. You can retrieve this ID at any time using the CLI commands `platform` or `platform project:list`.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed lobortis purus. Cras ullamcorper pharetra mollis. Mauris porttitor ante vitae ullamcorper iaculis. Phasellus maximus cursus dui ac pretium. 
+2. **Get a copy of the repository locally**
+    
+    Next, use the CLI to download the code in your Platform.sh project using the command
+    
+    ```bash
+    platform get <project id>
+    ```
 
-{% asciinema_local %}/asciinema/recordings/local-copy.cast{% endasciinema_local %}
-
-1. **Etiam laoreet nulla ac euismod iaculis**
-
-   Integer ut massa sit amet dolor bibendum ultricies at in est. Pellentesque nec interdum neque. 
-  
-
-2. **Integer eu elementum justo**
-   
-   Nunc vulputate, urna imperdiet tristique sagittis, velit ligula tincidunt tellus, sit amet blandit dui arcu id mauris. 
-   
-   
-3. **Pellentesque nec interdum neque** 
-
-   Aenean lacinia venenatis nisl, ut porttitor tortor. Vivamus ut risus in orci scelerisque hendrerit. 
-   
-   Fusce viverra sodales quam, ut aliquam nibh vulputate sit amet.
-
+Now that you have a local copy of your application that is configured to the Platform.sh remote repository, you can create a new .
 
 <html>
 <head>

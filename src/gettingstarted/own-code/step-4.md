@@ -1,17 +1,18 @@
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-  <script src="/asciinema/asciinema-player.js"></script>
-</head>
-</html>
-
 # Import your own code
 
 ## Create a new project
 
 With the Platform.sh CLI now installed and configured to communicate with your projects, you can create a new project from the command line and connect it to your application.
 
-{% asciinema_local %}/asciinema/recordings/project-create.cast{% endasciinema_local %}
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+</head>
+<body>
+  <asciinema-player src="/asciinema/recordings/project-create.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+  <script src="/asciinema/asciinema-player.js"></script>
+</body>
+</html> 
     
 1. **Create an empty project**
 

@@ -1,10 +1,3 @@
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-  <script src="/asciinema/asciinema-player.js"></script>
-</head>
-</html>
-
 # Local Development
 
 ## Connect to services
@@ -13,7 +6,15 @@
 
 Now that you have a local copy of your application code, it doesn't make sense to make changes to the project by pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
 
-{% asciinema_local %}/asciinema/recordings/tunnel-open.cast{% endasciinema_local %}
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+</head>
+<body>
+  <asciinema-player src="/asciinema/recordings/tunnel-open.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+  <script src="/asciinema/asciinema-player.js"></script>
+</body>
+</html>
 
 1. **Open an SSH tunnel to connect to your services**
 
@@ -44,12 +45,6 @@ Now that you have a local copy of your application code, it doesn't make sense t
     
     ```bash
     platform tunnel:list
-    ```
-    
-    and when you are finished with your local builds you can close the tunnel
-    
-    ```bash
-    platform tunnel:close
     ```
     
 Now that you have created an SSH tunnel to your services, all that's left to do is actually build your application locally.

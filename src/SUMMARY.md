@@ -34,14 +34,10 @@
     * [Build site locally](/gettingstarted/local-dev/step-3.md)
     * [Next steps](/gettingstarted/local-dev/step-4.md)
   * [Development environments](/gettingstarted/dev-environments.md)
-    * [Download code locally](/gettingstarted/dev-environments/step-1.md)
-    * [Create feature branch](/gettingstarted/dev-environments/step-2.md)
-    * [Make changes and push](/gettingstarted/dev-environments/step-3.md)
-    * [Activate environment](/gettingstarted/dev-environments/step-4.md)
-    * [Creating a snapshot](/gettingstarted/dev-environments/step-5.md)
-    * [Merge into production](/gettingstarted/dev-environments/step-6.md)
-    * [Restoring a snapshot](/gettingstarted/dev-environments/step-7.md)
-    * [Next steps](/gettingstarted/dev-environments/step-8.md)
+    * [Download the code](/gettingstarted/dev-environments/step-1.md)
+    * [Create environment](/gettingstarted/dev-environments/step-2.md)
+    * [Merge into production](/gettingstarted/dev-environments/step-3.md)
+    * [Next steps](/gettingstarted/dev-environments/step-4.md)
 * [Next Steps](/gettingstarted/next-steps.md)
 
 ## Configuration

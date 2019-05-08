@@ -1,10 +1,3 @@
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-  <script src="/asciinema/asciinema-player.js"></script>
-</head>
-</html>
-
 # Start with a template
 
 ## Next Steps: Installing the Platform.sh CLI
@@ -35,8 +28,15 @@ With all of the requirements met, install the CLI to start developing with Platf
    ```bash
    platform
    ```
-
-    {% asciinema_local %}/asciinema/recordings/verify-cli-extended.cast{% endasciinema_local %}
+   <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+    </head>
+    <body>
+      <asciinema-player src="/asciinema/recordings/verify-cli-extended.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+      <script src="/asciinema/asciinema-player.js"></script>
+    </body>
+   </html> 
    
    You should now be able to see a list of your Platform.sh projects, including the template you made in this guide.
    

@@ -1,4 +1,4 @@
-{"version": 2, "width": 97, "height": 24, "timestamp": 1556745702, "idle_time_limit": 2.0, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+{"version": 2, "width": 80, "height": 24, "timestamp": 1556745702, "idle_time_limit": 2.0, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
 [0.148222, "o", "\u001b[?1034h$ "]
 [1.626136, "o", "g"]
 [1.829305, "o", "i"]
@@ -297,7 +297,6 @@
 [65.194271, "o", "\r\u001b[2K  [->--------------------------]  1 sec (in progress)"]
 [66.414197, "o", "\r\u001b[2K  [-->-------------------------] 2 secs (in progress)\r\u001b[2K\r\n\u001b[1A"]
 [66.414325, "o", "    Building application 'app' (runtime type: python:3.7, tree: 84dc623)\r\n\r\u001b[2K  [--->------------------------] 2 secs (in progress)"]
-
 [67.761945, "o", "\r\u001b[2K  [---->-----------------------] 4 secs (in progress)"]
 [68.962092, "o", "\r\u001b[2K  [----->----------------------] 5 secs (in progress)"]
 [70.161551, "o", "\r\u001b[2K  [------>---------------------] 6 secs (in progress)"]

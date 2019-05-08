@@ -1,4 +1,4 @@
-{"version": 2, "width": 97, "height": 24, "timestamp": 1556744228, "idle_time_limit": 2.0, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+{"version": 2, "width": 80, "height": 24, "timestamp": 1556744228, "idle_time_limit": 2.0, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
 [0.137133, "o", "\u001b[?1034h$ "]
 [1.465334, "o", "p"]
 [1.562507, "o", "l"]
@@ -19,7 +19,7 @@
 [7.079435, "o", "\r\n"]
 [7.079709, "o", "Build destination \u001b[30;46m[_www]\u001b[39;49m: "]
 [7.809347, "o", "\r\n"]
-[7.810112, "o", "The destination exists: \u001b[33m/Users/chadcarlson/recs/template-django2/_www\u001b[39m. Overwrite? \u001b[30;46m[Y/n]\u001b[39;49m "]
+[7.810112, "o", "The destination exists: \u001b[33m/Users/chadcarlson/myapp/_www\u001b[39m. Overwrite? \u001b[30;46m[Y/n]\u001b[39;49m "]
 [9.240274, "o", "\r\n"]
 [9.269981, "o", "Building application \u001b[32mapp\u001b[39m (runtime type: python:3.7)\r\n"]
 [9.270463, "o", "Installing \u001b[32mpython\u001b[39m dependencies with 'pip': pipenv\r\n"]
@@ -47,7 +47,7 @@
 [15.0392, "o", "Backing up previous build to: /Users/chadcarlson/recs/template-django2/.platform/local/builds/default-old.tar.gz\r\n"]
 [15.60646, "o", "Creating symbolic links to mimic shared file mounts\r\n"]
 [15.606744, "o", "  Symlinking \u001b[32mlogs\u001b[39m to \u001b[32m.platform/local/shared/logs\u001b[39m\r\n"]
-[15.606891, "o", "\r\nBuild complete for application \u001b[32mapp\u001b[39m\r\nWeb root: \u001b[32m/Users/chadcarlson/recs/template-django2/_www\u001b[39m\r\n\r\n"]
+[15.606891, "o", "\r\nBuild complete for application \u001b[32mapp\u001b[39m\r\nWeb root: \u001b[32m/Users/chadcarlson/myapp/_www\u001b[39m\r\n\r\n"]
 [15.607052, "o", "Cleaning up...\r\n"]
 [15.614838, "o", "$ "]
 [17.539998, "o", "c"]

@@ -44,8 +44,10 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <div>
   <h4>Examples</h4>
+  <a href="https://github.com/platformsh/platformsh/template-python2">Generic Python 2.7 application</a><br />
+  <a href="https://github.com/platformsh/platformsh/template-python3">Generic Python 3.7 application</a><br />
   <a href="https://github.com/platformsh/platformsh-example-python-uwsgi">Python UWSGI with Unix Sockets</a><br />
-  <a href="https://github.com/platformsh/platformsh/template-moinmoin">Django</a><br />
+  <a href="https://github.com/platformsh/platformsh/template-moinmoin">MoinMoin</a><br />
   <a href="https://github.com/platformsh/platformsh/template-pelican">Pelican</a><br />
 </div>
 
@@ -54,7 +56,7 @@ You can also initialize your project using any of the pre-made templates below. 
   <a href="https://github.com/platformsh/platformsh-example-django">Django</a><br />
   <a href="https://github.com/platformsh/platformsh/template-django1">Django</a><br />
   <a href="https://github.com/platformsh/platformsh/template-django2">Django</a><br />
-  <a href="https://github.com/platformsh/platformsh/template-wagtail">Django</a><br />
+  <a href="https://github.com/platformsh/platformsh/template-wagtail">Wagtail</a><br />
   <a href="https://github.com/platformsh/template-flask">Flask</a><br />
   <a href="https://github.com/platformsh/platformsh/template-pyramid">Pyramid</a><br />
 </div>
@@ -94,6 +96,17 @@ You can also initialize your project using any of the pre-made templates below. 
 <div>
   <h4>Examples</h4>
   <a href="https://github.com/platformsh/template-golang">Generic Go application</a>
+</div>
+
+</section>
+
+## Java
+
+<section class="examples-lists">
+
+<div>
+  <h4>Examples</h4>
+  <a href="https://github.com/platformsh/template-sculpin">Sculpin</a>
 </div>
 
 </section>

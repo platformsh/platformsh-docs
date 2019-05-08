@@ -1,17 +1,18 @@
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-  <script src="/asciinema/asciinema-player.js"></script>
-</head>
-</html>
-
 # Import your own code
 
 ## Build, Deploy, Done!
 
 With your configuration files complete, all that's left to do is to commit the changes and push to Platform.sh.
 
-{% asciinema_local %}/asciinema/recordings/first-push.cast{% endasciinema_local %}
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+</head>
+<body>
+  <asciinema-player src="/asciinema/recordings/first-push.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+  <script src="/asciinema/asciinema-player.js"></script>
+</body>
+</html> 
 
 1. **Commit and push**
 

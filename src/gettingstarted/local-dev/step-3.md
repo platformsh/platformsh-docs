@@ -1,17 +1,18 @@
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-  <script src="/asciinema/asciinema-player.js"></script>
-</head>
-</html>
-
 # Local Development
 
 ## Build site locally
 
 Now that you've opened tunnels into your services, you'll have access to all of your data in your environment. All that's left now is to actually build the site.
 
-{% asciinema_local %}/asciinema/recordings/build.cast{% endasciinema_local %}
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+</head>
+<body>
+  <asciinema-player src="/asciinema/recordings/build.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+  <script src="/asciinema/asciinema-player.js"></script>
+</body>
+</html>
 
 1. **Build the site**
 
@@ -26,13 +27,11 @@ Now that you've opened tunnels into your services, you'll have access to all of 
 2. **Verify**
 
     Move to the build destination (i.e. `cd _www`) and then run a local web server to verify the build.
-
-    {%- codetabs name="Python", type="py", url="https://raw.githubusercontent.com/platformsh/template-python3/master/.platform/services.yaml" -%}
-    python3 -m http.server 8000
     
-    {% language name="PHP", type="php", url="https://raw.githubusercontent.com/platformsh/template-php/master/.platform/services.yaml" -%}
+    {% codetabs name="PHP", type="php" -%}
     php -d variables_order=EGPCS -S localhost:8001
-
+    {%- language name="Python", type="py" -%}
+    python3 -m http.server 8000
     {%- endcodetabs %}
 
 3. **Cleanup**
@@ -56,7 +55,7 @@ Now you know how to connect to your services on Platform.sh and perform a local 
 <center>
 
 <a href="/gettingstarted/local-dev/step-2.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/local-dev/step-4.html" class="buttongen small">I built my application locally</a>
+<a href="/gettingstarted/local-dev/step-4.html" class="buttongen small">I have built my application locally</a>
 
 </center>
 

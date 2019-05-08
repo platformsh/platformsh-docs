@@ -1,10 +1,3 @@
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-  <script src="/asciinema/asciinema-player.js"></script>
-</head>
-</html>
-
 # Local development
 
 ## Download the code
@@ -13,7 +6,15 @@ If you have already [pushed your code](/gettingstarted/own-code.md) to Platform.
 
 Otherwise, it will be necessary to download a local copy of your project first.
 
-{% asciinema_local %}/asciinema/recordings/local-copy.cast{% endasciinema_local %}
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
+</head>
+<body>
+  <asciinema-player src="/asciinema/recordings/local-copy.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+  <script src="/asciinema/asciinema-player.js"></script>
+</body>
+</html>
 
 1. **Get project ID**
 
