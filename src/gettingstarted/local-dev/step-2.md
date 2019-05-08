@@ -9,13 +9,15 @@
 
 ## Connect to services
 
+> **Note:** If your application does not contain any services, you do not need to open a tunnel and can proceed to the next step.
+
 Now that you have a local copy of your application code, it doesn't make sense to make changes to the project by pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
 
 {% asciinema_local %}/asciinema/recordings/tunnel-open.cast{% endasciinema_local %}
 
 1. **Open an SSH tunnel to connect to your services**
 
-    The easiest way to build a project with services locally is on a local web server, keeping all other services on Platform.sh and connecting to them using an [SSH tunnel](/development/local/tethered.md#ssh-tunneling). You can consult the documentation if your are interested in other methods as well. 
+    The easiest way to build a project with services locally is on a local web server, keeping all other services on Platform.sh and connecting to them using an [SSH tunnel](/development/local/tethered.md#ssh-tunneling). You can consult the [local development](/development/local.md) documentation if your are interested in other methods as well. 
     
     ```bash
     platform tunnel:open
@@ -23,12 +25,11 @@ Now that you have a local copy of your application code, it doesn't make sense t
 
 2. **Export environment variables**
 
-    Platform.sh utilizes a number of environment variables within the application container that store the credentials that are used to connect to individual services. In order to connect with them remotely using the SSH tunnel you will need to create the same local environment variables to mimic them. 
+    Platform.sh utilizes a number of environment variables within the application container that store the credentials that are used to connect to individual services. In order to connect with them remotely using the SSH tunnel you will need to mimic the same environment variables locally. 
     
     ```bash
     export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
     ```
-    
     In order to use these credentials to connect to your services, it is also necessary that those services are locally installed.
     
     Additionally, if your application also needs access to the `PORT` environment variable, you can mock the variable used in a Platform.sh environment with
@@ -64,7 +65,7 @@ Now that you have created an SSH tunnel to your services, all that's left to do 
 <center>
 
 <a href="/gettingstarted/local-dev/step-1.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/local-dev/step-3.html" class="buttongen small">I have set up my free trial account</a>
+<a href="/gettingstarted/local-dev/step-3.html" class="buttongen small">I have opened an SSH tunnel into my services</a>
 
 </center>
 

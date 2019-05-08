@@ -13,15 +13,13 @@ If you have already [pushed your code](/gettingstarted/own-code.md) to Platform.
 
 Otherwise, it will be necessary to download a local copy of your project first.
 
+{% asciinema_local %}/asciinema/recordings/local-copy.cast{% endasciinema_local %}
+
 1. **Get project ID**
 
-    You will need the id of your project. You can retrieve this id at any time using the CLI commands `platform` or `platform project:list`.
-    
-    {% asciinema_local %}/asciinema/recordings/list-projects.cast{% endasciinema_local %}
+    You will need the your *project ID*. You can retrieve this ID at any time using the CLI commands `platform` or `platform project:list`.
 
 2. **Get a copy of the repository locally**
-
-    {% asciinema_local %}/asciinema/recordings/local-copy.cast{% endasciinema_local %}
     
     Next, use the CLI to download the code in your Platform.sh project using the command
     

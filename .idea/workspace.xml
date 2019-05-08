@@ -2,92 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c314f996-0754-4dff-9629-d68df936801e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/buttons/lang-templates.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/more-info/config-readers.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/more-info/supported-versions.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-11.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/pretty/home-bg-cta.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/pretty/home-bg-spot-left.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/pretty/home-bg-spot-right.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/pretty/home-business-ui.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/pretty/home-clone.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/pretty/home-deploy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/pretty/home-drop-in.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/pretty/home-hero.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/pretty/home-iterate.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/pretty/home-services.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/pretty/home-vision.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/buttons/lang-templates.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/more-info/config-readers.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/more-info/supported-versions.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/step-11.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/pretty/home-bg-cta.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/pretty/home-bg-spot-left.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/pretty/home-bg-spot-right.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/pretty/home-business-ui.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/pretty/home-clone.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/pretty/home-deploy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/pretty/home-drop-in.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/pretty/home-hero.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/pretty/home-iterate.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/pretty/home-services.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/pretty/home-vision.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/SUMMARY.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/development/templates.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/development/templates.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/developing.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/developing.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/feature-envs.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/dev-environments.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/feature-envs/step-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/dev-environments/step-1.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/feature-envs/step-2.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/dev-environments/step-2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/feature-envs/step-3.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/dev-environments/step-3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/feature-envs/step-4.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/dev-environments/step-4.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/feature-envs/step-5.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/dev-environments/step-5.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/feature-envs/step-6.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/dev-environments/step-6.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/feature-envs/step-7.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/dev-environments/step-7.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/feature-envs/step-8.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/dev-environments/step-8.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/going-live.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/next-steps.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/asciinema/recordings/local-copy.cast" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/asciinema/recordings/local-copy.cast" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-1.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-2.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-3.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-4.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/local-dev/step-4.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-10.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-10.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-5.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-5.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-6.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-6.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-7.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-7.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-8.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-8.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-9.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-9.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/template.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/template.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/template/next-steps.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/template/next-steps.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/SUMMARY.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/development/templates.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/development/templates.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/developing.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/developing.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/feature-envs.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/dev-environments.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/dev-environments/step-1.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-2.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/dev-environments/step-2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-3.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/dev-environments/step-3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-4.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/dev-environments/step-4.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-5.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/dev-environments/step-5.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-6.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/dev-environments/step-6.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-7.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/dev-environments/step-7.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-8.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/dev-environments/step-8.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/going-live.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/next-steps.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/local-dev.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/local-dev.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/asciinema/recordings/build.cast" beforeDir="false" afterPath="$PROJECT_DIR$/src/asciinema/recordings/build.cast" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/asciinema/recordings/local-copy.cast" beforeDir="false" afterPath="$PROJECT_DIR$/src/asciinema/recordings/local-copy.cast" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-1.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-4.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/local-dev/step-4.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/own-code.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/own-code.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/own-code/step-10.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/step-10.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/own-code/step-5.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/step-5.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/own-code/step-8.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/step-8.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/own-code/step-9.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/step-9.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/template.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/template.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/template/next-steps.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/template/next-steps.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/styles.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,12 +22,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-1.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="380">
-                <caret line="82" column="216" selection-start-line="82" selection-start-column="216" selection-end-line="82" selection-end-column="216" />
+              <first_editor relative-caret-position="285">
+                <caret line="19" column="139" selection-start-line="19" selection-start-column="139" selection-end-line="19" selection-end-column="139" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="100">
+                <caret line="11" column="129" selection-start-line="11" selection-start-column="129" selection-end-line="11" selection-end-column="129" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="578">
+                <caret line="45" column="162" selection-start-line="45" selection-start-column="162" selection-end-line="45" selection-end-column="162" />
               </first_editor>
               <second_editor />
             </state>
@@ -170,16 +119,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-1.md" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/project-create.cast" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/tunnel-open.cast" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/add.cast" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/branch.cast" />
-        <option value="$PROJECT_DIR$/src/asciinema/recordings/build.cast" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/create-empty.cast" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/first-push.cast" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/list-projects.cast" />
-        <option value="$PROJECT_DIR$/src/asciinema/recordings/local-copy.cast" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/tunnel.cast" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/verify-cli-extended.cast" />
         <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-4.md" />
@@ -187,7 +133,6 @@
         <option value="$PROJECT_DIR$/src/gettingstarted/template/check-status.md" />
         <option value="$PROJECT_DIR$/src/gettingstarted/template/cli-requirements.md" />
         <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-2.md" />
-        <option value="$PROJECT_DIR$/src/gettingstarted/template/cli-install.md" />
         <option value="$PROJECT_DIR$/src/asciinema/asciinema-start.js" />
         <option value="$PROJECT_DIR$/src/gettingstarted/own-code/lang-buttons.js" />
         <option value="$PROJECT_DIR$/src/gettingstarted/own-code/lang-buttons.html" />
@@ -196,7 +141,6 @@
         <option value="$PROJECT_DIR$/src/gettingstarted/own-code/config-readers.html" />
         <option value="$PROJECT_DIR$/src/gettingstarted/template.md" />
         <option value="$PROJECT_DIR$/src/gettingstarted/own-code.md" />
-        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md" />
         <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-5.md" />
         <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-10.md" />
         <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-9.md" />
@@ -212,15 +156,20 @@
         <option value="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-6.md" />
         <option value="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-7.md" />
         <option value="$PROJECT_DIR$/src/gettingstarted/feature-envs/step-8.md" />
-        <option value="$PROJECT_DIR$/src/SUMMARY.md" />
-        <option value="$PROJECT_DIR$/src/gettingstarted/template/next-steps.md" />
-        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-11.md" />
         <option value="$PROJECT_DIR$/src/gettingstarted/local-dev.md" />
-        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md" />
-        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md" />
-        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-4.md" />
         <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/template/cli-install.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-11.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/template/next-steps.md" />
         <option value="$PROJECT_DIR$/src/gettingstarted/developing.md" />
+        <option value="$PROJECT_DIR$/src/SUMMARY.md" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/local-copy.cast" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-1.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-4.md" />
+        <option value="$PROJECT_DIR$/src/asciinema/recordings/build.cast" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md" />
       </list>
     </option>
   </component>
@@ -259,14 +208,14 @@
               <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="gettingstarted" type="462c0819:PsiDirectoryNode" />
-              <item name="own-code" type="462c0819:PsiDirectoryNode" />
+              <item name="local-dev" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
               <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="gettingstarted" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="own-code" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
@@ -478,11 +427,19 @@
       <option name="project" value="LOCAL" />
       <updated>1557158754744</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Apply Development environments name everywhere. Update services formatting.">
+      <created>1557336466582</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1557336466582</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="58" y="23" width="1556" height="983" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18097754" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -563,46 +520,10 @@
     <MESSAGE value="change asciinema formatting. polish of first two paths" />
     <MESSAGE value="update template list" />
     <MESSAGE value="Next steps included. Two path drafts done." />
-    <option name="LAST_COMMIT_MESSAGE" value="Next steps included. Two path drafts done." />
+    <MESSAGE value="Apply Development environments name everywhere. Update services formatting." />
+    <option name="LAST_COMMIT_MESSAGE" value="Apply Development environments name everywhere. Update services formatting." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/minimal_config.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="90">
-            <caret line="6" selection-start-line="6" selection-end-line="11" selection-end-column="57" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/more-info/supported-versions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/more-info/config-readers.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/configuration/routes.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="406">
-            <caret line="38" selection-start-line="38" selection-end-line="40" selection-end-column="104" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/images/home-iterate.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gettingstarted/template/free-trial.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
@@ -732,31 +653,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="571">
-            <caret line="40" column="150" selection-start-line="40" selection-start-column="150" selection-end-line="40" selection-end-column="150" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/development/templates.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="-737">
             <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-8.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="358">
-            <caret line="102" column="24" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
           </first_editor>
           <second_editor />
         </state>
@@ -862,74 +763,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SUMMARY.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="473">
-            <caret line="35" column="62" selection-start-line="35" selection-start-column="62" selection-end-line="35" selection-end-column="62" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/template/next-steps.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="271">
-            <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-11.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="232">
-            <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-1.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="120">
-            <caret line="8" selection-start-line="8" selection-end-line="8" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="120">
-            <caret line="8" selection-start-line="8" selection-end-line="8" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-4.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="315">
-            <caret line="18" column="61" lean-forward="true" selection-start-line="18" selection-start-column="61" selection-end-line="18" selection-end-column="61" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -940,24 +773,152 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/developing.md">
+    <entry file="file://$PROJECT_DIR$/src/images/pretty/home-services.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/template/cli-install.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="30">
-            <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="165">
+            <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/images/pretty/home-services.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-8.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="786">
+            <caret line="102" column="24" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="380">
+          <first_editor relative-caret-position="741">
             <caret line="82" column="216" selection-start-line="82" selection-start-column="216" selection-end-line="82" selection-end-column="216" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-11.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="277">
+            <caret line="21" column="85" selection-start-line="21" selection-start-column="85" selection-end-line="21" selection-end-column="85" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/template/next-steps.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="316">
+            <caret line="35" column="86" selection-start-line="35" selection-start-column="86" selection-end-line="35" selection-end-column="86" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/developing.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="255">
+            <caret line="14" column="86" selection-start-line="14" selection-start-column="86" selection-end-line="14" selection-end-column="86" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SUMMARY.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="398">
+            <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/local-copy2.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="55" lean-forward="true" selection-start-line="2" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/local-copy.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/list-projects.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-1.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="285">
+            <caret line="19" column="139" selection-start-line="19" selection-start-column="139" selection-end-line="19" selection-end-column="139" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-4.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="628">
+            <caret line="50" column="41" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/asciinema/recordings/build.cast">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="773">
+          <caret line="90" lean-forward="true" selection-start-line="90" selection-end-line="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-2.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="100">
+            <caret line="11" column="129" selection-start-line="11" selection-start-column="129" selection-end-line="11" selection-end-column="129" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="315">
+            <caret line="20" selection-start-line="20" selection-end-line="26" selection-end-column="18" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/local-dev/step-3.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="578">
+            <caret line="45" column="162" selection-start-line="45" selection-start-column="162" selection-end-line="45" selection-end-column="162" />
           </first_editor>
           <second_editor />
         </state>
