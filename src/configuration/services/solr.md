@@ -149,7 +149,7 @@ solrsearch:
     disk: 1024
     configuration:
         configsets:
-            mainconfig: : !include
+            mainconfig: !include
                 type: archive
                 path: "configsets/solr6"
         cores:
