@@ -6,18 +6,23 @@ See the [Redis documentation](https://redis.io/documentation) for more informati
 
 Platform.sh supports two different Redis configurations: One persistent (useful for key-value application data) and one ephemeral (in-memory only, useful for application caching).  Aside from that distinction they are identical.
 
-## Supported versions
-
-* 3.2
-* 4.0
-* 5.0
-
-### Deprecated versions
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
-
-* 2.8
-* 3.0
+<html>
+   <head>
+      <title>Redis Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
+   </head>
+   <body>
+   <h2>Supported versions</h2>
+   <div id = 'redisSupported'></div>
+   <h3>Deprecated versions</h3>
+   <p>The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.</p>
+   <div id = 'redisDeprecated'></div>
+   <script>
+   makeList(json, "services", "redis", "supported", "redisSupported");
+   makeList(json, "services", "redis", "deprecated", "redisDeprecated");
+   </script>
+   </body>
+</html>
 
 > **note**
 > Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database

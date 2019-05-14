@@ -6,13 +6,19 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) for more information.
 
-## Supported versions
-
-* 3.6
-* 4.10
-* 6.3
-* 6.6
-* 7.6
+<html>
+   <head>
+      <title>Solr Supported Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
+   </head>
+   <body>
+   <h2>Supported versions</h2>
+   <div id = 'solrSupported'></div>
+   <script>
+   makeList(json, "services", "solr", "supported", "solrSupported");
+   </script>
+   </body>
+</html>
 
 ## Relationship
 

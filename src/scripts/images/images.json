@@ -28,6 +28,17 @@
       ],
       "docs": "\/configuration\/services\/influxdb.html"
     },
+    "kafka": {
+      "name": "Kafka",
+      "type": "kafka",
+      "supported": [
+        "2.1"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "\/configuration\/services\/kafka.html"
+    },
     "memcached": {
       "name": "Memcached",
       "type": "memcached",
@@ -65,6 +76,17 @@
         "5.5"
       ],
       "docs": "\/configuration\/services\/mysql.html"
+    },
+    "network-storage": {
+      "name": "Network Storage",
+      "type": "network-storage",
+      "supported": [
+        "1.0"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "\/configuration\/services\/network-storage.html"
     },
     "postgresql": {
       "name": "PostgreSQL",

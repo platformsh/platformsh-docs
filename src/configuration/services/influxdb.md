@@ -1,13 +1,22 @@
-# Influx DB(Database service)
+# Influx DB (Database service)
 
 InfluxDB is a time series database optimized for high-write-volume use cases such as logs, sensor data, and real-time analytics.  It exposes an HTTP API for client interaction.
 
 See the [InfluxDB documentation](https://docs.influxdata.com/influxdb/v1.2/) for more information.
 
-## Supported versions
-
-* 1.2
-* 1.3
+<html>
+   <head>
+      <title>InfluxDB Supported Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
+   </head>
+   <body>
+   <h2>Supported versions</h2>
+   <div id = 'influxdbSupported'></div>
+   <script>
+   makeList(json, "services", "influxdb", "supported", "influxdbSupported");
+   </script>
+   </body>
+</html>
 
 ## Relationship
 

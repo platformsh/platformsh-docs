@@ -4,17 +4,23 @@ PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
 See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
-## Supported versions
-
-* 9.6
-* 10
-* 11
-
-### Deprecated versions
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
-
-* 9.3
+<html>
+   <head>
+      <title>PostgreSQL Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
+   </head>
+   <body>
+   <h2>Supported versions</h2>
+   <div id = 'postgresqlSupported'></div>
+   <h3>Deprecated versions</h3>
+   <p>The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.</p>
+   <div id = 'postgresqlDeprecated'></div>
+   <script>
+   makeList(json, "services", "postgresql", "supported", "postgresqlSupported");
+   makeList(json, "services", "postgresql", "deprecated", "postgresqlDeprecated");
+   </script>
+   </body>
+</html>
 
 ## Relationship
 

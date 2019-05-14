@@ -2,12 +2,19 @@
 
 Platform.sh supports deploying Python applications. Your application can use WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
 
-## Supported versions
-
-* 2.7
-* 3.5
-* 3.6
-* 3.7
+<html>
+   <head>
+      <title>Python Supported Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
+   </head>
+   <body>
+   <h2>Supported versions</h2>
+   <div id = 'pythonSupported'></div>
+   <script>
+   makeList(json, "runtimes", "python", "supported", "pythonSupported");
+   </script>
+   </body>
+</html>
 
 ## Support libraries
 

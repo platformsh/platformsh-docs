@@ -2,24 +2,36 @@
 
 Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine.  Platform.sh supports deploying Node.js applications quickly and easily. Using our Multi-App support you can build a micro-service oriented system mixing both Javascript and PHP applications.
 
-## Supported versions
-
-* 6.11
-* 8.9
-* 10
+<html>
+   <head>
+      <title>Node.js Supported Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
+   </head>
+   <body>
+   <h2>Supported versions</h2>
+   <div id = 'nodejsSupported'></div>
+   <script>
+   makeList(json, "runtimes", "nodejs", "supported", "nodejsSupported");
+   </script>
+   </body>
+</html>
 
 If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.html).
 
-## Deprecated versions
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
-
-* 0.12
-* 4.7
-* 4.8
-* 6.9
-* 6.10
-* 8.2
+<html>
+   <head>
+      <title>Node.js Deprecated Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/listTest.js" ></script>
+   </head>
+   <body>
+   <h3>Deprecated versions</h3>
+   <p>The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.</p>
+   <div id = 'nodejsDeprecated'></div>
+   <script>
+   makeList(json, "runtimes", "nodejs", "deprecated", "nodejsDeprecated");
+   </script>
+   </body>
+</html>
 
 ## Support libraries
 

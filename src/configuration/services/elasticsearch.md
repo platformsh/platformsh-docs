@@ -4,20 +4,23 @@ Elasticsearch is a distributed RESTful search engine built for the cloud.
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
-## Supported versions
-
-* 5.2
-* 5.4
-* 6.5
-
-### Deprecated versions
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
-
-* 0.90
-* 1.4
-* 1.7
-* 2.4
+<html>
+   <head>
+      <title>Elasticsearch Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
+   </head>
+   <body>
+   <h2>Supported versions</h2>
+   <div id = 'elasticsearchSupported'></div>
+   <h3>Deprecated Versions</h3>
+   <p>The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.</p>
+   <div id = 'elasticsearchDeprecated'></div>
+   <script>
+   makeList(json, "services", "elasticsearch", "supported", "elasticsearchSupported");
+   makeList(json, "services", "elasticsearch", "deprecated", "elasticsearchDeprecated");
+   </script>
+   </body>
+</html>
 
 ## Relationship
 

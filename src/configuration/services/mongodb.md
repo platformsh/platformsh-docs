@@ -4,12 +4,19 @@ MongoDB is a cross-platform, document-oriented database.
 
 For more information on using MongoDB, see [MongoDB's own documentation](https://docs.mongodb.com/manual/).
 
-## Supported versions
-
-* 3.0
-* 3.2
-* 3.4
-* 3.6
+<html>
+   <head>
+      <title>MongoDB Supported Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
+   </head>
+   <body>
+   <h2>Supported versions</h2>
+   <div id = 'mongodbSupported'></div>
+   <script>
+   makeList(json, "services", "mongodb", "supported", "mongodbSupported");
+   </script>
+   </body>
+</html>
 
 > **note**
 >

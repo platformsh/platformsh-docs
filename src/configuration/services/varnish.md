@@ -1,13 +1,22 @@
-# Varnish HTTP Proxy
+# Varnish (HTTP Proxy)
 
 Varnish is a popular HTTP proxy server, often used for caching.  It is usually not needed on Platform.sh, as each project's router provides an HTTP cache already and most more advanced use cases will use a CDN instead, both of which render Varnish redundant.
 
 However, it is possible to configure a Varnish instance as part of an application if Varnish-specific functionality is needed.
 
-## Supported versions
-
-* 5.2
-* 6.0
+<html>
+   <head>
+      <title>Varnish Supported Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
+   </head>
+   <body>
+   <h2>Supported versions</h2>
+   <div id = 'varnishSupported'></div>
+   <script>
+   makeList(json, "services", "varnish", "supported", "varnishSupported");
+   </script>
+   </body>
+</html>
 
 ## How it works
 

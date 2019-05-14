@@ -4,11 +4,20 @@
 
 PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
 
-## Supported versions
+<html>
+   <head>
+      <title>PHP Supported Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
+   </head>
+   <body>
+   <h2>Supported versions</h2>
+   <div id = 'phpSupported'></div>
+   <script>
+   makeList(json, "runtimes", "php", "supported", "phpSupported");
+   </script>
+   </body>
+</html>
 
-* 7.1
-* 7.2
-* 7.3
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
@@ -19,14 +28,20 @@ To select a PHP version, specify a `type` such as `php:7.3`:
 type: "php:7.3"
 ```
 
-## Deprecated versions
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
-
-* 5.4
-* 5.5
-* 5.6
-* 7.0
+<html>
+   <head>
+      <title>PHP Deprecated Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/listTest.js" ></script>
+   </head>
+   <body>
+   <h3>Deprecated versions</h3>
+   <p>The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.</p>
+   <div id = 'phpDeprecated'></div>
+   <script>
+   makeList(json, "services", "php", "deprecated", "phpDeprecated");
+   </script>
+   </body>
+</html>
 
 ## Support libraries
 

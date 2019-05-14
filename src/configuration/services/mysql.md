@@ -10,7 +10,7 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
       <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
    </head>
    <body>
-   <h2>Supported Versions</h2>
+   <h2>Supported versions</h2>
    <div id = 'mariadbSupported'></div>
    <script>
    makeList(json, "services", "mysql", "supported", "mariadbSupported");
@@ -28,7 +28,7 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
       <script type = "text/javascript" src = "/scripts/images/listTest.js" ></script>
    </head>
    <body>
-   <h3>Deprecated Versions</h3>
+   <h3>Deprecated versions</h3>
    <p>The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.</p>
    <div id = 'mariadbDeprecated'></div>
    <script>
