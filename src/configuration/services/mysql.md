@@ -7,7 +7,7 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 <html>
    <head>
       <title>MariaDB/MySQL Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/listTest.js" ></script>
+      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
    </head>
    <body>
    <h2>Supported Versions</h2>

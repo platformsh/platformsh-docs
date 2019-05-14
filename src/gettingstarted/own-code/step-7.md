@@ -38,7 +38,7 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
     <html>
        <head>
           <title>Runtime Supported Versions</title>
-          <script type = "text/javascript" src = "/scripts/images/tableTest.js" ></script>
+          <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
        </head>
        <body>
           <div class="wrapper">

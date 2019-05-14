@@ -35,7 +35,7 @@ If you're application does not use any services at this point, you can leave it 
     <html>
        <head>
           <title>Services Supported Versions</title>
-          <script type = "text/javascript" src = "/scripts/images/tableTest.js" ></script>
+          <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
        </head>
        <body>
           <div class="wrapper">
