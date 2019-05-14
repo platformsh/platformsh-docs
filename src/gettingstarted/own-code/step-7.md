@@ -41,7 +41,7 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
         <script src="jquery.js"></script>
         <script>
             $(function(){
-                $("#includedContent").load("/gettingstarted/own-code/more-info/supported-versions.html");
+                $("#includedContent").load("/gettingstarted/own-code/more-info/runtime-version-table.html");
             });
         </script>
     </head>

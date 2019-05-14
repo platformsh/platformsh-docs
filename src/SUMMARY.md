@@ -39,6 +39,8 @@
     * [Merge into production](/gettingstarted/dev-environments/step-3.md)
     * [Next steps](/gettingstarted/dev-environments/step-4.md)
 * [Next Steps](/gettingstarted/next-steps.md)
+  * [External integrations](/gettingstarted/integrations.md)
+  * [Going live](/gettingstarted/going-live.md)
 
 ## Configuration
 

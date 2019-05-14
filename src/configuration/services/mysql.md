@@ -10,6 +10,28 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 * 10.1
 * 10.2
 
+<html>
+<head>
+    <title>Language Template Buttons</title>
+    <script src="jquery.js"></script>
+    <script src="/configuration/listTest.js"></script>
+</head>
+<body>
+<div id='cssmenu'>
+    <ul id='options'>
+        <li class='active'><a href='#'><span>Home</span></a>
+            <ul id='home'></ul></li>
+        <li class='has-sub'><a href='#'><span>Products</span></a>
+            <ul id='product_list'></ul></li>
+        <li class='has-sub'><a href='#'><span>Company</span></a>
+            <ul id='company'></ul></li>
+        <li class='has-sub'><a href='#'><span>Contact</span></a>
+            <ul id='contact'></ul></li>
+    </ul>
+</div>
+</body>
+</html>
+
 > **note**
 >
 > Downgrades of MariaDB are not supported. MariaDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.

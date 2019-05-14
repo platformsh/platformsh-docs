@@ -20,27 +20,17 @@ With the Platform.sh CLI now installed and configured to communicate with your p
     
     The CLI will then ask you to set up some initial project configurations:
     
-    * `Project title`
+    * `Project title`: We need a unique name for each project, so title this one `My CLI Project`.
     
-       We need a unique name for each project, so title this one `My CLI Project`.
-    
-    * `Region`
-    
-       In general you will choose the region that is closest to where most of your site's traffic is coming from. Here, go ahead and begin typing `de-2.platform.sh` and the CLI will auto-complete the rest for you.
+    * `Region`: In general you will choose the region that is closest to where most of your site's traffic is coming from. Here, go ahead and begin typing `de-2.platform.sh` and the CLI will auto-complete the rest for you.
       
-    * `Plan`
+    * `Plan`: The standard size will be fine for this guide, so type `1` and Enter.
     
-       The standard size will be fine for this guide, so type `1` and Enter.
-    
-    * `Environments`
-    
-       The `master` branch in the previous guide once built becomes the `Master` environment, the live production environment for your application. Additionally, you will receive other environments that will be useful for developing new features that you can view in your browser, but we will cover what those are and how to use them in the next guide.
+    * `Environments`: The `master` branch in the previous guide once built becomes the `Master` environment, the live production environment for your application. Additionally, you will receive other environments that will be useful for developing new features that you can view in your browser, but we will cover what those are and how to use them in the next guide.
        
        For now, press Enter to select the default number of environments.
     
-    * `Storage`
-    
-       You can modify the amount of storage your application can use from the CLI and from the management console, as well as upgrade that storage later once your project starts growing.
+    * `Storage`: You can modify the amount of storage your application can use from the CLI and from the management console, as well as upgrade that storage later once your project starts growing.
        
        For now, press Enter to select the default amount of storage.
        
@@ -56,7 +46,7 @@ With the Platform.sh CLI now installed and configured to communicate with your p
     platform project:set-remote <project ID>
     ```
 
-That's it! You have now created an empty project and connected your repository to that using the CLI. Move on now to the next step to start configuring your repository to deploy on Platform.sh.
+That's it! You have now created an empty project and connected your repository to that project using the CLI. Move on now to the next step to start configuring your repository to deploy on Platform.sh.
 
 <html>
 <head>

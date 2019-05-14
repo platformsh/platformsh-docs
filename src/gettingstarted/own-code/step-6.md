@@ -30,12 +30,22 @@ If you're application does not use any services at this point, you can leave it 
 
 * `name`: Provide a name for the service, so long as it is alphanumeric. If your application requires multiple services of the same type (i.e., three MySQL databases), make sure to give them different names so that your data from one service is never overwritten by another (i.e., `mysqldb1`, `mysqldb2`, `mysqldb3`). 
   
-  This name will be used again to connect your services to the application in the `.platform.app.yaml` file.
+* `type`: This specifies the service type and its version using the format `type:version`.
 
-* `type`: The service `type` specifies the service type and its version using the format `type:version`. Make sure to use an available version of the service type, or else you will receive an error when you try to build your project.
-  
-  The services supported by Platform.sh can be found in the [Services documentation](/configuration/services.md), with individual service pages listed in the sidebar. Check the page of the service you want to configure for your application, and you will find supported versions and examples for how to connect that service with a particular language in the "Usage example" section.
-  
+    <html>
+    <head>
+        <title>Service Supported Versions</title>
+        <script src="jquery.js"></script>
+        <script>
+            $(function(){
+                $("#includedContent").load("/gettingstarted/own-code/more-info/service-version-table.html");
+            });
+        </script>
+    </head>
+    <body>
+    <div id="includedContent"></div>
+    </body>
+    </html>
 
 * `disk`: The `disk` attribute configures the amount of persistent disk that will be allocated between all of your services. Projects by default are allocated 5 GB (5120 MB), and that space can be distributed across all of your services.
  
@@ -50,7 +60,8 @@ If you're application does not use any services at this point, you can leave it 
 >    Compare the `.platform/services.yaml` file from the simple template above to other templates when writing your own.
 
 
-Now that you have configured your project's services, you will next need to tell Platform.sh how to build and deploy your application using the `.platform.app.yaml` file.
+Platform.sh provides _managed services_, and each service comes with considerable default configuration that you will not have to include yourself in `.services.yaml`. Next, 
+you will next need to tell Platform.sh how to build and deploy your application using the `.platform.app.yaml` file.
   
 
 <html>

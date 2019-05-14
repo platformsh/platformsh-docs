@@ -10,9 +10,9 @@ Now that your application is up and running, here are some additional pieces of 
 </head>
 <body>
 
-<a href="/administration/integrations.md" class="buttongen full"><b>External Integrations</b><br/><br/>Configure your Platform.sh project to mirror every push and pull request to GitHub, Gitlab, and Bitbucket.</a>
+<a href="/gettingstarted/integrations.md" class="buttongen full"><b>External Integrations</b><br/><br/>Configure Platform.sh to mirror every push and pull request on GitHub, Gitlab, and Bitbucket.</a>
 
-<a href="/golive/steps.md" class="buttongen full"><b>Going Live</b><br/><br/>Set up your site for production, configure domains, and go live!</a>
+<a href="/gettingstarted/going-live.md" class="buttongen full"><b>Going Live</b><br/><br/>Set up your site for production, configure domains, and go live!</a>
 
 </body>
 </html>
