@@ -30,24 +30,35 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
 * `type`: The [type](/configuration/app/type.md) attribute in `.platform.app.yaml` sets the container base image for the application, and sets the primary language. In general, `type` should have the form
   
   ```yaml
-  type: <language>:<version>
+  type: <runtime>:<version>
   ```
 
   Set `<version>` to a version supported by Platform.sh, which you can find in the documentation under each language: 
   
     <html>
-    <head>
-        <title>Runtime Supported Versions</title>
-        <script src="jquery.js"></script>
-        <script>
-            $(function(){
-                $("#includedContent").load("/gettingstarted/own-code/more-info/runtime-version-table.html");
-            });
-        </script>
-    </head>
-    <body>
-    <div id="includedContent"></div>
-    </body>
+       <head>
+          <title>Runtime Supported Versions</title>
+          <script type = "text/javascript" src = "/scripts/images/tableTest.js" ></script>
+       </head>
+       <body>
+          <div class="wrapper">
+          <div class="profile">
+            <table id= "runtimeTable" border="1">
+            <thead>
+            <th>Language</th>
+            <th><code>runtime</code></th>
+            <th>Supported <code>version</code></th>
+            </thead>
+              <tbody>
+              </tbody>
+             </table>
+          </div>
+          </div>
+       </body>
+       <script>
+       makeTable(json, "runtimes", "supported", "runtimeTable", false);
+       </script>
+       </body>
     </html>
   
 * `disk`: The [disk](/configuration/app/storage.md) attribute defines that amount of persistent storage you need to have available for your application, and requires a minimum value of 256 MB. This is also the section in which you can define mounts of writable storage for your application, as Platform.sh operates default on a read-only filesystem. 

@@ -2,58 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c314f996-0754-4dff-9629-d68df936801e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/images.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/listTest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/lists/example.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/lists/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/lists/jquery.json-list.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/names.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/services/service-version-list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/supported.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/supportedtest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/going-live.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/integrations.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/integrations/integrations.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/more-info/runtime-version-table.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/more-info/service-version-table.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/integrations/bitbucket.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/integrations/github.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/images/integrations/gitlab.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/configuration/images.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/configuration/listTest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/configuration/lists/example.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/configuration/lists/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/configuration/lists/jquery.json-list.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/configuration/names.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/configuration/services/service-version-list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/configuration/supported.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/configuration/supportedtest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gettingstarted/going-live.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gettingstarted/integrations.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gettingstarted/integrations/integrations.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/more-info/runtime-version-table.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/more-info/service-version-table.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/integrations/bitbucket.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/integrations/github.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/integrations/gitlab.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/scripts/images/listTest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/scripts/images/tableTest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/images/listTest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/images/tableTest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/SUMMARY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/images.json" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/scripts/images/images.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/listTest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/lists/example.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/lists/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/lists/jquery.json-list.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/names.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/services/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/services/mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/next-steps.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/next-steps.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/more-info/supported-versions.html" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/more-info/lang-supported-versions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-4.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-4.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/supported.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/configuration/supportedtest.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-6.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-6.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-7.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/own-code/step-7.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/template/check-status.md" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/local/builds/default/src/gettingstarted/template/check-status.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/SUMMARY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.platform/local/builds/default/src/scratch.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configuration/images.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/images/images.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configuration/listTest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configuration/lists/example.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configuration/lists/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configuration/lists/jquery.json-list.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configuration/names.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/configuration/services/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/configuration/services/mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/next-steps.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/next-steps.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/own-code/more-info/supported-versions.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/more-info/lang-supported-versions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/own-code/step-4.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/step-4.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configuration/supported.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configuration/supportedtest.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gettingstarted/template/check-status.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/gettingstarted/template/check-status.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scratch.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,25 +41,23 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/configuration/lists/example.json">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/configuration/lists/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="35" selection-end-column="7" />
+        <entry file="file://$PROJECT_DIR$/src/configuration/services/mysql.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="105">
+                <caret line="6" selection-start-line="6" selection-end-line="18" selection-end-column="7" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/configuration/services/mysql.md">
+        <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="255">
-                <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+              <first_editor relative-caret-position="193">
+                <caret line="34" selection-start-line="34" selection-end-line="58" selection-end-column="11" />
               </first_editor>
               <second_editor />
             </state>
@@ -90,10 +65,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/configuration/listTest.js">
+        <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="517">
+                <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scripts/images/images.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
+            <state relative-caret-position="403">
+              <caret line="64" column="12" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scripts/images/listTest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scripts/images/tableTest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -134,6 +139,7 @@
       <find>div</find>
       <find>next</find>
       <find>navigation</find>
+      <find>mysql</find>
     </findStrings>
     <replaceStrings>
       <replace>button</replace>
@@ -159,12 +165,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/gettingstarted/template/cli-install.md" />
-        <option value="$PROJECT_DIR$/src/gettingstarted/dev-environments/step-3.md" />
-        <option value="$PROJECT_DIR$/src/development/templates.md" />
-        <option value="$PROJECT_DIR$/src/asciinema/recordings/branch.cast" />
-        <option value="$PROJECT_DIR$/src/asciinema/recordings/build.cast" />
-        <option value="$PROJECT_DIR$/src/asciinema/recordings/create-empty.cast" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/first-push.cast" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/list-projects.cast" />
         <option value="$PROJECT_DIR$/src/asciinema/recordings/local-copy.cast" />
@@ -195,8 +195,6 @@
         <option value="$PROJECT_DIR$/src/configuration/services/supported.json" />
         <option value="$PROJECT_DIR$/src/configuration/services/people.json" />
         <option value="$PROJECT_DIR$/src/gettingstarted/own-code/more-info/services-supported-versions.html" />
-        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md" />
-        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md" />
         <option value="$PROJECT_DIR$/src/configuration/supported.json" />
         <option value="$PROJECT_DIR$/src/configuration/names.json" />
         <option value="$PROJECT_DIR$/src/configuration/services/test.json" />
@@ -208,8 +206,16 @@
         <option value="$PROJECT_DIR$/src/configuration/services/service-version-list.html" />
         <option value="$PROJECT_DIR$/src/configuration/supported.js" />
         <option value="$PROJECT_DIR$/src/configuration/lists/index.html" />
+        <option value="$PROJECT_DIR$/src/configuration/readJSON.js" />
+        <option value="$PROJECT_DIR$/src/tableTest.js" />
+        <option value="$PROJECT_DIR$/src/configuration/tableTest.js" />
         <option value="$PROJECT_DIR$/src/configuration/listTest.js" />
+        <option value="$PROJECT_DIR$/src/scripts/images/images.json" />
         <option value="$PROJECT_DIR$/src/configuration/services/mysql.md" />
+        <option value="$PROJECT_DIR$/src/scripts/images/listTest.js" />
+        <option value="$PROJECT_DIR$/src/scripts/images/tableTest.js" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md" />
+        <option value="$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md" />
       </list>
     </option>
   </component>
@@ -242,19 +248,6 @@
               <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
               <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="configuration" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="configuration" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="gettingstarted" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -263,6 +256,19 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="gettingstarted" type="462c0819:PsiDirectoryNode" />
               <item name="own-code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platformsh-docs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platformsh-docs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -277,11 +283,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/scripts/images" />
       <recent name="$PROJECT_DIR$/src/configuration" />
       <recent name="$PROJECT_DIR$/src/gettingstarted/integrations" />
       <recent name="$PROJECT_DIR$/src/images/integrations" />
       <recent name="$PROJECT_DIR$/src/gettingstarted/own-code/buttons" />
-      <recent name="$PROJECT_DIR$/src/gettingstarted/own-code/more-info" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/configuration/lists" />
@@ -475,7 +481,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557355724112</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="add image pull-in support for supported versions">
+      <created>1557836780325</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1557836780325</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -509,7 +522,7 @@
       <window_info anchor="right" id="R Graphics" order="5" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15918098" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25578135" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Project Explorer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -528,16 +541,15 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
-      <window_info anchor="right" id="R Graphics" order="0" />
-      <window_info anchor="right" id="R Packages" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
-      <window_info anchor="right" id="Cargo" order="5" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Cargo" order="3" />
+      <window_info anchor="right" id="R Packages" order="4" />
+      <window_info anchor="right" id="R Graphics" order="5" />
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update cards" />
     <MESSAGE value="update lang images" />
     <MESSAGE value="test adding screencast" />
     <MESSAGE value="add asciinema test" />
@@ -562,21 +574,10 @@
     <MESSAGE value="Apply Development environments name everywhere. Update services formatting." />
     <MESSAGE value="finish local-dev" />
     <MESSAGE value="Finish developing on psh. Fix ascii autoplay. Update template list." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish developing on psh. Fix ascii autoplay. Update template list." />
+    <MESSAGE value="add image pull-in support for supported versions" />
+    <option name="LAST_COMMIT_MESSAGE" value="add image pull-in support for supported versions" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/images/pretty/home-clone.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/images/pretty/home-iterate.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/images/pretty/home-services.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/images/pretty/home-hero.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/images/pretty/home-business-ui.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -816,26 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="280">
-            <caret line="34" selection-start-line="34" selection-end-line="47" selection-end-column="11" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="511">
-            <caret line="37" selection-start-line="37" selection-end-line="50" selection-end-column="11" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/configuration/names.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -877,13 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/more-info/runtime-version-table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/configuration/services/test.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -901,13 +875,6 @@
     <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/more-info/config-readers.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/configuration/services/service-version-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/configuration/supported.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -919,23 +886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/configuration/lists/example.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/configuration/lists/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="35" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/configuration/images.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -959,20 +909,93 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/configuration/lists/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/configuration/services/service-version-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.platform.app.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-246" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/more-info/runtime-version-table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/configuration/readJSON.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scratch.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/configuration/lists/example.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/images/images.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="64" column="12" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/configuration/services/mysql.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="255">
-            <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+          <first_editor relative-caret-position="105">
+            <caret line="6" selection-start-line="6" selection-end-line="18" selection-end-column="7" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/configuration/listTest.js">
+    <entry file="file://$PROJECT_DIR$/src/scripts/images/listTest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
+        <state relative-caret-position="90">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scripts/images/tableTest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-6.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="193">
+            <caret line="34" selection-start-line="34" selection-end-line="58" selection-end-column="11" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gettingstarted/own-code/step-7.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="517">
+            <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

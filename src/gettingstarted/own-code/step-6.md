@@ -33,18 +33,29 @@ If you're application does not use any services at this point, you can leave it 
 * `type`: This specifies the service type and its version using the format `type:version`.
 
     <html>
-    <head>
-        <title>Service Supported Versions</title>
-        <script src="jquery.js"></script>
-        <script>
-            $(function(){
-                $("#includedContent").load("/gettingstarted/own-code/more-info/service-version-table.html");
-            });
-        </script>
-    </head>
-    <body>
-    <div id="includedContent"></div>
-    </body>
+       <head>
+          <title>Services Supported Versions</title>
+          <script type = "text/javascript" src = "/scripts/images/tableTest.js" ></script>
+       </head>
+       <body>
+          <div class="wrapper">
+          <div class="profile">
+            <table id= "serviceTable" border="1">
+            <thead>
+            <th>Service</th>
+            <th><code>type</code></th>
+            <th>Supported <code>version</code></th>
+            </thead>
+              <tbody>
+              </tbody>
+             </table>
+          </div>
+          </div>
+       </body>
+       <script>
+       makeTable(json, "services", "supported", "serviceTable", false);
+       </script>
+       </body>
     </html>
 
 * `disk`: The `disk` attribute configures the amount of persistent disk that will be allocated between all of your services. Projects by default are allocated 5 GB (5120 MB), and that space can be distributed across all of your services.

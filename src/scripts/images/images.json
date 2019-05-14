@@ -62,7 +62,7 @@
         "10.2"
       ],
       "deprecated": [
-
+        "5.5"
       ],
       "docs": "\/configuration\/services\/mysql.html"
     },

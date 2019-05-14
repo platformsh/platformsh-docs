@@ -4,43 +4,39 @@ MariaDB is a MySQL-compatible relational database system. Its XtraDB storage eng
 
 See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentation](https://dev.mysql.com/doc/refman/5.5/en/) for more information.
 
-## Supported versions
-
-* 10.0
-* 10.1
-* 10.2
-
 <html>
-<head>
-    <title>Language Template Buttons</title>
-    <script src="jquery.js"></script>
-    <script src="/configuration/listTest.js"></script>
-</head>
-<body>
-<div id='cssmenu'>
-    <ul id='options'>
-        <li class='active'><a href='#'><span>Home</span></a>
-            <ul id='home'></ul></li>
-        <li class='has-sub'><a href='#'><span>Products</span></a>
-            <ul id='product_list'></ul></li>
-        <li class='has-sub'><a href='#'><span>Company</span></a>
-            <ul id='company'></ul></li>
-        <li class='has-sub'><a href='#'><span>Contact</span></a>
-            <ul id='contact'></ul></li>
-    </ul>
-</div>
-</body>
+   <head>
+      <title>MariaDB/MySQL Supported Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/listTest.js" ></script>
+   </head>
+   <body>
+   <h2>Supported Versions</h2>
+   <div id = 'mariadbSupported'></div>
+   <script>
+   makeList(json, "services", "mysql", "supported", "mariadbSupported");
+   </script>
+   </body>
 </html>
 
 > **note**
 >
 > Downgrades of MariaDB are not supported. MariaDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
 
-### Deprecated versions
+<html>
+   <head>
+      <title>MariaDB/MySQL Deprecated Versions</title>
+      <script type = "text/javascript" src = "/scripts/images/listTest.js" ></script>
+   </head>
+   <body>
+   <h3>Deprecated Versions</h3>
+   <p>The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.</p>
+   <div id = 'mariadbDeprecated'></div>
+   <script>
+   makeList(json, "services", "mysql", "deprecated", "mariadbDeprecated");
+   </script>
+   </body>
+</html>
 
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
-
-* 5.5
 
 ## Relationship
 
