@@ -102,6 +102,22 @@ Inbound IPs (gw.us-2.platformsh.site):
 * 34.238.11.122
 * 54.89.106.200
 
+
+## Canada
+
+Outbound IPs:
+
+* 35.182.24.224
+* 52.60.213.255
+* 35.182.220.113
+
+Inbound IPs:
+
+* 35.182.174.169
+* 35.182.59.77
+* 52.60.219.22
+
+
 ## Australia (au.platform.sh)
 
 Outbound IPs:
