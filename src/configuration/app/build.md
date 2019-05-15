@@ -163,3 +163,32 @@ hooks:
         fi
         drush -y updatedb
 ```
+
+## How can I use my custom environment variables?
+
+Custom environment variables can be defined in the console. They will be available through the $PLATFORM_VARIABLES but to extract them, you need a couple of extra steps. 
+$PLATFORM_VARIABLES contains a base64 string. If you unpack that BASE64 string, you will get a JSON string of all your variables. You could then use a tool like jq to extract values from that JSON string.
+
+Concrete build hook example:
+
+```yaml
+hooks:
+    build: |
+        set -e
+        echo "Download jq (to be able to parse JSON) and make it executable."
+        curl -L -o $HOME/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+        chmod +x $HOME/jq
+        echo ""
+        echo "Decode variables using base64 decode"
+        echo $PLATFORM_VARIABLES | base64 --decode
+        echo ""
+        echo "Extract the specific key you need"
+        echo ""
+        echo $PLATFORM_VARIABLES | base64 --decode | $HOME/jq -r '.my_custom_var'
+        tmp_var=$PLATFORM_VARIABLES | base64 --decode | $HOME/jq -r '.my_custom_var'
+        echo ""
+        echo $tmp_var
+```
+
+
+
