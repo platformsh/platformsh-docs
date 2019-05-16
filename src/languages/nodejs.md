@@ -132,7 +132,7 @@ disk: 512
 
 ## In your application...
 
-Finally, make sure your Node.js application is configured to listen over the port given by the environment (here we use the platformsh helper and get it from config.port) that is available in the environment variable ``PORT``.  Here's an example:
+Finally, make sure your Node.js application is configured to listen over the port given by the environment (here we use the platformsh helper and get it from `config.port`) that is available in the environment variable ``PORT``.  Here's an example:
 
 ```js
 // Load the http module to create an http server.
