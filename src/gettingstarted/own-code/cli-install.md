@@ -41,23 +41,16 @@ In the previous steps you checked that the requirements on your computer were me
        
 Now that you have installed the CLI and it is communicating with Platform.sh, you can configure and push your project to Platform.sh.
 
-
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/own-code/step-2.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/own-code/step-4.html" class="buttongen small">I have installed the Platform.sh CLI</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have installed the Platform.sh CLI";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

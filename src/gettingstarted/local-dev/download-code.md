@@ -31,22 +31,15 @@ Otherwise, it will be necessary to download a local copy of your project first.
 Now that you have a local copy of your application that is configured to the Platform.sh remote repository, you can now connect to its services and build it on your machine.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/local-dev.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/local-dev/step-2.html" class="buttongen small">I have a copy of my code locally</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have a copy of my code locally";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>
-

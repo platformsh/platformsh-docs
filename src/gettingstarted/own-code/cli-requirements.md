@@ -51,21 +51,15 @@ That's it! Now that you have met the requirements and configured an SSH key, Pla
 Next, you will need to install the Platform.sh CLI so that you can import your code to a project.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/own-code/step-1.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/own-code/step-3.html" class="buttongen small">I have configured my SSH key in the management console</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have configured my SSH key in the management console";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

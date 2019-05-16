@@ -1,0 +1,100 @@
+{
+  "php": {
+    "applications": {
+      "drupal7": {
+        "name": "Drupal 7",
+        "repo": "https:\/\/github.com\/platformsh\/template-drupal7",
+        "services": {
+          "mysql": {
+            "name": "MariaDB\/MySQL",
+            "version": 10.2
+          },
+          "redis": {
+            "name": "Redis",
+            "version": 5
+          }
+        }
+      },
+      "drupal8": {
+        "name": "Drupal 8",
+        "repo": "https:\/\/github.com\/platformsh\/template-drupal8",
+        "services": {
+          "mysql": {
+            "name": "MariaDB\/MySQL",
+            "version": 10.2
+          }
+        }
+      },
+      "laravel": {
+        "name": "Laravel",
+        "repo": "https:\/\/github.com\/platformsh\/template-laravel",
+        "services": {
+          "mysql": {
+            "name": "MariaDB\/MySQL",
+            "version": 10.2
+          },
+          "redis": {
+            "name": "Redis",
+            "version": 5
+          }
+        }
+      },
+      "wordpress": {
+        "name": "Drupal 8",
+        "repo": "https:\/\/github.com\/platformsh\/template-wordpress",
+        "services": {
+          "mysql": {
+            "name": "MariaDB\/MySQL",
+            "version": 10.2
+          }
+        }
+      }
+    },
+    "examples": {
+      "php": {
+        "name": "Generic PHP Application",
+        "repo": "https:\/\/github.com\/platformsh\/template-php",
+        "services": {
+
+        }
+      }
+    },
+    "frameworks": {
+      "symfony3": {
+        "name": "Symfony 3.x",
+        "repo": "https:\/\/github.com\/platformsh\/template-symfony3",
+        "services": {
+          "mysql": {
+            "name": "MariaDB\/MySQL",
+            "version": 10.2
+          }
+        }
+      },
+      "symfony4": {
+        "name": "Symfony 4.x",
+        "repo": "https:\/\/github.com\/platformsh\/template-symfony4",
+        "services": {
+          "mysql": {
+            "name": "MariaDB\/MySQL",
+            "version": 10.2
+          }
+        }
+      }
+    }
+  },
+  "python": {
+
+  },
+  "nodejs": {
+
+  },
+  "ruby": {
+
+  },
+  "go": {
+
+  },
+  "java": {
+
+  }
+}

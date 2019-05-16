@@ -53,21 +53,15 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 With the empty configuration files in place, you will need to specify your service configuration in `.platform/services.yaml`.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/own-code/step-4.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/own-code/step-6.html" class="buttongen small">I have initialized my code with empty configuration files</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have initialized my code with empty configuration files";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

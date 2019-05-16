@@ -46,23 +46,16 @@ Now that you've had the chance to verify that your application built and deploye
     platform snapshot:restore --project <project id>
     ```
 
-   
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/dev-environments/step-2.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/dev-environments/step-4.html" class="buttongen small">I have merged the new feature</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have merged the new feature";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

@@ -50,21 +50,15 @@ In these few steps you have created a free trial account, configured a template 
 Using the [Platform.sh CLI](/development/cli.md), however, you get even more control over your project configurations, and you are able to migrate your own applications to Platform.sh. Move onto the next step to install it.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/template/create-project.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/template/cli-requirements.html" class="buttongen small">I have built and deployed a template application</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have built and deployed a template application";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

@@ -1,8 +1,8 @@
-# Development Environments
+# Local Development
 
 ## Next steps
 
-In this guide you learned how to create and activate live feature environments, test them, and merge them into production safely using [snapshots](/administration/snapshot-and-restore.md).
+In this guide you opened an SSH tunnel to your Platform.sh project and built your application locally.
 
 Don't stop now! There are far more features that make Platform.sh profoundly helpful to developers that you have left to explore.
 
@@ -16,7 +16,7 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 </head>
 <body>
 
-<a href="/gettingstarted/local-dev.html" class="buttongen full"><b>Local Development</b><br/><br/>Remote connect to services and build your application locally during development.</a>
+<a href="/gettingstarted/dev-environments.html" class="buttongen full"><b>Development environments</b><br/><br/>Activate development branches and test new features before merging into production</a>
 
 </body>
 </html>
@@ -38,22 +38,15 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 </body>
 </html>
 
-
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/dev-environments/step-3.html" class="buttongen small">Back</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   makeButtons("previousOnly");
+   </script>
+   </body>
 </html>

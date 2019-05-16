@@ -106,21 +106,15 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
 Now that you have configured your application, you will next need to handle HTTP requests to your application using the `.platform/routes.yaml` file.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/own-code/step-6.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/own-code/step-8.html" class="buttongen small">I have configured my application</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have configured my application";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

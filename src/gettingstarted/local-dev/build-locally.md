@@ -45,21 +45,15 @@ Now that you've opened tunnels into your services, you'll have access to all of 
 Now you know how to connect to your services on Platform.sh and perform a local build during development. Move onto the next step to find some helpful additional resources.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/local-dev/step-2.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/local-dev/step-4.html" class="buttongen small">I have built my application locally</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have built my application locally";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

@@ -136,3 +136,34 @@ A number of project templates for major PHP applications are available on GitHub
 * [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
 * [Symfony 3.x](https://github.com/platformsh/template-symfony3)
 * [Symfony 4.x](https://github.com/platformsh/template-symfony4)
+
+
+## Test - Project templates
+
+<html>
+   <head>
+      <title>Services Supported Versions</title>
+      <script type = "text/javascript" src = "/scripts/templates/helpers.js" ></script>
+   </head>
+   <body>
+      <div class="wrapper">
+      <div class="profile">
+        <table id= "phpTable" border="1">
+        <thead>
+        <th>Type</th>
+        <th>Template</th>
+        <th>Services</th>
+        <th>Status</th>
+        </thead>
+          <tbody>
+          </tbody>
+         </table>
+      </div>
+      </div>
+   </body>
+   <script>
+   var json = "/scripts/templates/templates.json";
+   makeTable(json, "php", "phpTable");
+   </script>
+   </body>
+</html>

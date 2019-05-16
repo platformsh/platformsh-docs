@@ -55,21 +55,15 @@ That's it! Using the Platform.sh CLI and a few properly configured files, pushin
 Now that your code is on Platform.sh, check out some of the Next Steps to get started developing.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/own-code/step-9.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/own-code/step-11.html" class="buttongen small">I have deployed my application</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have deployed my application";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

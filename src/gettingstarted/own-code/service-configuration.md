@@ -76,21 +76,15 @@ you will next need to tell Platform.sh how to build and deploy your application 
   
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/own-code/step-5.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/own-code/step-7.html" class="buttongen small">I have configured my services</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have configured my services";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

@@ -45,21 +45,15 @@ With all of the requirements met, install the CLI to start developing with Platf
 That's it! Now that you have the management console set up and the CLI installed on your computer, you're well on your way to exploring all of the ways that Platform.sh can improve your development workflow.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/template/cli-requirements.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/template/next-steps.html" class="buttongen small">I have installed the CLI and want to know more</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have installed the CLI";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

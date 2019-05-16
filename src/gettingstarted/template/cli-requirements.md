@@ -49,21 +49,15 @@ Add your SSH key to your Platform.sh account so that you can communicate with yo
 That's it! Now that you have met the requirements and configured an SSH key, all that's left is to install the Platform.sh CLI so you can interact with your projects from the command line.
   
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/template/check-status.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/template/cli-install.html" class="buttongen small">I have added my SSH key to my account</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have added my SSH key to my account";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

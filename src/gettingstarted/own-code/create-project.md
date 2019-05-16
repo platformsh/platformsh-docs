@@ -49,21 +49,15 @@ With the Platform.sh CLI now installed and configured to communicate with your p
 That's it! You have now created an empty project and connected your repository to that project using the CLI. Move on now to the next step to start configuring your repository to deploy on Platform.sh.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/own-code/step-3.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/own-code/step-5.html" class="buttongen small">I have created a project using the CLI</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have created a project using the CLI";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

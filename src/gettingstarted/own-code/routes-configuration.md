@@ -45,21 +45,15 @@ Each route can then be configured with the following properties:
 Now that you have configured your routes, your application is ready to deploy on Platform.sh. Time to commit the changes and push your repository onto your project.  
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/own-code/step-8.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/own-code/step-10.html" class="buttongen small">I have configured my routes</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have configured my routes";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

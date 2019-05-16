@@ -107,21 +107,15 @@ You can find out more information about Platform.sh Config Reader libraries on G
 You can also find examples of how to connect to each of Platform.sh managed services in multiple languages in the [Services Documentation](/configuration/services.md). Once you have done so, you will next need to handle HTTP requests to your application using the `.platform/routes.yaml` file.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/own-code/step-7.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/own-code/step-9.html" class="buttongen small">I have connected to my services to my application</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have connected to my services to my application";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

@@ -47,22 +47,15 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 With these few selections Platform.sh will create the project and build the template in less than two minutes.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/template/free-trial.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/template/check-status.html" class="buttongen small">I have created a new project with a template</a>
-
-</center>
-
-<br/><br/>
-
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have created a new project with a template";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

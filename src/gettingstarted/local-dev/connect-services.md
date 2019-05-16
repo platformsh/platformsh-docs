@@ -50,21 +50,15 @@ Now that you have a local copy of your application code, it doesn't make sense t
 Now that you have created an SSH tunnel to your services, all that's left to do is actually build your application locally.
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/local-dev/step-1.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/local-dev/step-3.html" class="buttongen small">I have opened an SSH tunnel into my services</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   var buttonTextNext = "I have opened an SSH tunnel into my services";
+   makeButtons("full", buttonTextNext);
+   </script>
+   </body>
 </html>

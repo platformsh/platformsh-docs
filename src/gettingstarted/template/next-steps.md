@@ -56,20 +56,14 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 </html>
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/template/cli-install.html" class="buttongen small">Back</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+   makeButtons("previousOnly");
+   </script>
+   </body>
 </html>

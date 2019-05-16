@@ -12,23 +12,16 @@ Alternatively, you can sign up using an existing GitHub, Bitbucket, or Google ac
 
 
 <html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-
-<br/><br/>
-
-<center>
-
-<a href="/gettingstarted/own-code.html" class="buttongen small">Back</a>
-<a href="/gettingstarted/own-code/step-2.html" class="buttongen small">I have set up my free trial account</a>
-
-</center>
-
-<br/><br/>
-
-</body>
+   <head>
+      <link rel="stylesheet" href="/styles/styles.css">
+      <script type = "text/javascript" src = "/scripts/buttons/demo.js" ></script>
+   </head>
+   <body>
+   <div id = "buttons"></div>
+   <script>
+        var navNextText = "I have set up my free trial account";
+        var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+        makeButton(navButtons);
+   </script>
+   </body>
 </html>
-
-
