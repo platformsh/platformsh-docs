@@ -13,6 +13,8 @@ See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) fo
 * 6.3
 * 6.6
 * 7.6
+* 7.7
+* 8.0
 
 ## Relationship
 
@@ -26,7 +28,7 @@ In your ``.platform/services.yaml``:
 
 ```yaml
 mysearch:
-    type: solr:7.6
+    type: solr:8.0
     disk: 1024
 ```
 
