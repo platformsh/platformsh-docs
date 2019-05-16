@@ -2,7 +2,7 @@
 
 MySQL is a relational database system.
 
-See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentation](https://dev.mysql.com/doc/refman/5.5/en/) for more information.
+See the [MySQL documentation](https://docs.oracle.com/cd/E17952_01/index.html) for more information.
 
 ## Supported versions
 
