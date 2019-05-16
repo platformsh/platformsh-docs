@@ -13,6 +13,8 @@ See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) fo
 * 6.3
 * 6.6
 * 7.6
+* 7.7
+* 8.0
 
 ## Relationship
 
@@ -26,7 +28,7 @@ In your ``.platform/services.yaml``:
 
 ```yaml
 mysearch:
-    type: solr:7.6
+    type: solr:8.0
     disk: 1024
 ```
 
@@ -83,7 +85,7 @@ For Solr 6 and later Platform.sh supports multiple cores via different endpoints
 
 ```yaml
 solrsearch:
-    type: solr:7.6
+    type: solr:8.0
     disk: 1024
     configuration:
         cores:
@@ -102,7 +104,7 @@ solrsearch:
                 core: extraindex
 ```
 
-The above definition defines a single Solr 7.6 server.  That server has 2 cores defined: `mainindex` &mdash; the configuration for which is in the `.platform/core1-conf` directory &mdash; and `extraindex` &mdash; the configuration for which is in the `.platform/core2-conf` directory.
+The above definition defines a single Solr 8.0 server.  That server has 2 cores defined: `mainindex` &mdash; the configuration for which is in the `.platform/core1-conf` directory &mdash; and `extraindex` &mdash; the configuration for which is in the `.platform/core2-conf` directory.
 
 It then defines two endpoints: `main` is connected to the `mainindex` core while `extra` is connected to the `extraindex` core.  Two endpoints may be connected to the same core but at this time there would be no reason to do so.  Additional options may be defined in the future.
 
@@ -145,7 +147,7 @@ For even more customizability, it's also possible to define Solr configsets.  Fo
 
 ```yaml
 solrsearch:
-    type: solr:7.6
+    type: solr:8.0
     disk: 1024
     configuration:
         configsets:
@@ -178,7 +180,7 @@ If no configuration is specified, the default configuration is equivalent to:
 
 ```yaml
 solrsearch:
-    type: solr:7.6
+    type: solr:8.0
     configuration:
         cores:
             collection1:
