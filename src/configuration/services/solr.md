@@ -85,7 +85,7 @@ For Solr 6 and later Platform.sh supports multiple cores via different endpoints
 
 ```yaml
 solrsearch:
-    type: solr:7.6
+    type: solr:8.0
     disk: 1024
     configuration:
         cores:
@@ -147,7 +147,7 @@ For even more customizability, it's also possible to define Solr configsets.  Fo
 
 ```yaml
 solrsearch:
-    type: solr:7.6
+    type: solr:8.0
     disk: 1024
     configuration:
         configsets:
@@ -180,7 +180,7 @@ If no configuration is specified, the default configuration is equivalent to:
 
 ```yaml
 solrsearch:
-    type: solr:7.6
+    type: solr:8.0
     configuration:
         cores:
             collection1:
