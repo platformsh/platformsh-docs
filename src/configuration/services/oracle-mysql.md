@@ -13,7 +13,7 @@ See the [MySQL documentation](https://docs.oracle.com/cd/E17952_01/index.html) f
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://examples.docs.platform.sh/relationships/mysql", language="json" %}{% endcodesnippet %}
+{% codesnippet "https://examples.docs.platform.sh/relationships/oracle-mysql", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
@@ -73,7 +73,7 @@ Consider the following illustrative example:
 
 ```yaml
 mysqldb:
-    type: oracle-mysql:10.0
+    type: oracle-mysql:8.0
     disk: 2048
     configuration:
         schemas:
@@ -126,7 +126,7 @@ If either schemas or endpoints are defined, then no default will be applied and 
 
 ## Adjusting MySQL configuration
 
-For version 10.2 and later, a select few MariaDB configuration properties from the `my.cnf` file are available for adjustment.
+A select few MySQL configuration properties from the `my.cnf` file are available for adjustment.
 
 At this time, only the `max_allowed_packet` size is available, and defaults to `16` (in MB).  Legal values are from `1` to `100`.
 
