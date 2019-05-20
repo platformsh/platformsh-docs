@@ -132,7 +132,7 @@ At this time, only the `max_allowed_packet` size is available, and defaults to `
 
 ```yaml
 mysqldb:
-    type: mysql:10.2
+    type: oracle-mysql:8.0
     disk: 2048
     configuration:
         properties:
