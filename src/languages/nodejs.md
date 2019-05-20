@@ -83,13 +83,23 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
        bower install
    ```
 
-6. Setup the routes to your nodejs application in `.platform/routes.yaml`.
+6. Setup the routes to your Node.js application in `.platform/routes.yaml`.
 
-  ```yaml
-  "https://{default}/":
-    type: upstream
-    upstream: "app:http"
-  ```
+   ```yaml
+   "https://{default}/":
+     type: upstream
+     upstream: "app:http"
+   ```
+   
+7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor](/configuration/app/build.md#build), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
+
+   ```yaml
+   build:
+     flavor: none
+   ```
+   
+   Consult the documentation specific to [Node.js builds](https://docs.platform.sh/configuration/app/build.html#nodejs-default-by-default) for more information.
+
 
 Here's a complete example that also serves static assets (.png from the `/public` directory):
 
@@ -123,7 +133,7 @@ disk: 512
 
 ## In your application...
 
-Finally, make sure your Node.js application is configured to listen over the port given by the environment (here we use the platformsh helper and get it from config.port) that is available in the environment variable ``PORT``.  Here's an example:
+Finally, make sure your Node.js application is configured to listen over the port given by the environment (here we use the platformsh helper and get it from `config.port`) that is available in the environment variable ``PORT``.  Here's an example:
 
 ```js
 // Load the http module to create an http server.
