@@ -90,15 +90,16 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
      type: upstream
      upstream: "app:http"
    ```
-  
-7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a default [`build` process](/configuration/app/build.md#build) that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to run a custom Composer command or to use an alternate Node.js package manager 
+   
+7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor](/configuration/app/build.md#build), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
 
    ```yaml
    build:
-      flavor: composer
+     flavor: none
    ```
-    
-   Consult the documentation specific to [Node.js builds](https://docs.platform.sh/configuration/app/build.html#nodejs-default-by-default) for more information. 
+   
+   Consult the documentation specific to [Node.js builds](https://docs.platform.sh/configuration/app/build.html#nodejs-default-by-default) for more information.
+
 
 Here's a complete example that also serves static assets (.png from the `/public` directory):
 
