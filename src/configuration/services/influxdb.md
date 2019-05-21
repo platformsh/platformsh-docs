@@ -8,6 +8,7 @@ See the [InfluxDB documentation](https://docs.influxdata.com/influxdb/v1.2/) for
 
 * 1.2
 * 1.3
+* 1.7
 
 ## Relationship
 
@@ -21,7 +22,7 @@ In your `.platform/services.yaml`:
 
 ```yaml
 influx:
-    type: influxdb:1.3
+    type: influxdb:1.7
     disk: 1024
 ```
 
