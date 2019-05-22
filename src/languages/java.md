@@ -69,12 +69,33 @@ A number of project templates for major Java applications are available on GitHu
 
 ### Applications
 <!---
+
+#### Maven Spring
 * [Spring Boot MySQL](https://github.com/platformsh/platformsh-example-ezplatform)
 * [Spring Boot PostgreSQL](https://github.com/platformsh/platformsh-example-ezplatform)
 * [Spring Boot MongoDB](https://github.com/platformsh/platformsh-example-ezplatform)
 * [Spring Boot Memcached](https://github.com/platformsh/platformsh-example-ezplatform)
 * [Spring Boot Redis](https://github.com/platformsh/platformsh-example-ezplatform)
 * [Spring Boot Elasticsearch](https://github.com/platformsh/platformsh-example-ezplatform)
-Same sample using Spring MVC
-the same code to Jakarta EE and a sample with JSF and MVC spec
+
+#### Gradle Spring
+
+* [Spring Boot MySQL](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Spring Boot PostgreSQL](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Spring Boot MongoDB](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Spring Boot Memcached](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Spring Boot Redis](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Spring Boot Elasticsearch](https://github.com/platformsh/platformsh-example-ezplatform)
+
+
+#### Maven Jakarta
+* The same sample above (generic)
+* Apache TomEE
+* Payara
+* Thorntail
+
+#### Visual sample
+Spring MVC
+Jakarta EE and MVC SPEC
+
 -->
