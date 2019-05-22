@@ -34,7 +34,7 @@ Platform.sh has support for software project management and comprehension tool i
 <!---
 ## Accessing services
 
-To access various [services](/configuration/services.md) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](/configuration/services.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
 
 {% codetabs name="Elasticsearch", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
 
