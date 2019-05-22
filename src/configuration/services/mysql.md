@@ -224,7 +224,7 @@ SELECT
 
 #### Disk space issues
 
-Errors such as `PDO Exception 'MySQL server has gone away'` are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).
+Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).
 
 The current disk usage can be checked using the CLI command `platform db:size`. Because of issues with the way InnoDB reports its size, this can out by up to 20%. As table space can grow rapidly, *it is usually advisable to make your database mount size twice the size reported by the `db:size` command*.
 
@@ -232,7 +232,7 @@ You are encouraged to add a [low-disk warning notification](/administration/inte
 
 #### Worker timeout
 
-Another possible cause of `'MySQL server has gone away'` errors is a server timeout.  MySQL has a built-in timeout for idle connections, which defaults to 10 minutes.  Most typical web connections end long before that is ever approached, but it's possible that a long-running worker may idle and not need the database for longer than the timeout.  In that case the same "server has gone away" message may appear.
+Another possible cause of "MySQL server has gone away" errors is a server timeout.  MySQL has a built-in timeout for idle connections, which defaults to 10 minutes.  Most typical web connections end long before that is ever approached, but it's possible that a long-running worker may idle and not need the database for longer than the timeout.  In that case the same "server has gone away" message may appear.
 
 If that's the case, the best way to handle it is to wrap your connection logic in code that detects a "server has gone away" exception and tries to re-establish the connection.
 
@@ -240,4 +240,4 @@ Alternatively, if your worker is idle for too long it can self-terminate.  Platf
 
 #### Packet size limitations
 
-Another cause of the `'MySQL server has gone away'` errors can be the size of the database packets. If that is the case, the logs may show warnings like  `'Error while sending QUERY packet'` before the error. One way to resolve the issue is to use the `max_allowed_packet` parameter described [above](/configuration/services/mysql.md#adjusting-mariadb-configuration).
+Another cause of the "MySQL server has gone away" errors can be the size of the database packets. If that is the case, the logs may show warnings like  "Error while sending QUERY packet" before the error. One way to resolve the issue is to use the `max_allowed_packet` parameter described [above](/configuration/services/mysql.md#adjusting-mariadb-configuration).
