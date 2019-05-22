@@ -240,4 +240,4 @@ Alternatively, if your worker is idle for too long it can self-terminate.  Platf
 
 #### Packet size limitations
 
-Another cause of the 'MySQL server has gone away' errors can be the size of the database packets. If that is the case the logs may show warnings like  'Error while sending QUERY packet' before the error. One way to resolve the issue if to use the `max_allowed_packet` parameter described above.
+Another cause of the 'MySQL server has gone away' errors can be the size of the database packets. If that is the case, the logs may show warnings like  'Error while sending QUERY packet' before the error. One way to resolve the issue is to use the `max_allowed_packet` parameter described above.
