@@ -17,7 +17,7 @@ To select a Java version, specify a `type` such as `java:11`:
 type: "java:11"
 ```
 
-<!---
+
 ## Support libraries
 
 While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-java) API which handles decoding of service credential information for you.
@@ -31,6 +31,7 @@ Platform.sh has support for software project management and comprehension tool i
 * [Ant](https://ant.apache.org/)
 
 
+<!---
 ## Accessing services
 
 To access various [services](/configuration/services.md) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
