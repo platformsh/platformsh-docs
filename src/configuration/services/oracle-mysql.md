@@ -11,7 +11,7 @@ See the [MySQL documentation](https://docs.oracle.com/cd/E17952_01/index.html) f
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 {% codesnippet "https://examples.docs.platform.sh/relationships/oracle-mysql", language="json" %}{% endcodesnippet %}
 
@@ -56,9 +56,6 @@ if (err != nil) {
 }
 {%- endcodetabs %}
 
-> **note**
-> MySQL schema names can not use system reserved namespace. (mysql, information_schema, etc)
-
 ## Multiple databases
 
 It is possible to define multiple databases as well as multiple users with different permissions.  To do so requires defining multiple endpoints.  Under the `configuration` key of your service there are two additional keys:
@@ -68,6 +65,9 @@ It is possible to define multiple databases as well as multiple users with diffe
   * `ro`: Using this endpoint only SELECT queries are allowed.
   * `rw`: Using this endpoint SELECT queries as well INSERT/UPDATE/DELETE queries are allowed.
   * `admin`: Using this endpoint all queries are allowed, including DDL queries (CREATE TABLE, DROP TABLE, etc.).
+  
+> **note**
+> MySQL schema names can not use system reserved namespace. (mysql, information_schema, etc)
 
 Consider the following illustrative example:
 
