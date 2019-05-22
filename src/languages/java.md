@@ -1,3 +1,80 @@
 # Java
 
-Java support is in Alpha and not generally available. Contact sales [https://platform.sh/contact](https://platform.sh/contact) if you are interested in running Java based applications on Platform.sh.
+Java is the most popular language in the globe, and it is in several fields:
+
+* Mobile applications
+* Desktop applications
+* Web applications
+* Web servers and application servers
+* Games
+* Database connection
+* Database
+* And much, much more!
+
+
+## Supported versions
+
+* 8
+* 11
+* 12
+
+
+To select a Java version, specify a `type` such as `java:11`:
+
+```yaml
+# .platform.app.yaml
+type: "java:11"
+```
+
+## Support libraries
+
+While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-java) Composer library which handles decoding of service credential information for you.
+
+## Support build automation
+
+Platform.SH has support for software project management and comprehension tool in the Java World: 
+
+* [Gradle](https://gradle.org/)
+* [Maven](https://maven.apache.org/)
+* [Ant](https://ant.apache.org/)
+
+
+## Accessing services
+
+To access various [services](/configuration/services.md) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
+
+{% codetabs name="Elasticsearch", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
+
+{% language name="Memcached", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
+
+{% language name="MongoDB", type="php", url="https://examples.docs.platform.sh/php/mongodb" -%}
+
+{% language name="MySQL", type="php", url="https://examples.docs.platform.sh/php/mysql" -%}
+
+{% language name="PostgreSQL", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
+
+{% language name="RabbitMQ", type="php", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
+
+{% language name="Redis", type="php", url="https://examples.docs.platform.sh/php/redis" -%}
+
+{% language name="Solr", type="php", url="https://examples.docs.platform.sh/php/solr" -%}
+
+{%- endcodetabs %}
+
+
+
+## Project templates
+
+A number of project templates for major Java applications are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
+
+### Applications
+<!---
+* [Spring Boot MySQL](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Spring Boot PostgreSQL](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Spring Boot MongoDB](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Spring Boot Memcached](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Spring Boot Redis](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Spring Boot Elasticsearch](https://github.com/platformsh/platformsh-example-ezplatform)
+Same sample using Spring MVC
+the same code to Jakarta EE and a sample with JSF and MVC spec
+-->
