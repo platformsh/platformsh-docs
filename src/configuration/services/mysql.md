@@ -212,7 +212,7 @@ platform sql --relationship database -e master < my_database_snapshot.sql
 
 There is a single MySQL user, so you can not use "DEFINER" Access Control mechanism for Stored Programs and Views.
 
-When creating a VIEW, you may need to explicitly set the SECURITY parameter to INVOKER, e.g...
+When creating a VIEW, you may need to explicitly set the SECURITY parameter to INVOKER:
 
 ```
 CREATE OR REPLACE SQL SECURITY INVOKER 
