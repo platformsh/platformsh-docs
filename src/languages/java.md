@@ -1,6 +1,6 @@
 # Java
 
-Java is the most popular language in today’s world billion of devices running on a Java platform; Java touched every field of development of software, java’s features make it the most powerful language in the current market of software development. The distributed application also quickly developed with the help of java. In current time lots of java’s framework presents which makes it more potent like Spring, Jakarta EE, Hibernate, JSP, Servlet, Spring Boot. Enterprise application development always preferred with java language only because of security and scalability features of the Java. For sure, what makes Java the most powerful platform in the globe is not the technology, but the vibrant and helpful community.
+Java is a general-purpose programming language, and one of the most popular in the world today. Platform.sh supports Java runtimes that can be used with build management tools such as Gradle, Maven, and Ant.
 
 
 ## Supported versions
@@ -20,7 +20,7 @@ type: "java:11"
 
 ## Support libraries
 
-While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-java) API which handles decoding of service credential information for you.
+While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-java) which handles decoding of service credential information for you.
 
 ## Support build automation
 
