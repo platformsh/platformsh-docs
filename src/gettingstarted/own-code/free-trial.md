@@ -10,18 +10,10 @@ Visit the [Platform.sh accounts](https://accounts.platform.sh/platform/trial/gen
 
 Alternatively, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose this option, you will be able to set a password for your Platform.sh account later.
 
+<div id = "buttons"></div>
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/demo.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-        var navNextText = "I have set up my free trial account";
-        var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-        makeButton(navButtons);
-   </script>
-   </body>
-</html>
+<script>
+    var navNextText = "I have set up my free trial account";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

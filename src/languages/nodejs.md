@@ -2,36 +2,25 @@
 
 Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine.  Platform.sh supports deploying Node.js applications quickly and easily. Using our Multi-App support you can build a micro-service oriented system mixing both Javascript and PHP applications.
 
-<html>
-   <head>
-      <title>Node.js Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-   </head>
-   <body>
-   <h2>Supported versions</h2>
-   <div id = 'nodejsSupported'></div>
-   <script>
-   makeList(json, "runtimes", "nodejs", "supported", "nodejsSupported");
-   </script>
-   </body>
-</html>
+## Supported versions
+
+<div id = "nodejsSupported"></div>
+
+<script>
+makeImagesList("runtimes", "nodejs", "supported", "nodejsSupported");
+</script>
 
 If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.html).
 
-<html>
-   <head>
-      <title>Node.js Deprecated Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/listTest.js" ></script>
-   </head>
-   <body>
-   <h3>Deprecated versions</h3>
-   <p>The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.</p>
-   <div id = 'nodejsDeprecated'></div>
-   <script>
-   makeList(json, "runtimes", "nodejs", "deprecated", "nodejsDeprecated");
-   </script>
-   </body>
-</html>
+### Deprecated versions
+
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+
+<div id = "nodejsDeprecated"></div>
+
+<script>
+makeImagesList("runtimes", "nodejs", "deprecated", "nodejsDeprecated");
+</script>
 
 ## Support libraries
 
@@ -179,3 +168,13 @@ A number of project templates for Node.js applications and typical configuration
 * [Generic Node.js](https://github.com/platformsh/platformsh-example-nodejs)
 * [Parse](https://github.com/platformsh/platformsh-example-parseit)
 * [Node.js-based microservices](https://github.com/platformsh/platformsh-example-nodejs-microservices)
+
+<div>
+    <table id="nodeTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</div>
+
+<script>
+makeTemplateTable("php", "nodeTemplate");
+</script>

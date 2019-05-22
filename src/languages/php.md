@@ -4,20 +4,13 @@
 
 PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
 
-<html>
-   <head>
-      <title>PHP Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-   </head>
-   <body>
-   <h2>Supported versions</h2>
-   <div id = 'phpSupported'></div>
-   <script>
-   makeList(json, "runtimes", "php", "supported", "phpSupported");
-   </script>
-   </body>
-</html>
+## Supported versions
 
+<div id = "phpSupported"></div>
+
+<script>
+makeImagesList("runtimes", "php", "supported", "phpSupported");
+</script>
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
@@ -28,20 +21,15 @@ To select a PHP version, specify a `type` such as `php:7.3`:
 type: "php:7.3"
 ```
 
-<html>
-   <head>
-      <title>PHP Deprecated Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/listTest.js" ></script>
-   </head>
-   <body>
-   <h3>Deprecated versions</h3>
-   <p>The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.</p>
-   <div id = 'phpDeprecated'></div>
-   <script>
-   makeList(json, "services", "php", "deprecated", "phpDeprecated");
-   </script>
-   </body>
-</html>
+### Deprecated versions
+
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+
+<div id = "phpDeprecated"></div>
+
+<script>
+makeImagesList("runtimes", "php", "deprecated", "phpDeprecated");
+</script>
 
 ## Support libraries
 
@@ -114,56 +102,12 @@ To access various [services](/configuration/services.md) with PHP, see the follo
 
 A number of project templates for major PHP applications are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
-### Applications
+<div>
+    <table id="phpTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</div>
 
-* [EZ Platform](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Drupal 7](https://github.com/platformsh/template-drupal7)
-* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8](https://github.com/platformsh/template-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/platformsh-example-drupal8-multisite)
-* [Laravel](https://github.com/platformsh/template-laravel)
-* [Moodle](https://github.com/platformsh/platformsh-example-moodle)
-* [Magento 1](https://github.com/platformsh/platformsh-example-magento1)
-* [Magento 2](https://github.com/platformsh/template-magento2ce)
-* [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
-* [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
-* [WordPress](https://github.com/platformsh/template-wordpress)
-* [GravCMS](https://github.com/platformsh/platformsh-example-gravcms)
-
-### Frameworks
-
-* [Amp/Aerys](https://github.com/platformsh/platformsh-example-amphp)
-* [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
-* [Symfony 3.x](https://github.com/platformsh/template-symfony3)
-* [Symfony 4.x](https://github.com/platformsh/template-symfony4)
-
-
-## Test - Project templates
-
-<html>
-   <head>
-      <title>Services Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/templates/helpers.js" ></script>
-   </head>
-   <body>
-      <div class="wrapper">
-      <div class="profile">
-        <table id= "phpTable" border="1">
-        <thead>
-        <th>Type</th>
-        <th>Template</th>
-        <th>Services</th>
-        <th>Status</th>
-        </thead>
-          <tbody>
-          </tbody>
-         </table>
-      </div>
-      </div>
-   </body>
-   <script>
-   var json = "/scripts/templates/templates.json";
-   makeTable(json, "php", "phpTable");
-   </script>
-   </body>
-</html>
+<script>
+makeTemplateTable("php", "phpTemplate");
+</script>

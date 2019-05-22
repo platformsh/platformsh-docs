@@ -4,15 +4,7 @@
 
 Now that you've opened tunnels into your services, you'll have access to all of your data in your environment. All that's left now is to actually build the site.
 
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-</head>
-<body>
-  <asciinema-player src="/asciinema/recordings/build.cast" preload=1 autoplay=1 loop=1></asciinema-player>
-  <script src="/asciinema/asciinema-player.js"></script>
-</body>
-</html>
+<asciinema-player src="/scripts/asciinema/recordings/build.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 1. **Build the site**
 
@@ -44,16 +36,10 @@ Now that you've opened tunnels into your services, you'll have access to all of 
 
 Now you know how to connect to your services on Platform.sh and perform a local build during development. Move onto the next step to find some helpful additional resources.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have built my application locally";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have built my application locally";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

@@ -6,17 +6,9 @@ In the previous step, you set up a free trial account with Platform.sh. Now you 
 
 From here you can create projects, adjust account settings, and a lot more that you will explore throughout these Getting Started guides.
 
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-  <video width="800" controls autoplay loop>
-    <source src="/videos/create-project-mc.mp4" type="video/mp4">
-  </video>
-  <br/><br/> 
-</body>
-</html>
+<video width="800" controls autoplay loop>
+  <source src="/videos/create-project-mc.mp4" type="video/mp4">
+</video>
 
 Since you do not yet have any projects on Platform.sh, the first thing you will see when you sign in is a workflow for creating a new project.
 
@@ -46,16 +38,10 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
       
 With these few selections Platform.sh will create the project and build the template in less than two minutes.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have created a new project with a template";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have created a new project with a template";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

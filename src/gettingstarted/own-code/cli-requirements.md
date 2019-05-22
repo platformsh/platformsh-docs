@@ -20,17 +20,9 @@ If you are unfamiliar with how to generate an RSA public and private key, there 
 
 Now that you have the requirements out of the way, place your SSH key onto Platform.sh so that you can communicate with your projects from your computer using the management console. Log in to your account
 
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-  <video width="800" controls autoplay loop>
-    <source src="/videos/add-ssh-mc.mp4" type="video/mp4">
-  </video>
-  <br/><br/> 
-</body>
-</html>
+<video width="800" controls autoplay loop>
+  <source src="/videos/add-ssh-mc.mp4" type="video/mp4">
+</video>
 
 1. **Access SSH key settings in the management console**
 
@@ -50,16 +42,10 @@ That's it! Now that you have met the requirements and configured an SSH key, Pla
 
 Next, you will need to install the Platform.sh CLI so that you can import your code to a project.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have configured my SSH key in the management console";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have configured my SSH key in the management console";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

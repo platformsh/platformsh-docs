@@ -22,7 +22,9 @@ Now you will need to include information that will tell Platform.sh how you want
 
 {% language name="PHP", type="php", url="https://raw.githubusercontent.com/platformsh/template-php/master/.platform/services.yaml" -%}
 
-{% language name="Go", type="js", url="https://raw.githubusercontent.com/platformsh/template-golang/master/.platform/services.yaml" -%}
+{% language name="Go", type="go", url="https://raw.githubusercontent.com/platformsh/template-golang/master/.platform/services.yaml" -%}
+
+{% language name="Node.js", type="js", url="https://raw.githubusercontent.com/platformsh/platformsh-example-nodejs/master/.platform/services.yaml" -%}
 
 {%- endcodetabs %}
 
@@ -32,31 +34,15 @@ If you're application does not use any services at this point, you can leave it 
   
 * `type`: This specifies the service type and its version using the format `type:version`.
 
-    <html>
-       <head>
-          <title>Services Supported Versions</title>
-          <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-       </head>
-       <body>
-          <div class="wrapper">
-          <div class="profile">
-            <table id= "serviceTable" border="1">
-            <thead>
-            <th>Service</th>
-            <th><code>type</code></th>
-            <th>Supported <code>version</code></th>
-            </thead>
-              <tbody>
-              </tbody>
-             </table>
-          </div>
-          </div>
-       </body>
-       <script>
-       makeTable(json, "services", "supported", "serviceTable", false);
-       </script>
-       </body>
-    </html>
+<div id = "table">
+  <table id="servicesTable" border="1">
+  <tbody></tbody>
+  </table>
+</div>
+
+<script>
+makeImagesTable("services", "supported", "servicesTable");
+</script>
 
 * `disk`: The `disk` attribute configures the amount of persistent disk that will be allocated between all of your services. Projects by default are allocated 5 GB (5120 MB), and that space can be distributed across all of your services.
  
@@ -74,17 +60,10 @@ If you're application does not use any services at this point, you can leave it 
 Platform.sh provides _managed services_, and each service comes with considerable default configuration that you will not have to include yourself in `.services.yaml`. Next, 
 you will next need to tell Platform.sh how to build and deploy your application using the `.platform.app.yaml` file.
   
+<div id = "buttons"></div>
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have configured my services";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<script>
+    var navNextText = "I have configured my services";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

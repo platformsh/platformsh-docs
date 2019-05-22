@@ -4,19 +4,13 @@ Apache Kafka is an open-source stream-processing software platform.  It is a fra
 
 See the [Kafka documentation](https://kafka.apache.org/documentation/) for more information.
 
-<html>
-   <head>
-      <title>Kafka Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-   </head>
-   <body>
-   <h2>Supported versions</h2>
-   <div id = 'kafkaSupported'></div>
-   <script>
-   makeList(json, "services", "kafka", "supported", "kafkaSupported");
-   </script>
-   </body>
-</html>
+## Supported versions
+
+<div id = "kafkaSupported"></div>
+
+<script>
+makeImagesList("services", "kafka", "supported", "kafkaSupported");
+</script>
 
 ## Relationship
 

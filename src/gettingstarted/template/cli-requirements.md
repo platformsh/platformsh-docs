@@ -21,17 +21,9 @@ If you are unfamiliar with how to generate an SSH public and private key, there 
 
 Add your SSH key to your Platform.sh account so that you can communicate with your projects using the CLI.
 
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-  <video width="800" controls autoplay loop>
-    <source src="/videos/add-ssh-mc.mp4" type="video/mp4">
-  </video>
-  <br/><br/> 
-</body>
-</html>
+<video width="800" controls autoplay loop>
+  <source src="/videos/add-ssh-mc.mp4" type="video/mp4">
+</video>
 
 1. **Access SSH key settings in the management console**
 
@@ -47,17 +39,11 @@ Add your SSH key to your Platform.sh account so that you can communicate with yo
     
 
 That's it! Now that you have met the requirements and configured an SSH key, all that's left is to install the Platform.sh CLI so you can interact with your projects from the command line.
-  
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have added my SSH key to my account";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have added my SSH key to my account";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

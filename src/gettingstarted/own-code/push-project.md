@@ -4,15 +4,7 @@
 
 With your configuration files complete, all that's left to do is to commit the changes and push to Platform.sh.
 
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-</head>
-<body>
-  <asciinema-player src="/asciinema/recordings/first-push.cast" preload=1 autoplay=1 loop=1></asciinema-player>
-  <script src="/asciinema/asciinema-player.js"></script>
-</body>
-</html> 
+<asciinema-player src="/scripts/asciinema/recordings/first-push.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 1. **Commit and push**
 
@@ -54,16 +46,10 @@ That's it! Using the Platform.sh CLI and a few properly configured files, pushin
 
 Now that your code is on Platform.sh, check out some of the Next Steps to get started developing.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have deployed my application";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have deployed my application";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

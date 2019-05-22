@@ -4,19 +4,13 @@ Varnish is a popular HTTP proxy server, often used for caching.  It is usually n
 
 However, it is possible to configure a Varnish instance as part of an application if Varnish-specific functionality is needed.
 
-<html>
-   <head>
-      <title>Varnish Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-   </head>
-   <body>
-   <h2>Supported versions</h2>
-   <div id = 'varnishSupported'></div>
-   <script>
-   makeList(json, "services", "varnish", "supported", "varnishSupported");
-   </script>
-   </body>
-</html>
+## Supported versions
+
+<div id = "varnishSupported"></div>
+
+<script>
+makeImagesList("services", "varnish", "supported", "varnishSupported");
+</script>
 
 ## How it works
 

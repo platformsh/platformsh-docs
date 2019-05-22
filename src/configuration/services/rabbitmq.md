@@ -4,19 +4,13 @@ RabbitMQ is an open source message broker software (sometimes called message-ori
 
 See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for more information.
 
-<html>
-   <head>
-      <title>RabbitMQ Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-   </head>
-   <body>
-   <h2>Supported versions</h2>
-   <div id = 'rabbitmqSupported'></div>
-   <script>
-   makeList(json, "services", "rabbitmq", "supported", "rabbitmqSupported");
-   </script>
-   </body>
-</html>
+## Supported versions
+
+<div id = "rabbitmqSupported"></div>
+
+<script>
+makeImagesList("services", "rabbitmq", "supported", "rabbitmqSupported");
+</script>
 
 ## Relationship
 

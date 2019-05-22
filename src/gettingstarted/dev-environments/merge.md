@@ -4,15 +4,7 @@
 
 Now that you've had the chance to verify that your application built and deployed correctly on your development environment, you're ready to merge it into your production site. Platform.sh provides [snapshot](/administration/snapshot-and-restore.md) features that protect against any unforeseen consequences of your merges, keeping a historical copy of all of your code and data. 
 
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-</head>
-<body>
-  <asciinema-player src="/asciinema/recordings/snap-merge-restore.cast" preload=1 autoplay=1 loop=1></asciinema-player>
-  <script src="/asciinema/asciinema-player.js"></script>
-</body>
-</html>
+<asciinema-player src="/scripts/asciinema/recordings/snap-merge-restore.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 > **Note:** In each code example provided, it is not necessary to include the `--project` flag if you are merging from within your local repository and the flags are meant only to be illustrative.
 
@@ -46,16 +38,10 @@ Now that you've had the chance to verify that your application built and deploye
     platform snapshot:restore --project <project id>
     ```
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have merged the new feature";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have merged the new feature";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

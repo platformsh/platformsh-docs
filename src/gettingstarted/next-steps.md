@@ -5,51 +5,45 @@
 Now that your application is up and running, here are some additional pieces of information that will help you leverage every bit of technology Platform.sh has to offer.
 
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/demo.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-        var descTitle = "External Integrations";
-        var descDesc = "Configure Platform.sh to mirror every push and pull request on GitHub, Gitlab, and Bitbucket.";
-        var descPath = getPathObj("/gettingstarted/integrations.html", descTitle, descDesc);
-        var descButton = {type: "descriptive", path: descPath, div: "buttons"};
+<div id = "integrations"></div>
 
-    		makeButton(descButton);
-   </script>
-   </body>
-</html>
+<script>
+    var descTitle = "External Integrations";
+    var descDesc = "Configure Platform.sh to mirror every push and pull request on GitHub, Gitlab, and Bitbucket.";
+    var descPath = getPathObj("/gettingstarted/integrations.html", descTitle, descDesc);
+    var descButton = {type: "descriptive", path: descPath, div: "integrations"};
+    makeButton(descButton);
+</script>
 
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
+<div id = "dev-envs"></div>
 
-<a href="/gettingstarted/integrations.md" class="buttongen full"><b>External Integrations</b><br/><br/>Configure Platform.sh to mirror every push and pull request on GitHub, Gitlab, and Bitbucket.</a>
-
-<a href="/gettingstarted/going-live.md" class="buttongen full"><b>Going Live</b><br/><br/>Set up your site for production, configure domains, and go live!</a>
-
-</body>
-</html>
+<script>
+    var descTitle = "Going Live";
+    var descDesc = "Set up your site for production, configure domains, and go live!";
+    var descPath = getPathObj("/gettingstarted/going-live.html", descTitle, descDesc);
+    var descButton = {type: "descriptive", path: descPath, div: "dev-envs"};
+    makeButton(descButton);
+</script>
 
 
 ## Additional Resources
 
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
+<div id = "community"></div>
 
-<a href="https://community.platform.sh/" class="buttongen full"><b>Platform.sh Community</b><br/><br/>Check out how-tos, tutorials, and get help for your questions about Platform.sh.</a>
+<script>
+    var descTitle = "Platform.sh Community";
+    var descDesc = "Check out how-tos, tutorials, and get help for your questions about Platform.sh.";
+    var descPath = getPathObj("https://community.platform.sh/", descTitle, descDesc);
+    var descButton = {type: "descriptive", path: descPath, div: "community"};
+    makeButton(descButton);
+</script>
 
-<a href="https://platform.sh/blog/" class="buttongen full"><b>Platform.sh Blog</b><br/><br/>Read news and how-to posts all about working with Platform.sh.</a>
+<div id = "blog"></div>
 
-</body>
-</html>
-
-
+<script>
+    var descTitle = "Platform.sh Blog";
+    var descDesc = "Read news and how-to posts all about working with Platform.sh.";
+    var descPath = getPathObj("https://platform.sh/blog/", descTitle, descDesc);
+    var descButton = {type: "descriptive", path: descPath, div: "blog"};
+    makeButton(descButton);
+</script>

@@ -11,16 +11,10 @@ These steps assume that you have already:
 
 If you have not completed these steps by now, click the links and do so before you begin.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "Get started!";
-   makeButtons("nextOnly", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "Get started!";
+    var navButtons = {type: "navigation", next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

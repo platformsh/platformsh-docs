@@ -4,19 +4,13 @@ InfluxDB is a time series database optimized for high-write-volume use cases suc
 
 See the [InfluxDB documentation](https://docs.influxdata.com/influxdb/v1.2/) for more information.
 
-<html>
-   <head>
-      <title>InfluxDB Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-   </head>
-   <body>
-   <h2>Supported versions</h2>
-   <div id = 'influxdbSupported'></div>
-   <script>
-   makeList(json, "services", "influxdb", "supported", "influxdbSupported");
-   </script>
-   </body>
-</html>
+## Supported versions
+
+<div id = "influxdbSupported"></div>
+
+<script>
+makeImagesList("services", "influxdb", "supported", "influxdbSupported");
+</script>
 
 ## Relationship
 

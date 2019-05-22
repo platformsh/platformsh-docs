@@ -6,28 +6,20 @@ Choose your current service, and this guide will take you through the steps to m
 
 <div id = "integrations"></div>
 
-<script type = "text/javascript" src = "/scripts/buttons/demo.js">
+<script>
 var githubPath = getPathObj("/administration/integrations/github.html", "GitHub");
 var github = {type: "basic", path: githubPath};
-
-var gitlabPath = getPathObj("/administration/integrations/gitlab.html", "GitLab");
-var gitlab = {type: "basic", path: gitlabPath};
 
 var bitbucketPath = getPathObj("/administration/integrations/bitbucket.html", "Bitbucket");
 var bitbucket = {type: "basic", path: bitbucketPath};
 
-var integrations = {type: "multi", children: [github, gitlab, bitbucket], div: "integrations"};
+var gitlabPath = getPathObj("/administration/integrations/gitlab.html", "GitLab");
+var gitlab = {type: "basic", path: gitlabPath};
+
+var integrations = {type: "multi", children: [github, bitbucket, gitlab], div: "integrations"};
 
 makeMultiButton(integrations);
 </script>
-
-
-<table>
-    <tr>
-        <td>Foo</td>
-    </tr>
-</table>
-
 
 These steps assume that you have already:
 

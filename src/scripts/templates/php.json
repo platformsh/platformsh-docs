@@ -1,12 +1,9 @@
 {
-  "php": {
+  "templates": {
     "applications": {
       "template-drupal7": {
         "name": "Drupal 7",
         "repo": "https:\/\/github.com\/platformsh\/template-drupal7",
-        "runtime": {
-          "php": 7.1
-        },
         "services": {
           "mysql": {
             "name": "MariaDB\/MySQL",
@@ -62,7 +59,7 @@
       },
       "platformsh-example-php": {
         "name": "Generic PHP Application",
-        "repo": "https://github.com/platformsh/platformsh-example-php",
+        "repo": "https:\/\/github.com\/platformsh\/platformsh-example-php",
         "services": {
         }
       }
@@ -90,32 +87,16 @@
       },
       "amphp": {
         "name": "AmPHP",
-        "repo": "https://github.com/platformsh/platformsh-example-amphp",
+        "repo": "https:\/\/github.com\/platformsh\/platformsh-example-amphp",
         "services": {
         }
       },
       "reactphp": {
         "name": "React PHP",
-        "repo": "https://github.com/platformsh/platformsh-example-reactphp",
+        "repo": "https:\/\/github.com\/platformsh\/platformsh-example-reactphp",
         "services": {
         }
       }
     }
-  },
-  "python": {
-
-  },
-  "nodejs": {
-
-  },
-  "ruby": {
-
-  },
-  "go": {
-
-  },
-  "java": {
-
   }
 }
-

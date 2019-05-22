@@ -20,6 +20,8 @@ An example `.platform.app.yaml` looks like this:
 
 {%- language name="Python", type="py", url="https://raw.githubusercontent.com/platformsh/template-python3/master/.platform.app.yaml" -%}
 
+{% language name="Node.js", type="js", url="https://raw.githubusercontent.com/platformsh/platformsh-example-nodejs/master/.platform.app.yaml" -%}
+
 {%- endcodetabs %}
 
 
@@ -34,32 +36,16 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
   ```
 
   Set `<version>` to a version supported by Platform.sh, which you can find in the documentation under each language: 
-  
-    <html>
-       <head>
-          <title>Runtime Supported Versions</title>
-          <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-       </head>
-       <body>
-          <div class="wrapper">
-          <div class="profile">
-            <table id= "runtimeTable" border="1">
-            <thead>
-            <th>Language</th>
-            <th><code>runtime</code></th>
-            <th>Supported <code>version</code></th>
-            </thead>
-              <tbody>
-              </tbody>
-             </table>
-          </div>
-          </div>
-       </body>
-       <script>
-       makeTable(json, "runtimes", "supported", "runtimeTable", false);
-       </script>
-       </body>
-    </html>
+
+<div id = "table">
+  <table id="runtimeTable" border="1">
+  <tbody></tbody>
+  </table>
+</div>
+
+<script>
+makeImagesTable("runtimes", "supported", "runtimeTable");
+</script>
   
 * `disk`: The [disk](/configuration/app/storage.md) attribute defines that amount of persistent storage you need to have available for your application, and requires a minimum value of 256 MB. This is also the section in which you can define mounts of writable storage for your application, as Platform.sh operates default on a read-only filesystem. 
   
@@ -105,16 +91,10 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
 
 Now that you have configured your application, you will next need to handle HTTP requests to your application using the `.platform/routes.yaml` file.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have configured my application";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have configured my application";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

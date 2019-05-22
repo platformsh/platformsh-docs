@@ -6,18 +6,10 @@ Welcome to Platform.sh! Getting started is as easy as opening a free trial accou
 
 There are no requirements on your part at this point. This guide will take you from zero to hero - from first glance to a deployed application entirely from your browser. 
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "Get started!";
-   makeButtons("nextOnly", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
 
-
+<script>
+    var navNextText = "Get started!";
+    var navButtons = {type: "navigation", next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

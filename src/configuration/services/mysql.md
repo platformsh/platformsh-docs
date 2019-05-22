@@ -4,39 +4,27 @@ MariaDB is a MySQL-compatible relational database system. Its XtraDB storage eng
 
 See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentation](https://dev.mysql.com/doc/refman/5.5/en/) for more information.
 
-<html>
-   <head>
-      <title>MariaDB/MySQL Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-   </head>
-   <body>
-   <h2>Supported versions</h2>
-   <div id = 'mariadbSupported'></div>
-   <script>
-   makeList(json, "services", "mysql", "supported", "mariadbSupported");
-   </script>
-   </body>
-</html>
+## Supported versions
+
+<div id = "mysqlSupported"></div>
+
+<script>
+makeImagesList("services", "mysql", "supported", "mysqlSupported");
+</script>
 
 > **note**
 >
 > Downgrades of MariaDB are not supported. MariaDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
 
-<html>
-   <head>
-      <title>MariaDB/MySQL Deprecated Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/listTest.js" ></script>
-   </head>
-   <body>
-   <h3>Deprecated versions</h3>
-   <p>The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.</p>
-   <div id = 'mariadbDeprecated'></div>
-   <script>
-   makeList(json, "services", "mysql", "deprecated", "mariadbDeprecated");
-   </script>
-   </body>
-</html>
+### Deprecated versions
 
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+
+<div id = "mysqlDeprecated"></div>
+
+<script>
+makeImagesList("services", "elasticsearch", "deprecated", "mysqlDeprecated");
+</script>
 
 ## Relationship
 

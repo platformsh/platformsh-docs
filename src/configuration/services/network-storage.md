@@ -4,19 +4,13 @@ Platform.sh supports internal "storage as a service" to provide a file store tha
 
 The network storage service enables a new kind of `mount` that refers to a shared service rather than to a local directory.  Any application can use both `local` and/or `service` mounts, or neither.
 
-<html>
-   <head>
-      <title>Kafka Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-   </head>
-   <body>
-   <h2>Supported versions</h2>
-   <div id = 'networkStorageSupported'></div>
-   <script>
-   makeList(json, "services", "network-storage", "supported", "networkStorageSupported");
-   </script>
-   </body>
-</html>
+## Supported versions
+
+<div id = "networkStorageSupported"></div>
+
+<script>
+makeImagesList("services", "network-storage", "supported", "networkStorageSupported");
+</script>
 
 > **note**
 >

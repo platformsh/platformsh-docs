@@ -6,15 +6,7 @@ It would be useful to test a new feature deploys correctly by building a live si
 
 This is a simple example of how to set up a development environment, but if any of your features depend on the data inside your production databases, you will have full access to a complete copy of that data so that you can be sure the feature will work as expected before merging.
 
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-</head>
-<body>
-  <asciinema-player src="/asciinema/recordings/branch.cast" preload=1 autoplay=1 loop=1></asciinema-player>
-  <script src="/asciinema/asciinema-player.js"></script>
-</body>
-</html>
+<asciinema-player src="/scripts/asciinema/recordings/branch.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 1. **Create branch, make changes, push to Platform.sh**
 
@@ -56,16 +48,10 @@ This is a simple example of how to set up a development environment, but if any 
 
 Now that you have a live development environment to test, you're ready to merge it into production. Before you do that, however, it's always a good idea to take a [snapshot](/administration/snapshot-and-restore.md) of your `master` environment in case you want to restore that snapshot post-merge.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have created and activated a development environment";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have created and activated a development environment";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

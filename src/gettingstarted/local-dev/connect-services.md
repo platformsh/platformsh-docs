@@ -6,15 +6,7 @@
 
 Now that you have a local copy of your application code, it doesn't make sense to make changes to the project by pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
 
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-</head>
-<body>
-  <asciinema-player src="/asciinema/recordings/tunnel-open.cast" preload=1 autoplay=1 loop=1></asciinema-player>
-  <script src="/asciinema/asciinema-player.js"></script>
-</body>
-</html>
+<asciinema-player src="/scripts/asciinema/recordings/tunnel-open.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 1. **Open an SSH tunnel to connect to your services**
 
@@ -49,16 +41,10 @@ Now that you have a local copy of your application code, it doesn't make sense t
     
 Now that you have created an SSH tunnel to your services, all that's left to do is actually build your application locally.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have opened an SSH tunnel into my services";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have opened an SSH tunnel into my services";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

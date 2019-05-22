@@ -89,33 +89,16 @@ In either case, `credentials` can now be used to connect to `database`:
 
 You can find out more information about Platform.sh Config Reader libraries on GitHub: 
 
-<html>
-<head>
-    <title>Runtime Supported Versions</title>
-    <script src="jquery.js"></script>
-    <script>
-        $(function(){
-            $("#includedContent").load("/gettingstarted/own-code/more-info/config-readers.html");
-        });
-    </script>
-</head>
-<body>
-<div id="includedContent"></div>
-</body>
-</html>
+* [PHP Config Reader](https://github.com/platformsh/config-reader-php)
+* [Python Config Reader](https://github.com/platformsh/config-reader-python)
+* [Node.js Config Reader](https://github.com/platformsh/config-reader-nodejs)
 
 You can also find examples of how to connect to each of Platform.sh managed services in multiple languages in the [Services Documentation](/configuration/services.md). Once you have done so, you will next need to handle HTTP requests to your application using the `.platform/routes.yaml` file.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have connected to my services to my application";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have connected to my services to my application";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

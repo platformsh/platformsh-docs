@@ -2,20 +2,15 @@
 
 Platform.sh supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
 
-<html>
-   <head>
-      <title>Ruby Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-   </head>
-   <body>
-   <h2>Supported versions</h2>
-   <h3>Ruby MRI</h3>
-   <div id = 'rubySupported'></div>
-   <script>
-   makeList(json, "runtimes", "ruby", "supported", "rubySupported");
-   </script>
-   </body>
-</html>
+## Supported versions
+
+### Ruby MRI
+
+<div id = "rubySupported"></div>
+
+<script>
+makeImagesList("runtimes", "ruby", "supported", "rubySupported");
+</script>
 
 ## Unicorn based Rails configuration
 
@@ -201,3 +196,13 @@ Platform.sh also provides a [helper library](https://github.com/platformsh/platf
 * [Sinatra](https://github.com/platformsh/platformsh-example-sinatra)
 * [Sinatra (with all services enabled)](https://github.com/platformsh/platformsh-example-ruby-sinatra-all-the-services)
 * [Ruby on Rails](https://github.com/platformsh/platformsh-example-rails)
+
+<div>
+    <table id="rubyTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</div>
+
+<script>
+makeTemplateTable("php", "rubyTemplate");
+</script>

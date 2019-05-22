@@ -4,16 +4,8 @@
 
 With the Platform.sh CLI now installed and configured to communicate with your projects, you can create a new project from the command line and connect it to your application.
 
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-</head>
-<body>
-  <asciinema-player src="/asciinema/recordings/project-create.cast" preload=1 autoplay=1 loop=1></asciinema-player>
-  <script src="/asciinema/asciinema-player.js"></script>
-</body>
-</html> 
-    
+<asciinema-player src="/scripts/asciinema/recordings/project-create.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+
 1. **Create an empty project**
 
     Type the command `platform create` in your terminal.
@@ -40,24 +32,24 @@ With the Platform.sh CLI now installed and configured to communicate with your p
 
 2. **Set Platform.sh as remote for your application**
 
-    Next you will need to connect your repository to the remote project in order to push your code to Platform.sh. To do this, run the command
+    Next you will need to connect to the remote project in order to push your code to Platform.sh. 
     
-    ```bash
+    If you have not already initialized your project directory as a Git repository, you will first need to do so 
+    ```
+    git init
+    ```
+    
+    Then you can set Platform.sh as a remote with the command
+    ```
     platform project:set-remote <project ID>
     ```
 
 That's it! You have now created an empty project and connected your repository to that project using the CLI. Move on now to the next step to start configuring your repository to deploy on Platform.sh.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have created a project using the CLI";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have created a project using the CLI";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

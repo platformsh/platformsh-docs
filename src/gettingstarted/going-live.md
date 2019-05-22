@@ -4,21 +4,10 @@ You've set up a project on Platform.sh and pushed your code or integrated your p
 
 The documentation will take you through a pre-launch checklist and then through the steps to take your application live.
 
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
+<div id = "buttons"></div>
 
-<br/><br/>
-
-<center>
-
-<a href="/golive/checklist.html" class="buttongen small">Take your site live!</a>
-
-</center>
-
-<br/><br/>
-
-</body>
-</html>
+<script>
+    var templatePath = getPathObj("/golive/checklist.html", "Take your site live!");
+    var templates = {type: "basic", path: templatePath, div: "buttons"};
+    makeButton(templates)
+</script>

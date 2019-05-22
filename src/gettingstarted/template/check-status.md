@@ -4,17 +4,9 @@
 
 Once you have configured the template application in the previous step, Platform.sh will build your project for you.
 
-<html>
-<head>
-<link rel="stylesheet" href="/styles/styles.css">
-</head>
-<body>
-  <video width="800" controls autoplay loop>
-    <source src="/videos/check-status.mp4" type="video/mp4">
-  </video>
-  <br/><br/> 
-</body>
-</html>
+<video width="800" controls autoplay loop>
+  <source src="/videos/check-status.mp4" type="video/mp4">
+</video>
 
 1. **Explore the management console**
 
@@ -49,16 +41,10 @@ In these few steps you have created a free trial account, configured a template 
 
 Using the [Platform.sh CLI](/development/cli.md), however, you get even more control over your project configurations, and you are able to migrate your own applications to Platform.sh. Move onto the next step to install it.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have built and deployed a template application";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have built and deployed a template application";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

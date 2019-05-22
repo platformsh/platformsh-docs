@@ -6,15 +6,7 @@ If you have already [pushed your code](/gettingstarted/own-code.md) to Platform.
 
 Otherwise, it will be necessary to download a local copy of your project first.
 
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/asciinema/asciinema-player.css" />
-</head>
-<body>
-  <asciinema-player src="/asciinema/recordings/local-copy.cast" preload=1 autoplay=1 loop=1></asciinema-player>
-  <script src="/asciinema/asciinema-player.js"></script>
-</body>
-</html>
+<asciinema-player src="/scripts/asciinema/recordings/local-copy.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 1. **Get project ID**
 
@@ -30,17 +22,10 @@ Otherwise, it will be necessary to download a local copy of your project first.
 
 Now that you have a local copy of your application that is configured to the Platform.sh remote repository, you can create a new .
 
+<div id = "buttons"></div>
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have downloaded the project code";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<script>
+    var navNextText = "I have downloaded the project code";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

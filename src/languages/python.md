@@ -2,19 +2,13 @@
 
 Platform.sh supports deploying Python applications. Your application can use WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
 
-<html>
-   <head>
-      <title>Python Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-   </head>
-   <body>
-   <h2>Supported versions</h2>
-   <div id = 'pythonSupported'></div>
-   <script>
-   makeList(json, "runtimes", "python", "supported", "pythonSupported");
-   </script>
-   </body>
-</html>
+## Supported versions
+
+<div id = "pythonSupported"></div>
+
+<script>
+makeImagesList("runtimes", "python", "supported", "pythonSupported");
+</script>
 
 ## Support libraries
 
@@ -180,3 +174,13 @@ A number of project templates for Python applications are available on GitHub.  
 * [Starter kit Python with uwsgi](https://github.com/platformsh/platformsh-example-python-uwsgi)
 * [Starter kit Python and Elastic Search](https://github.com/platformsh/platformsh-example-python-elasticsearch)
 * [Starter kit Django project](https://github.com/platformsh/platformsh-example-django)
+
+<div>
+    <table id="pythonTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</div>
+
+<script>
+makeTemplateTable("php", "pythonTemplate");
+</script>

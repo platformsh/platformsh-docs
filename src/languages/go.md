@@ -2,19 +2,13 @@
 
 Platform.sh supports building and deploying applications written in Go using Go modules.  They are compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
 
-<html>
-   <head>
-      <title>Go Supported Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
-   </head>
-   <body>
-   <h2>Supported versions</h2>
-   <div id = 'goSupported'></div>
-   <script>
-   makeList(json, "runtimes", "go", "supported", "goSupported");
-   </script>
-   </body>
-</html>
+## Supported versions
+
+<div id = "goSupported"></div>
+
+<script>
+makeImagesList("runtimes", "go", "supported", "goSupported");
+</script>
 
 To specify a Go container, use the `type` property in your `.platform.app.yaml`.
 
@@ -22,20 +16,15 @@ To specify a Go container, use the `type` property in your `.platform.app.yaml`.
 type: 'golang:1.12'
 ```
 
-<html>
-   <head>
-      <title>Go Deprecated Versions</title>
-      <script type = "text/javascript" src = "/scripts/images/listTest.js" ></script>
-   </head>
-   <body>
-   <h3>Deprecated versions</h3>
-   <p>The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.</p>
-   <div id = 'nodejsDeprecated'></div>
-   <script>
-   makeList(json, "runtimes", "go", "deprecated", "goDeprecated");
-   </script>
-   </body>
-</html>
+### Deprecated versions
+
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+
+<div id = "goDeprecated"></div>
+
+<script>
+makeImagesList("runtimes", "go", "deprecated", "goDeprecated");
+</script>
 
 ## Go modules
 
@@ -114,3 +103,13 @@ Note that there will still be an Nginx proxy server sitting in front of your app
 Platform.sh offers a project templates for Go applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
 
 [Generic Go application](https://github.com/platformsh/template-golang)
+
+<div>
+    <table id="goTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</div>
+
+<script>
+makeTemplateTable("php", "goTemplate");
+</script>

@@ -10,20 +10,57 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
     
     Select a language and choose one or more templates that most closely resemble your application and keep the template in another tab as you continue through this guide. Using these two resources together is the fastest way to correctly configure your project for Platform.sh.
     
-    <html>
-    <head>
-        <title>Language Template Buttons</title>
-        <script src="jquery.js"></script>
-        <script>
-            $(function(){
-                $("#includedContent").load("/gettingstarted/own-code/buttons/lang-templates.html");
-            });
-        </script>
-    </head>
-    <body>
-    <div id="includedContent"></div>
-    </body>
-    </html>
+<div>
+<details>
+  <summary>PHP Templates</summary>
+    <table id="phpTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</details>
+<details>
+  <summary>Python Templates</summary>
+    <table id="pythonTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</details>
+
+<details>
+  <summary>Node.js Templates</summary>
+    <table id="nodeTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</details>
+
+<details>
+  <summary>Ruby Templates</summary>
+    <table id="rubyTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</details>
+
+<details>
+  <summary>Go Templates</summary>
+    <table id="goTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</details>
+
+<details>
+  <summary>Java Templates</summary>
+    <table id="javaTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</details>
+</div>
+
+<script>
+makeTemplateTable("php", "phpTemplate");
+makeTemplateTable("php", "pythonTemplate");
+makeTemplateTable("php", "nodeTemplate");
+makeTemplateTable("php", "rubyTemplate");
+makeTemplateTable("php", "goTemplate");
+makeTemplateTable("php", "javaTemplate");
+</script>
 
 2. **Create empty configuration files**
 
@@ -52,16 +89,10 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 
 With the empty configuration files in place, you will need to specify your service configuration in `.platform/services.yaml`.
 
-<html>
-   <head>
-      <link rel="stylesheet" href="/styles/styles.css">
-      <script type = "text/javascript" src = "/scripts/buttons/buttons.js" ></script>
-   </head>
-   <body>
-   <div id = "buttons"></div>
-   <script>
-   var buttonTextNext = "I have initialized my code with empty configuration files";
-   makeButtons("full", buttonTextNext);
-   </script>
-   </body>
-</html>
+<div id = "buttons"></div>
+
+<script>
+    var navNextText = "I have initialized my code with empty configuration files";
+    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+    makeButton(navButtons);
+</script>

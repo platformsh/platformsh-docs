@@ -8,35 +8,29 @@
  * 'Undocumented' images in the public docs.
  *
  */
-var json = "/scripts/images/images.json";
+var jsonSource = "/scripts/images/images.json";
 
 /**
  * Creates an HTML list that can be used to document 'Supported' and 'Deprecated' image
  * versions in language and service pages pulled from 'images.json'. To include use:
  *
- *    <html>
- *      <head>
- *        <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
- *      </head>
- *      <body>
- *        <div id = 'mariadbSupported'></div>
- *        <script>
- *          makeList(json, "services", "mysql", "supported", "mariadbSupported");
- *        </script>
- *      </body>
- *    </html>
+ * To list the supported versions of the service InfluxDB:
  *
+ * <div id = "influxdbSupported"></div>
  *
- * @param obj images Calls the json object read from 'images.json'.
+ * <script>
+ * makeImagesList("services", "influxdb", "supported", "influxdbSupported");
+ * </script>
+ *
  * @param str imageType Dictates whether list will be made for and image from "runtimes" or "services".
  * @param str childImage The individual image the list is made from (i.e., "php", "nodejs", "mongodb", "varnish").
- * @param str attribute Which attribute of that image JSON (containing a list) will be listed (i.e. "supported").
+ * @param str attribute Which attribute of that image JSON (containing a list) will be listed ("supported", "deprecated").
  * @param str divName References the id of <div> in the Markdown document.
  *
  */
-function makeList(images, imageType, childImage, attribute, divName) {
+function makeImagesList(imageType, childImage, attribute, divName) {
 
-  $.getJSON( images, function( data ) {
+  $.getJSON(jsonSource, function( data ) {
     var items = [];
     var current = data[imageType][childImage][attribute];
     $.each( current, function( key, val ) {
@@ -59,62 +53,73 @@ function makeList(images, imageType, childImage, attribute, divName) {
  * @param bool codeStyle Whether <code> flags should be placed on list elements.
  *
  */
-function formatTableList(unformatted, codeStyle) {
+function formatImagesTableList(unformatted, codeStyle) {
 		var formattedList;
     if (codeStyle) {
       formattedList = "<code>" + unformatted.join("</code>, <code>") + "</code>";
     } else {
       formattedList = unformatted.join(", ");
     }
-		return formattedList
+		return formattedList;
+}
+
+
+function makeImagesTableHeader(imageType, tableName) {
+
+		  var table = document.getElementById(tableName);
+      var header = table.createTHead();
+      var row = header.insertRow(0);
+
+      var cell = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+
+      if (imageType == "runtimes") {
+
+          cell.innerHTML = "<b>Language</b>";
+          cell2.innerHTML = "<b><code>runtime</code></b>";
+          cell3.innerHTML = "<b>Supported <code>version</code></b>";
+
+      } else if (imageType == "services") {
+
+          cell.innerHTML = "<b>Service</b>";
+          cell2.innerHTML = "<b><code>type</code></b>";
+          cell3.innerHTML = "<b>Supported <code>version</code><b>";
+
+      }
 }
 
 /**
- * Creates an HTML list that can be used to document 'Supported' and 'Deprecated' image
- * versions in language and service pages pulled from 'images.json'. To include use:
+ * Creates an table that can be used to document 'Supported' image versions in language
+ * and service pages pulled from 'images.json'. To include use:
  *
- *    <html>
- *      <head>
- *        <script type = "text/javascript" src = "/scripts/images/helpers.js" ></script>
- *      </head>
- *        <body>
- *           <div class="wrapper">
- *           <div class="profile">
- *             <table id= "serviceTable" border="1">
- *             <thead>
- *             <th>Service</th>
- *             <th><code>type</code></th>
- *             <th>Supported <code>version</code></th>
- *             </thead>
- *               <tbody>
- *               </tbody>
- *              </table>
- *           </div>
- *           </div>
- *        </body>
- *        <script>
- *          makeTable(json, "services", "supported", "serviceTable", false);
- *        </script>
- *        </body>
- *     </html>
+ * <div id = "table">
+ * <table id="runtimeTable" border="1">
+ * <tbody></tbody>
+ * </table>
+ * </div>
  *
+ * <script>
+ * makeImagesTable("runtimes", "supported", "runtimeTable");
+ * </script>
  *
- * @param obj images Calls the json object read from 'images.json'.
  * @param str imageType Dictates whether list will be made for and image from "runtimes" or "services".
  * @param str attribute Which attribute of that image JSON (containing a list) will be listed (i.e. "supported").
  * @param str divName References the id of <div> in the Markdown document.
  * @param bool codeStyleLists Whether <code> flags should be placed on list elements.
  *
  */
-function makeTable(images, imageType, attribute, divName, codeStyleLists) {
-		var runtimes = [];
-    $.getJSON(images, function(data) {
+function makeImagesTable(imageType, attribute, tableName, codeStyleLists=false) {
+
+    makeImagesTableHeader(imageType, tableName);
+
+    $.getJSON(jsonSource, function(data) {
     		var current = data[imageType];
-    		$.each(current, function(i, f) {
+        $.each(current, function(i, f) {
         		var tblRow = "<tr>" + "<td>" + "<a href=\"" + f.docs + "\">" + f.name + "</a>" + "</td>" +
-           "<td>" + "<code>" + f.type + "</code>" + "</td>" +
-           "<td>" + formatTableList(f[attribute], codeStyleLists) + "</td>" + "</tr>";
-           $(tblRow).appendTo("#" + divName + " tbody");
+               "<td>" + "<code>" + f.type + "</code>" + "</td>" +
+               "<td>" + formatImagesTableList(f[attribute], codeStyleLists) + "</td>" + "</tr>";
+               $(tblRow).appendTo("#" + tableName + " tbody");
         });
     });
 }
