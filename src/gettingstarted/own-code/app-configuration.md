@@ -37,7 +37,7 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
 
   Set `<version>` to a version supported by Platform.sh, which you can find in the documentation under each language: 
 
-<div id = "table">
+<div>
   <table id="runtimeTable" border="1">
   <tbody></tbody>
   </table>

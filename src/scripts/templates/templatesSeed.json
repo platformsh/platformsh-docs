@@ -1,0 +1,23 @@
+{
+  "php": {
+    "template-drupal7": {
+      "name": "Drupal 7",
+      "type": "applications"
+    }
+  },
+  "python": {
+
+  },
+  "nodejs": {
+
+  },
+  "ruby": {
+
+  },
+  "go": {
+
+  },
+  "java": {
+
+  }
+}

@@ -10,57 +10,12 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
     
     Select a language and choose one or more templates that most closely resemble your application and keep the template in another tab as you continue through this guide. Using these two resources together is the fastest way to correctly configure your project for Platform.sh.
     
-<div>
-<details>
-  <summary>PHP Templates</summary>
-    <table id="phpTemplate" border="1">
-    <tbody></tbody>
-    </table>
-</details>
-<details>
-  <summary>Python Templates</summary>
-    <table id="pythonTemplate" border="1">
-    <tbody></tbody>
-    </table>
-</details>
-
-<details>
-  <summary>Node.js Templates</summary>
-    <table id="nodeTemplate" border="1">
-    <tbody></tbody>
-    </table>
-</details>
-
-<details>
-  <summary>Ruby Templates</summary>
-    <table id="rubyTemplate" border="1">
-    <tbody></tbody>
-    </table>
-</details>
-
-<details>
-  <summary>Go Templates</summary>
-    <table id="goTemplate" border="1">
-    <tbody></tbody>
-    </table>
-</details>
-
-<details>
-  <summary>Java Templates</summary>
-    <table id="javaTemplate" border="1">
-    <tbody></tbody>
-    </table>
-</details>
-</div>
-
-<script>
-makeTemplateTable("php", "phpTemplate");
-makeTemplateTable("php", "pythonTemplate");
-makeTemplateTable("php", "nodeTemplate");
-makeTemplateTable("php", "rubyTemplate");
-makeTemplateTable("php", "goTemplate");
-makeTemplateTable("php", "javaTemplate");
-</script>
+    * [PHP Templates]()
+    * [Python Templates]()
+    * [Node.js Templates]()
+    * [Ruby Templates]()
+    * [Go Templates]()
+    * [Java Templates]()
 
 2. **Create empty configuration files**
 

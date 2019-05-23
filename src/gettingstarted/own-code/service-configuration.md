@@ -1,5 +1,3 @@
-
-
 # Import your own code
 
 ## Configure services
@@ -34,7 +32,7 @@ If you're application does not use any services at this point, you can leave it 
   
 * `type`: This specifies the service type and its version using the format `type:version`.
 
-<div id = "table">
+<div>
   <table id="servicesTable" border="1">
   <tbody></tbody>
   </table>

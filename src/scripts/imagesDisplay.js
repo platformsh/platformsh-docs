@@ -30,6 +30,8 @@ var jsonSource = "/scripts/images/images.json";
  */
 function makeImagesList(imageType, childImage, attribute, divName) {
 
+  var jsonSource = "/scripts/images/images.json";
+
   $.getJSON(jsonSource, function( data ) {
     var items = [];
     var current = data[imageType][childImage][attribute];
@@ -110,6 +112,8 @@ function makeImagesTableHeader(imageType, tableName) {
  *
  */
 function makeImagesTable(imageType, attribute, tableName, codeStyleLists=false) {
+
+    var jsonSource = "/scripts/images/images.json";
 
     makeImagesTableHeader(imageType, tableName);
 

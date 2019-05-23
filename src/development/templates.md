@@ -4,6 +4,16 @@ You can also initialize your project using any of the pre-made templates below. 
 
 ## PHP
 
+<div>
+    <table id="phpTemplate" border="1">
+    <tbody></tbody>
+    </table>
+</div>
+
+<script>
+makeTemplateTable("php", "phpTemplate");
+</script>
+
 <html>
    <head>
       <title>Services Supported Versions</title>
