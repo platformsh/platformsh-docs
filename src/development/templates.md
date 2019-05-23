@@ -14,34 +14,6 @@ You can also initialize your project using any of the pre-made templates below. 
 makeTemplateTable("php", "phpTemplate");
 </script>
 
-<html>
-   <head>
-      <title>Services Supported Versions</title>
-   </head>
-   <body>
-      <div class="wrapper">
-      <div class="profile">
-        <table id= "phpTable" border="1">
-        <thead>
-        <th>Type</th>
-        <th>Template</th>
-        <th>Services</th>
-        <th>Version</th>
-        <th>Status</th>
-        </thead>
-          <tbody>
-          </tbody>
-         </table>
-      </div>
-      </div>
-   </body>
-   <script>
-   var json = "/scripts/templates/templates.json";
-   makeTable("php", "phpTable");
-   </script>
-   </body>
-</html>
-
 <section class="examples-lists">
 
 <div>

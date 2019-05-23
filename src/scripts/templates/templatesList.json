@@ -1,0 +1,149 @@
+{
+  "repo": "https:\/\/github.com\/platformsh\/",
+  "config": {
+    "template": ".platform.template.yaml",
+    "application": ".platform.app.yaml",
+    "services": ".platform\/services.yaml",
+    "routes": ".platform\/routes.yaml"
+  },
+  "template-name-override": false,
+  "php": {
+    "applications": {
+      "template-drupal7": {
+        "name": "Drupal 7"
+      },
+      "template-drupal8": {
+        "name": "Drupal 8"
+      },
+      "platformsh-example-ezplatform": {
+        "name": "EZ Platform"
+      },
+      "platformsh-example-drupalcommerce7": {
+        "name": "Drupal 7 (Commerce Kickstart)"
+      },
+      "platformsh-example-drupal8-multisite": {
+        "name": "Drupal 8 (Multisite variant)"
+      },
+      "template-laravel": {
+        "name": "Laravel"
+      },
+      "platformsh-example-moodle": {
+        "name": "Moodle"
+      },
+      "platformsh-example-magento1": {
+        "name": "Magento 1"
+      },
+      "platformsh-example-magento2": {
+        "name": "Magento 2"
+      },
+      "platformsh-example-sculpin": {
+        "name": "Sculpin"
+      },
+      "platformsh-example-typo3": {
+        "name": "TYPO3"
+      },
+      "template-wordpress": {
+        "name": "Wordpress"
+      }
+    },
+    "examples": {
+      "platformsh-example-php": {
+        "name": "Generic PHP Application"
+      }
+    },
+    "frameworks": {
+      "platformsh-example-amphp": {
+        "name": "AmPHP"
+      },
+      "platformsh-example-reactphp": {
+        "name": "React PHP"
+      },
+      "template-symfony3": {
+        "name": "Symfony 3.x"
+      },
+      "template-symfony4": {
+        "name": "Symfony 4.x"
+      }
+    }
+  },
+  "python": {
+    "applications": {
+
+    },
+    "examples": {
+      "platformsh-example-python-uwsgi": {
+        "name": "Python UWSGI with Unix Sockets"
+      }
+    },
+    "frameworks": {
+      "platform-example-django": {
+        "name": "Django"
+      },
+      "template-flask": {
+        "name": "Platform.sh Python 2.7 Flask"
+      }
+    }
+  },
+  "nodejs": {
+    "applications": {
+
+    },
+    "examples": {
+      "platformsh-example-nodejs": {
+        "name": "Generic Node.js"
+      },
+      "platformsh-example-parseit": {
+        "name": "Parse"
+      },
+      "platformsh-example-nodejs-microservices": {
+        "name": "Node.js microservices"
+      }
+    },
+    "frameworks": {
+
+    }
+  },
+  "ruby": {
+    "applications": {
+
+    },
+    "examples": {
+
+    },
+    "frameworks": {
+      "platformsh-example-sinatra": {
+        "name": "Sinatra"
+      },
+      "platform-example-ruby-sinatra-all-the-services": {
+        "name": "Sinatra (all services)"
+      },
+      "platformsh-example-rails": {
+        "name": "Ruby on Rails"
+      }
+    }
+  },
+  "go": {
+    "applications": {
+
+    },
+    "examples": {
+      "template-golang": {
+        "name": "Generic Go application"
+      }
+    },
+    "frameworks": {
+
+    }
+  },
+  "java": {
+    "applications": {
+
+    },
+    "examples": {
+
+    },
+    "frameworks": {
+
+    }
+  }
+}

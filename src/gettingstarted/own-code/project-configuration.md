@@ -10,12 +10,12 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
     
     Select a language and choose one or more templates that most closely resemble your application and keep the template in another tab as you continue through this guide. Using these two resources together is the fastest way to correctly configure your project for Platform.sh.
     
-    * [PHP Templates]()
-    * [Python Templates]()
-    * [Node.js Templates]()
-    * [Ruby Templates]()
-    * [Go Templates]()
-    * [Java Templates]()
+    * [PHP Templates](/development/templates.md#php)
+    * [Python Templates](/development/templates.md#python)
+    * [Node.js Templates](/development/templates.md#nodejs)
+    * [Ruby Templates](/development/templates.md#ruby)
+    * [Go Templates](/development/templates.md#go)
+    * [Java Templates](/development/templates.md#java)
 
 2. **Create empty configuration files**
 
