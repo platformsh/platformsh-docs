@@ -176,5 +176,5 @@ A number of project templates for Node.js applications and typical configuration
 </div>
 
 <script>
-makeTemplateTable("php", "nodeTemplate");
+makeTemplateTable("nodejs", "nodeTemplate");
 </script>

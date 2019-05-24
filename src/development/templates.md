@@ -23,7 +23,7 @@ makeTemplateTable("php", "phpTemplate");
 </div>
 
 <script>
-makeTemplateTable("php", "pythonTemplate");
+makeTemplateTable("python", "pythonTemplate");
 </script>
 
 ## Ruby

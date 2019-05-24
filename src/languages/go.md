@@ -111,5 +111,5 @@ Platform.sh offers a project templates for Go applications using the structure d
 </div>
 
 <script>
-makeTemplateTable("php", "goTemplate");
+makeTemplateTable("go", "goTemplate");
 </script>

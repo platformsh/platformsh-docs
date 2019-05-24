@@ -204,5 +204,5 @@ Platform.sh also provides a [helper library](https://github.com/platformsh/platf
 </div>
 
 <script>
-makeTemplateTable("php", "rubyTemplate");
+makeTemplateTable("ruby", "rubyTemplate");
 </script>

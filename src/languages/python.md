@@ -182,5 +182,5 @@ A number of project templates for Python applications are available on GitHub.  
 </div>
 
 <script>
-makeTemplateTable("php", "pythonTemplate");
+makeTemplateTable("python", "pythonTemplate");
 </script>
