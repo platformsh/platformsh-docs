@@ -3,119 +3,388 @@
     "applications": {
       "template-drupal7": {
         "name": "Drupal 7",
-        "repo": "https:\/\/github.com\/platformsh\/template-drupal7",
+        "repo": "https://github.com/platformsh/template-drupal7",
         "runtime": {
-          "php": 7.1
+          "runtime": "php",
+          "version": "7.1"
         },
         "services": {
           "mysql": {
-            "name": "MariaDB\/MySQL",
-            "version": 10.2
-          },
-          "redis": {
-            "name": "Redis",
-            "version": 5
+            "name": "MariaDB/MySQL",
+            "version": "10.2"
           }
         }
       },
       "template-drupal8": {
         "name": "Drupal 8",
-        "repo": "https:\/\/github.com\/platformsh\/template-drupal8",
+        "repo": "https://github.com/platformsh/template-drupal8",
+        "runtime": {
+          "runtime": "php",
+          "version": "7.2"
+        },
         "services": {
           "mysql": {
-            "name": "MariaDB\/MySQL",
-            "version": 10.2
+            "name": "MariaDB/MySQL",
+            "version": "10.2"
+          },
+          "redis": {
+            "name": "Redis",
+            "version": "5.0"
+          }
+        }
+      },
+      "platformsh-example-ezplatform": {
+        "name": "EZ Platform",
+        "repo": "https://github.com/platformsh/platformsh-example-ezplatform",
+        "runtime": {
+          "runtime": "php",
+          "version": "7.1"
+        },
+        "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.1"
+          },
+          "redis": {
+            "name": "Redis",
+            "version": "3.2"
+          }
+        }
+      },
+      "platformsh-example-drupalcommerce7": {
+        "name": "Drupal 7 (Commerce Kickstart)",
+        "repo": "https://github.com/platformsh/platformsh-example-drupalcommerce7",
+        "runtime": {
+          "runtime": "php",
+          "version": "5.6"
+        },
+        "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.0"
+          }
+        }
+      },
+      "platformsh-example-drupal8-multisite": {
+        "name": "Drupal 8 (Multisite variant)",
+        "repo": "https://github.com/platformsh/platformsh-example-drupal8-multisite",
+        "runtime": {
+          "runtime": "php",
+          "version": "7.2"
+        },
+        "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.0"
           }
         }
       },
       "template-laravel": {
         "name": "Laravel",
-        "repo": "https:\/\/github.com\/platformsh\/template-laravel",
+        "repo": "https://github.com/platformsh/template-laravel",
+        "runtime": {
+          "runtime": "php",
+          "version": "7.2"
+        },
         "services": {
           "mysql": {
-            "name": "MariaDB\/MySQL",
-            "version": 10.2
+            "name": "MariaDB/MySQL",
+            "version": "10.2"
           },
           "redis": {
             "name": "Redis",
-            "version": 5
+            "version": "5.0"
+          }
+        }
+      },
+      "platformsh-example-moodle": {
+        "name": "Moodle",
+        "repo": "https://github.com/platformsh/platformsh-example-moodle",
+        "runtime": {
+          "runtime": "php",
+          "version": "7.0"
+        },
+        "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.0"
+          }
+        }
+      },
+      "platformsh-example-magento1": {
+        "name": "Magento 1",
+        "repo": "https://github.com/platformsh/platformsh-example-magento1",
+        "runtime": {
+          "runtime": "php",
+          "version": "5.6"
+        },
+        "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.0"
+          },
+          "redis": {
+            "name": "Redis",
+            "version": "3.0"
+          },
+          "solr": {
+            "name": "Solr",
+            "version": "4.10"
+          }
+        }
+      },
+      "platformsh-example-sculpin": {
+        "name": "Sculpin",
+        "repo": "https://github.com/platformsh/platformsh-example-sculpin",
+        "runtime": {
+          "runtime": "php",
+          "version": "7.0"
+        },
+        "services": {}
+      },
+      "platformsh-example-typo3": {
+        "name": "TYPO3",
+        "repo": "https://github.com/platformsh/platformsh-example-typo3",
+        "runtime": {
+          "runtime": "php",
+          "version": "7.0"
+        },
+        "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.0"
+          },
+          "redis": {
+            "name": "Redis",
+            "version": "3.0"
           }
         }
       },
       "template-wordpress": {
         "name": "Wordpress",
-        "repo": "https:\/\/github.com\/platformsh\/template-wordpress",
+        "repo": "https://github.com/platformsh/template-wordpress",
+        "runtime": {
+          "runtime": "php",
+          "version": "7.2"
+        },
         "services": {
           "mysql": {
-            "name": "MariaDB\/MySQL",
-            "version": 10.2
+            "name": "MariaDB/MySQL",
+            "version": "10.2"
           }
         }
       }
     },
     "examples": {
-      "template-php": {
-        "name": "Generic PHP Application",
-        "repo": "https:\/\/github.com\/platformsh\/template-php",
-        "services": {
-        }
-      },
       "platformsh-example-php": {
         "name": "Generic PHP Application",
         "repo": "https://github.com/platformsh/platformsh-example-php",
-        "services": {
-        }
+        "runtime": {
+          "runtime": "php",
+          "version": "7.1"
+        },
+        "services": {}
       }
     },
     "frameworks": {
-      "symfony3": {
-        "name": "Symfony 3.x",
-        "repo": "https:\/\/github.com\/platformsh\/template-symfony3",
-        "services": {
-          "mysql": {
-            "name": "MariaDB\/MySQL",
-            "version": 10.2
-          }
-        }
-      },
-      "symfony4": {
-        "name": "Symfony 4.x",
-        "repo": "https:\/\/github.com\/platformsh\/template-symfony4",
-        "services": {
-          "mysql": {
-            "name": "MariaDB\/MySQL",
-            "version": 10.2
-          }
-        }
-      },
-      "amphp": {
+      "platformsh-example-amphp": {
         "name": "AmPHP",
         "repo": "https://github.com/platformsh/platformsh-example-amphp",
-        "services": {
-        }
+        "runtime": {
+          "runtime": "php",
+          "version": "7.1"
+        },
+        "services": {}
       },
-      "reactphp": {
+      "platformsh-example-reactphp": {
         "name": "React PHP",
         "repo": "https://github.com/platformsh/platformsh-example-reactphp",
+        "runtime": {
+          "runtime": "php",
+          "version": "7.1"
+        },
+        "services": {}
+      },
+      "template-symfony3": {
+        "name": "Symfony 3.x",
+        "repo": "https://github.com/platformsh/template-symfony3",
+        "runtime": {
+          "runtime": "php",
+          "version": "7.3"
+        },
         "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.2"
+          }
+        }
+      },
+      "template-symfony4": {
+        "name": "Symfony 4.x",
+        "repo": "https://github.com/platformsh/template-symfony4",
+        "runtime": {
+          "runtime": "php",
+          "version": "7.3"
+        },
+        "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.2"
+          }
         }
       }
     }
   },
   "python": {
-
+    "applications": {},
+    "examples": {
+      "platformsh-example-python-uwsgi": {
+        "name": "Python UWSGI with Unix Sockets",
+        "repo": "https://github.com/platformsh/platformsh-example-python-uwsgi",
+        "runtime": {
+          "runtime": "python",
+          "version": "3.7"
+        },
+        "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.2"
+          },
+          "redis": {
+            "name": "Redis",
+            "version": "5.0"
+          }
+        }
+      }
+    },
+    "frameworks": {
+      "template-flask": {
+        "name": "Platform.sh Python 2.7 Flask",
+        "repo": "https://github.com/platformsh/template-flask",
+        "runtime": {
+          "runtime": "python",
+          "version": "3.7"
+        },
+        "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.2"
+          },
+          "redis": {
+            "name": "Redis",
+            "version": "3.2"
+          }
+        }
+      }
+    }
   },
   "nodejs": {
-
+    "applications": {},
+    "examples": {
+      "platformsh-example-nodejs": {
+        "name": "Generic Node.js",
+        "repo": "https://github.com/platformsh/platformsh-example-nodejs",
+        "runtime": {
+          "runtime": "nodejs",
+          "version": "10"
+        },
+        "services": {}
+      },
+      "platformsh-example-parseit": {
+        "name": "Parse",
+        "repo": "https://github.com/platformsh/platformsh-example-parseit",
+        "runtime": {
+          "runtime": "nodejs",
+          "version": "8.9"
+        },
+        "services": {
+          "mongodb": {
+            "name": "MongoDB",
+            "version": "None"
+          }
+        }
+      },
+      "platformsh-example-nodejs-microservices": {
+        "name": "Node.js microservices",
+        "repo": "https://github.com/platformsh/platformsh-example-nodejs-microservices",
+        "runtime": {
+          "runtime": "multiple",
+          "version": "see repo"
+        },
+        "services": {
+          "mongodb": {
+            "name": "MongoDB",
+            "version": "3.0"
+          }
+        }
+      }
+    },
+    "frameworks": {}
   },
   "ruby": {
-
+    "applications": {},
+    "examples": {},
+    "frameworks": {
+      "platformsh-example-sinatra": {
+        "name": "Sinatra",
+        "repo": "https://github.com/platformsh/platformsh-example-sinatra",
+        "runtime": {
+          "runtime": "ruby",
+          "version": "2.3"
+        },
+        "services": {}
+      },
+      "platform-example-ruby-sinatra-all-the-services": {
+        "name": "Sinatra (all services)",
+        "repo": "https://github.com/platformsh/platform-example-ruby-sinatra-all-the-services",
+        "runtime": {
+          "runtime": "multiple",
+          "version": "see repo"
+        },
+        "services": {
+          "runtime": "multiple",
+          "version": "see repo"
+        }
+      },
+      "platformsh-example-rails": {
+        "name": "Ruby on Rails",
+        "repo": "https://github.com/platformsh/platformsh-example-rails",
+        "runtime": {
+          "runtime": "ruby",
+          "version": "2.5"
+        },
+        "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "None"
+          }
+        }
+      }
+    }
   },
   "go": {
-
+    "applications": {},
+    "examples": {
+      "template-golang": {
+        "name": "Generic Go application",
+        "repo": "https://github.com/platformsh/template-golang",
+        "runtime": {
+          "runtime": "golang",
+          "version": "1.11"
+        },
+        "services": {
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.2"
+          }
+        }
+      }
+    },
+    "frameworks": {}
   },
   "java": {
-
+    "applications": {},
+    "examples": {},
+    "frameworks": {}
   }
 }
-

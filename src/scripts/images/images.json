@@ -221,7 +221,7 @@
     },
     "go": {
       "name": "Go",
-      "type": "go",
+      "type": "golang",
       "supported": [
         "1.11",
         "1.12"

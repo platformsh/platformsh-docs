@@ -44,6 +44,8 @@ function makeTemplateTableHeader(tableName) {
 
 function makeTemplateTable(language, tableName) {
     makeTemplateTableHeader(tableName)
+
+    var jsonSource = "/scripts/templates/templates.json";
     
     $.getJSON(jsonSource, function(data) {
     		var templateTypes = data[language];
