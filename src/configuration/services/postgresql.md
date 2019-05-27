@@ -55,6 +55,8 @@ You can then use the service in a configuration file of your application with so
 
 {%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/postgresql" -%}
 
+{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/postgresql" -%}
+
 {%- endcodetabs %}
 
 ## Exporting data

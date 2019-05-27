@@ -67,6 +67,8 @@ if (err != nil) {
 }
 {%- endcodetabs %}
 
+{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/mysql" -%}
+
 > **note**
 > MySQL schema names can not use system reserved namespace. (mysql, information_schema, etc)
 
