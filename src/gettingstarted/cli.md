@@ -37,6 +37,9 @@ tips for getting started.
 
 **Your command-line tools are now ready to use with Platform.sh.**
 
+> **note**
+> Please consult [the full documentation on CLI Authentication](https://github.com/platformsh/platformsh-cli#authentication) on the public CLI Github repository for further details.
+
 ## Usage
 
 The CLI uses Platform.sh API to trigger commands (*Branch, Merge...*) on your projects.
