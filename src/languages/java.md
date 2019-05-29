@@ -38,24 +38,14 @@ To access various [services](/configuration/services.md) with Java, see the foll
 
 
 
-{% language name="MongoDB", type="php", url="https://examples.docs.platform.sh/php/mongodb" -%}
+{% language name="MongoDB", type="php", url="https://examples.docs.platform.sh/java/mongodb" -%}
 
-{% language name="MySQL", type="php", url="https://examples.docs.platform.sh/php/mysql" -%}
+{% language name="MySQL", type="php", url="https://examples.docs.platform.sh/java/mysql" -%}
 
-{% language name="PostgreSQL", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
+{% language name="PostgreSQL", type="php", url="https://examples.docs.platform.sh/java/postgresql" -%}
 
-{% language name="Redis", type="php", url="https://examples.docs.platform.sh/php/redis" -%}
+{% language name="Redis", type="php", url="https://examples.docs.platform.sh/java/redis" -%}
 
-<!--
-
-{% language name="RabbitMQ", type="php", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
-
-{% language name="Solr", type="php", url="https://examples.docs.platform.sh/php/solr" -%}
-
-{% codetabs name="Elasticsearch", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
-
-{% language name="Memcached", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
--->
 
 {%- endcodetabs %}
 
@@ -67,35 +57,6 @@ A number of project templates for major Java applications are available on GitHu
 
 ### Applications
 
-
 #### Maven Spring
 * [Spring Boot MySQL](https://github.com/platformsh/template-spring-boot-maven-mysql)
 * [Spring Boot MongoDB](https://github.com/platformsh/template-spring-mvc-maven-mongodb)
-<!--
-* [Spring Boot PostgreSQL](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Spring Boot Memcached](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Spring Boot Redis](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Spring Boot Elasticsearch](https://github.com/platformsh/platformsh-example-ezplatform)
-
-#### Gradle Spring
-
-* [Spring Boot MySQL](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Spring Boot PostgreSQL](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Spring Boot MongoDB](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Spring Boot Memcached](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Spring Boot Redis](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Spring Boot Elasticsearch](https://github.com/platformsh/platformsh-example-ezplatform)
-
-
-#### Maven Jakarta
-* The same sample above (generic)
-* Apache TomEE
-* Payara
-* Thorntail
-
-#### Visual sample
-Spring MVC
-Jakarta EE and MVC SPEC
-
-
--->
