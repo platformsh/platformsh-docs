@@ -38,13 +38,13 @@ To access various [services](/configuration/services.md) with Java, see the foll
 
 
 
-{% language name="MongoDB", type="php", url="https://examples.docs.platform.sh/java/mongodb" -%}
+{% language name="MongoDB", type="java", url="https://examples.docs.platform.sh/java/mongodb" -%}
 
-{% language name="MySQL", type="php", url="https://examples.docs.platform.sh/java/mysql" -%}
+{% language name="MySQL", type="java", url="https://examples.docs.platform.sh/java/mysql" -%}
 
-{% language name="PostgreSQL", type="php", url="https://examples.docs.platform.sh/java/postgresql" -%}
+{% language name="PostgreSQL", type="java", url="https://examples.docs.platform.sh/java/postgresql" -%}
 
-{% language name="Redis", type="php", url="https://examples.docs.platform.sh/java/redis" -%}
+{% language name="Redis", type="java", url="https://examples.docs.platform.sh/java/redis" -%}
 
 
 {%- endcodetabs %}
