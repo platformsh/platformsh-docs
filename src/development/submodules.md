@@ -72,4 +72,4 @@ to
     url=git@bitbucket.org:myusername/mymodule.git
 ```
 
-2. to add a key in the project settings "Deploy Key" tab as per the [Private Repository](development/private-repository.md) documentation page, to allow our git service to pull the module from the remote git service.
+2. to add the ssh public key in the platform.sh project settings "Deploy Key" tab in our Web UI as per the [Private Repository](development/private-repository.md) documentation page, to allow our git service to pull the module from the remote git service. This assumes of course you have configured the remote git repository to allow this by generating a private/public key pair, see this [bitbucket](https://confluence.atlassian.com/bitbucket/use-ssh-keys-in-bitbucket-pipelines-847452940.html) page for instance.
