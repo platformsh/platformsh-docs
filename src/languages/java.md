@@ -31,14 +31,12 @@ Platform.sh has support for software project management and comprehension tool i
 * [Ant](https://ant.apache.org/)
 
 
-<!---
+
 ## Accessing services
 
 To access various [services](/configuration/services.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
 
-{% codetabs name="Elasticsearch", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
 
-{% language name="Memcached", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
 
 {% language name="MongoDB", type="php", url="https://examples.docs.platform.sh/php/mongodb" -%}
 
@@ -46,11 +44,18 @@ To access various [services](/configuration/services.md) with Java, see the foll
 
 {% language name="PostgreSQL", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
 
-{% language name="RabbitMQ", type="php", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
-
 {% language name="Redis", type="php", url="https://examples.docs.platform.sh/php/redis" -%}
 
+<!--
+
+{% language name="RabbitMQ", type="php", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
+
 {% language name="Solr", type="php", url="https://examples.docs.platform.sh/php/solr" -%}
+
+{% codetabs name="Elasticsearch", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
+
+{% language name="Memcached", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
+-->
 
 {%- endcodetabs %}
 
@@ -64,9 +69,10 @@ A number of project templates for major Java applications are available on GitHu
 
 
 #### Maven Spring
-* [Spring Boot MySQL](https://github.com/platformsh/platformsh-example-ezplatform)
+* [Spring Boot MySQL](https://github.com/platformsh/template-spring-boot-maven-mysql)
+* [Spring Boot MongoDB](https://github.com/platformsh/template-spring-mvc-maven-mongodb)
+<!--
 * [Spring Boot PostgreSQL](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Spring Boot MongoDB](https://github.com/platformsh/platformsh-example-ezplatform)
 * [Spring Boot Memcached](https://github.com/platformsh/platformsh-example-ezplatform)
 * [Spring Boot Redis](https://github.com/platformsh/platformsh-example-ezplatform)
 * [Spring Boot Elasticsearch](https://github.com/platformsh/platformsh-example-ezplatform)
@@ -90,5 +96,6 @@ A number of project templates for major Java applications are available on GitHu
 #### Visual sample
 Spring MVC
 Jakarta EE and MVC SPEC
+
 
 -->
