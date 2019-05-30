@@ -6,7 +6,7 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 ## Supported versions
 
-The service type `mysql` refers to MariaDB.  The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
+The service type `mysql` refers to MariaDB.  The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.  Other than the `type`, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
 
 * mysql:10.0
 * mysql:10.1
@@ -18,8 +18,6 @@ The service type `mysql` refers to MariaDB.  The service type `oracle-mysql` ref
 > **note**
 >
 > Downgrades of MySQL or MariaDB are not supported. Both will update their own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
-
-Other than the type, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
 
 ### Deprecated versions
 
