@@ -21,7 +21,7 @@ known_hosts
 authorized_keys
 ```
 
-If you find a file named either `id_rsa.pub` or `id_dsa.pub`, you can use it with Platform.sh. If you don't find an existing key, see the steps to create a new one in the [next section](#create-a-new-public-private-keypair).
+If you find a file named `id_rsa.pub`, you can use it with Platform.sh. If you don't find an existing key, see the steps to create a new one in the [next section](#create-a-new-public-private-keypair).
 
 ## Create a New Public-Private Keypair
 
