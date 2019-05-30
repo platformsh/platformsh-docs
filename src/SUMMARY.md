@@ -32,7 +32,7 @@
   * [Kafka](configuration/services/kafka.md)
   * [Memcached](configuration/services/memcached.md)
   * [MongoDB](configuration/services/mongodb.md)
-  * [MySQL](configuration/services/mysql.md)
+  * [MySQL/MariaDB](configuration/services/mysql.md)
   * [Network Storage](configuration/services/network-storage.md)
   * [PostgreSQL](configuration/services/postgresql.md)
   * [Redis](configuration/services/redis.md)
