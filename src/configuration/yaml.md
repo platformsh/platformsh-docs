@@ -87,32 +87,6 @@ properties:
 
 will reference the `favicon.ico` file, which will be provided to Platform.sh's management system.
 
-### `archive`
-
-The `archive` type specifies that the value it tags is a reference to a directory on disk, relative to the location of the YAML file.  Essentially it defines the value of key as "this entire directory".  Consider this `services.yaml` fragment:
-
-```yaml
-mysearch:
-    type: solr:6.6
-    disk: 1024
-    configuration:
-        core_config: !include
-            type: archive
-            path: "solr/conf"
-```
-
-In this case, the `mysearch.configuration.core_config` value is not the string "solr/conf", but the contents of the `solr/conf` directory (relative to the `services.yaml` file).  On Platform.sh, that is used primarily for service definitions in [`services.yaml`](/configuration/services.md) to provide a directory of configuration files for the service (such as Solr in this case).  Platform.sh will use that directive to copy the entire specified directory into our management system so that it can be deployed with the specified service.
-
-Alternatively, an older short-hand version of `archive` is still available.  The following fragment has exactly the same meaning as the one above:
-
-```yaml
-mysearch:
-    type: solr:6.6
-    disk: 1024
-    configuration:
-        core_config: !archive "solr/conf"
-```
-
 ### `yaml`
 
 Finally, the `yaml` type allows an external YAML file to be inlined into the file as though it had been typed in directly.  That can help simplify more complex files, such a `.platform.app.yaml` file with many highly-customized `web.locations` blocks.
@@ -167,3 +141,18 @@ web:
                 '^/sitemap\.xml$':
                     allow: true
 ```
+
+
+### `!archive`
+
+Another custom tag available is `!archive`, which specifies a value is a reference to a directory on disk, relative to the location of the YAML file.  Essentially it defines the value of key as "this entire directory".  Consider this `services.yaml` fragment:
+
+```yaml
+mysearch:
+    type: solr:6.6
+    disk: 1024
+    configuration:
+        conf_dir: !archive "solr/conf"
+```
+
+In this case, the `mysearch.configuration.conf_dir` value is not the string "solr/conf", but the contents of the `solr/conf` directory (relative to the `services.yaml` file).  On Platform.sh, that is used primarily for service definitions in [`services.yaml`](/configuration/services.md) to provide a directory of configuration files for the service (such as Solr in this case).  Platform.sh will use that directive to copy the entire specified directory into our management system so that it can be deployed with the specified service.

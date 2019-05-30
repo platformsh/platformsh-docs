@@ -1,5 +1,9 @@
 # Upgrading
 
+## Changes in version 2019.05
+
+* The `!archive` tag in YAML has been un-deprecated, and is now favored over the `!include` option. `!include` is still available for other include types (`yaml`, `binary`, and `string`).
+
 ## Changes in version 2017.11 (2017-11-09)
 
 * The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/configuration/yaml.md).  For example, the following `services.yaml` snippet:
