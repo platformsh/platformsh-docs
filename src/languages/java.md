@@ -26,7 +26,7 @@ While it is possible to read the environment directly from your application, it 
 
 ## Support build automation
 
-Platform.sh has support for software project management and comprehension tool in the Java World: 
+Platform.sh supports the most common project management tools in the Java ecosystem, including: 
 
 * [Gradle](https://gradle.org/)
 * [Maven](https://maven.apache.org/)
