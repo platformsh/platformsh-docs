@@ -40,7 +40,7 @@ To access various [services](/configuration/services.md) with Java, see the foll
 
 
 
-{% language name="MongoDB", type="java", url="https://examples.docs.platform.sh/java/mongodb" -%}
+{% codetabs name="MongoDB", type="java", url="https://examples.docs.platform.sh/java/mongodb" -%}
 
 {% language name="MySQL", type="java", url="https://examples.docs.platform.sh/java/mysql" -%}
 
