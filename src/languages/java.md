@@ -5,6 +5,8 @@ Java is a general-purpose programming language, and one of the most popular in t
 
 ## Supported versions
 
+### OpenJDK versions:
+
 * 8
 * 11
 * 12
