@@ -47,6 +47,8 @@ You can then use the service in a configuration file of your application with so
 
 {%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/solr" -%}
 
+{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/solr" -%}
+
 {%- endcodetabs %}
 
 ## Configuration
