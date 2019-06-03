@@ -54,7 +54,7 @@ GitProtocolError: unexpected http resp 401 for https://bitbucket.org/myusername/
 
 To fix this, you need to:
 
-1. Move your `.gitmodules` file from the https syntax to the ssh syntax, e.g.
+1. Change your `.gitmodules` file from the HTTPS syntax to the SSH syntax, e.g.
 
 from:
 
