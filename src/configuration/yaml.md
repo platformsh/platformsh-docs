@@ -149,7 +149,7 @@ Another custom tag available is `!archive`, which specifies a value is a referen
 
 ```yaml
 mysearch:
-    type: solr:6.6
+    type: solr:8.0
     disk: 1024
     configuration:
         conf_dir: !archive "solr/conf"
