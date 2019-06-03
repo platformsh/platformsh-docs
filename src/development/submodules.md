@@ -64,7 +64,7 @@ from:
     url = https://bitbucket.org/myusername/mymodule.git
 ```
 
-to
+to:
 
 ```
 [submodule "support/mymodule"]
