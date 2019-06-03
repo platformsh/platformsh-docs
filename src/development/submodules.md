@@ -46,15 +46,15 @@ Since the Platform.sh Git server cannot connect to Github via SSH without being 
 
 ## Use of private git repositories
 
-When using git submodules that are hosted on private repositories, using the `https` protocol will fail with errors like:
+When using Git submodules that are hosted on private repositories, using the `https` protocol will fail with errors like:
 
 ```
 GitProtocolError: unexpected http resp 401 for https://bitbucket.org/myusername/mymodule.git/info/refs?service=git-upload-pack
 ```
 
-To fix this, you need:
+To fix this, you need to:
 
-1. To move your `.gitmodules` file from the https syntax to the ssh syntax, e.g.
+1. Move your `.gitmodules` file from the https syntax to the ssh syntax, e.g.
 
 from:
 
@@ -72,4 +72,4 @@ to
     url=git@bitbucket.org:myusername/mymodule.git
 ```
 
-2. to add the ssh public key in the platform.sh project settings "Deploy Key" tab in our Web UI as per the [Private Repository](development/private-repository.md) documentation page, to allow our git service to pull the module from the remote git service. This assumes of course you have configured the remote git repository to allow this by generating a private/public key pair, see this [bitbucket](https://confluence.atlassian.com/bitbucket/use-ssh-keys-in-bitbucket-pipelines-847452940.html) page for instance.
+2. Add the SSH public key in the Platform.sh project settings "Deploy Key" tab in the Web UI as per the [Private Repository](development/private-repository.md) documentation page, which will allow our Git service to pull the module from the remote git service. This assumes you have configured the remote git repository to allow this by generating a private/public key pair. For example, see the [Bitbucket documentation](https://confluence.atlassian.com/bitbucket/use-ssh-keys-in-bitbucket-pipelines-847452940.html).
