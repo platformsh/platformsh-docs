@@ -1,6 +1,8 @@
 # Headless Chrome
 
-Headless Chrome is a headless browser that is useful for automated testing. 
+Headless Chrome is a headless browser that can be configured on projects like any other service on Platform.sh. You can interact with the `headless-chrome` service container using Puppeteer, a Node library that provides an API to control Chrome over the DevTools Protocol. 
+
+Puppeteer can be used to generate PDFs and screenshots of web pages, automate form submission, and test your project's UI. You can find out more information about using Puppeteer on [GitHub](https://github.com/GoogleChrome/puppeteer) or in their [documentation](https://pptr.dev/).
 
 ## Supported versions
 
@@ -12,25 +14,29 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 ```yaml
 {
-  "service": "chrome",
-  "ip": "169.254.221.236",
-  "hostname": "uvqac3sgdovvx4zd6u5szwi244.chrome.service._.eu-3.platformsh.site",
-  "cluster": "kb6sjxhpo4bwa-master-7rqtwti",
-  "host": "chrome.internal",
-  "rel": "http",
-  "scheme": "http",
-  "type": "chrome-headless:73",
-  "port": 9022
+    "service": "headless",
+    "ip": "169.254.73.96",
+    "hostname": "3rxha4e2w4yv36lqlypy7qlkza.headless.service._.eu-3.platformsh.site",
+    "cluster": "moqwtrvgc63mo-master-7rqtwti",
+    "host": "headless.internal",
+    "rel": "http",
+    "scheme": "http",
+    "type": "chrome-headless:73",
+    "port": 9222
 }
+
 ```
 
+## Requirements
+
+Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater.
 
 ## Usage example
 
 In your `.platform/services.yaml`:
 
 ```yaml
-chrome:
+headless:
   type: chrome-headless:73
 ```
 
@@ -38,9 +44,101 @@ In your `.platform.app.yaml`:
 
 ```yaml
 relationships:
-    chrome: "chrome:http"
+  headless: "headless:http"
 ```
 
-You can then use the service in a configuration file of your application with something like:
+After configuration, include Puppeteer as a dependency in your `package.json`:
+
+```json
+"puppeteer": "^1.14.0"
+```
+
+Using the [Node.js Config Reader](https://github.com/platformsh/config-reader-nodejs) library and Puppeteer, you can define credentials for connecting to headless Chrome using the `browserURL` parameter of `puppeteer.connect()`.
+
+### Taking screenshots
+
+You can create a `screenshots.js` that includes an async function for taking full page screenshots of a given url. In this case, the screenshot is saved to a predefined writable mount `screenshots/` and takes a screenshot of the entire web page (`fullPage: true`). You can find more of the options available in `page.screenshot()` in the [Puppeteer documentation](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagescreenshotoptions).
+
+```
+const puppeteer = require('puppeteer');
+const platformsh = require('platformsh-config');
+
+// Define a Config object and get credentials for chrome-headless
+let config = platformsh.config();
+const credentials = config.credentials('headless');
+
+var exports = module.exports = {};
+
+// Create an async function
+exports.takeScreenshot = async function (url, screenshotID) {
+
+    try {
+        // Connect to chrome-headless using pre-formatted puppeteer credentials
+        const formattedURL = config.FormattedCredentials("headless", "puppeteer");
+        const browser = await puppeteer.connect({browserURL: formattedURL});
+
+        // Open a new page to the given url and take the screenshot
+        const page = await browser.newPage();
+        await page.goto(url);
+        await page.screenshot({
+            fullPage: true,
+            path: `screenshots/${screenshotID}.png`
+        });
+
+        await browser.close();
+
+        return browser
+
+    } catch (e) {
+        return Promise.reject(e);
+    }
+
+};
+
+```
+
+
+### Generating PDFs
+
+You can also create a `pdfs.js` that includes an async function that will generate a PDF of a given URL. In this case, the PDF is saved to the predefined writable mount `pdfs/` and the generated file will include all background images on the site (`printBackground: true`). You can find more of the options available in `page.pdf()` in the [Puppeteer documentation](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagepdfoptions).
+
+```
+const puppeteer = require('puppeteer');
+const platformsh = require('platformsh-config');
+
+// Define a Config object and get credentials for chrome-headless
+let config = platformsh.config();
+const credentials = config.credentials('headless');
+
+var exports = module.exports = {};
+
+// Create an async function
+exports.makePDF = async function (url, pdfID) {
+
+    try {
+        // Connect to chrome-headless using pre-formatted puppeteer credentials
+        const formattedURL = config.FormattedCredentials("headless", "puppeteer");
+        const browser = await puppeteer.connect({browserURL: formattedURL});
+
+        // Open a new page to the given url and create the PDF
+        const page = await browser.newPage();
+        await page.goto(url, {waitUntil: 'networkidle2'});
+        await page.pdf({
+            path: `pdfs/${pdfID}.pdf`,
+            format: 'letter',
+            printBackground: true
+        });
+        await browser.close();
+
+        return browser
+
+    } catch (e) {
+
+        return Promise.reject(e);
+
+    }
+
+};
+```
 
 
