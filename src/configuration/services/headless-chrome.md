@@ -29,7 +29,7 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 ## Requirements
 
-Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater.
+Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater. Using the Platform.sh Config Reader library requires Node.js 10 or later.
 
 ## Usage example
 
@@ -74,7 +74,7 @@ exports.takeScreenshot = async function (url, screenshotID) {
 
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials
-        const formattedURL = config.FormattedCredentials("headless", "puppeteer");
+        const formattedURL = config.formattedCredentials("headless", "puppeteer");
         const browser = await puppeteer.connect({browserURL: formattedURL});
 
         // Open a new page to the given url and take the screenshot
@@ -94,9 +94,23 @@ exports.takeScreenshot = async function (url, screenshotID) {
     }
 
 };
-
 ```
 
+You can remove `fullPage`, which defaults to `false`, and puppeteer will only take a screenshot of the default window size. Additionally, you can emulate how your application will appear on mobile devices by including the following after defining a new page
+
+```
+        const page = await browser.newPage();
+        await page.emulate(devices['iPhone 6']);
+        await page.goto(url);
+```
+
+and requiring Puppeteer's `DeviceDescriptors` module
+
+```
+const devices = require('puppeteer/DeviceDescriptors');
+```
+
+While this example emulates an iPhone 6 display, many more [device descriptors](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pageemulateoptions) are also available.
 
 ### Generating PDFs
 
@@ -117,7 +131,7 @@ exports.makePDF = async function (url, pdfID) {
 
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials
-        const formattedURL = config.FormattedCredentials("headless", "puppeteer");
+        const formattedURL = config.formattedCredentials("headless", "puppeteer");
         const browser = await puppeteer.connect({browserURL: formattedURL});
 
         // Open a new page to the given url and create the PDF
