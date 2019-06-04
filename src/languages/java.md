@@ -48,6 +48,11 @@ To access various [services](/configuration/services.md) with Java, see the foll
 
 {% language name="Redis", type="java", url="https://examples.docs.platform.sh/java/redis" -%}
 
+{%- language name="Memcached", type="java", url="https://examples.docs.platform.sh/java/memcached" -%}
+
+{%- language name="Elasticsearch", type="java", url="https://examples.docs.platform.sh/java/elasticsearch" -%}
+
+{%- language name="Solr", type="java", url="https://examples.docs.platform.sh/java/solr" -%}
 
 {%- endcodetabs %}
 
