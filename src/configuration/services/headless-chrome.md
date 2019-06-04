@@ -96,7 +96,7 @@ exports.takeScreenshot = async function (url, screenshotID) {
 };
 ```
 
-You can remove `fullPage`, which defaults to `false`, and puppeteer will only take a screenshot of the default window size. Additionally, you can emulate how your application will appear on mobile devices by including the following after defining a new page
+You can remove `fullPage`, which defaults to `false`, and Puppeteer will only take a screenshot of the default window size. Additionally, you can emulate how your application will appear on mobile devices by including the following after defining a new page
 
 ```
         const page = await browser.newPage();
