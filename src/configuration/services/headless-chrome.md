@@ -31,7 +31,7 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater. 
 
-Using the Platform.sh [Config Reader]((https://github.com/platformsh/config-reader-nodejs)) library requires Node.js 10 or later.
+Using the Platform.sh [Config Reader](https://github.com/platformsh/config-reader-nodejs) library requires Node.js 10 or later.
 
 ### Other languages
 
