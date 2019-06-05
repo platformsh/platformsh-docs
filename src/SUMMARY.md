@@ -28,6 +28,7 @@
   * [Server Side Includes](configuration/routes/ssi.md)
 * [Services (services.yaml)](configuration/services.md)
   * [Elasticsearch](configuration/services/elasticsearch.md)
+  * [Headless Chrome](configuration/services/headless-chrome.md)
   * [InfluxDB](configuration/services/influxdb.md)
   * [Kafka](configuration/services/kafka.md)
   * [Memcached](configuration/services/memcached.md)
