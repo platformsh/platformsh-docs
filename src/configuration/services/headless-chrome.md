@@ -59,107 +59,37 @@ After configuration, include Puppeteer as a dependency in your `package.json`:
 "puppeteer": "^1.14.0"
 ```
 
-Using the [Node.js Config Reader](https://github.com/platformsh/config-reader-nodejs) library and Puppeteer, you can define credentials for connecting to headless Chrome using the `browserURL` parameter of `puppeteer.connect()`.
-
-### Taking screenshots
-
-You can create a `screenshots.js` that includes an async function for taking full page screenshots of a given url. In this case, the screenshot is saved to a predefined writable mount `screenshots/` and takes a screenshot of the entire web page (`fullPage: true`). You can find more of the options available in `page.screenshot()` in the [Puppeteer documentation](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagescreenshotoptions).
+Using the [Node.js Config Reader](https://github.com/platformsh/config-reader-nodejs) library, you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
 
 ```
-const puppeteer = require('puppeteer');
 const platformsh = require('platformsh-config');
 
-// Define a Config object and get credentials for chrome-headless
 let config = platformsh.config();
 const credentials = config.credentials('headless');
+```
 
-var exports = module.exports = {};
+and use them to define the `browserURL` parameter of `puppeteer.connect()` within an `async` function:
 
-// Create an async function
-exports.takeScreenshot = async function (url, screenshotID) {
-
+```
+exports.takeScreenshot = async function (url) {
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials
-        const formattedURL = config.formattedCredentials("headless", "puppeteer");
+        const formattedURL = config.formattedCredentials('headless', 'puppeteer');
         const browser = await puppeteer.connect({browserURL: formattedURL});
 
-        // Open a new page to the given url and take the screenshot
-        const page = await browser.newPage();
-        await page.goto(url);
-        await page.screenshot({
-            fullPage: true,
-            path: `screenshots/${screenshotID}.png`
-        });
-
-        await browser.close();
-
+        ...
+        
         return browser
 
     } catch (e) {
         return Promise.reject(e);
     }
-
 };
 ```
 
-You can remove `fullPage`, which defaults to `false`, and Puppeteer will only take a screenshot of the default window size. Additionally, you can emulate how your application will appear on mobile devices by including the following after defining a new page
+Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagepdfoptions), and much more. 
 
-```
-        const page = await browser.newPage();
-        await page.emulate(devices['iPhone 6']);
-        await page.goto(url);
-```
+You can find some useful examples of using headless Chrome and Puppeteer on Platform.sh on the Community Portal:
 
-and requiring Puppeteer's `DeviceDescriptors` module
-
-```
-const devices = require('puppeteer/DeviceDescriptors');
-```
-
-While this example emulates an iPhone 6 display, many more [device descriptors](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pageemulateoptions) are also available.
-
-### Generating PDFs
-
-You can also create a `pdfs.js` that includes an async function that will generate a PDF of a given URL. 
-
-```
-const puppeteer = require('puppeteer');
-const platformsh = require('platformsh-config');
-
-// Define a Config object and get credentials for chrome-headless
-let config = platformsh.config();
-const credentials = config.credentials('headless');
-
-var exports = module.exports = {};
-
-// Create an async function
-exports.makePDF = async function (url, pdfID) {
-
-    try {
-        // Connect to chrome-headless using pre-formatted puppeteer credentials
-        const formattedURL = config.formattedCredentials("headless", "puppeteer");
-        const browser = await puppeteer.connect({browserURL: formattedURL});
-
-        // Open a new page to the given url and create the PDF
-        const page = await browser.newPage();
-        await page.goto(url, {waitUntil: 'networkidle2'});
-        await page.pdf({
-            path: `pdfs/${pdfID}.pdf`,
-            format: 'letter',
-            printBackground: true
-        });
-        await browser.close();
-
-        return browser
-
-    } catch (e) {
-
-        return Promise.reject(e);
-
-    }
-
-};
-```
-
-In this case, the PDF is saved to the predefined writable mount `pdfs/` and the generated file will include all background images on the site (`printBackground: true`). You can find more of the options available in `page.pdf()` in the [Puppeteer documentation](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagepdfoptions).
-
+* [How to take screenshots using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-take-screenshots-using-puppeteer-and-headless-chrome/305)
+* [How to generate PDFs using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-generate-pdfs-using-puppeteer-and-headless-chrome/306)
