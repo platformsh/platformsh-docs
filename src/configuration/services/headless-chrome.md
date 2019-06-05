@@ -29,7 +29,13 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 ## Requirements
 
-Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater. Using the Platform.sh Config Reader library requires Node.js 10 or later.
+Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater. 
+
+Using the Platform.sh [Config Reader]((https://github.com/platformsh/config-reader-nodejs)) library requires Node.js 10 or later.
+
+### Other languages
+
+It will be necessary to upgrade the version of Node.js in other language containers before using Puppeteer. You can use [Node Version Manager](https://github.com/nvm-sh/nvm) or NVM to change or update the version available in your application container by following the instructions in the [Alternate Node.js install](/languages/nodejs/nvm.html) documentation.
 
 ## Usage example
 
@@ -114,7 +120,7 @@ While this example emulates an iPhone 6 display, many more [device descriptors](
 
 ### Generating PDFs
 
-You can also create a `pdfs.js` that includes an async function that will generate a PDF of a given URL. In this case, the PDF is saved to the predefined writable mount `pdfs/` and the generated file will include all background images on the site (`printBackground: true`). You can find more of the options available in `page.pdf()` in the [Puppeteer documentation](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagepdfoptions).
+You can also create a `pdfs.js` that includes an async function that will generate a PDF of a given URL. 
 
 ```
 const puppeteer = require('puppeteer');
@@ -155,4 +161,5 @@ exports.makePDF = async function (url, pdfID) {
 };
 ```
 
+In this case, the PDF is saved to the predefined writable mount `pdfs/` and the generated file will include all background images on the site (`printBackground: true`). You can find more of the options available in `page.pdf()` in the [Puppeteer documentation](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagepdfoptions).
 
