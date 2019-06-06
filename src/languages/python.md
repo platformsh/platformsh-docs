@@ -174,4 +174,5 @@ A number of project templates for Python applications are available on GitHub.  
 * [Starter kit Python 3 minimal example](https://github.com/platformsh/platformsh-example-python-3)
 * [Starter kit Python with uwsgi](https://github.com/platformsh/platformsh-example-python-uwsgi)
 * [Starter kit Python and Elastic Search](https://github.com/platformsh/platformsh-example-python-elasticsearch)
-* [Starter kit Django project](https://github.com/platformsh/platformsh-example-django)
+* [Starter kit Django 1.11 project](https://github.com/platformsh/template-django1)
+* [Starter kit Django 2 project](https://github.com/platformsh/template-django2)
