@@ -68,7 +68,7 @@
 * [Python](languages/python.md)
 * [Ruby](languages/ruby.md)
 * [Go](languages/go.md)
-* [Java (alpha)](languages/java.md)
+* [Java](languages/java.md)
 
 ## Development
 
