@@ -3,8 +3,8 @@
 ## 2019
 
 * **June 2019**
-  * Java: We support and documented the use of [Java](/languages/java.md) runtimes for Java 8, 11, and 12. 
-  * Headless Chrome: Users can now define a [Headless Chrome](/configuration/services/headless-chrome.md) to access a service container with a headless browser, which can be used for automated UI testing.
+  * Java: We support and documented the use of [Java](/languages/java.md) runtimes 8, 11, and 12, that includes examples that use the [Java Config Reader](https://github.com/platformsh/config-reader-java/).
+  * Headless Chrome: Users can now define a [Headless Chrome](/configuration/services/headless-chrome.md) service to access a service container with a headless browser, which can be used for automated UI testing.
 
 * **May 2019**
   * InfluxDB: We now support [InfluxDB](/configuration/services/influxdb.md) 1.7.
