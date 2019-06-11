@@ -334,16 +334,42 @@
         },
         "services": {}
       },
-      "platform-example-ruby-sinatra-all-the-services": {
+      "platformsh-example-ruby-sinatra-all-the-services": {
         "name": "Sinatra (all services)",
-        "repo": "https://github.com/platformsh/platform-example-ruby-sinatra-all-the-services",
+        "repo": "https://github.com/platformsh/platformsh-example-ruby-sinatra-all-the-services",
         "runtime": {
-          "runtime": "multiple",
-          "version": "see repo"
+          "runtime": "ruby",
+          "version": "2.4"
         },
         "services": {
-          "runtime": "multiple",
-          "version": "see repo"
+          "elasticsearch": {
+            "name": "Elasticsearch",
+            "version": "None"
+          },
+          "mysql": {
+            "name": "MariaDB/MySQL",
+            "version": "10.0"
+          },
+          "postgresql": {
+            "name": "PostgreSQL",
+            "version": "9.3"
+          },
+          "mongodb": {
+            "name": "MongoDB",
+            "version": "3.0"
+          },
+          "redis": {
+            "name": "Redis",
+            "version": "3.0"
+          },
+          "solr": {
+            "name": "Solr",
+            "version": "4.10"
+          },
+          "rabbitmq": {
+            "name": "RabbitMQ",
+            "version": "3.5"
+          }
         }
       },
       "platformsh-example-rails": {

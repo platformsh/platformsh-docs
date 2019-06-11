@@ -165,10 +165,6 @@ To access various [services](/configuration/services.md) with Node.js, see the f
 
 A number of project templates for Node.js applications and typical configurations are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
-* [Generic Node.js](https://github.com/platformsh/platformsh-example-nodejs)
-* [Parse](https://github.com/platformsh/platformsh-example-parseit)
-* [Node.js-based microservices](https://github.com/platformsh/platformsh-example-nodejs-microservices)
-
 <div>
     <table id="nodeTemplate" border="1">
     <tbody></tbody>

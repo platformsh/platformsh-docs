@@ -66,13 +66,5 @@ makeTemplateTable("go", "goTemplate");
 
 ## Java
 
-<div>
-    <table id="javaTemplate" border="1">
-    <tbody></tbody>
-    </table>
-</div>
-
-<script>
-makeTemplateTable("java", "javaTemplate");
-</script>
+Coming soon.
 

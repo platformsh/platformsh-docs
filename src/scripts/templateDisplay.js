@@ -1,6 +1,10 @@
 
 var jsonSource = "/scripts/templates/templates.json";
 
+function getTemplateBuildStatus() {
+    return "";
+}
+
 function servicesList(currentServices, returnType) {
     var details = "";
 
@@ -22,7 +26,7 @@ function templateTypeDisplay(firstMention, fullName) {
     return currentDisplay;
 }
 
-function makeTemplateTableHeader(tableName) {
+function makeTemplateTableHeader(tableName, showBuildStatus) {
 
 		  var table = document.getElementById(tableName);
       var header = table.createTHead();
@@ -32,18 +36,23 @@ function makeTemplateTableHeader(tableName) {
       var cell2 = row.insertCell(1);
       var cell3 = row.insertCell(2);
       var cell4 = row.insertCell(3);
-      var cell5 = row.insertCell(4);
       
       cell.innerHTML = "<b>Type</b>";
       cell2.innerHTML = "<b>Template</b>";
       cell3.innerHTML = "<b>Services</b>";
       cell4.innerHTML = "<b>Version</b>";
-      cell5.innerHTML = "<b>Status</b>";
+
+      if (showBuildStatus) {
+          var cell5 = row.insertCell(4);
+          cell5.innerHTML = "<b>Status</b>";
+      }
+
     
 }
 
-function makeTemplateTable(language, tableName) {
-    makeTemplateTableHeader(tableName)
+function makeTemplateTable(language, tableName, showBuildStatus=false) {
+
+    makeTemplateTableHeader(tableName, showBuildStatus)
 
     var jsonSource = "/scripts/templates/templates.json";
     
@@ -54,11 +63,18 @@ function makeTemplateTable(language, tableName) {
             var mentioned = 0;
             $.each(f, function(j, t) {
                 var templateServices = t.services;
+
 								var tblRow = "<tr>" + "<td>" + templateTypeDisplay(mentioned, i) + "</td>" +
                       "<td>" + "<a href=\"" + t.repo + "\">" + t.name + "</a>" + "</td>" +
                       "<td>" + servicesList(templateServices, "name") + "</td>" +
-                      "<td>" + servicesList(templateServices, "version") +
-                      "<td>" + "" + "</td>" +"</tr>";
+                      "<td>" + servicesList(templateServices, "version");
+
+                if (showBuildStatus) {
+                    tblRow += "<td>" + getTemplateBuildStatus() + "</td>" + "</tr>";
+                } else {
+                    tblRow += "</tr>";
+                }
+
                 $(tblRow).appendTo("#" + tableName + " tbody");
                 mentioned += 1;
             });
