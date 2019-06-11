@@ -2,8 +2,18 @@
 
 ## 2019
 
+* **June 2019**
+  * Java: We support and documented the use of [Java](/languages/java.md) runtimes for Java 8, 11, and 12. 
+  * Headless Chrome: Users can now define a [Headless Chrome](/configuration/services/headless-chrome.md) to access a service container with a headless browser, which can be used for automated UI testing.
+
+* **May 2019**
+  * InfluxDB: We now support [InfluxDB](/configuration/services/influxdb.md) 1.7.
+  * Solr 7 & 8: We now support [Solr](/configuration/services/solr.md) 7.7 and 8.0.
+
 * **April 2019**
   * Network storage service: Users can now define a [Network storage](/configuration/services/network-storage.md) service for sharing files between containers.
+  * Kafka message queue service: Users can now define a [Kafka](/configuration/services/kafka.md) service for storing, reading and analysing streaming data.
+  * Management Console: Images and wording updated throughout entire documentation alongside [Management Console](/administration/web.md) release.
 
 * **March 2019**
   * Ruby 2.6: A new version of [Ruby](/languages/ruby.md) is now available.
