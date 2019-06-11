@@ -49,4 +49,4 @@ The goal of Platform.sh's documentation is to help tech-savvy users self-educate
 * Favor many small PRs over larger ones.
 * Never push directly to the master branch.
 * Never merge your own PR, unless not doing so would result in customer data loss.
-* If your PR relates to new support for runtime or service images, include a complementary line addressing that upgrade in the [Changelog](/changelog.md).
+* If your PR relates to new support for runtime or service images, include a complementary line addressing that upgrade in the [Changelog](/src/changelog.md).
