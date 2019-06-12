@@ -8,8 +8,6 @@
 
 ## Getting Started
 
-* [Your first project](/gettingstarted/first-project.md)
-
 ## Configuration
 
 * [YAML](configuration/yaml.md)
@@ -63,6 +61,7 @@
 * [Java](languages/java.md)
 
 ## Development
+* [Project templates](development/templates.md)
 * [Tools](development/tools.md)
 * [CLI](development/cli.md)
   * [API Tokens](development/cli/api-tokens.md)
