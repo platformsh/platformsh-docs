@@ -1,18 +1,8 @@
-# Your first project
-
-The best way to understand a tool is to use it.  We believe that the best marketing we can offer for Platform.sh is to let you try it out, which is why we offer a free one month trial.
-
-To begin, create a new [free trial account](https://accounts.platform.sh/platform/trial/general/setup).
-
-* Sign up with a new user and password or login using an existing GitHub, Bitbucket, or Google account.  If you use a 3rd party login you will be able to set a password for your Platform.sh account later.
-* Select the region of the world where your site should live.
-* Select one of the pre-made project templates or bring your own code.
-
-## Project templates
+# Project templates
 
 You can also initialize your project using any of the pre-made templates below.  For each one, simply Git Clone the repository from GitHub then push it to Platform.sh using the instructions for a custom repository in the management console, as seen in the video above.
 
-### PHP
+## PHP
 
 <section class="examples-lists">
 
@@ -48,7 +38,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 </section>
 
-### Python
+## Python
 
 <section class="examples-lists">
 
@@ -65,7 +55,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 </section>
 
-### Ruby
+## Ruby
 
 <section class="examples-lists">
 
@@ -78,7 +68,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 </section>
 
-### Node.js
+## Node.js
 
 <section class="examples-lists">
 
@@ -91,7 +81,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 </section>
 
-### Go
+## Go
 
 <section class="examples-lists">
 
