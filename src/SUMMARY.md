@@ -8,6 +8,14 @@
 
 ## Getting Started
 
+* [Start with a template](gettingstarted/template.md)
+  * [Open a free trial account](gettingstarted/template/free-trial.md)
+  * [Create a new project](gettingstarted/template/create-project.md)
+  * [Build, Deploy, Done!](gettingstarted/template/check-status.md)
+  * [Requirements for the CLI](gettingstarted/template/cli-requirements.md)
+  * [Install the CLI](gettingstarted/template/cli-install.md)
+  * [Next Steps](gettingstarted/template/next-steps.md)
+
 ## Configuration
 
 * [YAML](configuration/yaml.md)
