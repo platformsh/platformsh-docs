@@ -7,10 +7,11 @@ Java is a general-purpose programming language, and one of the most popular in t
 
 ### OpenJDK versions:
 
-* 8
-* 11
-* 12
+<div id = "javaSupported"></div>
 
+<script>
+makeImagesList("runtimes", "java", "supported", "javaSupported");
+</script>
 
 To select a Java version, specify a `type` such as `java:11`:
 
@@ -18,7 +19,6 @@ To select a Java version, specify a `type` such as `java:11`:
 # .platform.app.yaml
 type: "java:11"
 ```
-
 
 ## Support libraries
 

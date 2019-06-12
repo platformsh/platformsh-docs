@@ -6,10 +6,11 @@ Platform.sh supports deploying any Ruby application. Your application can use an
 
 ### Ruby MRI
 
-* 2.3
-* 2.4
-* 2.5
-* 2.6
+<div id = "rubySupported"></div>
+
+<script>
+makeImagesList("runtimes", "ruby", "supported", "rubySupported");
+</script>
 
 ## Unicorn based Rails configuration
 

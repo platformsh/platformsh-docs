@@ -4,10 +4,11 @@ Platform.sh supports deploying Python applications. Your application can use WSG
 
 ## Supported versions
 
-* 2.7
-* 3.5
-* 3.6
-* 3.7
+<div id = "pythonSupported"></div>
+
+<script>
+makeImagesList("runtimes", "python", "supported", "pythonSupported");
+</script>
 
 ## Support libraries
 
