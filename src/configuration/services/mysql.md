@@ -6,9 +6,11 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 ## Supported versions
 
-* 10.0
-* 10.1
-* 10.2
+<div id = "mysqlSupported"></div>
+
+<script>
+makeImagesList("services", "mysql", "supported", "mysqlSupported");
+</script>
 
 > **note**
 >
@@ -18,7 +20,11 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 5.5
+<div id = "mysqlDeprecated"></div>
+
+<script>
+makeImagesList("services", "elasticsearch", "deprecated", "mysqlDeprecated");
+</script>
 
 ## Relationship
 

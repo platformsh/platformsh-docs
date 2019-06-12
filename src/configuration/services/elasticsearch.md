@@ -6,18 +6,21 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-* 5.2
-* 5.4
-* 6.5
+<div id = "elasticsearchSupported"></div>
+
+<script>
+makeImagesList("services", "elasticsearch", "supported", "elasticsearchSupported");
+</script>
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 0.90
-* 1.4
-* 1.7
-* 2.4
+<div id = "elasticsearchDeprecated"></div>
+
+<script>
+makeImagesList("services", "elasticsearch", "deprecated", "elasticsearchDeprecated");
+</script>
 
 ## Relationship
 

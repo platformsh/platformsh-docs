@@ -8,7 +8,11 @@ Both Memcached and Redis can be used for application caching.  As a general rule
 
 ## Supported versions
 
-* 1.4
+<div id = "memcachedSupported"></div>
+
+<script>
+makeImagesList("services", "memcached", "supported", "memcachedSupported");
+</script>
 
 ## Relationship
 

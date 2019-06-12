@@ -6,15 +6,21 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 ## Supported versions
 
-* 9.6
-* 10
-* 11
+<div id = "postgresqlSupported"></div>
+
+<script>
+makeImagesList("services", "postgresql", "supported", "postgresqlSupported");
+</script>
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 9.3
+<div id = "postgresqlDeprecated"></div>
+
+<script>
+makeImagesList("services", "postgresql", "deprecated", "postgresqlDeprecated");
+</script>
 
 ## Relationship
 

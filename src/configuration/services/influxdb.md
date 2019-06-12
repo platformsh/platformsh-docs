@@ -6,9 +6,11 @@ See the [InfluxDB documentation](https://docs.influxdata.com/influxdb/) for more
 
 ## Supported versions
 
-* 1.2
-* 1.3
-* 1.7
+<div id = "influxdbSupported"></div>
+
+<script>
+makeImagesList("services", "influxdb", "supported", "influxdbSupported");
+</script>
 
 ## Relationship
 

@@ -6,10 +6,11 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 
 ## Supported versions
 
-* 3.0
-* 3.2
-* 3.4
-* 3.6
+<div id = "mongodbSupported"></div>
+
+<script>
+makeImagesList("services", "mongodb", "supported", "mongodbSupported");
+</script>
 
 > **note**
 >

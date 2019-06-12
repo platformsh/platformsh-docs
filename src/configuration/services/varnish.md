@@ -6,8 +6,11 @@ However, it is possible to configure a Varnish instance as part of an applicatio
 
 ## Supported versions
 
-* 5.2
-* 6.0
+<div id = "varnishSupported"></div>
+
+<script>
+makeImagesList("services", "varnish", "supported", "varnishSupported");
+</script>
 
 ## How it works
 

@@ -6,7 +6,11 @@ See the [Kafka documentation](https://kafka.apache.org/documentation/) for more 
 
 ## Supported versions
 
-* 2.1
+<div id = "kafkaSupported"></div>
+
+<script>
+makeImagesList("services", "kafka", "supported", "kafkaSupported");
+</script>
 
 ## Relationship
 

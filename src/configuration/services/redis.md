@@ -8,16 +8,21 @@ Platform.sh supports two different Redis configurations: One persistent (useful 
 
 ## Supported versions
 
-* 3.2
-* 4.0
-* 5.0
+<div id = "redisSupported"></div>
+
+<script>
+makeImagesList("services", "redis", "supported", "redisSupported");
+</script>
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 2.8
-* 3.0
+<div id = "redisDeprecated"></div>
+
+<script>
+makeImagesList("services", "redis", "deprecated", "redisDeprecated");
+</script>
 
 > **note**
 > Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database

@@ -6,9 +6,11 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 ## Supported versions
 
-* 3.5
-* 3.6
-* 3.7
+<div id = "rabbitmqSupported"></div>
+
+<script>
+makeImagesList("services", "rabbitmq", "supported", "rabbitmqSupported");
+</script>
 
 ## Relationship
 

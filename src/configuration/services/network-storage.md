@@ -6,7 +6,12 @@ The network storage service enables a new kind of `mount` that refers to a share
 
 ## Supported versions
 
-* 1.0
+<div id = "netstorageSupported"></div>
+
+<script>
+makeImagesList("services", "network-storage", "supported", "netstorageSupported");
+</script>
+
 
 (This is a reference to a version of our network storage implementation, not to a version of a 3rd party application.)
 

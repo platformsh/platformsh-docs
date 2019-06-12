@@ -8,13 +8,11 @@ See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) fo
 
 ## Supported versions
 
-* 3.6
-* 4.10
-* 6.3
-* 6.6
-* 7.6
-* 7.7
-* 8.0
+<div id = "solrSupported"></div>
+
+<script>
+makeImagesList("services", "solr", "supported", "solrSupported");
+</script>
 
 ## Relationship
 
