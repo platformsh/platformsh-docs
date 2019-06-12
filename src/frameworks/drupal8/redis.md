@@ -13,7 +13,7 @@ rediscache:
     type: redis:5.0
 ```
 
-That will create a service named `rediscache`, of type `redis`, specifically version `3.2`.
+That will create a service named `rediscache`, of type `redis`, specifically version `5.0`.
 
 ### Expose the Redis service to your application
 
