@@ -1,6 +1,8 @@
 _book/*
+_www/*
 _books/*
 .DS_Store
 .env
 node_modules/*
 .idea/*
+.platform/local/*

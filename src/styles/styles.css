@@ -418,3 +418,52 @@ section.examples-lists > div {
   max-height: 30em;
   overflow: scroll;
 }
+
+/* General Buttons */
+
+a.buttongen {
+  font-size:15px;
+  color: #49475F;
+  background-color: #EDEDEF;
+  border: 1px solid #49475F;
+  border-radius: 10px;
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none !important;
+  margin: 10px 5px;
+  padding: 24px 24px;
+}
+
+a.buttongen:hover {
+  background-color: #145CC6;
+  border: 1px solid #145CC6;
+  color: white;
+}
+
+a.buttongen.full {
+  display: block;
+  width: 100%;
+  text-align:left;
+}
+
+a.buttongen.small {
+  font-weight: 600;
+  width: 40%;
+  text-align:center;
+}
+
+a.buttongen.lang {
+  display: inline-block;
+  font-weight: 900;
+  height: 50% !important;
+  width: 20% !important;
+  text-align:center;
+}
+
+a.buttongen.path {
+  display: inline-block;
+  font-size:22px !important;
+  font-weight: 1200;
+  height: 60% !important;
+  width: 40% !important;
+  text-align:center;
+}
