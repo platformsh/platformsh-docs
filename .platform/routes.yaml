@@ -82,3 +82,4 @@ https://{default}/:
       "/gettingstarted/local/untethered.html": { "to": "/development/local/untethered.html", "code": 301, "prefix": false}
       "/gettingstarted/local/lando.html": { "to": "/development/local/lando.html", "code": 301, "prefix": false}
       "/gettingstarted/local/docksal.html": { "to": "/development/local/docksal.html", "code": 301, "prefix": false}
+      "/gettingstarted/first-project.html": { "to": "/development/templates.html", "code": 301, "prefix": false}
