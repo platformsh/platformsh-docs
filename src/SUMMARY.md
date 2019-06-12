@@ -9,14 +9,6 @@
 ## Getting Started
 
 * [Your first project](/gettingstarted/first-project.md)
-* [Tools](gettingstarted/tools.md)
-* [CLI](gettingstarted/cli.md)
-  * [API Tokens](gettingstarted/cli/api-tokens.md)
-* [Local development](gettingstarted/local.md)
-  * [Tethered](gettingstarted/local/tethered.md)
-  * [Untethered](gettingstarted/local/untethered.md)
-  * [Lando](gettingstarted/local/lando.md)
-  * [Docksal](gettingstarted/local/docksal.md)
 
 ## Configuration
 
@@ -71,7 +63,14 @@
 * [Java](languages/java.md)
 
 ## Development
-
+* [Tools](development/tools.md)
+* [CLI](development/cli.md)
+  * [API Tokens](development/cli/api-tokens.md)
+* [Local development](development/local.md)
+  * [Tethered](development/local/tethered.md)
+  * [Untethered](development/local/untethered.md)
+  * [Lando](development/local/lando.md)
+  * [Docksal](development/local/docksal.md)
 * [Variables](development/variables.md)
 * [Accessing your site](development/access-site.md)
 * [Headers](development/headers.md)
