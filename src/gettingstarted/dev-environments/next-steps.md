@@ -1,24 +1,10 @@
-# Start with a template
+# Development Environments
 
 ## Next steps
 
-In this guide you created a project using the [management console](/administration/web.md) and installed the [Platform.sh CLI](/development/cli.md). 
+In this guide you learned how to create and activate live feature environments, test them, and merge them into production safely using [snapshots](/administration/snapshot-and-restore.md).
 
 Don't stop now! There are far more features that make Platform.sh profoundly helpful to developers that you have left to explore.
-
-### Import your own code
-
-Templates are great, but configuring your own application to run on Platform.sh is just as easy.
-
-<div id = "own-code"></div>
-
-<script>
-    var descTitle = "Import your own code";
-    var descDesc = "Use the CLI and a few configuration files to deploy your code on Platform.sh.";
-    var descPath = getPathObj("/gettingstarted/own-code.html", descTitle, descDesc);
-    var descButton = {type: "descriptive", path: descPath, div: "own-code"};
-    makeButton(descButton);
-</script>
 
 ### Developing on Platform.sh
 
@@ -31,16 +17,6 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
     var descDesc = "Remotely connect to services and build your application locally during development.";
     var descPath = getPathObj("/gettingstarted/local-development.html", descTitle, descDesc);
     var descButton = {type: "descriptive", path: descPath, div: "local-dev"};
-    makeButton(descButton);
-</script>
-
-<div id = "dev-envs"></div>
-
-<script>
-    var descTitle = "Development environments";
-    var descDesc = "Activate development branches and test new features before merging into production.";
-    var descPath = getPathObj("/gettingstarted/dev-environments.html", descTitle, descDesc);
-    var descButton = {type: "descriptive", path: descPath, div: "dev-envs"};
     makeButton(descButton);
 </script>
 
@@ -82,3 +58,4 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
     var navButtons = {type: "navigation", prev: getPathObj("prev"), div: "buttons"};
     makeButton(navButtons);
 </script>
+
