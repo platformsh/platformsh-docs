@@ -5,7 +5,7 @@
 Once you have configured the template application in the previous step, Platform.sh will build your project for you.
 
 <video width="800" controls autoplay loop>
-  <source src="/videos/check-status.mp4" type="video/mp4">
+  <source src="/videos/management-console/check-status.mp4" type="video/mp4">
 </video>
 
 1. **Explore the management console**

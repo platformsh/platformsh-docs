@@ -7,7 +7,7 @@ In the previous step, you set up a free trial account with Platform.sh. Now you 
 From here you can create projects, adjust account settings, and a lot more that you will explore throughout these Getting Started guides.
 
 <video width="800" controls autoplay loop>
-  <source src="/videos/create-project-mc.mp4" type="video/mp4">
+  <source src="/videos/management-console/create-project-mc.mp4" type="video/mp4">
 </video>
 
 Since you do not yet have any projects on Platform.sh, the first thing you will see when you sign in is a workflow for creating a new project.

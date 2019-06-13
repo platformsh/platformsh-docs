@@ -4,7 +4,7 @@
 
 With your configuration files complete, all that's left to do is to commit the changes and push to Platform.sh.
 
-<asciinema-player src="/scripts/asciinema/recordings/first-push.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/first-push.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 1. **Commit and push**
 
@@ -36,7 +36,7 @@ With your configuration files complete, all that's left to do is to commit the c
     </head>
     <body>
       <video width="800" controls autoplay loop>
-        <source src="/videos/check-status.mp4" type="video/mp4">
+        <source src="/videos/management-console/check-status.mp4" type="video/mp4">
       </video>
       <br/><br/> 
     </body>

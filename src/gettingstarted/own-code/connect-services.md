@@ -89,15 +89,10 @@ In either case, `credentials` can now be used to connect to `database`:
 
 You can find out more information about Platform.sh Config Reader libraries on GitHub: 
 
-<div>
-  <a href="https://github.com/platformsh/config-reader-php">PHP Config Reader</a><br />
-  <a href="https://github.com/platformsh/config-reader-python">Python Config Reader</a><br />
-</div>
-
-<div>
-  <a href="https://github.com/platformsh/config-reader-java">Java Config Reader</a><br />
-  <a href="https://github.com/platformsh/config-reader-nodejs">Node.js Config Reader</a><br />
-</div>
+* [PHP Config Reader](https://github.com/platformsh/config-reader-php)
+* [Python Config Reader](https://github.com/platformsh/config-reader-python)
+* [Node.js Config Reader](https://github.com/platformsh/config-reader-java)
+* [Java Config Reader](https://github.com/platformsh/config-reader-nodejs)
 
 You can also find examples of how to connect to each of Platform.sh managed services in multiple languages in the [Services Documentation](/configuration/services.md). Once you have done so, you will next need to handle HTTP requests to your application using the `.platform/routes.yaml` file.
 

@@ -4,7 +4,7 @@
 
 Now that you've opened tunnels into your services, you'll have access to all of your data in your environment. All that's left now is to actually build the site.
 
-<asciinema-player src="/scripts/asciinema/recordings/build.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/build.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 1. **Build the site**
 

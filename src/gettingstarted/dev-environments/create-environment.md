@@ -6,7 +6,7 @@ It would be useful to test a new feature deploys correctly by building a live si
 
 This is a simple example of how to set up a development environment, but if any of your features depend on the data inside your production databases, you will have full access to a complete copy of that data so that you can be sure the feature will work as expected before merging.
 
-<asciinema-player src="/scripts/asciinema/recordings/branch.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/branch.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 1. **Create branch, make changes, push to Platform.sh**
 

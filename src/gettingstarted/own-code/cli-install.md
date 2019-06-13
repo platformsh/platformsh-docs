@@ -4,7 +4,7 @@
 
 In the previous steps you checked that the requirements on your computer were met and configured an SSH key on your Platform.sh account. Now all we have to do is install the CLI and you can access your projects from the command line.
 
-<asciinema-player src="/scripts/asciinema/recordings/verify-cli-extended.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/verify-cli-extended.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 1. **Install the CLI**
 

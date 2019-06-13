@@ -22,7 +22,7 @@ If you are unfamiliar with how to generate an SSH public and private key, there 
 Add your SSH key to your Platform.sh account so that you can communicate with your projects using the CLI.
 
 <video width="800" controls autoplay loop>
-  <source src="/videos/add-ssh-mc.mp4" type="video/mp4">
+  <source src="/videos/management-console/add-ssh-mc.mp4" type="video/mp4">
 </video>
 
 1. **Access SSH key settings in the management console**
