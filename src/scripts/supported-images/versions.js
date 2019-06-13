@@ -143,22 +143,22 @@ function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=false)
 
     var div = document.getElementById(divName);
 
-    var details = `<pre><code class="lang-yaml"><span class="hljs-attr">${serviceName}:</span>
-<span class="hljs-attr">    type:</span> ${currentType}:<span class="hljs-number">${mostRecent}</span>
-<span class="hljs-attr">    disk:</span> <span class="hljs-number">${defaultDisk}</span>
-</code></pre>`;
+//    var details = `<pre><code class="lang-yaml"><span class="hljs-attr">${serviceName}:</span>
+//<span class="hljs-attr">    type:</span> ${currentType}:<span class="hljs-number">${mostRecent}</span>
+//<span class="hljs-attr">    disk:</span> <span class="hljs-number">${defaultDisk}</span>
+//</code></pre>`;
 
 //    var details = `<pre><code class='lang-yaml'><span class='hljs-attr'>` + serviceName + `:</span><span class='hljs-attr'>    type:</span> " + currentType + ":<span class='hljs-number'>" + mostRecent + "</span>";
 
-    var details = "";
+//    var details = "";
 
     if (usesDisk) {
-      details += `<pre><code class="lang-yaml"><span class="hljs-attr">${serviceName}:</span>
+      var details = `<pre><code class="lang-yaml"><span class="hljs-attr">${serviceName}:</span>
 <span class="hljs-attr">    type:</span> ${currentType}:<span class="hljs-number">${mostRecent}</span>
 <span class="hljs-attr">    disk:</span> <span class="hljs-number">${defaultDisk}</span>
 </code></pre>`;
     } else {
-      details += `<pre><code class="lang-yaml"><span class="hljs-attr">${serviceName}:</span>
+      var details = `<pre><code class="lang-yaml"><span class="hljs-attr">${serviceName}:</span>
 <span class="hljs-attr">    type:</span> ${currentType}:<span class="hljs-number">${mostRecent}</span>
 </code></pre>`;
     }

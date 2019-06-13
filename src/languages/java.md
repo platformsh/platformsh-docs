@@ -13,12 +13,7 @@ Java is a general-purpose programming language, and one of the most popular in t
 makeImagesList("runtimes", "java", "supported", "javaSupported");
 </script>
 
-To select a Java version, specify a `type` such as `java:11`:
-
-```yaml
-# .platform.app.yaml
-type: "java:11"
-```
+To specify a Java container, use the `type` property in your `.platform.app.yaml`.
 
 <div id = "appYAML"></div>
 

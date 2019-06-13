@@ -20,11 +20,6 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
 1. Specify the language of your application (available versions are listed above):
 
-   ```yaml
-   # .platform.app.yaml
-   type: "python:3.7"
-   ```
-   
     <div id = "appYAML"></div>
     
     <script>

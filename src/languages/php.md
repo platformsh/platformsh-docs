@@ -14,12 +14,7 @@ makeImagesList("runtimes", "php", "supported", "phpSupported");
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
-To select a PHP version, specify a `type` such as `php:7.3`:
-
-```yaml
-# .platform.app.yaml
-type: "php:7.3"
-```
+To specify a PHP container, use the `type` property in your `.platform.app.yaml`.
 
 <div id = "appYAML"></div>
 
