@@ -24,11 +24,12 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
    # .platform.app.yaml
    type: "ruby:2.6"
    ```
-<div id = "appYAML"></div>
-
-<script>
-makeNewestAppYaml('ruby', 'appYAML');
-</script>
+   
+    <div id = "appYAML"></div>
+    
+    <script>
+    makeNewestAppYaml('ruby', 'appYAML');
+    </script>
 
 2. Build your application with the build hook.
 

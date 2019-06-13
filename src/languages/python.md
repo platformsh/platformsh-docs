@@ -25,11 +25,11 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
    type: "python:3.7"
    ```
    
-<div id = "appYAML"></div>
-
-<script>
-makeNewestAppYaml('python', 'appYAML');
-</script>
+    <div id = "appYAML"></div>
+    
+    <script>
+    makeNewestAppYaml('python', 'appYAML');
+    </script>
 
 2. Build your application with the build hook. Assuming you have your pip dependencies stored in `requirements.txt` and a `setup.py` at the root of your application folder to execute build steps:
 

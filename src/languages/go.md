@@ -15,6 +15,7 @@ To specify a Go container, use the `type` property in your `.platform.app.yaml`.
 ```yaml
 type: 'golang:1.12'
 ```
+
 <div id = "appYAML"></div>
 
 <script>
