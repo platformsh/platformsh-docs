@@ -119,7 +119,7 @@
 ## Going Live
 
 * [Pre-Launch Checklist](/golive/checklist.md)
-* [Going Live Steps](/golive/steps.md)
+* [About going live](/golive/steps.md)
   * [DNS and CNAMEs](/golive/steps/dns.md)
   * [Custom TLS](/golive/steps/tls.md)
   * [Fastly](/golive/steps/fastly.md)
