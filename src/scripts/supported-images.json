@@ -1,0 +1,264 @@
+{
+  "services": {
+    "elasticsearch": {
+      "name": "Elasticsearch",
+      "typeConfig": "elasticsearch",
+      "supported": [
+        "5.2",
+        "5.4",
+        "6.5"
+      ],
+      "deprecated": [
+        "0.90",
+        "1.4",
+        "1.7",
+        "2.4"
+      ],
+      "docs": "/configuration/services/elasticsearch.html"
+    },
+    "chrome-headless": {
+      "name": "Headless Chrome",
+      "typeConfig": "chrome-headless",
+      "supported": [
+        "73"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/configuration/services/headless-chrome.html"
+    },
+    "influxdb": {
+      "name": "InfluxDB",
+      "typeConfig": "influxdb",
+      "supported": [
+        "1.2",
+        "1.3",
+        "1.7"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/configuration/services/influxdb.html"
+    },
+    "kafka": {
+      "name": "Kafka",
+      "typeConfig": "kafka",
+      "supported": [
+        "2.1"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/configuration/services/kafka.html"
+    },
+    "memcached": {
+      "name": "Memcached",
+      "typeConfig": "memcached",
+      "supported": [
+        "1.4"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/configuration/services/memcached.html"
+    },
+    "mongodb": {
+      "name": "MongoDB",
+      "typeConfig": "mongodb",
+      "supported": [
+        "3.0",
+        "3.2",
+        "3.4",
+        "3.6"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/configuration/services/mongodb.html"
+    },
+    "mysql": {
+      "name": "MariaDB\/MySQL",
+      "typeConfig": "mysql",
+      "supported": [
+        "10.0",
+        "10.1",
+        "10.2"
+      ],
+      "deprecated": [
+        "5.5"
+      ],
+      "docs": "/configuration/services/mysql.html"
+    },
+    "network-storage": {
+      "name": "Network Storage",
+      "typeConfig": "network-storage",
+      "supported": [
+        "1.0"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/configuration/services/network-storage.html"
+    },
+    "postgresql": {
+      "name": "PostgreSQL",
+      "typeConfig": "postgresql",
+      "supported": [
+        "9.6",
+        "10",
+        "11"
+      ],
+      "deprecated": [
+        "9.3"
+      ],
+      "docs": "/configuration/services/postgresql.html"
+    },
+    "redis": {
+      "name": "Redis",
+      "typeConfig": "redis",
+      "supported": [
+        "3.2",
+        "4.0",
+        "5.0"
+      ],
+      "deprecated": [
+        "2.8",
+        "3.0"
+      ],
+      "docs": "/configuration/services/redis.html"
+    },
+    "rabbitmq": {
+      "name": "RabbitMQ",
+      "typeConfig": "rabbitmq",
+      "supported": [
+        "3.5",
+        "3.6",
+        "3.7"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/configuration/services/rabbitmq.html"
+    },
+    "solr": {
+      "name": "Solr",
+      "typeConfig": "solr",
+      "supported": [
+        "3.6",
+        "4.10",
+        "6.3",
+        "6.6",
+        "7.6",
+        "7.7",
+        "8.0"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/configuration/services/solr.html"
+    },
+    "varnish": {
+      "name": "Varnish",
+      "typeConfig": "varnish",
+      "supported": [
+        "5.2",
+        "6.0"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/configuration/services/varnish.html"
+    }
+  },
+  "runtimes": {
+    "php": {
+      "name": "PHP",
+      "typeConfig": "php",
+      "supported": [
+        "7.1",
+        "7.2",
+        "7.3"
+      ],
+      "deprecated": [
+        "5.4",
+        "5.5",
+        "5.6",
+        "7.0"
+      ],
+      "docs": "/languages/php.html"
+    },
+    "nodejs": {
+      "name": "Node.js",
+      "typeConfig": "nodejs",
+      "supported": [
+        "6.11",
+        "8.9",
+        "10"
+      ],
+      "deprecated": [
+        "0.12",
+        "4.7",
+        "4.8",
+        "6.9",
+        "6.10",
+        "8.2"
+      ],
+      "docs": "/languages/nodejs.html"
+    },
+    "python": {
+      "name": "Python",
+      "typeConfig": "python",
+      "supported": [
+        "2.7",
+        "3.5",
+        "3.6",
+        "3.7"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/languages/python.html"
+    },
+    "ruby": {
+      "name": "Ruby",
+      "typeConfig": "ruby",
+      "supported": [
+        "2.3",
+        "2.4",
+        "2.5",
+        "2.6"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/languages/ruby.html"
+    },
+    "go": {
+      "name": "Go",
+      "typeConfig": "golang",
+      "supported": [
+        "1.11",
+        "1.12"
+      ],
+      "deprecated": [
+        "1.8",
+        "1.9",
+        "1.10"
+      ],
+      "docs": "/languages/go.html"
+    },
+    "java": {
+      "name": "Java",
+      "typeConfig": "java",
+      "supported": [
+        "8",
+        "11",
+        "12"
+      ],
+      "deprecated": [
+
+      ],
+      "docs": "/languages/java.html"
+    }
+  }
+}
