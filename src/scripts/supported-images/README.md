@@ -35,9 +35,9 @@ If the only change is that a new version of an image is released, this is the ex
 
 ### Special Cases
 
-#### Varnish
-
 #### Elasticsearch
+
+If Elasticsearch has a new image release, it will also have an accompanying set of available modules that may differ between releases. These modules are documented at the bottom of the page in a table, and you will need to add a new column for the new release. Consult the directory [here](https://lab.plat.farm/images/elasticsearch/tree/6.5/files/usr/share/elasticsearch/plugins-available), modifying the release number at the top of the page for the new version (i.e. visit https://lab.plat.farm/images/elasticsearch/tree/<version number>/files/usr/share/elasticsearch/plugins-available), to find the list of available modules that should go in this column.
 
 ## Documenting a new image release in `versions.json`
 
@@ -82,6 +82,22 @@ makeImagesList("services", "jedi-trix", "supported", "jediSupported");
 ```
 
 If the new service comes with pre-defined "deprecated" versions, copy the above into the "Deprecated versions" section with the `div id` "jediDeprecated" and change the third parameter of `makeImagesList` to "deprecated".
+
+> **Note** A function has not yet been added that will automatically update the example `services.yaml` file on a service's primary documentation page, so you will have to remember to perform that separately. 
+
+If instead your are attempting do document a new runtime, you can use `versions.json` to keep the `.platform.app.yaml` up-to-date with the most recent version by placing the following in its main documentation page (Go used as an example here):
+
+```html
+To specify a Go container, use the `type` property in your `.platform.app.yaml`.
+
+<div id = "appYAML"></div>
+
+<script>
+makeNewestAppYaml('go', 'appYAML');
+</script>
+```
+
+This way, a new version release for this runtime will provide an example `.platform.app.yaml` that is always the most recent version.
 
 Once this sections are included on a service or language page of the documentation, any update made to `versions.json` for that image will always be up to date.
 
