@@ -36,6 +36,12 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
    # .platform.app.yaml
    type: "nodejs:10"
    ```
+   
+<div id = "appYAML"></div>
+
+<script>
+makeNewestAppYaml('nodejs', 'appYAML');
+</script>
 
 2. Specify your dependencies under the `nodejs` key, like this:
 

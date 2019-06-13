@@ -126,9 +126,6 @@ function makeNewestAppYaml(imageName, divName) {
     var mostRecent = supportedVersions[supportedVersions.length - 1];
 
     var div = document.getElementById(divName);
-//    var imageConfig = "type: " + currentType + ":" + mostRecent;
-//  	var details = "<code class='language-yaml'>" + imageConfig + "</code><br>";
-  	
   	var details = "<pre><code class='lang-yaml'><span class='hljs-attr'>type:</span> <span class='hljs-string'>&apos;" + currentType + ":" + mostRecent + "&apos;</span></code></pre>";
 
   	div.innerHTML += details;
@@ -145,13 +142,27 @@ function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=false)
     var mostRecent = supportedVersions[supportedVersions.length - 1];
 
     var div = document.getElementById(divName);
-    var diskDesc = "";
+
+    var details = "<pre><code class='lang-yaml'><span class='hljs-attr'>" + serviceName + ":</span><span class='hljs-attr'>    type:</span> " + currentType + ":<span class='hljs-number'>" + mostRecent + "</span>";
+
     if (usesDisk) {
-    	diskDesc += "\xa0\xa0\xa0\xa0disk: " + defaultDisk;
+      details += "<span class='hljs-attr'>    disk:</span> <span class='hljs-number'>" + defaultDisk + "</span></code></pre>";
+    } else {
+      details += "</code></pre>";
     }
-    var imageConfig = "\xa0\xa0\xa0\xa0type: " + currentType + ":" + mostRecent;
-    var details = "<code class='language-yaml'>";
-  	details += serviceName + ":<br>" + imageConfig + "<br>" + diskDesc + "</code>";
+
+//    "<span class='hljs-attr'>    disk:</span> <span class='hljs-number'>1024</span></code></pre>";
+//
+//
+//
+//
+//    var diskDesc = "";
+//    if (usesDisk) {
+//    	diskDesc += "\xa0\xa0\xa0\xa0disk: " + defaultDisk;
+//    }
+//    var imageConfig = "\xa0\xa0\xa0\xa0type: " + currentType + ":" + mostRecent;
+//    var details = "<code class='language-yaml'>";
+//  	details += serviceName + ":<br>" + imageConfig + "<br>" + diskDesc + "</code>";
   	div.innerHTML += details;
   });
 }

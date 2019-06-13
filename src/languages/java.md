@@ -20,6 +20,12 @@ To select a Java version, specify a `type` such as `java:11`:
 type: "java:11"
 ```
 
+<div id = "appYAML"></div>
+
+<script>
+makeNewestAppYaml('java', 'appYAML');
+</script>
+
 ## Support libraries
 
 While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-java) which handles decoding of service credential information for you.

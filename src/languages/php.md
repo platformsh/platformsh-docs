@@ -21,6 +21,12 @@ To select a PHP version, specify a `type` such as `php:7.3`:
 type: "php:7.3"
 ```
 
+<div id = "appYAML"></div>
+
+<script>
+makeNewestAppYaml('php', 'appYAML');
+</script>
+
 ## Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
