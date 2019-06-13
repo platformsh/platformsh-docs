@@ -126,8 +126,10 @@ function makeNewestAppYaml(imageName, divName) {
     var mostRecent = supportedVersions[supportedVersions.length - 1];
 
     var div = document.getElementById(divName);
-    var imageConfig = "type: " + currentType + ":" + mostRecent;
-  	var details = "<code class='language-yaml'>" + imageConfig + "</code><br>";
+//    var imageConfig = "type: " + currentType + ":" + mostRecent;
+//  	var details = "<code class='language-yaml'>" + imageConfig + "</code><br>";
+  	
+  	var details = "<pre><code class='lang-yaml'><span class='hljs-attr'>type:</span> <span class='hljs-string'>&apos;" + currentType + ":" + mostRecent + "&apos;</span></code></pre>";
 
   	div.innerHTML += details;
   });
