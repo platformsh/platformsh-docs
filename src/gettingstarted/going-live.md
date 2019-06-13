@@ -9,7 +9,7 @@ The documentation will take you through a pre-launch checklist and then through 
 <div id = "buttons"></div>
 
 <script>
-    var templatePath = getPathObj("/golive/first-steps.html", "Take your site live!");
+    var templatePath = getPathObj("/going-live/first-steps.html", "Take your site live!");
     var templates = {type: "basic", path: templatePath, div: "buttons"};
     makeButton(templates)
 </script>

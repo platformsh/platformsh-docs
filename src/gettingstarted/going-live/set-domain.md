@@ -2,6 +2,8 @@
 
 ## Configure Domain
 
+You will need to configure your registered domain on your Platform.sh project before going live, and you can do that either through the management console or by using the CLI.
+
 ## Through the management console
 
 <video width="800" controls autoplay loop>
