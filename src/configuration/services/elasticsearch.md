@@ -38,12 +38,6 @@ mysearch:
     disk: 1024
 ```
 
-<div id = "servicesYAML"></div>
-
-<script>
-makeNewestServicesYaml('elasticsearch', 'mysearch', 'servicesYAML', true);
-</script>
-
 In your `.platform.app.yaml`:
 
 ```yaml

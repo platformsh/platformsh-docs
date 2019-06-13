@@ -139,6 +139,7 @@ In this directory `supported-image` there are two files:
 
 If creating a single edit point for image releases proves useful, the approach could be expanded towards greater automation and relegated to other parts of the documentation that face a similar problem:
 
+* Attempts to create literal strings in Node.js to keep `services.yaml` examples up to date with most recent versions have not worked. Fix that.
 * Automate the creation of pull requests altogether for new images altogether when they are released and fully tested. DevRel will then be responsible for reviewing that PR and merging it.
 * Updates to the documentation for templates should similarly applied that follow these principles. For example, each time a new template is added to template-builder that has a release tag on its associated repository, it should be added to the documentation in each section templates for that language are referenced, in a single pull request.
 
