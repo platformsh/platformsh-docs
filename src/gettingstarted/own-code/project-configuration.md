@@ -16,6 +16,22 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
     * [Ruby Templates](/languages/ruby.html#project-templates)
     * [Go Templates](/languages/go.html#project-templates)
     * [Java Templates](/languages/java.html#project-templates)
+    
+<section class="examples-lists">
+
+<div>
+  <a href="/languages/php.html#project-templates">PHP Templates</a><br />
+  <a href="/languages/python.html#project-templates">Python Templates</a><br />
+  <a href="/languages/nodejs.html#project-templates">Node.js Templates</a><br />
+</div>
+
+<div>
+  <a href="/languages/java.html#project-templates">Java Templates</a><br />
+  <a href="/languages/go.html#project-templates">Go Templates</a><br />
+  <a href="/languages/ruby.html#project-templates">Ruby Templates</a><br />
+</div>
+
+</section>
 
 2. **Create empty configuration files**
 

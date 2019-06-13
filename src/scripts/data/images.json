@@ -24,7 +24,8 @@
       ],
       "deprecated": [
 
-      ]
+      ],
+      "docs": "/configuration/services/headless-chrome.html"
     },
     "influxdb": {
       "name": "InfluxDB",
