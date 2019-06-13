@@ -18,7 +18,7 @@
  */
 function makeImagesList(imageType, childImage, attribute, divName) {
 
-  var jsonSource = "/scripts/supported-images.json";
+  var jsonSource = "/scripts/supported-images/versions.json";
 
   $.getJSON(jsonSource, function( data ) {
     var items = [];
@@ -101,7 +101,7 @@ function makeImagesTableHeader(imageType, tableName) {
  */
 function makeImagesTable(imageType, attribute, tableName, codeStyleLists=false) {
 
-    var jsonSource = "/scripts/supported-images.json";
+    var jsonSource = "/scripts/supported-images/versions.json";
 
     makeImagesTableHeader(imageType, tableName);
 
@@ -117,3 +117,39 @@ function makeImagesTable(imageType, attribute, tableName, codeStyleLists=false) 
 }
 
 
+function makeNewestAppYaml(imageName, divName) {
+	var imageType = 'runtimes';
+  var jsonSource = "/scripts/supported-images/versions.json";
+  $.getJSON(jsonSource, function( data ) {
+		var currentType = data[imageType][imageName].type;
+    var supportedVersions = data[imageType][imageName].supported;
+    var mostRecent = supportedVersions[supportedVersions.length - 1];
+
+    var div = document.getElementById(divName);
+    var imageConfig = "type: " + currentType + ":" + mostRecent;
+  	var details = "<code class='language-yaml'>" + imageConfig + "</code><br>";
+
+  	div.innerHTML += details;
+  });
+}
+
+function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=false) {
+	var imageType = 'services';
+  var defaultDisk = 1024;
+  var jsonSource = "/scripts/supported-images/versions.json";
+  $.getJSON(jsonSource, function( data ) {
+		var currentType = data[imageType][imageName].type;
+    var supportedVersions = data[imageType][imageName].supported;
+    var mostRecent = supportedVersions[supportedVersions.length - 1];
+
+    var div = document.getElementById(divName);
+    var diskDesc = "";
+    if (usesDisk) {
+    	diskDesc += "\xa0\xa0\xa0\xa0disk: " + defaultDisk;
+    }
+    var imageConfig = "\xa0\xa0\xa0\xa0type: " + currentType + ":" + mostRecent;
+    var details = "<code class='language-yaml'>";
+  	details += serviceName + ":<br>" + imageConfig + "<br>" + diskDesc + "</code>";
+  	div.innerHTML += details;
+  });
+}
