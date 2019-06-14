@@ -431,8 +431,9 @@ a.buttongen {
   text-decoration: none !important;
   margin: 10px 5px;
   padding: 24px 24px;
-  display: inline-block;
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 a.buttongen:hover {
