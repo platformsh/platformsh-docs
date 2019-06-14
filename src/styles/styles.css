@@ -431,6 +431,8 @@ a.buttongen {
   text-decoration: none !important;
   margin: 10px 5px;
   padding: 24px 24px;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 a.buttongen:hover {
@@ -440,7 +442,7 @@ a.buttongen:hover {
 }
 
 a.buttongen.full {
-  display: block;
+  display: block !important;
   width: 100%;
   text-align:left;
 }
@@ -448,22 +450,5 @@ a.buttongen.full {
 a.buttongen.small {
   font-weight: 600;
   width: 40%;
-  text-align:center;
-}
-
-a.buttongen.lang {
-  display: inline-block;
-  font-weight: 900;
-  height: 50% !important;
-  width: 20% !important;
-  text-align:center;
-}
-
-a.buttongen.path {
-  display: inline-block;
-  font-size:22px !important;
-  font-weight: 1200;
-  height: 60% !important;
-  width: 40% !important;
   text-align:center;
 }
