@@ -6,11 +6,21 @@ The Platform.sh Engineering team continuously releases new images for service an
 
 * Supported (and deprecated) versions of a language or service are documented in multiple places. It is our goal that references to these image versions should be up to date and identical at all times.
 * Each usage example in the documentation should always reference the most recent release when appropriate.
-* Updating each reference should be done in a single pull request every time a new image is released. 
+* Updating each reference should be done in a single pull request every time a new image is released.
 
 ## Documenting a new version release in `versions.json`
 
-`versions.json` should act as a single edit point for new image version releases. If, for example, Engineering has told us that Platform.sh now supports MariaDB 10.3, it should be added as the last element of `object.mysql.supported`: 
+### Steps for a new runtime version
+
+1. Add the new version to the end of the `"supported"` key for that runtime in `versions.json`.
+
+### Steps for a new service version
+
+1. Add the new version to the end of the `"supported"` key for that service in `versions.json`.
+2. Update the `services.yaml` example on that service's documentation page to the new version.
+3. If the service is in one of the *Special cases* below, be sure to follow those steps as well.
+
+`versions.json` should act as a single edit point for new image version releases. If, for example, Engineering has told us that Platform.sh now supports MariaDB 10.3, it should be added as the last element of `object.mysql.supported`:
 
 ```json
 "mysql": {
@@ -28,10 +38,10 @@ The Platform.sh Engineering team continuously releases new images for service an
   "docs": "/configuration/services/mysql.html"
 },
 ```
-    
+
 This not only ensures that the newly supported version is visible on every page of the documentation that it is referenced, but also so that when we provide a usage example for that image the *most recent version* is always used.
 
-If the only change is that a new version of an image is released, this is the extent of the update for most images. 
+If the only change is that a new version of an image is released, this is the extent of the update for most images.
 
 ### Special Cases
 
@@ -83,7 +93,7 @@ makeImagesList("services", "jedi-trix", "supported", "jediSupported");
 
 If the new service comes with pre-defined "deprecated" versions, copy the above into the "Deprecated versions" section with the `div id` "jediDeprecated" and change the third parameter of `makeImagesList` to "deprecated".
 
-> **Note** A function has not yet been added that will automatically update the example `services.yaml` file on a service's primary documentation page, so you will have to remember to perform that separately. 
+> **Note** A function has not yet been added that will automatically update the example `services.yaml` file on a service's primary documentation page, so you will have to remember to perform that separately.
 
 If instead your are attempting do document a new runtime, you can use `versions.json` to keep the `.platform.app.yaml` up-to-date with the most recent version by placing the following in its main documentation page (Go used as an example here):
 
@@ -108,7 +118,7 @@ In this directory `supported-image` there are two files:
 * `versions.json`: Contains a JSON object with two keys - `runtimes` and `services`,  which each contain keys for every runtime and service we support. Here is an excerpt from that file:
 
     As you can see from the above sections, ach service and runtime is named with a key that is identical to it's `type`. It has a number of keys that are used in the display of version information throughout the documentation:
-    
+
     * `"name"`: The name of the image as it might appear in plain text within lists and tables (i.e., PostgreSQL).
     * `"type"`: The image's `type` as used in `.platform.app.yaml` and `services.yaml`.
     * `"supported"`: Currently supported images, with the most recent additions appended to the end of the list.
@@ -118,7 +128,7 @@ In this directory `supported-image` there are two files:
 * `versions.js`: A piece of javascript that contains a number of functions for reading from `versions.json` and in displaying its information in the documentation. The most important functions can be called directly in the documentation:
 
     * `makeImagesList`: Creates a list of "supported" or "deprecated" versions of an image. It is found in each "runtimes" and "services" page, and an example use for PHP looks like:
-    
+
         ```html
         <div id = "phpSupported"></div>
 
@@ -126,29 +136,29 @@ In this directory `supported-image` there are two files:
         makeImagesList("runtimes", "php", "supported", "phpSupported");
         </script>
         ```
-        
+
         which will appear in the deployed documentation (as of June 2019) as:
-        
+
         * 7.1
         * 7.2
         * 7.3
-        
-        The first parameter can be set to either "runtimes" or "services", and the second is the image `name` in `versions.json`. "supported" can be replaced with "deprecated", and "phpSupported" must be defined with a `<div id="phpSupported></div>` above it. 
-        
+
+        The first parameter can be set to either "runtimes" or "services", and the second is the image `name` in `versions.json`. "supported" can be replaced with "deprecated", and "phpSupported" must be defined with a `<div id="phpSupported></div>` above it.
+
     * `makeImagesTable`: Creates an HTML table of all runtimes or services, and contains each image `name` linked to its documentation, it's `type`, and its supported versions. An example use is found in the [Configure services](https://docs.platform.sh/gettingstarted/own-code/service-configuration.html) of the Getting Started guides, where it is called within the Markdown file:
-    
+
         ```html
         <div>
           <table id="servicesTable" border="1">
           <tbody></tbody>
           </table>
         </div>
-        
+
         <script>
         makeImagesTable("services", "supported", "servicesTable");
         </script>
         ```
-        
+
      If either a new version of an existing image or an entirely new image is added to `versions.json`, this usage does not need to change.
 
 ## Future goals
@@ -158,7 +168,3 @@ If creating a single edit point for image releases proves useful, the approach c
 * Attempts to create literal strings in Node.js to keep `services.yaml` examples up to date with most recent versions have not worked. Fix that.
 * Automate the creation of pull requests altogether for new images altogether when they are released and fully tested. DevRel will then be responsible for reviewing that PR and merging it.
 * Updates to the documentation for templates should similarly applied that follow these principles. For example, each time a new template is added to template-builder that has a release tag on its associated repository, it should be added to the documentation in each section templates for that language are referenced, in a single pull request.
-
-
-
-

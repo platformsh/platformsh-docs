@@ -10,7 +10,7 @@ You will need to configure your registered domain on your Platform.sh project be
   <source src="/videos/management-console/set-domain-mc.mp4" type="video/mp4">
 </video>
 
-Now that you have changed your project to a production plan, you can click the same "Go live" at the top of the project page. Alternatively, you can click "Settings" at the top of the page, and then visit the "Domains" section on the left.
+Now that you have changed your project to a production plan, you can click the same "Go live" button at the top of the project page. Alternatively, you can click "Settings" at the top of the page, and then visit the "Domains" section on the left.
 
 Click the "Add+" button in the top right hand corner of the page, enter your registered domain and select if you want it to be the default domain for the project. You can add multiple domains to a project, but only one can be set as the default.
 

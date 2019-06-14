@@ -3,7 +3,7 @@
 ## Configure application
 
 You will next need to include information that defines how you want your [application](/configuration/app-containers.md) to behave each time it is built and deployed on Platform.sh in a `.platform.app.yaml` file.
-    
+
 ```.
 ├── .platform
 │   ├── routes.yaml
@@ -27,15 +27,17 @@ An example `.platform.app.yaml` looks like this:
 
 The `.platform.appl.yaml` file is extremely flexible, and can contain many lines with very fine-grained control over your application. At the very least, Platform.sh requires four principle attributes in this file to control your builds:
 
-* `name`: The [name of your application](/configuration/app/name.md) container does not have to be the same as your project name, and in most single application cases can simply name it `app`. If you are trying to to deploy [microservices](/configuration/app/multi-app.md#example-of-a-micro-service-multi-app), the only constraint is that each of these application names must be unique. You should notice in the next step, when you configure how requests are handled in `.platform/routes.yaml` that `name` is reused there, and it is important that they are the same.
+* `name`: The [name of your application](/configuration/app/name.md) container does not have to be the same as your project name, and in most single application cases you can simply name it `app`. You should notice in the next step, when you configure how requests are handled in `.platform/routes.yaml` that `name` is reused there, and it is important that they are the same.
+
+    > **Note**  If you are trying to to deploy [microservices](/configuration/app/multi-app.md#example-of-a-micro-service-multi-app), the only constraint is that each of these application names must be unique.
 
 * `type`: The [type](/configuration/app/type.md) attribute in `.platform.app.yaml` sets the container base image for the application, and sets the primary language. In general, `type` should have the form
-  
+
   ```yaml
   type: <runtime>:<version>
   ```
 
-  Set `<version>` to a version supported by Platform.sh, which you can find in the documentation under each language: 
+  Set `version` to one supported by Platform.sh, which you can find below as well as in the documentation for each language:
 
 <div>
   <table id="runtimeTable" border="1">
@@ -46,25 +48,27 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
 <script>
 makeImagesTable("runtimes", "supported", "runtimeTable");
 </script>
-  
-* `disk`: The [disk](/configuration/app/storage.md) attribute defines that amount of persistent storage you need to have available for your application, and requires a minimum value of 256 MB. This is also the section in which you can define mounts of writable storage for your application, as Platform.sh operates default on a read-only filesystem. 
-  
+
+* `disk`: The [disk](/configuration/app/storage.md) attribute defines that amount of persistent storage you need to have available for your application, and requires a minimum value of 256 MB.
+
+* `mounts` (Optional): Configuring mounts are not required, unless part of your application requires write-access. By default, Platform.sh provided a *read-only* filesystem for your projects, so that you can be confident in the health and security of your application once it has deployed. If your application requires writable storage to function properties (i.e., saving files; mounts should not contain code) it can be defined:
+
   If your application requires writable storage to function properly, it can be defined:
-  
+
   ```yaml
   mounts:
     'web/uploads':
         source: local
         source_path: uploads
   ```
-  
-  In this case, the application will be able to write to a mount that is visible in the `web/uploads` directory of the application container, and which has a local source at `/mnt/uploads`. Consult the [mounts documentation](/configuration/app/storage.md#mounts) for a more thorough discussion of how these attributes should be written.
 
-* `web`: The `web` key configures the web server through a single web instance container running a single Nginx server process, behind which runs your application. 
+  In this case, the application will be able to write to a mount that is visible in the `/app/web/uploads` directory of the application container, and which has a local source at `/mnt/uploads`. Consult the [mounts documentation](/configuration/app/storage.md#mounts) for a more thorough discussion of how these attributes should be written.
+
+* `web`: The `web` key configures the web server through a single web instance container running a single Nginx server process, behind which runs your application.
 
     * `commands`: Defines the [command](/configuration/app/web.md#locations) to actually launch the application. The `start` key launches your application.
     * `locations`: Allows you to control how the application container responds to incoming requests at a very fine-grained level. The simplest possible [locations](/configuration/app/web.md#locations) configuration is one that simply passes all requests on to your application unconditionally:
-    
+
       ```yaml
       web:
       locations:
@@ -79,14 +83,14 @@ makeImagesTable("runtimes", "supported", "runtimeTable");
    * `hooks`: [Hooks](/configuration/app/build.md#hooks) define custom scripts that you want to run at different points during the deployment process.
       * `build`: The [build hook](/configuration/app/build.md#build-hook) is run after the build flavor if that is present. The file system is fully writable, but no services and only a subset of variables are available at this point. The full list of build time and runtime variables is available on the [variables section](/development/variables.md#variables) of the public documentation.
       * `deploy`: The [deploy hook](/configuration/app/build.md#deploy-hook) is run after the application container has been started, but before it has started accepting requests. Services are now available, but the file system will be read-only from this point forward.
-      * `post-deploy`: The [post-deploy hook](/configuration/app/build.md#post-deploy-hook) functions exactly the same as the deploy hook, but after the container is accepting connections. 
-  
+      * `post-deploy`: The [post-deploy hook](/configuration/app/build.md#post-deploy-hook) functions exactly the same as the deploy hook, but after the container is accepting connections.
+
 > Each language and framework may have additional attributes that you will need to include in `.platform.app.yaml` depending on the needs of your application. To find out what else you may need to include to configure your application, consult
-> 
+>
 > * **The [Application](/configuration/app-containers.md) documentation for Platform.sh:**
 >    The documentation goes into far more extensive detail of which attributes can also be included for application configuration, and should be used as your primary reference.
 >    
-> * **Language-specific templates for Platform.sh Projects:** 
+> * **Language-specific templates for Platform.sh Projects:**
 >    Compare the `.platform.app.yaml` file from the simple template above to other templates when writing your own.
 
 Now that you have configured your application, you will next need to handle HTTP requests to your application using the `.platform/routes.yaml` file.

@@ -10,7 +10,7 @@ At this point you have configured your application's services as well as its bui
 relationships:
     database: "mysqldb:mysql"
 ```
-  
+
 which was configured in `.platform/services.yaml` with
 
 ```yaml
@@ -87,14 +87,16 @@ In either case, `credentials` can now be used to connect to `database`:
 }
 ```
 
-You can find out more information about Platform.sh Config Reader libraries on GitHub: 
+You can find out more information about Platform.sh Config Reader libraries on GitHub:
 
 * [PHP Config Reader](https://github.com/platformsh/config-reader-php)
 * [Python Config Reader](https://github.com/platformsh/config-reader-python)
 * [Node.js Config Reader](https://github.com/platformsh/config-reader-java)
 * [Java Config Reader](https://github.com/platformsh/config-reader-nodejs)
 
-You can also find examples of how to connect to each of Platform.sh managed services in multiple languages in the [Services Documentation](/configuration/services.md). Once you have done so, you will next need to handle HTTP requests to your application using the `.platform/routes.yaml` file.
+You can also find examples of how to connect to each of Platform.sh managed services in multiple languages in the [Services Documentation](/configuration/services.md).
+
+Project configured, services connected - time to commit the changes and push your repository onto your project.
 
 <div id = "buttons"></div>
 
