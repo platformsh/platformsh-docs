@@ -26,26 +26,28 @@ Now that you have the requirements out of the way, place your SSH key onto Platf
 
 1. **Access SSH key settings in the management console**
 
-    From the management console, move to the top right hand corner of the screen and click the dropdown menu to the left of the settings gear box icon. In the menu, click on `Account`. The next page will normally list all of your projects, which at this point will be empty if you're just starting out. 
+    From the management console, move to the top right hand corner of the screen and click the dropdown menu to the left of the settings gear box icon. In the menu, click on `Account`. The next page will normally list all of your projects, which at this point will be empty if you're just starting out.
     Click on the `Account Settings` link at the top of the page, then click the `SSH keys` tab to the left of your account information.
 
 2. **Add your SSH key to your account**
 
     At this point you won't see anything listed in the body of the page, because you don't have SSH configured with Platform.sh yet. Click the `+ Add public key` button in the top right hand corner of the screen.
-    
-    This will open up another window with two fields. Name the key with something memorable, like `home-computer`, and in the field below that, paste the content of the public key you created in the previous step.
-    
-    When you have finished, click `Save` to save the key.
-    
 
-That's it! Now that you have met the requirements and configured an SSH key, Platform.sh can authenticate your computer and you can interact with your project from the command line. 
+    This will open up another window with two fields. Name the key with something memorable, like `home-computer`, and in the field below that, paste the content of the public key you created in the previous step.
+
+    When you have finished, click `Save` to save the key.
+
+
+That's it! Now that you have met the requirements and configured an SSH key, Platform.sh can authenticate your computer and you can interact with your project from the command line.
 
 Next, you will need to install the Platform.sh CLI so that you can import your code to a project.
 
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have configured my SSH key in the management console";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have configured my SSH key in the management console";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

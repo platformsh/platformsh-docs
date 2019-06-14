@@ -2,7 +2,7 @@
 
 ## Next steps
 
-In this guide you created a project using the [management console](/administration/web.md) and installed the [Platform.sh CLI](/development/cli.md). 
+In this guide you created a project using the [management console](/administration/web.md) and installed the [Platform.sh CLI](/development/cli.md).
 
 Don't stop now! There are far more features that make Platform.sh profoundly helpful to developers that you have left to explore.
 
@@ -79,6 +79,8 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 <div id = "buttons"></div>
 
 <script>
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

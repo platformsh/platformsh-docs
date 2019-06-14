@@ -23,15 +23,18 @@ function makeButton(button, oneOfMultiple=false) {
     if (button.type == "basic") {
     		var basicLine = '<a href="' + button.path.path + '" class="buttongen small">' + button.path.text + '</a>';
     		if (!oneOfMultiple) {
-    				details += '<br/><br/><center>';
+    				details += '<br/><center>';
     		}
     		details += basicLine;
 
         if (!oneOfMultiple) {
-    				details += '<br/><br/><center>';
+    				details += '<br/><center>';
     		}
     } else if (button.type == "descriptive") {
     		details += '<a href="' + button.path.path + '" class="buttongen full"><b>' + button.path.text + '</b><br/><br/>' + button.path.description + '</a>';
+
+		} else if (button.type == "basicFull") {
+			  details += '<center><a href="' + button.path.path + '" class="buttongen full-center"><b>' + button.path.text + '</b></a></center>';
 
     } else if (button.type == "navigation") {
 					if (!oneOfMultiple) {
@@ -65,47 +68,3 @@ function makeMultiButton(buttons) {
     details += '<center><br/><br/><br/>';
     document.getElementById(buttons.div).innerHTML = details;
 }
-
-
-function makeTestButton(demoChoice, divName) {
-
-		if (demoChoice == "navigation") {
-        var navNextText = "I have set up my free trial account";
-        var templatePath2 = getPathObj("/development/templates.html", "Templates");
-        var testButton = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: divName};
-
-				makeButton(testButton);
-
-    } else if (demoChoice == "multiple") {
-    		var githubPath = getPathObj("/administration/integrations/github.html", "GitHub");
-        var github = {type: "basic", path: githubPath};
-
-        var gitlabPath = getPathObj("/administration/integrations/gitlab.html", "GitLab");
-        var gitlab = {type: "basic", path: gitlabPath};
-
-        var bitbucketPath = getPathObj("/administration/integrations/bitbucket.html", "Bitbucket");
-        var bitbucket = {type: "basic", path: bitbucketPath};
-
-        var integrations = {type: "multi", children: [github, gitlab, bitbucket], div: divName};
-
-        makeMultiButton(integrations);
-
-    } else if (demoChoice == "descriptive") {
-
-    		var descTitle = "External Integrations";
-        var descDesc = "Configure Platform.sh to mirror every push and pull request on GitHub, Gitlab, and Bitbucket.";
-        var descPath = getPathObj("/gettingstarted/integrations.html", descTitle, descDesc);
-        var descButton = {type: "descriptive", path: descPath, div: divName};
-
-    		makeButton(descButton);
-
-    } else if (demoChoice == "basic") {
-    		var templatePath = getPathObj("/development/templates.html", "Templates");
-        var templates = {type: "basic", path: templatePath, div: divName};
-
-        makeButton(templates)
-    }
-
-}
-
-

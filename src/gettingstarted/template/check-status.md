@@ -44,7 +44,9 @@ Using the [Platform.sh CLI](/development/cli.md), however, you get even more con
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have built and deployed a template application";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have built and deployed a template application";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

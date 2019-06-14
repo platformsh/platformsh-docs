@@ -1,4 +1,4 @@
-# Going Live
+# Going live
 
 ## Done!
 
@@ -21,3 +21,12 @@ If you would rather use a Fastly CDN than the Platform.sh router cache, you can 
 You can also use Cloudflare's TLS/SSL service to secure your site via HTTPS:
 
 * [Going Live: Cloudflare](/golive/steps/cloudflare.md)
+
+<div id = "buttons"></div>
+
+<script>
+$(document).ready(function(){
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), div: "buttons"};
+  makeButton(navButtons);
+});
+</script>

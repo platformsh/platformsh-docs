@@ -98,7 +98,9 @@ Now that you have configured your application, you will next need to handle HTTP
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have configured my application";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have configured my application";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

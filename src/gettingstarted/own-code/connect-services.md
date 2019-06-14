@@ -101,7 +101,9 @@ Project configured, services connected - time to commit the changes and push you
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have connected to my services to my application";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have connected to my services to my application";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

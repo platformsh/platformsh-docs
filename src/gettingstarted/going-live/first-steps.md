@@ -1,4 +1,4 @@
-# Going Live
+# Going live
 
 ## Preliminary Steps
 
@@ -16,7 +16,7 @@ Before you take your site live, there are a few steps that will help you prepare
 
 3. **(Optional) Obtain 3rd party SSL if needed**
 
-    Let's Encrypt SSL certificates are automatically issued for Platform.sh projects at no charge to you. If you instead would like to use a [3rd party SSL certificate](/golive/steps/tls.md), make sure that you have purchased it and that it is active prior to going live. 
+    Let's Encrypt SSL certificates are automatically issued for Platform.sh projects at no charge to you. If you instead would like to use a [3rd party SSL certificate](/golive/steps/tls.md), make sure that you have purchased it and that it is active prior to going live.
 
     Additionally, if your application uses [wildcard routes](/golive/steps/tls.md), it will require custom certificates for them, as Let's Encrypt does not support wildcard certificates.
 
@@ -25,7 +25,9 @@ After you have gone through the following checklist your application is ready to
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I'm ready to go live";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I'm ready to go live";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

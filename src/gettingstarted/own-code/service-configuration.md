@@ -61,7 +61,9 @@ you will next need to tell Platform.sh how to build and deploy your application 
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have configured my services";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have configured my services";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

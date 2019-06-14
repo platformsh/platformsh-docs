@@ -50,7 +50,9 @@ That's it! Now that you have the management console set up and the CLI installed
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have installed the CLI";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have installed the CLI";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

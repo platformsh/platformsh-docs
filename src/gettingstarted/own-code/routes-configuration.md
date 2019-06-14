@@ -49,7 +49,9 @@ Now that you have configured your routes, your application is ready to deploy on
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have configured my routes";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have configured my routes";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

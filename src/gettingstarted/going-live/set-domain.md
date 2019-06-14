@@ -1,4 +1,4 @@
-# Going Live
+# Going live
 
 ## Configure Domain
 
@@ -31,7 +31,9 @@ The CLI will validate your registered domain, provision Let's Encrypt certificat
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have configured my registered domain on my project";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have configured my registered domain on my project";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

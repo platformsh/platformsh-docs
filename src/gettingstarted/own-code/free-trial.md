@@ -13,7 +13,9 @@ Alternatively, you can sign up using an existing GitHub, Bitbucket, or Google ac
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have set up my free trial account";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have set up my free trial account";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

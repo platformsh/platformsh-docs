@@ -421,11 +421,17 @@ section.examples-lists > div {
 
 /* General Buttons */
 
+center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 a.buttongen {
   font-size:15px;
-  color: #49475F;
-  background-color: #EDEDEF;
-  border: 1px solid #49475F;
+  color: #302F45;
+  background-color: #F5F7FA;
+  border: 1px solid #302F45;
   border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
   text-decoration: none !important;
@@ -437,8 +443,8 @@ a.buttongen {
 }
 
 a.buttongen:hover {
-  background-color: #145CC6;
-  border: 1px solid #145CC6;
+  background-color: #1664ff;
+  border: 1px solid #1664ff;
   color: white;
 }
 
@@ -448,8 +454,18 @@ a.buttongen.full {
   text-align:left;
 }
 
+a.buttongen.full-center {
+  width: 100%;
+  text-align:center;
+}
+
 a.buttongen.small {
   font-weight: 600;
   width: 40%;
   text-align:center;
+}
+
+.column {
+  float: left;
+  width: 33%;
 }

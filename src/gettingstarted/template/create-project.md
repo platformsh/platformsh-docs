@@ -2,7 +2,7 @@
 
 ## Create a new project from a template
 
-In the previous step, you set up a free trial account with Platform.sh. Now you have access to the Platform.sh [management console](/administration/web.md). 
+In the previous step, you set up a free trial account with Platform.sh. Now you have access to the Platform.sh [management console](/administration/web.md).
 
 From here you can create projects, adjust account settings, and a lot more that you will explore throughout these Getting Started guides.
 
@@ -35,13 +35,15 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
    The last step for setting up a new project is to configure its region.
 
    Select the region that most closely matches where most of your traffic will come from and click `Next`.
-      
+
 With these few selections Platform.sh will create the project and build the template in less than two minutes.
 
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have created a new project with a template";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have created a new project with a template";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

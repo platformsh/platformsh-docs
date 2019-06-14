@@ -1,4 +1,4 @@
-# Local Development
+# Local development
 
 ## Next steps
 
@@ -55,6 +55,8 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 <div id = "buttons"></div>
 
 <script>
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

@@ -1,4 +1,4 @@
-# Local Development
+# Local development
 
 ## Connect to services
 
@@ -24,7 +24,7 @@ Now that you have a local copy of your application code, it doesn't make sense t
     export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
     ```
     In order to use these credentials to connect to your services, it is also necessary that those services are locally installed.
-    
+
     Additionally, if your application also needs access to the `PORT` environment variable, you can mock the variable used in a Platform.sh environment with
 
     ```bash
@@ -44,7 +44,9 @@ Now that you have created an SSH tunnel to your services, all that's left to do 
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have opened an SSH tunnel into my services";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have opened an SSH tunnel into my services";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

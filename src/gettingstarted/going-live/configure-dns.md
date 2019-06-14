@@ -1,4 +1,4 @@
-# Going Live
+# Going live
 
 ## Configure your DNS provider
 
@@ -23,7 +23,9 @@ Depending on your registrar and the TTL you set for the domain, it may take up t
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have configured my DNS provider";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have configured my DNS provider";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

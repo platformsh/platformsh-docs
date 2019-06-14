@@ -27,23 +27,25 @@ Add your SSH key to your Platform.sh account so that you can communicate with yo
 
 1. **Access SSH key settings in the management console**
 
-    From the management console, move to the top right hand corner of the screen and click the dropdown menu to the left of the settings gear box icon. In the menu, click on `Account`. This next page lists all of your active projects, which now includes `My First Project`. 
+    From the management console, move to the top right hand corner of the screen and click the dropdown menu to the left of the settings gear box icon. In the menu, click on `Account`. This next page lists all of your active projects, which now includes `My First Project`.
 
     Click on the `Account Settings` link at the top of the page, then click the `SSH keys` tab to the left of your account information.
 
 2. **Add your SSH key to your account**
 
     Click the `+ Add public key` button in the top right hand corner of the screen. This will open up another window with two fields. Name the key with something memorable, like `home-computer`, and in the field below that, paste the content of your public key.
-    
+
     When you have finished, click `Save` to save the key.
-    
+
 
 That's it! Now that you have met the requirements and configured an SSH key, all that's left is to install the Platform.sh CLI so you can interact with your projects from the command line.
 
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have added my SSH key to my account";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have added my SSH key to my account";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

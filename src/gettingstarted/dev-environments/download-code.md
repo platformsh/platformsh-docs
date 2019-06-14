@@ -13,9 +13,9 @@ Otherwise, it will be necessary to download a local copy of your project first.
     You will need the your *project ID*. You can retrieve this ID at any time using the CLI commands `platform` or `platform project:list`.
 
 2. **Get a copy of the repository locally**
-    
+
     Next, use the CLI to download the code in your Platform.sh project using the command
-    
+
     ```bash
     platform get <project id>
     ```
@@ -25,7 +25,9 @@ Now that you have a local copy of your application that is configured to the Pla
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have downloaded the project code";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have a local copy of my code";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

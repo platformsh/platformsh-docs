@@ -1,4 +1,4 @@
-# Local Development
+# Local development
 
 Now that you have a project on Platform.sh, it would be helpful to run the same build process on your local machine so that you can develop and test new features before pushing them. This guide will take you through the steps of connecting remotely to your services and building your application locally.
 
@@ -12,7 +12,9 @@ If you have not completed these steps by now, click the links and do so before y
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "Get started!";
-    var navButtons = {type: "navigation", next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "Get started!";
+  var navButtons = {type: "navigation", next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

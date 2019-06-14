@@ -1,4 +1,4 @@
-# Going Live
+# Going live
 
 ## Upgrade Plan
 
@@ -8,7 +8,7 @@ If you initialized your project on the "Development" plan size, you will not be 
   <source src="/videos/management-console/upgrade-plan.mp4" type="video/mp4">
 </video>
 
-Development plans come with four environments: three development and one "future" production environment. You will need to upgrade the plan size from a "Development" plan to any other plan size, depending on the needs of your application. 
+Development plans come with four environments: three development and one "future" production environment. You will need to upgrade the plan size from a "Development" plan to any other plan size, depending on the needs of your application.
 
 For example, "Small" plan sizes provide a production environment, but restrict your application to the use of a single service (i.e. a database).
 
@@ -21,7 +21,9 @@ Now that you have upgraded your plan size, you are ready to set up your pre-regi
 <div id = "buttons"></div>
 
 <script>
-    var navNextText = "I have upgraded my plan size";
-    var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-    makeButton(navButtons);
+$(document).ready(function(){
+  var navNextText = "I have upgraded my plan size";
+  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
+  makeButton(navButtons);
+});
 </script>

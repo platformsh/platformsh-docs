@@ -1,4 +1,4 @@
-# Going Live
+# Going live
 
 You've set up a project on Platform.sh by either [pushing your code](/gettingstarted/own-code.md) directly or by [setting up an integration](/gettingstarted/integrations.md) to an external repository. Now it's time to take your site live.
 
@@ -7,7 +7,9 @@ This guide will take you through the process configuring your project for produc
 <div id = "buttons"></div>
 
 <script>
-    var templatePath = getPathObj("/gettingstarted/going-live/first-steps.html", "Take your site live!");
-    var templates = {type: "basic", path: templatePath, div: "buttons"};
-    makeButton(templates)
+$(document).ready(function(){
+  var templatePath = getPathObj("/gettingstarted/going-live/first-steps.html", "Take your site live!");
+  var templates = {type: "basic", path: templatePath, div: "buttons"};
+  makeButton(templates);
+});
 </script>

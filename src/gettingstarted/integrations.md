@@ -4,21 +4,28 @@ While you can host your application repository entirely on Platform.sh, it's lik
 
 Choose your current service, and this guide will take you through the steps to mirror your repository on Platform.sh and have environments created automatically for your pull requests and branches.
 
-<div id = "integrations"></div>
+<div class="column">
+  <div id="github"></div>
+</div>
+<div class="column">
+  <div id="gitlab"></div>
+</div>
+<div class="column">
+  <div id="bitbucket"></div>
+</div>
 
 <script>
-var githubPath = getPathObj("/administration/integrations/github.html", "GitHub");
-var github = {type: "basic", path: githubPath};
+    var descPathGH = getPathObj("/administration/integrations/github.html", "GitHub");
+    var descButtonGH = {type: "basicFull", path: descPathGH, div: "github"};
+    makeButton(descButtonGH);
 
-var bitbucketPath = getPathObj("/administration/integrations/bitbucket.html", "Bitbucket");
-var bitbucket = {type: "basic", path: bitbucketPath};
+    var descPathGL = getPathObj("/administration/integrations/gitlab.html", "GitLab");
+    var descButtonGL = {type: "basicFull", path: descPathGL, div: "gitlab"};
+    makeButton(descButtonGL);
 
-var gitlabPath = getPathObj("/administration/integrations/gitlab.html", "GitLab");
-var gitlab = {type: "basic", path: gitlabPath};
-
-var integrations = {type: "multi", children: [github, bitbucket, gitlab], div: "integrations"};
-
-makeMultiButton(integrations);
+    var descPathBB = getPathObj("/administration/integrations/bitbucket.html", "Bitbucket");
+    var descButtonBB = {type: "basicFull", path: descPathBB, div: "bitbucket"};
+    makeButton(descButtonBB);
 </script>
 
 These steps assume that you have already:
