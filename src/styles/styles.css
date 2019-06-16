@@ -469,3 +469,8 @@ a.buttongen.small {
   float: left;
   width: 33%;
 }
+
+video {
+  object-fit: initial;
+  width: 90%;
+}
