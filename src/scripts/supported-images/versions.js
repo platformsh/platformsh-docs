@@ -132,30 +132,30 @@ function makeNewestAppYaml(imageName, divName) {
   });
 }
 
-//function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=false) {
-//	var imageType = 'services';
-//  var defaultDisk = 1024;
-//  var jsonSource = "/scripts/supported-images/versions.json";
-//  $.getJSON(jsonSource, function( data ) {
-//		var currentType = data[imageType][imageName].type;
-//    var supportedVersions = data[imageType][imageName].supported;
-//    var mostRecent = supportedVersions[supportedVersions.length - 1];
-//
-//    var div = document.getElementById(divName);
-//
-//    var details = ``;
-//
-//    if (usesDisk) {
-//      var details += `<pre><code class="lang-yaml"><span class="hljs-attr">${serviceName}:</span>
-//<span class="hljs-attr">    type:</span> ${currentType}:<span class="hljs-number">${mostRecent}</span>
-//<span class="hljs-attr">    disk:</span> <span class="hljs-number">${defaultDisk}</span>
-//</code></pre>`;
-//    } else {
-//      var details += `<pre><code class="lang-yaml"><span class="hljs-attr">${serviceName}:</span>
-//<span class="hljs-attr">    type:</span> ${currentType}:<span class="hljs-number">${mostRecent}</span>
-//</code></pre>`;
-//    }
-//
-//  	div.innerHTML += details;
-//  });
-//}
+function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=false) {
+   var imageType = 'services';
+   var defaultDisk = 1024;
+   var jsonSource = "/scripts/supported-images/versions.json";
+   $.getJSON(jsonSource, function( data ) {
+  		 var currentType = data[imageType][imageName].type;
+       var supportedVersions = data[imageType][imageName].supported;
+       var mostRecent = supportedVersions[supportedVersions.length - 1];
+
+       var div = document.getElementById(divName);
+
+       var details = ``;
+
+       if (usesDisk) {
+         var details += `<pre><code class="lang-yaml"><span class="hljs-attr">${serviceName}:</span>
+    <span class="hljs-attr">    type:</span> ${currentType}:<span class="hljs-number">${mostRecent}</span>
+    <span class="hljs-attr">    disk:</span> <span class="hljs-number">${defaultDisk}</span>
+    </code></pre>`;
+       } else {
+         var details += `<pre><code class="lang-yaml"><span class="hljs-attr">${serviceName}:</span>
+    <span class="hljs-attr">    type:</span> ${currentType}:<span class="hljs-number">${mostRecent}</span>
+    </code></pre>`;
+       }
+
+   	div.innerHTML += details;
+   });
+}

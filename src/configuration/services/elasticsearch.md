@@ -38,6 +38,12 @@ mysearch:
     disk: 1024
 ```
 
+<div id="elasticsearchYAML"></div>
+
+<script>
+makeNewestServicesYaml("elasticsearch", "mysearch", "elasticsearchYAML", true);
+</script>
+
 In your `.platform.app.yaml`:
 
 ```yaml
@@ -75,7 +81,7 @@ mysearch:
         plugins:
             - analysis-icu
             - lang-python
-            
+
 ```
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
