@@ -132,7 +132,7 @@ function makeNewestAppYaml(imageName, divName) {
   });
 }
 
-function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=0) {
+function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=0, altType=null) {
    var imageType = 'services';
    var jsonSource = "/scripts/supported-images/versions.json";
    $.getJSON(jsonSource, function( data ) {
@@ -143,7 +143,14 @@ function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=0) {
        var div = document.getElementById(divName);
 
        var details = "<pre><code class='lang-yaml'><span class='hljs-attr'>" + serviceName + ":</span>\n";
-       details += "<span class='hljs-attr'>    type:</span> " + currentType + ":<span class='hljs-number'>" + mostRecent + "</span>\n";
+
+       if (altType !== null) {
+          details += "<span class='hljs-attr'>    type:</span> " + altType + ":<span class='hljs-number'>" + mostRecent + "</span>\n";
+       } else {
+          details += "<span class='hljs-attr'>    type:</span> " + currentType + ":<span class='hljs-number'>" + mostRecent + "</span>\n";
+       }
+
+       // details += "<span class='hljs-attr'>    type:</span> " + currentType + ":<span class='hljs-number'>" + mostRecent + "</span>\n";
 
        if (usesDisk > 0) {
           details += "<span class='hljs-attr'>    disk:</span> <span class='hljs-number'>" + usesDisk + "</span>\n";

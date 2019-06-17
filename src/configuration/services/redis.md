@@ -41,7 +41,7 @@ rediscache:
 <div id="redisYAML"></div>
 
 <script>
-makeNewestServicesYaml("redis", "rediscache", "redisYAML", 1024);
+makeNewestServicesYaml("redis", "rediscache", "redisYAML");
 </script>
 
 Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items to make room for new ones.
@@ -57,6 +57,12 @@ redisdata:
     type: redis-persistent:5.0
     disk: 1024
 ```
+
+<div id="redisYAML"></div>
+
+<script>
+makeNewestServicesYaml("redis", "redisdata", "redisYAML", 0, "redis-persistent");
+</script>
 
 The `disk` key is required for redis-persistent to tell Platform.sh how much disk space to reserve for Redis' persistent data.
 
@@ -80,7 +86,7 @@ rediscache:
 <div id="redisYAMLSecond"></div>
 
 <script>
-makeNewestServicesYaml("redis", "rediscache", "redisYAMLSecond", 1024);
+makeNewestServicesYaml("redis", "rediscache", "redisYAMLSecond");
 </script>
 
 If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php/extensions.md) in your `.platform.app.yaml`.
