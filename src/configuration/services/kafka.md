@@ -28,6 +28,12 @@ mykafka:
     disk: 1024
 ```
 
+<div id="kafkaYAML"></div>
+
+<script>
+makeNewestServicesYaml("kafka", "mykafka", "kafkaYAML", 1024);
+</script>
+
 In your ``.platform.app.yaml``:
 
 ```yaml

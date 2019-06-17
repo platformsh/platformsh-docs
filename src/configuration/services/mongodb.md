@@ -32,6 +32,12 @@ mydatabase:
     disk: 1024
 ```
 
+<div id="mongoYAML"></div>
+
+<script>
+makeNewestServicesYaml("mongodb", "mydatabase", "mongoYAML", 1024);
+</script>
+
 The minimum disk size for MongoDB is `512` (MB).
 
 In your `.platform.app.yaml`:

@@ -38,6 +38,12 @@ rediscache:
     type: redis:5.0
 ```
 
+<div id="redisYAML"></div>
+
+<script>
+makeNewestServicesYaml("redis", "rediscache", "redisYAML", 1024);
+</script>
+
 Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items to make room for new ones.
 
 ### Persistent Redis
@@ -70,6 +76,12 @@ In your ``.platform/services.yaml``:
 rediscache:
     type: redis:5.0
 ```
+
+<div id="redisYAMLSecond"></div>
+
+<script>
+makeNewestServicesYaml("redis", "rediscache", "redisYAMLSecond", 1024);
+</script>
 
 If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php/extensions.md) in your `.platform.app.yaml`.
 

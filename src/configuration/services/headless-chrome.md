@@ -1,6 +1,6 @@
 # Headless Chrome
 
-Headless Chrome is a headless browser that can be configured on projects like any other service on Platform.sh. You can interact with the `headless-chrome` service container using Puppeteer, a Node library that provides an API to control Chrome over the DevTools Protocol. 
+Headless Chrome is a headless browser that can be configured on projects like any other service on Platform.sh. You can interact with the `headless-chrome` service container using Puppeteer, a Node library that provides an API to control Chrome over the DevTools Protocol.
 
 Puppeteer can be used to generate PDFs and screenshots of web pages, automate form submission, and test your project's UI. You can find out more information about using Puppeteer on [GitHub](https://github.com/GoogleChrome/puppeteer) or in their [documentation](https://pptr.dev/).
 
@@ -33,7 +33,7 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 ## Requirements
 
-Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater. 
+Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater.
 
 Using the Platform.sh [Config Reader](https://github.com/platformsh/config-reader-nodejs) library requires Node.js 10 or later.
 
@@ -49,6 +49,12 @@ In your `.platform/services.yaml`:
 headless:
   type: chrome-headless:73
 ```
+
+<div id="headlessYAML"></div>
+
+<script>
+makeNewestServicesYaml("chrome-headless", "headless", "headlessYAML");
+</script>
 
 In your `.platform.app.yaml`:
 
@@ -82,7 +88,7 @@ exports.takeScreenshot = async function (url) {
         const browser = await puppeteer.connect({browserURL: formattedURL});
 
         ...
-        
+
         return browser
 
     } catch (e) {
@@ -91,7 +97,7 @@ exports.takeScreenshot = async function (url) {
 };
 ```
 
-Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagepdfoptions), and much more. 
+Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v1.17.0&show=api-pagepdfoptions), and much more.
 
 You can find some useful examples of using headless Chrome and Puppeteer on Platform.sh on the Community Portal:
 

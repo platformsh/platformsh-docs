@@ -134,7 +134,6 @@ function makeNewestAppYaml(imageName, divName) {
 
 function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=0) {
    var imageType = 'services';
-   // var defaultDisk = 1024;
    var jsonSource = "/scripts/supported-images/versions.json";
    $.getJSON(jsonSource, function( data ) {
   		 var currentType = data[imageType][imageName].type;

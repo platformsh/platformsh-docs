@@ -38,6 +38,12 @@ mydatabase:
     disk: 1024
 ```
 
+<div id="postgresYAML"></div>
+
+<script>
+makeNewestServicesYaml("postgresql", "mydatabase", "postgresYAML", 1024);
+</script>
+
 Add a relationship to the service in your ``.platform.app.yaml``:
 
 ```yaml

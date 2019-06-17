@@ -29,6 +29,12 @@ memcached:
     type: memcached:1.4
 ```
 
+<div id="memcachedYAML"></div>
+
+<script>
+makeNewestServicesYaml("memcached", "memcached", "memcachedYAML");
+</script>
+
 Now add a relationship in your `.platform.app.yaml` file:
 
 ```yaml

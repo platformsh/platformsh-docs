@@ -30,6 +30,12 @@ mysearch:
     disk: 1024
 ```
 
+<div id="solrYAML"></div>
+
+<script>
+makeNewestServicesYaml("solr", "mysolr", "solrYAML", 1024);
+</script>
+
 In your ``.platform.app.yaml``:
 
 ```yaml

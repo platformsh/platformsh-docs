@@ -28,6 +28,12 @@ influx:
     disk: 1024
 ```
 
+<div id="influxYAML"></div>
+
+<script>
+makeNewestServicesYaml("influxdb", "influx", "influxYAML", 1024);
+</script>
+
 In your `.platform.app.yaml`:
 
 ```yaml

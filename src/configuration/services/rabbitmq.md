@@ -28,6 +28,12 @@ myrabbitmq:
     disk: 1024
 ```
 
+<div id="rabbitYAML"></div>
+
+<script>
+makeNewestServicesYaml("rabbitmq", "myrabbitmq", "rabbitYAML", 1024);
+</script>
+
 In your ``.platform.app.yaml``:
 
 ```yaml

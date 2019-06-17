@@ -34,6 +34,12 @@ files:
     disk: 2048
 ```
 
+<div id="netstorageYAML"></div>
+
+<script>
+makeNewestServicesYaml("network-storage", "files", "netstorageYAML", 2048);
+</script>
+
 This example creates a service named `files` that is of type `network-storage`, and gives it 2048 MB of storage total.
 
 ## Declare the mount

@@ -42,6 +42,12 @@ mydatabase:
     disk: 1024
 ```
 
+<div id="mysqlYAML"></div>
+
+<script>
+makeNewestServicesYaml("mysql", "mydatabase", "mysqlYAML", 1024);
+</script>
+
 Note that the minimum disk size for mysql is 256MB.
 
 In your `.platform.app.yaml`:
