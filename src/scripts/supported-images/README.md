@@ -17,8 +17,7 @@ The Platform.sh Engineering team continuously releases new images for service an
 ### Steps for a new service version
 
 1. Add the new version to the end of the `"supported"` key for that service in `versions.json`.
-2. Update the `services.yaml` example on that service's documentation page to the new version.
-3. If the service is in one of the *Special cases* below, be sure to follow those steps as well.
+2. If the service is in one of the *Special cases* below, be sure to follow those steps as well.
 
 `versions.json` should act as a single edit point for new image version releases. If, for example, Engineering has told us that Platform.sh now supports MariaDB 10.3, it should be added as the last element of `object.mysql.supported`:
 
@@ -44,6 +43,10 @@ This not only ensures that the newly supported version is visible on every page 
 If the only change is that a new version of an image is released, this is the extent of the update for most images.
 
 ### Special Cases
+
+### Varnish
+
+Since the `service.yaml` configuration for varnish requires more keys than simply `type` and `disk`, it has not been linked to the `makeNewestServicesYaml()` function in `versions.js`, and it's *most recent version* will have to be updated manually on its main page (/configuration/services/varnish.md#add-a-varnish-service and /configuration/services/varnish.md#create-a-vcl-template-file)
 
 #### Elasticsearch
 
@@ -92,8 +95,6 @@ makeImagesList("services", "jedi-trix", "supported", "jediSupported");
 ```
 
 If the new service comes with pre-defined "deprecated" versions, copy the above into the "Deprecated versions" section with the `div id` "jediDeprecated" and change the third parameter of `makeImagesList` to "deprecated".
-
-> **Note** A function has not yet been added that will automatically update the example `services.yaml` file on a service's primary documentation page, so you will have to remember to perform that separately.
 
 If instead your are attempting do document a new runtime, you can use `versions.json` to keep the `.platform.app.yaml` up-to-date with the most recent version by placing the following in its main documentation page (Go used as an example here):
 

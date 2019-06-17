@@ -36,12 +36,6 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml`:
 
-```yaml
-mydatabase:
-    type: mysql:10.2
-    disk: 1024
-```
-
 <div id="mysqlYAML"></div>
 
 <script>

@@ -33,11 +33,6 @@ The `redis` service type is configured to serve as a LRU cache with the eviction
 
 To add an Ephemeral Redis service, specify it in your `.platform/services.yaml` file like so:
 
-```yaml
-rediscache:
-    type: redis:5.0
-```
-
 <div id="redisYAML"></div>
 
 <script>
@@ -51,12 +46,6 @@ Data in an Ephemeral Redis instance is stored only in memory, and thus requires 
 The `redis-persistent` service type is configured for persistent storage. That makes it a good choice for fast application-level key-value storage.
 
 To add a Persistent Redis service, specify it in your `.platform/services.yaml` file like so:
-
-```yaml
-redisdata:
-    type: redis-persistent:5.0
-    disk: 1024
-```
 
 <div id="redisPersYAML"></div>
 
@@ -77,11 +66,6 @@ The format is identical regardless of whether it's a persistent or ephemeral ser
 ## Usage example
 
 In your ``.platform/services.yaml``:
-
-```yaml
-rediscache:
-    type: redis:5.0
-```
 
 <div id="redisYAMLSecond"></div>
 

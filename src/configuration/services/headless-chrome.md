@@ -45,11 +45,6 @@ It will be necessary to upgrade the version of Node.js in other language contain
 
 In your `.platform/services.yaml`:
 
-```yaml
-headless:
-  type: chrome-headless:73
-```
-
 <div id="headlessYAML"></div>
 
 <script>

@@ -32,12 +32,6 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml` add:
 
-```yaml
-mydatabase:
-    type: postgresql:11
-    disk: 1024
-```
-
 <div id="postgresYAML"></div>
 
 <script>

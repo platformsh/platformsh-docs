@@ -32,12 +32,6 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 In your `.platform/services.yaml`:
 
-```yaml
-mysearch:
-    type: elasticsearch:6.5
-    disk: 1024
-```
-
 <div id="elasticsearchYAML"></div>
 
 <script>

@@ -22,12 +22,6 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml`:
 
-```yaml
-influx:
-    type: influxdb:1.7
-    disk: 1024
-```
-
 <div id="influxYAML"></div>
 
 <script>

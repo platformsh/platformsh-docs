@@ -24,11 +24,6 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-```yaml
-memcached:
-    type: memcached:1.4
-```
-
 <div id="memcachedYAML"></div>
 
 <script>

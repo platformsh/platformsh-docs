@@ -24,12 +24,6 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-```yaml
-mysearch:
-    type: solr:8.0
-    disk: 1024
-```
-
 <div id="solrYAML"></div>
 
 <script>

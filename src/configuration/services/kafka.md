@@ -22,12 +22,6 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-```yaml
-mykafka:
-    type: kafka:2.1
-    disk: 1024
-```
-
 <div id="kafkaYAML"></div>
 
 <script>

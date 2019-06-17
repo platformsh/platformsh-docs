@@ -28,12 +28,6 @@ If you are on one of those and require the service we suggest you [migrate](http
 
 First, declare a new service in the `services.yaml` file like so:
 
-```yaml
-files:
-    type: network-storage:1.0
-    disk: 2048
-```
-
 <div id="netstorageYAML"></div>
 
 <script>

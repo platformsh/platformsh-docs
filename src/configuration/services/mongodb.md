@@ -26,12 +26,6 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml`:
 
-```yaml
-mydatabase:
-    type: mongodb:3.6
-    disk: 1024
-```
-
 <div id="mongoYAML"></div>
 
 <script>

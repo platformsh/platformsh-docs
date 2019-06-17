@@ -22,12 +22,6 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-```yaml
-myrabbitmq:
-    type: rabbitmq:3.7
-    disk: 1024
-```
-
 <div id="rabbitYAML"></div>
 
 <script>
