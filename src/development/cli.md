@@ -75,6 +75,52 @@ Options:
  --shell (-s)          Launch the shell
 ```
 
+### CLI features
+
+#### Auto-selecting your project
+
+When your working directory is inside a local checkout of your project repository, the platform CLI tool will autodetect your project ID and environment, so you don't need to list them as parameters each time. (See `.platform/local/project.yaml`)
+
+Eg, in your home directory:
+
+```bash
+~ $ platform project:info --project=acdefghijkl --environment=staging
+```
+You can instead get the same result with just:
+```bash
+~ $ cd myproject
+myproject $ project:info
+```
+
+You can also set a preferred project ID with the environment variables `PLATFORM_PROJECT`, `PLATFORM_BRANCH` and `PLATFORM_APPLICATION_NAME`
+
+```bash
+export PLATFORM_PROJECT=acdefghijkl;
+export PLATFORM_BRANCH=staging;
+project:info
+```
+
+### Autocomplete on the commandline
+
+__When installed properly___ the `platform` CLI tool provides tab autocompletion for commands, options, and even some values (your projects, valid regions). eg:
+``` bash
+$ platform proj<TAB>
+platform project
+$ platform project<TAB>
+    project:clear-build-cache  project:delete             project:info               project:metadata           projects
+    project:create             project:get                project:list               project:set-remote
+$ platform project:get <TAB><TAB>
+    27vsk5hw7jdca  2dqlhibhdkqj2  3uwms2vi353f6  xmn7qzd2pqhma  yh3p3drn4gglu  
+$ platform project:get 2d<TAB>
+platform project:get 2d2dqlhibhdkqj2
+$ platform project:get 2d2dqlhibhdkqj2 --<TAB><TAB>
+    --build          --environment    --host           --no             --quiet          --version        
+    --depth          --help           --identity-file  --project        --verbose        --yes  
+```
+
+* Your system must include the `bash-completion` package or equivalent. This is not available by default on OSX, but can be installed via `brew`. Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell. `platform self:install` will attempt a reinstall of this utility if it's needed.
+
+
 ## Installing the CLI on Windows 10
 
 There are multiple ways to install the CLI on Windows 10. Platform.sh recommends using Bash for Windows (Windows Subsystem for Linux).
