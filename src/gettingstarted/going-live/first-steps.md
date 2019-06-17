@@ -4,9 +4,9 @@
 
 Before you take your site live, there are a few steps that will help you prepare the project.
 
-1. **Register your domain**
+1. **Register your domain and choose a suitable DNS provider**
 
-    Register your domain with a registrar that allows you to use [CNAMEs](/golive/steps/dns.md) for your domain. Make sure to do this before moving on to the next steps, as the CLI will reject attempts to add domains that do not allow CNAMEs.
+    If you plan on serving exclusively from a subdomain such as the historically common `www.` subdomain, you will be able use any DNS provider that supports CNAME records. If you wish to use the apex domain, eg. `https://site.com`, with no `www.` subdomain, choose one of the specialized DNS providers that allow you to use [ALIAS or ANAME records](/golive/steps/dns.md). Make sure to do this before moving on to the next steps, as the CLI will reject attempts to add domains that do not allow CNAMEs.
 
 2. **Test your routes**
 

@@ -8,7 +8,7 @@ Don't stop now! There are far more features that make Platform.sh profoundly hel
 
 ### Developing on Platform.sh
 
-Once an application has been migrated to Platform.sh, there's plenty more features that will help improve your development life cycle.
+Consult these additional resources to help improve your development life cycle.
 
 <div id = "dev-envs"></div>
 
