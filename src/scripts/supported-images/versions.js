@@ -132,9 +132,9 @@ function makeNewestAppYaml(imageName, divName) {
   });
 }
 
-function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=false) {
+function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=0) {
    var imageType = 'services';
-   var defaultDisk = 1024;
+   // var defaultDisk = 1024;
    var jsonSource = "/scripts/supported-images/versions.json";
    $.getJSON(jsonSource, function( data ) {
   		 var currentType = data[imageType][imageName].type;
@@ -146,8 +146,8 @@ function makeNewestServicesYaml(imageName, serviceName, divName, usesDisk=false)
        var details = "<pre><code class='lang-yaml'><span class='hljs-attr'>" + serviceName + ":</span>\n";
        details += "<span class='hljs-attr'>    type:</span> " + currentType + ":<span class='hljs-number'>" + mostRecent + "</span>\n";
 
-       if (usesDisk) {
-          details += "<span class='hljs-attr'>    disk:</span> <span class='hljs-number'>" + defaultDisk + "</span>\n";
+       if (usesDisk > 0) {
+          details += "<span class='hljs-attr'>    disk:</span> <span class='hljs-number'>" + usesDisk + "</span>\n";
        }
 
        details += "</code></pre>";

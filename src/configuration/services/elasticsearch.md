@@ -41,7 +41,7 @@ mysearch:
 <div id="elasticsearchYAML"></div>
 
 <script>
-makeNewestServicesYaml("elasticsearch", "mysearch", "elasticsearchYAML", true);
+makeNewestServicesYaml("elasticsearch", "mysearch", "elasticsearchYAML", 725);
 </script>
 
 In your `.platform.app.yaml`:
