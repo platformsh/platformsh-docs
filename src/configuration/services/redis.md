@@ -58,10 +58,10 @@ redisdata:
     disk: 1024
 ```
 
-<div id="redisYAML"></div>
+<div id="redisPersYAML"></div>
 
 <script>
-makeNewestServicesYaml("redis", "redisdata", "redisYAML", 0, "redis-persistent");
+makeNewestServicesYaml("redis", "redisdata", "redisPersYAML", 1024, "redis-persistent");
 </script>
 
 The `disk` key is required for redis-persistent to tell Platform.sh how much disk space to reserve for Redis' persistent data.
