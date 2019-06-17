@@ -20,7 +20,7 @@ If you are unfamiliar with how to generate an RSA public and private key, there 
 
 Now that you have the requirements out of the way, place your SSH key onto Platform.sh so that you can communicate with your projects from your computer using the management console. Log in to your account
 
-<video width="800" controls autoplay loop>
+<video controls autoplay loop>
   <source src="/videos/management-console/add-ssh-mc.mp4" type="video/mp4">
 </video>
 

@@ -6,7 +6,7 @@ You will need to configure your registered domain on your Platform.sh project be
 
 ## Through the management console
 
-<video width="800" controls autoplay loop>
+<video controls autoplay loop>
   <source src="/videos/management-console/set-domain-mc.mp4" type="video/mp4">
 </video>
 

@@ -4,7 +4,7 @@
 
 If you initialized your project on the "Development" plan size, you will not be able to take it live until you upgrade it. This can be done very easily using the management console.
 
-<video width="800" controls autoplay loop>
+<video controls autoplay loop>
   <source src="/videos/management-console/upgrade-plan.mp4" type="video/mp4">
 </video>
 

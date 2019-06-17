@@ -30,17 +30,9 @@ With your configuration files complete, all that's left to do is to commit the c
 
     Alternatively, you can also log back into the management console in your new project. Select the `Master` environment in the `Environments` list and click the link below the Overview box on the left side of the page.
 
-    <html>
-    <head>
-    <link rel="stylesheet" href="/styles/styles.css">
-    </head>
-    <body>
-      <video width="800" controls autoplay loop>
-        <source src="/videos/management-console/check-status.mp4" type="video/mp4">
-      </video>
-      <br/><br/>
-    </body>
-    </html>
+    <video controls autoplay loop>
+      <source src="/videos/management-console/check-status.mp4" type="video/mp4">
+    </video>
 
 That's it! Using the Platform.sh CLI and a few properly configured files, pushing your application to run on Platform.sh takes only a few minutes.
 
