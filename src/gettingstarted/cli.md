@@ -104,7 +104,7 @@ project:info
 
 ### Autocomplete on the command line
 
-Once installed\* the `platform` CLI tool provides tab autocompletion for commands, options, and even some values (your projects, valid regions). eg:
+Once installed, the `platform` CLI tool provides tab autocompletion for commands, options, and even some values (your projects, valid regions). eg:
 ``` bash
 $ platform proj<TAB>
 platform project
