@@ -77,13 +77,13 @@ Options:
 
 ### CLI features
 
-Additional settings to control the operation of the `platform` CLI can be managed in the configuration file (See `.platform/local/project.yaml`) or environment variables. See the [`platformsh-cli` `README` for details](https://github.com/platformsh/platformsh-cli/blob/master/README.md#usage). 
+Additional settings to control the operation of the Platform.sh CLI can be managed in the configuration file (`.platform/local/project.yaml`) or environment variables. See the [`README` for the CLI for details](https://github.com/platformsh/platformsh-cli/blob/master/README.md#usage). 
 
 #### Auto-selecting your project
 
-When your shells working directory is inside a local checkout of your project repository, the `platform` CLI tool will autodetect your project ID and environment, so you don't need to list them as parameters each time.
+When your shell's working directory is inside a local checkout of your project repository, the CLI will autodetect your project ID and environment, so you don't need to list them as parameters each time.
 
-Eg, in your home directory you need to provide the project ID as an argument each time:
+In your home directory, for example, you need to provide the project ID as an argument each time:
 
 ```bash
 ~ $ platform project:info --project=acdefghijkl --environment=staging
@@ -94,7 +94,7 @@ You can instead get the same result with just:
 myproject $ project:info
 ```
 
-You can also set a preferred project ID with the environment variables `PLATFORM_PROJECT`, `PLATFORM_BRANCH` and `PLATFORM_APPLICATION_NAME`..
+You can also set a preferred project ID with the environment variables `PLATFORM_PROJECT`, `PLATFORM_BRANCH` and `PLATFORM_APPLICATION_NAME`.
 
 ```bash
 export PLATFORM_PROJECT=acdefghijkl;
@@ -102,9 +102,9 @@ export PLATFORM_BRANCH=staging;
 project:info
 ```
 
-### Autocomplete on the commandline
+### Autocomplete on the command line
 
-__When installed properly__\* the `platform` CLI tool provides tab autocompletion for commands, options, and even some values (your projects, valid regions). eg:
+Once installed\* the `platform` CLI tool provides tab autocompletion for commands, options, and even some values (your projects, valid regions). eg:
 ``` bash
 $ platform proj<TAB>
 platform project
@@ -120,7 +120,8 @@ $ platform project:get 2d2dqlhibhdkqj2 --<TAB><TAB>
     --depth          --help           --identity-file  --project        --verbose        --yes  
 ```
 
-* Your system must include the `bash-completion` package or equivalent. This is not available by default on OSX, but can be installed via `brew`. Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell. `platform self:install` will attempt a reinstall of this utility if it's needed.
+> **note**
+> Your system must include the `bash-completion` package or equivalent. This is not available by default on OSX, but can be installed via `brew`. Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell. `platform self:install` will attempt a reinstall of this utility if it's needed.
 
 
 ## Installing the CLI on Windows 10
