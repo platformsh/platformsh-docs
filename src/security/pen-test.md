@@ -23,4 +23,5 @@ Platform.sh understands the need for application owners to ensure the integrity,
 * Please limit scans to a maximum of 20 Mbps and 50 requests per second in order to prevent triggering denial of service bans.
 
 ## Troubleshooting
+
 If your vulnerability scanning suggests there may be an issue with Platform.sh's service, please ensure your container is [updated](/security/updates.md) and retest. If the problem remains, please [contact support](/overview/getting-help.md).
