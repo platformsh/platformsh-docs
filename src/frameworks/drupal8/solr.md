@@ -4,6 +4,15 @@ Platform.sh recommends using Solr version 6.6, yet we support [other versions](.
 
 Advanced Solr service configuration and implementation in other frameworks other than Drupal can be found at the [Solr services page](../../configuration/services/solr.md)
 
+> **note**
+> Before Installing or Upgrading
+>
+> Recent changes to the module [Search API Solr](https://www.drupal.org/project/search_api_solr) introduced a bug which may prevent the Solr server from starting properly. As a consequence, the deployment may fail. Then, we highly recommend testing on development branches first.
+>
+> This is caused by having a wrong value for `solr.install.dir`defined in the configuration file `solrcore.properties` provided by the module's templates.
+>
+> The fix is to remove the line defining `solr.install.dir` in `solrcore.properties`. However, in some cases which the Solr server startup command does not define this value, then it may be necessary to set this value to `solr.install.dir=/opt/solr/<solr_version>`, for example, `solr.install.dir=/opt/solr/6.6`.
+
 ## Requirements
 
 ### Add the Drupal modules
