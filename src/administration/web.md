@@ -80,6 +80,8 @@ These options are provided in a separate dialog box that will appear when you cl
 
 ![sync confirmation cli](/images/management-console/header-sync-box.png)
 
+Be aware that sync uses the [Snapshot](https://docs.platform.sh/administration/snapshot-and-restore.html#snapshots-and-downtime) mechanism and will have the same caveats.
+
 Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded. 
 It is good practice to take a snapshot of your environment before performing a synchronization.
 
