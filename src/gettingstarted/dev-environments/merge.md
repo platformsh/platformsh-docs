@@ -6,17 +6,17 @@ Now that you've had the chance to verify that your application built and deploye
 
 <asciinema-player src="/videos/asciinema/snap-merge-restore.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
-> **Note:** In each code example provided, it is not necessary to include the `--project` flag if you are merging from within your local repository and the flags are meant only to be illustrative.
+> **Note:** The `--project` flag is not needed if you are merging from within your local repository.
 
 1. **Create a snapshot**
 
-    Before you merge the `dev` feature into `master`, create a [snapshot](/administration/snapshot-and-restore.md) of the `master` environment. The snapshot will preserve both the code and all of its data that can be used to restore the environment later.
+    Before you merge the `dev` feature into `master`, create a [snapshot](/administration/snapshot-and-restore.md) of the `master` environment. The snapshot will preserve both the code and all of its data.
 
     ```bash
     platform snapshot:create --project <project id>
     ```
 
-    Select `master` as the environment you want to back up and the CLI will create your snapshot.
+    Select `master` as the environment you want to back up.
 
 2. **Merge feature into production**
 
@@ -24,7 +24,7 @@ Now that you've had the chance to verify that your application built and deploye
     platform environment:merge --project <project id>
     ```
 
-    Select `dev`, and then Platform.sh will merge `dev` into its parent, `master`. You can once again verify that your changed have been merged when the build process completes with
+    Select `dev`, and then Platform.sh will merge `dev` into its parent, `master`. When the build process completes, verify that your changes have been merged.
 
     ```bash
     platform url
@@ -32,7 +32,7 @@ Now that you've had the chance to verify that your application built and deploye
 
 3. **Restore a snapshot**
 
-    If for whatever reason the outcome of the merge did not go as you expected and you would like to restore the code and data to the time of your snapshot, you can use the command
+    If you would like to restore the code and data to the time of your snapshot, use the command
 
     ```bash
     platform snapshot:restore --project <project id>

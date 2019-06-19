@@ -2,21 +2,20 @@
 
 ## Create environment
 
-It would be useful to test a new feature deploys correctly by building a live site of your application that includes that feature. Platform.sh supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data.
+Platform.sh supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data. This is useful for testing changes in isolation before merging them.
 
-This is a simple example of how to set up a development environment, but if any of your features depend on the data inside your production databases, you will have full access to a complete copy of that data so that you can be sure the feature will work as expected before merging.
 
 <asciinema-player src="/videos/asciinema/branch.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 1. **Create branch, make changes, push to Platform.sh**
 
-    First, create and checkout a branch for your new feature.
+    Create and checkout a branch for your new feature.
 
     ```bash
     git branch dev && git checkout dev
     ```
 
-    Make some changes to your code, commit them and push to the Platform.sh remote.
+    Make changes to your code, commit them, and push to the Platform.sh remote.
 
     ```bash
     git add .
@@ -26,7 +25,7 @@ This is a simple example of how to set up a development environment, but if any 
 
 2. **Activate an environment for the feature branch**
 
-    Platform.sh will create a new environment from the branch, but it will not be active. That is, it will not be built and deployed into a live environment. You can check the status of an inactive environment after you push the branch with the command
+    Platform.sh will create a new environment from the branch, but it will not be active. That is, it will not be built and deployed into a live environment. You can check the status of an inactive environment after you push the branch.
 
     ```bash
     platform environments -p <project ID>
@@ -45,8 +44,6 @@ This is a simple example of how to set up a development environment, but if any 
   ```bash
   platform url
   ```
-
-Now that you have a live development environment to test, you're ready to merge it into production. Before you do that, however, it's always a good idea to take a [snapshot](/administration/snapshot-and-restore.md) of your `master` environment in case you want to restore that snapshot post-merge.
 
 <div id = "buttons"></div>
 

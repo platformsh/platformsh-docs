@@ -8,7 +8,7 @@ Now that you've opened tunnels into your services, you'll have access to all of 
 
 1. **Build the site**
 
-    Make sure that you are in your repository root, then run the command
+    From the repository root, run the command
 
     ```bash
     platform build
@@ -28,13 +28,13 @@ Now that you've opened tunnels into your services, you'll have access to all of 
 
 3. **Cleanup**
 
-    That's it! Now you can easily spin up a local build of your application and test new features with full access to all of the data in your services. When you are finished, remember to shut down the web server and then close the tunnel to your services:
+    That's it! Now you can easily spin up a local build of your application and test new features with full access to all of the data in your services. When you are finished, shut down the web server and then close the tunnel to your services:
 
     ```bash
     platform tunnel:close
     ```
 
-Now you know how to connect to your services on Platform.sh and perform a local build during development. Move onto the next step to find some helpful additional resources.
+Now you know how to connect to your services on Platform.sh and perform a local build during development.
 
 <div id = "buttons"></div>
 
