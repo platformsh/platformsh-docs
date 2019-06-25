@@ -1,6 +1,6 @@
 # GDPR Overview page
 
-Platform.sh has taken numerous steps to prepare for GDPR. We believe we meet the spirit of the regulation.
+Platform.sh has taken numerous steps to ensure GDPR compliance.
 
 As part of our measures we have implemented the following:
 
