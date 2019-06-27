@@ -35,6 +35,10 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
+{% codetabs name="Java", type="java", url="https://examples.docs.platform.sh/java/influxdb" -%}
+
+{%- endcodetabs %}
+
 ```php
 <?php
 <?php
