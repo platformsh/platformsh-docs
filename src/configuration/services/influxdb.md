@@ -37,7 +37,6 @@ You can then use the service in a configuration file of your application with so
 
 ```php
 <?php
-<?php
 // This assumes a fictional application with an array named $settings.
 if (getenv('PLATFORM_RELATIONSHIPS')) {
 	$relationships = json_decode(base64_decode($relationships), TRUE);
