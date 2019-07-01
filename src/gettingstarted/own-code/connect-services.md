@@ -60,6 +60,39 @@ credentials = config.credentials('database')
 {%- language name="Node.js", type="js" -%}
 const config = require("platformsh-config").config();
 const credentials = config.credentials('database');
+{%- language name="Java", type="java" -%}
+import Config;
+
+Config config = new Config();
+Credential cred = config.getCredential('database')
+{%- language name="Go", type="go" -%}
+package main
+
+import (
+	"database/sql"
+	_ "github.com/go-sql-driver/mysql"
+	sqldsn "github.com/platformsh/config-reader-go/v2/sqldsn"
+	psh "github.com/platformsh/config-reader-go/v2"
+	"net/http"
+)
+
+func main() {
+
+	// Creating a psh.RuntimeConfig struct
+	config, err := psh.NewRuntimeConfig()
+	if err != nil {
+		panic("Not in a Platform.sh Environment.")
+	}
+
+	// Accessing the database relationship Credentials struct
+	credentials, err := config.Credentials("database")
+	if err != nil {
+		panic(err)
+	}
+
+  ...
+
+}
 {%- endcodetabs %}
 
 or read and decode the environment variable directly.

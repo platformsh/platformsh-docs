@@ -10,11 +10,13 @@ This is a simple example of how to set up a development environment, but if any 
 
 1. **Create branch, make changes, push to Platform.sh**
 
-    First, create and checkout a branch for your new feature.
+    Using the CLI, create a branch for a new feature called `dev`
 
-    ```bash
-    git branch dev && git checkout dev
     ```
+    platform environment:branch dev
+    ```
+
+    This command will create a new branch `dev` from `master`, as well as a local `dev` branch for you to work on. `dev` will be a clone of `master`, including an exact-copy of all of its data and files.
 
     Make some changes to your code, commit them and push to the Platform.sh remote.
 
@@ -24,21 +26,15 @@ This is a simple example of how to set up a development environment, but if any 
     git push platform dev
     ```
 
-2. **Activate an environment for the feature branch**
+    > **Note:** If you create a new branch with Git (i.e. `git checkout -b new-feature`), when you push its commits to Platform.sh that branch will not automatically build. `new-feature` is an *inactive environment*, because Platform.sh does not assume that every branch should be associated with an active environment, since your plan will limit the number of active environments you are allowed.
+    >
+    > If you want to activate the `new-feature` environment after it has been pushed, you can do so with the command
+    >
+    > ```
+    > platform environment:activate new-feature
+    > ```
 
-    Platform.sh will create a new environment from the branch, but it will not be active. That is, it will not be built and deployed into a live environment. You can check the status of an inactive environment after you push the branch with the command
-
-    ```bash
-    platform environments -p <project ID>
-    ```
-
-    To activate the new branch `dev` from within your local repository, use the command
-
-    ```bash
-    platform environment:activate dev
-    ```
-
-3. **Verify**
+2. **Verify**
 
   After Platform.sh has built and deployed the environment, verify that it has been activated by visiting its new url:
 
