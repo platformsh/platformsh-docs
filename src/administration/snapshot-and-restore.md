@@ -68,7 +68,24 @@ Be aware that the older US and EU regions do not support restoring snapshots to 
 
 ## Snapshots and downtime
 
-A snapshot does cause a momentary pause in service. We recommend running during non-peak hours for your site.
+A snapshot does cause a momentary pause in service. We recommend running during non-peak hours for your site. 
+
+The amount of downtime depends greatly on the size of your project. You can use the size of your database to get a ballpark estimate. Simply divide the size of your database (in MB) by 20. That'll be roughly the time it takes for the snapshot to complete.
+
+For example:
+```bash
+$ platform db:size
+
++----------------+-----------------+-----------------+
+| Allocated disk | Estimated usage | Percentage used |
++----------------+-----------------+-----------------+
+| 10.0 GiB       | 3.4 GiB         | ~ 34%           |
++----------------+-----------------+-----------------+
+```
+
+DB_SIZE_IN_MB / 20 = TIME_IN_SECONDS
+
+3481MiB / 20 = 174seconds (or ~2.5minutes)
 
 ## Automated snapshots
 
