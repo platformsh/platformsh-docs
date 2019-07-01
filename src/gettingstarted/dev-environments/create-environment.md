@@ -12,7 +12,7 @@ Platform.sh supports the deployment of isolated development environments from yo
     Create and checkout a branch for your new feature.
 
     ```
-    platform environment:branch dev
+    platform branch dev
     ```
 
     This command will create a new branch `dev` from `master`, as well as a local `dev` branch for you to work on. `dev` will be a clone of `master`, including an exact-copy of all of its data and files.
