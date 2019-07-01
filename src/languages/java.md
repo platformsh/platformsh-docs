@@ -56,8 +56,6 @@ To access various [services](/configuration/services.md) with Java, see the foll
 
 {%- language name="Kafka", type="java", url="https://examples.docs.platform.sh/java/kafka" -%}
 
-{%- language name="InfluxDB", type="java", url="https://examples.docs.platform.sh/java/influxdb" -%}
-
 {%- language name="RabbitMQ", type="java", url="https://examples.docs.platform.sh/java/rabbitmq" -%}
 
 {%- endcodetabs %}
