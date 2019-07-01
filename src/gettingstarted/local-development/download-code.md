@@ -20,7 +20,7 @@ Otherwise, it will be necessary to download a local copy of your project first.
     platform get <project id>
     ```
 
-Now that you have a local copy of your application that is configured to the Platform.sh remote repository, you can now connect to its services and build it on your machine.
+Next you can now connect to its services and build it on your machine.
 
 <div id = "buttons"></div>
 

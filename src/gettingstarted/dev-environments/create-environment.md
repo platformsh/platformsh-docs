@@ -2,15 +2,14 @@
 
 ## Create environment
 
-It would be useful to test a new feature deploys correctly by building a live site of your application that includes that feature. Platform.sh supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data.
+Platform.sh supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data. This is useful for testing changes in isolation before merging them.
 
-This is a simple example of how to set up a development environment, but if any of your features depend on the data inside your production databases, you will have full access to a complete copy of that data so that you can be sure the feature will work as expected before merging.
 
 <asciinema-player src="/videos/asciinema/branch.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 
 1. **Create branch, make changes, push to Platform.sh**
 
-    Using the CLI, create a branch for a new feature called `dev`
+    Create and checkout a branch for your new feature.
 
     ```
     platform environment:branch dev
@@ -18,7 +17,7 @@ This is a simple example of how to set up a development environment, but if any 
 
     This command will create a new branch `dev` from `master`, as well as a local `dev` branch for you to work on. `dev` will be a clone of `master`, including an exact-copy of all of its data and files.
 
-    Make some changes to your code, commit them and push to the Platform.sh remote.
+    Make changes to your code, commit them, and push to the Platform.sh remote.
 
     ```bash
     git add .
@@ -41,8 +40,6 @@ This is a simple example of how to set up a development environment, but if any 
   ```bash
   platform url
   ```
-
-Now that you have a live development environment to test, you're ready to merge it into production. Before you do that, however, it's always a good idea to take a [snapshot](/administration/snapshot-and-restore.md) of your `master` environment in case you want to restore that snapshot post-merge.
 
 <div id = "buttons"></div>
 

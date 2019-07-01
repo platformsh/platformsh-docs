@@ -18,15 +18,13 @@ When you're finished, click "Add domain", and the project will once again redepl
 
 ## Using the CLI
 
-[ascii video here]
-
 You can also add a domain to your project using the Platform.CLI. From a terminal window, type the command
 
 ```bash
 platform domain:add example.com --project <project ID>
 ```
 
-The CLI will validate your registered domain, provision Let's Encrypt certificates for it, and add it to the project after a redeploy.
+The CLI will validate your registered domain and provision Let's Encrypt certificates for it.
 
 <div id = "buttons"></div>
 

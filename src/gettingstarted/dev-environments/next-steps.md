@@ -4,11 +4,11 @@
 
 In this guide you learned how to create and activate live feature environments, test them, and merge them into production safely using [snapshots](/administration/snapshot-and-restore.md).
 
-Don't stop now! There are far more features that make Platform.sh profoundly helpful to developers that you have left to explore.
+Don't stop now! There are many more features that make Platform.sh profoundly helpful to developers.
 
 ### Developing on Platform.sh
 
-Once an application has been migrated to Platform.sh, there's plenty more features that will help improve your development life cycle.
+The next guide shows how to set up your development workflow to benefit from Platform.sh.
 
 <div id = "local-dev"></div>
 

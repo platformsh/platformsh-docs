@@ -10,7 +10,7 @@ Now that you have a local copy of your application code, you can make changes to
 
 1. **Open an SSH tunnel to connect to your services**
 
-    The easiest way to build a project with services locally is on a local web server, keeping all other services on Platform.sh and connecting to them using an [SSH tunnel](/development/local/tethered.md#ssh-tunneling). You can consult the [local development](/development/local.md) documentation if your are interested in other methods as well.
+    Open local [SSH tunnels](/development/local/tethered.md#ssh-tunneling) to your environment's services.
 
     ```bash
     platform tunnel:open
@@ -18,7 +18,7 @@ Now that you have a local copy of your application code, you can make changes to
 
 2. **Export environment variables**
 
-    Platform.sh utilizes a number of environment variables within the application container that store the credentials that are used to connect to individual services. In order to connect with them remotely using the SSH tunnel you will need to mimic the same environment variables locally.
+    Platform.sh utilizes environment variables called Relationships within the application container. These store the credentials needed to connect to individual services. In order to connect with them remotely using the SSH tunnel you will need to mimic the same environment variables locally.
 
     ```bash
     export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
@@ -33,13 +33,13 @@ Now that you have a local copy of your application code, you can make changes to
 
 3. **Verify**
 
-    Lastly, you can visualize the open tunnels for your application with the command
+    You can visualize the open tunnels for your application with the command
 
     ```bash
     platform tunnel:list
     ```
 
-Now that you have created an SSH tunnel to your services, all that's left to do is actually build your application locally.
+Now that you have created an SSH tunnel to your services, build your application locally.
 
 <div id = "buttons"></div>
 
