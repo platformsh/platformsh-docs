@@ -33,7 +33,6 @@ Platform.sh supports the most common project management tools in the Java ecosys
 * [Ant](https://ant.apache.org/)
 
 
-
 ## Accessing services
 
 To access various [services](/configuration/services.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
