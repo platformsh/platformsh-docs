@@ -4,7 +4,7 @@
 
 > **Note:** If your application does not contain any services, you do not need to open a tunnel and can proceed to the next step.
 
-Now that you have a local copy of your application code, it doesn't make sense to make changes to the project by pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
+Now that you have a local copy of your application code, you can make changes to the project without pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
 
 <asciinema-player src="/videos/asciinema/tunnel-open.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 

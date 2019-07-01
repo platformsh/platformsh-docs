@@ -2,7 +2,7 @@
 
 ## Build, Deploy, Done!
 
-With your configuration files complete, all that's left to do is to commit the changes and push to Platform.sh.
+With your configuration files complete, all that's left is to commit the changes and push to Platform.sh.
 
 <asciinema-player src="/videos/asciinema/first-push.cast" preload=1 autoplay=1 loop=1></asciinema-player>
 

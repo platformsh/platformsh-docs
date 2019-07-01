@@ -22,7 +22,7 @@ Once you have configured the template application in the previous step, Platform
 
    * **Overview**
 
-      In this box the `Master` environment, which is a live environment build from the `master` branch of our application code, will have a status of `Building`.
+      In this box the `Master` environment, which is a live environment built from the `master` branch of our application code, will have a status of `Building`.
 
       Once that status has updated to `Active`, the build is complete and the application has deployed.
 
@@ -37,7 +37,7 @@ Once you have configured the template application in the previous step, Platform
    You can view the template by clicking on the link that is now visible for the `Master` environment under the Overview box. It will open another tab in your browser to your new live site!
 
 
-In these few steps you have created a free trial account, configured a template application on a project and deployed it using the management console entirely from your browser.
+In these few steps you created a free trial account, configured a template application on a project and deployed it using the management console entirely from your browser.
 
 Using the [Platform.sh CLI](/development/cli.md), however, you get even more control over your project configurations, including the ability to migrate your own applications to Platform.sh. Move onto the next step to install it.
 

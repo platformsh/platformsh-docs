@@ -31,6 +31,12 @@ In the previous steps you checked that the requirements on your computer were me
    platform
    ```
 
+   Take a moment to view some of the available commands with the command
+
+   ```bash
+   platform list
+   ```
+
 Now that you have installed the CLI and it is communicating with Platform.sh, you can configure and push your project to Platform.sh.
 
 <div id = "buttons"></div>

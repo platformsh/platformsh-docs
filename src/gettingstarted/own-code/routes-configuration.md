@@ -44,7 +44,7 @@ Each route can then be configured with the following properties:
 > * **Language-specific templates for Platform.sh Projects**
 >    Compare the `.platform/routes.yaml` file from the simple template above to other templates when writing your own.
 
-Now that you have configured your routes, your application is ready to deploy on Platform.sh, you may be wondering how to actually use the services you configured in the previous step within your application. In the next step, you will be able to see how Platform.sh leverages environment variables to make connecting to services simple.   
+Now that you have configured your routes, you may be wondering how to actually use the services you configured in the previous step within your application. In the next step, you will be able to see how Platform.sh leverages environment variables to make connecting to services simple.   
 
 <div id = "buttons"></div>
 

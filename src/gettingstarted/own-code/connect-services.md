@@ -29,7 +29,21 @@ composer install platformsh/config-reader
 pip install platformshconfig
 {%- language name="Node.js", type="js" -%}
 npm install platformsh-config --save
+{%- language name="Java", type="java" -%}
+// Installing with Maven
+ <dependency>
+     <groupId>sh.platform</groupId>
+     <artifactId>config</artifactId>
+     <version>0.0.1-SNAPSHOT</version>
+ </dependency>
+
+// Installing with Gradle
+compile group: 'sh.platform', name: 'config', version: '0.0.1-SNAPSHOT'
+{%- language name="Go", type="go" -%}
+// In your go.mod file
+github.com/platformsh/config-reader-go/v2 v2.2.2
 {%- endcodetabs %}
+
 
 and access the credentials of `database`
 
@@ -91,8 +105,9 @@ You can find out more information about Platform.sh Config Reader libraries on G
 
 * [PHP Config Reader](https://github.com/platformsh/config-reader-php)
 * [Python Config Reader](https://github.com/platformsh/config-reader-python)
-* [Node.js Config Reader](https://github.com/platformsh/config-reader-java)
-* [Java Config Reader](https://github.com/platformsh/config-reader-nodejs)
+* [Node.js Config Reader](https://github.com/platformsh/config-reader-nodejs)
+* [Java Config Reader](https://github.com/platformsh/config-reader-java)
+* [Go Config Reader](https://github.com/platformsh/config-reader-go)
 
 You can also find examples of how to connect to each of Platform.sh managed services in multiple languages in the [Services Documentation](/configuration/services.md).
 
