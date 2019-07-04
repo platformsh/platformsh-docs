@@ -34,18 +34,6 @@ Inbound IPs (gw.eu-2.platformsh.site):
 * 34.241.191.143
 * 52.210.208.94
 
-### German Sovereign Cloud (de-1.platform.sh) - Retiring May 2019
-
-Outbound IPs:
-
-* 51.4.225.60
-* 51.4.229.93
-* 51.4.228.12
-
-Inbound IP (gw.de-1.platformsh.site):
-
-* 51.4.227.171
-
 ### German Sovereign Cloud (de-2.platform.sh)
 
 * 35.246.248.138
