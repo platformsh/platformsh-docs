@@ -38,12 +38,7 @@ Now that you've opened tunnels into your services, you'll have access to all of 
 
 Now you know how to connect to your services on Platform.sh and perform a local build during development.
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I have built my application locally";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have built my application locally</a>
+</div>

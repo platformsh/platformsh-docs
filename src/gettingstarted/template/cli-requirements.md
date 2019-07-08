@@ -40,12 +40,7 @@ Add your SSH key to your Platform.sh account so that you can communicate with yo
 
 That's it! Now that you have met the requirements and configured an SSH key, all that's left is to install the Platform.sh CLI so you can interact with your projects from the command line.
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I have added my SSH key to my account";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have added my SSH key to my account</a>
+</div>

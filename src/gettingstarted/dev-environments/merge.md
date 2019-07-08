@@ -39,12 +39,7 @@ Now that you've had the chance to verify that your application built and deploye
     platform snapshot:restore --project <project id>
     ```
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I have merged the new feature";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have merged the new feature</a>
+</div>

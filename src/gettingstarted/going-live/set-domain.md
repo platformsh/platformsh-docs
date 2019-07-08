@@ -26,12 +26,8 @@ platform domain:add example.com --project <project ID>
 
 The CLI will validate your registered domain and provision Let's Encrypt certificates for it.
 
-<div id = "buttons"></div>
 
-<script>
-$(document).ready(function(){
-  var navNextText = "I have configured my registered domain on my project";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have configured my registered domain on my project</a>
+</div>

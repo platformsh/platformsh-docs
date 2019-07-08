@@ -63,11 +63,6 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
     makeButton(descButton);
 </script>
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+</div>

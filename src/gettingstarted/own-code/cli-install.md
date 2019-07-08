@@ -39,12 +39,7 @@ In the previous steps you checked that the requirements on your computer were me
 
 Now that you have installed the CLI and it is communicating with Platform.sh, you can configure and push your project to Platform.sh.
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I have installed the CLI";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have installed the CLI</a>
+</div>

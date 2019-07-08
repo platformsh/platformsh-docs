@@ -3,15 +3,9 @@
 Now that your application is up and running, here are some additional pieces of information that will help you leverage every bit of technology Platform.sh has to offer.
 
 
-<div id = "integrations"></div>
-
-<script>
-    var descTitle = "External Integrations";
-    var descDesc = "Configure Platform.sh to mirror every push and pull request on GitHub, Gitlab, and Bitbucket.";
-    var descPath = getPathObj("/gettingstarted/integrations.html", descTitle, descDesc);
-    var descButton = {type: "descriptive", path: descPath, div: "integrations"};
-    makeButton(descButton);
-</script>
+<div class="buttons">
+  <a href="/gettingstarted/integrations.html" class="button-link">External Integrations<br><br>Configure Platform.sh to mirror every push and pull request on GitHub, Gitlab, and Bitbucket.</a>
+</div>
 
 <div id = "dev-envs"></div>
 

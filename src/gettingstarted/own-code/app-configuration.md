@@ -95,12 +95,7 @@ makeImagesTable("runtimes", "supported", "runtimeTable");
 
 Now that you have configured your application, you will next need to handle HTTP requests to your application using the `.platform/routes.yaml` file.
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I have configured my application";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have configured my application</a>
+</div>

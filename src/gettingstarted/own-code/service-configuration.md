@@ -50,12 +50,7 @@ makeImagesTable("services", "supported", "servicesTable");
 Platform.sh provides _managed services_, and each service comes with considerable default configuration that you will not have to include yourself in `.services.yaml`. Next,
 you will next need to tell Platform.sh how to build and deploy your application using the `.platform.app.yaml` file.
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I have configured my services";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have configured my services</a>
+</div>

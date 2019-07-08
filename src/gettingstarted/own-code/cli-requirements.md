@@ -42,12 +42,7 @@ That's it! Now that you have met the requirements and configured an SSH key, Pla
 
 Next, you will need to install the Platform.sh CLI so that you can import your code to a project.
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I have configured my SSH key in the management console";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have configured my SSH key in the management console</a>
+</div>

@@ -22,12 +22,7 @@ Otherwise, it will be necessary to download a local copy of your project first.
 
 Now that you have a local copy of your application that is configured to the Platform.sh remote repository, you can create a new .
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I have a local copy of my code";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have a local copy of my code</a>
+</div>

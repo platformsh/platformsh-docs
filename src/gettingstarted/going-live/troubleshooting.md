@@ -20,11 +20,7 @@ Consider using Cloudflare's TLS/SSL service to secure your site via HTTPS when u
 
 * [Going Live: Cloudflare](/golive/steps/cloudflare.md)
 
-<div id = "buttons"></div>
 
-<script>
-$(document).ready(function(){
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+</div>

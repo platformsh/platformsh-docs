@@ -22,12 +22,7 @@ Before you take your site live, there are a few steps that will help you prepare
 
 After you have gone through the following checklist your application is ready to be taken live!
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I'm ready to go live";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I'm ready to go live</a>
+</div>

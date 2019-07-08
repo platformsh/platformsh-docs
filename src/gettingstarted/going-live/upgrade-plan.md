@@ -18,12 +18,7 @@ Select the plan size that is appropriate for the needs of your application. This
 
 Now you are ready to set up your pre-registered domain.
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I have upgraded my plan size";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have upgraded my plan size</a>
+</div>

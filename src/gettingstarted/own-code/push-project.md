@@ -38,12 +38,7 @@ That's it! Using the Platform.sh CLI and a few properly configured files, pushin
 
 Now that your code is on Platform.sh, check out some of the Next Steps to get started developing.
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I have deployed my application";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have deployed my application</a>
+</div>

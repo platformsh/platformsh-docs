@@ -46,12 +46,7 @@ With the Platform.sh CLI now installed and configured to communicate with your p
 
 That's it! You have now created an empty project and connected your repository to that project using the CLI. Move on now to the next step to start configuring your repository to deploy on Platform.sh.
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I created a project with the CLI";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I created a project with the CLI</a>
+</div>

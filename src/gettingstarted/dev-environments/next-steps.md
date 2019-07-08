@@ -52,11 +52,6 @@ The next guide shows how to set up your development workflow to benefit from Pla
     makeButton(descButton);
 </script>
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+</div>

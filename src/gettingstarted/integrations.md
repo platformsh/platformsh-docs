@@ -4,29 +4,12 @@ While you can host your application repository entirely on Platform.sh, it's lik
 
 Choose your current service, and this guide will take you through the steps to mirror your repository on Platform.sh and have environments created automatically for your pull requests and branches.
 
-<div class="column">
-  <div id="github"></div>
-</div>
-<div class="column">
-  <div id="gitlab"></div>
-</div>
-<div class="column">
-  <div id="bitbucket"></div>
-</div>
 
-<script>
-    var descPathGH = getPathObj("/administration/integrations/github.html", "GitHub");
-    var descButtonGH = {type: "basicFull", path: descPathGH, div: "github"};
-    makeButton(descButtonGH);
-
-    var descPathGL = getPathObj("/administration/integrations/gitlab.html", "GitLab");
-    var descButtonGL = {type: "basicFull", path: descPathGL, div: "gitlab"};
-    makeButton(descButtonGL);
-
-    var descPathBB = getPathObj("/administration/integrations/bitbucket.html", "Bitbucket");
-    var descButtonBB = {type: "basicFull", path: descPathBB, div: "bitbucket"};
-    makeButton(descButtonBB);
-</script>
+<div class="buttons">
+  <a href="/administration/integrations/github.html" class="button-link">GitHub</a>
+  <a href="/administration/integrations/bitbucket.html" class="button-link">Bitbucket</a>
+  <a href="/administration/integrations/gitlab.html" class="button-link">GitLab</a>
+</div>
 
 These steps assume that you have already:
 

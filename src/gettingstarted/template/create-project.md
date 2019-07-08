@@ -38,12 +38,7 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
 With these few selections Platform.sh will create the project and build the template in less than two minutes.
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "I have created a new project with a template";
-  var navButtons = {type: "navigation", prev: getPathObj("prev"), next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="next-link button-link">I have created a new project with a template</a>
+</div>

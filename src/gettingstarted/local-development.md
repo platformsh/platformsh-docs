@@ -9,12 +9,6 @@ These steps assume that you have already:
 
 If you have not completed these steps by now, click the links and do so before you begin.
 
-<div id = "buttons"></div>
-
-<script>
-$(document).ready(function(){
-  var navNextText = "Get started!";
-  var navButtons = {type: "navigation", next: getPathObj("next", navNextText), div: "buttons"};
-  makeButton(navButtons);
-});
-</script>
+<div class="buttons">
+  <a href="#" class="next-link button-link basic">Get started!</a>
+</div>
