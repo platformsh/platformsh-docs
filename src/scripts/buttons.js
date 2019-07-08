@@ -1,3 +1,18 @@
+/**
+ * Make any "next" and "prev" links point to the right URL dynamically.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  let nextLinkTarget = document.querySelector("link[rel=next]").getAttribute("href");
+  document.querySelectorAll('a.next-link').forEach((elm) => {
+    elm.setAttribute('href', nextLinkTarget);
+  });
+
+  let prevLinkTarget = document.querySelector("link[rel=prev]").getAttribute("href");
+  document.querySelectorAll('a.prev-link').forEach((elm) => {
+    elm.setAttribute('href', prevLinkTarget);
+  });
+});
+
 function getPathObj(buttonPath, buttonText=null, buttonDescription=null) {
 		var defaultBackText = "Back";
     var objPath;
@@ -10,7 +25,7 @@ function getPathObj(buttonPath, buttonText=null, buttonDescription=null) {
     } else {
         objPath = buttonPath;
     }
-    return {path: objPath, text: buttonText, description: buttonDescription};
+    return {path: hrefPath, text: buttonText, description: buttonDescription};
 }
 
 function makeButton(button, oneOfMultiple=false) {

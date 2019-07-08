@@ -1,4 +1,26 @@
 @import url("//fonts.googleapis.com/css?family=Open+Sans:400,600");
+
+
+:root {
+  --brand-font: "Overpass";
+  --brand-font-mono: "Overpass-mono";
+  --brand-color-neural-black: #1f1f19;
+  --brand-color-neural-white: #ffffff;
+  --brand-color-neural-gray: #eeede4;
+  --brand-color-neural-blue: #ededef;
+  --brand-color-primary-blue: #145cc6;
+  --brand-color-primary-pink: #ffaeae;
+  --brand-color-light-blue: #d0def4;
+  --brand-color-light-pink: #ffeeee;
+  --brand-color-accent-red: #fb3728;
+}
+
+body {
+  --button-link-background-color: var(--brand-color-light-blue);
+  --button-link-background-color-hover: var(--brand-color-primary-blue);
+  --button-link-color: #302F45;
+}
+
 body {
   padding-top: 78px;
 }
@@ -419,18 +441,20 @@ section.examples-lists > div {
   overflow: scroll;
 }
 
-/* General Buttons */
+/* Button-styled links */
 
-center {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-a.buttongen {
+a.button-link {
+  flex-grow: 1;
   font-size:15px;
-  color: #302F45;
-  background-color: #F5F7FA;
+  font-weight: 600;
+  color: var(--button-link-color);
+  background-color: var(--button-link-background-color);
   border: 1px solid #302F45;
   border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
@@ -442,24 +466,24 @@ a.buttongen {
   justify-content: center;
 }
 
-a.buttongen:hover {
-  background-color: #1664ff;
+a.button-link:hover {
+  background-color: var(--button-link-background-color-hover);
   border: 1px solid #1664ff;
   color: white;
 }
 
-a.buttongen.full {
+a.button-link.full {
   display: block !important;
   width: 100%;
   text-align:left;
 }
 
-a.buttongen.full-center {
+a.button-link.full-center {
   width: 100%;
   text-align:center;
 }
 
-a.buttongen.small {
+a.button-link.small {
   font-weight: 600;
   width: 40%;
   text-align:center;
