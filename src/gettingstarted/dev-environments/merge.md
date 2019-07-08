@@ -6,7 +6,7 @@ Now that you've had the chance to verify that your application built and deploye
 
 <asciinema-player src="/videos/asciinema/snap-merge-restore.cast" preload=1></asciinema-player>
 
-> **Note:** The `--project` flag is not needed if you are merging from within your local repository.
+> **Note:** The `--project` flag is not needed if you are running the `platform` command from within your local repository.
 
 1. **Create a snapshot**
 

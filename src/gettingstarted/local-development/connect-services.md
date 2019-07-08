@@ -23,12 +23,19 @@ Now that you have a local copy of your application code, you can make changes to
     ```bash
     export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
     ```
-    In order to use these credentials to connect to your services, it is also necessary that those services are locally installed.
+    In order to use these credentials to connect to your services, it may also be necessary to install the clients for those services are locally.
 
     Additionally, if your application also needs access to the `PORT` environment variable, you can mock the variable used in a Platform.sh environment with
 
     ```bash
     export PORT=8888
+    ```
+
+    If you are using a Config Reader library with the application, it will also be necessary to mock two additional variables
+
+    ```bash
+    export PLATFORM_APPLICATION_NAME=<.platform.app.yaml name, i.e. app>
+    export PLATFORM_BRANCH=<branch being built, i.e. dev>
     ```
 
 3. **Verify**
@@ -37,6 +44,12 @@ Now that you have a local copy of your application code, you can make changes to
 
     ```bash
     platform tunnel:list
+    ```
+
+    The tunnel will close itself after a timeout period of inactivity, but you can also do so with the command
+
+    ```bash
+    platform tunnel:close
     ```
 
 Now that you have created an SSH tunnel to your services, build your application locally.

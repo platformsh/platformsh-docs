@@ -26,6 +26,8 @@ Now that you've opened tunnels into your services, you'll have access to all of 
     python3 -m http.server 8000
     {%- endcodetabs %}
 
+    Applications written in Node.js, Go and Java will automatically listen on a port locally, so it will only be necessary to execute the program directly.
+
 3. **Cleanup**
 
     That's it! Now you can easily spin up a local build of your application and test new features with full access to all of the data in your services. When you are finished, shut down the web server and then close the tunnel to your services:

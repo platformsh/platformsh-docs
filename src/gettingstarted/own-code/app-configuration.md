@@ -66,12 +66,12 @@ makeImagesTable("runtimes", "supported", "runtimeTable");
 
 * `web`: The `web` key configures the web server through a single web instance container running a single Nginx server process, behind which runs your application.
 
-    * `commands`: Defines the [command](/configuration/app/web.md#locations) to actually launch the application. The `start` key launches your application.
+    * `commands`: Defines the [command](/configuration/app/web.md#commands) to actually launch the application. The `start` key launches your application.
     * `locations`: Allows you to control how the application container responds to incoming requests at a very fine-grained level. The simplest possible [locations](/configuration/app/web.md#locations) configuration is one that simply passes all requests on to your application unconditionally:
 
       ```yaml
       web:
-      locations:
+        locations:
           '/':
               passthru: true
       ```

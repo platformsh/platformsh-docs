@@ -12,19 +12,11 @@ In the previous step, you created a collection of empty configuration files that
 └── < application code >
 ```
 
-Now you will need to include information that will tell Platform.sh how you want your application to connect to its [services](/configuration/services.md). An example `.platform/services.yaml` will always look something like this:
+Now you will need to include information that will tell Platform.sh how you want your application to connect to its [services](/configuration/services.md). An example `.platform/services.yaml` will look something like this:
 
 `.platform/services.yaml`
 
-{%- codetabs name="Python", type="py", url="https://raw.githubusercontent.com/platformsh/template-python3/master/.platform/services.yaml" -%}
-
-{% language name="PHP", type="php", url="https://raw.githubusercontent.com/platformsh/template-php/master/.platform/services.yaml" -%}
-
-{% language name="Go", type="go", url="https://raw.githubusercontent.com/platformsh/template-golang/master/.platform/services.yaml" -%}
-
-{% language name="Node.js", type="js", url="https://raw.githubusercontent.com/platformsh/platformsh-example-nodejs/master/.platform/services.yaml" -%}
-
-{%- endcodetabs %}
+{% codesnippet "https://raw.githubusercontent.com/platformsh/language-examples/master/.platform/services.yaml", language="yaml" %}{% endcodesnippet %}
 
 If you're application does not use any services at this point, you can leave it blank, but it must exist in your repository to run on Platform.sh. If your application does use a database or other services, you can configure them with the following attributes:
 

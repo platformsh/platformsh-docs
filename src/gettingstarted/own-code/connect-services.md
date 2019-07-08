@@ -23,22 +23,20 @@ In order to connect to this service and use it in your application, Platform.sh 
 
 To access this variable you can install a Platform.sh configuration reader library
 
-{% codetabs name="PHP", type="php" -%}
+{% codetabs name="PHP", type="bash" -%}
 composer install platformsh/config-reader
-{%- language name="Python", type="py" -%}
+{%- language name="Python", type="bash" -%}
 pip install platformshconfig
-{%- language name="Node.js", type="js" -%}
+{%- language name="Node.js", type="bash" -%}
 npm install platformsh-config --save
-{%- language name="Java", type="java" -%}
-// Installing with Maven
- <dependency>
-     <groupId>sh.platform</groupId>
-     <artifactId>config</artifactId>
-     <version>0.0.1-SNAPSHOT</version>
- </dependency>
-
-// Installing with Gradle
-compile group: 'sh.platform', name: 'config', version: '0.0.1-SNAPSHOT'
+{%- language name="Java (Maven)", type="xml" -%}
+<dependency>
+    <groupId>sh.platform</groupId>
+    <artifactId>config</artifactId>
+    <version>2.2.0</version>
+</dependency>
+{%- language name="Java (Gradle)", type="xml" -%}
+compile group: 'sh.platform', name: 'config', version: 2.2.0'
 {%- language name="Go", type="go" -%}
 // In your go.mod file
 github.com/platformsh/config-reader-go/v2 v2.2.2
@@ -66,33 +64,14 @@ import Config;
 Config config = new Config();
 Credential cred = config.getCredential('database')
 {%- language name="Go", type="go" -%}
-package main
+import psh "github.com/platformsh/config-reader-go/v2"
 
-import (
-	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
-	sqldsn "github.com/platformsh/config-reader-go/v2/sqldsn"
-	psh "github.com/platformsh/config-reader-go/v2"
-	"net/http"
-)
+config, err := psh.NewRuntimeConfig()
+// Handle err
 
-func main() {
+credentials, err := config.Credentials("database")
+// Handle err
 
-	// Creating a psh.RuntimeConfig struct
-	config, err := psh.NewRuntimeConfig()
-	if err != nil {
-		panic("Not in a Platform.sh Environment.")
-	}
-
-	// Accessing the database relationship Credentials struct
-	credentials, err := config.Credentials("database")
-	if err != nil {
-		panic(err)
-	}
-
-  ...
-
-}
 {%- endcodetabs %}
 
 or read and decode the environment variable directly.
