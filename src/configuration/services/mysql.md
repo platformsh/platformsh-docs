@@ -12,6 +12,7 @@ The service type `mysql` refers to MariaDB.  The service type `oracle-mysql` ref
 * mysql:10.1
 * mysql:10.2
 
+
 * oracle-mysql:5.7
 * oracle-mysql:8.0
 
