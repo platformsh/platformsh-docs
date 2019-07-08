@@ -6,11 +6,9 @@ PHP is a popular scripting language designed especially for the web. It currentl
 
 ## Supported versions
 
-<div id = "phpSupported"></div>
-
-<script>
-makeImagesList("runtimes", "php", "supported", "phpSupported");
-</script>
+<div class="services-list" data-service="php" data-supported="supported">
+  Default stuff goes here.
+</div>
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
@@ -26,11 +24,11 @@ makeNewestAppYaml('php', 'appYAML');
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-<div id = "phpDeprecated"></div>
+<div class="services-list" data-service="php" data-supported="deprecated">
+  Default stuff goes here.
+</div>
 
-<script>
-makeImagesList("runtimes", "php", "deprecated", "phpDeprecated");
-</script>
+
 
 ## Support libraries
 

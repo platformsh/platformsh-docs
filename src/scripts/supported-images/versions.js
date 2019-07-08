@@ -1,3 +1,43 @@
+const supportedServicesDefinition = "/scripts/supported-images/versions.json";
+
+let supportedServicesList;
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Fetch and parse the services definition once and cache it,
+  // then call the various functions that will populate the page
+  // based on it.
+  fetch(supportedServicesDefinition, {method: 'GET'})
+    .then((response) => response.json() )
+    .then((json) => { supportedServicesList = json;})
+    .then(populateServicesList)
+    .then(thingie);
+
+});
+
+function populateServicesList() {
+  document.querySelectorAll('div.services-list').forEach((elm) => {
+    let versions = supportedServicesList.runtimes[elm.dataset.service][elm.dataset.supported] || [];
+
+    // Remove default content.
+    var newElm = elm.cloneNode(false);
+    elm.parentNode.replaceChild(newElm, elm);
+
+    if (versions.length === 0) {
+      newElm.append(`<p>Nothing found</p>`);
+      return;
+    }
+
+    let list = versions.map((item) => `<li>${item}</li>\n`);
+
+    newElm.innerHTML = "<ul>\n" + list.join('') + "</ul>\n";
+  });
+}
+
+function thingie() {
+  console.log("In thingie");
+}
+
 /**
  * Creates an HTML list that can be used to document 'Supported' and 'Deprecated' image
  * versions in language and service pages pulled from 'images.json'. To include use:
@@ -5,6 +45,10 @@
  * To list the supported versions of the service InfluxDB:
  *
  * <div id = "influxdbSupported"></div>
+ *
+ * <div class="services-list" data-service="influxdb" data-supported="supported">
+ *     Default stuff goes here.
+*  </div>
  *
  * <script>
  * makeImagesList("services", "influxdb", "supported", "influxdbSupported");
