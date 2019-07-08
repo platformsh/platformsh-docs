@@ -34,6 +34,20 @@ Inbound IPs (gw.eu-2.platformsh.site):
 * 34.241.191.143
 * 52.210.208.94
 
+### West 4 (eu-4.platform.sh)
+
+Outbound IPs:
+
+* 18.200.158.188
+* 18.200.157.200
+* 18.200.184.206
+
+Inbound IPs (gw.eu-4.platformsh.site):
+
+* 52.215.88.119
+* 52.208.179.40
+* 18.200.179.139
+
 ### German Sovereign Cloud (de-2.platform.sh)
 
 * 35.246.248.138
