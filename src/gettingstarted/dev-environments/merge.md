@@ -4,7 +4,7 @@
 
 Now that you've had the chance to verify that your application built and deployed correctly on your development environment, you're ready to merge it into your production site. Platform.sh provides [snapshot](/administration/snapshot-and-restore.md) features that protect against any unforeseen consequences of your merges, keeping a historical copy of all of your code and data.
 
-<asciinema-player src="/videos/asciinema/snap-merge-restore.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/snap-merge-restore.cast" preload=1></asciinema-player>
 
 > **Note:** The `--project` flag is not needed if you are merging from within your local repository.
 

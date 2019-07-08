@@ -4,7 +4,7 @@
 
 Now that your domain is configured for your application, the last step is to configure your DNS provider to point to the domain of your `master` environment on Platform.sh.
 
-<asciinema-player src="/videos/asciinema/cname-target.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/cname-target.cast" preload=1></asciinema-player>
 
 You can access the CNAME target from your terminal by using the CLI and the command
 

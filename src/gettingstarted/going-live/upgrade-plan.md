@@ -4,7 +4,7 @@
 
 "Development" plan projects cannot be assigned a domain name, so you will not be able to go live until you upgrade to at least a Standard plan. This can be done using the management console.
 
-<video controls autoplay loop>
+<video controls>
   <source src="/videos/management-console/upgrade-plan.mp4" type="video/mp4">
 </video>
 

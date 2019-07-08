@@ -5,7 +5,7 @@
 Platform.sh supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data. This is useful for testing changes in isolation before merging them.
 
 
-<asciinema-player src="/videos/asciinema/branch.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/branch.cast" preload=1></asciinema-player>
 
 1. **Create branch, make changes, push to Platform.sh**
 

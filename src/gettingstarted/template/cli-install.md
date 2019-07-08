@@ -4,7 +4,7 @@
 
 With all of the requirements met, install the CLI to start developing with Platform.sh.
 
-<asciinema-player src="/videos/asciinema/verify-cli-extended.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/verify-cli-extended.cast" preload=1></asciinema-player>
 
 1. **Install the CLI**
 

@@ -4,7 +4,7 @@
 
 With your configuration files complete, all that's left is to commit the changes and push to Platform.sh.
 
-<asciinema-player src="/videos/asciinema/first-push.cast" preload=1 autoplay=1 loop=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/first-push.cast" preload=1></asciinema-player>
 
 1. **Commit and push**
 
@@ -30,7 +30,7 @@ With your configuration files complete, all that's left is to commit the changes
 
     Alternatively, you can also log back into the management console in your new project. Select the `Master` environment in the `Environments` list and click the link below the Overview box on the left side of the page.
 
-    <video controls autoplay loop>
+    <video controls>
       <source src="/videos/management-console/check-status.mp4" type="video/mp4">
     </video>
 
