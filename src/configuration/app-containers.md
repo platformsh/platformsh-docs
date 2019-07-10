@@ -23,6 +23,9 @@ The following properties apply only at the global level, and cannot be replicate
 * [`build`, `dependencies`, and `hooks`](/configuration/app/build.md) - Control how the application gets compiled.  Note that this compilation happens before the application is copied into different instances, so any steps here will apply to all web and worker instances.
 * [`cron`](/configuration/app/cron.md) - Defines scheduled tasks for the application.  Cron tasks will, technically, run as part of the web instance regardless of how many workers are defined.
 
+> **Note**
+> It's essential to have your [`name`](/configuration/app/name.md) and [`type`](/configuration/app/type.md) listed on top of this file and should be the first two properties. All properties listed between or above won't be interpreted and ignored as such.  
+
 The following properties can be set at the top level of the `.platform.app.yaml` file and apply to all application instances, or set within a given instance definition and apply just to that one.  If set in both places then the instance-specific one will take precidence, and completely replace the global one.  That is, if you want to make a change to just one sub-property of one of the following keys you need to replicate the entire block.
 
 * [`size`](/configuration/app/size.md) - Sets an explicit sizing hint for the application.
