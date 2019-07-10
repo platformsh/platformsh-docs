@@ -6,8 +6,6 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-* 5.2
-* 5.4
 * 6.5
 * 7.2
 
@@ -19,6 +17,8 @@ The following versions are available but are not receiving security updates from
 * 1.4
 * 1.7
 * 2.4
+* 5.2
+* 5.4
 
 ## Relationship
 
