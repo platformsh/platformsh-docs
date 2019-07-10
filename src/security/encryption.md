@@ -10,4 +10,8 @@ Data in transit on Platform.sh controlled networks (eg. between the application 
 
 ## Data at Rest
 
-Platform Professional and Development plans do not utilize disk encryption for customer data.  If that is a requirement please consider [Platform.sh Enterprise](https://ent.docs.platform.sh/).
+Data is encrypted at rest automatically for most customers using encrypted ephemeral storage (typically using an AES-256 block cipher).
+
+If you subscribe via our website, your disks are encrypted.
+
+If you have specific audit requirements surrounding data at rest encryption please [contact us](https://docs.platform.sh/overview/getting-help.html).
