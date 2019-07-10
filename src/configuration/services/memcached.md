@@ -50,8 +50,6 @@ dependencies:
        python-memcached: '*'
 ```
 
-{%- endcodetabs %}
-
 You can then use the service in a configuration file of your application with something like:
 
 {% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
