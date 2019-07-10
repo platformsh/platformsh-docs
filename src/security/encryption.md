@@ -12,6 +12,4 @@ Data in transit on Platform.sh controlled networks (eg. between the application 
 
 Data is encrypted at rest automatically for most customers using encrypted ephemeral storage (typically using an AES-256 block cipher).
 
-If you subscribe via our website, your disks are encrypted.
-
 If you have specific audit requirements surrounding data at rest encryption please [contact us](https://docs.platform.sh/overview/getting-help.html).
