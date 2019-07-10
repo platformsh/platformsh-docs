@@ -10,6 +10,6 @@ Data in transit on Platform.sh controlled networks (eg. between the application 
 
 ## Data at Rest
 
-Data is encrypted at rest automatically for most customers using encrypted ephemeral storage (typically using an AES-256 block cipher).
+All application data is encrypted at rest by default using encrypted ephemeral storage (typically using an AES-256 block cipher). Some specific setups on certain dedicated enterprise clusters do not have full encryption at rest.
 
 If you have specific audit requirements surrounding data at rest encryption please [contact us](https://docs.platform.sh/overview/getting-help.html).
