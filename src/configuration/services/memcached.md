@@ -32,7 +32,6 @@ relationships:
     cache: "memcached:memcached"
 ```
 
-{% codetabs name="PHP", type="text" -%}
 If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php.md#php-extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 
 ```yaml
@@ -41,7 +40,6 @@ runtime:
         - memcached
 ```
 
-{%- language name="Python", type="text" -%}
 For Python you will need to include a dependency for a Memcached library, either via your requirements.txt file or a global dependency.  As a global dependency you would add the following to `.platform.app.yaml`:
 
 ```yaml
