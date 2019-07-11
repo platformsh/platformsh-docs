@@ -24,7 +24,7 @@ The following versions are available but are not receiving security updates from
 
 ### Ephemeral Redis
 
-The `redis` service type is configured to serve as a LRU cache with the eviction policy `allkeys-lru` - its storage is not persistent.  It is not suitable for use except as a disposable cache.
+The `redis` service type is configured to serve as a LRU cache; its storage is not persistent.  It is not suitable for use except as a disposable cache.
 
 To add an Ephemeral Redis service, specify it in your `.platform/services.yaml` file like so:
 
@@ -33,7 +33,7 @@ rediscache:
     type: redis:5.0
 ```
 
-Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items to make room for new ones.
+Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
 
 ### Persistent Redis
 
@@ -88,6 +88,28 @@ You can then use the service in a configuration file of your application with so
 {%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/redis" -%}
 
 {%- endcodetabs %}
+
+## Eviction policy
+
+On the Ephemeral `redis` service it is also possible to select the key eviction policy.  That will control how Redis behaves when it runs out of memory for cached items and needs to clear old items to make room.
+
+```yaml
+rediscache:
+    type: redis:5.0
+    configuration:
+      maxmemory_policy: allkeys-lru
+```
+
+The default value if not specified is `allkeys-lru`, which will simply remove the oldest cache item first.  Legal values are:
+
+* noeviction
+* allkeys-lru
+* volatile-lru
+* allkeys-random
+* volatile-random
+* volatile-ttl
+
+See the [Redis documentation](https://redis.io/topics/lru-cache#eviction-policies) for a description of each option.
 
 ## Using redis-cli to access your Redis service
 
