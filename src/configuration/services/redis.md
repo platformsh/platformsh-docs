@@ -33,7 +33,7 @@ rediscache:
     type: redis:5.0
 ```
 
-Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items to make room for new ones.
+Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
 
 ### Persistent Redis
 
@@ -89,7 +89,7 @@ You can then use the service in a configuration file of your application with so
 
 {%- endcodetabs %}
 
-## Setting the eviction policy
+## Eviction policy
 
 On the Ephemeral `redis` service it is also possible to select the key eviction policy.  That will control how Redis behaves when it runs out of memory for cached items and needs to clear old items to make room.
 
