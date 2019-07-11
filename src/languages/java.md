@@ -33,7 +33,6 @@ Platform.sh supports the most common project management tools in the Java ecosys
 * [Ant](https://ant.apache.org/)
 
 
-
 ## Accessing services
 
 To access various [services](/configuration/services.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
@@ -54,6 +53,10 @@ To access various [services](/configuration/services.md) with Java, see the foll
 
 {%- language name="Solr", type="java", url="https://examples.docs.platform.sh/java/solr" -%}
 
+{%- language name="Kafka", type="java", url="https://examples.docs.platform.sh/java/kafka" -%}
+
+{%- language name="RabbitMQ", type="java", url="https://examples.docs.platform.sh/java/rabbitmq" -%}
+
 {%- endcodetabs %}
 
 
@@ -64,6 +67,14 @@ A number of project templates for major Java applications are available on GitHu
 
 ### Applications
 
-#### Maven Spring
+#### Spring
+
 * [Spring Boot MySQL](https://github.com/platformsh/template-spring-boot-maven-mysql)
 * [Spring Boot MongoDB](https://github.com/platformsh/template-spring-mvc-maven-mongodb)
+
+#### Eclipse JNoSQL
+
+* [Apache Tomee](https://github.com/platformsh/template-microprofile-tomee)
+* [Thorntail](https://github.com/platformsh/template-microprofile-thorntail)
+* [Payara Micro](https://github.com/platformsh/template-microprofile-payara)
+* [KumuluzEE](https://github.com/platformsh/template-microprofile-kumuluzee)
