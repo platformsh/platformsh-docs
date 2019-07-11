@@ -92,9 +92,30 @@ disk: 1024
 
 Note that there will still be an Nginx proxy server sitting in front of your application.  If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Go application unconditionally, as in the example above.
 
+## Accessing services
+
+To access various [services](/configuration/services.md) with Go, see the following examples. The individual service pages have more information on configuring each service.
+
+{% codetabs name="Memcached", type="go", url="https://examples.docs.platform.sh/golang/memcached" -%}
+
+{% language name="MongoDB", type="go", url="https://examples.docs.platform.sh/golang/mongodb" -%}
+
+{% language name="MySQL", type="go", url="https://examples.docs.platform.sh/golang/mysql" -%}
+
+{% language name="PostgreSQL", type="go", url="https://examples.docs.platform.sh/golang/postgresql" -%}
+
+{% language name="RabbitMQ", type="go", url="https://examples.docs.platform.sh/golang/rabbitmq" -%}
+
+{% language name="Solr", type="go", url="https://examples.docs.platform.sh/golang/solr" -%}
+
+{%- endcodetabs %}
 
 ## Project templates
 
 Platform.sh offers a project templates for Go applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
 
 [Generic Go application](https://github.com/platformsh/template-golang)
+[Beego](https://github.com/platformsh/template-beego)
+[Echo](https://github.com/platformsh/template-echo)
+[Gin](https://github.com/platformsh/template-gin)
+[Hugo](https://github.com/platformsh/template-hugo)
