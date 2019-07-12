@@ -16,23 +16,18 @@ source:
             command: |
                 composer update
                 git add composer.lock
-                git commit -m"Updated composer dependencies"
+                git commit -m "Update Composer dependencies."
 ```
 
 The `update` key is the name of the operation. It is arbitrary, and multiple code operations can be defined.
 
-The environment resource gets a new `source-operation` action which can be triggered by the API:
+The environment resource gets a new `source-operation` action which can be triggered by the CLI:
 
 ```
-platform p:curl environments/staging/source-operation \
-    -X POST \
-    -d '{
-    "operation": "update",
-    "variables": {}
-    }'
+platform source-operation:run update
 ```
 
-The payload has two parameters:
+The command has two parameters:
 
 * `operation` (string): the name of the operation
 * `variables` (optional, object): additional variables (in the style of variables defined in the `.platform.app.yaml`) to inject in the environment of the code operation.
