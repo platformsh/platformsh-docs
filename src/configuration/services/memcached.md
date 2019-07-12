@@ -8,11 +8,7 @@ Both Memcached and Redis can be used for application caching.  As a general rule
 
 ## Supported versions
 
-<div id = "memcachedSupported"></div>
-
-<script>
-makeImagesList("services", "memcached", "supported", "memcachedSupported");
-</script>
+* 1.4
 
 ## Relationship
 
@@ -24,11 +20,10 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-<div id="memcachedYAML"></div>
-
-<script>
-makeNewestServicesYaml("memcached", "memcached", "memcachedYAML");
-</script>
+```yaml
+memcached:
+    type: memcached:1.4
+```
 
 Now add a relationship in your `.platform.app.yaml` file:
 

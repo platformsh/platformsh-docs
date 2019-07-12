@@ -6,11 +6,15 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 ## Supported versions
 
-<div id = "mysqlSupported"></div>
+The service type `mysql` refers to MariaDB. The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc. Other than the `type`, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
 
-<script>
-makeImagesList("services", "mysql", "supported", "mysqlSupported");
-</script>
+* mysql: 10.0
+* mysql: 10.1
+* mysql: 10.2
+
+
+* oracle-mysql: 5.7
+* oracle-mysql: 8.0
 
 > **note**
 >
@@ -20,11 +24,7 @@ makeImagesList("services", "mysql", "supported", "mysqlSupported");
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-<div id = "mysqlDeprecated"></div>
-
-<script>
-makeImagesList("services", "elasticsearch", "deprecated", "mysqlDeprecated");
-</script>
+* mysql: 5.5
 
 ## Relationship
 
@@ -36,11 +36,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml`:
 
-<div id="mysqlYAML"></div>
-
-<script>
-makeNewestServicesYaml("mysql", "mydatabase", "mysqlYAML", 1024);
-</script>
+```yaml
+mydatabase:
+    type: mysql:10.2
+    disk: 1024
+```
 
 Note that the minimum disk size for mysql is 256MB.
 

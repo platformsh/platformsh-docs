@@ -6,11 +6,10 @@ Platform.sh supports deploying any Ruby application. Your application can use an
 
 ### Ruby MRI
 
-<div id = "rubySupported"></div>
-
-<script>
-makeImagesList("runtimes", "ruby", "supported", "rubySupported");
-</script>
+* 2.3
+* 2.4
+* 2.5
+* 2.6
 
 ## Unicorn based Rails configuration
 
@@ -20,11 +19,10 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
 
 1. Specify the language of your application (available versions are listed above):
 
-    <div id = "appYAML"></div>
-    
-    <script>
-    makeNewestAppYaml('ruby', 'appYAML');
-    </script>
+    ```yaml
+    # .platform.app.yaml
+    type: "ruby:2.6"
+    ```
 
 2. Build your application with the build hook.
 
@@ -52,7 +50,7 @@ This assumes you have Unicorn as a dependency in your Gemfile
 
  ```ruby
 # Use Unicorn as the app server
-group :production do 
+group :production do
   gem 'unicorn'
 end
 ```

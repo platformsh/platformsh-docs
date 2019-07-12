@@ -7,19 +7,16 @@ Java is a general-purpose programming language, and one of the most popular in t
 
 ### OpenJDK versions:
 
-<div id = "javaSupported"></div>
-
-<script>
-makeImagesList("runtimes", "java", "supported", "javaSupported");
-</script>
+* 8
+* 11
+* 12
 
 To specify a Java container, use the `type` property in your `.platform.app.yaml`.
 
-<div id = "appYAML"></div>
-
-<script>
-makeNewestAppYaml('java', 'appYAML');
-</script>
+```yaml
+# .platform.app.yaml
+type: "java:12"
+```
 
 ## Support libraries
 
@@ -27,7 +24,7 @@ While it is possible to read the environment directly from your application, it 
 
 ## Support build automation
 
-Platform.sh supports the most common project management tools in the Java ecosystem, including: 
+Platform.sh supports the most common project management tools in the Java ecosystem, including:
 
 * [Gradle](https://gradle.org/)
 * [Maven](https://maven.apache.org/)
@@ -38,8 +35,6 @@ Platform.sh supports the most common project management tools in the Java ecosys
 ## Accessing services
 
 To access various [services](/configuration/services.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
-
-
 
 {% codetabs name="MongoDB", type="java", url="https://examples.docs.platform.sh/java/mongodb" -%}
 
@@ -56,8 +51,6 @@ To access various [services](/configuration/services.md) with Java, see the foll
 {%- language name="Solr", type="java", url="https://examples.docs.platform.sh/java/solr" -%}
 
 {%- endcodetabs %}
-
-
 
 ## Project templates
 

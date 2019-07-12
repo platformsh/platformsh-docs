@@ -6,11 +6,8 @@ However, it is possible to configure a Varnish instance as part of an applicatio
 
 ## Supported versions
 
-<div id = "varnishSupported"></div>
-
-<script>
-makeImagesList("services", "varnish", "supported", "varnishSupported");
-</script>
+* 5.2
+* 6.0
 
 ## How it works
 
@@ -102,7 +99,7 @@ For example:
 "https://{default}/":
     type: upstream
     upstream: "varnish:http"
-    cache: 
+    cache:
         enabled: false
 ```
 

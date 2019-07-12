@@ -8,21 +8,16 @@ Platform.sh supports two different Redis configurations: One persistent (useful 
 
 ## Supported versions
 
-<div id = "redisSupported"></div>
-
-<script>
-makeImagesList("services", "redis", "supported", "redisSupported");
-</script>
+* 3.2
+* 4.0
+* 5.0
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-<div id = "redisDeprecated"></div>
-
-<script>
-makeImagesList("services", "redis", "deprecated", "redisDeprecated");
-</script>
+* 2.8
+* 3.0
 
 > **note**
 > Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database
@@ -33,11 +28,10 @@ The `redis` service type is configured to serve as a LRU cache with the eviction
 
 To add an Ephemeral Redis service, specify it in your `.platform/services.yaml` file like so:
 
-<div id="redisYAML"></div>
-
-<script>
-makeNewestServicesYaml("redis", "rediscache", "redisYAML");
-</script>
+```yaml
+rediscache:
+    type: redis:5.0
+```
 
 Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items to make room for new ones.
 
@@ -47,11 +41,11 @@ The `redis-persistent` service type is configured for persistent storage. That m
 
 To add a Persistent Redis service, specify it in your `.platform/services.yaml` file like so:
 
-<div id="redisPersYAML"></div>
-
-<script>
-makeNewestServicesYaml("redis", "redisdata", "redisPersYAML", 1024, "redis-persistent");
-</script>
+```yaml
+redisdata:
+    type: redis-persistent:5.0
+    disk: 1024
+```
 
 The `disk` key is required for redis-persistent to tell Platform.sh how much disk space to reserve for Redis' persistent data.
 
@@ -67,11 +61,10 @@ The format is identical regardless of whether it's a persistent or ephemeral ser
 
 In your ``.platform/services.yaml``:
 
-<div id="redisYAMLSecond"></div>
-
-<script>
-makeNewestServicesYaml("redis", "rediscache", "redisYAMLSecond");
-</script>
+```yaml
+rediscache:
+    type: redis:5.0
+```
 
 If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php/extensions.md) in your `.platform.app.yaml`.
 

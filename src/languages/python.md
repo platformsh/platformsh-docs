@@ -2,13 +2,12 @@
 
 Platform.sh supports deploying Python applications. Your application can use WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
 
-## Supported versions
+## Supported
 
-<div id = "pythonSupported"></div>
-
-<script>
-makeImagesList("runtimes", "python", "supported", "pythonSupported");
-</script>
+* 2.7
+* 3.5
+* 3.6
+* 3.7
 
 ## Support libraries
 
@@ -20,11 +19,10 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
 1. Specify the language of your application (available versions are listed above):
 
-    <div id = "appYAML"></div>
-    
-    <script>
-    makeNewestAppYaml('python', 'appYAML');
-    </script>
+    ```yaml
+    # .platform.app.yaml
+    type: "python:3.7"
+    ```
 
 2. Build your application with the build hook. Assuming you have your pip dependencies stored in `requirements.txt` and a `setup.py` at the root of your application folder to execute build steps:
 

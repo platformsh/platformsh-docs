@@ -6,11 +6,9 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 ## Supported versions
 
-<div id = "rabbitmqSupported"></div>
-
-<script>
-makeImagesList("services", "rabbitmq", "supported", "rabbitmqSupported");
-</script>
+* 3.5
+* 3.6
+* 3.7
 
 ## Relationship
 
@@ -22,11 +20,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-<div id="rabbitYAML"></div>
-
-<script>
-makeNewestServicesYaml("rabbitmq", "myrabbitmq", "rabbitYAML", 1024);
-</script>
+```yaml
+myrabbitmq:
+    type: rabbitmq:3.7
+    disk: 1024
+```
 
 In your ``.platform.app.yaml``:
 

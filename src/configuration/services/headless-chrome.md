@@ -6,11 +6,7 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 ## Supported versions
 
-<div id = "chromeSupported"></div>
-
-<script>
-makeImagesList("services", "chrome-headless", "supported", "chromeSupported");
-</script>
+* 73
 
 ## Relationship
 
@@ -45,11 +41,10 @@ It will be necessary to upgrade the version of Node.js in other language contain
 
 In your `.platform/services.yaml`:
 
-<div id="headlessYAML"></div>
-
-<script>
-makeNewestServicesYaml("chrome-headless", "headless", "headlessYAML");
-</script>
+```yaml
+headless:
+  type: chrome-headless:73
+```
 
 In your `.platform.app.yaml`:
 

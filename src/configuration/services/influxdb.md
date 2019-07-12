@@ -6,11 +6,9 @@ See the [InfluxDB documentation](https://docs.influxdata.com/influxdb/) for more
 
 ## Supported versions
 
-<div id = "influxdbSupported"></div>
-
-<script>
-makeImagesList("services", "influxdb", "supported", "influxdbSupported");
-</script>
+* 1.2
+* 1.3
+* 1.7
 
 ## Relationship
 
@@ -22,11 +20,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml`:
 
-<div id="influxYAML"></div>
-
-<script>
-makeNewestServicesYaml("influxdb", "influx", "influxYAML", 1024);
-</script>
+```yaml
+influx:
+    type: influxdb:1.7
+    disk: 1024
+```
 
 In your `.platform.app.yaml`:
 
@@ -38,7 +36,6 @@ relationships:
 You can then use the service in a configuration file of your application with something like:
 
 ```php
-<?php
 <?php
 // This assumes a fictional application with an array named $settings.
 if (getenv('PLATFORM_RELATIONSHIPS')) {

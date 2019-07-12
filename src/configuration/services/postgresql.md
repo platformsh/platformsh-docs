@@ -6,21 +6,15 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 ## Supported versions
 
-<div id = "postgresqlSupported"></div>
-
-<script>
-makeImagesList("services", "postgresql", "supported", "postgresqlSupported");
-</script>
+* 9.6
+* 10
+* 11
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-<div id = "postgresqlDeprecated"></div>
-
-<script>
-makeImagesList("services", "postgresql", "deprecated", "postgresqlDeprecated");
-</script>
+* 9.3
 
 ## Relationship
 
@@ -32,11 +26,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml` add:
 
-<div id="postgresYAML"></div>
-
-<script>
-makeNewestServicesYaml("postgresql", "mydatabase", "postgresYAML", 1024);
-</script>
+```yaml
+mydatabase:
+    type: postgresql:11
+    disk: 1024
+```
 
 Add a relationship to the service in your ``.platform.app.yaml``:
 

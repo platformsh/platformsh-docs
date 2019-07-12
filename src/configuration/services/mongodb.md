@@ -6,11 +6,10 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 
 ## Supported versions
 
-<div id = "mongodbSupported"></div>
-
-<script>
-makeImagesList("services", "mongodb", "supported", "mongodbSupported");
-</script>
+* 3.0
+* 3.2
+* 3.4
+* 3.6
 
 > **note**
 >
@@ -26,11 +25,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml`:
 
-<div id="mongoYAML"></div>
-
-<script>
-makeNewestServicesYaml("mongodb", "mydatabase", "mongoYAML", 1024);
-</script>
+```yaml
+mydatabase:
+    type: mongodb:3.6
+    disk: 1024
+```
 
 The minimum disk size for MongoDB is `512` (MB).
 

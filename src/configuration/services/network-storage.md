@@ -6,12 +6,7 @@ The network storage service enables a new kind of `mount` that refers to a share
 
 ## Supported versions
 
-<div id = "netstorageSupported"></div>
-
-<script>
-makeImagesList("services", "network-storage", "supported", "netstorageSupported");
-</script>
-
+* 1.0
 
 (This is a reference to a version of our network storage implementation, not to a version of a 3rd party application.)
 
@@ -28,11 +23,11 @@ If you are on one of those and require the service we suggest you [migrate](http
 
 First, declare a new service in the `services.yaml` file like so:
 
-<div id="netstorageYAML"></div>
-
-<script>
-makeNewestServicesYaml("network-storage", "files", "netstorageYAML", 2048);
-</script>
+```yaml
+files:
+    type: network-storage:1.0
+    disk: 2048
+```
 
 This example creates a service named `files` that is of type `network-storage`, and gives it 2048 MB of storage total.
 

@@ -6,31 +6,27 @@ PHP is a popular scripting language designed especially for the web. It currentl
 
 ## Supported versions
 
-<div id = "phpSupported"></div>
-
-<script>
-makeImagesList("runtimes", "php", "supported", "phpSupported");
-</script>
+* 7.1
+* 7.2
+* 7.3
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
 To specify a PHP container, use the `type` property in your `.platform.app.yaml`.
 
-<div id = "appYAML"></div>
-
-<script>
-makeNewestAppYaml('php', 'appYAML');
-</script>
+```yaml
+# .platform.app.yaml
+type: "php:7.3"
+```
 
 ## Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-<div id = "phpDeprecated"></div>
-
-<script>
-makeImagesList("runtimes", "php", "deprecated", "phpDeprecated");
-</script>
+* 5.4
+* 5.5
+* 5.6
+* 7.0
 
 ## Support libraries
 

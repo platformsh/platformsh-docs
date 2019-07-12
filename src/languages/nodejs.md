@@ -4,11 +4,9 @@ Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine. 
 
 ## Supported versions
 
-<div id = "nodejsSupported"></div>
-
-<script>
-makeImagesList("runtimes", "nodejs", "supported", "nodejsSupported");
-</script>
+* 6.11
+* 8.9
+* 10
 
 If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.html).
 
@@ -16,11 +14,12 @@ If you need other versions, take a look at our [options for installing them with
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-<div id = "nodejsDeprecated"></div>
-
-<script>
-makeImagesList("runtimes", "nodejs", "deprecated", "nodejsDeprecated");
-</script>
+* 0.12
+* 4.7
+* 4.8
+* 6.9
+* 6.10
+* 8.2
 
 ## Support libraries
 
@@ -32,11 +31,10 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
 
 1. Specify the language of your application (available versions are listed above):
 
-    <div id = "appYAML"></div>
-    
-    <script>
-    makeNewestAppYaml('nodejs', 'appYAML');
-    </script>
+    ```yaml
+    # .platform.app.yaml
+    type: "nodejs:10"
+    ```
 
 2. Specify your dependencies under the `nodejs` key, like this:
 
@@ -92,14 +90,14 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
      type: upstream
      upstream: "app:http"
    ```
-   
+
 7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor](/configuration/app/build.md#build), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
 
    ```yaml
    build:
      flavor: none
    ```
-   
+
    Consult the documentation specific to [Node.js builds](https://docs.platform.sh/configuration/app/build.html#nodejs-default-by-default) for more information.
 
 

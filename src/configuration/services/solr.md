@@ -8,11 +8,13 @@ See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) fo
 
 ## Supported versions
 
-<div id = "solrSupported"></div>
-
-<script>
-makeImagesList("services", "solr", "supported", "solrSupported");
-</script>
+* 3.6
+* 4.10
+* 6.3
+* 6.6
+* 7.6
+* 7.7
+* 8.0
 
 ## Relationship
 
@@ -24,11 +26,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-<div id="solrYAML"></div>
-
-<script>
-makeNewestServicesYaml("solr", "mysolr", "solrYAML", 1024);
-</script>
+```yaml
+mysearch:
+    type: solr:8.0
+    disk: 1024
+```
 
 In your ``.platform.app.yaml``:
 

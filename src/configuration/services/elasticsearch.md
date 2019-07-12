@@ -6,21 +6,18 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-<div id = "elasticsearchSupported"></div>
-
-<script>
-makeImagesList("services", "elasticsearch", "supported", "elasticsearchSupported");
-</script>
+* 5.2
+* 5.4
+* 6.5
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-<div id = "elasticsearchDeprecated"></div>
-
-<script>
-makeImagesList("services", "elasticsearch", "deprecated", "elasticsearchDeprecated");
-</script>
+* 0.90
+* 1.4
+* 1.7
+* 2.4
 
 ## Relationship
 
@@ -32,11 +29,11 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 In your `.platform/services.yaml`:
 
-<div id="elasticsearchYAML"></div>
-
-<script>
-makeNewestServicesYaml("elasticsearch", "mysearch", "elasticsearchYAML", 1024);
-</script>
+```yaml
+mysearch:
+    type: elasticsearch:6.5
+    disk: 1024
+```
 
 In your `.platform.app.yaml`:
 

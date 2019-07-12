@@ -6,11 +6,7 @@ See the [Kafka documentation](https://kafka.apache.org/documentation/) for more 
 
 ## Supported versions
 
-<div id = "kafkaSupported"></div>
-
-<script>
-makeImagesList("services", "kafka", "supported", "kafkaSupported");
-</script>
+* 2.1
 
 ## Relationship
 
@@ -22,11 +18,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-<div id="kafkaYAML"></div>
-
-<script>
-makeNewestServicesYaml("kafka", "mykafka", "kafkaYAML", 1024);
-</script>
+```yaml
+mykafka:
+    type: kafka:2.1
+    disk: 1024
+```
 
 In your ``.platform.app.yaml``:
 

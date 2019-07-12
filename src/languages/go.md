@@ -4,29 +4,22 @@ Platform.sh supports building and deploying applications written in Go using Go 
 
 ## Supported versions
 
-<div id = "goSupported"></div>
-
-<script>
-makeImagesList("runtimes", "go", "supported", "goSupported");
-</script>
+* 1.11
+* 1.12
 
 To specify a Go container, use the `type` property in your `.platform.app.yaml`.
 
-<div id = "appYAML"></div>
-
-<script>
-makeNewestAppYaml('go', 'appYAML');
-</script>
+```yaml
+type: 'golang:1.12'
+```
 
 ## Deprecated versions
 
 The following container versions are also available.  However, due to their lack of [Go module](https://golang.org/cmd/go/#hdr-Modules__module_versions__and_more) support and the difficulties in supporting the GOPATH during the Platform.sh build they are not recommended.
 
-<div id = "goDeprecated"></div>
-
-<script>
-makeImagesList("runtimes", "go", "deprecated", "goDeprecated");
-</script>
+* 1.8
+* 1.9
+* 1.10
 
 ## Go modules
 
