@@ -3,7 +3,7 @@
 ## 2019
 
 * **June 2019**
-  * Elasticsearch 7.2: We now support [Elasticsearch 7.2](/configuration/services/elasticsearc.md).
+  * Elasticsearch 7.2: We now support [Elasticsearch 7.2](/configuration/services/elasticsearch.md).
 
 * **July 2019**
   * Java: We support and documented the use of [Java](/languages/java.md) runtimes 8, 11, and 12, that includes examples that use the [Java Config Reader](https://github.com/platformsh/config-reader-java/).
