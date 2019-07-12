@@ -10,48 +10,25 @@ Don't stop now! There are far more features that make Platform.sh profoundly hel
 
 Consult these additional resources to help improve your development life cycle.
 
-<div id = "dev-envs"></div>
+<div class="buttons">
+  <a href="/gettingstarted/dev-environments.html" class="button-link"><b>Development environments</b><br><br>Activate development branches and test new features before merging into production.</a>
+</div>
 
-<script>
-    var descTitle = "Development environments";
-    var descDesc = "Activate development branches and test new features before merging into production";
-    var descPath = getPathObj("/gettingstarted/dev-environments.html", descTitle, descDesc);
-    var descButton = {type: "descriptive", path: descPath, div: "dev-envs"};
-    makeButton(descButton);
-</script>
 
 ### Additional Resources
 
-<div id = "steps"></div>
-
-<script>
-    var descTitle = "Next steps";
-    var descDesc = "Set up domains to take your application live, configure external integrations to GitHub, and more!";
-    var descPath = getPathObj("/gettingstarted/next-steps.html", descTitle, descDesc);
-    var descButton = {type: "descriptive", path: descPath, div: "steps"};
-    makeButton(descButton);
-</script>
-
-<div id = "community"></div>
-
-<script>
-    var descTitle = "Platform.sh Community";
-    var descDesc = "Check out how-tos, tutorials, and get help for your questions about Platform.sh.";
-    var descPath = getPathObj("https://community.platform.sh/", descTitle, descDesc);
-    var descButton = {type: "descriptive", path: descPath, div: "community"};
-    makeButton(descButton);
-</script>
-
-<div id = "blog"></div>
-
-<script>
-    var descTitle = "Platform.sh Blog";
-    var descDesc = "Read news and how-to posts all about working with Platform.sh.";
-    var descPath = getPathObj("https://platform.sh/blog/", descTitle, descDesc);
-    var descButton = {type: "descriptive", path: descPath, div: "blog"};
-    makeButton(descButton);
-</script>
+<div class="buttons">
+  <a href="/gettingstarted/next-steps.html" class="button-link"><b>Next steps</b><br/>Set up domains to take your application live, configure external integrations to GitHub, and more!</a>
+</div>
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
+  <a href="https://community.platform.sh/" class="button-link"><b>Platform.sh Community</b><br/>Check out how-tos, tutorials, and get help for your questions about Platform.sh.</a>
+</div>
+
+<div class="buttons">
+  <a href="https://platform.sh/blog/" class="button-link"><b>Platform.sh Blog</b><br/>Read news and how-to posts all about working with Platform.sh.</a>
+</div>
+
+<div class="buttons">
+  <a href="#" class="button-link prev">Back</a>
 </div>

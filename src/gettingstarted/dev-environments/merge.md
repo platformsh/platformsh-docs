@@ -40,6 +40,6 @@ Now that you've had the chance to verify that your application built and deploye
     ```
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have merged the new feature</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have merged the new feature</a>
 </div>

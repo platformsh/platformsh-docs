@@ -59,6 +59,6 @@ Platform.sh provides _managed services_, and each service comes with considerabl
 you will next need to tell Platform.sh how to build and deploy your application using the `.platform.app.yaml` file.
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have configured my services</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have configured my services</a>
 </div>

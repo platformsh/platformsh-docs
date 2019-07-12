@@ -53,6 +53,6 @@ Platform.sh supports the deployment of isolated development environments from yo
 
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have created and activated a development environment</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have created and activated a development environment</a>
 </div>

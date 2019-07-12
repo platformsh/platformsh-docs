@@ -22,5 +22,5 @@ Consider using Cloudflare's TLS/SSL service to secure your site via HTTPS when u
 
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
+  <a href="#" class="button-link prev">Back</a>
 </div>

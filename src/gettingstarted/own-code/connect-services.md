@@ -125,6 +125,6 @@ You can also find examples of how to connect to each of Platform.sh managed serv
 Project configured, services connected - time to commit the changes and push your repository onto your project.
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have connected to my services to my application</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have connected to my services to my application</a>
 </div>

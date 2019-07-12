@@ -10,5 +10,5 @@ These steps assume that you have already:
 If you have not completed these steps by now, click the links and do so before you begin.
 
 <div class="buttons">
-  <a href="#" class="next-link button-link basic">Get started!</a>
+  <a href="#" class="button-link next">Get started!</a>
 </div>

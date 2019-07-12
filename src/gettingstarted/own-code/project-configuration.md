@@ -45,6 +45,6 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 With the empty configuration files in place, you will need to specify your service configuration in `.platform/services.yaml`.
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have initialized my code with empty configuration files</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have initialized my code with empty configuration files</a>
 </div>

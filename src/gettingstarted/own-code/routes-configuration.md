@@ -38,6 +38,6 @@ Each route can then be configured with the following properties:
 In the next step, you will be able to see how Platform.sh leverages environment variables to make connecting your application to its services simple.   
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have configured my routes</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have configured my routes</a>
 </div>

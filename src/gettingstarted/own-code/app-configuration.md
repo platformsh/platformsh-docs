@@ -110,6 +110,6 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
 Now that you have configured your application, you will next need to handle HTTP requests to your application using the `.platform/routes.yaml` file.
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have configured my application</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have configured my application</a>
 </div>

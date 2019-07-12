@@ -39,6 +39,6 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 With these few selections Platform.sh will create the project and build the template in less than two minutes.
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have created a new project with a template</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have created a new project with a template</a>
 </div>

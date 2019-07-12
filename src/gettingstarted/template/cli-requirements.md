@@ -41,6 +41,6 @@ Add your SSH key to your Platform.sh account so that you can communicate with yo
 That's it! Now that you have met the requirements and configured an SSH key, all that's left is to install the Platform.sh CLI so you can interact with your projects from the command line.
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have added my SSH key to my account</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have added my SSH key to my account</a>
 </div>

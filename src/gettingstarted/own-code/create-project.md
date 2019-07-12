@@ -47,6 +47,6 @@ With the Platform.sh CLI now installed and configured to communicate with your p
 That's it! You have now created an empty project and connected your repository to that project using the CLI. Move on now to the next step to start configuring your repository to deploy on Platform.sh.
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I created a project with the CLI</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I created a project with the CLI</a>
 </div>

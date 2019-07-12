@@ -39,6 +39,6 @@ That's it! Using the Platform.sh CLI and a few properly configured files, pushin
 Now that your code is on Platform.sh, check out some of the Next Steps to get started developing.
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have deployed my application</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have deployed my application</a>
 </div>

@@ -481,18 +481,10 @@ a.button-link.prev {
   justify-content: center;
 }
 
-a.button-link.prev.only {
-  width: 20%
-}
-
 a.button-link.next {
   font-weight: 600;
   align-items: center;
   justify-content: center;
-}
-
-a.button-link.next.only {
-  width: 20%
 }
 
 video {

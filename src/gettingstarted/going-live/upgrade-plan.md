@@ -19,6 +19,6 @@ Select the plan size that is appropriate for the needs of your application. This
 Now you are ready to set up your pre-registered domain.
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have upgraded my plan size</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have upgraded my plan size</a>
 </div>

@@ -23,6 +23,6 @@ Otherwise, it will be necessary to download a local copy of your project first.
 Now that you have a local copy of your application that is configured to the Platform.sh remote repository, you can create a new .
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have a local copy of my code</a>
+  <a href="#" class="button-link prev">Back</a>
+  <a href="#" class="button-link next">I have a local copy of my code</a>
 </div>
