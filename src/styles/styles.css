@@ -475,6 +475,26 @@ a.button-link.basic {
   justify-content: center;
 }
 
+a.button-link.prev {
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+}
+
+a.button-link.prev.only {
+  width: 20%
+}
+
+a.button-link.next {
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+}
+
+a.button-link.next.only {
+  width: 20%
+}
+
 video {
   object-fit: initial;
   width: 100%;
