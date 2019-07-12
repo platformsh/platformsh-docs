@@ -6,9 +6,9 @@ Choose your current service, and this guide will take you through the steps to m
 
 
 <div class="buttons">
-  <a href="/administration/integrations/github.html" class="button-link">GitHub</a>
-  <a href="/administration/integrations/bitbucket.html" class="button-link">Bitbucket</a>
-  <a href="/administration/integrations/gitlab.html" class="button-link">GitLab</a>
+  <a href="/administration/integrations/github.html" class="button-link basic">GitHub</a>
+  <a href="/administration/integrations/bitbucket.html" class="button-link basic">Bitbucket</a>
+  <a href="/administration/integrations/gitlab.html" class="button-link basic">GitLab</a>
 </div>
 
 These steps assume that you have already:

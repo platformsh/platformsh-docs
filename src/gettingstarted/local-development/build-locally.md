@@ -26,7 +26,7 @@ Now that you've opened tunnels into your services, you'll have access to all of 
     python3 -m http.server 8000
     {%- endcodetabs %}
 
-    Applications written in Node.js, Go and Java will automatically listen on a port locally, so it will only be necessary to execute the program directly.
+    Applications written in Node.js, Go and Java can be configured to listen on a port locally, so it will only be necessary to execute the program directly.
 
 3. **Cleanup**
 

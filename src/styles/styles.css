@@ -452,7 +452,6 @@ section.examples-lists > div {
 a.button-link {
   flex-grow: 1;
   font-size:15px;
-  /* font-weight: 600; */
   color: var(--button-link-color);
   background-color: var(--button-link-background-color);
   border: 1px solid #302F45;
@@ -462,8 +461,6 @@ a.button-link {
   margin: 10px 5px;
   padding: 24px 24px;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 a.button-link:hover {
@@ -474,33 +471,8 @@ a.button-link:hover {
 
 a.button-link.basic {
   font-weight: 600;
-  /* align-items: center; */
-}
-
-/* a.button-link.descriptive {
-  align-items: left;
-} */
-
-a.button-link.full {
-  display: block !important;
-  width: 100%;
-  text-align:left;
-}
-
-a.button-link.full-center {
-  width: 100%;
-  text-align:center;
-}
-
-a.button-link.small {
-  font-weight: 600;
-  width: 40%;
-  text-align:center;
-}
-
-.column {
-  float: left;
-  width: 33%;
+  align-items: center;
+  justify-content: center;
 }
 
 video {

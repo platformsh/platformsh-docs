@@ -41,6 +41,17 @@ Platform.sh supports the deployment of isolated development environments from yo
   platform url
   ```
 
+  The command will provide a list of the generated routes for the application according to how the [routes](/configuration/routes.md) were configured. The structure will always be:
+
+  ```
+  Enter a number to open a URL
+    [0] https://<branch name>-<hash of branch name>-<project ID>.<region>.platformsh.site/
+    [1] https://www.<branch name>-<hash of branch name>-<project ID>.<region>.platformsh.site/
+  ```
+
+  The above URLs represent the upstream (0) and redirect (1) routes for the most common `routes.yaml` configuration.
+
+
 <div class="buttons">
   <a href="#" class="prev-link button-link">Back</a>
   <a href="#" class="next-link button-link">I have created and activated a development environment</a>

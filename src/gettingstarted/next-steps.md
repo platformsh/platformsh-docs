@@ -4,38 +4,15 @@ Now that your application is up and running, here are some additional pieces of 
 
 
 <div class="buttons">
-  <a href="/gettingstarted/integrations.html" class="button-link">External Integrations<br><br>Configure Platform.sh to mirror every push and pull request on GitHub, Gitlab, and Bitbucket.</a>
+  <a href="/gettingstarted/integrations.html" class="button-link"><b>External Integrations</b><br/>Configure Platform.sh to mirror every push and pull request on GitHub, Gitlab, and Bitbucket.</a>
+
+  <a href="/gettingstarted/going-live.html" class="button-link"><b>Going Live</b><br><br>Set up your site for production, configure domains, and go live!</a>
 </div>
-
-<div id = "dev-envs"></div>
-
-<script>
-    var descTitle = "Going Live";
-    var descDesc = "Set up your site for production, configure domains, and go live!";
-    var descPath = getPathObj("/gettingstarted/going-live.html", descTitle, descDesc);
-    var descButton = {type: "descriptive", path: descPath, div: "dev-envs"};
-    makeButton(descButton);
-</script>
-
 
 ## Additional Resources
 
-<div id = "community"></div>
+<div class="buttons">
+  <a href="https://community.platform.sh/" class="button-link"><b>Platform.sh Community Portal</b><br><br>Check out how-tos, tutorials, and get help for your questions about Platform.sh.</a>
 
-<script>
-    var descTitle = "Platform.sh Community";
-    var descDesc = "Check out how-tos, tutorials, and get help for your questions about Platform.sh.";
-    var descPath = getPathObj("https://community.platform.sh/", descTitle, descDesc);
-    var descButton = {type: "descriptive", path: descPath, div: "community"};
-    makeButton(descButton);
-</script>
-
-<div id = "blog"></div>
-
-<script>
-    var descTitle = "Platform.sh Blog";
-    var descDesc = "Read news and how-to posts all about working with Platform.sh.";
-    var descPath = getPathObj("https://platform.sh/blog/", descTitle, descDesc);
-    var descButton = {type: "descriptive", path: descPath, div: "blog"};
-    makeButton(descButton);
-</script>
+  <a href="https://platform.sh/blog/" class="button-link"><b>Platform.sh Blog</b><br><br>Read news and how-to posts all about working with Platform.sh.</a>
+</div>

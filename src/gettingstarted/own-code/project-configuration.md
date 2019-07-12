@@ -10,44 +10,12 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 
     Select a language and choose one or more templates that most closely resemble your application and keep the template in another tab as you continue through this guide. Using these two resources together is the fastest way to correctly configure your project for Platform.sh.
 
-    <div class="column">
-      <div id="php"></div>
-      <div id="python"></div>
-    </div>
-    <div class="column">
-      <div id="nodejs"></div>    
-      <div id="ruby"></div>
-    </div>
-    <div class="column">
-      <div id="go"></div>
-      <div id="java"></div>
-    </div>
-
-    <script>
-        var descPathPHP = getPathObj("/languages/php.html#project-templates", "PHP");
-        var descButtonPHP = {type: "basicFull", path: descPathPHP, div: "php"};
-        makeButton(descButtonPHP);
-
-        var descPathPython = getPathObj("/languages/python.html#project-templates", "Python");
-        var descButtonPython = {type: "basicFull", path: descPathPython, div: "python"};
-        makeButton(descButtonPython);
-
-        var descPathNode = getPathObj("/languages/nodejs.html#project-templates", "Node.js");
-        var descButtonNode = {type: "basicFull", path: descPathNode, div: "nodejs"};
-        makeButton(descButtonNode);
-
-        var descPathRuby = getPathObj("/languages/ruby.html#project-templates", "Ruby");
-        var descButtonRuby = {type: "basicFull", path: descPathRuby, div: "ruby"};
-        makeButton(descButtonRuby);
-
-        var descPathGo = getPathObj("/languages/go.html#project-templates", "Go");
-        var descButtonGo = {type: "basicFull", path: descPathGo, div: "go"};
-        makeButton(descButtonGo);
-
-        var descPathJava = getPathObj("/languages/java.html#project-templates", "Java");
-        var descButtonJava = {type: "basicFull", path: descPathJava, div: "java"};
-        makeButton(descButtonJava);
-    </script>
+    * [PHP Templates](/languages/php.md#project-templates)
+    * [Python Templates](/languages/python.md#project-templates)
+    * [Node.js Templates](/languages/nodejs.md#project-templates)
+    * [Java Templates](/languages/java.md#project-templates)
+    * [Ruby Templates](/languages/ruby.md#project-templates)
+    * [Go Templates](/languages/go.md#project-templates)
 
 2. **Create empty configuration files**
 

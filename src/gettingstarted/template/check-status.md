@@ -42,6 +42,6 @@ In these few steps you created a free trial account, configured a template appli
 Using the [Platform.sh CLI](/development/cli.md), however, you get even more control over your project configurations, including the ability to migrate your own applications to Platform.sh. Move onto the next step to install it.
 
 <div class="buttons">
-  <a href="#" class="prev-link button-link">Back</a>
-  <a href="#" class="next-link button-link">I have built and deployed a template application</a>
+  <a href="#" class="prev-link">Back</a>
+  <a href="#" class="next-link">I have built and deployed a template application</a>
 </div>

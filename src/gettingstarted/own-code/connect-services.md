@@ -71,7 +71,6 @@ config, err := psh.NewRuntimeConfig()
 
 credentials, err := config.Credentials("database")
 // Handle err
-
 {%- endcodetabs %}
 
 or read and decode the environment variable directly.
