@@ -4,22 +4,15 @@ Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine. 
 
 ## Supported versions
 
-* 6.11
-* 8.9
+* 6
+* 8
 * 10
 
 If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.html).
 
 ## Deprecated versions
 
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
-
-* 0.12
-* 4.7
-* 4.8
-* 6.9
-* 6.10
-* 8.2
+Some versions with a minor (such as 8.9) are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
 ## Support libraries
 
