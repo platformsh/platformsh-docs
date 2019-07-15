@@ -6,11 +6,15 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 ## Supported versions
 
-The service type `mysql` refers to MariaDB.  The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.  Other than the `type`, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
+The service type `mariadb` refers to MariaDB such as `mysql` that for compatibility reasons it refers to MariaDB as well.  The service type `oracle-mysql` refers to MySQL.  Other than the `type`, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
 
-* mysql:10.0 = mariadb:10.0
-* mysql:10.1 = mariadb:10.1
-* mysql:10.2 = mariadb:10.2
+* mariadb:10.0
+* mariadb:10.1
+* mariadb:10.2
+
+* mysql:10.0
+* mysql:10.1
+* mysql:10.2
 
 * oracle-mysql:5.7
 * oracle-mysql:8.0
