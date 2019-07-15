@@ -3,11 +3,11 @@ search:
     keywords: ['.platform.app.yaml', 'automated', 'code', 'source', 'update', 'operation']
 ---
 
-# Code operations
+# Source operations
 
 An application can define a number of operations that apply to its source code and that can be automated.
 
-A basic, common code operation could look like this:
+A basic, common source operation could look like this:
 
 ```yaml
 source:
@@ -19,7 +19,7 @@ source:
                 git commit -m "Update Composer dependencies."
 ```
 
-The `update` key is the name of the operation. It is arbitrary, and multiple code operations can be defined.
+The `update` key is the name of the operation. It is arbitrary, and multiple source operations can be defined.
 
 The environment resource gets a new `source-operation` action which can be triggered by the CLI:
 
@@ -30,7 +30,7 @@ platform source-operation:run update
 The command has two parameters:
 
 * `operation` (string): the name of the operation
-* `variables` (optional, object): additional variables (in the style of variables defined in the `.platform.app.yaml`) to inject in the environment of the code operation.
+* `variables` (optional, object): additional variables (in the style of variables defined in the `.platform.app.yaml`) to inject in the environment of the source operation
 
 When this operation is triggered:
 
