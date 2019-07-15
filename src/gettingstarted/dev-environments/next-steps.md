@@ -11,22 +11,22 @@ Don't stop now! There are many more features that make Platform.sh profoundly he
 The next guide shows how to set up your development workflow to benefit from Platform.sh.
 
 <div class="buttons">
-  <a href="/gettingstarted/local-development.html" class="button-link"><b>Local Development</b><br/>Remotely connect to services and build your application locally during development.</a>
+  <a href="/gettingstarted/local-development.html" class="button-link descriptive"><b>Local Development</b><br>Remotely connect to services and build your application locally during development.</a>
 </div>
 
 
 ### Additional Resources
 
 <div class="buttons">
-  <a href="/gettingstarted/next-steps.html" class="button-link"><b>Next steps</b><br/>Set up domains to take your application live, configure external integrations to GitHub, and more!</a>
+  <a href="/gettingstarted/next-steps.html" class="button-link descriptive"><b>Next steps</b><br>Set up domains to take your application live, configure external integrations to GitHub, and more!</a>
 </div>
 
 <div class="buttons">
-  <a href="https://community.platform.sh/" class="button-link"><b>Platform.sh Community</b><br/>Check out how-tos, tutorials, and get help for your questions about Platform.sh.</a>
+  <a href="https://community.platform.sh/" class="button-link descriptive"><b>Platform.sh Community</b><br>Check out how-tos, tutorials, and get help for your questions about Platform.sh.</a>
 </div>
 
 <div class="buttons">
-  <a href="https://platform.sh/blog/" class="button-link"><b>Platform.sh Blog</b><br/>Read news and how-to posts all about working with Platform.sh.</a>
+  <a href="https://platform.sh/blog/" class="button-link descriptive"><b>Platform.sh Blog</b><br>Read news and how-to posts all about working with Platform.sh.</a>
 </div>
 
 <div class="buttons">

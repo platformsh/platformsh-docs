@@ -487,6 +487,10 @@ a.button-link.next {
   justify-content: center;
 }
 
+a.button-link.descriptive {
+  flex-direction: column;
+}
+
 video {
   object-fit: initial;
   width: 100%;
