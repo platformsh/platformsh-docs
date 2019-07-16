@@ -83,4 +83,25 @@ The signature is calculated using the given `shared-key` and the fixed header:
 {"alg":"HS256","b64":false,"crit":["b64"]}
 ```
 
+The signature permit to verify whether notifications requests to the web endpoint are authentic.
+
+Signature verification is a simple 2 steps process:
+
+```python
+# 1. compute JWS Compact Serialization with Unencoded Detached Payload
+
+from jwcrypto import jws, jwk
+
+rfc7797_u_header = '{"alg":"HS256","b64":false,"crit":["b64"]}'
+json_web_key = jwk.JWK(kty="oct", k="JWS-SYMMETRIC-KEY")
+
+sig = jws.JWS(request.body())
+sig.add_signature(json_web_key, protected=rfc7797_u_header)
+sig.detach_payload()
+
+# 2. Verify the signature
+
+assert sig.serialize(compact=True) == request.headers["X-JWS-Signature"]
+```
+
 Please refer to the [JOSE Cookbook](https://github.com/ietf-jose/cookbook) for examples about protecting content using JavaScript Object Signing and Encryption (JOSE).
