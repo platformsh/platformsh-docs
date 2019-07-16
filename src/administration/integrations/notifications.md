@@ -71,7 +71,7 @@ platform integration:add --type health.webhook --url=A-URL-THAT-CAN-RECEIVE-THE-
 
 Any notification will now be posted to the `health.webhook` URL.
 
-This integration can also specify an optional `shared-key` which will add a `X-JWS-Signature` request header containing the JSON Web Token Signature in JWS Compact Serialization with Unencoded Detached Payload ([RFC7797](https://tools.ietf.org/html/rfc7797)).
+In order to let you verify that requests are coming from the integration, you can use the optional `shared-key` parameter which will add a `X-JWS-Signature` request header containing the JSON Web Token Signature in JWS Compact Serialization with Unencoded Detached Payload ([RFC7797](https://tools.ietf.org/html/rfc7797)).
 
 ```bash
 platform integration:add --type health.webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON --shared-key JWS-SYMMETRIC-KEY
@@ -83,12 +83,22 @@ The signature is calculated using the given `shared-key` and the fixed header:
 {"alg":"HS256","b64":false,"crit":["b64"]}
 ```
 
-The signature permit to verify whether notifications requests to the web endpoint are authentic.
+A simplified example payload with the corresponding signature using `shared-key := 'secret'` may look like the following snippet:
 
-Signature verification is a simple 2 steps process:
+```json
+POST /health/notifications HTTP/1.0
+Host: www.example.com
+Content-Length: 1495
+Content-Type: application/json
+X-JWS-Signature: eyJhbGciOiJIUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..fYW9qrjShmEArV17Z1kH6yudoXzpBE3PzJXq_OqrIfM
+
+{"project": {"id": "test_project", "created_at": "2014-02-19T10:33:24.220090+00:00", "updated_at": "2019-07-16T23:13:08.714765+00:00", "attributes": {}, "title": "Test project", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit", "region": "admin.local.c-g.io", "subscription": {"license_uri": "http://admin.local.c-g.io/_", "plan": "standard", "environments": 10, "storage": 5120, "included_users": 3, "subscription_management_uri": "http://subscription-management", "restricted": true, "suspended": false, "user_licenses": 1}, "repository": {"url": "test_project@git.local.c-g.io/test_project.git", "client_ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKaBW95l6J3sWZROA4T+pl9Fv4gHUIHtW0R+yqOH/4qzOlWOxUmg5r4V6xHPVmCA+RuXjzmsTy0cJHDVxjxtkjB6g8PXp9G86P9MiZYPWuolpSR/2+ix7mo2zuJEsZQbfGoOaZKQgGvdWNHZusJCy8Ay53CkBMVmlXB+f9Q0U3C1iO/R3EJxdwEBFTx97xzAaBn8hBH1W3SEID/hBlVJiImuGi7CccAtNfyvAaA+VlgSwsX9DDsKFSCHe9q7xckrN0CSp9A/XnA/UyiSiplefjTr0dIb/Xf/aqcML1WomnggopBFk06LkMg31xLiACvlqMArSLd9BP34IanW3oKWjn test_project@platformsh"}, "owner": "alice", "default_domain": null, "status": {"code": "provisioned", "message": "ok"}}, "event": {"time": "2019-07-16T23:13:12.099235+00:00", "origin": {"project": "test_project", "environment": "master-7rqtwti", "service": "mysql", "instance": "0"}, "component": "disk", "subcomponent": "persistent", "severity": "warning", "message": "less than 214.748 MB available", "metrics": {"total:byte": 1073741824, "available:byte": 134217728}}}
+```
+
+Signature verification is a simple 2 step process:
 
 ```python
-# 1. compute JWS Compact Serialization with Unencoded Detached Payload
+# 1. Compute JWS Compact Serialization with Unencoded Detached Payload
 
 from jwcrypto import jws, jwk
 
