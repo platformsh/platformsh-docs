@@ -83,4 +83,4 @@ The signature is calculated using the given `shared-key` and the fixed header:
 {"alg":"HS256","b64":false,"crit":["b64"]}
 ```
 
-Please refer to the [JOSE Cookbook](https://github.com/ietf-jose/cookbook) for examples about crotecting content using JavaScript Object Signing and Encryption (JOSE).
+Please refer to the [JOSE Cookbook](https://github.com/ietf-jose/cookbook) for examples about protecting content using JavaScript Object Signing and Encryption (JOSE).
