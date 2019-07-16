@@ -59,9 +59,9 @@ platform integration:add --type health.pagerduty --routing-key YOUR_ROUTING_KEY
 
 Any notification will now trigger an alert in PagerDuty.
 
-### WebHooks notifications
+### Webhooks notifications
 
-A notification can trigger a message to be sent to a Web endpoint.
+A notification can trigger a message to be sent to a web endpoint.
 
 To do so, register a `health.webhook` integration as follows:
 
@@ -69,9 +69,9 @@ To do so, register a `health.webhook` integration as follows:
 platform integration:add --type health.webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
 ```
 
-Any notification will now be posted to the health.webhook URL.
+Any notification will now be posted to the `health.webhook` URL.
 
-This integration also allow to specify an optional `shared-key` which will add a `X-JWS-Signature` request header containing the JSON Web Token Signature in JWS Compact Serialization with Unencoded Detached Payload (RFC7797).
+This integration can also specify an optional `shared-key` which will add a `X-JWS-Signature` request header containing the JSON Web Token Signature in JWS Compact Serialization with Unencoded Detached Payload ([RFC7797](https://tools.ietf.org/html/rfc7797)).
 
 ```bash
 platform integration:add --type health.webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON --shared-key JWS-SYMMETRIC-KEY
@@ -82,3 +82,5 @@ The signature is calculated using the given `shared-key` and the fixed header:
 ```json
 {"alg":"HS256","b64":false,"crit":["b64"]}
 ```
+
+Please refer to the [JOSE Cookbook](https://github.com/ietf-jose/cookbook) for examples about crotecting content using JavaScript Object Signing and Encryption (JOSE).
