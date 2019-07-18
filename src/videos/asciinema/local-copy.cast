@@ -1,4 +1,4 @@
-{"version": 2, "width": 80, "height": 24, "timestamp": 1556659196, "idle_time_limit": 2.0, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+{"version": 2, "width": 104, "height": 20, "timestamp": 1556659196, "idle_time_limit": 2.0, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
 [0.111127, "o", "\u001b[?1034h$ "]
 [1.302912, "o", "platform"]
 [4.125622, "o", "\r\n"]

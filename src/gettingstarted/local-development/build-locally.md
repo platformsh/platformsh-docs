@@ -4,7 +4,7 @@
 
 Now that you've opened tunnels into your services, you'll have access to all of your data in your environment. All that's left now is to actually build the site.
 
-<asciinema-player src="/videos/asciinema/build.cast" preload=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/build.cast"></asciinema-player>
 
 1. **Build the site**
 
@@ -14,7 +14,7 @@ Now that you've opened tunnels into your services, you'll have access to all of 
     platform build
     ```
 
-    The Platform CLI will first ask you for the source directory and the build destination, then it will use your `.platform.app.yaml` file to execute the [build process locally](https://docs.platform.sh/gettingstarted/local.html#building-the-site-locally). This will create a `_www` directory in the project root that is a symlink to the currently active build, which is now located in `.platform/local/builds`. 
+    The Platform CLI will first ask you for the source directory and the build destination, then it will use your `.platform.app.yaml` file to execute the [build process locally](https://docs.platform.sh/gettingstarted/local.html#building-the-site-locally). This will create a `_www` directory in the project root that is a symlink to the currently active build, which is now located in `.platform/local/builds`.
 
 2. **Verify**
 

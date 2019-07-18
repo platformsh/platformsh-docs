@@ -6,7 +6,7 @@ If you have already [pushed your code](/gettingstarted/own-code.md) to Platform.
 
 Otherwise, it will be necessary to download a local copy of your project first.
 
-<asciinema-player src="/videos/asciinema/local-copy.cast" preload=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/local-copy.cast"></asciinema-player>
 
 1. **Get project ID**
 

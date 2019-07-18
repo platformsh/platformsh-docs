@@ -4,7 +4,7 @@
 
 With your configuration files complete, all that's left is to commit the changes and push to Platform.sh.
 
-<asciinema-player src="/videos/asciinema/first-push.cast" preload=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/first-push.cast"></asciinema-player>
 
 1. **Commit and push**
 

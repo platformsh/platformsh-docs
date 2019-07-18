@@ -4,7 +4,7 @@
 
 With the Platform.sh CLI now installed and configured to communicate with your account, you can create a new project from the command line and connect it to your application.
 
-<asciinema-player src="/videos/asciinema/project-create.cast" preload=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/project-create.cast"></asciinema-player>
 
 1. **Create an empty project**
 

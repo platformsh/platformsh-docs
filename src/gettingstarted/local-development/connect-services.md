@@ -6,7 +6,7 @@
 
 Now that you have a local copy of your application code, you can make changes to the project without pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
 
-<asciinema-player src="/videos/asciinema/tunnel-open.cast" preload=1></asciinema-player>
+<asciinema-player src="/videos/asciinema/tunnel-open.cast"></asciinema-player>
 
 1. **Open an SSH tunnel to connect to your services**
 
