@@ -38,8 +38,7 @@ npm install platformsh-config --save
 {%- language name="Java (Gradle)", type="xml" -%}
 compile group: 'sh.platform', name: 'config', version: 2.2.0'
 {%- language name="Go", type="go" -%}
-// In your go.mod file
-github.com/platformsh/config-reader-go/v2 v2.2.2
+go mod edit -require=github.com/platformsh/config-reader-go/v2
 {%- endcodetabs %}
 
 

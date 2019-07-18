@@ -39,14 +39,14 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
 
   Set `version` to one supported by Platform.sh, which you can find below as well as in the documentation for each language:
 
-  | **Language**                     | **`runtime`** | **Supported `version`** |
-  |----------------------------------|---------------|-------------------------|
-  | [PHP](/languages/php.md)         | `php`         | 7.1, 7.2, 7.3           |
-  | [Node.js](/languages/nodejs.md)  | `nodejs`      | 6.11, 8.9, 10           |
-  | [Python](/languages/python.md)   | `python`      | 2.7, 3.5, 3.6, 3.7      |
-  | [Ruby](/languages/ruby.md)       | `ruby`        | 2.3, 2.4, 2.5, 2.6      |
-  | [Go](/languages/go.md)           | `golang`      | 1.11, 1.12              |
-  | [Java](/languages/java.md)       | `java`        | 8, 11, 12               |
+| **Language**                     | **`runtime`** | **Supported `version`** |
+|----------------------------------|---------------|-------------------------|
+| [PHP](/languages/php.md)         | `php`         | 7.1, 7.2, 7.3           |
+| [Node.js](/languages/nodejs.md)  | `nodejs`      | 6.11, 8.9, 10           |
+| [Python](/languages/python.md)   | `python`      | 2.7, 3.5, 3.6, 3.7      |
+| [Ruby](/languages/ruby.md)       | `ruby`        | 2.3, 2.4, 2.5, 2.6      |
+| [Go](/languages/go.md)           | `golang`      | 1.11, 1.12              |
+| [Java](/languages/java.md)       | `java`        | 8, 11, 12               |
 
 * `disk`: The [disk](/configuration/app/storage.md) attribute defines that amount of persistent storage you need to have available for your application, and requires a minimum value of 256 MB.
 
@@ -78,7 +78,7 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
 * `web`: The `web` key configures the web server through a single web instance container running a single Nginx server process, behind which runs your application.
 
-    * `commands`: Defines the [command](/configuration/app/web.md#commands) to actually launch the application. The `start` key launches your application.
+    * `commands`: Defines the [command](/configuration/app/web.md#commands) to actually launch the application. The `start` key launches your application. In all languages except for PHP, `web.commands.start` should be treated as required. For PHP, you will instead need to define a script name in `passthru`, described below in `locations`.
     * `locations`: Allows you to control how the application container responds to incoming requests at a very fine-grained level. The simplest possible [locations](/configuration/app/web.md#locations) configuration is one that simply passes all requests on to your application unconditionally:
 
       ```yaml
@@ -86,6 +86,17 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
         locations:
           '/':
               passthru: true
+      ```
+
+      The above configuration forwards all requests to `/*` to the process started by `web.commands.start`. In the case of PHP containers, `passthru` must specify what PHP file to forward the request to, as well as the docroot under which the file lives. For example,
+
+
+      ```yaml
+      web:
+        locations:
+            '/':
+                root: 'web'
+                passthru: '/app.php'
       ```
 * `mounts`: Configuring mounts are not required, unless part of your application requires write-access. By default, Platform.sh provided a *read-only* filesystem for your projects so that you can be confident in the health and security of your application once it has deployed.
 
