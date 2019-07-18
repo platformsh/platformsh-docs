@@ -9,7 +9,7 @@ Now that you have created your free trial account, you are able to push your app
 
 [Git](/development/tools.md#git) is the open source version control system that is utilized by Platform.sh. Any change you make to your Platform.sh project will need to be committed via Git. You can see all the Git commit messages of an environment in the `Environment Activity` feed of the [management console](/administration/web.md) for each project you create.
 
-Before getting started, make sure you have it [installed](https://git-scm.com/) on your computer.
+Before getting started, make sure you [have Git installed](https://git-scm.com/) on your computer.
 
 ### SSH key pair
 

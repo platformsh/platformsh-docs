@@ -31,6 +31,8 @@ With all of the requirements met, install the CLI to start developing with Platf
    platform
    ```
 
+   > **Note:** If you opened your free trial account using another login (i.e. GitHub), you will not be able to authenticate with this command until you setup your account password with Platform.sh in the console.
+
    You should now be able to see a list of your Platform.sh projects, including the template you made in this guide. You can copy its *project ID* hash, and then download a local copy of the repository with the command
 
    ```bash
@@ -40,7 +42,7 @@ With all of the requirements met, install the CLI to start developing with Platf
    With a local copy, you can create branches, commit to them, and push your changes to Platform.sh right away!
 
    ```bash
-   git push platform master
+   git push
    ```
 
    Take a minute to explore some of the commands available with the CLI by using the command `platform list`.

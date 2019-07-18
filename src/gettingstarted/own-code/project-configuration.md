@@ -6,7 +6,7 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 
 1. **Consult a template alongside this guide**
 
-    As you go through this guide, example files will be provided that will give you a good impression of how to configure applications on Platform.sh in the language of your choice. However, since they are simple examples and your own application may require more detailed configuration than those examples address, it is recommended that you take a look at our maintained templates for additional guidance.
+    As you go through this guide, example files will be provided that will give you a good impression of how to configure applications on Platform.sh in the programming language they use. However, since they are simple examples and your own application may require more detailed configuration than those examples address, it is recommended that you take a look at our maintained templates for additional guidance.
 
     Select a language and choose one or more templates that most closely resemble your application and keep the template in another tab as you continue through this guide. Using these two resources together is the fastest way to correctly configure your project for Platform.sh.
 
@@ -38,7 +38,8 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
     When you set Platform.sh as a remote for your repository in the previous step, the CLI automatically created the hidden configuration directory `.platform` for you. The next steps will explore in more detail what each configuration files must include, but for now create empty files in their place.
 
     ```bash
-    touch .platform/routes.yaml && touch .platform/services.yaml
+    touch .platform/routes.yaml
+    touch .platform/services.yaml
     touch .platform.app.yaml
     ```
 

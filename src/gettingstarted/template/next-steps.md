@@ -1,20 +1,16 @@
-# Start with a template
+# Next steps
 
-## Next steps
+In this guide you created a project using the [management console](/administration/web.md) and installed the [Platform.sh CLI](/development/cli.md). Now you can explore some of the next steps for working with Platform.sh.
 
-In this guide you created a project using the [management console](/administration/web.md) and installed the [Platform.sh CLI](/development/cli.md).
+## Import your own code
 
-Don't stop now! There are far more features that make Platform.sh profoundly helpful to developers that you have left to explore.
-
-### Import your own code
-
-Templates are great, but configuring your own application to run on Platform.sh is just as easy.
+Templates are great, but configuring your own application to run on Platform.sh is the goal.
 
 <div class="buttons">
   <a href="/gettingstarted/own-code.html" class="button-link descriptive"><b>Import your own code</b><br>Use the CLI and a few configuration files to deploy your code on Platform.sh.</a>
 </div>
 
-### Developing on Platform.sh
+## Developing on Platform.sh
 
 Once an application has been migrated to Platform.sh, there's plenty more features that will help improve your development life cycle.
 
@@ -24,7 +20,7 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
   <a href="/gettingstarted/dev-environments.html" class="button-link descriptive"><b>Development environments</b><br>Activate development branches and test new features before merging into production.</a>
 </div>
 
-### Additional Resources
+## Additional Resources
 
 <div class="buttons">
   <a href="/gettingstarted/next-steps.html" class="button-link descriptive"><b>Next steps</b><br>Set up domains to take your application live, configure external integrations to GitHub, and more!</a>

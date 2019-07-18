@@ -22,13 +22,13 @@ Once you have configured the template application in the previous step, Platform
 
    * **Overview**
 
-      In this box the `Master` environment, which is a live environment built from the `master` branch of our application code, will have a status of `Building`.
+      In this box the `Master` environment, which is a live environment built from the `master` branch of your application code, will have a status of `Building`.
 
       Once that status has updated to `Active`, the build is complete and the application has deployed.
 
    * **Environment Activity**
 
-      In this box, you can see what you have done so far has two initial entries: `My First Project` was created, and the template profile you chose was initialized on the environment.
+      In this block, you can see what you have done so far has two initial entries: `My First Project` was created, and the template profile you chose was initialized on the environment.
 
 3. **Done!**
 

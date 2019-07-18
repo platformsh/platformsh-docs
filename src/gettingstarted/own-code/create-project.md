@@ -2,7 +2,7 @@
 
 ## Create a new project
 
-With the Platform.sh CLI now installed and configured to communicate with your projects, you can create a new project from the command line and connect it to your application.
+With the Platform.sh CLI now installed and configured to communicate with your account, you can create a new project from the command line and connect it to your application.
 
 <asciinema-player src="/videos/asciinema/project-create.cast" preload=1></asciinema-player>
 
@@ -12,13 +12,13 @@ With the Platform.sh CLI now installed and configured to communicate with your p
 
     The CLI will then ask you to set up some initial project configurations:
 
-    * `Project title`: We need a unique name for each project, so title this one `My CLI Project`.
+    * `Project title`: You need a unique name for each project, so title this one `My CLI Project`.
 
-    * `Region`: In general you will choose the region that is closest to where most of your site's traffic is coming from. Here, go ahead and begin typing `de-2.platform.sh` and the CLI will auto-complete the rest for you.
+    * `Region`: In general you will choose the region that is closest to where most of your site's traffic is coming from. Here, go ahead and begin typing `us-2.platform.sh` and the CLI will auto-complete the rest for you.
 
-    * `Plan`: The standard size will be fine for this guide, so type `1` and Enter.
+    * `Plan`: Select the development plan for your trial project.
 
-    * `Environments`: The `master` branch in the previous guide once built becomes the `Master` environment, the live production environment for your application. Additionally, you will receive other environments that will be useful for developing new features that you can view in your browser, but we will cover what those are and how to use them in the next guide.
+    * `Environments`: The `master` branch will become the `Master` environment, the live production environment for your application. Additionally, other branches may be activated as fully running environments for developing new features. More on that [later](/gettingstarted/dev-environments.md). This value selects the maximum number of development environments the project will allow. You can change this value later at any time.
 
        For now, press Enter to select the default number of environments.
 
@@ -44,7 +44,9 @@ With the Platform.sh CLI now installed and configured to communicate with your p
     platform project:set-remote <project ID>
     ```
 
-That's it! You have now created an empty project and connected your repository to that project using the CLI. Move on now to the next step to start configuring your repository to deploy on Platform.sh.
+That's it! You have now created an empty project and connected your repository to that project using the CLI.
+
+Move on now to the next step to start configuring your repository to deploy on Platform.sh.
 
 <div class="buttons">
   <a href="#" class="button-link prev">Back</a>

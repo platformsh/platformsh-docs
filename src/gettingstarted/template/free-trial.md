@@ -2,7 +2,7 @@
 
 ## Open a free trial account
 
-The best way to understand a tool is to use it, that's why Platform.sh offers a free one month trial.
+The best way to understand a tool is to use it. That's why Platform.sh offers a free one month trial.
 
 Visit the [Platform.sh accounts](https://accounts.platform.sh/platform/trial/general/setup) page and fill out your information to set up your trial account.
 

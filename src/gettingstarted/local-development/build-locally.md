@@ -24,6 +24,8 @@ Now that you've opened tunnels into your services, you'll have access to all of 
     php -d variables_order=EGPCS -S localhost:8001
     {%- language name="Python", type="py" -%}
     python3 -m http.server 8000
+    {%- language name="Ruby", type="ruby" -%}
+    ruby -run -e httpd . -p 8000
     {%- endcodetabs %}
 
     Applications written in Node.js, Go and Java can be configured to listen on a port locally, so it will only be necessary to execute the program directly.

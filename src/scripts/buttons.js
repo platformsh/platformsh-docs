@@ -2,7 +2,6 @@
  * Make any "next" and "prev" links point to the right URL dynamically.
  */
 
-
 require(["gitbook"], function(gitbook) {
 
   document.addEventListener('DOMContentLoaded', () => {

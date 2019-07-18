@@ -25,7 +25,7 @@ An example `.platform.app.yaml` looks like this:
 {%- endcodetabs %}
 
 
-The `.platform.appl.yaml` file is extremely flexible, and can contain many lines with very fine-grained control over your application. At the very least, Platform.sh requires four principle attributes in this file to control your builds:
+The `.platform.appl.yaml` file is extremely flexible, and can contain many lines with very fine-grained control over your application. At the very least, Platform.sh requires three principle attributes in this file to control your builds:
 
 * `name`: The [name of your application](/configuration/app/name.md) container does not have to be the same as your project name, and in most single application cases you can simply name it `app`. You should notice in the next step, when you configure how requests are handled in `.platform/routes.yaml` that `name` is reused there, and it is important that they are the same.
 
@@ -39,41 +39,18 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
 
   Set `version` to one supported by Platform.sh, which you can find below as well as in the documentation for each language:
 
-| **Language**                     | **`runtime`** | **Supported `version`** |
-|----------------------------------|---------------|-------------------------|
-| [PHP](/languages/php.md)         | `php`         | 7.1, 7.2, 7.3           |
-| [Node.js](/languages/nodejs.md)  | `nodejs`      | 6.11, 8.9, 10           |
-| [Python](/languages/python.md)   | `python`      | 2.7, 3.5, 3.6, 3.7      |
-| [Ruby](/languages/ruby.md)       | `ruby`        | 2.3, 2.4, 2.5, 2.6      |
-| [Go](/languages/go.md)           | `golang`      | 1.11, 1.12              |
-| [Java](/languages/java.md)       | `java`        | 8, 11, 12               |
+  | **Language**                     | **`runtime`** | **Supported `version`** |
+  |----------------------------------|---------------|-------------------------|
+  | [PHP](/languages/php.md)         | `php`         | 7.1, 7.2, 7.3           |
+  | [Node.js](/languages/nodejs.md)  | `nodejs`      | 6.11, 8.9, 10           |
+  | [Python](/languages/python.md)   | `python`      | 2.7, 3.5, 3.6, 3.7      |
+  | [Ruby](/languages/ruby.md)       | `ruby`        | 2.3, 2.4, 2.5, 2.6      |
+  | [Go](/languages/go.md)           | `golang`      | 1.11, 1.12              |
+  | [Java](/languages/java.md)       | `java`        | 8, 11, 12               |
 
 * `disk`: The [disk](/configuration/app/storage.md) attribute defines that amount of persistent storage you need to have available for your application, and requires a minimum value of 256 MB.
 
-* `mounts` (Optional): Configuring mounts are not required, unless part of your application requires write-access. By default, Platform.sh provided a *read-only* filesystem for your projects, so that you can be confident in the health and security of your application once it has deployed. If your application requires writable storage to function properties (i.e., saving files; mounts should not contain code) it can be defined:
-
-  If your application requires writable storage to function properly, it can be defined:
-
-  ```yaml
-  mounts:
-    'web/uploads':
-        source: local
-        source_path: uploads
-  ```
-
-  In this case, the application will be able to write to a mount that is visible in the `/app/web/uploads` directory of the application container, and which has a local source at `/mnt/uploads`. Consult the [mounts documentation](/configuration/app/storage.md#mounts) for a more thorough discussion of how these attributes should be written.
-
-* `web`: The `web` key configures the web server through a single web instance container running a single Nginx server process, behind which runs your application.
-
-    * `commands`: Defines the [command](/configuration/app/web.md#commands) to actually launch the application. The `start` key launches your application.
-    * `locations`: Allows you to control how the application container responds to incoming requests at a very fine-grained level. The simplest possible [locations](/configuration/app/web.md#locations) configuration is one that simply passes all requests on to your application unconditionally:
-
-      ```yaml
-      web:
-        locations:
-          '/':
-              passthru: true
-      ```
+There are a few additional keys in `.platform.app.yaml` you will likely need to use to fully configure your application, but are not required:
 
 * `relationships`: [Relationships](/configuration/app/relationships.md) define how services are mapped within your application. Without this block, an application cannot by default communicate with a service container. Provide a unique name for each relationship and associate it with a service. For example, if in the previous step you defined a MariaDB container in your `.platform/services.yaml` with
 
@@ -98,6 +75,30 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
       * `build`: The [build hook](/configuration/app/build.md#build-hook) is run after the build flavor if that is present. The file system is fully writable, but no services and only a subset of variables are available at this point. The full list of build time and runtime variables is available on the [variables section](/development/variables.md#variables) of the public documentation.
       * `deploy`: The [deploy hook](/configuration/app/build.md#deploy-hook) is run after the application container has been started, but before it has started accepting requests. Services are now available, but the file system will be read-only from this point forward.
       * `post-deploy`: The [post-deploy hook](/configuration/app/build.md#post-deploy-hook) functions exactly the same as the deploy hook, but after the container is accepting connections.
+
+* `web`: The `web` key configures the web server through a single web instance container running a single Nginx server process, behind which runs your application.
+
+    * `commands`: Defines the [command](/configuration/app/web.md#commands) to actually launch the application. The `start` key launches your application.
+    * `locations`: Allows you to control how the application container responds to incoming requests at a very fine-grained level. The simplest possible [locations](/configuration/app/web.md#locations) configuration is one that simply passes all requests on to your application unconditionally:
+
+      ```yaml
+      web:
+        locations:
+          '/':
+              passthru: true
+      ```
+* `mounts`: Configuring mounts are not required, unless part of your application requires write-access. By default, Platform.sh provided a *read-only* filesystem for your projects so that you can be confident in the health and security of your application once it has deployed.
+
+  If your application requires writable storage to function properly (i.e., saving files; mounts should not contain code) it can be defined like so:
+
+  ```yaml
+  mounts:
+    'web/uploads':
+        source: local
+        source_path: uploads
+  ```
+
+  In this case, the application will be able to write to a mount that is visible in the `/app/web/uploads` directory of the application container, and which has a local source at `/mnt/uploads`. Consult the [mounts documentation](/configuration/app/storage.md#mounts) for a more thorough discussion of how these attributes should be written.
 
 > Each language and framework may have additional attributes that you will need to include in `.platform.app.yaml` depending on the needs of your application. To find out what else you may need to include to configure your application, consult
 >
