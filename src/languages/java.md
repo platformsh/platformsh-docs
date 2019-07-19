@@ -10,6 +10,7 @@ Java is a general-purpose programming language, and one of the most popular in t
 * 8
 * 11
 * 12
+* 13
 
 
 To select a Java version, specify a `type` such as `java:11`:

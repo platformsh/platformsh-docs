@@ -7,6 +7,7 @@ See the [Kafka documentation](https://kafka.apache.org/documentation/) for more 
 ## Supported versions
 
 * 2.1
+* 2.2
 
 ## Relationship
 
