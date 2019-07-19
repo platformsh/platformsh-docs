@@ -2,6 +2,10 @@
 
 ## 2019
 
+* **July 2019**
+  * Elasticsearch 7.2: We now support [Elasticsearch 7.2](/configuration/services/elasticsearch.md).
+  * [Elasticsearch](/configuration/services/elasticsearch.md) 5.2 and 5.4 support is now deprecated
+
 * **June 2019**
   * Java: We support and documented the use of [Java](/languages/java.md) runtimes 8, 11, and 12, that includes examples that use the [Java Config Reader](https://github.com/platformsh/config-reader-java/).
   * Headless Chrome: Users can now define a [Headless Chrome](/configuration/services/headless-chrome.md) service to access a service container with a headless browser, which can be used for automated UI testing.
