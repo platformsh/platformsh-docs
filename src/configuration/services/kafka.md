@@ -7,6 +7,7 @@ See the [Kafka documentation](https://kafka.apache.org/documentation/) for more 
 ## Supported versions
 
 * 2.1
+* 2.2
 
 ## Relationship
 
@@ -20,7 +21,7 @@ In your ``.platform/services.yaml``:
 
 ```yaml
 mykafka:
-    type: kafka:2.1
+    type: kafka:2.2
     disk: 1024
 ```
 

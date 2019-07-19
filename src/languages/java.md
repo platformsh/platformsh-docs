@@ -10,13 +10,14 @@ Java is a general-purpose programming language, and one of the most popular in t
 * 8
 * 11
 * 12
+* 13
 
 
-To select a Java version, specify a `type` such as `java:11`:
+To select a Java version, specify a `type` such as `java:13`:
 
 ```yaml
 # .platform.app.yaml
-type: "java:11"
+type: "java:13"
 ```
 
 
