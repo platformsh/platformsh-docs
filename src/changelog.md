@@ -4,6 +4,8 @@
 
 * **July 2019**
   * Elasticsearch 7.2: We now support [Elasticsearch 7.2](/configuration/services/elasticsearch.md).
+  * Kafka 2.2: We now support [Kafka 2.2](/configuration/services/kafka.md).
+  * Java 13: We now support [Java 13](/configuration/languages/java.md).
   * [Elasticsearch](/configuration/services/elasticsearch.md) 5.2 and 5.4 support is now deprecated
 
 * **June 2019**
