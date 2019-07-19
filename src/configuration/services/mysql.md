@@ -61,18 +61,8 @@ You can then use the service in a configuration file of your application with so
 
 {%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/mysql" -%}
 
-{%- language name="Go", type="go" -%}
-// Using the Platform.sh Go helper library: https://github.com/platformsh/gohelper
+{%- language name="Go", type="go", url="https://examples.docs.platform.sh/golang/mysql" -%}
 
-dbString, err := pi.SqlDsn("database")
-if (err != nil) {
-  panic(err)
-}
-
-db, err := sql.Open("mysql", dbString)
-if (err != nil) {
-  panic(err)
-}
 {%- endcodetabs %}
 
 > **note**
