@@ -41,6 +41,6 @@ Now that you've opened tunnels into your services, you'll have access to all of 
 Now you know how to connect to your services on Platform.sh and perform a local build during development.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have built my application locally</a>
+  <a href="" class="somethingprev">Back</a>
+  <a href="" class="somethingnext">I have built my application locally</a>
 </div>
