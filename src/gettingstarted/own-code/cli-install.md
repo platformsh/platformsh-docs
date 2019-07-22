@@ -40,6 +40,6 @@ In the previous steps you checked that the requirements on your computer were me
 Now that you have installed the CLI and it is communicating with Platform.sh, you can configure and push your project to Platform.sh.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have installed the CLI</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have installed the CLI</a>
 </div>

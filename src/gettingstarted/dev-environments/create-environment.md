@@ -51,8 +51,7 @@ Platform.sh supports the deployment of isolated development environments from yo
 
   The above URLs represent the upstream (0) and redirect (1) routes for the most common `routes.yaml` configuration.
 
-
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have created and activated a development environment</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have created and activated a development environment</a>
 </div>

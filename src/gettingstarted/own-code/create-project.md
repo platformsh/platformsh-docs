@@ -49,6 +49,6 @@ That's it! You have now created an empty project and connected your repository t
 Move on now to the next step to start configuring your repository to deploy on Platform.sh.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I created a project with the CLI</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I created a project with the CLI</a>
 </div>

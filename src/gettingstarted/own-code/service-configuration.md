@@ -66,6 +66,6 @@ Platform.sh provides _managed services_, and each service comes with considerabl
 Next, you will next need to tell Platform.sh how to build and deploy your application using the `.platform.app.yaml` file.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have configured my services</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have configured my services</a>
 </div>

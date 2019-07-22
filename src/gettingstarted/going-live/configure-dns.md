@@ -21,6 +21,6 @@ You can find out more information about using an apex domain and CNAME records i
 Depending on your registrar and the TTL you set for the domain, it may take up to 72 hours for the DNS change to fully propagate across the Internet.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have configured my DNS provider</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have configured my DNS provider</a>
 </div>

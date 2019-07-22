@@ -19,6 +19,6 @@ Select the plan size that is appropriate for the needs of your application. This
 Now you are ready to set up your pre-registered domain.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have upgraded my plan size</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have upgraded my plan size</a>
 </div>

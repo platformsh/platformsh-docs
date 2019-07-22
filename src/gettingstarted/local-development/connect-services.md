@@ -55,6 +55,6 @@ Now that you have a local copy of your application code, you can make changes to
 Now that you have created an SSH tunnel to your services, build your application locally.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have opened an SSH tunnel into my services</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have opened an SSH tunnel into my services</a>
 </div>

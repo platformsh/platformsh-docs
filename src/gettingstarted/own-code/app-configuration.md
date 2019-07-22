@@ -122,6 +122,6 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 Now that you have configured your application, you will next need to handle HTTP requests to your application using the `.platform/routes.yaml` file.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have configured my application</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have configured my application</a>
 </div>

@@ -39,6 +39,6 @@ That's it! Using the Platform.sh CLI and a few properly configured files, pushin
 Now that your code is on Platform.sh, check out some of the Next Steps to get started developing.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have deployed my application</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have deployed my application</a>
 </div>

@@ -23,6 +23,6 @@ Before you take your site live, there are a few steps that will help you prepare
 After you have gone through the following checklist your application is ready to be taken live!
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I'm ready to go live</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I'm ready to go live</a>
 </div>

@@ -124,6 +124,6 @@ You can also find examples of how to connect to each of Platform.sh managed serv
 Project configured, services connected - time to commit the changes and push your repository onto your project.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have connected to my services to my application</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have connected my services to my application</a>
 </div>

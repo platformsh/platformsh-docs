@@ -10,5 +10,5 @@ These steps assume that you have already:
 If you have not completed these steps by now, click the links and do so before you begin.
 
 <div class="buttons">
-  <a href="#" class="button-link next">Get started!</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">Get started!</a>
 </div>

@@ -40,6 +40,6 @@ Now that you've had the chance to verify that your application built and deploye
     ```
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have merged the new feature</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have merged the new feature</a>
 </div>

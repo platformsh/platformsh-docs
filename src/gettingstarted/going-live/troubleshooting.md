@@ -20,7 +20,6 @@ Consider using Cloudflare's TLS/SSL service to secure your site via HTTPS when u
 
 * [Going Live: Cloudflare](/golive/steps/cloudflare.md)
 
-
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
 </div>

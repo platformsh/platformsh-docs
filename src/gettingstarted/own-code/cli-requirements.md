@@ -43,6 +43,6 @@ That's it! Now that you have met the requirements and configured an SSH key, Pla
 Next, you will need to install the Platform.sh CLI so that you can import your code to a project.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have configured my SSH key in the management console</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have configured my SSH public key in the management console</a>
 </div>

@@ -6,5 +6,5 @@ Welcome to Platform.sh! Importing your own code to Platform.sh is as easy as ins
 When code examples are provided in the guide, click the language of your application.  If you consult those examples and a few templates as you go along, your code will be up and running on Platform.sh in no time.
 
 <div class="buttons">
-  <a href="#" class="button-link next">Get started!</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">Get started!</a>
 </div>

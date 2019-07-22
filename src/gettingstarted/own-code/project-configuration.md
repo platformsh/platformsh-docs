@@ -46,6 +46,6 @@ In the previous step, you created a new project on Platform.sh using the CLI. No
 With the empty configuration files in place, you will need to specify your service configuration in `.platform/services.yaml`.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have initialized my code with empty configuration files</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have initialized my code with empty configuration files</a>
 </div>

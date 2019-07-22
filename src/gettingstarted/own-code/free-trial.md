@@ -11,6 +11,6 @@ Visit the [Platform.sh accounts](https://accounts.platform.sh/platform/trial/gen
 Alternatively, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose this option, you will be able to set a password for your Platform.sh account later.
 
 <div class="buttons">
-  <a href="#" class="button-link prev">Back</a>
-  <a href="#" class="button-link next">I have set up my free trial account</a>
+  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have set up my free trial account</a>
 </div>
