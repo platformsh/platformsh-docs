@@ -39,6 +39,10 @@ You can then use the service in a configuration file of your application with so
 
 {%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/rabbitmq" -%}
 
+{%- language name="Go", type="go", url="https://examples.docs.platform.sh/golang/rabbitmq" -%}
+
+{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/rabbitmq" -%}
+
 {%- endcodetabs %}
 
 (The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)

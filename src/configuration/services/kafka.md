@@ -7,6 +7,7 @@ See the [Kafka documentation](https://kafka.apache.org/documentation/) for more 
 ## Supported versions
 
 * 2.1
+* 2.2
 
 ## Relationship
 
@@ -20,7 +21,7 @@ In your ``.platform/services.yaml``:
 
 ```yaml
 mykafka:
-    type: kafka:2.1
+    type: kafka:2.2
     disk: 1024
 ```
 
@@ -34,6 +35,8 @@ relationships:
 You can then use the service in a configuration file of your application with something like:
 
 {% codetabs name="Python", type="python", url="https://examples.docs.platform.sh/python/kafka" -%}
+
+{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/kafka" -%}
 
 {%- language name="Ruby", type="ruby"-%}
 ## With the ruby-kafka gem

@@ -58,3 +58,60 @@ platform integration:add --type health.pagerduty --routing-key YOUR_ROUTING_KEY
 ```
 
 Any notification will now trigger an alert in PagerDuty.
+
+### Webhooks notifications
+
+A notification can trigger a message to be sent to a web endpoint.
+
+To do so, register a `health.webhook` integration as follows:
+
+```bash
+platform integration:add --type health.webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
+```
+
+Any notification will now be posted to the `health.webhook` URL.
+
+In order to let you verify that requests are coming from the integration, you can use the optional `shared-key` parameter which will add a `X-JWS-Signature` request header containing the JSON Web Token Signature in JWS Compact Serialization with Unencoded Detached Payload ([RFC7797](https://tools.ietf.org/html/rfc7797)).
+
+```bash
+platform integration:add --type health.webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON --shared-key JWS-SYMMETRIC-KEY
+```
+
+The signature is calculated using the given `shared-key` and the fixed header:
+
+```json
+{"alg":"HS256","b64":false,"crit":["b64"]}
+```
+
+A simplified example payload with the corresponding signature might look like the following snippet:
+
+```json
+POST /health/notifications HTTP/1.0
+Host: www.example.com
+Content-Length: 1495
+Content-Type: application/json
+X-JWS-Signature: eyJhbGciOiJIUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..fYW9qrjShmEArV17Z1kH6yudoXzpBE3PzJXq_OqrIfM
+
+{...request body...}
+```
+
+Signature verification is a simple 2 step process:
+
+```python
+# 1. Compute JWS Compact Serialization with Unencoded Detached Payload
+
+from jwcrypto import jws, jwk
+
+rfc7797_u_header = '{"alg":"HS256","b64":false,"crit":["b64"]}'
+json_web_key = jwk.JWK(kty="oct", k="JWS-SYMMETRIC-KEY")
+
+sig = jws.JWS(request.body())
+sig.add_signature(json_web_key, protected=rfc7797_u_header)
+sig.detach_payload()
+
+# 2. Verify the signature
+
+assert sig.serialize(compact=True) == request.headers["X-JWS-Signature"]
+```
+
+Please refer to the [JOSE Cookbook](https://github.com/ietf-jose/cookbook) for examples about protecting content using JavaScript Object Signing and Encryption (JOSE).

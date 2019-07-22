@@ -57,6 +57,8 @@ You can then use the service in a configuration file of your application with so
 
 {%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/postgresql" -%}
 
+{%- language name="Go", type="go", url="https://examples.docs.platform.sh/golang/postgresql" -%}
+
 {%- endcodetabs %}
 
 ## Exporting data
