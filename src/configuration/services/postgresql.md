@@ -49,15 +49,15 @@ runtime:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
-
-{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/postgresql" -%}
-
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/postgresql" -%}
+{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/postgresql" -%}
 
 {%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/postgresql" -%}
 
-{%- language name="Go", type="go", url="https://examples.docs.platform.sh/golang/postgresql" -%}
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/postgresql" -%}
+
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
+
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/postgresql" -%}
 
 {%- endcodetabs %}
 

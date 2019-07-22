@@ -45,13 +45,13 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
+{% codetabs name="Java", type="java", url="https://examples.docs.platform.sh/java/elasticsearch" -%}
 
 {%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/elasticsearch" -%}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
 
-{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/elasticsearch" -%}
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
 
 {%- endcodetabs %}
 
@@ -73,7 +73,7 @@ mysearch:
         plugins:
             - analysis-icu
             - lang-python
-            
+
 ```
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
