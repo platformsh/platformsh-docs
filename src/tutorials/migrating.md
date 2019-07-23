@@ -14,7 +14,8 @@ For some applications, such as Drupal you will need to dump configuration to fil
 * [PHP Templates](/languages/php.md#project-templates)
 * [Python Templates](/languages/python.md#project-templates)
 
-Now create a new Platform.sh project and when asked if you want to create a blank site from a template or import your existing code.  Select "Create a blank project".
+
+In the management console, click `+ Add project` to create a new Platform.sh project. When asked to select a template pick "Create a blank project".
 
 ## Push your code
 
