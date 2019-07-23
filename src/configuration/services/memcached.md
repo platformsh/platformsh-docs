@@ -50,15 +50,15 @@ dependencies:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
-
-{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/memcached" -%}
-
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/memcached" -%}
+{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/memcached" -%}
 
 {%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/memcached" -%}
 
-{%- language name="Go", type="go", url="https://examples.docs.platform.sh/golang/memcached" -%}
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/memcached" -%}
+
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
+
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/memcached" -%}
 
 {%- endcodetabs %}
 

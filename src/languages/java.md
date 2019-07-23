@@ -27,7 +27,7 @@ While it is possible to read the environment directly from your application, it 
 
 ## Support build automation
 
-Platform.sh supports the most common project management tools in the Java ecosystem, including: 
+Platform.sh supports the most common project management tools in the Java ecosystem, including:
 
 * [Gradle](https://gradle.org/)
 * [Maven](https://maven.apache.org/)
@@ -38,25 +38,23 @@ Platform.sh supports the most common project management tools in the Java ecosys
 
 To access various [services](/configuration/services.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
 
+{% codetabs name="Elasticsearch", type="java", url="https://examples.docs.platform.sh/java/elasticsearch" -%}
 
+{%- language name="Kafka", type="java", url="https://examples.docs.platform.sh/java/kafka" -%}
 
-{% codetabs name="MongoDB", type="java", url="https://examples.docs.platform.sh/java/mongodb" -%}
+{%- language name="Memcached", type="java", url="https://examples.docs.platform.sh/java/memcached" -%}
+
+{%- language name="MongoDB", type="java", url="https://examples.docs.platform.sh/java/mongodb" -%}
 
 {% language name="MySQL", type="java", url="https://examples.docs.platform.sh/java/mysql" -%}
 
 {% language name="PostgreSQL", type="java", url="https://examples.docs.platform.sh/java/postgresql" -%}
 
+{%- language name="RabbitMQ", type="java", url="https://examples.docs.platform.sh/java/rabbitmq" -%}
+
 {% language name="Redis", type="java", url="https://examples.docs.platform.sh/java/redis" -%}
 
-{%- language name="Memcached", type="java", url="https://examples.docs.platform.sh/java/memcached" -%}
-
-{%- language name="Elasticsearch", type="java", url="https://examples.docs.platform.sh/java/elasticsearch" -%}
-
 {%- language name="Solr", type="java", url="https://examples.docs.platform.sh/java/solr" -%}
-
-{%- language name="Kafka", type="java", url="https://examples.docs.platform.sh/java/kafka" -%}
-
-{%- language name="RabbitMQ", type="java", url="https://examples.docs.platform.sh/java/rabbitmq" -%}
 
 {%- endcodetabs %}
 
