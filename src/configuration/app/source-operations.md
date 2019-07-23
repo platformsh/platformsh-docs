@@ -35,7 +35,7 @@ The command has two parameters:
 When this operation is triggered:
 
 * A clean Git checkout of the current environment HEAD commit is created; this checkout doesn't have any remotes, has all the tags defined in the project, but only has the current environment branch.
-* Sequentially (_the sequence is in lexicographic order of the path of the `.platform.app.yaml` file_), for each application that has defined this operation, the operation command is launched in container image of the application, with the same type of environment you will find in a build, with the addition of all the runtime environment variables of the current environment, optionally overridden by the variables specified in the operation payload.
+* Sequentially (_the sequence is in lexicographic order of the path of the `.platform.app.yaml` file_), for each application that has defined this operation, the operation command is launched in the container image of the application, with the same type of environment you will find in a build, with the addition of all the runtime environment variables of the current environment, optionally overridden by the variables specified in the operation payload.
 * At the end of the process, if any commit was created, the environment branch is updated to this commit, and the normal build process of the environment is triggered.
 
 Note that this operation runs in an isolated environment, it is not part of the runtime cluster of the environment, and doesn't require the environment to be running.
