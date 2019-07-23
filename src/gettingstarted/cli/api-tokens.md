@@ -19,28 +19,30 @@ After creating the token it will be displayed once at the top of the page in a g
 Now set that token to an environment variable named `PLATFORMSH_CLI_TOKEN` on your system where the CLI will run.  Consult the documentation for your CI system to see how to do that.
 
 > **note**
->
 > If running CLI commands from any automated system, including a Platform.sh cron task, we urge you to use the `--no-wait` flag on any commands that may take more than a second or two to avoid blocking the process.
 
-## Automation users
+## Machine users
 
-For projects with more than one user it is often a good idea to create a dedicated "automation user" to run automation tasks such as backups. Like human users, every user account needs its own unique email address.
- 
-The automation user can be given a very restrictive set of permissions limited to just its needed tasks. Backups, for instance, require `Admin` access but no SSH key, while checking out code from a CI server to run tests on it would require an SSH key but only `Reader` access.
- 
-It will also show up in logs and activity streams as a separate entry from human users. We recommend having a separate automation user for each project to be automated.
+For security reasons we recommend to create a dedicated `machine user` to run automation tasks such as taking backups, renewing SSL certificates or triggering source operations. We also recommend to create a unique `machine user` for each project to be automated. 
+
+Like human users, every `machine user` account needs its own unique email address.
+
+The `machine user` can be given a very restrictive set of permissions limited to just its needed tasks. Backups, for instance, require `Admin` access but no SSH key, while checking out code from a CI server to run tests on it would require an SSH key but only `Reader` access.
+
+It will also show up in logs and activity streams as a separate entry from human users.
  
 Consult the [Users](/administration/users.md) documentation for more information about the differences between access levels.
 
-## Automating the CLI on a Platform.sh environment
+## Install the CLI on a Platform.sh environment
 
 A common use case for an API token is to allow the Platform.sh CLI to be run on an app container, often via a cron hook.  An API token is necessary for authentication, but the CLI will be able to auto-detect the current project and environment.
 
-First, obtain an API token as above.  Set it as the [top-level](https://docs.platform.sh/development/variables.html#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN` either through the management console or via the CLI, like so:
+First, create a `machine user` (see above) that you invite to your project. Then, login as that `machine user` to obtain an API token. Set this token as the [top-level](https://docs.platform.sh/development/variables.html#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN` either through the management console or via the CLI, like so:
 
 ```bash
 platform variable:create -e master --level environment --name env:PLATFORMSH_CLI_TOKEN --sensitive true --value 'your API token'
 ```
+
 > **note**
 > It is important to include the `env:` so as to expose `$PLATFORMSH_CLI_TOKEN` on its own as a top level Unix environment variable, rather than as a part of `$PLATFORM_VARIABLES` like normal environment variables.
 
@@ -67,5 +69,4 @@ crons:
 ```
 
 > **note**
->
 > Seriously, please use `--no-wait` for all CLI commands placed in a cron hook. Failure to do so may result in long deploy times and site downtime.
