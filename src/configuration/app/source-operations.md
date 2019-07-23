@@ -59,6 +59,6 @@ crons:
         cmd: |
             if [ "$PLATFORM_BRANCH" = update-dependencies ]; then
                 platform environment:sync code data --no-wait --yes
-                platform source-operation:run update
+                platform source-operation:run update --no-wait --yes
             fi
 ```
