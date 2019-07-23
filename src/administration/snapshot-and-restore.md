@@ -80,11 +80,11 @@ Snapshots may be triggered by calling the CLI from an automated system such as J
 
 > **note**
 >
-> Snapshots using cron requires you to [install the CLI in your container and set up an API token](/gettingstarted/cli/api-tokens.md).
+> Automated snapshots using cron requires to [get an API token and install the CLI in your application container](/gettingstarted/cli/api-tokens.md).
 
 We ask that you not schedule a backup task more than once a day to minimize data usage. 
 
-Once the CLI is installed and an API token configured you can add a cron task to run once a day and trigger a snapshot.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on. In most cases such backups are only useful on the `master` production environment.
+Once the CLI is installed in your application container and an API token configured you can add a cron task to run once a day and trigger a snapshot.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on. In most cases such backups are only useful on the `master` production environment.
 
 A common cron specification for a daily backup on the `master` environment looks like this:
 
