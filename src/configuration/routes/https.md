@@ -141,7 +141,7 @@ If the Let's Encrypt certificate is due to expire in less than one month then it
 
 > **note**
 >
-> Automated SSL certificate renewal using cron requires to [get an API token and install the CLI in your application container](/gettingstarted/cli/api-tokens.md).
+> Automated SSL certificate renewal using cron requires you to [get an API token and install the CLI in your application container](/gettingstarted/cli/api-tokens.md).
 
 Once the CLI is installed in your application container and an API token configured you can add a cron task to run twice a month to trigger a redeploy. For example:
 
