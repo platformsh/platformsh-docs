@@ -37,7 +37,7 @@ Consult the [Users](/administration/users.md) documentation for more information
 
 A common use case for an API token is to allow the Platform.sh CLI to be run on an app container, often via a cron hook.  An API token is necessary for authentication, but the CLI will be able to auto-detect the current project and environment.
 
-First, create a `machine user` (see above) that you invite to your project. Then, login as that `machine user` to obtain an API token. Set this token as the [top-level](https://docs.platform.sh/development/variables.html#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN` either through the management console or via the CLI, like so:
+First, create a `machine user` (see above) that you invite to your project. Then, log in as that `machine user` to obtain an API token. Set this token as the [top-level](https://docs.platform.sh/development/variables.html#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN` either through the management console or via the CLI, like so:
 
 ```bash
 platform variable:create -e master --level environment --name env:PLATFORMSH_CLI_TOKEN --sensitive true --value 'your API token'
