@@ -6,10 +6,16 @@ Moving an already-built site to Platform.sh is generally straightforward.  For t
 
 First, assemble your Git repository as appropriate, on your master branch.  Be sure to include the Platform.sh configuration files, as you will not be able to push the repository to Platform.sh otherwise!
 
-For some applications, such as Drupal you will need to dump configuration to files before proceeding.  You will also need to provide appropriate configuration to read the credentials for your services at runtime and integrate them into your application's configuration.  The details of that integration will vary between systems.  Be sure to see the appropriate [project templates](https://github.com/platformsh/) for our recommended configuration.
+For some applications, such as Drupal you will need to dump configuration to files before proceeding.  You will also need to provide appropriate configuration to read the credentials for your services at runtime and integrate them into your application's configuration.  The details of that integration will vary between systems.  Be sure to see the appropriate project templates for our recommended configuration.
 
-Now create a new Platform.sh project and when asked if you want to create a blank site from a template or import your existing code.  Select "Import your existing code".
+* [Go Templates](/languages/go,md#project-templates)
+* [Java Templates](/languages/java.md#project-templates)
+* [Node.js Templates](/languages/nodejs.md#project-templates)
+* [PHP Templates](/languages/php.md#project-templates)
+* [Python Templates](/languages/python.md#project-templates)
 
+
+In the management console, click `+ Add project` to create a new Platform.sh project. When asked to select a template pick "Create a blank project".
 
 ## Push your code
 
