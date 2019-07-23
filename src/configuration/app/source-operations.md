@@ -54,7 +54,7 @@ On the example below, we synchronize the `update-dependencies` environment with 
 ```yaml
 crons:
     update:
-        # Run the 'update' source operation every day.
+        # Run the 'update' source operation every day at midnight.
         spec: '0 0 * * *'
         cmd: |
             if [ "$PLATFORM_BRANCH" = update-dependencies ]; then
