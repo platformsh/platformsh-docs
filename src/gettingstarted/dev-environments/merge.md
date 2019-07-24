@@ -26,7 +26,7 @@ Now that you've had the chance to verify that your application built and deploye
     git push
     ```
 
-    Select `dev`, and then Platform.sh will merge `dev` into its parent, `master`. When the build process completes, verify that your changes have been merged.
+    When the build process completes, verify that your changes have been merged.
 
     ```bash
     platform url
