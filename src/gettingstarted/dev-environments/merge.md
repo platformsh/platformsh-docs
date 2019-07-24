@@ -22,7 +22,8 @@ Now that you've had the chance to verify that your application built and deploye
 
     ```bash
     git checkout master
-    platform merge --project <project id>
+    git merge dev
+    git push
     ```
 
     Select `dev`, and then Platform.sh will merge `dev` into its parent, `master`. When the build process completes, verify that your changes have been merged.
