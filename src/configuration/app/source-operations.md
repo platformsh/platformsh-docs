@@ -5,6 +5,10 @@ search:
 
 # Source operations
 
+> **note**
+>
+> Source Operations are currently in beta.  While the syntax is not expected to change some behavior might in the future.
+
 An application can define a number of operations that apply to its source code and that can be automated.
 
 A basic, common source operation could be to automatically update Composer dependencies like this:
