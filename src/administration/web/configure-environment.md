@@ -14,13 +14,17 @@ The first setting allows you to modify the name of the environment and view its 
 
 ### Status
 
-From the `Status` tab, you can activate or delete an environment. 
+From the `Status` tab, you can activate or deactivate an environment.
 
 ![env status](/images/management-console/env-status.png)
 
-The `Delete` action will destroy all services running on this environment (PHP, MySQL, volumes, etc.) so that only the Git branch remains. You can reactivate the environment later if needed.
+The `Deactivate & Delete Data` action will
 
-To delete the branch as well, you need to execute the following:
+* Deactivate the environment. Unless is is re-activated, it will no longer deploy and it will not be accessible from the web or via SSH.
+* Destroy all services running on this environment.
+* Delete all data specific to the environment. If the environment is reactivated, it will sync data from its parent environment.
+
+Once the environment is deactivated, the Git branch will remain on Platform.sh in the inactive environment. To delete the branch as well, you need to execute the following:
 
 ```
 git push origin :BRANCH-NAME
@@ -31,7 +35,7 @@ git push origin :BRANCH-NAME
 
 ### Outgoing emails
 
-From this tab, you can allow your application to send emails via a SendGrid SMTP proxy. 
+From this tab, you can allow your application to send emails via a SendGrid SMTP proxy.
 
 ![env email](/images/management-console/env-email.png)
 

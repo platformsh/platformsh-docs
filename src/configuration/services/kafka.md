@@ -34,9 +34,9 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="Python", type="python", url="https://examples.docs.platform.sh/python/kafka" -%}
+{% codetabs name="Java", type="java", url="https://examples.docs.platform.sh/java/kafka" -%}
 
-{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/kafka" -%}
+{%- language name="Python", type="python", url="https://examples.docs.platform.sh/python/kafka" -%}
 
 {%- language name="Ruby", type="ruby"-%}
 ## With the ruby-kafka gem

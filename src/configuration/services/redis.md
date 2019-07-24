@@ -79,13 +79,13 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/redis" -%}
+{% codetabs name="Java", type="java", url="https://examples.docs.platform.sh/java/redis" -%}
 
 {%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/redis" -%}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/redis" -%}
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/redis" -%}
 
-{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/redis" -%}
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/redis" -%}
 
 {%- endcodetabs %}
 

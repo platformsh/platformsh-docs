@@ -35,13 +35,13 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
-
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/rabbitmq" -%}
-
-{%- language name="Go", type="go", url="https://examples.docs.platform.sh/golang/rabbitmq" -%}
+{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/rabbitmq" -%}
 
 {%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/rabbitmq" -%}
+
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
+
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/rabbitmq" -%}
 
 {%- endcodetabs %}
 
