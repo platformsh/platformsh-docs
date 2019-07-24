@@ -18,15 +18,12 @@ You can also initialize your project using any of the pre-made templates below. 
 <section class="examples-lists">
 
 <div>
-  <h3>Applications</h3>
-  <h4>Spring</h4>
-  <a href="https://github.com/platformsh/template-spring-boot-maven-mysql">Spring Boot MySQL</a>
-  <a href="https://github.com/platformsh/template-spring-mvc-maven-mongodb">Spring Boot MongoDB</a>
-
-  <h4>Eclipse JNoSQL</h4>
-  <a href="https://github.com/platformsh/template-microprofile-tomee">Apache Tomee</a>
-  <a href="https://github.com/platformsh/template-microprofile-thorntail">Thorntail</a>
-  <a href="https://github.com/platformsh/template-microprofile-payara">Payara Micro</a>
+  <h4>Applications</h3>
+  <a href="https://github.com/platformsh/template-spring-boot-maven-mysql">Spring Boot MySQL</a><br />
+  <a href="https://github.com/platformsh/template-spring-mvc-maven-mongodb">Spring Boot MongoDB</a><br />
+  <a href="https://github.com/platformsh/template-microprofile-tomee">Apache Tomee</a><br />
+  <a href="https://github.com/platformsh/template-microprofile-thorntail">Thorntail</a><br />
+  <a href="https://github.com/platformsh/template-microprofile-payara">Payara Micro</a><br />
   <a href="https://github.com/platformsh/template-microprofile-kumuluzee">KumuluzEE</a>
 
 </div>
