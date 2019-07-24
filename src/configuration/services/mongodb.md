@@ -53,13 +53,15 @@ runtime:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/mongodb" -%}
+{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/mongodb" -%}
+
+{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/mongodb" -%}
 
 {%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/mongodb" -%}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/mongodb" -%}
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/mongodb" -%}
 
-{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/mongodb" -%}
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/mongodb" -%}
 
 {%- endcodetabs %}
 

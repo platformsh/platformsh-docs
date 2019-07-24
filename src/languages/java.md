@@ -10,12 +10,13 @@ Java is a general-purpose programming language, and one of the most popular in t
 * 8
 * 11
 * 12
+* 13
 
-To specify a Java container, use the `type` property in your `.platform.app.yaml`.
+To select a Java version, specify a `type` such as `java:13`:
 
 ```yaml
 # .platform.app.yaml
-type: "java:12"
+type: "java:13"
 ```
 
 ## Support libraries
@@ -31,22 +32,26 @@ Platform.sh supports the most common project management tools in the Java ecosys
 * [Ant](https://ant.apache.org/)
 
 
-
 ## Accessing services
 
 To access various [services](/configuration/services.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
 
-{% codetabs name="MongoDB", type="java", url="https://examples.docs.platform.sh/java/mongodb" -%}
+
+{% codetabs name="Elasticsearch", type="java", url="https://examples.docs.platform.sh/java/elasticsearch" -%}
+
+{%- language name="Kafka", type="java", url="https://examples.docs.platform.sh/java/kafka" -%}
+
+{%- language name="Memcached", type="java", url="https://examples.docs.platform.sh/java/memcached" -%}
+
+{%- language name="MongoDB", type="java", url="https://examples.docs.platform.sh/java/mongodb" -%}
 
 {% language name="MySQL", type="java", url="https://examples.docs.platform.sh/java/mysql" -%}
 
 {% language name="PostgreSQL", type="java", url="https://examples.docs.platform.sh/java/postgresql" -%}
 
+{%- language name="RabbitMQ", type="java", url="https://examples.docs.platform.sh/java/rabbitmq" -%}
+
 {% language name="Redis", type="java", url="https://examples.docs.platform.sh/java/redis" -%}
-
-{%- language name="Memcached", type="java", url="https://examples.docs.platform.sh/java/memcached" -%}
-
-{%- language name="Elasticsearch", type="java", url="https://examples.docs.platform.sh/java/elasticsearch" -%}
 
 {%- language name="Solr", type="java", url="https://examples.docs.platform.sh/java/solr" -%}
 
@@ -58,6 +63,14 @@ A number of project templates for major Java applications are available on GitHu
 
 ### Applications
 
-#### Maven Spring
+#### Spring
+
 * [Spring Boot MySQL](https://github.com/platformsh/template-spring-boot-maven-mysql)
 * [Spring Boot MongoDB](https://github.com/platformsh/template-spring-mvc-maven-mongodb)
+
+#### Eclipse JNoSQL
+
+* [Apache Tomee](https://github.com/platformsh/template-microprofile-tomee)
+* [Thorntail](https://github.com/platformsh/template-microprofile-thorntail)
+* [Payara Micro](https://github.com/platformsh/template-microprofile-payara)
+* [KumuluzEE](https://github.com/platformsh/template-microprofile-kumuluzee)

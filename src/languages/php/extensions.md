@@ -22,7 +22,6 @@ The following extensions are enabled by default:
 * dba (7.1 and later)
 * enchant (7.1 and later)
 * gd
-* imap (7.1 and later)
 * interbase (7.1 and later)
 * intl
 * json (5.6 and later)

@@ -1,30 +1,33 @@
 # MariaDB/MySQL (Database service)
 
-MariaDB is a MySQL-compatible relational database system. Its XtraDB storage engine is equivalent to MySQL with InnoDB.
+Platform.sh supports both MariaDB and Oracle MySQL.  While there are some differences at the application level for developers, they function nearly identically from an infrastructure point of view.
 
-See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentation](https://dev.mysql.com/doc/refman/5.5/en/) for more information.
+See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more information.
 
 ## Supported versions
 
-The service type `mysql` refers to MariaDB. The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc. Other than the `type`, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
+The service types `mariadb` and `mysql` both refer to MariaDB for compatibility reasons. The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc. Other than the type, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
 
-* mysql: 10.0
-* mysql: 10.1
-* mysql: 10.2
+* mariadb:10.0
+* mariadb:10.1
+* mariadb:10.2
 
+* mysql:10.0
+* mysql:10.1
+* mysql:10.2
 
-* oracle-mysql: 5.7
-* oracle-mysql: 8.0
+* oracle-mysql:5.7
+* oracle-mysql:8.0
 
 > **note**
 >
-> Downgrades of MariaDB are not supported. MariaDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+> Downgrades of MySQL or MariaDB are not supported. Both will update their own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* mysql: 5.5
+* mysql:5.5
 
 ## Relationship
 
@@ -42,7 +45,7 @@ mydatabase:
     disk: 1024
 ```
 
-Note that the minimum disk size for mysql is 256MB.
+Note that the minimum disk size for `mysql`/`oracle-mysql` is 256MB.
 
 In your `.platform.app.yaml`:
 
@@ -53,26 +56,16 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/mysql" -%}
-
-{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/mysql" -%}
-
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/mysql" -%}
+{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/mysql" -%}
 
 {%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/mysql" -%}
 
-{%- language name="Go", type="go" -%}
-// Using the Platform.sh Go helper library: https://github.com/platformsh/gohelper
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/mysql" -%}
 
-dbString, err := pi.SqlDsn("database")
-if (err != nil) {
-  panic(err)
-}
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/mysql" -%}
 
-db, err := sql.Open("mysql", dbString)
-if (err != nil) {
-  panic(err)
-}
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/mysql" -%}
+
 {%- endcodetabs %}
 
 > **note**

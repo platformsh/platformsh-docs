@@ -32,7 +32,6 @@ relationships:
     cache: "memcached:memcached"
 ```
 
-{% codetabs name="PHP", type="text" -%}
 If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php.md#php-extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 
 ```yaml
@@ -41,7 +40,6 @@ runtime:
         - memcached
 ```
 
-{%- language name="Python", type="text" -%}
 For Python you will need to include a dependency for a Memcached library, either via your requirements.txt file or a global dependency.  As a global dependency you would add the following to `.platform.app.yaml`:
 
 ```yaml
@@ -50,17 +48,17 @@ dependencies:
        python-memcached: '*'
 ```
 
-{%- endcodetabs %}
-
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
+{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/memcached" -%}
+
+{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/memcached" -%}
 
 {%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/memcached" -%}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/memcached" -%}
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
 
-{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/memcached" -%}
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/memcached" -%}
 
 {%- endcodetabs %}
 
