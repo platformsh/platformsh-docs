@@ -12,14 +12,12 @@ Java is a general-purpose programming language, and one of the most popular in t
 * 12
 * 13
 
-
 To select a Java version, specify a `type` such as `java:13`:
 
 ```yaml
 # .platform.app.yaml
 type: "java:13"
 ```
-
 
 ## Support libraries
 
@@ -37,6 +35,7 @@ Platform.sh supports the most common project management tools in the Java ecosys
 ## Accessing services
 
 To access various [services](/configuration/services.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
+
 
 {% codetabs name="Elasticsearch", type="java", url="https://examples.docs.platform.sh/java/elasticsearch" -%}
 
@@ -57,8 +56,6 @@ To access various [services](/configuration/services.md) with Java, see the foll
 {%- language name="Solr", type="java", url="https://examples.docs.platform.sh/java/solr" -%}
 
 {%- endcodetabs %}
-
-
 
 ## Project templates
 

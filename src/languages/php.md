@@ -12,7 +12,7 @@ PHP is a popular scripting language designed especially for the web. It currentl
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
-To select a PHP version, specify a `type` such as `php:7.3`:
+To specify a PHP container, use the `type` property in your `.platform.app.yaml`.
 
 ```yaml
 # .platform.app.yaml

@@ -1,0 +1,10 @@
+{"version": 2, "width": 104, "height": 20, "timestamp": 1560444470, "idle_time_limit": 2.0, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+[0.128572, "o", "\u001b[?1034h$ "]
+[1.412326, "o", "platform environment:info edge_hostname"]
+[9.9521, "o", "\r\n"]
+[11.946673, "o", "Environment ID \u001b[30;46m[master]\u001b[39;49m: "]
+[12.126327, "o", "\r\n"]
+[12.132877, "o", "\r\n"]
+[12.133069, "o", "master-7rqtwti-egmqpux6yi7dm.eu-3.platformsh.site\r\n"]
+[15.140275, "o", "$ "]
+[15.240275, "o", "\r\n"]

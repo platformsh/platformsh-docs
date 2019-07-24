@@ -99,7 +99,7 @@ For example:
 "https://{default}/":
     type: upstream
     upstream: "varnish:http"
-    cache: 
+    cache:
         enabled: false
 ```
 
