@@ -18,7 +18,7 @@ You can also initialize your project using any of the pre-made templates below. 
 <section class="examples-lists">
 
 <div>
-  <h4>Applications</h3>
+  <h4>Applications</h4>
   <a href="https://github.com/platformsh/template-spring-boot-maven-mysql">Spring Boot MySQL</a><br />
   <a href="https://github.com/platformsh/template-spring-mvc-maven-mongodb">Spring Boot MongoDB</a><br />
   <a href="https://github.com/platformsh/template-microprofile-tomee">Apache Tomee</a><br />
