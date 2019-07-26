@@ -46,7 +46,7 @@ When this operation is triggered:
 * Sequentially, for each application that has defined this operation, the operation command is launched in the container image of the application.  The environment will have all of the variables available during the build phase, plus `PLATFORM_BRANCH` and `PLATFORM_ENVIRONMENT`, optionally overridden by the variables specified in the operation payload.
 * At the end of the process, if any commits were created, the environment branch is updated to this commit, and the normal build process of the environment is triggered.
 
-Note that this operation runs in an isolated container: it is not part of the runtime cluster of the environment, and doesn't require the environment to be running.  Also be aware that if multiple applications in a single project both result in a new commit, that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur.
+Note that these operations run in an isolated container: it is not part of the runtime cluster of the environment, and doesn't require the environment to be running.  Also be aware that if multiple applications in a single project both result in a new commit, that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur.
 
 ## Automated Source Operations using cron
 
