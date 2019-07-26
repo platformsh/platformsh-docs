@@ -538,3 +538,12 @@ video {
   object-fit: initial;
   width: 100%;
 }
+
+.navigation {
+  min-width: 60px;
+}
+.navigation .fa {
+  color: var(--brand-color-primary-blue);
+  padding: 10px;
+  background-color: var(--sidebar-bg-color);
+}
