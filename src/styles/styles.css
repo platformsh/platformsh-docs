@@ -3,15 +3,11 @@
 :root {
   --brand-font: "Overpass";
   --brand-font-mono: "Overpass-mono";
-  --brand-color-neural-black: #1f1f19;
-  --brand-color-neural-white: #ffffff;
-  --brand-color-neural-gray: #eeede4;
-  --brand-color-neural-blue: #ededef;
-  --brand-color-primary-blue: #145cc6;
-  --brand-color-primary-pink: #ffaeae;
+  --brand-color-primary-blue: #145CC6;
   --brand-color-light-blue: #d0def4;
-  --brand-color-light-pink: #ffeeee;
-  --brand-color-accent-red: #fb3728;
+  --brand-font-color-black: #49475F;
+  --brand-font-color-dark: #3E3D54;
+  --sidebar-bg-color: #EDEDEF;
 }
 
 body {
@@ -51,7 +47,7 @@ TOP BAR
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #1A182A;
+  background-color: var(--brand-font-color-black);
 }
 .branding a {
   background: transparent url("/images/platform-logo.svg") no-repeat 0 0;
@@ -121,7 +117,7 @@ USER WIDGEGT
 
 
 /*****************
-BODY STYLES
+SIDEBAR
 **********************/
 .font-settings {
   display: none;
@@ -130,8 +126,8 @@ BODY STYLES
   top: 0;
 }
 .book-summary {
-  color: #000;
-  background: #ebebeb;
+  color: var(--brand-font-color-dark);
+  background: var(--sidebar-bg-color);
 }
 .body-inner,
 .page-wrapper {
@@ -151,46 +147,62 @@ ul.summary li.done > a {
 }
 ul.summary li a,
 ul.summary li span {
-  padding: 8px 12px;
-  color: #000;
-  line-height: 1em;
+  padding: 10px 0px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--brand-font-color-dark);
 }
 nav > ul.summary > li > a {
   font-weight: 600;
 }
-ul.summary li li a,
-ul.summary li li span {
-  padding: 6px 15px;
+
+.book-summary ul.summary li.active > a,
+.book-summary ul.summary li a:hover {
+  color: var(--brand-color-primary-blue);
 }
-ul.summary li.active > a,
-ul.summary li a:hover {
-  color: #00aeef;
+.book-summary ul.summary li.active > a {
+  border-left: 10px solid var(--brand-color-primary-blue);
+  margin-left: -30px;
+  padding-left: 20px;
 }
-ul.summary li.active > a {
-  border-left: 1px solid #00aeef;
-}
-ul.summary li ul {
-  padding-left: 14px;
-}
-ul.summary li ul ul {
-  padding-left: 14px;
+
+.book-summary ul.summary li a {
+  padding: 15px 0;
 }
 .book-summary ul.summary li.header {
-  color: #848484;
-  padding: 15px 0 10px;
-  border-top: 1px solid rgba(0,0,0,.07);
-  margin-top: 10px;
-  font-weight: 600;
-  font-size: 1.1em;
+  color: var(--brand-font-color-black);
+  padding: 20px 0 10px;
+  border-top: 1px solid #ffffff;
+  margin-top: 0px;
+  text-transform: capitalize;
+  font-weight: 900;
+  font-size: 18px;
 }
 .book-summary ul.summary li.header:first-child {
   border-top: none;
   margin-top: 0;
   padding-top: 0;
 }
-.book-summary > nav {
-  padding-top: 50px;
+
+/* sub list styles */
+ul.summary li ul {
+  padding-left: 14px;
 }
+ul.summary li ul ul {
+  padding-left: 14px;
+}
+ul.summary li li a,
+ul.summary li li span {
+  padding: 10px 15px;
+}
+
+/* nav styles */
+.book-summary > nav {
+  padding-top: 70px;
+}
+
+/* search field */
 #book-search-input {
   left: -100%;
   position: fixed;
@@ -203,6 +215,7 @@ ul.summary li ul ul {
   background: #ebebeb;
   top: 79px;
   padding: 0;
+  border-bottom: none;
 }
 .with-summary + #book-search-input {
   left: 0 !important;
@@ -214,17 +227,19 @@ ul.summary li ul ul {
 #book-search-input input,
 #book-search-input input:focus,
 #book-search-input input:hover {
-  padding: 13px;
+  padding: 20px 20px 20px 50px;
+  background-color: #ffffff;
 }
 #book-search-input:before {
-  color: #8e8e8e;
+  color: var(--brand-color-primary-blue);
   content: "\f002";
   font-family: FontAwesome;
   font-size: 18px;
   line-height: 18px;
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 35px;
+  left: 30px;
+  z-index: 30;
 }
 .algolia-autocomplete {
   width: 100%;
@@ -241,6 +256,25 @@ ul.summary li ul ul {
   max-width: 100%;
   min-width: auto;
 }
+/* Responsive Fixes */
+@media (min-width: 600px) {
+  #book-search-input {
+    left: -300px;
+    width: 300px;
+    padding: 10px;
+  }
+  .algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu,
+  .algolia-autocomplete .ds-dropdown-menu [class^=ds-dataset-],
+  .algolia-autocomplete .ds-dropdown-menu .ds-suggestions,
+  .algolia-autocomplete .ds-dropdown-menu .ds-suggestion {
+    min-width: 600px;
+  }
+}
+
+
+/*****************
+Documentation
+**********************/
 .book .book-header .btn {
   color: #757575;
 }
@@ -408,19 +442,7 @@ section.normal p strong,
 .user-widget__user_name {
   display: none;
 }
-/* Responsive Fixes */
-@media (min-width: 600px) {
-  #book-search-input {
-    left: -300px;
-    width: 299px;
-  }
-  .algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu,
-  .algolia-autocomplete .ds-dropdown-menu [class^=ds-dataset-],
-  .algolia-autocomplete .ds-dropdown-menu .ds-suggestions,
-  .algolia-autocomplete .ds-dropdown-menu .ds-suggestion {
-    min-width: 600px;
-  }
-}
+
 @media (max-width: 768px) {
   .user-widget__mega_menu__projects {
     padding-top: 20px;
