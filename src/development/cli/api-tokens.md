@@ -24,7 +24,7 @@ Now set that token to an environment variable named `PLATFORMSH_CLI_TOKEN` on yo
 
 ## Machine users
 
-For security reasons we recommend to create a dedicated machine user to run automation tasks such as taking backups, renewing SSL certificates or triggering source operations. We also recommend to create a unique machine user for each project to be automated.
+For security reasons we recommend creating a dedicated machine user to run automation tasks such as taking backups, renewing SSL certificates or triggering source operations. We also recommend creating a unique machine user for each project to be automated.
 
 Like human users, every machine user account needs its own unique email address.
 
