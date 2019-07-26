@@ -58,7 +58,7 @@ You can use cron to automatically run your source operations.
 
 Once the CLI is installed in your application container and an API token has been configured, you can add a cron task to run your source operations once a day. We do not recommend triggering source operations on your `master` production environment, but rather on a dedicated environment which you can use for testing before deployment.
 
-On the example below, we synchronize the `update-dependencies` environment with its parent before running the `update` source operation:
+The example below synchronizes the `update-dependencies` environment with its parent before running the `update` source operation:
 
 ```yaml
 crons:
