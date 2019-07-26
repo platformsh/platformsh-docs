@@ -42,7 +42,7 @@ TOP BAR
   float: left;
   white-space: nowrap;
   overflow: hidden;
-  width: 300px;
+  width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
@@ -59,7 +59,7 @@ TOP BAR
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
-  width: 300px;
+  width: auto;
   height: 80px;
   display: flex;
   align-items: center;
@@ -73,6 +73,9 @@ TOP BAR
   color: #fff;
 }
 @media (min-width: 600px) {
+  .branding {
+    width: 300px;
+  }
   .site-name span {
     display: none;
   }
