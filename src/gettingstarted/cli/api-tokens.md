@@ -19,6 +19,7 @@ After creating the token it will be displayed once at the top of the page in a g
 Now set that token to an environment variable named `PLATFORMSH_CLI_TOKEN` on your system where the CLI will run.  Consult the documentation for your CI system to see how to do that.
 
 > **note**
+>
 > If running CLI commands from any automated system, including a Platform.sh cron task, we urge you to use the `--no-wait` flag on any commands that may take more than a second or two to avoid blocking the process.
 
 ## Machine users
@@ -44,6 +45,7 @@ platform variable:create -e master --level environment --name env:PLATFORMSH_CLI
 ```
 
 > **note**
+>
 > It is important to include the `env:` so as to expose `$PLATFORMSH_CLI_TOKEN` on its own as a top level Unix environment variable, rather than as a part of `$PLATFORM_VARIABLES` like normal environment variables.
 
 Second, add a build hook to your `.platform.app.yaml` file to download the CLI as part of the build process.
@@ -69,4 +71,5 @@ crons:
 ```
 
 > **note**
+>
 > Seriously, please use `--no-wait` for all CLI commands placed in a cron hook. Failure to do so may result in long deploy times and site downtime.
