@@ -1,5 +1,4 @@
-@import url("//fonts.googleapis.com/css?family=Open+Sans:400,600");
-
+@import url("https://fonts.googleapis.com/css?family=Overpass:300,400,500,700,900");
 
 :root {
   --brand-font: "Overpass";
@@ -27,12 +26,15 @@ body {
 body,
 .book,
 .book-summary {
-  font-family: "Gotham SSm A", "Gotham SSm B", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Overpass", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+/*****************
+TOP BAR
+**********************/
 #platform-bar {
-  background: #000;
+  background: #302F45;
   color: #fff;
-  padding: 23px 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -41,35 +43,57 @@ body,
   min-height: 53px;
 }
 .branding {
-  text-transform: uppercase;
-  color: #fff;
-  text-align: right;
-  background: transparent url("/images/platform-logo.svg") no-repeat 0 0;
-  height: 22px;
-  width: 105px;
-  display: inline-block;
   float: left;
-  text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
+  width: 300px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1A182A;
+}
+.branding a {
+  background: transparent url("/images/platform-logo.svg") no-repeat 0 0;
+  height: 30px;
+  width: 150px;
+  display: inline-block;
 }
 .site-name {
-  line-height: 22px;
-  padding-left: 12px;
-  font-size: 16px;
-  text-transform: uppercase;
-  color: #fff;
   display: inline-block;
   overflow: hidden;
-  width: 27px;
   white-space: nowrap;
-}
-.title-bar {
-  padding-left: 10px;
+  width: 300px;
+  height: 80px;
+  display: flex;
+  align-items: center;
   float: left;
+  padding-left: 30px;
 }
+.site-name a {
+  font-size: 24px;
+  line-height: 40px;
+  font-weight: 900;
+  color: #fff;
+}
+@media (min-width: 600px) {
+  .site-name span {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  #platform-bar .site-name {
+    font-size: 1.15em;
+  }
+}
+
+/*****************
+USER WIDGEGT
+**********************/
 #user-widget {
   float: right;
+  margin-right: 30px;
+  height: 80px;
 }
 .user-widget>div {
   min-height: 32px;
@@ -94,6 +118,11 @@ body,
 #user-account .nav > li > .user-pic {
   line-height: 38px;
 }
+
+
+/*****************
+BODY STYLES
+**********************/
 .font-settings {
   display: none;
 }
@@ -381,12 +410,6 @@ section.normal p strong,
 }
 /* Responsive Fixes */
 @media (min-width: 600px) {
-  .site-name {
-    width: auto;
-  }
-  .site-name span {
-    display: none;
-  }
   #book-search-input {
     left: -300px;
     width: 299px;
@@ -404,14 +427,9 @@ section.normal p strong,
   }
 }
 @media (min-width: 768px) {
-  .title-bar {
-    padding-left: 50px;
-  }
+
   .platform-links {
     padding-right: 50px;
-  }
-  #platform-bar .site-name {
-    font-size: 1.15em;
   }
   #navlink {
     font-size: 1.15em;
