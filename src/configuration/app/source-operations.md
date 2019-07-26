@@ -30,14 +30,15 @@ The `update` key is the name of the operation. It is arbitrary, and multiple sou
 
 The environment resource gets a new `source-operation` action which can be triggered by the CLI:
 
-```
+```bash
 platform source-operation:run update
 ```
 
-The command key has two parameters:
+The `source-operation:run` command takes the command name to run plus, optionally, additional variables to inject in the environment of the source operation.  They will be interpreted the same way as any other [variable](/development/variables.md) set through the UI or CLI, which means you need an `env:` prefix to expose them as a Unix environment variable.  They can then be referenced by the source operation like any other variable.
 
-* `operation` (string): the name of the operation
-* `variables` (optional, object): additional variables (in the style of variables defined in the `.platform.app.yaml`) to inject in the environment of the source operation
+```bash
+platform source-operation:run update --variable env:FOO=bar --variable env:BAZ=beep
+```
 
 When this operation is triggered:
 
@@ -45,7 +46,7 @@ When this operation is triggered:
 * Sequentially (_the sequence is in alphabetical order of the path of the `.platform.app.yaml` file_), for each application that has defined this operation, the operation command is launched in the container image of the application.  The environment will have all of the variables available during the build phase, plus `PLATFORM_BRANCH` and `PLATFORM_ENVIRONMENT`, optionally overridden by the variables specified in the operation payload.
 * At the end of the process, if any commit was created, the environment branch is updated to this commit, and the normal build process of the environment is triggered.
 
-Note that this operation runs in an isolated container: it is not part of the runtime cluster of the environment, and doesn't require the environment to be running.
+Note that this operation runs in an isolated container: it is not part of the runtime cluster of the environment, and doesn't require the environment to be running.  Also be aware that if multiple applications in a single project both result in a new commit, that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur.
 
 ## Automated Source Operations using cron
 
