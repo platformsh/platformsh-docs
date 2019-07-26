@@ -18,6 +18,7 @@ source:
     operations:
         update:
             command: |
+                set -e
                 composer update
                 git add composer.lock
                 git commit -m "Update Composer dependencies."
@@ -25,13 +26,15 @@ source:
 
 The `update` key is the name of the operation. It is arbitrary, and multiple source operations can be defined.
 
+(You may with to include more robust error handling than this example.)
+
 The environment resource gets a new `source-operation` action which can be triggered by the CLI:
 
 ```
 platform source-operation:run update
 ```
 
-The command has two parameters:
+The command key has two parameters:
 
 * `operation` (string): the name of the operation
 * `variables` (optional, object): additional variables (in the style of variables defined in the `.platform.app.yaml`) to inject in the environment of the source operation
@@ -55,12 +58,14 @@ You can use cron to automatically run your source operations.
 Once the CLI is installed in your application container and an API token configured you can add a cron task to run once a day and run your source operations. We do not recommend triggering source operations on your `master` production environment, but rather on a dedicated environment which you can use for testing before deployment.
 
 On the example below, we synchronize the `update-dependencies` environment with its parent before running the `update` source operation:
+
 ```yaml
 crons:
     update:
         # Run the 'update' source operation every day at midnight.
         spec: '0 0 * * *'
         cmd: |
+            set -e
             if [ "$PLATFORM_BRANCH" = update-dependencies ]; then
                 platform environment:sync code data --no-wait --yes
                 platform source-operation:run update --no-wait --yes
