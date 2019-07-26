@@ -68,7 +68,7 @@ https://{default}/:
 > This directive was put into place when Platform.sh supported older versions of TLS for customers.
 > Currently only TLS v1.2 is supported. Support for TLS v1.3 will be added in the near future.
 
-Setting a minimum version of TLS will cause the server to automatically reject any connections using an older version of TLS.  Rejecting older versions with known security vulnerabilities is necessary for some security compliance processes. 
+Setting a minimum version of TLS will cause the server to automatically reject any connections using an older version of TLS.  Rejecting older versions with known security vulnerabilities is necessary for some security compliance processes.
 
 ```yaml
 tls:
@@ -135,13 +135,17 @@ tls:
             -----END CERTIFICATE-----
 ```
 
-## Automatic SSL certificate renewal
+## Automated SSL certificate renewal using Cron
 
-It is possible to set a variable from a cron task, which in turn will cause the site to redeploy.  If the Let's Encrypt certificate is due to expire in less than one month it will automatically renew at that time.  That makes it feasible to set up auto-renewal of the Let's Encrypt certificate.  The caveat is that, like any deploy, there is a very brief downtime (a few seconds, usually) so it's best to do during off-hours.
+If the Let's Encrypt certificate is due to expire in less than one month then it will be renewed automatically during a deployment.  That makes it feasible to set up regular auto-renewal of the Let's Encrypt certificate.  The caveat is that, like any deploy, there is a very brief downtime (a few seconds, usually) so it's best to do during off-hours.
 
 You will first need to install the CLI in your application container.  See the section on [API tokens](/gettingstarted/cli/api-tokens.md) for instructions on how to do so.
 
-Once the CLI is installed and an API token configured you can add a cron task to run twice a month to trigger a redeploy.  For example:
+> **note**
+>
+> Automated SSL certificate renewal using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
+
+Once the CLI is installed in your application container and an API token configured you can add a cron task to run twice a month to trigger a redeploy. For example:
 
 ```yaml
 crons:
