@@ -68,7 +68,7 @@ A number of project templates for major Java applications are available on GitHu
 * [Spring Boot MySQL](https://github.com/platformsh/template-spring-boot-maven-mysql)
 * [Spring Boot MongoDB](https://github.com/platformsh/template-spring-mvc-maven-mongodb)
 
-#### Eclipse JNoSQL
+#### Eclipse MicroProfile
 
 * [Apache Tomee](https://github.com/platformsh/template-microprofile-tomee)
 * [Thorntail](https://github.com/platformsh/template-microprofile-thorntail)
