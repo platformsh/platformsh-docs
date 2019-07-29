@@ -7,7 +7,7 @@ search:
 
 > **note**
 >
-> Source Operations are currently in beta.  While the syntax is not expected to change some behavior might in the future.
+> Source Operations are currently in beta.  While the syntax is not expected to change, some behavior might in the future.
 
 An application can define a number of operations that apply to its source code and that can be automated.
 
@@ -26,7 +26,7 @@ source:
 
 The `update` key is the name of the operation. It is arbitrary, and multiple source operations can be defined.
 
-(You may with to include more robust error handling than this example.)
+(You may wish to include more robust error handling than this example.)
 
 The environment resource gets a new `source-operation` action which can be triggered by the CLI:
 
@@ -34,7 +34,7 @@ The environment resource gets a new `source-operation` action which can be trigg
 platform source-operation:run update
 ```
 
-The `source-operation:run` command takes the command name to run plus, optionally, additional variables to inject in the environment of the source operation.  They will be interpreted the same way as any other [variable](/development/variables.md) set through the UI or CLI, which means you need an `env:` prefix to expose them as a Unix environment variable.  They can then be referenced by the source operation like any other variable.
+The `source-operation:run` command has one requierd parameter, the command name to run.  Additional variables may also be added to inject in the environment of the source operation.  They will be interpreted the same way as any other [variable](/development/variables.md) set through the UI or CLI, which means you need an `env:` prefix to expose them as a Unix environment variable.  They can then be referenced by the source operation like any other variable.
 
 ```bash
 platform source-operation:run update --variable env:FOO=bar --variable env:BAZ=beep
@@ -46,7 +46,7 @@ When this operation is triggered:
 * Sequentially, for each application that has defined this operation, the operation command is launched in the container image of the application.  The environment will have all of the variables available during the build phase, plus `PLATFORM_BRANCH` and `PLATFORM_ENVIRONMENT`, optionally overridden by the variables specified in the operation payload.
 * At the end of the process, if any commits were created, the new commits are pushed to the repository and the normal build process of the environment is triggered.
 
-Note that these operations run in an isolated container: it is not part of the runtime cluster of the environment, and doesn't require the environment to be running.  Also be aware that if multiple applications in a single project both result in a new commit, that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur.
+Note that these operations run in an isolated container: it is not part of the runtime cluster of the environment, and doesn't require the environment to be running.  If multiple applications in a single project both result in a new commit, that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur.
 
 ## Automated Source Operations using cron
 
