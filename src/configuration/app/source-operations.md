@@ -7,7 +7,7 @@ search:
 
 > **note**
 >
-> Source Operations are currently in beta.  While the syntax is not expected to change some behavior might in the future.
+> Source Operations are currently in beta.  While the syntax is not expected to change, some behavior might in the future.
 
 An application can define a number of operations that apply to its source code and that can be automated.
 
@@ -26,7 +26,7 @@ source:
 
 The `update` key is the name of the operation. It is arbitrary, and multiple source operations can be defined.
 
-(You may with to include more robust error handling than this example.)
+(You may wish to include more robust error handling than this example.)
 
 The environment resource gets a new `source-operation` action which can be triggered by the CLI:
 
@@ -34,7 +34,7 @@ The environment resource gets a new `source-operation` action which can be trigg
 platform source-operation:run update
 ```
 
-The `source-operation:run` command takes the command name to run plus, optionally, additional variables to inject in the environment of the source operation.  They will be interpreted the same way as any other [variable](/development/variables.md) set through the UI or CLI, which means you need an `env:` prefix to expose them as a Unix environment variable.  They can then be referenced by the source operation like any other variable.
+The `source-operation:run` command takes the command name to run. Additional variables can be added to inject into the environment of the source operation.  They will be interpreted the same way as any other [variable](/development/variables.md) set through the UI or CLI, which means you need an `env:` prefix to expose them as a Unix environment variable.  They can then be referenced by the source operation like any other variable.
 
 ```bash
 platform source-operation:run update --variable env:FOO=bar --variable env:BAZ=beep
