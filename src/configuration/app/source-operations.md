@@ -54,7 +54,7 @@ You can use cron to automatically run your source operations.
 
 > **note**
 >
-> Automated source operations using cron requires to [get an API token and install the CLI in your application container](/gettingstarted/cli/api-tokens.md).
+> Automated source operations using cron requires to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
 
 Once the CLI is installed in your application container and an API token has been configured, you can add a cron task to run your source operations once a day. We do not recommend triggering source operations on your `master` production environment, but rather on a dedicated environment which you can use for testing before deployment.
 
