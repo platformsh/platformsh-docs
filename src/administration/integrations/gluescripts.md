@@ -1,6 +1,6 @@
-# GlueScripts
+# GlueScript
 
-Gluescripts are powered by  a lightweight Javascript engine that allows you to run  a script on any activity within Platform.sh, this opens a whole world of new automation use-cases including, but not limited to calling external web services.
+Gluescript scripts are powered by a lightweight Javascript engine that allows you to run  a script on any activity within Platform.sh, this opens a whole world of new automation use-cases including, but not limited to calling external web services.
 
 This is not a full-blown Javascript runtime, and you can't use NPM or import libraries. Keep it short and sweet.
 
@@ -139,7 +139,6 @@ h.digest("hex")
 For example if you wanted to call an AWS API here is how you would calculate the signature:
 
 ```Javascript
-const awsTest = `
 function HMAC(key, value) {
   var h = crypto.createHmac("sha256", key);
   h.update(value);
