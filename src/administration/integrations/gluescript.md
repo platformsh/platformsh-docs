@@ -1,16 +1,16 @@
 # GlueScript
 
-Gluescript scripts are powered by a lightweight Javascript engine that allows you to run  a script on any activity within Platform.sh, this opens a whole world of new automation use-cases including, but not limited to calling external web services.
+Gluescript is powered by  a lightweight JavaScript engine that allows you to run  a script on any activity within Platform.sh. This opens a whole world of new automation use-cases including, but not limited to calling external web services.
 
-This is not a full-blown Javascript runtime, and you can't use NPM or import libraries. Keep it short and sweet.
+This is an **Alpha release**, and while the JavaScript API itself will be relatively stable, the script management will undoubtedly change. 
 
-This is very much an **Alpha release**, and while the Javascript API itself will probably be stable enough, the script management will undoubtedly change. For the momenbt you would simply post a `.js` file to our REST API to create the integration. 
+Scripts are deployed by POSTing a `.js` file to our REST API to create the integration. 
 
-> **CAVEAT**: Currently errors are silent so this is not for the faint of heart.
+> **CAVEATS**: Currently errors are silent so this is not for the faint-of-heart. This is not a full-blown JavaScript runtime, and you can't use NPM or import libraries.
 
 ## Exposed Javascript APIS
 
-While you don't get to have NPM Glusescripts come with a bunch of helpers that make it very useful.
+[there are helpers, what helpers?]
 
 ## Project API
 
@@ -68,7 +68,7 @@ project.environments["master"].branch({
 The activity API accessed through `activity` gives you all the metadata about the current activity that invoked the Gluescript. The schema is the same as the one for Webhooks, documented here: https://docs.platform.sh/administration/integrations/webhooks.html
 
 ## Process API
-The process API gives you access to the environment in the context of which the Gluescript is running .. such as to Environment Variables.
+The Process API gives you access to the environment in the context of which the GlueScript is running .. such as to Environment Variables.
 
 For example:
 
@@ -99,7 +99,7 @@ No-op if the key doesn't exist
 
 ## Fetch API
 
-The fetch API allows you to do HTTP calls to external services. This implements a limited, synchronous version of the Fetch API with a hardcoded timeout of 30s, for example:
+The Fetch API allows you to do HTTP calls to external services. This implements a limited, synchronous version of the Fetch API with a hardcoded timeout of 30s, for example:
 
 ```javascript
 var resp = fetch(
@@ -139,6 +139,7 @@ h.digest("hex")
 For example if you wanted to call an AWS API here is how you would calculate the signature:
 
 ```Javascript
+const awsTest = `
 function HMAC(key, value) {
   var h = crypto.createHmac("sha256", key);
   h.update(value);
@@ -162,7 +163,7 @@ Create a new `scripts` folder within the `.platform/` folder.
 mkdir .platform/scripts
 ```
 
-Create a new Javascript file inside the `scripts` folder with the following content:
+Create a new JavaScript file inside the `scripts` folder with the following content:
 
 ```javascript
 {
@@ -172,7 +173,7 @@ Create a new Javascript file inside the `scripts` folder with the following cont
 ```
 
 where:
-* `CODE` is the Javascript code of the integration
+* `CODE` is the JavaScript code of the integration
 
 #### Custom Slack integration
 
