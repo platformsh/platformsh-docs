@@ -148,6 +148,7 @@
   * [HipChat](administration/integrations/hipchat.md)
   * [Tideways](administration/integrations/tideways.md)
   * [Webhooks](administration/integrations/webhooks.md)
+  * [GlueScripts](administration/integrations/gluescripts.md)
 * [Management console](administration/web.md)
   * [Project configuration](administration/web/configure-project.md)
   * [Environments](administration/web/environments.md)
