@@ -1,10 +1,161 @@
-# GlueScript
+# GlueScripts
 
-The GlueScript integration allows you to run JavaScript code to make your Platform.sh projects interact with external tools.
+Gluescripts are powered by  a lightweight Javascript engine that allows you to run  a script on any activity within Platform.sh, this opens a whole world of new automation use-cases including, but not limited to calling external web services.
 
-## Setup
+This is not a full-blown Javascript runtime, and you can't use NPM or import libraries. Keep it short and sweet.
 
-### 1. Write the script
+This is very much an **Alpha release**, and while the Javascript API itself will probably be stable enough, the script management will undoubtedly change. For the momenbt you would simply post a `.js` file to our REST API to create the integration. 
+
+> **CAVEAT**: Currently errors are silent so this is not for the faint of heart.
+
+## Exposed Javascript APIS
+
+While you don't get to have NPM Glusescripts come with a bunch of helpers that make it very useful.
+
+## Project API
+
+The project API gives you everything you need to know about the project in the context of which the Gluescript is running. 
+
+For example: `project.environments.master` will give you access to the metadata of the master environment of the current project.
+
+The API starts at `api.project` and is based on a one resource == one object model.
+
+### Properties
+
+The properties of the resource can be access directly on the object, like:
+
+```javascript
+project.owner
+```
+
+### Sub-objects
+
+Sub-objects can be accessed directly on the object, like:
+
+```javascript
+project.settings
+```
+
+### Collections
+
+Resources that are collections support iteration:
+
+```javascript
+project.environments.forEach(function(env) {
+  console.log(env.name);
+});
+```
+
+They also support direct access to an element:
+
+```javascript
+project.environments["master"].name
+```
+
+### Actions
+
+Resource actions are accessible as methods on the object:
+
+```javascript
+project.environments["master"].branch({
+  title="Test",
+  name="test",
+})
+```
+
+## Activity API
+
+The activity API accessed through `activity` gives you all the metadata about the current activity that invoked the Gluescript. The schema is the same as the one for Webhooks, documented here: https://docs.platform.sh/administration/integrations/webhooks.html
+
+## Process API
+The process API gives you access to the environment in the context of which the Gluescript is running .. such as to Environment Variables.
+
+For example:
+
+`process.env.FOO` will give you access to the `FOO` environment variable, this is a great place to access API keys... or other secrets.
+
+## Storage API
+
+A storage API is offered for integrations to store information between calls. E.g. if you want to be able to edit a previous slack message. The storage is scoped per integration.
+
+### `storage.get(key)`: Get a key from the storage
+
+ * `key` (string): The key to get
+
+Returns `null` if the key doesn't exist.
+
+### `storage.set(key, value)`: Create or update a key into the storage
+
+ * `key` (string): The key to set
+ * `value` (string): The value to set, must be a string (will not be cast)
+
+### `storage.remove(key)`: Remove a key from the storage
+
+ * `key` (string): The key to remove
+
+No-op if the key doesn't exist
+
+### `storage.clear()`: Clear the storage
+
+## Fetch API
+
+The fetch API allows you to do HTTP calls to external services. This implements a limited, synchronous version of the Fetch API with a hardcoded timeout of 30s, for example:
+
+```javascript
+var resp = fetch(
+  "http://example.com/",
+  {
+    method: "POST",
+    body: JSON.stringify({
+        "test": "toto",
+    }),
+  }
+)
+
+if (!resp.ok) {
+    throw "unable to fetch";
+}
+```
+See https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch for general information about fetch.
+
+
+## Crypto API
+
+Many APIs will require you to sign things with HMAC. We have you covered.
+
+### crypto.createHmac(): create an HMAC signature
+
+This allows you to create a secure hash and output a digest.
+
+```javascript
+var h = crypto.createHmac("sha256", "foo"); 
+h.update("bar"); 
+h.digest("hex")
+```
+
+* You can use `'sha256'`, `'sha1'` and `'md5'` as hashing functiopns.
+* The digest can be `'base64'`, `'hex'` or `''` (empty) and empty digest will yield a byte string.
+
+For example if you wanted to call an AWS API here is how you would calculate the signature:
+
+```Javascript
+const awsTest = `
+function HMAC(key, value) {
+  var h = crypto.createHmac("sha256", key);
+  h.update(value);
+  return h.digest();
+}
+
+var kSecret = "wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY";
+HMAC(HMAC(HMAC(HMAC("AWS4" + kSecret,"20150830"),"us-east-1"),"iam"),"aws4_request");
+```
+
+> Example taken from  https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html
+
+
+# Setup
+
+## 1. Write the script
 
 Create a new `scripts` folder within the `.platform/` folder.
 
