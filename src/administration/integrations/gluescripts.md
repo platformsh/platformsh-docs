@@ -91,4 +91,4 @@ where:
 
 > **note**
 >
-> The GlueScript integration can only be managed by the project owner.
+> The GlueScript integration can only be managed by the project admin.
