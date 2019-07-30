@@ -167,17 +167,17 @@ nav > ul.summary > li > a {
 .book-summary ul.summary li.active > a {
   border-left: 10px solid var(--brand-color-primary-blue);
   margin-left: -30px;
-  padding-left: 20px;
+  padding-left: 30px;
 }
 
 .book-summary ul.summary li a {
-  padding: 15px 0;
+  padding: 5px 0 5px 10px;
 }
 .book-summary ul.summary li.header {
   color: var(--brand-font-color-black);
   padding: 20px 0 10px;
   border-top: 1px solid #ffffff;
-  margin-top: 0px;
+  margin-top: 10px;
   text-transform: capitalize;
   font-weight: 900;
   font-size: 18px;
@@ -199,7 +199,10 @@ ul.summary li li a,
 ul.summary li li span {
   padding: 10px 15px;
 }
-
+.book-summary ul.summary li li.active > a {
+  margin-left: -50px;
+  padding-left: 50px;
+}
 /* nav styles */
 .book-summary > nav {
   padding-top: 70px;
