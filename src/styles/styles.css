@@ -8,6 +8,7 @@
   --brand-font-color-black: #49475F;
   --brand-font-color-dark: #3E3D54;
   --sidebar-bg-color: #EDEDEF;
+  --sidebar-bg-logo : #1A182A;
 }
 
 body {
@@ -46,14 +47,15 @@ TOP BAR
   height: 80px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: var(--brand-font-color-black);
+  justify-content: left;
+  background-color: var(--sidebar-bg-logo);
+  padding-left: 30px;
 }
 .branding a {
-  background: transparent url("/images/platform-logo.svg") no-repeat 0 0;
   height: 30px;
-  width: 150px;
-  display: inline-block;
+}
+.branding a path{
+  fill: #fff;
 }
 .site-name {
   display: inline-block;
