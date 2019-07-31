@@ -156,7 +156,7 @@ project.environments["master"].branch({
 
 ## Activity API
 
-The activity API accessed through `activity` gives you all the metadata about the current activity that invoked the Gluescript. The schema is the same as the one for Webhooks, documented here: https://docs.platform.sh/administration/integrations/webhooks.html
+The activity API accessed through `activity` gives you all the metadata about the current activity that invoked the GlueScript. The schema is the same as the one for Webhooks, documented here: https://docs.platform.sh/administration/integrations/webhooks.html
 
 ## Process API
 The process API gives you access to the environment in which the GlueScript is running, such as to environment variables.
