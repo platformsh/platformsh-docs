@@ -1,0 +1,743 @@
+{
+  "chrome-headless": {
+    "deprecated": {
+
+    },
+    "docs": {
+      "relationship_name": "headless",
+      "service_name": "headless",
+      "url": "\/configuration\/services\/headless-chrome.html"
+    },
+    "endpoint": "http",
+    "name": "Headless Chrome",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 73,
+        "minor": null
+      }
+    ],
+    "type": {
+      "chrome-headless": {
+        "disk": false,
+        "min_disk_size": null
+      }
+    }
+  },
+  "elasticsearch": {
+    "deprecated": [
+      {
+        "major": 0,
+        "minor": [
+          9
+        ]
+      },
+      {
+        "major": 1,
+        "minor": [
+          4,
+          7
+        ]
+      },
+      {
+        "major": 2,
+        "minor": [
+          4
+        ]
+      },
+      {
+        "major": 5,
+        "minor": [
+          2,
+          4
+        ]
+      }
+    ],
+    "docs": {
+      "relationship_name": "elasticsearch",
+      "service_name": "mysearch",
+      "url": "\/configuration\/services\/elasticsearch.html"
+    },
+    "endpoint": "elasticsearch",
+    "name": "Elasticsearch",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 6,
+        "minor": [
+          5
+        ]
+      },
+      {
+        "major": 7,
+        "minor": [
+          2
+        ]
+      }
+    ],
+    "type": {
+      "elasticsearch": {
+        "disk": true,
+        "min_disk_size": 256
+      }
+    }
+  },
+  "go": {
+    "deprecated": [
+      {
+        "major": 1,
+        "minor": [
+          1,
+          8,
+          9
+        ]
+      }
+    ],
+    "docs": {
+      "relationship_name": null,
+      "service_name": null,
+      "url": "\/languages\/go.html"
+    },
+    "endpoint": null,
+    "name": "Go",
+    "runtime": true,
+    "supported": [
+      {
+        "major": 1,
+        "minor": [
+          11,
+          12
+        ]
+      }
+    ],
+    "type": {
+      "golang": {
+        "disk": false,
+        "min_disk_size": null
+      }
+    }
+  },
+  "influxdb": {
+    "deprecated": [
+
+    ],
+    "docs": {
+      "relationship_name": "timedb",
+      "service_name": "influx",
+      "url": "\/configuration\/services\/influxdb.html"
+    },
+    "endpoint": "influxdb",
+    "name": "InfluxDB",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 1,
+        "minor": [
+          2,
+          3,
+          7
+        ]
+      }
+    ],
+    "type": {
+      "influxdb": {
+        "disk": true,
+        "min_disk_size": null
+      }
+    }
+  },
+  "java": {
+    "deprecated": [
+
+    ],
+    "docs": {
+      "relationship_name": null,
+      "service_name": null,
+      "url": "\/languages\/java.html"
+    },
+    "endpoint": null,
+    "name": "Java",
+    "runtime": true,
+    "supported": [
+      {
+        "major": 11,
+        "minor": null
+      },
+      {
+        "major": 12,
+        "minor": null
+      },
+      {
+        "major": 8,
+        "minor": null
+      }
+    ],
+    "type": {
+      "java": {
+        "disk": false,
+        "min_disk_size": null
+      }
+    }
+  },
+  "kafka": {
+    "deprecated": [
+
+    ],
+    "docs": {
+      "relationship_name": "kafka",
+      "service_name": "mykafka",
+      "url": "\/configuration\/services\/kafka.html"
+    },
+    "endpoint": "kafka",
+    "name": "Kafka",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 2,
+        "minor": [
+          1
+        ]
+      }
+    ],
+    "type": {
+      "kafka": {
+        "disk": true,
+        "min_disk_size": 512
+      }
+    }
+  },
+  "mariadb": {
+    "deprecated": [
+      {
+        "major": 5,
+        "minor": [
+          5
+        ]
+      }
+    ],
+    "docs": {
+      "relationship_name": "database",
+      "service_name": "mydatabase",
+      "url": "\/configuration\/services\/mysql.html"
+    },
+    "endpoint": "mysql",
+    "name": "MariaDB",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 10,
+        "minor": [
+          0,
+          1,
+          2
+        ]
+      }
+    ],
+    "type": {
+      "mariadb": {
+        "disk": true,
+        "min_disk_size": 256
+      },
+      "mysql": {
+        "disk": true,
+        "min_disk_size": 256
+      }
+    }
+  },
+  "memcached": {
+    "deprecated": [
+
+    ],
+    "docs": {
+      "relationship_name": "cache",
+      "service_name": "memcached",
+      "url": "\/configuration\/services\/memcached.html"
+    },
+    "endpoint": "memcached",
+    "name": "Memcached",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 1,
+        "minor": [
+          4
+        ]
+      }
+    ],
+    "type": {
+      "memcached": {
+        "disk": false,
+        "min_disk_size": null
+      }
+    }
+  },
+  "mongodb": {
+    "deprecated": [
+
+    ],
+    "docs": {
+      "relationship_name": "database",
+      "service_name": "mydatabase",
+      "url": "\/configuration\/services\/mongodb.html"
+    },
+    "endpoint": "mongodb",
+    "name": "MongoDB",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 3,
+        "minor": [
+          0,
+          2,
+          4,
+          6
+        ]
+      }
+    ],
+    "type": {
+      "mongodb": {
+        "disk": true,
+        "min_disk_size": 512
+      }
+    }
+  },
+  "network-storage": {
+    "deprecated": [
+
+    ],
+    "docs": {
+      "relationship_name": null,
+      "service_name": "files",
+      "url": "\/configuration\/services\/network-storage.html"
+    },
+    "endpoint": null,
+    "name": "Network Storage",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 1,
+        "minor": [
+          0
+        ]
+      }
+    ],
+    "type": {
+      "network-storage": {
+        "disk": true,
+        "min_disk_size": null
+      }
+    }
+  },
+  "nodejs": {
+    "deprecated": [
+      {
+        "major": 0,
+        "minor": [
+          12
+        ]
+      },
+      {
+        "major": 4,
+        "minor": [
+          7,
+          8
+        ]
+      },
+      {
+        "major": 6,
+        "minor": [
+          1,
+          9
+        ]
+      },
+      {
+        "major": 8,
+        "minor": [
+          2
+        ]
+      }
+    ],
+    "docs": {
+      "relationship_name": null,
+      "service_name": null,
+      "url": "\/languages\/nodejs.html"
+    },
+    "endpoint": null,
+    "name": "Node.js",
+    "runtime": true,
+    "supported": [
+      {
+        "major": 10,
+        "minor": null
+      },
+      {
+        "major": 6,
+        "minor": null
+      },
+      {
+        "major": 8,
+        "minor": null
+      }
+    ],
+    "type": {
+      "nodejs": {
+        "disk": false,
+        "min_disk_size": null
+      }
+    }
+  },
+  "oracle-mysql": {
+    "deprecated": [
+
+    ],
+    "docs": {
+      "relationship_name": "database",
+      "service_name": "mydatabase",
+      "url": "\/configuration\/services\/mysql.html"
+    },
+    "endpoint": "mysql",
+    "name": "Oracle MySQL",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 5,
+        "minor": [
+          7
+        ]
+      },
+      {
+        "major": 8,
+        "minor": [
+          0
+        ]
+      }
+    ],
+    "type": {
+      "oracle-mysql": {
+        "disk": true,
+        "min_disk_size": 256
+      }
+    }
+  },
+  "php": {
+    "deprecated": [
+      {
+        "major": 5,
+        "minor": [
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "major": 7,
+        "minor": [
+          0
+        ]
+      }
+    ],
+    "docs": {
+      "relationship_name": null,
+      "service_name": null,
+      "url": "\/languages\/php.html"
+    },
+    "endpoint": null,
+    "name": "PHP",
+    "runtime": true,
+    "supported": [
+      {
+        "major": 7,
+        "minor": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "type": {
+      "php": {
+        "disk": false,
+        "min_disk_size": null
+      }
+    }
+  },
+  "postgresql": {
+    "deprecated": [
+      {
+        "major": 9,
+        "minor": [
+          3
+        ]
+      }
+    ],
+    "docs": {
+      "relationship_name": "database",
+      "service_name": "mydatabase",
+      "url": "\/configuration\/services\/postgresql.html"
+    },
+    "endpoint": "postgresql",
+    "name": "PostgreSQL",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 10,
+        "minor": null
+      },
+      {
+        "major": 11,
+        "minor": null
+      },
+      {
+        "major": 9,
+        "minor": [
+          6
+        ]
+      }
+    ],
+    "type": {
+      "postgresql": {
+        "disk": true,
+        "min_disk_size": null
+      }
+    }
+  },
+  "python": {
+    "deprecated": [
+
+    ],
+    "docs": {
+      "relationship_name": null,
+      "service_name": null,
+      "url": "\/languages\/python.html"
+    },
+    "endpoint": null,
+    "name": "Python",
+    "runtime": true,
+    "supported": [
+      {
+        "major": 2,
+        "minor": [
+          7
+        ]
+      },
+      {
+        "major": 3,
+        "minor": [
+          5,
+          6,
+          7
+        ]
+      }
+    ],
+    "type": {
+      "python": {
+        "disk": false,
+        "min_disk_size": null
+      }
+    }
+  },
+  "rabbitmq": {
+    "deprecated": [
+
+    ],
+    "docs": {
+      "relationship_name": "rabbitmq",
+      "service_name": "myrabbitmq",
+      "url": "\/configuration\/services\/rabbitmq.html"
+    },
+    "endpoint": "rabbitmq",
+    "name": "RabbitMQ",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 3,
+        "minor": [
+          5,
+          6,
+          7
+        ]
+      }
+    ],
+    "type": {
+      "rabbitmq": {
+        "disk": true,
+        "min_disk_size": 256
+      }
+    }
+  },
+  "redis": {
+    "deprecated": [
+      {
+        "major": 2,
+        "minor": [
+          8
+        ]
+      },
+      {
+        "major": 3,
+        "minor": [
+          0
+        ]
+      }
+    ],
+    "docs": {
+      "relationship_name": "rabbitmq",
+      "service_name": [
+        "rediscache",
+        "redisdata"
+      ],
+      "url": "\/configuration\/services\/redis.html"
+    },
+    "endpoint": "redis",
+    "name": "Redis",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 3,
+        "minor": [
+          2
+        ]
+      },
+      {
+        "major": 4,
+        "minor": [
+          0
+        ]
+      },
+      {
+        "major": 5,
+        "minor": [
+          0
+        ]
+      }
+    ],
+    "type": {
+      "redis": {
+        "disk": false,
+        "min_disk_size": null
+      },
+      "redis-persistent": {
+        "disk": true,
+        "min_disk_size": null
+      }
+    }
+  },
+  "ruby": {
+    "deprecated": [
+
+    ],
+    "docs": {
+      "relationship_name": null,
+      "service_name": null,
+      "url": "\/languages\/ruby.html"
+    },
+    "endpoint": null,
+    "name": "Ruby",
+    "runtime": true,
+    "supported": [
+      {
+        "major": 2,
+        "minor": [
+          3,
+          4,
+          5,
+          6
+        ]
+      }
+    ],
+    "type": {
+      "ruby": {
+        "disk": false,
+        "min_disk_size": null
+      }
+    }
+  },
+  "solr": {
+    "deprecated": [
+
+    ],
+    "docs": {
+      "relationship_name": "solr",
+      "service_name": "mysearch",
+      "url": "\/configuration\/services\/solr.html"
+    },
+    "endpoint": "solr",
+    "name": "Solr",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 3,
+        "minor": [
+          6
+        ]
+      },
+      {
+        "major": 4,
+        "minor": [
+          1
+        ]
+      },
+      {
+        "major": 6,
+        "minor": [
+          3,
+          6
+        ]
+      },
+      {
+        "major": 7,
+        "minor": [
+          6,
+          7
+        ]
+      },
+      {
+        "major": 8,
+        "minor": [
+          0
+        ]
+      }
+    ],
+    "type": {
+      "solr": {
+        "disk": true,
+        "min_disk_size": 256
+      }
+    }
+  },
+  "varnish": {
+    "deprecated": [
+
+    ],
+    "disk": false,
+    "docs": {
+      "relationship_name": null,
+      "service_name": "varish",
+      "url": "\/configuration\/services\/varish.html"
+    },
+    "endpoint": null,
+    "min_disk_size": null,
+    "name": "Varnish",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 5,
+        "minor": [
+          2
+        ]
+      },
+      {
+        "major": 6,
+        "minor": [
+          0
+        ]
+      }
+    ],
+    "type": {
+      "varnish": {
+        "disk": false,
+        "min_disk_size": null
+      }
+    }
+  }
+}
