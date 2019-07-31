@@ -48,7 +48,9 @@ Inbound IPs (gw.eu-4.platformsh.site):
 * 52.208.179.40
 * 18.200.179.139
 
-### German Sovereign Cloud (de-2.platform.sh)
+### Germany 2 (de-2.platform.sh) (Data Location Guarantee)
+
+Outbound IPs:
 
 * 35.246.248.138
 * 35.246.184.45
@@ -60,7 +62,7 @@ Inbound IP (gw.de-2.platformsh.site):
 * 35.246.184.45
 * 35.242.229.239
 
-### French Sovereign Cloud (fr-1.platform.sh)
+### France 1 (fr-1.platform.sh)
 
 Outbound IPs:
 
