@@ -9,12 +9,15 @@
   --brand-font-color-dark: #3E3D54;
   --sidebar-bg-color: #EDEDEF;
   --sidebar-bg-logo : #1A182A;
+  --button-bg-blue: #145CC6;
+  --button-bg-pink: #FFBDBB;
+  --button-bg-gold: #DD901A;
 }
 
 body {
-  --button-link-background-color: var(--brand-color-light-blue);
-  --button-link-background-color-hover: var(--brand-color-primary-blue);
-  --button-link-color: #302F45;
+  --button-link-background-color: var(--button-bg-blue);
+  --button-link-background-color-hover: var(--button-bg-pink);
+  --button-link-color: #ffffff;
 }
 
 body {
@@ -502,34 +505,39 @@ section.examples-lists > div {
 
 a.button-link {
   flex-grow: 1;
-  font-size:15px;
+  font-size: 16px;
   color: var(--button-link-color);
   background-color: var(--button-link-background-color);
-  border: 1px solid #302F45;
+  border: none;
   border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
   text-decoration: none !important;
   margin: 10px 5px;
   padding: 24px 24px;
   display: inline-flex;
+  font-weight: 600;
 }
 
 a.button-link:hover {
   background-color: var(--button-link-background-color-hover);
-  border: 1px solid #1664ff;
-  color: white;
+  border: none;
+  color: var(--button-bg-blue);
 }
 
 a.button-link.basic {
-  font-weight: 600;
   align-items: center;
   justify-content: center;
 }
 
 a.button-link.prev {
-  font-weight: 600;
   align-items: center;
   justify-content: center;
+  color: #ffffff;
+  background-color: #F4BA37;
+}
+a.button-link.prev:hover {
+  color: #ffffff;
+  background-color: #DD901A;
 }
 
 a.button-link.next {
@@ -540,6 +548,12 @@ a.button-link.next {
 
 a.button-link.descriptive {
   flex-direction: column;
+  color: #1A182A;
+  background-color: #EEEDE4;
+}
+a.button-link.descriptive:hover {
+  color: #1A182A;
+  background-color: #EDEDEF;
 }
 
 video {
