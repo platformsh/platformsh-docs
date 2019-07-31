@@ -1,14 +1,14 @@
 # GlueScript
 
-Gluescript scripts are powered by a lightweight Javascript engine that allows you to run  a script on any activity within Platform.sh, this opens a whole world of new automation use-cases including, but not limited to calling external web services.
+GlueScript scripts are powered by a lightweight Javascript engine that allows you to run a script on any activity within Platform.sh. This opens a whole world of new automation use-cases including, but not limited to, calling external web services.
 
 This is not a full-blown Javascript runtime, and you can't use NPM or import libraries. Keep it short and sweet.
 
-This is very much an **Alpha release**, and while the Javascript API itself will probably be stable enough, the script management will undoubtedly change. For the momenbt you would simply post a `.js` file to our REST API to create the integration. 
+This is very much an **Alpha release**, and while the Javascript API itself will probably be stable enough, the script management will undoubtedly change. For the moment you would simply post a `.js` file to our REST API to create the integration. 
 
 > **CAVEAT**: Currently errors are silent so this is not for the faint of heart.
 
-While you don't get to have NPM Glusescript comes with a bunch of helpers that make it very useful. You can currently access the following APIs: [Project](#project-api), [Activity](#activity-api), [Process](#process-api), [Storage](#storage-api), [Fetch](#crypto-api) and [Crypto](#crypto-api)
+While you don't get to have NPM GlueScript comes with a bunch of helpers that make it very useful. You can currently access the following APIs: [Project](#project-api), [Activity](#activity-api), [Process](#process-api), [Storage](#storage-api), [Fetch](#crypto-api) and [Crypto](#crypto-api)
 
 # Setting up a GlueScript integration
 
@@ -34,7 +34,7 @@ where:
 
 #### Custom Slack integration
 
-For example, the GlueScript can perform a custom Slack integration as follow:
+For example, the GlueScript can perform a custom Slack integration as follows:
 
 ```javascript
 var message = activity.text;
@@ -105,7 +105,7 @@ where:
 
 ## Project API
 
-The project API gives you everything you need to know about the project in the context of which the Gluescript is running. 
+The project API gives you everything you need to know about the project in the context of which the GlueScript is running. 
 
 For example: `project.environments.master` will give you access to the metadata of the master environment of the current project.
 
@@ -159,11 +159,11 @@ project.environments["master"].branch({
 The activity API accessed through `activity` gives you all the metadata about the current activity that invoked the Gluescript. The schema is the same as the one for Webhooks, documented here: https://docs.platform.sh/administration/integrations/webhooks.html
 
 ## Process API
-The process API gives you access to the environment in the context of which the Gluescript is running .. such as to Environment Variables.
+The process API gives you access to the environment in which the GlueScript is running, such as to environment variables.
 
 For example:
 
-`process.env.FOO` will give you access to the `FOO` environment variable, this is a great place to access API keys... or other secrets.
+`process.env.FOO` will give you access to the `FOO` environment variable, this is a great place to access API keys, or other secrets.
 
 ## Storage API
 
@@ -209,7 +209,8 @@ if (!resp.ok) {
     throw "unable to fetch";
 }
 ```
-See https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch for general information about fetch.
+
+For more information see this [Mozilla developer network article on Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
 
 
 ## Crypto API
@@ -226,7 +227,7 @@ h.update("bar");
 h.digest("hex")
 ```
 
-* You can use `'sha256'`, `'sha1'` and `'md5'` as hashing functiopns.
+* You can use `'sha256'`, `'sha1'` and `'md5'` as hashing functions.
 * The digest can be `'base64'`, `'hex'` or `''` (empty) and empty digest will yield a byte string.
 
 For example if you wanted to call an AWS API here is how you would calculate the signature:
@@ -242,7 +243,7 @@ var kSecret = "wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY";
 HMAC(HMAC(HMAC(HMAC("AWS4" + kSecret,"20150830"),"us-east-1"),"iam"),"aws4_request");
 ```
 
-> Example taken from  https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html
+> Example taken from the [AWS documentation for signing API requests](https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html).
 
 
 
