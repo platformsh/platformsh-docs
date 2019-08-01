@@ -24,9 +24,9 @@ mkdir .platform/scripts
 >
 > GlueScript scripts currently do not "live in Git". They are project wide, and don't belong to a specific branch. But it is a good practice to consider that whatever you put there in your `master` branch will be what will have been posted to the API. Later we will introduce a more robust management mechanism.
 
-#### Custom Slack integration
+#### Example: Custom Slack integration
 
-For example, the GlueScript can perform a custom Slack integration as follows:
+For example, a GlueScript can perform a custom Slack integration as follows:
 
 ```javascript
 var message = activity.text;
