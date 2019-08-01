@@ -8,7 +8,7 @@ This is very much an **Alpha release**, and while the Javascript API itself will
 
 > **CAVEAT**: Currently errors are silent so this is not for the faint of heart.
 
-While you don't get to have NPM GlueScript comes with a bunch of helpers that make it very useful. You can currently access the following APIs: [Project](#project-api), [Activity](#activity-api), [Process](#process-api), [Storage](#storage-api), [Fetch](#fetch-api) and [Crypto](#crypto-api)
+While you don't get to have NPM, or use outside libraries, GlueScript comes with a bunch of helpers that make it very useful. You can currently access the following APIs: [Project](#project-api), [Activity](#activity-api), [Process](#process-api), [Storage](#storage-api), [Fetch](#fetch-api) and [Crypto](#crypto-api)
 
 # Setting up a GlueScript integration
 
@@ -99,6 +99,8 @@ where:
 > The GlueScript integration can only be managed by the project admin.
 
 # GlueScript APIs
+
+These are the internal Platform.sh APIs that are accessible through GlueScript, API calls are executed with the permissions of the user that created the integration.
 
 ## Project API
 
