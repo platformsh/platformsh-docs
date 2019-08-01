@@ -8,7 +8,7 @@ This is very much an **Alpha release**, and while the Javascript API itself will
 
 > **CAVEAT**: Currently errors are silent so this is not for the faint of heart.
 
-While you don't get to have NPM GlueScript comes with a bunch of helpers that make it very useful. You can currently access the following APIs: [Project](#project-api), [Activity](#activity-api), [Process](#process-api), [Storage](#storage-api), [Fetch](#crypto-api) and [Crypto](#crypto-api)
+While you don't get to have NPM GlueScript comes with a bunch of helpers that make it very useful. You can currently access the following APIs: [Project](#project-api), [Activity](#activity-api), [Process](#process-api), [Storage](#storage-api), [Fetch](#fetch-api) and [Crypto](#crypto-api)
 
 # Setting up a GlueScript integration
 
@@ -160,7 +160,7 @@ The process API gives you access to the environment in which the GlueScript is r
 
 For example:
 
-`process.env.FOO` will give you access to the `FOO` environment variable, this is a great place to access API keys, or other secrets.
+`process.env.FOO` will give you access to the `FOO` environment variable. This is a great place to access API keys, or other secrets.
 
 ## Storage API
 
@@ -212,7 +212,7 @@ For more information see this [Mozilla developer network article on Fetch](https
 
 ## Crypto API
 
-Many APIs will require you to sign things with HMAC. We have you covered.
+We provide a minimal set of Crypto APIs to enable you to do signed requests as many APIs will require you to sign things with an HMAC.
 
 ### crypto.createHmac(): create an HMAC signature
 
