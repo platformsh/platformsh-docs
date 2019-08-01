@@ -20,17 +20,8 @@ Create a new `scripts` folder within the `.platform/` folder.
 mkdir .platform/scripts
 ```
 
-Create a new Javascript file inside the `scripts` folder with the following content:
-
-```javascript
-{
-  "type": "script",
-  "script": "<CODE>"
-}
-```
-
-where:
-* `CODE` is the Javascript code of the integration
+> This is not a requirement, but it is a good practice, and following this pattern is more forward-compatible
+> GlueScript scripts are project wide, and don't belong to a specific branch but it is a good practice to consider that whatever you put there in your master branch will be what will be posted to the API. Later we will introduce a more robust management mechanism.
 
 #### Custom Slack integration
 
@@ -73,29 +64,35 @@ if (!resp.ok) { throw 'Failed'; }
 where:
 * `SLACK_PAYLOAD_URL` is the URL provided by Slack for your custom webhook
 
+You can save the file to `.platform/scripts/my_glue_script.js` for example.
+
 ### 2. Commit the script
 
 Commit the script to Git:
 
 ```bash
-git add .platform/scripts/SCRIPT.js
+git add .platform/scripts/my_glue_script.js
 git commit -m "Committing the GlueScript file."
 git push platform master
 ```
 
 where:
-* `SCRIPT` is the name of your Javascript file
+* `my_glue_script.js` is the name of your Javascript file
+
+> Pushing the script to master won't do anything. Yet. Just a handy place to keep you GlueScript file.
 
 ### 3. Enable the integration
 
 Enable the GlueScript integration as follows (you need to have the Platform.sh CLI installed):
 
 ```bash
-platform integration:add --type script --file .platform/scripts/SCRIPT.js
+platform integration:add --type script --file .platform/scripts/my_glue_script.js
 ```
 
+> This is the actual activation of the integration, the script is posted to the API through the CLI. Note that changing the file in Git will not change the integration. To update the integration you will need to use the CLI again.
+
 where:
-* `SCRIPT` is the name of your Javascript file
+* `my_glue_script.js` is the name of your Javascript file
 
 > **note**
 >
@@ -156,7 +153,7 @@ project.environments["master"].branch({
 
 ## Activity API
 
-The activity API accessed through `activity` gives you all the metadata about the current activity that invoked the GlueScript. The schema is the same as the one for Webhooks, documented here: https://docs.platform.sh/administration/integrations/webhooks.html
+The activity API accessed through `activity` gives you all the metadata about the current activity that invoked the GlueScript. The schema is the same as the one for Webhooks, documented in the [Webhook section](https://docs.platform.sh/administration/integrations/webhooks.html) of our documentation.
 
 ## Process API
 The process API gives you access to the environment in which the GlueScript is running, such as to environment variables.
