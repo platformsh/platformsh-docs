@@ -5,5 +5,5 @@ You've set up a project on Platform.sh by either [pushing your code](/gettingsta
 This guide will take you through the process configuring your project for production, setting up a domain, and configuring DNS so that your users can reach the application the way you want them to.
 
 <div class="buttons">
-  <a class="button-link next" onclick="gitbook.navigation.goNext()">Take your site live!</a>
+  <a class="button-link single" onclick="gitbook.navigation.goNext()">Take your site live!</a>
 </div>

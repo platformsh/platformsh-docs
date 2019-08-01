@@ -35,5 +35,5 @@ Once an application has been migrated to Platform.sh, there's plenty more featur
 </div>
 
 <div class="buttons">
-  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link singleprev" onclick="gitbook.navigation.goPrev()">Back</a>
 </div>
