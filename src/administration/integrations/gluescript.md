@@ -20,8 +20,9 @@ Create a new `scripts` folder within the `.platform/` folder.
 mkdir .platform/scripts
 ```
 
-> This is not a requirement, but it is a good practice, and following this pattern is more forward-compatible
-> GlueScript scripts are project wide, and don't belong to a specific branch but it is a good practice to consider that whatever you put there in your master branch will be what will be posted to the API. Later we will introduce a more robust management mechanism.
+> Putting the script in this location is not a requirement, but it is a good practice, and following this pattern will be more forward-compatible.
+>
+> GlueScript scripts currently do not "live in Git". They are project wide, and don't belong to a specific branch. But it is a good practice to consider that whatever you put there in your `master` branch will be what will have been posted to the API. Later we will introduce a more robust management mechanism.
 
 #### Custom Slack integration
 
