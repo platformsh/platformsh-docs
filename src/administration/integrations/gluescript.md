@@ -90,12 +90,11 @@ Enable the GlueScript integration as follows (you need to have the Platform.sh C
 platform integration:add --type script --file .platform/scripts/my_glue_script.js
 ```
 
-> This is the actual activation of the integration, the script is posted to the API through the CLI. Note that changing the file in Git will not change the integration. To update the integration you will need to use the CLI again.
-
 where:
 * `my_glue_script.js` is the name of your Javascript file
 
 > **note**
+> This is the actual activation of the integration, the script is posted to the API through the CLI. Note that changing the file in Git will not change the integration. To update the integration you will need to use the CLI again.
 >
 > The GlueScript integration can only be managed by the project admin.
 
