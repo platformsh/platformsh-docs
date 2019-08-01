@@ -504,7 +504,7 @@ section.examples-lists > div {
 }
 
 a.button-link {
-  flex-grow: 1;
+  /* flex-grow: 1; */
   font-size: 16px;
   color: var(--button-link-color);
   background-color: var(--button-link-background-color);
@@ -515,7 +515,6 @@ a.button-link {
   margin: 10px 5px;
   padding: 24px 24px;
   display: inline-flex;
-  font-weight: 600;
 }
 
 a.button-link:hover {
@@ -525,35 +524,37 @@ a.button-link:hover {
 }
 
 a.button-link.basic {
+  flex-grow: 1;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+}
+
+a.button-link.single {
+  font-weight: 600;
+  width: 50%;
+  font-weight: 600;
   align-items: center;
   justify-content: center;
 }
 
 a.button-link.prev {
+  width: 25%;
+  font-weight: 600;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
-  background-color: #F4BA37;
-}
-a.button-link.prev:hover {
-  color: #ffffff;
-  background-color: #DD901A;
 }
 
 a.button-link.next {
+  flex-grow: 1;
   font-weight: 600;
   align-items: center;
   justify-content: center;
 }
 
 a.button-link.descriptive {
+  flex-grow: 1;
   flex-direction: column;
-  color: #1A182A;
-  background-color: #EEEDE4;
-}
-a.button-link.descriptive:hover {
-  color: #1A182A;
-  background-color: #EDEDEF;
 }
 
 video {
