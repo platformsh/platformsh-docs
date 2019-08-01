@@ -4,6 +4,9 @@ GlueScript scripts are powered by a lightweight Javascript engine that allows yo
 
 This is not a full-blown Javascript runtime, and you can't use NPM or import libraries. Keep it short and sweet.
 
+* GlueScript is ES5 compatible
+* The regular expression engine disallows the following expressions ES5 compatible expressions: `(?=)`, `(?!)`, `\1` (positive and negative lookahead and backreferences)
+
 This is very much an **Alpha release**, and while the Javascript API itself will probably be stable enough, the script management will undoubtedly change. For the moment you would simply post a `.js` file to our REST API to create the integration. 
 
 > **CAVEAT**: Currently errors are silent so this is not for the faint of heart.
