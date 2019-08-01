@@ -514,12 +514,6 @@ a.button-link {
   display: inline-flex;
 }
 
-/* a.button-link:hover {
-  background-color: var(--button-link-background-color-hover);
-  border: none;
-  color: var(--button-bg-blue);
-} */
-
 a.button-link.singleprev {
   background-color: var(--button-link-background-color-hover);
   color: var(--button-bg-blue);
@@ -550,8 +544,6 @@ a.button-link.prev:hover {
   color: var(--button-link-color);
   background-color: var(--button-link-background-color);
 }
-
-
 
 a.button-link.basic {
   color: var(--button-link-color);
