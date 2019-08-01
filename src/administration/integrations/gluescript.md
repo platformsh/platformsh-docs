@@ -79,7 +79,7 @@ git push platform master
 where:
 * `my_glue_script.js` is the name of your Javascript file
 
-> Pushing the script to master won't do anything. Yet. Just a handy place to keep you GlueScript file.
+> Pushing the script to master won't do anything. Yet. Just a handy place to keep your GlueScript file.
 
 ### 3. Enable the integration
 
