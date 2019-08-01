@@ -30,5 +30,5 @@ The next guide shows how to set up your development workflow to benefit from Pla
 </div>
 
 <div class="buttons">
-  <a class="button-link single" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link singleprev" onclick="gitbook.navigation.goPrev()">Back</a>
 </div>

@@ -504,10 +504,7 @@ section.examples-lists > div {
 }
 
 a.button-link {
-  /* flex-grow: 1; */
   font-size: 16px;
-  color: var(--button-link-color);
-  background-color: var(--button-link-background-color);
   border: none;
   border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
@@ -517,20 +514,15 @@ a.button-link {
   display: inline-flex;
 }
 
-a.button-link:hover {
+/* a.button-link:hover {
   background-color: var(--button-link-background-color-hover);
   border: none;
   color: var(--button-bg-blue);
-}
+} */
 
-a.button-link.basic {
-  flex-grow: 1;
-  font-weight: 600;
-  align-items: center;
-  justify-content: center;
-}
-
-a.button-link.single {
+a.button-link.singleprev {
+  background-color: var(--button-link-background-color-hover);
+  color: var(--button-bg-blue);
   font-weight: 600;
   width: 50%;
   font-weight: 600;
@@ -538,23 +530,86 @@ a.button-link.single {
   justify-content: center;
 }
 
+a.button-link.singleprev:hover {
+  border: none;
+  color: var(--button-link-color);
+  background-color: var(--button-link-background-color);
+}
+
 a.button-link.prev {
+  background-color: var(--button-link-background-color-hover);
+  color: var(--button-bg-blue);
   width: 25%;
   font-weight: 600;
   align-items: center;
   justify-content: center;
 }
 
-a.button-link.next {
+a.button-link.prev:hover {
+  border: none;
+  color: var(--button-link-color);
+  background-color: var(--button-link-background-color);
+}
+
+
+
+a.button-link.basic {
+  color: var(--button-link-color);
+  background-color: var(--button-link-background-color);
   flex-grow: 1;
   font-weight: 600;
   align-items: center;
   justify-content: center;
 }
 
+a.button-link.basic:hover {
+  background-color: var(--button-link-background-color-hover);
+  border: none;
+  color: var(--button-bg-blue);
+}
+
+a.button-link.single {
+  color: var(--button-link-color);
+  background-color: var(--button-link-background-color);
+  font-weight: 600;
+  width: 50%;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+}
+
+a.button-link.single:hover {
+  background-color: var(--button-link-background-color-hover);
+  border: none;
+  color: var(--button-bg-blue);
+}
+
+a.button-link.next {
+  color: var(--button-link-color);
+  background-color: var(--button-link-background-color);
+  flex-grow: 1;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+}
+
+a.button-link.next:hover {
+  background-color: var(--button-link-background-color-hover);
+  border: none;
+  color: var(--button-bg-blue);
+}
+
 a.button-link.descriptive {
+  color: var(--button-link-color);
+  background-color: var(--button-link-background-color);
   flex-grow: 1;
   flex-direction: column;
+}
+
+a.button-link.descriptive:hover {
+  background-color: var(--button-link-background-color-hover);
+  border: none;
+  color: var(--button-bg-blue);
 }
 
 video {

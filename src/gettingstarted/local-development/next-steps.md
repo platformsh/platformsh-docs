@@ -30,5 +30,5 @@ Consult these additional resources to help improve your development life cycle.
 </div>
 
 <div class="buttons">
-  <a class="button-link single" onclick="gitbook.navigation.goPrev()">Back</a>
+  <a class="button-link singleprev" onclick="gitbook.navigation.goPrev()">Back</a>
 </div>
