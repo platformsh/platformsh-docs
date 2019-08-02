@@ -1,15 +1,14 @@
 # GlueScript
 
-GlueScript scripts are powered by a lightweight Javascript engine that allows you to run a script on any activity within Platform.sh. This opens a whole world of new automation use-cases including, but not limited to, calling external web services.
+Gluescript is powered by a lightweight JavaScript engine that allows you to run  a script on any activity within Platform.sh. This opens a whole world of new automation use-cases including, but not limited to calling external web services. 
 
-This is not a full-blown Javascript runtime, and you can't use NPM or import libraries. Keep it short and sweet.
+You can think of it as an integrated "Zapier" like service, or as a light-weight CI. You could for example decide to launch a backup before deployments or dynamically provision an API key. 
 
-* GlueScript is ES5 compatible
-* The regular expression engine disallows the following expressions ES5 compatible expressions: `(?=)`, `(?!)`, `\1` (positive and negative lookahead and backreferences)
+This is an **Alpha release**, and while the JavaScript API itself will be relatively stable, the script management will undoubtedly change. 
 
-This is very much an **Alpha release**, and while the Javascript API itself will probably be stable enough, the script management will undoubtedly change. For the moment you would simply post a `.js` file to our REST API to create the integration. 
+Scripts are deployed by POSTing a `.js` file to our REST API to create the integration. 
 
-> **CAVEAT**: Currently errors are silent so this is not for the faint of heart.
+> **CAVEATS**: Currently errors are silent so this is not for the faint-of-heart. This is not a full-blown JavaScript runtime, and you can't use NPM or import libraries.
 
 While you don't get to have NPM, or use outside libraries, GlueScript comes with a bunch of helpers that make it very useful. You can currently access the following APIs: [Project](#project-api), [Activity](#activity-api), [Process](#process-api), [Storage](#storage-api), [Fetch](#fetch-api) and [Crypto](#crypto-api)
 
@@ -34,6 +33,9 @@ For example, a GlueScript can perform a custom Slack integration as follows:
 ```javascript
 var message = activity.text;
 var color;
+if (Date.getDay()==6) {
+    message = message + "\r\nOn a Friday!";
+}
 
 if (activity.state == 'complete') {
   if (activity.result == 'success') {
@@ -64,6 +66,8 @@ var resp = fetch(
 
 if (!resp.ok) { throw 'Failed'; }
 ```
+
+This short example will post a message to a slack channel, on any activity on the Platform.sh project, and will append "On a Friday!", when it happens on Fridays.
 
 where:
 * `SLACK_PAYLOAD_URL` is the URL provided by Slack for your custom webhook
@@ -158,14 +162,14 @@ project.environments["master"].branch({
 
 ## Activity API
 
-The activity API accessed through `activity` gives you all the metadata about the current activity that invoked the GlueScript. The schema is the same as the one for Webhooks, documented in the [Webhook section](https://docs.platform.sh/administration/integrations/webhooks.html) of our documentation.
+The activity API accessed through `activity` gives you all the metadata about the current activity that invoked the Gluescript. The schema is the same as the one for Webhooks, documented here: https://docs.platform.sh/administration/integrations/webhooks.html
 
 ## Process API
-The process API gives you access to the environment in which the GlueScript is running, such as to environment variables.
+The Process API gives you access to the environment in the context of which the GlueScript is running .. such as to Environment Variables.
 
 For example:
 
-`process.env.FOO` will give you access to the `FOO` environment variable. This is a great place to access API keys, or other secrets.
+`process.env.FOO` will give you access to the `FOO` environment variable, this is a great place to access API keys... or other secrets.
 
 ## Storage API
 
@@ -194,7 +198,7 @@ No-op if the key doesn't exist
 
 ### fetch(): launch an HTTP request
 
-The fetch API allows you to do HTTP calls to external services. This implements a limited, synchronous version of the Fetch API with a hardcoded timeout of 30s, for example:
+The Fetch API allows you to do HTTP calls to external services. This implements a limited, synchronous version of the Fetch API with a hardcoded timeout of 30s, for example:
 
 ```javascript
 var resp = fetch(
