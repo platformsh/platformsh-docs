@@ -72,3 +72,9 @@ crons:
                 platform source-operation:run update --no-wait --yes
             fi
 ```
+
+## Support for external Git repository
+
+> **note**
+>
+> When using a code integration like GitHub, Gitlab or Bitbucket, the source operations generating a commit might get overriden.
