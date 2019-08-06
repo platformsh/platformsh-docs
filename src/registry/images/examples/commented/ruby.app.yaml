@@ -1,0 +1,2 @@
+# The runtime the application uses.
+type: ruby:2.6

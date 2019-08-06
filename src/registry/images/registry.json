@@ -1,8 +1,8 @@
 {
   "chrome-headless": {
-    "deprecated": {
+    "deprecated": [
 
-    },
+    ],
     "docs": {
       "relationship_name": "headless",
       "service_name": "headless",
@@ -17,12 +17,9 @@
         "minor": null
       }
     ],
-    "type": {
-      "chrome-headless": {
-        "disk": false,
-        "min_disk_size": null
-      }
-    }
+    "type": "chrome-headless",
+    "disk": false,
+    "min_disk_size": null
   },
   "elasticsearch": {
     "deprecated": [
@@ -75,12 +72,9 @@
         ]
       }
     ],
-    "type": {
-      "elasticsearch": {
-        "disk": true,
-        "min_disk_size": 256
-      }
-    }
+    "type": "elasticsearch",
+    "disk": true,
+    "min_disk_size": 256
   },
   "go": {
     "deprecated": [
@@ -110,12 +104,9 @@
         ]
       }
     ],
-    "type": {
-      "golang": {
-        "disk": false,
-        "min_disk_size": null
-      }
-    }
+    "type": "golang",
+    "disk": false,
+    "min_disk_size": null
   },
   "influxdb": {
     "deprecated": [
@@ -139,12 +130,9 @@
         ]
       }
     ],
-    "type": {
-      "influxdb": {
-        "disk": true,
-        "min_disk_size": null
-      }
-    }
+    "type": "influxdb",
+    "disk": true,
+    "min_disk_size": null
   },
   "java": {
     "deprecated": [
@@ -172,12 +160,9 @@
         "minor": null
       }
     ],
-    "type": {
-      "java": {
-        "disk": false,
-        "min_disk_size": null
-      }
-    }
+    "type": "java",
+    "disk": false,
+    "min_disk_size": null
   },
   "kafka": {
     "deprecated": [
@@ -195,16 +180,14 @@
       {
         "major": 2,
         "minor": [
-          1
+          1,
+          2
         ]
       }
     ],
-    "type": {
-      "kafka": {
-        "disk": true,
-        "min_disk_size": 512
-      }
-    }
+    "type": "kafka",
+    "disk": true,
+    "min_disk_size": 512
   },
   "mariadb": {
     "deprecated": [
@@ -233,16 +216,40 @@
         ]
       }
     ],
-    "type": {
-      "mariadb": {
-        "disk": true,
-        "min_disk_size": 256
-      },
-      "mysql": {
-        "disk": true,
-        "min_disk_size": 256
+    "type": "mariadb",
+    "disk": true,
+    "min_disk_size": 256
+  },
+  "mysql": {
+    "deprecated": [
+      {
+        "major": 5,
+        "minor": [
+          5
+        ]
       }
-    }
+    ],
+    "docs": {
+      "relationship_name": "database",
+      "service_name": "mydatabase",
+      "url": "\/configuration\/services\/mysql.html"
+    },
+    "endpoint": "mysql",
+    "name": "MariaDB",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 10,
+        "minor": [
+          0,
+          1,
+          2
+        ]
+      }
+    ],
+    "type": "mysql",
+    "disk": true,
+    "min_disk_size": 256
   },
   "memcached": {
     "deprecated": [
@@ -264,12 +271,9 @@
         ]
       }
     ],
-    "type": {
-      "memcached": {
-        "disk": false,
-        "min_disk_size": null
-      }
-    }
+    "type": "memcached",
+    "disk": false,
+    "min_disk_size": null
   },
   "mongodb": {
     "deprecated": [
@@ -294,12 +298,9 @@
         ]
       }
     ],
-    "type": {
-      "mongodb": {
-        "disk": true,
-        "min_disk_size": 512
-      }
-    }
+    "type": "mongodb",
+    "disk": true,
+    "min_disk_size": 512
   },
   "network-storage": {
     "deprecated": [
@@ -321,12 +322,9 @@
         ]
       }
     ],
-    "type": {
-      "network-storage": {
-        "disk": true,
-        "min_disk_size": null
-      }
-    }
+    "type": "network-storage",
+    "disk": true,
+    "min_disk_size": null
   },
   "nodejs": {
     "deprecated": [
@@ -379,12 +377,9 @@
         "minor": null
       }
     ],
-    "type": {
-      "nodejs": {
-        "disk": false,
-        "min_disk_size": null
-      }
-    }
+    "type": "nodejs",
+    "disk": false,
+    "min_disk_size": null
   },
   "oracle-mysql": {
     "deprecated": [
@@ -412,12 +407,9 @@
         ]
       }
     ],
-    "type": {
-      "oracle-mysql": {
-        "disk": true,
-        "min_disk_size": 256
-      }
-    }
+    "type": "oracle-mysql",
+    "disk": true,
+    "min_disk_size": 256
   },
   "php": {
     "deprecated": [
@@ -454,12 +446,9 @@
         ]
       }
     ],
-    "type": {
-      "php": {
-        "disk": false,
-        "min_disk_size": null
-      }
-    }
+    "type": "php",
+    "disk": false,
+    "min_disk_size": null
   },
   "postgresql": {
     "deprecated": [
@@ -494,12 +483,9 @@
         ]
       }
     ],
-    "type": {
-      "postgresql": {
-        "disk": true,
-        "min_disk_size": null
-      }
-    }
+    "type": "postgresql",
+    "disk": true,
+    "min_disk_size": null
   },
   "python": {
     "deprecated": [
@@ -529,12 +515,9 @@
         ]
       }
     ],
-    "type": {
-      "python": {
-        "disk": false,
-        "min_disk_size": null
-      }
-    }
+    "type": "python",
+    "disk": false,
+    "min_disk_size": null
   },
   "rabbitmq": {
     "deprecated": [
@@ -558,12 +541,9 @@
         ]
       }
     ],
-    "type": {
-      "rabbitmq": {
-        "disk": true,
-        "min_disk_size": 256
-      }
-    }
+    "type": "rabbitmq",
+    "disk": true,
+    "min_disk_size": 256
   },
   "redis": {
     "deprecated": [
@@ -581,11 +561,8 @@
       }
     ],
     "docs": {
-      "relationship_name": "rabbitmq",
-      "service_name": [
-        "rediscache",
-        "redisdata"
-      ],
+      "relationship_name": "applicationcache",
+      "service_name": "rediscache",
       "url": "\/configuration\/services\/redis.html"
     },
     "endpoint": "redis",
@@ -611,16 +588,56 @@
         ]
       }
     ],
-    "type": {
-      "redis": {
-        "disk": false,
-        "min_disk_size": null
+    "type": "redis",
+    "disk": false,
+    "min_disk_size": null
+  },
+  "redis-persistent": {
+    "deprecated": [
+      {
+        "major": 2,
+        "minor": [
+          8
+        ]
       },
-      "redis-persistent": {
-        "disk": true,
-        "min_disk_size": null
+      {
+        "major": 3,
+        "minor": [
+          0
+        ]
       }
-    }
+    ],
+    "docs": {
+      "relationship_name": "applicationdata",
+      "service_name": "redisdata",
+      "url": "\/configuration\/services\/redis.html"
+    },
+    "endpoint": "redis",
+    "name": "Redis",
+    "runtime": false,
+    "supported": [
+      {
+        "major": 3,
+        "minor": [
+          2
+        ]
+      },
+      {
+        "major": 4,
+        "minor": [
+          0
+        ]
+      },
+      {
+        "major": 5,
+        "minor": [
+          0
+        ]
+      }
+    ],
+    "type": "redis-persistent",
+    "disk": true,
+    "min_disk_size": null
   },
   "ruby": {
     "deprecated": [
@@ -645,12 +662,9 @@
         ]
       }
     ],
-    "type": {
-      "ruby": {
-        "disk": false,
-        "min_disk_size": null
-      }
-    }
+    "type": "ruby",
+    "disk": false,
+    "min_disk_size": null
   },
   "solr": {
     "deprecated": [
@@ -698,12 +712,9 @@
         ]
       }
     ],
-    "type": {
-      "solr": {
-        "disk": true,
-        "min_disk_size": 256
-      }
-    }
+    "type": "solr",
+    "disk": true,
+    "min_disk_size": 256
   },
   "varnish": {
     "deprecated": [
@@ -733,11 +744,8 @@
         ]
       }
     ],
-    "type": {
-      "varnish": {
-        "disk": false,
-        "min_disk_size": null
-      }
-    }
+    "type": "varnish",
+    "disk": false,
+    "min_disk_size": null
   }
 }

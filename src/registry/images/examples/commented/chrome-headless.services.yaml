@@ -1,0 +1,8 @@
+# The name given to the Headless Chrome service (lowercase alphanumeric only).
+headless:
+  # The type of your service (chrome-headless), which uses the format
+  # 'type:version'. Be sure to consult the Headless Chrome documentation
+  # (https://docs.platform.sh/configuration/services/headless-chrome.html#supported-versions)
+  # when choosing a version. If you specify a version number which is not available,
+  # the CLI will return an error.
+  type: chrome-headless:73

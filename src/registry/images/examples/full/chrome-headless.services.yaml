@@ -1,0 +1,3 @@
+headless:
+  type: chrome-headless:73
+  disk: 256

@@ -1,0 +1,2 @@
+relationships:
+  cache: "memcached:memcached"

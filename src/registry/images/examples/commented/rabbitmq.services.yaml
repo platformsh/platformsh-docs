@@ -1,0 +1,10 @@
+# The name given to the RabbitMQ service (lowercase alphanumeric only).
+myrabbitmq:
+  # The type of your service (rabbitmq), which uses the format
+  # 'type:version'. Be sure to consult the RabbitMQ documentation
+  # (https://docs.platform.sh/configuration/services/rabbitmq.html#supported-versions)
+  # when choosing a version. If you specify a version number which is not available,
+  # the CLI will return an error.
+  type: rabbitmq:3.7
+  # The disk attribute is the size of the persistent disk (in MB) allocated to the service.
+  disk: 256

@@ -5,4 +5,4 @@ relationships:
   # The 'service_name' is the name of the service given in '.platform.services.yaml'.
   # The 'endpoint_name' is the exposed functionality of the service to use. In most
   # cases this is simply the same as the service 'type', but there are a few exceptions.
-  elasticsearch: "mysearch:elasticsearch"
+  null: "varish:null"

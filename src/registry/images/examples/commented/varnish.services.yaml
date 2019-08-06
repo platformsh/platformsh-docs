@@ -1,0 +1,8 @@
+# The name given to the Varnish service (lowercase alphanumeric only).
+varish:
+  # The type of your service (varnish), which uses the format
+  # 'type:version'. Be sure to consult the Varnish documentation
+  # (https://docs.platform.sh/configuration/services/varish.html#supported-versions)
+  # when choosing a version. If you specify a version number which is not available,
+  # the CLI will return an error.
+  type: varnish:6.0

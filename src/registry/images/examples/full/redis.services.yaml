@@ -1,0 +1,3 @@
+rediscache:
+  type: redis:5.0
+  disk: 256

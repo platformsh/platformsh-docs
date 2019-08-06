@@ -1,0 +1,2 @@
+relationships:
+  rabbitmq: "redisdata:redis"

@@ -1,0 +1,3 @@
+myrabbitmq:
+  type: rabbitmq:3.7
+  disk: 256

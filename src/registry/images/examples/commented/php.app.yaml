@@ -1,0 +1,2 @@
+# The runtime the application uses.
+type: php:7.3
