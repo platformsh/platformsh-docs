@@ -501,6 +501,7 @@ section.examples-lists > div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  cursor: default;
 }
 
 a.button-link {
