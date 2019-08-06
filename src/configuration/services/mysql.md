@@ -12,9 +12,11 @@ The service types `mariadb` and `mysql` both refer to MariaDB for compatibility 
 * mariadb:10.1
 * mariadb:10.2
 
+
 * mysql:10.0
 * mysql:10.1
 * mysql:10.2
+
 
 * oracle-mysql:5.7
 * oracle-mysql:8.0
@@ -37,7 +39,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## Usage example
 
-In your `.platform/services.yaml`:
+For MariaDB your `.platform/services.yaml` can use the `mysql` service type:
 
 ```yaml
 mydatabase:
@@ -45,13 +47,45 @@ mydatabase:
     disk: 1024
 ```
 
+or the `mariadb` service type.
+
+```yaml
+mymariadatabase:
+    type: mariadb:10.2
+    disk: 1024
+```
+
+Oracle-mysql uses the `oracle-mysql` service type:
+
+```yaml
+myoracledatabase:
+    type: oracle-mysql:8.0
+    disk: 1024
+```
+
 Note that the minimum disk size for `mysql`/`oracle-mysql` is 256MB.
 
-In your `.platform.app.yaml`:
+Despite these service type differences, MariaDB and Oracle MySQL both use the `mysql` endpoint in their configuration.
+
+For MariaDB, the endpoint does not change whether you used the `mysql` service type:
 
 ```yaml
 relationships:
     database: "mydatabase:mysql"
+```
+
+or the `mariadb` service type:
+
+```yaml
+relationships:
+    database: "mymariadatabase:mysql"
+```
+
+The same goes for using the `oracle-mysql` service type as well.
+
+```yaml
+relationships:
+    database: "myoracledatabase:mysql"
 ```
 
 You can then use the service in a configuration file of your application with something like:
