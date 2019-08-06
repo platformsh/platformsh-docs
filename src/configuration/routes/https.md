@@ -139,7 +139,7 @@ tls:
 
 If the Let's Encrypt certificate is due to expire in less than one month then it will be renewed automatically during a deployment.  That makes it feasible to set up regular auto-renewal of the Let's Encrypt certificate.  The caveat is that, like any deploy, there is a very brief downtime (a few seconds, usually) so it's best to do during off-hours.
 
-You will first need to install the CLI in your application container.  See the section on [API tokens](/gettingstarted/cli/api-tokens.md) for instructions on how to do so.
+You will first need to install the CLI in your application container.  See the section on [API tokens](/development/cli/api-tokens.md) for instructions on how to do so.
 
 > **note**
 >

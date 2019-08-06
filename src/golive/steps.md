@@ -20,7 +20,7 @@ You can also access information about the project's plan under "Billing", and th
 
 ![Edit Plan](/images/management-console/billing-plan-upgrade.png)
 
-You can make changes to the type of plan, the number of environments, amount of storage and number of users here. When you make changes, it will update the monthly price you will be paying. Click `Upgrade plan` to save the new settings. 
+You can make changes to the type of plan, the number of environments, amount of storage and number of users here. When you make changes, it will update the monthly price you will be paying. Click `Upgrade plan` to save the new settings.
 
 ![Edit Plan Choose](/images/management-console/settings-upgrade-plan.png)
 
@@ -38,7 +38,7 @@ To get the IP address, first run `platform environment:info edge_hostname`.  Tha
 
 In OS X and Linux you can add that IP  to your `/etc/hosts` file.  In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`. You will need to be a admin user to be able to change that file. So in OS X you will usually run something like `sudo vi /etc/hosts`. After adding the line the file will look something like:
 
- 
+
 ![Hosts File](/images/config-files/hosts-file.png)
 
 > **note**
@@ -69,7 +69,7 @@ While not required, it's strongly recommended that you set up [health notificati
 
 ### Configure production cron tasks
 
-It's strongly recommended that you [set up automatic snapshots](/administration/snapshot-and-restore.md#automated-snapshots) and [automatic certificate renewal](/configuration/routes/https.md#automatic-certificate-renewal) cron tasks.  You will first need to set up an [API token](/gettingstarted/cli/api-tokens.md) and install the CLI as part of the build hook.  Then you can easily configure the appropriate cron tasks.  The following snippet is generally sufficient but see the the links above for more details, and please modify the cron schedules listed to match your use case.
+It's strongly recommended that you [set up automatic snapshots](/administration/snapshot-and-restore.md#automated-snapshots) and [automatic certificate renewal](/configuration/routes/https.md#automatic-certificate-renewal) cron tasks.  You will first need to set up an [API token](/development/cli/api-tokens.md) and install the CLI as part of the build hook.  Then you can easily configure the appropriate cron tasks.  The following snippet is generally sufficient but see the the links above for more details, and please modify the cron schedules listed to match your use case.
 
 ```yaml
 crons:
