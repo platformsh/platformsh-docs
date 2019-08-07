@@ -48,6 +48,58 @@ disk: 512
 
 Note that there will still be an Nginx proxy server sitting in front of your application.  If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Lisp application unconditionally, as in the example above.
 
+# Accessing Services
+
+The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`. 
+
+Add to your `.asd` file the dependency
+
+```lisp
+:depends-on (:jsown :babel :s-base64)
+````
+
+The following is an example of accessing a postgresql instance:
+
+```lisp
+(defun relationships ()
+  (jsown:parse
+   (babel:octets-to-string
+    (with-input-from-string (in (uiop:getenv "PLATFORM_RELATIONSHIPS"))
+      (s-base64:decode-base64-bytes in)))))
+```
+
+If you were to define a Postgresql service and would have in you `.platform.app.yaml`
+
+```yaml
+relationships:
+  pg: postgresql:postgresql
+```
+
+The following would be an example of accessing a postgresql instance, first add to you `.asd` file:
+
+```lisp
+:depends-on (:postmodern)
+````
+
+Then in your program you could access the postgresql instance as such:
+
+```lisp
+(defun setup-postgresql ()
+  (let* ((pg-relationship (first (jsown:val (relationships) "pg")))
+     (database (jsown:val pg-relationship "path"))
+     (username (jsown:val pg-relationship "username"))
+     (password (jsown:val pg-relationship "password"))
+     (host (jsown:val pg-relationship "host")))
+    (setf *pg-spec*
+      (list database username password host)))
+  (postmodern:with-connection *pg-spec*
+    (unless (member "example_table" (postmodern:list-tables t) :test #'string=)
+      (postmodern:execute "create table example_table (
+    a_field TEXT NOT NULL UNIQUE,
+    another_field TEXT NOT NULL UNIQUE
+"))))
+```
+
 
 ## Project templates
 
