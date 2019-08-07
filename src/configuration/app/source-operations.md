@@ -7,7 +7,8 @@ search:
 
 > **note**
 >
-> Source Operations are currently in beta.  While the syntax is not expected to change, some behavior might in the future.
+> Source Operations are currently in Beta. While the syntax is not expected to change, some behavior might in the future.
+> For example, external code integrations like GitHub, Gitlab or Bitbucket, is not yet compatible with source operations yet.
 
 An application can define a number of operations that apply to its source code and that can be automated.
 
@@ -72,9 +73,3 @@ crons:
                 platform source-operation:run update --no-wait --yes
             fi
 ```
-
-## Support for external Git repository
-
-> **note**
->
-> When using a code integration like GitHub, Gitlab or Bitbucket, the source operations generating a commit might get overriden.
