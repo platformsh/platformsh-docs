@@ -14,12 +14,13 @@ type: 'lisp:1.5'
 
 ## Assumptions
 
-Platform.sh is making assumptions on your application to provide a more streamlined experience. These assumptions are the following:
+Platform.sh is making assumptions about your application to provide a more streamlined experience. These assumptions are the following:
 
 - Your `.asd` file is named like your system name. E.g. `example.asd` will have `(defsystem example ...)`.
-- Platform.sh can run `(asdf:make :example)` on your system to build a binary.
 
-If you don't want these assumptions, you can use this to disable them:
+Platform.sh will then run `(asdf:make :example)` on your system to build a binary.
+
+If you don't want these assumptions, you can disable this behavior by specifying in your `.platform.app.yaml`:
 
 ```yaml
 build:
@@ -28,11 +29,11 @@ build:
 
 ## Dependencies
 
-The recommended way to handle Lisp dependencies on Platform.sh is using ASDF. commit a `.asd` file in your repository and the system will automatically download the system's dependencies using QuickLisp.
+The recommended way to handle Lisp dependencies on Platform.sh is using ASDF. Commit a `.asd` file in your repository and the system will automatically download the system's dependencies using QuickLisp.
 
 ## QuickLisp options
 
-If you wish to change the distributions that QuickLisp is using, you can specify those as follows:
+If you wish to change the distributions that QuickLisp is using, you can specify those as follows specifying a distribution name, its url and, an optional version:
 
 ```yaml
 runtime:
@@ -42,7 +43,7 @@ runtime:
             version: "..."
 ```
 
-This is a way to pin the quicklisp distribution, for example:
+For example:
 
 ```yaml
 runtime:
@@ -52,13 +53,13 @@ runtime:
             version: '2019-07-11'
 ```
 
-The `version` is optional.
 
 ## Platform.sh variables
 
 Platform.sh exposes relationships and other configuration as [environment variables](/development/variables.md). Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services.md).
 
-To get the `PORT` environment variable you could:
+To get the `PORT` environment variable (the port on which your web application is supposed to listen) you would:
+
 ```lisp
 (parse-integer (uiop:getenv "PORT"))
 ```
@@ -66,7 +67,7 @@ To get the `PORT` environment variable you could:
 
 ## Building and running the application
 
-Assuming an `example.lisp` and an `example.asd` files are present in your repository, the application will be automatically built on push.  You can then start it from the `web.commands.start` directive.  Note that the start command _must_ run in the foreground. Should the program terminate for any reason it will be automatically restarted. In the example below we sleep for a very very long time. You could also for example choose to join the thread of your webserver.
+Assuming an `example.lisp` and an `example.asd` files are present in your repository, the application will be automatically built on push.  You can then start it from the `web.commands.start` directive.  Note that the start command _must_ run in the foreground. Should the program terminate for any reason it will be automatically restarted. In the example below we sleep for a very, very long time. You could also choose to join the thread of your web server, or use other methods to make sure the program does not terminate.
 
 The following basic `.platform.app.yaml` file is sufficient to run most Lisp applications.
 
@@ -83,19 +84,19 @@ web:
 disk: 512
 ```
 
-Note that there will still be an Nginx proxy server sitting in front of your application.  If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Lisp application unconditionally, as in the example above.
+Note that there will still be a proxy server sitting in front of your application.  If desired, certain paths may be served directly by our router without hitting your application (for static files, primarily) or you may route all requests to the Lisp application unconditionally, as in the example above.
 
 # Accessing Services
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`. 
 
-Add to your `.asd` file the dependencies:
+Tu parse them, add to your `.asd` file the dependencies:
 
 ```lisp
 :depends-on (:jsown :babel :s-base64)
 ````
 
-The following is an example of accessing a postgresql instance:
+The following is an example of accessing a PostgreSQL instance:
 
 ```lisp
 (defun relationships ()
@@ -105,20 +106,20 @@ The following is an example of accessing a postgresql instance:
       (s-base64:decode-base64-bytes in)))))
 ```
 
-If you were to define a Postgresql service and would have in you `.platform.app.yaml`
+If you were to define a PostgreSQL service and would have in you `.platform.app.yaml`:
 
 ```yaml
 relationships:
   pg: postgresql:postgresql
 ```
 
-The following would be an example of accessing a postgresql instance, first add to your `.asd` file:
+The following would be an example of accessing a PostgreSQL instance, first add to your `.asd` file:
 
 ```lisp
 :depends-on (:postmodern)
 ````
 
-Then in your program you could access the postgresql instance as such:
+Then in your program you could access the PostgreSQL instance as follows:
 
 ```lisp
 (defvar *pg-spec* nil)
@@ -139,12 +140,11 @@ Then in your program you could access the postgresql instance as such:
 "))))
 ```
 
-
 ## Project templates
 
-Platform.sh offers a project templates for Lisp applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
+Platform.sh offers a project template for Lisp applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
 
-The following is a simple example of a Hunchentoot based web application (you can find the corresponding `.asd` and Platform.sh `.yaml` files in the linked Github respository):
+The following is a simple example of a Hunchentoot based web application (you can find the corresponding `.asd` and Platform.sh `.yaml` files in the linked Github repository):
 
 ```lisp
 (defpackage #:example
@@ -164,6 +164,6 @@ The following is a simple example of a Hunchentoot based web application (you ca
     (sleep most-positive-fixnum)))
 ```
 
-The main two things to notice is how we get the `PORT` from the environment, and how we sleep at the end as `(start acceptor)` will immediatly yield and Platform.sh requires applications to run in the foreground.
+The main two things to notice is how we get the `PORT` from the environment, and how we sleep at the end as `(start acceptor)` will immediately yield and Platform.sh requires applications to run in the foreground.
 
 [Hunchentoot Lisp application](https://github.com/platformsh/template-lisp)
