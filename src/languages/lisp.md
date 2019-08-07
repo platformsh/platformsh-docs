@@ -1,6 +1,6 @@
 # Lisp
 
-Platform.sh supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support.  They are compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
+Platform.sh supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support.  They are compiled during the Build phase, and support both committed dependencies and download-on-demand.
 
 ## Supported versions
 
@@ -12,10 +12,47 @@ To specify a Lisp container, use the `type` property in your `.platform.app.yaml
 type: 'lisp:1.5'
 ```
 
-## ASDF dependencies
+## Assumptions
 
-The recommended way to handle Lisp dependencies on Platform.sh is using ASDF. commit an `.asd` file in your repository and the system will:
-{to be completed}
+Platform.sh is making assumptions on your application to provide a more streamlined experience. These assumptions are the following:
+
+- Your `.asd` file is named like your system name. E.g. `example.asd` will have `(defsystem example ...)`.
+- Platform.sh can run `(asdf:make :example)` on your system to build a binary.
+
+If you don't want these assumptions, you can use this to disable them:
+
+```yaml
+build:
+    flavor: none
+```
+
+## Dependencies
+
+The recommended way to handle Lisp dependencies on Platform.sh is using ASDF. commit a `.asd` file in your repository and the system will automatically download the system's dependencies using QuickLisp.
+
+## QuickLisp options
+
+If you wish to change the distributions that QuickLisp is using, you can specify those as follows:
+
+```yaml
+runtime:
+    quicklisp:
+        <distribution name>:
+            url: "..."
+            version: "..."
+```
+
+This is a way to pin the quicklisp distribution, for example:
+
+```yaml
+runtime:
+    quicklisp:
+        quicklisp:
+            url: 'http://beta.quicklisp.org/dist/quicklisp.txt'
+            version: '2019-07-11'
+```
+
+The `version` is optional.
 
 ## Platform.sh variables
 
@@ -23,7 +60,7 @@ Platform.sh exposes relationships and other configuration as [environment variab
 
 To get the `PORT` environment variable you could:
 ```lisp
-(uiop:getenv "PORT")
+(parse-integer (uiop:getenv "PORT"))
 ```
 
 
@@ -52,7 +89,7 @@ Note that there will still be an Nginx proxy server sitting in front of your app
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`. 
 
-Add to your `.asd` file the dependency
+Add to your `.asd` file the dependencies:
 
 ```lisp
 :depends-on (:jsown :babel :s-base64)
@@ -75,7 +112,7 @@ relationships:
   pg: postgresql:postgresql
 ```
 
-The following would be an example of accessing a postgresql instance, first add to you `.asd` file:
+The following would be an example of accessing a postgresql instance, first add to your `.asd` file:
 
 ```lisp
 :depends-on (:postmodern)
@@ -84,12 +121,14 @@ The following would be an example of accessing a postgresql instance, first add 
 Then in your program you could access the postgresql instance as such:
 
 ```lisp
+(defvar *pg-spec* nil)
+
 (defun setup-postgresql ()
   (let* ((pg-relationship (first (jsown:val (relationships) "pg")))
-     (database (jsown:val pg-relationship "path"))
-     (username (jsown:val pg-relationship "username"))
-     (password (jsown:val pg-relationship "password"))
-     (host (jsown:val pg-relationship "host")))
+         (database (jsown:val pg-relationship "path"))
+         (username (jsown:val pg-relationship "username"))
+         (password (jsown:val pg-relationship "password"))
+         (host (jsown:val pg-relationship "host")))
     (setf *pg-spec*
       (list database username password host)))
   (postmodern:with-connection *pg-spec*
@@ -117,7 +156,6 @@ The following is a simple example of a Hunchentoot based web application (you ca
 (define-easy-handler (greet :uri "/hello") (name)
   (with-html-output-to-string (s) (htm (:body (:h1 "hello, " (str name))))))
 
-(export 'main)
 (defun main ()
   (let ((acceptor (make-instance
                    'easy-acceptor
