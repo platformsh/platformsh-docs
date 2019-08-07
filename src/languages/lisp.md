@@ -105,4 +105,27 @@ Then in your program you could access the postgresql instance as such:
 
 Platform.sh offers a project templates for Lisp applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
 
-[Generic Lisp application](https://github.com/platformsh/template-lisp)
+The following is a simple example of a Hunchentoot based web application (you can find the corresponding `.asd` and Platform.sh `.yaml` files in the linked Github respository):
+
+```lisp
+(defpackage #:example
+  (:use :hunchentoot :cl-who :cl)
+  (:export main))
+
+(in-package #:example)
+
+(define-easy-handler (greet :uri "/hello") (name)
+  (with-html-output-to-string (s) (htm (:body (:h1 "hello, " (str name))))))
+
+(export 'main)
+(defun main ()
+  (let ((acceptor (make-instance
+                   'easy-acceptor
+                   :port (parse-integer (uiop:getenv "PORT")))))
+    (start acceptor)
+    (sleep most-positive-fixnum)))
+```
+
+The main two things to notice is how we get the `PORT` from the environment, and how we sleep at the end as `(start acceptor)` will immediatly yield and Platform.sh requires applications to run in the foreground.
+
+[Hunchentoot Lisp application](https://github.com/platformsh/template-lisp)
