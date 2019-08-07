@@ -48,6 +48,9 @@ web:
             # list multiple fallbacks here if desired.
             index:
                 - "index.html"
+            # Since there is no backend application, return a 404 for a missing
+            # file rather than passing through to a non-existent application.
+            passthru: false
             # Set a 5 minute cache lifetime on all static files.
             expires: 300s
             # Disable all scripts, since we don't have any anyway.
