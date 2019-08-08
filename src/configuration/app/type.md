@@ -3,6 +3,7 @@
 The `type` key defines the base container image that will be used to run the application.  There is a separate base container image for each primary language for the application, often in multiple versions.  Supported languages include:
 
 * [`php`](/languages/php.md)
+* [`java`](/languages/java.md)
 * [`nodejs`](/languages/nodejs.md)
 * [`python`](/languages/python.md)
 * [`ruby`](/languages/ruby.md)
