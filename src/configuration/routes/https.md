@@ -10,7 +10,7 @@ All environments on Platform.sh support both HTTP and HTTPS automatically.  Prod
 > platform redeploy
 > ```
 >
-> Alternatively, see the [section below](#automatic-certificate-renewal) on automatically redeploying the site in order to renew the certificate.
+> Alternatively, see the [section below](#automated-ssl-certificate-renewal-using-cron) on automatically redeploying the site in order to renew the certificate.
 
 Platform.sh recommends using HTTPS requests for all sites exclusively.  Doing so provides better security, access to certain features that web browsers only permit over HTTPS, and access to HTTP/2 connections on all sites which can greatly improve performance.
 
