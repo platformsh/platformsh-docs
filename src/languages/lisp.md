@@ -29,11 +29,11 @@ build:
 
 ## Dependencies
 
-The recommended way to handle Lisp dependencies on Platform.sh is using ASDF. Commit a `.asd` file in your repository and the system will automatically download the system's dependencies using QuickLisp.
+The recommended way to handle Lisp dependencies on Platform.sh is using ASDF. Commit a `.asd` file in your repository and the system will automatically download the dependencies using QuickLisp.
 
 ## QuickLisp options
 
-If you wish to change the distributions that QuickLisp is using, you can specify those as follows specifying a distribution name, its url and, an optional version:
+If you wish to change the distributions that QuickLisp is using, you can specify those as follows, specifying a distribution name, its URL and, an optional version:
 
 ```yaml
 runtime:
@@ -67,7 +67,7 @@ To get the `PORT` environment variable (the port on which your web application i
 
 ## Building and running the application
 
-Assuming an `example.lisp` and an `example.asd` files are present in your repository, the application will be automatically built on push.  You can then start it from the `web.commands.start` directive.  Note that the start command _must_ run in the foreground. Should the program terminate for any reason it will be automatically restarted. In the example below we sleep for a very, very long time. You could also choose to join the thread of your web server, or use other methods to make sure the program does not terminate.
+Assuming `example.lisp` and `example.asd` are present in your repository, the application will be automatically built on push.  You can then start it from the `web.commands.start` directive.  Note that the start command _must_ run in the foreground. Should the program terminate for any reason it will be automatically restarted. In the example below we sleep for a very, very long time. You could also choose to join the thread of your web server, or use other methods to make sure the program does not terminate.
 
 The following basic `.platform.app.yaml` file is sufficient to run most Lisp applications.
 
@@ -84,13 +84,13 @@ web:
 disk: 512
 ```
 
-Note that there will still be a proxy server sitting in front of your application.  If desired, certain paths may be served directly by our router without hitting your application (for static files, primarily) or you may route all requests to the Lisp application unconditionally, as in the example above.
+Note that there will still be a proxy server in front of your application.  If desired, certain paths may be served directly by our router without hitting your application (for static files, primarily) or you may route all requests to the Lisp application unconditionally, as in the example above.
 
 # Accessing Services
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`. 
 
-Tu parse them, add to your `.asd` file the dependencies:
+To parse them, add the dependencies to your `.asd` file:
 
 ```lisp
 :depends-on (:jsown :babel :s-base64)
@@ -106,14 +106,14 @@ The following is an example of accessing a PostgreSQL instance:
       (s-base64:decode-base64-bytes in)))))
 ```
 
-If you were to define a PostgreSQL service and would have in you `.platform.app.yaml`:
+Given a relationship defined in `.platform.app.yaml`:
 
 ```yaml
 relationships:
   pg: postgresql:postgresql
 ```
 
-The following would be an example of accessing a PostgreSQL instance, first add to your `.asd` file:
+The following would access that relationship, and provide your Lisp program the credentials to connect to a PostgreSQL instance. Add this to your `.asd` file:
 
 ```lisp
 :depends-on (:postmodern)
@@ -163,7 +163,6 @@ The following is a simple example of a Hunchentoot based web application (you ca
     (start acceptor)
     (sleep most-positive-fixnum)))
 ```
-
-The main two things to notice is how we get the `PORT` from the environment, and how we sleep at the end as `(start acceptor)` will immediately yield and Platform.sh requires applications to run in the foreground.
+Notice how we get the `PORT` from the environment, and how we sleep at the end, as `(start acceptor)` will immediately yield and Platform.sh requires applications to run in the foreground.
 
 [Hunchentoot Lisp application](https://github.com/platformsh/template-lisp)
