@@ -91,6 +91,7 @@
 
 * [Go](languages/go.md)
 * [Java](languages/java.md)
+* [Lisp](languages/lisp.md)
 * [Node.js](languages/nodejs.md)
   * [Alternative Node.js install](languages/nodejs/nvm.md)
 * [PHP](languages/php.md)
