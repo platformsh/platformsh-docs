@@ -1,6 +1,6 @@
 # GlueScript
 
-GlueScript is a tool for responding to activities in Platform.sh projects and environments, such as branching, merging, synchronizing, activating, deactivating. You can write GlueScript code that runs in the Platform.sh [foundation/coordinator/git ... where does it run?], and is able to respond to these activities and take actions in response. 
+GlueScript is a tool for responding to activities in Platform.sh projects, such as creating or merging branches, synchronizing data with parent environments, or activating new environments. You can write code that is triggered by these activities and takes action in response. 
 
 GlueScript is powered by a [lightweight JavaScript engine](https://github.com/damz/otto/), and has runtime access to objects representing your Project and Environment. 
 
@@ -9,7 +9,7 @@ Uses for GlueScript include:
 * Calling external webservices, e.g. calling external testing tools, or sending notifications via Slack
 * Dynamically provisioning API Keys
 
-GlueScript is stored in the state of your Project [CONFIRM THIS] and you deploy it by POSTing it via the Platform.sh [Integrations API](https://api.platform.sh/docs/#tag/Third-Party-Integrations). There is a CLI command for this as well:
+GlueScript is stored in the state of your Project, and you deploy it by POSTing it via the Platform.sh [Integrations API](https://api.platform.sh/docs/#tag/Third-Party-Integrations). There is a CLI command for this as well:
 
 ```bash
 platform integration:add --type script --file ./my_glue_script.js
@@ -17,7 +17,7 @@ platform integration:add --type script --file ./my_glue_script.js
 
 > **CAVEATS**: This is an *Alpha release*, and while the JavaScript API itself will be relatively stable, the script management will undoubtedly change. Currently, errors are silent so this is not for the faint-of-heart. This is not a full-blown JavaScript runtime, and you can't use NPM or import libraries.
 
-GlueScript comes with helper APIs that make it very useful. You can currently access the following APIs: [Project](#project-api), [Activity](#activity-api), [Process](#process-api), [Storage](#storage-api), [Fetch](#fetch-api) and [Crypto](#crypto-api) [these anchors don't work]
+GlueScript comes with helper APIs that make it very useful. You can currently access the following APIs: [Project](#project-api), [Activity](#activity-api), [Process](#process-api), [Storage](#storage-api), [Fetch](#fetch-api) and [Crypto](#crypto-api).
 
 # Setting up a GlueScript integration
 
