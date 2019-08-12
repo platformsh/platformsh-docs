@@ -1,16 +1,23 @@
 # GlueScript
 
-Gluescript is powered by a lightweight JavaScript engine that allows you to run  a script on any activity within Platform.sh. This opens a whole world of new automation use-cases including, but not limited to calling external web services. 
+GlueScript is a tool for responding to activities in Platform.sh projects, such as creating or merging branches, synchronizing data with parent environments, or activating new environments. You can write code that is triggered by these activities and takes action in response. 
 
-You can think of it as an integrated "Zapier" like service, or as a light-weight CI. You could for example decide to launch a backup before deployments or dynamically provision an API key. 
+GlueScript is powered by a [lightweight JavaScript engine](https://github.com/damz/otto/), and has runtime access to objects representing your Project and Environment. 
 
-This is an **Alpha release**, and while the JavaScript API itself will be relatively stable, the script management will undoubtedly change. 
+Uses for GlueScript include:
+* Triggering activities on Platform.sh in response to other activites, e.g. trigger a snapshot before merging
+* Calling external webservices, e.g. calling external testing tools, or sending notifications via Slack
+* Dynamically provisioning API Keys
 
-Scripts are deployed by POSTing a `.js` file to our REST API to create the integration. 
+GlueScript is stored in the state of your Project, and you deploy it by POSTing it via the Platform.sh [Integrations API](https://api.platform.sh/docs/#tag/Third-Party-Integrations). There is a CLI command for this as well:
 
-> **CAVEATS**: Currently errors are silent so this is not for the faint-of-heart. This is not a full-blown JavaScript runtime, and you can't use NPM or import libraries.
+```bash
+platform integration:add --type script --file ./my_glue_script.js
+```
 
-While you don't get to have NPM, or use outside libraries, GlueScript comes with a bunch of helpers that make it very useful. You can currently access the following APIs: [Project](#project-api), [Activity](#activity-api), [Process](#process-api), [Storage](#storage-api), [Fetch](#fetch-api) and [Crypto](#crypto-api)
+> **CAVEATS**: This is an *Alpha release*, and while the JavaScript API itself will be relatively stable, the script management will undoubtedly change. Currently, errors are silent so this is not for the faint-of-heart. This is not a full-blown JavaScript runtime, and you can't use NPM or import libraries.
+
+GlueScript comes with helper APIs that make it very useful. You can currently access the following APIs: [Project](#project-api), [Activity](#activity-api), [Process](#process-api), [Storage](#storage-api), [Fetch](#fetch-api) and [Crypto](#crypto-api).
 
 # Setting up a GlueScript integration
 
