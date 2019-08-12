@@ -94,7 +94,7 @@ To parse them, add the dependencies to your `.asd` file:
 
 ```lisp
 :depends-on (:jsown :babel :s-base64)
-````
+```
 
 The following is an example of accessing a PostgreSQL instance:
 
@@ -117,7 +117,7 @@ The following would access that relationship, and provide your Lisp program the 
 
 ```lisp
 :depends-on (:postmodern)
-````
+```
 
 Then in your program you could access the PostgreSQL instance as follows:
 
