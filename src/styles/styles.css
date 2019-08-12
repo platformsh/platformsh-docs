@@ -46,7 +46,7 @@ TOP BAR
   float: left;
   white-space: nowrap;
   overflow: hidden;
-  width: 100%;
+  width: 300px;
   height: 80px;
   display: flex;
   align-items: center;
@@ -77,6 +77,11 @@ TOP BAR
   font-weight: 900;
   color: #fff;
 }
+@media (max-width: 600px) {
+  .site-name .title {
+    display: none;
+  }
+}
 @media (min-width: 600px) {
   .branding {
     width: 300px;
@@ -95,9 +100,14 @@ TOP BAR
 USER WIDGEGT
 **********************/
 #user-widget {
-  float: right;
-  margin-right: 30px;
-  height: 80px;
+  display: none;
+}
+@media (min-width: 768px) {
+  #user-widget {
+    float: right;
+    margin-right: 30px;
+    height: 80px;
+  }
 }
 .user-widget>div {
   min-height: 32px;
