@@ -2,7 +2,7 @@
 
 ## Configure your DNS provider
 
-Now that your domain is configured for your application, the last step is to configure your DNS provider to point to the domain of your `master` environment on Platform.sh.
+The next step is to configure your DNS provider to point to the domain of your `master` environment on Platform.sh.
 
 <asciinema-player src="/videos/asciinema/cname-target.cast" preload=1></asciinema-player>
 

@@ -26,7 +26,21 @@ You can make changes to the type of plan, the number of environments, amount of 
 
 You can find more information on pricing on the [pricing page](https://platform.sh/pricing).
 
-## 2. Set your domain in Platform.sh
+## 2. Configure your DNS provider
+
+Configure your DNS provider to point your domain to your Platform.sh Master environment domain name.
+
+The way to do so will vary somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.  Some will call it an Alias or similar alternate name, but either way the intent is to say "this domain should always resolve to... this other domain".
+
+You can access the CNAME target by running `platform environment:info edge_hostname`.  That is the host name by which Platform.sh knows your environment.  Add a CNAME record from your desired domain (`www.example.com`) to the value of the `edge_hostname`.
+
+If you have multiple domains you want to be served by the same application you will need to add a CNAME record for each of them.
+
+Note that depending on your registrar and the TTL you set, it could take anywhere from 15 minutes to 72 hours for the DNS change to fully propagate across the Internet.
+
+If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records](/golive/steps/dns.md).
+
+## 3. Set your domain in Platform.sh
 
 This is a required step, it will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
 
@@ -45,21 +59,7 @@ In OS X and Linux you can add that IP  to your `/etc/hosts` file.  In Windows th
 > Do not put the IP address you see here, but the one you got from the ping command.
 > *Also, remember to remove this entry after you have configured DNS!*
 
-Sometimes it can take Let's Encrypt a couple of minutes to provision the certificate the first time. This is normal, and only means the first deploy after enabling a domain may take longer than usual.
-
-## 3. Configure your DNS provider
-
-Configure your DNS provider to point your domain to your Platform.sh Master environment domain name.
-
-The way to do so will vary somewhat depending on your registrar, but nearly all registrars should allow you to set a CNAME.  Some will call it an Alias or similar alternate name, but either way the intent is to say "this domain should always resolve to... this other domain".
-
-You can access the CNAME target by running `platform environment:info edge_hostname`.  That is the host name by which Platform.sh knows your environment.  Add a CNAME record from your desired domain (`www.example.com`) to the value of the `edge_hostname`.
-
-If you have multiple domains you want to be served by the same application you will need to add a CNAME record for each of them.
-
-Note that depending on your registrar and the TTL you set, it could take anywhere from 15 minutes to 72 hours for the DNS change to fully propagate across the Internet.
-
-If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records](/golive/steps/dns.md).
+Sometimes it can take Let's Encrypt a couple of minutes to provision the certificate the first time. This is normal, and only means the first deploy after enabling a domain may take longer than usual.  Setting the CNAME record with your DNS provider first helps to minimize that disruption.
 
 ## 4. Bonus steps (Optional)
 
