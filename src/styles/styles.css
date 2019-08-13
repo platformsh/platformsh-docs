@@ -46,13 +46,24 @@ TOP BAR
   float: left;
   white-space: nowrap;
   overflow: hidden;
-  width: 100%;
+  width: 75%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: left;
   background-color: var(--sidebar-bg-logo);
   padding-left: 30px;
+}
+
+@media (min-width: 600px) {
+  .branding {
+    width: 250px;
+  }
+}
+@media (min-width: 1024px) {
+  .branding {
+    width: 300px;
+  }
 }
 .branding a {
   height: 30px;
@@ -68,20 +79,33 @@ TOP BAR
   height: 80px;
   display: flex;
   align-items: center;
-  float: left;
-  padding-left: 30px;
+  justify-content: center;
 }
+@media (min-width: 600px) {
+  .site-name {
+    float: left;
+    padding-left: 30px;
+  }
+}
+
 .site-name a {
   font-size: 24px;
   line-height: 40px;
   font-weight: 900;
   color: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 600px) {
+  .site-name .title {
+    display: none;
+  }
 }
 @media (min-width: 600px) {
-  .branding {
-    width: 300px;
-  }
-  .site-name span {
+  .site-name .fa {
     display: none;
   }
 }
@@ -95,9 +119,15 @@ TOP BAR
 USER WIDGEGT
 **********************/
 #user-widget {
-  float: right;
-  margin-right: 30px;
-  height: 80px;
+  display: none;
+}
+@media (min-width: 768px) {
+  #user-widget {
+    float: right;
+    margin-right: 30px;
+    height: 80px;
+    display: block;
+  }
 }
 .user-widget>div {
   min-height: 32px;
