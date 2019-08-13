@@ -16,8 +16,6 @@ On your project, click the "Go live" button in the top right hand corner of your
 
 Select the plan size that is appropriate for the needs of your application. This is also the page where you can increase the number of development environments, and the amount of storage. Make your changes and then click "Update plan" at the bottom of the page. Your application will redeploy.
 
-Now you are ready to set up your pre-registered domain.
-
 <div class="buttons">
   <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
   <a class="button-link next" onclick="gitbook.navigation.goNext()">I have upgraded my plan size</a>
