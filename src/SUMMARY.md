@@ -43,8 +43,8 @@
   * [Going live](gettingstarted/going-live.md)
     * [First steps](gettingstarted/going-live/first-steps.md)
     * [Upgrade plan](gettingstarted/going-live/upgrade-plan.md)
-    * [Set your domain](gettingstarted/going-live/set-domain.md)
     * [Configure DNS](gettingstarted/going-live/configure-dns.md)
+    * [Set your domain](gettingstarted/going-live/set-domain.md)
     * [Troubleshooting](gettingstarted/going-live/troubleshooting.md)
 
 ## Configuration
