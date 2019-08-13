@@ -57,6 +57,11 @@ TOP BAR
 
 @media (min-width: 600px) {
   .branding {
+    width: 250px;
+  }
+}
+@media (min-width: 1024px) {
+  .branding {
     width: 300px;
   }
 }
