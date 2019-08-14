@@ -62,7 +62,7 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
     You must define a relationship (i.e. `database`) in `.platform.app.yaml` to connect to it:
 
-    ```
+    ```yaml
     relationships:
         database: "mysqldb:mysql"
     ```
@@ -89,7 +89,6 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
       ```
 
       The above configuration forwards all requests to `/*` to the process started by `web.commands.start`. In the case of PHP containers, `passthru` must specify what PHP file to forward the request to, as well as the docroot under which the file lives. For example,
-
 
       ```yaml
       web:
