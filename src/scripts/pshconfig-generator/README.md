@@ -1,6 +1,6 @@
 # Platform.sh Configuration File Generator
 
-This is a simple library for generating valid and up-to-date configuration YAML files for Platform.sh written in Node.js. It uses the `pshregistry-helper` library to access data in a `registry.json` to generate those files.
+This is a simple library for generating valid and up-to-date configuration YAML files for Platform.sh written in Node.js. It accesses data in a `registry.json` to generate those files.
 
 ## Usage Example
 
