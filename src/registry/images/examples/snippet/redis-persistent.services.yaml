@@ -1,3 +1,3 @@
 redisdata:
-  type: redis-persistent:5.0
+  type: redis:5.0
   disk: 256

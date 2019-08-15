@@ -1,2 +1,2 @@
 relationships:
-  rabbitmq: "redisdata:redis"
+  applicationdata: "redisdata:redis"

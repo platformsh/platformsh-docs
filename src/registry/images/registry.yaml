@@ -1,0 +1,595 @@
+---
+chrome-headless:
+  created_at: '2019-04-11T19:48:15.806Z'
+  description: ''
+  disk: false
+  docs:
+    relationship_name: headless
+    service_name: headless
+    url: "/configuration/services/headless-chrome.html"
+  endpoint: http
+  id: 1136
+  min_disk_size:
+  name: Headless Chrome
+  repo_name: chrome-headless
+  runtime: false
+  type: chrome-headless
+  versions:
+    deprecated: []
+    recommended:
+    - '73'
+    supported:
+    - '73'
+  web_url: https://lab.plat.farm/images/chrome-headless
+dotnet:
+  created_at: '2016-02-15T12:16:27.737Z'
+  description: ASP.NET 5 application container.
+  id: 58
+  repo_name: dotnet
+  disk: false
+  docs:
+    relationship_name:
+    service_name:
+    url: "/languages/dotnet.html"
+  endpoint:
+  min_disk_size:
+  name: C#/.Net Core
+  runtime: true
+  type: dotnet
+  versions:
+    deprecated: []
+    recommended:
+    - '2.2'
+    supported:
+    - '2.0'
+    - '2.1'
+    - '2.2'
+  web_url: https://lab.plat.farm/images/dotnet
+elasticsearch:
+  created_at: '2016-02-15T12:16:00.148Z'
+  description: A manufacture service for Elasticsearch
+  disk: true
+  docs:
+    relationship_name: elasticsearch
+    service_name: mysearch
+    url: "/configuration/services/elasticsearch.html"
+  endpoint: elasticsearch
+  id: 40
+  min_disk_size: 256
+  name: Elasticsearch
+  repo_name: elasticsearch
+  runtime: false
+  type: elasticsearch
+  versions:
+    deprecated:
+    - '0.9'
+    - '1.4'
+    - '1.7'
+    - '2.4'
+    - '5.2'
+    - '5.4'
+    recommended:
+    - '7.2'
+    supported:
+    - '6.5'
+    - '7.2'
+  web_url: https://lab.plat.farm/images/elasticsearch
+golang:
+  created_at: '2017-03-22T17:11:02.288Z'
+  description: ''
+  disk: false
+  docs:
+    relationship_name:
+    service_name:
+    url: "/languages/go.html"
+  endpoint:
+  id: 478
+  min_disk_size:
+  name: Go
+  repo_name: golang
+  runtime: true
+  type: golang
+  versions:
+    deprecated:
+    - '1.1'
+    - '1.8'
+    - '1.9'
+    recommended:
+    - '1.12'
+    supported:
+    - '1.11'
+    - '1.12'
+  web_url: https://lab.plat.farm/images/golang
+influxdb:
+  created_at: '2017-03-14T13:10:38.043Z'
+  description: ''
+  docs:
+    relationship_name: timedb
+    service_name: influx
+    url: "/configuration/services/influxdb.html"
+  endpoint: influxdb
+  id: 470
+  min_disk_size:
+  name: InfluxDB
+  repo_name: influxdb
+  runtime: false
+  type: influxdb
+  versions:
+    deprecated: []
+    recommended:
+    - '1.7'
+    supported:
+    - '1.2'
+    - '1.3'
+    - '1.7'
+  web_url: https://lab.plat.farm/images/influxdb
+java:
+  created_at: '2017-02-02T15:42:18.711Z'
+  description: ''
+  docs:
+    relationship_name:
+    service_name:
+    url: "/languages/java.html"
+  endpoint:
+  id: 436
+  min_disk_size:
+  name: Java
+  repo_name: java
+  runtime: true
+  type: java
+  versions:
+    deprecated: []
+    recommended:
+    - '12'
+    supported:
+    - '11'
+    - '12'
+    - '8'
+  web_url: https://lab.plat.farm/images/java
+kafka:
+  created_at: '2019-01-18T14:11:38.770Z'
+  description: ''
+  disk: true
+  docs:
+    relationship_name: kafka
+    service_name: mykafka
+    url: "/configuration/services/kafka.html"
+  endpoint: kafka
+  id: 1044
+  min_disk_size: 512
+  name: Kafka
+  repo_name: kafka
+  runtime: false
+  type: kafka
+  versions:
+    deprecated: []
+    recommended:
+    - '2.2'
+    supported:
+    - '2.1'
+    - '2.2'
+  web_url: https://lab.plat.farm/images/kafka
+lisp:
+  created_at: '2019-03-18T23:44:43.264Z'
+  description: ''
+  id: 1102
+  repo_name: lisp
+  disk: false
+  docs:
+    relationship_name:
+    service_name:
+    url: "/languages/lisp.html"
+  endpoint:
+  min_disk_size:
+  name: Lisp
+  runtime: true
+  type: lisp
+  versions:
+    deprecated: []
+    recommended:
+    - '1.5'
+    supported:
+    - '1.5'
+  web_url: https://lab.plat.farm/images/lisp
+mariadb:
+  created_at: '2016-02-15T12:15:57.156Z'
+  description: A manufacture-based container for MariaDB
+  id: 38
+  repo_name: mariadb
+  disk: true
+  docs:
+    relationship_name: database
+    service_name: mydatabase
+    url: "/configuration/services/mysql.html"
+  endpoint: mysql
+  min_disk_size: 256
+  name: MariaDB
+  runtime: false
+  type: mariadb
+  versions:
+    deprecated:
+    - '5.5'
+    recommended:
+    - '10.2'
+    supported:
+    - '10.0'
+    - '10.1'
+    - '10.2'
+  web_url: https://lab.plat.farm/images/mariadb
+memcached:
+  created_at: '2016-02-15T12:16:30.340Z'
+  description: Memcached service.
+  id: 60
+  repo_name: memcached
+  disk: false
+  docs:
+    relationship_name: cache
+    service_name: memcached
+    url: "/configuration/services/memcached.html"
+  endpoint: memcached
+  min_disk_size:
+  name: Memcached
+  runtime: false
+  type: memcached
+  versions:
+    deprecated: []
+    recommended:
+    - '1.4'
+    supported:
+    - '1.4'
+  web_url: https://lab.plat.farm/images/memcached
+mongodb:
+  created_at: '2016-02-15T12:15:56.784Z'
+  description: Experimental MongoDB support on Platform.sh
+  id: 37
+  repo_name: mongodb
+  disk: true
+  docs:
+    relationship_name: database
+    service_name: mydatabase
+    url: "/configuration/services/mongodb.html"
+  endpoint: mongodb
+  min_disk_size: 512
+  name: MongoDB
+  runtime: false
+  type: mongodb
+  versions:
+    deprecated: []
+    recommended:
+    - '3.6'
+    supported:
+    - '3.0'
+    - '3.2'
+    - '3.4'
+    - '3.6'
+  web_url: https://lab.plat.farm/images/mongodb
+mysql:
+  created_at: '2016-02-15T12:15:57.156Z'
+  description: A manufacture-based container for MariaDB
+  id: 38
+  repo_name: mariadb
+  disk: true
+  docs:
+    relationship_name: database
+    service_name: mydatabase
+    url: "/configuration/services/mysql.html"
+  endpoint: mysql
+  min_disk_size: 256
+  name: MariaDB
+  runtime: false
+  type: mysql
+  versions:
+    deprecated:
+    - '5.5'
+    recommended:
+    - '10.2'
+    supported:
+    - '10.0'
+    - '10.1'
+    - '10.2'
+  web_url: https://lab.plat.farm/images/mariadb
+network-storage:
+  created_at: '2018-05-11T20:03:06.200Z'
+  description: ''
+  id: 744
+  repo_name: network-storage
+  disk: true
+  docs:
+    relationship_name: 'null'
+    service_name: files
+    url: "/configuration/services/network-storage.html"
+  endpoint: something
+  min_disk_size:
+  name: Network Storage
+  runtime: false
+  type: network-storage
+  versions:
+    deprecated: []
+    recommended:
+    - '1.0'
+    supported:
+    - '1.0'
+  web_url: https://lab.plat.farm/images/network-storage
+nodejs:
+  created_at: '2016-02-15T12:16:32.448Z'
+  description: NodeJS service for Platform
+  id: 61
+  repo_name: nodejs
+  disk: false
+  docs:
+    relationship_name:
+    service_name:
+    url: "/languages/nodejs.html"
+  endpoint:
+  min_disk_size:
+  name: Node.js
+  runtime: true
+  type: nodejs
+  versions:
+    deprecated:
+    - '0.12'
+    - '4.7'
+    - '4.8'
+    - '6.1'
+    - '6.9'
+    - '8.2'
+    recommended:
+    - '10'
+    supported:
+    - '6'
+    - '8'
+    - '10'
+  web_url: https://lab.plat.farm/images/nodejs
+oracle-mysql:
+  created_at: '2019-05-06T10:45:41.908Z'
+  description: Images using MySQL from Oracle instead of MariaDB still providing mysql
+    endpoints
+  id: 1159
+  repo_name: oracle-mysql
+  disk: false
+  docs:
+    relationship_name: database
+    service_name: mydatabase
+    url: "/configuration/services/mysql.html"
+  endpoint: mysql
+  min_disk_size: 256
+  name: Oracle MySQL
+  runtime: false
+  type: oracle-mysql
+  versions:
+    deprecated: []
+    recommended:
+    - '8.0'
+    supported:
+    - '5.7'
+    - '8.0'
+  web_url: https://lab.plat.farm/images/oracle-mysql
+php:
+  created_at: '2016-02-15T12:15:55.452Z'
+  description: PHP service for Platform.sh.
+  id: 36
+  repo_name: php
+  disk: false
+  docs:
+    relationship_name:
+    service_name:
+    url: "/languages/php.html"
+  endpoint:
+  min_disk_size:
+  name: PHP
+  runtime: true
+  type: php
+  versions:
+    deprecated:
+    - '5.4'
+    - '5.5'
+    - '5.6'
+    - '7.0'
+    recommended:
+    - '7.3'
+    supported:
+    - '7.1'
+    - '7.2'
+    - '7.3'
+  web_url: https://lab.plat.farm/images/php
+postgresql:
+  created_at: '2016-02-15T12:16:32.472Z'
+  description: PostgreSQL service for Platform.sh.
+  id: 62
+  repo_name: postgresql
+  disk: true
+  docs:
+    relationship_name: database
+    service_name: mydatabase
+    url: "/configuration/services/postgresql.html"
+  endpoint: postgresql
+  min_disk_size:
+  name: PostgreSQL
+  runtime: false
+  type: postgresql
+  versions:
+    deprecated: []
+    recommended:
+    - '11'
+    supported:
+    - '9.6'
+    - '10'
+    - '11'
+  web_url: https://lab.plat.farm/images/postgresql
+python:
+  created_at: '2016-06-21T14:36:14.632Z'
+  description: ''
+  id: 274
+  repo_name: python
+  disk: false
+  docs:
+    relationship_name:
+    service_name:
+    url: "/languages/python.html"
+  endpoint:
+  min_disk_size:
+  name: Python
+  runtime: true
+  type: python
+  versions:
+    deprecated: []
+    recommended:
+    - '3.7'
+    supported:
+    - '2.7'
+    - '3.5'
+    - '3.6'
+    - '3.7'
+  web_url: https://lab.plat.farm/images/python
+rabbitmq:
+  created_at: '2016-02-15T12:15:53.317Z'
+  description: A manufacture-based container for RabbitMQ
+  id: 34
+  repo_name: rabbitmq
+  disk: true
+  docs:
+    relationship_name: rabbitmq
+    service_name: myrabbitmq
+    url: "/configuration/services/rabbitmq.html"
+  endpoint: rabbitmq
+  min_disk_size: 256
+  name: RabbitMQ
+  runtime: false
+  type: rabbitmq
+  versions:
+    deprecated: []
+    recommended:
+    - '3.7'
+    supported:
+    - '3.5'
+    - '3.6'
+    - '3.7'
+  web_url: https://lab.plat.farm/images/rabbitmq
+redis:
+  created_at: '2016-02-15T12:15:52.434Z'
+  description: 'A manufacture-based Redis container '
+  id: 33
+  repo_name: redis
+  disk: false
+  docs:
+    relationship_name: applicationcache
+    service_name: rediscache
+    url: "/configuration/services/redis.html"
+  endpoint: redis
+  min_disk_size:
+  name: Redis
+  runtime: false
+  type: redis
+  versions:
+    deprecated:
+    - '2.8'
+    - '3.0'
+    recommended:
+    - '5.0'
+    supported:
+    - '3.2'
+    - '4.0'
+    - '5.0'
+  web_url: https://lab.plat.farm/images/redis
+redis-persistent:
+  created_at: '2016-02-15T12:15:52.434Z'
+  description: 'A manufacture-based Redis container '
+  id: 33
+  repo_name: redis
+  disk: true
+  docs:
+    relationship_name: applicationdata
+    service_name: redisdata
+    url: "/configuration/services/redis.html"
+  endpoint: redis
+  min_disk_size:
+  name: Redis
+  runtime: false
+  type: redis
+  versions:
+    deprecated:
+    - '2.8'
+    - '3.0'
+    recommended:
+    - '5.0'
+    supported:
+    - '3.2'
+    - '4.0'
+    - '5.0'
+  web_url: https://lab.plat.farm/images/redis
+ruby:
+  created_at: '2016-06-29T08:50:48.894Z'
+  description: ''
+  id: 279
+  repo_name: ruby
+  disk: false
+  docs:
+    relationship_name:
+    service_name:
+    url: "/languages/ruby.html"
+  endpoint:
+  min_disk_size:
+  name: Ruby
+  runtime: true
+  type: ruby
+  versions:
+    deprecated: []
+    recommended:
+    - '2.6'
+    supported:
+    - '2.3'
+    - '2.4'
+    - '2.5'
+    - '2.6'
+  web_url: https://lab.plat.farm/images/ruby
+solr:
+  created_at: '2016-02-15T12:16:33.738Z'
+  description: ''
+  id: 63
+  repo_name: solr
+  disk: true
+  docs:
+    relationship_name: solr
+    service_name: mysearch
+    url: "/configuration/services/solr.html"
+  endpoint: solr
+  min_disk_size: 256
+  name: Solr
+  runtime: false
+  type: solr
+  versions:
+    deprecated: []
+    recommended:
+    - '2.2'
+    supported:
+    - '3.6'
+    - '4.1'
+    - '6.3'
+    - '6.6'
+    - '7.6'
+    - '7.7'
+    - '8.0'
+  web_url: https://lab.plat.farm/images/solr
+varnish:
+  created_at: '2017-08-14T08:26:18.741Z'
+  description: ''
+  id: 570
+  repo_name: varnish
+  disk: false
+  docs:
+    relationship_name:
+    service_name: varnish
+    url: "/configuration/services/varnish.html"
+  endpoint:
+  min_disk_size:
+  name: Varnish
+  runtime: false
+  type: varnish
+  versions:
+    deprecated: []
+    recommended:
+    - '6.0'
+    supported:
+    - '5.6'
+    - '6.0'
+  web_url: https://lab.plat.farm/images/varnish
