@@ -115,3 +115,11 @@ assert sig.serialize(compact=True) == request.headers["X-JWS-Signature"]
 ```
 
 Please refer to the [JOSE Cookbook](https://github.com/ietf-jose/cookbook) for examples about protecting content using JavaScript Object Signing and Encryption (JOSE).
+
+## Validate the integration
+
+You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
+
+```
+$ platform integration:validate
+```

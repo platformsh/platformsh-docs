@@ -65,6 +65,13 @@ The CLI will create the necessary webhook using the above URL for you when there
 
 You can now start pushing code, creating new branches or opening merge requests directly on your GitLab repository. You will see environments get automatically created and updated on the Platform.sh side.
 
+### 4. Validate the integration
+
+You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
+
+```
+$ platform integration:validate
+```
 
 ## Types of environments
 

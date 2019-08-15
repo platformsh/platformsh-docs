@@ -41,3 +41,11 @@ You can already start pushing code (branch, pull request, ...) to your Bitbucket
 Environments based on Bitbucket **pull requests** will have the correct 'parent' environment on Platform.sh and will be activated automatically with a copy of the parent's data.
 
 However, environments based on (non-pull-request) **branches** cannot have parents and will inherit directly from `master` and start inactive by default.
+
+## Validate the integration
+
+You can verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
+
+```
+$ platform integration:validate
+```

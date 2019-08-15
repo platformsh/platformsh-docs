@@ -70,6 +70,14 @@ You can now start pushing code, creating new branches or opening pull requests d
 
 Note that if you have created your account using the GitHub oAuth Login then in order to use the Platform CLI, you will need to [setup a password](https://accounts.platform.sh/user/password).
 
+### 4. Validate the integration
+
+You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
+
+```
+$ platform integration:validate
+```
+
 ## Types of environments
 
 Environments based on GitHub **pull requests** will have the correct 'parent' environment on Platform.sh; they will be activated automatically with a copy of the parent's data.
