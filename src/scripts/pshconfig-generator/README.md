@@ -46,7 +46,7 @@ The library creates example YAML files that fall into three main categories:
     elasticsearch: "mysearch:elasticsearch"
   ```
 
-* `snippet`: Partial configuration file. Single-line for that image that can be used to append to another file if we ever want to have tools that generate complete configuration files for the user. For the Elasticsearch `.platform.app.yaml` snippet,
+* `snippet`: Partial configuration file. Single-line for that image so that it could be used to append to another file if we ever want to have tools that generate complete configuration files for the user. For the Elasticsearch `.platform.app.yaml` snippet,
 
   ```
     elasticsearch: "mysearch:elasticsearch"
