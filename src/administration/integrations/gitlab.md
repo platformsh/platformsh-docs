@@ -67,17 +67,10 @@ You can now start pushing code, creating new branches or opening merge requests 
 
 ### 4. Validate the integration
 
-You can verify that your integration is functioning properly using the CLI command
+You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
 
 ```
 $ platform integration:validate
-Enter a number to choose an integration:
-  [0] 5jutqdj2tvkde (health.slack)
-  [1] a6555jyqp4gl2 (gitlab)
- > 1
-
-Validating the integration a6555jyqp4gl2 (type: gitlab)...
-The integration is valid.
 ```
 
 ## Types of environments

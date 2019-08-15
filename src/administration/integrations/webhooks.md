@@ -76,7 +76,7 @@ A text description of the action that happened.  This is a human-friendly string
 
 ### `payload.environment`
 
-This block contains information about the environment itself, after the action has taken place.  The most notable properties of this key are 
+This block contains information about the environment itself, after the action has taken place.  The most notable properties of this key are
 
 * `name` (the name of the branch)
 * `machine_name` (the name of the environment)
@@ -392,4 +392,12 @@ The following is an example of a webhook message.  Specifically, this one was cr
     }
   }
 }
+```
+
+## Validate the integration
+
+You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
+
+```
+$ platform integration:validate
 ```

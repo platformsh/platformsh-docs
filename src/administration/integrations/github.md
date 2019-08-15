@@ -72,17 +72,10 @@ Note that if you have created your account using the GitHub oAuth Login then in 
 
 ### 4. Validate the integration
 
-You can verify that your integration is functioning properly using the CLI command
+You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
 
 ```
 $ platform integration:validate
-Enter a number to choose an integration:
-  [0] 5jutqdj2tvkde (health.slack)
-  [1] a6555jyqp4gl2 (github)
- > 1
-
-Validating the integration a6555jyqp4gl2 (type: github)...
-The integration is valid.
 ```
 
 ## Types of environments
