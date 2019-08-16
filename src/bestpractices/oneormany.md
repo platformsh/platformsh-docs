@@ -26,7 +26,7 @@ In a clustered application, you either have [multiple `.platform.app.yaml`](/con
 
 A Clustered application requires at least a Medium plan.
 
-With a clustered application, you often will not need multiple service instances.  The [MySQL, MariaDB](/configuration/services/mysql.md), and [Solr](/configuration/services/solr.md) services support defining multiple databases on a single service, which is significantly more efficient than defining multiple services.  [Redis](/configuration/services/redisl.md), [Memcached](/configuration/services/memcached.md), [Elasticsearch](/configuration/services/elasticsearch.md), and [RabbitMQ](/configuration/services/rabbitmq.md) natively support multiple bins, or queues, or indexes (the terminology varies) defined by the client application as part of the request so they need o no additional configuration on Platform.sh, although they may need application configuration.
+With a clustered application, you often will not need multiple service instances.  The [MySQL, MariaDB](/configuration/services/mysql.md), and [Solr](/configuration/services/solr.md) services support defining multiple databases on a single service, which is significantly more efficient than defining multiple services.  [Redis](/configuration/services/redisl.md), [Memcached](/configuration/services/memcached.md), [Elasticsearch](/configuration/services/elasticsearch.md), and [RabbitMQ](/configuration/services/rabbitmq.md) natively support multiple bins, or queues, or indexes (the terminology varies) defined by the client application as part of the request so they need no additional configuration on Platform.sh, although they may need application configuration.
 
 Clustered applications are appropriate if:
 
