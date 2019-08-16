@@ -34,6 +34,7 @@ hooks:
 
       # Rebuild the example configuration files.
       node src/scripts/updateConfigs.js
+      mv src/registry/images/examples _book/registry/images
 
 # There is no need for a writable file mount, so set it to the smallest possible size.
 disk: 256
