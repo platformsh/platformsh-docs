@@ -86,8 +86,11 @@
   * [Source Operations](configuration/app/source-operations.md)
   * [Upgrading](configuration/app/upgrading.md)
 
-## Languages
+## Best Practices
 
+* [HTTP Caching](bestpractices/http-caching.md)
+
+## Languages
 
 * [Go](languages/go.md)
 * [Java](languages/java.md)
