@@ -14,8 +14,6 @@ chrome-headless:
   type: chrome-headless
   versions:
     deprecated: []
-    recommended:
-    - '73'
     supported:
     - '73'
 dotnet:
@@ -33,8 +31,6 @@ dotnet:
   type: dotnet
   versions:
     deprecated: []
-    recommended:
-    - '2.2'
     supported:
     - '2.0'
     - '2.1'
@@ -60,8 +56,6 @@ elasticsearch:
     - '2.4'
     - '5.2'
     - '5.4'
-    recommended:
-    - '7.2'
     supported:
     - '6.5'
     - '7.2'
@@ -83,8 +77,6 @@ golang:
     - '1.1'
     - '1.8'
     - '1.9'
-    recommended:
-    - '1.12'
     supported:
     - '1.11'
     - '1.12'
@@ -102,8 +94,6 @@ influxdb:
   type: influxdb
   versions:
     deprecated: []
-    recommended:
-    - '1.7'
     supported:
     - '1.2'
     - '1.3'
@@ -122,8 +112,6 @@ java:
   type: java
   versions:
     deprecated: []
-    recommended:
-    - '12'
     supported:
     - '11'
     - '12'
@@ -143,8 +131,6 @@ kafka:
   type: kafka
   versions:
     deprecated: []
-    recommended:
-    - '2.2'
     supported:
     - '2.1'
     - '2.2'
@@ -164,8 +150,6 @@ lisp:
   type: lisp
   versions:
     deprecated: []
-    recommended:
-    - '1.5'
     supported:
     - '1.5'
 mariadb:
@@ -184,8 +168,6 @@ mariadb:
   versions:
     deprecated:
     - '5.5'
-    recommended:
-    - '10.2'
     supported:
     - '10.0'
     - '10.1'
@@ -205,8 +187,6 @@ memcached:
   type: memcached
   versions:
     deprecated: []
-    recommended:
-    - '1.4'
     supported:
     - '1.4'
 mongodb:
@@ -224,8 +204,6 @@ mongodb:
   type: mongodb
   versions:
     deprecated: []
-    recommended:
-    - '3.6'
     supported:
     - '3.0'
     - '3.2'
@@ -247,8 +225,6 @@ mysql:
   versions:
     deprecated:
     - '5.5'
-    recommended:
-    - '10.2'
     supported:
     - '10.0'
     - '10.1'
@@ -268,8 +244,6 @@ network-storage:
   type: network-storage
   versions:
     deprecated: []
-    recommended:
-    - '1.0'
     supported:
     - '1.0'
 nodejs:
@@ -293,8 +267,6 @@ nodejs:
     - '6.1'
     - '6.9'
     - '8.2'
-    recommended:
-    - '10'
     supported:
     - '6'
     - '8'
@@ -315,8 +287,6 @@ oracle-mysql:
   type: oracle-mysql
   versions:
     deprecated: []
-    recommended:
-    - '8.0'
     supported:
     - '5.7'
     - '8.0'
@@ -339,8 +309,6 @@ php:
     - '5.5'
     - '5.6'
     - '7.0'
-    recommended:
-    - '7.3'
     supported:
     - '7.1'
     - '7.2'
@@ -360,8 +328,6 @@ postgresql:
   type: postgresql
   versions:
     deprecated: []
-    recommended:
-    - '11'
     supported:
     - '9.6'
     - '10'
@@ -381,8 +347,6 @@ python:
   type: python
   versions:
     deprecated: []
-    recommended:
-    - '3.7'
     supported:
     - '2.7'
     - '3.5'
@@ -403,8 +367,6 @@ rabbitmq:
   type: rabbitmq
   versions:
     deprecated: []
-    recommended:
-    - '3.7'
     supported:
     - '3.5'
     - '3.6'
@@ -426,8 +388,6 @@ redis:
     deprecated:
     - '2.8'
     - '3.0'
-    recommended:
-    - '5.0'
     supported:
     - '3.2'
     - '4.0'
@@ -450,8 +410,6 @@ redis-persistent:
     deprecated:
     - '2.8'
     - '3.0'
-    recommended:
-    - '5.0'
     supported:
     - '3.2'
     - '4.0'
@@ -471,8 +429,6 @@ ruby:
   type: ruby
   versions:
     deprecated: []
-    recommended:
-    - '2.6'
     supported:
     - '2.3'
     - '2.4'
@@ -493,8 +449,6 @@ solr:
   type: solr
   versions:
     deprecated: []
-    recommended:
-    - '2.2'
     supported:
     - '3.6'
     - '4.1'
@@ -518,8 +472,6 @@ varnish:
   type: varnish
   versions:
     deprecated: []
-    recommended:
-    - '6.0'
     supported:
     - '5.6'
     - '6.0'
