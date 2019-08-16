@@ -1,3 +1,0 @@
-memcached:
-  type: memcached:1.4
-  disk: 256

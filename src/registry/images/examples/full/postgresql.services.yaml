@@ -1,3 +1,0 @@
-mydatabase:
-  type: postgresql:11
-  disk: 256

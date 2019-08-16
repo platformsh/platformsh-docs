@@ -1,8 +1,0 @@
-# The relationships block defines how services are mapped within your application.
-# To access a service container, you must define a relationship to it.
-relationships:
-  # The relationship is specified in the form 'service_name:endpoint_name'.
-  # The 'service_name' is the name of the service given in '.platform.services.yaml'.
-  # The 'endpoint_name' is the exposed functionality of the service to use. In most
-  # cases this is simply the same as the service 'type', but there are a few exceptions.
-  database: "mydatabase:mongodb"

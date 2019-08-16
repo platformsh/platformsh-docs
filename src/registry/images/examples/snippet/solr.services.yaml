@@ -1,3 +1,0 @@
-mysearch:
-  type: solr:2.2
-  disk: 256

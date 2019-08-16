@@ -1,7 +1,0 @@
-# The runtime the application uses. The 'type' key defines the base container
-# image that will be used to run the application. There is a separate base
-# container image for each primary language for the application, in
-# multiple versions. Check the Python documentation
-# (https://docs.platform.sh/languages/python.html#supported-versions)
-# to find the supported versions for the 'python' type.
-type: python:3.7

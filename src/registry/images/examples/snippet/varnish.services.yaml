@@ -1,3 +1,0 @@
-varnish:
-  type: varnish:6.0
-  disk: 256
