@@ -74,3 +74,5 @@ A number of project templates for major Java applications are available on GitHu
 * [Thorntail](https://github.com/platformsh/template-microprofile-thorntail)
 * [Payara Micro](https://github.com/platformsh/template-microprofile-payara)
 * [KumuluzEE](https://github.com/platformsh/template-microprofile-kumuluzee)
+* [Helidon](https://github.com/platformsh/template-microprofile-helidon)
+* [Open Liberty](https://github.com/platformsh/template-microprofile-openliberty)
