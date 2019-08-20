@@ -25,6 +25,8 @@ You can also initialize your project using any of the pre-made templates below. 
   <a href="https://github.com/platformsh/template-microprofile-thorntail">Thorntail</a><br />
   <a href="https://github.com/platformsh/template-microprofile-payara">Payara Micro</a><br />
   <a href="https://github.com/platformsh/template-microprofile-kumuluzee">KumuluzEE</a>
+  <a href="https://github.com/platformsh/template-microprofile-helidon">Helidon</a>
+  <a href="https://github.com/platformsh/template-microprofile-openliberty">Open Liberty</a>
 
 </div>
 
