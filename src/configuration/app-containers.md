@@ -123,3 +123,27 @@ web:
 ## Upgrading from previous versions of the configuration file.
 
 Although we make an effort to always maintain backward compatibility in the `.platform.app.yaml` format, we do from time to time [upgrade the file](/configuration/app/upgrading.md) and encourage you to upgrade as well.
+
+## Console access
+
+You can view a list of applications for an environment in the management console by selecting that environment from the dropdown at the top of the page, and then clicking the "Services" tab that appears above that environment's overview information.
+
+Each application container has a tab on the left, so select the app you are interested in.
+
+### Overview
+
+![Service tab - App Overview](/images/management-console/service-tab/app-overview.png)
+
+The "Overview" tab gives you metadata information regarding the application. It tells you what size container it has been configured for, the amount of persistent disk, the number of active workers and cron jobs, as well as the command to ssh into that container.
+
+### Crons
+
+![Service tab - App Crons](/images/management-console/service-tab/app-crons.png)
+
+Each cron job associated with the application is listed with its frequency, the last time it was run, it's status, and its command.
+
+### Configuration
+
+![Service tab - App Configuration](/images/management-console/service-tab/app-configuration.png)
+
+The "Configuration" tab provides an overview of the application's configuration pulled from its `.platform.app.yaml` file.

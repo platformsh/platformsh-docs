@@ -206,6 +206,12 @@ You can get a list of the configured routes of an environment by running `platfo
 
 ![Platform Routes CLI](/images/cli/platform-routes-cli.png)
 
+## Console access
+
+You can view a list of the configured routes for an environment in the management console by selecting that environment from the dropdown at the top of the page, and then clicking the "Services" tab that appears above that environment's overview information.
+
+![Service tab - Routes](/images/management-console/service-tab/routes.png)
+
 ## Wildcard routes
 
 Platform.sh supports wildcard routes, so you can map multiple subdomains to the same application. This works both for redirect and upstream routes. You can simply prefix the route with a star (`*`), for example `*.example.com`, and HTTP request to `www.example.com`, `blog.example.com`, `us.example.com` will all get routed to the same endpoint.

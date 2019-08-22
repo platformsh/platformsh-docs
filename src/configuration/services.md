@@ -63,6 +63,24 @@ For example, the current default storage amount per project is 5GB (meaning 5120
 
 By default, Platform.sh will allocate CPU and memory resources to each container automatically.  Some services are optimized for high CPU load, some for high memory load.  By default, Platform.sh will try to allocate the largest "fair" size possible to all services, given the available resources on the plan.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing](/configuration/app/size.md) page for more details.
 
+## Console access
+
+You can view a list of configured services for an environment in the management console by selecting that environment from the dropdown at the top of the page, and then clicking the "Services" tab that appears above that environment's overview information.
+
+Each service has a tab on the left, so select the one you are interested in.
+
+### Overview
+
+![Service tab - Service Overview](/images/management-console/service-tab/service-overview.png)
+
+The overview tab gives you metadata information regarding the service. It tells you what size container it has been configured for and the amount of persistent disk given to it in your `services.yaml` file.
+
+### Configuration
+
+![Service tab - Service Configuration](/images/management-console/service-tab/service-configuration.png)
+
+Gives you an overview of the service configuration that has been pulled from the `services.yaml` file.
+
 ## Service timezones
 
 All services have their system timezone set to UTC by default.  In most cases that is the best option.  For some applications it's possible to change the application timezone, which will affect only the running application itself.
@@ -73,7 +91,6 @@ All services have their system timezone set to UTC by default.  In most cases th
 ## Using the services
 
 In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml](/configuration/app-containers.md) file which configures the *relationships* between applications and services.
-
 
 ## Endpoints
 
