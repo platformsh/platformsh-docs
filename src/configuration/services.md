@@ -79,7 +79,7 @@ The overview tab gives you metadata information regarding the service. It tells 
 
 ![Service tab - Service Configuration](/images/management-console/service-tab/service-configuration.png)
 
-Gives you an overview of the service configuration that has been pulled from the `services.yaml` file.
+The "Configuration" tab provides an overview of the service configuration that has been pulled from the `services.yaml` file.
 
 ## Service timezones
 
