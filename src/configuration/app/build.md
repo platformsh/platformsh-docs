@@ -95,6 +95,8 @@ Hooks are executed using the dash shell, not the bash shell used by normal SSH l
 
 The `build` hook is run after the build flavor (if any).  The file system is fully writable, but no services are available (such as a database) nor any persistent file mounts, as the application has not yet been deployed. Environment variables that exist only at runtime such as `PLATFORM_BRANCH`, `PLATFORM_DOCUMENT_ROOT` etc. are not available during this phase. The full list of build time and runtime variables is available on the [variables page](/development/variables.md#platformsh-provided-variables).
 
+There are no constraints on what can be downloaded during your build hook except for the amount of disk available at that time. Independent of the mounted disk size you have allocated for deployment, build environments and therefore application images are limited to 4 GB during the build phase. If you exceed this limit you will receive a `No space left on device` error. It is possible to increase this limit in certain situations, but it will be necessary to open a support ticket in order to do so. Consult the [Troubleshooting](/development/troubleshoot.md#no-space-left-on-device) guide for more information on this topic.
+
 ### Deploy hook
 
 The `deploy` hook is run after the application container has been started, but before it has started accepting requests.  You can access other services at this stage (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.  Note that the deploy hook will only run on a [`web`](/configuration/app/web.md) instance, not on a [`worker`](/configuration/app/workers.md) instance.
