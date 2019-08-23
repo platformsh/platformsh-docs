@@ -65,6 +65,17 @@ For a MariaDB database, the command `platform db:size` will give approximate dis
 
 For the most reliable disk usage warnings, we strongly recommend all customers enable [Health notifications](/administration/integrations/notifications.md) on all projects.  That will provide you with a push-notification through your choice of channel when the available disk space on any service drops too low.
 
+## No space left on device
+
+During the build hook, you may run into the following error depending on the size of your application:
+
+```
+W: [Errno 28] No space left on device: ...
+```
+
+The cause of this issue has to do with the amount of disk provided to the build container before it is deployed. Build containers are restriced to 4 GB during build, no matter how much disk has been set aside for the deployed application. These containers are essentially discarded after the build image has been created, and the size constraint keeps these resources low.
+
+If for some reason your application requires more than 4 GB during build, you can open a support ticket to have this limit increased, however in practice the most amount of disk given during build still caps off at 8 GB in these cases. 
 
 ## MySQL lock wait timeout
 
@@ -102,9 +113,9 @@ There is a single MySQL user, so you can not use "DEFINER" Access Control mechan
 When creating a `VIEW`, you may need to explicitly set the `SECURITY` parameter to `INVOKER`:
 
 ```
-CREATE OR REPLACE SQL SECURITY INVOKER 
-VIEW `view_name` AS 
-SELECT 
+CREATE OR REPLACE SQL SECURITY INVOKER
+VIEW `view_name` AS
+SELECT
 ```
 
 ## MySQL server has gone away
