@@ -63,24 +63,6 @@ For example, the current default storage amount per project is 5GB (meaning 5120
 
 By default, Platform.sh will allocate CPU and memory resources to each container automatically.  Some services are optimized for high CPU load, some for high memory load.  By default, Platform.sh will try to allocate the largest "fair" size possible to all services, given the available resources on the plan.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing](/configuration/app/size.md) page for more details.
 
-## Console access
-
-You can view a list of configured services for an environment in the management console by selecting that environment from the dropdown at the top of the page, and then clicking the "Services" tab that appears above that environment's overview information.
-
-Each service has a tab on the left, so select the one you are interested in.
-
-### Overview
-
-![Service tab - Service Overview](/images/management-console/service-tab/service-overview.png)
-
-The overview tab gives you metadata information regarding the service. It tells you what size container it has been configured for and the amount of persistent disk given to it in your `services.yaml` file.
-
-### Configuration
-
-![Service tab - Service Configuration](/images/management-console/service-tab/service-configuration.png)
-
-The "Configuration" tab provides an overview of the service configuration that has been pulled from the `services.yaml` file.
-
 ## Service timezones
 
 All services have their system timezone set to UTC by default.  In most cases that is the best option.  For some applications it's possible to change the application timezone, which will affect only the running application itself.
@@ -97,7 +79,6 @@ In order for a service to be available to an application in your project (Platfo
 All services offer one or more `endpoints`.  An endpoint is simply a named set of credentials that can be used to access the service from other applications or services in your project.  Only some services support multiple user-defined endpoints.  If you do not specify one then one will be created with a standard defined name, generally the name of the service type (e.g., `mysql` or `solr`).  An application container, defined by a `.platform.app.yaml` file, always exposes and endpoint named `http` to allow the [router](/configuration/routes.md) to forward requests to it.
 
 When defining relationships in a configuration file you will always address a service as `<servicename>`:`<endpoint>`.  See the appropriate service page for details on how to configure multiple endpoints for each service that supports it.
-
 
 ## Connecting to a service
 
