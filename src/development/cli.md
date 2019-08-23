@@ -18,9 +18,7 @@ You can find the system requirements and more information in the [installation i
 
 ## Authentication
 
-The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will
-authenticate you with Platform.sh and show your projects. Just type this
-command to start:
+The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will authenticate you with Platform.sh and show your projects. Just type this command to start:
 
 ```bash
 platform
