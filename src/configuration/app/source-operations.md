@@ -5,10 +5,11 @@ search:
 
 # Source operations
 
-> **warning**
+> **note**
 >
 > Source Operations are currently in Beta. While the syntax is not expected to change, some behavior might in the future.
-> For example, external code integrations like GitHub, Gitlab or Bitbucket, is not yet compatible with source operations yet.
+>
+> Also be aware that Source Operations are not compatible with [3rd party repository integrations](/adminsitration/integrations.md) at this time. If you use a 3rd party repository then any changes from Source Operations will be overwritten by the integration.
 
 An application can define a number of operations that apply to its source code and that can be automated.
 
