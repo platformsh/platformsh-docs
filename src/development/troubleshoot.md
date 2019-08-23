@@ -73,9 +73,9 @@ During the build hook, you may run into the following error depending on the siz
 W: [Errno 28] No space left on device: ...
 ```
 
-The cause of this issue has to do with the amount of disk provided to the build container before it is deployed. Build containers are restriced to 4 GB during build, no matter how much disk has been set aside for the deployed application. These containers are essentially discarded after the build image has been created, and the size constraint keeps these resources low.
+The cause of this issue has to do with the amount of disk provided to the build container before it is deployed. Build containers are restricted to 4 GB during build, no matter how much disk has been set aside for the deployed application.
 
-If for some reason your application requires more than 4 GB during build, you can open a support ticket to have this limit increased, however in practice the most amount of disk given during build still caps off at 8 GB in these cases. 
+If for some reason your application requires more than 4 GB during build, you can open a support ticket to have this limit increased, however in practice the most amount of disk given during build still caps off at 8 GB in these cases.
 
 ## MySQL lock wait timeout
 
