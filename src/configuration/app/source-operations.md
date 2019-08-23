@@ -7,7 +7,7 @@ search:
 
 > **note**
 >
-> Source Operations are currently in Beta. While the syntax is not expected to change, some behavior might in the future.
+> Source Operations are currently in Beta.  While the syntax is not expected to change, some behavior might in the future.
 >
 > Also be aware that Source Operations are not compatible with [3rd party repository integrations](/adminsitration/integrations.md) at this time. If you use a 3rd party repository then any changes from Source Operations will be overwritten by the integration.
 
