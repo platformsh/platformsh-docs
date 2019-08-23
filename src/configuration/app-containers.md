@@ -128,7 +128,7 @@ Although we make an effort to always maintain backward compatibility in the `.pl
 
 You can view a list of applications for an environment in the management console by selecting that environment from the dropdown at the top of the page, and then clicking the "Services" tab that appears above that environment's overview information.
 
-Each application container has a tab on the left, so select the app you are interested in.
+Select the application container on the left to show more detailed information for it on the right.
 
 ### Overview
 
