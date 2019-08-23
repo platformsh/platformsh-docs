@@ -75,23 +75,23 @@ Options:
  --shell (-s)          Launch the shell
 ```
 
-### CLI features
+## CLI features
 
 Additional settings to control the operation of the Platform.sh CLI can be managed in the configuration file (`.platform/local/project.yaml`) or environment variables. See the [`README` for the CLI for details](https://github.com/platformsh/platformsh-cli/blob/master/README.md#usage). 
 
-#### Auto-selecting your project
+## Auto-selecting your project
 
-When your shell's working directory is inside a local checkout of your project repository, the CLI will autodetect your project ID and environment, so you don't need to list them as parameters each time.
+When your shell's working directory is inside a local checkout of your project repository, the CLI will autodetect your project ID and environment so you don't need to list them as parameters each time.
 
 In your home directory, for example, you need to provide the project ID as an argument each time:
 
 ```bash
-~ $ platform project:info --project=acdefghijkl --environment=staging
+$ platform project:info --project=acdefghijkl --environment=staging
 ```
 You can instead get the same result with just:
 ```bash
-~ $ cd myproject
-myproject $ project:info
+$ cd myproject
+$ platform project:info
 ```
 
 You can also set a preferred project ID with the environment variables `PLATFORM_PROJECT`, `PLATFORM_BRANCH` and `PLATFORM_APPLICATION_NAME`.
@@ -99,30 +99,15 @@ You can also set a preferred project ID with the environment variables `PLATFORM
 ```bash
 export PLATFORM_PROJECT=acdefghijkl;
 export PLATFORM_BRANCH=staging;
-project:info
+platform project:info
 ```
 
-### Autocomplete on the command line
+## Autocomplete on the command line
 
-Once installed, the `platform` CLI tool provides tab autocompletion for commands, options, and even some values (your projects, valid regions). eg:
-``` bash
-$ platform proj<TAB>
-platform project
-$ platform project<TAB>
-    project:clear-build-cache  project:delete             project:info               project:metadata           projects
-    project:create             project:get                project:list               project:set-remote
-$ platform project:get <TAB><TAB>
-    27vsk5hw7jdca  2dqlhibhdkqj2  3uwms2vi353f6  xmn7qzd2pqhma  yh3p3drn4gglu  
-$ platform project:get 2d<TAB>
-platform project:get 2d2dqlhibhdkqj2
-$ platform project:get 2d2dqlhibhdkqj2 --<TAB><TAB>
-    --build          --environment    --host           --no             --quiet          --version        
-    --depth          --help           --identity-file  --project        --verbose        --yes  
-```
+Once installed, the `platform` CLI tool provides tab auto-completion for commands, options, and even some values (your projects, valid regions).
 
 > **note**
 > Your system must include the `bash-completion` package or equivalent. This is not available by default on OSX, but can be installed via `brew`. Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell. `platform self:install` will attempt a reinstall of this utility if it's needed.
-
 
 ## Installing the CLI on Windows 10
 
