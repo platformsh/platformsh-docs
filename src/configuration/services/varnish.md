@@ -115,7 +115,7 @@ The Varnish service also offers an `http+stats` endpoint, which provides access 
 
 ```yaml
 relationships:
-    varnishstats: `varnish:http+stats`
+    varnishstats: "varnish:http+stats"
 ```
 
 You can then access the `varnishstats` relationship over HTTP at the following paths to get diagnostic information:
