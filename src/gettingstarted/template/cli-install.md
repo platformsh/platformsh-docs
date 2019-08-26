@@ -42,7 +42,7 @@ With all of the requirements met, install the CLI to start developing with Platf
    With a local copy, you can create branches, commit to them, and push your changes to Platform.sh right away!
 
    ```bash
-   git push
+   git push platform master
    ```
 
    Take a minute to explore some of the commands available with the CLI by using the command `platform list`.
