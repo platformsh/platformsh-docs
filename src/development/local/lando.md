@@ -32,7 +32,7 @@ config:
 
 ## Downloading data from Platform.sh into Lando
 
-In most cases downloading data from Platform.sh and loading it into Lando is straightforward.  If you have a single MySQL database then the following two commands, run from your application root, will download a compressed database snapshot and load it into the local Lando database container (and give you a cheap backup of the database in the process).
+In most cases downloading data from Platform.sh and loading it into Lando is straightforward.  If you have a single MySQL database then the following two commands, run from your application root, will download a compressed database backup and load it into the local Lando database container.
 
 ```bash
 platform db:dump --gzip -f database.sql.gz

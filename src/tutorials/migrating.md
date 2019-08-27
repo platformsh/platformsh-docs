@@ -32,7 +32,7 @@ When you push, a new environment will be created using your code and the provide
 
 ## Import your database
 
-You will need to have a dump or snapshot of the database you wish to start from.  The process is essentially the same for each type of persistent data service.  See the [MySQL](/configuration/services/mysql.md), [PostgreSQL](/configuration/services/postgresql.md), or [MongoDB](/configuration/services/mongodb.md) documentation as appropriate.
+You will need to have a dump or backup of the database you wish to start from.  The process is essentially the same for each type of persistent data service.  See the [MySQL](/configuration/services/mysql.md), [PostgreSQL](/configuration/services/postgresql.md), or [MongoDB](/configuration/services/mongodb.md) documentation as appropriate.
 
 ## Import your files
 

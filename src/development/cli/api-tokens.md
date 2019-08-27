@@ -61,11 +61,11 @@ You can now call the CLI from within the shell on the app container, or via a cr
 
 ```yaml
 crons:
-    snapshot:
+    backup:
         spec: '0 5 * * *'
         cmd: |
             if [ "$PLATFORM_BRANCH" = master ]; then
-                platform snapshot:create --yes --no-wait
+                platform backup:create --yes --no-wait
             fi
 ```
 

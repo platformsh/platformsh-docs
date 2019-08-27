@@ -24,17 +24,17 @@ Application logs on each customer environment are retained with the environment.
 
 When an environment is deleted its application logs are deleted as well.
 
-## Snapshots
+## Backups
 
-Snapshots on Platform.sh Professional are retained for at least _7 days_.  They will be purged between 7 days and _6 months_, at Platform.sh's discretion.
+Backups on Platform.sh Professional are retained for at least _7 days_.  They will be purged between 7 days and _6 months_, at Platform.sh's discretion.
 
 ## Enterprise backups
 
-Platform.sh takes a backup of Platform.sh Enterprise environments every 6 hours.  These snapshots are retained for _2 weeks_.
+Platform.sh takes a backup of Platform.sh Enterprise environments every 6 hours.  These backups are retained for _2 weeks_.
 
 ## Tombstone backups
 
-When a project is deleted Platform.sh takes a final snapshot of active environments as well as the Git repository holding user code.  This final snapshot is to allow Platform.sh to recover a recently-deleted project in case of accident.
+When a project is deleted Platform.sh takes a final backup of active environments as well as the Git repository holding user code.  This final backup is to allow Platform.sh to recover a recently-deleted project in case of accident.
 
 These "tombstone" backups are retained for between _7 days_ and _6 months_.
 

@@ -252,7 +252,7 @@ gitbook-src/
 old-docs/
 ```
 
-The `application` directory contains a Python application.  The `gitbook-src` directory contains a GitBook project that is the public documentation for the application.  The `old-docs` directory contains a static HTML snapshot of legacy documentation for an older version of the application that is still needed.
+The `application` directory contains a Python application.  The `gitbook-src` directory contains a GitBook project that is the public documentation for the application.  The `old-docs` directory contains a static HTML backup of legacy documentation for an older version of the application that is still needed.
 
 Assume that the GitBook source is compiled by the build process into the `_book` directory, as in the example above.  The following `web` block will:
 
