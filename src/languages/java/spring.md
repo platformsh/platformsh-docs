@@ -2,7 +2,7 @@
 
 The [Spring Framework](https://spring.io/projects/spring-framework) provides a comprehensive programming and configuration model for modern Java-based enterprise applications - on any kind of deployment platform. Platform.sh is very flexible and allows you to use Spring Framework in several flavors such as [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html) and [Spring Boot](https://spring.io/projects/spring-boot).
 
-To start off, to make a more natural integration between Spring and your Java application we offer a [Java Config-Reader](https://github.com/platformsh/config-reader-java) library. Please, always check the [latest version at the dependency repository](https://mvnrepository.com/artifact/sh.platform/config).
+We will use a [configuration reader library](https://github.com/platformsh/config-reader-java) for Java that will make integrating your application with Spring that much smoother, so be sure to check out the [latest version](https://mvnrepository.com/artifact/sh.platform/config) before getting started.
 
 ## Maven
 
@@ -93,6 +93,39 @@ public class SolrConfig {
 
 ```
 
+### Redis
+
+[Redis](configuration/services/redis.md) is an in-memory data structure project implementing a distributed, in-memory key-value database with optional durability. You can use [Spring Data Redis](https://spring.io/projects/spring-data-redis) to do an easy integration to your App. With both Java Config Reader and Java dependencies defined, the next step is to determine the Redis client programmatically:
+
+```java
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericToStringSerializer;
+
+@Configuration
+public class RedisConfig {
+
+
+    @Bean
+    JedisConnectionFactory jedisConnectionFactory() {
+        Config config = new Config();
+        RedisSpring redis = config.getCredential("redis", RedisSpring::new);
+        return redis.get();
+    }
+
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate() {
+        final RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
+        template.setConnectionFactory(jedisConnectionFactory());
+        template.setValueSerializer(new GenericToStringSerializer<Object>(Object.class));
+        return template;
+    }
+
+}
+```
+
 ### MySQL, MariaDB and PostgreSQL
 
 [MySQL, MariaDB](configuration/services/mysql.md), and [PostgreSQL](configuration/services/postgresql.md) are open-source relational database technologies. Spring has robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
@@ -166,39 +199,6 @@ public class DataSourceConfig {
         PostgreSQL database = config.getCredential("database", PostgreSQL::new);
         return database.get();
     }
-}
-```
-
-### Redis
-
-[Redis](configuration/services/redis.md) is an in-memory data structure project implementing a distributed, in-memory key-value database with optional durability. You can use [Spring Data Redis](https://spring.io/projects/spring-data-redis) to do an easy integration to your App. With both Java Config Reader and Java dependencies defined, the next step is to determine the Redis client programmatically:
-
-```java
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericToStringSerializer;
-
-@Configuration
-public class RedisConfig {
-
-
-    @Bean
-    JedisConnectionFactory jedisConnectionFactory() {
-        Config config = new Config();
-        RedisSpring redis = config.getCredential("redis", RedisSpring::new);
-        return redis.get();
-    }
-
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate() {
-        final RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
-        template.setConnectionFactory(jedisConnectionFactory());
-        template.setValueSerializer(new GenericToStringSerializer<Object>(Object.class));
-        return template;
-    }
-
 }
 ```
 
