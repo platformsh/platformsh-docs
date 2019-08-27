@@ -1,0 +1,8 @@
+# The name given to the Redis service (lowercase alphanumeric only).
+rediscache:
+    # The type of your service (redis), which uses the format
+    # 'type:version'. Be sure to consult the Redis documentation
+    # (https://docs.platform.sh/configuration/services/redis.html#supported-versions)
+    # when choosing a version. If you specify a version number which is not available,
+    # the CLI will return an error.
+    type: redis:5.0

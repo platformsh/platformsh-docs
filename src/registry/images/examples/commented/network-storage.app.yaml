@@ -1,0 +1,17 @@
+# Network Storage allows you to define a file store that can be shared between different application containers.
+# The service enables a new kind of 'mount' that refers to a shared service rather than to a local directory.
+# At this time, Network Storage is available on all regions except 'eu.platform.sh' and 'us.platform.sh'.
+# After you have declared the service files in your 'services.yaml' file, add an entry
+# to your mounts list for it. Platform.sh is read-only by default after the build process is completed, and defining mounts
+# is the only way to set aside writable disk on a deployed application. Consult the mounts documentation
+# (https://docs.platform.sh/configuration/app/storage.html#mounts) for more details.
+# Note that you do not need to add a relationship to point to the files service. That is handled automatically by the system.
+mounts:
+     # Declare the writable mount path 'my/files' on the application container.
+    'my/files':
+        # The source for the mount is defined as the service 'files' rather than a local directory.
+        source: service
+        service: files
+        # The source_path specifies the path within the network service that the mount points to. It is
+        # often easiest to have it match the name of the mount point itself but that is not required.
+        source_path: files

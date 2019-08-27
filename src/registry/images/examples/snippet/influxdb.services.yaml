@@ -1,0 +1,2 @@
+influx:
+    type: influxdb:1.7

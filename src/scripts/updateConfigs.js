@@ -1,7 +1,6 @@
 const psh = require("pshconfig-generator");
 
 
-var registryLocation = "src/registry/images/registry.json";
-
-var cg = psh.configGenerator(registryLocation);
+let registrySource = "src/registry/images/registry.json";
+let cg = psh.configGenerator(registrySource);
 cg.write();

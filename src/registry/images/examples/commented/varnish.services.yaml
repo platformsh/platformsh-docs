@@ -1,0 +1,19 @@
+# The name given to the Varnish service (lowercase alphanumeric only).
+varnish:
+    # The type of your service (varnish), which uses the format
+    # 'type:version'. Be sure to consult the Varnish documentation
+    # (https://docs.platform.sh/configuration/services/varnish.html#supported-versions)
+    # when choosing a version. If you specify a version number which is not available,
+    # the CLI will return an error.
+    type: varnish:6.0
+    # The 'relationships' block defines a relationship ('application') to the application
+    # container ('app') using the 'http' endpoint, and is what allows Varnish to
+    # talk to the application container.
+    relationships:
+        application: 'app:http'
+    # The 'configuration' block is required, and references the VCL file (config.vcl) which
+    # is relative to the .platform directory.
+    configuration:
+        vcl: !include
+            type: string
+            path: config.vcl

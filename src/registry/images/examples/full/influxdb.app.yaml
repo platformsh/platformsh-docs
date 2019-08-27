@@ -1,0 +1,2 @@
+relationships:
+    timedb: "influx:influxdb"

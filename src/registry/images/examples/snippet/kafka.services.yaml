@@ -1,0 +1,3 @@
+mykafka:
+    type: kafka:2.2
+    disk: 512

@@ -1,0 +1,2 @@
+relationships:
+    applicationdata: "redisdata:redis"

@@ -33,7 +33,7 @@ hooks:
       cp src/images/favicon.ico _book/gitbook/images/favicon.ico
 
       # Rebuild the example configuration files.
-      node _book/scripts/updateConfigs.js
+      # node _book/scripts/updateConfigs.js
 
 # There is no need for a writable file mount, so set it to the smallest possible size.
 disk: 256

@@ -1,0 +1,2 @@
+rediscache:
+    type: redis:5.0

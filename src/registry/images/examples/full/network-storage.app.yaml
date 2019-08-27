@@ -1,0 +1,5 @@
+mounts:
+    'my/files':
+        source: service
+        service: files
+        source_path: files

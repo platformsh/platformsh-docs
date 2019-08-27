@@ -272,31 +272,6 @@
       ]
     }
   },
-  "mysql": {
-    "description": "A manufacture-based container for MariaDB",
-    "repo_name": "mariadb",
-    "disk": true,
-    "docs": {
-      "relationship_name": "database",
-      "service_name": "mydatabase",
-      "url": "\/configuration\/services\/mysql.html"
-    },
-    "endpoint": "mysql",
-    "min_disk_size": 256,
-    "name": "MariaDB",
-    "runtime": false,
-    "type": "mysql",
-    "versions": {
-      "deprecated": [
-        "5.5"
-      ],
-      "supported": [
-        "10.0",
-        "10.1",
-        "10.2"
-      ]
-    }
-  },
   "network-storage": {
     "description": "",
     "repo_name": "network-storage",
@@ -504,33 +479,6 @@
       ]
     }
   },
-  "redis-persistent": {
-    "description": "A manufacture-based Redis container ",
-    "id": 33,
-    "repo_name": "redis",
-    "disk": true,
-    "docs": {
-      "relationship_name": "applicationdata",
-      "service_name": "redisdata",
-      "url": "\/configuration\/services\/redis.html"
-    },
-    "endpoint": "redis",
-    "min_disk_size": null,
-    "name": "Redis",
-    "runtime": false,
-    "type": "redis",
-    "versions": {
-      "deprecated": [
-        "2.8",
-        "3.0"
-      ],
-      "supported": [
-        "3.2",
-        "4.0",
-        "5.0"
-      ]
-    }
-  },
   "ruby": {
     "description": "",
     "repo_name": "ruby",
@@ -591,11 +539,11 @@
     "repo_name": "varnish",
     "disk": false,
     "docs": {
-      "relationship_name": null,
+      "relationship_name": "varnishstats",
       "service_name": "varnish",
       "url": "\/configuration\/services\/varnish.html"
     },
-    "endpoint": null,
+    "endpoint": "http+stats",
     "min_disk_size": null,
     "name": "Varnish",
     "runtime": false,

@@ -1,0 +1,8 @@
+# The name given to the InfluxDB service (lowercase alphanumeric only).
+influx:
+    # The type of your service (influxdb), which uses the format
+    # 'type:version'. Be sure to consult the InfluxDB documentation
+    # (https://docs.platform.sh/configuration/services/influxdb.html#supported-versions)
+    # when choosing a version. If you specify a version number which is not available,
+    # the CLI will return an error.
+    type: influxdb:1.7
