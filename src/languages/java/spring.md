@@ -39,7 +39,7 @@ public class MongoConfig extends AbstractMongoConfiguration {
 
 ### Apache Solr
 
-You can use [Spring Data Solr](https://spring.io/projects/spring-data-solr) to use [Solr](configuration/services/solr.md) with your application by first determining the MongoDB client programmatically.
+You can use [Spring Data Solr](https://spring.io/projects/spring-data-solr) to use [Solr](configuration/services/solr.md) with your application by first determining the Solr client programmatically.
 
 ```java
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
