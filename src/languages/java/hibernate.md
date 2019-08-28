@@ -2,7 +2,7 @@
 
 [Hibernate ORM](https://hibernate.org/) is an object-relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database. Hibernate handles object-relational impedance mismatch problems by replacing direct, persistent database accesses with high-level object handling functions.
 
-We will use a [configuration reader library](https://github.com/platformsh/config-reader-java) for Java that will make integrating your application with Spring that much smoother, so be sure to check out the [latest version](https://mvnrepository.com/artifact/sh.platform/config) before getting started.
+The examples below use the [configuration reader library](https://github.com/platformsh/config-reader-java) for Java, which makes integrating your application with Spring that much smoother. Be sure to check out the [latest version](https://mvnrepository.com/artifact/sh.platform/config) before getting started.
 
 ## Maven
 
