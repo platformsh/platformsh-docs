@@ -3,6 +3,8 @@
 * The [Eclipse MicroProfile](https://microprofile.io/) is a semi-new community dedicated to optimizing the Enterprise Java mission for microservice-based architectures. The goal is to define a microservices application platform that is portable across multiple runtimes. Currently, the leading players in this group are IBM, Red Hat, Tomitribe, Payara, the London Java Community (LJC), and SouJava. Additional key industry individuals are also participating.
 * Java Enterprise Edition (Java EE) is an umbrella that holds specifications and APIs with enterprise features, like distributed computing and web services. Widely used in Java, Java EE runs on reference runtimes that can be anything from microservices to application servers that handle transactions, security, scalability, concurrency, and management for the components it’s deploying.
 Now that Enterprise Java has been standardized under the Eclipse Foundation — with the brand-new name [Jakarta EE](https://jakarta.ee/).
+
+* **Templates**: [Spring](/languages/java.html#jakarta-ee-eclipse-microprofile)
   
 ## Services
 
