@@ -29,7 +29,7 @@ compile group: 'sh.platform', name: 'config', version: '2.2.1'
 ### MongoDB
 
 [MongoDB](configuration/services/mongodb.md) is a cross-platform document-oriented database program. You can use [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb) to do an easy integration to your App.
-With both Java Config Reader and Java dependencies defined, the next step is to determine the MongoDB client programmatically:
+You can use [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb) to use [MongoDB](/configuration/services/mongodb.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
 import com.mongodb.MongoClient;
