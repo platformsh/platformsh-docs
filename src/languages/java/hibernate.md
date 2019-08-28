@@ -37,7 +37,8 @@ public class HibernateApp {
 }
 ```
 
-> If you wish you can use the same MySQL driver to MariaDB as well.
+> **Note:**
+> You can use the same MySQL driver for MariaDB as well if you wish to do so.
 
 
 #### MariaDB
