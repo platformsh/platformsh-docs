@@ -72,7 +72,7 @@ public class SolrConfig {
 
 ### Redis
 
-You can use [Spring Data Redis](https://spring.io/projects/spring-data-redis) to use [Redis](configuration/services/redis.md) with your application by first determining the MongoDB client programmatically.
+You can use [Spring Data Redis](https://spring.io/projects/spring-data-redis) to use [Redis](configuration/services/redis.md) with your application by first determining the Redis client programmatically.
 
 ```java
 import org.springframework.context.annotation.Bean;
