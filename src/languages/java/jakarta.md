@@ -344,9 +344,9 @@ class EntityManagerConfiguration {
 }
 ```
 
-##### Transaction
+#### Transaction
 
-The CDI has impressive features, including the scope. Therefore, we can define an EntityManager to be used in the whole application, and when the application shuts down, it will close the containers one by one.
+To any Eclipse Microprofile or any non-JTA application is essential to point out, CDI does not provide transaction management implementation as part of its specs. Transaction management is left to be implemented by the programmer through the interceptors, such as the code below.
 
 ```java
 import javax.annotation.Priority;
@@ -381,3 +381,5 @@ public class TransactionInterceptor {
     }
 }
 ```
+
+Furthermore, [Apache Delta Spikehas a post for treating this problem](https://deltaspike.apache.org/documentation/jpa.html#ExtendedPersistenceContexts).
