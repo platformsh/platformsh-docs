@@ -4,35 +4,11 @@
 * Java Enterprise Edition (Java EE) is an umbrella that holds specifications and APIs with enterprise features, like distributed computing and web services. Widely used in Java, Java EE runs on reference runtimes that can be anything from microservices to application servers that handle transactions, security, scalability, concurrency, and management for the components it’s deploying.
 Now that Enterprise Java has been standardized under the Eclipse Foundation — with the brand-new name [Jakarta EE](https://jakarta.ee/).
   
-We will use a [configuration reader library](https://github.com/platformsh/config-reader-java) for Java that will make integrating your application with Jakarta EE/Microprofile that much smoother, so be sure to check out the [latest version](https://mvnrepository.com/artifact/sh.platform/config) before getting started.
-
-## Maven
-
-```xml
-<dependency>
-    <groupId>sh.platform</groupId>
-    <artifactId>config</artifactId>
-    <version>version</version>
-</dependency>
-```
-
-## Gradle
-
-```
-compile group: 'sh.platform', name: 'config', version: '2.2.1'
-```
-
-## Templates
-
-* [Jakarta EE/ Eclipse MicroProfile Templates](languages/java.md#jakarta-ee-eclipse-microprofile)
-
 ## Services
 
 ### MongoDB
 
-
-[MongoDB](configuration/services/mongodb.md) is a cross-platform document-oriented database program. You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to do an easy integration to your App.
-With both Java Config Reader and Java dependencies defined, the next step is to determine the MongoDB client programmatically:
+You can use Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [MongoDB](/configuration/services/mongodb.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
 import com.mongodb.MongoClient;
@@ -76,9 +52,7 @@ class DocumentManagerProducer {
 
 ### Apache Solr
 
-[Solr](configuration/services/solr.md) is an open-source, enterprise search platform written in Java and is part of the Apache Lucene project. Its major features include full-text search, hit highlighting, faceted search, real-time indexing, dynamic clustering, database integration, NoSQL features, and costly document handling. You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to do an easy integration to your App.
-
-With both Java Config Reader and Java dependencies defined, the next step is to determine the Apache Solr client programmatically:
+You can use Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [Solr](configuration/services/solr.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
 import jakarta.nosql.document.DocumentCollectionManager;
@@ -121,9 +95,7 @@ class DocumentManagerProducer {
 
 ### Elasticsearch
 
-[Elasticsearch](configuration/services/elasticsearch.md) is a search engine based on the Lucene library. It provides a distributed, multitenant-capable full-text search engine with an HTTP web interface and schema-free JSON documents. Elasticsearch is developed in Java. You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to do an easy integration to your App.
-
-With both Java Config Reader and Java dependencies defined, the next step is to determine the RestHighLevelClient programmatically:
+You can use Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [Elasticsearch](configuration/services/elasticsearch.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
 import jakarta.nosql.document.DocumentCollectionManager;
@@ -165,7 +137,7 @@ class DocumentManagerProducer {
 
 ### Redis
 
-[Redis](configuration/services/redis.md) is an in-memory data structure project implementing a distributed, in-memory key-value database with optional durability. You can use [Spring Data Redis](https://spring.io/projects/spring-data-redis) to do an easy integration to your App. With both Java Config Reader and Java dependencies defined, the next step is to determine the Redis client programmatically:
+You can use Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [Redis](configuration/services/redis.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
 import jakarta.nosql.keyvalue.BucketManager;

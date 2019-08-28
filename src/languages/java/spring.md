@@ -4,31 +4,10 @@ The [Spring Framework](https://spring.io/projects/spring-framework) provides a c
 
 We will use a [configuration reader library](https://github.com/platformsh/config-reader-java) for Java that will make integrating your application with Spring that much smoother, so be sure to check out the [latest version](https://mvnrepository.com/artifact/sh.platform/config) before getting started.
 
-## Maven
-
-```xml
-<dependency>
-    <groupId>sh.platform</groupId>
-    <artifactId>config</artifactId>
-    <version>version</version>
-</dependency>
-```
-
-## Gradle
-
-```
-compile group: 'sh.platform', name: 'config', version: '2.2.1'
-```
-
-## Templates
-
-* [Spring Templates](languages/java.md#spring)
-
 ## Services
 
 ### MongoDB
 
-[MongoDB](configuration/services/mongodb.md) is a cross-platform document-oriented database program. You can use [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb) to do an easy integration to your App.
 You can use [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb) to use [MongoDB](/configuration/services/mongodb.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
@@ -60,9 +39,7 @@ public class MongoConfig extends AbstractMongoConfiguration {
 
 ### Apache Solr
 
-[Solr](configuration/services/solr.md) is an open-source, enterprise search platform written in Java and is part of the Apache Lucene project. Its major features include full-text search, hit highlighting, faceted search, real-time indexing, dynamic clustering, database integration, NoSQL features, and costly document handling. You can use [Spring Data Solr](https://spring.io/projects/spring-data-solr) to do an easy integration to your App.
-
-With both Java Config Reader and Java dependencies defined, the next step is to determine the Apache Solr client programmatically:
+You can use [Spring Data Solr](https://spring.io/projects/spring-data-solr) to use [Solr](configuration/services/solr.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
@@ -95,7 +72,7 @@ public class SolrConfig {
 
 ### Redis
 
-[Redis](configuration/services/redis.md) is an in-memory data structure project implementing a distributed, in-memory key-value database with optional durability. You can use [Spring Data Redis](https://spring.io/projects/spring-data-redis) to do an easy integration to your App. With both Java Config Reader and Java dependencies defined, the next step is to determine the Redis client programmatically:
+You can use [Spring Data Redis](https://spring.io/projects/spring-data-redis) to use [Redis](configuration/services/redis.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
 import org.springframework.context.annotation.Bean;
@@ -204,7 +181,7 @@ public class DataSourceConfig {
 
 ### RabbitMQ
 
-[RabbitMQ](configuration/services/rabbitmq.md) is an open-source message-broker software (sometimes called message-oriented middleware) that originally implemented the Advanced Message Queuing Protocol (AMQP) and has since been extended with a plug-in architecture to support Streaming Text Oriented Messaging Protocol (STOMP), Message Queuing Telemetry Transport (MQTT), and other protocols. With both Java Config Reader and [Spring JMS](https://spring.io/guides/gs/messaging-jms/) defined, the next step is to determine the RabbitMQ client programmatically:
+You can use [Spring JMS](https://spring.io/guides/gs/messaging-jms/) to use [RabbitMQ](configuration/services/rabbitmq.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
 import org.springframework.context.annotation.Bean;

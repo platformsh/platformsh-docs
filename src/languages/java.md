@@ -31,6 +31,23 @@ Platform.sh supports the most common project management tools in the Java ecosys
 * [Maven](https://maven.apache.org/)
 * [Ant](https://ant.apache.org/)
 
+The [configuration reader library](https://github.com/platformsh/config-reader-java) for Java makes the integration much smoother between Platform.sh and your Java code. Be sure to check out the [latest version](https://mvnrepository.com/artifact/sh.platform/config) before getting started.
+
+### Maven
+
+```xml
+<dependency>
+    <groupId>sh.platform</groupId>
+    <artifactId>config</artifactId>
+    <version>version</version>
+</dependency>
+```
+
+### Gradle
+
+```
+compile group: 'sh.platform', name: 'config', version: '2.2.1'
+```
 
 ## Accessing services
 

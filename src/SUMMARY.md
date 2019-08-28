@@ -96,7 +96,7 @@
 * [Go](languages/go.md)
 * [Java](languages/java.md)
   * [Spring](languages/java/spring.md)
-  * [Jakarta EE/ Eclipse MicroProfile](languages/java/jakarta.md)
+  * [Jakarta EE](languages/java/jakarta.md)
   * [Hibernate](languages/nodejs/hibernate.md)   
 * [Lisp](languages/lisp.md)
 * [Node.js](languages/nodejs.md)
