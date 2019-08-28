@@ -181,7 +181,7 @@ public class DataSourceConfig {
 
 ### RabbitMQ
 
-You can use [Spring JMS](https://spring.io/guides/gs/messaging-jms/) to use [RabbitMQ](configuration/services/rabbitmq.md) with your application by first determining the MongoDB client programmatically.
+You can use [Spring JMS](https://spring.io/guides/gs/messaging-jms/) to use [RabbitMQ](configuration/services/rabbitmq.md) with your application by first determining the RabbitMQ client programmatically.
 
 ```java
 import org.springframework.context.annotation.Bean;
