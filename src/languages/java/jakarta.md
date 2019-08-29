@@ -186,7 +186,7 @@ class BucketManagerProducer {
 
 [MySQL, MariaDB](configuration/services/mysql.md), and [PostgreSQL](configuration/services/postgresql.md) are open-source relational database technologies. Jakarta EE has robust integration with this technology:  [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
   
-The first step is to choose the Database that you would like to use in your project, then, Define set the driver to [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java), [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client) and [PostgreSQL](https://mvnrepository.com/artifact/postgresql/postgresql), and the Java dependencies,  the next step is to determine the DataSource client programmatically:
+The first step is to choose the database that you would like to use in your project. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java), [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client) or [PostgreSQL](https://mvnrepository.com/artifact/postgresql/postgresql), and the Java dependencies. Then determine the DataSource client programmatically:
 
 #### MySQL
 
