@@ -97,7 +97,7 @@ class DocumentManagerProducer {
 
 ### Elasticsearch
 
-You can use Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [Elasticsearch](configuration/services/elasticsearch.md) with your application by first determining the MongoDB client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [Elasticsearch](configuration/services/elasticsearch.md) with your application by first determining the Elasticsearch client programmatically.
 
 ```java
 import jakarta.nosql.document.DocumentCollectionManager;
