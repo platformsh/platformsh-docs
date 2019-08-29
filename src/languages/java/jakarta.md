@@ -54,7 +54,7 @@ class DocumentManagerProducer {
 
 ### Apache Solr
 
-You can use Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [Solr](configuration/services/solr.md) with your application by first determining the MongoDB client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [Solr](configuration/services/solr.md) with your application by first determining the Solr client programmatically.
 
 ```java
 import jakarta.nosql.document.DocumentCollectionManager;
