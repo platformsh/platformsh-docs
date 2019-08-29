@@ -97,7 +97,7 @@
 * [Java](languages/java.md)
   * [Spring](languages/java/spring.md)
   * [Jakarta EE](languages/java/jakarta.md)
-  * [Hibernate](languages/java/hibernate.md)   
+  * [Hibernate](languages/java/hibernate.md)
 * [Lisp](languages/lisp.md)
 * [Node.js](languages/nodejs.md)
   * [Alternative Node.js install](languages/nodejs/nvm.md)
