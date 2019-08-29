@@ -10,7 +10,7 @@ Now that Enterprise Java has been standardized under the Eclipse Foundation — 
 
 ### MongoDB
 
-You can use Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [MongoDB](/configuration/services/mongodb.md) with your application by first determining the MongoDB client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [MongoDB](/configuration/services/mongodb.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
 import com.mongodb.MongoClient;
