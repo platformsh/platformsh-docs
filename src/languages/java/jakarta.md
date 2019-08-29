@@ -5,7 +5,7 @@
 Now that Enterprise Java has been standardized under the Eclipse Foundation — with the brand-new name [Jakarta EE](https://jakarta.ee/).
 
 * **Templates**: [Spring](/languages/java.html#jakarta-ee-eclipse-microprofile)
-  
+
 ## Services
 
 ### MongoDB
