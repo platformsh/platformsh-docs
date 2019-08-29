@@ -139,7 +139,7 @@ class DocumentManagerProducer {
 
 ### Redis
 
-You can use Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [Redis](configuration/services/redis.md) with your application by first determining the MongoDB client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](http://www.jnosql.org/) to use [Redis](configuration/services/redis.md) with your application by first determining the Redis client programmatically.
 
 ```java
 import jakarta.nosql.keyvalue.BucketManager;
