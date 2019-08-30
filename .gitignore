@@ -6,4 +6,5 @@ _books/*
 node_modules/*
 .idea/*
 .platform/local/*
+src/scripts/user-widget
 src/registry/images/examples/
