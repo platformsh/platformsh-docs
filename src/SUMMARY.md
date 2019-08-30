@@ -93,6 +93,7 @@
 
 ## Languages
 
+* [Elixir](languages/elixir.md)
 * [Go](languages/go.md)
 * [Java](languages/java.md)
 * [Lisp](languages/lisp.md)
