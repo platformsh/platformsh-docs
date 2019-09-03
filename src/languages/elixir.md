@@ -32,6 +32,14 @@ build:
 
 The recommended way to handle Elixir dependencies on Platform.sh is using Hex. Commit a `mix.exs` file in your repository and the system will automatically download the dependencies in you `deps` section.
 
+```elixir
+  defp deps do
+    [
+	  {:platformshconfig, "~> 0.1.0"}
+    ]
+  end
+```
+
 
 ## Platform.sh variables
 
@@ -44,6 +52,8 @@ String.to_integer(System.get_env("PORT") || "8888")
 ```
 
 Some of the environment variables are in Json format and are base64 encoded. You would need to import a Json parsing library such as Jason or Poison to read those.
+
+> CAVEAT: Remember `config/prod.exs` is evaluated at **build time** and will not have access to runtime configuration. Use `config/releases.exs` to configure your runtime environment.
 
 ## Building and running the application
 
@@ -70,6 +80,22 @@ disk: 512
 Note that there will still be a proxy server in front of your application.  If desired, certain paths may be served directly by our router without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
 
 # Accessing Services
+
+The simplest possible way to go around this is to use the [Platform.sh Config Reader](https://hex.pm/packages/platformshconfig) library from hex.
+
+If you are building a Phoenix app for example it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`  put the lib in you `deps` and assuming you renamed the proc.secrets.exs to releases.exs per the[Phoenix guide](https://hexdocs.pm/phoenix/releases.html) change:
+
+```
+  System.get_env("DATABASE_URL")
+```
+to 
+```
+ Platformsh.Config.ecto_dsn_formatter("database")
+```
+
+See [Platform.sh Config Reader  Documentation](https://hexdocs.pm/platformshconfig/Platformsh.Config.html)  for the full API.
+
+# Accessing Services Manually
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`. 
 
@@ -105,5 +131,5 @@ config :my_app, Repo,
 
 ## Project templates
 
-Platform.sh offers a project template for Elixir applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
+Platform.sh offers [a project template for Elixir applications](https://github.com/platformsh/template-elixir) using the structure described above.  It can be used as a starting point or reference for building your own website or web application. 
 
