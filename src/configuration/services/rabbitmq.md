@@ -67,6 +67,15 @@ If your service is running on a different port, you can re-open your SSH session
 
 Finally, while the session is open, you can launch a RabbitMQ client of your choice from your local workstation, configured to connect to `localhost:5672` using the username and password you found in the relationship variable.
 
+## Access the management plugin  (Web UI)
+In case you want to access the browser-based UI, you have to use an SSH tunnel. To open a tunnel, log into your application container like usual, but with an extra flag to enable local port forwarding:
+
+```bash
+ssh -L 15672:mq.internal:15672 <projectid>-<branch_ID>@ssh.eu.platform.sh
+```
+
+After you successfully established a connection, you should be able to open http://localhost:15672 in your browser. You'll find the credentials like mentioned above.
+
 ## From the application container
 
 The application container currently doesn't include any useful utilities to connect to RabbitMQ with. However, you can install your own by adding a client as a dependency in your `.platform.app.yaml` file.
