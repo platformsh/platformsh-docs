@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "platformsh-user-widget": "1.0.49",
-    "pshregistry-parser": "1.0.1",
+    "pshregistry-parser": "1.0.2",
     "eslint": "5.16.0"
   },
   "devDependencies": {},
