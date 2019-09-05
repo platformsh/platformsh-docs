@@ -34,7 +34,7 @@ You will need to store the server credentials for further configuration. You can
 
 ### 2. Enable the Blackfire extension
 
-Paste the credentials above in your `.platform.app.yaml` as follows:
+Configure the extension in your `.platform.app.yaml` as follows:
 
 ```yaml
 runtime:
