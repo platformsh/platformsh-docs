@@ -20,7 +20,7 @@ Logs related to payment processing are retained for at least _3 months_ and at m
 
 ## Application logs
 
-Application logs on each customer environment are retained with the environment.  Individual log files are truncated at 10 MB, regardless of their age.  See the [accessing logs](/development/logs.md) page for instructions on how to access them.
+Application logs on each customer environment are retained with the environment.  Individual log files are truncated at 100 MB, regardless of their age.  See the [accessing logs](/development/logs.md) page for instructions on how to access them.
 
 When an environment is deleted its application logs are deleted as well.
 
