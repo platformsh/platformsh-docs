@@ -29,6 +29,10 @@ hooks:
       # Install and compile GitBook
       npm install
       npm run build
+
+      # Build example configuration files from the Registry so they can be pulled into docs.
+      node src/scripts/updateExampleConfigFiles.js
+
       gitbook install
       gitbook build
 
