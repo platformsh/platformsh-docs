@@ -33,7 +33,7 @@ Note that only `project owner` or `project admin` can manage the integrations.
 Open a terminal window (you need to have the Platform.sh CLI installed). Enable the GitLab integration as follows:
 
 ```bash
-platform integration:add --type=gitlab --token=THE-TOKEN-YOU-WROTE-DOWN --base-url=https://THE-URL-OF-YOUR-GITLAB --gitlab-project=MY-NAMESPACE/MY-PROJECTNAME
+platform integration:add --type=gitlab --token=THE-TOKEN-YOU-WROTE-DOWN --base-url=https://THE-URL-OF-YOUR-GITLAB --server-project=MY-NAMESPACE/MY-PROJECTNAME
 ```
 
 Please note that the `--base-url` option is used as the base to call the Gitlab API; you should point it to `https://gitlab.com` if your project is hosted on Gitlab, or the URL for your own Gitlab instance otherwise.
