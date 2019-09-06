@@ -30,10 +30,11 @@ hooks:
       npm install
       npm run build
 
+      gitbook install
+
       # Build example configuration files from the Registry so they can be pulled into docs.
       node src/scripts/updateExampleConfigFiles.js
 
-      gitbook install
       gitbook build
 
       # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
