@@ -12,6 +12,8 @@ To specify a Lisp container, use the `type` property in your `.platform.app.yaml
 type: 'lisp:1.5'
 ```
 
+{% codesnippet "/registry/images/examples/full/lisp.app.yaml", language="yaml" %}{% endcodesnippet %}
+
 ## Assumptions
 
 Platform.sh is making assumptions about your application to provide a more streamlined experience. These assumptions are the following:
@@ -88,7 +90,7 @@ Note that there will still be a proxy server in front of your application.  If d
 
 # Accessing Services
 
-The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`. 
+The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`.
 
 To parse them, add the dependencies to your `.asd` file:
 

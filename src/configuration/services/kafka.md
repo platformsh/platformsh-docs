@@ -24,6 +24,7 @@ mykafka:
     type: kafka:2.2
     disk: 1024
 ```
+{% codesnippet "/registry/images/examples/full/kafka.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your ``.platform.app.yaml``:
 
@@ -31,6 +32,8 @@ In your ``.platform.app.yaml``:
 relationships:
     kafka: "mykafka:kafka"
 ```
+
+{% codesnippet "/registry/images/examples/full/kafka.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 

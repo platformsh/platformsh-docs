@@ -31,6 +31,8 @@ mydatabase:
     disk: 1024
 ```
 
+{% codesnippet "/registry/images/examples/full/mongodb.services.yaml", language="yaml" %}{% endcodesnippet %}
+
 The minimum disk size for MongoDB is `512` (MB).
 
 In your `.platform.app.yaml`:
@@ -39,6 +41,8 @@ In your `.platform.app.yaml`:
 relationships:
     database: "mydatabase:mongodb"
 ```
+
+{% codesnippet "/registry/images/examples/full/mongodb.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 
 For PHP, in your `.platform.app.yaml` add:

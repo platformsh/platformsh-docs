@@ -35,6 +35,9 @@ varnish:
             path: config.vcl
 ```
 
+{% codesnippet "/registry/images/examples/full/varnish.services.yaml", language="yaml" %}{% endcodesnippet %}
+
+
 In the `relationships` block, define a relationship (`application`) to the application container (`app`) using the `http` endpoint.  That allows Varnish to talk to the application container.
 
 The configuration block is required, and must reference a VCL file (here `config.vcl`).  The file name is relative to the `.platform` directory.
@@ -103,6 +106,9 @@ For example:
         enabled: false
 ```
 
+{% codesnippet "/registry/images/examples/full/varnish.routes.yaml", language="yaml" %}{% endcodesnippet %}
+
+
 That will map all incoming requests to the Varnish service rather than the application.  Varnish will then, based on the VCL file, forward requests to the application as appropriate.
 
 ## Circular relationships
@@ -117,6 +123,8 @@ The Varnish service also offers an `http+stats` endpoint, which provides access 
 relationships:
     varnishstats: "varnish:http+stats"
 ```
+
+{% codesnippet "/registry/images/examples/full/varnish.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then access the `varnishstats` relationship over HTTP at the following paths to get diagnostic information:
 

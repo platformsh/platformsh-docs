@@ -33,6 +33,8 @@ rediscache:
     type: redis:5.0
 ```
 
+{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
+
 Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
 
 ### Persistent Redis
@@ -46,6 +48,8 @@ redisdata:
     type: redis-persistent:5.0
     disk: 1024
 ```
+
+{% codesnippet "/registry/images/examples/full/redis-persistent.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 The `disk` key is required for redis-persistent to tell Platform.sh how much disk space to reserve for Redis' persistent data.
 
@@ -65,6 +69,8 @@ In your ``.platform/services.yaml``:
 rediscache:
     type: redis:5.0
 ```
+
+{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php/extensions.md) in your `.platform.app.yaml`.
 
@@ -113,7 +119,17 @@ See the [Redis documentation](https://redis.io/topics/lru-cache#eviction-policie
 
 ## Using redis-cli to access your Redis service
 
-With a Redis relationship named `applicationcache`.
+Assuming a Redis relationship named `applicationcache` defined in `.platform.app.yaml`
+
+```yaml
+# .platform.app.yaml
+relationships:
+    applicationcache: "rediscache:redis"
+```
+
+{% codesnippet "/registry/images/examples/full/redis.app.yaml", language="yaml" %}{% endcodesnippet %}
+
+and `services.yaml`
 
 ```yaml
 # .platform/services.yaml
@@ -121,11 +137,7 @@ rediscache:
     type: redis:5.0
 ```
 
-```yaml
-# .platform.app.yaml
-relationships:
-    applicationcache: "rediscache:redis"
-```
+{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `applicationcache.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
 
@@ -143,11 +155,19 @@ rediscache:
     type: redis:5.0
 ```
 
+`.platform/services.yaml`
+
+{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
+
 ```yaml
 # .platform.app.yaml
 relationships:
     sessionstorage: "rediscache:redis"
 ```
+
+`.platform.app.yaml`
+
+{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 ```yaml
 # .platform.app.yaml

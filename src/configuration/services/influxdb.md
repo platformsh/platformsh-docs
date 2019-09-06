@@ -26,12 +26,16 @@ influx:
     disk: 1024
 ```
 
+{% codesnippet "/registry/images/examples/full/influxdb.services.yaml", language="yaml" %}{% endcodesnippet %}
+
 In your `.platform.app.yaml`:
 
 ```yaml
 relationships:
     timedb: "influx:influxdb"
 ```
+
+{% codesnippet "/registry/images/examples/full/influxdb.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 

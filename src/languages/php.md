@@ -19,6 +19,8 @@ To specify a PHP container, use the `type` property in your `.platform.app.yaml`
 type: "php:7.3"
 ```
 
+{% codesnippet "/registry/images/examples/full/php.app.yaml", language="yaml" %}{% endcodesnippet %}
+
 ## Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.

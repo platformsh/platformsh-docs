@@ -24,6 +24,8 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
     type: "ruby:2.6"
     ```
 
+    {% codesnippet "/registry/images/examples/full/ruby.app.yaml", language="yaml" %}{% endcodesnippet %}
+
 2. Build your application with the build hook.
 
 Assuming you have your  dependencies stored in the `Gemfile` at the root of your application folder to execute build steps:

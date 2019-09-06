@@ -32,12 +32,16 @@ mydatabase:
     disk: 1024
 ```
 
+{% codesnippet "/registry/images/examples/full/postgresql.services.yaml", language="yaml" %}{% endcodesnippet %}
+
 Add a relationship to the service in your ``.platform.app.yaml``:
 
 ```yaml
 relationships:
     database: "mydatabase:postgresql"
 ```
+
+{% codesnippet "/registry/images/examples/full/postgresql.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 For PHP, in your `.platform.app.yaml` add:
 

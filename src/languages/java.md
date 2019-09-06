@@ -19,6 +19,8 @@ To select a Java version, specify a `type` such as `java:13`:
 type: "java:13"
 ```
 
+{% codesnippet "/registry/images/examples/full/java.app.yaml", language="yaml" %}{% endcodesnippet %}
+
 ## Support libraries
 
 While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-java) which handles decoding of service credential information for you.
