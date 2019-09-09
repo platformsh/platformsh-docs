@@ -28,11 +28,6 @@ The `redis` service type is configured to serve as a LRU cache; its storage is n
 
 To add an Ephemeral Redis service, specify it in your `.platform/services.yaml` file like so:
 
-```yaml
-rediscache:
-    type: redis:5.0
-```
-
 {% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
@@ -42,12 +37,6 @@ Data in an Ephemeral Redis instance is stored only in memory, and thus requires 
 The `redis-persistent` service type is configured for persistent storage. That makes it a good choice for fast application-level key-value storage.
 
 To add a Persistent Redis service, specify it in your `.platform/services.yaml` file like so:
-
-```yaml
-redisdata:
-    type: redis-persistent:5.0
-    disk: 1024
-```
 
 {% codesnippet "/registry/images/examples/full/redis-persistent.services.yaml", language="yaml" %}{% endcodesnippet %}
 
@@ -64,11 +53,6 @@ The format is identical regardless of whether it's a persistent or ephemeral ser
 ## Usage example
 
 In your ``.platform/services.yaml``:
-
-```yaml
-rediscache:
-    type: redis:5.0
-```
 
 {% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
 
@@ -121,21 +105,9 @@ See the [Redis documentation](https://redis.io/topics/lru-cache#eviction-policie
 
 Assuming a Redis relationship named `applicationcache` defined in `.platform.app.yaml`
 
-```yaml
-# .platform.app.yaml
-relationships:
-    applicationcache: "rediscache:redis"
-```
-
 {% codesnippet "/registry/images/examples/full/redis.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 and `services.yaml`
-
-```yaml
-# .platform/services.yaml
-rediscache:
-    type: redis:5.0
-```
 
 {% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
 
@@ -158,12 +130,6 @@ rediscache:
 `.platform/services.yaml`
 
 {% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
-
-```yaml
-# .platform.app.yaml
-relationships:
-    sessionstorage: "rediscache:redis"
-```
 
 `.platform.app.yaml`
 

@@ -20,19 +20,9 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-```yaml
-memcached:
-    type: memcached:1.4
-```
-
 {% codesnippet "/registry/images/examples/full/memcached.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Now add a relationship in your `.platform.app.yaml` file:
-
-```yaml
-relationships:
-    cache: "memcached:memcached"
-```
 
 {% codesnippet "/registry/images/examples/full/memcached.app.yaml", language="yaml" %}{% endcodesnippet %}
 

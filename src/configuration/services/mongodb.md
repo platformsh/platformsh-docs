@@ -25,22 +25,9 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml`:
 
-```yaml
-mydatabase:
-    type: mongodb:3.6
-    disk: 1024
-```
-
 {% codesnippet "/registry/images/examples/full/mongodb.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 The minimum disk size for MongoDB is `512` (MB).
-
-In your `.platform.app.yaml`:
-
-```yaml
-relationships:
-    database: "mydatabase:mongodb"
-```
 
 {% codesnippet "/registry/images/examples/full/mongodb.app.yaml", language="yaml" %}{% endcodesnippet %}
 

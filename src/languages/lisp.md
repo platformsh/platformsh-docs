@@ -8,10 +8,6 @@ Platform.sh supports building and deploying applications written in Lisp using C
 
 To specify a Lisp container, use the `type` property in your `.platform.app.yaml`.
 
-```yaml
-type: 'lisp:1.5'
-```
-
 {% codesnippet "/registry/images/examples/full/lisp.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 ## Assumptions

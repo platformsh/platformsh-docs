@@ -23,12 +23,6 @@ If you are on one of those and require the service we suggest you [migrate](http
 
 First, declare a new service in the `services.yaml` file like so:
 
-```yaml
-files:
-    type: network-storage:1.0
-    disk: 2048
-```
-
 {% codesnippet "/registry/images/examples/full/network-storage.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 This example creates a service named `files` that is of type `network-storage`, and gives it 256 MB of storage total.
@@ -36,14 +30,6 @@ This example creates a service named `files` that is of type `network-storage`, 
 ## Declare the mount
 
 Second, add the following entry to your mounts list:
-
-```yaml
-mounts:
-    'my/files':
-        source: service
-        service: files
-        source_path: files
-```
 
 {% codesnippet "/registry/images/examples/full/network-storage.app.yaml", language="yaml" %}{% endcodesnippet %}
 
@@ -63,14 +49,6 @@ If your project contains more than one application (that is, multiple directorie
 It is also possible to have one application mount a `source_path` that is a subdirectory of another application's mount.  For example:
 
 app1:
-
-```yaml
-mounts:
-    'web/uploads':
-        source: service
-        service: files
-        source_path: uploads
-```
 
 {% codesnippet "/registry/images/examples/full/network-storage.app.yaml", language="yaml" %}{% endcodesnippet %}
 

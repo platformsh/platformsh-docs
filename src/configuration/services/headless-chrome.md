@@ -41,19 +41,9 @@ It will be necessary to upgrade the version of Node.js in other language contain
 
 In your `.platform/services.yaml`:
 
-```yaml
-headless:
-  type: chrome-headless:73
-```
-
 {% codesnippet "/registry/images/examples/full/chrome-headless.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your `.platform.app.yaml`:
-
-```yaml
-relationships:
-  headless: "headless:http"
-```
 
 {% codesnippet "/registry/images/examples/full/chrome-headless.app.yaml", language="yaml" %}{% endcodesnippet %}
 

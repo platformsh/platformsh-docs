@@ -6,12 +6,9 @@ Platform.sh supports building and deploying applications written in Go using Go 
 
 * 1.11
 * 1.12
+* 1.13
 
 To specify a Go container, use the `type` property in your `.platform.app.yaml`.
-
-```yaml
-type: 'golang:1.12'
-```
 
 {% codesnippet "/registry/images/examples/full/golang.app.yaml", language="yaml" %}{% endcodesnippet %}
 

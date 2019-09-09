@@ -26,20 +26,9 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml` add:
 
-```yaml
-mydatabase:
-    type: postgresql:11
-    disk: 1024
-```
-
 {% codesnippet "/registry/images/examples/full/postgresql.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Add a relationship to the service in your ``.platform.app.yaml``:
-
-```yaml
-relationships:
-    database: "mydatabase:postgresql"
-```
 
 {% codesnippet "/registry/images/examples/full/postgresql.app.yaml", language="yaml" %}{% endcodesnippet %}
 

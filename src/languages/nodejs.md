@@ -24,13 +24,7 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
 
 1. Specify the language of your application (available versions are listed above):
 
-    ```yaml
-    # .platform.app.yaml
-    type: "nodejs:10"
-    ```
-    
     {% codesnippet "/registry/images/examples/full/nodejs.app.yaml", language="yaml" %}{% endcodesnippet %}
-
 
 2. Specify your dependencies under the `nodejs` key, like this:
 
