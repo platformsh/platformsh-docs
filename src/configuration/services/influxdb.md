@@ -20,18 +20,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml`:
 
-```yaml
-influx:
-    type: influxdb:1.7
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/influxdb.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your `.platform.app.yaml`:
 
-```yaml
-relationships:
-    timedb: "influx:influxdb"
-```
+{% codesnippet "/registry/images/examples/full/influxdb.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 

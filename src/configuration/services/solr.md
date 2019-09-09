@@ -26,18 +26,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-```yaml
-mysearch:
-    type: solr:8.0
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/solr.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your ``.platform.app.yaml``:
 
-```yaml
-relationships:
-    solr: "mysearch:solr"
-```
+{% codesnippet "/registry/images/examples/full/solr.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 

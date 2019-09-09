@@ -20,18 +20,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-```yaml
-myrabbitmq:
-    type: rabbitmq:3.7
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/rabbitmq.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your ``.platform.app.yaml``:
 
-```yaml
-relationships:
-    rabbitmq: "myrabbitmq:rabbitmq"
-```
+{% codesnippet "/registry/images/examples/full/rabbitmq.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 

@@ -14,10 +14,7 @@ Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
 To specify a PHP container, use the `type` property in your `.platform.app.yaml`.
 
-```yaml
-# .platform.app.yaml
-type: "php:7.3"
-```
+{% codesnippet "/registry/images/examples/full/php.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 ## Deprecated versions
 

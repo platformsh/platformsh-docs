@@ -23,17 +23,24 @@ hooks:
     build: |
       set -e
 
-      # Install and compile GitBook
+      # Install dependencies
       npm install
       npm run build
+
+      # Build example configuration files from the Registry so they can be pulled into docs.
+      node src/scripts/updateExampleConfigFiles.js
+
+      # Install and compile GitBook
       gitbook install
       gitbook build
 
       # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
       cp src/images/favicon.ico _book/gitbook/images/favicon.ico
 
-      # Build example configuration files from the Registry.
-      node _book/scripts/updateExampleConfigFiles.js
+      # Gitbook doesn't copy over the generated example configuration files to the built book
+      #  automatically, so we have to do that manually.
+      cp -r src/registry/images/examples _book/registry/images
+      cp -r src/registry/images/registry.yaml _book/registry/images/
 
 # There is no need for a writable file mount, so set it to the smallest possible size.
 disk: 256

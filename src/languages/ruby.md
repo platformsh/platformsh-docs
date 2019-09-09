@@ -19,10 +19,7 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
 
 1. Specify the language of your application (available versions are listed above):
 
-    ```yaml
-    # .platform.app.yaml
-    type: "ruby:2.6"
-    ```
+    {% codesnippet "/registry/images/examples/full/ruby.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 2. Build your application with the build hook.
 

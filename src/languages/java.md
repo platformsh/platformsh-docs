@@ -12,12 +12,9 @@ Java is a general-purpose programming language, and one of the most popular in t
 * 12
 * 13
 
-To select a Java version, specify a `type` such as `java:13`:
+To specify a Java container, use the `type` property in your `.platform.app.yaml`.
 
-```yaml
-# .platform.app.yaml
-type: "java:13"
-```
+{% codesnippet "/registry/images/examples/full/java.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 ## Support libraries
 

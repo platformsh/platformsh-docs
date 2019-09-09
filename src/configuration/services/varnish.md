@@ -24,16 +24,7 @@ web -> router -> varnish -> application
 
 Add the following to your `.platform/services.yaml` file:
 
-```yaml
-varnish:
-    type: varnish:6.0
-    relationships:
-        application: 'app:http'
-    configuration:
-        vcl: !include
-            type: string
-            path: config.vcl
-```
+{% codesnippet "/registry/images/examples/full/varnish.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In the `relationships` block, define a relationship (`application`) to the application container (`app`) using the `http` endpoint.  That allows Varnish to talk to the application container.
 
@@ -95,13 +86,7 @@ To enable Varnish now, edit the `.platform/routes.yaml` file to point to the Var
 
 For example:
 
-```yaml
-"https://{default}/":
-    type: upstream
-    upstream: "varnish:http"
-    cache:
-        enabled: false
-```
+{% codesnippet "/registry/images/examples/full/varnish.routes.yaml", language="yaml" %}{% endcodesnippet %}
 
 That will map all incoming requests to the Varnish service rather than the application.  Varnish will then, based on the VCL file, forward requests to the application as appropriate.
 
@@ -113,10 +98,7 @@ At this time Platform.sh does not support circular relationships between service
 
 The Varnish service also offers an `http+stats` endpoint, which provides access to some Varnish analysis and debugging tools.  To access it, from a dedicated app container add the following to `.platform.app.yaml`:
 
-```yaml
-relationships:
-    varnishstats: "varnish:http+stats"
-```
+{% codesnippet "/registry/images/examples/full/varnish.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then access the `varnishstats` relationship over HTTP at the following paths to get diagnostic information:
 

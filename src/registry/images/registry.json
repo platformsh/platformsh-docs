@@ -105,6 +105,7 @@
   },
   "influxdb": {
     "description": "",
+    "disk": true,
     "docs": {
       "relationship_name": "timedb",
       "service_name": "influx",
@@ -147,7 +148,8 @@
       "supported": [
         "11",
         "12",
-        "8"
+        "8",
+        "13"
       ]
     }
   },
@@ -329,7 +331,7 @@
   "oracle-mysql": {
     "description": "Images using MySQL from Oracle instead of MariaDB still providing mysql endpoints",
     "repo_name": "oracle-mysql",
-    "disk": false,
+    "disk": true,
     "docs": {
       "relationship_name": "database",
       "service_name": "mydatabase",

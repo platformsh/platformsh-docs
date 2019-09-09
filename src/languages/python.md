@@ -19,10 +19,7 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
 1. Specify the language of your application (available versions are listed above):
 
-    ```yaml
-    # .platform.app.yaml
-    type: "python:3.7"
-    ```
+    {% codesnippet "/registry/images/examples/full/python.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 2. Build your application with the build hook. Assuming you have your pip dependencies stored in `requirements.txt` and a `setup.py` at the root of your application folder to execute build steps:
 

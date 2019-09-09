@@ -41,27 +41,15 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 For MariaDB your `.platform/services.yaml` can use the `mysql` service type:
 
-```yaml
-mydatabase:
-    type: mysql:10.2
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/mysql.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 or the `mariadb` service type.
 
-```yaml
-mymariadatabase:
-    type: mariadb:10.2
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/mariadb.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Oracle-mysql uses the `oracle-mysql` service type:
 
-```yaml
-myoracledatabase:
-    type: oracle-mysql:8.0
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/oracle-mysql.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Note that the minimum disk size for `mysql`/`oracle-mysql` is 256MB.
 
@@ -69,24 +57,15 @@ Despite these service type differences, MariaDB and Oracle MySQL both use the `m
 
 For MariaDB, the endpoint does not change whether you used the `mysql` service type:
 
-```yaml
-relationships:
-    database: "mydatabase:mysql"
-```
+{% codesnippet "/registry/images/examples/full/mysql.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 or the `mariadb` service type:
 
-```yaml
-relationships:
-    database: "mymariadatabase:mysql"
-```
+{% codesnippet "/registry/images/examples/full/mariadb.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 The same goes for using the `oracle-mysql` service type as well.
 
-```yaml
-relationships:
-    database: "myoracledatabase:mysql"
-```
+{% codesnippet "/registry/images/examples/full/oracle-mysql.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 
