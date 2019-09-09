@@ -37,12 +37,10 @@ hooks:
       # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
       cp src/images/favicon.ico _book/gitbook/images/favicon.ico
 
-      # Example configuration files are generated during build, but we don't want them to be a
-      #  part of the git repo. In order for these files to be accessible as API endpoints and
-      #  for code-snippet to pull them into docs without inadvertently committing them during local 
-      #  builds, generated files are .gitignored and then moved to the build directory.
-      mv src/registry/images/examples _book/registry/images
-      mv src/registry/images/registry.yaml _book/registry/images/
+      # Gitbook doesn't copy over the generated example configuration files to the built book
+      #  automatically, so we have to do that manually.
+      cp -r src/registry/images/examples _book/registry/images
+      cp -r src/registry/images/registry.yaml _book/registry/images/
 
 # There is no need for a writable file mount, so set it to the smallest possible size.
 disk: 256
