@@ -38,8 +38,8 @@ hooks:
       cp src/images/favicon.ico _book/gitbook/images/favicon.ico
 
       # Move example configuration file API points to _book.
-      # mv src/registry/images/examples _book/registry/images
-      # mv src/registry/images/registry.yaml _book/registry/images/
+      mv src/registry/images/examples _book/registry/images
+      mv src/registry/images/registry.yaml _book/registry/images/
 
 # There is no need for a writable file mount, so set it to the smallest possible size.
 disk: 256
