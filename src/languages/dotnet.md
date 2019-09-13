@@ -23,7 +23,11 @@ hooks:
         dotnet publish --self-contained --runtime "$DOTNET_DEFAULT_RUNTIME" --output "$PLATFORM_OUTPUT_DIR" -p:UseRazorBuildServer=false -p:UseSharedCompilation=false
 ```
 
-When using a custom build hook, make sure to copy the `-p` toggles over, or builds will take much longer. Alternatively, when making multiple builds within one build hook, you might want to leave the servers enabled and call `dotnet build-server shutdown` at the end of your build hook.
+Typically .NET builds will start a collection of build servers, which are helpful for repeated builds. On Platform.sh, however, if this process is not disabled, the build process will not finish until the idle timeout is reached.
+
+Because of this it is recommended to include `-p` toggles that disable the Razor compiler for dynamic cshtml pages (`UseRazorBuildServer`) and the .NET msbuild compiler (`UseSharedCompilation`).
+
+If making multiple builds is desired for your application, make sure to call `dotnet build-server shutdown` at the end of your build hook.
 
 ## Running the application
 
