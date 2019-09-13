@@ -14,9 +14,7 @@ To specify a .NET container, use the `type` property in your `.platform.app.yaml
 
 ## Building the application
 
-.NET containers do not come with a pre-defined build process that you may have seen on other container types. Instead, the process is defined by you, using the runtime and output directory variables passed to the build environment.
-
-For simple applications, we recommend using `dotnet publish --self-contained`, while specifying the target runtime and output folders via environment variables:
+For simple applications, using `dotnet publish --self-contained` is sufficient for building applications in .NET containers, and it allows you to specify the target runtime and output folders via environment variables:
 
 ```yaml
 hooks:
@@ -33,8 +31,9 @@ When using a custom build hook, make sure to copy the `-p` toggles over, or buil
 
 Incoming requests are passed to the application using either a TCP (default) or UNIX socket. The application must use the [appropriate environment variable](/configuration/app/web.html#socket-family) to determine the URI to listen on. In case of a TCP socket ([recommended](https://go.microsoft.com/fwlink/?linkid=874850)), the application must listen on `http://127.0.0.1`, using port defined by the `PORT` environment variable.
 
+There will be an Nginx server sitting in front of your application. Serving static content via Nginx is recommended, as this allows easy control of headers (including cache headers), and also has marginal performance benefits.
 
-There will be an Nginx server sitting in front of your application. We recommend serving static content via Nginx, as this allows easy control of headers (including cache headers), and also has marginal performance benefits. Note that HTTPS is also terminated at the Ngnix proxy, so the `app.UseHttpsRedirection();` line (which is in `Startup.cs` by default) should be removed. To force HTTPS-only, please refer to the [routes documentation](/configuration/routes/https.html#https).
+Note that HTTPS is also terminated at the Ngnix proxy, so the `app.UseHttpsRedirection();` line in `Startup.cs` should be removed. To force HTTPS-only, please refer to the [routes documentation](/configuration/routes/https.html#https).
 
 The following example configures your environment to serve the static content folders commonly found in ASP.NET MVC templates using Nginx, while routing other traffic to the .NET application.
 
@@ -52,8 +51,7 @@ web:
           expires: 300s
 
   commands:
-    start: |
-      ./WebApplication1
+    start: ./WebApplication1
 ```
 
 If desired, you may also route all requests to the application unconditionally:
@@ -66,8 +64,7 @@ web:
       passthru: true
 
   commands:
-    start: |
-    ./WebApplication1
+    start: ./WebApplication1
 ```
 
 
