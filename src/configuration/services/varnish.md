@@ -80,6 +80,23 @@ Besides that, the VCL file, including the `vcl_recv()` function, can be arbitrar
 > **note**
 > A misconfigured VCL file can result in incorrect, often mysterious and confusing behavior.  Platform.sh does not provide support for VCL configuration options beyond the basic connection logic documented here.
 
+### Modules
+Platform.sh supports a number of optional modules you can include in your VCLs, namely:
+
+* cookie
+* header
+* saintmode
+* softpurge
+* tcp
+* var
+* vsthrottle
+* xkey
+
+To use in your VCL simply add an import such as:
+```
+import xkey;
+```
+
 ### Route incoming requests to Varnish
 
 To enable Varnish now, edit the `.platform/routes.yaml` file to point to the Varnish service you just created.  You also need to disable the router cache as it is now entirely redundant with Varnish.
