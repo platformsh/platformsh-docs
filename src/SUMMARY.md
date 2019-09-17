@@ -93,6 +93,7 @@
 
 ## Languages
 
+* [C#/.NET](languages/dotnet.md)
 * [Go](languages/go.md)
 * [Java](languages/java.md)
 * [Lisp](languages/lisp.md)
