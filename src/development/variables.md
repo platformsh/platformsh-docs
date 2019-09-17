@@ -73,6 +73,10 @@ Environment variables are a good place to store values that apply only on Platfo
 
 Platform.sh also provides a series of variables by default.  These inform an application about its runtime configuration.  The most important of these is relationship information, which tells the application how to connect to databases and other services defined in `services.yaml`.  They are always prefixed with `PLATFORM_*` to differentiate them from user-provided values.
 
+The following variables are only available at build time, and may be used in a build hook:
+
+* **PLATFORM_OUTPUT_DIR**: The output directory for compiled languages at build time.
+
 The following variables are available at both runtime and at build time, and may be used in a build hook:
 
 * **PLATFORM_APP_DIR**: The absolute path to the application directory.
