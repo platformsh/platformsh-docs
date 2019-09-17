@@ -23,7 +23,7 @@ hooks:
         dotnet publish --self-contained --runtime "$DOTNET_DEFAULT_RUNTIME" --output "$PLATFORM_OUTPUT_DIR" -p:UseRazorBuildServer=false -p:UseSharedCompilation=false
 ```
 
-those environment variables are defined as:
+Those environment variables are defined as:
 
 * `DOTNET_DEFAULT_RUNTIME`: specifies the target runtime used by application containers on Platform.sh (Debian).
 * `PLATFORM_OUTPUT_DIR`: the output directory for compiled languages available at build time.

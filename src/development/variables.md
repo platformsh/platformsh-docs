@@ -75,7 +75,7 @@ Platform.sh also provides a series of variables by default.  These inform an app
 
 The following variables are only available at build time, and may be used in a build hook:
 
-* **PLATFORM_OUTPUT_DIR**: The output directory for compiled languages at build time.
+* **PLATFORM_OUTPUT_DIR**: The output directory for compiled languages at build time. Will be equivalent to `PLATFORM_APP_DIR` in most cases.
 
 The following variables are available at both runtime and at build time, and may be used in a build hook:
 
