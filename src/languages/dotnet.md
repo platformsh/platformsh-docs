@@ -75,9 +75,3 @@ web:
   commands:
     start: ./WebApplication1
 ```
-
-## Project templates
-
-Platform.sh offers a project template for ASP.NET Core applications using the structure described above. It can be used as a starting point or reference for building your own application.
-
-[ASP.NET Core](https://github.com/platformsh/template-aspnet-core)
