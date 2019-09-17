@@ -39,20 +39,20 @@ search:
 
 The above definition defines a single Solr 8.0 server.  That server has 1 core defined: `maincore`, which will use a default configuration.  (The default configuration is not suitable for production but will allow the module to connect to it.)
 
-It then defines one endpoint: `main` is connected to the `maincore`.
+It then defines one endpoint, `main`, which is connected to the `maincore`.
 
 ### 3. Expose the Solr service to your application
 
 In your `.platform.app.yaml` file, we now need to open a connection to the new Solr service.  Under the `relationships` section, add the following:
 
-```
+```yaml
 relationships:
     solrsearch: 'search:main'
 ```
 
 That is, the application's environment would include a `solrsearch` relationship that connects to the `main` endpoint, which is the `maincore` core.
 
-The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service specified above (`search`) and the endpoint (`main`).  If you named the service or endpoint something different above, change those values accordingly.
+The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service specified above (`search`) and the endpoint (`main`).  If you named the service or endpoint something than different above, change those values accordingly.
 
 ### 4. Add auto-configuration code to `settings.platformsh.php`
 
