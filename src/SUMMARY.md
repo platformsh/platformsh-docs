@@ -164,6 +164,7 @@
 ## Security and compliance
 
 * [GDPR](security/gdpr.md)
+* [SCA](security/sca.md)
 * [Data collection](security/data-collection.md)
 * [Data retention](security/data-retention.md)
 * [Data deletion](security/data-deletion.md)
