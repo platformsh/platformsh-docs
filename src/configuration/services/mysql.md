@@ -55,13 +55,9 @@ Note that the minimum disk size for `mysql`/`oracle-mysql` is 256MB.
 
 Despite these service type differences, MariaDB and Oracle MySQL both use the `mysql` endpoint in their configuration.
 
-For MariaDB, the endpoint does not change whether you used the `mysql` service type:
+For MariaDB, the endpoint does not change whether you used the `mysql` or `mariadb` service type:
 
 {% codesnippet "/registry/images/examples/full/mysql.app.yaml", language="yaml" %}{% endcodesnippet %}
-
-or the `mariadb` service type:
-
-{% codesnippet "/registry/images/examples/full/mariadb.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 The same goes for using the `oracle-mysql` service type as well.
 
@@ -97,8 +93,8 @@ If you are using version `10.0` or later of this service it is possible to defin
 Consider the following illustrative example:
 
 ```yaml
-mysqldb:
-    type: mysql:10.0
+db:
+    type: mysql:10.2
     disk: 2048
     configuration:
         schemas:
@@ -156,7 +152,7 @@ For version 10.2 and later, a select few MariaDB configuration properties from t
 At this time, only the `max_allowed_packet` size is available, and defaults to `16` (in MB).  Legal values are from `1` to `100`.
 
 ```yaml
-mysqldb:
+db:
     type: mysql:10.2
     disk: 2048
     configuration:
