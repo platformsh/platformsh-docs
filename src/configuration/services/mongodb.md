@@ -69,7 +69,7 @@ platform tunnel:open
 That will open an SSH tunnel to all services on your current environment, and produce output something like the following:
 
 ```text
-SSH tunnel opened on port 30000 to relationship: mongodb
+SSH tunnel opened on port 30000 to relationship: database
 SSH tunnel opened on port 30001 to relationship: redis
 ```
 

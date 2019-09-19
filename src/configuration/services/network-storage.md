@@ -119,7 +119,7 @@ name: 'app'
 type: 'php:7.2'
 
 relationships:
-    database: 'mysqldb:mysql'
+    database: 'db:mysql'
 
 hooks:
   # ...

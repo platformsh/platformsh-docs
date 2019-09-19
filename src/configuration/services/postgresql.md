@@ -103,8 +103,8 @@ platform sql --relationship database -e master < my_database_snapshot.sql
 Platform.sh supports a number of PostgreSQL extensions.  To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
 
 ```yaml
-postgresql:
-    type: "postgresql:11"
+db:
+    type: postgresql:11
     disk: 1025
     configuration:
         extensions:

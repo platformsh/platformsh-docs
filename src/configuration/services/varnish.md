@@ -51,7 +51,7 @@ Where `application` is the name of the relationship defined in `services.yaml`. 
 If you have multiple applications fronted by the same Varnish instance then you will need to include logic to determine to which application a request is forwarded.  For example:
 
 ```yaml
-varnish:
+proxy:
     type: varnish:6.0
     relationships:
         blog: 'blog:http'

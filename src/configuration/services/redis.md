@@ -98,7 +98,7 @@ Consult the documentation for your connection library and Redis itself for furth
 On the Ephemeral `redis` service it is also possible to select the key eviction policy.  That will control how Redis behaves when it runs out of memory for cached items and needs to clear old items to make room.
 
 ```yaml
-rediscache:
+cache:
     type: redis:5.0
     configuration:
       maxmemory_policy: allkeys-lru
@@ -137,7 +137,7 @@ Using the same configuration but with your Redis relationship named `sessionstor
 
 ```yaml
 # .platform/services.yaml
-rediscache:
+cache:
     type: redis:5.0
 ```
 
