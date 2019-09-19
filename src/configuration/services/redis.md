@@ -20,7 +20,7 @@ The following versions are available but are not receiving security updates from
 * 3.0
 
 > **note**
-> Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database
+> Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database.
 
 ### Ephemeral Redis
 
@@ -78,6 +78,20 @@ You can then use the service in a configuration file of your application with so
 {%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/redis" -%}
 
 {%- endcodetabs %}
+
+## Multiple databases
+
+Redis 3.0 and above are configured to support up to 64 databases.  Redis does not support distinct users for different databases so the same relationship connection gives access to all databases.  To use a particular database, use the Redis [`select` command](https://redis.io/commands/select) through your API library.  For instance, in PHP you could write:
+
+```php
+$redis->select(0);    // switch to DB 0
+$redis->set('x', '42');    // write 42 to x
+$redis->move('x', 1);    // move to DB 1
+$redis->select(1);    // switch to DB 1
+$redis->get('x');    // will return 42
+```
+
+Consult the documentation for your connection library and Redis itself for further details.
 
 ## Eviction policy
 
