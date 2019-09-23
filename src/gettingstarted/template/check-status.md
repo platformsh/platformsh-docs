@@ -2,7 +2,7 @@
 
 ## Build, Deploy, Done!
 
-Once you have configured the template application in the previous step, Platform.sh will build your project for you.
+Once you have configured the template application in the previous step, Platform.sh will build your project for you. If you created a blank project, be sure to read on [setting up your SSH keys](/development/ssh.md) before trying to upload your files.
 
 <video controls>
   <source src="/videos/management-console/check-status.mp4" type="video/mp4">
