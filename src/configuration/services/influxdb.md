@@ -35,8 +35,8 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 	$relationships = json_decode(base64_decode($relationships), TRUE);
 
 	// For a relationship named 'timedb' referring to one endpoint.
-	if (!empty($relationships['timedb'])) {
-		foreach ($relationships['timedb'] as $endpoint) {
+	if (!empty($relationships['database'])) {
+		foreach ($relationships['database'] as $endpoint) {
 			$settings['influxdb_host'] = $endpoint['host'];
 			$settings['influxdb_port'] = $endpoint['port'];
 			break;

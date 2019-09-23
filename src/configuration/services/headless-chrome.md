@@ -59,7 +59,7 @@ Using the [Node.js Config Reader](https://github.com/platformsh/config-reader-no
 const platformsh = require('platformsh-config');
 
 let config = platformsh.config();
-const credentials = config.credentials('headless');
+const credentials = config.credentials('chromeheadlessbrowser');
 ```
 
 and use them to define the `browserURL` parameter of `puppeteer.connect()` within an `async` function:
@@ -68,7 +68,7 @@ and use them to define the `browserURL` parameter of `puppeteer.connect()` withi
 exports.takeScreenshot = async function (url) {
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials
-        const formattedURL = config.formattedCredentials('headless', 'puppeteer');
+        const formattedURL = config.formattedCredentials('chromeheadlessbrowser', 'puppeteer');
         const browser = await puppeteer.connect({browserURL: formattedURL});
 
         ...

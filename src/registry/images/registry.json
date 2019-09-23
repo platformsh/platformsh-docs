@@ -3,8 +3,8 @@
     "description": "",
     "disk": false,
     "docs": {
-      "relationship_name": "headless",
-      "service_name": "headless",
+      "relationship_name": "chromeheadlessbrowser",
+      "service_name": "headlessbrowser",
       "url": "\/configuration\/services\/headless-chrome.html"
     },
     "endpoint": "http",
@@ -51,8 +51,8 @@
     "description": "A manufacture service for Elasticsearch",
     "disk": true,
     "docs": {
-      "relationship_name": "elasticsearch",
-      "service_name": "mysearch",
+      "relationship_name": "essearch",
+      "service_name": "search",
       "url": "\/configuration\/services\/elasticsearch.html"
     },
     "endpoint": "elasticsearch",
@@ -107,8 +107,8 @@
     "description": "",
     "disk": true,
     "docs": {
-      "relationship_name": "timedb",
-      "service_name": "influx",
+      "relationship_name": "database",
+      "service_name": "db",
       "url": "\/configuration\/services\/influxdb.html"
     },
     "endpoint": "influxdb",
@@ -157,8 +157,8 @@
     "description": "",
     "disk": true,
     "docs": {
-      "relationship_name": "kafka",
-      "service_name": "mykafka",
+      "relationship_name": "kafkaqueue",
+      "service_name": "queue",
       "url": "\/configuration\/services\/kafka.html"
     },
     "endpoint": "kafka",
@@ -207,7 +207,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "database",
-      "service_name": "mydatabase",
+      "service_name": "db",
       "url": "\/configuration\/services\/mysql.html"
     },
     "endpoint": "mysql",
@@ -231,8 +231,8 @@
     "repo_name": "memcached",
     "disk": false,
     "docs": {
-      "relationship_name": "cache",
-      "service_name": "memcached",
+      "relationship_name": "memcachedcache",
+      "service_name": "cache",
       "url": "\/configuration\/services\/memcached.html"
     },
     "endpoint": "memcached",
@@ -255,7 +255,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "database",
-      "service_name": "mydatabase",
+      "service_name": "db",
       "url": "\/configuration\/services\/mongodb.html"
     },
     "endpoint": "mongodb",
@@ -334,7 +334,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "database",
-      "service_name": "mydatabase",
+      "service_name": "db",
       "url": "\/configuration\/services\/mysql.html"
     },
     "endpoint": "mysql",
@@ -386,7 +386,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "database",
-      "service_name": "mydatabase",
+      "service_name": "db",
       "url": "\/configuration\/services\/postgresql.html"
     },
     "endpoint": "postgresql",
@@ -436,8 +436,8 @@
     "repo_name": "rabbitmq",
     "disk": true,
     "docs": {
-      "relationship_name": "rabbitmq",
-      "service_name": "myrabbitmq",
+      "relationship_name": "rabbitmqqueue",
+      "service_name": "queue",
       "url": "\/configuration\/services\/rabbitmq.html"
     },
     "endpoint": "rabbitmq",
@@ -461,8 +461,8 @@
     "repo_name": "redis",
     "disk": false,
     "docs": {
-      "relationship_name": "applicationcache",
-      "service_name": "rediscache",
+      "relationship_name": "rediscache",
+      "service_name": "cache",
       "url": "\/configuration\/services\/redis.html"
     },
     "endpoint": "redis",
@@ -513,8 +513,8 @@
     "repo_name": "solr",
     "disk": true,
     "docs": {
-      "relationship_name": "solr",
-      "service_name": "mysearch",
+      "relationship_name": "solrsearch",
+      "service_name": "search",
       "url": "\/configuration\/services\/solr.html"
     },
     "endpoint": "solr",
@@ -543,7 +543,7 @@
     "disk": false,
     "docs": {
       "relationship_name": "varnishstats",
-      "service_name": "varnish",
+      "service_name": "proxy",
       "url": "\/configuration\/services\/varnish.html"
     },
     "endpoint": "http+stats",
