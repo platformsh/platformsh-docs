@@ -135,19 +135,16 @@ redis-cli -h applicationcache.internal -p 6379
 
 Using the same configuration but with your Redis relationship named `sessionstorage`:
 
-```yaml
-# .platform/services.yaml
-cache:
-    type: redis:5.0
-```
-
 `.platform/services.yaml`
 
 {% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 `.platform.app.yaml`
 
-{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
+```yaml
+relationships:
+  sessionstorage: "cache:redis"
+```
 
 ```yaml
 # .platform.app.yaml
