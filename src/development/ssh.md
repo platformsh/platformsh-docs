@@ -137,6 +137,15 @@ $ ssh-add path-to-your-key
 
 4.  Try again.
 
+### Try altering your SSH configuration
+
+You can try to append some directives to your `~/.ssh/config` file as in the example below, where `id_platformsh` is the public key file.
+
+    Host platform.sh
+    IdentityFile ~/.ssh/id_platformsh
+
+With this configuration, you should be asked for a password if your key has one.
+
 ### Still having trouble?
 
 If you followed all the steps above, you may also notice an error message similar to below while attempting to SSH to platform.sh:
@@ -170,6 +179,12 @@ debug1: Offering RSA public key: /Users/nick/.ssh/id_rsa
 debug1: Authentications that can continue: publickey
 debug1: No more authentication methods to try.
 Permission denied (publickey).
+```
+
+or
+
+```bash
+$ GIT_SSH_COMMAND="git -v" git clone [REPO-URL]
 ```
 
 You can use this information to make one last check of the private key file.
