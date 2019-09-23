@@ -30,7 +30,7 @@ All extra consumption is prorated to the time it was actually used.
 
 ### Extra developers
 
-Adding a developer to your project will add a monthly per project per user fee unless you have an agency or an enterprise account. 
+Adding a developer to your project will add a monthly per project per user fee unless you have an agency or an enterprise account. Accounts can be shared, but be aware of added administrative complexity, compliance and general security implications of doing so.
 
 ### Extra environments
 
