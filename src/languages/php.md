@@ -153,7 +153,7 @@ A number of project templates for major PHP applications are available on GitHub
 * [Drupal 7](https://github.com/platformsh/template-drupal7)
 * [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
 * [Drupal 8](https://github.com/platformsh/template-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/platformsh-example-drupal8-multisite)
+* [Drupal 8 (Multisite variant)](https://github.com/platformsh/template-drupal8multi)
 * [Laravel](https://github.com/platformsh/template-laravel)
 * [Moodle](https://github.com/platformsh/platformsh-example-moodle)
 * [Magento 1](https://github.com/platformsh/platformsh-example-magento1)
