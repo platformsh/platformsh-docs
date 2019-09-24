@@ -18,8 +18,6 @@ The service types `mariadb` and `mysql` both refer to MariaDB for compatibility 
 * mysql:10.0
 * mysql:10.1
 * mysql:10.2
-* mysql:10.3
-* mysql:10.4
 
 
 * oracle-mysql:5.7
