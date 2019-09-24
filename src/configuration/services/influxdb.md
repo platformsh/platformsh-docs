@@ -34,9 +34,9 @@ You can then use the service in a configuration file of your application with so
 if (getenv('PLATFORM_RELATIONSHIPS')) {
 	$relationships = json_decode(base64_decode($relationships), TRUE);
 
-	// For a relationship named 'timedb' referring to one endpoint.
-	if (!empty($relationships['database'])) {
-		foreach ($relationships['database'] as $endpoint) {
+	// For a relationship named 'influxtimedb' referring to one endpoint.
+	if (!empty($relationships['influxtimedb'])) {
+		foreach ($relationships['influxtimedb'] as $endpoint) {
 			$settings['influxdb_host'] = $endpoint['host'];
 			$settings['influxdb_port'] = $endpoint['port'];
 			break;
@@ -56,7 +56,7 @@ platform tunnel:open
 That will open an SSH tunnel to all services on your current environment, and produce output something like the following:
 
 ```text
-SSH tunnel opened on port 30000 to relationship: timedb
+SSH tunnel opened on port 30000 to relationship: influxtimedb
 ```
 
 The port may vary in your case.  Then, simply run InfluxDB's export commands as desired.

@@ -107,8 +107,8 @@
     "description": "",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
-      "service_name": "db",
+      "relationship_name": "influxtimedb",
+      "service_name": "timedb",
       "url": "\/configuration\/services\/influxdb.html"
     },
     "endpoint": "influxdb",
