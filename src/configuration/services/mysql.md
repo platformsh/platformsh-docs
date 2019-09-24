@@ -96,7 +96,7 @@ Consider the following illustrative example:
 
 ```yaml
 db:
-    type: mysql:10.2
+    type: mysql:10.4
     disk: 2048
     configuration:
         schemas:
@@ -155,7 +155,7 @@ At this time, only the `max_allowed_packet` size is available, and defaults to `
 
 ```yaml
 db:
-    type: mysql:10.2
+    type: mysql:10.4
     disk: 2048
     configuration:
         properties:
