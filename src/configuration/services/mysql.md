@@ -11,6 +11,8 @@ The service types `mariadb` and `mysql` both refer to MariaDB for compatibility 
 * mariadb:10.0
 * mariadb:10.1
 * mariadb:10.2
+* mariadb:10.3
+* mariadb:10.4
 
 
 * mysql:10.0
