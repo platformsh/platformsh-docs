@@ -14,19 +14,16 @@ To specify a .NET container, use the `type` property in your `.platform.app.yaml
 
 ## Building the application
 
-For simple applications, using `dotnet publish --self-contained` is sufficient for building applications in .NET containers, and it allows you to specify the target runtime and output folders via environment variables:
+For simple applications, using the [`dotnet publish`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish?tabs=netcore21) default [framework-dependent deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd) method is sufficient for building applications in .NET containers:
 
 ```yaml
 hooks:
     build: |
         set -xe
-        dotnet publish --self-contained --runtime "$DOTNET_DEFAULT_RUNTIME" --output "$PLATFORM_OUTPUT_DIR" -p:UseRazorBuildServer=false -p:UseSharedCompilation=false
+        dotnet publish --output "$PLATFORM_OUTPUT_DIR" -p:UseRazorBuildServer=false -p:UseSharedCompilation=false
 ```
 
-Those environment variables are defined as:
-
-* `DOTNET_DEFAULT_RUNTIME`: specifies the target runtime used by application containers on Platform.sh (Debian).
-* `PLATFORM_OUTPUT_DIR`: the output directory for compiled languages available at build time.
+where `PLATFORM_OUTPUT_DIR` is the output directory for compiled languages available at build time.
 
 Typically .NET builds will start a collection of build servers, which are helpful for repeated builds. On Platform.sh, however, if this process is not disabled, the build process will not finish until the idle timeout is reached.
 
@@ -60,7 +57,7 @@ web:
           expires: 300s
 
   commands:
-    start: ./WebApplication1
+    start: "dotnet WebApplication1.dll"
 ```
 
 You can also route all requests to the application unconditionally:
@@ -73,7 +70,7 @@ web:
       passthru: true
 
   commands:
-    start: ./WebApplication1
+    start: "dotnet WebApplication1.dll"
 ```
 
 ## Project templates
