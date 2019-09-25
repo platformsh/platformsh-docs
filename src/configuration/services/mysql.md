@@ -11,6 +11,8 @@ The service types `mariadb` and `mysql` both refer to MariaDB for compatibility 
 * mariadb:10.0
 * mariadb:10.1
 * mariadb:10.2
+* mariadb:10.3
+* mariadb:10.4
 
 
 * mysql:10.0
@@ -94,7 +96,7 @@ Consider the following illustrative example:
 
 ```yaml
 db:
-    type: mysql:10.2
+    type: mariadb:10.4
     disk: 2048
     configuration:
         schemas:
@@ -123,9 +125,9 @@ Once those endpoints are defined, you need to expose them to your application as
 
 ```yaml
 relationships:
-    database: "mysqldb:admin"
-    reports: "mysqldb:reporter"
-    imports: "mysqldb:importer"
+    database: "db:admin"
+    reports: "db:reporter"
+    imports: "db:importer"
 ```
 
 This block defines three relationships, `database`, `reports`, and `imports`.  They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials.  You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
@@ -153,7 +155,7 @@ At this time, only the `max_allowed_packet` size is available, and defaults to `
 
 ```yaml
 db:
-    type: mysql:10.2
+    type: mariadb:10.4
     disk: 2048
     configuration:
         properties:
