@@ -81,6 +81,7 @@ Besides that, the VCL file, including the `vcl_recv()` function, can be arbitrar
 > A misconfigured VCL file can result in incorrect, often mysterious and confusing behavior.  Platform.sh does not provide support for VCL configuration options beyond the basic connection logic documented here.
 
 ### Modules
+
 Platform.sh supports a number of optional modules you can include in your VCLs, namely:
 
 * cookie
@@ -92,7 +93,7 @@ Platform.sh supports a number of optional modules you can include in your VCLs, 
 * vsthrottle
 * xkey
 
-To use in your VCL simply add an import such as:
+To use in your VCL, add an import such as:
 ```
 import xkey;
 ```
