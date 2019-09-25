@@ -33,8 +33,8 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.access.add`: A new user has been given access to the environment.
 * `environment.access.remove`: A user has been removed from the environment.
 
-* `environment.backup`: A user triggered a [snapshot](/administration/snapshot-and-restore.md)
-* `environment.restore`: A user restored a [snapshot](/administration/snapshot-and-restore.md)
+* `environment.backup`: A user triggered a [backup](/administration/backup-and-restore.md)
+* `environment.restore`: A user restored a [backup](/administration/backup-and-restore.md)
 
 * `environment.push`: A user has pushed code to a branch, either existing or new.
 * `environment.branch`: A new branch has been created via the management console. (A branch created via a push will show up only as an `environment.push`.)

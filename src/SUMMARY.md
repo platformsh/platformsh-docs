@@ -143,7 +143,7 @@
 ## Administration
 
 * [Users](administration/users.md)
-* [Snapshot and restore](administration/snapshot-and-restore.md)
+* [Backup and restore](administration/backup-and-restore.md)
 * [External integrations](administration/integrations.md)
   * [Bitbucket](administration/integrations/bitbucket.md)
   * [Blackfire](administration/integrations/blackfire.md)
