@@ -112,6 +112,7 @@ Don't panic! It's an issue which can happen for the following reasons:
 * You haven't redeployed (i.e. `git push`) your environment since adding the new public key
 * You didn't upload your public key to your user profile
 * Your SSH private key has not been added into your ssh-agent
+* Your SSH key files have incorrect permissions
 
 ### Check your public key
 
@@ -136,6 +137,15 @@ $ ssh-add path-to-your-key
 ```
 
 4.  Try again.
+
+### Specify your identity file
+
+If your identity (SSH key) associated with Platform.sh is not in a default file name (as may be explained in your SSH software manual, for example) you may have to append a specification like the one below so that the SSH software finds the correct key.
+
+    Host platform.sh
+    IdentityFile ~/.ssh/id_platformsh
+
+Be aware that, above, `platform.sh` stands for a hostname. Each different hostname you connect to Platform.sh at may have to be specified in the host line, separated by spaces.
 
 ### Still having trouble?
 
@@ -170,6 +180,12 @@ debug1: Offering RSA public key: /Users/nick/.ssh/id_rsa
 debug1: Authentications that can continue: publickey
 debug1: No more authentication methods to try.
 Permission denied (publickey).
+```
+
+or
+
+```bash
+$ GIT_SSH_COMMAND="git -v" git clone [REPO-URL]
 ```
 
 You can use this information to make one last check of the private key file.
