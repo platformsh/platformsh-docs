@@ -4,126 +4,96 @@ Platform.sh is the chosen cloud solution behind Symfony, Magento, eZ Systems, an
 
 ## Drupal
 
-Vivamus erat felis, blandit sed feugiat in, vulputate at quam. Phasellus eget elementum sapien, congue cursus magna. Cras varius libero tincidunt sagittis feugiat. Curabitur ultrices id nulla in lacinia.
+Drupal 8 is built around two technologies that make developer's lives easier: Composer and Symfony. Composer simplifies dependency management for PHP applications, and it comes pre-installed on Platform.sh. The default [build flavor](/overview/build-deploy.md#building-the-application) for PHP application runs `composer install` during build, handling all of your dependencies automatically. Platform.sh is also the magic behind Symfony Cloud and Magneto Commerce.
 
-### Best Practices
-
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
+Whether Drupal 8 or legacy, Platform.sh has tried and tested best practices for Drupal deployments.
 
 * [Drupal 7 Best Practices](/frameworks/drupal7.md)
 * [Drupal 8 Best Practices](/frameworks/drupal8.md)
 
 ### Community Support
 
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
+Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](https://community.platform.sh/).
 
 * [Drupal on Platform.sh Community](https://community.platform.sh/search?q=drupal&expanded=true)
 
-### Project Templates
+### Example Projects
 
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
+Check out the fully configured Drupal starter projects maintained by the Platform.sh team.
 
-* [Drupal 7](https://github.com/platformsh/template-drupal7)
-* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8](https://github.com/platformsh/template-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/template-drupal8multi)
+#### Templates
+
+* [Drupal 7](https://github.com/platformsh-templates/drupal7)
+* [Drupal 7 (Vanilla)](https://github.com/platformsh-templates/drupal7-vanilla)
+* [Drupal 8](https://github.com/platformsh-templates/drupal8)
+* [Drupal 8 (Multisite variant)](https://github.com/platformsh-templates/drupal8-multi)
+* [Opigno](https://github.com/platformsh-templates/drupal8-opigno)
+* [GovCMS8](https://github.com/platformsh-templates/drupal8-govcms8)
+
+#### Examples
+
+* [Drupal Commerce 7](https://github.com/platformsh/platformsh-example-drupalcommerce7)
+* [Drupal 8 with Blackfire](https://github.com/platformsh/demo-drupal-blackfire)
 
 ## eZ Platform
 
-Vivamus erat felis, blandit sed feugiat in, vulputate at quam. Phasellus eget elementum sapien, congue cursus magna. Cras varius libero tincidunt sagittis feugiat. Curabitur ultrices id nulla in lacinia.
+eZ Platform comes pre-configured for use with Platform.sh for versions 1.13 and later, all it takes is mapping a few environment variables to an existing project.
 
-### Best Practices
+Check out the caching, configuration, and local development best practices for eZ Platform and Fastly integration.
 
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
+* [eZ Platform Best Practices](/frameworks/ez.md)
 
-* [eZ Platform](/frameworks/ez.md)
+### Example Projects
 
-### Community Support
+Fully configured eZ Platform starter projects maintained by the Platform.sh team.
 
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
-
-* [eZ Platform on Platform.sh Community](https://community.platform.sh/search?q=drupal&expanded=true)
-
-### Project Templates
-
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
-
-* [Drupal 7](https://github.com/platformsh/template-drupal7)
-* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8](https://github.com/platformsh/template-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/template-drupal8multi)
+* [eZ Platform](https://github.com/platformsh/platformsh-example-ezplatform)
 
 ## Symfony
 
-Vivamus erat felis, blandit sed feugiat in, vulputate at quam. Phasellus eget elementum sapien, congue cursus magna. Cras varius libero tincidunt sagittis feugiat. Curabitur ultrices id nulla in lacinia.
-
-### Best Practices
-
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
+Since Platform.sh natively supports composer-based builds, Symfony dependency management and installation stays simple.
 
 * [Symfony Best Practices](/frameworks/symfony.md)
 
 ### Community Support
 
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
+Symfony FAQs, how-to guides and other tutorials right on [Platform.sh Community](https://community.platform.sh/).
 
-* [Symfony on Platform.sh Community](https://community.platform.sh/search?q=drupal&expanded=true)
+* [Symfony on Platform.sh Community](https://community.platform.sh/search?expanded=true&q=symfony)
 
-### Project Templates
+### Example Projects
 
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
+#### Templates
 
-* [Drupal 7](https://github.com/platformsh/template-drupal7)
-* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8](https://github.com/platformsh/template-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/template-drupal8multi)
+* [Symfony 3](https://github.com/platformsh-templates/symfony3)
+* [Symfony 4](https://github.com/platformsh-templates/symfony4)
 
-## Typo3
+#### Examples
 
-Vivamus erat felis, blandit sed feugiat in, vulputate at quam. Phasellus eget elementum sapien, congue cursus magna. Cras varius libero tincidunt sagittis feugiat. Curabitur ultrices id nulla in lacinia.
+* [Symfony 2](https://github.com/platformsh/platformsh-example-symfony2)
 
-### Best Practices
+## TYPO3
 
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
+Platform.sh provides an excellent solution for hosting TYPO3 CMS projects. Set up your, database, caching, and extensions - then deploy.
 
-* [Typo3 Best Practices](/frameworks/typo3.md)
+* [TYPO3 Best Practices](/frameworks/typo3.md)
 
-### Community Support
+### Example Projects
 
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
-
-* [Typo3 on Platform.sh Community](https://community.platform.sh/search?q=drupal&expanded=true)
-
-### Project Templates
-
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
-
-* [Drupal 7](https://github.com/platformsh/template-drupal7)
-* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8](https://github.com/platformsh/template-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/template-drupal8multi)
+* [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
 
 ## Wordpress
 
-Vivamus erat felis, blandit sed feugiat in, vulputate at quam. Phasellus eget elementum sapien, congue cursus magna. Cras varius libero tincidunt sagittis feugiat. Curabitur ultrices id nulla in lacinia.
-
-### Best Practices
-
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
+Platform.sh recommends using the composer-based installation method for Wordpress.
 
 * [Wordpress Best Practices](/frameworks/wordpress.md)
 
 ### Community Support
 
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
+All your Wordpress FAQs, plus how-to guides and tutorials right on [Platform.sh Community](https://community.platform.sh/).
 
-* [Wordpress on Platform.sh Community](https://community.platform.sh/search?q=drupal&expanded=true)
+* [Wordpress on Platform.sh Community](https://community.platform.sh/search?expanded=true&q=wordpress)
 
-### Project Templates
+### Templates
 
-In congue diam nunc, vel tempor lectus pulvinar at. Sed et tortor sed dui tristique consectetur. Mauris ultricies nunc eu nibh suscipit pretium.
-
-* [Drupal 7](https://github.com/platformsh/template-drupal7)
-* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8](https://github.com/platformsh/template-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/template-drupal8multi)
+* [Wordpress](https://github.com/platformsh-templates/wordpress)
