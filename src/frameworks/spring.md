@@ -39,7 +39,7 @@ public class MongoConfig extends AbstractMongoConfiguration {
 
 ### Apache Solr
 
-You can use [Spring Data Solr](https://spring.io/projects/spring-data-solr) to use [Solr](configuration/services/solr.md) with your application by first determining the Solr client programmatically.
+You can use [Spring Data Solr](https://spring.io/projects/spring-data-solr) to use [Solr](/configuration/services/solr.md) with your application by first determining the Solr client programmatically.
 
 ```java
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
@@ -72,7 +72,7 @@ public class SolrConfig {
 
 ### Redis
 
-You can use [Spring Data Redis](https://spring.io/projects/spring-data-redis) to use [Redis](configuration/services/redis.md) with your application by first determining the Redis client programmatically.
+You can use [Spring Data Redis](https://spring.io/projects/spring-data-redis) to use [Redis](/configuration/services/redis.md) with your application by first determining the Redis client programmatically.
 
 ```java
 import org.springframework.context.annotation.Bean;
@@ -105,7 +105,7 @@ public class RedisConfig {
 
 ### MySQL
 
-[MySQL](configuration/services/mysql.md) is an open-source relational database technology. Spring has robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
+[MySQL](/configuration/services/mysql.md) is an open-source relational database technology. Spring has robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
 
 The first step is to choose the database that you would like to use in your project. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java) and the Java dependencies, then determine the DataSource client programmatically:
 
@@ -135,7 +135,7 @@ public class DataSourceConfig {
 
 ### MariaDB
 
-[MariaDB](configuration/services/mysql.md) is an open-source relational database technology. Spring has robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
+[MariaDB](/configuration/services/mysql.md) is an open-source relational database technology. Spring has robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
 
 The first step is to choose the database that you would like to use in your project. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client) and the Java dependencies, then determine the DataSource client programmatically:
 
@@ -162,7 +162,7 @@ public class DataSourceConfig {
 
 ### PostgreSQL
 
-[PostgreSQL](configuration/services/postgresql.md) is an open-source relational database technology. Spring has robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
+[PostgreSQL](/configuration/services/postgresql.md) is an open-source relational database technology. Spring has robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
 
 The first step is to choose the database that you would like to use in your project. Define the driver for [PostgreSQL](https://mvnrepository.com/artifact/postgresql/postgresql) and the Java dependencies, then determine the DataSource client programmatically:
 
@@ -188,7 +188,7 @@ public class DataSourceConfig {
 
 ### RabbitMQ
 
-You can use [Spring JMS](https://spring.io/guides/gs/messaging-jms/) to use [RabbitMQ](configuration/services/rabbitmq.md) with your application by first determining the RabbitMQ client programmatically.
+You can use [Spring JMS](https://spring.io/guides/gs/messaging-jms/) to use [RabbitMQ](/configuration/services/rabbitmq.md) with your application by first determining the RabbitMQ client programmatically.
 
 ```java
 import org.springframework.context.annotation.Bean;

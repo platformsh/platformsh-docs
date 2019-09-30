@@ -8,7 +8,7 @@ The [configuration reader library](https://github.com/platformsh/config-reader-j
 
 ### MySQL
 
-[MySQL](configuration/services/mysql.md) is an open-source relational database technology. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java), and the Java dependencies. Then determine the SessionFactory client programmatically:
+[MySQL](/configuration/services/mysql.md) is an open-source relational database technology. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java), and the Java dependencies. Then determine the SessionFactory client programmatically:
 
 ```java
 import org.hibernate.Session;
@@ -40,7 +40,7 @@ public class HibernateApp {
 
 ### MariaDB
 
-[MariaDB](configuration/services/mysql.md) is an open-source relational database technology. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client), and the Java dependencies. Then determine the SessionFactory client programmatically:
+[MariaDB](/configuration/services/mysql.md) is an open-source relational database technology. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client), and the Java dependencies. Then determine the SessionFactory client programmatically:
 
 ```java
 import org.hibernate.Session;
@@ -69,7 +69,7 @@ public class HibernateApp {
 
 ### PostgreSQL
 
-[PostgreSQL](configuration/services/postgresql.md) is an open-source relational database technology. Define the driver for [PostgreSQL](https://mvnrepository.com/artifact/postgresql/postgresql), and the Java dependencies. Then determine the SessionFactory client programmatically:
+[PostgreSQL](/configuration/services/postgresql.md) is an open-source relational database technology. Define the driver for [PostgreSQL](https://mvnrepository.com/artifact/postgresql/postgresql), and the Java dependencies. Then determine the SessionFactory client programmatically:
 
 ```java
 import org.hibernate.Session;
