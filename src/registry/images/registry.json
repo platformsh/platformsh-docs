@@ -256,7 +256,7 @@
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
+      "relationship_name": "mongodatabase",
       "service_name": "dbmongo",
       "url": "\/configuration\/services\/mongodb.html"
     },
@@ -335,7 +335,7 @@
     "repo_name": "oracle-mysql",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
+      "relationship_name": "mysqldatabase",
       "service_name": "dboracle",
       "url": "\/configuration\/services\/mysql.html"
     },
@@ -387,7 +387,7 @@
     "repo_name": "postgresql",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
+      "relationship_name": "postgresdatabase",
       "service_name": "dbpostgres",
       "url": "\/configuration\/services\/postgresql.html"
     },
