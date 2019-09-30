@@ -62,14 +62,14 @@ A number of project templates for major Java applications are available on GitHu
 
 #### Spring
 
-* [Spring Boot MySQL](https://github.com/platformsh/template-spring-boot-maven-mysql)
-* [Spring Boot MongoDB](https://github.com/platformsh/template-spring-mvc-maven-mongodb)
+* [Spring Boot MySQL](https://github.com/platformsh-templates/spring-boot-maven-mysql)
+* [Spring Boot MongoDB](https://github.com/platformsh-templates/spring-mvc-maven-mongodb)
 
 #### Jakarta EE/ Eclipse MicroProfile
 
-* [Apache Tomee](https://github.com/platformsh/template-microprofile-tomee)
-* [Thorntail](https://github.com/platformsh/template-microprofile-thorntail)
-* [Payara Micro](https://github.com/platformsh/template-microprofile-payara)
-* [KumuluzEE](https://github.com/platformsh/template-microprofile-kumuluzee)
-* [Helidon](https://github.com/platformsh/template-microprofile-helidon)
-* [Open Liberty](https://github.com/platformsh/template-microprofile-openliberty)
+* [Apache Tomee](https://github.com/platformsh-templates/microprofile-tomee)
+* [Thorntail](https://github.com/platformsh-templates/microprofile-thorntail)
+* [Payara Micro](https://github.com/platformsh-templates/microprofile-payara)
+* [KumuluzEE](https://github.com/platformsh-templates/microprofile-kumuluzee)
+* [Helidon](https://github.com/platformsh-templates/microprofile-helidon)
+* [Open Liberty](https://github.com/platformsh-templates/microprofile-openliberty)

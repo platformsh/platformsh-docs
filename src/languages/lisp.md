@@ -163,4 +163,4 @@ The following is a simple example of a Hunchentoot based web application (you ca
 ```
 Notice how we get the `PORT` from the environment, and how we sleep at the end, as `(start acceptor)` will immediately yield and Platform.sh requires applications to run in the foreground.
 
-[Hunchentoot Lisp application](https://github.com/platformsh/template-lisp)
+[Hunchentoot Lisp application](https://github.com/platformsh-templates/lisp)

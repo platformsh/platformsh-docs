@@ -145,7 +145,7 @@
 * **June 2016**
 June update is summarized in our [blog post](https://platform.sh/2016/06/new-features-june/).
 
-  * New PLATFORM_PROJECT_ENTROPY variable: New variable which has a random value, stable throughout the project's life. It can be used for Drupal hash salt for example (in our [Drupal 8 example](https://github.com/platformsh/template-drupal8)). It is [documented here](https://docs.platform.sh/development/environment-variables.html#platformsh-variables)
+  * New PLATFORM_PROJECT_ENTROPY variable: New variable which has a random value, stable throughout the project's life. It can be used for Drupal hash salt for example (in our [Drupal 8 example](https://github.com/platformsh-templates/drupal8)). It is [documented here](https://docs.platform.sh/development/environment-variables.html#platformsh-variables)
   * Extend PLATFORM_RELATIONSHIPS variable: Expose the hostname and IP address of each service in the `PLATFORM_RELATIONSHIPS` environment variable.
   * Services updates: Update MongoDB client to 3.2.7, Node.js to 4.4.5, Blackfire plugin to 1.10.6, Nginx to 1.11.1.
 
