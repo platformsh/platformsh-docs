@@ -55,7 +55,7 @@ You can also initialize your project using any of the pre-made templates below. 
   <a href="https://github.com/platformsh-templates/drupal7">Drupal 7</a><br />
   <a href="https://github.com/platformsh/platformsh-example-drupalcommerce7">Drupal 7 (Commerce Kickstart)</a><br />
   <a href="https://github.com/platformsh-templates/drupal8">Drupal 8</a><br />
-  <a href="https://github.com/platformsh-templates/drupal8multi">Drupal 8 (Multisite variant)</a><br />
+  <a href="https://github.com/platformsh-templates/drupal8-multisite">Drupal 8 (Multisite variant)</a><br />
   <a href="https://github.com/platformsh-templates/laravel">Laravel</a><br />
   <a href="https://github.com/platformsh/platformsh-example-moodle">Moodle</a><br />
   <a href="https://github.com/platformsh/platformsh-example-magento1">Magento 1</a><br />
