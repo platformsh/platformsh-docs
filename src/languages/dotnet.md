@@ -77,4 +77,4 @@ web:
 
 Platform.sh offers project templates for .NET applications using the structure described above.  They can be used as a starting point or reference for building your own website or web application.
 
-[ASP.NET Core](https://github.com/platformsh/template-aspnet-core)
+[ASP.NET Core](https://github.com/platformsh-templates/aspnet-core)

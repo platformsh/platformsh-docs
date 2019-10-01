@@ -14,11 +14,11 @@ You will next need to include information that defines how you want your [applic
 
 An example `.platform.app.yaml` looks like this:
 
-{% codetabs name="PHP", type="php", url="https://raw.githubusercontent.com/platformsh/template-php/master/.platform.app.yaml" -%}
+{% codetabs name="PHP", type="php", url="https://raw.githubusercontent.com/platformsh-templates/php/master/.platform.app.yaml" -%}
 
-{%- language name="Go", type="js", url="https://raw.githubusercontent.com/platformsh/template-golang/master/.platform.app.yaml" -%}
+{%- language name="Go", type="js", url="https://raw.githubusercontent.com/platformsh-templates/golang/master/.platform.app.yaml" -%}
 
-{%- language name="Python", type="py", url="https://raw.githubusercontent.com/platformsh/template-python3/master/.platform.app.yaml" -%}
+{%- language name="Python", type="py", url="https://raw.githubusercontent.com/platformsh-templates/python3/master/.platform.app.yaml" -%}
 
 {% language name="Node.js", type="js", url="https://raw.githubusercontent.com/platformsh/platformsh-example-nodejs/master/.platform.app.yaml" -%}
 
