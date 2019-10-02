@@ -40,6 +40,7 @@ hooks:
       # Gitbook doesn't copy over the generated example configuration files to the built book
       #  automatically, so we have to do that manually.
       cp -r src/registry/images/examples _book/registry/images
+      cp -r src/registry/images/tables _book/registry/images
       cp -r src/registry/images/registry.yaml _book/registry/images/
 
 # There is no need for a writable file mount, so set it to the smallest possible size.

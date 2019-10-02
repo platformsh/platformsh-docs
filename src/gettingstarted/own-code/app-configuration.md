@@ -39,14 +39,7 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
 
   Set `version` to one supported by Platform.sh, which you can find below as well as in the documentation for each language:
 
-| **Language**                     | **`runtime`** | **Supported `version`** |
-|----------------------------------|---------------|-------------------------|
-| [PHP](/languages/php.md)         | `php`         | 7.1, 7.2, 7.3           |
-| [Node.js](/languages/nodejs.md)  | `nodejs`      | 6.11, 8.9, 10           |
-| [Python](/languages/python.md)   | `python`      | 2.7, 3.5, 3.6, 3.7      |
-| [Ruby](/languages/ruby.md)       | `ruby`        | 2.3, 2.4, 2.5, 2.6      |
-| [Go](/languages/go.md)           | `golang`      | 1.11, 1.12              |
-| [Java](/languages/java.md)       | `java`        | 8, 11, 12               |
+{% include "../../registry/images/tables/runtimes_supported.md" %}
 
 * `disk`: The [disk](/configuration/app/storage.md) attribute defines that amount of persistent storage you need to have available for your application, and requires a minimum value of 256 MB.
 
