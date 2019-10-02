@@ -40,7 +40,7 @@ The `name` you want to give to your service. You are free to name each service a
 
 ### Type
 
-The `type` of your service. It's using the format ``type:version``.
+The `type` of your service. It's using the format `type:version`.
 
 If you specify a version number which is not available, you'll see this error when pushing your changes:
 
@@ -49,6 +49,10 @@ Validating configuration files.
 E: Error parsing configuration files:
     - services.mysql.type: 'mysql:5.6' is not a valid service type.
 ```
+
+Service types and their supported versions include:
+
+{% include "../registry/images/tables/services_supported.md" %}
 
 ### Disk
 

@@ -7,4 +7,5 @@ node_modules/*
 .idea/*
 .platform/local/*
 src/registry/images/examples/*
+src/registry/images/tables/*
 src/registry/images/registry.yaml
