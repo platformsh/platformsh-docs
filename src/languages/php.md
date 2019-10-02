@@ -150,11 +150,10 @@ A number of project templates for major PHP applications are available on GitHub
 ### Applications
 
 * [EZ Platform](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Drupal 7](https://github.com/platformsh-templates/drupal7)
-* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8](https://github.com/platformsh-templates/drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh-templates/drupal8-multisite)
-* [Laravel](https://github.com/platformsh-templates/laravel)
+* [Drupal 7](https://github.com/platformsh/template-drupal7)
+* [Drupal 8](https://github.com/platformsh/template-drupal8)
+* [Drupal 8 (Multisite variant)](https://github.com/platformsh/template-drupal8multi)
+* [Laravel](https://github.com/platformsh/template-laravel)
 * [Moodle](https://github.com/platformsh/platformsh-example-moodle)
 * [Magento 1](https://github.com/platformsh/platformsh-example-magento1)
 * [Magento 2](https://github.com/platformsh-templates/magento2ce)
