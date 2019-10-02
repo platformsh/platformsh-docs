@@ -41,7 +41,7 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
        start: "gunicorn -b 0.0.0.0:$PORT project.wsgi:application"
    ```
 
-   This assumes the WSGI file is `project/wsgi.py` and the WSGI application object is named `application` in the WSGI file.
+   This assumes the WSGI file is `project/wsgi.py` and the WSGI application object is named `application` in the WSGI file. By default, `$PORT` is `8888`.
 
 4. Define the web locations your application is using:
 
