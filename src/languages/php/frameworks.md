@@ -24,14 +24,6 @@ Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](
 * [Opigno](https://github.com/platformsh-templates/drupal8-opigno)
 * [GovCMS8](https://github.com/platformsh-templates/drupal8-govcms8)
 
-### Example Projects
-
-> **Note:**
-> Template projects (repositories in the `platformsh-templates` GitHub organization) are actively maintained by the Platform.sh team. Any other example projects come with less support, and remain in public repositories as proof-of-concepts.
-
-* [Drupal Commerce 7](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8 with Blackfire](https://github.com/platformsh/demo-drupal-blackfire)
-
 ## eZ Platform
 
 [eZ Platform](https://ezplatform.com/) is a CMS based on the Symfony full-stack framework. eZ Platform comes pre-configured for use with Platform.sh for versions 1.13 and later, all it takes is mapping a few environment variables to an existing project. Consult the caching, configuration, and local development best practices for eZ Platform and Fastly integration for more information.
