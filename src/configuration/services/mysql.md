@@ -59,7 +59,7 @@ Despite these service type differences, MariaDB and Oracle MySQL both use the `m
 
 For MariaDB, the endpoint does not change whether you used the `mysql` or `mariadb` service type:
 
-{% codesnippet "/registry/images/examples/full/mysql.app.yaml", language="yaml" %}{% endcodesnippet %}
+{% codesnippet "/registry/images/examples/full/mariadb.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 The same goes for using the `oracle-mysql` service type as well.
 

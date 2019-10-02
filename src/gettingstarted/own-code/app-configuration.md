@@ -47,18 +47,11 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
 * `relationships`: [Relationships](/configuration/app/relationships.md) define how services are mapped within your application. Without this block, an application cannot by default communicate with a service container. Provide a unique name for each relationship and associate it with a service. For example, if in the previous step you defined a MariaDB container in your `.platform/services.yaml` with
 
-    ```yaml
-    mysqldb:
-        type: mysql:10.2
-        disk: 256
-    ```
+    {% codesnippet "/registry/images/examples/full/mariadb.services.yaml", language="yaml" %}{% endcodesnippet %}
 
     You must define a relationship (i.e. `database`) in `.platform.app.yaml` to connect to it:
 
-    ```yaml
-    relationships:
-        database: "mysqldb:mysql"
-    ```
+    {% codesnippet "/registry/images/examples/full/mariadb.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 * [Build and deploy tasks](/configuration/app/build.md): There are a number of ways in which your Git repository is turned into a running application. In general, the build process will run the the build flavor, install dependencies, and then execute the build hook you provide. When the build process is completed, the deploy process will run the deploy hook.
 
