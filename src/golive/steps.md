@@ -56,7 +56,7 @@ In OS X and Linux you can add that IP  to your `/etc/hosts` file.  In Windows th
 ![Hosts File](/images/config-files/hosts-file.png)
 
 
-Alternatively there is also an add-on for firefox and google chrome that allow you to dynamically switch DNS IP addresses. No need to fiddle with your hosts files.
+Alternatively there is also an add-on for Firefox and Google Chrome that allow you to dynamically switch DNS IP addresses without modifying your `hosts` file.
 
 * [Firefox LiveHosts add-on](https://addons.mozilla.org/en-US/firefox/addon/livehosts/) 
 * [Google Chrome LiveHosts add-on](https://chrome.google.com/webstore/detail/livehosts/hdpoplemgeaioijkmoebnnjcilfjnjdi?hl=en)
