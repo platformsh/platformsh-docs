@@ -48,7 +48,6 @@ platform integration:add --type=github --project=abcde12345 --token=xxx --reposi
 ```
 
 Optional parameters:
-
 * `--fetch-branches`: Track and deploy branches (true by default)
 * `--prune-branches`: Delete branches that do not exist in the remote GitHub repository (true by default)
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
