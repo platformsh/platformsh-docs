@@ -49,3 +49,20 @@ You can verify that your integration is functioning properly [using the CLI](/ad
 ```
 $ platform integration:validate
 ```
+
+## Optional parameters
+
+By default several parameters will be set for the Bitbucket integration. They can be changed using the `platform integration:update` command.
+
+* --fetch-branches: Track and deploy branches
+* --prune-branches: Delete branches that do not exist in the remote GitHub repository
+* --build-pull-requests: Track and deploy pull-requests
+* --resync-pull-requests: Re-sync pull request environment data on every build
+
+For more information see: 
+
+```
+platform help integration:update
+```
+
+Note that the --prune-branches option depends on --fetch-branches being enabled. If --fetch-branches is disabled, --prune-branches will automatically be set to false, even if specifically set to true.
