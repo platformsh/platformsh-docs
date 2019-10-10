@@ -52,7 +52,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "essearch",
-      "service_name": "search",
+      "service_name": "searchelastic",
       "url": "\/configuration\/services\/elasticsearch.html"
     },
     "endpoint": "elasticsearch",
@@ -158,7 +158,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "kafkaqueue",
-      "service_name": "queue",
+      "service_name": "queuekafka",
       "url": "\/configuration\/services\/kafka.html"
     },
     "endpoint": "kafka",
@@ -234,7 +234,7 @@
     "disk": false,
     "docs": {
       "relationship_name": "memcachedcache",
-      "service_name": "cache",
+      "service_name": "cachemc",
       "url": "\/configuration\/services\/memcached.html"
     },
     "endpoint": "memcached",
@@ -256,8 +256,8 @@
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
-      "service_name": "db",
+      "relationship_name": "mongodatabase",
+      "service_name": "dbmongo",
       "url": "\/configuration\/services\/mongodb.html"
     },
     "endpoint": "mongodb",
@@ -335,8 +335,8 @@
     "repo_name": "oracle-mysql",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
-      "service_name": "db",
+      "relationship_name": "mysqldatabase",
+      "service_name": "dboracle",
       "url": "\/configuration\/services\/mysql.html"
     },
     "endpoint": "mysql",
@@ -387,8 +387,8 @@
     "repo_name": "postgresql",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
-      "service_name": "db",
+      "relationship_name": "postgresdatabase",
+      "service_name": "dbpostgres",
       "url": "\/configuration\/services\/postgresql.html"
     },
     "endpoint": "postgresql",
@@ -439,7 +439,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "rabbitmqqueue",
-      "service_name": "queue",
+      "service_name": "queuerabbit",
       "url": "\/configuration\/services\/rabbitmq.html"
     },
     "endpoint": "rabbitmq",
@@ -464,7 +464,7 @@
     "disk": false,
     "docs": {
       "relationship_name": "rediscache",
-      "service_name": "cache",
+      "service_name": "cacheredis",
       "url": "\/configuration\/services\/redis.html"
     },
     "endpoint": "redis",
@@ -516,7 +516,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "solrsearch",
-      "service_name": "search",
+      "service_name": "searchsolr",
       "url": "\/configuration\/services\/solr.html"
     },
     "endpoint": "solr",
