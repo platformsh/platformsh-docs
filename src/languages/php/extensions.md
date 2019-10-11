@@ -143,8 +143,8 @@ This is the complete list of extensions that can be enabled:
 | sysvmsg       |     |     |     | *   | *   | *   | *   |
 | sysvsem       |     |     |     | *   | *   | *   | *   |
 | sysvshm       |     |     |     | *   | *   | *   | *   |
-| tideways-xhprof|     |     |     | *   | *   | *   | *   |
-| tideways      |     |     |     | *   | *   | *   | *   |
+| tideways|     |     |     | *   | *   | *   | *   |
+| tideways-xhprof  |     |     |     | *   | *   | *   | *   |
 | tidy          | *   | *   | *   | *   | *   | *   | *   |
 | tokenizer     |     |     |     | *   | *   | *   | *   |
 | uuid          |     |     |     |     | *   | *   | *   |

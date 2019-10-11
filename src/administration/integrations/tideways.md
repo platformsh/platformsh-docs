@@ -1,9 +1,9 @@
 # Tideways
 
 Platform.sh supports [Tideways APM](https://tideways.com/) for PHP.  This functionality is only available on PHP 7.0 and later.
-The Upstream now maintains two versions for tideways (and therefore both plugins are available on Platform.sh):
-* [tideways_xhprof](https://github.com/tideways/php-xhprof-extension): Which is the Opensource version therefore no licensing required (On the downside, less integration service available). You can use it in combination with [xhprof UI](https://github.com/phacility/xhprof)
-* [tideways](https://tideways.com): Which is the bundle proprietary full version of the product and plugins, which the rest of the guide is mostly aimed to cover that.
+The upstream now maintains two versions for Tideways, and both plugins are available on Platform.sh:
+* [tideways_xhprof](https://github.com/tideways/php-xhprof-extension): The open source version, therefore no licensing is required (On the downside, less integration services are available). You can use it in combination with [xhprof UI](https://github.com/phacility/xhprof).
+* [tideways](https://tideways.com): The bundle proprietary full version of the product and plugins, which the rest of the guide is mostly aimed to cover.
 
 ## Get Started
 
@@ -43,11 +43,11 @@ Tideways should now be enabled.  Give it a few hours to a day to get a decent se
 
 ## Deployment Integration
 
-Tideways integrates with platform.sh Deployment Hooks and provides performance comparisons
-before and after deployments were released. You can find the platform CLI command to register
+Tideways integrates with Platform.sh deployment hooks and provides performance comparisons
+before and after deployments were released. You can find the Platform.sh CLI command to register
 this hook for your application in Tideways "Application Settings" screen under the section
 "Exports & Integrations". Here is an example:
 
 ```bash
-$ platform integration:add --type=webhook --url="https://app.tideways.io/api/events/external/1234/abcdefghijklmnopqrstuvwxyz1234567890"
+platform integration:add --type=webhook --url="https://app.tideways.io/api/events/external/1234/abcdefghijklmnopqrstuvwxyz1234567890"
 ```
