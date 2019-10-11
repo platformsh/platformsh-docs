@@ -1,6 +1,9 @@
 # Tideways
 
-Platform.sh supports [Tideways APM](https://tideways.io/) for PHP.  This functionality is only available on PHP 7.0 and later.
+Platform.sh supports [Tideways APM](https://tideways.io/) for PHP.  This functionality is only available on PHP 7.0 and later.  
+The [Upstream](https://tideways.io/) now maintains two versions for tideways (and therefore both plugins are available on Platform.sh):
+* tideways-xhprof: Which is the Opensource version therefore no licensing required (On the downside, less integration service available).
+* tideways: Which is the bundle proprietary full version of the product and plugins, which the rest of the guide is mostly aimed to cover that.
 
 ## Get Started
 
