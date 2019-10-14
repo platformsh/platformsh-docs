@@ -36,7 +36,7 @@ You will need to have a dump or backup of the database you wish to start from.  
 
 ## Import your files
 
-Content files (that is, files that are not intended as part of your code base so are not in Git) can be uploaded to your mounts using the Platform.sh CLI or by using `rsync`. You will need to upload each directory's worth of files separately.  Suppose for instance you have the following file mounts defined:
+Content files (that is, files that are not intended as part of your code base so are not in Git) can be uploaded to your mounts using the Platform.sh CLI or by using `rsync`. You will need to upload each directory's files separately.  Suppose for instance you have the following file mounts defined:
 
 ```yaml
 mounts:
@@ -48,7 +48,7 @@ mounts:
         source_path: private
 ```
 
-While using the CLI rsync are the most common solutions for uploading files to mounts, you can also use [SCP](https://docs.platform.sh/development/access-site.html#scp).
+While using the CLI and rsync are the most common solutions for uploading files to mounts, you can also use [SCP](/development/access-site.md#scp).
 
 ### Platform.sh CLI
 
