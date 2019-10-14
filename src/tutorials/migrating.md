@@ -36,7 +36,7 @@ You will need to have a dump or backup of the database you wish to start from.  
 
 ## Import your files
 
-The best way to load content files (that is, files that are not intended as part of your code base so are not in Git) into your site is via `rsync`.  You will need to upload each directory's worth of files separately.  Suppose for instance you have the following file mounts defined:
+Content files (that is, files that are not intended as part of your code base so are not in Git) can be uploaded to your mounts using the Platform.sh CLI or by using `rsync`. You will need to upload each directory's worth of files separately.  Suppose for instance you have the following file mounts defined:
 
 ```yaml
 mounts:
@@ -48,7 +48,20 @@ mounts:
         source_path: private
 ```
 
-To use `rsync` to upload each directory, we can use the following commands.  The `platform ssh --pipe` command will return the SSH URL for the current environment as an inline string that `rsync` can recognize. To use a non-default environment, use the `-e` switch after `--pipe`.  Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself.
+While using the CLI rsync are the most common solutions for uploading files to mounts, you can also use [SCP](https://docs.platform.sh/development/access-site.html#scp).
+
+### Platform.sh CLI
+
+The easiest way to import files to your project mounts is by using the Platform.sh CLI `mount:upload` command. To upload to each of directories above, we can use the following commands.
+
+```bash
+platform mount:upload --mount web/uploads --source ./uploads
+platform mount:upload --mount private --source ./private
+```
+
+### rsync
+
+You can also use `rsync` to upload each directory.  The `platform ssh --pipe` command will return the SSH URL for the current environment as an inline string that `rsync` can recognize. To use a non-default environment, use the `-e` switch after `--pipe`.  Note that the trailing slash on the remote path means `rsync` will copy just the files inside the specified directory, not the directory itself.
 
 ```bash
 rsync -az ./private `platform ssh --pipe`:/app/private/
