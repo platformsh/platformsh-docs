@@ -67,7 +67,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <div>
   <h4>Examples</h4>
-  <a href="https://github.com/platformsh/platformsh-example-php">Generic PHP application</a><br />
+  <a href="https://github.com/platformsh-templates/nodejs">Generic PHP application</a><br />
 </div>
 
 
