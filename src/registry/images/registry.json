@@ -316,7 +316,7 @@
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
+      "relationship_name": "mongodatabase",
       "service_name": "dbmongo",
       "url": "\/configuration\/services\/mongodb.html"
     },
