@@ -29,11 +29,30 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/dotnet.html"
+      "url": "\/languages\/dotnet.html",
+      "web": {
+        "commands": {
+          "start": "dotnet application.dll"
+        },
+        "locations": {
+          "\/": {
+            "root": "\"wwwroot\"",
+            "allow": true,
+            "passthru": true
+          }
+        }
+      },
+      "hooks": {
+        "build": [
+          "|",
+          "set -e",
+          "dotnet publish --output \"$PLATFORM_OUTPUT_DIR\" -p:UseRazorBuildServer=false -p:UseSharedCompilation=false"
+        ]
+      }
     },
     "endpoint": null,
     "min_disk_size": null,
-    "name": "C#/.Net Core",
+    "name": "C#\/.Net Core",
     "runtime": true,
     "type": "dotnet",
     "versions": {
@@ -82,7 +101,27 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/go.html"
+      "url": "\/languages\/go.html",
+      "web": {
+        "upstream": {
+          "socket_family": "tcp",
+          "protocol": "http"
+        },
+        "commands": {
+          "start": ".\/bin\/app"
+        },
+        "locations": {
+          "\/": {
+            "allow": false,
+            "passthru": true
+          }
+        }
+      },
+      "hooks": {
+        "build": [
+          "go build -o bin\/app"
+        ]
+      }
     },
     "endpoint": null,
     "min_disk_size": null,
@@ -133,7 +172,17 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/java.html"
+      "url": "\/languages\/java.html",
+      "web": {
+        "commands": {
+          "start": "java -jar target\/application.jar --server.port=$PORT"
+        }
+      },
+      "hooks": {
+        "build": [
+          "mvn clean install"
+        ]
+      }
     },
     "endpoint": null,
     "min_disk_size": null,
@@ -185,7 +234,18 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/lisp.html"
+      "url": "\/languages\/lisp.html",
+      "web": {
+        "commands": {
+          "start": ".\/example"
+        },
+        "locations": {
+          "\/": {
+            "allow": false,
+            "passthru": true
+          }
+        }
+      }
     },
     "endpoint": null,
     "min_disk_size": null,
@@ -307,7 +367,12 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/nodejs.html"
+      "url": "\/languages\/nodejs.html",
+      "web": {
+        "commands": {
+          "start": "node index.js"
+        }
+      }
     },
     "endpoint": null,
     "min_disk_size": null,
@@ -336,7 +401,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "mysqldatabase",
-      "service_name": "dboracle",
+      "service_name": "dbmysql",
       "url": "\/configuration\/services\/mysql.html"
     },
     "endpoint": "mysql",
@@ -361,7 +426,28 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/php.html"
+      "url": "\/languages\/php.html",
+      "web": {
+        "locations": {
+          "\/": {
+            "root": "\"web\"",
+            "passthru": "\/index.php"
+          }
+        }
+      },
+      "hooks": {
+        "build": [
+          "|",
+          "set -e"
+        ],
+        "deploy": [
+          "|",
+          "set -e"
+        ]
+      },
+      "build": {
+        "flavor": "composer"
+      }
     },
     "endpoint": null,
     "min_disk_size": null,
@@ -414,7 +500,23 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/python.html"
+      "url": "\/languages\/python.html",
+      "web": {
+        "commands": {
+          "start": "python server.py"
+        }
+      },
+      "hooks": {
+        "build": [
+          "|",
+          "pipenv install --system --deploy"
+        ]
+      },
+      "dependencies": {
+        "python3": {
+          "pipenv": "2018.10.13"
+        }
+      }
     },
     "endpoint": null,
     "min_disk_size": null,
@@ -491,7 +593,33 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/ruby.html"
+      "url": "\/languages\/ruby.html",
+      "web": {
+        "upstream": {
+          "socket_family": "unix"
+        },
+        "commands": {
+          "start": "\"unicorn -l $SOCKET -E production config.ru\""
+        },
+        "locations": {
+          "\/": {
+            "root": "\"public\"",
+            "passthru": true,
+            "expires": "1h",
+            "allow": true
+          }
+        }
+      },
+      "hooks": {
+        "build": [
+          "|",
+          "bundle install --without development test"
+        ],
+        "deploy": [
+          "|",
+          "RACK_ENV=production bundle exec rake db:migrate"
+        ]
+      }
     },
     "endpoint": null,
     "min_disk_size": null,
