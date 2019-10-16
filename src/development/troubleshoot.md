@@ -142,6 +142,10 @@ Alternatively, if your worker is idle for too long it can self-terminate.  Platf
 
 Another cause of the "MySQL server has gone away" errors can be the size of the database packets. If that is the case, the logs may show warnings like  "Error while sending QUERY packet" before the error. One way to resolve the issue is to use the `max_allowed_packet` parameter described [above](/configuration/services/mysql.md#adjusting-mariadb-configuration).
 
+## ERROR: permission denied to create database
+
+The provided user does not have permission to create databases.   
+The database is created for you and can be found in the `path` field of the `$PLATFORM_RELATIONSHIPS` environment variable.
 
 ## "Read-only file system" error
 
