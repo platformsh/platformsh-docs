@@ -20,7 +20,7 @@ While it is possible to read the environment directly from your application, it 
 
 ## Configuration
 
-To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` file with a few key settings, as described here (a complete example is included at the end).
+To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file with a few key settings, as described here (a complete example is included at the end).
 
 1. Specify the language of your application (available versions are listed above):
 
