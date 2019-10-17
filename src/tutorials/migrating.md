@@ -8,7 +8,7 @@ First, assemble your Git repository as appropriate, on your master branch.  Be s
 
 For some applications, such as Drupal you will need to dump configuration to files before proceeding.  You will also need to provide appropriate configuration to read the credentials for your services at runtime and integrate them into your application's configuration.  The details of that integration will vary between systems.  Be sure to see the appropriate project templates for our recommended configuration.
 
-* [Go Templates](/languages/go,md#project-templates)
+* [Go Templates](/languages/go.md#project-templates)
 * [Java Templates](/languages/java.md#project-templates)
 * [Node.js Templates](/languages/nodejs.md#project-templates)
 * [PHP Templates](/languages/php.md#project-templates)

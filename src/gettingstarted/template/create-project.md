@@ -24,6 +24,10 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
    Select a template and click `Next`.
 
+   > **Note**
+   >
+   > You can find the source code for all Platform.sh templates in the [GitHub Templates Organization](https://github.com/platformsh-templates)
+
 3. **Plan size**
 
    The management console gives you the option of setting your plan size from the very beginning, but you can always upgrade your plan later on as well.

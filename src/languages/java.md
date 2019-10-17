@@ -73,3 +73,8 @@ A number of project templates for major Java applications are available on GitHu
 * [KumuluzEE](https://github.com/platformsh-templates/microprofile-kumuluzee)
 * [Helidon](https://github.com/platformsh-templates/microprofile-helidon)
 * [Open Liberty](https://github.com/platformsh-templates/microprofile-openliberty)
+
+## Other Frameworks
+
+* [Micronaut](https://github.com/platformsh-templates/micronaut)
+* [Jettry](https://github.com/platformsh-templates/jetty)

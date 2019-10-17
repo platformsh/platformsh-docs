@@ -30,7 +30,7 @@ It is also possible to install additional system-level dependencies as part of t
 Platform.sh supports pulling any dependencies for the following languages:
 
 * PHP (via [Composer](https://getcomposer.org/))
-* Python 2 and 3 (via [Pip](https://packaging.python.org/installing/))
+* Python 2 and 3 (via [Pip](https://packaging.python.org/tutorials/installing-packages/))
 * Ruby (via [Bundler](https://bundler.io/))
 * Node.js (via [NPM](https://www.npmjs.com/))
 * Java (via [Maven](https://maven.apache.org/), with Ant support)

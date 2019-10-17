@@ -14,7 +14,7 @@
 
 ### Templates
 
-* [Apache Tomee](https://github.com/platformsh-templates/template-microprofile-tomee)
+* [Apache Tomee](https://github.com/platformsh-templates/microprofile-tomee)
 * [Thorntail](https://github.com/platformsh-templates/microprofile-thorntail)
 * [Payara Micro](https://github.com/platformsh-templates/microprofile-payara)
 * [KumuluzEE](https://github.com/platformsh-templates/microprofile-kumuluzee)
@@ -29,5 +29,5 @@ The [Spring Framework](https://spring.io/projects/spring-framework) provides a c
 
 ### Templates
 
-* [Spring Boot MySQL](https://github.com/platformsh/template-spring-boot-maven-mysql)
-* [Spring Boot MongoDB](https://github.com/platformsh/template-spring-mvc-maven-mongodb)
+* [Spring Boot MySQL](https://github.com/platformsh-templates/spring-boot-maven-mysql)
+* [Spring Boot MongoDB](https://github.com/platformsh-templates/spring-mvc-maven-mongodb)
