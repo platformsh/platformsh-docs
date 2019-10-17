@@ -149,22 +149,22 @@ A number of project templates for major PHP applications are available on GitHub
 
 ### Applications
 
-* [EZ Platform](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Drupal 7](https://github.com/platformsh/template-drupal7)
-* [Drupal 8](https://github.com/platformsh/template-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/template-drupal8multi)
-* [Laravel](https://github.com/platformsh/template-laravel)
-* [Moodle](https://github.com/platformsh/platformsh-example-moodle)
-* [Magento 1](https://github.com/platformsh/platformsh-example-magento1)
+* [EZ Platform](https://github.com/ezsystems/ezplatform)
+* [Drupal 7](https://github.com/platformsh-templates/drupal7)
+* [Drupal 8](https://github.com/platformsh-templates/drupal8)
+* [Drupal 8 (Multisite variant)](https://github.com/platformsh-templates/drupal8-multisite)
+* [Laravel](https://github.com/platformsh-templates/laravel)
+* [Moodle](https://github.com/platformsh-examples/platformsh-example-moodle)
+* [Magento 1](https://github.com/platformsh-examples/platformsh-example-magento1)
 * [Magento 2](https://github.com/platformsh-templates/magento2ce)
-* [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
-* [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
+* [Sculpin](https://github.com/platformsh-templates/sculpin)
+* [TYPO3](https://github.com/platformsh-templates/typo3)
 * [WordPress](https://github.com/platformsh-templates/wordpress)
-* [GravCMS](https://github.com/platformsh/platformsh-example-gravcms)
+* [GravCMS](https://github.com/platformsh-examples/platformsh-example-gravcms)
 
 ### Frameworks
 
-* [Amp/Aerys](https://github.com/platformsh/platformsh-example-amphp)
-* [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
+* [Amp/Aerys](https://github.com/platformsh-examples/platformsh-example-amphp)
+* [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
 * [Symfony 3.x](https://github.com/platformsh-templates/symfony3)
 * [Symfony 4.x](https://github.com/platformsh-templates/symfony4)
