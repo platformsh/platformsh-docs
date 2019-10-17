@@ -394,7 +394,7 @@ Furthermore, Apache Delta Spike has a [post](https://deltaspike.apache.org/docum
 
 ## Templates
 
-* [Apache Tomee](https://github.com/platformsh-templates/template-microprofile-tomee)
+* [Apache Tomee](https://github.com/platformsh-templates/microprofile-tomee)
 * [Thorntail](https://github.com/platformsh-templates/microprofile-thorntail)
 * [Payara Micro](https://github.com/platformsh-templates/microprofile-payara)
 * [KumuluzEE](https://github.com/platformsh-templates/microprofile-kumuluzee)

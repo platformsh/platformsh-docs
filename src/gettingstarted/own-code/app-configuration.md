@@ -20,7 +20,7 @@ An example `.platform.app.yaml` looks like this:
 
 {%- language name="Python", type="py", url="https://raw.githubusercontent.com/platformsh-templates/python3/master/.platform.app.yaml" -%}
 
-{% language name="Node.js", type="js", url="https://raw.githubusercontent.com/platformsh/platformsh-example-nodejs/master/.platform.app.yaml" -%}
+{% language name="Node.js", type="js", url="https://raw.githubusercontent.com/platformsh-templates/nodejs/master/.platform.app.yaml" -%}
 
 {%- endcodetabs %}
 

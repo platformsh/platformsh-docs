@@ -40,16 +40,16 @@ More information on how to [setup your domain](/golive/steps.md).
 
 > **note**
 >
-> Platform.sh expects an ASCII representation of the domain here. In case you want to use an internationalized domain name you can use the [conversion tool provided by Verisign](http://mct.verisign-grs.com/) to convert your IDN domain to ASCII.
+> Platform.sh expects an ASCII representation of the domain here. In case you want to use an internationalized domain name you can use the [conversion tool provided by Verisign](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-conversion-tool/index.xhtml) to convert your IDN domain to ASCII.
 
 
 ## Certificates
 
-The `Certificates` screen allows you to manage your project's TLS certificates that enable HTTPS. 
+The `Certificates` screen allows you to manage your project's TLS certificates that enable HTTPS.
 
 ![project certs](/images/management-console/settings-certificates.png)
 
-You can view current certificates by hovering over one on the list and clicking the `View` link that appears, or you can add a new certificate by clicking the `Add` button a the top of the page. 
+You can view current certificates by hovering over one on the list and clicking the `View` link that appears, or you can add a new certificate by clicking the `Add` button a the top of the page.
 
 ![add certs](/images/management-console/add-cert.png)
 
@@ -69,4 +69,3 @@ This is useful if you want to reuse some code components across multiple project
 The `Variables` screen allows you to define the variables that will be available project-wide - that is, in each environment. It also allows you define variables that will be available during the build process.
 
 ![project vars](/images/management-console/settings-variables-project.png)
-
