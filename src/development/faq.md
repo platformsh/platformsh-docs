@@ -78,7 +78,7 @@ Platform leverages the power of public cloud infrastructures like AWS, Microsoft
 
 'sh' is the short version of shell.
 
-According to Wikipedia™, in computing, a [shell](https://en.wikipedia.org/wiki/Shell_(computing\) ) is a user interface for access to an operating system's services. Generally, operating system shells use either a [command-line interface ](https://en.wikipedia.org/wiki/Command-line_interface) (CLI) or [graphical user interface](https://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).  This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy, and run great websites!
+According to Wikipedia™, in computing, a [shell](https://en.wikipedia.org/wiki/Shell_(computing\)) is a user interface for access to an operating system's services. Generally, operating system shells use either a [command-line interface ](https://en.wikipedia.org/wiki/Command-line_interface) (CLI) or [graphical user interface](https://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).  This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy, and run great websites!
 
 ".sh" is also the TLD for Saint Helena that looks like a lovely island, and whose motto is: "Loyal and Unshakeable" which we also strive to be.
 
