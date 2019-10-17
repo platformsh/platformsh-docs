@@ -6,7 +6,7 @@ Blackfire is a PHP profiler and automated performance testing tool that can be u
 
 It grants details information on your PHP code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
 
-In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Symfony, Drupal, eZPlatform, Typo3 & Magento code performance management. 
+In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Symfony, Drupal, eZPlatform, Typo3 & Magento code performance management.
 
 For a high level overview and demo of Blackfire, check out the [full video tutorial](https://www.youtube.com/watch?v=-5icUW9pUH8).
 
@@ -120,7 +120,7 @@ Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for mo
 ### Bypassing Reverse Proxy, Cache, and Content Delivery Networks (CDN)
 
 If you are using one of those, you will need them to let Blackfire access your servers.
-[More information on how to configure a bypass](More information on how to configure a bypass).
+[More information on how to configure a bypass](https://blackfire.io/docs/reference-guide/reverse-proxies#documentation).
 
 ### HTTP Cache configuration
 
@@ -145,8 +145,8 @@ If the above didn't help, collect the following and send it to the [Blackfire su
 
 Please execute the following in the environment where you're facing the issue:
 
-* `platform variable:create php:blackfire.log_file /tmp/blackfire.log` 
-* `platform variable:create php:blackfire.log_level 4` 
+* `platform variable:create php:blackfire.log_file /tmp/blackfire.log`
+* `platform variable:create php:blackfire.log_level 4`
 * start a profile/build again
 
 You will get the logs with `platform ssh -- cat /tmp/blackfire.log > blackfire.log`.
@@ -155,5 +155,5 @@ You will get the logs with `platform ssh -- cat /tmp/blackfire.log > blackfire.l
 
 Once you are done, please disable logging with:
 
-* `platform variable:delete php:blackfire.log_file` 
+* `platform variable:delete php:blackfire.log_file`
 * `platform variable:delete php:blackfire.log_level`

@@ -20,7 +20,7 @@ Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](
 * [Drupal 7](https://github.com/platformsh-templates/drupal7)
 * [Drupal 7 (Vanilla)](https://github.com/platformsh-templates/drupal7-vanilla)
 * [Drupal 8](https://github.com/platformsh-templates/drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh-templates/drupal8-multi)
+* [Drupal 8 (Multisite variant)](https://github.com/platformsh-templates/drupal8-multisite)
 * [Opigno](https://github.com/platformsh-templates/drupal8-opigno)
 * [GovCMS8](https://github.com/platformsh-templates/drupal8-govcms8)
 
@@ -54,12 +54,6 @@ Symfony FAQs, how-to guides and other tutorials right on [Platform.sh Community]
 * [Symfony 3](https://github.com/platformsh-templates/symfony3)
 * [Symfony 4](https://github.com/platformsh-templates/symfony4)
 
-### Example Projects
-
-> **Note:**
-> Template projects (repositories in the `platformsh-templates` GitHub organization) are actively maintained by the Platform.sh team. Any other example projects come with less support, and remain in public repositories as proof-of-concepts.
-
-* [Symfony 2](https://github.com/platformsh/platformsh-example-symfony2)
 
 ## TYPO3
 

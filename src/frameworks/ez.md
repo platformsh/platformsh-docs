@@ -93,9 +93,9 @@ engine:
 
 ### Local development with Platform.sh
 
-Thanks to eZ Launchpad you are able to be work 100% locally: [untethered](/gettingstarted/local/untethered.md). We have the whole project working offline on our local machine.
+Thanks to eZ Launchpad you are able to be work 100% locally: [untethered](/development/local/untethered.md). We have the whole project working offline on our local machine.
 
-> Platform.sh also provides a smooth SSH tunnels integration described in the [tethered](/gettingstarted/local/tethered.md) page.
+> Platform.sh also provides a smooth SSH tunnels integration described in the [tethered](/development/local/tethered.md) page.
 
 Local services are provided by the Docker stack but there are minimum day-to-day tasks that you might need with Platform.sh.
 
@@ -104,7 +104,7 @@ The main ones are:
 * **Downstream database synchronization**: Getting it from the remote to the local.
 * **Downstream file storage synchronization**: Getting it from the remote to the local.
 
-To help you with that, Platform.sh provides a CLI that you probably already have. If you don't, see the [install guide](/gettingstarted/cli.md).
+To help you with that, Platform.sh provides a CLI that you probably already have. If you don't, see the [install guide](/development/cli.md#installation).
 
 Combined together, eZ Launcphad and Platform.sh CLI make those actions straight forward and simple.
 
