@@ -2,6 +2,17 @@
 
 You can also initialize your project using any of the pre-made templates below.  For each one, simply Git Clone the repository from GitHub then push it to Platform.sh using the instructions for a custom repository in the management console, as seen in the video above.
 
+## C#/.NET
+
+<section class="examples-lists">
+
+<div>
+  <h4>Frameworks</h4>
+  <a href="https://github.com/platformsh-templates/aspnet-core">ASP.NET Core</a>
+</div>
+
+</section>
+
 ## Go
 
 <section class="examples-lists">
@@ -9,6 +20,14 @@ You can also initialize your project using any of the pre-made templates below. 
 <div>
   <h4>Examples</h4>
   <a href="https://github.com/platformsh-templates/golang">Generic Go application</a>
+</div>
+
+<div>
+  <h4>Frameworks</h4>
+  <a href="https://github.com/platformsh-templates/beego">Beego</a>
+  <a href="https://github.com/platformsh-templates/echo">Echo</a>
+  <a href="https://github.com/platformsh-templates/gin">Gin</a>
+  <a href="https://github.com/platformsh-templates/hugo">Hugo</a>
 </div>
 
 </section>
@@ -27,7 +46,19 @@ You can also initialize your project using any of the pre-made templates below. 
   <a href="https://github.com/platformsh-templates/microprofile-kumuluzee">KumuluzEE</a>
   <a href="https://github.com/platformsh-templates/microprofile-helidon">Helidon</a>
   <a href="https://github.com/platformsh-templates/microprofile-openliberty">Open Liberty</a>
+  <a href="https://github.com/platformsh-templates/jetty">Jetty</a>
+    <a href="https://github.com/platformsh-templates/micronaut">Micronaut</a>
+</div>
 
+</section>
+
+## Lisp
+
+<section class="examples-lists">
+
+<div>
+  <h4>Examples</h4>
+  <a href="https://github.com/platformsh-templates/lisp">Hunchenroot</a><br />
 </div>
 
 </section>
@@ -51,15 +82,19 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <div>
   <h4>Applications</h4>
+  <a href="https://github.com/platformsh-templates/akeneo">Akeneo</a>
   <a href="https://github.com/ezsystems/ezplatform">EZ Platform</a><br />
   <a href="https://github.com/platformsh-templates/drupal7">Drupal 7</a><br />
   <a href="https://github.com/platformsh-examples/platformsh-example-drupalcommerce7">Drupal 7 (Commerce Kickstart)</a><br />
   <a href="https://github.com/platformsh-templates/drupal8">Drupal 8</a><br />
   <a href="https://github.com/platformsh-templates/drupal8-multisite">Drupal 8 (Multisite variant)</a><br />
+  <a href="https://github.com/platformsh-templates/govcms8">GovCMS8</a>
   <a href="https://github.com/platformsh-templates/laravel">Laravel</a><br />
   <a href="https://github.com/platformsh-examples/platformsh-example-moodle">Moodle</a><br />
   <a href="https://github.com/platformsh-examples/platformsh-example-magento1">Magento 1</a><br />
   <a href="https://github.com/platformsh-templates/magento2ce">Magento 2</a><br />
+  <a href="https://github.com/platformsh-templates/opigno">Opigno</a>
+  <a href="https://github.com/platformsh-templates/pimcore">Pimcore</a>
   <a href="https://github.com/platformsh-templates/sculpin">Sculpin</a><br />
   <a href="https://github.com/platformsh-templates/typo3">TYPO3</a><br />
   <a href="https://github.com/platformsh-templates/wordpress">WordPress</a>
@@ -67,7 +102,7 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <div>
   <h4>Examples</h4>
-  <a href="https://github.com/platformsh-templates/nodejs">Generic PHP application</a><br />
+  <a href="https://github.com/platformsh-templates/php">Generic PHP application</a><br />
 </div>
 
 
@@ -92,9 +127,18 @@ You can also initialize your project using any of the pre-made templates below. 
 
 <div>
   <h4>Frameworks</h4>
-  <a href="https://github.com/platformsh-templates/django2">Django 2</a>
   <a href="https://github.com/platformsh-templates/django1">Django 1</a>
-  <a href="https://github.com/platformsh-templates/flask">Platform.sh Python 2.7 Flask</a><br />
+  <a href="https://github.com/platformsh-templates/django2">Django 2</a>
+  <a href="https://github.com/platformsh-templates/flask">Flask</a><br />
+</div>
+
+
+<div>
+  <h4>Applications</h4>
+  <a href="https://github.com/platformsh-templates/moinmoin">Moin Moin</a>
+  <a href="https://github.com/platformsh-templates/pelican">Pelican</a>
+  <a href="https://github.com/platformsh-templates/pyramid">Pyramid</a>
+  <a href="https://github.com/platformsh-templates/wagtail">Wagtail</a><br />
 </div>
 
 </section>
