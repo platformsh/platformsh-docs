@@ -33,7 +33,7 @@ Platform.sh supports pulling any dependencies for the following languages:
 * Python 2 and 3 (via [Pip](https://packaging.python.org/tutorials/installing-packages/))
 * Ruby (via [Bundler](https://bundler.io/))
 * Node.js (via [NPM](https://www.npmjs.com/))
-* Java (via [Apache Maven](https://maven.apache.org/) or [Gradle](https://gradle.org/) or [Apache Ant](https://ant.apache.org/))
+* Java (via [Apache Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), or [Apache Ant](https://ant.apache.org/))
 
 ### Python dependencies
 
