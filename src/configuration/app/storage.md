@@ -13,6 +13,27 @@ Many applications still require the ability to write and store files, however.  
 
 The `disk` key is required, and defines the size of the persistent disk of the application (in MB).  Its minimum value is 256 MB and a validation error will occur if you try to set it lower.
 
+Your subscription plan storage size defines the maximum storage available for your application and all its services. For example:
+
+```
+       Unsaved       
++----------------+   XXXXXX
+|                |         X
+|   application  |         X
+|            2 GB|         X
++----------------+         X
+|                |         X   total
+|    database    |         XX  plan size = 5 GB
+|            2 GB|         X
++----------------+         X
+|                |         X
+|     redis      |         X
+|            1 GB|         X
++----------------+   XXXXXX
+
+Close
+```
+
 ## Mounts
 
 The `mounts` key is an object whose keys are paths relative to the root of the application (that is, where the `.platform.app.yaml` file lives), and values are a 2-line mount definition.
