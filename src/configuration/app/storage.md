@@ -16,10 +16,10 @@ Your _plan storage size_ specifies the maximum total space available to _all_ ap
 When deploying your project, the sum of all `disk` keys defined in `.platform.app.yaml` and `.platform/services.yaml` 
 must be *equal or less* than the _plan storage size_. For example, if your _plan storage size_ is 5 GB, you can assign:
 
-- 2 GB to your application, 3 GB to your database
-- 1 GB to your application, 4 GB to your database
-- 1 GB to your application, 1 GB to your database, 3 GB to your Elasticsearch service
-- etc.
+* 2 GB to your application, 3 GB to your database
+* 1 GB to your application, 4 GB to your database
+* 1 GB to your application, 1 GB to your database, 3 GB to your Elasticsearch service
+* etc.
 
 If you receive an error on `git push` mentioning the total disk space configured for the application and its services exceeds the plan storage size, you need to either increase the disk space reserved for your project on the project setup page or lower the storage assigned to each service and the application.
 
