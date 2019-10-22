@@ -11,28 +11,19 @@ Many applications still require the ability to write and store files, however.  
 
 ## Disk
 
+Your _plan storage size_ specifies the maximum total space available to _all_ applications and services.
+
+When deploying your project, the sum of all `disk` keys define din `.platform.app.yaml` and `.platform/services.yaml` 
+must be *equal or less* than the _plan storage size_. For example, if your _plan storage size_ is 5 GB, you can assign:
+
+- 2 GB to your application, 3 GB to your database
+- 1 GB to your application, 4 GB to your database
+- 1 GB to your application, 1 GB to your database, 3 GB to your Elasticsearch service and so on.
+
+If you receive an error on `git push` mentioning the total disk space configured for the application and its services exceeds the plan storage size, you need to either increase the disk space reserved for your project on the project setup page or lower the storage assigned to each service and the application.
+
 The `disk` key is required, and defines the size of the persistent disk of the application (in MB).  Its minimum value is 256 MB and a validation error will occur if you try to set it lower.
 
-Your subscription plan storage size defines the maximum storage available for your application and all its services. For example:
-
-```
-       Unsaved       
-+----------------+   XXXXXX
-|                |         X
-|   application  |         X
-|            2 GB|         X
-+----------------+         X
-|                |         X   total
-|    database    |         XX  plan size = 5 GB
-|            2 GB|         X
-+----------------+         X
-|                |         X
-|     redis      |         X
-|            1 GB|         X
-+----------------+   XXXXXX
-
-Close
-```
 
 ## Mounts
 
