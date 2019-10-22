@@ -157,3 +157,10 @@ Once you are done, please disable logging with:
 
 * `platform variable:delete php:blackfire.log_file`
 * `platform variable:delete php:blackfire.log_level`
+
+
+## Notes
+
+### Memory usage
+
+This extension adds extra memory overhead to your application and each request will require more memory. So, depending on how aggressive your `sizing_hints` are, you may need to adjust them or upgrade your plan.
