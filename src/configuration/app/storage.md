@@ -13,7 +13,7 @@ Many applications still require the ability to write and store files, however.  
 
 Your _plan storage size_ specifies the maximum total space available to _all_ applications and services.
 
-When deploying your project, the sum of all `disk` keys define din `.platform.app.yaml` and `.platform/services.yaml` 
+When deploying your project, the sum of all `disk` keys defined in `.platform.app.yaml` and `.platform/services.yaml` 
 must be *equal or less* than the _plan storage size_. For example, if your _plan storage size_ is 5 GB, you can assign:
 
 - 2 GB to your application, 3 GB to your database
