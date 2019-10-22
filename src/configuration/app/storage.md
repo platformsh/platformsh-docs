@@ -18,7 +18,8 @@ must be *equal or less* than the _plan storage size_. For example, if your _plan
 
 - 2 GB to your application, 3 GB to your database
 - 1 GB to your application, 4 GB to your database
-- 1 GB to your application, 1 GB to your database, 3 GB to your Elasticsearch service and so on.
+- 1 GB to your application, 1 GB to your database, 3 GB to your Elasticsearch service
+- etc.
 
 If you receive an error on `git push` mentioning the total disk space configured for the application and its services exceeds the plan storage size, you need to either increase the disk space reserved for your project on the project setup page or lower the storage assigned to each service and the application.
 
