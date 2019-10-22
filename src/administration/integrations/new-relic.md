@@ -46,3 +46,9 @@ platform log app
 2017/04/19 14:00:16.706450 (93) Info: Reporting to: https://rpm.newrelic.com/accounts/xxx/applications/xxx
 2017/04/19 14:00:16.706668 (93) Info: app 'xxx-master-xxx.app' connected with run id 'xxx'
 ```
+
+## Notes
+
+### Memory usage
+
+This extension adds extra memory overhead to your application and each request will require more memory. So, depending on how aggressive your `sizing_hints` are, you may need to adjust them or upgrade your plan.
