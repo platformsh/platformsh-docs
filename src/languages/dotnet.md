@@ -1,6 +1,6 @@
-# .NET
+# .NET Core
 
-Platform.sh supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET build environment.
+Platform.sh supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
 
 ## Supported versions
 
@@ -8,7 +8,7 @@ Platform.sh supports deploying .NET applications by allowing developers to defin
 * 2.1
 * 2.2
 
-To specify a .NET container, use the `type` property in your `.platform.app.yaml`.
+To specify a .NET Core container, use the `type` property in your `.platform.app.yaml`.
 
 {% codesnippet "/registry/images/examples/full/dotnet.app.yaml", language="yaml" %}{% endcodesnippet %}
 
@@ -25,7 +25,7 @@ hooks:
 
 where `PLATFORM_OUTPUT_DIR` is the output directory for compiled languages available at build time.
 
-Typically .NET builds will start a collection of build servers, which are helpful for repeated builds. On Platform.sh, however, if this process is not disabled, the build process will not finish until the idle timeout is reached.
+Typically .NET Core builds will start a collection of build servers, which are helpful for repeated builds. On Platform.sh, however, if this process is not disabled, the build process will not finish until the idle timeout is reached.
 
 As a result, it is recommended to include `-p` toggles that disable the Razor compiler for dynamic cshtml pages (`UseRazorBuildServer`) and the .NET msbuild compiler (`UseSharedCompilation`).
 
@@ -33,7 +33,7 @@ If making multiple builds is desired for your application, make sure to call `do
 
 ## Running the application
 
-.NET applications should be started using the `web.commands.start` directive in `.platform.app.yaml`. This ensures that the command starts at the right moment and stops gracefully when a re-deployment needs to be executed. Also, should the program terminate for any reason, it will be automatically restarted. Note that the start command _must_ run in the foreground.
+.NET Core applications should be started using the `web.commands.start` directive in `.platform.app.yaml`. This ensures that the command starts at the right moment and stops gracefully when a re-deployment needs to be executed. Also, should the program terminate for any reason, it will be automatically restarted. Note that the start command _must_ run in the foreground.
 
 Incoming requests are passed to the application using either a TCP (default) or UNIX socket. The application must use the [appropriate environment variable](/configuration/app/web.html#socket-family) to determine the URI to listen on. In case of a TCP socket ([recommended](https://go.microsoft.com/fwlink/?linkid=874850)), the application must listen on `http://127.0.0.1`, using the `PORT` environment variable.
 
@@ -75,6 +75,6 @@ web:
 
 ## Project templates
 
-Platform.sh offers project templates for .NET applications using the structure described above.  They can be used as a starting point or reference for building your own website or web application.
+Platform.sh offers project templates for .NET Core applications using the structure described above.  They can be used as a starting point or reference for building your own website or web application.
 
 [ASP.NET Core](https://github.com/platformsh-templates/aspnet-core)
