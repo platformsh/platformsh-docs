@@ -51,3 +51,10 @@ this hook for your application in Tideways "Application Settings" screen under t
 ```bash
 platform integration:add --type=webhook --url="https://app.tideways.io/api/events/external/1234/abcdefghijklmnopqrstuvwxyz1234567890"
 ```
+
+
+## Notes
+
+### Memory usage
+
+This extension adds extra memory overhead to your application and each request will require more memory. So, depending on how aggressive your `sizing_hints` are, you may need to adjust them or upgrade your plan.
