@@ -188,24 +188,43 @@ public class DataSourceConfig {
 
 ### RabbitMQ
 
-You can use [Spring JMS](https://spring.io/guides/gs/messaging-jms/) to use [RabbitMQ](/configuration/services/rabbitmq.md) with your application by first determining the RabbitMQ client programmatically.
+You can use [Spring JMS](https://spring.io/guides/gs/messaging-jms/) to use [RabbitMQ](/configuration/services/rabbitmq.md) with your application by first determining the [RabbitMQ client](https://mvnrepository.com/artifact/com.rabbitmq.jms/rabbitmq-jms) programmatically.
 
 ```java
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
-import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.jms.connection.CachingConnectionFactory;
+import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
+import org.springframework.jms.support.converter.MessageConverter;
+import org.springframework.jms.support.converter.MessageType;
+import sh.platform.config.Config;
+import sh.platform.config.RabbitMQ;
+
+import javax.jms.ConnectionFactory;
 
 @Configuration
 @EnableJms
 public class JMSConfig {
 
-    @Bean
-    public JmsListenerContainerFactory jmsListenerContainerFactory() {
+    private ConnectionFactory getConnectionFactory() {
         Config config = new Config();
-        final RabbitMQSpring rabbitMQ = config.getCredential("rabbitmq", RabbitMQSpring::new);
-        final JmsListenerContainerFactory factory = rabbitMQ.get();
-        return factory;
+        final RabbitMQ rabbitMQ = config.getCredential("rabbitmq", RabbitMQ::new);
+        return rabbitMQ.get();
+    }
+
+    @Bean
+    public MessageConverter getMessageConverter() {
+        MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
+        converter.setTargetType(MessageType.TEXT);
+        converter.setTypeIdPropertyName("_type");
+        return converter;
+    }
+
+    @Bean
+    public CachingConnectionFactory getCachingConnectionFactory() {
+        ConnectionFactory connectionFactory = getConnectionFactory();
+        return new CachingConnectionFactory(connectionFactory);
     }
 }
 ```
