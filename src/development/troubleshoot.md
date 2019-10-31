@@ -2,6 +2,18 @@
 
 <!-- toc -->
 
+## Total disk usage exceeds project maximum
+
+One of the billable parameters in your project's settings is Storage.  This global storage pool is allocated among the various services and application containers in your project via the `disk` parameter.  The sum of all `disk` parameters in your project's yaml config files must be less than or equal to the global project storage number.
+
+```
+Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing a service, or add more storage to your plan
+```
+
+This means that you have allocated, for example, `disk: 4096` in a MySQL service in `services.yaml` and also `disk: 4096` in the `.platform.app.yaml` for your application, while only having the minimum default of 5GB storage for your project as a whole.  The solution is either to lower the `disk` parameters to within the limits of 5GB of storage, or raise the global storage parameter on your project's settings to at least 10GB.  
+
+Because storage is a billable component of your project, only the project's owner can effect this change.
+
 ## Force a redeploy
 
 There are times where you might want to trigger a redeployment of your application. That can be done with the following command:
