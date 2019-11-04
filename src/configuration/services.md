@@ -78,13 +78,11 @@ All services have their system timezone set to UTC by default.  In most cases th
 
 In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml](/configuration/app-containers.md) file which configures the *relationships* between applications and services.
 
-
 ## Endpoints
 
 All services offer one or more `endpoints`.  An endpoint is simply a named set of credentials that can be used to access the service from other applications or services in your project.  Only some services support multiple user-defined endpoints.  If you do not specify one then one will be created with a standard defined name, generally the name of the service type (e.g., `mysql` or `solr`).  An application container, defined by a `.platform.app.yaml` file, always exposes and endpoint named `http` to allow the [router](/configuration/routes.md) to forward requests to it.
 
 When defining relationships in a configuration file you will always address a service as `<servicename>`:`<endpoint>`.  See the appropriate service page for details on how to configure multiple endpoints for each service that supports it.
-
 
 ## Connecting to a service
 

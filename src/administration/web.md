@@ -20,19 +20,21 @@ There is also a graphic view of your environments on the right hand side, where 
 
 The name of the environment is struck out if it's been disabled. If it has an arrow next to it, this means the environment has children.
 
-## Activity Feed
+## Environments
+
+Once you select an environment, the management console can give you a great deal of information about it.
+
+### Activity Feed
 
 The management console displays all the activity happening on your environments. You can filter messages per type.
 
 ![Environment Activity](/images/management-console/activity.png)
 
-## Header
+### Header
 
-Within a project`s environment, the management console exposes 4 main actions and 4 drop-down command options that you can use to interface with your environments.
+Within a project's environment, the management console exposes 4 main actions and 4 drop-down command options that you can use to interface with your environments.
 
 ![Header](/images/management-console/header-new.png)
-
-### Button Actions
 
 #### Branch
 
@@ -83,6 +85,7 @@ These options are provided in a separate dialog box that will appear when you cl
 Be aware that sync uses the [Backup](https://docs.platform.sh/administration/backup-and-restore.html#backups-and-downtime) mechanism and will have the same caveats.
 
 Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded.
+
 It is good practice to take a backup of your environment before performing a synchronization.
 
 #### Backup
@@ -109,8 +112,6 @@ $ platform environment:restore
 
 to restore an existing backup.
 
-### Command Pull-downs
-
 #### URLs
 
 ![Header URL](/images/management-console/header-urls.png)
@@ -134,3 +135,43 @@ The CLI pull-down displays the commands to get your project set up locally with 
 ![Header SSH](/images/management-console/header-ssh.png)
 
 The SSH pull-down display the commands to access your project over SSH.
+
+### Configuration settings
+
+From the management console you can also view information about how your routes, services, and applications are currently configured for the environment.
+
+At the top of the page, click the "Services" tab.
+
+#### Applications
+
+Select the application container on the left to show more detailed information for it on the right.
+
+![Service tab - App Overview](/images/management-console/service-tab/app-overview.png)
+
+The "Overview" tab gives you metadata information regarding the application. It tells you what size container it has been configured for, the amount of persistent disk, the number of active workers and cron jobs, as well as the command to ssh into that container.
+
+![Service tab - App Crons](/images/management-console/service-tab/app-crons.png)
+
+Each cron job associated with the application is listed with its frequency, the last time it was run, it's status, and its command.
+
+![Service tab - App Configuration](/images/management-console/service-tab/app-configuration.png)
+
+The "Configuration" tab provides an overview of the application's configuration pulled from its `.platform.app.yaml` file.
+
+#### Services
+
+Each service has a tab on the left, so select the one you are interested in.
+
+![Service tab - Service Overview](/images/management-console/service-tab/service-overview.png)
+
+The overview tab gives you metadata information regarding the service. It tells you what size container it has been configured for and the amount of persistent disk given to it in your `services.yaml` file.
+
+![Service tab - Service Configuration](/images/management-console/service-tab/service-configuration.png)
+
+The "Configuration" tab provides an overview of the service configuration that has been pulled from the `services.yaml` file.
+
+#### Routes
+
+![Service tab - Routes](/images/management-console/service-tab/routes.png)
+
+Each route will appear when you select the Routes tab on the left and describe its type and whether caching and SSI have been enabled for it.
