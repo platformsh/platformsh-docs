@@ -14,10 +14,7 @@ Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
 To specify a PHP container, use the `type` property in your `.platform.app.yaml`.
 
-```yaml
-# .platform.app.yaml
-type: "php:7.3"
-```
+{% codesnippet "/registry/images/examples/full/php.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 ## Deprecated versions
 
@@ -152,23 +149,30 @@ A number of project templates for major PHP applications are available on GitHub
 
 ### Applications
 
-* [EZ Platform](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Drupal 7](https://github.com/platformsh/template-drupal7)
-* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8](https://github.com/platformsh/template-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/platformsh-example-drupal8-multisite)
-* [Laravel](https://github.com/platformsh/template-laravel)
-* [Moodle](https://github.com/platformsh/platformsh-example-moodle)
-* [Magento 1](https://github.com/platformsh/platformsh-example-magento1)
-* [Magento 2](https://github.com/platformsh/template-magento2ce)
-* [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
-* [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
-* [WordPress](https://github.com/platformsh/template-wordpress)
-* [GravCMS](https://github.com/platformsh/platformsh-example-gravcms)
+* [Akeneo](https://github.com/platformsh-templates/akeneo)
+* [EZ Platform](https://github.com/ezsystems/ezplatform)
+* [Drupal 7](https://github.com/platformsh-templates/drupal7)
+* [Drupal 7 (Commerce Kickstart)](https://github.com/platformsh-examples/platformsh-example-drupalcommerce7)
+* [Drupal 8](https://github.com/platformsh-templates/drupal8)
+* [Drupal 8 (Multisite variant)](https://github.com/platformsh-templates/drupal8-multisite)
+* [GovCMS8](https://github.com/platformsh-templates/govcms8)
+* [Laravel](https://github.com/platformsh-templates/laravel)
+* [Moodle](https://github.com/platformsh-examples/platformsh-example-moodle)
+* [Magento 1](https://github.com/platformsh-examples/platformsh-example-magento1)
+* [Magento 2](https://github.com/platformsh-templates/magento2ce)
+* [Opigno](https://github.com/platformsh-templates/opigno)
+* [Pimcore](https://github.com/platformsh-templates/pimcore)
+* [Sculpin](https://github.com/platformsh-templates/sculpin)
+* [TYPO3](https://github.com/platformsh-templates/typo3)
+* [Wordpress](https://github.com/platformsh-templates/wordpress)
+
+### Examples
+
+* [Generic PHP application](https://github.com/platformsh-templates/php)
 
 ### Frameworks
 
-* [Amp/Aerys](https://github.com/platformsh/platformsh-example-amphp)
-* [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
-* [Symfony 3.x](https://github.com/platformsh/template-symfony3)
-* [Symfony 4.x](https://github.com/platformsh/template-symfony4)
+* [AmPHP](https://github.com/platformsh-examples/platformsh-example-amphp)
+* [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
+* [Symfony 3.x](https://github.com/platformsh-templates/symfony3)
+* [Symfony 4.x](https://github.com/platformsh-templates/symfony4)

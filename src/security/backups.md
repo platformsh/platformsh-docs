@@ -6,7 +6,7 @@ Below are details on our Recovery Point Objective (RPO) and Recovery Time Object
 
 ## Platform Professional
 
-With Platform Professional, we have enabled our clients to manage their own backup and restore functions. Please see the [snapshot and restore](/administration/snapshot-and-restore.md) page for details.
+With Platform Professional, we have enabled our clients to manage their own backup and restore functions. Please see the [backup and restore](/administration/backup-and-restore.md) page for details.
 
 **RPO**: User defined. The RPO is configured by our clients.
 

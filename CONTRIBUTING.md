@@ -49,4 +49,6 @@ The goal of Platform.sh's documentation is to help tech-savvy users self-educate
 * Favor many small PRs over larger ones.
 * Never push directly to the master branch.
 * Never merge your own PR, unless not doing so would result in customer data loss.
+* Any member of the Developer Relations team may merge a PR they didn't write, although consulting with other members of the team on larger or more consequential PRs is encouraged.
+* Typographic, formatting, and spelling fixes made through GitHub's "suggestion" feature do not count as "writing the PR", and may be merged by the reviewer if the PR author is someone outside the DevRel team.
 * If your PR relates to new support for runtime or service images, include a complementary line addressing that upgrade in the [Changelog](/src/changelog.md).

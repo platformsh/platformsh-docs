@@ -25,20 +25,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml`:
 
-```yaml
-mydatabase:
-    type: mongodb:3.6
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/mongodb.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 The minimum disk size for MongoDB is `512` (MB).
 
-In your `.platform.app.yaml`:
-
-```yaml
-relationships:
-    database: "mydatabase:mongodb"
-```
+{% codesnippet "/registry/images/examples/full/mongodb.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 
 For PHP, in your `.platform.app.yaml` add:
@@ -78,7 +69,7 @@ platform tunnel:open
 That will open an SSH tunnel to all services on your current environment, and produce output something like the following:
 
 ```text
-SSH tunnel opened on port 30000 to relationship: mongodb
+SSH tunnel opened on port 30000 to relationship: database
 SSH tunnel opened on port 30001 to relationship: redis
 ```
 

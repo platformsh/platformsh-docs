@@ -75,7 +75,7 @@ Drupal one `name: drupal`, you need to configure your `.platform/routes.yaml`
 like the following (names need to match):
 
 ```yaml
-"https://back-end.{default}/":
+"https://backend.{default}/":
     type: upstream
     upstream: "drupal:http"
 "https://{default}/":
@@ -84,13 +84,13 @@ like the following (names need to match):
 ```
 
 This will result (if we consider we are on the `http://example.com` domain):
-* `http://back-end.example.com` being served by the Drupal instance
+* `http://backend.example.com` being served by the Drupal instance
 * `http://example.com/` and all the urls below it to be served by the AngularJS
 one.
 
 > **note**
 > Subdomain routes in development environments will be accessible using three dashes (---) instead of a dot (.), e.g:
-> http://back-end---BRANCH-MACHINE_NAME-PROJECTID-.REGION.platformsh.site
+> http://backend---BRANCH-MACHINE_NAME-PROJECTID-.REGION.platformsh.site
 
 ### SSH in each application
 

@@ -23,25 +23,15 @@ If you are on one of those and require the service we suggest you [migrate](http
 
 First, declare a new service in the `services.yaml` file like so:
 
-```yaml
-files:
-    type: network-storage:1.0
-    disk: 2048
-```
+{% codesnippet "/registry/images/examples/full/network-storage.services.yaml", language="yaml" %}{% endcodesnippet %}
 
-This example creates a service named `files` that is of type `network-storage`, and gives it 2048 MB of storage total.
+This example creates a service named `files` that is of type `network-storage`, and gives it 256 MB of storage total.
 
 ## Declare the mount
 
 Second, add the following entry to your mounts list:
 
-```yaml
-mounts:
-    'my/files':
-        source: service
-        service: files
-        source_path: files
-```
+{% codesnippet "/registry/images/examples/full/network-storage.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 This block will declare a writeable mount on the application container at the path `my/files`, which will be provided by the `files` service defined above.  The `source_path` specifies the path within the network service that the mount points to.  It is often easiest to have it match the name of the mount point itself but that is not required.
 
@@ -60,13 +50,7 @@ It is also possible to have one application mount a `source_path` that is a subd
 
 app1:
 
-```yaml
-mounts:
-    'web/uploads':
-        source: service
-        service: files
-        source_path: uploads
-```
+{% codesnippet "/registry/images/examples/full/network-storage.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 app2:
 
@@ -135,7 +119,7 @@ name: 'app'
 type: 'php:7.2'
 
 relationships:
-    database: 'mysqldb:mysql'
+    database: 'db:mysql'
 
 hooks:
   # ...

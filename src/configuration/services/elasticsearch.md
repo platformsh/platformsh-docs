@@ -30,18 +30,11 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 In your `.platform/services.yaml`:
 
-```yaml
-mysearch:
-    type: elasticsearch:7.2
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/elasticsearch.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your `.platform.app.yaml`:
 
-```yaml
-relationships:
-    elasticsearch: "mysearch:elasticsearch"
-```
+{% codesnippet "/registry/images/examples/full/elasticsearch.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 
@@ -66,7 +59,7 @@ You can then use the service in a configuration file of your application with so
 The Elasticsearch 2.4 and later services offer a number of plugins.  To enable them, list them under the `configuration.plugins` key in your `services.yaml` file, like so:
 
 ```yaml
-mysearch:
+search:
     type: "elasticsearch:7.2"
     disk: 1024
     configuration:

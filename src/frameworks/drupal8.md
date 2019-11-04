@@ -2,7 +2,7 @@
 
 ## Drupal 8 and Composer
 
-The recommended way to deploy Drupal 8 on Platform.sh is to use Composer. [Composer](https://getcomposer.org/) is the PHP package management suite, and is now supported by Drupal 8 (and Drupal 7 in a pinch). There is an unofficial but well-supported Composer flavor of Drupal 8 called [Drupal Composer](https://github.com/drupal-composer/drupal-project) that we recommend.  If you use the [Drupal 8 Example Repository](https://github.com/platformsh/template-drupal8/) or select the Drupal 8 option when creating a new project from a template, that's what you will be using.
+The recommended way to deploy Drupal 8 on Platform.sh is to use Composer. [Composer](https://getcomposer.org/) is the PHP package management suite, and is now supported by Drupal 8 (and Drupal 7 in a pinch). There is an unofficial but well-supported Composer flavor of Drupal 8 called [Drupal Composer](https://github.com/drupal-composer/drupal-project) that we recommend.  If you use the [Drupal 8 Example Repository](https://github.com/platformsh-templates/drupal8/) or select the Drupal 8 option when creating a new project from a template, that's what you will be using.
 
 You can also create your own project directly from that repository and add the Platform.sh-specific configuration files.  Note that you will also need to add the Drupal.org Composer repositories to `composer.json` if you are not working from our template.
 
@@ -64,7 +64,7 @@ web
 
 Platform.sh exposes database configuration, as well as other configuration values such as a hash salt, to PHP as environment variables available either via `$_ENV` or `getenv()`.  That means you'll need to tell Drupal how to get that information.  Additionally, Drupal needs to be told where the config export directory is, where the private files directory is (which is outside of the web root), and so on.
 
-The easiest way to access that information is via a small configuration add-on we provide.  See our recommended [settings.php file](https://github.com/platformsh/template-drupal8/blob/master/web/sites/default/settings.php), which includes a file called [settings.platformsh.php](https://github.com/platformsh/template-drupal8/blob/master/web/sites/default/settings.platformsh.php).  The latter maps all Platform.sh-provided environment values to Drupal settings, either the Drupal database array or the global `$settings` object.  If run on a non-Platform.sh server this file does nothing so it is safe to always include.
+The easiest way to access that information is via a small configuration add-on we provide.  See our recommended [settings.php file](https://github.com/platformsh-templates/drupal8/blob/master/web/sites/default/settings.php), which includes a file called [settings.platformsh.php](https://github.com/platformsh-templates/drupal8/blob/master/web/sites/default/settings.platformsh.php).  The latter maps all Platform.sh-provided environment values to Drupal settings, either the Drupal database array or the global `$settings` object.  If run on a non-Platform.sh server this file does nothing so it is safe to always include.
 
 If you need to add additional Platform.sh-specific configuration, such as to enable a [Redis server](/frameworks/drupal8/redis.md) for caching, we recommend also putting it into `settings.platformsh.php`.
 
@@ -102,6 +102,6 @@ Note the `settings.php` and `settings.platformsh.php` files.  Both should be ide
 
 ## Configuring Platform.sh for Drupal
 
-The ideal `.platform.app.yaml` file will vary from project to project, and you are free to customize yours as needed.  A recommended baseline Drupal 8 configuration is listed below, and can also be found in our [Drupal 8 template project](https://github.com/platformsh/template-drupal8).
+The ideal `.platform.app.yaml` file will vary from project to project, and you are free to customize yours as needed.  A recommended baseline Drupal 8 configuration is listed below, and can also be found in our [Drupal 8 template project](https://github.com/platformsh-templates/drupal8).
 
-{% codesnippet "https://raw.githubusercontent.com/platformsh/template-drupal8/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
+{% codesnippet "https://raw.githubusercontent.com/platformsh-templates/drupal8/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}

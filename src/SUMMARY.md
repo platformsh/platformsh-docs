@@ -93,13 +93,16 @@
 
 ## Languages
 
+* [C#/.NET](languages/dotnet.md)
 * [Go](languages/go.md)
 * [Java](languages/java.md)
+  * [Frameworks](languages/java/frameworks.md)
 * [Lisp](languages/lisp.md)
 * [Node.js](languages/nodejs.md)
   * [Alternative Node.js install](languages/nodejs/nvm.md)
 * [PHP](languages/php.md)
   * [Extensions](languages/php/extensions.md)
+  * [Frameworks](languages/php/frameworks.md)
   * [Performance tuning](languages/php/tuning.md)
   * [PHP.ini settings](languages/php/ini.md)
   * [PHP-FPM sizing](languages/php/fpm.md)
@@ -142,7 +145,7 @@
 ## Administration
 
 * [Users](administration/users.md)
-* [Snapshot and restore](administration/snapshot-and-restore.md)
+* [Backup and restore](administration/backup-and-restore.md)
 * [External integrations](administration/integrations.md)
   * [Bitbucket](administration/integrations/bitbucket.md)
   * [Blackfire](administration/integrations/blackfire.md)
@@ -163,6 +166,7 @@
 ## Security and compliance
 
 * [GDPR](security/gdpr.md)
+* [SCA](security/sca.md)
 * [Data collection](security/data-collection.md)
 * [Data retention](security/data-retention.md)
 * [Data deletion](security/data-deletion.md)
@@ -198,6 +202,9 @@
   * [FAQ](frameworks/drupal8/faq.md)
 * [eZ Platform](frameworks/ez.md)
   * [Fastly](frameworks/ez/fastly.md)
+* [Hibernate](frameworks/hibernate.md)
+* [Jakarta EE](frameworks/jakarta.md)
+* [Spring](frameworks/spring.md)
 * [Symfony](frameworks/symfony.md)
   * [FAQ](frameworks/symfony/faq.md)
 * [TYPO3](frameworks/typo3.md)

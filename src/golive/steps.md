@@ -55,6 +55,12 @@ In OS X and Linux you can add that IP  to your `/etc/hosts` file.  In Windows th
 
 ![Hosts File](/images/config-files/hosts-file.png)
 
+
+Alternatively there is also an add-on for Firefox and Google Chrome that allow you to dynamically switch DNS IP addresses without modifying your `hosts` file.
+
+* [Firefox LiveHosts add-on](https://addons.mozilla.org/en-US/firefox/addon/livehosts/) 
+* [Google Chrome LiveHosts add-on](https://chrome.google.com/webstore/detail/livehosts/hdpoplemgeaioijkmoebnnjcilfjnjdi?hl=en)
+
 > **note**
 > Do not put the IP address you see here, but the one you got from the ping command.
 > *Also, remember to remove this entry after you have configured DNS!*
@@ -69,16 +75,16 @@ While not required, it's strongly recommended that you set up [health notificati
 
 ### Configure production cron tasks
 
-It's strongly recommended that you [set up automatic snapshots](/administration/snapshot-and-restore.md#automated-snapshots) and [automatic certificate renewal](/configuration/routes/https.md#automatic-certificate-renewal) cron tasks.  You will first need to set up an [API token](/development/cli/api-tokens.md) and install the CLI as part of the build hook.  Then you can easily configure the appropriate cron tasks.  The following snippet is generally sufficient but see the the links above for more details, and please modify the cron schedules listed to match your use case.
+It's strongly recommended that you [set up automatic backups](/administration/backup-and-restore.md#automated-backups) and [automatic certificate renewal](/configuration/routes/https.md#automatic-certificate-renewal) cron tasks.  You will first need to set up an [API token](/development/cli/api-tokens.md) and install the CLI as part of the build hook.  Then you can easily configure the appropriate cron tasks.  The following snippet is generally sufficient but see the the links above for more details, and please modify the cron schedules listed to match your use case.
 
 ```yaml
 crons:
-    snapshot:
-        # Take a snapshot automatically every night at 3 am (UTC).
+    backup:
+        # Take a backup automatically every night at 3 am (UTC).
         spec: '0 3 * * *'
         cmd: |
             if [ "$PLATFORM_BRANCH" = master ]; then
-                platform snapshot:create --yes --no-wait
+                platform backup:create --yes --no-wait
             fi
     renewcert:
         # Force a redeploy at 8 am (UTC) on the 14th and 28th of every month.

@@ -14,13 +14,13 @@ You will next need to include information that defines how you want your [applic
 
 An example `.platform.app.yaml` looks like this:
 
-{% codetabs name="PHP", type="php", url="https://raw.githubusercontent.com/platformsh/template-php/master/.platform.app.yaml" -%}
+{% codetabs name="PHP", type="php", url="https://raw.githubusercontent.com/platformsh-templates/php/master/.platform.app.yaml" -%}
 
-{%- language name="Go", type="js", url="https://raw.githubusercontent.com/platformsh/template-golang/master/.platform.app.yaml" -%}
+{%- language name="Go", type="js", url="https://raw.githubusercontent.com/platformsh-templates/golang/master/.platform.app.yaml" -%}
 
-{%- language name="Python", type="py", url="https://raw.githubusercontent.com/platformsh/template-python3/master/.platform.app.yaml" -%}
+{%- language name="Python", type="py", url="https://raw.githubusercontent.com/platformsh-templates/python3/master/.platform.app.yaml" -%}
 
-{% language name="Node.js", type="js", url="https://raw.githubusercontent.com/platformsh/platformsh-example-nodejs/master/.platform.app.yaml" -%}
+{% language name="Node.js", type="js", url="https://raw.githubusercontent.com/platformsh-templates/nodejs/master/.platform.app.yaml" -%}
 
 {%- endcodetabs %}
 
@@ -39,14 +39,7 @@ The `.platform.appl.yaml` file is extremely flexible, and can contain many lines
 
   Set `version` to one supported by Platform.sh, which you can find below as well as in the documentation for each language:
 
-| **Language**                     | **`runtime`** | **Supported `version`** |
-|----------------------------------|---------------|-------------------------|
-| [PHP](/languages/php.md)         | `php`         | 7.1, 7.2, 7.3           |
-| [Node.js](/languages/nodejs.md)  | `nodejs`      | 6.11, 8.9, 10           |
-| [Python](/languages/python.md)   | `python`      | 2.7, 3.5, 3.6, 3.7      |
-| [Ruby](/languages/ruby.md)       | `ruby`        | 2.3, 2.4, 2.5, 2.6      |
-| [Go](/languages/go.md)           | `golang`      | 1.11, 1.12              |
-| [Java](/languages/java.md)       | `java`        | 8, 11, 12               |
+{% include "../../registry/images/tables/runtimes_supported.md" %}
 
 * `disk`: The [disk](/configuration/app/storage.md) attribute defines that amount of persistent storage you need to have available for your application, and requires a minimum value of 256 MB.
 
@@ -54,18 +47,11 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
 * `relationships`: [Relationships](/configuration/app/relationships.md) define how services are mapped within your application. Without this block, an application cannot by default communicate with a service container. Provide a unique name for each relationship and associate it with a service. For example, if in the previous step you defined a MariaDB container in your `.platform/services.yaml` with
 
-    ```yaml
-    mysqldb:
-        type: mysql:10.2
-        disk: 256
-    ```
+    {% codesnippet "/registry/images/examples/full/mariadb.services.yaml", language="yaml" %}{% endcodesnippet %}
 
     You must define a relationship (i.e. `database`) in `.platform.app.yaml` to connect to it:
 
-    ```yaml
-    relationships:
-        database: "mysqldb:mysql"
-    ```
+    {% codesnippet "/registry/images/examples/full/mariadb.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 * [Build and deploy tasks](/configuration/app/build.md): There are a number of ways in which your Git repository is turned into a running application. In general, the build process will run the the build flavor, install dependencies, and then execute the build hook you provide. When the build process is completed, the deploy process will run the deploy hook.
 

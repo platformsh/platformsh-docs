@@ -4,7 +4,7 @@ The CLI is the official tool to use and manage your Platform.sh projects directl
 
 The source code of the CLI is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
 
-Find detailed information on [setting up a local development environment](/gettingstarted/local.md).
+Find detailed information on [setting up a local development environment](/gettingstarted/local-development.md).
 
 ## Installation
 
@@ -18,22 +18,15 @@ You can find the system requirements and more information in the [installation i
 
 ## Authentication
 
-The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will
-authenticate you with Platform.sh and show your projects. Just type this
-command to start:
+The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will authenticate you with Platform.sh and show your projects. Just type this command to start:
 
 ```bash
 platform
 ```
 
-The credentials you enter are the same as your [Platform.sh account](https://accounts.platform.sh/user).
+You will be asked to log in via a browser.
 
-> **note**
-> If you have created your account using the OAuth Login (via Bitbucket, GitHub or Google) then in order to use the Platform CLI you
-> will need to create a password, which you can do using the ['Request new password' tool](https://accounts.platform.sh/user/password)
-
-Enter your details. A list of your projects appears, along with some
-tips for getting started.
+When you are logged in, a list of your projects appears, along with some tips for getting started.
 
 **Your command-line tools are now ready to use with Platform.sh.**
 
@@ -74,6 +67,40 @@ Options:
  --no (-n)             Answer "no" to all prompts
  --shell (-s)          Launch the shell
 ```
+
+## CLI features
+
+Additional settings to control the operation of the Platform.sh CLI can be managed in the configuration file (`.platform/local/project.yaml`) or environment variables. See the [`README` for the CLI for details](https://github.com/platformsh/platformsh-cli/blob/master/README.md#usage). 
+
+## Auto-selecting your project
+
+When your shell's working directory is inside a local checkout of your project repository, the CLI will autodetect your project ID and environment so you don't need to list them as parameters each time.
+
+In your home directory, for example, you need to provide the project ID as an argument each time:
+
+```bash
+$ platform project:info --project=acdefghijkl --environment=staging
+```
+You can instead get the same result with just:
+```bash
+$ cd myproject
+$ platform project:info
+```
+
+You can also set a preferred project ID with the environment variables `PLATFORM_PROJECT`, `PLATFORM_BRANCH` and `PLATFORM_APPLICATION_NAME`.
+
+```bash
+export PLATFORM_PROJECT=acdefghijkl;
+export PLATFORM_BRANCH=staging;
+platform project:info
+```
+
+## Autocomplete on the command line
+
+Once installed, the `platform` CLI tool provides tab auto-completion for commands, options, and even some values (your projects, valid regions).
+
+> **note**
+> Your system must include the `bash-completion` package or equivalent. This is not available by default on OSX, but can be installed via `brew`. Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell. `platform self:install` will attempt a reinstall of this utility if it's needed.
 
 ## Installing the CLI on Windows 10
 

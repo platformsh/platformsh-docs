@@ -29,7 +29,7 @@ web:
 >
 > Never "background" a start process using &.  That will be interpreted as the command terminating and the supervisor process will start a second copy, creating an infinite loop until the container crashes.  Just run it as normal and allow the Platform.sh supervisor to manage it.
 
-On PHP containers this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).  On all other containers it should be treated as required.  It can also be set explicitly on a PHP container in order to run a dedicated process such as [React PHP](https://github.com/platformsh/platformsh-example-reactphp) or [Amp](https://github.com/platformsh/platformsh-example-amphp).
+On PHP containers this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).  On all other containers it should be treated as required.  It can also be set explicitly on a PHP container in order to run a dedicated process such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp) or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
 
 ## Upstream
 
@@ -252,7 +252,7 @@ gitbook-src/
 old-docs/
 ```
 
-The `application` directory contains a Python application.  The `gitbook-src` directory contains a GitBook project that is the public documentation for the application.  The `old-docs` directory contains a static HTML snapshot of legacy documentation for an older version of the application that is still needed.
+The `application` directory contains a Python application.  The `gitbook-src` directory contains a GitBook project that is the public documentation for the application.  The `old-docs` directory contains a static HTML backup of legacy documentation for an older version of the application that is still needed.
 
 Assume that the GitBook source is compiled by the build process into the `_book` directory, as in the example above.  The following `web` block will:
 

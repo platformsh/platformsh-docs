@@ -6,7 +6,7 @@
   * Elasticsearch 7.2: We now support [Elasticsearch 7.2](/configuration/services/elasticsearch.md).
   * [Elasticsearch](/configuration/services/elasticsearch.md) 5.2 and 5.4 support is now deprecated
   * Kafka 2.2: We now support [Kafka 2.2](/configuration/services/kafka.md).
-  * Java 13: We now support [Java 13](/configuration/languages/java.md).
+  * Java 13: We now support [Java 13](/languages/java.md).
 
 * **June 2019**
   * Java: We support and documented the use of [Java](/languages/java.md) runtimes 8, 11, and 12, that includes examples that use the [Java Config Reader](https://github.com/platformsh/config-reader-java/).
@@ -118,7 +118,7 @@
 * **December 2016**
   * Support Async PHP: Deploy applications like ReactPHP and Amp which allow PHP to run as a single-process asynchronous process.  Read more on our [blog post](https://platform.sh/2016/12/php-71).
   * Pthreads: Multithreaded PHP: Our PHP 7.1 containers are running PHP 7.1 ZTS, and include the Pthreads extension. Read more on our [blog post](https://platform.sh/2016/12/php-71/).
-  * PHP 7.1: Service is [documented here](https://docs.platform.sh/languages/php.html).
+  * PHP 7.1: Service is [documented here](/languages/php.md).
   * Support .environment files: This file will get sourced as a bash script by the system when a container boots up, as well as on all SSH logins. Feature is [documented here](https://docs.platform.sh/development/variables.html#shell-variables).
   * Support web.commands.start for PHP: That option wasn't available for PHP as PHP only has one applicable application runner, PHP-FPM. It is now available for PHP.  Read more on our [blog post](https://platform.sh/2016/12/app-updates-php/).
 
@@ -128,12 +128,12 @@
 * **October 2016**
 
   * PostgreSQL 9.6: Service is [documented here](https://docs.platform.sh/configuration/services/postgresql.html).
-  * PostgreSQL extensions: Read more in our [blog post](https://platform.sh/2016/11/21/postgresql-9.6-initial-release/).
-  * Node.js 6.8: Language is [documented here](https://docs.platform.sh/languages/nodejs.html).
+  * PostgreSQL extensions: Read more in our [blog post](https://platform.sh/blog/the-new-and-newer-postgresql/).
+  * Node.js 6.8: Language is [documented here](languages/nodejs.md).
 
 * **September 2016**
-  * Python 2.7 & 3.5: Language is [documented here](https://docs.platform.sh/languages/python.html).
-  * Ruby 2.3: Language is [documented here](https://docs.platform.sh/languages/ruby.html).
+  * Python 2.7 & 3.5: Language is [documented here](/languages/python.md).
+  * Ruby 2.3: Language is [documented here](/languages/ruby.md).
 
 * **August 2016**
   * Support Gitflow: Read more in our [blog post](https://platform.sh/2016/08/gitflow-is-now-supported/).
@@ -145,7 +145,7 @@
 * **June 2016**
 June update is summarized in our [blog post](https://platform.sh/2016/06/new-features-june/).
 
-  * New PLATFORM_PROJECT_ENTROPY variable: New variable which has a random value, stable throughout the project's life. It can be used for Drupal hash salt for example (in our [Drupal 8 example](https://github.com/platformsh/template-drupal8)). It is [documented here](https://docs.platform.sh/development/environment-variables.html#platformsh-variables)
+  * New PLATFORM_PROJECT_ENTROPY variable: New variable which has a random value, stable throughout the project's life. It can be used for Drupal hash salt for example (in our [Drupal 8 example](https://github.com/platformsh-templates/drupal8)). It is [documented here](https://docs.platform.sh/development/environment-variables.html#platformsh-variables)
   * Extend PLATFORM_RELATIONSHIPS variable: Expose the hostname and IP address of each service in the `PLATFORM_RELATIONSHIPS` environment variable.
   * Services updates: Update MongoDB client to 3.2.7, Node.js to 4.4.5, Blackfire plugin to 1.10.6, Nginx to 1.11.1.
 
@@ -187,7 +187,7 @@ May update is summarized in our [blog post](https://platform.sh/2016/05/new-feat
   * Documentation 3.0 release: Read more in our [blog post](https://platform.sh/2015/07/release-docs-3-0).
 
 * **June 2015**
-  * Bitbucket integration: This add-on allows you to deploy any branch or pull request on a fully isolated Platform.sh environment with a dedicated URL.  Read more in our [blog post](https://platform.sh/2015/06/release-bitbucket-add-on).
+  * Bitbucket integration: This add-on allows you to deploy any branch or pull request on a fully isolated Platform.sh environment with a dedicated URL.  Read more in Bitbucket's [blog post](https://bitbucket.org/blog/bitbucket-platform-sh-remove-the-middle-man-between-your-code-and-your-deployment).
   * PostgreSQL 9.3: Service is [documented here](https://docs.platform.sh/configuration/services/postgresql.html).
 
 * **May 2015**

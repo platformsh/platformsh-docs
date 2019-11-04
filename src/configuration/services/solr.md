@@ -26,18 +26,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-```yaml
-mysearch:
-    type: solr:8.0
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/solr.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your ``.platform.app.yaml``:
 
-```yaml
-relationships:
-    solr: "mysearch:solr"
-```
+{% codesnippet "/registry/images/examples/full/solr.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 
@@ -62,7 +55,7 @@ For Solr 4, Platform.sh supports only a single core per server called `collectio
 If you want to provide your own Solr configuration, you can add a `core_config` key in your ``.platform/services.yaml``:
 
 ```yaml
-mysearch:
+search:
     type: solr:4.10
     disk: 1024
     configuration:
@@ -72,7 +65,7 @@ mysearch:
 The `directory` parameter points to a directory in the Git repository, in or below the `.platform/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.  For example, place them in `.platform/solr/conf/` such that the `schema.xml` file is located at `.platform/solr/conf/schema.xml`.   You can then reference that path like this -
 
 ```yaml
-mysearch:
+search:
     type: solr:4.10
     disk: 1024
     configuration:
@@ -84,7 +77,7 @@ mysearch:
 For Solr 6 and later Platform.sh supports multiple cores via different endpoints.  Cores and endpoints are defined separately, with endpoints referencing cores.  Each core may have its own configuration or share a configuration.  It is best illustrated with an example.
 
 ```yaml
-solrsearch:
+search:
     type: solr:8.0
     disk: 1024
     configuration:
@@ -108,8 +101,8 @@ Each endpoint is then available in the relationships definition in `.platform.ap
 
 ```yaml
 relationships:
-    solr1: 'solrsearch:main'
-    solr2: 'solrsearch:extra'
+    solrsearch1: 'search:main'
+    solrsearch2: 'search:extra'
 ```
 
 That is, the application's environment would include a `solr1` relationship that connects to the `main` endpoint, which is the `mainindex` core, and a `solr2` relationship that connects to the `extra` endpoint, which is the `extraindex` core.
@@ -142,7 +135,7 @@ The relationships array would then look something like the following:
 For even more customizability, it's also possible to define Solr configsets.  For example, the following snippet would define one configset, which would be used by all cores.  Specific details can then be overriden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
 ```yaml
-solrsearch:
+search:
     type: solr:8.0
     disk: 1024
     configuration:
@@ -173,7 +166,7 @@ Note that not all core.properties features make sense to specify in the core_pro
 If no configuration is specified, the default configuration is equivalent to:
 
 ```yaml
-solrsearch:
+search:
     type: solr:8.0
     configuration:
         cores:

@@ -14,7 +14,7 @@ Your make file can be called: `project.make` or `drupal-org.make`.
 
 A basic make file looks like this:
 
-{% codesnippet "https://raw.githubusercontent.com/platformsh/template-drupal7/master/project.make", language="ini" %}{% endcodesnippet %}
+{% codesnippet "https://raw.githubusercontent.com/platformsh-templates/drupal7/master/project.make", language="ini" %}{% endcodesnippet %}
 
 When building as a profile, you need a make file for Drupal core called: `project-core.make`:
 

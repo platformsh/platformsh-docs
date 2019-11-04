@@ -20,18 +20,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-```yaml
-myrabbitmq:
-    type: rabbitmq:3.7
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/rabbitmq.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your ``.platform.app.yaml``:
 
-```yaml
-relationships:
-    rabbitmq: "myrabbitmq:rabbitmq"
-```
+{% codesnippet "/registry/images/examples/full/rabbitmq.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 
@@ -66,6 +59,15 @@ php -r 'print_r(json_decode(base64_decode($_ENV["PLATFORM_RELATIONSHIPS"])));'
 If your service is running on a different port, you can re-open your SSH session with the correct port by modifying your `-L` flag: `-L 5672:mq.internal:<remote port>`.
 
 Finally, while the session is open, you can launch a RabbitMQ client of your choice from your local workstation, configured to connect to `localhost:5672` using the username and password you found in the relationship variable.
+
+## Access the management plugin  (Web UI)
+In case you want to access the browser-based UI, you have to use an SSH tunnel. To open a tunnel, log into your application container like usual, but with an extra flag to enable local port forwarding:
+
+```bash
+ssh -L 15672:mq.internal:15672 <projectid>-<branch_ID>@ssh.eu.platform.sh
+```
+
+After you successfully established a connection, you should be able to open http://localhost:15672 in your browser. You'll find the credentials like mentioned above.
 
 ## From the application container
 

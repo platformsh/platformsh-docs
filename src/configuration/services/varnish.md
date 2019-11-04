@@ -24,16 +24,7 @@ web -> router -> varnish -> application
 
 Add the following to your `.platform/services.yaml` file:
 
-```yaml
-varnish:
-    type: varnish:6.0
-    relationships:
-        application: 'app:http'
-    configuration:
-        vcl: !include
-            type: string
-            path: config.vcl
-```
+{% codesnippet "/registry/images/examples/full/varnish.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In the `relationships` block, define a relationship (`application`) to the application container (`app`) using the `http` endpoint.  That allows Varnish to talk to the application container.
 
@@ -43,9 +34,9 @@ The configuration block is required, and must reference a VCL file (here `config
 
 The VCL file you provide has three specific requirements over and above the VCL syntax itself.
 
-1) You MUST NOT define a `vcl_init()` function.  Platform.sh will auto-generate that function based on the relationships you define.  In particular, it will define a "backend" for each relationship defined in `services.yaml`, named the same as the relationship.
-2) You MUST NOT include the preamble at the beginning of the file, specifying the VCL version.  That will be auto-generated as well. You CAN add imports, but not `std` and `directors`.
-3) You MUST specify the backend to use in `vcl_recv()`.  If you have a single app container/relationship/backend, it's just a single line.  If you want to split requests to different relationships/backends based on some rule then the logic for doing so should be incorporated into the `vcl_recv()` function.
+1. You MUST NOT define a `vcl_init()` function.  Platform.sh will auto-generate that function based on the relationships you define.  In particular, it will define a "backend" for each relationship defined in `services.yaml`, named the same as the relationship.
+2. You MUST NOT include the preamble at the beginning of the file, specifying the VCL version.  That will be auto-generated as well. You CAN add imports, but not `std` and `directors`.
+3. You MUST specify the backend to use in `vcl_recv()`.  If you have a single app container/relationship/backend, it's just a single line.  If you want to split requests to different relationships/backends based on some rule then the logic for doing so should be incorporated into the `vcl_recv()` function.
 
 The absolute bare minimum VCL file is:
 
@@ -60,7 +51,7 @@ Where `application` is the name of the relationship defined in `services.yaml`. 
 If you have multiple applications fronted by the same Varnish instance then you will need to include logic to determine to which application a request is forwarded.  For example:
 
 ```yaml
-varnish:
+proxy:
     type: varnish:6.0
     relationships:
         blog: 'blog:http'
@@ -95,15 +86,28 @@ To enable Varnish now, edit the `.platform/routes.yaml` file to point to the Var
 
 For example:
 
-```yaml
-"https://{default}/":
-    type: upstream
-    upstream: "varnish:http"
-    cache:
-        enabled: false
-```
+{% codesnippet "/registry/images/examples/full/varnish.routes.yaml", language="yaml" %}{% endcodesnippet %}
 
 That will map all incoming requests to the Varnish service rather than the application.  Varnish will then, based on the VCL file, forward requests to the application as appropriate.
+
+## Modules
+
+Platform.sh supports a number of optional modules you can include in your VCLs, namely:
+
+* cookie
+* header
+* saintmode
+* softpurge
+* tcp
+* var
+* vsthrottle
+* xkey
+
+To use in your VCL, add an import such as:
+
+```
+import xkey;
+```
 
 ## Circular relationships
 
@@ -113,10 +117,7 @@ At this time Platform.sh does not support circular relationships between service
 
 The Varnish service also offers an `http+stats` endpoint, which provides access to some Varnish analysis and debugging tools.  To access it, from a dedicated app container add the following to `.platform.app.yaml`:
 
-```yaml
-relationships:
-    varnishstats: `varnish:http+stats`
-```
+{% codesnippet "/registry/images/examples/full/varnish.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then access the `varnishstats` relationship over HTTP at the following paths to get diagnostic information:
 

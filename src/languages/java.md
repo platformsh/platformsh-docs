@@ -12,12 +12,9 @@ Java is a general-purpose programming language, and one of the most popular in t
 * 12
 * 13
 
-To select a Java version, specify a `type` such as `java:13`:
+To specify a Java container, use the `type` property in your `.platform.app.yaml`.
 
-```yaml
-# .platform.app.yaml
-type: "java:13"
-```
+{% codesnippet "/registry/images/examples/full/java.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 ## Support libraries
 
@@ -65,14 +62,19 @@ A number of project templates for major Java applications are available on GitHu
 
 #### Spring
 
-* [Spring Boot MySQL](https://github.com/platformsh/template-spring-boot-maven-mysql)
-* [Spring Boot MongoDB](https://github.com/platformsh/template-spring-mvc-maven-mongodb)
+* [Spring Boot MySQL](https://github.com/platformsh-templates/spring-boot-maven-mysql)
+* [Spring Boot MongoDB](https://github.com/platformsh-templates/spring-mvc-maven-mongodb)
 
-#### Eclipse MicroProfile
+#### Jakarta EE/ Eclipse MicroProfile
 
-* [Apache Tomee](https://github.com/platformsh/template-microprofile-tomee)
-* [Thorntail](https://github.com/platformsh/template-microprofile-thorntail)
-* [Payara Micro](https://github.com/platformsh/template-microprofile-payara)
-* [KumuluzEE](https://github.com/platformsh/template-microprofile-kumuluzee)
-* [Helidon](https://github.com/platformsh/template-microprofile-helidon)
-* [Open Liberty](https://github.com/platformsh/template-microprofile-openliberty)
+* [Apache Tomee](https://github.com/platformsh-templates/microprofile-tomee)
+* [Thorntail](https://github.com/platformsh-templates/microprofile-thorntail)
+* [Payara Micro](https://github.com/platformsh-templates/microprofile-payara)
+* [KumuluzEE](https://github.com/platformsh-templates/microprofile-kumuluzee)
+* [Helidon](https://github.com/platformsh-templates/microprofile-helidon)
+* [Open Liberty](https://github.com/platformsh-templates/microprofile-openliberty)
+
+## Other Frameworks
+
+* [Micronaut](https://github.com/platformsh-templates/micronaut)
+* [Jettry](https://github.com/platformsh-templates/jetty)

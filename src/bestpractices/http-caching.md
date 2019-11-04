@@ -2,7 +2,7 @@
 
 There are several different "levels" at which you could configure HTTP caching for your site on Platform.sh.  Which one you want to use depends on your specific use case.  You should use only one of these at a time and disable any others.  Mixing them together will most likely result in stale and unclearable caches.
 
-* **The Platform.sh [Router cache](/configuration/routes.cache.md)**.  Every project includes a router instance, which includes optional HTTP caching.  It is reasonably configurable and obeys HTTP cache directives, but does not support push-based clearing.  If you are uncertain what caching tool to use, start with this one.  It is more than sufficient for the majority of use cases.
+* **The Platform.sh [Router cache](/configuration/routes/cache.md)**.  Every project includes a router instance, which includes optional HTTP caching.  It is reasonably configurable and obeys HTTP cache directives, but does not support push-based clearing.  If you are uncertain what caching tool to use, start with this one.  It is more than sufficient for the majority of use cases.
 
 * **A Content Delivery Network (CDN)**.  Platform.sh is compatible with most commercial CDNs.  If your Platform.sh Enterprise project has a Dedicated production environment it will typically come with the [Fastly CDN](/golive/steps/fastly.md).  A CDN will generally offer the best performance as it is the only option that includes multiple geographic locations, but it also tends to be the most expensive.  Functionality will vary widely depending on the CDN.  Setup instructions for Fastly and [Cloudflare](/golive/steps/cloudflare.md) are available, and will be similar for most other CDNs.
 
@@ -16,4 +16,4 @@ Note that this refers only to HTTP level caching.  Many applications have an int
 
 HTTP-based caching systems generally default to including cookie values in cache keys so as to avoid serving authenticated content to the wrong user.  While a safe default, it also has the side effect that *any* cookie will effectively disable the cache, including mundane cookies like analytics.  
 
-The solution is to whitelist the cookies that should impact the cache and include only the application session cookie(s).  For the Router cache see [our documentation](/configuration/routes.cache.md#cookies).  For other cache systems consult their documentation.
+The solution is to whitelist the cookies that should impact the cache and include only the application session cookie(s).  For the Router cache see [our documentation](/configuration/routes/cache.md#cookies).  For other cache systems consult their documentation.

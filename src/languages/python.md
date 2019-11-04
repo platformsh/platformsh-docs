@@ -19,10 +19,7 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
 1. Specify the language of your application (available versions are listed above):
 
-    ```yaml
-    # .platform.app.yaml
-    type: "python:3.7"
-    ```
+    {% codesnippet "/registry/images/examples/full/python.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 2. Build your application with the build hook. Assuming you have your pip dependencies stored in `requirements.txt` and a `setup.py` at the root of your application folder to execute build steps:
 
@@ -170,9 +167,19 @@ To access various [services](/configuration/services.md) with Python, see the fo
 
 A number of project templates for Python applications are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
-* [Starter kit Python 2.7 minimal example](https://github.com/platformsh/platformsh-example-python-2.7)
-* [Starter kit Python 3 minimal example](https://github.com/platformsh/platformsh-example-python-3)
-* [Starter kit Python with uwsgi](https://github.com/platformsh/platformsh-example-python-uwsgi)
-* [Starter kit Python and Elastic Search](https://github.com/platformsh/platformsh-example-python-elasticsearch)
-* [Starter kit Django 1 project](https://github.com/platformsh/template-django1)
-* [Starter kit Django 2 project](https://github.com/platformsh/template-django2)
+### Examples
+
+* [Python UWSGI with Unix Sockets](https://github.com/platformsh-templates/python3-uwsgi)
+
+### Frameworks
+
+* [Django 1](https://github.com/platformsh-templates/django1)
+* [Django 2](https://github.com/platformsh-templates/django2)
+* [Flask](https://github.com/platformsh-templates/flask)
+
+### Applications
+
+* [Moin Moin](https://github.com/platformsh-templates/moinmoin)
+* [Pelican](https://github.com/platformsh-templates/pelican)
+* [Pyramid](https://github.com/platformsh-templates/pyramid)
+* [Wagtail](https://github.com/platformsh-templates/wagtail)

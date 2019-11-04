@@ -4,7 +4,7 @@ Platform.sh provides a responsive management console which allows you to interac
 
 ![Management Console](/images/management-console/project.png)
 
-Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)](/gettingstarted/cli.md).
+Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)](/development/cli.md).
 
 > Platform.sh recently launched a new web management console.  This documentation refers to the new console.  To access the legacy user interface select the user drop-down in the top right and click `Legacy` under the "Console mode" option.  [Documentation for the legacy interface](https://pr-1068-yzlkgby-t2llqeifuhpzg.eu.platform.sh/administration/web.html) is still available until it is fully retired.
 
@@ -82,17 +82,17 @@ These options are provided in a separate dialog box that will appear when you cl
 
 ![sync confirmation cli](/images/management-console/header-sync-box.png)
 
-Be aware that sync uses the [Snapshot](https://docs.platform.sh/administration/snapshot-and-restore.html#snapshots-and-downtime) mechanism and will have the same caveats.
+Be aware that sync uses the [Backup](https://docs.platform.sh/administration/backup-and-restore.html#backups-and-downtime) mechanism and will have the same caveats.
 
 Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded.
-It is good practice to take a snapshot of your environment before performing a synchronization.
+
+It is good practice to take a backup of your environment before performing a synchronization.
 
 #### Backup
 
 ![Header Backup](/images/management-console/header-backup.png)
 
-Creating a snapshot for an environment means saving a copy of the database so that it can be restored (in other words, create a backup). You will see the snapshot in the activity feed of you environment in the Platform.sh management console where you can trigger the restore by
-clicking on the `restore` link.
+Creating a backup for an environment means saving a copy of the database so that it can be restored. You will see the backup in the activity feed of you environment in the Platform.sh management console where you can trigger the restore by clicking on the `restore` link.
 
 After clicking `Backup` a dialog box will appear that will provide commands to execute future merges from the command line using the Platform.sh CLI.
 
@@ -104,13 +104,13 @@ You can also use the CLI with:
 $ platform environment:backup
 ```
 
-to create a snapshot,
+to create a backup, and
 
 ```bash
 $ platform environment:restore
 ```
 
-and to restore an existing snapshot.
+to restore an existing backup.
 
 #### URLs
 

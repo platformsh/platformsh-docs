@@ -30,10 +30,10 @@ It is also possible to install additional system-level dependencies as part of t
 Platform.sh supports pulling any dependencies for the following languages:
 
 * PHP (via [Composer](https://getcomposer.org/))
-* Python 2 and 3 (via [Pip](https://packaging.python.org/installing/))
+* Python 2 and 3 (via [Pip](https://packaging.python.org/tutorials/installing-packages/))
 * Ruby (via [Bundler](https://bundler.io/))
 * Node.js (via [NPM](https://www.npmjs.com/))
-* Java (via [Maven](https://maven.apache.org/), with Ant support)
+* Java (via [Apache Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), or [Apache Ant](https://ant.apache.org/))
 
 ### Python dependencies
 
@@ -94,6 +94,8 @@ Hooks are executed using the dash shell, not the bash shell used by normal SSH l
 ### Build hook
 
 The `build` hook is run after the build flavor (if any).  The file system is fully writable, but no services are available (such as a database) nor any persistent file mounts, as the application has not yet been deployed. Environment variables that exist only at runtime such as `PLATFORM_BRANCH`, `PLATFORM_DOCUMENT_ROOT` etc. are not available during this phase. The full list of build time and runtime variables is available on the [variables page](/development/variables.md#platformsh-provided-variables).
+
+There are no constraints on what can be downloaded during your build hook except for the amount of disk available at that time. Independent of the mounted disk size you have allocated for deployment, build environments and therefore application images are limited to 4 GB during the build phase. If you exceed this limit you will receive a `No space left on device` error. It is possible to increase this limit in certain situations, but it will be necessary to open a support ticket in order to do so. Consult the [Troubleshooting](/development/troubleshoot.md#no-space-left-on-device) guide for more information on this topic.
 
 ### Deploy hook
 
