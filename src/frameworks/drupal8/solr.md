@@ -122,7 +122,22 @@ You can now generate a `config.zip` file using the button at the top of the page
 
 Inside that directory, locate the `solrcore.properties` file.  In that file, *delete* the entry for `solr.install.dir`.  Its default value will not work and it is not required for Solr to operate.  (The server already knows its installation directory.)
 
-Add the new directory to Git, commit, and push.
+Finally, move that directory to `.platform/`, and update the `conf_dir` to point to it.  The `services.yaml` entry should now look approximately like this:
+
+```yaml
+search:
+    type: solr:8.0
+    disk: 1024
+    configuration:
+        cores:
+            maincore:
+                conf_dir: !archive "solr_8.x_config/
+        endpoints:
+            main:
+                core: maincore
+```
+
+Add the new directory and updated `services.yaml` to Git, commit, and push.
 
 > **note**
 >
