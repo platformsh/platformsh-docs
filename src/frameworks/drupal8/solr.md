@@ -17,6 +17,9 @@ You will need to add the [Search API](https://www.drupal.org/project/search_api)
 ```bash
 $ composer require drupal/search_api_solr
 ```
+> **note**
+>
+> Please note there is an active issue with Search API Solr where you have to update Solarium to 5.1.x. No core patch is available yet, so this is a temporary solution awaiting a more structural one.
 
 And then commit the changes to `composer.json` and `composer.lock`.
 
@@ -109,6 +112,8 @@ In the Drupal admin area, go to `/admin/config/search/search-api` and select you
 You can now generate a `config.zip` file using the button at the top of the page.  That will produce a Solr configuration that is customized for your current field configuration.  Extract the file into the `.platform` directory of your site.  It should unpack into a directory named `solr_8.x_config` or similar.
 
 Inside that directory, locate the `solrcore.properties` file.  In that file, *delete* the entry for `solr.install.dir`.  Its default value will not work and it is not required for Solr to operate.  (The server already knows its installation directory.)
+
+A final modification would be to change the `conf_dir` in `services.yaml`. This should redirect to the directory you just created above, `conf_dir: !archive "solr_8.x_config/"` or similar.
 
 Add the new directory to Git, commit, and push.
 
