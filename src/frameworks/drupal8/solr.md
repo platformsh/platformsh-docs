@@ -131,7 +131,7 @@ search:
     configuration:
         cores:
             maincore:
-                conf_dir: !archive "solr_8.x_config/
+                conf_dir: !archive "solr_8.x_config/"
         endpoints:
             main:
                 core: maincore
