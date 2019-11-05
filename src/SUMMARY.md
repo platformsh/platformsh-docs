@@ -179,6 +179,7 @@
 
 ## Featured frameworks
 
+* [Deploy on Platform.sh](frameworks/deploy-button.md)
 * [Drupal 7](frameworks/drupal7.md)
   * [Developing with Drupal](frameworks/drupal7/developing-with-drupal.md)
   * [Using Composer Manager](frameworks/drupal7/composer-manager.md))
