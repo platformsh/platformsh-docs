@@ -10,6 +10,18 @@ Advanced Solr service configuration and implementation in other frameworks other
 
 ## Steps
 
+### 0. Upgrade Symfony Event Dispatcher
+
+If you are running Drupal older than 8.9.0, a small workaround will be needed.  The Solarium library used by Search API Solr requires the 4.3 version of the Symfony Event Dispatcher, whereas Drupal core ships with 3.4.  The Search API Solr issue queue has a [more detailed description](https://www.drupal.org/project/search_api_solr/issues/3085196) of the problem.
+
+As noted there, the workaround for now is to run:
+
+```
+composer require symfony/event-dispatcher:"4.3.4 as 3.4.99"
+```
+
+in your project root and commit the resulting change to `composer.json` and `composer.lock`.  That will cause Composer to install the 4.3 version of Event Dispatcher.  Once [this issue](https://www.drupal.org/project/drupal/issues/2876675) is resolved in core this step will no longer be necessary.
+
 ### 1. Add the Drupal modules
 
 You will need to add the [Search API](https://www.drupal.org/project/search_api) and [Search API Solr](https://www.drupal.org/project/search_api_solr) modules to your project. If you are using composer, the easiest way to add them is to simply run:
@@ -110,7 +122,22 @@ You can now generate a `config.zip` file using the button at the top of the page
 
 Inside that directory, locate the `solrcore.properties` file.  In that file, *delete* the entry for `solr.install.dir`.  Its default value will not work and it is not required for Solr to operate.  (The server already knows its installation directory.)
 
-Add the new directory to Git, commit, and push.
+Finally, move that directory to `.platform/`, and update the `conf_dir` to point to it.  The `services.yaml` entry should now look approximately like this:
+
+```yaml
+search:
+    type: solr:8.0
+    disk: 1024
+    configuration:
+        cores:
+            maincore:
+                conf_dir: !archive "solr_8.x_config/"
+        endpoints:
+            main:
+                core: maincore
+```
+
+Add the new directory and updated `services.yaml` to Git, commit, and push.
 
 > **note**
 >
