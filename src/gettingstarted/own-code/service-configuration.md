@@ -18,7 +18,7 @@ Now you will need to include information that will tell Platform.sh how you want
 
 {% codesnippet "https://raw.githubusercontent.com/platformsh/language-examples/master/.platform/services.yaml", language="yaml" %}{% endcodesnippet %}
 
-If you're application does not use any services at this point then you can leave it blank, but it must exist in your repository to run on Platform.sh. If your application does use a database or other services, you can configure them with the following attributes:
+If your application does not use any services at this point then you can leave it blank, but it must exist in your repository to run on Platform.sh. If your application does use a database or other services, you can configure them with the following attributes:
 
 * `name`: Provide a name for the service, so long as it is alphanumeric. If your application requires multiple services of the same type, make sure to give them different names so that your data from one service is never overwritten by another.
 
