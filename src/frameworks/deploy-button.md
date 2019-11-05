@@ -1,6 +1,6 @@
 # Deploy on Platform.sh
 
-Platform.sh offers a number of project templates as part of the project setup wizard to make bootstrapping a new project easy.  However, you can also create arbitrary links to spawn projects on Platform.sh from an arbitrary Git repository or prepared template.
+Platform.sh offers a number of project templates as part of the Project Creation Wizard to make bootstrapping a new project easy.  However, you can also create arbitrary links to spawn projects on Platform.sh from an arbitrary Git repository or prepared template.
 
 There are two ways to create such a link, shown below.  In each case, when a user clicks on the link they will be redirected to create a new Platform.sh project, with the template selection step skipped in favor of the template specified.  If the user does not have a Platform.sh account yet they will be prompted to create one.
 
@@ -14,7 +14,7 @@ Create a link in the following form:
 https://console.platform.sh/projects/create-project?template=GIT_URL
 ```
 
-Where GIT_URL is the URL of a publicly-visible Git repository.  For example, to install Platform.sh's [Drupal 8 template on GitHub](https://github.com/platformsh-templates/drupal8) you would use:
+Where `GIT_URL` is the URL of a publicly-visible Git repository.  For example, to install Platform.sh's [Drupal 8 template on GitHub](https://github.com/platformsh-templates/drupal8) you would use:
 
 ```
 https://console.platform.sh/projects/create-project/?template=https://github.com/platformsh-templates/drupal8.git
@@ -22,7 +22,7 @@ https://console.platform.sh/projects/create-project/?template=https://github.com
 
 (Note that is the URL of the Git repository as if you were cloning it, NOT the URL of the repository's home page on GitHub.)
 
-A new project will be created, initialized with whatever code is at the tip of the `master` branch of that repository.  This method will work for any publicly-visible Git repository, provided that it includes the necessary Platform.sh YAML configuration files.  If those are missing the project will still initialize but fail to build.
+A new project will be created and then initialized with whatever code is at the tip of the `master` branch of that repository.  This method will work for any publicly-visible Git repository, provided that it includes the necessary Platform.sh YAML configuration files.  If those are missing the project will still initialize but fail to build.
 
 ## Defined Template
 
@@ -32,7 +32,7 @@ Create a link in the following form:
 https://console.platform.sh/projects/create-project?template=TEMPLATE_URL
 ```
 
-Where TEMPLATE_URL is the URL of a publicly-visible template definition file.  A template definition file is a YAML file that references a Git repository but can also include additional information, such as limiting the resulting project to a certain minimum project size or only allowing it to be deployed in certain regions.  Use this mechanism when you want more control over how the template gets deployed.
+Where `TEMPLATE_URL` is the URL of a publicly-visible template definition file.  A template definition file is a YAML file that references a Git repository but can also include additional information, such as limiting the resulting project to a certain minimum project size or only allowing it to be deployed in certain regions.  Use this mechanism when you want more control over how the template gets deployed.
 
 For example, to install Platform.sh's [Drupal 8 template](https://github.com/platformsh-templates/drupal8) you would use:
 
