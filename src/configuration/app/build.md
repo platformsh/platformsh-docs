@@ -103,7 +103,7 @@ The `deploy` hook is run after the application container has been started, but b
 
 Be aware: The deploy hook blocks the site accepting new requests.  If your deploy hook is only a few seconds then incoming requests in that time are paused and will continue when the hook completes, effectively appearing as the site just took a few extra seconds to respond.  If it takes too long, however, requests cannot be held and will appear as dropped connections.  Only run tasks in your deploy hook that have to be run exclusively, such as database schema updates or some types of cache clear.  A post-deploy task that can safely run concurrently with new incoming requests should be run as a `post_deploy` hook instead.
 
-After a Git push, you can see the results of the `deploy` hook in the `/var/log/deploy.log` file when logged in to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
+After a Git push, in addition to the log shown in the activity log, you can see the results of the `deploy` hook in the `/var/log/deploy.log` file when logged in to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
 
 ```bash
 [2014-07-03 10:03:51.100476] Launching hook 'cd public ; drush -y updatedb'.
@@ -121,7 +121,7 @@ The `post_deploy` hook functions exactly the same as the `deploy` hook, but afte
 
 What is "safe" to run in a `post_deploy` hook vs. in a `deploy` hook will vary by the application.  Often times content imports, some types of cache warmups, and other such tasks are good candidates for a `post_deploy` hook.
 
-The `post_deploy` hook logs to its own file, `/var/log/post-deploy.log`.
+The `post_deploy` hook logs to its own file in addition to the activity log, `/var/log/post-deploy.log`.
 
 ## How do I compile Sass files as part of a build?
 

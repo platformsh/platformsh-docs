@@ -272,12 +272,12 @@ Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
 
 It means the build has completed successfully and the system is trying to deploy.  If that line never appears then it means the build is stuck.
 
-For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed.  In some regions the build will self-terminate after one hour.  In other regions (US and EU) the build will need to be killed by our support team.
+For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed.  In most regions the build will self-terminate after one hour.  In older regions (US and EU) the build will need to be killed by our support team.
 
 When a _deployment_ is blocked, you should try the following:
 
-1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id showned by `ps afx`.
-2. If you're performing "Sync", "Merge", or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
+1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id showned by `ps afx`.
+2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
 
 ## Slow or failing build or deployment
 
