@@ -14,11 +14,7 @@ The heuristic is based on three input parameters:
 
 The number of workers is calculated as:
 
-```
-             / ContainerMemory - ReservedMemory   \
-workers = max|---------------------------------, 2|
-             \           RequestMemory            /
-```
+![PHP FPM Worker Heuristic](/images/equations/phpfpmworkers.png)
 
 ## Defaults
 
@@ -61,7 +57,7 @@ tail -n5000 /var/log/php.access.log | awk '{print $6}' | sort -n | uniq -c
 This will print out a table of how many requests used how much memory, in KB, for the last 5000 requests that reached PHP-FPM.  (On an especially busy site you may need to increase that number).  As an example, consider the following output:
 
 ```
-      1 
+      1
    4800 2048
     948 4096
     785 6144
