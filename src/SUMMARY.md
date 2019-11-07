@@ -244,7 +244,6 @@
   * [SSH](dedicated/support/ssh-agent.md)
   * [SSL](dedicated/support/ssl.md)
   * [Integrations](dedicated/support/integrations.md)
-* [Frameworks](dedicated/frameworks.md)
-  * [ez Platform](dedicated/frameworks/ez.md)
-  * [ez Platform - Fastly](dedicated/frameworks/ez/fastly.md)
+
+
 * [Changelog](changelog.md)
