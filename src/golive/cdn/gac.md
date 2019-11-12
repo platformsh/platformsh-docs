@@ -1,4 +1,4 @@
-## Global Application Cache (Dual-CDN)
+# Global Application Cache (Dual-CDN)
 
 A common configuration we recommend is to split CDN traffic between Fastly for dynamic content and CloudFront for static content, branded as our Global Application Cache.  Fastly offers far greater flexibility while CloudFront offers a better cost-per-megabyte.  However, this configuration requires application-level changes to ensure generated asset URLs point to the CloudFront CDN.  While Platform.sh provides recommendations for major applications on how to configure them accordingly, doing so is the customer's responsibility.
 
