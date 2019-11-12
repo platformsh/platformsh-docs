@@ -26,7 +26,11 @@ You can make changes to the type of plan, the number of environments, amount of 
 
 You can find more information on pricing on the [pricing page](https://platform.sh/pricing).
 
-## 2. Configure your DNS provider
+## 2. (CDN version) Configure your DNS provider
+
+If you are serving the site through a CDN, configure your DNS provider to point at your CDN account.  The address or CNAME to set for that will vary with the CDN provider.  Refer to their documentation or to the [CDN guide](/golive/cdn.md).
+
+## 2. (Non-CDN version) Configure your DNS provider
 
 Configure your DNS provider to point your domain to your Platform.sh Master environment domain name.
 
@@ -40,12 +44,9 @@ Note that depending on your registrar and the TTL you set, it could take anywher
 
 If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records](/golive/steps/dns.md).
 
-> **note**
-> If you are using a CDN, do not point the domain name at Platform.sh.  Point it at your CDN instead.
-
 ## 3. (Non-CDN version) Set your domain in Platform.sh
 
-This is a required step, it will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
+This is a required step, as it will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
 
 You can add multiple domains to point to your project. Each domain can have its own custom SSL certificate, or use the default one provided.
 
@@ -55,9 +56,9 @@ To get the IP address, first run `platform environment:info edge_hostname`.  Tha
 
 In OS X and Linux you can add that IP  to your `/etc/hosts` file.  In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`. You will need to be a admin user to be able to change that file. So in OS X you will usually run something like `sudo vi /etc/hosts`. After adding the line the file will look something like:
 
+If using a CDN, skip this step.  The CDN should already have been configured in advance to point to Platform.sh as its upstream.
 
 ![Hosts File](/images/config-files/hosts-file.png)
-
 
 Alternatively there is also an add-on for Firefox and Google Chrome that allow you to dynamically switch DNS IP addresses without modifying your `hosts` file.
 
@@ -69,10 +70,6 @@ Alternatively there is also an add-on for Firefox and Google Chrome that allow y
 > *Also, remember to remove this entry after you have configured DNS!*
 
 Sometimes it can take Let's Encrypt a couple of minutes to provision the certificate the first time. This is normal, and only means the first deploy after enabling a domain may take longer than usual.  Setting the CNAME record with your DNS provider first helps to minimize that disruption.
-
-## 3. (CDN version) Point your CDN at Platform.sh
-
-If you are using a CDN, do not set a domain name on Platform.sh.  Instead, point your CDN at the Platform.sh master branch.  Run `platform environment:info edge_hostname` to get the domain name to use.  Consult your CDN's documentation for how to set the CDN's upstream address.
 
 ## 4. Bonus steps (Optional)
 

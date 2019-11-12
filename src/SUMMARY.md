@@ -236,7 +236,6 @@
   * [Options](dedicated/architecture/options.md)
 * [Launching](dedicated/launch.md)
   * [Transferring data](dedicated/launch/transfer.md)
-  * [Prelaunch](dedicated/launch/prelaunch.md)
 * [Support](dedicated/support.md)
   * [Differences from the Grid](dedicated/support/ps.md)
   * [SSH](dedicated/support/ssh-agent.md)

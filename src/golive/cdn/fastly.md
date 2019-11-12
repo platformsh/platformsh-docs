@@ -1,4 +1,4 @@
-# (Optional) Fastly configuration
+# Fastly configuration
 
 In some cases you may want to opt to use a CDN such as Fastly rather than the Platform.sh router's cache.  Using a CDN can offer a better time-to-first-byte for cached content across a wider geographic region at the cost of the CDN service.
 
@@ -12,7 +12,9 @@ Note that individual applications may have their own Fastly setup instructions o
 
 Rather than create a DNS CNAME for your Platform.sh master branch (for instance `master-7rqtwti-qwertyqwerty.eu.platform.sh`), [configure Fastly](https://docs.fastly.com/guides/basic-configuration/working-with-domains) to respond to requests for your domain name and to treat the Platform.sh master branch as its backend server.  Be sure to enable TLS for the backend connection to Platform.sh.  Then configure your DNS to point your domain at Fastly instead.  See the [Fastly documentation](https://docs.fastly.com/guides/basic-configuration/connecting-to-origins) for further details.
 
-Note that you will still need to configure the domain on Platform.sh for it to respond to requests properly.
+## DNS TXT records
+
+If using the Fastly CDN that is included with a Platform.sh Enterprise subscription, You will need to obtain a DNS TXT record from your Customer Support Engineer prior to going live.  You will need to enter that as a DNS TXT record with your domain registrar.  This step should be done well in advance of the actual go-live.
 
 ## Anycast
 
