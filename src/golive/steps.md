@@ -46,7 +46,10 @@ If you are using an apex domain (`example.com`), see the additional information 
 
 ## 3. (Non-CDN version) Set your domain in Platform.sh
 
-This is a required step, as it will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
+> **note**
+> If using a CDN, skip this step.  The CDN should already have been configured in advance to point to Platform.sh as its upstream.
+
+This step will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
 
 You can add multiple domains to point to your project. Each domain can have its own custom SSL certificate, or use the default one provided.
 
@@ -55,8 +58,6 @@ If you require access to the site before the domain name becomes active you can 
 To get the IP address, first run `platform environment:info edge_hostname`.  That will print the "internal" domain name for your project.  Run `ping <that domain name>` to get its IP address.
 
 In OS X and Linux you can add that IP  to your `/etc/hosts` file.  In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`. You will need to be a admin user to be able to change that file. So in OS X you will usually run something like `sudo vi /etc/hosts`. After adding the line the file will look something like:
-
-If using a CDN, skip this step.  The CDN should already have been configured in advance to point to Platform.sh as its upstream.
 
 ![Hosts File](/images/config-files/hosts-file.png)
 

@@ -134,12 +134,13 @@
 ## Going Live
 
 * [Pre-Launch Checklist](/golive/checklist.md)
-* [About going live](/golive/steps.md)
+* [Go-live steps](/golive/steps.md)
   * [DNS and CNAMEs](/golive/steps/dns.md)
   * [Custom TLS](/golive/steps/tls.md)
-* [Content Delivery Network](golive/cdn.md)
+* [Content Delivery Networks](golive/cdn.md)
     * [Fastly](/golive/cdn/fastly.md)
     * [Cloudflare](/golive/cdn/cloudflare.md)
+    * [Global Application Cache](/golive/cdn/gac.md)
 * [Troubleshooting](/golive/troubleshoot.md)
 * [Example](/golive/example.md)
 
