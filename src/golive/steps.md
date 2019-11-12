@@ -40,7 +40,10 @@ Note that depending on your registrar and the TTL you set, it could take anywher
 
 If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records](/golive/steps/dns.md).
 
-## 3. Set your domain in Platform.sh
+> **note**
+> If you are using a CDN, do not point the domain name at Platform.sh.  Point it at your CDN instead.
+
+## 3. (Non-CDN version) Set your domain in Platform.sh
 
 This is a required step, it will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
 
@@ -66,6 +69,10 @@ Alternatively there is also an add-on for Firefox and Google Chrome that allow y
 > *Also, remember to remove this entry after you have configured DNS!*
 
 Sometimes it can take Let's Encrypt a couple of minutes to provision the certificate the first time. This is normal, and only means the first deploy after enabling a domain may take longer than usual.  Setting the CNAME record with your DNS provider first helps to minimize that disruption.
+
+## 3. (CDN version) Point your CDN at Platform.sh
+
+If you are using a CDN, do not set a domain name on Platform.sh.  Instead, point your CDN at the Platform.sh master branch.  Run `platform environment:info edge_hostname` to get the domain name to use.  Consult your CDN's documentation for how to set the CDN's upstream address.
 
 ## 4. Bonus steps (Optional)
 
