@@ -242,7 +242,6 @@
   * [Differences from the Grid](dedicated/support/ps.md)
   * [SSH](dedicated/support/ssh-agent.md)
   * [SSL](dedicated/support/ssl.md)
-  * [Integrations](dedicated/support/integrations.md)
 
 
 * [Changelog](changelog.md)

@@ -2,7 +2,7 @@
 
 Platform.sh supports [New Relic APM](https://newrelic.com/products/application-monitoring).
 
-## Get Started
+## On a Grid plan
 
 ### 1. Get your license key
 
@@ -35,6 +35,10 @@ git push
 ```
 
 That's it! You need to wait a little bit for your New Relic dashboard to be generated.
+
+## On a Dedicated cluster
+
+Sign up at [https://newrelic.com](https://newrelic.com/signup) and get your license key.  Then open a support ticket and let us know what your key is.  Our support team will install it and let you know when it is complete.
 
 ## Troubleshoot
 

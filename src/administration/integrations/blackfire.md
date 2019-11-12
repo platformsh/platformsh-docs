@@ -14,7 +14,7 @@ For a high level overview and demo of Blackfire, check out the [full video tutor
 
 Check the latest versions of the probe and CLI tool on [Blackfire's documentation](https://blackfire.io/docs/up-and-running/upgrade#latest-versions).
 
-## Get Started
+## On a Grid plan
 
 ### 1. Get your credentials
 
@@ -88,13 +88,29 @@ Num of CPU => 8
 ...
 ```
 
-## Profile
+## On a Dedicated cluster
+
+**Sign up for the free 15 days Premium trial** at [blackfire.io](https://blackfire.io/pricing) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld) or [Firefox](https://addons.mozilla.org/firefox/addon/blackfire/)).
+
+Then open a support ticket with the Backfire server ID and token.  The client ID and token is optional.  Our support team will install it for you.
+
+Note, Blackfire integration works only on profiling your cluster via the URL to the origin. Do not profile your site going through the CDN.
+
+## Profiling web requests
 
 Access your site via your browser and click `Profile` in the Blackfire Companion.
 
 ![Blackfire Companion](/images/integrations/blackfire/blackfire-companion.png)
 
 That's it! Your site will be profiled and you should get all the results in your Blackfire account.
+
+## Profiling CLI commands
+
+To profile your PHP CLI scripts, use the following command line:
+
+```
+blackfire --config /etc/platform/$USER/blackfire.ini <command>
+```
 
 ## Going further with Blackfire
 
