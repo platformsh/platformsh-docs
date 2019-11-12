@@ -240,7 +240,6 @@
   * [launch](dedicated/launch/launch.md)
 * [Support](dedicated/support.md)
   * [Differences from the Grid](dedicated/support/ps.md)
-  * [Variables](dedicated/support/variables.md)
   * [SSH](dedicated/support/ssh-agent.md)
   * [SSL](dedicated/support/ssl.md)
   * [Integrations](dedicated/support/integrations.md)
