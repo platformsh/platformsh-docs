@@ -2,7 +2,7 @@
 
 ## Updates &amp; upgrades
 
-Platform.sh updates the core software of the Dedicated Cluster (operating system, web server, PHP, MySQL, etc.) periodically, and after any significant security vulnerability is disclosed.  These updates are deployed automatically with no additional work required by the user.  We attempt to maintain parity with your development environment, but we do not guarantee absolute parity of point versions of your Dedicated environments with their corresponding development environments.  I.e, your development environment may have a php container running 5.6.30, but your production environment may lag behind at 5.6.22.  We can upgrade point releases on request and will always upgrade the underlying software in the event of security release.
+Platform.sh updates the core software of the Dedicated Cluster (operating system, web server, PHP, MySQL, etc.) periodically, and after any significant security vulnerability is disclosed.  These updates are deployed automatically with no additional work required by the user.  We attempt to maintain parity with your development environment, but we do not guarantee absolute parity of point versions of your Dedicated environments with their corresponding development environments.  I.e, your development environment may have a PHP container running 5.6.30, but your production environment may lag behind at 5.6.22.  We can upgrade point releases on request and will always upgrade the underlying software in the event of security release.
 
 Updates to application software (PHP code, Javascript, etc.) are the responsibility of the customer.
 

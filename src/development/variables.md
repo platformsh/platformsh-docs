@@ -98,7 +98,7 @@ The following variables exist *only* at runtime.  If used in a build hook they w
 
 On a Dedicated instance, the following additional variables are available at runtime only:
 
-* **PLATFORM_MODE**: Set to `enterprise` in an Dedicated environment, both production and staging.  Note that an enterprise support plan doesn't always imply a Dedicated production, but Dedicated production always implies an enterprise support plan.
+* **PLATFORM_MODE**: Set to `enterprise` in an Dedicated environment, both production and staging.  Note that an Enterprise support plan doesn't always imply a Dedicated production, but Dedicated production always implies an Enterprise support plan.
 * **PLATFORM_CLUSTER**: Set to the cluster ID.
 * **PLATFORM_PROJECT**: Set to the document root.  This is typically the same as your cluster name for the production environment, while staging will have `_stg` or similar appended.
 
@@ -360,7 +360,7 @@ fi
 
 ## How can I have a script behave differently on Production and Staging?
 
-In most Enterprise configurations the the production branch is named `production` (whereas it is always `master` on Platform.sh Professional).  The following test therefore should work in almost all cases:
+In most Enterprise configurations the production branch is named `production` (whereas it is always `master` on Platform.sh Professional).  The following test therefore should work in almost all cases:
 
 ```bash
 if [ "$PLATFORM_MODE" = "enterprise" ] ; then

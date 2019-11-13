@@ -2,15 +2,15 @@
 
 ## Deploying to Production and Staging
 
-The `production` branch of your Git repository is designated production, and a `staging` branch is designated for staging.  Any code merged to those branches will automatically trigger a rebuild of the production and staging environments, respectively, in the Dedicated Cluster.  Any defined users or environment variables will also be propagated to the Dedicated Cluster as well.
+The `production` branch of your Git repository is designated for production, and a `staging` branch is designated for staging.  Any code merged to those branches will automatically trigger a rebuild of the production and staging environments, respectively, in the Dedicated Cluster.  Any defined users or environment variables will also be propagated to the Dedicated Cluster as well.
 
 Note that there is no automatic cloning of data from the Dedicated Cluster to the Development Environment the way there is between branches in the Development Environment.  Production data may still be replicated to the Development Environment manually.
 
-The `master` branch is still available but will have no impact on either the production or staging environments.  Deploys of the master branch will not trigger a rebuild of the Dedicated Cluster environments.  A common model is to use the `master` branch as a pre-integration branch before merging code to staging, such as at the end of a sprint.
+The `master` branch is still available but will have no impact on either the production or staging environments.  Deploys of the `master` branch will not trigger a rebuild of the Dedicated Cluster environments.  A common model is to use the `master` branch as a pre-integration branch before merging code to staging, such as at the end of a sprint.
 
 ## Deployment process
 
-When deploying to the Dedicated Cluster the process is slightly different than when working with Platform.sh Professional.
+When deploying to the Dedicated Cluster the process is slightly different than when working with Platform.sh on the Grid.
 
 * The new application image is built in the exact same fashion as for Platform.sh Professional.
 * Any active background tasks on the cluster, including cron tasks, are terminated.

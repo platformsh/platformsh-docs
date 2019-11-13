@@ -127,7 +127,7 @@
 * [Private repositories](development/private-repository.md)
 * [Git submodules](development/submodules.md)
 * [Using SSH](development/ssh.md)
-* [Transferring data to Dedicated](development/transfer-dedicated.md)
+* [Syncing to Dedicated](development/transfer-dedicated.md)
 * [Public IPs](development/public-ips.md)
 * [FAQ](development/faq.md)
 * [Troubleshooting](development/troubleshoot.md)

@@ -10,7 +10,7 @@ To test for a working SSH agent, run locally:
 ssh-add -l
 ```
 
-If you see your key listed, congratulations you already have a working agent. All you need to do is add `-A` to your ssh command. e.g. `ssh -A <user>@<cluster>.ent.platform.sh`.
+If you see your key listed, you already have a working agent. All you need to do is add `-A` to your ssh command. e.g. `ssh -A <user>@<cluster>.ent.platform.sh`.
 
 If instead you see `Could not open a connection to your authentication agent.` you will need to start it manually. A permanent ssh-agent configuration is recommended but beyond the scope of this documentation.
 

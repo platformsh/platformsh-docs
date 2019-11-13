@@ -16,7 +16,7 @@ Our experience has shown that hosting multiple applications on a common resource
 
 The default configuration for Platform.sh Dedicated clusters is to launch into a single Availability Zone (AZ).  This is for a few reasons:
 
-* Because the members of your cluster communicate with each other via TCP to perform DB replication, cache lookup, and other associated tasks, the latency between data centers/AZs can become a significant performance liability.  Having your entire cluster within 1 AZ ensure that the latency between cluster members is minimal, having a direct effect on perceived end-user performance.
+* Because the members of your cluster communicate with each other via TCP to perform DB replication, cache lookup, and other associated tasks, the latency between data centers/AZs can become a significant performance liability.  Having your entire cluster within one AZ ensures that the latency between cluster members is minimal, having a direct effect on perceived end-user performance.
 * Network traffic between AZs is billed, whereas intra-AZ traffic is not.  That leads to higher costs for this decreased performance.
 
 Some clients prefer the peace of mind of hosting across multiple AZs, but it should be noted that multiple-AZ configurations do not improve the contractual 99.99% uptime SLA, nor does our standard, single-AZ configuration decrease the 99.99% uptime SLA.  We are responsible for meeting the 99.99% uptime SLA no matter what, so multiple-AZ deployments should only be considered in cases where it is truly appropriate.
@@ -35,11 +35,11 @@ In addition to SSH accounts, SFTP accounts can be created with a custom user/pas
 
 ## Error handling
 
-On Platform.sh Professional, incoming request are held at the edge router temporarily during a deploy.  That allows a site to simply "respond slowly" rather than be offline during a deploy, provided the deploy time is short (a few seconds).
+On Platform.sh Professional, incoming requests are held at the edge router temporarily during a deploy.  That allows a site to simply "respond slowly" rather than be offline during a deploy, provided the deploy time is short (a few seconds).
 
-On Platform.sh Dedicated, incoming requests are not held during deploy and receive a 503 error.  As the Dedicated Cluster is almost always fronted by a CDN, the CDN will continue to serve cached pages during the few seconds of deploy so for the vast majority of users there is no downtime or even slowdown.  If a request does pass the CDN during a deploy that is not counted as downtime covered by our Service Level Agreement.
+On Platform.sh Dedicated, incoming requests are not held during deploy and receive a 503 error.  As the Dedicated Cluster is almost always fronted by a CDN, the CDN will continue to serve cached pages during the few seconds of deploy, so for the vast majority of users there is no downtime or even slowdown.  If a request does pass the CDN during a deploy that is not counted as downtime covered by our Service Level Agreement.
 
-By default, Platform.sh will serve a generic Platform.sh-branded error pages for errors generated before a request reaches the application.  (500 errors, some 400 errors, etc.)  Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN.  This file may be any static HTML file but is limited to 64 KB in size.
+By default, Platform.sh will serve generic Platform.sh-branded error pages for errors generated before a request reaches the application.  (500 errors, some 400 errors, etc.)  Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN.  This file may be any static HTML file but is limited to 64 KB in size.
 
 ## IP restrictions
 
@@ -50,7 +50,7 @@ Platform.sh supports project-level IP restrictions (whitelisting) and HTTP Basic
 
 ## Remote logging
 
-Platform.sh Dedicated supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz using the rsyslog service.  This is an optional feature and you can request that it be enabled via a support ticket.  Once enabled and configured your application can direct log output to the system syslog facility and it will be replicated to the remote service you have configured.
+Platform.sh Dedicated supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the rsyslog service.  This is an optional feature and you can request that it be enabled via a support ticket.  Once enabled and configured your application can direct log output to the system syslog facility and it will be replicated to the remote service you have configured.
 
 When contacting support to enable rsyslog, you will need:
 

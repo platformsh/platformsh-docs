@@ -8,7 +8,7 @@ Platform.sh Dedicated comes with `pdo`, `apcu`, `curl`, `gd`, `imagick`, `ldap`,
 
 In addition, we can enable `enchant`, `gearman`, `geoip`, `gmp`, `http`, `pgsql`, `pinba`, `pspell`, `recode`, `tidy`, `xdebug`, `oci8` (PHP5.6 only), or any extension with a pre-existing package in the Debian Apt repository if desired.  Please request such extensions via a ticket.
 
-Custom `php.ini` files are not supported on Platform.sh Dedicated. However, all php options that can be changed at runtime are still available. For example the memory limit can be changed using `ini_set('memory_limit','1024M');`
+Custom `php.ini` files are not supported on Platform.sh Dedicated. However, all PHP options that can be changed at runtime are still available. For example the memory limit can be changed using `ini_set('memory_limit','1024M');`
 
 PHP options that can we can change via support ticket include: 
 
@@ -30,7 +30,7 @@ To obtain the key you will need to file a ticket to have our support team provid
 
 On Platform.sh Grid projects, a running cron task will block a deployment until it is complete.  On Platform.sh Dedicated, however, a deploy will terminate a running cron task.
 
-Specifically, when a deploy to either Production or Staging begins any active cron tasks are send a SIGTERM message so that they can terminate gracefully if needed.  If they are still running 2 seconds later a SIGKILL message will be sent to forceably terminate the process.
+Specifically, when a deploy to either Production or Staging begins, any active cron tasks are sent a `SIGTERM` message so that they can terminate gracefully if needed.  If they are still running 2 seconds later a `SIGKILL` message will be sent to forcibly terminate the process.
 
 For that reason, it's best to ensure your cron tasks can receive a SIGTERM message and terminate gracefully.
 

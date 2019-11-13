@@ -2,7 +2,7 @@
 
 ## Backing up staging and production files
 
-Platform.sh automatically creates a backup snapshot of the staging and production instances on a Dedicated cluster every six hours.  However, those are only useful for a full restore of the environment and can only be done by the Platform.sh team.  At times you'll want to make a manual backup yourself.
+Platform.sh automatically creates a backup of the staging and production instances on a Dedicated cluster every six hours.  However, those are only useful for a full restore of the environment and can only be done by the Platform.sh team.  At times you'll want to make a manual backup yourself.
 
 To create a manual ad-hoc backup of all files on the staging or production environment, use the standard `rsync` command.
 
@@ -52,7 +52,7 @@ Now, run the following command on your local computer:
 ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysqldump --single-transaction -u <user> -p<pass> -h localhost <dbname> | gzip' > database.gz
 ```
 
-That will run a mysqldump command on the server, compress it using gzip, and stream the output to a file named `database.gz` on your local computer.
+That will run a `mysqldump` command on the server, compress it using gzip, and stream the output to a file named `database.gz` on your local computer.
 
 (If you'd prefer, `bzip2` and `xz` are also available.)
 
@@ -60,7 +60,7 @@ That will run a mysqldump command on the server, compress it using gzip, and str
 
 To transfer data into either the staging or production environments, you can either download it from your Platform.sh Development environment to your local system first or transfer it directly between environments using SSH based tools (e.g. SCP, Rsync).
 
-First, set up [SSH forwarding](/support/ssh-agent.md#forwarding-keys-by-default) by default for Platform.sh domains.
+First, set up [SSH forwarding](/dedicated/support/ssh-agent.md#forwarding-keys-by-default) by default for Platform.sh domains.
 
 Then run `platform ssh` with the `master` branch checked out to connect to the master dev environment.  Files are the easier data to transfer, and can be done with `rsync`.
 

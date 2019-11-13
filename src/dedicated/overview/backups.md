@@ -1,4 +1,4 @@
-# Backups & snapshots
+# Backups
 
 Platform.sh takes a byte-for-byte snapshot of Dedicated production environments every six (6) hours.  They are retained on a sliding scale, so more recent time frames have more frequent backups.
 

@@ -14,8 +14,8 @@ Default storage is based on the default SSD block-storage offering for each clou
 
 | Service        | Versions                 |
 | ---------------|:------------------------:|
-| PHP            | 5.6, 7.0, 7.1 (ZTS), 7.2 (ZTS), 7.3 (ZTS) |
-| NodeJS         | 9.8                      |
+| [PHP](/languages/php.md)            | 5.6, 7.0, 7.1 (ZTS), 7.2 (ZTS), 7.3 (ZTS) |
+| [NodeJS](/languages/nodejs.md)         | 9.8                      |
 | [MariaDB](https://docs.platform.sh/configuration/services/mysql.html)        | 10.0 Galera, 10.1 Galera |
 | [RabbitMQ](https://docs.platform.sh/configuration/services/rabbitmq.html)       | 3.6                      |
 | [Solr](https://docs.platform.sh/configuration/services/solr.html)           | 4.10, 6.3                |
