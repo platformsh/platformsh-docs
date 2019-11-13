@@ -1,10 +1,10 @@
-# Transferring data to and from the cluster
+# Transferring data to and from a Dedicated cluster
 
 ## Backing up staging and production files
 
-Platform.sh automatically creates a backup snapshot of the staging and production instances every six hours.  However, those are only useful for a full restore of the environment and can only be done by the Platform.sh team.  At times you'll want to make a manual backup yourself.
+Platform.sh automatically creates a backup snapshot of the staging and production instances on a Dedicated cluster every six hours.  However, those are only useful for a full restore of the environment and can only be done by the Platform.sh team.  At times you'll want to make a manual backup yourself.
 
-To create a manual ad-hoc backup of all files on the staging or production environment, simply use the standard `rsync` command.
+To create a manual ad-hoc backup of all files on the staging or production environment, use the standard `rsync` command.
 
 ```bash
 rsync -avzP <USERNAME>@<CLUSTER_NAME>.ent.platform.sh:pub/static/ pub/static/ 
@@ -111,7 +111,7 @@ The part we want is the host, user, password, and the "path", which is the datab
 
 Now, in a separate terminal login to the development instance using `platform ssh`.  Run the same `echo` command as above to get the credentials for the database on the development instance.  (The JSON will be slightly different but again we're only interested in the user, password, host, and "path"/database name).
 
-With the credentials from both databases we can construct a command that will export data from the dev server and write it directly to the enterprise cluster's server.
+With the credentials from both databases we can construct a command that will export data from the dev server and write it directly to the Dedicated cluster's server.
 
 ```bash
 mysqldump -u <dev_user> -p<dev_password> -h <dev_host> <dev_dbname> --single-transaction | ssh -C <USERNAME>@<CLUSTER_NAME>.ent.platform.sh 'mysql -u <prod_user> -p<prod_password> -h <prod_host> <prod_dbname>'
