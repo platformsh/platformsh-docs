@@ -105,3 +105,4 @@ variables:
 
 It's also possible that your own code is doing more work than it needs to.  Profiling and optimizing a PHP application is a much larger topic than will fit here, but Platform.sh recommends enabling [Blackfire.io](/administration/integrations/blackfire.md) on your project to determine what slow spots can be found and addressed.
 
+The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics).  It works only for PHP scripts, but offers good visualizations and insights into the operation of your site that can suggest places to further optimize your configuration and provide guidance on when it's time to increase your plan size.  (Please note that this tool is maintained by a 3rd party, not by Platform.sh.)

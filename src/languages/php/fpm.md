@@ -36,6 +36,7 @@ runtime:
 The `request_memory` has a lower limit of 10 MB while `reserved_memory` has a lower limit of 70 MB.  Values lower than those will be replaced with those minimums.
 
 You can check the maximum number of PHP-FPM workers by opening an [SSH session](/development/ssh.md) and running following command (example for PHP 7.x):
+
 ```
 grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf
 pm.max_children = 2
@@ -74,6 +75,8 @@ This will print out a table of how many requests used how much memory, in KB, fo
 This indicates that the majority of requests (4800) used 2048 KB of memory.  In this case that's likely application caching at work.  Most requests used up to around 10 MB of memory, while a few used as much as 18 MB and a very very few (6 requests) peaked at 131 MB.  (In this example those are probably cache clears.)
 
 A conservative approach would suggest an average request memory of 16 MB should be sufficient.  A more aggressive stance would suggest 10 MB.  The more aggressive approach would potentially allow for more concurrent requests at the risk of some requests needing to use swap memory, thus slowing them down.
+
+The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics) that offers a better visualization of access logs to determine how much memory requests are using on average.  It also offers additional insights into the operation of your site that can suggest places to further optimize your configuration and provide guidance on when it's time to increase your plan size.  (Please note that this tool is maintained by a 3rd party, not by Platform.sh.)
 
 > **note**
 > If you are running on PHP 5.x then don't bother adjusting the worker memory usage until you upgrade to PHP 7.x.  PHP 7 is vastly more memory efficient than PHP 5 and you will likely need less than half as much memory per process under PHP 7.
