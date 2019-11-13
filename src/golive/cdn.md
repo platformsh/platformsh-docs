@@ -26,7 +26,13 @@ If using Fastly as a CDN, it is possible to provide either custom VCL snippets o
 
 ## TLS encryption
 
-Security and the related topic of encryption of data are fundamental principles here at Platform.sh, and as such we provide TLS certificates in the default Enterprise-Dedicated package.  This allows for encryption of all traffic between your users and your application.  By default we will provision a shared certificate with the chosen CDN vendor.  If you opt for the Global Application Cache, we will provision certificates for both the site subdomain (www) and the asset/CDN subdomain.  We use wildcard certificates to secure production, staging, and any other subdomains simultaneously.  If your needs Extended Validation SSL certificates you will need to provide your own from an issuer of your choice that we can install for you.
+Security and the related topic of encryption of data are fundamental principles here at Platform.sh, and as such we provide TLS certificates in the default Enterprise-Dedicated package.  This allows for encryption of all traffic between your users and your application.  By default we will provision a shared certificate with the chosen CDN vendor.  If you opt for the Global Application Cache, we will provision certificates for both the site subdomain (www) and the asset/CDN subdomain.  We use wildcard certificates to secure production, staging, and any other subdomains simultaneously.  If your needs Extended Validation TLS certificates you will need to provide your own from an issuer of your choice that we can install for you.
+
+If you need to provide your own TLS certificate, place the certificate, the unencrypted private key, and the necessary certificate chain supplied by your TLS provider in your application's `private` directory (not web accessible), and then open a ticket to let our team know to install it.
+
+Platform.sh Enterprise supports a single TLS certificate on the origin. Support for multiple certificates is offered only through a CDN such as CloudFront or Fastly. Self-signed certificates can optionally be used on the origin for development purposes or for enabling TLS between the CDN and origin.
+
+All TLS certificates used with CloudFront MUST be 2048 bit certificates.  Larger sizes will not work.
 
 ## Web Application Firewall & Anti-DDoS
 

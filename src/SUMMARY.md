@@ -240,7 +240,6 @@
 * [Support](dedicated/support.md)
   * [Differences from the Grid](dedicated/support/ps.md)
   * [SSH](dedicated/support/ssh-agent.md)
-  * [SSL](dedicated/support/ssl.md)
 
 
 * [Changelog](changelog.md)
