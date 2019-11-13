@@ -14,7 +14,7 @@ Default storage is based on the default SSD block-storage offering for each clou
 
 | Service        | Versions                 |
 | ---------------|:------------------------:|
-| PHP            | 5.6, 7.0, 7.1 (ZTS)      |
+| PHP            | 5.6, 7.0, 7.1 (ZTS), 7.2 (ZTS), 7.3 (ZTS) |
 | NodeJS         | 9.8                      |
 | [MariaDB](https://docs.platform.sh/configuration/services/mysql.html)        | 10.0 Galera, 10.1 Galera |
 | [RabbitMQ](https://docs.platform.sh/configuration/services/rabbitmq.html)       | 3.6                      |
@@ -23,4 +23,4 @@ Default storage is based on the default SSD block-storage offering for each clou
 | [Redis](https://docs.platform.sh/configuration/services/redis.html)          | 3.2                      |
 | [Memcached](https://docs.platform.sh/configuration/services/memcached.html)      | 1.4                      |
 
-Your application will be able to connect to each service by referencing the exact same environment variables as on Platform.sh Professional.  While the configuration of the service will be performed by our team, the application configuration is the same and your code should be the same.  See the [Platform.sh Professional documentation](https://docs.platform.sh/configuration/services.html) for service-specific details.
+Your application will be able to connect to each service by referencing the exact same environment variables as a Grid environment.  While the configuration of the service will be performed by our team, the application configuration is the same and your code should be the same.  See the [services documentation](/configuration/services.html) for service-specific details.
