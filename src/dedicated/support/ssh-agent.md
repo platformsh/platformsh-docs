@@ -1,6 +1,6 @@
 # SSH Agent Setup
 
-The SSH Agent will forward authentication requests from Platform.sh Enterprise to your local machine. This allows you to log into remote servers from the Enterprise host using your local private key. With a working ssh-agent you can easily copy files directly between the Enterprise host and Platform.sh, or from another remote server.
+The SSH Agent will forward authentication requests from Platform.sh Dedicated to your local machine. This allows you to log into remote servers from the Dedicated host using your local private key. With a working ssh-agent you can easily copy files directly between the Dedicated host and Platform.sh, or from another remote server.
 
 ## OpenSSH
 
@@ -21,7 +21,7 @@ eval `ssh-agent`
 # Add all local keys to the agent
 ssh-add
 
-# Connect to the Enterprise host, forcing agent forwarding on.
+# Connect to the Dedicated host, forcing agent forwarding on.
 ssh -A <user>@<cluster>.ent.platform.sh
 
 # When done, kill the agent.

@@ -1,6 +1,6 @@
 # Onboarding process
 
-On-Boarding a new Enterprise client is a three phase process that begins the moment your contract is closed with your sales representative.  As part of the onboarding service, you will continue to work with Solutions Engineer who was present during the technical discovery and analysis during the pre-sales phase.  During the entire on-boarding process, your Solutions Engineer is available to assist with questions and prioritize any tickets that may be submitted through the help desk.
+On-Boarding a new Dedicated client is a three phase process that begins the moment your contract is closed with your sales representative.  As part of the onboarding service, you will continue to work with Solutions Engineer who was present during the technical discovery and analysis during the pre-sales phase.  During the entire on-boarding process, your Solutions Engineer is available to assist with questions and prioritize any tickets that may be submitted through the help desk.
 
 <table>
 
@@ -18,7 +18,7 @@ On-Boarding a new Enterprise client is a three phase process that begins the mom
 
 <td>
   <p>The Solutions Engineer briefly reviews the development workflow that was discussed during the sales process.  A dedicated Slack channel for your team’s onboarding process will be set up and members of your team invited.  This will allow for a quicker feedback loop during the onboarding process.</p>
-  <p>The Solutions Engineer will introduce you to the Platform Enterprise workflow process, provision resources, and hand them off to the client.</p> 
+  <p>The Solutions Engineer will introduce you to the Platform Dedicated workflow process, provision resources, and hand them off to the client.</p>
 </td>
 <tr>
 

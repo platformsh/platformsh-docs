@@ -1,6 +1,6 @@
 # Resource and incident monitoring
 
-All of our Enterprise clusters are monitored 24/7 to ensure uptime and to measure server metrics such as available disk space, memory and disk usage, and several dozen other metrics that give us a complete picture of the health of your application’s infrastructure.  Alerting is set up on these metrics, so if any of them goes outside of normal bounds an operations engineer can react accordingly to maintain the uptime and performance of your cluster.
+All of our Dedicated clusters are monitored 24/7 to ensure uptime and to measure server metrics such as available disk space, memory and disk usage, and several dozen other metrics that give us a complete picture of the health of your application’s infrastructure.  Alerting is set up on these metrics, so if any of them goes outside of normal bounds an operations engineer can react accordingly to maintain the uptime and performance of your cluster.
 
 These alerts are sent to our support and operations teams, and are not directly accessible to the customer.
 
@@ -10,11 +10,11 @@ We use well known open source tooling to collect metrics and to alert our staff 
 
 These tools are internal Platform.sh tools only.
 
-A third-party availability monitoring system is configured for every Enterprise project. The customer can be subscribed to email alerts upon request.
+A third-party availability monitoring system is configured for every Dedicated project. The customer can be subscribed to email alerts upon request.
 
 ## Application performance monitoring
 
-Platform.sh does not provide application-level performance monitoring.  However, we strongly recommend that customers leverage application monitoring themselves.  Platform.sh is a New Relic reseller and New Relic APM is available on all Platform.sh Enterprise accounts via our partnership with New Relic.  We offer a 10% discount off of the standard list price for whatever size cluster is running your application.  New Relic infrastructure monitoring is not supported.
+Platform.sh does not provide application-level performance monitoring.  However, we strongly recommend that customers leverage application monitoring themselves.  Platform.sh is a New Relic reseller and New Relic APM is available on all Platform.sh Dedicated accounts via our partnership with New Relic.  We offer a 10% discount off of the standard list price for whatever size cluster is running your application.  New Relic infrastructure monitoring is not supported.
 
 Blackfire.io is also available on the same model.
 

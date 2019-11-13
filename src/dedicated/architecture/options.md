@@ -8,13 +8,13 @@ A dedicated single-node staging machine can be provisioned for your application 
 
 ## Multiple applications
 
-Each application deployed to the Enterprise Cluster corresponds to a single Git repository in the Development Environment.  Multiple `.platform.app.yaml` files are not supported.  While it is possible to host multiple application code bases in separate subdirectories/subpaths of the application (such as /drupal, /api, /symfony, etc.) controlled by a single `.platform.app.yaml`, it is not recommended and requires additional configuration.  One or more domains may be mapped to the application.
+Each application deployed to the Dedicated Cluster corresponds to a single Git repository in the Development Environment.  Multiple `.platform.app.yaml` files are not supported.  While it is possible to host multiple application code bases in separate subdirectories/subpaths of the application (such as `/drupal`, `/api`, `/symfony`, etc.) controlled by a single `.platform.app.yaml`, it is not recommended and requires additional configuration.  One or more domains may be mapped to the application.
 
-Our experience has shown that hosting multiple applications on a common resource pool is often bad for all applications on the cluster.  We therefore limit the number of applications that may be hosted on a single Enterprise Cluster.  On a PE6 instance, only one application is supported.  On PE12 and larger Enterprise plans multiple applications are supported at an extra cost.  Each application would correspond to a different Development Environment and Git repository and cannot share data or files with other applications.  This configuration is discouraged.
+Our experience has shown that hosting multiple applications on a common resource pool is often bad for all applications on the cluster.  We therefore limit the number of applications that may be hosted on a single Dedicated Cluster.  On a PD6 instance, only one application is supported.  On PD12 and larger Dedicated plans multiple applications are supported at an extra cost.  Each application would correspond to a different Development Environment and Git repository and cannot share data or files with other applications.  This configuration is discouraged.
 
 ## Multiple-AZ
 
-The default configuration for Platform.sh Enterprise clusters is to launch into a single Availability Zone (AZ).  This is for a few reasons:
+The default configuration for Platform.sh Dedicated clusters is to launch into a single Availability Zone (AZ).  This is for a few reasons:
 
 * Because the members of your cluster communicate with each other via TCP to perform DB replication, cache lookup, and other associated tasks, the latency between data centers/AZs can become a significant performance liability.  Having your entire cluster within 1 AZ ensure that the latency between cluster members is minimal, having a direct effect on perceived end-user performance.
 * Network traffic between AZs is billed, whereas intra-AZ traffic is not.  That leads to higher costs for this decreased performance.
@@ -37,7 +37,7 @@ In addition to SSH accounts, SFTP accounts can be created with a custom user/pas
 
 On Platform.sh Professional, incoming request are held at the edge router temporarily during a deploy.  That allows a site to simply "respond slowly" rather than be offline during a deploy, provided the deploy time is short (a few seconds).
 
-On Platform.sh Enterprise, incoming requests are not held during deploy and receive a 503 error.  As the Enterprise Cluster is almost always fronted by a CDN, the CDN will continue to serve cached pages during the few seconds of deploy so for the vast majority of users there is no downtime or even slowdown.  If a request does pass the CDN during a deploy that is not counted as downtime covered by our Service Level Agreement.
+On Platform.sh Dedicated, incoming requests are not held during deploy and receive a 503 error.  As the Dedicated Cluster is almost always fronted by a CDN, the CDN will continue to serve cached pages during the few seconds of deploy so for the vast majority of users there is no downtime or even slowdown.  If a request does pass the CDN during a deploy that is not counted as downtime covered by our Service Level Agreement.
 
 By default, Platform.sh will serve a generic Platform.sh-branded error pages for errors generated before a request reaches the application.  (500 errors, some 400 errors, etc.)  Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN.  This file may be any static HTML file but is limited to 64 KB in size.
 
@@ -50,7 +50,7 @@ Platform.sh supports project-level IP restrictions (whitelisting) and HTTP Basic
 
 ## Remote logging
 
-Platform.sh Enterprise supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz using the rsyslog service.  This is an optional feature and you can request that it be enabled via a support ticket.  Once enabled and configured your application can direct log output to the system syslog facility and it will be replicated to the remote service you have configured.
+Platform.sh Dedicated supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz using the rsyslog service.  This is an optional feature and you can request that it be enabled via a support ticket.  Once enabled and configured your application can direct log output to the system syslog facility and it will be replicated to the remote service you have configured.
 
 When contacting support to enable rsyslog, you will need:
 
