@@ -229,6 +229,7 @@
   * [Introduction](dedicated/overview/introduction.md)
   * [Incident Monitoring](dedicated/overview/monitoring.md)
   * [Security and Privacy](dedicated/overview/security.md)
+  * [Onboarding](dedicated/overview/onboarding.md)
   * [Backups](dedicated/overview/backups.md)
 * [Architecture](dedicated/architecture.md)
   * [Deploying](dedicated/architecture/deploying.md)
