@@ -230,12 +230,13 @@
   * [Security and Privacy](dedicated/overview/security.md)
   * [Onboarding](dedicated/overview/onboarding.md)
   * [Backups](dedicated/overview/backups.md)
+  * [Differences from the Grid](dedicated/overview/grid.md)
 * [Architecture](dedicated/architecture.md)
   * [Deploying](dedicated/architecture/deploying.md)
   * [Dev Environments](dedicated/architecture/development.md)
   * [Scalability](dedicated/architecture/scalability.md)
   * [Options](dedicated/architecture/options.md)
-* [Support](dedicated/support.md)
+* 
   * [SSH](dedicated/support/ssh-agent.md)
 
 
