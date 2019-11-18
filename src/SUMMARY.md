@@ -236,5 +236,4 @@
   * [Scalability](dedicated/architecture/scalability.md)
   * [Options](dedicated/architecture/options.md)
 
-
 * [Changelog](changelog.md)
