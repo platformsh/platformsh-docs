@@ -22,14 +22,6 @@ Static assets cache headers are set using the `expires` key in `.platform.app.ya
 
 PHP-FPM reserves a fixed number of simultaneous worker processes to handle incoming requests.  If more simultaneous requests are received than the number of workers then some requests will wait.  The default worker count is deliberately set rather conservative but can be improved in many cases.  See the [PHP-FPM sizing](/languages/php/fpm.md) page for how to determine and set a more optimal value.
 
-If your `/var/log/app.log` file contains a lot of entries like 
-
-```
-WARNING: [pool web] server reached max_children setting (2), consider raising it
-```
-
-That means your worker count is too low.  If you have already set an optimal worker size and still see that message frequently consider upgrading your project resources.
-
 ## Enable preloading
 
 PHP 7.4 and later supports preloading code files into shared memory once at server startup, bypassing the need to include or autoload them later.  Depending on your application doing so can result in significant improvements to both CPU and memory usage.  If using PHP 7.4, see the [PHP Preload instructions](/language/php.md#opcache-preloading) for how to configure it on Platform.sh and consult your application's documentation to see if they have any recommendations for an optimal preload configuration.
