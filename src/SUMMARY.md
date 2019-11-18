@@ -127,6 +127,7 @@
 * [Private repositories](development/private-repository.md)
 * [Git submodules](development/submodules.md)
 * [Using SSH](development/ssh.md)
+* [Syncing to Dedicated](development/transfer-dedicated.md)
 * [Public IPs](development/public-ips.md)
 * [FAQ](development/faq.md)
 * [Troubleshooting](development/troubleshoot.md)
@@ -134,11 +135,13 @@
 ## Going Live
 
 * [Pre-Launch Checklist](/golive/checklist.md)
-* [About going live](/golive/steps.md)
+* [Go-live steps](/golive/steps.md)
   * [DNS and CNAMEs](/golive/steps/dns.md)
   * [Custom TLS](/golive/steps/tls.md)
-  * [Fastly](/golive/steps/fastly.md)
-  * [Cloudflare](/golive/steps/cloudflare.md)
+* [Content Delivery Networks](golive/cdn.md)
+    * [Fastly](/golive/cdn/fastly.md)
+    * [Cloudflare](/golive/cdn/cloudflare.md)
+    * [Global Application Cache](/golive/cdn/gac.md)
 * [Troubleshooting](/golive/troubleshoot.md)
 * [Example](/golive/example.md)
 
@@ -220,6 +223,23 @@
 * [Third-party resources](tutorials/third-party.md)
 * [Changing regions](tutorials/region-migration.md)
 
+## Dedicated
+
+* [Overview](dedicated/overview.md)
+  * [Introduction](dedicated/overview/introduction.md)
+  * [Incident Monitoring](dedicated/overview/monitoring.md)
+  * [Security and Privacy](dedicated/overview/security.md)
+  * [Onboarding](dedicated/overview/onboarding.md)
+  * [Backups](dedicated/overview/backups.md)
+* [Architecture](dedicated/architecture.md)
+  * [Deploying](dedicated/architecture/deploying.md)
+  * [Specifications](dedicated/architecture/specifications.md)
+  * [Dev Environments](dedicated/architecture/development.md)
+  * [Scalability](dedicated/architecture/scalability.md)
+  * [Options](dedicated/architecture/options.md)
+* [Support](dedicated/support.md)
+  * [Differences from the Grid](dedicated/support/ps.md)
+  * [SSH](dedicated/support/ssh-agent.md)
 
 
 * [Changelog](changelog.md)

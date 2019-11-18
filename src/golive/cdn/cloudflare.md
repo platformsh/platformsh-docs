@@ -1,4 +1,4 @@
-# (Optional) Cloudflare configuration
+# Cloudflare configuration
 
 One of the main features that a modern DNS provider needs to have in order to work well with Platform.sh is somethat that's colloquially known as "Cname Flattening".  This solves the problem of being able to point your "root domain" (example.com) to a domain name (CNAME) rather than an IP address (A record).  [This post](https://blog.cloudflare.com/introducing-CNAME-flattening-rfc-compliant-cnames-at-a-domains-root/) explains it well.
 
