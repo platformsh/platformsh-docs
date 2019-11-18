@@ -236,8 +236,6 @@
   * [Dev Environments](dedicated/architecture/development.md)
   * [Scalability](dedicated/architecture/scalability.md)
   * [Options](dedicated/architecture/options.md)
-* 
-  * [SSH](dedicated/support/ssh-agent.md)
 
 
 * [Changelog](changelog.md)
