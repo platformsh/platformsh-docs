@@ -4,7 +4,7 @@ Once your application is up and running it still needs to be kept fast.  Platfor
 
 The following recommendations are guidelines only.  They're also listed in approximately the order we recommend investigating them, although your mileage may vary.
 
-## Upgrade to PHP 7.1+
+## Upgrade to PHP 7.2+
 
 There is very little purpose to trying to optimize a PHP application on PHP 5.  PHP 7 is generally twice as fast and uses half as much memory as PHP 5, making it unquestionably the first step to take when trying to make a PHP-based site run faster.
 
@@ -30,11 +30,20 @@ WARNING: [pool web] server reached max_children setting (2), consider raising it
 
 That means your worker count is too low.  If you have already set an optimal worker size and still see that message frequently consider upgrading your project resources.
 
+## Enable preloading
+
+PHP 7.4 and later supports preloading code files into shared memory once at server startup, bypassing the need to include or autoload them later.  Depending on your application doing so can result in significant improvements to both CPU and memory usage.  If using PHP 7.4, see the [PHP Preload instructions](/language/php.md#opcache-preloading) for how to configure it on Platform.sh and consult your application's documentation to see if they have any recommendations for an optimal preload configuration.
+
+If you are not using PHP 7.4, this is a good reason to upgrade.
+
 ## Configure opcache
 
 PHP 5.5 and later include an opcache that is enabled at all times, as it should be.  It may still need to be tuned, however.  The opcache can be configured using `php.ini` values, which in this case are best set using the `variables` block in `.platform.app.yaml`.
 
-The most important values to set are 
+> **note**
+> If using opcache preloading on PHP 7.4 or later, configure that first and let the application run for a while before tuning the opcache itself as the preload script may change the necessary configuration here.
+
+The most important values to set are:
 
 * `opcache.max_accelerated_files`: The max number of files that the opcache may cache at once.  If this is lower than the number of files in the application it will begin thrashing and become less effective.
 * `opcache.memory_consumption`: The total memory that the opcache may use.  If the application is larger than this the cache will start thrashing and become less effective.
