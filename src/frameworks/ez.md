@@ -10,6 +10,10 @@ By default, eZ Platform is configured to use a single Redis instance for both th
 
 To do so, uncomment the `redissession` entry in the `.platform/services.yaml` file and the corresponding relationship in the `.platform.app.yaml` file.  The bridge code that is provided with eZ Platform 1.13 and later will automatically detect the additional Redis service and use it for session storage.
 
+On a Dedicated instance, we strongly recommend using two separate Redis instances for Cache and Sessions.  The service and relationship names that ship with the default Platform.sh configuration in eZ Platform should be used as-is.  To ensure the development environment works like Production, uncomment the `redissession` entry in the `.platform/services.yaml` file and the corresponding relationship in the `.platform.app.yaml` file.  The bridge code that is provided with eZ Platform 1.13 and later will automatically detect the additional Redis service and use it for session storage.
+
+By default, on Dedicated instances we will configure both Cache and Session storage in "persistent" mode, so that data is not lost in case of a system or process restart.  That reduces the potential for cache stampede issues or inadvertently logging people out.
+
 ## Modifying an existing eZ Platform project
 
 If you have an existing eZ Platform project that was upgraded from a previous version, or want to resynchronize with the latest recommended configuration, please see the [eZ Platform official repository](https://github.com/ezsystems/ezplatform).
