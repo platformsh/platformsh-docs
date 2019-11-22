@@ -4,7 +4,7 @@ Platform.sh Dedicated customers will have a development environment for their pr
 
 ## Architecture (Development Environments)
 
-![Platform.sh Professional architecture](/images/PS-Arch-NoHA.svg)
+![Platform.sh Professional architecture](/images/dedicated/PS-Arch-NoHA.svg)
 
 ## Default limits
 

@@ -26,4 +26,4 @@ Cloud infrastructure issues are handled by the customer success team. *Applicati
 
 When a Urgent/High issue is escalated it will page the on-call application support specialist.  Application support may also escalate infrastructure issues back as Urgent/High.
 
-![Platform.sh Urgent Ticket Workflow](/images/urgent-ticket-flow.svg)
+![Platform.sh Urgent Ticket Workflow](/images/dedicated/urgent-ticket-flow.svg)
