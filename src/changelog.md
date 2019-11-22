@@ -2,6 +2,12 @@
 
 ## 2019
 
+* **October 2019**
+  * Projects can now have larger application containers in development environments.
+
+* **September 2019**
+  * "Dark mode" now available in the Console.
+
 * **July 2019**
   * Elasticsearch 7.2: We now support [Elasticsearch 7.2](/configuration/services/elasticsearch.md).
   * [Elasticsearch](/configuration/services/elasticsearch.md) 5.2 and 5.4 support is now deprecated
