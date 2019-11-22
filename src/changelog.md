@@ -3,6 +3,9 @@
 ## 2019
 
 * **October 2019**
+  * PHP 7.4: We now support [PHP 7.4](/languages/php.md).
+
+* **October 2019**
   * Projects can now have larger application containers in development environments.
 
 * **September 2019**
