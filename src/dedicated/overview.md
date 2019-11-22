@@ -6,7 +6,7 @@ Platform.sh Dedicated consists of two parts: The Development Environment and the
 
 ### The Development Environment
 
-The Development Environment is a normal [Platform.sh Professional](https://docs.platform.sh/) account, with all of the capabilities and workflows of Platform.sh Professional.  The one difference is that the `master` branch will not be associated with a domain and thus will never be "production".  The [Platform.sh Professional Documentation](https://docs.platform.sh/) has more information on how to best leverage it.
+The Development Environment is a normal Platform.sh Grid account, with all of the capabilities and workflows of Platform.sh Professional.  The one difference is that the `master` branch will not be associated with a domain and thus will never be "production".
 
 ### The Dedicated Cluster
 
