@@ -9,7 +9,7 @@ Platform.sh understands the need for application owners to ensure the integrity,
 
 ## Approved Activities by Prior Arrangement
 
-* For Platform.sh Dedicated Enterprise customers we do permit infrastructure penetration testing (but not load testing) by prior arrangement.  This requires special advanced preparation. You must submit a support ticket request a minimum of **three (3) weeks** in advance for us to coordinate this on your behalf.
+* For Platform.sh Enterprise-Dedicated customers we do permit infrastructure penetration testing (but not load testing) by prior arrangement.  This requires special advanced preparation. You must submit a support ticket request a minimum of **three (3) weeks** in advance for us to coordinate this on your behalf.
 
 ## Prohibited Activities
 

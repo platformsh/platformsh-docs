@@ -30,7 +30,7 @@ Security and the related topic of encryption of data are fundamental principles 
 
 If you need to provide your own TLS certificate, place the certificate, the unencrypted private key, and the necessary certificate chain supplied by your TLS provider in your application's `private` directory (not web accessible), and then open a ticket to let our team know to install it.
 
-Platform.sh Enterprise supports a single TLS certificate on the origin. Support for multiple certificates is offered only through a CDN such as CloudFront or Fastly. Self-signed certificates can optionally be used on the origin for development purposes or for enabling TLS between the CDN and origin.
+Platform.sh Enterprise-Dedicated supports a single TLS certificate on the origin. Support for multiple certificates is offered only through a CDN such as CloudFront or Fastly. Self-signed certificates can optionally be used on the origin for development purposes or for enabling TLS between the CDN and origin.
 
 All TLS certificates used with CloudFront MUST be 2048 bit certificates.  Larger sizes will not work.
 

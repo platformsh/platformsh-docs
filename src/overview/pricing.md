@@ -70,7 +70,7 @@ A Medium plan, for example, can support 3 Apps with a MySQL instance and a Redis
 
 If you wonder if a specific setup would fit in a plan, don't hesitate to contact our support.
 
-## Enterprise
+## Enterprise-Dedicated
 
 For a price lower than traditional managed hosting, you get included development and staging environments, as well as triple redundancy on every element of the stack with:
 

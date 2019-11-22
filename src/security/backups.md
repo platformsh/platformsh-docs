@@ -12,7 +12,7 @@ With Platform.sh Professional, we have enabled our clients to manage their own b
 
 **RTO**: Variable. Recovery time will depend upon the size of the data we are recovering
 
-## Platform.sh Enterprise
+## Platform.sh Enterprise-Grid and Enterprise-Dedicated
 
 **RPO**: 6 hours.  Platform.sh takes a backup of Platform.sh Enterprise environments every 6 hours.
 
