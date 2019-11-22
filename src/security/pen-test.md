@@ -9,14 +9,14 @@ Platform.sh understands the need for application owners to ensure the integrity,
 
 ## Approved Activities by Prior Arrangement
 
-* For Platform.sh Enterprise customers we do permit infrastructure penetration testing (but not load testing) by prior arrangement.  This requires special advanced preparation. You must submit a support ticket request a minimum of **three (3) weeks** in advance for us to coordinate this on your behalf.
+* For Platform.sh Dedicated Enterprise customers we do permit infrastructure penetration testing (but not load testing) by prior arrangement.  This requires special advanced preparation. You must submit a support ticket request a minimum of **three (3) weeks** in advance for us to coordinate this on your behalf.
 
 ## Prohibited Activities
 
 * Vulnerability scanning of web applications which you do not own.
 * Denial of Service tests and any other type of testing which results in heavy network load.
 * Social engineering tests of Platform.sh services including falsely representing yourself as a Platform.sh employee.
-* Infrastructure penetration tests for non-Enterprise customers. This includes SSH and database testing.
+* Infrastructure penetration tests for non-Dedicated-Enterprise customers. This includes SSH and database testing.
 
 ## Rate Limits
 

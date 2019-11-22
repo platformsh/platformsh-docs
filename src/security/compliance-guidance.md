@@ -28,7 +28,7 @@ Platform.sh is responsible for:
 * **Awareness and Training** - Platform.sh trains its own employees in secure software development and management.
 * **Capacity Management** - Platform.sh is responsible for capacity management of the infrastructure, such as server allocation and bandwidth management.
 * **Access Control** - Platform.sh is responsible for providing access control mechanisms to customers and for vetting all Platform.sh personnel access.
-* **Backups** - Platform.sh is responsible for backing up the infrastructure and management components of the system.  On Platform.sh Enterprise (only), Platform.sh will also backup application code and databases on behalf of customers.
+* **Backups** - Platform.sh is responsible for backing up the infrastructure and management components of the system.  On Platform.sh Dedicated Enterprise (only), Platform.sh will also backup application code and databases on behalf of customers.
 
 Customers are responsible for:
 
