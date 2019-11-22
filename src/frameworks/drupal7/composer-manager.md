@@ -16,7 +16,7 @@ projects[composer_manager][patch][] = "https://www.drupal.org/files/issues/compo
 
 If you're checking the entire codebase into Git, do so with Composer Manager as well.  Then download and apply the two patches in the issues above and commit the result.
 
-Hereafter, it's important to uncheck the two "Automatically..." options at the config page on `admin/config/system/composer-manager/settings`. If checked, Drupal tries to update the composer folder. Since this isn't a writable mount, installation of composer based modules will fail due to these writing permissions.
+It's important to uncheck the two "Automatically..." options at the config page on `admin/config/system/composer-manager/settings`. If checked, Drupal tries to update the composer folder. Since this isn't a writable mount, installation of composer based modules will fail due to these writing permissions.
 
 ## 2. Configure file locations
 
