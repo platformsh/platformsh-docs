@@ -4,7 +4,7 @@ Platform.sh Enterprise plans (both Grid and Dedicated) include a Fastly CDN acco
 
 Self-Service Grid plans do not include a CDN by default, but you are welcome to configure one yourself.  See our [guidelines](/bestpractices/http-caching.md) for when and if to use a CDN for HTTP caching.
 
-We have partnerships with a variety of CDN vendors depending on your application’s needs.  Our recommended CDN provider is [Fastly](/golive/cdn/fastly.md), or a split-configuration with Fastly serving dynamic HTML content and CloudFront serving static assets being a more cost efficient setup, the "[Global Application Cache](/golive/cdn/gac.md)".
+We have partnerships with a variety of CDN vendors depending on your application’s needs.  Our recommended CDN provider is [Fastly](/golive/cdn/fastly.md).
 
 ## DNS management
 
