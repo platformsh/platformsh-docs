@@ -59,8 +59,8 @@ Blackfire enables to have a fine grained configuration of server credentials acr
 Configuring server credentials on your master branch will enable you to make sure you can profile any other branch:
 
 ```bash
-platform variable:create -e master env:BLACKFIRE_SERVER_ID <insert your Server ID>
-platform variable:create -e master env:BLACKFIRE_SERVER_TOKEN <insert your Server Token>
+platform variable:create -e master env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
+platform variable:create -e master env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
 ```
 
 #### Configuring server credentials per branch
@@ -145,8 +145,8 @@ If the above didn't help, collect the following and send it to the [Blackfire su
 
 Please execute the following in the environment where you're facing the issue:
 
-* `platform variable:create php:blackfire.log_file /tmp/blackfire.log`
-* `platform variable:create php:blackfire.log_level 4`
+* `platform variable:create php:blackfire.log_file --value /tmp/blackfire.log`
+* `platform variable:create php:blackfire.log_level --value 4`
 * start a profile/build again
 
 You will get the logs with `platform ssh -- cat /tmp/blackfire.log > blackfire.log`.
