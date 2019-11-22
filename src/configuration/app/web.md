@@ -53,7 +53,7 @@ The above configuration (which is the default on non-PHP containers) will forwar
 
 ### Socket family
 
-If the `socket_family` is set to `tcp`, then your application should listen on the port specified by the `PORT` environment variable.
+If the `socket_family` is set to `tcp`, then your application should listen on the port specified by the `PORT` environment variable.  (In practice it is almost always `8888`, but checking the variable is preferred.)
 
 If the `socket_family` is set to `unix`, then your application should open the unix socket file specified by the `SOCKET` environment variable.
 
