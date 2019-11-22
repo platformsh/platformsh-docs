@@ -20,9 +20,9 @@ PHP options that can we can change via support ticket include:
 * `request_order`
 * `upload_max_filesize`
 
-### XDebug
+### Xdebug
 
-Platform.sh runs a second PHP-FPM process on all Dedicated clusters that has [Xdebug](https://xdebug.org/) enabled, but is only used if a request includes the appropriate Xdebug header.  That means it's safe to have XDebug "always on", as it will be ignored on most requests.
+Platform.sh runs a second PHP-FPM process on all Dedicated clusters that has [Xdebug](https://xdebug.org/) enabled, but is only used if a request includes the appropriate Xdebug header.  That means it's safe to have Xdebug "always on", as it will be ignored on most requests.
 
 To obtain the key you will need to file a ticket to have our support team provide it for you.  Staging and Production have separate keys.  Set that key in the Xdebug helper for your browser, and then whenever you have Xdebug enabled the request will use the alternate development PHP-FPM process with Xdebug.
 
