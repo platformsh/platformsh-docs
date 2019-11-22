@@ -78,3 +78,4 @@ web:
                     allow: true
                 search_plus_index\.json$:
                     allow: true
+
