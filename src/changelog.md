@@ -7,6 +7,7 @@
 
 * **September 2019**
   * "Dark mode" now available in the Console.
+  * Go 1.13: We now support [Go 1.13](/languages/go.md).
 
 * **July 2019**
   * Elasticsearch 7.2: We now support [Elasticsearch 7.2](/configuration/services/elasticsearch.md).
