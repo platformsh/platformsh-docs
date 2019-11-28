@@ -49,7 +49,7 @@ If that Platform.sh add-on does not configure the integration automatically, you
   * **Callback URL:** The URL users will be redirected to after access authorization. It is sufficient to set this value to `http://localhost`.
   * **Permissions:** Sets the integration permissions for Platform.sh. These permissions will create the webhooks that will enable Platform.sh to mirror actions from the Bitbucket repository.
     * **Account** - Email, Read
-    * **Repos** - Read, Write
+    * **Repositories** - Read, Write
     * **Pull requests** - Read
     * **Webhooks** - Read and write
 5. After you have completed the form, `Save` the consumer.
