@@ -41,6 +41,7 @@ You can check the maximum number of PHP-FPM workers by opening an [SSH session](
 grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf
 pm.max_children = 2
 ```
+
 ## Measuring PHP worker memory usage
 
 To see how much memory your PHP worker processes are using, you can open an [SSH session](/development/ssh.md) and look at the PHP access log:
