@@ -30,7 +30,7 @@ Each route can then be configured with the following properties:
 
 > Each language and framework may have additional attributes that you will need to include in `.platform/routes.yaml` depending on the needs of your application. To find out what else you may need to include to configure your routes, consult
 >
-> * **The [Routes](/configuration/services.md) documentation for Platform.sh**
+> * **The [Routes](/configuration/routes.md) documentation for Platform.sh**
 >    The documentation goes into far more extensive detail of which attributes can also be included for route configuration, and should be used as your primary reference.   
 > * **Language-specific templates for Platform.sh Projects**
 >    Compare the `.platform/routes.yaml` file from the simple template above to other templates when writing your own.
