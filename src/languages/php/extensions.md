@@ -143,7 +143,7 @@ This is the complete list of extensions that can be enabled:
 | sysvmsg       |     |     |     | *   | *   | *   | *   | *   |
 | sysvsem       |     |     |     | *   | *   | *   | *   | *   |
 | sysvshm       |     |     |     | *   | *   | *   | *   | *   |
-| tideways|     |     |     | *   | *   | *   | *   | *   | *   |
+| tideways      |     |     | *   | *   | *   | *   | *   | *   |
 | tideways-xhprof  |     |     |     | *   | *   | *   | *   | *   |
 | tidy          | *   | *   | *   | *   | *   | *   | *   | *   |
 | tokenizer     |     |     |     | *   | *   | *   | *   | *   |
@@ -168,7 +168,7 @@ This is the complete list of extensions that can be enabled:
 > your environment. For PHP 7, use `ls /etc/php/*/mods-available`.
 
 > **note**
-> Starting with PHP 7.4, we're no longer including the redis PECL extension with the PHP application image. Unfortunately, that library has had some unfortunate API breaks recently that make it much harder for us to support reliably. Instead, we recommend users install the [predis](https://packagist.org/packages/predis/) package, which will work across all supported PHP versions.
+> Starting with PHP 7.4, we're no longer including the redis PECL extension with the PHP application image. Unfortunately, that library has had some unfortunate API breaks recently that make it much harder for us to support reliably. Instead, we recommend users install the [predis](https://packagist.org/packages/predis/predis) package, which will work across all supported PHP versions.
 
 ## Custom PHP extensions
 
