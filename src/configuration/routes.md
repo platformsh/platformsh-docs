@@ -196,6 +196,20 @@ function get_domain_for(string $id) {
 
 That can be used, for example, for inbound request whitelisting, a feature of many PHP frameworks.
 
+## Route attributes
+
+Sometimes you would want to be able to add arbitrary metadata for routes (for example to denote that multiple routes have something in common). 
+
+```
+"http://{default}/":
+    type: upstream
+    upstream: "app:http"
+    attributes:
+        "foo": "bar"
+```
+These extra attributes will end up in the `$PLATFORM_ROUTES` environment variable.
+
+
 ## Configuring routes on the management console
 
 Routes can also be configured using the management console in the [routes section](/administration/web/configure-environment.html#routes) of the environment settings. If you have edited the routes via the management console, you will have to `git pull` the updated `.platform/routes.yaml` file from us.
