@@ -208,7 +208,7 @@ Route attributes are an arbitrary key/value pair attached to a route.  This meta
         "foo": "bar"
 ```
 
-Will appear in the routes data in PHP like so:
+Attributes will appear in the routes data for PHP like so:
 
 ```text
 [https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
