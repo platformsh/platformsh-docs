@@ -226,7 +226,7 @@ Will appear in the routes data in PHP like so:
     )
 ```
 
-These extra attributes may be used to "tag" routes in more comples scenarios that can then be read by your application.
+These extra attributes may be used to "tag" routes in more complex scenarios that can then be read by your application.
 
 ## Configuring routes on the management console
 
