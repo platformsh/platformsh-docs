@@ -198,7 +198,7 @@ That can be used, for example, for inbound request whitelisting, a feature of ma
 
 ## Route attributes
 
-Sometimes you would want to be able to add arbitrary metadata for routes (for example to denote that multiple routes have something in common). 
+Route attributes are an arbitrary key/value pair attached to a route.  This metadata does not have any impact on Platform.sh, but will be available in the route definition structure in `$PLATFORM_ROUTES`.
 
 ```
 "http://{default}/":
@@ -207,8 +207,26 @@ Sometimes you would want to be able to add arbitrary metadata for routes (for ex
     attributes:
         "foo": "bar"
 ```
-These extra attributes will end up in the `$PLATFORM_ROUTES` environment variable.
 
+Will appear in the routes data in PHP like so:
+
+```text
+[https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
+    (
+        [primary] => 1
+        [id] =>
+        [type] => upstream
+        [upstream] => site1
+        [original_url] => https://site1.{default}/
+        [attributes] => Array
+            (
+                [foo] => bar
+            )
+        // ...
+    )
+```
+
+These extra attributes may be used to "tag" routes in more comples scenarios that can then be read by your application.
 
 ## Configuring routes on the management console
 
