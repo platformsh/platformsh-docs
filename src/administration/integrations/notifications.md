@@ -66,15 +66,15 @@ A notification can trigger a message to be sent to a web endpoint.
 To do so, register a `health.webhook` integration as follows:
 
 ```bash
-platform integration:add --type health.webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
+platform integration:add --type webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
 ```
 
-Any notification will now be posted to the `health.webhook` URL.
+Any notification will now be posted to the `webhook` URL.
 
 In order to let you verify that requests are coming from the integration, you can use the optional `shared-key` parameter which will add a `X-JWS-Signature` request header containing the JSON Web Token Signature in JWS Compact Serialization with Unencoded Detached Payload ([RFC7797](https://tools.ietf.org/html/rfc7797)).
 
 ```bash
-platform integration:add --type health.webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON --shared-key JWS-SYMMETRIC-KEY
+platform integration:add --type webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON --shared-key JWS-SYMMETRIC-KEY
 ```
 
 The signature is calculated using the given `shared-key` and the fixed header:
