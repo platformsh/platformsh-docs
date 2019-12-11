@@ -63,7 +63,7 @@ Any notification will now trigger an alert in PagerDuty.
 
 A notification can trigger a message to be sent to a web endpoint.
 
-To do so, register a `health.webhook` integration as follows:
+To do so, register a `webhook` integration as follows:
 
 ```bash
 platform integration:add --type webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
