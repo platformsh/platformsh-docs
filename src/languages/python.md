@@ -8,6 +8,7 @@ Platform.sh supports deploying Python applications. Your application can use WSG
 * 3.5
 * 3.6
 * 3.7
+* 3.8
 
 ## Support libraries
 
