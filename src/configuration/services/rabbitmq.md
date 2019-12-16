@@ -9,6 +9,7 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 * 3.5
 * 3.6
 * 3.7
+* 3.8
 
 ## Relationship
 

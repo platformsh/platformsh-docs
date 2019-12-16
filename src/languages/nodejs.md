@@ -7,6 +7,7 @@ Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine. 
 * 6
 * 8
 * 10
+* 12
 
 If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.html).
 
@@ -99,7 +100,7 @@ Here's a complete example that also serves static assets (.png from the `/public
 
 ```yaml
 name: node
-type: nodejs:10
+type: nodejs:12
 
 web:
   commands:
