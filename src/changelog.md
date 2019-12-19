@@ -2,6 +2,11 @@
 
 ## 2019
 
+* **December 2019**
+  * Python 3.8: We now support [Python 3.8](/languages/python.md).
+  * Node.js 12: We now support [Node.js 12](/languages/nodejs.md).
+  * RabbitMQ 3.8: We now support [RabbitMQ 3.8](/configuration/services/rabbitmq.md).
+
 * **October 2019**
   * PHP 7.4: We now support [PHP 7.4](/languages/php.md).
 
