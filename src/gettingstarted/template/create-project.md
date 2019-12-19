@@ -14,7 +14,7 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
 1. **Project type**
 
-   You will first be given the option of creating a `New Project` that is empty (one that you can migrate your own code base to), or to `Use a Template`. Click the `Use a Template` option, and then click `Next`.
+   You will first be given the option of creating a `New Project` that is empty ([one that you can migrate your own code base to](/gettingstarted/own-code.md)), or to `Use a Template`. Select the `Use a Template` option, and then click `Next`.
 
 2. **Details**
 
@@ -24,7 +24,7 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
 3. **Template**
 
-   Now you will be able to see the large collection of Platform.sh's supported templates. There are several types of templates available, including simple language-specific examples, ready-to-use frameworks you can build upon, and full installed applications you can start using immediately after installation.
+   Now you will be able to see the large collection of Platform.sh's supported templates. There are several types of templates available, including simple language-specific examples, ready-to-use frameworks you can build upon, and setapplications you can start using immediately after installation.
 
    If you are more comfortable with a particular language, click the dropdown labeled `All languages`. Select a language and the template list will update.
 
