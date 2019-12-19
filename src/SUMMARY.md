@@ -68,7 +68,7 @@
   * [RabbitMQ](configuration/services/rabbitmq.md)
   * [Redis](configuration/services/redis.md)
   * [Solr](configuration/services/solr.md)
-  * [Varnish](configuration/services/varnish.md)  
+  * [Varnish](configuration/services/varnish.md)
 * [Apps (.platform.app.yaml)](configuration/app-containers.md)
   * [Name](configuration/app/name.md)
   * [Type](configuration/app/type.md)
@@ -235,5 +235,7 @@
   * [Dev Environments](dedicated/architecture/development.md)
   * [Scalability](dedicated/architecture/scalability.md)
   * [Options](dedicated/architecture/options.md)
+
+
 
 * [Changelog](changelog.md)
