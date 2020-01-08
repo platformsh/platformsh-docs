@@ -8,7 +8,7 @@ You may include the link on your own project's website, your company's internal 
 
 ## Preparation
 
-To have a deployable template, you need to first prepare the repository.  The Deploy on Platform.sh button will work with any Git repository that is deployable on Platform.sh, that is, it has the necessary [`.platform.app.yaml`](/configuration/app-containers.md), [`.platform/services.yaml`](/configuration/services.md), and [`.platform/routes.yaml`](/configuration/routes.md) files in place.  See the appropriate documentation for how to define those files.
+To have a deployable template, you need to first prepare the repository.  The Deploy on Platform.sh button will work with any Git repository that is deployable on Platform.sh; that is, it has the necessary [`.platform.app.yaml`](/configuration/app-containers.md), [`.platform/services.yaml`](/configuration/services.md), and [`.platform/routes.yaml`](/configuration/routes.md) files in place.  See the appropriate documentation for how to define those files.
 
 The repository must be available at a publicly-accessible Git URL.  That may be hosted with GitHub, GitLab, Bitbucket, your own custom Git hosting, or any other publicly-accessible Git URL.
 
