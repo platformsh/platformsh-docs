@@ -21,10 +21,10 @@ recipe: drupal8
 config:
   # Lando defaults to Apache. Switch to nginx to match Platform.sh.
   via: nginx
-  
+
   # Set the webroot to match your .platform.app.yaml.
   webroot: web
-  
+
   # Lando defaults to the latest MySQL release, but Platform.sh uses MariaDB.
   # Specify the version to match what's in services.yaml.
   database: mariadb:10.1
@@ -48,7 +48,7 @@ Then you need to update your `sites/default/settings.local.php` to configure you
 if (getenv('LANDO') === 'ON') {
   $lando_info = json_decode(getenv('LANDO_INFO'), TRUE);
   $settings['trusted_host_patterns'] = ['.*'];
-  $settings['hash_salt'] = md5(getenv('LANDO_HOST_IP'));
+  $settings['hash_salt'] = 'CHANGE THIS TO SOME RANDOMLY GENERATED STRING';
   $databases['default']['default'] = [
     'driver' => 'mysql',
     'database' => $lando_info['database']['creds']['database'],
