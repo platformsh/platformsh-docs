@@ -16,6 +16,5 @@ As part of our measures we have implemented the following:
 * **Security**: We have created [https://platform.sh/security](https://platform.sh/security) to document our security features.
 * **Data Collection**: We've documented information about [what data we collect](/security/data-collection.md).
 * **Data Retention**: We documented information about our [data retention](/security/data-retention.md).
-* **DPA**: We have revised our [Terms of Service](https://platform.sh/tos) and [Privacy Policy](https://platform.sh/privacy-policy) to align with the GDPR. There is also a pre-signed DPA agreement that can be downloaded at the top of the [Privacy Policy](https://platform.sh/privacy-policy)
-
+* **DPA**: We have revised our [Terms of Service](https://platform.sh/tos) and [Privacy Policy](https://platform.sh/privacy-policy) to align with the GDPR and we offer a pre-signed DPA agreement that can be downloaded at the top of the [Privacy Policy](https://platform.sh/privacy-policy)
 
