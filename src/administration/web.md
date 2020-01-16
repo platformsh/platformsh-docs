@@ -6,8 +6,6 @@ Platform.sh provides a responsive management console which allows you to interac
 
 Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)](/development/cli.md).
 
-> Platform.sh recently launched a new web management console.  This documentation refers to the new console.  To access the legacy user interface select the user drop-down in the top right and click `Legacy` under the "Console mode" option.  [Documentation for the legacy interface](https://pr-1068-yzlkgby-t2llqeifuhpzg.eu.platform.sh/administration/web.html) is still available until it is fully retired.
-
 ## Environment List
 
 From your project's main page, each of the environments are available from the pull-down menu `ENVIRONMENT` at the top of the page.
