@@ -145,6 +145,8 @@ There are a few steps to leveraging FFI:
 
 4. For running FFI from the command line, you will need to enable the opcache for command line scripts in addition to the preloader.  The standard pattern for the command would be `php -d opcache.preload="your-preload-script.php" -d opcache.enable_cli=true your-cli-script.php`.
 
+A working [FFI example](https://github.com/platformsh-examples/php-ffi) is available online for both C and Rust.
+
 ## Debug PHP-FPM
 
 If you want to inspect what's going on with PHP-FPM, you can install this [small CLI](https://github.com/wizaplace/php-fpm-status-cli):
