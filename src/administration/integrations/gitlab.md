@@ -33,7 +33,7 @@ Note that only `project owner` or `project admin` can manage the integrations.
 Open a terminal window (you need to have the Platform.sh CLI installed). Enable the GitLab integration as follows:
 
 ```bash
-platform integration:add --type=gitlab --token=GITLAB-ACCESS-TOKEN --base-url=https://THE-URL-OF-YOUR-GITLAB --server-project=MY-NAMESPACE/MY-PROJECTNAME --project=PLATFORMSH_PROJECT_ID
+platform integration:add --type=gitlab --token=GITLAB-ACCESS-TOKEN --base-url=https://THE-URL-OF-YOUR-GITLAB --repository=MY-NAMESPACE/MY-PROJECTNAME --project=PLATFORMSH_PROJECT_ID
 ```
 
 where
@@ -45,7 +45,7 @@ where
 For example, if your repository is located at `https://gitlab.com/sandbox/my_application`, the integration command would be
 
 ```bash
-platform integration:add --type=gitlab --token=GITLAB-ACCESS-TOKEN --base-url=https://gitlab.com --server-project=sandbox/my_application --project=PLATFORMSH_PROJECT_ID
+platform integration:add --type=gitlab --token=GITLAB-ACCESS-TOKEN --base-url=https://gitlab.com --repository=sandbox/my_application --project=PLATFORMSH_PROJECT_ID
 ```
 
 Optional parameters:
