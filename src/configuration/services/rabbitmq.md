@@ -88,11 +88,11 @@ Then, when you SSH into your container, you can simply type any `amqp-` command 
 
 ### Virtual hosts
 
-You can configure additional [virtual hosts](https://www.rabbitmq.com/vhosts.html) to a RabbitMQ service, which can be useful for separating resources. In your `.platform/services.yaml` file define the names of the virtual hosts under the `configuration.vhosts` attribute: 
+You can configure additional [virtual hosts](https://www.rabbitmq.com/vhosts.html) to a RabbitMQ service, which can be useful for separating resources. In your `.platform/services.yaml` file define the names of the virtual hosts under the `configuration.vhosts` attribute:
 
 ```yaml
 rabbitmq:
-  type: rabbitmq:3.7
+  type: rabbitmq:3.8
   disk: 512
   configuration:
     vhosts:
