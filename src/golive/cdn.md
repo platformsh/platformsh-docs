@@ -82,7 +82,7 @@ List of ip ranges for:
 - [CloudFlare](https://www.cloudflare.com/ips/)
 - [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges)
 
-For CloudFlare, using the HTTP access control is the recommended way of securing your origin.
+*For CloudFlare, using the HTTP access control described above is the recommended way of securing your origin.*
 
 ### 2 Client authenticated TLS
 If your CDN offers this option, an alternative way of securing the connection is [client authenticated TLS](/configuration/routes/https.html#client-authenticated-tls).
@@ -94,7 +94,8 @@ CloudFlare has [a very good article](https://support.cloudflare.com/hc/en-us/art
 To activate authenticated TLS follow the following steps:
 
 - Download the correct certificate from your CDN provider.
-     - [CloudFlare](https://support.cloudflare.com/hc/en-us/article_attachments/360044928032/origin-pull-ca.pem)
+     - [CloudFlare](https://support.cloudflare.com/hc/en-us/article_attachments/360044928032/origin-pull-ca.pem) 
+         - *Caveat! an attacker could make a Cloudflare account to bypass your origin restriction. For CloudFlare, using the HTTP access control described above is the recommended way of securing your origin.*
      - [Fastly](https://docs.fastly.com/products/waf-tuning-plus-package#authenticated-tls-to-origin)
 - Make sure you have a `.crt` file. If you have have `.pem` file, simply rename it to `cdn.crt`
 - Add the `cdn.crt` to your git repository
