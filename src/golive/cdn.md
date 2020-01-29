@@ -55,7 +55,7 @@ When using a CDN the Platform.sh router's HTTP cache becomes redundant.  In most
 
 ## Secure/hide your project from being accessed directly
 
-When using a CDN, you might not want users to access your platform.sh origin directly. There are 2 ways to secure your origin.
+When using a CDN, you might not want users to access your Platform.sh origin directly. There are 2 ways to secure your origin.
 
 ### 1 Basic HTTP Authentication
 
@@ -63,7 +63,6 @@ When using a CDN, you might not want users to access your platform.sh origin dir
 You can password protect your project using [HTTP access control](https://docs.platform.sh/administration/web/configure-environment.html#http-access-control).
 
 Make sure that you generate a password of sufficient strength. You can then use share the password with your CDN provider. Make sure the CDN adds a header to authenticate correctly to your origin.
-
 Add a custom header to the origin request with the base64 encoded username:password.
 For example: `Aladdin:OpenSesame` would become `Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l`.
 
@@ -81,6 +80,7 @@ List of ip ranges for:
 **note**: For CloudFlare, using the HTTP access control described above is the recommended way of securing your origin.
 
 ### 2 Client authenticated TLS
+
 
 If your CDN offers this option, an alternative way of securing the connection is [client authenticated TLS](/configuration/routes/https.html#client-authenticated-tls).
 
