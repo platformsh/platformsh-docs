@@ -52,3 +52,51 @@ When using a CDN the Platform.sh router's HTTP cache becomes redundant.  In most
         # Disable the HTTP cache on this route. It will be handled by the CDN instead.
         enabled: false
 ```
+
+## Secure/hide your project from being accessed directly
+
+When using a CDN, you generally don't want users to access your platform.sh project directly. Luckily, you can secure your connection between you and the CDN with [client authenticated TLS](/configuration/routes/https.html#client-authenticated-tls). 
+
+
+*Note: activating authenticated TLS also means that *you* won't be able to access the project url directly either. If you want to connect to your origin, you'll have to add your own certificate to the configuration as well (see below)*
+
+### CloudFlare client authenticated TLS
+
+CloudFlare has [a very good article](https://support.cloudflare.com/hc/en-us/articles/204899617-Authenticated-Origin-Pulls) on what client authenticated TLS is, and how to set this up.
+
+Steps:
+
+- Download [the CloudFlare certificate](https://support.cloudflare.com/hc/en-us/article_attachments/360044928032/origin-pull-ca.pem)
+- Rename the .pem file to `cloudflare.crt`
+- Add the `cloudflare.crt` to your git repository 
+- Add the relevant configuration to your `.platform.app.yaml` file
+```
+tls:
+    client_authentication: "require"
+    client_certificate_authorities:
+        - !include
+            type: string
+            path: cloudflare.crt
+```
+
+### Fastly client authenticated TLS
+
+Fastly offers authenticated TLS but you'll have to generate your own certificate.
+For more information see the [fastly docs](https://docs.fastly.com/products/waf-tuning-plus-package#authenticated-tls-to-origin) on this topic.
+
+Other than that, the process is the same.
+
+- Add the `fastly.crt` to your git repository 
+- Add the relevant configuration to your `.platform.app.yaml` file
+```
+tls:
+    client_authentication: "require"
+    client_certificate_authorities:
+        - !include
+            type: string
+            path: fastly.crt
+```
+
+
+
+
