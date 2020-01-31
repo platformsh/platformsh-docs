@@ -29,7 +29,7 @@ That can be done through the [management console](/administration/web.md) or via
 
 ```bash
 platform variable:create --level project --name env:COMPOSER_AUTH \
-  --json true --visible-runtime false \
+  --json true --visible-runtime false --sensitive true --visible-build true \
   --value '{"http-basic": {"my-private-repos.example.com": {"username": "your-username", "password": "your-password"}}}'
 ```
 
