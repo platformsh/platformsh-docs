@@ -19,7 +19,7 @@ Default storage is based on the default SSD block-storage offering for each clou
 | [MariaDB](https://docs.platform.sh/configuration/services/mysql.html)        | 10.0 Galera, 10.1 Galera, 10.2 Galera |
 | [RabbitMQ](https://docs.platform.sh/configuration/services/rabbitmq.html)       | 3.6                      |
 | [Solr](https://docs.platform.sh/configuration/services/solr.html)           | 4.10, 6.3, 6.6                |
-| [ElasticSearch](https://docs.platform.sh/configuration/services/elasticsearch.html)  | 1.7, 2.4, 5.2, 6.5            |
+| [ElasticSearch](https://docs.platform.sh/configuration/services/elasticsearch.html)  | 1.7, 2.4, 5.2, 6.5, 7.2            |
 | [Redis](https://docs.platform.sh/configuration/services/redis.html)          | 3.2, 5.0                      |
 | [Memcached](https://docs.platform.sh/configuration/services/memcached.html)      | 1.4                      |
 
