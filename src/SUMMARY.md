@@ -4,7 +4,7 @@
 * [Structure](overview/structure.md)
 * [Build & Deploy](overview/build-deploy.md)
 * [Pricing](overview/pricing.md)
-  * [Sponsored Community sites](overview/pricing/sponsored.md)
+  * [Sponsored Sites](overview/pricing/sponsored.md)
 * [Getting help](overview/getting-help.md)
 
 ## Getting Started
