@@ -16,7 +16,6 @@ Data subject deletion requests where Platform is the controller are handled via 
 
 Our product is a Platform as a Service. Platform does not directly edit customer data to ensure data confidentiality, security, and integrity. All data deletion requests for customer data must be handled by the concerned data controller.
 
-
 ## Resources
 
 * AWS [Security Whitepaper](https://d1.awsstatic.com/whitepapers/Security/AWS_Security_Whitepaper.pdf)
