@@ -11,7 +11,7 @@ Platform.sh provides sponsored hosting for Free Software projects and tech commu
 
 The Platform.sh Developer Relations team manages the program and collectively has final say on what projects are eligible for sponsorship.
 
-Platform.sh will periodically reevaluate sponsored sites to ensure they remain eligible, and may with a month notice terminate the free service at its own will. Platform.sh may terminate this policy providing a month notice to allow users to migrate away
+Platform.sh will periodically reevaluate sponsored sites to ensure they remain eligible, and may terminate the free service at its own will. Platform.sh will provide a month notice to allow users to migrate in these cases.
 
 ## Offering
 
@@ -36,5 +36,4 @@ If the eligible project is a registered non-profit organization in the US or Ger
 Sponsored projects will receive the same level of support as any other self-service hosted customer site.
 
 ## Contact
-
 
