@@ -25,7 +25,7 @@ A project is under no obligation to use the application container of their proje
 
 In return, eligible projects are expected to include an HTML snippet conspicuously on each page of the site.  That may be in a sidebar or footer, with text no smaller than the standard body text size for the site. The image may be scaled via CSS as appropriate as long as the text is fully readable.  The badge markup will be provided by Platform.sh when setting up the site and will include a link to Platform.sh and an analytics tracking value so we know where links are coming from.  It does not include any cookies.
 
-Platform.sh may update from time to time the widget’s contents and the sponsored site will update the contents in a timely fashion.
+Platform.sh may from time to time update the widget’s contents and the sponsored site will update the contents in a timely fashion.
 
 The sponsored site may ask, and Platform.sh shall accept variations of the widget as long as these fall within the branding guidelines of Platform.sh.
 
@@ -37,3 +37,4 @@ Sponsored projects will receive the same level of support as any other self-serv
 
 ## Contact
 
+If you are an eligible Free Software project or community group, <a href="#" onclick="drift.api.startInteraction({ interactionId: 128990 });return false;">contact our Developer Relations team</a> and let us know that you are interested.
