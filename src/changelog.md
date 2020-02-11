@@ -1,5 +1,10 @@
 # Changelog
 
+## 2020
+
+* **February 2020**
+  * Memcached 1.5: We now support [Memcached 1.5](/services/memcached.md)
+
 ## 2019
 
 * **December 2019**
