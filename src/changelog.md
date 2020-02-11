@@ -3,7 +3,7 @@
 ## 2020
 
 * **February 2020**
-  * Memcached 1.5: We now support [Memcached 1.5](/services/memcached.md)
+  * Memcached 1.5: We now support [Memcached 1.5](/configuration/services/memcached.md)
 
 ## 2019
 
