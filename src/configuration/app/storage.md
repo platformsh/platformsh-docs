@@ -114,6 +114,17 @@ web:
 
 See the [web locations](/configuration/app/web.md) documentation for more details.
 
+## Why can't I mount a hidden folder?
+
+Platform.sh ignores YAML keys that start with a dot. This causes a mount like `.myhiddenfolder` to be ignored. If you want to mount a hidden folder, you'll have to prepend it with a `/`:
+
+```yaml
+mounts:
+  '/.myhiddenfolder':
+    source: local
+    source_path: 'myhiddenfolder'
+```
+
 ## How do I setup overlapping mount paths?
 
 While not recommended it is possible to setup multiple mount points whose source paths overlap.  Consider the following example:
