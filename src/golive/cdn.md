@@ -61,7 +61,7 @@ When using a CDN, you might not want users to access your Platform.sh origin dir
 
 You can password protect your project using [HTTP access control](https://docs.platform.sh/administration/web/configure-environment.html#http-access-control).
 
-Make sure that you generate a password of sufficient strength. You can then use share the password with your CDN provider. Make sure the CDN adds a header to authenticate correctly to your origin.
+Make sure that you generate a password of sufficient strength. You can then share the password with your CDN provider. Make sure the CDN adds a header to authenticate correctly to your origin.
 
 Add a custom header to the origin request with the base64 encoded username:password.
 
