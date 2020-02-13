@@ -14,9 +14,9 @@ A third-party availability monitoring system is configured for every Dedicated p
 
 ## Application performance monitoring
 
-Platform.sh does not provide application-level performance monitoring.  However, we strongly recommend that customers leverage application monitoring themselves.  Platform.sh is a New Relic reseller and New Relic APM is available on all Platform.sh Dedicated accounts via our partnership with New Relic.  We offer a 10% discount off of the standard list price for whatever size cluster is running your application.  New Relic infrastructure monitoring is not supported.
+Platform.sh does not provide application-level performance monitoring.  However, we strongly recommend that customers leverage application monitoring themselves.
 
-Blackfire.io is also available on the same model.
+Platform.sh is a [Blackfire.io](/administration/integrations/blackfire.md#on-a-dedicated-cluster) reseller. You can contact your sales representative to get a quote for whatever size cluster is running your application. Platform.sh also [supports New Relic APM](/administration/integrations/new-relic.md#on-a-dedicated-cluster). After you have signed up with New Relic and gotten your license key, open a support ticket so that it can be installed on your project. New Relic infrastructure monitoring is not supported. 
 
 ## Availability incident handling procedure
 
