@@ -114,7 +114,7 @@ web:
 
 See the [web locations](/configuration/app/web.md) documentation for more details.
 
-## Unable to mount hidden folder?
+## Why can't I mount a hidden folder?
 
 Platform.sh ignores YAML keys that start with a dot. This causes a mount like `.myhiddenfolder` to be ignored. If you want to mount a hidden folder, you'll have to prepend it with a `/`:
 
