@@ -142,7 +142,7 @@ mounts:
 
 ```yaml
 database:
-  type: mysql
+  type: mysql:10.2
   disk: 2048
 ```
 
