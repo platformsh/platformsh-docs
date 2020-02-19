@@ -102,6 +102,7 @@
   * [Alternative Node.js install](languages/nodejs/nvm.md)
 * [PHP](languages/php.md)
   * [Extensions](languages/php/extensions.md)
+  * [Redis](languages/php/redis.md)
   * [Frameworks](languages/php/frameworks.md)
   * [Performance tuning](languages/php/tuning.md)
   * [PHP.ini settings](languages/php/ini.md)

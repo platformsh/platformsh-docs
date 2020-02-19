@@ -2,9 +2,12 @@
 
 ## 2020
 
+* **February 2020**
+  * Memcached 1.5: We now support [Memcached 1.5](/configuration/services/memcached.md).
+
 * **January 2020**
   * RabbitMQ: We now support [RabbitMQ virtual host configuration](/configuration/services/rabbitmq.md#virtual-hosts)
-
+  
 ## 2019
 
 * **December 2019**

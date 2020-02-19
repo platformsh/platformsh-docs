@@ -15,12 +15,12 @@ Default storage is based on the default SSD block-storage offering for each clou
 | Service        | Versions                 |
 | ---------------|:------------------------:|
 | [PHP](/languages/php.md)            | 5.6, 7.0, 7.1 (ZTS), 7.2 (ZTS), 7.3 (ZTS) |
-| [NodeJS](/languages/nodejs.md)         | 9.8                      |
+| [NodeJS](/languages/nodejs.md)         | 9.8, 10                      |
 | [MariaDB](https://docs.platform.sh/configuration/services/mysql.html)        | 10.0 Galera, 10.1 Galera, 10.2 Galera |
 | [RabbitMQ](https://docs.platform.sh/configuration/services/rabbitmq.html)       | 3.6                      |
-| [Solr](https://docs.platform.sh/configuration/services/solr.html)           | 4.10, 6.3                |
+| [Solr](https://docs.platform.sh/configuration/services/solr.html)           | 4.10, 6.3, 6.6                |
 | [ElasticSearch](https://docs.platform.sh/configuration/services/elasticsearch.html)  | 1.7, 2.4, 5.2, 6.5            |
-| [Redis](https://docs.platform.sh/configuration/services/redis.html)          | 3.2                      |
+| [Redis](https://docs.platform.sh/configuration/services/redis.html)          | 3.2, 5.0                      |
 | [Memcached](https://docs.platform.sh/configuration/services/memcached.html)      | 1.4                      |
 
 Your application will be able to connect to each service by referencing the exact same environment variables as a Grid environment.  While the configuration of the service will be performed by our team, the application configuration is the same and your code should be the same.  See the [services documentation](/configuration/services.html) for service-specific details.
