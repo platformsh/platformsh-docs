@@ -10,10 +10,10 @@ First you need to create a Redis service.  In your `.platform/services.yaml` fil
 
 ```yaml
 rediscache:
-    type: redis:3.2
+    type: redis:5.0
 ```
 
-That will create a service named `rediscache`, of type `redis`, specifically version `3.2`.
+That will create a service named `rediscache`, of type `redis`, specifically version `5.0`.
 
 ### Expose the Redis service to your application
 
@@ -28,14 +28,7 @@ The key (left side) is the name that will be exposed to the application in the `
 
 ### Add the Redis PHP extension
 
-You will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
-
-```yaml
-# Additional extensions
-runtime:
-    extensions:
-        - redis
-```
+Because the Redis extension for PHP has been known to have BC breaks at times, we do not bundle a specific verison by default.  Instead, we provide a script to allow you to build your desired version in the build hook.  See the [PHP-Redis page](/languages/php/redis.md) for a simple-to-install script and instructions.
 
 ### Add the Redis library
 
@@ -61,11 +54,10 @@ It should now look something like:
 hooks:
     build: |
         set -e
-        cp -R web/wp/wp-content/plugins/* web/wp-content/plugins/
-        cp -R web/wp/wp-content/themes/* web/wp-content/themes/
+
+        bash install-redis.sh 5.1.1
+
         cp -r wp-content/wp-redis-object-cache-dropin/object-cache.php web/wp/wp-content/object-cache.php
-        # Uncomment this line when you start adding extra language packs.
-        #cp -R web/wp/wp-content/languages/* web/wp-content/languages/
 ```
 
 Next, place the following code in the `wp-config.php` file, somewhere before the final `require_once(ABSPATH . 'wp-settings.php');` line.
