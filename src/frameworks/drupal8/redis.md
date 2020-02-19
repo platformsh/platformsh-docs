@@ -1,6 +1,8 @@
 # Using Redis with Drupal 8.x
 
-The Drupal 8 Redis module currently only supports the [PhpRedis](https://github.com/nicolasff/phpredis) option, which relies on a PHP extension. Fortunately, that extension is trivial to enable on Platform.sh.
+If you are using the Platform.sh-provided Drupal 8 template, most of this work is already done for you.  All you need to do is uncomment a the Redis relationship in `.platform.app.yaml` after your site is installed and Redis-based caching should "just work".
+
+If you are working from an older repository or migrating a pre-built site to Platform.sh, see the instructions below.
 
 ## Requirements
 
@@ -28,14 +30,7 @@ The key (left side) is the name that will be exposed to the application in the `
 
 ### Add the Redis PHP extension
 
-You will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
-
-```yaml
-# Additional extensions
-runtime:
-    extensions:
-        - redis
-```
+Because the Redis extension for PHP has been known to have BC breaks at times, we do not bundle a specific verison by default.  Instead, we provide a script to allow you to build your desired version in the build hook.  See the [PHP-Redis page](/languages/php/redis.md) for a simple-to-install script and instructions.
 
 ### Add the Drupal module
 
