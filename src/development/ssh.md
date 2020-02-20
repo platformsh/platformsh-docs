@@ -71,6 +71,20 @@ You have your SSH keys (if not, take a look at the section above), but you need 
 
 That's it! You're all set. Now you'll be able to use Git and command shells with any Platform.sh environment that your user account is authorized to work with.
 
+### Forwarding keys by default
+
+It may be helpful to set your SSH client to always forward keys to Platform.sh servers, which can simplify other SSH or Rsync commands.  To do so, include a block in your local `~/.ssh/config` file like so:
+
+```
+Host *.us.platform.sh
+       ForwardAgent yes
+
+Host *.eu.platform.sh
+       ForwardAgent yes
+```
+
+(You can include other configuration as desired.)
+
 ![Setting Up Your Project Add SSH Key Done](/images/management-console/account-ssh-keys.png)
 
 ## SSH to your Web Server
