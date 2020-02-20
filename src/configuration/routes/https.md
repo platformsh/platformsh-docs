@@ -165,3 +165,34 @@ The above cron task will run on the 1st and 15th of the month at 10 am (UTC), an
 > It is very important to include the `--no-wait` flag.  If you do not, the cron process will block waiting on the deployment to finish, but the deployment will be blocked by the running cron task.  That will take your site offline until you log in and manually terminate the running cron task.  You want the `--no-wait` flag.  We're not joking.
 
 The certificate will not renew unless it has less than one month remaining; trying twice a month is sufficient to ensure a certificate is never less than 2 weeks from expiring.  As the redeploy does cause a momentary pause in service we recommend running during non-peak hours for your site.
+
+## Let's Encrypt limits and branch names
+
+You may encounter Let's Encrypt certificates failing to provision after the build hook has completed:
+
+```bash
+Provisioning certificates
+  Validating 2 new domains
+  E: Error provisioning the new certificate, will retry in the background.
+  (Next refresh will be at 2020-02-13 14:29:22.860563+00:00.)
+  Environment certificates
+
+W: Missing certificate for domain www.<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
+W: Missing certificate for domain <PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
+```
+
+One reason that this can happen has to do with the limits of Let's Encrypt itself, which caps off at 64 characters for URLS. If your TLS certificates are not being provisioned, it's possible that the names of your branches are too long, and the environment's generated URL goes over that limit.
+
+At this time, generated URLs have the following pattern:
+
+```
+<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
+```
+
+* `PLATFORM_ENVIRONMENT` = `PLATFORM_BRANCH` + 7 character hash
+* `PLATFORM_PROJECT` = 13 characters
+* `REGION` = 2-4 characters, depending on the region
+* `platformsh.site` = 15 characters
+* extra characters (`.` & `-`) = 4 characters
+
+This breakdown leaves you with 21-23 characters to work with naming your branches (`PLATFORM_BRANCH`) without going over the 64 character limit, dependent on the region. Since this pattern for generated URLs will remain similar, but could change slightly over time, it's our recommendation to use branch names with a maximum length between 15 and 20 characters.
