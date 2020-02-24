@@ -83,7 +83,7 @@ Host *.eu.platform.sh
        ForwardAgent yes
 ```
 
-(You can include other configuration as desired.)
+Include one `Host` entry for each Platform.sh region you want to connect to, such as `us-2` or `eu-4`.  (You can include other configuration as desired.)
 
 ![Setting Up Your Project Add SSH Key Done](/images/management-console/account-ssh-keys.png)
 
