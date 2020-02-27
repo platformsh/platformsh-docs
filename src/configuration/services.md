@@ -36,11 +36,11 @@ database2:
 
 The `name` you want to give to your service. You are free to name each service as you wish (*lowercase alphanumeric only*).
 
-**WARNING**: Because we support multiple services of the same type (you can have 3 different MySQL instances), changing the name of the service in ``services.yaml`` will be interpreted as destroying the existing service and creating a new one. This will make **all the data in that service disappear forever**. Remember to always snapshot your environment in which you have important data before modifying this file.
+**WARNING**: Because we support multiple services of the same type (you can have 3 different MySQL instances), changing the name of the service in ``services.yaml`` will be interpreted as destroying the existing service and creating a new one. This will make **all the data in that service disappear forever**. Remember to always back up your environment in which you have important data before modifying this file.
 
 ### Type
 
-The `type` of your service. It's using the format ``type:version``.
+The `type` of your service. It's using the format `type:version`.
 
 If you specify a version number which is not available, you'll see this error when pushing your changes:
 
@@ -49,6 +49,10 @@ Validating configuration files.
 E: Error parsing configuration files:
     - services.mysql.type: 'mysql:5.6' is not a valid service type.
 ```
+
+Service types and their supported versions include:
+
+{% include "../registry/images/tables/services_supported.md" %}
 
 ### Disk
 
@@ -74,13 +78,11 @@ All services have their system timezone set to UTC by default.  In most cases th
 
 In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml](/configuration/app-containers.md) file which configures the *relationships* between applications and services.
 
-
 ## Endpoints
 
 All services offer one or more `endpoints`.  An endpoint is simply a named set of credentials that can be used to access the service from other applications or services in your project.  Only some services support multiple user-defined endpoints.  If you do not specify one then one will be created with a standard defined name, generally the name of the service type (e.g., `mysql` or `solr`).  An application container, defined by a `.platform.app.yaml` file, always exposes and endpoint named `http` to allow the [router](/configuration/routes.md) to forward requests to it.
 
 When defining relationships in a configuration file you will always address a service as `<servicename>`:`<endpoint>`.  See the appropriate service page for details on how to configure multiple endpoints for each service that supports it.
-
 
 ## Connecting to a service
 

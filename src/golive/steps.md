@@ -26,7 +26,11 @@ You can make changes to the type of plan, the number of environments, amount of 
 
 You can find more information on pricing on the [pricing page](https://platform.sh/pricing).
 
-## 2. Configure your DNS provider
+## 2. (CDN version) Configure your DNS provider
+
+If you are serving the site through a CDN, configure your DNS provider to point at your CDN account.  The address or CNAME to set for that will vary with the CDN provider.  Refer to their documentation or to the [CDN guide](/golive/cdn.md).
+
+## 2. (Non-CDN version) Configure your DNS provider
 
 Configure your DNS provider to point your domain to your Platform.sh Master environment domain name.
 
@@ -40,9 +44,12 @@ Note that depending on your registrar and the TTL you set, it could take anywher
 
 If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records](/golive/steps/dns.md).
 
-## 3. Set your domain in Platform.sh
+## 3. (Non-CDN version) Set your domain in Platform.sh
 
-This is a required step, it will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
+> **note**
+> If using a CDN, skip this step.  The CDN should already have been configured in advance to point to Platform.sh as its upstream.
+
+This step will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
 
 You can add multiple domains to point to your project. Each domain can have its own custom SSL certificate, or use the default one provided.
 
@@ -52,8 +59,12 @@ To get the IP address, first run `platform environment:info edge_hostname`.  Tha
 
 In OS X and Linux you can add that IP  to your `/etc/hosts` file.  In Windows the file is named `c:\Windows\System32\Drivers\etc\hosts`. You will need to be a admin user to be able to change that file. So in OS X you will usually run something like `sudo vi /etc/hosts`. After adding the line the file will look something like:
 
-
 ![Hosts File](/images/config-files/hosts-file.png)
+
+Alternatively there is also an add-on for Firefox and Google Chrome that allow you to dynamically switch DNS IP addresses without modifying your `hosts` file.
+
+* [Firefox LiveHosts add-on](https://addons.mozilla.org/en-US/firefox/addon/livehosts/) 
+* [Google Chrome LiveHosts add-on](https://chrome.google.com/webstore/detail/livehosts/hdpoplemgeaioijkmoebnnjcilfjnjdi?hl=en)
 
 > **note**
 > Do not put the IP address you see here, but the one you got from the ping command.
@@ -69,16 +80,16 @@ While not required, it's strongly recommended that you set up [health notificati
 
 ### Configure production cron tasks
 
-It's strongly recommended that you [set up automatic snapshots](/administration/snapshot-and-restore.md#automated-snapshots) and [automatic certificate renewal](/configuration/routes/https.md#automatic-certificate-renewal) cron tasks.  You will first need to set up an [API token](/development/cli/api-tokens.md) and install the CLI as part of the build hook.  Then you can easily configure the appropriate cron tasks.  The following snippet is generally sufficient but see the the links above for more details, and please modify the cron schedules listed to match your use case.
+It's strongly recommended that you [set up automatic backups](/administration/backup-and-restore.md#automated-backups) and [automatic certificate renewal](/configuration/routes/https.md#automatic-certificate-renewal) cron tasks.  You will first need to set up an [API token](/development/cli/api-tokens.md) and install the CLI as part of the build hook.  Then you can easily configure the appropriate cron tasks.  The following snippet is generally sufficient but see the the links above for more details, and please modify the cron schedules listed to match your use case.
 
 ```yaml
 crons:
-    snapshot:
-        # Take a snapshot automatically every night at 3 am (UTC).
+    backup:
+        # Take a backup automatically every night at 3 am (UTC).
         spec: '0 3 * * *'
         cmd: |
             if [ "$PLATFORM_BRANCH" = master ]; then
-                platform snapshot:create --yes --no-wait
+                platform backup:create --yes --no-wait
             fi
     renewcert:
         # Force a redeploy at 8 am (UTC) on the 14th and 28th of every month.

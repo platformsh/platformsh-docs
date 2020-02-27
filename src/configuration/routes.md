@@ -196,6 +196,38 @@ function get_domain_for(string $id) {
 
 That can be used, for example, for inbound request whitelisting, a feature of many PHP frameworks.
 
+## Route attributes
+
+Route attributes are an arbitrary key/value pair attached to a route.  This metadata does not have any impact on Platform.sh, but will be available in the route definition structure in `$PLATFORM_ROUTES`.
+
+```
+"http://{default}/":
+    type: upstream
+    upstream: "app:http"
+    attributes:
+        "foo": "bar"
+```
+
+Attributes will appear in the routes data for PHP like so:
+
+```text
+[https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
+    (
+        [primary] => 1
+        [id] =>
+        [type] => upstream
+        [upstream] => site1
+        [original_url] => https://site1.{default}/
+        [attributes] => Array
+            (
+                [foo] => bar
+            )
+        // ...
+    )
+```
+
+These extra attributes may be used to "tag" routes in more complex scenarios that can then be read by your application.
+
 ## Configuring routes on the management console
 
 Routes can also be configured using the management console in the [routes section](/administration/web/configure-environment.html#routes) of the environment settings. If you have edited the routes via the management console, you will have to `git pull` the updated `.platform/routes.yaml` file from us.

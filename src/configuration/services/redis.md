@@ -20,7 +20,7 @@ The following versions are available but are not receiving security updates from
 * 3.0
 
 > **note**
-> Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database
+> Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database.
 
 ### Ephemeral Redis
 
@@ -28,10 +28,7 @@ The `redis` service type is configured to serve as a LRU cache; its storage is n
 
 To add an Ephemeral Redis service, specify it in your `.platform/services.yaml` file like so:
 
-```yaml
-rediscache:
-    type: redis:5.0
-```
+{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
 
@@ -41,11 +38,7 @@ The `redis-persistent` service type is configured for persistent storage. That m
 
 To add a Persistent Redis service, specify it in your `.platform/services.yaml` file like so:
 
-```yaml
-redisdata:
-    type: redis-persistent:5.0
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/redis-persistent.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 The `disk` key is required for redis-persistent to tell Platform.sh how much disk space to reserve for Redis' persistent data.
 
@@ -61,10 +54,7 @@ The format is identical regardless of whether it's a persistent or ephemeral ser
 
 In your ``.platform/services.yaml``:
 
-```yaml
-rediscache:
-    type: redis:5.0
-```
+{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php/extensions.md) in your `.platform.app.yaml`.
 
@@ -74,7 +64,7 @@ runtime:
         - redis
 
 relationships:
-    applicationcache: "rediscache:redis"
+    rediscache: "cache:redis"
 ```
 
 You can then use the service in a configuration file of your application with something like:
@@ -89,12 +79,26 @@ You can then use the service in a configuration file of your application with so
 
 {%- endcodetabs %}
 
+## Multiple databases
+
+Redis 3.0 and above are configured to support up to 64 databases.  Redis does not support distinct users for different databases so the same relationship connection gives access to all databases.  To use a particular database, use the Redis [`select` command](https://redis.io/commands/select) through your API library.  For instance, in PHP you could write:
+
+```php
+$redis->select(0);    // switch to DB 0
+$redis->set('x', '42');    // write 42 to x
+$redis->move('x', 1);    // move to DB 1
+$redis->select(1);    // switch to DB 1
+$redis->get('x');    // will return 42
+```
+
+Consult the documentation for your connection library and Redis itself for further details.
+
 ## Eviction policy
 
 On the Ephemeral `redis` service it is also possible to select the key eviction policy.  That will control how Redis behaves when it runs out of memory for cached items and needs to clear old items to make room.
 
 ```yaml
-rediscache:
+cache:
     type: redis:5.0
     configuration:
       maxmemory_policy: allkeys-lru
@@ -113,19 +117,13 @@ See the [Redis documentation](https://redis.io/topics/lru-cache#eviction-policie
 
 ## Using redis-cli to access your Redis service
 
-With a Redis relationship named `applicationcache`.
+Assuming a Redis relationship named `applicationcache` defined in `.platform.app.yaml`
 
-```yaml
-# .platform/services.yaml
-rediscache:
-    type: redis:5.0
-```
+{% codesnippet "/registry/images/examples/full/redis.app.yaml", language="yaml" %}{% endcodesnippet %}
 
-```yaml
-# .platform.app.yaml
-relationships:
-    applicationcache: "rediscache:redis"
-```
+and `services.yaml`
+
+{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `applicationcache.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
 
@@ -137,16 +135,15 @@ redis-cli -h applicationcache.internal -p 6379
 
 Using the same configuration but with your Redis relationship named `sessionstorage`:
 
-```yaml
-# .platform/services.yaml
-rediscache:
-    type: redis:5.0
-```
+`.platform/services.yaml`
+
+{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
+
+`.platform.app.yaml`
 
 ```yaml
-# .platform.app.yaml
 relationships:
-    sessionstorage: "rediscache:redis"
+  sessionstorage: "cache:redis"
 ```
 
 ```yaml

@@ -16,6 +16,8 @@ projects[composer_manager][patch][] = "https://www.drupal.org/files/issues/compo
 
 If you're checking the entire codebase into Git, do so with Composer Manager as well.  Then download and apply the two patches in the issues above and commit the result.
 
+It's important to uncheck the two "Automatically..." options at the config page on `admin/config/system/composer-manager/settings`. If checked, Drupal tries to update the composer folder. Since this isn't a writable mount, installation of composer based modules will fail due to these writing permissions.
+
 ## 2. Configure file locations
 
 Composer Manager works by using a Drush command to aggregate all module-provided `composer.json` files into a single file, which can then be installed via a normal Composer command.  Both the generated file and the resulting `vendor` directory must be in the application portion of the file system, that is, not in a writable file mount.  As that is not the default configuration for Composer Manager it will need to be changed.  Add the following lines to your `settings.php` file:

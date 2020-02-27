@@ -7,6 +7,7 @@ Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine. 
 * 6
 * 8
 * 10
+* 12
 
 If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.html).
 
@@ -20,14 +21,11 @@ While it is possible to read the environment directly from your application, it 
 
 ## Configuration
 
-To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` file with a few key settings, as described here (a complete example is included at the end).
+To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file with a few key settings, as described here (a complete example is included at the end).
 
 1. Specify the language of your application (available versions are listed above):
 
-    ```yaml
-    # .platform.app.yaml
-    type: "nodejs:10"
-    ```
+    {% codesnippet "/registry/images/examples/full/nodejs.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 2. Specify your dependencies under the `nodejs` key, like this:
 
@@ -56,6 +54,10 @@ To use Platform.sh and Node.js together, configure the ``.platform.app.yaml`` fi
      }
    }
    ```
+
+   > **Note:**
+   >
+   > If using the `pm2` process manager to start your application, it is recommended that you do so directly in `web.commands.start` as described above, rather than by calling a separate script the contains that command. Calling `pm2 start` at `web.commands.start` from within a script, even with the `--no-daemon` flag, has been found to daemonize itself and block other processes (such as backups) with continuous respawns. 
 
 4. Create any Read/Write mounts. The root file system is read only. You must explicitly describe writable mounts. In (3) we set the home of the process manager to `/app/run` so this needs to be writable.
 
@@ -98,7 +100,7 @@ Here's a complete example that also serves static assets (.png from the `/public
 
 ```yaml
 name: node
-type: nodejs:10
+type: nodejs:12
 
 web:
   commands:
@@ -167,6 +169,6 @@ To access various [services](/configuration/services.md) with Node.js, see the f
 
 A number of project templates for Node.js applications and typical configurations are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
-* [Generic Node.js](https://github.com/platformsh/platformsh-example-nodejs)
-* [Parse](https://github.com/platformsh/platformsh-example-parseit)
-* [Node.js-based microservices](https://github.com/platformsh/platformsh-example-nodejs-microservices)
+* [Generic Node.js](https://github.com/platformsh-templates/nodejs)
+* [Parse](https://github.com/platformsh-examples/platformsh-example-parseit)
+* [Node.js-based microservices](https://github.com/platformsh-examples/platformsh-example-nodejs-microservices)

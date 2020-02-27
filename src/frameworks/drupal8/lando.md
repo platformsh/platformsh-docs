@@ -67,7 +67,7 @@ If you need to add additional services (Redis cache, Solr, Elasticsearch, etc.) 
 Assuming you're using a standard Drupal 8 configuration, the following commands will fully synchronize the SQL database and uploaded files to your local system.  First, make sure the git branch you have checked out is the environment you want to synchronize from.  Then run the following from the repository root:
 
 ```bash
-# Download a database snapshot and import it into Lando.
+# Download a database backup and import it into Lando.
 platform db:dump --gzip -f database.sql.gz
 lando db-import database.sql.gz
 

@@ -11,6 +11,8 @@ The service types `mariadb` and `mysql` both refer to MariaDB for compatibility 
 * mariadb:10.0
 * mariadb:10.1
 * mariadb:10.2
+* mariadb:10.3
+* mariadb:10.4
 
 
 * mysql:10.0
@@ -41,52 +43,27 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 For MariaDB your `.platform/services.yaml` can use the `mysql` service type:
 
-```yaml
-mydatabase:
-    type: mysql:10.2
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/mysql.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 or the `mariadb` service type.
 
-```yaml
-mymariadatabase:
-    type: mariadb:10.2
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/mariadb.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Oracle-mysql uses the `oracle-mysql` service type:
 
-```yaml
-myoracledatabase:
-    type: oracle-mysql:8.0
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/oracle-mysql.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Note that the minimum disk size for `mysql`/`oracle-mysql` is 256MB.
 
 Despite these service type differences, MariaDB and Oracle MySQL both use the `mysql` endpoint in their configuration.
 
-For MariaDB, the endpoint does not change whether you used the `mysql` service type:
+For MariaDB, the endpoint does not change whether you used the `mysql` or `mariadb` service type:
 
-```yaml
-relationships:
-    database: "mydatabase:mysql"
-```
-
-or the `mariadb` service type:
-
-```yaml
-relationships:
-    database: "mymariadatabase:mysql"
-```
+{% codesnippet "/registry/images/examples/full/mariadb.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 The same goes for using the `oracle-mysql` service type as well.
 
-```yaml
-relationships:
-    database: "myoracledatabase:mysql"
-```
+{% codesnippet "/registry/images/examples/full/oracle-mysql.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 
@@ -118,8 +95,8 @@ If you are using version `10.0` or later of this service it is possible to defin
 Consider the following illustrative example:
 
 ```yaml
-mysqldb:
-    type: mysql:10.0
+db:
+    type: mariadb:10.4
     disk: 2048
     configuration:
         schemas:
@@ -148,9 +125,9 @@ Once those endpoints are defined, you need to expose them to your application as
 
 ```yaml
 relationships:
-    database: "mysqldb:admin"
-    reports: "mysqldb:reporter"
-    imports: "mysqldb:importer"
+    database: "db:admin"
+    reports: "db:reporter"
+    imports: "db:importer"
 ```
 
 This block defines three relationships, `database`, `reports`, and `imports`.  They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials.  You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
@@ -177,8 +154,8 @@ For version 10.2 and later, a select few MariaDB configuration properties from t
 At this time, only the `max_allowed_packet` size is available, and defaults to `16` (in MB).  Legal values are from `1` to `100`.
 
 ```yaml
-mysqldb:
-    type: mysql:10.2
+db:
+    type: mariadb:10.4
     disk: 2048
     configuration:
         properties:
@@ -228,18 +205,18 @@ platform db:dump --stdout | bzip2 > dump.sql.bz2
 The easiest way to load data into a database is to pipe an SQL dump through the `platform sql` command, like so:
 
 ```bash
-platform sql < my_database_snapshot.sql
+platform sql < my_database_backup.sql
 ```
 
-That will run the database snapshot against the SQL database on Platform.sh.  That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database).  As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
+That will run the database backup against the SQL database on Platform.sh.  That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database).  As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-platform sql --relationship database -e master < my_database_snapshot.sql
+platform sql --relationship database -e master < my_database_backup.sql
 ```
 
 > **note**
-> Importing a database snapshot is a destructive operation. It will overwrite data already in your database.
-> Taking a snapshot or a database export before doing so is strongly recommended.
+> Importing a database backup is a destructive operation. It will overwrite data already in your database.
+> Taking a backup or a database export before doing so is strongly recommended.
 
 ## Troubleshooting
 

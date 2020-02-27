@@ -2,6 +2,18 @@
 
 <!-- toc -->
 
+## Total disk usage exceeds project maximum
+
+One of the billable parameters in your project's settings is Storage.  This global storage pool is allocated among the various services and application containers in your project via the `disk` parameter.  The sum of all `disk` parameters in your project's YAML config files must be less than or equal to the global project storage number.
+
+```
+Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing a service, or add more storage to your plan
+```
+
+This means that you have allocated, for example, `disk: 4096` in a MySQL service in `services.yaml` and also `disk: 4096` in the `.platform.app.yaml` for your application, while only having the minimum default of 5GB storage for your project as a whole.  The solution is either to lower the `disk` parameters to within the limits of 5GB of storage, or raise the global storage parameter on your project's settings to at least 10GB.  
+
+Because storage is a billable component of your project, only the project's owner can effect this change.
+
 ## Force a redeploy
 
 There are times where you might want to trigger a redeployment of your application. That can be done with the following command:
@@ -31,6 +43,12 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 * Certain code path(s) in your application are too slow and timing out.
 * A PHP process is crashing because of a segmentation fault (see below).
 * A PHP process is killed by the kernel out-of-memory killer (see below).
+
+## Error provisioning the new certificate
+
+One reason [Let's Encrypt certificates](/configuration/routes/https.md#lets-encrypt) may fail to provision on your environments has to do with the 64 character limit Let's Encrypt places on URLs. If the names of your branches are too long, the Platform.sh generated environment URL will go over this limit, and the certificate will be rejected.
+
+See [Let's Encrypt limits and branch names](/configuration/routes/https.md#lets-encrypt-limits-and-branch-names) for a more detailed breakdown of this issue.  
 
 ## Low disk space
 
@@ -74,6 +92,8 @@ W: [Errno 28] No space left on device: ...
 ```
 
 The cause of this issue has to do with the amount of disk provided to the build container before it is deployed. Application images are restricted to 4 GB during build, no matter how much writable disk has been set aside for the deployed application.
+
+Some build tools (yarn/npm) store cache for different versions of their modules. This can cause the build cache to grow over time beyond the maximum of 4GB. Try [clearing the build cache](/development/troubleshoot.md#clear-the-build-cache) and redeploying. In most cases, this will resolve the issue.
 
 If for some reason your application requires more than 4 GB during build, you can open a support ticket to have this limit increased.  The most disk space available during build still caps off at 8 GB in these cases.
 
@@ -140,6 +160,10 @@ Alternatively, if your worker is idle for too long it can self-terminate.  Platf
 
 Another cause of the "MySQL server has gone away" errors can be the size of the database packets. If that is the case, the logs may show warnings like  "Error while sending QUERY packet" before the error. One way to resolve the issue is to use the `max_allowed_packet` parameter described [above](/configuration/services/mysql.md#adjusting-mariadb-configuration).
 
+## ERROR: permission denied to create database
+
+The provided user does not have permission to create databases.   
+The database is created for you and can be found in the `path` field of the `$PLATFORM_RELATIONSHIPS` environment variable.
 
 ## "Read-only file system" error
 
@@ -258,12 +282,12 @@ Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
 
 It means the build has completed successfully and the system is trying to deploy.  If that line never appears then it means the build is stuck.
 
-For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed.  In some regions the build will self-terminate after one hour.  In other regions (US and EU) the build will need to be killed by our support team.
+For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed.  In most regions the build will self-terminate after one hour.  In older regions (US and EU) the build will need to be killed by our support team.
 
 When a _deployment_ is blocked, you should try the following:
 
-1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id showned by `ps afx`.
-2. If you're performing "Sync", "Merge", or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
+1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id shown by `ps afx`.
+2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
 
 ## Slow or failing build or deployment
 

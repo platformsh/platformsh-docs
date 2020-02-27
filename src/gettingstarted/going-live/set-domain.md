@@ -28,5 +28,5 @@ The CLI will validate your registered domain and provision Let's Encrypt certifi
 
 <div class="buttons">
   <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
-  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have have configured my registered domain on my project</a>
+  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have configured my registered domain on my project</a>
 </div>

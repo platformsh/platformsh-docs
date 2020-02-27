@@ -30,10 +30,10 @@ It is also possible to install additional system-level dependencies as part of t
 Platform.sh supports pulling any dependencies for the following languages:
 
 * PHP (via [Composer](https://getcomposer.org/))
-* Python 2 and 3 (via [Pip](https://packaging.python.org/installing/))
+* Python 2 and 3 (via [Pip](https://packaging.python.org/tutorials/installing-packages/))
 * Ruby (via [Bundler](https://bundler.io/))
 * Node.js (via [NPM](https://www.npmjs.com/))
-* Java (via [Maven](https://maven.apache.org/), with Ant support)
+* Java (via [Apache Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), or [Apache Ant](https://ant.apache.org/))
 
 ### Python dependencies
 
@@ -93,9 +93,13 @@ Hooks are executed using the dash shell, not the bash shell used by normal SSH l
 
 ### Build hook
 
-The `build` hook is run after the build flavor (if any).  The file system is fully writable, but no services are available (such as a database) nor any persistent file mounts, as the application has not yet been deployed. Environment variables that exist only at runtime such as `PLATFORM_BRANCH`, `PLATFORM_DOCUMENT_ROOT` etc. are not available during this phase. The full list of build time and runtime variables is available on the [variables page](/development/variables.md#platformsh-provided-variables).
+The `build` hook is run after the build flavor (if any).  At this point no services (such as a database) are available nor any persistent file mounts, as the application has not yet been deployed. Environment variables that exist only at runtime such as `PLATFORM_BRANCH`, `PLATFORM_DOCUMENT_ROOT` etc. are not available during this phase. The full list of build time and runtime variables is available on the [variables page](/development/variables.md#platformsh-provided-variables).  There are three writeable directories at this time:
 
-There are no constraints on what can be downloaded during your build hook except for the amount of disk available at that time. Independent of the mounted disk size you have allocated for deployment, build environments and therefore application images are limited to 4 GB during the build phase. If you exceed this limit you will receive a `No space left on device` error. It is possible to increase this limit in certain situations, but it will be necessary to open a support ticket in order to do so. Consult the [Troubleshooting](/development/troubleshoot.md#no-space-left-on-device) guide for more information on this topic.
+* `$PLATFORM_APP_DIR` - This is where your code is checked out, and is the working directory when the build hook starts.  The contents of this directory after the build hook is what will be "the application" that gets deployed.  (This directory is always `/app`, but it's better to use the variable or rely on the working directory than to hard code that.)  Most of the time, this is the only directory you use.
+* `$PLATFORM_CACHE_DIR` - This directory persists between builds, but is NOT deployed as part of your application.  It's a good place for temporary build artifacts, such as downloaded `.tar.gz` or `.zip` files, that can be reused between builds.  Note that it is shared by all builds on all branches, so if using the cache directory make sure your build code accounts for that.
+* `/tmp` - The temp directory is also useful for writing files that are not needed in the final application, but it will be wiped between each build.
+
+There are no constraints on what can be downloaded during your build hook except for the amount of disk available at that time. Independent of the mounted disk size you have allocated for deployment, build environments (the application plus the cache directory) and therefore application images are limited to 4 GB during the build phase. If you exceed this limit you will receive a `No space left on device` error. It is possible to increase this limit in certain situations, but it will be necessary to open a support ticket in order to do so. Consult the [Troubleshooting](/development/troubleshoot.md#no-space-left-on-device) guide for more information on this topic.
 
 ### Deploy hook
 
@@ -103,7 +107,7 @@ The `deploy` hook is run after the application container has been started, but b
 
 Be aware: The deploy hook blocks the site accepting new requests.  If your deploy hook is only a few seconds then incoming requests in that time are paused and will continue when the hook completes, effectively appearing as the site just took a few extra seconds to respond.  If it takes too long, however, requests cannot be held and will appear as dropped connections.  Only run tasks in your deploy hook that have to be run exclusively, such as database schema updates or some types of cache clear.  A post-deploy task that can safely run concurrently with new incoming requests should be run as a `post_deploy` hook instead.
 
-After a Git push, you can see the results of the `deploy` hook in the `/var/log/deploy.log` file when logged in to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
+After a Git push, in addition to the log shown in the activity log, you can see the results of the `deploy` hook in the `/var/log/deploy.log` file when logged in to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
 
 ```bash
 [2014-07-03 10:03:51.100476] Launching hook 'cd public ; drush -y updatedb'.
@@ -121,7 +125,7 @@ The `post_deploy` hook functions exactly the same as the `deploy` hook, but afte
 
 What is "safe" to run in a `post_deploy` hook vs. in a `deploy` hook will vary by the application.  Often times content imports, some types of cache warmups, and other such tasks are good candidates for a `post_deploy` hook.
 
-The `post_deploy` hook logs to its own file, `/var/log/post-deploy.log`.
+The `post_deploy` hook logs to its own file in addition to the activity log, `/var/log/post-deploy.log`.
 
 ## How do I compile Sass files as part of a build?
 

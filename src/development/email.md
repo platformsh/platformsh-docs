@@ -8,7 +8,7 @@ We do not guarantee the deliverability of emails, and we do not support white-la
 
 > **note**
 >
-> You may follow the [SPF setup guidelines on SendGrid](https://sendgrid.com/docs/glossary/spf/) to improve email deliverability with our SMTP proxy.
+> You may follow the [SPF setup guidelines on SendGrid](https://sendgrid.com/docs/glossary/spf/) to improve email deliverability with our SMTP proxy. However, as we do not support white-labeling of emails, DKIM is not provided for our standard email handling (meaning that DMARC can't be set up either). Thus, for maximum deliverability own mail host must be engaged.
 
 ## Enabling/disabling email
 

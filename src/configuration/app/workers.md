@@ -24,7 +24,7 @@ workers:
 
 That defines a single worker named `queue`, which will be a "small" container, and wil run the command `php worker.php` on startup.  If `worker.php` ever exits it will be automatically restarted.
 
-Any number of workers may be defined with their own distinct name, subject to available resources on your plan.
+Any number of workers may be defined with their own distinct name, subject to available resources on your plan. For resource allocation reasons, using workers in your project requires a Medium plan or larger. 
 
 ## Accessing the Worker Container
 
@@ -44,7 +44,7 @@ platform ssh --worker=queue --pipe
 
 You will see the url is the name of the worker added to the user name after the application name part of the SSH url preceded by a double dash (`--`).
 
-For example given a project with id `3seb7f2j6ogbm` you would connect to its master environment for an app called `app` with a url such as: 
+For example given a project with id `3seb7f2j6ogbm` you would connect to its master environment for an app called `app` with a url such as:
 
 ```
 ssh 3seb7f2j6ogbm-master-7rqtwti--app@ssh.us-2.platform.sh
@@ -80,6 +80,8 @@ The appropriateness of one approach over the other also varies by language; sing
 The `commands` key defines the command to launch the worker application.  For now there is only a single command, `start`, but more will be added in the future.  The `commands.start` property is required.
 
 The `start` key specifies the command to use to launch your worker application.  It may be any valid shell command, although most often it will run a command in your application in the language of your application.  If the command specified by the `start` key terminates it will be restarted automatically.
+
+Note that [`deploy` and `post_deploy` hooks](/configuration/app/build.md), as well as [`cron` commands](/configuration/app/cron.md), will run only on the [`web`](/configuration/app/web.md) container, not on workers.
 
 ## Inheritance
 
@@ -206,7 +208,7 @@ workers:
                 source_path: scratch
 
 
-        
+
     mail:
         size: 'S'
         commands:

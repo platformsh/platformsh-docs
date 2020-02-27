@@ -4,6 +4,7 @@
 * [Structure](overview/structure.md)
 * [Build & Deploy](overview/build-deploy.md)
 * [Pricing](overview/pricing.md)
+  * [Sponsored Sites](overview/pricing/sponsored.md)
 * [Getting help](overview/getting-help.md)
 
 ## Getting Started
@@ -68,7 +69,7 @@
   * [RabbitMQ](configuration/services/rabbitmq.md)
   * [Redis](configuration/services/redis.md)
   * [Solr](configuration/services/solr.md)
-  * [Varnish](configuration/services/varnish.md)  
+  * [Varnish](configuration/services/varnish.md)
 * [Apps (.platform.app.yaml)](configuration/app-containers.md)
   * [Name](configuration/app/name.md)
   * [Type](configuration/app/type.md)
@@ -94,13 +95,18 @@
 ## Languages
 
 * [Elixir](languages/elixir.md)
+* [C#/.NET](languages/dotnet.md)
+* [Elixir](languages/elixir.md)
 * [Go](languages/go.md)
 * [Java](languages/java.md)
+  * [Frameworks](languages/java/frameworks.md)
 * [Lisp](languages/lisp.md)
 * [Node.js](languages/nodejs.md)
   * [Alternative Node.js install](languages/nodejs/nvm.md)
 * [PHP](languages/php.md)
   * [Extensions](languages/php/extensions.md)
+  * [Redis](languages/php/redis.md)
+  * [Frameworks](languages/php/frameworks.md)
   * [Performance tuning](languages/php/tuning.md)
   * [PHP.ini settings](languages/php/ini.md)
   * [PHP-FPM sizing](languages/php/fpm.md)
@@ -125,6 +131,7 @@
 * [Private repositories](development/private-repository.md)
 * [Git submodules](development/submodules.md)
 * [Using SSH](development/ssh.md)
+* [Syncing to Dedicated](development/transfer-dedicated.md)
 * [Public IPs](development/public-ips.md)
 * [FAQ](development/faq.md)
 * [Troubleshooting](development/troubleshoot.md)
@@ -132,18 +139,19 @@
 ## Going Live
 
 * [Pre-Launch Checklist](/golive/checklist.md)
-* [About going live](/golive/steps.md)
+* [Go-live steps](/golive/steps.md)
   * [DNS and CNAMEs](/golive/steps/dns.md)
   * [Custom TLS](/golive/steps/tls.md)
-  * [Fastly](/golive/steps/fastly.md)
-  * [Cloudflare](/golive/steps/cloudflare.md)
+* [Content Delivery Networks](golive/cdn.md)
+    * [Fastly](/golive/cdn/fastly.md)
+    * [Cloudflare](/golive/cdn/cloudflare.md)
 * [Troubleshooting](/golive/troubleshoot.md)
 * [Example](/golive/example.md)
 
 ## Administration
 
 * [Users](administration/users.md)
-* [Snapshot and restore](administration/snapshot-and-restore.md)
+* [Backup and restore](administration/backup-and-restore.md)
 * [External integrations](administration/integrations.md)
   * [Bitbucket](administration/integrations/bitbucket.md)
   * [Blackfire](administration/integrations/blackfire.md)
@@ -164,6 +172,7 @@
 ## Security and compliance
 
 * [GDPR](security/gdpr.md)
+* [SCA](security/sca.md)
 * [Data collection](security/data-collection.md)
 * [Data retention](security/data-retention.md)
 * [Data deletion](security/data-deletion.md)
@@ -176,6 +185,7 @@
 
 ## Featured frameworks
 
+* [Deploy on Platform.sh](frameworks/deploy-button.md)
 * [Drupal 7](frameworks/drupal7.md)
   * [Developing with Drupal](frameworks/drupal7/developing-with-drupal.md)
   * [Using Composer Manager](frameworks/drupal7/composer-manager.md))
@@ -199,6 +209,9 @@
   * [FAQ](frameworks/drupal8/faq.md)
 * [eZ Platform](frameworks/ez.md)
   * [Fastly](frameworks/ez/fastly.md)
+* [Hibernate](frameworks/hibernate.md)
+* [Jakarta EE](frameworks/jakarta.md)
+* [Spring](frameworks/spring.md)
 * [Symfony](frameworks/symfony.md)
   * [FAQ](frameworks/symfony/faq.md)
 * [TYPO3](frameworks/typo3.md)
@@ -213,6 +226,20 @@
 * [Migrating to Platform.sh](tutorials/migrating.md)
 * [Third-party resources](tutorials/third-party.md)
 * [Changing regions](tutorials/region-migration.md)
+
+## Dedicated
+
+* [Overview](dedicated/overview.md)
+  * [Incident Monitoring](dedicated/overview/monitoring.md)
+  * [Security and Privacy](dedicated/overview/security.md)
+  * [Onboarding](dedicated/overview/onboarding.md)
+  * [Backups](dedicated/overview/backups.md)
+  * [Differences from the Grid](dedicated/overview/grid.md)
+* [Architecture](dedicated/architecture.md)
+  * [Deploying](dedicated/architecture/deploying.md)
+  * [Dev Environments](dedicated/architecture/development.md)
+  * [Scalability](dedicated/architecture/scalability.md)
+  * [Options](dedicated/architecture/options.md)
 
 
 

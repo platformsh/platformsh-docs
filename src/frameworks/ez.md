@@ -10,15 +10,19 @@ By default, eZ Platform is configured to use a single Redis instance for both th
 
 To do so, uncomment the `redissession` entry in the `.platform/services.yaml` file and the corresponding relationship in the `.platform.app.yaml` file.  The bridge code that is provided with eZ Platform 1.13 and later will automatically detect the additional Redis service and use it for session storage.
 
+On a Dedicated instance, we strongly recommend using two separate Redis instances for Cache and Sessions.  The service and relationship names that ship with the default Platform.sh configuration in eZ Platform should be used as-is.  To ensure the development environment works like Production, uncomment the `redissession` entry in the `.platform/services.yaml` file and the corresponding relationship in the `.platform.app.yaml` file.  The bridge code that is provided with eZ Platform 1.13 and later will automatically detect the additional Redis service and use it for session storage.
+
+By default, on Dedicated instances we will configure both Cache and Session storage in "persistent" mode, so that data is not lost in case of a system or process restart.  That reduces the potential for cache stampede issues or inadvertently logging people out.
+
 ## Modifying an existing eZ Platform project
 
 If you have an existing eZ Platform project that was upgraded from a previous version, or want to resynchronize with the latest recommended configuration, please see the [eZ Platform official repository](https://github.com/ezsystems/ezplatform).
 
 In particular, see:
- 
+
  * The [.platform.app.yaml](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml) file, which automatically builds eZ Platform in dev mode or production mode depending on your defined project-level variables.
  * The [.platform](https://github.com/ezsystems/ezplatform/tree/master/.platform) directory
- * The [platformsh.php](https://github.com/ezsystems/ezplatform/blob/master/app/config/env/platformsh.php) configuration file, which does the work of mapping Platform.sh environment variables into eZ Platform.  It also will automatically  enable Redis-based cache and session support if detected.
+ * The [platformsh.php](https://github.com/ezsystems/ezplatform/blob/master/config/packages/000-platformsh.php) configuration file, which does the work of mapping Platform.sh environment variables into eZ Platform.  It also will automatically  enable Redis-based cache and session support if detected.
 
 ## Local Development with eZ Platform 2.x and later
 
@@ -37,7 +41,7 @@ eZ Launchpad's approach is to stay as decoupled as possible from your developmen
 ```bash
 curl -LSs https://ezsystems.github.io/launchpad/install_curl.bash | bash
 ```
- 
+
 Then you can start to use it to initialize your eZ Platform project on top Docker.
 
 ```bash
@@ -93,9 +97,9 @@ engine:
 
 ### Local development with Platform.sh
 
-Thanks to eZ Launchpad you are able to be work 100% locally: [untethered](/gettingstarted/local/untethered.md). We have the whole project working offline on our local machine.
+Thanks to eZ Launchpad you are able to be work 100% locally: [untethered](/development/local/untethered.md). We have the whole project working offline on our local machine.
 
-> Platform.sh also provides a smooth SSH tunnels integration described in the [tethered](/gettingstarted/local/tethered.md) page. 
+> Platform.sh also provides a smooth SSH tunnels integration described in the [tethered](/development/local/tethered.md) page.
 
 Local services are provided by the Docker stack but there are minimum day-to-day tasks that you might need with Platform.sh.
 
@@ -104,7 +108,7 @@ The main ones are:
 * **Downstream database synchronization**: Getting it from the remote to the local.
 * **Downstream file storage synchronization**: Getting it from the remote to the local.
 
-To help you with that, Platform.sh provides a CLI that you probably already have. If you don't, see the [install guide](/gettingstarted/cli.md).
+To help you with that, Platform.sh provides a CLI that you probably already have. If you don't, see the [install guide](/development/cli.md#installation).
 
 Combined together, eZ Launcphad and Platform.sh CLI make those actions straight forward and simple.
 

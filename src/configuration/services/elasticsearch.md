@@ -30,18 +30,11 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 In your `.platform/services.yaml`:
 
-```yaml
-mysearch:
-    type: elasticsearch:7.2
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/elasticsearch.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your `.platform.app.yaml`:
 
-```yaml
-relationships:
-    elasticsearch: "mysearch:elasticsearch"
-```
+{% codesnippet "/registry/images/examples/full/elasticsearch.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 
@@ -66,7 +59,7 @@ You can then use the service in a configuration file of your application with so
 The Elasticsearch 2.4 and later services offer a number of plugins.  To enable them, list them under the `configuration.plugins` key in your `services.yaml` file, like so:
 
 ```yaml
-mysearch:
+search:
     type: "elasticsearch:7.2"
     disk: 1024
     configuration:
@@ -97,7 +90,7 @@ This is the complete list of official Elasticsearch plugins that can be enabled:
 | delete-by-query       | Support for deleting documents matching a given query                                     | *   |     |     |     |     |
 | discovery-multicast   | Ability to form a cluster using TCP/IP multicast messages                                 | *   |     |     |     |     |
 | ingest-attachment     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    |     | *   | *   | *   | *   |
-| ingest-user-agent     | Extracts details from the user agent string a browser sends with its web requests         |     | *   | *   | *   | *   |
+| ingest-user-agent     | Extracts details from the user agent string a browser sends with its web requests         |     | *   | *   | *   |     |
 | lang-javascript       | Javascript language plugin, allows the use of Javascript in Elasticsearch scripts         |     | *   | *   |     |     |
 | lang-python           | Python language plugin, allows the use of Python in Elasticsearch scripts                 | *   | *   | *   |     |     |
 | mapper-annotated-text | Adds support for text fields with markup used to inject annotation tokens into the index  |     |     |     | *   | *   |

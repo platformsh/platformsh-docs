@@ -78,7 +78,7 @@ You can further create and customize a `.docksal/docksal.yml` file within your p
 
 ## Downloading MySQL data from Platform.sh into Docksal
 
-In most cases, downloading data from Platform.sh and loading it into your project is straightforward. The following commands, run from your application root, will download a compressed database snapshot and load it into the local Docksal database container.
+In most cases, downloading data from Platform.sh and loading it into your project is straightforward. The following commands, run from your application root, will download a compressed database backup and load it into the local Docksal database container.
 
 ```bash
 fin platform db:dump --gzip -f /tmp/database.sql.gz

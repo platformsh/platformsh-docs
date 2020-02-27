@@ -73,6 +73,10 @@ Environment variables are a good place to store values that apply only on Platfo
 
 Platform.sh also provides a series of variables by default.  These inform an application about its runtime configuration.  The most important of these is relationship information, which tells the application how to connect to databases and other services defined in `services.yaml`.  They are always prefixed with `PLATFORM_*` to differentiate them from user-provided values.
 
+The following variables are only available at build time, and may be used in a build hook:
+
+* **PLATFORM_OUTPUT_DIR**: The output directory for compiled languages at build time. Will be equivalent to `PLATFORM_APP_DIR` in most cases.
+
 The following variables are available at both runtime and at build time, and may be used in a build hook:
 
 * **PLATFORM_APP_DIR**: The absolute path to the application directory.
@@ -91,6 +95,12 @@ The following variables exist *only* at runtime.  If used in a build hook they w
 * **PLATFORM_SMTP_HOST**: The SMTP host that email messages should be sent through.  This value will be empty if mail is disabled for the current environment.
 * **PLATFORM_RELATIONSHIPS**: A base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. See the documentation for each [Service](/configuration/services.md) for details on each service type's schema.
 * **PLATFORM_ROUTES**: A base64-encoded JSON object that describes the routes that you defined in the environment. It maps the content of the `.platform/routes.yaml` file.
+
+On a Dedicated instance, the following additional variables are available at runtime only:
+
+* **PLATFORM_MODE**: Set to `enterprise` in an Dedicated environment, both production and staging.  Note that an Enterprise support plan doesn't always imply a Dedicated production, but Dedicated production always implies an Enterprise support plan.
+* **PLATFORM_CLUSTER**: Set to the cluster ID.
+* **PLATFORM_PROJECT**: Set to the document root.  This is typically the same as your cluster name for the production environment, while staging will have `_stg` or similar appended.
 
 Since values can change over time, the best thing is to inspect the variable at runtime then use it to configure your application. For example:
 
@@ -318,9 +328,9 @@ This feature is primarily useful to override debug configuration on development 
 
 As a convention, our provided Drupal template code will automatically map variables to Drupal's configuration system.  The logic varies slightly depending on the Drupal version.
 
-On [Drupal 7](https://github.com/platformsh/template-drupal7/blob/master/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$conf` array, which overrides Drupal's `variable_get()` system.  For instance, to force a site name from the Platform.sh variables (say to set it "This is a Dev site") you would set the `drupal:site_name` variable.
+On [Drupal 7](https://github.com/platformsh-templates/drupal7/blob/master/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$conf` array, which overrides Drupal's `variable_get()` system.  For instance, to force a site name from the Platform.sh variables (say to set it "This is a Dev site") you would set the `drupal:site_name` variable.
 
-On [Drupal 8](https://github.com/platformsh/template-drupal8/blob/master/web/sites/default/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$settings` array. That is intended for very low-level configuration.
+On [Drupal 8](https://github.com/platformsh-templates/drupal8/blob/master/web/sites/default/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$settings` array. That is intended for very low-level configuration.
 
 Also on Drupal 8, any variable that begins with `d8config:` will be mapped to the global `$config` array, which is useful for overriding drupal's exportable configuration system.  The variable name will need to contain two colons, one for `d8config:` and one for the name of the configuration object to override.  For example, a variable named `d8config:system.site:name` will override the `name` property of the `system.site` configuration object.
 
@@ -335,3 +345,31 @@ export PATH=/app/vendor/bin:$PATH
 ```
 
 Note that the file is sourced after all other environment variables above are defined, so they will be available to the script.  That also means the `.environment` script has the "last word" on environment variable values and can override anything it wants to.
+
+## How can I have a script behave differently on a dedicated cluster than on development?
+
+The following sample shell script will output a different value on the Dedicated cluster than the Development environment.
+
+```bash
+if [ "$PLATFORM_MODE" = "enterprise" ] ; then
+    echo "Hello from the Enterprise"
+else
+    echo "We're on Development"
+fi
+```
+
+## How can I have a script behave differently on Production and Staging?
+
+In most Enterprise configurations the production branch is named `production` (whereas it is always `master` on Platform.sh Professional).  The following test therefore should work in almost all cases:
+
+```bash
+if [ "$PLATFORM_MODE" = "enterprise" ] ; then
+    if [ "$PLATFORM_BRANCH" = "production" ] ; then
+        echo "This is live on production"
+    else
+        echo "This is on staging"
+    fi
+else
+    echo "We're on Development"
+fi
+```

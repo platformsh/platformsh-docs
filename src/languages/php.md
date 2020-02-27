@@ -6,18 +6,15 @@ PHP is a popular scripting language designed especially for the web. It currentl
 
 ## Supported versions
 
-* 7.1
 * 7.2
 * 7.3
+* 7.4
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
 To specify a PHP container, use the `type` property in your `.platform.app.yaml`.
 
-```yaml
-# .platform.app.yaml
-type: "php:7.3"
-```
+{% codesnippet "/registry/images/examples/full/php.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 ## Deprecated versions
 
@@ -27,6 +24,7 @@ The following versions are available but are not receiving security updates from
 * 5.5
 * 5.6
 * 7.0
+* 7.1
 
 ## Support libraries
 
@@ -54,6 +52,7 @@ If not specified, the effective default start command varies by PHP version:
 * On PHP 7.1, it's `/usr/sbin/php-fpm7.1-zts`.
 * On PHP 7.2, it's `/usr/sbin/php-fpm7.2-zts`.
 * On PHP 7.3, it's `/usr/sbin/php-fpm7.3-zts`.
+* On PHP 7.4, it's `/usr/sbin/php-fpm7.4-zts`.
 
 While you can call it manually that is generally not necessary. Note that PHP-FPM cannot run simultaneously along with another persistent process (such as ReactPHP or Amp). If you need both they will have to run in separate containers.
 
@@ -96,6 +95,57 @@ That would install `platformsh/client` from the alternate repository specified, 
 ```
 
 That allows you to install a forked version of a global dependency from a custom repository.
+
+## Opcache preloading
+
+PHP 7.4 introduced a new feature called Opcache Preloading, which allows you to load selected files into shared memory when PHP-FPM starts.  That means functions and classes in those files are always available and do not need to be autoloaded, at the cost of any changes to those files requiring a PHP-FPM restart.  Since PHP-FPM restarts anyway when a new deploy happens this feature is a major win on Platform.sh, and we recommend using it aggressively.
+
+To enable preloading, add a `php.ini` value that specifies a preload script.  Any [`php.ini` mechanism](/languages/php/ini.md) will work, but using a variable in `.platform.app.yaml` is the recommended approach:
+
+```yaml
+variables:
+    php:
+        opcache.preload: 'preload.php'
+```
+
+The `opcache.preload` value is evaluated as a file path relative to the application root (where `.platform.app.yaml` is), and it may be any PHP script that calls `opcache_compile_file()`.  The following example will preload all `.php` files anywhere in the `vendor` directory:
+
+```php
+$directory = new RecursiveDirectoryIterator(getenv('PLATFORM_APP_DIR') . '/vendor');
+$iterator = new RecursiveIteratorIterator($directory);
+$regex = new RegexIterator($iterator, '/^.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
+
+foreach ($regex as $key => $file) {
+    // This is the important part!
+    opcache_compile_file($file[0]);
+}
+```
+
+Note: Preloading all `.php` files may not be optimal for your application, and may even introduce errors.  Your application framework may provide recommendations or a pre-made presload script to use instead.  Determining an optimal preloading strategy is the user's responsibility.
+
+## FFI
+
+PHP 7.4 introduced support for Foreign Function Interfaces (FFI), which allows user-space code to bridge to existing C-ABI-compatible libraries.  FFI is fully supported on Platform.sh.
+
+Note: FFI is only intended for advanced use cases, and is rarely a net win for routine web requests.  Use with caution.
+
+There are a few steps to leveraging FFI:
+
+1. Enable the FFI extension in `.platform.app.yaml`:
+
+    ```yaml
+    runtime:
+        extensions:
+            - ffi
+   ```
+
+2. Specify a [preload file](#opcache-preloading) in which you can call `FFI::load()`.  Using `FFI::load()` in preload will be considerably faster than loading the linked library on each request or script run.
+
+3. Ensure the library is available locally, but not in a web-accessible directory.  `.so` files may included in your repository, downloaded i your build hook, or compiled in your build hook.  If compiling C code, `gcc` is available by default.  If compiling Rust code, you can download the [Rust compiler in the build hook](https://doc.rust-lang.org/stable/book/ch01-01-installation.html).
+
+4. For running FFI from the command line, you will need to enable the opcache for command line scripts in addition to the preloader.  The standard pattern for the command would be `php -d opcache.preload="your-preload-script.php" -d opcache.enable_cli=true your-cli-script.php`.
+
+A working [FFI example](https://github.com/platformsh-examples/php-ffi) is available online for both C and Rust.
 
 ## Debug PHP-FPM
 
@@ -152,23 +202,30 @@ A number of project templates for major PHP applications are available on GitHub
 
 ### Applications
 
-* [EZ Platform](https://github.com/platformsh/platformsh-example-ezplatform)
-* [Drupal 7](https://github.com/platformsh/template-drupal7)
-* [Drupal 7 Commerce Kickstart](https://github.com/platformsh/platformsh-example-drupalcommerce7)
-* [Drupal 8](https://github.com/platformsh/template-drupal8)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh/platformsh-example-drupal8-multisite)
-* [Laravel](https://github.com/platformsh/template-laravel)
-* [Moodle](https://github.com/platformsh/platformsh-example-moodle)
-* [Magento 1](https://github.com/platformsh/platformsh-example-magento1)
-* [Magento 2](https://github.com/platformsh/template-magento2ce)
-* [Sculpin](https://github.com/platformsh/platformsh-example-sculpin)
-* [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
-* [WordPress](https://github.com/platformsh/template-wordpress)
-* [GravCMS](https://github.com/platformsh/platformsh-example-gravcms)
+* [Akeneo](https://github.com/platformsh-templates/akeneo)
+* [EZ Platform](https://github.com/ezsystems/ezplatform)
+* [Drupal 7](https://github.com/platformsh-templates/drupal7)
+* [Drupal 7 (Commerce Kickstart)](https://github.com/platformsh-examples/platformsh-example-drupalcommerce7)
+* [Drupal 8](https://github.com/platformsh-templates/drupal8)
+* [Drupal 8 (Multisite variant)](https://github.com/platformsh-templates/drupal8-multisite)
+* [GovCMS8](https://github.com/platformsh-templates/govcms8)
+* [Laravel](https://github.com/platformsh-templates/laravel)
+* [Moodle](https://github.com/platformsh-examples/platformsh-example-moodle)
+* [Magento 1](https://github.com/platformsh-examples/platformsh-example-magento1)
+* [Magento 2](https://github.com/platformsh-templates/magento2ce)
+* [Opigno](https://github.com/platformsh-templates/opigno)
+* [Pimcore](https://github.com/platformsh-templates/pimcore)
+* [Sculpin](https://github.com/platformsh-templates/sculpin)
+* [TYPO3](https://github.com/platformsh-templates/typo3)
+* [Wordpress](https://github.com/platformsh-templates/wordpress)
+
+### Examples
+
+* [Generic PHP application](https://github.com/platformsh-templates/php)
 
 ### Frameworks
 
-* [Amp/Aerys](https://github.com/platformsh/platformsh-example-amphp)
-* [React PHP](https://github.com/platformsh/platformsh-example-reactphp)
-* [Symfony 3.x](https://github.com/platformsh/template-symfony3)
-* [Symfony 4.x](https://github.com/platformsh/template-symfony4)
+* [AmPHP](https://github.com/platformsh-examples/platformsh-example-amphp)
+* [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
+* [Symfony 3.x](https://github.com/platformsh-templates/symfony3)
+* [Symfony 4.x](https://github.com/platformsh-templates/symfony4)

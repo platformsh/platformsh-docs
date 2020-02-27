@@ -10,8 +10,6 @@ Platform.sh provides a Platform as a Service (PaaS) solution which our customers
 
 ## Security & Compensating Controls
 
-* For those customers needing to meet PCI SAQ C or SAQ D, a Platform.sh Enterprise Plan may be needed in order to fully meet your needs. Please [contact us](https://platform.sh/contact) for more information.
-
 * For a list of security measures, please see our [Security page](https://platform.sh/security).
 
 * Please take note that customer environments are deployed in a read-only instance, segregated with GRE and IPSEC tunnels, which often permits compensating controls to be claimed for several PCI requirements.
@@ -30,7 +28,7 @@ Platform.sh is responsible for:
 * **Awareness and Training** - Platform.sh trains its own employees in secure software development and management.
 * **Capacity Management** - Platform.sh is responsible for capacity management of the infrastructure, such as server allocation and bandwidth management.
 * **Access Control** - Platform.sh is responsible for providing access control mechanisms to customers and for vetting all Platform.sh personnel access.
-* **Backups** - Platform.sh is responsible for backing up the infrastructure and management components of the system.  On Platform.sh Enterprise (only), Platform.sh will also backup application code and databases on behalf of customers.
+* **Backups** - Platform.sh is responsible for backing up the infrastructure and management components of the system.  On Platform.sh Dedicated Enterprise (only), Platform.sh will also backup application code and databases on behalf of customers.
 
 Customers are responsible for:
 

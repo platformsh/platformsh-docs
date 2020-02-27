@@ -32,7 +32,7 @@ If you want your site to be accessible with `https://example.com` and not only `
 
  * CNAME Flattening at [CloudFlare](https://www.cloudflare.com/)  
  * ANAME at [easyDNS](https://www.easydns.com/), [DNS Made Easy](http://www.dnsmadeeasy.com/), or [Name.com](https://www.name.com/) 
- * ALIAS at [DNSimple](https://dnsimple.com/)
+ * ALIAS at [DNSimple](https://dnsimple.com/) or [Cloudns](https://www.cloudns.net/)
 
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.  If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
 

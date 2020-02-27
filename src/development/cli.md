@@ -4,7 +4,7 @@ The CLI is the official tool to use and manage your Platform.sh projects directl
 
 The source code of the CLI is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
 
-Find detailed information on [setting up a local development environment](/gettingstarted/local.md).
+Find detailed information on [setting up a local development environment](/gettingstarted/local-development.md).
 
 ## Installation
 
@@ -24,14 +24,9 @@ The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will authent
 platform
 ```
 
-The credentials you enter are the same as your [Platform.sh account](https://accounts.platform.sh/user).
+You will be asked to log in via a browser.
 
-> **note**
-> If you have created your account using the OAuth Login (via Bitbucket, GitHub or Google) then in order to use the Platform CLI you
-> will need to create a password, which you can do using the ['Request new password' tool](https://accounts.platform.sh/user/password)
-
-Enter your details. A list of your projects appears, along with some
-tips for getting started.
+When you are logged in, a list of your projects appears, along with some tips for getting started.
 
 **Your command-line tools are now ready to use with Platform.sh.**
 

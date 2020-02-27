@@ -9,6 +9,7 @@ Both Memcached and Redis can be used for application caching.  As a general rule
 ## Supported versions
 
 * 1.4
+* 1.5
 
 ## Relationship
 
@@ -20,17 +21,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your ``.platform/services.yaml``:
 
-```yaml
-memcached:
-    type: memcached:1.4
-```
+{% codesnippet "/registry/images/examples/full/memcached.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Now add a relationship in your `.platform.app.yaml` file:
 
-```yaml
-relationships:
-    cache: "memcached:memcached"
-```
+{% codesnippet "/registry/images/examples/full/memcached.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php.md#php-extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 

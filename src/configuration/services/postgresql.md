@@ -9,6 +9,13 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 * 9.6
 * 10
 * 11
+* 12
+
+> **note**
+>
+> Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+>
+> See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 
 ### Deprecated versions
 
@@ -26,18 +33,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml` add:
 
-```yaml
-mydatabase:
-    type: postgresql:11
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/postgresql.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Add a relationship to the service in your ``.platform.app.yaml``:
 
-```yaml
-relationships:
-    database: "mydatabase:postgresql"
-```
+{% codesnippet "/registry/images/examples/full/postgresql.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 For PHP, in your `.platform.app.yaml` add:
 
@@ -92,26 +92,27 @@ platform db:dump --stdout | bzip2 > dump.sql.bz2
 The easiest way to load data into a database is to pipe an SQL dump through the `platform sql` command, like so:
 
 ```bash
-platform sql < my_database_snapshot.sql
+platform sql < my_database_backup.sql
 ```
 
-That will run the database snapshot against the SQL database on Platform.sh.  That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database).  As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
+That will run the database backup against the SQL database on Platform.sh.  That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database).  As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-platform sql --relationship database -e master < my_database_snapshot.sql
+platform sql --relationship database -e master < my_database_backup.sql
 ```
 
 > **note**
-> Importing a database snapshot is a destructive operation. It will overwrite data already in your database.
-> Taking a snapshot or a database export before doing so is strongly recommended.
+>
+> Importing a database backup is a destructive operation. It will overwrite data already in your database.
+> Taking a backup or a database export before doing so is strongly recommended.
 
 ## Extensions
 
 Platform.sh supports a number of PostgreSQL extensions.  To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
 
 ```yaml
-postgresql:
-    type: "postgresql:11"
+db:
+    type: postgresql:12
     disk: 1025
     configuration:
         extensions:
@@ -180,6 +181,12 @@ extensions not listed here.
 * **uuid-ossp** - generate universally unique identifiers (UUIDs)
 * **xml2** - XPath querying and XSLT
 
+> **note**
+>
+> Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+>
+> See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
+
 ## Notes
 
 ### Could not find driver
@@ -193,6 +200,12 @@ PostgreSQL 10 and later include an upgrade utility that can convert databases fr
 The upgrader does not work to upgrade to PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 are not supported.  Upgrade straight to version 11 instead.
 
 > Warning: Make sure you first test your migration on a separate branch
-> Warning: be sure to take a snapshot of your master environment **before** you merge this change.
+> Warning: be sure to take a backup of your master environment **before** you merge this change.
 
 Downgrading is not supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
+
+### Upgrading to PostgreSQL 12 with the `postgis` extension
+
+Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+
+If you need to upgrade, you should follow the same steps recommended for performing downgrades: dump the database, remove the service, recreate the service with PostgreSQL 12, and then import the dump to that service.

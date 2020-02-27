@@ -16,4 +16,4 @@ Note that this refers only to HTTP level caching.  Many applications have an int
 
 HTTP-based caching systems generally default to including cookie values in cache keys so as to avoid serving authenticated content to the wrong user.  While a safe default, it also has the side effect that *any* cookie will effectively disable the cache, including mundane cookies like analytics.  
 
-The solution is to whitelist the cookies that should impact the cache and include only the application session cookie(s).  For the Router cache see [our documentation](/configuration/routes.cache.md#cookies).  For other cache systems consult their documentation.
+The solution is to whitelist the cookies that should impact the cache and include only the application session cookie(s).  For the Router cache see [our documentation](/configuration/routes/cache.md#cookies).  For other cache systems consult their documentation.

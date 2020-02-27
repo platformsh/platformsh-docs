@@ -32,10 +32,10 @@ Note that only the project owner can manage integrations.
 Open a terminal window (you need to have the Platform.sh CLI installed). Enable the GitHub integration as follows:
 
 ```bash
-platform integration:add --type=github --project=PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
+platform integration:add --type=github --project=PLATFORMSH_PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 ```
 where
-* `PROJECT_ID` is the project ID for your Platform.sh project
+* `PLATFORMSH_PROJECT_ID` is the project ID for your Platform.sh project
 * `GITHUB-USER-TOKEN` is the token you generated in step 1
 * `USER` is your github user name
 * `REPOSITORY` is the name of the repository in github (not the git address)

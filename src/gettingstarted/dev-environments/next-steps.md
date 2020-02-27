@@ -2,7 +2,7 @@
 
 ## Next steps
 
-In this guide you learned how to create and activate live feature environments, test them, and merge them into production safely using [snapshots](/administration/snapshot-and-restore.md).
+In this guide you learned how to create and activate live feature environments, test them, and merge them into production safely using [backups](/administration/backup-and-restore.md).
 
 Don't stop now! There are many more features that make Platform.sh profoundly helpful to developers.
 
