@@ -1,7 +1,6 @@
 # Elixir
 
-Platform.sh supports building and deploying applications written in Elixir.  They are automatically compiled during the Build phase, and support both committed dependencies and download-on-demand. The underlying Erlang version is 
-22.0.7.
+Platform.sh supports building and deploying applications written in Elixir.  They are automatically compiled during the build phase, and support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7.
 
 ## Supported versions
 
@@ -9,9 +8,7 @@ Platform.sh supports building and deploying applications written in Elixir.  The
 
 To specify an Elixir container, use the `type` property in your `.platform.app.yaml`.
 
-```yaml
-type: 'elixir:1.9'
-```
+{% codesnippet "/registry/images/examples/full/elixir.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 ## Assumptions
 
@@ -23,10 +20,7 @@ Platform.sh will then run `mix do deps.get, deps.compile, compile` on your appli
 
 If you don't want these assumptions, you can disable this behavior by specifying in your `.platform.app.yaml`:
 
-```yaml
-build:
-    flavor: none
-```
+{% codesnippet "/registry/images/examples/full/elixir.build.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 ## Dependencies
 
@@ -51,7 +45,7 @@ To get the `PORT` environment variable (the port on which your web application i
 String.to_integer(System.get_env("PORT") || "8888")
 ```
 
-Some of the environment variables are in Json format and are base64 encoded. You would need to import a Json parsing library such as Jason or Poison to read those.
+Some of the environment variables are in JSON format and are base64 encoded. You would need to import a JSON parsing library such as Jason or Poison to read those.
 
 > CAVEAT: Remember `config/prod.exs` is evaluated at **build time** and will not have access to runtime configuration. Use `config/releases.exs` to configure your runtime environment.
 
@@ -83,30 +77,29 @@ Note that there will still be a proxy server in front of your application.  If d
 
 The simplest possible way to go around this is to use the [Platform.sh Config Reader](https://hex.pm/packages/platformshconfig) library from hex.
 
-If you are building a Phoenix app for example it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`  put the lib in you `deps` and assuming you renamed the proc.secrets.exs to releases.exs per the[Phoenix guide](https://hexdocs.pm/phoenix/releases.html) change:
+If you are building a Phoenix app for example, it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`. Put the lib in your `deps` and, assuming you renamed the `proc.secrets.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
 
 ```
-  System.get_env("DATABASE_URL")
-```
-to 
-```
- Platformsh.Config.ecto_dsn_formatter("database")
+System.get_env("DATABASE_URL")
 ```
 
-See [Platform.sh Config Reader  Documentation](https://hexdocs.pm/platformshconfig/Platformsh.Config.html)  for the full API.
+to
+
+```
+Platformsh.Config.ecto_dsn_formatter("database")
+```
+
+See [Platform.sh Config Reader Documentation](https://hexdocs.pm/platformshconfig/Platformsh.Config.html) for the full API.
 
 # Accessing Services Manually
 
-The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`. 
+The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`.
 
 Given a relationship defined in `.platform.app.yaml`:
 
-```yaml
-relationships:
-  postgresql: postgresql:postgresql
-```
+{% codesnippet "/registry/images/examples/full/postgresql.app.yaml", language="yaml" %}{% endcodesnippet %}
 
-Assuming you have in `mix.exs` the Poison library to parse Json:
+Assuming you have in `mix.exs` the Poison library to parse JSON:
 
 ```elixir
   defp deps do
@@ -120,7 +113,7 @@ And assuming you use `ecto` you could put in `config/config.exs`:
 
 ```elixir
 relationships = Poison.decode!(Base.decode64!(System.get_env("PLATFORM_RELATIONSHIPS")))
-[postgresql_config | _tail] = relationships["postgresql"]
+[postgresql_config | _tail] = relationships["postgresdatabase"]
 
 config :my_app, Repo,
   database: postgresql_config["path"],
@@ -131,5 +124,4 @@ config :my_app, Repo,
 
 ## Project templates
 
-Platform.sh offers [a project template for Elixir applications](https://github.com/platformsh/template-elixir) using the structure described above.  It can be used as a starting point or reference for building your own website or web application. 
-
+Platform.sh offers [a project template for Elixir applications](https://github.com/platformsh/template-elixir) using the structure described above. It can be used as a starting point or reference for building your own website or web application.

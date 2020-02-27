@@ -95,6 +95,44 @@
       ]
     }
   },
+  "elixir": {
+    "description": "",
+    "repo_name": "elixir",
+    "disk": false,
+    "docs": {
+      "relationship_name": null,
+      "service_name": null,
+      "url": "\/languages\/elixir.html",
+      "web": {
+        "commands": {
+          "start": "mix run--no-halt"
+        },
+        "locations": {
+          "\/": {
+            "allow": false,
+            "root": "\"web\"",
+            "passthru": true
+          }
+        }
+      },
+      "build": {
+        "flavor": "none"
+      }
+    },
+    "endpoint": null,
+    "min_disk_size": null,
+    "name": "Elixir",
+    "runtime": true,
+    "type": "elixir",
+    "versions": {
+      "deprecated": [
+
+      ],
+      "supported": [
+        "1.9"
+      ]
+    }
+  },
   "golang": {
     "description": "",
     "disk": false,

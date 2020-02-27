@@ -94,7 +94,6 @@
 
 ## Languages
 
-* [Elixir](languages/elixir.md)
 * [C#/.NET](languages/dotnet.md)
 * [Elixir](languages/elixir.md)
 * [Go](languages/go.md)
