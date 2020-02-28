@@ -1,6 +1,6 @@
 # User administration
 
-##User roles
+## User roles
 
 Every Platform.sh user has a role which controls access and improves security on your project. Different roles are authorized to do different things with your applications, environments and users. You can use your collection of Roles to manage how users interact with Platform.sh.
 
@@ -17,9 +17,9 @@ A Project Reader can have a specific role on different environments. At the envi
 
 > **Important!**
 >
-> After a new user is added to an environment, it needs to be rebuilt. Rebuilds are triggered when you push a new commit to the environment in question.  To be able to rebuild without new code changes you can issue the command `git commit --allow-empty -m'rebuild' && git push` to create an empty commit and "force" rebuilding the environment.
+> After a user is added to (or deleted from) an environment, it will be automatically redeployed, after which the new permissions will be fully updated.
 >
-> When the environment rebuild is complete, allow a minute for the routes to update fully and for the new user to be able to use SSH access.
+> When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger a redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit. 
 
 ------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ If you want your users to be able to see everything (Reader), but only commit to
 
 ## Manage user permissions at the project level
 
-From your list of projects, select the project where you want to view or edit user permissions. At this point, you will not have selected a particular environment. Click the Settings tab at the top of the page, then click the `Access` tab on the left to show the project-level users and their roles. 
+From your list of projects, select the project where you want to view or edit user permissions. At this point, you will not have selected a particular environment. Click the Settings tab at the top of the page, then click the `Access` tab on the left to show the project-level users and their roles.
 
 ![Project user management screenshot](/images/management-console/settings-project-access.png)
 
@@ -51,9 +51,9 @@ Add a new user by clicking on the `Add` button.
 
 If you select the "Viewer" role for the user, you'll have the option of adjusting the user's permissions at the environment level.
 
-From this view, you can assign the user's access. Selecting them to become a "Project admin" will give them "Admin" access to every environment in the project. Alternatively, you can give the user "Admin", "Viewer", "Contributor", or "No Access" to each environment separately. 
+From this view, you can assign the user's access. Selecting them to become a "Project admin" will give them "Admin" access to every environment in the project. Alternatively, you can give the user "Admin", "Viewer", "Contributor", or "No Access" to each environment separately.
 
-If you select the "Viewer" role for the user, you'll have the option of adjusting the user's permissions at the environment level. 
+If you select the "Viewer" role for the user, you'll have the option of adjusting the user's permissions at the environment level.
 
 Once this has been done, if the user does not have a Platform.sh account, they will receive an email asking to confirm their details and register an account name and a password.
 
@@ -66,7 +66,7 @@ If the user already has an account, they will receive an email with a link to th
 
 ## Manage user permissions at the environment level
 
-From within a project select an environment from the `ENVIRONMENT` pull-down menu. 
+From within a project select an environment from the `ENVIRONMENT` pull-down menu.
 
 Click the `Settings` tab at the top of the screen and then click the `Access` tab on the left hand side.
 
