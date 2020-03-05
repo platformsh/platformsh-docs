@@ -61,13 +61,15 @@ The key fingerprint is:
 You have your SSH keys (if not, take a look at the section above), but you need to make sure Platform has a copy of your public key. It's pretty easy to add it to your account.
 
 1.  First off, you'll need to copy your public key to the clipboard.
-2.  Head over to your user account page on [the Platform.sh Accounts page](https://accounts.platform.sh/user) and navigate to the `SSH Keys` tab.
-3.  Click on the `Add a public key` link.
-4.  Paste the key that you copied earlier into the 'Key' text box. You can also add a title if you like, otherwise it will be auto-generated.
-5.  Click 'Save'.
+2.  Head over to your user account page on [the Platform.sh Accounts page](https://accounts.platform.sh/user) and navigate to the `Account Settings` tab.
+3. In the left side-bar, select `SSH keys`.
+4. Click the `Add a public key` button.
+5.  Paste the key that you copied earlier into the 'Key' text box. You can also add a title if you like, otherwise it will be auto-generated.
+6.  Click 'Save'.
 
-![Setting Up Your Project Add SSH Key Done](/images/management-console/account-ssh-key-add.png)
-
+<video controls>
+  <source src="/videos/management-console/add-ssh-mc.mp4" type="video/mp4">
+</video>
 
 That's it! You're all set. Now you'll be able to use Git and command shells with any Platform.sh environment that your user account is authorized to work with.
 
@@ -84,8 +86,6 @@ Host *.eu.platform.sh
 ```
 
 Include one `Host` entry for each Platform.sh region you want to connect to, such as `us-2` or `eu-4`.  (You can include other configuration as desired.)
-
-![Setting Up Your Project Add SSH Key Done](/images/management-console/account-ssh-keys.png)
 
 ## SSH to your Web Server
 
