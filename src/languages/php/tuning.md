@@ -24,7 +24,7 @@ PHP-FPM reserves a fixed number of simultaneous worker processes to handle incom
 
 ## Enable preloading
 
-PHP 7.4 and later supports preloading code files into shared memory once at server startup, bypassing the need to include or autoload them later.  Depending on your application doing so can result in significant improvements to both CPU and memory usage.  If using PHP 7.4, see the [PHP Preload instructions](/language/php.md#opcache-preloading) for how to configure it on Platform.sh and consult your application's documentation to see if they have any recommendations for an optimal preload configuration.
+PHP 7.4 and later supports preloading code files into shared memory once at server startup, bypassing the need to include or autoload them later.  Depending on your application doing so can result in significant improvements to both CPU and memory usage.  If using PHP 7.4, see the [PHP Preload instructions](/languages/php.md#opcache-preloading) for how to configure it on Platform.sh and consult your application's documentation to see if they have any recommendations for an optimal preload configuration.
 
 If you are not using PHP 7.4, this is a good reason to upgrade.
 
