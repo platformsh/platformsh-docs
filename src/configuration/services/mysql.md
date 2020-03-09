@@ -149,7 +149,7 @@ If either schemas or endpoints are defined, then no default will be applied and 
 
 ## Adjusting database configuration
 
-For MariaDB 10.2 and later and all Oracle MySQL versions, a select few configuration properties from the `my.cnf` file are available for adjustment.
+For MariaDB 10.1 and later Oracle MySQL 8.0 and later, a select few configuration properties from the `my.cnf` file are available for adjustment.
 
 ### Packet and connection sizing
 
@@ -172,7 +172,7 @@ For services created prior to February 2020, the default character set and colla
 
 For services created after February 2020, the default character set is `utf8mb4` and the default collation is `utf8mb4_unicode_ci`.
 
-For MariaDB 10.1 and later and all Oracle MySQL versions, both values can be adjust at the server level in `services.yaml`:
+Both values can be adjusted at the server level in `services.yaml`:
 
 ```yaml
 db:
@@ -184,7 +184,20 @@ db:
       default_collation: utf8mb4_unicode_ci
 ```
 
-Note that the effect of this setting is to set the character set and collation of any tables created once those properties are set.  Tables created prior to when those settings are changed will be unaffected by changes to the `services.yaml` configuration.  However, you can change your own table's character set and collation through `ALTER TABLE` commands.  Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charset-mysql.html) for details.
+Note that the effect of this setting is to set the character set and collation of any tables created once those properties are set.  Tables created prior to when those settings are changed will be unaffected by changes to the `services.yaml` configuration.  However, you can change your own table's character set and collation through `ALTER TABLE` commands.  For example:
+
+```
+# To change defaults when creating new tables:
+ALTER DATABASE main CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+# To change defaults when creating new columns:
+ALTER TABLE table_name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+# To convert existing data:
+ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charset-mysql.html) for further details.
 
 ## Access your MariaDB service
 
