@@ -97,10 +97,7 @@ When done, you can access review your project through the Project Web Interface.
 After conversion, you can manually migrate specific environment variables for Staging and Production.
 
 1. Open a terminal and checkout a branch in your local environment.
-2. List all environment variables:
-
-    `platform variable:list`
-
+2. List all environment variables: `platform variable:list`
 3. Log in to your Platform.sh account.
 4. Click the Projects tab and the name of your project.
 5. Click the Staging or Production environment.
