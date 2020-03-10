@@ -39,9 +39,9 @@ You cannot perform the following:
 
 Before converting your project, the branches include a repository for Development, Staging, and Production. Each repository has a master branch with deployment targets configured for Staging and Production.
 
-After converting your project, the hierarchical relationships appear in your Project Web Interface with two, main environment branches for Staging, and Production:
+After converting your project, the hierarchical relationships appear in your Project Web Interface with two, main environment branches for Staging and Production:
 
-![Production and Staging are special children of master](/images/wings-branches.png)
+![Production and Staging are special children of master](/images/dedicated/wings-branches.png)
 
 ## Before you upgrade
 
@@ -65,7 +65,7 @@ We recommend verifying your user account access and permissions set in the Integ
 
 1. Log in to your Platform.sh account.
 2. From your project, click Master to view the environment information and settings.
-3. Click ![configure your project](/images/edit-project-gear.png) Configure environment.
+3. Click ![configure your project](/images/dedicated/edit-project-gear.png) Configure environment.
 4. Click the Users tab to review the user accounts and permission configurations.
 5. Add, delete, or update users, if needed.
 
@@ -75,7 +75,7 @@ When we convert your project to the new Project Web Interface, we add variables 
 
 1. Log in to your Platform.sh account.
 2. From your project, click the master branch to view the environment information and settings.
-3. Click ![configure your project](/images/edit-project-gear.png) Configure environment.
+3. Click ![configure your project](/images/dedicated/edit-project-gear.png) Configure environment.
 4. On the Variables tab, review the environment variables.
 5. To create a new variable, click Add Variable.
 6. To update an existing variable, click Edit next to the variable.
