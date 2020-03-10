@@ -233,6 +233,7 @@
   * [Onboarding](dedicated/overview/onboarding.md)
   * [Backups](dedicated/overview/backups.md)
   * [Differences from the Grid](dedicated/overview/grid.md)
+  * [Upgrading the UI](dedicated/overview/upgrading.md)
 * [Architecture](dedicated/architecture.md)
   * [Deploying](dedicated/architecture/deploying.md)
   * [Dev Environments](dedicated/architecture/development.md)
