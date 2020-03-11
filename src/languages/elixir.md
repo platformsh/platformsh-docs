@@ -144,5 +144,5 @@ config :my_app, Repo,
 
 Platform.sh offers a number of project templates using the structure described above. It can be used as a starting point or reference for building your own website or web application.
 
-- Basic Elixir HTTP Server
-- Phoenix
+- [Basic Elixir HTTP Server](https://github.com/platformsh-templates/elixir)
+- [Phoenix](https://github.com/platformsh-templates/phoenix_elixir)
