@@ -14,13 +14,31 @@ To specify an Elixir container, use the `type` property in your `.platform.app.y
 
 Platform.sh is making assumptions about your application to provide a more streamlined experience. These assumptions are the following:
 
+- Your application requires both Hex and rebar
 - Your `mix.exs` file is at the root of your application.
+- Your application may need a `SECRET_KEY_BASE` environment variable, which is set to the value of `PLATFORM_PROJECT_ENTROPY`.
 
-Platform.sh will then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
+Platform.sh will install Hex and rebars into the container, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
 
 If you don't want these assumptions, you can disable this behavior by specifying in your `.platform.app.yaml`:
 
 {% codesnippet "/registry/images/examples/full/elixir.build.app.yaml", language="yaml" %}{% endcodesnippet %}
+
+For clarity, below is the default build behavior executed by Platform.sh replicated with `build.flavor: none`:
+
+```yaml
+build:
+    flavor: none
+hooks:
+    build: |
+        mix local.hex --force
+        mix local.rebar --force
+        mix do deps.get, deps.compile, compile
+variables:
+    env:
+        MIX_ENV: 'prod'
+        SECRET_KEY_BASE: $PLATFORM_PROJECT_ENTROPY
+```
 
 ## Dependencies
 
@@ -75,7 +93,7 @@ Note that there will still be a proxy server in front of your application.  If d
 
 # Accessing Services
 
-The simplest possible way to go around this is to use the [Platform.sh Config Reader](https://hex.pm/packages/platformshconfig) library from hex.
+The simplest possible way to go around this is to use the [Platform.sh Config Reader](https://hex.pm/packages/platformshconfig) library from hex. The libraray source is also available [on GitHub](https://github.com/platformsh/config-reader-elixir).
 
 If you are building a Phoenix app for example, it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`. Put the lib in your `deps` and, assuming you renamed the `proc.secrets.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
 
@@ -124,4 +142,7 @@ config :my_app, Repo,
 
 ## Project templates
 
-Platform.sh offers [a project template for Elixir applications](https://github.com/platformsh/template-elixir) using the structure described above. It can be used as a starting point or reference for building your own website or web application.
+Platform.sh offers a number of project templates using the structure described above. It can be used as a starting point or reference for building your own website or web application.
+
+- Basic Elixir HTTP Server
+- Phoenix
