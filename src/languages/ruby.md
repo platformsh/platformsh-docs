@@ -10,6 +10,7 @@ Platform.sh supports deploying any Ruby application. Your application can use an
 * 2.4
 * 2.5
 * 2.6
+* 2.7
 
 ## Unicorn based Rails configuration
 
@@ -103,7 +104,7 @@ Here is the complete `.platform.app.yaml` file:
 
 ```yaml
 name: 'app'
-type: "ruby:2.6"
+type: "ruby:2.7"
 
 web:
     upstream:
