@@ -114,8 +114,8 @@ To access various [services](/configuration/services.md) with Go, see the follow
 
 Platform.sh offers a project templates for Go applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
 
-[Generic Go application](https://github.com/platformsh-templates/golang)
-[Beego](https://github.com/platformsh-templates/beego)
-[Echo](https://github.com/platformsh-templates/echo)
-[Gin](https://github.com/platformsh-templates/gin)
-[Hugo](https://github.com/platformsh-templates/hugo)
+* [Generic Go application](https://github.com/platformsh-templates/golang)
+* [Beego](https://github.com/platformsh-templates/beego)
+* [Echo](https://github.com/platformsh-templates/echo)
+* [Gin](https://github.com/platformsh-templates/gin)
+* [Hugo](https://github.com/platformsh-templates/hugo)
