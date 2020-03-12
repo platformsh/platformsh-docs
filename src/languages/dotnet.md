@@ -7,6 +7,7 @@ Platform.sh supports deploying .NET applications by allowing developers to defin
 * 2.0
 * 2.1
 * 2.2
+* 3.1
 
 To specify a .NET Core container, use the `type` property in your `.platform.app.yaml`.
 
