@@ -8,7 +8,9 @@ Basic compliance questions can be handled by our support team via a ticket. For 
 
 Platform.sh provides a Platform as a Service (PaaS) solution which our customers may use for applications requiring PCI compliance. 
 
->Cardholder processing activity is discouraged. Please use a third party processor.
+> **note**
+> 
+> Cardholder processing activity is discouraged. Please use a third party processor.
 
 ## Security & Compensating Controls
 
