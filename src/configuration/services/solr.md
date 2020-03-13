@@ -15,6 +15,7 @@ See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) fo
 * 7.6
 * 7.7
 * 8.0
+* 8.4
 
 ## Relationship
 
@@ -78,7 +79,7 @@ For Solr 6 and later Platform.sh supports multiple cores via different endpoints
 
 ```yaml
 search:
-    type: solr:8.0
+    type: solr:8.4
     disk: 1024
     configuration:
         cores:
@@ -136,7 +137,7 @@ For even more customizability, it's also possible to define Solr configsets.  Fo
 
 ```yaml
 search:
-    type: solr:8.0
+    type: solr:8.4
     disk: 1024
     configuration:
         configsets:
@@ -167,7 +168,7 @@ If no configuration is specified, the default configuration is equivalent to:
 
 ```yaml
 search:
-    type: solr:8.0
+    type: solr:8.4
     configuration:
         cores:
             collection1:
