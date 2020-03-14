@@ -89,7 +89,7 @@ Include one `Host` entry for each Platform.sh region you want to connect to, suc
 
 ## SSH to your Web Server
 
-In the management console header, select the environment tab, and select the environment that you want to ssh into. You will find an `SSH` drop down button towards the top right. Click it!
+In the management console header, click on the environment tab and select the environment that you want to SSH into. Then click the `SSH` dropdown button towards the top right.
 
 ![SSH header pulldown](/images/management-console/header-ssh.png)
 
