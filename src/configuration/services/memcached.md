@@ -10,6 +10,7 @@ Both Memcached and Redis can be used for application caching.  As a general rule
 
 * 1.4
 * 1.5
+* 1.6
 
 ## Relationship
 
