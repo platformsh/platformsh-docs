@@ -7,6 +7,7 @@ Platform.sh supports building and deploying applications written in Go using Go 
 * 1.11
 * 1.12
 * 1.13
+* 1.14
 
 To specify a Go container, use the `type` property in your `.platform.app.yaml`.
 
@@ -62,7 +63,7 @@ The following basic `.platform.app.yaml` file is sufficient to run most Go appli
 ```yaml
 name: app
 
-type: golang:1.12
+type: golang:1.14
 
 hooks:
     build: |
@@ -113,8 +114,8 @@ To access various [services](/configuration/services.md) with Go, see the follow
 
 Platform.sh offers a project templates for Go applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
 
-[Generic Go application](https://github.com/platformsh-templates/golang)
-[Beego](https://github.com/platformsh-templates/beego)
-[Echo](https://github.com/platformsh-templates/echo)
-[Gin](https://github.com/platformsh-templates/gin)
-[Hugo](https://github.com/platformsh-templates/hugo)
+* [Generic Go application](https://github.com/platformsh-templates/golang)
+* [Beego](https://github.com/platformsh-templates/beego)
+* [Echo](https://github.com/platformsh-templates/echo)
+* [Gin](https://github.com/platformsh-templates/gin)
+* [Hugo](https://github.com/platformsh-templates/hugo)
