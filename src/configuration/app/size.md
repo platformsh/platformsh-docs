@@ -39,11 +39,10 @@ These sizes have a fixed amount of CPU associated with them, and a partially con
 |------|------|
 |  XS  | 0.25 |
 |  S   | 0.5  |
-|  M   | 0.5  |
-|  L   | 1.0  |
-|  XL  | 2.5  |
-|  2XL | 5.0  |
-|  4XL | 10.0 |
+|  M   | 1.0  |
+|  L   | 2.0  |
+|  XL  | 4.0  |
+|  2XL | 8.0  |
 
 The application size may be set via the `size` property in `.platform.app.yaml`.  If not set, the default value is `AUTO`.
 
@@ -57,7 +56,7 @@ resources:
     memory_ratio: 256
 ```
 
-The `base_memory` is a fixed size (in megabytes) that the container will have, period.  The `memory_ratio` is a multiplier based on the CPU size.  That is, a `M` CPU size is 0.5 CPU slides, with the above configuration it would get 64 + 0.5 * 256 = 192 MB of RAM.  If the same application had its size increased to an XL, it would get 64 + 2.5 * 256 = 704 MB of RAM.
+The `base_memory` is a fixed size (in megabytes) that the container will have, period.  The `memory_ratio` is a multiplier based on the CPU size.  That is, an `S` CPU size is 0.5 CPU slides, with the above configuration it would get 64 + 0.5 * 256 = 192 MB of RAM.  If the same application had its size increased to an XL, it would get 64 + 4 * 256 = 1088 MB of RAM.
 
 Memory is expressed as two separate values to allow for different performance profiles between different applications.  For instance, PHP applications have a relatively low base memory need to just start up, but each parallel request consumes many megabytes of memory.  PHP applications therefore would benefit from a low `base_memory` and a high `memory_ratio`.  That way, as the container's CPU size is scaled up its memory allocation naturally scales to match.
 
