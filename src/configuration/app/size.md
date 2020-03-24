@@ -46,6 +46,8 @@ These sizes have a fixed amount of CPU associated with them, and a partially con
 
 The application size may be set via the `size` property in `.platform.app.yaml`.  If not set, the default value is `AUTO`.
 
+Note: The `XS` container size is only available if you specify a `resource` block as described below.
+
 ## Application memory
 
 Application containers have memory allocated to them based on their container size as well, but the ratio is configurable.  Specifically, there are two properties that can be adjusted.  Their default values are shown below.
