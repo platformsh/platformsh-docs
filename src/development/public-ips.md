@@ -84,7 +84,7 @@ Outbound IPs:
 * 35.189.126.202
 * 35.242.183.249
 
-Inbound IPs (uk-1.platformsh.site):
+Inbound IPs (gw.uk-1.platformsh.site):
 
 * 35.242.142.110
 * 35.189.126.202
