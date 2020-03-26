@@ -76,6 +76,20 @@ Inbound IPs (gw.fr-1.platformsh.site):
 * 90.84.46.222
 * 90.84.46.40
 
+### UK 1 (uk-1.platform.sh)
+
+Outbound IPs:
+
+* 35.242.142.110
+* 35.189.126.202
+* 35.242.183.249
+
+Inbound IPs (uk-1.platformsh.site):
+
+* 35.242.142.110
+* 35.189.126.202
+* 35.242.183.249
+
 ## United States
 
 ### East (us.platform.sh)
