@@ -1,4 +1,4 @@
-# GlueScript
+# [Alpha] GlueScript
 
 GlueScript is a tool for responding to activities in Platform.sh projects, such as creating or merging branches, synchronizing data with parent environments, or activating new environments. You can write code that is triggered by these activities and takes action in response. 
 
