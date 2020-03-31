@@ -64,7 +64,7 @@ compile_source() {
 
 ensure_environment() {
     # If not running in a Platform.sh build environment, do nothing.
-    if [[ -z "${PLATFORM_CACHE_DIR}" ]]; then
+    if [ -z "${PLATFORM_CACHE_DIR}" ]; then
         echo "Not running in a Platform.sh build environment.  Aborting Redis installation."
         exit 0;
     fi
