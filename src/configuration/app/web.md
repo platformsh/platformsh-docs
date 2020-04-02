@@ -184,6 +184,32 @@ Although most websites today have some dynamic component, static site generators
 
 {% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-docs/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
 
+## How can I show a custom 404 page for missing files?
+
+By default, a request for a file that doesn't exist will generate a generic 404 page.  If a `passthru` key is specified, such requests will get served by that page or script instead.  While that is typically used for mapping all incoming requests to an application front controller, it can also be used to provide a custom 404 error page for specific directories.
+
+```yaml
+web:
+    locations:
+        '/':
+            root: 'public'
+            passthru: '/index.php'
+            index:
+                - index.php
+        '/images':
+            root: 'public/images'
+            passthru: '/404.html'
+            allow: false
+            rules:
+                # Only allow static image files from the images directory.
+                '\.(jpe?g|png|gif|svgz?|ico|bmp)$':
+                    allow: true
+```
+
+In the above example, requests to `/images/*` that exist and are one of the whitelisted file types will be served.  Requests for a file of some other type that exists will get a generic 403 error page.  Requests for a file in `/images` that does not exist at all will get the file `404.html` served instead.  Requests to any other path outside of `/images` that do not exist will get served by the `index.php` script, which is the application front-controller.
+
+Note that `passthru` is a URL fragment relative to the domain root.  That means the `404.html` page will be served from the `public` directory by the first location block.
+
 ## How can I control the headers sent with my files?
 
 There are many use cases for setting custom headers on static content, such as custom content type headers, limiting cross-origin usage, etc.  Consider the following example:
