@@ -1,0 +1,28 @@
+{{ $templateInfo := ( printf "https://api.github.com/repos/platformsh/template-builder/contents/templates/%s/.platform.template.yaml" .name ) }}
+{{ $resultsTemplate := getJSON $templateInfo }}
+{{ $contentTemplate := ( base64Decode $resultsTemplate.content ) | transform.Unmarshal }}
+
+## Node.js
+
+{{< repolist url="https://api.github.com/search/repositories?q=org:platformsh-templates+language:node" lang="node" >}}
+
+## PHP
+
+{{< repolist url="https://api.github.com/search/repositories?q=org:platformsh-templates+language:php" lang="php" >}}
+
+## Python
+
+{{< repolist url="https://api.github.com/search/repositories?q=org:platformsh-templates+language:python" lang="python" >}}
+
+## Ruby
+
+{{< repolist url="https://api.github.com/search/repositories?q=org:platformsh-templates+language:html" lang="ruby">}}
+
+## Lisp
+
+{{< repolist url="https://api.github.com/search/repositories?q=org:platformsh-templates+language:lisp" lang="lisp" >}}
+
+
+{{ $templateInfo := ( printf "https://api.github.com/repos/platformsh/template-builder/contents/templates/%s/.platform.template.yaml" "lisp" ) }}
+{{ $resultsTemplate := base64Decode ( index ( getJSON $templateInfo ) "content" ) }}
+{{ $resultsTemplate | transform.Unmarshal }}

@@ -1,0 +1,22 @@
+{
+    {{/*
+
+    This template defines all output content by assigning it to maps within a Scratch variable.
+    The purpose of this is to avoid any issues that can occur when generating templated JSON;
+    in particular, this method avoids inserting stray commas at the end of objects and lists.
+
+     -*/}}
+    "index": {
+        {{ partial "json/indexer_metadata.json" . }}
+    },
+    "record": {
+        {{ partial "json/record_metadata.json" . }}
+    },
+    "metadata": {
+        {{ partial "json/content_metadata.json" . }}
+    },
+    "content": {
+        {{ block "main" . }}{{ end }}
+    }
+
+}

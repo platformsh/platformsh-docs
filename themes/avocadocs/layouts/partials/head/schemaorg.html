@@ -1,0 +1,18 @@
+<!-- Schema.org -->
+
+{{ if isset .Params "description" }}
+  <meta name="description" content="{{ .Params.description }}">
+{{ else if isset .Site.Params "meta" }}
+  {{ if isset .Site.Params.meta "description" }}
+    <meta name="description" content="{{ .Site.Params.meta.description }}">
+  {{ end }}
+{{ end }}
+
+{{ if isset .Site.Params "meta" }}
+
+  <!-- Thumbnail -->
+  {{ if isset .Site.Params.meta "image" }}
+    <meta itemprop="image" content="{{ .Site.Params.meta.image }}">
+  {{ end }}
+
+{{ end }}

@@ -1,0 +1,10 @@
+{{ $markdown := "false" }}
+{{ with .Get "markdownify" }}
+  {{ $markdown = . }}
+{{ end }}
+
+{{ if eq $markdown "true" }}
+{{ with .Get "file" }}{{ markdownify ( readFile ( path.Join "static/files/" . ) ) }}{{end}}
+{{ else }}
+{{ with .Get "file" }}{{ safeHTML ( readFile ( path.Join "static/files/" . ) ) }}{{end}}
+{{ end }}

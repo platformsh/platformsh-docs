@@ -1,0 +1,18 @@
+examples:
+  - golang/memcached
+  - golang/mongodb
+  - golang/mysql
+  - golang/postgresql
+  - golang/rabbitmq
+  - golang/solr
+  - java/mysql
+  - php/mysql
+  - python/mysql
+  - nodejs/mysql
+appyaml:
+  - drupal8
+  - akeneo
+  - magento2ce
+  - spring-boot-maven-mysql
+  - drupal8-multisite
+  - pyramid

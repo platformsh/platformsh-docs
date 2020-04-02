@@ -1,0 +1,9 @@
+{{ $repo := .Get "repo" }}
+{{ $file := .Get "file" }}
+
+{{ $location := ( printf "https://api.github.com/repos/%s/contents/%s" $repo $file )}}
+
+{{ $results := getJSON $location }}
+{{ $content := base64Decode $results.content }}
+
+{{ $content | safeHTML }}

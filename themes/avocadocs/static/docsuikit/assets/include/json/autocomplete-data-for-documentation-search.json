@@ -1,0 +1,2941 @@
+[
+  {
+    "category": "Getting started",
+    "label": "Introduction",
+    "url": "bootstrap/hs-doc/index.html"
+  },{
+    "category": "Getting started",
+    "label": "Approach",
+    "url": "bootstrap/hs-doc/getting-started/approach.html"
+  },{
+    "category": "Getting started",
+    "label": "Changelog",
+    "url": "bootstrap/hs-doc/getting-started/changelog.html"
+  },{
+    "category": "Getting started",
+    "label": "Credits",
+    "url": "bootstrap/hs-doc/getting-started/credits.html"
+  },{
+    "category": "Getting started",
+    "label": "Customization",
+    "url": "bootstrap/hs-doc/getting-started/customization.html"
+  },{
+    "category": "Getting started",
+    "label": "File structures",
+    "url": "bootstrap/hs-doc/getting-started/file-structures.html"
+  },{
+    "category": "Getting started",
+    "label": "Gulp",
+    "url": "bootstrap/hs-doc/getting-started/gulp.html"
+  },{
+    "category": "Components",
+    "label": "Alerts",
+    "url": "bootstrap/hs-doc/components/alerts.html"
+  },{
+    "category": "Components",
+    "label": "Avatars",
+    "url": "bootstrap/hs-doc/components/avatars.html"
+  },{
+    "category": "Components",
+    "label": "Badge",
+    "url": "bootstrap/hs-doc/components/badge.html"
+  },{
+    "category": "Components",
+    "label": "Breadcrumb",
+    "url": "bootstrap/hs-doc/components/breadcrumb.html"
+  },{
+    "category": "Components",
+    "label": "Buttons",
+    "url": "bootstrap/hs-doc/components/buttons.html"
+  },{
+    "category": "Components",
+    "label": "Cards",
+    "url": "bootstrap/hs-doc/components/cards.html"
+  },{
+    "category": "Components",
+    "label": "Collapse",
+    "url": "bootstrap/hs-doc/components/collapse.html"
+  },{
+    "category": "Components",
+    "label": "Dividers",
+    "url": "bootstrap/hs-doc/components/dividers.html"
+  },{
+    "category": "Components",
+    "label": "Forms",
+    "url": "bootstrap/hs-doc/components/forms.html"
+  },{
+    "category": "Components",
+    "label": "Labels",
+    "url": "bootstrap/hs-doc/components/labels.html"
+  },{
+    "category": "Components",
+    "label": "List group",
+    "url": "bootstrap/hs-doc/components/list-group.html"
+  },{
+    "category": "Components",
+    "label": "Navs",
+    "url": "bootstrap/hs-doc/components/navs.html"
+  },{
+    "category": "Components",
+    "label": "Pagination",
+    "url": "bootstrap/hs-doc/components/pagination.html"
+  },{
+    "category": "Components",
+    "label": "Progress",
+    "url": "bootstrap/hs-doc/components/progress.html"
+  },{
+    "category": "Components",
+    "label": "Sticky footer",
+    "url": "bootstrap/hs-doc/components/sticky-footer.html"
+  },{
+    "category": "Components",
+    "label": "Tables",
+    "url": "bootstrap/hs-doc/components/tables.html"
+  },{
+    "category": "Components",
+    "label": "Typography",
+    "url": "bootstrap/hs-doc/components/typography.html"
+  },{
+    "category": "Plugins",
+    "label": "Animations",
+    "url": "bootstrap/hs-doc/plugins/animations.html"
+  },{
+    "category": "Plugins",
+    "label": "Background video",
+    "url": "bootstrap/hs-doc/plugins/background-video.html"
+  },{
+    "category": "Plugins",
+    "label": "Bootstrap Select",
+    "url": "bootstrap/hs-doc/plugins/bootstrap-select.html"
+  },{
+    "category": "Plugins",
+    "label": "Bootstrap Tagsinput",
+    "url": "bootstrap/hs-doc/plugins/bootstrap-tagsinput.html"
+  },{
+    "category": "Plugins",
+    "label": "Charts",
+    "url": "bootstrap/hs-doc/plugins/charts.html"
+  },{
+    "category": "Plugins",
+    "label": "Circles",
+    "url": "bootstrap/hs-doc/plugins/circles.html"
+  },{
+    "category": "Plugins",
+    "label": "Clipboard",
+    "url": "bootstrap/hs-doc/plugins/clipboard.html"
+  },{
+    "category": "Plugins",
+    "label": "Countdown",
+    "url": "bootstrap/hs-doc/plugins/countdown.html"
+  },{
+    "category": "Plugins",
+    "label": "Counters",
+    "url": "bootstrap/hs-doc/plugins/counters.html"
+  },{
+    "category": "Plugins",
+    "label": "Cubeportfolio",
+    "url": "bootstrap/hs-doc/plugins/cubeportfolio.html"
+  },{
+    "category": "Plugins",
+    "label": "Datatables",
+    "url": "bootstrap/hs-doc/plugins/datatables.html"
+  },{
+    "category": "Plugins",
+    "label": "Unfold (Dropdown and others)",
+    "url": "bootstrap/hs-doc/plugins/unfold.html"
+  },{
+    "category": "Plugins",
+    "label": "Dropdowns",
+    "url": "bootstrap/hs-doc/plugins/unfold.html"
+  },{
+    "category": "Plugins",
+    "label": "Fancybox",
+    "url": "bootstrap/hs-doc/plugins/fancybox.html"
+  },{
+    "category": "Plugins",
+    "label": "Flatpickr",
+    "url": "bootstrap/hs-doc/plugins/flatpickr.html"
+  },{
+    "category": "Plugins",
+    "label": "Google map",
+    "url": "bootstrap/hs-doc/plugins/google-map.html"
+  },{
+    "category": "Plugins",
+    "label": "Go to",
+    "url": "bootstrap/hs-doc/plugins/go-to.html"
+  },{
+    "category": "Plugins",
+    "label": "Headers",
+    "url": "bootstrap/hs-doc/plugins/headers.html"
+  },{
+    "category": "Plugins",
+    "label": "Header fullscreen",
+    "url": "bootstrap/hs-doc/plugins/header-fullscreen.html"
+  },{
+    "category": "Plugins",
+    "label": "Header mega-menu",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html"
+  },{
+    "category": "Plugins",
+    "label": "Header searches",
+    "url": "bootstrap/hs-doc/plugins/header-searches.html"
+  },{
+    "category": "Plugins",
+    "label": "Icon libraries",
+    "url": "bootstrap/hs-doc/plugins/icon-libraries.html"
+  },{
+    "category": "Plugins",
+    "label": "Malihu scrollbar",
+    "url": "bootstrap/hs-doc/plugins/malihu-scrollbar.html"
+  },{
+    "category": "Plugins",
+    "label": "Modal window",
+    "url": "bootstrap/hs-doc/plugins/modal-window.html"
+  },{
+    "category": "Plugins",
+    "label": "Parallax",
+    "url": "bootstrap/hs-doc/plugins/parallax.html"
+  },{
+    "category": "Plugins",
+    "label": "Password strength",
+    "url": "bootstrap/hs-doc/plugins/password-strength.html"
+  },{
+    "category": "Plugins",
+    "label": "Scroll effect",
+    "url": "bootstrap/hs-doc/plugins/scroll-effect.html"
+  },{
+    "category": "Plugins",
+    "label": "Scroll-nav",
+    "url": "bootstrap/hs-doc/plugins/scroll-nav.html"
+  },{
+    "category": "Plugins",
+    "label": "Show-animation",
+    "url": "bootstrap/hs-doc/plugins/show-animation.html"
+  },{
+    "category": "Plugins",
+    "label": "Slick carousel",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html"
+  },{
+    "category": "Plugins",
+    "label": "Social APIs",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html"
+  },{
+    "category": "Components",
+    "label": "Step form",
+    "url": "bootstrap/hs-doc/plugins/step-form.html"
+  },{
+    "category": "Components",
+    "label": "Wizard form",
+    "url": "bootstrap/hs-doc/plugins/wizard-form.html"
+  },{
+    "category": "Plugins",
+    "label": "Sticky block",
+    "url": "bootstrap/hs-doc/plugins/sticky-block.html"
+  },{
+    "category": "Plugins",
+    "label": "Summernote WYSIWYG Editor",
+    "url": "bootstrap/hs-doc/plugins/summernote.html"
+  },{
+    "category": "Plugins",
+    "label": "SVG",
+    "url": "bootstrap/hs-doc/plugins/svg.html"
+  },{
+    "category": "Plugins",
+    "label": "Toggle state",
+    "url": "bootstrap/hs-doc/plugins/toggle-state.html"
+  },{
+    "category": "Plugins",
+    "label": "Typed.js",
+    "url": "bootstrap/hs-doc/plugins/typedjs.html"
+  },{
+    "category": "Plugins",
+    "label": "Validation",
+    "url": "bootstrap/hs-doc/plugins/validation.html"
+  },{
+    "category": "Plugins",
+    "label": "Video player",
+    "url": "bootstrap/hs-doc/plugins/video-player.html"
+  },{
+    "category": "Utilities",
+    "label": "Borders",
+    "url": "bootstrap/hs-doc/utilities/borders.html"
+  },{
+    "category": "Utilities",
+    "label": "Colors",
+    "url": "bootstrap/hs-doc/utilities/colors.html"
+  },{
+    "category": "Utilities",
+    "label": "Content alignments",
+    "url": "bootstrap/hs-doc/utilities/content-alignments.html"
+  },{
+    "category": "Utilities",
+    "label": "Links",
+    "url": "bootstrap/hs-doc/utilities/links.html"
+  },{
+    "category": "Utilities",
+    "label": "Position",
+    "url": "bootstrap/hs-doc/utilities/position.html"
+  },{
+    "category": "Utilities",
+    "label": "Shadows",
+    "url": "bootstrap/hs-doc/utilities/shadows.html"
+  },{
+    "category": "Utilities",
+    "label": "Sizing",
+    "url": "bootstrap/hs-doc/utilities/sizing.html"
+  },{
+    "category": "Utilities",
+    "label": "Spacing",
+    "url": "bootstrap/hs-doc/utilities/spacing.html"
+  },{
+    "category": "Utilities",
+    "label": "Transitions",
+    "url": "bootstrap/hs-doc/utilities/transitions.html"
+  },{
+    "category": "Utilities",
+    "label": "Others",
+    "url": "bootstrap/hs-doc/utilities/others.html"
+  },
+
+
+  {
+    "category": "Getting started",
+    "section": "Getting started",
+    "label": "Getting started - Quick start",
+    "url": "bootstrap/hs-doc/index.html#quick-start"
+  },{
+    "category": "Getting started",
+    "section": "Quick start",
+    "label": "Quick start - CSS",
+    "url": "bootstrap/hs-doc/index.html#css"
+  },{
+    "category": "Getting started",
+    "section": "Quick start",
+    "label": "Quick start - JS",
+    "url": "bootstrap/hs-doc/index.html#js"
+  },{
+    "category": "Getting started",
+    "section": "Getting started",
+    "label": "Getting started - Starter template",
+    "url": "bootstrap/hs-doc/index.html#starter-template"
+  },{
+    "category": "Getting started",
+    "section": "Important globals",
+    "label": "Important globals - Important globals",
+    "url": "bootstrap/hs-doc/index.html#important-globals"
+  },{
+    "category": "Getting started",
+    "section": "Important globals",
+    "label": "Important globals - Starter template",
+    "url": "bootstrap/hs-doc/index.html#starter-template"
+  },{
+    "category": "Getting started",
+    "section": "Important globals",
+    "label": "Important globals - HTML5 doctype",
+    "url": "bootstrap/hs-doc/index.html#html5-doctype"
+  },{
+    "category": "Getting started",
+    "section": "Important globals",
+    "label": "Important globals - Responsive meta tag",
+    "url": "bootstrap/hs-doc/index.html#responsive-meta-tag"
+  },{
+    "category": "Getting started",
+    "section": "File structures",
+    "label": "File structures - Download package",
+    "url": "bootstrap/hs-doc/getting-started/file-structures.html#download-package"
+  },{
+    "category": "Getting started",
+    "section": "Download package",
+    "label": "Download package - HTML",
+    "url": "bootstrap/hs-doc/getting-started/file-structures.html#html"
+  },{
+    "category": "Getting started",
+    "section": "Download package",
+    "label": "Download package - Assets",
+    "url": "bootstrap/hs-doc/getting-started/file-structures.html#assets"
+  },{
+    "category": "Getting started",
+    "section": "Approach",
+    "label": "Approach - Summary",
+    "url": "bootstrap/hs-doc/getting-started/approach.html#summary"
+  },{
+    "category": "Getting started",
+    "section": "Approach",
+    "label": "Approach - Responsive",
+    "url": "bootstrap/hs-doc/getting-started/approach.html#responsive"
+  },{
+    "category": "Getting started",
+    "section": "Approach",
+    "label": "Approach - Classes",
+    "url": "bootstrap/hs-doc/getting-started/approach.html#classes"
+  },{
+    "category": "Getting started",
+    "section": "Approach",
+    "label": "Approach - Z-index scales",
+    "url": "bootstrap/hs-doc/getting-started/approach.html#z-index-scales"
+  },{
+    "category": "Getting started",
+    "section": "Approach",
+    "label": "Approach - Component elements",
+    "url": "bootstrap/hs-doc/getting-started/approach.html#component-elements"
+  },{
+    "category": "Getting started",
+    "section": "Approach",
+    "label": "Approach - Overlay components",
+    "url": "bootstrap/hs-doc/getting-started/approach.html#overlay-components"
+  },{
+    "category": "Getting started",
+    "section": "Approach",
+    "label": "Approach - HTML and CSS over JS",
+    "url": "bootstrap/hs-doc/getting-started/approach.html#html-and-css-over-js"
+  },{
+    "category": "Getting started",
+    "section": "Approach",
+    "label": "Approach - Utilities",
+    "url": "bootstrap/hs-doc/getting-started/approach.html#utilities"
+  },{
+    "category": "Getting started",
+    "section": "Approach",
+    "label": "Approach - Flexible html",
+    "url": "bootstrap/hs-doc/getting-started/approach.html#flexible-html"
+  },{
+    "category": "Getting started",
+    "section": "Gulp",
+    "label": "Gulp - Tooling setup",
+    "url": "bootstrap/hs-doc/getting-started/gulp.html#tooling-setup"
+  },{
+    "category": "Getting started",
+    "section": "Getting started",
+    "label": "Installations",
+    "url": "bootstrap/hs-doc/getting-started/gulp.html#installations"
+  },{
+    "category": "Getting started",
+    "section": "Installations",
+    "label": "Installations - Installing Node.js",
+    "url": "bootstrap/hs-doc/getting-started/gulp.html#installing-nodejs"
+  },{
+    "category": "Getting started",
+    "section": "Installations",
+    "label": "Installations - Installing Gulp.js",
+    "url": "bootstrap/hs-doc/getting-started/gulp.html#installing-gulpjs"
+  },{
+    "category": "Getting started",
+    "section": "Installations",
+    "label": "Installations - Installing NPM modules",
+    "url": "bootstrap/hs-doc/getting-started/gulp.html#installing-npm-modules"
+  },{
+    "category": "Getting started",
+    "section": "Installations",
+    "label": "Installations - Run Gulp",
+    "url": "bootstrap/hs-doc/getting-started/gulp.html#run-gulp"
+  },{
+    "category": "Getting started",
+    "section": "Installations",
+    "label": "Installations - Gulp dist",
+    "url": "bootstrap/hs-doc/getting-started/gulp.html#gulp-dist"
+  },{
+    "category": "Getting started",
+    "section": "Gulp",
+    "label": "Gulp - Autoprefixer",
+    "url": "bootstrap/hs-doc/getting-started/gulp.html#autoprefixer"
+  },{
+    "category": "Getting started",
+    "section": "Customization",
+    "label": "Customization - How to include a typeface",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#how-to-include-a-typeface"
+  },{
+    "category": "Getting started",
+    "section": "How to include a typeface",
+    "label": "How to include a typeface - with SASS",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#with-sass"
+  },{
+    "category": "Getting started",
+    "section": "How to include a typeface",
+    "label": "How to include a typeface - with CSS",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#with-css"
+  },{
+    "category": "Getting started",
+    "section": "Customization",
+    "label": "Customization - SASS",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#sass"
+  },{
+    "category": "Getting started",
+    "section": "SASS",
+    "label": "SASS - Customizing SASS",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#customizing-sass"
+  },{
+    "category": "Getting started",
+    "section": "SASS",
+    "label": "SASS - Variable defaults",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#variable-defaults"
+  },{
+    "category": "Getting started",
+    "section": "SASS",
+    "label": "SASS - Maps and loops",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#maps-and-loops"
+  },{
+    "category": "Getting started",
+    "section": "SASS",
+    "label": "SASS - Modify map",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#modify-map"
+  },{
+    "category": "Getting started",
+    "section": "SASS",
+    "label": "SASS - Add to map",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#add-to-map"
+  },{
+    "category": "Getting started",
+    "section": "Customization",
+    "label": "Customization - SASS options",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#sass-options"
+  },{
+    "category": "Getting started",
+    "section": "Customization",
+    "label": "Customization - Color",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#color"
+  },{
+    "category": "Getting started",
+    "section": "Customization",
+    "label": "Customization - All color",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#all-colors"
+  },{
+    "category": "Getting started",
+    "section": "Customization",
+    "label": "Customization - Theme colors",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#theme-colors"
+  },{
+    "category": "Getting started",
+    "section": "Customization",
+    "label": "Customization - Grays",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#grays"
+  },{
+    "category": "Getting started",
+    "section": "Customization",
+    "label": "Customization - SASS Components",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#sass-components"
+  },{
+    "category": "Getting started",
+    "section": "Customization",
+    "label": "Customization - Modifiers",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#modifiers"
+  },{
+    "category": "Getting started",
+    "section": "Customization",
+    "label": "Customization - Customizing JS",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#customizing-js"
+  },{
+    "category": "Getting started",
+    "section": "Customization",
+    "label": "Customization - Customizing JS",
+    "url": "bootstrap/hs-doc/getting-started/customization.html#customizing-js"
+  },{
+    "category": "Components",
+    "section": "Typography",
+    "label": "Typography - Global settings",
+    "url": "bootstrap/hs-doc/components/typography.html#global-settings"
+  },{
+    "category": "Components",
+    "section": "Typography",
+    "label": "Typography - Headings",
+    "url": "bootstrap/hs-doc/components/typography.html#headings"
+  },{
+    "category": "Components",
+    "section": "Headings",
+    "label": "Headings - Customizing headings",
+    "url": "bootstrap/hs-doc/components/typography.html#customizing-headings"
+  },{
+    "category": "Components",
+    "section": "Typography",
+    "label": "Typography - Display headings",
+    "url": "bootstrap/hs-doc/components/typography.html#display-headings"
+  },{
+    "category": "Components",
+    "section": "Typography",
+    "label": "Typography - Lead",
+    "url": "bootstrap/hs-doc/components/typography.html#lead"
+  },{
+    "category": "Components",
+    "section": "Typography",
+    "label": "Typography - Inline text elements",
+    "url": "bootstrap/hs-doc/components/typography.html#inline-text-elements"
+  },{
+    "category": "Components",
+    "section": "Typography",
+    "label": "Typography - Text utilities",
+    "url": "bootstrap/hs-doc/components/typography.html#text-utilities"
+  },{
+    "category": "Components",
+    "section": "Typography",
+    "label": "Abbreviations",
+    "url": "bootstrap/hs-doc/Typography - components/typography.html#abbreviations"
+  },{
+    "category": "Components",
+    "section": "Blockquotes",
+    "label": "Blockquotes",
+    "url": "bootstrap/hs-doc/components/typography.html#blockquotes"
+  },{
+    "category": "Components",
+    "section": "Blockquotes",
+    "label": "Blockquotes - Naming a source",
+    "url": "bootstrap/hs-doc/components/typography.html#naming-a-source"
+  },{
+    "category": "Components",
+    "section": "Blockquotes",
+    "label": "Blockquotes - Alignment",
+    "url": "bootstrap/hs-doc/components/typography.html#alignment"
+  },{
+    "category": "Components",
+    "section": "Typography",
+    "label": "Typography - Lists",
+    "url": "bootstrap/hs-doc/components/typography.html#lists"
+  },{
+    "category": "Components",
+    "section": "Lists",
+    "label": "Lists - Unstyled",
+    "url": "bootstrap/hs-doc/components/typography.html#unstyled"
+  },{
+    "category": "Components",
+    "section": "Lists",
+    "label": "Lists - Inline",
+    "url": "bootstrap/hs-doc/components/typography.html#inline"
+  },{
+    "category": "Components",
+    "section": "Lists",
+    "label": "Lists - Description list alignment",
+    "url": "bootstrap/hs-doc/components/typography.html#description-list-alignment"
+  },{
+    "category": "Components",
+    "section": "Typography",
+    "label": "Typography - Responsive typography",
+    "url": "bootstrap/hs-doc/components/typography.html#responsive-typography"
+  },{
+    "category": "Components",
+    "section": "Alerts",
+    "label": "Alerts - Examples",
+    "url": "bootstrap/hs-doc/components/alerts.html#examples"
+  },{
+    "category": "Components",
+    "section": "Alerts",
+    "label": "Alerts - Link color",
+    "url": "bootstrap/hs-doc/components/alerts.html#link-color"
+  },{
+    "category": "Components",
+    "section": "Alerts",
+    "label": "Alerts - Addition content",
+    "url": "bootstrap/hs-doc/components/alerts.html#additional-content"
+  },{
+    "category": "Components",
+    "section": "Alerts",
+    "label": "Alerts - Dismissing",
+    "url": "bootstrap/hs-doc/components/alerts.html#dismissing"
+  },{
+    "category": "Components",
+    "section": "Alerts",
+    "label": "Alerts - JavaScript behavior",
+    "url": "bootstrap/hs-doc/components/alerts.html#js-behavior"
+  },{
+    "category": "Components",
+    "section": "Avatars",
+    "label": "Avatars - Example",
+    "url": "bootstrap/hs-doc/components/avatars.html#example"
+  },{
+    "category": "Components",
+    "section": "Avatars",
+    "label": "Avatars - Bordered",
+    "url": "bootstrap/hs-doc/components/avatars.html#bordered"
+  },{
+    "category": "Components",
+    "section": "Avatars",
+    "label": "Avatars - Bordered",
+    "url": "bootstrap/hs-doc/components/avatars.html#bordered"
+  },{
+    "category": "Components",
+    "section": "Badges",
+    "label": "Badges - Example",
+    "url": "bootstrap/hs-doc/components/badge.html#example"
+  },{
+    "category": "Components",
+    "section": "Badges",
+    "label": "Badges - Contextual variations",
+    "url": "bootstrap/hs-doc/components/badge.html#contextual-variations"
+  },{
+    "category": "Components",
+    "section": "Badges",
+    "label": "Badges - Pill badges",
+    "url": "bootstrap/hs-doc/components/badge.html#pill-badges"
+  },{
+    "category": "Components",
+    "section": "Badges",
+    "label": "Badges - Links",
+    "url": "bootstrap/hs-doc/components/badge.html#links"
+  },{
+    "category": "Components",
+    "section": "Badges",
+    "label": "Badges - Front badges",
+    "url": "bootstrap/hs-doc/components/badge.html#front-badges"
+  },{
+    "category": "Components",
+    "section": "Badges",
+    "label": "Badges - Front examples",
+    "url": "bootstrap/hs-doc/components/badge.html#front-examples"
+  },{
+    "category": "Components",
+    "section": "Badges",
+    "label": "Badges - Sizes",
+    "url": "bootstrap/hs-doc/components/badge.html#sizes"
+  },{
+    "category": "Components",
+    "section": "Badges",
+    "label": "Badges - Border style",
+    "url": "bootstrap/hs-doc/components/badge.html#border-style"
+  },{
+    "category": "Components",
+    "section": "Badges",
+    "label": "Badges - Avatars and badges",
+    "url": "bootstrap/hs-doc/components/badge.html#avatar-and-badges"
+  },{
+    "category": "Components",
+    "section": "Breadcrumb",
+    "label": "Breadcrumb - Example",
+    "url": "bootstrap/hs-doc/components/breadcrumb.html#example"
+  },{
+    "category": "Components",
+    "section": "Breadcrumb",
+    "label": "Breadcrumb - Custom example",
+    "url": "bootstrap/hs-doc/components/breadcrumb.html#custom-breadcrumb"
+  },{
+    "category": "Components",
+    "section": "Breadcrumb",
+    "label": "Breadcrumb - Changing the separator",
+    "url": "bootstrap/hs-doc/components/breadcrumb.html#changing-the-separator"
+  },{
+    "category": "Components",
+    "section": "Breadcrumb",
+    "label": "Breadcrumb - Accessibility",
+    "url": "bootstrap/hs-doc/components/breadcrumb.html#accessibility"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Button examples",
+    "url": "bootstrap/hs-doc/components/buttons.html#examples"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Button tags",
+    "url": "bootstrap/hs-doc/components/buttons.html#button-tags"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Outline buttons",
+    "url": "bootstrap/hs-doc/components/buttons.html#outline-buttons"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Soft buttons",
+    "url": "bootstrap/hs-doc/components/buttons.html#soft-buttons"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Text buttons",
+    "url": "bootstrap/hs-doc/components/buttons.html#text-buttons"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Icon buttons",
+    "url": "bootstrap/hs-doc/components/buttons.html#icon-buttons"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Sizes",
+    "url": "bootstrap/hs-doc/components/buttons.html#sizes"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Button styles",
+    "url": "bootstrap/hs-doc/components/buttons.html#button-styles"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Active state",
+    "url": "bootstrap/hs-doc/components/buttons.html#active-state"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Disabled state",
+    "url": "bootstrap/hs-doc/components/buttons.html#disabled-state"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Button plugin",
+    "url": "bootstrap/hs-doc/components/buttons.html#button-plugin"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Toggle states",
+    "url": "bootstrap/hs-doc/components/buttons.html#toggle-states"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Checkbox and radio buttons",
+    "url": "bootstrap/hs-doc/components/buttons.html#checkbox-and-radio-buttons"
+  },{
+    "category": "Components",
+    "section": "Buttons",
+    "label": "Buttons - Methods",
+    "url": "bootstrap/hs-doc/components/buttons.html#methods"
+  },{
+    "category": "Components",
+    "section": "Cards",
+    "label": "Cards - About",
+    "url": "bootstrap/hs-doc/components/cards.html#about"
+  },{
+    "category": "Components",
+    "section": "Cards",
+    "label": "Cards - Card frame",
+    "url": "bootstrap/hs-doc/components/cards.html#card-frame"
+  },{
+    "category": "Components",
+    "section": "Cards",
+    "label": "Cards - Card columns",
+    "url": "bootstrap/hs-doc/components/cards.html#card-columns"
+  },{
+    "category": "Components",
+    "section": "Cards",
+    "label": "Cards - Highlighted",
+    "url": "bootstrap/hs-doc/components/cards.html#highlighted"
+  },{
+    "category": "Components",
+    "section": "Cards",
+    "label": "Cards - Card count",
+    "url": "bootstrap/hs-doc/components/cards.html#card-count"
+  },{
+    "category": "Components",
+    "section": "Card count",
+    "label": "Card count - Example",
+    "url": "bootstrap/hs-doc/components/cards.html#card-count-example"
+  },{
+    "category": "Components",
+    "section": "Cards",
+    "label": "Cards - Card gutters",
+    "url": "bootstrap/hs-doc/components/cards.html#card-gutters"
+  },{
+    "category": "Components",
+    "section": "Card gutters",
+    "label": "Card gutters - Examples",
+    "url": "bootstrap/hs-doc/components/cards.html#card-gutters-examples"
+  },{
+    "category": "Components",
+    "section": "Cards",
+    "label": "Cards - Card group break",
+    "url": "bootstrap/hs-doc/components/cards.html#card-group-break"
+  },{
+    "category": "Components",
+    "section": "Card group break",
+    "label": "Card group break - Example",
+    "url": "bootstrap/hs-doc/components/cards.html#card-group-break-example"
+  },{
+    "category": "Components",
+    "section": "Collapse",
+    "label": "Collapse - How it works",
+    "url": "bootstrap/hs-doc/components/collapse.html#how-it-works"
+  },{
+    "category": "Components",
+    "section": "Collapse",
+    "label": "Collapse - Example",
+    "url": "bootstrap/hs-doc/components/collapse.html#example"
+  },{
+    "category": "Components",
+    "section": "Collapse",
+    "label": "Collapse - Multiple targets",
+    "url": "bootstrap/hs-doc/components/collapse.html#multiple-targets"
+  },{
+    "category": "Components",
+    "section": "Collapse",
+    "label": "Collapse - Accordion example",
+    "url": "bootstrap/hs-doc/components/collapse.html#accordion-example"
+  },{
+    "category": "Components",
+    "section": "Collapse",
+    "label": "Collapse - Accessibility",
+    "url": "bootstrap/hs-doc/components/collapse.html#accessibility"
+  },{
+    "category": "Components",
+    "section": "Collapse",
+    "label": "Collapse - Usage",
+    "url": "bootstrap/hs-doc/components/collapse.html#usage"
+  },{
+    "category": "Components",
+    "section": "Usage",
+    "label": "Usage - Via data attributes",
+    "url": "bootstrap/hs-doc/components/collapse.html#via-data-attributes"
+  },{
+    "category": "Components",
+    "section": "Collapse",
+    "label": "Collapse - JavaScript behavior",
+    "url": "bootstrap/hs-doc/components/collapse.html#js-behavior"
+  },{
+    "category": "Components",
+    "section": "Forms",
+    "label": "Forms - Overview",
+    "url": "bootstrap/hs-doc/components/forms.html#overview"
+  },{
+    "category": "Components",
+    "section": "Forms",
+    "label": "Forms - Form controls",
+    "url": "bootstrap/hs-doc/components/forms.html#form-controls"
+  },{
+    "category": "Components",
+    "section": "Forms",
+    "label": "Forms - Sizing",
+    "url": "bootstrap/hs-doc/components/forms.html#sizing"
+  },{
+    "category": "Components",
+    "section": "Forms",
+    "label": "Forms - Custom form",
+    "url": "bootstrap/hs-doc/components/forms.html#custom-form"
+  },{
+    "category": "Components",
+    "section": "Custom form",
+    "label": "Custom form - Borderless",
+    "url": "bootstrap/hs-doc/components/forms.html#borderless"
+  },{
+    "category": "Components",
+    "section": "Custom form",
+    "label": "Custom form - Pilled form",
+    "url": "bootstrap/hs-doc/components/forms.html#pilled-form"
+  },{
+    "category": "Components",
+    "section": "Forms",
+    "label": "Forms - Checkbox and radios",
+    "url": "bootstrap/hs-doc/components/forms.html#checkbox-and-radios"
+  },{
+    "category": "Components",
+    "section": "Checkbox and radios",
+    "label": "Checkbox and radios - Default (stacked)",
+    "url": "bootstrap/hs-doc/components/forms.html#default-stacked"
+  },{
+    "category": "Components",
+    "section": "Checkbox and radios",
+    "label": "Checkbox and radios - Inline checkbox",
+    "url": "bootstrap/hs-doc/components/forms.html#inline-checkbox"
+  },{
+    "category": "Components",
+    "section": "Checkbox and radios",
+    "label": "Checkbox and radios - Custom checkbox",
+    "url": "bootstrap/hs-doc/components/forms.html#custom-checkbox"
+  },{
+    "category": "Components",
+    "section": "Checkbox and radios",
+    "label": "Checkbox and radios - Inline custom checkbox",
+    "url": "bootstrap/hs-doc/components/forms.html#inline-custom-checkbox"
+  },{
+    "category": "Components",
+    "section": "Forms",
+    "label": "Forms - Input group",
+    "url": "bootstrap/hs-doc/components/forms.html#input-group"
+  },{
+    "category": "Components",
+    "section": "Input group",
+    "label": "Input group - Input group sizing",
+    "url": "bootstrap/hs-doc/components/forms.html#input-group-sizing"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Basic example",
+    "url": "bootstrap/hs-doc/components/list-group.html#basic-example"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Active items",
+    "url": "bootstrap/hs-doc/components/list-group.html#active-items"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Disabled items",
+    "url": "bootstrap/hs-doc/components/list-group.html#disabled-items"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Links and buttons",
+    "url": "bootstrap/hs-doc/components/list-group.html#links-and-buttons"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Rounded class",
+    "url": "bootstrap/hs-doc/components/list-group.html#rounded-class"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Flush",
+    "url": "bootstrap/hs-doc/components/list-group.html#flush"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Borderless",
+    "url": "bootstrap/hs-doc/components/list-group.html#borderless"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Striped",
+    "url": "bootstrap/hs-doc/components/list-group.html#striped"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Contextual classes",
+    "url": "bootstrap/hs-doc/components/list-group.html#contextual-classes"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - With badges",
+    "url": "bootstrap/hs-doc/components/list-group.html#with-badges"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Custom content",
+    "url": "bootstrap/hs-doc/components/list-group.html#custom-content"
+  },{
+    "category": "Components",
+    "section": "List group",
+    "label": "List group - JavaScript behavior",
+    "url": "bootstrap/hs-doc/components/list-group.html#js-behavior"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Base nav",
+    "url": "bootstrap/hs-doc/components/navs.html#base-nav"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Available styles",
+    "url": "bootstrap/hs-doc/components/navs.html#available-styles"
+  },{
+    "category": "Components",
+    "section": "Available styles",
+    "label": "Available styles - Horizontal alignment",
+    "url": "bootstrap/hs-doc/components/navs.html#horizontal-alignment"
+  },{
+    "category": "Components",
+    "section": "Available styles",
+    "label": "Available styles - Vertical",
+    "url": "bootstrap/hs-doc/components/navs.html#vertical"
+  },{
+    "category": "Components",
+    "section": "Available styles",
+    "label": "Available styles - Tabs",
+    "url": "bootstrap/hs-doc/components/navs.html#tabs"
+  },{
+    "category": "Components",
+    "section": "Available styles",
+    "label": "Available styles - Pills",
+    "url": "bootstrap/hs-doc/components/navs.html#pills"
+  },{
+    "category": "Components",
+    "section": "Available styles",
+    "label": "Available styles - Classic",
+    "url": "bootstrap/hs-doc/components/navs.html#classic"
+  },{
+    "category": "Components",
+    "section": "Available styles",
+    "label": "Available styles - Shadow",
+    "url": "bootstrap/hs-doc/components/navs.html#shadow"
+  },{
+    "category": "Components",
+    "section": "Available styles",
+    "label": "Available styles - Rounded",
+    "url": "bootstrap/hs-doc/components/navs.html#rounded"
+  },{
+    "category": "Components",
+    "section": "Available styles",
+    "label": "Available styles - Fill and justify",
+    "url": "bootstrap/hs-doc/components/navs.html#fill-and-justify"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Icon style",
+    "url": "bootstrap/hs-doc/components/navs.html#icon-style"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Navs - Working with flex utilities",
+    "url": "bootstrap/hs-doc/components/navs.html#working-with-flex-utilities"
+  },{
+    "category": "Components",
+    "section": "Navs",
+    "label": "Regarding accessibility",
+    "url": "bootstrap/hs-doc/components/navs.html#regarding-accessibility"
+  },{
+    "category": "Components",
+    "section": "Pagination",
+    "label": "Pagination - Overview",
+    "url": "bootstrap/hs-doc/components/pagination.html#overview"
+  },{
+    "category": "Components",
+    "section": "Pagination",
+    "label": "Pagination - Working with icons",
+    "url": "bootstrap/hs-doc/components/pagination.html#working-with-icons"
+  },{
+    "category": "Components",
+    "section": "Pagination",
+    "label": "Pagination - Disabled and active states",
+    "url": "bootstrap/hs-doc/components/pagination.html#disabled-and-active-states"
+  },{
+    "category": "Components",
+    "section": "Pagination",
+    "label": "Pagination - Sizing",
+    "url": "bootstrap/hs-doc/components/pagination.html#sizing"
+  },{
+    "category": "Components",
+    "section": "Pagination",
+    "label": "Pagination - Alignment",
+    "url": "bootstrap/hs-doc/components/pagination.html#alignment"
+  },{
+    "category": "Components",
+    "section": "Pagination",
+    "label": "Pagination - With pager",
+    "url": "bootstrap/hs-doc/components/pagination.html#with-pager"
+  },{
+    "category": "Components",
+    "section": "Progress",
+    "label": "Progress - How it works",
+    "url": "bootstrap/hs-doc/components/progress.html#how-it-works"
+  },{
+    "category": "Components",
+    "section": "Progress",
+    "label": "Progress - Labels",
+    "url": "bootstrap/hs-doc/components/progress.html#labels"
+  },{
+    "category": "Components",
+    "section": "Progress",
+    "label": "Progress - Height",
+    "url": "bootstrap/hs-doc/components/progress.html#height"
+  },{
+    "category": "Components",
+    "section": "Progress",
+    "label": "Progress - Vertical progress",
+    "url": "bootstrap/hs-doc/components/progress.html#vertical-progress"
+  },{
+    "category": "Components",
+    "section": "Progress",
+    "label": "Progress - Backgrounds",
+    "url": "bootstrap/hs-doc/components/progress.html#backgrounds"
+  },{
+    "category": "Components",
+    "section": "Progress",
+    "label": "Progress - Multiple bars",
+    "url": "bootstrap/hs-doc/components/progress.html#multiple-bars"
+  },{
+    "category": "Components",
+    "section": "Progress",
+    "label": "Progress - Striped",
+    "url": "bootstrap/hs-doc/components/progress.html#striped"
+  },{
+    "category": "Components",
+    "section": "Progress",
+    "label": "Progress - Animated progress",
+    "url": "bootstrap/hs-doc/components/progress.html#animated-progress"
+  },{
+    "category": "Components",
+    "section": "Animated progress",
+    "label": "Animated progress - Horizontal progress",
+    "url": "bootstrap/hs-doc/components/progress.html#horizontal-progress"
+  },{
+    "category": "Components",
+    "section": "Animated progress",
+    "label": "Animated progress - Animated vertical progress",
+    "url": "bootstrap/hs-doc/components/progress.html#animated-vertical-progress"
+  },{
+    "category": "Components",
+    "section": "Tables",
+    "label": "Tables - Examples",
+    "url": "bootstrap/hs-doc/components/tables.html#examples"
+  },{
+    "category": "Components",
+    "section": "Tables",
+    "label": "Tables - Table head options",
+    "url": "bootstrap/hs-doc/components/tables.html#table-head-options"
+  },{
+    "category": "Components",
+    "section": "Tables",
+    "label": "Tables - Striped rows",
+    "url": "bootstrap/hs-doc/components/tables.html#striped-rows"
+  },{
+    "category": "Components",
+    "section": "Tables",
+    "label": "Tables - Bordered table",
+    "url": "bootstrap/hs-doc/components/tables.html#bordered-table"
+  },{
+    "category": "Components",
+    "section": "Tables",
+    "label": "Tables - Borderless table",
+    "url": "bootstrap/hs-doc/components/tables.html#borderless-table"
+  },{
+    "category": "Components",
+    "section": "Tables",
+    "label": "Tables - Hoverable rows",
+    "url": "bootstrap/hs-doc/components/tables.html#hoverable-rows"
+  },{
+    "category": "Components",
+    "section": "Tables",
+    "label": "Tables - Small table",
+    "url": "bootstrap/hs-doc/components/tables.html#small-table"
+  },{
+    "category": "Components",
+    "section": "Tables",
+    "label": "Tables - Contextual classes",
+    "url": "bootstrap/hs-doc/components/tables.html#contextual-classes"
+  },{
+    "category": "Components",
+    "section": "Tables",
+    "label": "Tables - Captions",
+    "url": "bootstrap/hs-doc/components/tables.html#captions"
+  },{
+    "category": "Components",
+    "section": "Tables",
+    "label": "Tables - Responsive tables",
+    "url": "bootstrap/hs-doc/components/tables.html#responsive-tables"
+  },{
+    "category": "Components",
+    "section": "Responsive tables",
+    "label": "Responsive tables - Always responsive",
+    "url": "bootstrap/hs-doc/components/tables.html#always-responsive"
+  },{
+    "category": "Components",
+    "section": "Responsive tables",
+    "label": "Responsive tables - Breakpoint specific",
+    "url": "bootstrap/hs-doc/components/tables.html#breakpoint-specific"
+  },{
+    "category": "Components",
+    "section": "Tables",
+    "label": "Tables - Front examples",
+    "url": "bootstrap/hs-doc/components/tables.html#examples"
+  },{
+    "category": "Utilities",
+    "section": "Borders",
+    "label": "Borders - Border",
+    "url": "bootstrap/hs-doc/utilities/borders.html#border"
+  },{
+    "category": "Utilities",
+    "section": "Borders",
+    "label": "Borders - Additive",
+    "url": "bootstrap/hs-doc/utilities/borders.html#additive"
+  },{
+    "category": "Utilities",
+    "section": "Borders",
+    "label": "Borders - Subtractive",
+    "url": "bootstrap/hs-doc/utilities/borders.html#subtractive"
+  },{
+    "category": "Utilities",
+    "section": "Borders",
+    "label": "Borders - Border color",
+    "url": "bootstrap/hs-doc/utilities/borders.html#border-color"
+  },{
+    "category": "Utilities",
+    "section": "Borders",
+    "label": "Borders - Border radius",
+    "url": "bootstrap/hs-doc/utilities/borders.html#border-radius"
+  },{
+    "category": "Utilities",
+    "section": "Colors",
+    "label": "Colors - Color",
+    "url": "bootstrap/hs-doc/utilities/colors.html#color"
+  },{
+    "category": "Utilities",
+    "section": "Colors",
+    "label": "Colors - Background color",
+    "url": "bootstrap/hs-doc/utilities/colors.html#bg-color"
+  },{
+    "category": "Utilities",
+    "section": "Colors",
+    "label": "Colors - Background gradient",
+    "url": "bootstrap/hs-doc/utilities/colors.html#bg-gradient"
+  },{
+    "category": "Utilities",
+    "section": "Colors",
+    "label": "Colors - Background gradient overlay",
+    "url": "bootstrap/hs-doc/utilities/colors.html#bg-gradient-overlay"
+  },{
+    "category": "Utilities",
+    "section": "Colors",
+    "label": "Colors - Fill color",
+    "url": "bootstrap/hs-doc/utilities/colors.html#fill-color"
+  },{
+    "category": "Utilities",
+    "section": "Colors",
+    "label": "Colors - Stroke color",
+    "url": "bootstrap/hs-doc/utilities/colors.html#stroke-color"
+  },{
+    "category": "Utilities",
+    "section": "Colors",
+    "label": "Colors - Stop color",
+    "url": "bootstrap/hs-doc/utilities/colors.html#stop-color"
+  },{
+    "category": "Utilities",
+    "section": "Position",
+    "label": "Position - Common values",
+    "url": "bootstrap/hs-doc/utilities/position.html#common-values"
+  },{
+    "category": "Utilities",
+    "section": "Position",
+    "label": "Position - Fixed top",
+    "url": "bootstrap/hs-doc/utilities/position.html#fixed-top"
+  },{
+    "category": "Utilities",
+    "section": "Position",
+    "label": "Position - Fixed bottom",
+    "url": "bootstrap/hs-doc/utilities/position.html#fixed-bottom"
+  },{
+    "category": "Utilities",
+    "section": "Position",
+    "label": "Position - Sticky top",
+    "url": "bootstrap/hs-doc/utilities/position.html#sticky-top"
+  },{
+    "category": "Utilities",
+    "section": "Position",
+    "label": "Position - Responsive classes",
+    "url": "bootstrap/hs-doc/utilities/position.html#responsive-classes"
+  },{
+    "category": "Utilities",
+    "section": "Sizing",
+    "label": "Sizing - Width classes",
+    "url": "bootstrap/hs-doc/utilities/sizing.html#width-classes"
+  },{
+    "category": "Utilities",
+    "section": "Sizing",
+    "label": "Sizing - Min width classes",
+    "url": "bootstrap/hs-doc/utilities/sizing.html#min-width-classes"
+  },{
+    "category": "Utilities",
+    "section": "Sizing",
+    "label": "Sizing - Max width classes",
+    "url": "bootstrap/hs-doc/utilities/sizing.html#max-width-classes"
+  },{
+    "category": "Utilities",
+    "section": "Sizing",
+    "label": "Sizing - Height classes",
+    "url": "bootstrap/hs-doc/utilities/sizing.html#height-classes"
+  },{
+    "category": "Utilities",
+    "section": "Height classes",
+    "label": "Height classes - Viewport height classes",
+    "url": "bootstrap/hs-doc/utilities/sizing.html#viewport-height-classes"
+  },{
+    "category": "Utilities",
+    "section": "Height classes",
+    "label": "Height classes - Height classes",
+    "url": "bootstrap/hs-doc/utilities/sizing.html#height-classes"
+  },{
+    "category": "Utilities",
+    "section": "Height classes",
+    "label": "Height classes - Min height classes",
+    "url": "bootstrap/hs-doc/utilities/sizing.html#min-height-classes"
+  },{
+    "category": "Utilities",
+    "section": "Height classes",
+    "label": "Height classes - Height responsive classes",
+    "url": "bootstrap/hs-doc/utilities/sizing.html#height-responsive-classes"
+  },{
+    "category": "Utilities",
+    "section": "Spacing",
+    "label": "Spacing - How it works",
+    "url": "bootstrap/hs-doc/utilities/spacing.html#how-it-works"
+  },{
+    "category": "Utilities",
+    "section": "Spacing",
+    "label": "Spacing - Notation",
+    "url": "bootstrap/hs-doc/utilities/spacing.html#notation"
+  },{
+    "category": "Utilities",
+    "section": "Spacing",
+    "label": "Spacing - Offset spacings",
+    "url": "bootstrap/hs-doc/utilities/spacing.html#offset-spacings"
+  },{
+    "category": "Utilities",
+    "section": "Spacing",
+    "label": "Spacing - Gutters",
+    "url": "bootstrap/hs-doc/utilities/spacing.html#gutters"
+  },{
+    "category": "Utilities",
+    "section": "Spacing",
+    "label": "Spacing - Examples",
+    "url": "bootstrap/hs-doc/utilities/spacing.html#examples"
+  },{
+    "category": "Utilities",
+    "section": "Spacing",
+    "label": "Spacing - Horizontal centering",
+    "url": "bootstrap/hs-doc/utilities/spacing.html#horizontal-centering"
+  },{
+    "category": "Utilities",
+    "section": "Others",
+    "label": "Others - Background image hero",
+    "url": "bootstrap/hs-doc/utilities/others.html#bg-img-hero"
+  },{
+    "category": "Utilities",
+    "section": "Others",
+    "label": "Others - Font sizes",
+    "url": "bootstrap/hs-doc/utilities/others.html#font-sizes"
+  },{
+    "category": "Utilities",
+    "section": "Others",
+    "label": "Others - Line height",
+    "url": "bootstrap/hs-doc/utilities/others.html#line-height"
+  },{
+    "category": "Utilities",
+    "section": "Others",
+    "label": "Others - Z-index",
+    "url": "bootstrap/hs-doc/utilities/others.html#z-index"
+  },{
+    "category": "Utilities",
+    "section": "Others",
+    "label": "Others - Overflow",
+    "url": "bootstrap/hs-doc/utilities/others.html#overflow"
+  },{
+    "category": "Utilities",
+    "section": "Others",
+    "label": "Others - Opacity",
+    "url": "bootstrap/hs-doc/utilities/others.html#opacity"
+  },{
+    "category": "Plugins",
+    "section": "Animations",
+    "label": "Animations - Animate.css",
+    "url": "bootstrap/hs-doc/plugins/animations.html#animate.css"
+  },{
+    "category": "Plugins",
+    "section": "Animate.css",
+    "label": "Animate.css - Usage",
+    "url": "bootstrap/hs-doc/plugins/animations.html#usage"
+  },{
+    "category": "Plugins",
+    "section": "Animate.css",
+    "label": "Animate.css - Animation classes",
+    "url": "bootstrap/hs-doc/plugins/animations.html#animation-classes"
+  },{
+    "category": "Plugins",
+    "section": "Animate.css",
+    "label": "Animate.css - Usage example",
+    "url": "bootstrap/hs-doc/plugins/animations.html#usage-example"
+  },{
+    "category": "Plugins",
+    "section": "Animate.css",
+    "label": "Animate.css - Customize",
+    "url": "bootstrap/hs-doc/plugins/animations.html#customize"
+  },{
+    "category": "Plugins",
+    "section": "Animations",
+    "label": "Animations - On scroll animation",
+    "url": "bootstrap/hs-doc/plugins/animations.html#onscroll-animation"
+  },{
+    "category": "Plugins",
+    "section": "On scroll animation",
+    "label": "On scroll animation - How to use",
+    "url": "bootstrap/hs-doc/plugins/animations.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "On scroll animation",
+    "label": "On scroll animation - Basic example",
+    "url": "bootstrap/hs-doc/plugins/animations.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "On scroll animation",
+    "label": "On scroll animation - Examples",
+    "url": "bootstrap/hs-doc/plugins/animations.html#onscroll-examples"
+  },{
+    "category": "Plugins",
+    "section": "On scroll animation",
+    "label": "On scroll animation - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/animations.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "On scroll animation",
+    "label": "On scroll animation - Objects",
+    "url": "bootstrap/hs-doc/plugins/animations.html#objects"
+  },{
+    "category": "Plugins",
+    "section": "On scroll animation",
+    "label": "On scroll animation - Callbacks",
+    "url": "bootstrap/hs-doc/plugins/animations.html#callbacks"
+  },{
+    "category": "Plugins",
+    "section": "On scroll animation",
+    "label": "On scroll animation - Methods",
+    "url": "bootstrap/hs-doc/plugins/animations.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Background video",
+    "label": "Background video - How to use",
+    "url": "bootstrap/hs-doc/plugins/background-video.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Background video",
+    "label": "Background video - Basic example",
+    "url": "bootstrap/hs-doc/plugins/background-video.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Background video",
+    "label": "Background video - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/background-video.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Background video",
+    "label": "Background video - Methods",
+    "url": "bootstrap/hs-doc/plugins/background-video.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Bootstrap select",
+    "label": "Bootstrap select - How to use",
+    "url": "bootstrap/hs-doc/plugins/bootstrap-select.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Bootstrap select",
+    "label": "Bootstrap select - Basic example",
+    "url": "bootstrap/hs-doc/plugins/bootstrap-select.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Bootstrap select",
+    "label": "Bootstrap select - Select with optgroups",
+    "url": "bootstrap/hs-doc/plugins/bootstrap-select.html#select-with-optgroups"
+  },{
+    "category": "Plugins",
+    "section": "Bootstrap select",
+    "label": "Bootstrap select - Custom content",
+    "url": "bootstrap/hs-doc/plugins/bootstrap-select.html#custom-content"
+  },{
+    "category": "Plugins",
+    "section": "Bootstrap tagsinput",
+    "label": "Bootstrap tagsinput - How to use",
+    "url": "bootstrap/hs-doc/plugins/bootstrap-tagsinput.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Bootstrap tagsinput",
+    "label": "Bootstrap tagsinput - Basic example",
+    "url": "bootstrap/hs-doc/plugins/bootstrap-tagsinput.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Charts",
+    "label": "Charts - Area chart",
+    "url": "bootstrap/hs-doc/plugins/charts.html#area-chart"
+  },{
+    "category": "Plugins",
+    "section": "Area chart",
+    "label": "Area chart - How to use",
+    "url": "bootstrap/hs-doc/plugins/charts.html#how-to-use-area-chart"
+  },{
+    "category": "Plugins",
+    "section": "Area chart",
+    "label": "Area chart - Basic example",
+    "url": "bootstrap/hs-doc/plugins/charts.html#area-chart-basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Area chart",
+    "label": "Area chart - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/charts.html#area-chart-js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Area chart",
+    "label": "Area chart - Methods",
+    "url": "bootstrap/hs-doc/plugins/charts.html#area-chart-methods"
+  },{
+    "category": "Plugins",
+    "section": "Charts",
+    "label": "Charts - Bar chart",
+    "url": "bootstrap/hs-doc/plugins/charts.html#bar-chart"
+  },{
+    "category": "Plugins",
+    "section": "Bar chart",
+    "label": "Bar chart - How to use",
+    "url": "bootstrap/hs-doc/plugins/charts.html#bar-chart-how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Bar chart",
+    "label": "Bar chart - Basic example",
+    "url": "bootstrap/hs-doc/plugins/charts.html#bar-chart-basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Bar chart",
+    "label": "Bar chart - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/charts.html#bar-chart-js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Bar chart",
+    "label": "Bar chart - Methods",
+    "url": "bootstrap/hs-doc/plugins/charts.html#bar-chart-methods"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - How to use",
+    "url": "bootstrap/hs-doc/plugins/circles.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Basic example",
+    "url": "bootstrap/hs-doc/plugins/circles.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Text class",
+    "url": "bootstrap/hs-doc/plugins/circles.html#text-class"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Colors",
+    "url": "bootstrap/hs-doc/plugins/circles.html#colors"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Size",
+    "url": "bootstrap/hs-doc/plugins/circles.html#size"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Stroke width",
+    "url": "bootstrap/hs-doc/plugins/circles.html#stroke-width"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Stroke linecap",
+    "url": "bootstrap/hs-doc/plugins/circles.html#stroke-linecap"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Max value",
+    "url": "bootstrap/hs-doc/plugins/circles.html#max-value"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Type",
+    "url": "bootstrap/hs-doc/plugins/circles.html#type"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Animation speed",
+    "url": "bootstrap/hs-doc/plugins/circles.html#animation-speed"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Additional text",
+    "url": "bootstrap/hs-doc/plugins/circles.html#additional-text"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Hide value",
+    "url": "bootstrap/hs-doc/plugins/circles.html#hide-value"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Secondary text",
+    "url": "bootstrap/hs-doc/plugins/circles.html#secondary-text"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/circles.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Circles",
+    "label": "Circles - Methods",
+    "url": "bootstrap/hs-doc/plugins/circles.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Clipboard",
+    "label": "Clipboard - How to use",
+    "url": "bootstrap/hs-doc/plugins/countdown.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Clipboard",
+    "label": "Clipboard - Basic examples",
+    "url": "bootstrap/hs-doc/plugins/countdown.html#basic-examples"
+  },{
+    "category": "Plugins",
+    "section": "Clipboard",
+    "label": "Clipboard - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/countdown.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Clipboard",
+    "label": "Clipboard - Methods",
+    "url": "bootstrap/hs-doc/plugins/countdown.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Countdown",
+    "label": "Countdown - How to use",
+    "url": "bootstrap/hs-doc/plugins/countdown.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Countdown",
+    "label": "Countdown - Basic example",
+    "url": "bootstrap/hs-doc/plugins/countdown.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Countdown",
+    "label": "Countdown - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/countdown.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Countdown",
+    "label": "Countdown - Methods",
+    "url": "bootstrap/hs-doc/plugins/countdown.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Counters",
+    "label": "Counters - How to use",
+    "url": "bootstrap/hs-doc/plugins/counters.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Counters",
+    "label": "Counters - Basic example",
+    "url": "bootstrap/hs-doc/plugins/counters.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Counters",
+    "label": "Counters - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/counters.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Counters",
+    "label": "Counters - Objects",
+    "url": "bootstrap/hs-doc/plugins/counters.html#objects"
+  },{
+    "category": "Plugins",
+    "section": "Counters",
+    "label": "Counters - Methods",
+    "url": "bootstrap/hs-doc/plugins/counters.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Cubeportfolio",
+    "label": "Cubeportfolio - How to use",
+    "url": "bootstrap/hs-doc/plugins/cubeportfolio.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Cubeportfolio",
+    "label": "Cubeportfolio - Basic example",
+    "url": "bootstrap/hs-doc/plugins/cubeportfolio.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Cubeportfolio",
+    "label": "Cubeportfolio - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/cubeportfolio.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Cubeportfolio",
+    "label": "Cubeportfolio - Methods",
+    "url": "bootstrap/hs-doc/plugins/cubeportfolio.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Datatables",
+    "label": "Datatables - How to use",
+    "url": "bootstrap/hs-doc/plugins/datatables.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Datatables",
+    "label": "Datatables - Basic example",
+    "url": "bootstrap/hs-doc/plugins/datatables.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Datatables",
+    "label": "Datatables - With pagination",
+    "url": "bootstrap/hs-doc/plugins/datatables.html#with-pagination"
+  },{
+    "category": "Plugins",
+    "section": "Datatables",
+    "label": "Datatables - With search",
+    "url": "bootstrap/hs-doc/plugins/datatables.html#with-search"
+  },{
+    "category": "Plugins",
+    "section": "Datatables",
+    "label": "Datatables - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/datatables.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Datatables",
+    "label": "Datatables - Methods",
+    "url": "bootstrap/hs-doc/plugins/datatables.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Unfold (Dropdown and others)",
+    "label": "Unfold (Dropdown and others) - Overview",
+    "url": "bootstrap/hs-doc/plugins/unfold.html#overview"
+  },{
+    "category": "Plugins",
+    "section": "Unfold (Dropdown and others)",
+    "label": "Unfold (Dropdown and others) - Accessibility",
+    "url": "bootstrap/hs-doc/plugins/unfold.html#accessibility"
+  },{
+    "category": "Plugins",
+    "section": "Unfold (Dropdown and others)",
+    "label": "Unfold (Dropdown and others) - How to use",
+    "url": "bootstrap/hs-doc/plugins/unfold.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Unfold (Dropdown and others)",
+    "label": "Unfold (Dropdown and others) - Basic example",
+    "url": "bootstrap/hs-doc/plugins/unfold.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Unfold (Dropdown and others)",
+    "label": "Unfold (Dropdown and others) - Single button",
+    "url": "bootstrap/hs-doc/plugins/unfold.html#single-button"
+  },{
+    "category": "Plugins",
+    "section": "Unfold (Dropdown and others)",
+    "label": "Unfold (Dropdown and others) - Sidebar",
+    "url": "bootstrap/hs-doc/plugins/unfold.html#sidebar"
+  },{
+    "category": "Plugins",
+    "section": "Unfold (Dropdown and others)",
+    "label": "Unfold (Dropdown and others) - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/unfold.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Unfold (Dropdown and others)",
+    "label": "Unfold (Dropdown and others) - Callbacks",
+    "url": "bootstrap/hs-doc/plugins/unfold.html#callbacks"
+  },{
+    "category": "Plugins",
+    "section": "Unfold (Dropdown and others)",
+    "label": "Unfold (Dropdown and others) - Methods",
+    "url": "bootstrap/hs-doc/plugins/unfold.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "FancyBox",
+    "label": "FancyBox - How to use",
+    "url": "bootstrap/hs-doc/plugins/fancybox.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "FancyBox",
+    "label": "FancyBox - Examples",
+    "url": "bootstrap/hs-doc/plugins/fancybox.html#examples"
+  },{
+    "category": "Plugins",
+    "section": "FancyBox",
+    "label": "FancyBox - Single image",
+    "url": "bootstrap/hs-doc/plugins/fancybox.html#single-image"
+  },{
+    "category": "Plugins",
+    "section": "FancyBox",
+    "label": "FancyBox - Gallery",
+    "url": "bootstrap/hs-doc/plugins/fancybox.html#gallery"
+  },{
+    "category": "Plugins",
+    "section": "FancyBox",
+    "label": "FancyBox - Fancybox types",
+    "url": "bootstrap/hs-doc/plugins/fancybox.html#fancybox-types"
+  },{
+    "category": "Plugins",
+    "section": "FancyBox",
+    "label": "FancyBox - Multiple inner images",
+    "url": "bootstrap/hs-doc/plugins/fancybox.html#multiple-inner-images"
+  },{
+    "category": "Plugins",
+    "section": "FancyBox",
+    "label": "FancyBox - Multiple inner videos",
+    "url": "bootstrap/hs-doc/plugins/fancybox.html#multiple-inner-videos"
+  },{
+    "category": "Plugins",
+    "section": "FancyBox",
+    "label": "FancyBox - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/fancybox.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "FancyBox",
+    "label": "FancyBox - Methods",
+    "url": "bootstrap/hs-doc/plugins/fancybox.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Flatpickr",
+    "label": "Flatpickr - How to use",
+    "url": "bootstrap/hs-doc/plugins/flatpickr.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Flatpickr",
+    "label": "Flatpickr - Basic example",
+    "url": "bootstrap/hs-doc/plugins/flatpickr.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Flatpickr",
+    "label": "Flatpickr - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/flatpickr.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Flatpickr",
+    "label": "Flatpickr - Config",
+    "url": "bootstrap/hs-doc/plugins/flatpickr.html#config"
+  },{
+    "category": "Plugins",
+    "section": "Flatpickr",
+    "label": "Flatpickr - Methods",
+    "url": "bootstrap/hs-doc/plugins/flatpickr.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - How to use",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - API",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#api"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Examples",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#examples"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Road map",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#roadmap"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Satellite",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#satellite"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Terrain",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#terrain"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Street view",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#street-view"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Custom light",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#custom-light"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Custom dark",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#custom-dark"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Geolocation",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#geolocation"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Polygon",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#polygon"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Polylines",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#polylines"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Routes",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#routes"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Geocoding",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#geocoding"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Multiple markers",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#multiple-markers"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Multiple custom markers and info window",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#multiple-custom-markers-and-info-window"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Google Map",
+    "label": "Google Map - Methods",
+    "url": "bootstrap/hs-doc/plugins/google-map.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Go to",
+    "label": "Go to - Overview",
+    "url": "bootstrap/hs-doc/plugins/go-to.html#overview"
+  },{
+    "category": "Plugins",
+    "section": "Go to",
+    "label": "Go to - How to use",
+    "url": "bootstrap/hs-doc/plugins/go-to.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Go to",
+    "label": "Go to - Basic example",
+    "url": "bootstrap/hs-doc/plugins/go-to.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Go to",
+    "label": "Go to - Default Go-to style",
+    "url": "bootstrap/hs-doc/plugins/go-to.html#default-go-to-style"
+  },{
+    "category": "Plugins",
+    "section": "Go to",
+    "label": "Go to - Referenced to a page",
+    "url": "bootstrap/hs-doc/plugins/go-to.html#referenced-to-a-page"
+  },{
+    "category": "Plugins",
+    "section": "Go to",
+    "label": "Go to - Modern Go-to style",
+    "url": "bootstrap/hs-doc/plugins/go-to.html#modern-go-to-style"
+  },{
+    "category": "Plugins",
+    "section": "Go to",
+    "label": "Go to - Vertical arrow Go-to style",
+    "url": "bootstrap/hs-doc/plugins/go-to.html#vertical-arrow-go-to-style"
+  },{
+    "category": "Plugins",
+    "section": "Go to",
+    "label": "Go to - Wave Go-to style",
+    "url": "bootstrap/hs-doc/plugins/go-to.html#wave-go-to-style"
+  },{
+    "category": "Plugins",
+    "section": "Go to",
+    "label": "Go to - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/go-to.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Go to",
+    "label": "Go to - Methods",
+    "url": "bootstrap/hs-doc/plugins/go-to.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - How it works",
+    "url": "bootstrap/hs-doc/plugins/headers.html#how-it-works"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - How to use",
+    "url": "bootstrap/hs-doc/plugins/headers.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - Using mega menu with header",
+    "url": "bootstrap/hs-doc/plugins/headers.html#using-mega-menu-with-header"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - Using unfold.js with header",
+    "url": "bootstrap/hs-doc/plugins/headers.html#using-unfoldjs-with-header"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - Supported content",
+    "url": "bootstrap/hs-doc/plugins/headers.html#supported-content"
+  },{
+    "category": "Plugins",
+    "section": "Supported content",
+    "label": "Supported content - With dropdown",
+    "url": "bootstrap/hs-doc/plugins/headers.html#with-dropdown"
+  },{
+    "category": "Plugins",
+    "section": "Supported content",
+    "label": "Supported content - With mega menu",
+    "url": "bootstrap/hs-doc/plugins/headers.html#with-mega-menu"
+  },{
+    "category": "Plugins",
+    "section": "Supported content",
+    "label": "Supported content - Logo on top",
+    "url": "bootstrap/hs-doc/plugins/headers.html#logo-on-top"
+  },{
+    "category": "Plugins",
+    "section": "Supported content",
+    "label": "Supported content - Brand",
+    "url": "bootstrap/hs-doc/plugins/headers.html#brand"
+  },{
+    "category": "Plugins",
+    "section": "Supported content",
+    "label": "Supported content - Topbar",
+    "url": "bootstrap/hs-doc/plugins/headers.html#topbar"
+  },{
+    "category": "Plugins",
+    "section": "Supported content",
+    "label": "Supported content - Navbar alignments",
+    "url": "bootstrap/hs-doc/plugins/headers.html#navbar-alignments"
+  },{
+    "category": "Plugins",
+    "section": "Supported content",
+    "label": "Supported content - Navbar horizontal scroll",
+    "url": "bootstrap/hs-doc/plugins/headers.html#navbar-horizontal-scrollbar"
+  },{
+    "category": "Plugins",
+    "section": "Supported content",
+    "label": "Supported content - One page nav",
+    "url": "bootstrap/hs-doc/plugins/headers.html#one-page-nav"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - Color schemes",
+    "url": "bootstrap/hs-doc/plugins/headers.html#color-schemes"
+  },{
+    "category": "Plugins",
+    "section": "Color schemes",
+    "label": "Color schemes - Transparent",
+    "url": "bootstrap/hs-doc/plugins/headers.html#transparent"
+  },{
+    "category": "Plugins",
+    "section": "Color schemes",
+    "label": "Color schemes - Submenu",
+    "url": "bootstrap/hs-doc/plugins/headers.html#submenu"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - Placement",
+    "url": "bootstrap/hs-doc/plugins/headers.html#placement"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - Responsive behaviors",
+    "url": "bootstrap/hs-doc/plugins/headers.html#responsive-behaviors"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/headers.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - Methods",
+    "url": "bootstrap/hs-doc/plugins/headers.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - Placement classes",
+    "url": "bootstrap/hs-doc/plugins/headers.html#placement-classes"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - Behaviors",
+    "url": "bootstrap/hs-doc/plugins/headers.html#behaviors"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - Behavior examples",
+    "url": "bootstrap/hs-doc/plugins/headers.html#behavior-examples"
+  },{
+    "category": "Plugins",
+    "section": "Headers",
+    "label": "Headers - Behavior classes",
+    "url": "bootstrap/hs-doc/plugins/headers.html#behavior-classes"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - How it works",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#how-it-works"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - How to use",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - Examples",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#examples"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - Basic",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#basic"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - Columns",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#columns"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - Interactive styles",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#interactive-styles"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - Animation",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#animation"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - Alignment",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#alignment"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - Event",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#event"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - Responsive",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#responsive"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - Config",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#config"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - Callbacks",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#callbacks"
+  },{
+    "category": "Plugins",
+    "section": "Header Mega menu",
+    "label": "Header Mega menu - Methods",
+    "url": "bootstrap/hs-doc/plugins/header-mega-menu.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Header Fullscreen",
+    "label": "Header Fullscreen - How to use",
+    "url": "bootstrap/hs-doc/plugins/header-fullscreen.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Header Fullscreen",
+    "label": "Header Fullscreen - Example",
+    "url": "bootstrap/hs-doc/plugins/header-fullscreen.html#example"
+  },{
+    "category": "Plugins",
+    "section": "Header Fullscreen",
+    "label": "Header Fullscreen - Basic",
+    "url": "bootstrap/hs-doc/plugins/header-fullscreen.html#basic"
+  },{
+    "category": "Plugins",
+    "section": "Header Fullscreen",
+    "label": "Header Fullscreen - Subnav",
+    "url": "bootstrap/hs-doc/plugins/header-fullscreen.html#subnav"
+  },{
+    "category": "Plugins",
+    "section": "Header Fullscreen",
+    "label": "Header Fullscreen - Placement",
+    "url": "bootstrap/hs-doc/plugins/header-fullscreen.html#placement"
+  },{
+    "category": "Plugins",
+    "section": "Header Fullscreen",
+    "label": "Header Fullscreen - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/header-fullscreen.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Header Fullscreen",
+    "label": "Header Fullscreen - Callbacks",
+    "url": "bootstrap/hs-doc/plugins/header-fullscreen.html#callbacks"
+  },{
+    "category": "Plugins",
+    "section": "Header Fullscreen",
+    "label": "Header Fullscreen - Methods",
+    "url": "bootstrap/hs-doc/plugins/header-fullscreen.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Header Searches",
+    "label": "Header Searches - Search push from top",
+    "url": "bootstrap/hs-doc/plugins/header-searches.html#search-push-from-top"
+  },{
+    "category": "Plugins",
+    "section": "Header Searches",
+    "label": "Header Searches - Classic search",
+    "url": "bootstrap/hs-doc/plugins/header-searches.html#classic-search"
+  },{
+    "category": "Plugins",
+    "section": "Icon libraries",
+    "label": "Icon libraries - Custom SVG icons",
+    "url": "bootstrap/hs-doc/plugins/icon-libraries.html#custom-svg-icons"
+  },{
+    "category": "Plugins",
+    "section": "Icon libraries",
+    "label": "Icon libraries - How to use",
+    "url": "bootstrap/hs-doc/plugins/icon-libraries.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Icon libraries",
+    "label": "Icon libraries - Examples",
+    "url": "bootstrap/hs-doc/plugins/icon-libraries.html#examples"
+  },{
+    "category": "Plugins",
+    "section": "Icon libraries",
+    "label": "Icon libraries - Font Awesome 5",
+    "url": "bootstrap/hs-doc/plugins/icon-libraries.html#font-awesome-5"
+  },{
+    "category": "Plugins",
+    "section": "Font Awesome 5",
+    "label": "Font Awesome 5 - How to use",
+    "url": "bootstrap/hs-doc/plugins/icon-libraries.html#how-to-use-font-awesome-5"
+  },{
+    "category": "Plugins",
+    "section": "Malihu scrollbar",
+    "label": "Malihu scrollbar - How to use",
+    "url": "bootstrap/hs-doc/plugins/malihu-scrollbar.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Malihu scrollbar",
+    "label": "Malihu scrollbar - Basic example",
+    "url": "bootstrap/hs-doc/plugins/malihu-scrollbar.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Malihu scrollbar",
+    "label": "Malihu scrollbar - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/malihu-scrollbar.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Malihu scrollbar",
+    "label": "Malihu scrollbar - Methods",
+    "url": "bootstrap/hs-doc/plugins/malihu-scrollbar.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Modal window",
+    "label": "Modal window - How to use",
+    "url": "bootstrap/hs-doc/plugins/modal-window.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Modal window",
+    "label": "Modal window - Basic example",
+    "url": "bootstrap/hs-doc/plugins/modal-window.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Modal window",
+    "label": "Modal window - Animation options",
+    "url": "bootstrap/hs-doc/plugins/modal-window.html#animation-options"
+  },{
+    "category": "Plugins",
+    "section": "Modal window",
+    "label": "Modal window - Situation options",
+    "url": "bootstrap/hs-doc/plugins/modal-window.html#situation-options"
+  },{
+    "category": "Plugins",
+    "section": "Modal window",
+    "label": "Modal window - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/modal-window.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Modal window",
+    "label": "Modal window - Methods",
+    "url": "bootstrap/hs-doc/plugins/modal-window.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Parallax",
+    "label": "Parallax - How to use",
+    "url": "bootstrap/hs-doc/plugins/parallax.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Parallax",
+    "label": "Parallax - Basic example",
+    "url": "bootstrap/hs-doc/plugins/parallax.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Password strength",
+    "label": "Password strength - How to use",
+    "url": "bootstrap/hs-doc/plugins/password-strength.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Password strength",
+    "label": "Password strength - Basic example",
+    "url": "bootstrap/hs-doc/plugins/password-strength.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Password strength",
+    "label": "Password strength - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/password-strength.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Password strength",
+    "label": "Password strength - Methods",
+    "url": "bootstrap/hs-doc/plugins/password-strength.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Range Slider",
+    "label": "Range slider - How to use",
+    "url": "bootstrap/hs-doc/plugins/range-slider.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Range Slider",
+    "label": "Range slider - Examples",
+    "url": "bootstrap/hs-doc/plugins/range-slider.html#examples"
+  },{
+    "category": "Plugins",
+    "section": "Examples",
+    "label": "Range slider - Basic parameters",
+    "url": "bootstrap/hs-doc/plugins/range-slider.html#basic-parameters"
+  },{
+    "category": "Plugins",
+    "section": "Examples",
+    "label": "Range slider - Set up range and step",
+    "url": "bootstrap/hs-doc/plugins/range-slider.html#set-up-range-and-step"
+  },{
+    "category": "Plugins",
+    "section": "Examples",
+    "label": "Range slider - Select required amount",
+    "url": "bootstrap/hs-doc/plugins/range-slider.html#select-required-amount"
+  },{
+    "category": "Plugins",
+    "section": "Examples",
+    "label": "Range slider - Range with Bar charts",
+    "url": "bootstrap/hs-doc/plugins/range-slider.html#range-with-bar-charts"
+  },{
+    "category": "Plugins",
+    "section": "Examples",
+    "label": "Range slider - Range with Area charts",
+    "url": "bootstrap/hs-doc/plugins/range-slider.html#range-with-area-charts"
+  },{
+    "category": "Plugins",
+    "section": "Range Slider",
+    "label": "Range slider - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/range-slider.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Range Slider",
+    "label": "Range slider - Methods",
+    "url": "bootstrap/hs-doc/plugins/range-slider.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Scroll effect",
+    "label": "Scroll effect - How to use",
+    "url": "bootstrap/hs-doc/plugins/scroll-effect.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Scroll effect",
+    "label": "Scroll effect - Basic example",
+    "url": "bootstrap/hs-doc/plugins/scroll-effect.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Scroll effect",
+    "label": "Scroll effect - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/scroll-effect.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Scroll effect",
+    "label": "Scroll effect - Methods",
+    "url": "bootstrap/hs-doc/plugins/scroll-effect.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Scroll nav",
+    "label": "Scroll nav - How to use",
+    "url": "bootstrap/hs-doc/plugins/scroll-nav.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Scroll nav",
+    "label": "Scroll nav - Basic example",
+    "url": "bootstrap/hs-doc/plugins/scroll-nav.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Scroll nav",
+    "label": "Scroll nav - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/scroll-nav.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Scroll nav",
+    "label": "Scroll nav - Objects",
+    "url": "bootstrap/hs-doc/plugins/scroll-nav.html#objects"
+  },{
+    "category": "Plugins",
+    "section": "Scroll nav",
+    "label": "Scroll nav - Callbacks",
+    "url": "bootstrap/hs-doc/plugins/scroll-nav.html#callbacks"
+  },{
+    "category": "Plugins",
+    "section": "Scroll nav",
+    "label": "Scroll nav - Methods",
+    "url": "bootstrap/hs-doc/plugins/scroll-nav.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Show animation",
+    "label": "Show animation - How to use",
+    "url": "bootstrap/hs-doc/plugins/show-animation.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Show animation",
+    "label": "Show animation - Basic example",
+    "url": "bootstrap/hs-doc/plugins/show-animation.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Show animation",
+    "label": "Show animation - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/show-animation.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Show animation",
+    "label": "Show animation - Callbacks",
+    "url": "bootstrap/hs-doc/plugins/show-animation.html#callbacks"
+  },{
+    "category": "Plugins",
+    "section": "Show animation",
+    "label": "Show animation - Methods",
+    "url": "bootstrap/hs-doc/plugins/show-animation.html#methods"
+  },{
+    "category": "Plugins",
+    "label": "Step form - How to use",
+    "url": "bootstrap/hs-doc/plugins/step-form.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "label": "Step form - Validation",
+    "url": "bootstrap/hs-doc/plugins/step-form.html#validation"
+  },{
+    "category": "Plugins",
+    "label": "Step form - Basic example",
+    "url": "bootstrap/hs-doc/plugins/step-form.html#basic-example"
+  },{
+    "category": "Plugins",
+    "label": "Step form - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/step-form.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "label": "Step form - Config",
+    "url": "bootstrap/hs-doc/plugins/step-form.html#config"
+  },{
+    "category": "Plugins",
+    "label": "Step form - Methods",
+    "url": "bootstrap/hs-doc/plugins/step-form.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Stick block",
+    "label": "Stick block - Overview",
+    "url": "bootstrap/hs-doc/plugins/sticky-block.html#overview"
+  },{
+    "category": "Plugins",
+    "section": "Stick block",
+    "label": "Stick block - How to use",
+    "url": "bootstrap/hs-doc/plugins/sticky-block.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Stick block",
+    "label": "Stick block - Basic example",
+    "url": "bootstrap/hs-doc/plugins/sticky-block.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Stick block",
+    "label": "Stick block - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/sticky-block.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Stick block",
+    "label": "Stick block - Methods",
+    "url": "bootstrap/hs-doc/plugins/sticky-block.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Summernote WYSIWYG Editor",
+    "label": "Summernote WYSIWYG Editor - How to use",
+    "url": "bootstrap/hs-doc/plugins/summernote.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Summernote WYSIWYG Editor",
+    "label": "Summernote WYSIWYG Editor - Basic example",
+    "url": "bootstrap/hs-doc/plugins/summernote.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Scalable Vector Graphics (SVG)",
+    "label": "Scalable Vector Graphics (SVG) - SVGInjector",
+    "url": "bootstrap/hs-doc/plugins/svg.html#svg-injector"
+  },{
+    "category": "Plugins",
+    "section": "Scalable Vector Graphics (SVG)",
+    "label": "Scalable Vector Graphics (SVG) - Overview",
+    "url": "bootstrap/hs-doc/plugins/svg.html#overview"
+  },{
+    "category": "Plugins",
+    "section": "Scalable Vector Graphics (SVG)",
+    "label": "Scalable Vector Graphics (SVG) - How it works",
+    "url": "bootstrap/hs-doc/plugins/svg.html#how-it-works"
+  },{
+    "category": "Plugins",
+    "section": "Scalable Vector Graphics (SVG)",
+    "label": "Scalable Vector Graphics (SVG) - How to use",
+    "url": "bootstrap/hs-doc/plugins/svg.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Scalable Vector Graphics (SVG)",
+    "label": "Scalable Vector Graphics (SVG) - Basic example",
+    "url": "bootstrap/hs-doc/plugins/svg.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Toggle state",
+    "label": "Toggle state - How to use",
+    "url": "bootstrap/hs-doc/plugins/toggle-state.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Toggle state",
+    "label": "Toggle state - Basic example",
+    "url": "bootstrap/hs-doc/plugins/toggle-state.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Toggle state",
+    "label": "Toggle state - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/toggle-state.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Toggle state",
+    "label": "Toggle state - Methods",
+    "url": "bootstrap/hs-doc/plugins/toggle-state.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Typed.js",
+    "label": "Typed.js - How to use",
+    "url": "bootstrap/hs-doc/plugins/typedjs.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Typed.js",
+    "label": "Typed.js - Basic example",
+    "url": "bootstrap/hs-doc/plugins/typedjs.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Typed.js",
+    "label": "Typed.js - Example #1",
+    "url": "bootstrap/hs-doc/plugins/typedjs.html#example-1"
+  },{
+    "category": "Plugins",
+    "section": "Typed.js",
+    "label": "Typed.js - Example #2",
+    "url": "bootstrap/hs-doc/plugins/typedjs.html#example-2"
+  },{
+    "category": "Plugins",
+    "section": "Typed.js",
+    "label": "Typed.js - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/typedjs.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Typed.js",
+    "label": "Typed.js - Methods",
+    "url": "bootstrap/hs-doc/plugins/typedjs.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Validation",
+    "label": "Validation - How it works",
+    "url": "bootstrap/hs-doc/plugins/validation.html#how-it-works"
+  },{
+    "category": "Plugins",
+    "section": "Validation",
+    "label": "Validation - How to use",
+    "url": "bootstrap/hs-doc/plugins/validation.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Validation",
+    "label": "Validation - Basic example",
+    "url": "bootstrap/hs-doc/plugins/validation.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Validation",
+    "label": "Validation - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/validation.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Validation",
+    "label": "Validation - Callbacks",
+    "url": "bootstrap/hs-doc/plugins/validation.html#callbacks"
+  },{
+    "category": "Plugins",
+    "section": "Validation",
+    "label": "Validation - Methods",
+    "url": "bootstrap/hs-doc/plugins/validation.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Video player",
+    "label": "Video player - Media player",
+    "url": "bootstrap/hs-doc/plugins/video-player.html#media-player"
+  },{
+    "category": "Plugins",
+    "section": "Media player",
+    "label": "Media player - Example",
+    "url": "bootstrap/hs-doc/plugins/video-player.html#example"
+  },{
+    "category": "Plugins",
+    "section": "Media player",
+    "label": "Media player - Sizes",
+    "url": "bootstrap/hs-doc/plugins/video-player.html#sizes"
+  },{
+    "category": "Plugins",
+    "section": "Media player",
+    "label": "Media player - Additional classes",
+    "url": "bootstrap/hs-doc/plugins/video-player.html#additional-classes"
+  },{
+    "category": "Plugins",
+    "section": "Video player",
+    "label": "Video player - Video player",
+    "url": "bootstrap/hs-doc/plugins/video-player.html#video-player"
+  },{
+    "category": "Plugins",
+    "section": "Video player",
+    "label": "Video player - Overview",
+    "url": "bootstrap/hs-doc/plugins/video-player.html#overview"
+  },{
+    "category": "Plugins",
+    "section": "Video player",
+    "label": "Video player - How to use",
+    "url": "bootstrap/hs-doc/plugins/video-player.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Video player",
+    "label": "Video player - Basic example",
+    "url": "bootstrap/hs-doc/plugins/video-player.html#basic-example"
+  },{
+    "category": "Plugins",
+    "section": "Video player",
+    "label": "Video player - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/video-player.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Video player",
+    "label": "Video player - Methods",
+    "url": "bootstrap/hs-doc/plugins/video-player.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Social APIs",
+    "label": "Social APIs - Instagram",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#instagram"
+  },{
+    "category": "Plugins",
+    "section": "Instagram",
+    "label": "Instagram - How to use Instagram",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#how-to-use-instagram"
+  },{
+    "category": "Plugins",
+    "section": "Instagram",
+    "label": "Instagram - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Instagram",
+    "label": "Instagram - Objects",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#objects"
+  },{
+    "category": "Plugins",
+    "section": "Instagram",
+    "label": "Instagram - Callbacks",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#callbacks"
+  },{
+    "category": "Plugins",
+    "section": "Instagram",
+    "label": "Instagram - Methods",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#methods"
+  },{
+    "category": "Plugins",
+    "section": "Facebook",
+    "label": "Facebook - Facebook",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#facebook"
+  },{
+    "category": "Plugins",
+    "section": "Facebook",
+    "label": "Facebook - How to use Facebook",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#how-to-use-facebook"
+  },{
+    "category": "Plugins",
+    "section": "Facebook",
+    "label": "Facebook - Examples",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#facebook-examples"
+  },{
+    "category": "Plugins",
+    "section": "Facebook",
+    "label": "Facebook - Page",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#page"
+  },{
+    "category": "Plugins",
+    "section": "Facebook",
+    "label": "Facebook - Comments",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#comments"
+  },{
+    "category": "Plugins",
+    "section": "Facebook",
+    "label": "Facebook - Post",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#post"
+  },{
+    "category": "Plugins",
+    "section": "Facebook",
+    "label": "Facebook - Video",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#video"
+  },{
+    "category": "Plugins",
+    "section": "Facebook",
+    "label": "Facebook - Like button",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#like-button"
+  },{
+    "category": "Plugins",
+    "section": "Facebook",
+    "label": "Facebook - Share",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#share"
+  },{
+    "category": "Plugins",
+    "section": "Twitter",
+    "label": "Twitter - Twitter",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#twitter"
+  },{
+    "category": "Plugins",
+    "section": "Twitter",
+    "label": "Twitter - How to use Twitter",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#how-to-use-twitter"
+  },{
+    "category": "Plugins",
+    "section": "Twitter",
+    "label": "Twitter - Examples",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#twitter-examples"
+  },{
+    "category": "Plugins",
+    "section": "Twitter",
+    "label": "Twitter - Timeline",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#timeline"
+  },{
+    "category": "Plugins",
+    "section": "Twitter",
+    "label": "Twitter - Card",
+    "url": "bootstrap/hs-doc/plugins/social-apis.html#card"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - How it works",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#how-it-works"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - How to use",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#how-to-use"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Examples",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#examples"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Image Slides only",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#image-slides-only"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Text slides only",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#text-slides-only"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - With controls",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#with-controls"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - With pagination",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#with-pagination"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - With numbered pagination",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#with-numbered-pagination"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Autoplay",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#autoplay"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Infinite",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#infinite"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - With rows",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#with-rows"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - With animation",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#with-animation"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Crossfade",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#crossfade"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Vertical",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#vertical"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Multiple items",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#multiple-items"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Variable width",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#variable-width"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Adaptive height",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#adaptive-height"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Responsive display",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#responsive-display"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Center mode",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#center-mode"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Center slides",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#center-slides"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Slider syncing",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#slider-syncing"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - No transition",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#no-transition"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Right-to-left (RTL)",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#rtl"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Helpers",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#helpers"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Arrows",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#arrows"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Paginations",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#paginations"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Numbered paginations",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#numbered-paginations"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Equal height",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#equal-height"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Others",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#others"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - JavaScript behavior",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#js-behavior"
+  },{
+    "category": "Plugins",
+    "section": "Slick carousel",
+    "label": "Slick carousel - Methods",
+    "url": "bootstrap/hs-doc/plugins/slick-carousel.html#methods"
+  }
+]

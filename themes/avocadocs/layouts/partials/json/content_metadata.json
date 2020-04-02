@@ -1,0 +1,9 @@
+{{ $s := newScratch }}
+
+{{ $s.SetInMap "data" "title" .Title }}
+{{ $s.SetInMap "data" "authors" .Params.authors }}
+{{ $s.SetInMap "data" "aliases" .Aliases }}
+{{ $s.SetInMap "data" "resources" .Resources }}
+
+
+{{ return partial "json/pretty.json" (slice ($s.Get "data") 1) }}

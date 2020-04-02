@@ -1,0 +1,13 @@
+.bg-light {
+  background-color: #EDEDEF !important;
+}
+
+.bg-primary-darker {
+  background-color: #1A182A;
+}
+
+@media (min-width: 768px) {
+  .bg-md-primary-darker {
+    background-color: #1A182A;
+  }
+}

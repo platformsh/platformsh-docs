@@ -1,0 +1,32 @@
+# Basics
+baseURL: /
+title: Platform.sh User Documentation
+author: Platform.sh
+description: Platform.sh User Documentation
+
+# Themes
+theme: avocadocs
+# themesdir: ../..
+
+uglyurls: true
+pygmentsUseClasses: true
+
+# Language settings
+languages:
+  en:
+    contentDir: content/en
+    languageName: English
+    weight: 10
+  # li:
+  #   contentDir: content/lorem
+  #   languageName: Lorem Ipsum
+  #   weight: 20
+
+# markup:
+#   goldmark:
+#     renderer:
+#       unsafe: true
+# Syntax highlighting
+# markup:
+#   highlight:
+#     style: friendly

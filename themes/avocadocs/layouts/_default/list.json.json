@@ -1,0 +1,1 @@
+{{ (jsonify (transform.Unmarshal (partial "json/sitemap_metadata.json" .))) }}

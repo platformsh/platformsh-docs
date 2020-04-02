@@ -1,0 +1,36 @@
+{{ $templatesDATA := .Site.Data.templates }}
+{{ $registry := .Site.Data.registry }}
+
+<div class="accordion" id="accordion">
+
+{{ range $index, $templates := $templatesDATA }}
+
+  {{ $title := index $registry $index "name" }}
+
+  <div class="card">
+    <div class="card-header" id="heading{{ $index }}">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ $index }}" aria-expanded="false" aria-controls="collapse{{ $index }}">
+          {{ $title }}
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapse{{ $index }}" class="collapse" aria-labelledby="heading{{ $index }}" data-parent="#accordion">
+      <div class="card-body">
+        <h5>{{ $title }} templates</h5>
+        <p>Platform.sh offers project templates for a number of {{ $title }} applications. They can be used as a reference for importing your web application.</p>
+        <h6>Available templates:</h6>
+        <ul>
+        {{ range sort $templates "name" }}
+          <li><a href="{{ .repo }}" >{{ .name }}</a></li>
+        {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+{{ end }}
+</div>
+
+<br><br>

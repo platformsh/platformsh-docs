@@ -1,0 +1,24 @@
+{{ define "main" }}
+
+  <main class="ml-sm-auto col-md-9 col-lg-10 px-4 pt-0 pt-md-11">
+
+    <div class="row pt-3">
+
+      <div class="col-xl-12 order-xl-1 duik-content border-bottom">
+
+        <!-- Welcome message -->
+        {{ partial "welcome" . }}
+
+        <!-- Page content, anchorized -->
+        {{ partial "headline-hash.html" .Content }}
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    {{ partial "footer/footer" . }}
+
+  </main>
+
+{{ end }}

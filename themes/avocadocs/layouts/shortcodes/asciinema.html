@@ -1,0 +1,11 @@
+<!-- Asciinema recordings-->
+
+<div class="asciinema-div" align="center">
+  <p class="mb-4">
+
+    {{- with .Get "src" -}}
+      <asciinema-player src="{{ . | relURL}}" preload=1></asciinema-player>
+    {{end}}
+    
+  </p>
+</div>

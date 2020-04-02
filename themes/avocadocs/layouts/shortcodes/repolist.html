@@ -1,0 +1,44 @@
+{{ $lang := .Get "lang" }}
+{{ $templates := index .Site.Data.templates $lang }}
+
+<div class="accordion" id="accordion{{ $lang }}">
+
+{{ range sort $templates "name" }}
+
+  <div class="card">
+    <div class="card-header" id="heading{{ .shortname }}">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ .shortname }}" aria-expanded="false" aria-controls="collapse{{ .shortname }}">
+          {{ .name }}
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapse{{ .shortname }}" class="collapse" aria-labelledby="heading{{ .shortname }}" data-parent="#accordion{{ $lang }}">
+      <div class="card-body">
+        <p align="center">
+          <img {{ printf "src=%q" .image | safeHTMLAttr }} style="max-height:150px; max-width:250px;" alt="{{ .name }}">
+        </p>
+        <h2>{{ .name }}</h2>
+        {{ .description | safeHTML }}
+        {{ $content:= split .content "<br/>" }}
+        <h3>Services:</h3>
+        <ul>
+          {{ range $content}}
+            <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+        <p><a href="{{ .repo }}">View the repository</a> on GitHub.</p>
+        <p align="center">
+          <a href="{{ .deploy }}">
+              <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" height="50px"/>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+{{ end }}
+</div>
+
+<br>

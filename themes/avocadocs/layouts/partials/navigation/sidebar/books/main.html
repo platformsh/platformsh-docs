@@ -1,0 +1,115 @@
+<!-- Set sidebar indentation -->
+{{ $levelTwoIndent := "0rem" }}
+{{ $levelThreeIndent := "0rem"}}
+
+{{ $ignoreBooks := .books }}
+{{ $currentPage := .Page}}
+{{ $rootSections := .Site.Sections }}
+{{ $home := .Site.Home}}
+{{ with .context }}
+  {{ $currentPage = .Page}}
+  {{ $rootSections = .Site.Sections }}
+  {{ $levelTwoIndent = .Site.Data.sidebar.levelTwoIndent }}
+  {{ $levelThreeIndent = .Site.Data.sidebar.levelThreeIndent }}
+  {{ $home = .Site.Home }}
+{{ end }}
+
+{{ range $rootSections }}
+  {{ if in $ignoreBooks .Section }}
+  {{ else if .Params.sidebarIgnore }}
+  {{ else }}
+
+    <!-- SECTION HEADING -->
+    <h4 class="duik-sidebar__heading">{{ .Title }}</h4>
+
+    <ul class="duik-sidebar__nav">
+
+    <!-- Add the homepage as the first entry of the first section -->
+    {{ if eq .Site.Params.home.section .Section }}
+
+      <!-- FIRST LEVEL ITEM -->
+      <li class="duik-sidebar__item">
+        <a href="/" class="duik-sidebar__link{{ if $currentPage.IsHome }} active{{ end }}">
+            {{ .Site.Params.home.title }}
+        </a>
+      </li>
+
+    {{ end }}
+
+    <!-- First level is always shown (whether page or section) -->
+    {{ range .Pages }}
+
+      <!-- FIRST LEVEL ITEM -->
+      <li class="duik-sidebar__item">
+        <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
+            {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+        </a>
+      </li>
+
+      {{ if eq .Kind "section"}}
+        <ul class="duik-sidebar__nav">
+
+          {{ $levelTwoPages := .Pages }}
+          {{ range $levelTwoPages }}
+
+            {{ if eq .Kind "section" }}
+
+              {{ $levelThreePages := .Pages }}
+
+              {{ if or (eq $currentPage .Parent) ( or (in $levelThreePages $currentPage) (in $levelTwoPages $currentPage )) }}
+
+                <!-- SECOND LEVEL ITEM -->
+                <li class="duik-sidebar__item">
+                  <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
+                      <span style="display:inline-block; width: {{ $levelTwoIndent }};"></span>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+                  </a>
+                </li>
+
+                {{ range $levelThreePages}}
+
+                  {{ if or (eq $currentPage .Parent) (in $levelThreePages $currentPage )}}
+
+                    <!-- THIRD LEVEL ITEM -->
+                    <li class="duik-sidebar__item">
+                      <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
+                          <span style="display:inline-block; width: {{ $levelThreeIndent }};"></span>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+                      </a>
+                    </li>
+
+                  {{ end }}
+
+                {{ end }}
+
+              {{ end }}
+
+            {{ else }}
+
+              {{ if or ($currentPage.IsDescendant .Parent) (in $levelTwoPages $currentPage ) }}
+
+                <!-- SECOND LEVEL ITEM -->
+                <li class="duik-sidebar__item">
+                  <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
+                      <span style="display:inline-block; width: {{ $levelTwoIndent }};"></span>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+                  </a>
+                </li>
+
+              {{ end }}
+
+          {{ end }}
+
+        {{ end }}
+
+        </ul>
+      {{ end }}
+
+
+    {{ end }}
+    
+
+    </ul>
+
+    <!-- This hr may not belong here for a strict port of DOCSUIKIT, while we will want it for PSH docs; br instead in that case -->
+    <hr>
+
+  {{ end }}
+{{ end }}

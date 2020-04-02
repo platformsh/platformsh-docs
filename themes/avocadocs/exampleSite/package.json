@@ -1,0 +1,37 @@
+{
+  "name": "hugo-docsuikit",
+  "version": "1.0.0",
+  "description": "Hugo Docs UI Kit Theme",
+  "main": "gulpfile.js",
+  "author": "Chad Carlson",
+  "scripts": {
+    "scss-build": "gulp scss",
+    "scss-watch": "gulp watch",
+    "hugo-watch-dev": "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender",
+    "hugo-watch-prod": "hugo server --watch",
+    "dev": "npm-run-all --parallel scss-watch hugo-watch-dev",
+    "prod": "npm-run-all --parallel scss-watch hugo-watch-prod"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.24.7",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-cache": "^1.0.2",
+    "gulp-changed": "^3.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglifyjs": "^0.6.2",
+    "imagemin-jpeg-recompress": "^5.1.0",
+    "imagemin-pngquant": "^5.1.0",
+    "autoprefixer": "^9.0.0",
+    "cssnano": "^4.0.3",
+    "gulp-postcss": "^7.0.1",
+    "npm-run-all": "^4.1.3"
+  }
+}

@@ -1,0 +1,68 @@
+
+<script>
+  var escape = require('escape-html');
+
+  /*
+      Generate HTML for the tab in the header
+
+      @param {Block}
+      @param {Boolean}
+      @return {String}
+  */
+  function createTab(block, i, isActive) {
+      return '<div class="tab' + (isActive? ' active' : '') + '" data-codetab="' + i + '">' + block.kwargs.name + '</div>';
+  }
+
+  /*
+      Generate HTML for the tab's content
+
+      @param {Block}
+      @param {Boolean}
+      @return {String}
+  */
+  function createTabBody(block, i, isActive) {
+      return '<div class="tab' + (isActive? ' active' : '') + '" data-codetab="' + i + '"><pre><code class="lang-' + (block.kwargs.type || block.kwargs.name) + '">'
+          + escape(block.body) +
+      '</code></pre></div>';
+  }
+
+  module.exports = {
+      book: {
+          assets: 'codetabs/assets',
+          css: [
+              'codetabs.css'
+          ],
+          js: [
+              'codetabs.js'
+          ]
+      },
+
+      blocks: {
+          codetabs: {
+              blocks: ['language'],
+              process: function(parentBlock) {
+                  var blocks = [parentBlock].concat(parentBlock.blocks);
+                  var tabsContent = '';
+                  var tabsHeader = '';
+
+                  blocks.forEach(function(block, i) {
+                      var isActive = (i == 0);
+
+                      if (!block.kwargs.name) {
+                          throw new Error('Code tab requires a "name" property');
+                      }
+
+                      tabsHeader += createTab(block, i, isActive);
+                      tabsContent += createTabBody(block, i, isActive);
+                  });
+
+
+                  return '<div class="codetabs">' +
+                      '<div class="codetabs-header">' + tabsHeader + '</div>' +
+                      '<div class="codetabs-body">' + tabsContent + '</div>' +
+                  '</div>';
+              }
+          }
+      }
+  };
+</script>

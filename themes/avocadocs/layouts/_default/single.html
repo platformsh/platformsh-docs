@@ -1,0 +1,41 @@
+{{ define "main" }}
+
+  <main class="ml-sm-auto col-md-9 col-lg-10 px-4 pt-0 pt-md-11">
+    <div class="row pt-3">
+
+      <!-- Edit page button -->
+      {{ if isset .Site.Params "editpagebutton"}}
+        {{ if .Site.Params.editPageButton }}
+          {{ partial "editpagebutton" . }}
+        {{ end }}
+      {{ end }}
+
+      <div class="col-xl-12 order-xl-1 duik-content border-bottom">
+        <div class="mb-7">
+
+          <!-- Page title -->
+          <h1>{{ .Title }}</h1>
+
+          <!-- Table of contents -->
+          {{ if ne .Params.toc false }}
+            <div class="toc">
+              <h4>Contents:</h4>
+              {{ .TableOfContents }}
+            </div>
+          {{ end }}
+
+          <br>
+        </div>
+
+        <!-- Page content, anchorized -->
+        {{ partial "headline-hash.html" .Content }}
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    {{ partial "footer/footer" . }}
+
+  </main>
+
+{{ end }}

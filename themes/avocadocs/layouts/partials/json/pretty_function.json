@@ -1,0 +1,29 @@
+{{ $vals := . -}}
+{{ $i := int 0 -}}
+
+{{ if or (ne true (reflect.IsSlice .)) (ne (len .) 2) (ne (md5 (jsonify (index . 1))) (md5 (string (index . 1)))) -}}
+    {{ $vals = . -}}
+    {{ $i = 0 -}}
+{{else -}}
+    {{ $vals = index . 0 -}}
+    {{ $i = index . 1 -}}
+{{end -}}
+{{ $indent_count := (add $i 1) -}}
+{{ $sp := slicestr "                        " 0 (mul $indent_count 4) -}}
+{{- if reflect.IsSlice $vals -}}
+{{- end -}}
+{{- range $elem_key, $elem_val := $vals -}}
+{{- if reflect.IsMap $elem_val -}},
+{{/* LEAVE THIS COMMENT IN PLACE */}}
+    {{- $sp -}} "{{ $elem_key }}": {
+        {{- partial "json/pretty.json" (slice $elem_val $indent_count) }}
+{{- $sp -}}}
+{{- else if reflect.IsSlice $elem_val -}},
+{{/* LEAVE THIS COMMENT IN PLACE */}}
+    {{- $sp -}} "{{ $elem_key }}": [
+    {{ $sp }}{{ delimit (apply (apply $elem_val "string" ".") "jsonify" ".") (print ",\n    " $sp) }}
+{{ $sp -}}]
+{{- else }},
+{{ $sp -}} "{{ $elem_key }}": {{ $elem_val | jsonify -}}
+{{- end -}}
+{{- end -}}

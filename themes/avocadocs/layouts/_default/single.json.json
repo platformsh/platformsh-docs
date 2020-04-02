@@ -1,0 +1,10 @@
+{{- define "main" -}}
+{{- $s := newScratch -}}
+
+{{ $s.SetInMap "data" "plaintext" .Plain }}
+{{ $s.SetInMap "data" "formatted" .RawContent }}
+{{ $s.SetInMap "data" "summary" (.Summary | plainify) }}
+{{ $s.SetInMap "data" "summary_truncated" .Truncated }}
+
+{{- partial "json/pretty.json" (slice ($s.Get "data") 1) -}}
+{{- end -}}

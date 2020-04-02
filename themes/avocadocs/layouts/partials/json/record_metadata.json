@@ -1,0 +1,24 @@
+{{ $s := newScratch }}
+
+{{ $s.SetInMap "data" "date_published" .PublishDate }}
+{{ $s.SetInMap "data" "date_modified" .Lastmod }}
+{{ $s.SetInMap "data" "is_draft" .Draft }}
+{{ $s.SetInMap "data" "keywords" .Keywords }}
+{{ $s.SetInMap "data" "manual_weight" .Weight }}
+
+{{ if .ExpiryDate }}
+    {{ $s.SetInMap "data" "expiry_exists" true }}
+    {{ $s.SetInMap "data" "expiry_date" .ExpiryDate }}
+{{ else }}
+    {{ $s.SetInMap "data" "expiry_exists" false }}
+    {{ $s.SetInMap "data" "expiry_date" nil }}
+{{ end }}
+
+{{ $s.SetInMap "data" "permalink" .Permalink }}
+{{ $s.SetInMap "data" "permalink_relative" .Permalink }}
+{{ $s.SetInMap "data" "tags" .Params.tags }}
+
+{{ $s.SetInMap "data" "type" .Type }}
+{{ $s.SetInMap "data" "categories" .Params.categories }}
+
+{{ return partial "json/pretty.json" (slice ($s.Get "data") 1) }}

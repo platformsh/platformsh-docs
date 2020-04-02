@@ -1,0 +1,23 @@
+{{ $s := newScratch }}
+
+{{ $s.SetInMap "data" "base" .Site.Params.searchIndex.base }}
+{{ $s.SetInMap "data" "section" .Section }}
+{{ $s.SetInMap "data" "subsection" .Params.subsection }}
+{{ $s.SetInMap "data" "is_page" .IsPage }}
+
+{{ if eq .Params.sitemap_exclude true }}
+    {{ $s.SetInMap "data" "sitemap_exclude" true }}
+{{ else }}
+    {{ $s.SetInMap "data" "sitemap_exclude" false }}
+{{ end }}
+
+{{ $path := (split (strings.TrimSuffix ")" (strings.TrimPrefix "Page(" (string .CurrentSection))) "/") }}
+{{ if eq (index $path 0) "" }}
+    {{ $path = (slice "__BASE__") | append (last (sub (len $path) 1) $path) }}
+{{ end }}
+{{ $s.SetInMap "data" "full_path" $path }}
+
+{{ $s.SetInMap "data" "hash_plaintext" (md5 .Plain) }}
+{{ $s.SetInMap "data" "hash_rawcontent" (md5 .RawContent) }}
+
+{{ return partial "json/pretty.json" (slice ($s.Get "data") 1) }}

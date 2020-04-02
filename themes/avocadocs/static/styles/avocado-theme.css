@@ -1,0 +1,51 @@
+:root {
+
+  /* green palate 1 */
+  --sidebar-bg-color: #EAE3EA;
+  --sidebar-bg-logo : #A7B3A5;
+  --top-bg-color: #B4DBC0;
+
+  /* green palate 2 */
+  --sidebar-bg-color: #CCCBC6;
+  --sidebar-bg-logo : #A9B7C0;
+  --top-bg-color: #C7D8C6;
+
+  /* green palate 3 (vintage) */
+  --sidebar-bg-color: #E9E7DA;
+  --sidebar-bg-logo : #373F27;
+  --top-bg-color: #636B46;
+
+  /* green palate 4 */
+  --sidebar-bg-color: #E9E9E9;
+  --sidebar-bg-logo : #373F27;
+  --top-bg-color: #636B46;
+
+
+
+
+  /* green palate 5 */
+  --sidebar-bg-color: #E8E8E8;
+  --sidebar-bg-logo : #333A56;
+  --top-bg-color: #52658F;
+
+
+
+  /* green palate 6 */
+  --sidebar-bg-color: #CAE4DB;
+  --sidebar-bg-logo : #00303F;
+  --top-bg-color: #7A9D96;
+
+
+
+
+  /* green palate 6 */
+  --sidebar-bg-color: #B3BB9E;
+  --sidebar-bg-logo : #21211F;
+  --top-bg-color: #414E25;
+
+  /* green palate 6 */
+  --sidebar-bg-color: #E9E9E9;
+  --sidebar-bg-logo : #116530;
+  --top-bg-color: #18a558;
+
+}

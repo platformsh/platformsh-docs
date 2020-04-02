@@ -1,0 +1,30 @@
+<!-- Sidebar -->
+
+<nav class="col-md-3 col-xl-2 bg-light duik-sidebar navbar-expand-md border-md-right">
+
+  <div class="d-flex justify-content-between mb-3">
+
+    <!-- Sidebar search -->
+    {{ partial "navigation/sidebar/search" . }}
+
+    <!-- Sidebar Responsive Toggle (mobile) -->
+    {{ partial "navigation/sidebar/hamburger" . }}
+
+  </div>
+
+  <!-- Sidebar Nav -->
+  <div class="collapse navbar-collapse border-bottom border-md-0" id="sidebar-nav">
+    <div class="js-scrollbar duik-sidebar-sticky">
+
+      <!-- Sidebar navigation entries -->
+      {{ partial "navigation/sidebar/nav" . }}
+
+      <!-- Space injected after last entry for visibility -->
+      {{ partial "inject/menu-after" . }}
+
+    </div>
+  </div>
+  <!-- End Sidebar Nav -->
+
+</nav>
+<!-- End Sidebar -->

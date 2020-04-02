@@ -1,0 +1,7 @@
+<div class="mx-auto text-center mb-7" style="max-width: 100%;">
+  <button onclick="window.location.href = '{{ with .Get "link" }}{{ . }}{{ end }}';" type="button" class="btn btn-block btn-outline-primary" style="text-align: left;">
+    {{ with .Get "title" }}<b>{{ . }}</b>{{ end }}
+    <br><br>
+    {{ with .Get "desc" }}{{ . }}{{ end }}
+  </button>
+</div>
