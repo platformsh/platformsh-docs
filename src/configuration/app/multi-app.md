@@ -32,7 +32,7 @@ This is the recommended approach for most configurations.
 
 ### Explicit `source.root`
 
-As an alternative, you may specify a `sources.root` key in a `.platform.app.yaml` file to override the "application root is where the file is" logic.  The `.platform.app.yaml` file may then live anywhere in the repository but use code from another directory.  Two separate `.platform.app.yaml` files may refer to the same directory if desired.
+As an alternative, you may specify a `source.root` key in a `.platform.app.yaml` file to override the "application root is where the file is" logic.  The `.platform.app.yaml` file may then live anywhere in the repository but use code from another directory.  Two separate `.platform.app.yaml` files may refer to the same directory if desired.
 
 For example:
 
@@ -52,15 +52,15 @@ restapp/
     # Your code here
 ```
 
-In this case, the `.platform.app.yaml` file in `main` does not specify a `sources.root`, and so will be built from the code in `main`.  The top-level `.platform.app.yaml` includes the YAML fragment above.  It will get built using the code in `restapp`, as if it were in that directory.
+In this case, the `.platform.app.yaml` file in `main` does not specify a `source.root`, and so will be built from the code in `main`.  The top-level `.platform.app.yaml` includes the YAML fragment above.  It will get built using the code in `restapp`, as if it were in that directory.
 
-Note that disk parameters in the `.platform.app.yaml` file will be relative to the `sources.root` directory if specified.  The `sources.root` path is relative to the repository root.
+Note that disk parameters in the `.platform.app.yaml` file will be relative to the `source.root` directory if specified.  The `source.root` path is relative to the repository root.
 
 The primary use case for this configuration is if the source code is pulled in as a [Git submodule](#submodules) or downloaded during the build phase.
 
 ### `applications.yaml`
 
-It is possible to define an application in a `.platform/applications.yaml` file in addition to discrete `.platform.app.yaml` files.  The syntax is nearly identical, but the `sources.root` key is required.  The `applications.yaml` file is then a YAML array of application definitions.
+It is possible to define an application in a `.platform/applications.yaml` file in addition to discrete `.platform.app.yaml` files.  The syntax is nearly identical, but the `source.root` key is required.  The `applications.yaml` file is then a YAML array of application definitions.
 
 For example, the following `.platform/applications.yaml` file defines two applications:
 
@@ -119,7 +119,7 @@ app2/
         index.php
 ```
 
-This puts your applications' files at a different path relative to your `.platform.app.yaml` files.  The recommended way to handle that is to specify a `sources.root` key in the `.platform.app.yaml` file and have it reference the submodule directory.
+This puts your applications' files at a different path relative to your `.platform.app.yaml` files.  The recommended way to handle that is to specify a `source.root` key in the `.platform.app.yaml` file and have it reference the submodule directory.
 
 ## Multi-app Routes
 
