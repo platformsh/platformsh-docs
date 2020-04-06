@@ -47,13 +47,11 @@ You can then use the service in a configuration file of your application with so
 
 {%- endcodetabs %}
 
-## Configuration
-
 ## Solr 4
 
 For Solr 4, Platform.sh supports only a single core per server called `collection1`.
 
-If you want to provide your own Solr configuration, you can add a `core_config` key in your ``.platform/services.yaml``:
+You must provide your own Solr configuration via a `core_config` key in your ``.platform/services.yaml``:
 
 ```yaml
 search:
@@ -178,7 +176,7 @@ search:
                 core: collection1
 ```
 
-The Solr 6.x Drupal 8 configuration files are reasonably generic and should work in many other circumstances, but explicitly defining a core, configuration, and endpoint is generally recommended.
+The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.  While it may work for generic cases defining your own custom configuration, core, and endpoint is strongly recommended.
 
 ### Limitations
 
