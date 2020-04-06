@@ -2,18 +2,6 @@
 
 <!-- toc -->
 
-## Total disk usage exceeds project maximum
-
-One of the billable parameters in your project's settings is Storage.  This global storage pool is allocated among the various services and application containers in your project via the `disk` parameter.  The sum of all `disk` parameters in your project's YAML config files must be less than or equal to the global project storage number.
-
-```
-Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing a service, or add more storage to your plan
-```
-
-This means that you have allocated, for example, `disk: 4096` in a MySQL service in `services.yaml` and also `disk: 4096` in the `.platform.app.yaml` for your application, while only having the minimum default of 5GB storage for your project as a whole.  The solution is either to lower the `disk` parameters to within the limits of 5GB of storage, or raise the global storage parameter on your project's settings to at least 10GB.  
-
-Because storage is a billable component of your project, only the project's owner can effect this change.
-
 ## Force a redeploy
 
 There are times where you might want to trigger a redeployment of your application. That can be done with the following command:
@@ -50,24 +38,67 @@ One reason [Let's Encrypt certificates](/configuration/routes/https.md#lets-encr
 
 See [Let's Encrypt limits and branch names](/configuration/routes/https.md#lets-encrypt-limits-and-branch-names) for a more detailed breakdown of this issue.  
 
+## Total disk usage exceeds project maximum
+
+One of the billable parameters in your project's settings is Storage.  This global storage pool is allocated among the various services and application containers in your project via the `disk` parameter.  The sum of all `disk` parameters in your project's YAML config files must be less than or equal to the global project storage number.
+
+```
+Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing a service, or add more storage to your plan
+```
+
+This means that you have allocated, for example, `disk: 4096` in a MySQL service in `services.yaml` and also `disk: 4096` in the `.platform.app.yaml` for your application, while only having the minimum default of 5GB storage for your project as a whole.  The solution is either to lower the `disk` parameters to within the limits of 5GB of storage, or raise the global storage parameter on your project's settings to at least 10GB.  
+
+Because storage is a billable component of your project, only the project's owner can effect this change.
+
 ## Low disk space
 
-If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writable space the most direct option is:
+When you receive a [low-disk space notification](/administrtion/integrations/notifications.md) for your application container: 
+
+### Check your application's disk space
+
+Run `platform ssh` within your project folder.
+
+Check the available writable space for your application, using `df`.
 
 ```
 df -h -x tmpfs -x squashfs | grep -v /run/shared
 ```
 
-That will show only the writable mounts on the system, similar to:
+This command will show the writable mounts on the system, similar to:
 
 ```
 Filesystem                                                       Size  Used Avail Use% Mounted on
-/dev/mapper/platform-syd7waxqy4n5q--master--7rqtwti----app       2.0G   37M  1.9G   2% /app/tmp
+/dev/mapper/platform-syd7waxqy4n5q--master--7rqtwti----app       2.0G   37M  1.9G   2% /mnt
 /dev/mapper/platform-tmp--syd7waxqy4n5q--master--7rqtwti----app  3.9G   42M  3.8G   2% /tmp
 ```
 
-* The first entry shows the storage device that is shared by all of your disk mounts.  Only one path will be shown under `Mounted on` but the disk space reported is common to all defined mounts in a single pool.  In this example, there are 2 GB of total disk allocated to the app container of which only 2% (37 MB) has been used total by all defined mounts.
-* The second entry is the operating system temp directory, which is always the same size.  While you can write to this directory files there are not guaranteed to persist and may be deleted on deploy.
+* The first entry shows the storage device that is shared by all of your `persistent disk mount`.  
+  While `Mounted on` reports the disk space common to [all defined mounts](/configuration/app/storage.md#mounts) in a single pool, it only shows one directory path.
+  
+  In this example, the application container has allocated 2 GB of the total disk space. From those 2GB available for the application, a 2% (37 MB) is used by all defined mounts.
+
+* The second entry is the operating system `temporary directory`, which is always the same size.
+  While you can write to the `/tmp` directory files there are not guaranteed to persist and may be deleted on deploy.
+
+### Increase the disk space available
+
+The sum of all disk keys defined in your project's `.platform.app.yaml` and `.platform/services.yaml` files must be _equal or less_ than the _platform storage_ size.
+
+1. Buy extra storage for your project
+
+  Each project comes with 5GB of Disk Storage available. To increase the disk space available for your project, click on "Edit Plan" to increase your storage in bulks of 5GB.  See [Extra Storage](/overview/pricing.md#extra-storage) for more information.
+
+2. Increase your application and services disk space
+
+  Once you have enough storage available, you can increase the disk space allocated for your application and services using `disk` keys in your `.platform.app.yaml` and `.platform/services.yaml`. 
+  
+  Check the following resources for more details:
+
+   - [Application's disk space](/configuration/app/storage.md#disk)
+   - [Services' disk space](/configuration/services.md#disk)
+
+
+### Check your DataBase disk space
 
 For a MariaDB database, the command `platform db:size` will give approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percentage points.
 
