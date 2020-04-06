@@ -24,7 +24,7 @@ angular/
   .platform.app.yaml
 ```
 
-Each `.platform.app.yaml` file will define a single application container, built code in that directory.  The `.platform` directory is outside of all of them and still defines additional services you require, as well as routes.
+Each `.platform.app.yaml` file will define a single application container, and build code in that directory.  The `.platform` directory is outside of all of them and still defines additional services you require, as well as routes.
 
 Note that disk paths in the `.platform.app.yaml` file are relative to the directory where that file lives by default.
 
