@@ -176,7 +176,7 @@ search:
                 core: collection1
 ```
 
-The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.  While it may wor for generic cases defining your own custom configuration, core, and endpoint is strongly recommended.
+The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.  While it may work for generic cases defining your own custom configuration, core, and endpoint is strongly recommended.
 
 ### Limitations
 
