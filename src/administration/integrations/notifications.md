@@ -36,7 +36,7 @@ Health notifications can be set up via the [Platform.sh CLI](/gettingstarted/cli
 
 A notification can trigger an email to be sent, from an address of your choosing to one or more addresses of your choosing.
 
-You can check out an email notification by running `platform integration:get`, choosing `health.email`.
+You can view an email notification by running `platform integration:get`.
 
 ```bash
 platform integration:get
