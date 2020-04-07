@@ -4,13 +4,23 @@ Platform.sh can notify you when various events happen on your project, in any en
 
 > **Note**
 >
-> Remember that you must have `admin` access to a project in order to add or modify an integration.  See [User administration](/administration/users.md) for more details.
+> Remember that you must have `admin` access to a project in order to add or modify an integration.  See [User administration roles](/administration/users.md#user-roles) for more details.
+
+## Default low-disk email notifications
+
+When you create a new project, Platform.sh creates a default [low-disk email notification](administration/integrations/notifications.md#low-disk-warning) for all [Project Admins](/administration/users.md#user-roles).
+
+> **Note**
+>
+> All projects created prior to 6 April 2020 that did not have any health notifications enabled had an email notification added for admin users.
+
 
 ## Available notifications
 
 ### Low-disk warning
 
-If any notifications are configured, Platform.sh will monitor disk space usage on all applications and services in your cluster.
+Platform.sh monitors disk space usage on all applications and services in your cluster.
+
 
 * If and when available disk space drops below 20%, a warning notification is generated.
 * If and when available disk space drops below 10%, a critical notification is generated.
@@ -26,13 +36,40 @@ Health notifications can be set up via the [Platform.sh CLI](/gettingstarted/cli
 
 A notification can trigger an email to be sent, from an address of your choosing to one or more addresses of your choosing.
 
-To do so, register a `health.email` integration as follows:
+You can view an email notification by running `platform integration:get`.
+
+```bash
+platform integration:get
++--------------+---------------+
+| Property     | Value         |
++--------------+---------------+
+| id           | abcdefghijklm |
+| type         | health.email  |
+| role         |               |
+| from_address |               |
+| recipients   | - '#admins'   |
++--------------+---------------+
+```
+
+To edit the `recipients` that receive the default email notification, use the `integration:update` command.
+
+```bash
+platform integration:update abcdefghijklm --recipients you@example.com
+```
+
+The `recipients` field may be any valid email address, or one of the following special values.
+
+* `#admins` maps to all project admins and up.
+* `#viewers` maps to everyone with access to the project.
+
+To add a new email notification, register a `health.email` integration as follows:
 
 ```bash
 platform integration:add --type health.email --from-address you@example.com --recipients them@example.com --recipients others@example.com
 ```
 
-The `from-address` is whatever address you want the email to appear to be from.  You must specify one or more `recipients`, each as its own switch.  It is completely fine to use the same address for both `from-address` and `recipients`.
+The `from-address` is whatever address you want the email to appear to be from.  You must specify one or more `recipients`, each as its own switch.  It is completely fine to use the same email address for both `from-address` and `recipients`.
+
 
 ### Slack notifications
 
