@@ -51,7 +51,7 @@ platform integration:get
 +--------------+---------------+
 ```
 
-To edit the `recipients` that receive the default email notification, run in your command line:
+To edit the `recipients` that receive the default email notification, use the `integration:update` command.
 
 ```bash
 platform integration:update abcdefghijklm --recipients you@example.com
