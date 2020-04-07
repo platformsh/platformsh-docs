@@ -48,7 +48,7 @@ Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing
 
 This means that you have allocated, for example, `disk: 4096` in a MySQL service in `services.yaml` and also `disk: 4096` in the `.platform.app.yaml` for your application, while only having the minimum default of 5GB storage for your project as a whole.  The solution is either to lower the `disk` parameters to within the limits of 5GB of storage, or raise the global storage parameter on your project's settings to at least 10GB.  
 
-Because storage is a billable component of your project, only the project's owner can effect this change.
+Because storage is a billable component of your project, only the project's owner can make this change.
 
 ## Low disk space
 
