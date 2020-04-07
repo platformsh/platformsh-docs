@@ -11,7 +11,8 @@ Platform.sh can notify you when various events happen on your project, in any en
 When you create a new project, Platform.sh creates a default [low-disk email notification](administration/integrations/notifications.md#low-disk-warning) for all [Project Admins](/administration/users.md#user-roles).
 
 > **Note**
-> All projects without any kind of Health Notification set up by April 6th, 2020 get a default low-disk notification configured.
+>
+> All projects created prior to 6 April 2020 that did not have any health notifications enabled had an email notification added for admin users.
 
 
 ## Available notifications
