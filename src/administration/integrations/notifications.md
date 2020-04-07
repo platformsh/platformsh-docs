@@ -21,7 +21,6 @@ When you create a new project, Platform.sh creates a default [low-disk email not
 
 Platform.sh monitors disk space usage on all applications and services in your cluster.
 
-[Project Admins](/administration/users.md#user-roles) receive low-disk email notifications by default. 
 
 * If and when available disk space drops below 20%, a warning notification is generated.
 * If and when available disk space drops below 10%, a critical notification is generated.
