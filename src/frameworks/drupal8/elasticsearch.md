@@ -57,9 +57,12 @@ Then, paste the following code snippet into your `settings.platformsh.php` file.
 ```php
 // Update these values to the relationship name (from .platform.app.yaml)
 // and the machine name of the server from your Drupal configuration.
-$relationship_name = 'elasticsearch';
+$relationship_name = 'RELATIONSHIP_NAME';
 $es_cluster_name = 'YOUR_CLUSTER_HERE';
 if ($platformsh->hasRelationship($relationship_name)) {
+
+  $creds = $platformsh->credentials($relationship_name)
+  
   $platformsh->registerFormatter('drupal-elastic', function($creds) {
     return sprintf('http://%s:%s', $creds['host'], $creds['port']);
   });
