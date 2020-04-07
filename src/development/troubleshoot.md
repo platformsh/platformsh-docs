@@ -70,17 +70,17 @@ Filesystem                                                       Size  Used Avai
 /dev/mapper/platform-tmp--syd7waxqy4n5q--master--7rqtwti----app  3.9G   42M  3.8G   2% /tmp
 ```
 
-* The first entry shows the storage device that is shared by all of your `persistent disk mount`.  
+* The first entry shows the storage device that is shared by all of your persistent disk mounts.
   While `Mounted on` reports the disk space common to [all defined mounts](/configuration/app/storage.md#mounts) in a single pool, it only shows one directory path.
   
-  In this example, the application container has allocated 2 GB of the total disk space. From those 2GB available for the application, a 2% (37 MB) is used by all defined mounts.
+  In this example, the application container has allocated 2 GB of the total disk space. From those 2GB available for the application, 2% (37 MB) is used by all defined mounts.
 
 * The second entry is the operating system `temporary directory`, which is always the same size.
   While you can write to the `/tmp` directory files there are not guaranteed to persist and may be deleted on deploy.
 
 ### Increase the disk space available
 
-The sum of all disk keys defined in your project's `.platform.app.yaml` and `.platform/services.yaml` files must be _equal or less_ than the _platform storage_ size.
+The sum of all disk keys defined in your project's `.platform.app.yaml` and `.platform/services.yaml` files must be equal or less than the available storage in your plan.
 
 1. Buy extra storage for your project
 
