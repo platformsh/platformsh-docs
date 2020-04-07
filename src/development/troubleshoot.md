@@ -70,12 +70,9 @@ Filesystem                                                       Size  Used Avai
 /dev/mapper/platform-tmp--syd7waxqy4n5q--master--7rqtwti----app  3.9G   42M  3.8G   2% /tmp
 ```
 
-* The first entry shows the storage device that is shared by all of your persistent disk mounts.
-  While `Mounted on` reports the disk space common to [all defined mounts](/configuration/app/storage.md#mounts) in a single pool, it only shows one directory path.
-  
-  In this example, the application container has allocated 2 GB of the total disk space. From those 2GB available for the application, 2% (37 MB) is used by all defined mounts.
+The first line shows the storage device that is shared by all of your [persistent disk mounts](/configuration/app/storage.md#mounts).  All defined mounts use a common storage pool.  In this example, the application container has allocated 2 GB of the total disk space. Of those 2GB, 2% (37 MB) is used by all defined mounts.
 
-* The second entry is the operating system `temporary directory`, which is always the same size.
+The second line is the operating system `temporary directory`, which is always the same size.
   While you can write to the `/tmp` directory files there are not guaranteed to persist and may be deleted on deploy.
 
 ### Increase the disk space available
@@ -84,7 +81,7 @@ The sum of all disk keys defined in your project's `.platform.app.yaml` and `.pl
 
 1. Buy extra storage for your project
 
-  Each project comes with 5GB of Disk Storage available. To increase the disk space available for your project, click on "Edit Plan" to increase your storage in bulks of 5GB.  See [Extra Storage](/overview/pricing.md#extra-storage) for more information.
+  Each project comes with 5GB of Disk Storage available to each environment. To increase the disk space available for your project, click on "Edit Plan" to increase your storage in bulks of 5GB.  See [Extra Storage](/overview/pricing.md#extra-storage) for more information.
 
 2. Increase your application and services disk space
 
@@ -94,7 +91,6 @@ The sum of all disk keys defined in your project's `.platform.app.yaml` and `.pl
 
    - [Application's disk space](/configuration/app/storage.md#disk)
    - [Services' disk space](/configuration/services.md#disk)
-
 
 ### Check your database disk space
 
