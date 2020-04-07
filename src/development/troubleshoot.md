@@ -98,7 +98,7 @@ The sum of all disk keys defined in your project's `.platform.app.yaml` and `.pl
    - [Services' disk space](/configuration/services.md#disk)
 
 
-### Check your DataBase disk space
+### Check your database disk space
 
 For a MariaDB database, the command `platform db:size` will give approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percentage points.
 
