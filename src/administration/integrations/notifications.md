@@ -57,7 +57,7 @@ To edit the `recipients` that receive the default email notification, use the `i
 platform integration:update abcdefghijklm --recipients you@example.com
 ```
 
-The following `recipients` values are available:
+The `recipients` field may be any valid email address, or one of the following special values.
 
 * `#admins` maps to all project admins and up.
 * `#viewers` maps to everyone with access to the project.
