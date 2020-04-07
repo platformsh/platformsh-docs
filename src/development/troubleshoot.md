@@ -56,9 +56,7 @@ When you receive a [low-disk space notification](/administrtion/integrations/not
 
 ### Check your application's disk space
 
-Run `platform ssh` within your project folder.
-
-Check the available writable space for your application, using `df`.
+Run `platform ssh` within your project folder to login to the container's shell.  Then use the `df` command to check the available writable space for your application.
 
 ```
 df -h -x tmpfs -x squashfs | grep -v /run/shared
