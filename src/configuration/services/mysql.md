@@ -147,11 +147,13 @@ configuration:
 
 If either schemas or endpoints are defined, then no default will be applied and you must specify the full configuration.
 
-## Adjusting MariaDB configuration
+## Adjusting database configuration
 
-For version 10.2 and later, a select few MariaDB configuration properties from the `my.cnf` file are available for adjustment.
+For MariaDB 10.1 and later Oracle MySQL 8.0 and later, a select few configuration properties from the `my.cnf` file are available for adjustment.
 
-At this time, only the `max_allowed_packet` size is available, and defaults to `16` (in MB).  Legal values are from `1` to `100`.
+### Packet and connection sizing
+
+This value defaults to `16` (in MB).  Legal values are from `1` to `100`.
 
 ```yaml
 db:
@@ -163,6 +165,39 @@ db:
 ```
 
 The above code will increase the maximum allowed packet size (the size of a query or response) to 64 MB.  However, increasing the size of the maximum packet will also automatically decrease the `max_connections` value.  The number of connections allowed will depend on the packet size and the memory available to the service.  In most cases leaving this value at the default is recommended.
+
+## Character encoding
+
+For services created prior to February 2020, the default character set and collation is `latin1`, which is the default in most MySQL/MariaDB.
+
+For services created after February 2020, the default character set is `utf8mb4` and the default collation is `utf8mb4_unicode_ci`.
+
+Both values can be adjusted at the server level in `services.yaml`:
+
+```yaml
+db:
+  type: mariadb:10.4
+  disk: 2048
+  configuration:
+    properties:
+      default_charset: utf8mb4
+      default_collation: utf8mb4_unicode_ci
+```
+
+Note that the effect of this setting is to set the character set and collation of any tables created once those properties are set.  Tables created prior to when those settings are changed will be unaffected by changes to the `services.yaml` configuration.  However, you can change your own table's character set and collation through `ALTER TABLE` commands.  For example:
+
+```
+# To change defaults when creating new tables:
+ALTER DATABASE main CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+# To change defaults when creating new columns:
+ALTER TABLE table_name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+# To convert existing data:
+ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charset-mysql.html) for further details.
 
 ## Access your MariaDB service
 
