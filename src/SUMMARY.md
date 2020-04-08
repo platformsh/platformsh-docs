@@ -108,6 +108,7 @@
   * [Performance tuning](languages/php/tuning.md)
   * [PHP.ini settings](languages/php/ini.md)
   * [PHP-FPM sizing](languages/php/fpm.md)
+  * [Xdebug](languages/php/xdebug.md)
 * [Python](languages/python.md)
 * [Ruby](languages/ruby.md)
 
