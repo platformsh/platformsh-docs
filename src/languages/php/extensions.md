@@ -151,7 +151,6 @@ This is the complete list of extensions that can be enabled:
 | uuid          |     |     |     |     | *   | *   | *   | *   |
 | wddx          |     |     |     | *   | *   | *   | *   | *   |
 | xcache        | *   | *   |     |     |     |     |     |     |
-| xdebug        | *   | *   | *   | *   | *   | *   |     | *   |
 | xhprof        | *   | *   | *   |     |     |     |     |     |
 | xml           |     |     |     | *   | *   | *   | *   | *   |
 | xmlreader     |     |     |     | *   | *   | *   | *   | *   |
