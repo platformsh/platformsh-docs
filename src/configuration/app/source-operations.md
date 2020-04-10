@@ -56,9 +56,7 @@ Git integration can be configured to send commits made to the Platform.sh Git re
 
 > **note**
 >
-> Source Operations will only be triggered on environment created by a branch, and not to environment created by a Pull Request on the external upstream (GitHub, Bitbucket, Gitlab).
-> If your integration is configured with `fetch_branches`, it will create a Platform.sh environment for all the branches in the upstream repository. In that case, the commits triggered by a source operations will be pushed back to the Platform.sh remote.
-> If your integration is configured with `build_pull_requests`, it will create a Platform.sh environment for all the pull requests in the upstream repository. In that case, the commits triggered by a source operation will not be pushed back to the Platform.sh remote.
+> Source Operations can only be triggered on environment created by a branch, and not to environment created by a Pull Request on the external upstream (GitHub, Bitbucket, Gitlab).
 
 ## Automated Source Operations using cron
 
