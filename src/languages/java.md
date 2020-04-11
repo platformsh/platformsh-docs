@@ -64,6 +64,8 @@ A number of project templates for major Java applications are available on GitHu
 
 * [Spring Boot MySQL](https://github.com/platformsh-templates/spring-boot-maven-mysql)
 * [Spring Boot MongoDB](https://github.com/platformsh-templates/spring-mvc-maven-mongodb)
+* [Spring Kotlin](https://github.com/platformsh-templates/spring-kotlin)
+* [Spring Boot Gradle](https://github.com/platformsh-templates/spring-boot-gradle-mysql)
 
 #### Jakarta EE/ Eclipse MicroProfile
 
@@ -78,3 +80,5 @@ A number of project templates for major Java applications are available on GitHu
 
 * [Micronaut](https://github.com/platformsh-templates/micronaut)
 * [Jettry](https://github.com/platformsh-templates/jetty)
+* [Jenkins](https://github.com/platformsh-templates/jenkins)
+* [Xwiki](https://github.com/platformsh-templates/xwiki)
