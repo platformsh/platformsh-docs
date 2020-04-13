@@ -2,6 +2,10 @@
 
 Platform.sh supports building multiple applications per project (for example RESTful web services with a front-end, or a main website and a blog).  For resource allocation reasons, however, that is not supported on Standard plan.
 
+> **Note**
+>
+> This page only applies to Grid projects.  Contact your sales representative for advanced Dedicated environment configurations.
+
 ## Project structure
 
 There are multiple ways to structure such a project, depending on the way your source code is organized and what your goal is.  All of these approaches may be used within a single project simultaneously, although it is often easier to maintain if you settle on just one approach for a given project.
