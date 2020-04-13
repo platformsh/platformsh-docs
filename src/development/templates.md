@@ -39,15 +39,19 @@ You can also initialize your project using any of the pre-made templates below. 
 <div>
   <h4>Applications</h4>
   <a href="https://github.com/platformsh-templates/spring-boot-maven-mysql">Spring Boot MySQL</a><br />
+  <a href="https://github.com/platformsh-templates/spring-boot-gradle-mysql">Spring Boot MySQL (Gradle)</a><br />
   <a href="https://github.com/platformsh-templates/spring-mvc-maven-mongodb">Spring Boot MongoDB</a><br />
+  <a href="https://github.com/platformsh-templates/spring-kotlin">Spring Kotlin</a><br />
   <a href="https://github.com/platformsh-templates/microprofile-tomee">Apache Tomee</a><br />
   <a href="https://github.com/platformsh-templates/microprofile-thorntail">Thorntail</a><br />
   <a href="https://github.com/platformsh-templates/microprofile-payara">Payara Micro</a><br />
-  <a href="https://github.com/platformsh-templates/microprofile-kumuluzee">KumuluzEE</a>
-  <a href="https://github.com/platformsh-templates/microprofile-helidon">Helidon</a>
-  <a href="https://github.com/platformsh-templates/microprofile-openliberty">Open Liberty</a>
-  <a href="https://github.com/platformsh-templates/jetty">Jetty</a>
-    <a href="https://github.com/platformsh-templates/micronaut">Micronaut</a>
+  <a href="https://github.com/platformsh-templates/microprofile-kumuluzee">KumuluzEE</a><br />
+  <a href="https://github.com/platformsh-templates/microprofile-helidon">Helidon</a><br />
+  <a href="https://github.com/platformsh-templates/microprofile-openliberty">Open Liberty</a><br />
+  <a href="https://github.com/platformsh-templates/jetty">Jetty</a><br />
+  <a href="https://github.com/platformsh-templates/micronaut">Micronaut</a><br />
+  <a href="https://github.com/platformsh-templates/jenkins">Jenkins</a><br />
+  <a href="https://github.com/platformsh-templates/xwiki">XWiki</a><br />
 </div>
 
 </section>
