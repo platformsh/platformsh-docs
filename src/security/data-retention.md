@@ -30,7 +30,7 @@ Application backups running on the Grid (e.g. If you subscribe to a Platform.sh 
 
 ## Dedicated backups
 
-Backups for applications running on a Dedicated instance will follow the information documented on our [dedicated backups](https://docs.platform.sh/dedicated/overview/backups.html) page.
+Backups for applications running on a Dedicated instance will follow the schedule documented on our [dedicated backups](/dedicated/overview/backups.md) page.
 
 ## Tombstone backups
 
