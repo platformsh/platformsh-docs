@@ -2,7 +2,7 @@
 title: "Pricing"
 weight: 3
 description: "Platform.sh is the Idea-to-Cloud Application Platform—the end to end solution to develop and deploy web apps and sites. We offer a free trial period so you can test the service and see how great it is.<br><br>You can view all information about our product pricing on our <a href=\"https://platform.sh/pricing/\">website</a>."
- 
+
 ---
 
 You can see our full pricing information at: https://platform.sh/pricing/
@@ -23,15 +23,19 @@ For Enterprise and Agency Plans you can pay by purchase order. For all other pla
 
 We offer a free trial period so you can test the service and see how great it is. If ever you need more time to evaluate Platform.sh, please contact our sales representatives. They can issue you an extra voucher to prolong your test.
 
-> Prices below are listed in US Dollars.  You will be billed in US Dollars, Euros, or British Pounds depending on where your billing address is. For a list of current prices please refer to https://platform.sh/pricing
->
-> Euro Prices are presented excluding VAT.  In your bill, as appropriate we will include the correct VAT rate.
+{{< note theme="info" title="none">}}
+Prices below are listed in US Dollars.  You will be billed in US Dollars, Euros, or British Pounds depending on where your billing address is. For a list of current prices please refer to https://platform.sh/pricing
+
+Euro Prices are presented excluding VAT.  In your bill, as appropriate we will include the correct VAT rate.
+{{< /note >}}
 
 ## Extras
 
 All extra consumption is prorated to the time it was actually used.
 
-> For example, if you added an extra developer for 10 days you would be billed around $3 extra at the end of the month (based on the then-current price of an extra developer seat).
+{{< note theme="info" title="none" >}}
+For example, if you added an extra developer for 10 days you would be billed around $3 extra at the end of the month (based on the then-current price of an extra developer seat).
+{{< /note >}}
 
 ### Extra developers
 
@@ -41,21 +45,27 @@ Adding a developer to your project will add a monthly per project per user fee u
 
 You can add extra staging/development environments to any plan by multiples of 3.
 
-> For example, if you want to have 12 staging environments you would pay additional $63 per month on top of your basic plan price.
+{{< note theme="info" title="none" >}}
+For example, if you want to have 12 staging environments you would pay additional $63 per month on top of your basic plan price.
+{{< /note >}}
 
 ### Extra storage
 
 You can add additional storage at $2.50 per 5GB  per staging/development environment.
 
-> For example, if you have the default plan (with 3 staging environments) and you add 10GB (for a total of 15GB per environment), you would pay an extra $15 a month.
->
-> If you added 3 extra environments (for a total of 6 staging environments) and you added 10GB (for a total of 15GB per environment), you would pay an extra $30 a month.
+{{< note theme="info" title="none" >}}
+For example, if you have the default plan (with 3 staging environments) and you add 10GB (for a total of 15GB per environment), you would pay an extra $15 a month.
+
+If you added 3 extra environments (for a total of 6 staging environments) and you added 10GB (for a total of 15GB per environment), you would pay an extra $30 a month.
+{{< /note >}}
 
 ## Development
 
 The basic plan (Development) starts at $10 per month, and includes 4 environments: 3 staging/development and 1 future production).
 
-> You can not map a custom domain name to a development plan
+{{< note theme="info" title="none" >}}
+You can not map a custom domain name to a development plan
+{{< /note >}}
 
 Development environments have less resources than production environments.
 
@@ -79,8 +89,11 @@ If you wonder if a specific setup would fit in a plan, don't hesitate to contact
 
 For a price lower than traditional managed hosting, you get included development and staging environments, as well as triple redundancy on every element of the stack with:
 
-> 99.99% Uptime Guaranteed
-> 24/7 White Glove On-boarding and Support
+{{< note theme="info" title="none" >}}
+99.99% Uptime Guaranteed
+
+24/7 White Glove On-boarding and Support
+{{< /note >}}
 
 Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
 

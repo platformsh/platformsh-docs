@@ -5,6 +5,8 @@ description: |
   Platform.sh logs and stores all sorts of data as a normal part of its business.  This information is retained as needed for business purposes and old data is purged. The retention time varies depending on the type of data stored.
 ---
 
+{{< description >}}
+
 ## Account information
 
 Information relating to customer accounts (login information, billing information, etc.) is retained for as long as the account is active with Platform.sh.

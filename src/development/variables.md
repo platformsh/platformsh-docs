@@ -243,11 +243,14 @@ Check the individual documentation pages for accessing environment variables for
 * [Python: the os.environ object](https://docs.python.org/3/library/os.html#os.environ)
 * [Ruby: the ENV accessor](https://ruby-doc.org/core-2.1.4/ENV.html)
 
+{{< tabtest >}}
+---
+title=PHP
+file=none
+highlight=php
+markdownify=false
+---
 
-{{< tabs "PHP" "Python" "Nodejs" "Ruby" >}}
-
-{{< tab id="PHP" active="true" >}}
-{{< highlight php >}}
 <?php
 
 // A simple variable.
@@ -255,11 +258,16 @@ $projectId = getenv('PLATFORM_PROJECT');
 
 // A JSON-encoded value.
 $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), TRUE);
-{{< /highlight >}}
-{{< /tab >}}
 
-{{< tab id="Python" >}}
-{{< highlight py >}}
+<--->
+
+---
+title=Python
+file=none
+highlight=python
+markdownify=false
+---
+
 import os
 import json
 import base64
@@ -269,11 +277,15 @@ project_id = os.getenv('PLATFORM_PROJECT')
 
 // A JSON-encoded value.
 variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode('utf-8'))
-{{< /highlight >}}
-{{< /tab >}}
 
-{{< tab id="Nodejs">}}
-{{< highlight js >}}
+<--->
+
+---
+title=Node.js
+file=none
+highlight=js
+markdownify=false
+---
 
 // Utility to assist in decoding a packed JSON variable.
 function read_base64_json(varName) {
@@ -289,21 +301,23 @@ let projectId = process.env.PLATFORM_PROJECT;
 
 // A JSON-encoded value.
 let variables = read_base64_json('PLATFORM_VARIABLES');
-{{< /highlight >}}
-{{< /tab >}}
 
-{{< tab id="Ruby" >}}
-{{< highlight ruby >}}
+<--->
+
+---
+title=Ruby
+file=none
+highlight=ruby
+markdownify=false
+---
 
 // A simple variable.
 project_id = ENV["PLATFORM_PROJECT"] || nil
 
 // A JSON-encoded value.
 variables = JSON.parse(Base64.decode64(ENV["PLATFORM_VARIABLES"]))
-{{< /highlight >}}
-{{< /tab >}}
 
-{{< /tabs >}}
+{{< /tabtest >}}
 
 ## Variable prefixes
 

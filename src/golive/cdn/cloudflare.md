@@ -2,6 +2,7 @@
 title: "Cloudflare configuration"
 weight: 2
 sidebarTitle: "Cloudflare"
+toc: false
 ---
 
 One of the main features that a modern DNS provider needs to have in order to work well with Platform.sh is colloquially known as "Cname Flattening".  This solves the problem of being able to point your "root domain" (example.com) to a domain name (CNAME) rather than an IP address (A record).  [This post](https://blog.cloudflare.com/introducing-CNAME-flattening-rfc-compliant-cnames-at-a-domains-root/) explains it well.
@@ -16,7 +17,7 @@ Cloudflare also makes it very simple to use their free TLS/SSL service to secure
 
 This means that traffic to your site is encrypted from the client (browser) to Cloudflare's servers using their certificate, and also between Cloudflare's servers and your project hosting here at Platform.sh, mostly like using your project's Let's Encrypt certificate.
 
-```
+```text
 # Cloudflare's Full SSL option
 		   https                       https
 User <---------------> Cloudflare <-------------> Platform.sh
@@ -24,7 +25,7 @@ User <---------------> Cloudflare <-------------> Platform.sh
 
 The other option known as "Flexible SSL" will cause issues if you intend to redirect all traffic to HTTPS.  The "Flexible SSL" option will use Cloudflare's TLS/SSL certificate to encrypt traffic between your users and the CDN, but will pass requests from the CDN back to your project at Platform.sh via HTTP.  This can make it easy for sites that don't have a TLS/SSL certificate to begin ofering their users a more secure experience, by at the least eliminating the unencrypted attack vector on the the "last mile" to the user's browser.
 
-```
+```text
 # Cloudflare's Flexible SSL option
 		   https                       http
 User <---------------> Cloudflare <-------------> Platform.sh

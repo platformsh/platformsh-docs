@@ -8,6 +8,8 @@ description: |
   In accordance with Article 14(1) of the [Commission Delegated Regulation (EU) 2018/389](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32018R0389), Platform.sh has made changes in order to comply with and implement Strong Customer Authentication (SCA) for customers using payment methods from the EU.
 ---
 
+{{< description >}}
+
 {{< note theme="info" title="That article states" >}}
 
 *Payment service providers shall apply strong customer authentication when a payer creates, amends, or initiates for the first time, a series of recurring transactions with the same amount and with the same payee.*

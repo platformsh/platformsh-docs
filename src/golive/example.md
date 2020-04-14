@@ -1,7 +1,7 @@
 ---
 title: "Example"
 weight: 5
- 
+
 description: "In this short section we will give you a  very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this)."
 ---
 
@@ -46,9 +46,9 @@ On your DNS provider, you would create two CNAMEs:
 `mysite.com` should be an ALIAS/CNAME/ANAME  to `master-def456-abc123.eu-2.platformsh.site`.
 `www.mysite.com` should be a CNAME to `master-def456-abc123.eu-2.platformsh.site`.
 
->**note**
->
-> Both point to the same name. See the note above regarding how different registrars handle dynamic apex domains.
+{{< note >}}
+Both point to the same name. See the note above regarding how different registrars handle dynamic apex domains.
+{{< /note >}}
 
 ## Result
 

@@ -1,7 +1,7 @@
 ---
 title: "DNS management and Apex domains"
 weight: 1
- 
+
 description: "Platform.sh expects you to use a CNAME for all DNS records.  However, that is problematic with some DNS registrars."
 sidebarTitle: "DNS and CNAMEs"
 ---
@@ -61,6 +61,8 @@ This process has a few limitations:
 * Should we ever need to change one of those IPs your configuration will need to be manually updated.  Until it is some requests will be lost.
 * Directly pointing at the edge routers bypasses their load-balancing functionality.  Should one of them go offline for maintenance (as happens periodically for upgrades) approximately 1/3 of requests to your site will go to the offline router and be lost, making the site appear offline.
 
-> For that reason using A records is _strongly discouraged_ and should only be used as a last resort.
+{{< note theme=info title="none" >}}
+For that reason using A records is _strongly discouraged_ and should only be used as a last resort.
+{{< /note >}}
 
 See the [Public IP](/development/public-ips.md) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request.

@@ -41,6 +41,7 @@ some logic (here you would replace MYMODULE with a convenient name of your own
 and include it in your custom modules for your Drupal installation).
 
 ```php
+<?php
 /**
  * Implements hook_domain_default_domains().
  */

@@ -2,13 +2,16 @@
 title: "Going Live - Steps"
 weight: 2
 sidebarTitle: "Go-live steps"
-description: "Going live on Platform.sh is a simple two or three step process.<br><br>You can either use the Platform.sh management console or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes."
- 
+description: |
+  Going live on Platform.sh is a simple two or three step process. You can either use the Platform.sh management console or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes.
 layout: single
 ---
-> **note**
->
-> The order of operations is not really important, but if you are migrating a site from an existing provider, you should first configure the domain on the Platform.sh side, and only then switch DNS over.
+
+{{< description >}}
+
+{{< note >}}
+The order of operations is not really important, but if you are migrating a site from an existing provider, you should first configure the domain on the Platform.sh side, and only then switch DNS over.
+{{< /note >}}
 
 ## 1. Change your plan to a production plan
 
@@ -48,9 +51,9 @@ If you are using an apex domain (`example.com`), see the additional information 
 
 ## 3. (Non-CDN version) Set your domain in Platform.sh
 
-> **note**
->
-> If using a CDN, skip this step.  The CDN should already have been configured in advance to point to Platform.sh as its upstream.
+{{< note >}}
+If using a CDN, skip this step.  The CDN should already have been configured in advance to point to Platform.sh as its upstream.
+{{< /note >}}
 
 This step will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
 
@@ -69,11 +72,11 @@ Alternatively there is also an add-on for Firefox and Google Chrome that allow y
 * [Firefox LiveHosts add-on](https://addons.mozilla.org/en-US/firefox/addon/livehosts/)
 * [Google Chrome LiveHosts add-on](https://chrome.google.com/webstore/detail/livehosts/hdpoplemgeaioijkmoebnnjcilfjnjdi?hl=en)
 
-> **note**
->
-> Do not put the IP address you see here, but the one you got from the ping command.
->
-> *Also, remember to remove this entry after you have configured DNS!*
+{{< note >}}
+Do not put the IP address you see here, but the one you got from the ping command.
+
+*Also, remember to remove this entry after you have configured DNS!*
+{{< /note >}}
 
 Sometimes it can take Let's Encrypt a couple of minutes to provision the certificate the first time. This is normal, and only means the first deploy after enabling a domain may take longer than usual.  Setting the CNAME record with your DNS provider first helps to minimize that disruption.
 

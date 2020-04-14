@@ -6,6 +6,8 @@ description: |
   Platform.sh has many PCI and SOC 2 certified customers using our services. Some requirements are the responsibility of the host and others are the responsibility of the application developer.
 ---
 
+{{< description >}}
+
 Basic compliance questions can be handled by our support team via a ticket. For more advanced questions or walk-through of a full audit please contact your Platform.sh Account Manager.
 
 ## Overview

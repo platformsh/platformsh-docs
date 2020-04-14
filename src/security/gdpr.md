@@ -7,6 +7,8 @@ description: |
   Platform.sh has taken numerous steps to ensure GDPR compliance.
 ---
 
+{{< description >}}
+
 As part of our measures we have implemented the following:
 
 * **Data Protection Officer**: Appointment of a Security Officer who also holds the Data Protection Officer (DPO) role.

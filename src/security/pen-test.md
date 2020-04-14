@@ -6,6 +6,8 @@ description: |
   Platform.sh understands the need for application owners to ensure the integrity, and standards compliance, of their applications. Because there could be adverse impacts to other clients which would violate our terms of service, we only permit certain types of tests.
 ---
 
+{{< description >}}
+
 ## Approved Activities
 
 * Vulnerability scanning of your web application. You are free to perform this as often as required without approval from Platform.sh.

@@ -1,7 +1,7 @@
 ---
 title: "Going Live - Troubleshooting"
 weight: 4
- 
+
 description: "If all steps above have been followed and the site still does not resolve (after waiting for the DNS update to propagate), here are a few simple self-help steps to take before contacting support."
 sidebarTitle: "Troubleshooting"
 ---
@@ -12,7 +12,7 @@ On the command line with OS X or Linux (or using the Linux subsystem for Windows
 
 The response should be something like:
 
-```
+```text
 www.example.com is an alias for master-t2xxqeifuhpzg.eu.platform.sh.
 master-t2xxqeifuhpzg.eu.platform.sh has address 54.76.136.188
 ```
