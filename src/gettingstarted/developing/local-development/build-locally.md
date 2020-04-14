@@ -4,7 +4,6 @@ weight: 3
 toc: false
 ---
 
-
 Now that you've opened tunnels into your services, you'll have access to all of your data in your environment. All that's left now is to actually build the site.
 
 {{< asciinema src="videos/asciinema/build.cast" >}}
@@ -34,6 +33,7 @@ markdownify=false
 php -d variables_order=EGPCS -S localhost:8001
 
 <--->
+
 ---
 title=Python
 file=none
@@ -44,6 +44,7 @@ markdownify=false
 python3 -m http.server 8000
 
 <--->
+
 ---
 title=Ruby
 file=none
@@ -52,6 +53,7 @@ markdownify=false
 ---
 
 ruby -run -e httpd . -p 8000
+
 {{< /tabtest >}}
 
 

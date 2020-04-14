@@ -24,9 +24,7 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/elasticsearch" >}}
-{{< /highlight >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/elasticsearch" highlight="json" >}}
 
 ## Usage example
 
@@ -43,9 +41,7 @@ You can then use the service in a configuration file of your application with so
 {{< tabs "Java" "Nodejs" "PHP" "Python" >}}
 
 {{< tab id="Java" active="true" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/elasticsearch" >}}
-{{< /highlight >}}
+{{< readFile file="static/files/fetch/examples/java/elasticsearch" highlight="java">}}
 {{< /tab >}}
 
 {{< tab id="Nodejs" >}}
