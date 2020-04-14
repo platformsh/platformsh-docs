@@ -1,17 +1,17 @@
 ---
 title: "Merge into production"
 weight: 3
+toc: false
 ---
-
-# Development Environments
-
-## Merge into production
 
 Now that you've had the chance to verify that your application built and deployed correctly on your development environment, you're ready to merge it into your production site. Platform.sh provides [backup](/administration/backup-and-restore.md) features that protect against any unforeseen consequences of your merges, keeping a historical copy of all of your code and data.
 
 {{< asciinema src="videos/asciinema/snap-merge-restore.cast" >}}
 
-> **Note:** The `--project` flag is not needed if you are running the `platform` command from within your local repository.
+{{< note >}}
+The `--project` flag is not needed if you are running the `platform` command from within your local repository.
+{{< /note >}}
+
 
 1. **Create a backup**
 
@@ -45,4 +45,4 @@ Now that you've had the chance to verify that your application built and deploye
     platform backup:restore --project <project id>
     ```
 
-{{< navbuttons next="I have merged the new feature">}}
+{{< guide-buttons next="I've merged the new feature" >}}

@@ -1,11 +1,9 @@
 ---
 title: "Download the code"
 weight: 1
+toc: false
 ---
 
-# Local development
-
-## Download the code
 
 If you have already [pushed your code](/gettingstarted/own-code.md) to Platform.sh, then you should already have a local repository that you can build from.
 
@@ -32,4 +30,4 @@ Next you can now connect to its services and build it on your machine.
   <a class="button-link next" onclick="gitbook.navigation.goNext()">I have a local copy of my code</a>
 </div>
 
-{{< navbuttons next="I have a local copy of my code">}}
+{{< guide-buttons next="I have a local copy of my code" >}}

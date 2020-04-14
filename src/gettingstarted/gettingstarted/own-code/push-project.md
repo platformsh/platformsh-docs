@@ -1,11 +1,8 @@
 ---
 title: "Build, Deploy, Done!"
 weight: 10
+toc: false
 ---
-
-# Import your own code
-
-## Build, Deploy, Done!
 
 With your configuration files complete, all that's left is to commit the changes and push to Platform.sh.
 
@@ -41,4 +38,4 @@ That's it! Using the Platform.sh CLI and a few properly configured files, pushin
 
 Now that your code is on Platform.sh, check out some of the Next Steps to get started developing.
 
-{{< navbuttons next="I have deployed my application">}}
+{{< guide-buttons next="I've deployed my application" >}}

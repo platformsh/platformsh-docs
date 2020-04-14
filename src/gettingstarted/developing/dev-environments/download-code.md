@@ -1,11 +1,8 @@
 ---
 title: "Download the code"
 weight: 1
+toc: false
 ---
-
-# Development Environments
-
-## Download the code
 
 If you have already [pushed your code](/gettingstarted/own-code.md) to Platform.sh, then you should already have a local repository that you can build from.
 
@@ -27,4 +24,4 @@ Otherwise, it will be necessary to download a local copy of your project first.
 
 Now that you have a local copy of your application that is configured to the Platform.sh remote repository, you can create a new .
 
-{{< navbuttons next="I have a local copy of my code">}}
+{{< guide-buttons next="I have a local copy of my code" >}}

@@ -1,11 +1,8 @@
 ---
 title: "Create environment"
 weight: 2
+toc: false
 ---
-
-# Development Environments
-
-## Create environment
 
 Platform.sh supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data. This is useful for testing changes in isolation before merging them.
 
@@ -15,7 +12,7 @@ Platform.sh supports the deployment of isolated development environments from yo
 
     Create and checkout a branch for your new feature.
 
-    ```
+    ```bash
     platform branch dev
     ```
 
@@ -29,13 +26,16 @@ Platform.sh supports the deployment of isolated development environments from yo
     git push platform dev
     ```
 
-    > **Note:** If you create a new branch with Git (i.e. `git checkout -b new-feature`), when you push its commits to Platform.sh that branch will not automatically build. `new-feature` is an *inactive environment*, because Platform.sh does not assume that every branch should be associated with an active environment, since your plan will limit the number of active environments you are allowed.
-    >
-    > If you want to activate the `new-feature` environment after it has been pushed, you can do so with the command
-    >
-    > ```
-    > platform environment:activate new-feature
-    > ```
+    {{< note >}}
+  If you create a new branch with Git (i.e. `git checkout -b new-feature`), when you push its commits to Platform.sh that branch will not automatically build. `new-feature` is an *inactive environment*, because Platform.sh does not assume that every branch should be associated with an active environment, since your plan will limit the number of active environments you are allowed.
+
+  If you want to activate the `new-feature` environment after it has been pushed, you can do so with the command
+
+  ```bash
+  platform environment:activate new-feature
+  ```
+    {{< /note >}}
+
 
 2. **Verify**
 
@@ -47,7 +47,7 @@ Platform.sh supports the deployment of isolated development environments from yo
 
     The command will provide a list of the generated routes for the application according to how the [routes](/configuration/routes.md) were configured. The structure will be:
 
-    ```
+    ```text
     Enter a number to open a URL
       [0] https://<branch name>-<hash of branch name>-<project ID>.<region>.platformsh.site/
       [1] https://www.<branch name>-<hash of branch name>-<project ID>.<region>.platformsh.site/
@@ -55,4 +55,4 @@ Platform.sh supports the deployment of isolated development environments from yo
 
     The above URLs represent the upstream (0) and redirect (1) routes for the most common `routes.yaml` configuration.
 
-{{< navbuttons next="I have created a development environment">}}
+{{< guide-buttons next="I've created a development environment" >}}

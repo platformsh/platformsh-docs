@@ -16,15 +16,15 @@ Templates are great, but configuring your own application to run on Platform.sh 
 
 Once an application has been migrated to Platform.sh, there's plenty more features that will help improve your development life cycle.
 
-{{< descbutton link="/gettingstarted/developing/local-development/" title="Local development" desc="Remotely connect to services and build your application locally during development.">}}
+{{< descbutton link="/gettingstarted/developing/local-development.html" title="Local development" desc="Remotely connect to services and build your application locally during development.">}}
 
-{{< descbutton link="/gettingstarted/developing/dev-environments/" title="Development environments" desc="Activate development branches and test new features before merging into production.">}}
+{{< descbutton link="/gettingstarted/developing/dev-environments.html" title="Development environments" desc="Activate development branches and test new features before merging into production.">}}
 
 ## Additional Resources
 
-{{< descbutton link="/gettingstarted/next-steps/integrations/" title="External Integrations" desc="Configure Platform.sh to mirror every push and pull request on GitHub, Gitlab, and Bitbucket.">}}
+{{< descbutton link="/gettingstarted/next-steps/integrations.html" title="External Integrations" desc="Configure Platform.sh to mirror every push and pull request on GitHub, Gitlab, and Bitbucket.">}}
 
-{{< descbutton link="/gettingstarted/next-steps/going-live" title="Going Live" desc="Set up your site for production, configure domains, and go live!">}}
+{{< descbutton link="/gettingstarted/next-steps/going-live.html" title="Going Live" desc="Set up your site for production, configure domains, and go live!">}}
 
 {{< descbutton link="https://community.platform.sh/" title="Platform.sh Community Portal" desc="Check out how-tos, tutorials, and get help for your questions about Platform.sh.">}}
 

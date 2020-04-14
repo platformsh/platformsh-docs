@@ -1,13 +1,12 @@
 ---
 title: "Connect to services"
 weight: 2
+toc: false
 ---
 
-# Local development
-
-## Connect to services
-
-> **Note:** If your application does not contain any services, you do not need to open a tunnel and can proceed to the next step.
+{{< note >}}
+If your application does not contain any services, you do not need to open a tunnel and can proceed to the next step.
+{{< /note >}}
 
 Now that you have a local copy of your application code, you can make changes to the project without pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
 
@@ -59,4 +58,4 @@ Now that you have a local copy of your application code, you can make changes to
 
 Now that you have created an SSH tunnel to your services, build your application locally.
 
-{{< navbuttons next="I have opened an SSH tunnel into my services">}}
+{{< guide-buttons next="I've opened an SSH tunnel into my services" >}}

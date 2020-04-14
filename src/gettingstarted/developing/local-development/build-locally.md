@@ -1,11 +1,9 @@
 ---
 title: "Build site locally"
 weight: 3
+toc: false
 ---
 
-# Local development
-
-## Build site locally
 
 Now that you've opened tunnels into your services, you'll have access to all of your data in your environment. All that's left now is to actually build the site.
 
@@ -25,29 +23,39 @@ Now that you've opened tunnels into your services, you'll have access to all of 
 
     Move to the build destination (i.e. `cd _www`) and then run a local web server to verify the build.
 
-    {{< tabs "PHP" "Python" "Ruby" >}}
+{{< tabtest >}}
+---
+title=PHP
+file=none
+highlight=bash
+markdownify=false
+---
 
-    {{< tab id="PHP" active="true" >}}
-    {{< highlight bash >}}
 php -d variables_order=EGPCS -S localhost:8001
-    {{< /highlight >}}
-    {{< /tab >}}
 
-    {{< tab id="Python" >}}
-    {{< highlight bash >}}
+<--->
+---
+title=Python
+file=none
+highlight=bash
+markdownify=false
+---
+
 python3 -m http.server 8000
-    {{< /highlight >}}
-    {{< /tab >}}
 
-    {{< tab id="Ruby" >}}
-    {{< highlight bash >}}
+<--->
+---
+title=Ruby
+file=none
+highlight=bash
+markdownify=false
+---
+
 ruby -run -e httpd . -p 8000
-    {{< /highlight >}}
-    {{< /tab >}}
+{{< /tabtest >}}
 
-    {{< /tabs >}}
 
-    Applications written in Node.js, Go and Java can be configured to listen on a port locally, so it will only be necessary to execute the program directly.
+  Applications written in Node.js, Go and Java can be configured to listen on a port locally, so it will only be necessary to execute the program directly.
 
 3. **Cleanup**
 
@@ -59,4 +67,4 @@ ruby -run -e httpd . -p 8000
 
 Now you know how to connect to your services on Platform.sh and perform a local build during development.
 
-{{< navbuttons next="I have built my application locally">}}
+{{< guide-buttons next="I've built my application locally" >}}

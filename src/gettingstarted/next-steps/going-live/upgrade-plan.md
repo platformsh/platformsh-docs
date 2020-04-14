@@ -1,11 +1,8 @@
 ---
 title: "Upgrade plan"
 weight: 2
+toc: false
 ---
-
-# Going live
-
-## Upgrade Plan
 
 "Development" plan projects cannot be assigned a domain name, so you will not be able to go live until you upgrade to at least a Standard plan. This can be done using the management console.
 
@@ -19,4 +16,4 @@ On your project, click the "Go live" button in the top right hand corner of your
 
 Select the plan size that is appropriate for the needs of your application. This is also the page where you can increase the number of development environments, and the amount of storage. Make your changes and then click "Update plan" at the bottom of the page. Your application will redeploy.
 
-{{< navbuttons next="I have upgraded my plan size">}}
+{{< guide-buttons next="I've upgraded my plan size">}}

@@ -1,9 +1,9 @@
 ---
 title: "Local development"
 weight: 1
+layout: single
+toc: false
 ---
-
-# Local development
 
 Now that you have a project on Platform.sh, it would be helpful to run the same build process on your local machine so that you can develop and test new features before pushing them. This guide will take you through the steps of connecting remotely to your services and building your application locally.
 
@@ -14,4 +14,4 @@ These steps assume that you have already:
 
 If you have not completed these steps by now, click the links and do so before you begin.
 
-{{< navbuttons next="Get started!" type="first">}}
+{{< guide-buttons next="Get started!" type="first" >}}

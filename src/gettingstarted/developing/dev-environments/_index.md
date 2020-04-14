@@ -1,9 +1,9 @@
 ---
 title: "Development environments"
 weight: 2
+layout: single
+toc: false
 ---
-
-# Development environments
 
 While you're developing your application, you will at some point create some new features for it. Typically you're going to develop that feature on a separate branch in your Git repository, run some tests, and then merge that feature into your production application.
 
@@ -18,4 +18,4 @@ This guide assumes that you have already:
 
 If you have not completed these steps by now, click the links and do so before you begin.
 
-{{< navbuttons next="Get started!" type="first">}}
+{{< guide-buttons next="Get started!" type="first" >}}

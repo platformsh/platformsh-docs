@@ -102,25 +102,67 @@ pip install platformshconfig
 
 and access the credentials of `database`
 
-{% codetabs name="PHP", type="php" -%}
+{{< tabtest >}}
+---
+title=PHP
+file=none
+highlight=php
+markdownify=false
+---
+<?php
+
 use Platformsh\ConfigReader\Config;
 
 $config = new Config();
 $credentials = $config->credentials('database');
-{%- language name="Python", type="py" -%}
+
+<--->
+---
+title=Python
+file=none
+highlight=python
+markdownify=false
+---
+
 from platformshconfig import Config
 
 config = Config()
 credentials = config.credentials('database')
-{%- language name="Node.js", type="js" -%}
+
+<--->
+
+---
+title=Node.js
+file=none
+highlight=js
+markdownify=false
+---
+
 const config = require("platformsh-config").config();
 const credentials = config.credentials('database');
-{%- language name="Java", type="java" -%}
+
+<--->
+
+---
+title=Java
+file=none
+highlight=java
+markdownify=false
+---
 import Config;
 
 Config config = new Config();
 Credential cred = config.getCredential('database')
-{%- language name="Go", type="go" -%}
+
+<--->
+
+---
+title=Go
+file=none
+highlight=golang
+markdownify=false
+---
+
 import psh "github.com/platformsh/config-reader-go/v2"
 
 config, err := psh.NewRuntimeConfig()
@@ -128,22 +170,13 @@ config, err := psh.NewRuntimeConfig()
 
 credentials, err := config.Credentials("database")
 // Handle err
-{%- endcodetabs %}
+
+{{< /tabtest >}}
+
+
 
 or read and decode the environment variable directly.
 
-{% codetabs name="PHP", type="php" -%}
-$relationships = json_decode(base64_decode(getenv('PLATFORM_RELATIONSHIPS')), TRUE);
-$credentials = $relationships['database'];
-{%- language name="Python", type="py" -%}
-import os, json, base64
-
-relationships = json.loads(base64.b64decode(os.environ["PLATFORM_RELATIONSHIPS"]))
-credentials = relationships['database']
-{%- language name="Node.js", type="js" -%}
-relationships = JSON.parse(new Buffer(process.env['PLATFORM_RELATIONSHIPS'], 'base64').toString());
-credentials = relationships['database'];
-{%- endcodetabs %}
 
 {{< tabtest >}}
 
@@ -222,4 +255,4 @@ You can also find examples of how to connect to each of Platform.sh managed serv
 
 Project configured, services connected - time to commit the changes and push your repository onto your project.
 
-{{< navbuttons next="I have connected to my services">}}
+{{< guide-buttons next="I've connected to my services" >}}

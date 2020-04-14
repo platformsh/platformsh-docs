@@ -1,11 +1,8 @@
 ---
 title: "Configure DNS"
 weight: 3
+toc: false
 ---
-
-# Going live
-
-## Configure your DNS provider
 
 The next step is to configure your DNS provider to point to the domain of your `master` environment on Platform.sh.
 
@@ -26,4 +23,4 @@ You can find out more information about using an apex domain and CNAME records i
 Depending on your registrar and the TTL you set for the domain, it may take up to 72 hours for the DNS change to fully propagate across the Internet.
 
 
-{{< navbuttons next="I have configured my DNS provider">}}
+{{< guide-buttons next="I have configured my DNS provider">}}

@@ -35,9 +35,9 @@ With all of the requirements met, install the CLI to start developing with Platf
    platform
    ```
 
-   > **note**
-   >
-   > If you opened your free trial account using another login (i.e. GitHub), you will not be able to authenticate with this command until you setup your account password with Platform.sh in the console.
+   {{< note >}}
+   If you opened your free trial account using another login (i.e. GitHub), you will not be able to authenticate with this command until you setup your account password with Platform.sh in the console.
+   {{< /note >}}
 
    You should now be able to see a list of your Platform.sh projects, including the template you made in this guide. You can copy its *project ID* hash, and then download a local copy of the repository with the command
 

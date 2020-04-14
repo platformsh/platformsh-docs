@@ -1,11 +1,8 @@
 ---
 title: "Troubleshooting"
 weight: 5
+toc: false
 ---
-
-# Going live
-
-## Done!
 
 Now your application has been taken live!
 
@@ -25,4 +22,4 @@ Consider using Cloudflare's TLS/SSL service to secure your site via HTTPS when u
 
 * [Going Live: Cloudflare](/golive/steps/cloudflare.md)
 
-{{< navbuttons type="last">}}
+{{< guide-buttons type="last">}}

@@ -1,11 +1,8 @@
 ---
 title: "Set your domain"
 weight: 4
+toc: false
 ---
-
-# Going live
-
-## Configure Domain
 
 You will need to configure your registered domain on your Platform.sh project before going live, and you can do that either through the management console or by using the CLI.
 
@@ -29,4 +26,4 @@ platform domain:add example.com --project <project ID>
 
 The CLI will validate your registered domain and provision Let's Encrypt certificates for it.
 
-{{< navbuttons next="I have configured my registered domain">}}
+{{< guide-buttons next="I have configured my registered domain">}}

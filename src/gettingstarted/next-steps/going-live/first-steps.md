@@ -1,11 +1,8 @@
 ---
 title: "First steps"
 weight: 1
+toc: false
 ---
-
-# Going live
-
-## Preliminary Steps
 
 Before you take your site live, there are a few steps that will help you prepare the project.
 
@@ -27,4 +24,4 @@ Before you take your site live, there are a few steps that will help you prepare
 
 After you have gone through the following checklist your application is ready to be taken live!
 
-{{< navbuttons next="I'm ready to go live">}}
+{{< guide-buttons next="I'm ready to go live">}}

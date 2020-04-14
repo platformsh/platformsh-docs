@@ -24,9 +24,9 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
    Select a template and click `Next`.
 
-   > **note**
-   >
-   > You can find the source code for all Platform.sh templates in the [GitHub Templates Organization](https://github.com/platformsh-templates).
+   {{< note >}}
+   You can find the source code for all Platform.sh templates in the [GitHub Templates Organization](https://github.com/platformsh-templates).
+   {{< /note >}}
 
 3. **Plan size**
 
