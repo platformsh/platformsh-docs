@@ -16,7 +16,7 @@ $ mkdir .platform
 $ touch .platform/routes.yaml
 ```
 
-![Routes](/images/config_diagrams/routes.svg)
+![Routes](/images/config-diagrams/routes-basic.png)
 
 ## Route templates
 
@@ -40,7 +40,7 @@ Each route can be configured separately. It has the following properties
 * `ssi` controls whether Server Side Includes are enabled. For more information: see [SSI](/configuration/routes/ssi.html).
 * `redirects` controls [redirect rules](/configuration/routes/redirects.html) associated with the route.
 
-![Routes files](/images/config_diagrams/routes2.svg)
+![Routes files](/images/config-diagrams/routes-configs.png)
 
 > **note**
 > For the moment, the value of upstream is always in the form: `<application-name>:http`.  `<application-name>` is the `name` defined in `.platform.app.yaml` file.  `:php` is a deprecated application endpoint; use `:http` instead.  In the future, Platform.sh will support multiple endpoints per application.
@@ -121,7 +121,7 @@ Please note that when there are two routes sharing the same HTTP scheme, domain,
 
 All routes defined for an environment are available to the application in its `PLATFORM_ROUTES` environment variable, which contains a base64-encoded JSON object. This object can be parsed by the language of your choice to give your application access to the generated routes.
 
-When routes are generated, all placeholders will be replaced with appropriate domains names, and depending on your configuration, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects). To make it easier to locate routes in a standardized fashion, you may specify an `id` key on each route which remains stable across environments. You may also specify a single route as `primary`, which will cause it to be highlighted in the web interface but will have no impact on the runtime environment.
+When routes are generated, all placeholders will be replaced with appropriate domains names, and depending on your configuration, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects). To make it easier to locate routes in a standardized fashion, you may specify an `id` key on each route which remains stable across environments. You may also specify a single route as `primary`, which will cause it to be highlighted in the web management console but will have no impact on the runtime environment.
 
 Consider this `routes.yaml` configuration example:
 
@@ -196,15 +196,50 @@ function get_domain_for(string $id) {
 
 That can be used, for example, for inbound request whitelisting, a feature of many PHP frameworks.
 
-## Configuring routes on the Web Interface
+## Route attributes
 
-Routes can also be configured using the web interface in the [routes section](/administration/web/configure-environment.html#routes) of the environment settings. If you have edited the routes via the web interface, you will have to `git pull` the updated `.platform/routes.yaml` file from us.
+Route attributes are an arbitrary key/value pair attached to a route.  This metadata does not have any impact on Platform.sh, but will be available in the route definition structure in `$PLATFORM_ROUTES`.
+
+```
+"http://{default}/":
+    type: upstream
+    upstream: "app:http"
+    attributes:
+        "foo": "bar"
+```
+
+Attributes will appear in the routes data for PHP like so:
+
+```text
+[https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
+    (
+        [primary] => 1
+        [id] =>
+        [type] => upstream
+        [upstream] => site1
+        [original_url] => https://site1.{default}/
+        [attributes] => Array
+            (
+                [foo] => bar
+            )
+        // ...
+    )
+```
+
+These extra attributes may be used to "tag" routes in more complex scenarios that can then be read by your application.
+
+## Configuring routes on the management console
+
+Routes can also be configured using the management console in the [routes section](/administration/web/configure-environment.html#routes) of the environment settings. If you have edited the routes via the management console, you will have to `git pull` the updated `.platform/routes.yaml` file from us.
 
 ## CLI Access
 
 You can get a list of the configured routes of an environment by running `platform environment:routes`.
 
-![Platform Routes CLI](/images/platform-routes-cli.png)
+![Platform Routes CLI](/images/cli/platform-routes-cli.png)
+
+If you need to see more detailed info, such as cache and ssi, use `platform route:get`
+
 
 ## Wildcard routes
 
@@ -216,7 +251,7 @@ For development environments, we will also be able to handle this. Here is how:
 
 Let's say we have a project on the EU cluster whose ID is "vmwklxcpbi6zq" and we created a branch called "add-theme". It's environment name will be similar to `add-theme-def123`.  The generated apex domain of this environment will be `add-theme-def123-vmwklxcpbi6zq.eu.platform.sh`. If we have a `http://*.{default}/` route defined, the generated route will be `http://*.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/`. This means you could put any subdomain before the left-most `.` to reach your application. HTTP request to both `http://foo.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` and `http://bar.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` URLs will be routed to your application properly. However, request to `http://*.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` will not be routed since it is not a legitimate domain name.
 
-Be aware, however, that Let's Encrypt does not support wildcard certificates.  That means if you want to use a wildcard route and protect it with HTTPS you will need to provide a [custom TLS certificate](/golive/steps/tls.md).
+Be aware, however, that we do not support Let's Encrypt wildcard certificates (they would need DNS validation).  That means if you want to use a wildcard route and protect it with HTTPS you will need to provide a [custom TLS certificate](/golive/steps/tls.md).
 
 > **note**
 > In projects created before November 2017 the `.` in subdomains was replaced with a triple dash (`---`).  It was switched to preserve `.` to simplify SSL handling and improve support for longer domains.  If your project was created before November 2017 then it will still use `---` to the left of the environment name.  If you wish to switch to dotted-domains please file a support ticket and we can do that for you.  Be aware that doing so may change the domain name that your production domain name should CNAME to.

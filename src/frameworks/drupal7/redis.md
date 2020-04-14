@@ -1,11 +1,7 @@
 # Using Redis with Drupal 7.x
 
-There are two options for using Redis with Drupal on Platform.sh, you
-can either use the [PhpRedis](https://github.com/nicolasff/phpredis)
-extension or the [Predis](http://github.com/nrk/predis) library.  PhpRedis
-requires a PHP extension (which we provide) and should therefore be faster in
-most situations. Predis is written entirely in PHP and so would require no PHP
-extension to install locally, but at the cost of some performance.
+There are two options for using Redis with Drupal on Platform.sh, you can either use the [PhpRedis](https://github.com/nicolasff/phpredis)
+extension or the [Predis](http://github.com/nrk/predis) library.  PhpRedis requires a PHP extension and should therefore be faster in most situations. Predis is written entirely in PHP and so would require no PHP extension to install locally, but at the cost of some performance.
 
 If you are unsure which to use, we recommend using PhpRedis.
 
@@ -18,7 +14,7 @@ add or uncomment the following:
 
 ```yaml
 rediscache:
-    type: redis:3.0
+    type: redis:5.0
 ```
 
 That will create a service named `rediscache`, of type `redis`, specifically version `3.0`.
@@ -36,14 +32,7 @@ The key (left side) is the name that will be exposed to the application in the P
 
 ### Add the Redis PHP extension
 
-If you're using the PhpRedis option you will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
-
-```yaml
-# Additional extensions
-runtime:
-    extensions:
-        - redis
-```
+Because the Redis extension for PHP has been known to have BC breaks at times, we do not bundle a specific verison by default.  Instead, we provide a script to allow you to build your desired version in the build hook.  See the [PHP-Redis page](/languages/php/redis.md) for a simple-to-install script and instructions.
 
 (Skip this part if using Predis.)
 
@@ -68,7 +57,7 @@ libraries[predis][destination] = libraries
 
 ## Configuration
 
-To make use of the Redis cache you will need to set some Drupal variables. You can either do this in your `settings.php` file or by setting Platform Variables directly via the UI.  In general, using the `settings.php` file is easier.
+To make use of the Redis cache you will need to set some Drupal variables. You can either do this in your `settings.php` file or by setting Platform Variables directly via the management console.  In general, using the `settings.php` file is easier.
 
 ### Via settings.php
 
@@ -95,9 +84,9 @@ If using Predis, change the `PhpRedis` reference to `Predis` (case-sensitive).
 If your redis module is not installed in `sites/all/modules/contrib`, modify the
 `cache_backends` line accordingly.
 
-### Via the Web Interface
+### Via the management console
 
-Alternatively, add the following environment variables using the Platform.sh Web Interface.
+Alternatively, add the following environment variables using the Platform.sh management console.
 Note, if you set a directory in the make file you will need to alter the variables to match.
 
 `drupal:cache_backends`
@@ -154,6 +143,7 @@ Predis
 ```
 
 ### Verifying Redis is running
+
 Run this command in a SSH session in your environment `redis-cli -h redis.internal info`. You should run it before you push all this new code to your repository.
 
 This should give you a baseline of activity on your Redis installation. There should be very little memory allocated to the Redis cache.

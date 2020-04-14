@@ -24,11 +24,9 @@ workers:
 
 That defines a single worker named `queue`, which will be a "small" container, and wil run the command `php worker.php` on startup.  If `worker.php` ever exits it will be automatically restarted.
 
-Any number of workers may be defined with their own distinct name, subject to available resources on your plan.
+Any number of workers may be defined with their own distinct name, subject to available resources on your plan. For resource allocation reasons, using workers in your project requires a Medium plan or larger. 
 
 ## Accessing the Worker Container
-
-Like with any other application container Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
 
 Like with any other application container Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
 
@@ -46,13 +44,13 @@ platform ssh --worker=queue --pipe
 
 You will see the url is the name of the worker added to the user name after the application name part of the SSH url preceded by a double dash (`--`).
 
-For example given a project with id `3seb7f2j6ogbm` you would connect to its master environment for an app called `app` with a url such as: 
+For example given a project with id `3seb7f2j6ogbm` you would connect to its master environment for an app called `app` with a url such as:
 
 ```
 ssh 3seb7f2j6ogbm-master-7rqtwti--app@ssh.us-2.platform.sh
 ```
 
-To connect to a worker called `queue` (as in the example above) you would use an ssh url that would look as follows:
+To connect to a worker called `queue` (as in the example above) you would use an SSH url that would look as follows:
 
 ```
 ssh 3seb7f2j6ogbm-master-7rqtwti--app--queue@ssh.us-2.platform.sh
@@ -75,13 +73,15 @@ A dedicated worker instance is a better fit if:
 * Tasks are large enough that they risk blocking a deploy, even if they are subdivided.
 * The task in question is a continually running process rather than a stream of discrete units of work.
 
-The appropriateness of one approach over the other also varys by language; single-threaded languages would benefit more from either cron or workers than a language with native multi-threading, for instance.  If a given task seems like it would run equally well as a worker or as a cron, cron will generally be more efficient as it does not require its own container.
+The appropriateness of one approach over the other also varies by language; single-threaded languages would benefit more from either cron or workers than a language with native multi-threading, for instance.  If a given task seems like it would run equally well as a worker or as a cron, cron will generally be more efficient as it does not require its own container.
 
 ## Commands
 
 The `commands` key defines the command to launch the worker application.  For now there is only a single command, `start`, but more will be added in the future.  The `commands.start` property is required.
 
 The `start` key specifies the command to use to launch your worker application.  It may be any valid shell command, although most often it will run a command in your application in the language of your application.  If the command specified by the `start` key terminates it will be restarted automatically.
+
+Note that [`deploy` and `post_deploy` hooks](/configuration/app/build.md), as well as [`cron` commands](/configuration/app/cron.md), will run only on the [`web`](/configuration/app/web.md) container, not on workers.
 
 ## Inheritance
 
@@ -208,7 +208,7 @@ workers:
                 source_path: scratch
 
 
-        
+
     mail:
         size: 'S'
         commands:
@@ -227,7 +227,7 @@ There's a lot going on here, but it's all reasonably straightforward.  This conf
 
 The `web` instance will start a gunicorn process to serve a web application.  
 
-* It will run the gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application`definition. 
+* It will run the gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application` definition.
 * It will have an environment variable named `TYPE` with value `web`.
 * It will have a writable mount at `/app/uploads` with a maximum space of 2048 MB.
 * It will have access to both a MySQL database and a RabbitMQ server, both of which are defined in `services.yaml`.

@@ -2,11 +2,7 @@
 
 One of the ways Platform.sh keeps things secure is by using SSH behind the scenes. Users can interact with their environment through a command shell, or push changes to the environment's Git repository, and both of these features rely on SSH.
 
-When you create a new project, the wizard will propose that you add your ssh key.
-
-![Setting Up Your Project Add SSH Key Done](/images/03-setting-up-your-project-add-ssh-key-done.png)
-
-You can also manage SSH keys through the CLI (see below), or through the settings screen on your account page.
+You can manage SSH keys through the CLI (see below), or through the SSH keys tab under Account Settings.
 
 ## Find your Public-Private Keypair
 
@@ -14,7 +10,7 @@ If you use Linux, you probably already have keys. The private key is usually in 
 
 Searching for a public key file:
 1. Open up a command prompt.
-2. run the following commands:
+2. Run the following commands:
 
 ```bash
 $ cd ~/.ssh
@@ -25,7 +21,7 @@ known_hosts
 authorized_keys
 ```
 
-If you find a file named either `id_rsa.pub` or `id_dsa.pub`, you can use it with Platform.sh. If you don't find an existing key, see the steps to create a new one in the [next section](#create-a-new-public-private-keypair).
+If you find a file named `id_rsa.pub`, you can use it with Platform.sh. If you don't find an existing key, see the steps to create a new one in the [next section](#create-a-new-public-private-keypair).
 
 ## Create a New Public-Private Keypair
 
@@ -65,28 +61,39 @@ The key fingerprint is:
 You have your SSH keys (if not, take a look at the section above), but you need to make sure Platform has a copy of your public key. It's pretty easy to add it to your account.
 
 1.  First off, you'll need to copy your public key to the clipboard.
-2.  Head over to your user account page on [the Platform.sh Accounts page](https://accounts.platform.sh/user) and navigate to the `SSH Keys` tab.
-3.  Click on the `Add a public key` link.
-4.  Paste the key that you copied earlier into the 'Key' text box. You can also add a title if you like, otherwise it will be auto-generated.
-5.  Click 'Save'.
+2.  Head over to your user account page on [the Platform.sh Accounts page](https://accounts.platform.sh/user) and navigate to the `Account Settings` tab.
+3. In the left side-bar, select `SSH keys`.
+4. Click the `Add a public key` button.
+5.  Paste the key that you copied earlier into the 'Key' text box. You can also add a title if you like, otherwise it will be auto-generated.
+6.  Click 'Save'.
+
+<video controls>
+  <source src="/videos/management-console/add-ssh-mc.mp4" type="video/mp4">
+</video>
 
 That's it! You're all set. Now you'll be able to use Git and command shells with any Platform.sh environment that your user account is authorized to work with.
 
-![Edit Account Ssh](/images/edit-account-ssh.png)
+### Forwarding keys by default
+
+It may be helpful to set your SSH client to always forward keys to Platform.sh servers, which can simplify other SSH or Rsync commands.  To do so, include a block in your local `~/.ssh/config` file like so:
+
+```
+Host *.us.platform.sh
+       ForwardAgent yes
+
+Host *.eu.platform.sh
+       ForwardAgent yes
+```
+
+Include one `Host` entry for each Platform.sh region you want to connect to, such as `us-2` or `eu-4`.  (You can include other configuration as desired.)
 
 ## SSH to your Web Server
 
-In the Web Interface, just under the environment name, there is a link you can hover over to copy the SSH URL of that environment:
+In the management console header, click on the environment tab and select the environment that you want to SSH into. Then click the `SSH` dropdown button towards the top right.
 
-![Image of an environment's access information in the web interface](/images/ssh-access-information.png "The SSH URL is formatted as follows: `<project-id>-<environment-id>@ssh.<region>.platform.sh`")
+![SSH header pulldown](/images/management-console/header-ssh.png)
 
-1.  Open your Platform.sh Web Interface
-2.  Hover over the `Access info` link
-3.  Click to copy the SSH URL
-4.  Open a terminal
-5.  Paste the link into your terminal
-
-You should see something like this:
+Copy the SSH URL of that environment and past the link into your terminal. You should see something like this:
 
 ```bash
 $ ssh wk5fqz6qoo123-master@ssh.eu.platform.sh
@@ -119,6 +126,7 @@ Don't panic! It's an issue which can happen for the following reasons:
 * You haven't redeployed (i.e. `git push`) your environment since adding the new public key
 * You didn't upload your public key to your user profile
 * Your SSH private key has not been added into your ssh-agent
+* Your SSH key files have incorrect permissions
 
 ### Check your public key
 
@@ -144,16 +152,25 @@ $ ssh-add path-to-your-key
 
 4.  Try again.
 
+### Specify your identity file
+
+If your identity (SSH key) associated with Platform.sh is not in a default file name (as may be explained in your SSH software manual, for example) you may have to append a specification like the one below so that the SSH software finds the correct key.
+
+    Host platform.sh
+    IdentityFile ~/.ssh/id_platformsh
+
+Be aware that, above, `platform.sh` stands for a hostname. Each different hostname you connect to Platform.sh at may have to be specified in the host line, separated by spaces.
+
 ### Still having trouble?
 
-If you followed all the steps above, you may also notice an error message similar to below while attempting to ssh to platform.sh:
+If you followed all the steps above, you may also notice an error message similar to below while attempting to SSH to platform.sh:
 
 ```text
 Hello Your Name, you successfully connected, but you do not have access to service 'xxxxxxxxxxxxxx-master': check permissions.
 Received disconnect from 54.210.49.244: 14: No more auth methods available
 ```
 
-This usually means a deployment has not been committed yet. When a new key is added, it only becomes immediately active for use with Git. For use with ssh, it will not be activated until a deployment is made. An easy way to force this is to create and push an empty commit:
+This usually means a deployment has not been committed yet. When a new key is added, it only becomes immediately active for use with Git. For use with SSH, it will not be activated until a deployment is made. An easy way to force this is to create and push an empty commit:
 
 ```bash
 $ git commit --allow-empty -m 'force redeploy'
@@ -177,6 +194,12 @@ debug1: Offering RSA public key: /Users/nick/.ssh/id_rsa
 debug1: Authentications that can continue: publickey
 debug1: No more authentication methods to try.
 Permission denied (publickey).
+```
+
+or
+
+```bash
+$ GIT_SSH_COMMAND="git -v" git clone [REPO-URL]
 ```
 
 You can use this information to make one last check of the private key file.

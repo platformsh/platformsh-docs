@@ -1,6 +1,8 @@
 # Using Redis with Drupal 8.x
 
-The Drupal 8 Redis module currently only supports the [PhpRedis](https://github.com/nicolasff/phpredis) option, which relies on a PHP extension. Fortunately, that extension is trivial to enable on Platform.sh.
+If you are using the Platform.sh-provided Drupal 8 template, most of this work is already done for you.  All you need to do is uncomment a the Redis relationship in `.platform.app.yaml` after your site is installed and Redis-based caching should "just work".
+
+If you are working from an older repository or migrating a pre-built site to Platform.sh, see the instructions below.
 
 ## Requirements
 
@@ -10,10 +12,10 @@ First you need to create a Redis service.  In your `.platform/services.yaml` fil
 
 ```yaml
 rediscache:
-    type: redis:3.2
+    type: redis:5.0
 ```
 
-That will create a service named `rediscache`, of type `redis`, specifically version `3.2`.
+That will create a service named `rediscache`, of type `redis`, specifically version `5.0`.
 
 ### Expose the Redis service to your application
 
@@ -28,14 +30,7 @@ The key (left side) is the name that will be exposed to the application in the `
 
 ### Add the Redis PHP extension
 
-You will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
-
-```yaml
-# Additional extensions
-runtime:
-    extensions:
-        - redis
-```
+Because the Redis extension for PHP has been known to have BC breaks at times, we do not bundle a specific verison by default.  Instead, we provide a script to allow you to build your desired version in the build hook.  See the [PHP-Redis page](/languages/php/redis.md) for a simple-to-install script and instructions.
 
 ### Add the Drupal module
 
@@ -57,74 +52,85 @@ Place the following at the end of `settings.platformsh.php`. Note the inline com
 
 The example below is intended as a "most common case".  (Note: This example assumes Drupal 8.2 or later.)
 
+> **note**
+>
+> If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+>
+> ```php
+> $platformsh = new \Platformsh\ConfigReader\Config();
+> if (!$platformsh->inRuntime()) {
+>   return;
+> }
+> ```
+
 ```php
 // Set redis configuration.
-if (!empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
-  $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
+if ($platformsh->hasRelationship('redis') && !drupal_installation_attempted() && extension_loaded('redis')) {
+  $redis = $platformsh->credentials('redis');
 
-  if (!empty($relationships['redis'][0]) && !drupal_installation_attempted() && extension_loaded('redis')) {
-    $redis = $relationships['redis'][0];
+  // Set Redis as the default backend for any cache bin not otherwise specified.
+  $settings['cache']['default'] = 'cache.backend.redis';
+  $settings['redis.connection']['host'] = $redis['host'];
+  $settings['redis.connection']['port'] = $redis['port'];
 
-    // Set Redis as the default backend for any cache bin not otherwise specified.
-    $settings['cache']['default'] = 'cache.backend.redis';
-    $settings['redis.connection']['host'] = $redis['host'];
-    $settings['redis.connection']['port'] = $redis['port'];
+  // Apply changes to the container configuration to better leverage Redis.
+  // This includes using Redis for the lock and flood control systems, as well
+  // as the cache tag checksum. Alternatively, copy the contents of that file
+  // to your project-specific services.yml file, modify as appropriate, and
+  // remove this line.
+  $settings['container_yamls'][] = 'modules/contrib/redis/example.services.yml';
 
-    // Apply changes to the container configuration to better leverage Redis.
-    // This includes using Redis for the lock and flood control systems, as well
-    // as the cache tag checksum. Alternatively, copy the contents of that file
-    // to your project-specific services.yml file, modify as appropriate, and
-    // remove this line.
-    $settings['container_yamls'][] = 'modules/contrib/redis/example.services.yml';
+  // Allow the services to work before the Redis module itself is enabled.
+  $settings['container_yamls'][] = 'modules/contrib/redis/redis.services.yml';
 
-    // Allow the services to work before the Redis module itself is enabled.
-    $settings['container_yamls'][] = 'modules/contrib/redis/redis.services.yml';
+  // Manually add the classloader path, this is required for the container cache bin definition below
+  // and allows to use it without the redis module being enabled.
+  $class_loader->addPsr4('Drupal\\redis\\', 'modules/contrib/redis/src');
 
-    // Manually add the classloader path, this is required for the container cache bin definition below
-    // and allows to use it without the redis module being enabled.
-    $class_loader->addPsr4('Drupal\\redis\\', 'modules/contrib/redis/src');
-
-    // Use redis for container cache.
-    // The container cache is used to load the container definition itself, and
-    // thus any configuration stored in the container itself is not available
-    // yet. These lines force the container cache to use Redis rather than the
-    // default SQL cache.
-    $settings['bootstrap_container_definition'] = [
-      'parameters' => [],
-      'services' => [
-        'redis.factory' => [
-          'class' => 'Drupal\redis\ClientFactory',
-        ],
-        'cache.backend.redis' => [
-          'class' => 'Drupal\redis\Cache\CacheBackendFactory',
-          'arguments' => ['@redis.factory', '@cache_tags_provider.container', '@serialization.phpserialize'],
-        ],
-        'cache.container' => [
-          'class' => '\Drupal\redis\Cache\PhpRedis',
-          'factory' => ['@cache.backend.redis', 'get'],
-          'arguments' => ['container'],
-        ],
-        'cache_tags_provider.container' => [
-          'class' => 'Drupal\redis\Cache\RedisCacheTagsChecksum',
-          'arguments' => ['@redis.factory'],
-        ],
-        'serialization.phpserialize' => [
-          'class' => 'Drupal\Component\Serialization\PhpSerialize',
-        ],
+  // Use redis for container cache.
+  // The container cache is used to load the container definition itself, and
+  // thus any configuration stored in the container itself is not available
+  // yet. These lines force the container cache to use Redis rather than the
+  // default SQL cache.
+  $settings['bootstrap_container_definition'] = [
+    'parameters' => [],
+    'services' => [
+      'redis.factory' => [
+        'class' => 'Drupal\redis\ClientFactory',
       ],
-    ];
-  }
+      'cache.backend.redis' => [
+        'class' => 'Drupal\redis\Cache\CacheBackendFactory',
+        'arguments' => ['@redis.factory', '@cache_tags_provider.container', '@serialization.phpserialize'],
+      ],
+      'cache.container' => [
+        'class' => '\Drupal\redis\Cache\PhpRedis',
+        'factory' => ['@cache.backend.redis', 'get'],
+        'arguments' => ['container'],
+      ],
+      'cache_tags_provider.container' => [
+        'class' => 'Drupal\redis\Cache\RedisCacheTagsChecksum',
+        'arguments' => ['@redis.factory'],
+      ],
+      'serialization.phpserialize' => [
+        'class' => 'Drupal\Component\Serialization\PhpSerialize',
+      ],
+    ],
+  ];
 }
 ```
 
-The `example.services.yml` file noted above will also use Redis for the lock and flood
-control systems.
+The `example.services.yml` file noted above will also use Redis for the lock and flood control systems.
 
 The redis module is able to use Redis as a queue backend, however, that should not be done on an ephemeral Redis instance as that could result in lost items when the Redis service instance is restarted or fills up.  If you wish to use Redis for the queue we recommend using a separate persistent Redis instance.  See the [Redis documentation page](/configuration/services/redis.md) for more information.
 
 ### Verifying Redis is running
+
 Run this command in a SSH session in your environment `redis-cli -h redis.internal info`. You should run it before you push all this new code to your repository.
 
 This should give you a baseline of activity on your Redis installation. There should be very little memory allocated to the Redis cache.
 
 After you push this code, you should run the command and notice that allocated memory will start jumping.
+
+### Clear SQL cache tables
+
+Once you've confirmed that your site is using Redis for caching, you can and should purge any remaining cache data in the MySQL database as it is now just taking up space.  `TRUNCATE` any table that begins with `cache` *except* for `cache_form`.  Despite its name `cache_form` is not part of the cache system proper and thus should not be moved out of SQL.

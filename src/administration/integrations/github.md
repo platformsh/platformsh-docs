@@ -32,10 +32,10 @@ Note that only the project owner can manage integrations.
 Open a terminal window (you need to have the Platform.sh CLI installed). Enable the GitHub integration as follows:
 
 ```bash
-platform integration:add --type=github --project=PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
+platform integration:add --type=github --project=PLATFORMSH_PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 ```
 where
-* `PROJECT_ID` is the project ID for your Platform.sh project
+* `PLATFORMSH_PROJECT_ID` is the project ID for your Platform.sh project
 * `GITHUB-USER-TOKEN` is the token you generated in step 1
 * `USER` is your github user name
 * `REPOSITORY` is the name of the repository in github (not the git address)
@@ -69,6 +69,14 @@ If you see the message `Failed to read or write webhooks`, you will need to add 
 You can now start pushing code, creating new branches or opening pull requests directly on your GitHub repository.
 
 Note that if you have created your account using the GitHub oAuth Login then in order to use the Platform CLI, you will need to [setup a password](https://accounts.platform.sh/user/password).
+
+### 4. Validate the integration
+
+You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
+
+```
+$ platform integration:validate
+```
 
 ## Types of environments
 

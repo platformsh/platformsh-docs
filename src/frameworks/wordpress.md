@@ -1,8 +1,8 @@
 # WordPress
 
-The recommended way to deploy WordPress on Platform.sh is using Composer.  The most popular and supported way to do so is with the [John Block](https://github.com/johnpbloch/wordpress) script.
+The recommended way to deploy WordPress on Platform.sh is using Composer.  The most popular and supported way to do so is with the [John Bloch](https://github.com/johnpbloch/wordpress) script.
 
-Platform.sh strongly recommends starting new WordPress projects from our [WordPress Template](https://github.com/platformsh/template-wordpress), which is built using Composer and includes the WP-CLI by default.  It also includes modifications to the configuration files necessary to connect to a database on Platform.sh automatically.
+Platform.sh strongly recommends starting new WordPress projects from our [WordPress Template](https://github.com/platformsh-templates/wordpress), which is built using Composer and includes the WP-CLI by default.  It also includes modifications to the configuration files necessary to connect to a database on Platform.sh automatically.
 
 ## Plugin compatibility
 

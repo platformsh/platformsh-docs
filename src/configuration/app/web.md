@@ -29,7 +29,7 @@ web:
 >
 > Never "background" a start process using &.  That will be interpreted as the command terminating and the supervisor process will start a second copy, creating an infinite loop until the container crashes.  Just run it as normal and allow the Platform.sh supervisor to manage it.
 
-On PHP containers this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).  On all other containers it should be treated as required.  It can also be set explicitly on a PHP container in order to run a dedicated process such as [React PHP](https://github.com/platformsh/platformsh-example-reactphp) or [Amp](https://github.com/platformsh/platformsh-example-amphp).
+On PHP containers this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).  On all other containers it should be treated as required.  It can also be set explicitly on a PHP container in order to run a dedicated process such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp) or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
 
 ## Upstream
 
@@ -53,16 +53,16 @@ The above configuration (which is the default on non-PHP containers) will forwar
 
 ### Socket family
 
-If the `socket_family` is set to `tcp`, then your application should listen on the port specified by the `PORT` environment variable.
+If the `socket_family` is set to `tcp`, then your application should listen on the port specified by the `PORT` environment variable.  (In practice it is almost always `8888`, but checking the variable is preferred.)
 
-If the `socket_family` is set to `unix`, then your application should open the unix socket file specified by the `SOCKET` environment variable. 
+If the `socket_family` is set to `unix`, then your application should open the unix socket file specified by the `SOCKET` environment variable.
 
 If your application isn't listening at the same place that the runtime is sending requests, you'll see *502 Bad Gateway* errors when you try to connect to your web site.
 
 ## Locations
 
 The `locations` block is the most powerful, and potentially most involved, section of the `.platform.app.yaml` file.  It allows you to control how the application container responds to incoming requests at a very fine-grained level.  Common patterns also vary between language containers due to the way PHP-FPM handles incoming requests.
- 
+
 Each entry of the `locations` block is an absolute URI path (with leading `/`) and its value includes the configuration directives for how the web server should handle matching requests.  That is, if your domain is `example.com` then `'/'` means "requests for `example.com/`", while `'/admin'` means "requests for `example.com/admin`".  If multiple blocks could match an incoming request then the most-specific will apply.
 
 ```yaml
@@ -107,6 +107,19 @@ A full list of the possible subkeys for `locations` is below.
 * `allow`: Whether to allow serving files which don't match a rule (*true* or *false*, default: *true*).
 * `headers`: Any additional headers to apply to static assets. This section is a mapping of header names to header values. Responses from the application aren't affected, to avoid overlap with the application's own ability to include custom headers in the response.
 * `rules`: Specific overrides for a specific location. The key is a PCRE (regular expression) that is matched against the full request path.
+* `request_buffering`: Most application servers do not support chunked requests (e.g. fpm, uwsgi), so Platform.sh enables `request_buffering` by default to handle them. That default configuration would look like this if it was present in `.platform.app.yaml`:
+
+    ```
+    web:
+      locations:
+        '/':
+          passthru: true
+          request_buffering:
+            enabled: true
+            max_request_size: 250m
+    ```
+
+    If the application server can already efficiently handle chunked requests, the `request_buffering` subkey can be modified to disable it entirely (`enabled: false`). Additionally, applications that frequently deal with uploads greater than 250MB in size can update the `max_request_size` key to the application's needs. Note that modifications to `request_buffering` will need to be specified at each location where it is desired.
 
 ### Rules
 
@@ -239,7 +252,7 @@ gitbook-src/
 old-docs/
 ```
 
-The `application` directory contains a Python application.  The `gitbook-src` directory contains a GitBook project that is the public documentation for the application.  The `old-docs` directory contains a static HTML snapshot of legacy documentation for an older version of the application that is still needed.
+The `application` directory contains a Python application.  The `gitbook-src` directory contains a GitBook project that is the public documentation for the application.  The `old-docs` directory contains a static HTML backup of legacy documentation for an older version of the application that is still needed.
 
 Assume that the GitBook source is compiled by the build process into the `_book` directory, as in the example above.  The following `web` block will:
 

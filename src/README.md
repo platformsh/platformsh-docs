@@ -24,14 +24,15 @@ Every branch you push is a fully independent environment&mdash;complete with you
 
 You can use these concepts to replicate a traditional development/staging/production workflow or even to give every feature its own effective staging environment before merging to production (empowering you to use git-flow like methodologies even better). You could also have an intermediary integration branch for several other branches.
 
-Platform.sh respects the structure of branches. It’s entirely up to you.
+Platform.sh respects the structure of branches. It's entirely up to you.
 
 ## Full stack management
 
 Managing your full stack internally gives Platform.sh some unique features:
 
-1. **Unified Environment:** All of your services (MySQL, ElasticSearch, MongoDB, etc...) are managed inside the cluster and included in the price, with no external single-points-of-failure. When you backup an environment, you get a fully consistent snapshot of your whole application.
+1. **Unified Environment:** All of your services (MySQL, ElasticSearch, MongoDB, etc...) are managed inside the cluster and included in the price, with no external single-points-of-failure. When you back up an environment, you get a fully consistent snapshot of your whole application.
 2. **Multi-Services & Multi-App:** You can deploy multiple applications (for example, in a microservice-based architecture), using multiple data backends (MySQL, Postgres, Redis etc..) written in multiple frameworks (Drupal + NodeJS + Flask, for example) in multiple languages, all in the same cluster.
 3. **Full Cluster Cloning Technology:** The full production cluster can be cloned in under a minute&mdash;including all of its data&mdash;to create on-the-fly, ephemeral development environments that are a byte-level copy of production.
 4. **Fail-Proof Deployments:** Every time you test a new feature, you also test the deployment process.
 5. **Continuous Deployment from the Start:** Everything is build-oriented, with a consistent, repeatable build process, simplifying the process of keeping your application updated and secure.
+

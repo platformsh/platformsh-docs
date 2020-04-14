@@ -6,7 +6,7 @@ Blackfire is a PHP profiler and automated performance testing tool that can be u
 
 It grants details information on your PHP code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
 
-In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Symfony, Drupal, eZPlatform, Typo3 & Magento code performance management. 
+In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Symfony, Drupal, eZPlatform, Typo3 & Magento code performance management.
 
 For a high level overview and demo of Blackfire, check out the [full video tutorial](https://www.youtube.com/watch?v=-5icUW9pUH8).
 
@@ -14,7 +14,7 @@ For a high level overview and demo of Blackfire, check out the [full video tutor
 
 Check the latest versions of the probe and CLI tool on [Blackfire's documentation](https://blackfire.io/docs/up-and-running/upgrade#latest-versions).
 
-## Get Started
+## On a Grid plan
 
 ### 1. Get your credentials
 
@@ -26,15 +26,15 @@ Check the latest versions of the probe and CLI tool on [Blackfire's documentatio
 
 Go to your Dashboard and create a new environment [under the Environments tab](https://blackfire.io/my/environments).
 
-![Blackfire environments](/images/blackfire-environments.png)
+![Blackfire environments](/images/integrations/blackfire/blackfire-environments.png)
 
 You will need to store the server credentials for further configuration. You can find them any time under the "Settings" tab of your environment in Blackfire.
 
-![Blackfire credentials](/images/blackfire-credentials.png)
+![Blackfire credentials](/images/integrations/blackfire/blackfire-credentials.png)
 
 ### 2. Enable the Blackfire extension
 
-Paste the credentials above in your `.platform.app.yaml` as follows:
+Configure the extension in your `.platform.app.yaml` as follows:
 
 ```yaml
 runtime:
@@ -59,8 +59,8 @@ Blackfire enables to have a fine grained configuration of server credentials acr
 Configuring server credentials on your master branch will enable you to make sure you can profile any other branch:
 
 ```bash
-platform variable:create -e master env:BLACKFIRE_SERVER_ID <insert your Server ID>
-platform variable:create -e master env:BLACKFIRE_SERVER_TOKEN <insert your Server Token>
+platform variable:create -e master env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
+platform variable:create -e master env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
 ```
 
 #### Configuring server credentials per branch
@@ -88,13 +88,29 @@ Num of CPU => 8
 ...
 ```
 
-## Profile
+## On a Dedicated cluster
+
+**Sign up for the free 15 days Premium trial** at [blackfire.io](https://blackfire.io/pricing) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld) or [Firefox](https://addons.mozilla.org/firefox/addon/blackfire/)).
+
+Then open a support ticket with the Backfire server ID and token.  The client ID and token is optional.  Our support team will install it for you.
+
+Note, Blackfire integration works only on profiling your cluster via the URL to the origin. Do not profile your site going through the CDN.
+
+## Profiling web requests
 
 Access your site via your browser and click `Profile` in the Blackfire Companion.
 
-![Blackfire Companion](/images/blackfire-companion.png)
+![Blackfire Companion](/images/integrations/blackfire/blackfire-companion.png)
 
 That's it! Your site will be profiled and you should get all the results in your Blackfire account.
+
+## Profiling CLI commands
+
+To profile your PHP CLI scripts, use the following command line:
+
+```
+blackfire --config /etc/platform/$USER/blackfire.ini <command>
+```
 
 ## Going further with Blackfire
 
@@ -120,7 +136,7 @@ Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for mo
 ### Bypassing Reverse Proxy, Cache, and Content Delivery Networks (CDN)
 
 If you are using one of those, you will need them to let Blackfire access your servers.
-[More information on how to configure a bypass](More information on how to configure a bypass).
+[More information on how to configure a bypass](https://blackfire.io/docs/reference-guide/reverse-proxies#documentation).
 
 ### HTTP Cache configuration
 
@@ -145,8 +161,8 @@ If the above didn't help, collect the following and send it to the [Blackfire su
 
 Please execute the following in the environment where you're facing the issue:
 
-* `platform variable:create php:blackfire.log_file /tmp/blackfire.log` 
-* `platform variable:create php:blackfire.log_level 4` 
+* `platform variable:create php:blackfire.log_file --value /tmp/blackfire.log`
+* `platform variable:create php:blackfire.log_level --value 4`
 * start a profile/build again
 
 You will get the logs with `platform ssh -- cat /tmp/blackfire.log > blackfire.log`.
@@ -155,6 +171,5 @@ You will get the logs with `platform ssh -- cat /tmp/blackfire.log > blackfire.l
 
 Once you are done, please disable logging with:
 
-* `platform variable:delete php:blackfire.log_file` 
+* `platform variable:delete php:blackfire.log_file`
 * `platform variable:delete php:blackfire.log_level`
-  

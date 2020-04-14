@@ -1,8 +1,8 @@
 # The name of this app. Must be unique within a project.
 name: app
 
-# There is no no-runtime container, so any container would do here.
-type: php:7.0
+# There is no runtime requirement, but we want the latest Node at build time.
+type: nodejs:10
 # Because there is no composer.json file we deactivate the build flavor.
 build:
     flavor: none
@@ -23,14 +23,25 @@ hooks:
     build: |
       set -e
 
-      # Install and compile GitBook
+      # Install dependencies
       npm install
       npm run build
+
+      # Build example configuration files from the Registry so they can be pulled into docs.
+      node src/scripts/updateExampleConfigFiles.js
+
+      # Install and compile GitBook
       gitbook install
       gitbook build
 
       # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
       cp src/images/favicon.ico _book/gitbook/images/favicon.ico
+
+      # Gitbook doesn't copy over the generated example configuration files to the built book
+      #  automatically, so we have to do that manually.
+      cp -r src/registry/images/examples _book/registry/images
+      cp -r src/registry/images/tables _book/registry/images
+      cp -r src/registry/images/registry.yaml _book/registry/images/
 
 # There is no need for a writable file mount, so set it to the smallest possible size.
 disk: 256
@@ -48,6 +59,9 @@ web:
             # list multiple fallbacks here if desired.
             index:
                 - "index.html"
+            # Since there is no backend application, return a 404 for a missing
+            # file rather than passing through to a non-existent application.
+            passthru: false
             # Set a 5 minute cache lifetime on all static files.
             expires: 300s
             # Disable all scripts, since we don't have any anyway.
@@ -58,7 +72,7 @@ web:
             # The search_index.json file that is used by GitBook's search plugin.
             # All other requests will be rejected.
             rules:
-                \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|html|ico|svg?)$:
+                \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|cast|mp4|json|yaml|html|ico|svg?)$:
                     allow: true
                 ^/robots\.txt$:
                     allow: true

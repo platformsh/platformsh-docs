@@ -1,60 +1,42 @@
-# Influx DB(Database service)
+# InfluxDB (Database service)
 
 InfluxDB is a time series database optimized for high-write-volume use cases such as logs, sensor data, and real-time analytics.  It exposes an HTTP API for client interaction.
 
-See the [InfluxDB documentation](https://docs.influxdata.com/influxdb/v1.2/) for more information.
+See the [InfluxDB documentation](https://docs.influxdata.com/influxdb/) for more information.
 
 ## Supported versions
 
 * 1.2
 * 1.3
+* 1.7
 
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-   "servicename" : [
-      {
-         "scheme" : "http",
-         "ip" : "246.0.161.240",
-         "host" : "influx.internal",
-         "port" : 8086
-      }
-   ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/influxdb", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
 In your `.platform/services.yaml`:
 
-```yaml
-influx:
-    type: influxdb:1.3
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/influxdb.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your `.platform.app.yaml`:
 
-```yaml
-relationships:
-    timedb: "influx:influxdb"
-```
+{% codesnippet "/registry/images/examples/full/influxdb.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 
 ```php
 <?php
-<?php
 // This assumes a fictional application with an array named $settings.
 if (getenv('PLATFORM_RELATIONSHIPS')) {
 	$relationships = json_decode(base64_decode($relationships), TRUE);
 
-	// For a relationship named 'timedb' referring to one endpoint.
-	if (!empty($relationships['timedb'])) {
-		foreach ($relationships['timedb'] as $endpoint) {
+	// For a relationship named 'influxtimedb' referring to one endpoint.
+	if (!empty($relationships['influxtimedb'])) {
+		foreach ($relationships['influxtimedb'] as $endpoint) {
 			$settings['influxdb_host'] = $endpoint['host'];
 			$settings['influxdb_port'] = $endpoint['port'];
 			break;
@@ -74,7 +56,7 @@ platform tunnel:open
 That will open an SSH tunnel to all services on your current environment, and produce output something like the following:
 
 ```text
-SSH tunnel opened on port 30000 to relationship: timedb
+SSH tunnel opened on port 30000 to relationship: influxtimedb
 ```
 
 The port may vary in your case.  Then, simply run InfluxDB's export commands as desired.

@@ -1,120 +1,82 @@
 # MariaDB/MySQL (Database service)
 
-MariaDB is a MySQL-compatible relational database system. Its XtraDB storage engine is equivalent to MySQL with InnoDB.
+Platform.sh supports both MariaDB and Oracle MySQL.  While there are some differences at the application level for developers, they function nearly identically from an infrastructure point of view.
 
-See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentation](https://dev.mysql.com/doc/refman/5.5/en/) for more information.
+See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more information.
 
 ## Supported versions
 
-* 10.0
-* 10.1
-* 10.2
+The service types `mariadb` and `mysql` both refer to MariaDB for compatibility reasons. The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc. Other than the type, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
+
+* mariadb:10.0
+* mariadb:10.1
+* mariadb:10.2
+* mariadb:10.3
+* mariadb:10.4
+
+
+* mysql:10.0
+* mysql:10.1
+* mysql:10.2
+
+
+* oracle-mysql:5.7
+* oracle-mysql:8.0
 
 > **note**
 >
-> Downgrades of MariaDB are not supported. MariaDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+> Downgrades of MySQL or MariaDB are not supported. Both will update their own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 5.5
+* mysql:5.5
 
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-  "database": [
-    {
-      "host": "database.internal",
-      "ip": "246.0.97.91",
-      "password": "",
-      "path": "main",
-      "port": 3306,
-      "query": {
-          "is_master": true
-      },
-      "scheme": "mysql",
-      "username": "user"
-    }
-  ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/mysql", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
-In your `.platform/services.yaml`:
+For MariaDB your `.platform/services.yaml` can use the `mysql` service type:
 
-```yaml
-mydatabase:
-    type: mysql:10.0
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/mysql.services.yaml", language="yaml" %}{% endcodesnippet %}
 
-Note that the minimum disk size for mysql is 256MB.
+or the `mariadb` service type.
 
-In your `.platform.app.yaml`:
+{% codesnippet "/registry/images/examples/full/mariadb.services.yaml", language="yaml" %}{% endcodesnippet %}
 
-```yaml
-relationships:
-    database: "mydatabase:mysql"
-```
+Oracle-mysql uses the `oracle-mysql` service type:
+
+{% codesnippet "/registry/images/examples/full/oracle-mysql.services.yaml", language="yaml" %}{% endcodesnippet %}
+
+Note that the minimum disk size for `mysql`/`oracle-mysql` is 256MB.
+
+Despite these service type differences, MariaDB and Oracle MySQL both use the `mysql` endpoint in their configuration.
+
+For MariaDB, the endpoint does not change whether you used the `mysql` or `mariadb` service type:
+
+{% codesnippet "/registry/images/examples/full/mariadb.app.yaml", language="yaml" %}{% endcodesnippet %}
+
+The same goes for using the `oracle-mysql` service type as well.
+
+{% codesnippet "/registry/images/examples/full/oracle-mysql.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php" -%}
-<?php
-// This assumes a fictional application with an array named $settings.
-$relationships = getenv('PLATFORM_RELATIONSHIPS');
-if ($relationships) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/mysql" -%}
 
-	// For a relationship named 'database' referring to one endpoint.
-	if (!empty($relationships['database'])) {
-		foreach ($relationships['database'] as $endpoint) {
-			$settings['database_driver'] = 'pdo_' . $endpoint['scheme'];
-			$settings['database_host'] = $endpoint['host'];
-			$settings['database_name'] = $endpoint['path'];
-			$settings['database_port'] = $endpoint['port'];
-			$settings['database_user'] = $endpoint['username'];
-			$settings['database_password'] = $endpoint['password'];
-			break;
-		}
-	}
-}
-{%- language name="Python", type="py" -%}
-import os
-import json
-import base64
+{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/mysql" -%}
 
-relationships = os.getenv('PLATFORM_RELATIONSHIPS')
-if relationships:
-    relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
-    db_settings = relationships['database'][0]
-    DATABASES = {
-        "default": {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': db_settings['path'],
-            'USER': db_settings['username'],
-            'PASSWORD': db_settings['password'],
-            'HOST': db_settings['host'],
-            'PORT': db_settings['port'],
-        }
-    }
-{%- language name="Go", type="go" -%}
-// Using the Platform.sh Go helper library: https://github.com/platformsh/gohelper
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/mysql" -%}
 
-dbString, err := pi.SqlDsn("database")
-if (err != nil) {
-  panic(err)
-}
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/mysql" -%}
 
-db, err := sql.Open("mysql", dbString)
-if (err != nil) {
-  panic(err)
-}
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/mysql" -%}
+
 {%- endcodetabs %}
 
 > **note**
@@ -133,8 +95,8 @@ If you are using version `10.0` or later of this service it is possible to defin
 Consider the following illustrative example:
 
 ```yaml
-mysqldb:
-    type: mysql:10.0
+db:
+    type: mariadb:10.4
     disk: 2048
     configuration:
         schemas:
@@ -163,9 +125,9 @@ Once those endpoints are defined, you need to expose them to your application as
 
 ```yaml
 relationships:
-    database: "mysqldb:admin"
-    reports: "mysqldb:reporter"
-    imports: "mysqldb:importer"
+    database: "db:admin"
+    reports: "db:reporter"
+    imports: "db:importer"
 ```
 
 This block defines three relationships, `database`, `reports`, and `imports`.  They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials.  You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
@@ -185,15 +147,17 @@ configuration:
 
 If either schemas or endpoints are defined, then no default will be applied and you must specify the full configuration.
 
-## Adjusting MariaDB configuration
+## Adjusting database configuration
 
-For version 10.2 and later, a select few MariaDB configuration properties from the `my.cnf` file are available for adjustment.
+For MariaDB 10.1 and later Oracle MySQL 8.0 and later, a select few configuration properties from the `my.cnf` file are available for adjustment.
 
-At this time, only the `max_allowed_packet` size is available, and defaults to `16` (in MB).  Legal values are from `1` to `100`.
+### Packet and connection sizing
+
+This value defaults to `16` (in MB).  Legal values are from `1` to `100`.
 
 ```yaml
-mysqldb:
-    type: mysql:10.2
+db:
+    type: mariadb:10.4
     disk: 2048
     configuration:
         properties:
@@ -201,6 +165,39 @@ mysqldb:
 ```
 
 The above code will increase the maximum allowed packet size (the size of a query or response) to 64 MB.  However, increasing the size of the maximum packet will also automatically decrease the `max_connections` value.  The number of connections allowed will depend on the packet size and the memory available to the service.  In most cases leaving this value at the default is recommended.
+
+## Character encoding
+
+For services created prior to February 2020, the default character set and collation is `latin1`, which is the default in most MySQL/MariaDB.
+
+For services created after February 2020, the default character set is `utf8mb4` and the default collation is `utf8mb4_unicode_ci`.
+
+Both values can be adjusted at the server level in `services.yaml`:
+
+```yaml
+db:
+  type: mariadb:10.4
+  disk: 2048
+  configuration:
+    properties:
+      default_charset: utf8mb4
+      default_collation: utf8mb4_unicode_ci
+```
+
+Note that the effect of this setting is to set the character set and collation of any tables created once those properties are set.  Tables created prior to when those settings are changed will be unaffected by changes to the `services.yaml` configuration.  However, you can change your own table's character set and collation through `ALTER TABLE` commands.  For example:
+
+```
+# To change defaults when creating new tables:
+ALTER DATABASE main CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+# To change defaults when creating new columns:
+ALTER TABLE table_name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+# To convert existing data:
+ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charset-mysql.html) for further details.
 
 ## Access your MariaDB service
 
@@ -243,45 +240,21 @@ platform db:dump --stdout | bzip2 > dump.sql.bz2
 The easiest way to load data into a database is to pipe an SQL dump through the `platform sql` command, like so:
 
 ```bash
-platform sql < my_database_snapshot.sql
+platform sql < my_database_backup.sql
 ```
 
-That will run the database snapshot against the SQL database on Platform.sh.  That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database).  As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
+That will run the database backup against the SQL database on Platform.sh.  That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database).  As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-platform sql --relationship database -e master < my_database_snapshot.sql
+platform sql --relationship database -e master < my_database_backup.sql
 ```
 
 > **note**
-> Importing a database snapshot is a destructive operation. It will overwrite data already in your database.
-> Taking a snapshot or a database export before doing so is strongly recommended.
+> Importing a database backup is a destructive operation. It will overwrite data already in your database.
+> Taking a backup or a database export before doing so is strongly recommended.
 
 ## Troubleshooting
 
-### definer/invoker of view lack rights to use them
-
-There is a single MySQL user, so you can not use "DEFINER" Access Control mechanism for Stored Programs and Views.
-
-When creating a VIEW, you may need to explicitly set the SECURITY parameter to INVOKER, e.g...
-
-```
-CREATE OR REPLACE SQL SECURITY INVOKER 
-VIEW `view_name` AS 
-SELECT 
-```
-
-### MySQL server has gone away
-
-Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).
-
-The current disk usage can be checked using the CLI command `platform db:size`. Because of issues with the way InnoDB reports its size, this can out by up to 20%. As table space can grow rapidly, *it is usually advisable to make your database mount size twice the size reported by the `db:size` command*.
-
-You are encouraged to add a [low-disk warning notification](/administration/integrations/notifications.html#low-disk-warning) to proactively warn of low disk space before it becomes an issue.
-
-### Worker timeout
-
-Another possible cause of "MySQL server has gone away" errors is a server timeout.  MySQL has a built-in timeout for idle connections, which defaults to 10 minutes.  Most typical web connections end long before that is ever approached, but it's possible that a long-running worker may idle and not need the database for longer than the timeout.  In that case the same "server has gone away" message may appear.
-
-If that's the case, the best way to handle it is to wrap your connection logic in code that detects a "server has gone away" exception and tries to re-establish the connection.
-
-Alternatively, if your worker is idle for too long it can self-terminate.  Platform.sh will automatically restart the worker process, and the new process can establish its own new database connection.
+* [MySQL lock wait timeout](/development/troubleshoot.md#mysql-lock-wait-timeout)
+* [definer/invoker of view lack rights to use them](/development/troubleshoot.md#mysql-definerinvoker-of-view-lack-rights-to-use-them)
+* [MySQL server has gone away](/development/troubleshoot.html#mysql-server-has-gone-away)

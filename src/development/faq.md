@@ -38,7 +38,7 @@ You are able to convert an `inactive environment` into an `active environment` a
 
 Master gets all the resources that are divided into each service (PHP 40%, MySQL 30%, Redis 10%, Solr 20%…). Each Development environment gets the Development plan resources.
 
-## What exactly am I sshing into?
+## What exactly am I SSHing into?
 
 You're logged in to the PHP service. It's a read-only file system.
 
@@ -50,7 +50,7 @@ No ! Since the PHP service you access via SSH is a read-only file system, you'll
 
 We try to make the log as self-explanatory as possible, so you should see the Git output and also output from the drush make...
 
-You can also find it back by clicking on the status of the activity in the `Platform UI`.
+You can also find it back by clicking on the status of the activity in the Platform.sh management console.
 
 ## What Linux distribution is Platform.sh using?
 
@@ -78,7 +78,7 @@ Platform leverages the power of public cloud infrastructures like AWS, Microsoft
 
 'sh' is the short version of shell.
 
-According to Wikipedia™, in computing, a [shell](https://en.wikipedia.org/wiki/Shell_(computing) ) is a user interface for access to an operating system's services. Generally, operating system shells use either a [command-line interface ](https://en.wikipedia.org/wiki/Command-line_interface) (CLI) or [graphical user interface](https://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).  This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy, and run great websites!
+According to Wikipedia™, in computing, a [shell](https://en.wikipedia.org/wiki/Shell_(computing\)) is a user interface for access to an operating system's services. Generally, operating system shells use either a [command-line interface ](https://en.wikipedia.org/wiki/Command-line_interface) (CLI) or [graphical user interface](https://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).  This is exactly what Platform.sh is about: Giving developers tools to build, test, deploy, and run great websites!
 
 ".sh" is also the TLD for Saint Helena that looks like a lovely island, and whose motto is: "Loyal and Unshakeable" which we also strive to be.
 

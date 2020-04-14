@@ -51,7 +51,7 @@ https://{default}/:
       "/drupal/": { "to": "/frameworks/drupal8.html", "code": 301, "prefix": false}
       "/user_guide/reference/toolstacks/nodejs/index.html": { "to": "/languages/nodejs.html", "code": 301, "prefix": false}
       "/user_guide/reference/email.html": { "to": "/administration/web/email.html", "code": 301, "prefix": false}
-      "/user_guide/using/backup-and-restore.html": { "to": "/administration/snapshot-and-restore.html", "code": 301, "prefix": false}
+      "/user_guide/using/backup-and-restore.html": { "to": "/administration/backup-and-restore.html", "code": 301, "prefix": false}
       "/handbook/mysql.html": { "to": "/configuration/services/mysql.html", "code": 301, "prefix": false}
       "/user_guide/reference/public-ip-addresses.html": { "to": "/development/public-ips.html", "code": 301, "prefix": false}
       "/user_guide/using/integrations/github.html": { "to": "/administration/integrations/github.html", "code": 301, "prefix": false}
@@ -73,3 +73,16 @@ https://{default}/:
 
       # File rename in December 2016.
       "/development/environment-variables.html": { "to": "/development/variables.html", "code": 301, "prefix": false}
+      # Getting Started Restructure June 2019
+      "/gettingstarted/tools.html": { "to": "/development/tools.html", "code": 301, "prefix": false}
+      "/gettingstarted/cli.html": { "to": "/development/cli.html", "code": 301, "prefix": false}
+      "/gettingstarted/cli/api-tokens.html": { "to": "/development/cli/api-tokens.html", "code": 301, "prefix": false}
+      "/gettingstarted/local.html": { "to": "/development/local.html", "code": 301, "prefix": false}
+      "/gettingstarted/local/tethered.html": { "to": "/development/local/tethered.html", "code": 301, "prefix": false}
+      "/gettingstarted/local/untethered.html": { "to": "/development/local/untethered.html", "code": 301, "prefix": false}
+      "/gettingstarted/local/lando.html": { "to": "/development/local/lando.html", "code": 301, "prefix": false}
+      "/gettingstarted/local/docksal.html": { "to": "/development/local/docksal.html", "code": 301, "prefix": false}
+      "/gettingstarted/first-project.html": { "to": "/gettingstarted/template.html", "code": 301, "prefix": false}
+
+      # Renamed in August 2019.
+      "/administration/snapshot-and-restore.html": { "to": "/administration/backup-and-restore.html", "code": 301, "prefix": false}

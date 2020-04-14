@@ -34,31 +34,35 @@ Inbound IPs (gw.eu-2.platformsh.site):
 * 34.241.191.143
 * 52.210.208.94
 
-### Netherlands (nl-1.platform.sh)
+### West 4 (eu-4.platform.sh)
 
 Outbound IPs:
 
-* 13.73.166.191
-* 13.73.165.217
-* 13.73.164.245
+* 18.200.158.188
+* 18.200.157.200
+* 18.200.184.206
 
-Inbound IP (gw.nl-1.platformsh.site):
+Inbound IPs (gw.eu-4.platformsh.site):
 
-* 13.73.161.47
+* 52.215.88.119
+* 52.208.179.40
+* 18.200.179.139
 
-### German Sovereign Cloud (de-1.platform.sh)
+### Germany 2 (de-2.platform.sh) (Data Location Guarantee)
 
 Outbound IPs:
 
-* 51.4.225.60
-* 51.4.229.93
-* 51.4.228.12
+* 35.246.248.138
+* 35.246.184.45
+* 35.242.229.239
 
-Inbound IP (gw.de-1.platformsh.site):
+Inbound IP (gw.de-2.platformsh.site):
 
-* 51.4.227.171
+* 35.246.248.138
+* 35.246.184.45
+* 35.242.229.239
 
-### French Sovereign Cloud (fr-1.platform.sh)
+### France 1 (fr-1.platform.sh)
 
 Outbound IPs:
 
@@ -71,6 +75,20 @@ Inbound IPs (gw.fr-1.platformsh.site):
 * 90.84.47.148
 * 90.84.46.222
 * 90.84.46.40
+
+### United Kingdom 1 (uk-1.platform.sh)
+
+Outbound IPs:
+
+* 35.242.142.110
+* 35.189.126.202
+* 35.242.183.249
+
+Inbound IPs (gw.uk-1.platformsh.site):
+
+* 35.242.142.110
+* 35.189.126.202
+* 35.242.183.249
 
 ## United States
 
@@ -101,6 +119,22 @@ Inbound IPs (gw.us-2.platformsh.site):
 * 34.226.46.235
 * 34.238.11.122
 * 54.89.106.200
+
+
+## Canada
+
+Outbound IPs:
+
+* 35.182.24.224
+* 52.60.213.255
+* 35.182.220.113
+
+Inbound IPs:
+
+* 35.182.174.169
+* 35.182.59.77
+* 52.60.219.22
+
 
 ## Australia (au.platform.sh)
 

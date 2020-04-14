@@ -13,70 +13,48 @@ See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) fo
 * 6.3
 * 6.6
 * 7.6
+* 7.7
+* 8.0
+* 8.4
 
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "solr": [
-        {
-            "path": "solr",
-            "host": "248.0.65.197",
-            "scheme": "solr",
-            "port": 8080
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/solr", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
 In your ``.platform/services.yaml``:
 
-```yaml
-mysearch:
-    type: solr:7.6
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/solr.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your ``.platform.app.yaml``:
 
-```yaml
-relationships:
-    solr: "mysearch:solr"
-```
+{% codesnippet "/registry/images/examples/full/solr.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 
-```php
-<?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/solr" -%}
 
-	// For a relationship named 'solr' referring to one endpoint.
-	if (!empty($relationships['solr'])) {
-		foreach ($relationships['solr'] as $endpoint) {
-			$settings['solr_host'] = $endpoint['host'];
-			$settings['solr_port'] = $endpoint['port'];
-			break;
-		}
-	}
-}
-```
+{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/solr" -%}
 
-## Configuration
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/solr" -%}
+
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/solr" -%}
+
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/solr" -%}
+
+{%- endcodetabs %}
 
 ## Solr 4
 
 For Solr 4, Platform.sh supports only a single core per server called `collection1`.
 
-If you want to provide your own Solr configuration, you can add a `core_config` key in your ``.platform/services.yaml``:
+You must provide your own Solr configuration via a `core_config` key in your ``.platform/services.yaml``:
 
 ```yaml
-mysearch:
+search:
     type: solr:4.10
     disk: 1024
     configuration:
@@ -86,11 +64,11 @@ mysearch:
 The `directory` parameter points to a directory in the Git repository, in or below the `.platform/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.  For example, place them in `.platform/solr/conf/` such that the `schema.xml` file is located at `.platform/solr/conf/schema.xml`.   You can then reference that path like this -
 
 ```yaml
-mysearch:
+search:
     type: solr:4.10
     disk: 1024
     configuration:
-        core_config: !archive "solr/conf"
+        core_config: !archive "solr/conf/"
 ```
 
 ## Solr 6 and later
@@ -98,8 +76,8 @@ mysearch:
 For Solr 6 and later Platform.sh supports multiple cores via different endpoints.  Cores and endpoints are defined separately, with endpoints referencing cores.  Each core may have its own configuration or share a configuration.  It is best illustrated with an example.
 
 ```yaml
-solrsearch:
-    type: solr:7.6
+search:
+    type: solr:8.4
     disk: 1024
     configuration:
         cores:
@@ -114,7 +92,7 @@ solrsearch:
                 core: extraindex
 ```
 
-The above definition defines a single Solr 7.6 server.  That server has 2 cores defined: `mainindex` &mdash; the configuration for which is in the `.platform/core1-conf` directory &mdash; and `extraindex` &mdash; the configuration for which is in the `.platform/core2-conf` directory.
+The above definition defines a single Solr 8.0 server.  That server has 2 cores defined: `mainindex` &mdash; the configuration for which is in the `.platform/core1-conf` directory &mdash; and `extraindex` &mdash; the configuration for which is in the `.platform/core2-conf` directory.
 
 It then defines two endpoints: `main` is connected to the `mainindex` core while `extra` is connected to the `extraindex` core.  Two endpoints may be connected to the same core but at this time there would be no reason to do so.  Additional options may be defined in the future.
 
@@ -122,8 +100,8 @@ Each endpoint is then available in the relationships definition in `.platform.ap
 
 ```yaml
 relationships:
-    solr1: 'solrsearch:main'
-    solr2: 'solrsearch:extra'
+    solrsearch1: 'search:main'
+    solrsearch2: 'search:extra'
 ```
 
 That is, the application's environment would include a `solr1` relationship that connects to the `main` endpoint, which is the `mainindex` core, and a `solr2` relationship that connects to the `extra` endpoint, which is the `extraindex` core.
@@ -156,12 +134,12 @@ The relationships array would then look something like the following:
 For even more customizability, it's also possible to define Solr configsets.  For example, the following snippet would define one configset, which would be used by all cores.  Specific details can then be overriden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
 ```yaml
-solrsearch:
-    type: solr:7.6
+search:
+    type: solr:8.4
     disk: 1024
     configuration:
         configsets:
-            mainconfig: !archive "configsets/solr6"
+            mainconfig: !archive "configsets/solr8"
         cores:
             english_index:
                 core_properties: |
@@ -178,7 +156,7 @@ solrsearch:
                 core: arabic_index
 ```
 
-In this example, the directory `.platform/configsets/solr6` contains the configuration definition for multiple cores.  There are then two cores created: `english_index` uses the defined configset, but specifically the `.platform/configsets/solr6/english/schema.xml` file, while `arabic_index` is identical except for using the `.platform/configsets/solr6/arabic/schema.xml` file.  Each of those cores is then exposed as its own endpoint.
+In this example, the directory `.platform/configsets/solr8` contains the configuration definition for multiple cores.  There are then two cores created: `english_index` uses the defined configset, but specifically the `.platform/configsets/solr6/english/schema.xml` file, while `arabic_index` is identical except for using the `.platform/configsets/solr6/arabic/schema.xml` file.  Each of those cores is then exposed as its own endpoint.
 
 Note that not all core.properties features make sense to specify in the core_properties. Some keys, such as name and dataDir, are not supported, and may result in a solrconfig that fails to work as intended, or at all.
 
@@ -187,8 +165,8 @@ Note that not all core.properties features make sense to specify in the core_pro
 If no configuration is specified, the default configuration is equivalent to:
 
 ```yaml
-solrsearch:
-    type: solr:7.6
+search:
+    type: solr:8.4
     configuration:
         cores:
             collection1:
@@ -198,13 +176,13 @@ solrsearch:
                 core: collection1
 ```
 
-The Solr 6.x Drupal 8 configuration files are reasonably generic and should work in many other circumstances, but explicitly defining a core, configuration, and endpoint is generally recommended.
+The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.  While it may work for generic cases defining your own custom configuration, core, and endpoint is strongly recommended.
 
 ### Limitations
 
 The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance will decline and deploys will become longer. The directory archives will be compressed and string encoded. You could use this bash pipeline `echo $(($(tar czf - . | base64 | wc -c )/(1024*1024))) Megabytes` inside the directory to get an idea of the archive size.
 
-The `!archive "<directory">` is a collection of configuration data, like a data dictionary, e.g. small collections of key/ value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin .jars will inflate the archive size, and is not recommended.
+The configuration directory is a collection of configuration data, like a data dictionary, e.g. small collections of key/value sets. The best way to keep the size small is to restrict the directory context to plain configurations. Including binary data like plugin `.jar` files will inflate the archive size, and is not recommended.
 
 ## Accessing the Solr server administrative interface
 
@@ -229,7 +207,7 @@ Close tunnels with: platform tunnel:close
 In this example, you can now open `http://localhost:30000/solr/` in a browser to access the Solr admin interface.  Note that you cannot create indexes or users this way, but you can browse the existing indexes and manipulate the stored data.
 
 > **Note**
-> Platform.sh Enterprise users can use `ssh -L 8888:localhost:8983 <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead, after which the Solr server administrative interface will be available at `http://localhost:8888/solr/`.
+> Platform.sh Dedicated users can use `ssh -L 8888:localhost:8983 <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead, after which the Solr server administrative interface will be available at `http://localhost:8888/solr/`.
 
 ## Upgrading
 

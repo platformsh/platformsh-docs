@@ -6,8 +6,8 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-* 5.2
-* 5.4
+* 6.5
+* 7.2
 
 ### Deprecated versions
 
@@ -17,58 +17,37 @@ The following versions are available but are not receiving security updates from
 * 1.4
 * 1.7
 * 2.4
+* 5.2
+* 5.4
 
 ## Relationship
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "elasticsearch": [
-        {
-            "host": "248.0.65.198",
-            "scheme": "http",
-            "port": "9200"
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/elasticsearch", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
 In your `.platform/services.yaml`:
 
-```yaml
-mysearch:
-    type: elasticsearch:5.4
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/elasticsearch.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 In your `.platform.app.yaml`:
 
-```yaml
-relationships:
-    elasticsearch: "mysearch:elasticsearch"
-```
+{% codesnippet "/registry/images/examples/full/elasticsearch.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 You can then use the service in a configuration file of your application with something like:
 
-```php
-<?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+{% codetabs name="Java", type="java", url="https://examples.docs.platform.sh/java/elasticsearch" -%}
 
-	// For a relationship named 'elasticsearch' referring to one endpoint.
-	if (!empty($relationships['elasticsearch'])) {
-		foreach ($relationships['elasticsearch'] as $endpoint) {
-			$settings['elasticsearch_host'] = $endpoint['host'];
-			$settings['elasticsearch_port'] = $endpoint['port'];
-			break;
-		}
-	}
-}
-```
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/elasticsearch" -%}
+
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
+
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
+
+{%- endcodetabs %}
+
 
 > **note**
 >
@@ -80,14 +59,14 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 The Elasticsearch 2.4 and later services offer a number of plugins.  To enable them, list them under the `configuration.plugins` key in your `services.yaml` file, like so:
 
 ```yaml
-mysearch:
-    type: "elasticsearch:5.4"
+search:
+    type: "elasticsearch:7.2"
     disk: 1024
     configuration:
         plugins:
             - analysis-icu
             - lang-python
-            
+
 ```
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
@@ -98,26 +77,27 @@ If there is a publicly available plugin you need that is not listed here, please
 
 This is the complete list of official Elasticsearch plugins that can be enabled:
 
-| Plugin              | Description                                                                       | 2.4 | 5.2 | 5.4 |
-|---------------------|-----------------------------------------------------------------------------------|-----|-----|-----|
-| analysis-icu        | Support ICU Unicode text analysis                                                 | *   | *   | *   |
-| analysis-kuromoji   | Japanese language support                                                         | *   | *   | *   |
-| analysis-smartcn    | Smart Chinese Analysis Plugins                                                    | *   | *   | *   |
-| analysis-stempel    | Stempel Polish Analysis Plugin                                                    | *   | *   | *   |
-| analysis-phonetic   | Phonetic analysis                                                                 | *   | *   | *   |
-| analysis-ukrainian  | Ukrainian language support                                                        |     | *   | *   |
-| cloud-aws           | AWS Cloud plugin, allows storing indices on AWS S3                                | *   |     |     |
-| delete-by-query     | Support for deleting documents matching a given query                             | *   |     |     |
-| discovery-multicast | Ability to form a cluster using TCP/IP multicast messages                         | *   |     |     |
-| ingest-attachment   | Extract file attachments in common formats (such as PPT, XLS, and PDF)            |     | *   | *   |
-| ingest-user-agent   | Extracts details from the user agent string a browser sends with its web requests |     | *   | *   |
-| lang-javascript     | Javascript language plugin, allows the use of Javascript in Elasticsearch scripts |     | *   | *   |
-| lang-python         | Python language plugin, allows the use of Python in Elasticsearch scripts         | *   | *   | *   |
-| mapper-attachments  | Mapper attachments plugin for indexing common file types                          | *   | *   | *   |
-| mapper-murmur3      | Murmur3 mapper plugin for computing hashes at index-time                          | *   | *   | *   |
-| mapper-size         | Size mapper plugin, enables the `_size` meta field                                | *   | *   | *   |
-| repository-s3       | Support for using S3 as a repository for Snapshot/Restore                         |     | *   | *   |
-
+| Plugin                | Description                                                                               | 2.4 | 5.2 | 5.4 | 6.5 | 7.2 |
+|-----------------------|-------------------------------------------------------------------------------------------|-----|-----|-----|-----|-----|
+| analysis-icu          | Support ICU Unicode text analysis                                                         | *   | *   | *   | *   | *   |
+| analysis-nori         | Integrates Lucene nori analysis module into Elasticsearch                                 |     |     |     | *   | *   |
+| analysis-kuromoji     | Japanese language support                                                                 | *   | *   | *   | *   | *   |
+| analysis-smartcn      | Smart Chinese Analysis Plugins                                                            | *   | *   | *   | *   | *   |
+| analysis-stempel      | Stempel Polish Analysis Plugin                                                            | *   | *   | *   | *   | *   |
+| analysis-phonetic     | Phonetic analysis                                                                         | *   | *   | *   | *   | *   |
+| analysis-ukrainian    | Ukrainian language support                                                                |     | *   | *   | *   | *   |
+| cloud-aws             | AWS Cloud plugin, allows storing indices on AWS S3                                        | *   |     |     |     |     |
+| delete-by-query       | Support for deleting documents matching a given query                                     | *   |     |     |     |     |
+| discovery-multicast   | Ability to form a cluster using TCP/IP multicast messages                                 | *   |     |     |     |     |
+| ingest-attachment     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    |     | *   | *   | *   | *   |
+| ingest-user-agent     | Extracts details from the user agent string a browser sends with its web requests         |     | *   | *   | *   |     |
+| lang-javascript       | Javascript language plugin, allows the use of Javascript in Elasticsearch scripts         |     | *   | *   |     |     |
+| lang-python           | Python language plugin, allows the use of Python in Elasticsearch scripts                 | *   | *   | *   |     |     |
+| mapper-annotated-text | Adds support for text fields with markup used to inject annotation tokens into the index  |     |     |     | *   | *   |
+| mapper-attachments    | Mapper attachments plugin for indexing common file types                                  | *   | *   | *   |     |     |
+| mapper-murmur3        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | *   | *   | *   | *   |
+| mapper-size           | Size mapper plugin, enables the `_size` meta field                                        | *   | *   | *   | *   | *   |
+| repository-s3         | Support for using S3 as a repository for Snapshot/Restore                                 |     | *   | *   | *   | *   |
 
 ## Upgrading
 

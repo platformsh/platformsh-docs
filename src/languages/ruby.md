@@ -9,6 +9,8 @@ Platform.sh supports deploying any Ruby application. Your application can use an
 * 2.3
 * 2.4
 * 2.5
+* 2.6
+* 2.7
 
 ## Unicorn based Rails configuration
 
@@ -18,10 +20,7 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
 
 1. Specify the language of your application (available versions are listed above):
 
-   ```yaml
-   # .platform.app.yaml
-   type: "ruby:2.5"
-   ```
+    {% codesnippet "/registry/images/examples/full/ruby.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 2. Build your application with the build hook.
 
@@ -49,7 +48,7 @@ This assumes you have Unicorn as a dependency in your Gemfile
 
  ```ruby
 # Use Unicorn as the app server
-group :production do 
+group :production do
   gem 'unicorn'
 end
 ```
@@ -105,7 +104,7 @@ Here is the complete `.platform.app.yaml` file:
 
 ```yaml
 name: 'app'
-type: "ruby:2.4"
+type: "ruby:2.7"
 
 web:
     upstream:
@@ -139,11 +138,12 @@ mounts:
 ```
 
 ## Configuring services
+
 7. In this example we assue in the `relationships` key that we have a mysql instance. To configure it we need to create a `.platform/services.yaml` with for eample:
 
 ```yaml
 database:
-  type: mysql
+  type: mysql:10.2
   disk: 2048
 ```
 
@@ -191,6 +191,6 @@ A number of project templates for Ruby applications and typical configurations a
 
 Platform.sh also provides a [helper library](https://github.com/platformsh/platformsh-ruby-helper) for Ruby applications that simplifies presenting environment information to your application.  It is not required to run Ruby applications on Platform.sh but is recommended.
 
-* [Sinatra](https://github.com/platformsh/platformsh-example-sinatra)
-* [Sinatra (with all services enabled)](https://github.com/platformsh/platformsh-example-ruby-sinatra-all-the-services)
-* [Ruby on Rails](https://github.com/platformsh/platformsh-example-rails)
+* [Sinatra](https://github.com/platformsh-examples/platformsh-example-sinatra)
+* [Sinatra (with all services enabled)](https://github.com/platformsh-examples/platformsh-example-ruby-sinatra-all-the-services)
+* [Ruby on Rails](https://github.com/platformsh-templates/rails)

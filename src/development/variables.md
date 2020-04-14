@@ -40,11 +40,11 @@ platform variable:create --level project --name foo --value bar --visible-build 
 
 Naturally in practice you'll want to use only one or the other, or allow the variable to be visible in both cases.
 
-Project variables may also be marked `--sensitive true`.  That flag will mark the variable to not be readable through the UI once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
+Project variables may also be marked `--sensitive true`.  That flag will mark the variable to not be readable through the management console once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
 
 ### Environment variables
 
-Environment-level variables can also be set [through the web interface](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to create an environment variable "foo" with the value "bar" on the currently checked out environment/branch, run:
+Environment-level variables can also be set [through the management console](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to create an environment variable "foo" with the value "bar" on the currently checked out environment/branch, run:
 
 ```bash
 $ platform variable:create --level environment --name foo --value bar
@@ -55,7 +55,7 @@ That will set a variable on the currently active environment (that is, the branc
 There are two additional flags available on environment variables: `--inheritable` and `--sensitive`.
 
 * Setting `--inheritable false` will cause the variable to not be inherited by child environments.  That is useful for setting production-only values on the `master` branch, and allowing all other environments to use a project-level variable of the same name.
-* Setting `--sensitive true` flag will mark the variable to not be readable through the UI once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
+* Setting `--sensitive true` flag will mark the variable to not be readable through the management console once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
 
 For example, the following command will allow you to set a PayPal secret value on the master branch only; other environments will not inherit it and either get a project variable of the same name if it exists or no value at all.  It will also not be readable through the API.
 
@@ -73,6 +73,10 @@ Environment variables are a good place to store values that apply only on Platfo
 
 Platform.sh also provides a series of variables by default.  These inform an application about its runtime configuration.  The most important of these is relationship information, which tells the application how to connect to databases and other services defined in `services.yaml`.  They are always prefixed with `PLATFORM_*` to differentiate them from user-provided values.
 
+The following variables are only available at build time, and may be used in a build hook:
+
+* **PLATFORM_OUTPUT_DIR**: The output directory for compiled languages at build time. Will be equivalent to `PLATFORM_APP_DIR` in most cases.
+
 The following variables are available at both runtime and at build time, and may be used in a build hook:
 
 * **PLATFORM_APP_DIR**: The absolute path to the application directory.
@@ -81,15 +85,22 @@ The following variables are available at both runtime and at build time, and may
 * **PLATFORM_PROJECT**: The ID of the project.
 * **PLATFORM_TREE_ID**: The ID of the tree the application was built from. It's essentially the SHA hash of the tree in Git.  If you need a unique ID for each build for whatever reason this is the value you should use.
 * **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are variables names and values are variable values (see below).  Note that the values available in this structure may vary between build and runtime depending on the variable type as described above.
-* **PLATFORM_PROJECT_ENTROPY**: A random value created when the project is first created, which is then stable throughout the project’s life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
+* **PLATFORM_PROJECT_ENTROPY**: A random value created when the project is first created, which is then stable throughout the project's life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
 
 The following variables exist *only* at runtime.  If used in a build hook they will evaluate to an empty string like any other unset variable:
 
 * **PLATFORM_BRANCH**: The name of the Git branch.
 * **PLATFORM_DOCUMENT_ROOT**: The absolute path to the web document root, if applicable.
 * **PLATFORM_ENVIRONMENT**: The name of the environment generated by the name of the Git branch.
+* **PLATFORM_SMTP_HOST**: The SMTP host that email messages should be sent through.  This value will be empty if mail is disabled for the current environment.
 * **PLATFORM_RELATIONSHIPS**: A base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. See the documentation for each [Service](/configuration/services.md) for details on each service type's schema.
 * **PLATFORM_ROUTES**: A base64-encoded JSON object that describes the routes that you defined in the environment. It maps the content of the `.platform/routes.yaml` file.
+
+On a Dedicated instance, the following additional variables are available at runtime only:
+
+* **PLATFORM_MODE**: Set to `enterprise` in an Dedicated environment, both production and staging.  Note that an Enterprise support plan doesn't always imply a Dedicated production, but Dedicated production always implies an Enterprise support plan.
+* **PLATFORM_CLUSTER**: Set to the cluster ID.
+* **PLATFORM_PROJECT**: Set to the document root.  This is typically the same as your cluster name for the production environment, while staging will have `_stg` or similar appended.
 
 Since values can change over time, the best thing is to inspect the variable at runtime then use it to configure your application. For example:
 
@@ -126,7 +137,7 @@ echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
 
 ## Accessing variables
 
-You can get a list of all variables defined on a given environment either [via the Web Interface](/administration/web/configure-environment.html#settings) or using the CLI:
+You can get a list of all variables defined on a given environment either [via the management console](/administration/web/configure-environment.html#settings) or using the CLI:
 
 ```bash
 $ platform variables
@@ -317,9 +328,9 @@ This feature is primarily useful to override debug configuration on development 
 
 As a convention, our provided Drupal template code will automatically map variables to Drupal's configuration system.  The logic varies slightly depending on the Drupal version.
 
-On [Drupal 7](https://github.com/platformsh/template-drupal7/blob/master/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$conf` array, which overrides Drupal's `variable_get()` system.  For instance, to force a site name from the Platform.sh variables (say to set it "This is a Dev site") you would set the `drupal:site_name` variable.
+On [Drupal 7](https://github.com/platformsh-templates/drupal7/blob/master/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$conf` array, which overrides Drupal's `variable_get()` system.  For instance, to force a site name from the Platform.sh variables (say to set it "This is a Dev site") you would set the `drupal:site_name` variable.
 
-On [Drupal 8](https://github.com/platformsh/template-drupal8/blob/master/web/sites/default/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$settings` array. That is intended for very low-level configuration.
+On [Drupal 8](https://github.com/platformsh-templates/drupal8/blob/master/web/sites/default/settings.platformsh.php), any variable that begins with `drupal:` will be mapped to the global `$settings` array. That is intended for very low-level configuration.
 
 Also on Drupal 8, any variable that begins with `d8config:` will be mapped to the global `$config` array, which is useful for overriding drupal's exportable configuration system.  The variable name will need to contain two colons, one for `d8config:` and one for the name of the configuration object to override.  For example, a variable named `d8config:system.site:name` will override the `name` property of the `system.site` configuration object.
 
@@ -334,3 +345,31 @@ export PATH=/app/vendor/bin:$PATH
 ```
 
 Note that the file is sourced after all other environment variables above are defined, so they will be available to the script.  That also means the `.environment` script has the "last word" on environment variable values and can override anything it wants to.
+
+## How can I have a script behave differently on a dedicated cluster than on development?
+
+The following sample shell script will output a different value on the Dedicated cluster than the Development environment.
+
+```bash
+if [ "$PLATFORM_MODE" = "enterprise" ] ; then
+    echo "Hello from the Enterprise"
+else
+    echo "We're on Development"
+fi
+```
+
+## How can I have a script behave differently on Production and Staging?
+
+In most Enterprise configurations the production branch is named `production` (whereas it is always `master` on Platform.sh Professional).  The following test therefore should work in almost all cases:
+
+```bash
+if [ "$PLATFORM_MODE" = "enterprise" ] ; then
+    if [ "$PLATFORM_BRANCH" = "production" ] ; then
+        echo "This is live on production"
+    else
+        echo "This is on staging"
+    fi
+else
+    echo "We're on Development"
+fi
+```

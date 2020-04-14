@@ -9,40 +9,25 @@ Both Memcached and Redis can be used for application caching.  As a general rule
 ## Supported versions
 
 * 1.4
+* 1.5
+* 1.6
 
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "cache": [
-        {
-            "host": "248.0.65.198",
-            "scheme": "memcached",
-            "port": 11211
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/memcached", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
 In your ``.platform/services.yaml``:
 
-```yaml
-memcached:
-    type: memcached:1.4
-```
+{% codesnippet "/registry/images/examples/full/memcached.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Now add a relationship in your `.platform.app.yaml` file:
 
-```yaml
-relationships:
-    cache: "memcached:memcached"
-```
+{% codesnippet "/registry/images/examples/full/memcached.app.yaml", language="yaml" %}{% endcodesnippet %}
 
-{% codetabs name="PHP", type="text" -%}
 If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php.md#php-extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 
 ```yaml
@@ -51,7 +36,6 @@ runtime:
         - memcached
 ```
 
-{%- language name="Python", type="text" -%}
 For Python you will need to include a dependency for a Memcached library, either via your requirements.txt file or a global dependency.  As a global dependency you would add the following to `.platform.app.yaml`:
 
 ```yaml
@@ -60,56 +44,19 @@ dependencies:
        python-memcached: '*'
 ```
 
-{%- endcodetabs %}
-
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="PHP", type="php" -%}
-<?php
+{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/memcached" -%}
 
-if (!isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
-    return;
-}
+{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/memcached" -%}
 
-$relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
-$rel = $relationships['cache'][0];
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/memcached" -%}
 
-$m = new Memcached();
-$m->addServer($rel['host'], $rel['port']);
-$m->setOption(Memcached::OPT_BINARY_PROTOCOL, true);
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
 
-$m->set('int', 99);
-$m->set('string', 'a simple string');
-$m->set('array', array(11, 12));
-/* expire 'object' key in 5 minutes */
-$m->set('object', new stdclass, time() + 300);
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/memcached" -%}
 
-{%- language name="Python", type="py" -%}
-import memcache
-import os
-import json
-import base64
-
-relationships = os.getenv('PLATFORM_RELATIONSHIPS')
-if relationships:
-    relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
-    memcache_settings = relationships['cache'][0]
-
-    mc = memcache.Client([memcache_settings['host'] + ':' + str(memcache_settings['port'])], debug=0)
-
-    mc.set("an_int", 99)
-    #print "Int Value: {}<br />\n".format(mc.get("an_int"))
-
-    mc.set("a_sring", "a simple string")
-    mc.delete("a_string")
-    #print "String Value: {}<br />\n".format(mc.get("a_string"))
-
-    #mc.set("key", "1")   # note that the key used for incr/decr must be a string.
-    mc.incr("key")
-    mc.decr("key")
-    #print "Counter Value: {}<br />\n".format(mc.get("key"))
 {%- endcodetabs %}
-
 
 ## Accessing Memcached directly
 

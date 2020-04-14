@@ -2,12 +2,17 @@
 
 Platform.sh supports deploying Python applications. Your application can use WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
 
-## Supported versions
+## Supported
 
 * 2.7
 * 3.5
 * 3.6
 * 3.7
+* 3.8
+
+## Support libraries
+
+While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformshconfig`](https://github.com/platformsh/config-reader-python) pip library which handles decoding of service credential information for you.
 
 ## WSGI-based configuration
 
@@ -15,10 +20,7 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
 1. Specify the language of your application (available versions are listed above):
 
-   ```yaml
-   # .platform.app.yaml
-   type: "python:3.7"
-   ```
+    {% codesnippet "/registry/images/examples/full/python.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 2. Build your application with the build hook. Assuming you have your pip dependencies stored in `requirements.txt` and a `setup.py` at the root of your application folder to execute build steps:
 
@@ -138,45 +140,47 @@ The above Gunicorn based WSGI example can be modified to use the Python 3.5+ asy
        pip install gunicorn aiohttp
    ```
 
-## Connecting to services
+## Accessing services
 
-You can [define services](/configuration/services.md) in your environment.  And, link to the services using `.platform.app.yaml`:
+To access various [services](/configuration/services.md) with Python, see the following examples.  The individual service pages have more information on configuring each service.
 
-```yaml
-relationships:
-    database: "mysqldb:mysql"
-```
+{% codetabs name="Elasticsearch", type="python", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
 
-By using the following Python function calls, you can obtain the database details.
+{% language name="Kafka", type="python", url="https://examples.docs.platform.sh/python/kafka" -%}
 
-```python
-import base64
-import json
-import os
+{% language name="Memcached", type="python", url="https://examples.docs.platform.sh/python/memcached" -%}
 
-# Use str(base64.b64decode()) for py3k compatibility.
-relationships = os.environ['PLATFORM_RELATIONSHIPS']
-relationships = json.loads(str(base64.b64decode(relationships), 'utf-8'))
+{% language name="MongoDB", type="python", url="https://examples.docs.platform.sh/python/mongodb" -%}
 
-# Sample content of relationships['database']:
-# [{
-#   'scheme': 'mysql',
-#   'host': 'database.internal',
-#   'ip': '246.0.81.164'
-#   'port': 3306,
-#   'path': 'main',
-#   'username': 'main',
-#   'password': 'main',
-#   'query': {'is_master': True},
-# }]
-```
+{% language name="MySQL", type="python", url="https://examples.docs.platform.sh/python/mysql" -%}
+
+{% language name="PostgreSQL", type="python", url="https://examples.docs.platform.sh/python/postgresql" -%}
+
+{% language name="RabbitMQ", type="python", url="https://examples.docs.platform.sh/python/rabbitmq" -%}
+
+{% language name="Redis", type="python", url="https://examples.docs.platform.sh/python/redis" -%}
+
+{% language name="Solr", type="python", url="https://examples.docs.platform.sh/python/solr" -%}
+
+{%- endcodetabs %}
 
 ## Project templates
 
 A number of project templates for Python applications are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
-* [Starter kit Python 2.7 minimal example](https://github.com/platformsh/platformsh-example-python-2.7)
-* [Starter kit Python 3 minimal example](https://github.com/platformsh/platformsh-example-python-3)
-* [Starter kit Python with uwsgi](https://github.com/platformsh/platformsh-example-python-uwsgi)
-* [Starter kit Python and Elastic Search](https://github.com/platformsh/platformsh-example-python-elasticsearch)
-* [Starter kit Django project](https://github.com/platformsh/platformsh-example-django)
+### Examples
+
+* [Python UWSGI with Unix Sockets](https://github.com/platformsh-templates/python3-uwsgi)
+
+### Frameworks
+
+* [Django 1](https://github.com/platformsh-templates/django1)
+* [Django 2](https://github.com/platformsh-templates/django2)
+* [Flask](https://github.com/platformsh-templates/flask)
+
+### Applications
+
+* [Moin Moin](https://github.com/platformsh-templates/moinmoin)
+* [Pelican](https://github.com/platformsh-templates/pelican)
+* [Pyramid](https://github.com/platformsh-templates/pyramid)
+* [Wagtail](https://github.com/platformsh-templates/wagtail)

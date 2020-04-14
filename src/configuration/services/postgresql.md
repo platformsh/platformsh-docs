@@ -9,6 +9,13 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 * 9.6
 * 10
 * 11
+* 12
+
+> **note**
+>
+> Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+>
+> See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 
 ### Deprecated versions
 
@@ -20,40 +27,17 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-{
-    "database": [
-        {
-            "username": "main",
-            "password": "main",
-            "host": "248.0.65.196",
-            "query": {
-                "is_master": true
-            },
-            "path": "main",
-            "scheme": "pgsql",
-            "port": 5432
-        }
-    ]
-}
-```
+{% codesnippet "https://examples.docs.platform.sh/relationships/postgresql", language="json" %}{% endcodesnippet %}
 
 ## Usage example
 
 In your `.platform/services.yaml` add:
 
-```yaml
-mydatabase:
-    type: postgresql:11
-    disk: 1024
-```
+{% codesnippet "/registry/images/examples/full/postgresql.services.yaml", language="yaml" %}{% endcodesnippet %}
 
 Add a relationship to the service in your ``.platform.app.yaml``:
 
-```yaml
-relationships:
-    database: "mydatabase:postgresql"
-```
+{% codesnippet "/registry/images/examples/full/postgresql.app.yaml", language="yaml" %}{% endcodesnippet %}
 
 For PHP, in your `.platform.app.yaml` add:
 
@@ -65,74 +49,16 @@ runtime:
 
 You can then use the service in a configuration file of your application with something like:
 
+{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/postgresql" -%}
 
+{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/postgresql" -%}
 
-{% codetabs name="PHP", type="php" -%}
-<?php
-// This assumes a fictional application with an array named $settings.
-if (getenv('PLATFORM_RELATIONSHIPS')) {
-	$relationships = json_decode(base64_decode($relationships), TRUE);
+{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/postgresql" -%}
 
-	// For a relationship named 'database' referring to one endpoint.
-	if (!empty($relationships['database'])) {
-		foreach ($relationships['database'] as $endpoint) {
-			$settings['database_driver'] = 'pdo_' . $endpoint['scheme'];
-			$settings['database_host'] = $endpoint['host'];
-			$settings['database_name'] = $endpoint['path'];
-			$settings['database_port'] = $endpoint['port'];
-			$settings['database_user'] = $endpoint['user'];
-			$settings['database_password'] = $endpoint['password'];
-			break;
-		}
-	}
-}
-{%- language name="Python", type="py" -%}
-relationships = os.getenv('PLATFORM_RELATIONSHIPS')
-if relationships:
-    relationships = json.loads(base64.b64decode(relationships).decode('utf-8'))
-    db_settings = relationships['database'][0]
-    DATABASES = {
-        "default": {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': db_settings['path'],
-            'USER': db_settings['username'],
-            'PASSWORD': db_settings['password'],
-            'HOST': db_settings['host'],
-            'PORT': db_settings['port'],
-        }
-    }
-{%- language name="NodeJS", type="js" -%}
-// Using the Platform.sh JS helper library: https://github.com/platformsh/platformsh-nodejs-helper
+{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
 
-var config = require("platformsh").config();
+{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/postgresql" -%}
 
-if (config.relationships != null) {
-  var db = config.relationships.first_db[0]
-
-  const connObj = {
-      user: database.username,
-      database: database.path,
-      password: database.password,
-      host: database.host
-  };
-
-  const pg = require('pg');
-
-  pg.connectAsync(connObj)...;
-}
-
-{%- language name="Go", type="go" -%}
-// Using the Platform.sh Go helper library: https://github.com/platformsh/gohelper
-
-dbString, err := pi.SqlDsn("database")
-if (err != nil) {
-  panic(err)
-}
-
-db, err := sql.Open("postgres", dbString)
-if (err != nil) {
-  panic(err)
-}
 {%- endcodetabs %}
 
 ## Exporting data
@@ -166,26 +92,27 @@ platform db:dump --stdout | bzip2 > dump.sql.bz2
 The easiest way to load data into a database is to pipe an SQL dump through the `platform sql` command, like so:
 
 ```bash
-platform sql < my_database_snapshot.sql
+platform sql < my_database_backup.sql
 ```
 
-That will run the database snapshot against the SQL database on Platform.sh.  That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database).  As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
+That will run the database backup against the SQL database on Platform.sh.  That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database).  As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-platform sql --relationship database -e master < my_database_snapshot.sql
+platform sql --relationship database -e master < my_database_backup.sql
 ```
 
 > **note**
-> Importing a database snapshot is a destructive operation. It will overwrite data already in your database.
-> Taking a snapshot or a database export before doing so is strongly recommended.
+>
+> Importing a database backup is a destructive operation. It will overwrite data already in your database.
+> Taking a backup or a database export before doing so is strongly recommended.
 
 ## Extensions
 
 Platform.sh supports a number of PostgreSQL extensions.  To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
 
 ```yaml
-postgresql:
-    type: "postgresql:11"
+db:
+    type: postgresql:12
     disk: 1025
     configuration:
         extensions:
@@ -204,7 +131,7 @@ extensions not listed here.
 * **address_standardizer_data_us** - Address Standardizer US dataset example
 * **adminpack** - administrative functions for PostgreSQL
 * **autoinc** - functions for autoincrementing fields
-* **bloom** - bloom access method - signature file based index
+* **bloom** - bloom access method - signature file based index (requires 9.6 or higher)
 * **btree_gin** - support for indexing common datatypes in GIN
 * **btree_gist** - support for indexing common datatypes in GiST
 * **chkpass** - data type for auto-encrypted passwords
@@ -227,12 +154,12 @@ extensions not listed here.
 * **pageinspect** - inspect the contents of database pages at a low level
 * **pg_buffercache** - examine the shared buffer cache
 * **pg_freespacemap** - examine the free space map (FSM)
-* **pg_prewarm** - prewarm relation data
+* **pg_prewarm** - prewarm relation data (requires 9.6 or higher)
 * **pg_stat_statements** - track execution statistics of all SQL statements executed
 * **pg_trgm** - text similarity measurement and index searching based on trigrams
-* **pg_visibility** - examine the visibility map (VM) and page-level visibility info
+* **pg_visibility** - examine the visibility map (VM) and page-level visibility info (requires 9.6 or higher)
 * **pgcrypto** - cryptographic functions
-* **pgrouting** - pgRouting Extension
+* **pgrouting** - pgRouting Extension (requires 9.6 or higher)
 * **pgrowlocks** - show row-level locking information
 * **pgstattuple** - show tuple-level statistics
 * **plpgsql** - PL/pgSQL procedural language
@@ -247,12 +174,18 @@ extensions not listed here.
 * **tablefunc** - functions that manipulate whole tables, including crosstab
 * **tcn** - Triggered change notifications
 * **timetravel** - functions for implementing time travel
-* **tsearch2** - compatibility package for pre-8.3 text search functions
-* **tsm_system_rows** - TABLESAMPLE method which accepts number of rows as a limit
-* **tsm_system_time** - TABLESAMPLE method which accepts time in milliseconds as a limit
+* **tsearch2** - compatibility package for pre-8.3 text search functions (obsolete, only available for 9.6 and 9.3)
+* **tsm_system_rows** - TABLESAMPLE method which accepts number of rows as a limit (requires 9.6 or higher)
+* **tsm_system_time** - TABLESAMPLE method which accepts time in milliseconds as a limit (requires 9.6 or higher)
 * **unaccent** - text search dictionary that removes accents
 * **uuid-ossp** - generate universally unique identifiers (UUIDs)
 * **xml2** - XPath querying and XSLT
+
+> **note**
+>
+> Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+>
+> See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 
 ## Notes
 
@@ -267,6 +200,12 @@ PostgreSQL 10 and later include an upgrade utility that can convert databases fr
 The upgrader does not work to upgrade to PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 are not supported.  Upgrade straight to version 11 instead.
 
 > Warning: Make sure you first test your migration on a separate branch
-> Warning: be sure to take a snapshot of your master environment **before** you merge this change.
+> Warning: be sure to take a backup of your master environment **before** you merge this change.
 
 Downgrading is not supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
+
+### Upgrading to PostgreSQL 12 with the `postgis` extension
+
+Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+
+If you need to upgrade, you should follow the same steps recommended for performing downgrades: dump the database, remove the service, recreate the service with PostgreSQL 12, and then import the dump to that service.

@@ -32,24 +32,67 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 * A PHP process is crashing because of a segmentation fault (see below).
 * A PHP process is killed by the kernel out-of-memory killer (see below).
 
+## Error provisioning the new certificate
+
+One reason [Let's Encrypt certificates](/configuration/routes/https.md#lets-encrypt) may fail to provision on your environments has to do with the 64 character limit Let's Encrypt places on URLs. If the names of your branches are too long, the Platform.sh generated environment URL will go over this limit, and the certificate will be rejected.
+
+See [Let's Encrypt limits and branch names](/configuration/routes/https.md#lets-encrypt-limits-and-branch-names) for a more detailed breakdown of this issue.  
+
+## Total disk usage exceeds project maximum
+
+One of the billable parameters in your project's settings is Storage.  This global storage pool is allocated among the various services and application containers in your project via the `disk` parameter.  The sum of all `disk` parameters in your project's YAML config files must be less than or equal to the global project storage number.
+
+```
+Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing a service, or add more storage to your plan
+```
+
+This means that you have allocated, for example, `disk: 4096` in a MySQL service in `services.yaml` and also `disk: 4096` in the `.platform.app.yaml` for your application, while only having the minimum default of 5GB storage for your project as a whole.  The solution is either to lower the `disk` parameters to within the limits of 5GB of storage, or raise the global storage parameter on your project's settings to at least 10GB.  
+
+Because storage is a billable component of your project, only the project's owner can make this change.
+
 ## Low disk space
 
-If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writable space the most direct option is:
+When you receive a [low-disk space notification](/administrtion/integrations/notifications.md) for your application container: 
+
+### Check your application's disk space
+
+Run `platform ssh` within your project folder to login to the container's shell.  Then use the `df` command to check the available writable space for your application.
 
 ```
 df -h -x tmpfs -x squashfs | grep -v /run/shared
 ```
 
-That will show only the writable mounts on the system, similar to:
+This command will show the writable mounts on the system, similar to:
 
 ```
 Filesystem                                                       Size  Used Avail Use% Mounted on
-/dev/mapper/platform-syd7waxqy4n5q--master--7rqtwti----app       2.0G   37M  1.9G   2% /app/tmp
+/dev/mapper/platform-syd7waxqy4n5q--master--7rqtwti----app       2.0G   37M  1.9G   2% /mnt
 /dev/mapper/platform-tmp--syd7waxqy4n5q--master--7rqtwti----app  3.9G   42M  3.8G   2% /tmp
 ```
 
-* The first entry shows the storage device that is shared by all of your disk mounts.  Only one path will be shown under `Mounted on` but the disk space reported is common to all defined mounts in a single pool.  In this example, there are 2 GB of total disk allocated to the app container of which only 2% (37 MB) has been used total by all defined mounts.
-* The second entry is the operating system temp directory, which is always the same size.  While you can write to this directory files there are not guaranteed to persist and may be deleted on deploy.
+The first line shows the storage device that is shared by all of your [persistent disk mounts](/configuration/app/storage.md#mounts).  All defined mounts use a common storage pool.  In this example, the application container has allocated 2 GB of the total disk space. Of those 2GB, 2% (37 MB) is used by all defined mounts.
+
+The second line is the operating system `temporary directory`, which is always the same size.
+  While you can write to the `/tmp` directory files there are not guaranteed to persist and may be deleted on deploy.
+
+### Increase the disk space available
+
+The sum of all disk keys defined in your project's `.platform.app.yaml` and `.platform/services.yaml` files must be equal or less than the available storage in your plan.
+
+1. Buy extra storage for your project
+
+  Each project comes with 5GB of Disk Storage available to each environment. To increase the disk space available for your project, click on "Edit Plan" to increase your storage in bulks of 5GB.  See [Extra Storage](/overview/pricing.md#extra-storage) for more information.
+
+2. Increase your application and services disk space
+
+  Once you have enough storage available, you can increase the disk space allocated for your application and services using `disk` keys in your `.platform.app.yaml` and `.platform/services.yaml`. 
+  
+  Check the following resources for more details:
+
+   - [Application's disk space](/configuration/app/storage.md#disk)
+   - [Services' disk space](/configuration/services.md#disk)
+
+### Check your database disk space
 
 For a MariaDB database, the command `platform db:size` will give approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percentage points.
 
@@ -65,6 +108,19 @@ For a MariaDB database, the command `platform db:size` will give approximate dis
 
 For the most reliable disk usage warnings, we strongly recommend all customers enable [Health notifications](/administration/integrations/notifications.md) on all projects.  That will provide you with a push-notification through your choice of channel when the available disk space on any service drops too low.
 
+## No space left on device
+
+During the build hook, you may run into the following error depending on the size of your application:
+
+```
+W: [Errno 28] No space left on device: ...
+```
+
+The cause of this issue has to do with the amount of disk provided to the build container before it is deployed. Application images are restricted to 4 GB during build, no matter how much writable disk has been set aside for the deployed application.
+
+Some build tools (yarn/npm) store cache for different versions of their modules. This can cause the build cache to grow over time beyond the maximum of 4GB. Try [clearing the build cache](/development/troubleshoot.md#clear-the-build-cache) and redeploying. In most cases, this will resolve the issue.
+
+If for some reason your application requires more than 4 GB during build, you can open a support ticket to have this limit increased.  The most disk space available during build still caps off at 8 GB in these cases.
 
 ## MySQL lock wait timeout
 
@@ -95,6 +151,45 @@ To find active background processes, run `ps aufx` on your application container
 Also, please make sure that locks are acquired in a pre-defined order and released as soon as possible.
 
 
+## MySQL: definer/invoker of view lack rights to use them
+
+There is a single MySQL user, so you can not use "DEFINER" Access Control mechanism for Stored Programs and Views.
+
+When creating a `VIEW`, you may need to explicitly set the `SECURITY` parameter to `INVOKER`:
+
+```
+CREATE OR REPLACE SQL SECURITY INVOKER
+VIEW `view_name` AS
+SELECT
+```
+
+## MySQL server has gone away
+
+### Disk space issues
+
+Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).
+
+The current disk usage can be checked using the CLI command `platform db:size`. Because of issues with the way InnoDB reports its size, this can out by up to 20%. As table space can grow rapidly, *it is usually advisable to make your database mount size twice the size reported by the `db:size` command*.
+
+You are encouraged to add a [low-disk warning notification](/administration/integrations/notifications.html#low-disk-warning) to proactively warn of low disk space before it becomes an issue.
+
+### Worker timeout
+
+Another possible cause of "MySQL server has gone away" errors is a server timeout.  MySQL has a built-in timeout for idle connections, which defaults to 10 minutes.  Most typical web connections end long before that is ever approached, but it's possible that a long-running worker may idle and not need the database for longer than the timeout.  In that case the same "server has gone away" message may appear.
+
+If that's the case, the best way to handle it is to wrap your connection logic in code that detects a "server has gone away" exception and tries to re-establish the connection.
+
+Alternatively, if your worker is idle for too long it can self-terminate.  Platform.sh will automatically restart the worker process, and the new process can establish its own new database connection.
+
+### Packet size limitations
+
+Another cause of the "MySQL server has gone away" errors can be the size of the database packets. If that is the case, the logs may show warnings like  "Error while sending QUERY packet" before the error. One way to resolve the issue is to use the `max_allowed_packet` parameter described [above](/configuration/services/mysql.md#adjusting-mariadb-configuration).
+
+## ERROR: permission denied to create database
+
+The provided user does not have permission to create databases.   
+The database is created for you and can be found in the `path` field of the `$PLATFORM_RELATIONSHIPS` environment variable.
+
 ## "Read-only file system" error
 
 Everything will be read-only, except the writable [mounts](/configuration/app/storage.md) you declare.  Writable mounts are there for your data: for file uploads, logs and temporary files. Not for your code.  In order to change code on Platform.sh you have to go through Git.
@@ -119,7 +214,7 @@ Then the CLI hasn't been able to determine the project to use.  To fix that, run
 platform project:set-remote <project_id>
 ```
 
-where `<project_id>` is the random-character ID of the project.  That can be found by running `platform projects` from the command line to list all accessible projects.  Alternatively, it can be found in the UI after the `platform get` command shown or in the URL of the UI or project domain.
+where `<project_id>` is the random-character ID of the project.  That can be found by running `platform projects` from the command line to list all accessible projects.  Alternatively, it can be found in the management console after the `platform get` command shown or in the URL of the management console or project domain.
 
 ## "File not found" in Drupal
 
@@ -204,7 +299,7 @@ If you see a build or deployment running longer than expected, that may be one o
 3. The deployment is blocked by a long running cron job in the environment.
 4. The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment, you can look at the build log available on the UI.  If you see a line similar to the following:
+To determine if your environment is being stuck in the build or the deployment, you can look at the build log available in the management console.  If you see a line similar to the following:
 
 ```
 Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
@@ -212,12 +307,12 @@ Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
 
 It means the build has completed successfully and the system is trying to deploy.  If that line never appears then it means the build is stuck.
 
-For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed.  In some regions the build will self-terminate after one hour.  In other regions (US and EU) the build will need to be killed by our support team.
+For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed.  In most regions the build will self-terminate after one hour.  In older regions (US and EU) the build will need to be killed by our support team.
 
 When a _deployment_ is blocked, you should try the following:
 
-1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id showned by `ps afx`.
-2. If you're performing "Sync", "Merge", or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
+1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id shown by `ps afx`.
+2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
 
 ## Slow or failing build or deployment
 

@@ -11,7 +11,19 @@ Many applications still require the ability to write and store files, however.  
 
 ## Disk
 
-The `disk` key is required, and defines the size of the persistent disk of the application (in MB).  Its minimum value is 256 MB and a validation error will occur if you try to set it lower.
+Your _plan storage size_ specifies the maximum total space available to _all_ applications and services.
+
+When deploying your project, the sum of all `disk` keys defined in `.platform.app.yaml` and `.platform/services.yaml` 
+must be *equal or less* than the _plan storage size_. For example, if your _plan storage size_ is 5 GB, you can assign:
+
+* 2 GB to your application, 3 GB to your database
+* 1 GB to your application, 4 GB to your database
+* 1 GB to your application, 1 GB to your database, 3 GB to your Elasticsearch service
+* etc.
+
+If you receive an error on `git push` mentioning the total disk space configured for the application and its services exceeds the plan storage size, you need to either increase the disk space reserved for your project on the project setup page or lower the storage assigned to each service and the application.
+
+The `disk` key is optional.  If set, it defines the size of the persistent disk of the application (in MB).  Its minimum value is 256 MB and a validation error will occur if you try to set it lower.
 
 ## Mounts
 
@@ -36,13 +48,36 @@ The `source` specifies where the writable mount is.  `source_path` specifies the
 
 ### `local` mounts
 
-At this time `local` is the only legal source but more will be added in the future.  The `local` source indicates that the mount point will point to a local directory on the application container.  The `source_path` is then a subpath of that.  That means they may overlap.
+The `local` source indicates that the mount point will point to a local directory on the application container.  The `source_path` is then a subpath of that.  That means they may overlap.  `local` mounts are not shared between different application containers or workers.
 
 Be aware that the entire `local` space for a single app container is a common directory, and the directory is not wiped.  That means if you create a mount point with a `source_path` of "uploads", then write files there, then remove the mount point, the files will still exist on disk indefinitely until manually removed.
 
+Local mounts require that the `disk` key be set.  If it is omitted there will be no storage space available at all.
+
+### `service` mounts
+
+A `service` mount refers to a `network-storage` service, as defined in `services.yaml`.  They function in essentially the same way as a `local` mount, with two important differences:
+
+1) The disk size of the `service` mount is controlled in `services.yaml`; it is separate from the value of the `disk` key in `.platform.app.yaml`.
+2) Multiple application containers may refer to the same `service` mount and share files.
+
+A `service` mount works like so:
+
+```yaml
+mounts:
+  'web/uploads':
+    source: service
+    service: files
+    source_path: uploads
+```
+
+This assumes that a `network-storage` service named `files` has already been defined.  See the [Network Storage](/configuration/services/network-storage.md) page for more details and examples.
+
 ## Multi-instance disk mounts
 
-If you have multiple application instances defined (using both `web` and `workers`), each instance will have its own disk mounts.  That's the case even if they are named the same, and even if there is only a single top-level mounts directive.  In that case, every instance will have an identical configuration, but separate, independent file spaces.  Shared file storage between different application instances is not supported at this time.
+If you have multiple application instances defined (using both `web` and `workers`), each instance will have its own `local` disk mounts.  That's the case even if they are named the same, and even if there is only a single top-level mounts directive.  In that case, every instance will have an identical configuration, but separate, independent file spaces.
+
+If you want to have multiple application instances share file storage, you will need to use a `service` mount.
 
 ## How do I set up both public and private file uploads?
 
@@ -80,6 +115,17 @@ web:
 ```
 
 See the [web locations](/configuration/app/web.md) documentation for more details.
+
+## Why can't I mount a hidden folder?
+
+Platform.sh ignores YAML keys that start with a dot. This causes a mount like `.myhiddenfolder` to be ignored. If you want to mount a hidden folder, you'll have to prepend it with a `/`:
+
+```yaml
+mounts:
+  '/.myhiddenfolder':
+    source: local
+    source_path: 'myhiddenfolder'
+```
 
 ## How do I setup overlapping mount paths?
 

@@ -1,5 +1,9 @@
 # Upgrading
 
+## Changes in version 2019.05
+
+* The `!archive` tag in YAML has been un-deprecated, and is now favored over the `!include` option. `!include` is still available for other include types (`yaml`, `binary`, and `string`).
+
 ## Changes in version 2017.11 (2017-11-09)
 
 * The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/configuration/yaml.md).  For example, the following `services.yaml` snippet:
@@ -236,7 +240,7 @@ still supported, but customers are invited to move to the new format.
 
 For an example upgrade path, see the [Drupal 7.x branch of the
 Platformsh-examples
-repository](https://github.com/platformsh/template-drupal7/blob/master/.platform.app.yaml)
+repository](https://github.com/platformsh-templates/drupal7/blob/master/.platform.app.yaml)
 on GitHub.
 
 Configuration items for PHP that previously was part of
