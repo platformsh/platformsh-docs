@@ -1,0 +1,25 @@
+<!-- {{ $separator := .Get ( index .Params 0 )}} -->
+<table class="table table-changelog">
+
+  <tbody>
+    {{ $months := split .Inner "####" }}
+    {{ range $months }}
+      <tr>
+        {{ $changes := split . "*" }}
+        {{ $index := 0 }}
+        {{ range $changes }}
+          {{ if eq $index 0 }}
+            {{ $index = add $index 1 }}
+            <td scope="row"><b>{{ . | markdownify}}</b></td>
+            <td>
+              <ul>
+          {{ else }}
+                <li>{{ . | markdownify }}</li>
+          {{ end }}
+        {{ end }}
+              </ul>
+            </td>
+      </tr>
+    {{ end }}
+  </tbody>
+</table>

@@ -1,4 +1,8 @@
-# Variables
+---
+title: "Variables"
+weight: 8
+toc: false
+---
 
 Platform.sh provides a number of ways to set [variables](/development/variables.md), either globally or specific to a single environment.  For values that should be consistent between different environments (because they're configuring the application or runtime itself, generally) the easiest way to control them is to set them in the `.platform.app.yaml` file.
 
@@ -54,7 +58,15 @@ variables:
 
 Would appear this way in various languages:
 
-{% codetabs name="PHP", type="php" -%}
+{{< tabtest >}}
+
+---
+title=PHP
+file=none
+highlight=php
+markdownify=false
+---
+
 <?php
 var_dump($_ENV['BASIC']);
 // string(8) "a string"
@@ -91,7 +103,15 @@ array(3) {
 }
 */
 
-{%- language name="Python", type="python" -%}
+<--->
+
+---
+title=Python
+file=none
+highlight=python
+markdownify=false
+---
+
 import os
 import json
 import base64
@@ -112,4 +132,4 @@ print variables['stuff:STEPS']
 print variables['stuff:COLORS']
 // {u'blue': u'#0000FF', u'green': u'#00FF00', u'red': u'#FF0000'}
 
-{%- endcodetabs %}
+{{< /tabtest >}}

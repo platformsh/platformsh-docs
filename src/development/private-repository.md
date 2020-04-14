@@ -1,4 +1,8 @@
-# Use private Git repository
+---
+title: "Use a private Git repository"
+weight: 10
+sidebarTitle: "Private repositories"
+---
 
 ## Pull code from a private Git repository
 
@@ -6,7 +10,7 @@ Let's say you're building a module (*or theme, library...*) which is stored in a
 
 To grant Platform.sh access to your private Git repository, you need to add the project public SSH key to the deploy keys of your Git repository.
 
-You can copy your project's public key by going to the Settings tab on the management console and then clicking the Deploy Key tab on the left hand side. 
+You can copy your project's public key by going to the Settings tab on the management console and then clicking the Deploy Key tab on the left hand side.
 
 ![Deploy Key](/images/management-console/settings-deploy-key.png)
 
@@ -23,8 +27,9 @@ projects[module_private][download][branch] = dev
 projects[module_private][download][url] = "git@github.com:guguss/module_private.git"
 ```
 
-> **note**
-> In the make file use the `<user>@<host>:<path>.git` format, or `ssh://<user>@<host>:<port>/<path>.git` if using a non-standard port.
+{{< note >}}
+In the make file use the `<user>@<host>:<path>.git` format, or `ssh://<user>@<host>:<port>/<path>.git` if using a non-standard port.
+{{< /note >}}
 
 ## Using multiple private Git repositories
 
@@ -34,4 +39,3 @@ If your project needs to access multiple repositories, you can choose to attach 
 
 More information about this is available on
 [GitHub](https://developer.github.com/v3/guides/managing-deploy-keys/#machine-users).
-

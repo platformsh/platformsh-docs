@@ -1,3 +1,8 @@
+---
+title: "Tethered"
+weight: 1
+---
+
 # Tethered Local
 
 The simplest way to run a project locally is to use a local web server, but keep all other services on Platform.sh and connect to them over an SSH tunnel.  This approach requires very little setup, but depending on the speed of your connection and how I/O intensive your application is may not be performant enough to use regularly.  It will also require an active Internet connection, of course.
@@ -61,10 +66,11 @@ and you can close tunnels with:
 platform tunnel:close
 ```
 
-> **note**
-> The `platform tunnel:open` command requires the `pcntl` and `posix` PHP extensions. Run `php -m | grep -E 'posix|pcntl'` to check if they're there.
->
-> If you don't have these extensions installed, you can use the `platform tunnel:single` command to open one tunnel at a time. This command also lets you specify a local port number.
+{{< note >}}
+The `platform tunnel:open` command requires the `pcntl` and `posix` PHP extensions. Run `php -m | grep -E 'posix|pcntl'` to check if they're there.
+
+If you don't have these extensions installed, you can use the `platform tunnel:single` command to open one tunnel at a time. This command also lets you specify a local port number.
+{{< /note >}}
 
 ### Local environment variables
 
@@ -78,7 +84,7 @@ That will create a `PLATFORM_RELATIONSHIPS` environment variable locally that lo
 
 Note that the environment variable is set globally so you cannot use this mechanism to load mutiple tethered Platform.sh projects at the same time.  If you need to run multiple tethered environments at once you will have to read the relationships information for each one from the application code, like so:
 
-{% codetabs name="PHP", type="php" -%}
+```php
 <?php
 if ($relationships_encoded = shell_exec('platform tunnel:info --encode')) {
     $relationships = json_decode(base64_decode($relationships_encoded, TRUE), TRUE);
@@ -93,4 +99,4 @@ encoded = subprocess.check_output(['platform', 'tunnel:info', '--encode'])
 if (encoded):
     json.loads(base64.b64decode(relationships).decode('utf-8'))
     # ...
-{%- endcodetabs %}
+```

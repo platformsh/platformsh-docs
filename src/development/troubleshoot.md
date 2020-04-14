@@ -1,6 +1,19 @@
-# Troubleshooting
+---
+title: "Troubleshooting"
+weight: 16
+---
 
-<!-- toc -->
+## Total disk usage exceeds project maximum
+
+One of the billable parameters in your project's settings is Storage.  This global storage pool is allocated among the various services and application containers in your project via the `disk` parameter.  The sum of all `disk` parameters in your project's YAML config files must be less than or equal to the global project storage number.
+
+```bash
+Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing a service, or add more storage to your plan
+```
+
+This means that you have allocated, for example, `disk: 4096` in a MySQL service in `services.yaml` and also `disk: 4096` in the `.platform.app.yaml` for your application, while only having the minimum default of 5GB storage for your project as a whole.  The solution is either to lower the `disk` parameters to within the limits of 5GB of storage, or raise the global storage parameter on your project's settings to at least 10GB.  
+
+Because storage is a billable component of your project, only the project's owner can effect this change.
 
 ## Force a redeploy
 
@@ -32,71 +45,28 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 * A PHP process is crashing because of a segmentation fault (see below).
 * A PHP process is killed by the kernel out-of-memory killer (see below).
 
-## Error provisioning the new certificate
-
-One reason [Let's Encrypt certificates](/configuration/routes/https.md#lets-encrypt) may fail to provision on your environments has to do with the 64 character limit Let's Encrypt places on URLs. If the names of your branches are too long, the Platform.sh generated environment URL will go over this limit, and the certificate will be rejected.
-
-See [Let's Encrypt limits and branch names](/configuration/routes/https.md#lets-encrypt-limits-and-branch-names) for a more detailed breakdown of this issue.  
-
-## Total disk usage exceeds project maximum
-
-One of the billable parameters in your project's settings is Storage.  This global storage pool is allocated among the various services and application containers in your project via the `disk` parameter.  The sum of all `disk` parameters in your project's YAML config files must be less than or equal to the global project storage number.
-
-```
-Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing a service, or add more storage to your plan
-```
-
-This means that you have allocated, for example, `disk: 4096` in a MySQL service in `services.yaml` and also `disk: 4096` in the `.platform.app.yaml` for your application, while only having the minimum default of 5GB storage for your project as a whole.  The solution is either to lower the `disk` parameters to within the limits of 5GB of storage, or raise the global storage parameter on your project's settings to at least 10GB.  
-
-Because storage is a billable component of your project, only the project's owner can make this change.
-
 ## Low disk space
 
-When you receive a [low-disk space notification](/administrtion/integrations/notifications.md) for your application container: 
+If you suspect you are running low on disk space in your application container, the easiest way to check it is to log in using `platform ssh` and run the `df` command.  `df` has numerous options to tweak its output, but for just checking the available writable space the most direct option is:
 
-### Check your application's disk space
-
-Run `platform ssh` within your project folder to login to the container's shell.  Then use the `df` command to check the available writable space for your application.
-
-```
+```sh
 df -h -x tmpfs -x squashfs | grep -v /run/shared
 ```
 
-This command will show the writable mounts on the system, similar to:
+That will show only the writable mounts on the system, similar to:
 
-```
+```sh
 Filesystem                                                       Size  Used Avail Use% Mounted on
-/dev/mapper/platform-syd7waxqy4n5q--master--7rqtwti----app       2.0G   37M  1.9G   2% /mnt
+/dev/mapper/platform-syd7waxqy4n5q--master--7rqtwti----app       2.0G   37M  1.9G   2% /app/tmp
 /dev/mapper/platform-tmp--syd7waxqy4n5q--master--7rqtwti----app  3.9G   42M  3.8G   2% /tmp
 ```
 
-The first line shows the storage device that is shared by all of your [persistent disk mounts](/configuration/app/storage.md#mounts).  All defined mounts use a common storage pool.  In this example, the application container has allocated 2 GB of the total disk space. Of those 2GB, 2% (37 MB) is used by all defined mounts.
-
-The second line is the operating system `temporary directory`, which is always the same size.
-  While you can write to the `/tmp` directory files there are not guaranteed to persist and may be deleted on deploy.
-
-### Increase the disk space available
-
-The sum of all disk keys defined in your project's `.platform.app.yaml` and `.platform/services.yaml` files must be equal or less than the available storage in your plan.
-
-1. Buy extra storage for your project
-
-  Each project comes with 5GB of Disk Storage available to each environment. To increase the disk space available for your project, click on "Edit Plan" to increase your storage in bulks of 5GB.  See [Extra Storage](/overview/pricing.md#extra-storage) for more information.
-
-2. Increase your application and services disk space
-
-  Once you have enough storage available, you can increase the disk space allocated for your application and services using `disk` keys in your `.platform.app.yaml` and `.platform/services.yaml`. 
-  
-  Check the following resources for more details:
-
-   - [Application's disk space](/configuration/app/storage.md#disk)
-   - [Services' disk space](/configuration/services.md#disk)
-
-### Check your database disk space
+* The first entry shows the storage device that is shared by all of your disk mounts.  Only one path will be shown under `Mounted on` but the disk space reported is common to all defined mounts in a single pool.  In this example, there are 2 GB of total disk allocated to the app container of which only 2% (37 MB) has been used total by all defined mounts.
+* The second entry is the operating system temp directory, which is always the same size.  While you can write to this directory files there are not guaranteed to persist and may be deleted on deploy.
 
 For a MariaDB database, the command `platform db:size` will give approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percentage points.
 
-```
+```sh
 +--------------+--------+
 | Property     | Value  |
 +--------------+--------+
@@ -112,7 +82,7 @@ For the most reliable disk usage warnings, we strongly recommend all customers e
 
 During the build hook, you may run into the following error depending on the size of your application:
 
-```
+```sh
 W: [Errno 28] No space left on device: ...
 ```
 
@@ -126,7 +96,7 @@ If for some reason your application requires more than 4 GB during build, you ca
 
 If you receive MySQL error messages like this:
 
-```
+```sh
 SQLSTATE[HY000]: General error: 1205 Lock wait timeout exceeded;
 ```
 
@@ -137,7 +107,7 @@ This means a process running in your application acquired a lock from MySQL for 
 
 If you're using [MariaDB 10+](/configuration/services/mysql.md), you can use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.  Find output like the following, and start debugging.
 
-```
+```sh
 < skipped >
 Command: Query
 Time: ...
@@ -157,7 +127,7 @@ There is a single MySQL user, so you can not use "DEFINER" Access Control mechan
 
 When creating a `VIEW`, you may need to explicitly set the `SECURITY` parameter to `INVOKER`:
 
-```
+```sh
 CREATE OR REPLACE SQL SECURITY INVOKER
 VIEW `view_name` AS
 SELECT
@@ -204,13 +174,13 @@ During the [build phase](/overview/build-deploy.md#building-the-application) of 
 
 If you check out a project via Git directly and not using the `platform get` command, you may end up with the CLI unable to determine what project it's in.  If you run a CLI command from within the project directory you've checked out but get an error like this:
 
-```
+```sh
 [RootNotFoundException] Project root not found. This can only be run from inside a project directory.
 ```
 
 Then the CLI hasn't been able to determine the project to use.  To fix that, run:
 
-```
+```sh
 platform project:set-remote <project_id>
 ```
 
@@ -229,7 +199,7 @@ Make sure your repository contains an *index.php* file in the [web location root
 
 You may see a line like the following in the `/var/log/app.log` file:
 
-```
+```sh
 WARNING: [pool web] server reached max_children setting (2), consider raising it
 ```
 
@@ -245,7 +215,7 @@ Platform.sh sets the number of workers based on the available memory of your con
 
 If your PHP application is not able to handle the amount of traffic or it is slow, you should see log lines from `/var/log/app.log` like any of the below:
 
-```
+```sh
 WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /index.php") execution timed out (358.009855 sec), terminating
 ```
 
@@ -270,7 +240,7 @@ Otherwise, you may check if the following options are applicable:
 
 If your PHP process crashed with a segmentation fault, you should see log lines in `/var/log/app.log` like below:
 
-```
+```sh
 WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 seconds from start
 ```
 
@@ -280,7 +250,7 @@ This is complicated, either a PHP extension is hitting a segmentation fault or y
 
 If your PHP process is killed by the kernel, you should see log lines in `/var/log/app.log` like this:
 
-```
+```sh
 WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 seconds from start
 ```
 
@@ -301,7 +271,7 @@ If you see a build or deployment running longer than expected, that may be one o
 
 To determine if your environment is being stuck in the build or the deployment, you can look at the build log available in the management console.  If you see a line similar to the following:
 
-```
+```sh
 Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
 ```
 
@@ -311,7 +281,7 @@ For a blocked _build_ (when you don't find the `Re-deployment environment ...` l
 
 When a _deployment_ is blocked, you should try the following:
 
-1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id shown by `ps afx`.
+1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id showned by `ps afx`.
 2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
 
 ## Slow or failing build or deployment
@@ -324,7 +294,7 @@ Here are a few tips that can help you solve the issues you are experiencing.
 
 Invisible errors during the build and deploy phase can cause increased wait times, failed builds and other problems. Investigating each log and fixing errors is essential.
 
-Related documentation: [Accessing logs](https://docs.platform.sh/development/logs.html#accessing-logs)
+Related documentation: [Accessing logs](/development/logs.md#accessing-logs)
 
 ### Build and deploy hooks
 
@@ -336,12 +306,12 @@ Deploy hooks can be tested either locally or by logging into the application ove
 
 Furthermore, you can test your hooks with these Linux commands to help figure out any problems:
 
-```
+```sh
 time $cmd # Print execution time
 strace -T $cmd # Print a system call report
 ```
 
-Related documentation: [Build and deploy hooks](https://docs.platform.sh/configuration/app/build.html#hooks)
+Related documentation: [Build and deploy hooks](/configuration/app/build.md#hooks)
 
 ### Cron jobs
 
@@ -349,7 +319,8 @@ Containers cannot be shutdown while long-running tasks are active.  That means l
 
 For that reason, make sure your custom cron jobs execution times are low and that they are running properly.  Be aware that cron jobs may invoke other services in unexpected ways, which can increase execution time.
 
-**note**
+{{< note >}}
 Drupal's `drush core-cron` run installed module's cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to frequently benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
+{{< /note >}}
 
-Related documentation: [Cron and scheduled tasks](https://docs.platform.sh/configuration/app/cron.html#cron-jobs)
+Related documentation: [Cron and scheduled tasks](/configuration/app/cron.md#cron-jobs)

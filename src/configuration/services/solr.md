@@ -1,57 +1,77 @@
-# Solr (Search Service)
+---
+title: "Solr (Search service)"
+weight: 12
+sidebarTitle: "Solr"
+---
 
 Apache Solr is a scalable and fault-tolerant search index.
 
-Solr search with generic schemas provided, and a custom schema is also supported.
-
-See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) for more information.
+Solr search with generic schemas provided, and a custom schema is also supported. See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) for more information."
 
 ## Supported versions
 
-* 3.6
-* 4.10
-* 6.3
-* 6.6
-* 7.6
-* 7.7
-* 8.0
-* 8.4
+{{< image-versions image="solr" status="supported" >}}
 
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://examples.docs.platform.sh/relationships/solr", language="json" %}{% endcodesnippet %}
+{{< highlight json >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/solr" >}}
+{{< /highlight >}}
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+In your `.platform/services.yaml`:
 
-{% codesnippet "/registry/images/examples/full/solr.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/solr.services.yaml" highlight="yaml" >}}
 
-In your ``.platform.app.yaml``:
+In your `.platform.app.yaml`:
 
-{% codesnippet "/registry/images/examples/full/solr.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/solr.app.yaml" highlight="yaml" >}}
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/solr" -%}
+{{< tabs "Go" "Java" "Nodejs" "PHP" "Python" >}}
 
-{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/solr" -%}
+{{< tab id="Go" active="true" >}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/solr" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/solr" -%}
+{{< tab id="Java" >}}
+{{< highlight java >}}
+{{< readFile file="static/files/fetch/examples/java/solr" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/solr" -%}
+{{< tab id="Nodejs" >}}
+{{< highlight js >}}
+{{< readFile file="static/files/fetch/examples/nodejs/solr" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/solr" -%}
+{{< tab id="PHP">}}
+{{< highlight php >}}
+{{< readFile file="static/files/fetch/examples/php/solr" >}}{{< /highlight >}}
+{{< /tab >}}
 
-{%- endcodetabs %}
+{{< tab id="Python" >}}
+{{< highlight python >}}
+{{< readFile file="static/files/fetch/examples/python/solr" >}}
+{{< /highlight >}}
+{{< /tab >}}
+
+{{< /tabs >}}
+
+## Configuration
 
 ## Solr 4
 
 For Solr 4, Platform.sh supports only a single core per server called `collection1`.
 
-You must provide your own Solr configuration via a `core_config` key in your ``.platform/services.yaml``:
+If you want to provide your own Solr configuration, you can add a `core_config` key in your ``.platform/services.yaml``:
 
 ```yaml
 search:
@@ -77,7 +97,7 @@ For Solr 6 and later Platform.sh supports multiple cores via different endpoints
 
 ```yaml
 search:
-    type: solr:8.4
+    type: solr:8.0
     disk: 1024
     configuration:
         cores:
@@ -135,7 +155,7 @@ For even more customizability, it's also possible to define Solr configsets.  Fo
 
 ```yaml
 search:
-    type: solr:8.4
+    type: solr:8.0
     disk: 1024
     configuration:
         configsets:
@@ -166,7 +186,7 @@ If no configuration is specified, the default configuration is equivalent to:
 
 ```yaml
 search:
-    type: solr:8.4
+    type: solr:8.0
     configuration:
         cores:
             collection1:
@@ -176,7 +196,7 @@ search:
                 core: collection1
 ```
 
-The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.  While it may work for generic cases defining your own custom configuration, core, and endpoint is strongly recommended.
+The Solr 6.x Drupal 8 configuration files are reasonably generic and should work in many other circumstances, but explicitly defining a core, configuration, and endpoint is generally recommended.
 
 ### Limitations
 
@@ -206,8 +226,11 @@ Close tunnels with: platform tunnel:close
 
 In this example, you can now open `http://localhost:30000/solr/` in a browser to access the Solr admin interface.  Note that you cannot create indexes or users this way, but you can browse the existing indexes and manipulate the stored data.
 
-> **Note**
-> Platform.sh Dedicated users can use `ssh -L 8888:localhost:8983 <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead, after which the Solr server administrative interface will be available at `http://localhost:8888/solr/`.
+
+{{< note >}}
+Platform.sh Dedicated users can use `ssh -L 8888:localhost:8983 <user>@<cluster-name>.ent.platform.sh` to open a tunnel instead, after which the Solr server administrative interface will be available at `http://localhost:8888/solr/`.
+{{< /note >}}
+
 
 ## Upgrading
 

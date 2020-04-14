@@ -1,0 +1,10 @@
+"pages": [ {{ range sort .Site.Pages }}
+    {
+        "permalink": {{ .Permalink | jsonify }},
+        "source_file": {{ .File.Dir | jsonify }},
+        "date_published": {{ .PublishDate | jsonify }},
+        "date_modified": {{ .PublishDate | jsonify }},
+        "hash_plaintext": {{ (md5 .Plain) | jsonify }},
+        "hash_rawcontent": {{ (md5 .RawContent) | jsonify }}
+    },{{ end }}
+]

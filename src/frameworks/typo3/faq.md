@@ -1,4 +1,9 @@
-# TYPO3 Frequently Asked Questions (FAQ)
+---
+title: "TYPO3 Frequently Asked Questions (FAQ)"
+weight: 1
+sidebarTitle: "FAQ"
+toc: false
+---
 
 ## Why are there warnings in the install tool?
 
@@ -15,6 +20,5 @@ platform get <project id> -e <branch name>
 composer require typo3-ter/[extension name]
 git add composer.*
 git commit
-git push 
+git push
 ```
-

@@ -1,16 +1,22 @@
-# Getting Help
+---
+title: "Getting help"
+weight: 4
+toc: false
+description: |
+  If you're facing any issue with Platform.sh, you can submit a support ticket from the Platform.sh management console.
+---
 
-If you're facing any issue with Platform.sh, you can submit a support ticket from the Platform.sh management console.
+{{< description >}}
 
-![Support Ticket](/images/management-console/support-ticket-pulldown.png)
+![Support Ticket](/images/management-console/support-ticket-pulldown.png "0.15")
 
-You will be redirected to a list of your support tickets, and you can click to open a 'New ticket' at the top of the page. 
+You will be redirected to a list of your support tickets, and you can click to open a 'New ticket' at the top of the page.
 
-![Empty Support Ticket](/images/management-console/support-empty.png)
+![Empty Support Ticket](/images/management-console/support-empty.png "0.5")
 
 File your issues in the fields for the new ticket and Submit.
 
-![New Support Ticket](/images/management-console/support-tickets-new.png)
+![New Support Ticket](/images/management-console/support-tickets-new.png "0.5")
 
 You can also open a support ticket directly from your [user account](https://accounts.platform.sh/support).
 

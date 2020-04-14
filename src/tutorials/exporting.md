@@ -1,6 +1,10 @@
-# Exporting data
-
-Platform.sh aims to be a great host, but we never want to lock you in to our service. Your code and your data belong to you, and you should always be able to download your site's data for local development, backup, or to "take your data elsewhere".
+---
+title: "Exporting data"
+weight: 2
+ 
+description: |
+  Platform.sh aims to be a great host, but we never want to lock you in to our service. Your code and your data belong to you, and you should always be able to download your site's data for local development, backup, or to "take your data elsewhere".
+---
 
 ## Downloading code
 
@@ -43,7 +47,8 @@ rsync -az `platform ssh --pipe`:/app/private/ ./private/
 rsync -az `platform ssh --pipe`:/app/web/uploads ./uploads/
 ```
 
-> **notes**
+> **note**
+>
 > If you're running `rsync` on MacOS, you should add `--iconv=utf-8,utf-8-mac` to your `rsync` call.
 
 See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html) for more details on how to adjust the download process.

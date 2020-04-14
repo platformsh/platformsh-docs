@@ -1,8 +1,14 @@
-# Variables
+---
+title: "Variables"
+weight: 5
+description: |
+  Platform.sh allows a high degree of control over both the build process and the runtime environment of a project.  Part of that control comes in the form of *variables* that are set independently of the project's code base but available either at build or runtime for your code to leverage.
+---
 
-<!-- toc -->
+{{< description >}}
 
-Platform.sh allows a high degree of control over both the build process and the runtime environment of a project.  Part of that control comes in the form of *variables* that are set independently of the project's code base but available either at build or runtime for your code to leverage.  Platform.sh also exposes additional information to your application that way, including information like database credentials, the host or port it can use, and so forth.
+Platform.sh also exposes additional information to your application that way, including information like database credentials, the host or port it can use, and so forth.
+
 
 | Type          | Definer     | Scope       | Inheritance | Build | Runtime  |
 | ------------- | ----------- | ----------- | ----------- |:-----:|:--------:|
@@ -175,7 +181,7 @@ Platform.sh-defined variables will be exposed directly with the names listed abo
 
 For example, suppose we have the following variables defined:
 
-```
+```sh
 $ platform variables -e master
 Variables on the project Example (abcdef123456), environment master:
 +----------------+-------------+--------+
@@ -189,7 +195,7 @@ Variables on the project Example (abcdef123456), environment master:
 
 And the following variables defined on the branch `feature-x`, a child environment (and branch of) `master`:
 
-```
+```sh
 $ platform variables -e master
 Variables on the project Example (abcdef123456), environment feature-x:
 +----------------+-------------+--------+
@@ -238,7 +244,10 @@ Check the individual documentation pages for accessing environment variables for
 * [Ruby: the ENV accessor](https://ruby-doc.org/core-2.1.4/ENV.html)
 
 
-{% codetabs name="PHP", type="php" -%}
+{{< tabs "PHP" "Python" "Nodejs" "Ruby" >}}
+
+{{< tab id="PHP" active="true" >}}
+{{< highlight php >}}
 <?php
 
 // A simple variable.
@@ -246,8 +255,11 @@ $projectId = getenv('PLATFORM_PROJECT');
 
 // A JSON-encoded value.
 $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), TRUE);
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Python", type="py" -%}
+{{< tab id="Python" >}}
+{{< highlight py >}}
 import os
 import json
 import base64
@@ -257,8 +269,11 @@ project_id = os.getenv('PLATFORM_PROJECT')
 
 // A JSON-encoded value.
 variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode('utf-8'))
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Node.js", type="js" -%}
+{{< tab id="Nodejs">}}
+{{< highlight js >}}
 
 // Utility to assist in decoding a packed JSON variable.
 function read_base64_json(varName) {
@@ -274,29 +289,21 @@ let projectId = process.env.PLATFORM_PROJECT;
 
 // A JSON-encoded value.
 let variables = read_base64_json('PLATFORM_VARIABLES');
-{%- language name="Node.js Library", type="js" -%}
+{{< /highlight >}}
+{{< /tab >}}
 
-// Install the utility library:
-// https://github.com/platformsh/platformsh-nodejs-helper
-// $ npm install platformsh --save
-
-const config = require('platformsh').config();
-
-// This is a string.
-let projectId = config.project;
-
-// This is a bare object.
-let variables = config.variables;
-
-{%- language name="Ruby", type="rb" -%}
+{{< tab id="Ruby" >}}
+{{< highlight ruby >}}
 
 // A simple variable.
 project_id = ENV["PLATFORM_PROJECT"] || nil
 
 // A JSON-encoded value.
 variables = JSON.parse(Base64.decode64(ENV["PLATFORM_VARIABLES"]))
-{%- endcodetabs %}
+{{< /highlight >}}
+{{< /tab >}}
 
+{{< /tabs >}}
 
 ## Variable prefixes
 

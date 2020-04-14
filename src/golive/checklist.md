@@ -1,14 +1,17 @@
-# Going Live - Pre-Launch Checklist
-
-Before you can take your site live there are a few preparation steps to take.
-
-<!--toc-->
+---
+title: "Going Live - Pre-Launch Checklist"
+weight: 1
+description: "Before you can take your site live there are a few preparation steps to take."
+ 
+sidebarTitle: "Pre-Launch Checklist"
+---
 
 ## 1. Register a domain name with a supported provider
 
 You have a domain name registered for your site with a Registrar of your choice. The registrar must allow you to use CNAMEs for your domain.  (Some registrars may call these Aliases or similar.). If your domain is currently active elsewhere, the Time-To-Live (TTL) on your domain is set to the lowest possible value in order to minimize transition time.
 
 > **note**
+>
 > You will not be able to use a `A` record. Verify your DNS provider supports CNAMES. (If it does not you will want to run away from it anyway). Also you will be much happier if it supports Apex domains (more in the next chapter).
 
 ## 2. Test your site!

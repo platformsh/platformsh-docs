@@ -1,8 +1,13 @@
-#Multiple Drupal  sites in a single Project
+---
+title: "Multiple Drupal sites in a single Project"
+weight: 9
+sidebarTitle: "Multi-site"
+toc: false
+---
 
-Platform.sh supports running [multiple applications in the same project](/user_guide/reference/platform-app-yaml-multi-app.html), and these can be two or more Drupal sites. But they would be separate Drupal instances: they will have their assets separate and live their lives apart, and it would be much better for them not to share the same database (though they could).
+Platform.sh supports running [multiple applications](/bestpractices/oneormany) multiple applications in the same project</a>, and these can be two or more Drupal sites. But they would be separate Drupal instances: they will have their assets separate and live their lives apart, and it would be much better for them not to share the same database (though they could).
 
-# Drupal "Multisite" and Platform.sh
+## Drupal "Multisite" and Platform.sh
 
 Platform.sh actively discourages running Drupal in "multisite" mode. Doing so eliminates many of the advantages Platform.sh offers, such as isolation and safe testing.  Additionally, because of the dynamic nature of the domain names that are created for the different environments, the multisite configuration would be complex and fragile.
 

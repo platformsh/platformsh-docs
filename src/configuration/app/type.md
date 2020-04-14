@@ -1,4 +1,7 @@
-# Type
+---
+title: "Type"
+weight: 2
+---
 
 The `type` key defines the base container image that will be used to run the application.  There is a separate base container image for each primary language for the application, often in multiple versions.  
 
@@ -6,11 +9,11 @@ The `type` key defines the base container image that will be used to run the app
 
 Available languages and their supported versions include:
 
-{% include "../../registry/images/tables/runtimes_supported.md" %}
+{{< readFile file="src/registry/images/tables/runtimes_supported.md" markdownify="true">}}
 
 ## Example configuration
 
-{% codesnippet "/registry/images/examples/full/php.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" >}}
 
 ## Runtime
 

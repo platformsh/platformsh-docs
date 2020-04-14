@@ -1,6 +1,10 @@
-# Spring
+---
+title: "Spring"
+weight: 6
+---
 
 The [Spring Framework](https://spring.io/projects/spring-framework) provides a comprehensive programming and configuration model for modern Java-based enterprise applications - on any kind of deployment platform. Platform.sh is flexible, and allows you to use Spring Framework in several flavors such as [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html) and [Spring Boot](https://spring.io/projects/spring-boot).
+
 
 ## Services
 
@@ -129,8 +133,9 @@ public class DataSourceConfig {
 }
 ```
 
-> **Note:**
-> You can use the same MySQL driver for MariaDB as well if you wish to do so.
+{{< note >}}
+You can use the same MySQL driver for MariaDB as well if you wish to do so.
+{{< /note >}}
 
 
 ### MariaDB

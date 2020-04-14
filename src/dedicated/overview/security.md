@@ -1,4 +1,8 @@
-# Security & Data privacy
+---
+title: "Security & data privacy"
+weight: 2
+sidebarTitle: "Security and privacy"
+---
 
 ## Updates &amp; upgrades
 
@@ -45,4 +49,3 @@ AWS EBS Volumes are encrypted on Platform.sh Dedicated sites are fully encrypted
 ### Azure
 
 By default, data is encrypted using Microsoft Managed Keys for Azure Blobs, Tables, Files and Queues.
-

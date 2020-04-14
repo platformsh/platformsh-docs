@@ -1,16 +1,15 @@
-# Ruby
-
-Platform.sh supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
+---
+title: "Ruby"
+weight: 8
+description: Platform.sh supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
+ 
+---
 
 ## Supported versions
 
 ### Ruby MRI
 
-* 2.3
-* 2.4
-* 2.5
-* 2.6
-* 2.7
+{{< image-versions image="ruby" status="supported" >}}
 
 ## Unicorn based Rails configuration
 
@@ -104,7 +103,7 @@ Here is the complete `.platform.app.yaml` file:
 
 ```yaml
 name: 'app'
-type: "ruby:2.7"
+type: "ruby:2.6"
 
 web:
     upstream:
@@ -143,7 +142,7 @@ mounts:
 
 ```yaml
 database:
-  type: mysql:10.2
+  type: mysql
   disk: 2048
 ```
 
@@ -191,6 +190,4 @@ A number of project templates for Ruby applications and typical configurations a
 
 Platform.sh also provides a [helper library](https://github.com/platformsh/platformsh-ruby-helper) for Ruby applications that simplifies presenting environment information to your application.  It is not required to run Ruby applications on Platform.sh but is recommended.
 
-* [Sinatra](https://github.com/platformsh-examples/platformsh-example-sinatra)
-* [Sinatra (with all services enabled)](https://github.com/platformsh-examples/platformsh-example-ruby-sinatra-all-the-services)
-* [Ruby on Rails](https://github.com/platformsh-templates/rails)
+{{< repolist lang="ruby" >}}

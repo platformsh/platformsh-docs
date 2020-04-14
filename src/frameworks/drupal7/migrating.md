@@ -1,4 +1,8 @@
-# Migrating an existing Drupal 7 site to Platform.sh
+---
+title: "Migrating an existing Drupal 7 site to Platform.sh"
+weight: 3
+sidebarTitle: "Migrating"
+---
 
 Once you've setup the code for your site as a Platform.sh project, you will need to upload your existing database and files directories as well to complete the site.
 
@@ -63,8 +67,9 @@ You will destroy data from [SSH-URL]:././sites/default/files and replace with da
 Do you really want to continue? (y/n): y
 ```
 
-> **note**
-> Drush will verify that you are copying and overwriting the proper "files" folders, so double-check that information before you type `y` to continue.
+{{< note >}}
+Drush will verify that you are copying and overwriting the proper "files" folders, so double-check that information before you type `y` to continue.
+{{< /note >}}
 
 This step may take some time, but when the process completes, you can
 visit the URL of your `master` environment and test that the files
@@ -78,11 +83,11 @@ Go to your Drupal root on your local machine and synchronize the `files` folder 
 $ rsync -r sites/default/files/. [SSH-URL]:public/sites/default/files/
 ```
 
-> **note**
->
->  The local `files` path may depend of your installation.
->
->  The path in URL may vary depending on what your `.platform.app.yaml` file specifies as the root path and files mount.
+{{< note >}}
+The local `files` path may depend of your installation.
+
+The path in URL may vary depending on what your `.platform.app.yaml` file specifies as the root path and files mount.
+{{< /note >}}
 
 #### Directly from server to platform.sh
 If the files folder is too large to fit on your computer, you can transfer them directly from server to server. If you have a firewall between the origin server and platform.sh, you can use agent-forwarding to enable a direct connection:
@@ -91,5 +96,6 @@ $ ssh -A -t [USER]@[ORIGIN-SERVER] ssh -A -t [SSH-URL]
 $ rsync -a --delete [USER]@[ORIGIN-SERVER]:/var/www/drupal/sites/default/files/ public/sites/default/files
 ```
 
-> **note**
-> If you are using a Mac OS computer, you might experience issues where files with non-ascii characters in them don't work after transfer because Mac OS X uses decomposed form (like "a + ¨ = ä", a form known as NFD), not the usual composed form ("ä", a form known as NFC used everywhere else). One workaround is to use the direct server-to-server transfer method mentioned above.
+{{< note >}}
+If you are using a Mac OS computer, you might experience issues where files with non-ascii characters in them don't work after transfer because Mac OS X uses decomposed form (like "a + ¨ = ä", a form known as NFD), not the usual composed form ("ä", a form known as NFC used everywhere else). One workaround is to use the direct server-to-server transfer method mentioned above.
+{{< /note >}}

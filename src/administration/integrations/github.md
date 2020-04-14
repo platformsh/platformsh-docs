@@ -1,8 +1,13 @@
-# GitHub
+---
+title: "GitHub"
+weight: 5
+description: |
+  The [GitHub](https://github.com) integration allows you to manage your Platform.sh environments directly from your GitHub repository.
+---
 
-The [GitHub](https://github.com) integration allows you to manage your Platform.sh environments directly from your GitHub repository.
+{{< description >}}
 
-Features supported:
+**Features supported:**
 
 * Create a new environment when creating a branch or opening a pull request on GitHub.
 * Rebuild the environment when pushing new code to GitHub.
@@ -74,8 +79,8 @@ Note that if you have created your account using the GitHub oAuth Login then in 
 
 You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
 
-```
-$ platform integration:validate
+```bash
+platform integration:validate
 ```
 
 ## Types of environments

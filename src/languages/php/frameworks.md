@@ -1,6 +1,9 @@
-# PHP Featured Frameworks
-
-Full Drush support and Composer-based builds make handling dependencies and builds for PHP frameworks as simple as committing your `composer.json` to your project.
+---
+title: "Frameworks"
+weight: 2
+ 
+description: "Full Drush support and Composer-based builds make handling dependencies and builds for PHP frameworks as simple as committing your <code>composer.json</code> to your project."
+---
 
 ## Drupal
 

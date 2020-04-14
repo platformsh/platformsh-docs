@@ -1,7 +1,12 @@
-# Custom sizing
+---
+title: "Custom sizing"
+weight: 3
+sidebarTitle: "Size"
+---
 
-> **Note**
-> These are advanced settings and should only be used by experienced Platform.sh users.  99.9% of the time our default container sizes are the correct choice for best performance.
+{{< note >}}
+These are advanced settings and should only be used by experienced Platform.sh users.  99.9% of the time our default container sizes are the correct choice for best performance.
+{{< /note >}}
 
 By default, Platform.sh will automatically select appropriate resource sizes (CPU and memory) for a container when it's deployed, based on the plan size and the number of other containers in the cluster.  The more containers in a project the fewer resources each one gets, and vice versa, with similar containers getting similar resources.
 
@@ -13,7 +18,7 @@ Legal values for the `size` key are `AUTO` (the default), `S`, `M`, `L`, `XL`, `
 
 Note that in a development environment this value is ignored and always set to `S`.  It will only take effect in a production deployment (a master branch with an associated domain).  If the total resources requested by all apps and services is larger than what the plan size allows then a production deployment will fail with an error.
 
-# How do I make a background processing container smaller to save resources?
+## How do I make a background processing container smaller to save resources?
 
 Simply set the `size` key to `S` to ensure that the container gets fewer resources, leaving more to be allocated to other containers.
 

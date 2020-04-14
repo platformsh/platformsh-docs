@@ -1,0 +1,98 @@
+.bg-light {
+  background-color: #EDEDEF !important;
+}
+
+.bg-primary-darker {
+  background-color: #1A182A;
+}
+
+@media (min-width: 768px) {
+  .bg-md-primary-darker {
+    background-color: #1A182A;
+  }
+}
+
+/* Getting Started Guide buttons */
+.buttons-nav {
+  text-align: center;
+  margin: 5rem;
+}
+
+.btn2 {
+  border: 0px solid transparent;
+  border-radius: 0rem;
+  font-weight: bold;s
+  letter-spacing: 0.05em;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  line-height: 19px;
+  text-align: left;
+  color: #1A182A;
+  font-family: Overpass Mono;
+}
+
+
+.btn-primary2{
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background: linear-gradient(to right, #FFEEEE 0%, #FFEEEE 50px, #FFFFFF 50px);
+  z-index: 0;
+}
+
+.btn-primary2::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #FFBDBB;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.1s;
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+
+.btn-primary2:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-secondary2{
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background: none;
+  z-index: 0;
+
+}
+
+.chevron-back {
+  transform: rotate(180deg);
+}
+
+/* Getting Started Guide descriptive buttons */
+
+.btn {
+  padding: 2rem 1.5rem;
+}
+
+.btn-primary {
+  color: var(--button-text-black);
+  background-color: var(--primary);
+  border-color: var(--primary);
+  border-radius: 0rem;
+  border-left: 6px solid var(--brand-color-primary-blue);
+}
+
+.btn-primary:hover {
+  color: var(--white);
+  background-color: var(--brand-color-primary-blue);
+  border-color: var(--brand-color-primary-blue);
+}
+
+.btn-primary:hover a{
+  color: var(--white);
+  text-decoration: underline;
+}

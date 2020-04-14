@@ -1,6 +1,9 @@
-# Data retention
-
-Platform.sh logs and stores all sorts of data as a normal part of its business.  This information is retained as needed for business purposes and old data is purged.  The retention time varies depending on the type of data stored.
+---
+title: "Data retention"
+weight: 4
+description: |
+  Platform.sh logs and stores all sorts of data as a normal part of its business.  This information is retained as needed for business purposes and old data is purged. The retention time varies depending on the type of data stored.
+---
 
 ## Account information
 
@@ -24,13 +27,13 @@ Application logs on each customer environment are retained with the environment.
 
 When an environment is deleted its application logs are deleted as well.
 
-## Grid Backups
+## Backups
 
-Application backups running on the Grid (e.g. If you subscribe to a Platform.sh Professional plan) are retained for at least _7 days_.  They will be purged between 7 days and _6 months_, at Platform.sh's discretion.
+Backups on Platform.sh Professional are retained for at least _7 days_.  They will be purged between 7 days and _6 months_, at Platform.sh's discretion.
 
-## Dedicated backups
+## Enterprise backups
 
-Backups for applications running on a Dedicated instance will follow the schedule documented on our [dedicated backups](/dedicated/overview/backups.md) page.
+Platform.sh takes a backup of Platform.sh Enterprise environments every 6 hours.  These backups are retained for _2 weeks_.
 
 ## Tombstone backups
 

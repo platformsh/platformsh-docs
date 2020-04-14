@@ -1,12 +1,19 @@
-# Headless Chrome
+---
+title: "Headless Chrome"
+weight: 2
+description: |
+  Headless Chrome is a headless browser that can be configured on projects like any other service on Platform.sh.
+---
 
-Headless Chrome is a headless browser that can be configured on projects like any other service on Platform.sh. You can interact with the `headless-chrome` service container using Puppeteer, a Node library that provides an API to control Chrome over the DevTools Protocol.
+{{< description >}}
 
-Puppeteer can be used to generate PDFs and screenshots of web pages, automate form submission, and test your project's UI. You can find out more information about using Puppeteer on [GitHub](https://github.com/GoogleChrome/puppeteer) or in their [documentation](https://pptr.dev/).
+You can interact with the `headless-chrome` service container using Puppeteer, a Node.js library that provides an API to control Chrome over the DevTools Protocol.
+
+Puppeteer can be used to generate PDFs and screenshots of web pages, automate form submission, and test your project's UI. You can find out more information about using Puppeteer on [GitHub](https://github.com/GoogleChrome/puppeteer) or in their [documentation](documentation).
 
 ## Supported versions
 
-* 73
+{{< image-versions image="chrome-headless" status="supported" >}}
 
 ## Relationship
 
@@ -24,7 +31,6 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
     "type": "chrome-headless:73",
     "port": 9222
 }
-
 ```
 
 ## Requirements
@@ -41,21 +47,25 @@ It will be necessary to upgrade the version of Node.js in other language contain
 
 In your `.platform/services.yaml`:
 
-{% codesnippet "/registry/images/examples/full/chrome-headless.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/chrome-headless.services.yaml" highlight="yaml" >}}
 
 In your `.platform.app.yaml`:
 
-{% codesnippet "/registry/images/examples/full/chrome-headless.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/chrome-headless.app.yaml" highlight="yaml" >}}
 
 After configuration, include Puppeteer as a dependency in your `package.json`:
 
 ```json
-"puppeteer": "^1.14.0"
+{
+  "dependencies": {
+    "puppeteer": "^1.14.0"
+  }
+}
 ```
 
 Using the [Node.js Config Reader](https://github.com/platformsh/config-reader-nodejs) library, you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
 
-```
+```js
 const platformsh = require('platformsh-config');
 
 let config = platformsh.config();
@@ -64,7 +74,7 @@ const credentials = config.credentials('chromeheadlessbrowser');
 
 and use them to define the `browserURL` parameter of `puppeteer.connect()` within an `async` function:
 
-```
+```js
 exports.takeScreenshot = async function (url) {
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials

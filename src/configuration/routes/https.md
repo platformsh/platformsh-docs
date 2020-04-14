@@ -1,16 +1,21 @@
-# HTTPS
+---
+title: "HTTPS"
+weight: 1
+---
 
 ## Let's Encrypt
 
 All environments on Platform.sh support both HTTP and HTTPS automatically.  Production SSL certificates are provided by [Let's Encrypt](https://letsencrypt.org/).  You may alternatively provide your own SSL certificate from a 3rd party issuer of your choice at no charge from us.
 
-> **note**
-> Let's Encrypt certificate renewals are attempted each time your environment is deployed. If your project does not receive regular code commits, you will need to manually issue a re-deployment to ensure the certificate remains valid. We suggest that you do so when your project doesn't receive any updates for over 1 month. This can be done by pushing a code change via git or issuing the following command from your **local** environment:
-> ```sh
-> platform redeploy
-> ```
->
-> Alternatively, see the [section below](#automated-ssl-certificate-renewal-using-cron) on automatically redeploying the site in order to renew the certificate.
+{{< note >}}
+Let's Encrypt certificate renewals are attempted each time your environment is deployed. If your project does not receive regular code commits, you will need to manually issue a re-deployment to ensure the certificate remains valid. We suggest that you do so when your project doesn't receive any updates for over 1 month. This can be done by pushing a code change via git or issuing the following command from your **local** environment:
+
+```sh
+platform redeploy
+```
+
+Alternatively, see the [section below](#automated-ssl-certificate-renewal-using-cron) on automatically redeploying the site in order to renew the certificate.
+{{< /note >}}
 
 Platform.sh recommends using HTTPS requests for all sites exclusively.  Doing so provides better security, access to certain features that web browsers only permit over HTTPS, and access to HTTP/2 connections on all sites which can greatly improve performance.
 
@@ -64,9 +69,10 @@ https://{default}/:
 
 ### `min_version`
 
-> **Note**
-> This directive was put into place when Platform.sh supported older versions of TLS for customers.
-> Currently only TLS v1.2 is supported. Support for TLS v1.3 will be added in the near future.
+{{< note >}}
+This directive was put into place when Platform.sh supported older versions of TLS for customers.
+Currently only TLS v1.2 is supported. Support for TLS v1.3 will be added in the near future.
+{{< /note >}}
 
 Setting a minimum version of TLS will cause the server to automatically reject any connections using an older version of TLS.  Rejecting older versions with known security vulnerabilities is necessary for some security compliance processes.
 
@@ -141,9 +147,9 @@ If the Let's Encrypt certificate is due to expire in less than one month then it
 
 You will first need to install the CLI in your application container.  See the section on [API tokens](/development/cli/api-tokens.md) for instructions on how to do so.
 
-> **note**
->
-> Automated SSL certificate renewal using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
+{{< note >}}
+Automated SSL certificate renewal using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.html).
+{{< /note >}}
 
 Once the CLI is installed in your application container and an API token configured you can add a cron task to run twice a month to trigger a redeploy. For example:
 
@@ -160,9 +166,9 @@ crons:
 
 The above cron task will run on the 1st and 15th of the month at 10 am (UTC), and, if the current environment is the master branch, it will run `platform redeploy` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the redeploy to complete.  We recommend adjusting the cron schedule to whenever is off-peak time for your site, and to random days within the month.
 
-> **warning**
->
-> It is very important to include the `--no-wait` flag.  If you do not, the cron process will block waiting on the deployment to finish, but the deployment will be blocked by the running cron task.  That will take your site offline until you log in and manually terminate the running cron task.  You want the `--no-wait` flag.  We're not joking.
+{{< note theme="warning" >}}
+It is very important to include the `--no-wait` flag.  If you do not, the cron process will block waiting on the deployment to finish, but the deployment will be blocked by the running cron task.  That will take your site offline until you log in and manually terminate the running cron task.  You want the `--no-wait` flag.  We're not joking.
+{{< /note >}}
 
 The certificate will not renew unless it has less than one month remaining; trying twice a month is sufficient to ensure a certificate is never less than 2 weeks from expiring.  As the redeploy does cause a momentary pause in service we recommend running during non-peak hours for your site.
 

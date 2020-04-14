@@ -1,4 +1,8 @@
-# Drupal Frequently Asked Questions (FAQ)
+---
+title: "Drupal Frequently Asked Questions (FAQ)"
+weight: 10
+sidebarTitle: "FAQ"
+---
 
 ## How can I import configuration on production?
 
@@ -33,6 +37,6 @@ then push.
 
 ## Can I use the name of the session cookie for caching?
 
-For Drupal sites, the name of the session cookie is based on a hash of the 
-domain name. This means that it will actually be consistent for a specific 
+For Drupal sites, the name of the session cookie is based on a hash of the
+domain name. This means that it will actually be consistent for a specific
 website and can safely be used as a fixed value.

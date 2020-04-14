@@ -1,6 +1,10 @@
-# DNS management and Apex domains
-
-Platform.sh expects you to use a CNAME for all DNS records.  However, that is problematic with some DNS registrars.
+---
+title: "DNS management and Apex domains"
+weight: 1
+ 
+description: "Platform.sh expects you to use a CNAME for all DNS records.  However, that is problematic with some DNS registrars."
+sidebarTitle: "DNS and CNAMEs"
+---
 
 ## Why CNAMEs?
 
@@ -31,7 +35,7 @@ Many DNS providers have found a way around the CNAME-on-Apex limitation.  Some D
 If you want your site to be accessible with `https://example.com` and not only `https://www.example.com` this is the best way to do so.  Examples of such workaround records include:
 
  * CNAME Flattening at [CloudFlare](https://www.cloudflare.com/)  
- * ANAME at [easyDNS](https://www.easydns.com/), [DNS Made Easy](http://www.dnsmadeeasy.com/), or [Name.com](https://www.name.com/) 
+ * ANAME at [easyDNS](https://www.easydns.com/), [DNS Made Easy](http://www.dnsmadeeasy.com/), or [Name.com](https://www.name.com/)
  * ALIAS at [DNSimple](https://dnsimple.com/) or [Cloudns](https://www.cloudns.net/)
 
 Platform.sh recommends ensuring that your DNS Provider supports dynamic apex domains before registering your domain name with them.  If you are using a DNS Provider that does not support dynamic apex domains then you will be unable to use `example.com` with Platform.sh, and will need to use only `www.example.com` (or similar) instead.
@@ -47,7 +51,6 @@ If you are willing to make the `www.` version of your site the canonical version
 If your preferred registrar/DNS provider doesn't support either custom records or the apex domain forwarding options above, the following free services both allow blind redirects and allow you to use a CNAME record to Platform.sh for `www.example.com` and an `A` record to their service at `example.com`, which will in turn send a redirect.
 
 * [WWWizer](http://wwwizer.com/)
-* [redirectssl](http://redirectssl.com/)
 
 ### (Alternate) Using A records
 

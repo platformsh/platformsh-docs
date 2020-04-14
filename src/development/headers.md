@@ -1,6 +1,12 @@
-# HTTP headers
+---
+title: "HTTP Headers"
+weight: 7
+description: |
+  Platform.sh adds a number of HTTP headers to both inbound and outbound messages.  We do not, however, modify or block existing headers on either request or response.
+sidebarTitle: "Headers"
+---
 
-Platform.sh adds a number of HTTP headers to both inbound and outbound messages.  We do not, however, modify or block existing headers on either request or response.
+{{< description >}}
 
 ## Request headers
 

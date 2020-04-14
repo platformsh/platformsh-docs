@@ -1,4 +1,10 @@
-# Redis (Object cache)
+---
+title: "Redis (Object cache)"
+weight: 11
+
+description: "Redis is a high-performance in-memory object store, well-suited for application level caching.<br><br>See the <a href=\"https://redis.io/documentation\">Redis documentation</a> for more information.<br><br>Platform.sh supports two different Redis configurations: One persistent (useful for key-value application data) and one ephemeral (in-memory only, useful for application caching).  Aside from that distinction they are identical."
+sidebarTitle: "Redis"
+---
 
 Redis is a high-performance in-memory object store, well-suited for application level caching.
 
@@ -8,19 +14,18 @@ Platform.sh supports two different Redis configurations: One persistent (useful 
 
 ## Supported versions
 
-* 3.2
-* 4.0
-* 5.0
+{{< image-versions image="redis" status="supported" >}}
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 2.8
-* 3.0
+{{< image-versions image="redis" status="deprecated" >}}
 
-> **note**
-> Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database.
+
+{{< note >}}
+Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database.
+{{< /note >}}
 
 ### Ephemeral Redis
 
@@ -28,7 +33,7 @@ The `redis` service type is configured to serve as a LRU cache; its storage is n
 
 To add an Ephemeral Redis service, specify it in your `.platform/services.yaml` file like so:
 
-{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
 
 Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
 
@@ -38,7 +43,7 @@ The `redis-persistent` service type is configured for persistent storage. That m
 
 To add a Persistent Redis service, specify it in your `.platform/services.yaml` file like so:
 
-{% codesnippet "/registry/images/examples/full/redis-persistent.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" >}}
 
 The `disk` key is required for redis-persistent to tell Platform.sh how much disk space to reserve for Redis' persistent data.
 
@@ -46,7 +51,9 @@ The `disk` key is required for redis-persistent to tell Platform.sh how much dis
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://examples.docs.platform.sh/relationships/redis", language="json" %}{% endcodesnippet %}
+{{< highlight json >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/redis" >}}
+{{< /highlight >}}
 
 The format is identical regardless of whether it's a persistent or ephemeral service.
 
@@ -54,7 +61,7 @@ The format is identical regardless of whether it's a persistent or ephemeral ser
 
 In your ``.platform/services.yaml``:
 
-{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
 
 If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php/extensions.md) in your `.platform.app.yaml`.
 
@@ -69,15 +76,32 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="Java", type="java", url="https://examples.docs.platform.sh/java/redis" -%}
+{{< tabs "Java" "Nodejs" "PHP" "Python" >}}
 
-{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/redis" -%}
+{{< tab id="Java" active="true" >}}
+{{< highlight java >}}
+{{< readFile file="static/files/fetch/examples/java/redis" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/redis" -%}
+{{< tab id="Nodejs" >}}
+{{< highlight js >}}
+{{< readFile file="static/files/fetch/examples/nodejs/redis" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/redis" -%}
+{{< tab id="PHP">}}
+{{< highlight php >}}
+{{< readFile file="static/files/fetch/examples/php/redis" >}}{{< /highlight >}}
+{{< /tab >}}
 
-{%- endcodetabs %}
+{{< tab id="Python" >}}
+{{< highlight python >}}
+{{< readFile file="static/files/fetch/examples/python/redis" >}}
+{{< /highlight >}}
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Multiple databases
 
@@ -119,11 +143,11 @@ See the [Redis documentation](https://redis.io/topics/lru-cache#eviction-policie
 
 Assuming a Redis relationship named `applicationcache` defined in `.platform.app.yaml`
 
-{% codesnippet "/registry/images/examples/full/redis.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" >}}
 
 and `services.yaml`
 
-{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
 
 The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `applicationcache.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
 
@@ -137,17 +161,14 @@ Using the same configuration but with your Redis relationship named `sessionstor
 
 `.platform/services.yaml`
 
-{% codesnippet "/registry/images/examples/full/redis.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
 
 `.platform.app.yaml`
 
 ```yaml
 relationships:
   sessionstorage: "cache:redis"
-```
 
-```yaml
-# .platform.app.yaml
 variables:
     php:
         session.save_handler: redis

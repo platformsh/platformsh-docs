@@ -1,4 +1,7 @@
-# Hibernate
+---
+title: "Hibernate"
+weight: 4
+---
 
 [Hibernate ORM](https://hibernate.org/) is an object-relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database. Hibernate handles object-relational impedance mismatch problems by replacing direct, persistent database accesses with high-level object handling functions.
 
@@ -35,8 +38,9 @@ public class HibernateApp {
 }
 ```
 
-> **Note:**
-> You can use the same MySQL driver for MariaDB as well if you wish to do so.
+{{< note >}}
+You can use the same MySQL driver for MariaDB as well if you wish to do so.
+{{< /note >}}
 
 ### MariaDB
 

@@ -1,4 +1,8 @@
-# Jakarta EE/ Eclipse MicroProfile
+---
+title: "Jakarta EE/Eclipse MicroProfile"
+weight: 5
+sidebarTitle: "Jakarta EE"
+---
 
 [Eclipse MicroProfile](https://microprofile.io/) is a community dedicated to optimizing the Enterprise Java mission for microservice-based architectures. The goal is to define a microservices application platform that is portable across multiple runtimes. Currently, the leading players in this group are IBM, Red Hat, Tomitribe, Payara, the London Java Community (LJC), and SouJava.
 
@@ -237,8 +241,9 @@ class EntityManagerConfiguration {
 }
 ```
 
-> **Note:**
-> You can use the same MySQL driver for MariaDB as well if you wish to do so.
+{{< note >}}
+You can use the same MySQL driver for MariaDB as well if you wish to do so.
+{{< /note >}}
 
 
 ### MariaDB
@@ -352,7 +357,7 @@ class EntityManagerConfiguration {
 }
 ```
 
-##Transaction
+## Transaction
 
 To any Eclipse Microprofile or any non-JTA application is essential to point out, CDI does not provide transaction management implementation as part of its specs. Transaction management is left to be implemented by the programmer through the interceptors, such as the code below.
 

@@ -1,4 +1,11 @@
-# Using Solr with Drupal 8.x
+---
+title: "Using Solr with Drupal 8.x"
+weight: 6
+sidebarTitle: "Solr"
+
+description: |
+  The Drupal <a href="https://www.drupal.org/project/search_api_solr">Search API Solr</a> module has a somewhat involved setup process, as it requires live access to the Solr server in order to generate the configuration files for it.  The following procedure is therefore necessary to ensure each step is able to proceed.
+---
 
 The Drupal [Search API Solr](https://www.drupal.org/project/search_api_solr) module has a somewhat involved setup process, as it requires live access to the Solr server in order to generate the configuration files for it.  The following procedure is therefore necessary to ensure each step is able to proceed.
 
@@ -12,12 +19,12 @@ Advanced Solr service configuration and implementation in other frameworks other
 
 ### 0. Upgrade Symfony Event Dispatcher
 
-If you are running Drupal older than 9.0, a small workaround will be needed.  The Solarium library used by Search API Solr requires the 4.3 version of the Symfony Event Dispatcher, whereas Drupal core ships with 3.4.  The Search API Solr issue queue has a [more detailed description](https://www.drupal.org/project/search_api_solr/issues/3085196) of the problem.
+If you are running Drupal older than 8.9.0, a small workaround will be needed.  The Solarium library used by Search API Solr requires the 4.3 version of the Symfony Event Dispatcher, whereas Drupal core ships with 3.4.  The Search API Solr issue queue has a [more detailed description](https://www.drupal.org/project/search_api_solr/issues/3085196) of the problem.
 
 As noted there, the workaround for now is to run:
 
-```
-composer require symfony/event-dispatcher:"4.3.4 as 3.4.35"
+```bash
+composer require symfony/event-dispatcher:"4.3.4 as 3.4.99"
 ```
 
 in your project root and commit the resulting change to `composer.json` and `composer.lock`.  That will cause Composer to install the 4.3 version of Event Dispatcher.  Once [this issue](https://www.drupal.org/project/drupal/issues/2876675) is resolved in core this step will no longer be necessary.
@@ -70,22 +77,26 @@ The key (left side) is the name that will be exposed to the application in the `
 
 The configuration can be managed from `settings.platformsh.php` by adding the following code snippet.  It will override the environment-specific parts of the configuration object with the correct values to connect to the Platform.sh Solr instance.
 
-> **note**
->
-> If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
->
-> ```php
-> $platformsh = new \Platformsh\ConfigReader\Config();
-> if (!$platformsh->inRuntime()) {
->   return;
-> }
-> ```
+{{< note >}}
+If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+
+```php
+<?php
+
+$platformsh = new \Platformsh\ConfigReader\Config();
+if (!$platformsh->inRuntime()) {
+   return;
+}
+```
+{{< /note >}}
 
 * Edit the value of `$relationship_name` if you are using a different relationship.
 
 * Edit the value of `$solr_server_name` if you want to configure a Solr server in Drupal other than the default server automatically created by Search API Solr module.
 
 ```php
+<?php
+
 $platformsh->registerFormatter('drupal-solr', function($solr) {
     // Default the solr core name to `collection1` for pre-Solr-6.x instances.
     return [
@@ -139,9 +150,9 @@ search:
 
 Add the new directory and updated `services.yaml` to Git, commit, and push.
 
-> **note**
->
-> If you change your Solr configuration in Drupal, say to change the Solr field configuration, you may need to regenerate your configuration.  If so, repeat this entire step.
+{{< note >}}
+If you change your Solr configuration in Drupal, say to change the Solr field configuration, you may need to regenerate your configuration.  If so, repeat this entire step.
+{{< /note >}}
 
 ### 7. Verify that it worked
 

@@ -1,9 +1,8 @@
 ---
-search:
-    keywords: ['.platform.app.yaml', 'worker', 'queue']
+title: "Workers"
+weight: 11
+sidebarTitle: "Worker configuration"
 ---
-
-# Workers
 
 Every application may also define zero or more worker instances.  A worker instance runs as its own container independently of the web instance and has no Nginx instance running.  The router service cannot direct public requests to it, either, so running your own web server on a worker (using Node.js or Go) is not useful.
 
@@ -24,7 +23,7 @@ workers:
 
 That defines a single worker named `queue`, which will be a "small" container, and wil run the command `php worker.php` on startup.  If `worker.php` ever exits it will be automatically restarted.
 
-Any number of workers may be defined with their own distinct name, subject to available resources on your plan. For resource allocation reasons, using workers in your project requires a Medium plan or larger. 
+Any number of workers may be defined with their own distinct name, subject to available resources on your plan. For resource allocation reasons, using workers in your project requires a Medium plan or larger.
 
 ## Accessing the Worker Container
 
@@ -32,13 +31,13 @@ Like with any other application container Platform.sh allows you to connect to t
 
 Using the Platform CLI you would use the `--worker` switch, like so:
 
-```
+```bash
 platform ssh --worker=queue
 ```
 
 To output the SSH command you can use:
 
-```
+```bash
 platform ssh --worker=queue --pipe
 ```
 
@@ -46,13 +45,13 @@ You will see the url is the name of the worker added to the user name after the 
 
 For example given a project with id `3seb7f2j6ogbm` you would connect to its master environment for an app called `app` with a url such as:
 
-```
+```bash
 ssh 3seb7f2j6ogbm-master-7rqtwti--app@ssh.us-2.platform.sh
 ```
 
 To connect to a worker called `queue` (as in the example above) you would use an SSH url that would look as follows:
 
-```
+```bash
 ssh 3seb7f2j6ogbm-master-7rqtwti--app--queue@ssh.us-2.platform.sh
 ```
 

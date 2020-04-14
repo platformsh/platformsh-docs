@@ -1,4 +1,9 @@
-# Platform.sh pricing
+---
+title: "Pricing"
+weight: 3
+description: "Platform.sh is the Idea-to-Cloud Application Platform—the end to end solution to develop and deploy web apps and sites. We offer a free trial period so you can test the service and see how great it is.<br><br>You can view all information about our product pricing on our <a href=\"https://platform.sh/pricing/\">website</a>."
+ 
+---
 
 You can see our full pricing information at: https://platform.sh/pricing/
 
@@ -19,7 +24,7 @@ For Enterprise and Agency Plans you can pay by purchase order. For all other pla
 We offer a free trial period so you can test the service and see how great it is. If ever you need more time to evaluate Platform.sh, please contact our sales representatives. They can issue you an extra voucher to prolong your test.
 
 > Prices below are listed in US Dollars.  You will be billed in US Dollars, Euros, or British Pounds depending on where your billing address is. For a list of current prices please refer to https://platform.sh/pricing
-
+>
 > Euro Prices are presented excluding VAT.  In your bill, as appropriate we will include the correct VAT rate.
 
 ## Extras
@@ -30,7 +35,7 @@ All extra consumption is prorated to the time it was actually used.
 
 ### Extra developers
 
-Adding a developer to your project will add a monthly per project per user fee unless you have an agency or an enterprise account. 
+Adding a developer to your project will add a monthly per project per user fee unless you have an agency or an enterprise account.
 
 ### Extra environments
 
@@ -42,9 +47,9 @@ You can add extra staging/development environments to any plan by multiples of 3
 
 You can add additional storage at $2.50 per 5GB  per staging/development environment.
 
->For example, if you have the default plan (with 3 staging environments) and you add 10GB (for a total of 15GB per environment), you would pay an extra $15 a month.
-
->If you added 3 extra environments (for a total of 6 staging environments) and you added 10GB (for a total of 15GB per environment), you would pay an extra $30 a month.
+> For example, if you have the default plan (with 3 staging environments) and you add 10GB (for a total of 15GB per environment), you would pay an extra $15 a month.
+>
+> If you added 3 extra environments (for a total of 6 staging environments) and you added 10GB (for a total of 15GB per environment), you would pay an extra $30 a month.
 
 ## Development
 
@@ -57,7 +62,7 @@ Development environments have less resources than production environments.
 ## Production
 
 The live environment (master) of a production plan has more resources than the development environments of the project. https://platform.sh/pricing lists the resources available per plan (these are always only the production environment resources) the development environment have their own resources, and are not counted towards the limit.
-You can map domain names to your master environment. SSL support is always included. 
+You can map domain names to your master environment. SSL support is always included.
 
 
 ### Multiple Applications in a single project

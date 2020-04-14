@@ -1,4 +1,7 @@
-# SimpleSAML
+---
+title: "SimpleSAML"
+weight: 7
+---
 
 SimpleSAMLphp is a library for authenticating a PHP-based application against a SAML server, such as Shibboleth.  Although Drupal has modules available to authenticate using SimpleSAML some additional setup is required.
 
@@ -77,6 +80,8 @@ Open the file `simplesamlphp/config/config.php` that you created earlier.  It co
 Others are a little more involved.  In the interest of simplicity we recommend simply pasting the following code snippet at the end of the file, as it will override the default values in the array.
 
 ```php
+<?php
+
 // Set SimpleSAML to log using error_log(), which on Platform.sh will
 // be mapped to the /var/log/app.log file.
 $config['logging.handler'] = 'errorlog';
@@ -92,15 +97,15 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
   $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
   foreach ($relationships['database'] as $instance) {
     if (!empty($instance['query']['is_master'])) {
-      $dsn = sprintf("%s:host=%s;dbname=%s", 
+      $dsn = sprintf("%s:host=%s;dbname=%s",
         $instance['scheme'],
-        $instance['host'], 
+        $instance['host'],
         $instance['path']
       );
-      $config['database.dsn'] = $dsn; 
+      $config['database.dsn'] = $dsn;
       $config['database.username'] = $instance['username'];
       $config['database.password'] = $instance['password'];
-      
+
       $config['store.type'] = 'sql';
       $config['store.sql.dsn'] = $dsn;
       $config['store.sql.username'] = $instance['username'];

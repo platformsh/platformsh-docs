@@ -1,8 +1,12 @@
-# Using Git submodules
+---
+title: "Using Git submodules"
+weight: 11
+sidebarTitle: "Git submodules"
+---
 
 ## Clone submodules during deployment
 
-Platform.sh allows you to use submodules in your Git repository. They are usually listed in a ``.gitmodules`` file at the root of your Git repository. When you push via Git, Platform.sh will try to clone them automatically.
+Platform.sh allows you to use submodules in your Git repository. They are usually listed in a `.gitmodules` file at the root of your Git repository. When you push via Git, Platform.sh will try to clone them automatically.
 
 Here is an example of a ``.gitmodules`` file:
 
@@ -48,7 +52,7 @@ Since the Platform.sh Git server cannot connect to Github via SSH without being 
 
 When using Git submodules that are hosted on private repositories, using the `https` protocol will fail with errors like:
 
-```
+```bash
 GitProtocolError: unexpected http resp 401 for https://bitbucket.org/myusername/mymodule.git/info/refs?service=git-upload-pack
 ```
 
@@ -56,20 +60,20 @@ To fix this, you need to:
 
 1. Change your `.gitmodules` file from the HTTPS syntax to the SSH syntax, e.g.
 
-from:
+    from:
 
-```
-[submodule "support/mymodule"]
-    path = support/mymodule
-    url = https://bitbucket.org/myusername/mymodule.git
-```
+    ```bash
+    [submodule "support/mymodule"]
+        path = support/mymodule
+        url = https://bitbucket.org/myusername/mymodule.git
+    ```
 
-to:
+    to:
 
-```
-[submodule "support/mymodule"]
-    path = support/mymodule
-    url=git@bitbucket.org:myusername/mymodule.git
-```
+    ```bash
+    [submodule "support/mymodule"]
+        path = support/mymodule
+        url=git@bitbucket.org:myusername/mymodule.git
+    ```
 
-2. Add the SSH public key in the Platform.sh project settings "Deploy Key" tab in the Web UI as per the [Private Repository](/development/private-repository.md) documentation page, which will allow our Git service to pull the module from the remote git service. This assumes you have configured the remote git repository to allow this by generating a private/public key pair. For example, see the [Bitbucket documentation](https://confluence.atlassian.com/bitbucket/use-ssh-keys-in-bitbucket-pipelines-847452940.html).
+2. Add the SSH public key in the Platform.sh project settings "Deploy Key" tab in the Web UI as per the [Private Repository](development/private-repository.md) documentation page, which will allow our Git service to pull the module from the remote git service. This assumes you have configured the remote git repository to allow this by generating a private/public key pair. For example, see the [Bitbucket documentation](https://confluence.atlassian.com/bitbucket/use-ssh-keys-in-bitbucket-pipelines-847452940.html).

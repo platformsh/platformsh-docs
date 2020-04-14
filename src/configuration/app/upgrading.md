@@ -1,4 +1,7 @@
-# Upgrading
+---
+title: "Upgrading"
+weight: 14
+---
 
 ## Changes in version 2019.05
 
@@ -71,25 +74,25 @@ To enable caching on your static files, make sure you include an `expires` key
 in your [web configuration](/configuration/app/web.md),
 as shown below:
 
-```
-    web:
-        locations:
-            "/":
-                root: "public"
-                passthru: "/index.php"
-                index:
-                    - index.php
-                expires: 300
-                scripts: true
-                allow: true
-                rules:
-                    \.mp4$:
-                        allow: false
-                        expires: -1
-            "/sites/default/files":
-                expires: 300
-                passthru: true
-                allow: true
+```yaml
+web:
+    locations:
+        "/":
+            root: "public"
+            passthru: "/index.php"
+            index:
+                - index.php
+            expires: 300
+            scripts: true
+            allow: true
+            rules:
+                \.mp4$:
+                    allow: false
+                    expires: -1
+        "/sites/default/files":
+            expires: 300
+            passthru: true
+            allow: true
 ```
 
 ## Changes in version 2016.4
@@ -169,61 +172,69 @@ If you are using Drupal, move all of your Drupal files into "public/" in the Git
 
 Old format:
 
-    web:
-        document_root: "/"
-        passthru: "/index.php"
-        index_files:
-            - "index.php"
-        expires: 300
-        whitelist:
-            - \.html$
+```yaml
+web:
+    document_root: "/"
+    passthru: "/index.php"
+    index_files:
+        - "index.php"
+    expires: 300
+    whitelist:
+        - \.html$
+```
 
 New format:
 
-    web:
-        locations:
-            "/":
-                root: "public"
-                passthru: "/index.php"
-                index:
-                    - index.php
-                expires: 300
-                scripts: true
-                allow: true
-                rules:
-                    \.mp4$:
-                        allow: false
-                        expires: -1
-            "/sites/default/files":
-                expires: 300
-                passthru: true
-                allow: true
+```yaml
+web:
+    locations:
+        "/":
+            root: "public"
+            passthru: "/index.php"
+            index:
+                - index.php
+            expires: 300
+            scripts: true
+            allow: true
+            rules:
+                \.mp4$:
+                    allow: false
+                    expires: -1
+        "/sites/default/files":
+            expires: 300
+            passthru: true
+            allow: true
+```
 
 ### Backward compatibility
 
 Of course, we alway keep backward compatibility with the previous configuration format. Here is what happens if you don't upgrade your configuration:
 
-    # The following parameters are automatically moved as a "/" block in the
-    # "locations" object, and are invalid if there is a valid "locations" block.
-    document_root: "/public"      # Converted to [locations][/][root]
-    passthru: "/index.php"        # Converted to [locations][/][passthru]
-    index_files:
-        - index.php               # Converted to [locations][/][index]
-    whitelist: [ ]                # Converted to [locations][/][rules]
-    blacklist: [ ]                # Converted to [locations][/][rules]
-    expires: 3d                   # Converted to [locations][/][expires]
+```yaml
+# The following parameters are automatically moved as a "/" block in the
+# "locations" object, and are invalid if there is a valid "locations" block.
+document_root: "/public"      # Converted to [locations][/][root]
+passthru: "/index.php"        # Converted to [locations][/][passthru]
+index_files:
+    - index.php               # Converted to [locations][/][index]
+whitelist: [ ]                # Converted to [locations][/][rules]
+blacklist: [ ]                # Converted to [locations][/][rules]
+expires: 3d                   # Converted to [locations][/][expires]
+```
 
 ## Changes in version 2015.7
 
 The `.platform.app.yaml` configuration file now allows for a much clearer syntax, which you can (and should) start using now.
 
 The old format had a single string to identify the 'toolstack' you use:
+
 ```yaml
 toolstack: "php:drupal"
 ```
 
 The new syntax allows to separate the concerns of what language you are running
 and the build process that is going to happen on deployment:
+
 ```yaml
 type: php
 build:
@@ -260,4 +271,3 @@ In addition, version 1.7.0 now has consistency checks for configuration
 files and will reject `git push` operations that contain configuration
 files that are invalid. In this case, just fix the issues as they are
 reported, commit and push again.
-

@@ -1,30 +1,36 @@
-# InfluxDB (Database service)
+---
+title: "InfluxDB (Database service)"
+weight: 3
+description: |
+  InfluxDB is a time series database optimized for high-write-volume use cases such as logs, sensor data, and real-time analytics.  
+sidebarTitle: "InfluxDB"
+---
 
-InfluxDB is a time series database optimized for high-write-volume use cases such as logs, sensor data, and real-time analytics.  It exposes an HTTP API for client interaction.
+{{< description >}}
 
-See the [InfluxDB documentation](https://docs.influxdata.com/influxdb/) for more information.
+It exposes an HTTP API for client interaction. See the [InfluxDB documentation](https://docs.influxdata.com/influxdb) for more information.
 
 ## Supported versions
 
-* 1.2
-* 1.3
-* 1.7
+{{< image-versions image="influxdb" status="supported" >}}
 
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://examples.docs.platform.sh/relationships/influxdb", language="json" %}{% endcodesnippet %}
+{{< highlight json >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/influxdb" >}}
+{{< /highlight >}}
 
 ## Usage example
 
 In your `.platform/services.yaml`:
 
-{% codesnippet "/registry/images/examples/full/influxdb.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/influxdb.services.yaml"  highlight="yaml" >}}
 
 In your `.platform.app.yaml`:
 
-{% codesnippet "/registry/images/examples/full/influxdb.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/influxdb.app.yaml" highlight="yaml" >}}
 
 You can then use the service in a configuration file of your application with something like:
 
@@ -55,7 +61,7 @@ platform tunnel:open
 
 That will open an SSH tunnel to all services on your current environment, and produce output something like the following:
 
-```text
+```bash
 SSH tunnel opened on port 30000 to relationship: influxtimedb
 ```
 

@@ -1,6 +1,12 @@
-# Migrating to Platform.sh
+---
+title: "Migrating to Platform.sh"
+weight: 3
+ 
+description: |
+  Moving an already-built site to Platform.sh is generally straightforward.  For the most part, the only part that will vary from one framework to another is the details of the Platform.sh configuration files.<br><br>
 
-Moving an already-built site to Platform.sh is generally straightforward.  For the most part, the only part that will vary from one framework to another is the details of the Platform.sh configuration files.  See the **Featured Frameworks** section or our [project templates](https://github.com/platformsh/) for more project-specific documentation.
+  See the <a href="/frameworks.html"><b>Featured Frameworks</b></a> section or our <a href="/development/templates.html"><b>Project Templates</b></a> for more project-specific documentation.
+---
 
 ## Preparation
 
@@ -68,7 +74,8 @@ rsync -az ./private `platform ssh --pipe`:/app/private/
 rsync -az ./web/uploads `platform ssh --pipe`:/app/web/uploads
 ```
 
-> **notes**
+> **note**
+>
 > If you're running `rsync` on MacOS, you should add `--iconv=utf-8-mac,utf-8` to your `rsync` call.
 
 See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html) for more details on how to adjust the upload process.

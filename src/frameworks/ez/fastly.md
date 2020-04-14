@@ -1,6 +1,12 @@
-# eZ Platform Enterprise with Fastly
+---
+title: "eZ Platform Enterprise with Fastly"
+weight: 1
+sidebarTitle: "Fastly"
+description: |
+  eZ Platform Enterprise is a "commercial extended" version of ez Platform that includes, among other things, support for push-based purging on the Fastly CDN.
+---
 
-eZ Platform Enterprise is a "commercial extended" version of ez Platform that includes, among other things, support for push-based purging on the Fastly CDN.
+{{< description >}}
 
 ## Remove Varnish configuration
 
@@ -45,4 +51,4 @@ platform variable:set -e production env:FASTLY_KEY YOUR_ID_HERE
 
 ## Configure Fastly and Platform.sh
 
-See the alternate [Go-live process for Fastly](/golive/cdn.html#client-authenticated-tls) on Platform.sh.  This process is the same for any application.
+See the alternate [Go-live process for Fastly](/golive/cdn#client-authenticated-tls) on Platform.sh.  This process is the same for any application.

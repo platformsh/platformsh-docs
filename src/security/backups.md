@@ -1,8 +1,11 @@
-# Backup and restore
+---
+title: "Backup and restore"
+weight: 6
 
-Backups vary by our offering and their retention is governed by our [data retention](/security/data-retention.md) policies.
+description: |
+  Backups vary by our offering and their retention is governed by our [data retention](/security/data-retention.html). This section details our Recovery Point Objective (RPO) and Recovery Time Objective (RTO) for our Platform.sh Professional and Platform.sh Enterprise offerings.
 
-Below are details on our Recovery Point Objective (RPO) and Recovery Time Objective (RTO) for our Platform.sh Professional and Platform.sh Enterprise offerings.
+---
 
 ## Platform.sh Professional
 

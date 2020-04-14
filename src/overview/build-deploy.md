@@ -1,11 +1,14 @@
-# Building and deploying applications
+---
+title: "Build & Deploy"
+weight: 2
+description: "Every time you push to a live branch (a git branch with an active environment attached to it) or activate an <a href=\"/administration/web/environments.html\">environment</a> for a branch, there are two main processes that happen: <b>Build</b> and <b>Deploy</b>."
+ 
+---
 
-Every time you push to a live branch (a git branch with an active environment attached to it) or activate an [environment](/administration/web/environments.md) for a branch, there are two main processes that happen: *Build* and *Deploy*.  
-
-1.  The build process looks through the configuration files in your repository and assembles the necessary containers.  
+1. The build process looks through the configuration files in your repository and assembles the necessary containers.  
 2. The deploy process makes those containers live, replacing the previous versions, with virtually no interruption in service.
 
-![The Build and Deploy pipeline](/images/workflow/build-pipeline.svg)
+![Build pipeline](/images/workflow/build-pipeline.svg "0.50")
 
 ## Always Be Compiling
 
@@ -24,6 +27,8 @@ The following two constraints make sure you have fast, repeatable builds:
 
 After you push your code, the first build step is to validate your configuration files (i.e. `.platform.app.yaml`, `.platform/services.yaml`, and `.platform/routes.yaml`). The Git server will issue an error if validation fails, and nothing will happen on the server.
 
+> **note**
+>
 > While most projects have a single `.platform.app.yaml` file, Platform.sh supports multiple applications in a single project.  It will scan the repository for `.platform.app.yaml` files in subdirectories and each directory containing one will be built as an independent application. A built application will not contain any directories above the one in which it is found. The system is smart enough not to rebuild applications that have already been built, so if you have multiple applications, only changed applications will be rebuilt and redeployed.
 
 The live environment is composed of multiple containers&mdash;both for your application(s) and for the services it depends on. It also has a virtual network connecting them, as well as a router to route incoming requests to the appropriate application.

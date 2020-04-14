@@ -1,4 +1,7 @@
-# Deploy on Platform.sh
+---
+title: "Deploy on Platform.sh"
+weight: 1
+---
 
 Platform.sh offers a number of project templates as part of the Project Creation Wizard to make bootstrapping a new project easy.  However, you can also create arbitrary links to spawn projects on Platform.sh from an arbitrary Git repository or prepared template.
 
@@ -34,13 +37,13 @@ The button builder widget will give you an HTML fragment to copy and paste to wh
 
 Create a link in the following form:
 
-```
+```text
 https://console.platform.sh/projects/create-project?template=GIT_URL
 ```
 
 Where `GIT_URL` is the URL of a publicly-visible Git repository.  For example, to install Platform.sh's [Drupal 8 template on GitHub](https://github.com/platformsh-templates/drupal8) you would use:
 
-```
+```text
 https://console.platform.sh/projects/create-project/?template=https://github.com/platformsh-templates/drupal8.git
 ```
 
@@ -52,13 +55,13 @@ A new project will be created and then initialized with whatever code is at the 
 
 Create a link in the following form:
 
-```
+```text
 https://console.platform.sh/projects/create-project?template=TEMPLATE_URL
 ```
 
 Where `TEMPLATE_URL` is the URL of a publicly-visible template definition file.  For example, to install Platform.sh's [Drupal 8 template](https://github.com/platformsh-templates/drupal8) you would use:
 
-```
+```text
 https://console.platform.sh/projects/create-project/?template=https://github.com/platformsh/template-builder/blob/master/templates/drupal8/.platform.template.yaml
 ```
 

@@ -1,161 +1,58 @@
-# Project templates
+---
+title: "Project templates"
+weight: 1
+description: |
+  You can initialize your projects using any of our pre-made template repositories.
+---
 
-You can also initialize your project using any of the pre-made templates below.  For each one, simply Git Clone the repository from GitHub then push it to Platform.sh using the instructions for a custom repository in the management console, as seen in the video above.
+{{< description >}}
 
-## C#/.NET
+You can click the **Deploy on Platform.sh** button to launch a new project using a template, or you can visit and clone the repository and push to an empty project you have created using the CLI or in the management console.
 
-<section class="examples-lists">
+## C#/.NET Core
 
-<div>
-  <h4>Frameworks</h4>
-  <a href="https://github.com/platformsh-templates/aspnet-core">ASP.NET Core</a>
-</div>
+View the [C#/.NET Core documentation](/languages/dotnet).
 
-</section>
+{{< repolist lang="dotnet" >}}
 
 ## Go
 
-<section class="examples-lists">
+View the [Go documentation](/languages/go.html).
 
-<div>
-  <h4>Examples</h4>
-  <a href="https://github.com/platformsh-templates/golang">Generic Go application</a>
-</div>
-
-<div>
-  <h4>Frameworks</h4>
-  <a href="https://github.com/platformsh-templates/beego">Beego</a>
-  <a href="https://github.com/platformsh-templates/echo">Echo</a>
-  <a href="https://github.com/platformsh-templates/gin">Gin</a>
-  <a href="https://github.com/platformsh-templates/hugo">Hugo</a>
-</div>
-
-</section>
+{{< repolist lang="golang" >}}
 
 ## Java
 
-<section class="examples-lists">
+View the [Java documentation](/languages/java.html).
 
-<div>
-  <h4>Applications</h4>
-  <a href="https://github.com/platformsh-templates/spring-boot-maven-mysql">Spring Boot MySQL</a><br />
-  <a href="https://github.com/platformsh-templates/spring-boot-gradle-mysql">Spring Boot MySQL (Gradle)</a><br />
-  <a href="https://github.com/platformsh-templates/spring-mvc-maven-mongodb">Spring Boot MongoDB</a><br />
-  <a href="https://github.com/platformsh-templates/spring-kotlin">Spring Kotlin</a><br />
-  <a href="https://github.com/platformsh-templates/microprofile-tomee">Apache Tomee</a><br />
-  <a href="https://github.com/platformsh-templates/microprofile-thorntail">Thorntail</a><br />
-  <a href="https://github.com/platformsh-templates/microprofile-payara">Payara Micro</a><br />
-  <a href="https://github.com/platformsh-templates/microprofile-kumuluzee">KumuluzEE</a><br />
-  <a href="https://github.com/platformsh-templates/microprofile-helidon">Helidon</a><br />
-  <a href="https://github.com/platformsh-templates/microprofile-openliberty">Open Liberty</a><br />
-  <a href="https://github.com/platformsh-templates/jetty">Jetty</a><br />
-  <a href="https://github.com/platformsh-templates/micronaut">Micronaut</a><br />
-  <a href="https://github.com/platformsh-templates/jenkins">Jenkins</a><br />
-  <a href="https://github.com/platformsh-templates/xwiki">XWiki</a><br />
-</div>
-
-</section>
+{{< repolist lang="java" >}}
 
 ## Lisp
 
-<section class="examples-lists">
+View the [Lisp documentation](/languages/lisp.html).
 
-<div>
-  <h4>Examples</h4>
-  <a href="https://github.com/platformsh-templates/lisp">Hunchenroot</a><br />
-</div>
-
-</section>
+{{< repolist lang="lisp" >}}
 
 ## Node.js
 
-<section class="examples-lists">
+View the [Node.js documentation](/languages/nodejs.html).
 
-<div>
-  <h4>Examples</h4>
-  <a href="https://github.com/platformsh-templates/nodejs">Generic Node.js</a><br />
-  <a href="https://github.com/platformsh-examples/platformsh-example-parseit">Parse</a><br />
-  <a href="https://github.com/platformsh-examples/platformsh-example-nodejs-microservices">Node.js microservices</a>
-</div>
-
-</section>
+{{< repolist lang="nodejs" >}}
 
 ## PHP
 
-<section class="examples-lists">
+View the [PHP documentation](/languages/php.html).
 
-<div>
-  <h4>Applications</h4>
-  <a href="https://github.com/platformsh-templates/akeneo">Akeneo</a>
-  <a href="https://github.com/ezsystems/ezplatform">EZ Platform</a><br />
-  <a href="https://github.com/platformsh-templates/drupal7">Drupal 7</a><br />
-  <a href="https://github.com/platformsh-examples/platformsh-example-drupalcommerce7">Drupal 7 (Commerce Kickstart)</a><br />
-  <a href="https://github.com/platformsh-templates/drupal8">Drupal 8</a><br />
-  <a href="https://github.com/platformsh-templates/drupal8-multisite">Drupal 8 (Multisite variant)</a><br />
-  <a href="https://github.com/platformsh-templates/govcms8">GovCMS8</a>
-  <a href="https://github.com/platformsh-templates/laravel">Laravel</a><br />
-  <a href="https://github.com/platformsh-examples/platformsh-example-moodle">Moodle</a><br />
-  <a href="https://github.com/platformsh-examples/platformsh-example-magento1">Magento 1</a><br />
-  <a href="https://github.com/platformsh-templates/magento2ce">Magento 2</a><br />
-  <a href="https://github.com/platformsh-templates/opigno">Opigno</a>
-  <a href="https://github.com/platformsh-templates/pimcore">Pimcore</a>
-  <a href="https://github.com/platformsh-templates/sculpin">Sculpin</a><br />
-  <a href="https://github.com/platformsh-templates/typo3">TYPO3</a><br />
-  <a href="https://github.com/platformsh-templates/wordpress">WordPress</a>
-</div>
-
-<div>
-  <h4>Examples</h4>
-  <a href="https://github.com/platformsh-templates/php">Generic PHP application</a><br />
-</div>
-
-
-<div>
-  <h4>Frameworks</h4>
-  <a href="https://github.com/platformsh-examples/platformsh-example-amphp">AmPHP</a><br />
-  <a href="https://github.com/platformsh-examples/platformsh-example-reactphp">React PHP</a><br />
-  <a href="https://github.com/platformsh-templates/symfony3">Symfony 3.x</a><br />
-  <a href="https://github.com/platformsh-templates/symfony4">Symfony 4.x</a><br />
-</div>
-
-</section>
+{{< repolist lang="php" >}}
 
 ## Python
 
-<section class="examples-lists">
+View the [Python documentation](/languages/python.html).
 
-<div>
-  <h4>Examples</h4>
-  <a href="https://github.com/platformsh-templates/python3-uwsgi">Python UWSGI with Unix Sockets</a><br />
-</div>
-
-<div>
-  <h4>Frameworks</h4>
-  <a href="https://github.com/platformsh-templates/django1">Django 1</a>
-  <a href="https://github.com/platformsh-templates/django2">Django 2</a>
-  <a href="https://github.com/platformsh-templates/flask">Flask</a><br />
-</div>
-
-
-<div>
-  <h4>Applications</h4>
-  <a href="https://github.com/platformsh-templates/moinmoin">Moin Moin</a>
-  <a href="https://github.com/platformsh-templates/pelican">Pelican</a>
-  <a href="https://github.com/platformsh-templates/pyramid">Pyramid</a>
-  <a href="https://github.com/platformsh-templates/wagtail">Wagtail</a><br />
-</div>
-
-</section>
+{{< repolist lang="python" >}}
 
 ## Ruby
 
-<section class="examples-lists">
+View the [Ruby documentation](/languages/ruby.html).
 
-<div>
-  <h4>Frameworks</h4>
-  <a href="https://github.com/platformsh-examples/platformsh-example-sinatra">Sinatra</a><br />
-  <a href="https://github.com/platformsh-examples/platformsh-example-ruby-sinatra-all-the-services">Sinatra (all services)</a><br />
-  <a href="https://github.com/platformsh-templates/rails">Ruby on Rails</a>
-</div>
-
-</section>
+{{< repolist lang="ruby" >}}

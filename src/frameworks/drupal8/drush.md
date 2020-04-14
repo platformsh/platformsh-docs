@@ -1,14 +1,20 @@
-# Working with Drush in Drupal 8
+---
+title: "Working with Drush in Drupal 8"
+weight: 2
+sidebarTitle: "Drush"
+---
 
-Drush is a command-line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those who spend their working hours hacking away at the command prompt. Drush commands can, for example, be used to clear the Drupal cache, run module and database updates, revert features, perform database imports and dumps, and a whole lot more. You can reference the full set of Drush commands at [Drush.org](http://www.drush.org). If you have never used Drush before, you can learn more about it on the [Drush GitHub Repository](https://github.com/drush-ops/drush#description)
+Drush is a command-line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those who spend their working hours hacking away at the command prompt. Drush commands can, for example, be used to clear the Drupal cache, run module and database updates, revert features, perform database imports and dumps, and a whole lot more. You can reference the full set of Drush commands at [Drush.org](http://www.drush.org)
+
+If you have never used Drush before, you can learn more about it on the [Drush GitHub Repository](https://github.com/drush-ops/drush#description)
 
 * Platform.sh's Drupal templates have Drush installed.
 * Drush commands can be run in build, deploy, and post_deploy hooks, although remember that as the database is not available at build time many Drush commands will not work at build time.
 * In addition, you can use the [Platform.sh CLI](/gettingstarted/cli.html) to set up Drush aliases easily for all of your project's environments. See the section below on [use drush aliases](#use-drush-aliases)
 
-> **note**
->
-> Platform's CLI requires **Drush 6 or higher**.
+{{< note >}}
+Platform's CLI requires **Drush 6 or higher**.
+{{< /note >}}
 
 ## Installing Drush
 
@@ -47,7 +53,19 @@ For Drush to be available on the command line, **it must be added to the project
 
 Add a new file named `.environment` to the root of your your project's git repository with this code:
 
-{% codesnippet "https://raw.githubusercontent.com/platformsh-templates/drupal8/master/.environment", language="bash" %}{% endcodesnippet %}
+```bash
+# Statements in this file will be executed (sourced) by the shell in SSH
+# sessions, in deploy hooks, in cron jobs, and in the application's runtime
+# environment. This file must be placed in the root of the application, not
+# necessarily the git repository's root. In case of multiple applications,
+# each application can have its own .environment file.
+
+# Allow executable app dependencies from Composer to be run from the path.
+if [ -n "$PLATFORM_APP_DIR" -a -f "$PLATFORM_APP_DIR"/composer.json ] ; then
+  bin=$(composer config bin-dir --working-dir="$PLATFORM_APP_DIR" --no-interaction 2>/dev/null)
+  export PATH="${PLATFORM_APP_DIR}/${bin:-vendor/bin}:${PATH}"
+fi
+```
 
 ## Install Drush locally
 
@@ -69,7 +87,7 @@ $ drush
 
 [Drush aliases](http://drush.readthedocs.org/en/master/usage/index.html#site-aliases) make it easy to manage your development websites. Here's an example of a [Drush alias file](https://github.com/drush-ops/drush/blob/8.x/examples/example.aliases.drushrc.php).
 
-The Platform.sh CLI generates Drush aliases for you automatically when you run `platform get [project_id]`. 
+The Platform.sh CLI generates Drush aliases for you automatically when you run `platform get [project_id]`.
 
 To see the aliases that are created, run `platform drush-aliases` and you should get output similar to that below:
 
@@ -85,4 +103,6 @@ Aliases for My Site (tqmd2kvitnoly):
 
 To recreate existing aliases, or after pushing a new branch via git to create the new alias, run:
 
-`platform drush-aliases -r`
+```bash
+platform drush-aliases -r
+```

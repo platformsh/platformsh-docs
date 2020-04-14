@@ -1,0 +1,10 @@
+{{ $bookKeys := slice "" }}
+{{ range $bookPath, $bookParams := .Site.Params.books }}
+  {{ $bookKeys = $bookKeys | append $bookPath }}
+{{ end }}
+
+{{ if and (ne .Section "") (in $bookKeys .Section)}}
+  {{ partial "navigation/sidebar/books/book" ( dict "context" . "books" $bookKeys ) }}
+{{ else }}
+  {{ partial "navigation/sidebar/books/main" ( dict "context" . "books" $bookKeys ) }}
+{{ end }}

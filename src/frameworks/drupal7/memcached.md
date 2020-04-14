@@ -1,4 +1,8 @@
-# Using Memcached with Drupal 7.x
+---
+title: "Using Memcached with Drupal 7.x"
+weight: 7
+sidebarTitle: "Memcached"
+---
 
 Platform.sh recommends using Redis for caching with Drupal 7 over Memcached, as Redis offers better performance when dealing with larger values as Drupal tends to produce.  However, Memcached is also available if desired and is fully supported.
 
@@ -45,12 +49,12 @@ You will need to add the [Memcache](https://www.drupal.org/project/memcache) mod
 projects[memcache][version] = 1.6
 ```
 
-Then commit the 
+Then commit the
 
-> **note**
->
-> You must commit and deploy your code before continuing, then enable the module. The memcache 
-> module must be enabled before it is configured in the `settings.platformsh.php` file.
+{{< note >}}
+You must commit and deploy your code before continuing, then enable the module. The memcache
+module must be enabled before it is configured in the `settings.platformsh.php` file.
+{{< /note >}}
 
 ## Configuration
 
@@ -61,6 +65,8 @@ Place the following at the end of `settings.platformsh.php`. Note the inline com
 The example below is intended as a "most common case".
 
 ```php
+<?php
+
 if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('memcached')) {
   $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), true);
 

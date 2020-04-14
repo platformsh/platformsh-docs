@@ -1,8 +1,13 @@
-# Region migration
+---
+title: "Region migration"
+weight: 5
+sidebarTitle: "Changing regions"
+ 
+description: |
+  Platform.sh is available in a number of different <b>Regions</b>.  Each region is a self-contained copy of Platform.sh in a single datacenter.  When you first create a project you can specify which region it should be in.<br><br>
 
-Platform.sh is available in a number of different *Regions*.  Each region is a self-contained copy of Platform.sh in a single datacenter.  When you first create a project you can specify which region it should be in.
-
-Platform.sh does not offer an automated way to migrate a project from one region to another after it is created.  However, the process to do so manually is fairly straightforward and scriptable.
+  Platform.sh does not offer an automated way to migrate a project from one region to another after it is created.  However, the process to do so manually is fairly straightforward and scriptable.
+---
 
 ## Why migrate between regions?
 

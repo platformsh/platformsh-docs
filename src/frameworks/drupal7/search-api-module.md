@@ -1,4 +1,8 @@
-# Using Solr with the module Search API on Drupal 7.x
+---
+title: "Using Solr with the module Search API on Drupal 7.x"
+weight: 9
+sidebarTitle: "Search API"
+---
 
 This page is about configuring Solr with the module [Search API](https://www.drupal.org/project/search_api). If your project uses [Apache Solr Search](https://www.drupal.org/project/apachesolr) then you should follow the instructions [Apache Solr Search](apachesolr-module.md).
 
@@ -23,6 +27,8 @@ The Search API module includes recommended configuration files to use with Drupa
 The Search API Override module (listed above) allows Search API configuration to be overridden from `settings.php`.  Once it has been enabled, add the following to your `settings.platformsh.php` file:
 
 ```php
+<?php
+
 if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
   $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
 

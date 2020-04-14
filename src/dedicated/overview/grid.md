@@ -1,6 +1,12 @@
-# Differences from Platform.sh on the Grid
+---
+title: "Differences from Platform.sh on the Grid"
+weight: 5
+sidebarTitle: "Differences from the Grid"
+description: |
+  When using Platform.sh Dedicated, a few configuration options and tools function differently from Platform.sh on the Grid, aka the Development Environment.
+---
 
-When using Platform.sh Dedicated, a few configuration options and tools function differently from Platform.sh on the Grid, aka the Development Environment.
+{{< description >}}
 
 ## PHP
 
@@ -60,7 +66,7 @@ Cron tasks are always interpreted in UTC time.
 
 Logs are available on the Dedicated Cluster at a different path than on Platform.sh Grid.  Specifically, the can be found in:
 
-```
+```bash
 /var/log/platform/<application-name>/
 ```
 

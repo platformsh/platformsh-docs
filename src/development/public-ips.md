@@ -1,8 +1,18 @@
-# Public IP addresses
+---
+title: "Public IP addresses"
+weight: 14
+sidebarTitle: "Public IPs"
+description: |
+  Platform.sh regions reach the outside through a limited number of IP addresses.
+---
 
-Platform.sh regions reach the outside through a limited number of IP addresses.
+{{< description >}}
 
 Use the inbound IP addresses if you have a corporate firewall which blocks outgoing SSH connections.  In that case, simply add our IP addresses for inbound traffic below to your whitelist.
+
+{{< note >}}
+These IP addresses are stable, but not guaranteed to never change. Prior to any future change, all affected customers will receive ample warning.
+{{< /note >}}
 
 ## Europe
 
@@ -76,20 +86,6 @@ Inbound IPs (gw.fr-1.platformsh.site):
 * 90.84.46.222
 * 90.84.46.40
 
-### United Kingdom 1 (uk-1.platform.sh)
-
-Outbound IPs:
-
-* 35.242.142.110
-* 35.189.126.202
-* 35.242.183.249
-
-Inbound IPs (gw.uk-1.platformsh.site):
-
-* 35.242.142.110
-* 35.189.126.202
-* 35.242.183.249
-
 ## United States
 
 ### East (us.platform.sh)
@@ -149,6 +145,3 @@ Inbound IPs (gw.au.platformsh.site):
 * 13.54.88.239
 * 13.55.140.143
 * 13.54.222.56
-
-These IP addresses are stable, but not guaranteed to never change. Prior to
-any future change, all affected customers will receive ample warning.

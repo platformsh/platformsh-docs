@@ -1,8 +1,10 @@
-# PHP-FPM workers
-
-Platform.sh uses a heuristic to automatically set the number of workers of the PHP-FPM runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more or less memory.
-
-Note that this value is independent of the `memory_limit` set in `php.ini`, which is the maximum amount of memory a single PHP process can use before it is automatically terminated.  These estimates are used only for determining the number of PHP-FPM workers to start.
+---
+title: "PHP-FPM sizing"
+weight: 5
+markup: mmark
+math: true
+description: "Platform.sh uses a heuristic to automatically set the number of workers of the PHP-FPM runtime based on the memory available in the container. This heuristic is based on assumptions about the memory necessary on average to process a request. You can tweak those assumptions if your application will typically use considerably more or less memory.<br><br>Note that this value is independent of the <code>memory_limit</code> set in <code>php.ini</code>, which is the maximum amount of memory a single PHP process can use before it is automatically terminated.  These estimates are used only for determining the number of PHP-FPM workers to start."
+---
 
 ## The heuristic
 
@@ -14,7 +16,10 @@ The heuristic is based on three input parameters:
 
 The number of workers is calculated as:
 
-![PHP FPM Worker Heuristic](/images/equations/phpfpmworkers.png)
+$$
+\text{workers} = \max \Bigg ( \frac{\text{ContainerMemory} - \text{ReservedMemory}}{\text{RequestMemory}}, 2 \Bigg)
+$$
+
 
 ## Defaults
 
@@ -80,4 +85,5 @@ A conservative approach would suggest an average request memory of 16 MB should 
 The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics) that offers a better visualization of access logs to determine how much memory requests are using on average.  It also offers additional insights into the operation of your site that can suggest places to further optimize your configuration and provide guidance on when it's time to increase your plan size.  (Please note that this tool is maintained by a 3rd party, not by Platform.sh.)
 
 > **note**
+>
 > If you are running on PHP 5.x then don't bother adjusting the worker memory usage until you upgrade to PHP 7.x.  PHP 7 is vastly more memory efficient than PHP 5 and you will likely need less than half as much memory per process under PHP 7.

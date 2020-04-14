@@ -1,32 +1,38 @@
-# Memcached (Object cache)
+---
+title: "Memcached (Object cache)"
+weight: 5
+description: |
+  Memcached is a simple in-memory object store well-suited for application level caching.
+sidebarTitle: "Memcached"
+---
 
-Memcached is a simple in-memory object store well-suited for application level caching.
+{{< description >}}
 
-See the [Memcached documentation](https://memcached.org/) for more information.
+See the [Memcached](https://memcached.org) for more information.
 
-Both Memcached and Redis can be used for application caching.  As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust.  Platform.sh recommends using Redis if possible but Memcached is fully supported if an application favors that cache service.
+Both Memcached and Redis can be used for application caching.  As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust.  Platform.sh recommends using Redis if possible but Memcached is fully supported if an application favors that cache service."
 
 ## Supported versions
 
-* 1.4
-* 1.5
-* 1.6
+{{< image-versions image="memcached" status="supported" >}}
 
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://examples.docs.platform.sh/relationships/memcached", language="json" %}{% endcodesnippet %}
+{{< highlight json >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/memcached" >}}
+{{< /highlight >}}
 
 ## Usage example
 
 In your ``.platform/services.yaml``:
 
-{% codesnippet "/registry/images/examples/full/memcached.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/memcached.services.yaml" highlight="yaml" >}}
 
 Now add a relationship in your `.platform.app.yaml` file:
 
-{% codesnippet "/registry/images/examples/full/memcached.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/memcached.app.yaml" highlight="yaml" >}}
 
 If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php.md#php-extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 
@@ -46,17 +52,39 @@ dependencies:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/memcached" -%}
+{{< tabs "Go" "Java" "Nodejs" "PHP" "Python" >}}
 
-{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/memcached" -%}
+{{< tab id="Go" active="true" >}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/memcached" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/memcached" -%}
+{{< tab id="Java" >}}
+{{< highlight java >}}
+{{< readFile file="static/files/fetch/examples/java/memcached" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
+{{< tab id="Nodejs" >}}
+{{< highlight js >}}
+{{< readFile file="static/files/fetch/examples/nodejs/memcached" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/memcached" -%}
+{{< tab id="PHP" >}}
+{{< highlight php >}}
+{{< readFile file="static/files/fetch/examples/php/memcached" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- endcodetabs %}
+{{< tab id="Python" >}}
+{{< highlight python >}}
+{{< readFile file="static/files/fetch/examples/python/memcached" >}}
+{{< /highlight >}}
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Accessing Memcached directly
 

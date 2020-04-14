@@ -1,6 +1,12 @@
-#Multiple Drupal  sites in a single Project
+---
+title: "Multiple Drupal  sites in a single Project"
+weight: 11
+toc: false
+sidebarTitle: "Multi-site"
+sidebarIgnore: true
+---
 
-Platform.sh supports running [multiple applications in the same project](/user_guide/reference/platform-app-yaml-multi-app.html)
+Platform.sh supports running [multiple applications in the same project](/bestpractices/oneormany)
 and these can be two or more Drupal site. But, they would be separate Drupal
 instances , they will have their assets separate and live their lives apart and
 it would be much better for them not to share the same database (though they

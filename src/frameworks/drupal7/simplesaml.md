@@ -1,4 +1,7 @@
-# SimpleSAML
+---
+title: "SimpleSAML"
+weight: 10
+---
 
 SimpleSAMLphp is a library for authenticating a PHP-based application against a SAML server, such as Shibboleth.  Although Drupal has modules available to authenticate using SimpleSAML some additional setup is required.
 
@@ -6,7 +9,7 @@ The following setup assumes you're using the `drupal` build flavor and building 
 
 ## Download the library
 
-First, download the 3rd party [SimpleSAMLphp library](https://simplesamlphp.org/download).  When you unpack the `tar.gz` file it will contain a directory named `simplesamplephp-???`, where the `???` is the version number of the library.  Place that directory at the root of your application, as a sibling of your `.platform.app.yaml` file, named `simplesamplephp`.  (The directory name doesn't really matter but removing the version number means that it won't change in future updates.) 
+First, download the 3rd party [SimpleSAMLphp library](https://simplesamlphp.org/download).  When you unpack the `tar.gz` file it will contain a directory named `simplesamplephp-???`, where the `???` is the version number of the library.  Place that directory at the root of your application, as a sibling of your `.platform.app.yaml` file, named `simplesamplephp`.  (The directory name doesn't really matter but removing the version number means that it won't change in future updates.)
 
 The `drupal` build flavor will move that directory to the `public/sites/default/` directory during build.  The rest of the configuration is based on that behavior.
 
@@ -55,6 +58,8 @@ projects[simplesamlphp_auth][version] = 2.0-alpha2
 Much of the module configuration will depend on your Identity Provider (IdP).  However, the module also need to know the location of your `simplesamlphp_auth` module.  The easiest way to set it is to include the following at the end of your `settings.platformsh.php` file:
 
 ```php
+<?php
+
 // Set the path for the SimpleSAMLphp library dynamically.
 $conf['simplesamlphp_auth_installdir'] = __DIR__ . '/simplesamlphp';
 ```
@@ -76,6 +81,8 @@ Open the file `simplesamlphp/config/config.php`.  It contains a number of config
 Others are a little more involved.  In the interest of simplicity we recommend simply pasting the following code snippet at the end of the file, as it will override the default values in the array.
 
 ```php
+<?php
+
 // Set SimpleSAML to log using error_log(), which on Platform.sh will
 // be mapped to the /var/log/app.log file.
 $config['logging.handler'] = 'errorlog';
@@ -91,15 +98,15 @@ if (isset($_ENV['PLATFORM_RELATIONSHIPS'])) {
   $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
   foreach ($relationships['database'] as $instance) {
     if (!empty($instance['query']['is_master'])) {
-      $dsn = sprintf("%s:host=%s;dbname=%s", 
-        $instance['scheme'], 
-        $instance['host'], 
+      $dsn = sprintf("%s:host=%s;dbname=%s",
+        $instance['scheme'],
+        $instance['host'],
         $instance['path']
       );
-      $config['database.dsn'] = $dsn; 
+      $config['database.dsn'] = $dsn;
       $config['database.username'] = $instance['username'];
       $config['database.password'] = $instance['password'];
-      
+
       $config['store.type'] = 'sql';
       $config['store.sql.dsn'] = $dsn;
       $config['store.sql.username'] = $instance['username'];
@@ -123,6 +130,8 @@ You may need to generate an SSL/TLS certificate, depending on your Identity Prov
 Then add the following line to your `simplesamlphp/config/config.php` file to tell the library where to find the certificate:
 
 ```php
+<?php
+
 $config['certdir'] = dirname(__DIR__) . '/cert';
 ```
 

@@ -1,4 +1,8 @@
-# Access
+---
+title: "Access"
+weight: 6
+toc: false
+---
 
 The `access` key in `.platform.app.yaml` defines the user roles who can log in via SSH to the environments they have permission to access.  The specified role is a minimum; anyone with an access level of this role or higher can access the container via SSH.
 

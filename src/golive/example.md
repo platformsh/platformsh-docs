@@ -1,6 +1,9 @@
-# Going Live - Example
-
-In this short section we will give you a  very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this).
+---
+title: "Example"
+weight: 5
+ 
+description: "In this short section we will give you a  very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this)."
+---
 
 Suppose your project ID is `abc123` in the US region, and you've registered `mysite.com`.  You want `www.mysite.com` to be the "real" site and `mysite.com` to redirect to it.
 
@@ -20,13 +23,15 @@ First, configure your `routes.yaml` file like so:
 
 That will result in two domains being created on Platform.sh: `master-def456-abc123.eu-2.platformsh.site` and `www---master-def456-abc123.eu-2.platformsh.site`.  The former will automatically redirect to the latter.  In the `routes.yaml` file, `{default}` will automatically be replaced with `master-def456-abc123.eu-2.platformsh.site`.  In domain prefixes (like `www`), the `.` will be replaced with `---`.
 
-### Set your domain
+## Set your domain
 
 Now, add a single domain to your Platform.sh project for `mysite.com`.  
 
 Using the CLI type:
 
-```platform domain:add mysite.com```
+```bash
+platform domain:add mysite.com
+```
 
 You can also use the management console for that.
 
@@ -34,16 +39,18 @@ As soon as you do, Platform.sh will no longer serve `master-def456-abc123.eu-2.p
 
 You can still access the original internal domain by running `platform environment:info edge_hostname -e master`.
 
-### Configure your DNS provider
+## Configure your DNS provider
 
 On your DNS provider, you would create two CNAMEs:
 
 `mysite.com` should be an ALIAS/CNAME/ANAME  to `master-def456-abc123.eu-2.platformsh.site`.
 `www.mysite.com` should be a CNAME to `master-def456-abc123.eu-2.platformsh.site`.
 
->  Both point to the same name. See the note above regarding how different registrars handle dynamic apex domains.
+>**note**
+>
+> Both point to the same name. See the note above regarding how different registrars handle dynamic apex domains.
 
-### Result
+## Result
 
 Here's what will now happen under the hood.  Assume for a moment that all caches everywhere are empty.  An incoming request for `mysite.com` will result in the following:
 

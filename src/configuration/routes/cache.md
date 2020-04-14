@@ -1,8 +1,13 @@
-# HTTP cache
+---
+title: "HTTP cache"
+weight: 2
+description: |
+  Platform.sh supports HTTP caching at the server level. Caching is enabled by default, but is only applied to `GET` and `HEAD` requests.
+---
 
-Platform.sh supports HTTP caching at the server level. Caching is enabled by default, but is only applied to `GET` and `HEAD` requests.
+{{< description >}}
 
-The cache can be controlled using the `cache` key in your `.platform/routes.yaml` file. 
+The cache can be controlled using the `cache` key in your `.platform/routes.yaml` file.
 
 If a request is cacheable, Platform.sh builds a cache key from several request properties and stores the response associated with this key. When a request comes with the same cache key, the cached response is reused.
 
@@ -11,7 +16,7 @@ When caching is on...
 * you can configure cache behaviour for different location blocks in your `.platform.app.yaml`;
 * the router will respect whatever cache headers are sent by the application;
 * cookies will bypass the cache;
-* responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` are not cached. 
+* responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` are not cached.
 
 ## Basic usage
 
@@ -68,7 +73,7 @@ The cache duration is decided based on the `Cache-Control` response header value
 
 ### Conditional requests
 
-Conditional requests using `If-Modified-Since` and `If-None-Match` are both supported. Our web server does not honor the `Pragma` request header. 
+Conditional requests using `If-Modified-Since` and `If-None-Match` are both supported. Our web server does not honor the `Pragma` request header.
 
 ### Cache revalidation
 
@@ -86,13 +91,15 @@ The HTTP cache does not support a complete cache flush, however, you can invalid
 
 Turns the cache on or off for a route.
 
-> **Type:** Boolean
->
-> **Required:** Yes
->
-> **Values**
-> * `true`: enable the cache for this route [default, but only if the `cache` key is not actually specified]
-> * `false`: disable the cache for this route 
+{{< note title="none">}}
+**Type:** Boolean
+
+**Required:** Yes
+
+**Values**
+* `true`: enable the cache for this route [default, but only if the `cache` key is not actually specified]
+* `false`: disable the cache for this route
+{{< /note >}}
 
 ### `headers`
 
@@ -106,10 +113,12 @@ cache:
   headers: ["Accept"]
 ```
 
-> **Type:** List
->
-> **Values:**
-> * `['Accept', 'Accept-Language']`: Cache on Accept & Accept-Language [default]
+{{< note title="none">}}
+**Type:** List
+
+**Values:**
+* `['Accept', 'Accept-Language']`: Cache on Accept & Accept-Language [default]
+{{< /note >}}
 
 #### Header behaviors
 
@@ -128,9 +137,9 @@ A full list of HTTP headers is available on [Wikipedia](https://en.wikipedia.org
 
 ### `cookies`
 
-A whitelist of cookie names to include values for in the cache key. 
+A whitelist of cookie names to include values for in the cache key.
 
-All cookies will bypass the cache when using the default (`['*']`) or if the `Set-Cookie` header is present. 
+All cookies will bypass the cache when using the default (`['*']`) or if the `Set-Cookie` header is present.
 
 For example, for the cache key to depend on the value of the `foo` cookie in the request.  Other cookies will be ignored.
 
@@ -140,12 +149,14 @@ cache:
   cookies: ["foo"]
 ```
 
-> **Type:** List
->
-> **Values:**
-> * `['*']`: any request with a cookie will bypass the cache [default]
-> * `[]`: Ignore all cookies
-> * `['cookie_1','cookie_2']`: A whitelist of cookies to include in the cache key. All other cookies are ignored.
+{{< note title="none">}}
+**Type:** List
+
+**Values:**
+* `['*']`: any request with a cookie will bypass the cache [default]
+* `[]`: Ignore all cookies
+* `['cookie_1','cookie_2']`: A whitelist of cookies to include in the cache key. All other cookies are ignored.
+{{< /note >}}
 
 A cookie value may also be a regular expression.  An entry that begins and ends with a `/` will be interpreted as a PCRE regular expression to match the cookie name.  For example:
 
@@ -159,18 +170,20 @@ Will cause all cookies beginning with `SESS` or `SSESS` to be part of the cache 
 
 ### `default_ttl`
 
-Defines the default time-to-live for the cache, in seconds, for non-static responses, when the response does not specify one. 
+Defines the default time-to-live for the cache, in seconds, for non-static responses, when the response does not specify one.
 
 The cache duration is decided based on the `Cache-Control` response header value. If no `Cache-Control` header is in the response, then the value of `default_ttl` is used. If the application code returns a Cache-Control header or if your `.platform.app.yaml` file is configured to set a cache lifetime, then this value is ignored in favor of the application headers.
 
-The `default_ttl` only applies to **non-static responses**, that is, those generated your application. 
+The `default_ttl` only applies to **non-static responses**, that is, those generated your application.
 
 To set a cache lifetime for static resources configure that in your [.platform.app.yaml](/configuration/app/web.md#locations) file. All static assets will have a Cache-Control header with a max age defaulting to 0 (which is the default for `expires` in the `.platform.app.yaml`).
 
-> **Type:** integer
->
-> **Values:**
-> * `0`: Do not cache [default]. This prevents caching, _unless_ the response specifies a `Cache-Control` header value.
+{{< note title="none">}}
+**Type:** integer
+
+**Values:**
+* `0`: Do not cache [default]. This prevents caching, _unless_ the response specifies a `Cache-Control` header value.
+{{< /note >}}
 
 ## Debugging
 
@@ -215,9 +228,9 @@ And the following routes are **not** cached:
 -   `https://{default}/foo/`
 -   `https://{default}/foo/baz/`
 
-> **note**
->
-> Regular expressions in routes are **not** supported.
+{{< note >}}
+Regular expressions in routes are **not** supported.
+{{< /note >}}
 
 ### Allowing only specific cookies
 

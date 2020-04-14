@@ -1,36 +1,36 @@
-# MongoDB (Database service)
+---
+title: "MongoDB (Database service)"
+weight: 6
+description: "MongoDB is a cross-platform, document-oriented database.<br><br>For more information on using MongoDB, see <a href=\"https://docs.mongodb.com/manual/\">MongoDB's own documentation</a>."
 
-MongoDB is a cross-platform, document-oriented database.
-
-For more information on using MongoDB, see [MongoDB's own documentation](https://docs.mongodb.com/manual/).
+sidebarTitle: "MongoDB"
+---
 
 ## Supported versions
 
-* 3.0
-* 3.2
-* 3.4
-* 3.6
+{{< image-versions image="mongodb" status="supported" >}}
 
-> **note**
->
-> Downgrades of MongoDB are not supported. MongoDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+{{< note >}}
+Downgrades of MongoDB are not supported. MongoDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+{{< /note >}}
 
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://examples.docs.platform.sh/relationships/mongodb", language="json" %}{% endcodesnippet %}
+{{< highlight json >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/mongodb" >}}
+{{< /highlight >}}
 
 ## Usage example
 
 In your `.platform/services.yaml`:
 
-{% codesnippet "/registry/images/examples/full/mongodb.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/mongodb.services.yaml" highlight="yaml" >}}
 
 The minimum disk size for MongoDB is `512` (MB).
 
-{% codesnippet "/registry/images/examples/full/mongodb.app.yaml", language="yaml" %}{% endcodesnippet %}
-
+{{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" >}}
 
 For PHP, in your `.platform.app.yaml` add:
 
@@ -44,17 +44,38 @@ runtime:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/mongodb" -%}
+{{< tabs "Go" "Java" "Nodejs" "PHP" "Python" >}}
 
-{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/mongodb" -%}
+{{< tab id="Go" active="true" >}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/mongodb" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/mongodb" -%}
+{{< tab id="Java" >}}
+{{< highlight java >}}
+{{< readFile file="static/files/fetch/examples/java/mongodb" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/mongodb" -%}
+{{< tab id="Nodejs" >}}
+{{< highlight js >}}
+{{< readFile file="static/files/fetch/examples/nodejs/mongodb" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/mongodb" -%}
+{{< tab id="PHP">}}
+{{< highlight php >}}
+{{< readFile file="static/files/fetch/examples/php/mongodb" >}}{{< /highlight >}}
+{{< /tab >}}
 
-{%- endcodetabs %}
+{{< tab id="Python" >}}
+{{< highlight python >}}
+{{< readFile file="static/files/fetch/examples/python/mongodb" >}}
+{{< /highlight >}}
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Exporting data
 
@@ -68,7 +89,7 @@ platform tunnel:open
 
 That will open an SSH tunnel to all services on your current environment, and produce output something like the following:
 
-```text
+```bash
 SSH tunnel opened on port 30000 to relationship: database
 SSH tunnel opened on port 30001 to relationship: redis
 ```

@@ -1,8 +1,13 @@
-# Using Lando for local Drupal development
+---
+title: "Using Lando for local Drupal development"
+weight: 8
+sidebarTitle: "Lando "
 
-[Lando](/gettingstarted/local/lando.md) is a local development platform that works well with Platform.sh.  Once installed locally it is a simple matter to create an approximate equivalent of your Platform.sh environment for development.
+description: |
+  <a href="/gettingstarted/local/lando.md">Lando</a> is a local development platform that works well with Platform.sh.  Once installed locally it is a simple matter to create an approximate equivalent of your Platform.sh environment for development.<br><br>
 
-If using Drupal 8 there is a [`drupal8`](https://docs.devwithlando.io/tutorials/drupal8.html) recipe available that is a good starting point for your site.
+  If using Drupal 8 there is a <a href="https://docs.devwithlando.io/tutorials/drupal8.html"><code>drupal8</code></a> recipe available that is a good starting point for your site.
+---
 
 ## Setting up the Lando environment
 
@@ -15,7 +20,7 @@ cd <projectId>
 lando init --recipe drupal8
 
 # Commit the Lando config file to your repository.
-git add .lando.yml 
+git add .lando.yml
 git commit -m "Add Lando configuration"
 ```
 
@@ -27,11 +32,11 @@ name: app
 recipe: drupal8
 
 config:
-  # Enable XDebug for local development. 
+  # Enable XDebug for local development.
   xdebug: true
 
-  # If you are providing a custom php.ini configuration for Platform.sh, specifying 
-  # the same file here will allow the one file to drive both environments. 
+  # If you are providing a custom php.ini configuration for Platform.sh, specifying
+  # the same file here will allow the one file to drive both environments.
   conf:
     php: php.ini
 ```
@@ -50,6 +55,8 @@ lando composer install
 The Platform.sh environment variables are not available in Lando, but Lando provides its own alternates.  To connect Drupal to the database add the following to your `web/sites/default/settings.local.php` file:
 
 ```php
+<?php
+
 $databases['default']['default'] = [
   'driver' => 'mysql',
   'database' => getenv('DB_NAME'),

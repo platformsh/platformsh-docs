@@ -1,6 +1,10 @@
-# Vulnerability Scanning and Penetration Testing
-
-Platform.sh understands the need for application owners to ensure the integrity, and standards compliance, of their applications. Because there could be adverse impacts to other clients which would violate our terms of service, we only permit certain types of tests.
+---
+title: "Vulnerability Scanning and Penetration Testing"
+weight: 10
+sidebarTitle: "Security scans"
+description: |
+  Platform.sh understands the need for application owners to ensure the integrity, and standards compliance, of their applications. Because there could be adverse impacts to other clients which would violate our terms of service, we only permit certain types of tests.
+---
 
 ## Approved Activities
 

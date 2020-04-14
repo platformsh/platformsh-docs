@@ -1,4 +1,8 @@
-# Using Memcached with Drupal 8.x
+---
+title: "Using Memcached with Drupal 8.x"
+weight: 4
+sidebarTitle: "Memcached"
+---
 
 Platform.sh recommends using Redis for caching with Drupal 8 over Memcached, as Redis offers better performance when dealing with larger values as Drupal tends to produce.  However, Memcached is also available if desired and is fully supported.
 
@@ -47,10 +51,10 @@ composer require drupal/memcache
 
 Then commit the resulting changes to your `composer.json` and `composer.lock` files.
 
-> **note**
->
-> You must commit and deploy your code before continuing, then enable the module. The memcache 
-> module must be enabled before it is configured in the `settings.platformsh.php` file.
+{{< note >}}
+You must commit and deploy your code before continuing, then enable the module. The memcache
+module must be enabled before it is configured in the `settings.platformsh.php` file.
+{{< /note >}}
 
 ## Configuration
 
@@ -61,6 +65,7 @@ Place the following at the end of `settings.platformsh.php`. Note the inline com
 The example below is intended as a "most common case".
 
 ```php
+<?php
 
 if (getenv('PLATFORM_RELATIONSHIPS') && extension_loaded('memcached')) {
   $relationships = json_decode(base64_decode(getenv('PLATFORM_RELATIONSHIPS')), TRUE);
@@ -71,7 +76,7 @@ if (getenv('PLATFORM_RELATIONSHIPS') && extension_loaded('memcached')) {
   if (!empty($relationships[$relationship_name])) {
     // This is the line that tells Drupal to use memcached as a backend.
     // Comment out just this line if you need to disable it for some reason and
-    // fall back to the default database cache. 
+    // fall back to the default database cache.
     $settings['cache']['default'] = 'cache.backend.memcache';
 
     foreach ($relationships[$relationship_name] as $endpoint) {

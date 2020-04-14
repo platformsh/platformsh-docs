@@ -1,10 +1,16 @@
-# Using SSH keys
+---
+title: "Using SSH keys"
+weight: 12
+description: |
+  One of the ways Platform.sh keeps things secure is by using SSH behind the scenes. Users can interact with their environment through a command shell, or push changes to the environment's Git repository, and both of these features rely on SSH.
+sidebarTitle: "Using SSH"
+---
 
-One of the ways Platform.sh keeps things secure is by using SSH behind the scenes. Users can interact with their environment through a command shell, or push changes to the environment's Git repository, and both of these features rely on SSH.
+{{< description >}}
 
 You can manage SSH keys through the CLI (see below), or through the SSH keys tab under Account Settings.
 
-## Find your Public-Private Keypair
+## Find your Public-Private keypair
 
 If you use Linux, you probably already have keys. The private key is usually in a file named `~/.ssh/id_rsa` and the public key in `~/.ssh/id_rsa.pub`,
 
@@ -25,17 +31,22 @@ If you find a file named `id_rsa.pub`, you can use it with Platform.sh. If you d
 
 ## Create a New Public-Private Keypair
 
-> **note**
-> If you already have a SSH keypair, you can skip this step.
+{{< note >}}
+If you already have a SSH keypair, you can skip this step.
+{{< /note >}}
 
 Create a public-private keypair:
 
-    $ ssh-keygen -t rsa -C "your_email_address@example.com"
+```bash
+$ ssh-keygen -t rsa -C "your_email_address@example.com"
+```
 
 `ssh-keygen` generates the key pair and will ask you where you want to save the file:
 
-    Generating public/private rsa key pair.
-    Enter file in which to save the key (/Users/your_username/.ssh/id_rsa):
+```bash
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/your_username/.ssh/id_rsa):
+```
 
 The default location is fine in most cases. Now it's time to create a passphrase. A good, strong passphrase is highly recommended, to make your key less useful if it falls into the wrong hands.
 
@@ -53,47 +64,29 @@ The key fingerprint is:
 55:c5:d7:a9:1f:dc:7a:67:31:70:fd:87:5a:a6:d0:69 your_email_address@example.com
 ```
 
-> **note**
-> Make note of the location of your public key, you're going to need that in the next section.
+{{< note >}}
+Make note of the location of your public key, you're going to need that in the next section.
+{{< /note >}}
 
 ## Add the SSH key to your Platform account
 
 You have your SSH keys (if not, take a look at the section above), but you need to make sure Platform has a copy of your public key. It's pretty easy to add it to your account.
 
 1.  First off, you'll need to copy your public key to the clipboard.
-2.  Head over to your user account page on [the Platform.sh Accounts page](https://accounts.platform.sh/user) and navigate to the `Account Settings` tab.
-3. In the left side-bar, select `SSH keys`.
-4. Click the `Add a public key` button.
-5.  Paste the key that you copied earlier into the 'Key' text box. You can also add a title if you like, otherwise it will be auto-generated.
-6.  Click 'Save'.
+2.  Head over to your user account page on [the Platform.sh Accounts page](https://accounts.platform.sh/user) and navigate to the `SSH Keys` tab.
+3.  Click on the `Add a public key` link.
+4.  Paste the key that you copied earlier into the 'Key' text box. You can also add a title if you like, otherwise it will be auto-generated.
+5.  Click 'Save'.
 
-<video controls>
-  <source src="/videos/management-console/add-ssh-mc.mp4" type="video/mp4">
-</video>
+![Setting Up Your Project Add SSH Key Done](/images/management-console/account-ssh-key-add.png "0.5")
 
 That's it! You're all set. Now you'll be able to use Git and command shells with any Platform.sh environment that your user account is authorized to work with.
 
-### Forwarding keys by default
-
-It may be helpful to set your SSH client to always forward keys to Platform.sh servers, which can simplify other SSH or Rsync commands.  To do so, include a block in your local `~/.ssh/config` file like so:
-
-```
-Host *.us.platform.sh
-       ForwardAgent yes
-
-Host *.eu.platform.sh
-       ForwardAgent yes
-```
-
-Include one `Host` entry for each Platform.sh region you want to connect to, such as `us-2` or `eu-4`.  (You can include other configuration as desired.)
+![Setting Up Your Project Add SSH Key Done](/images/management-console/account-ssh-keys.png "0.5")
 
 ## SSH to your Web Server
 
-In the management console header, click on the environment tab and select the environment that you want to SSH into. Then click the `SSH` dropdown button towards the top right.
-
-![SSH header pulldown](/images/management-console/header-ssh.png)
-
-Copy the SSH URL of that environment and past the link into your terminal. You should see something like this:
+In the management console header to the top right of the screen, click the `SSH` drop down button. Copy the SSH URL of that environment and past the link into your terminal. You should see something like this:
 
 ```bash
 $ ssh wk5fqz6qoo123-master@ssh.eu.platform.sh
@@ -138,17 +131,17 @@ Check that your key is properly added to your SSH agent. This is an authenticati
 
 1.  Check your SSH agent. Run the command `ssh-add -l` in your terminal:
 
-```bash
-$ ssh-add -l
-2048 12:b0:13:83:7f:56:18:9b:78:ca:54:90:a7:ff:12:69 /Users/nick/.ssh/id_rsa (RSA)
-```
+    ```bash
+    $ ssh-add -l
+    2048 12:b0:13:83:7f:56:18:9b:78:ca:54:90:a7:ff:12:69 /Users/nick/.ssh/id_rsa (RSA)
+    ```
 
 2.  Check that file name on the right (`.ssh/id_rsa` in the example above). Does it match your private key file?
 3.  If you don't see your private key file, add your private key:
 
-```bash
-$ ssh-add path-to-your-key
-```
+    ```bash
+    $ ssh-add path-to-your-key
+    ```
 
 4.  Try again.
 
@@ -156,8 +149,10 @@ $ ssh-add path-to-your-key
 
 If your identity (SSH key) associated with Platform.sh is not in a default file name (as may be explained in your SSH software manual, for example) you may have to append a specification like the one below so that the SSH software finds the correct key.
 
-    Host platform.sh
-    IdentityFile ~/.ssh/id_platformsh
+```bash
+Host platform.sh
+IdentityFile ~/.ssh/id_platformsh
+```
 
 Be aware that, above, `platform.sh` stands for a hostname. Each different hostname you connect to Platform.sh at may have to be specified in the host line, separated by spaces.
 

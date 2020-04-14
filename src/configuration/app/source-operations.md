@@ -1,15 +1,14 @@
 ---
-search:
-    keywords: ['.platform.app.yaml', 'automated', 'code', 'source', 'update', 'operation', 'dependencies', 'auto']
+title: "Source operations"
+weight: 13
+toc: false
 ---
 
-# Source operations
+{{< note >}}
+Source Operations are currently in Beta.  While the syntax is not expected to change, some behavior might in the future.
 
-> **note**
->
-> Source Operations are currently in Beta.  While the syntax is not expected to change, some behavior might in the future.
->
-> Also be aware that Source Operations are not compatible with [3rd party repository integrations](/administration/integrations.md) at this time. If you use a 3rd party repository then any changes from Source Operations will be overwritten by the integration.
+Also be aware that Source Operations are not compatible with [3rd party repository integrations](/administration/integrations.html) at this time. If you use a 3rd party repository then any changes from Source Operations will be overwritten by the integration.
+{{< /note >}}
 
 An application can define a number of operations that apply to its source code and that can be automated.
 
@@ -54,9 +53,9 @@ Note that these operations run in an isolated container: it is not part of the r
 
 You can use cron to automatically run your source operations.
 
-> **note**
->
-> Automated source operations using cron requires to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
+{{< note >}}
+Automated source operations using cron requires to [get an API token and install the CLI in your application container](/development/cli/api-tokens.html).
+{{< /note >}}
 
 Once the CLI is installed in your application container and an API token has been configured, you can add a cron task to run your source operations once a day. We do not recommend triggering source operations on your `master` production environment, but rather on a dedicated environment which you can use for testing before deployment.
 

@@ -1,4 +1,8 @@
-# PostgreSQL (Database service)
+---
+title: "PostgreSQL (Database service)"
+weight: 9
+sidebarTitle: "PostgreSQL"
+---
 
 PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
@@ -6,38 +10,31 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 ## Supported versions
 
-* 9.6
-* 10
-* 11
-* 12
-
-> **note**
->
-> Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
->
-> See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
+{{< image-versions image="postgresql" status="supported" >}}
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 9.3
+{{< image-versions image="postgresql" status="deprecated" >}}
 
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://examples.docs.platform.sh/relationships/postgresql", language="json" %}{% endcodesnippet %}
+{{< highlight json >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/postgresql" >}}
+{{< /highlight >}}
 
 ## Usage example
 
 In your `.platform/services.yaml` add:
 
-{% codesnippet "/registry/images/examples/full/postgresql.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml">}}
 
 Add a relationship to the service in your ``.platform.app.yaml``:
 
-{% codesnippet "/registry/images/examples/full/postgresql.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" >}}
 
 For PHP, in your `.platform.app.yaml` add:
 
@@ -49,17 +46,38 @@ runtime:
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/postgresql" -%}
+{{< tabs "Go" "Java" "Nodejs" "PHP" "Python" >}}
 
-{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/postgresql" -%}
+{{< tab id="Go" active="true" >}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/postgresql" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/postgresql" -%}
+{{< tab id="Java" >}}
+{{< highlight java >}}
+{{< readFile file="static/files/fetch/examples/java/postgresql" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
+{{< tab id="Nodejs" >}}
+{{< highlight js >}}
+{{< readFile file="static/files/fetch/examples/nodejs/postgresql" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/postgresql" -%}
+{{< tab id="PHP">}}
+{{< highlight php >}}
+{{< readFile file="static/files/fetch/examples/php/postgresql" >}}{{< /highlight >}}
+{{< /tab >}}
 
-{%- endcodetabs %}
+{{< tab id="Python" >}}
+{{< highlight python >}}
+{{< readFile file="static/files/fetch/examples/python/postgresql" >}}
+{{< /highlight >}}
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Exporting data
 
@@ -101,10 +119,10 @@ That will run the database backup against the SQL database on Platform.sh.  That
 platform sql --relationship database -e master < my_database_backup.sql
 ```
 
-> **note**
->
-> Importing a database backup is a destructive operation. It will overwrite data already in your database.
-> Taking a backup or a database export before doing so is strongly recommended.
+{{< note >}}
+Importing a database backup is a destructive operation. It will overwrite data already in your database.
+Taking a backup or a database export before doing so is strongly recommended.
+{{< /note >}}
 
 ## Extensions
 
@@ -112,7 +130,7 @@ Platform.sh supports a number of PostgreSQL extensions.  To enable them, list th
 
 ```yaml
 db:
-    type: postgresql:12
+    type: postgresql:11
     disk: 1025
     configuration:
         extensions:
@@ -181,12 +199,6 @@ extensions not listed here.
 * **uuid-ossp** - generate universally unique identifiers (UUIDs)
 * **xml2** - XPath querying and XSLT
 
-> **note**
->
-> Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
->
-> See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
-
 ## Notes
 
 ### Could not find driver
@@ -199,13 +211,12 @@ PostgreSQL 10 and later include an upgrade utility that can convert databases fr
 
 The upgrader does not work to upgrade to PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 are not supported.  Upgrade straight to version 11 instead.
 
-> Warning: Make sure you first test your migration on a separate branch
-> Warning: be sure to take a backup of your master environment **before** you merge this change.
+{{< note theme="warning" >}}
+Make sure you first test your migration on a separate branch.
+{{< /note >}}
+
+{{< note theme="warning" >}}
+Be sure to take a backup of your master environment **before** you merge this change.
+{{< /note >}}
 
 Downgrading is not supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
-
-### Upgrading to PostgreSQL 12 with the `postgis` extension
-
-Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
-
-If you need to upgrade, you should follow the same steps recommended for performing downgrades: dump the database, remove the service, recreate the service with PostgreSQL 12, and then import the dump to that service.

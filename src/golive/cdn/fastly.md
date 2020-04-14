@@ -1,6 +1,9 @@
-# Fastly configuration
-
-In some cases you may want to opt to use a CDN such as Fastly rather than the Platform.sh router's cache.  Using a CDN can offer a better time-to-first-byte for cached content across a wider geographic region at the cost of the CDN service.
+---
+title: "Fastly"
+weight: 1
+ 
+description: "In some cases you may want to opt to use a CDN such as Fastly rather than the Platform.sh router's cache.  Using a CDN can offer a better time-to-first-byte for cached content across a wider geographic region at the cost of the CDN service."
+---
 
 A Fastly CDN is included for Platform.sh Dedicated instances.  Platform.sh does not offer an integrated CDN on self-service Grid projects at this time, but it is a common choice for customers to self-configure.
 

@@ -1,4 +1,9 @@
-# Delete a project 
+---
+title: "Delete a project"
+weight: 5
+sidebarTitle: "Deleting a project"
+toc: false
+---
 
 To delete a Platform.sh project, including all data, code, and active environments:
 

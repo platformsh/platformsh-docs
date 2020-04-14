@@ -1,39 +1,56 @@
-# Kafka (Message Queue service)
+---
+title: "Kafka (Message queue service)"
+weight: 4
+description: |
+  Apache Kafka is an open-source stream-processing software platform.
+sidebarTitle: "Kafka"
+---
 
-Apache Kafka is an open-source stream-processing software platform.  It is a framework for storing, reading and analysing streaming data.
+{{< description >}}
 
-See the [Kafka documentation](https://kafka.apache.org/documentation/) for more information.
+It is a framework for storing, reading and analyzing streaming data. See the [Kafka documentation](https://kafka.apache.org/documentation) for more information.
 
 ## Supported versions
 
-* 2.1
-* 2.2
-* 2.3
-* 2.4
+{{< image-versions image="kafka" status="supported" >}}
 
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://examples.docs.platform.sh/relationships/kafka", language="json" %}{% endcodesnippet %}
+{{< highlight json >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/kafka" >}}
+{{< /highlight >}}
 
 ## Usage example
 
 In your ``.platform/services.yaml``:
 
-{% codesnippet "/registry/images/examples/full/kafka.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/kafka.services.yaml" highlight="yaml" >}}
 
 In your ``.platform.app.yaml``:
 
-{% codesnippet "/registry/images/examples/full/kafka.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/kafka.app.yaml" highlight="yaml" >}}
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="Java", type="java", url="https://examples.docs.platform.sh/java/kafka" -%}
+{{< tabs "Java" "Python" "Ruby" >}}
 
-{%- language name="Python", type="python", url="https://examples.docs.platform.sh/python/kafka" -%}
+{{< tab id="Java" active="true" >}}
+{{< highlight java >}}
+{{< readFile file="static/files/fetch/examples/java/kafka" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Ruby", type="ruby"-%}
+{{< tab id="Python" >}}
+{{< highlight js >}}
+{{< readFile file="static/files/fetch/examples/python/kafka" >}}
+{{< /highlight >}}
+{{< /tab >}}
+
+{{< tab id="Ruby" >}}
+{{< highlight ruby >}}
+
 ## With the ruby-kafka gem
 
 # Producer
@@ -45,7 +62,9 @@ kafka.deliver_message("Hello, World!", topic: "greetings")
 kafka.each_message(topic: "greetings") do |message|
   puts message.offset, message.key, message.value
 end
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- endcodetabs %}
+{{< /tabs >}}
 
 (The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)

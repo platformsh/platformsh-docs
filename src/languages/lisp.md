@@ -1,14 +1,19 @@
-# Lisp
-
-Platform.sh supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support.  They are compiled during the Build phase, and support both committed dependencies and download-on-demand.
+---
+title: "Lisp"
+weight: 4
+description: Platform.sh supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support.  They are compiled during the Build phase, and support both committed dependencies and download-on-demand.
+ 
+---
 
 ## Supported versions
 
-* 1.5
+{{< image-versions image="lisp" status="supported" >}}
 
 To specify a Lisp container, use the `type` property in your `.platform.app.yaml`.
 
-{% codesnippet "/registry/images/examples/full/lisp.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< highlight yaml >}}
+{{< readFile file="src/registry/images/examples/full/lisp.app.yaml" >}}
+{{< /highlight >}}
 
 ## Assumptions
 
@@ -84,7 +89,7 @@ disk: 512
 
 Note that there will still be a proxy server in front of your application.  If desired, certain paths may be served directly by our router without hitting your application (for static files, primarily) or you may route all requests to the Lisp application unconditionally, as in the example above.
 
-# Accessing Services
+## Accessing Services
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`.
 
@@ -163,4 +168,4 @@ The following is a simple example of a Hunchentoot based web application (you ca
 ```
 Notice how we get the `PORT` from the environment, and how we sleep at the end, as `(start acceptor)` will immediately yield and Platform.sh requires applications to run in the foreground.
 
-[Hunchentoot Lisp application](https://github.com/platformsh-templates/lisp)
+{{< repolist lang="lisp" >}}

@@ -1,9 +1,8 @@
 ---
-search:
-    keywords: ['.platform.app.yaml', 'nginx', 'cache', 'port']
+title: "Web"
+weight: 10
+sidebarTitle: "Web configuration"
 ---
-
-# Web
 
 The `web` key defines a single web instance container running a single web server process (currently Nginx), behind which runs your application.  The `web` key configures the web server, including what requests should be served directly (such as static files) and which should be passed to your application.  The server is extremely flexible, which means that some configurations will be more involved than others.  Additionally, defaults may vary somewhat between different language base images (specified by the `type` key of `.platform.app.yaml`).
 
@@ -25,9 +24,9 @@ web:
         start: 'uwsgi --ini conf/server.ini'
 ```
 
-> **Note**
->
-> Never "background" a start process using &.  That will be interpreted as the command terminating and the supervisor process will start a second copy, creating an infinite loop until the container crashes.  Just run it as normal and allow the Platform.sh supervisor to manage it.
+{{< note >}}
+Never "background" a start process using &.  That will be interpreted as the command terminating and the supervisor process will start a second copy, creating an infinite loop until the container crashes.  Just run it as normal and allow the Platform.sh supervisor to manage it.
+{{< /note >}}
 
 On PHP containers this value is optional and will default to starting PHP-FPM (i.e. `/usr/sbin/php-fpm7.0` on PHP7 and `/usr/sbin/php5-fpm` on PHP5).  On all other containers it should be treated as required.  It can also be set explicitly on a PHP container in order to run a dedicated process such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp) or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
 
@@ -109,7 +108,7 @@ A full list of the possible subkeys for `locations` is below.
 * `rules`: Specific overrides for a specific location. The key is a PCRE (regular expression) that is matched against the full request path.
 * `request_buffering`: Most application servers do not support chunked requests (e.g. fpm, uwsgi), so Platform.sh enables `request_buffering` by default to handle them. That default configuration would look like this if it was present in `.platform.app.yaml`:
 
-    ```
+    ```yaml
     web:
       locations:
         '/':
@@ -180,9 +179,9 @@ web:
 
 ## How can I serve a static-only site?
 
-Although most websites today have some dynamic component, static site generators are a valid way to build a site.  This documentation is built using a Node.js tool called GitBook, and served by Platform.sh as a static site.  You can see the [entire repository](https://github.com/platformsh/platformsh-docs) on GitHub.  The `.platform.app.yaml` file it uses is listed below.  Note in particular the `web.commands.start` directive. There needs to be some background process so it's set to the `sleep` shell command, which will simply block forever (or some really long time, as computers don't know about forever) and restart if needed.  The file also runs the GitBook build process, and then whitelists the files to serve.
+Although most websites today have some dynamic component, static site generators are a valid way to build a site.  This documentation is built using a tool called Hugo, and served by Platform.sh as a static site.  You can see the [entire repository](https://github.com/platformsh/platformsh-docs) on GitHub.  The `.platform.app.yaml` file it uses is listed below.  Note in particular the `web.commands.start` directive. There needs to be some background process so it's set to the `sleep` shell command, which will simply block forever (or some really long time, as computers don't know about forever) and restart if needed.  The file also runs the Hugo build process, and then whitelists the files to serve.
 
-{% codesnippet "https://raw.githubusercontent.com/platformsh/platformsh-docs/master/.platform.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="static/files/fetch/docsappyaml/platformsh-docs" highlight="yaml" >}}
 
 ## How can I control the headers sent with my files?
 

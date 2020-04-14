@@ -1,4 +1,9 @@
-# Vouchers 
+---
+title: "Vouchers"
+weight: 4
+sidebarTitle: "Adding vouchers"
+toc: false
+---
 
 ## Applying a voucher to your project
 
@@ -8,6 +13,6 @@ If you receive a Platform.sh voucher code, you can redeem it as follows:
 * In the left navigation click on "VOUCHERS"
 * On the page click on "Add a voucher code"
 * Enter the code and click on the "ADD CODE" button
-* Et voilà! Your account will now be credited with additional dollars pounds or euros. 
+* Et voilà! Your account will now be credited with additional dollars pounds or euros.
 
 If you are assessing Platform.sh for your organization and think that you could benefit from a little more _oomf_ in your test project why not contact us to request a voucher? You can tell us more at: [https://platform.sh/contact/](https://platform.sh/contact/)

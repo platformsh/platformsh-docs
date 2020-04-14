@@ -1,4 +1,8 @@
-# Technical Requirements: Git and SSH
+---
+title: "Technical Requirements: Git and SSH"
+weight: 2
+sidebarTitle: "Tools"
+---
 
 ## Git
 
@@ -8,10 +12,10 @@ Any change you make to your Platform.sh project will need to be committed via Gi
 
 Before getting started, make sure you have it installed on your computer to be able to interact with Platform.sh.
 
-> **see also**
->
-> * [Install Git](https://help.github.com/articles/set-up-git/)
-> * [Learn more about Git](https://git-scm.com/)
+{{< note title="See also">}}
+* [Install Git](https://help.github.com/articles/set-up-git/)
+* [Learn more about Git](https://git-scm.com/)
+{{< /note >}}
 
 
 ## SSH
@@ -25,7 +29,7 @@ These keys are called the *public-private keypair* and usually look like random 
 
 *A private key*:
 
-```
+```text
 -----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAtpw0S4DwDVj2q04mhiIMkhvrYU7Z6hRiNbTFsqg3X7x/uYS/
 dcNrSvT82j/jSeYQP3Dsod9GERW+dmOuLaFNeiqOStZi6jRSWo41hCOWOFbpBum3
@@ -39,7 +43,7 @@ Kng4ohG6xHZ/OvC9tq7/THwAvleaxgLZN5GyXfAqNylDdZ0LtSjl
 
 *A public key (one very long line)*:
 
-```
+```text
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2nDRLgPANWParTiaGIgySG+thTtnqFGI1tMWyqDdfvH+5hL91w2tK9PzaP+NJ5hA/cOyh30YRFb52Y64toU16Ko5K1mLqNFJajjWEI5Y4VukG6betrWfqdQ7XBr/s7nBuDOFQ5+eKbvug4rRSCSo8CsEI1eI0VNQkC9HJWYK28k7KurMdTN7X/Z/4vknM4/Rm2bnMk2idoORQgomeZS1p3GkG8dQs/c0j/b4H7azxnqdcCaR4ahbytX3d49BN0WwE84C+ItsnkCt1g5tVADPrab+Ywsm/FTnGY3cJKKdOAHt7Ls5lfpyyug2hNAFeiZF0MoCekjDZ2GH2xdFc7AX/ your_email_address@example.com
 ```
 You will need a SSH *public/private keypair* in order to interact with Platform.sh. Your public key is uploaded to your Platform.sh user account, and it then governs authentication for Git, SSH sessions (shell access), and other tools that connect to your Platform.sh project.

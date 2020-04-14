@@ -1,17 +1,19 @@
-# Go
-
-Platform.sh supports building and deploying applications written in Go using Go modules.  They are compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
+---
+title: "Go"
+weight: 2
+description: Platform.sh supports building and deploying applications written in Go using Go modules.  They are compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
+ 
+---
 
 ## Supported versions
 
-* 1.11
-* 1.12
-* 1.13
-* 1.14
+{{< image-versions image="golang" status="supported" >}}
 
 To specify a Go container, use the `type` property in your `.platform.app.yaml`.
 
-{% codesnippet "/registry/images/examples/full/golang.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< highlight yaml >}}
+{{< readFile file="src/registry/images/examples/full/golang.app.yaml" >}}
+{{< /highlight >}}
 
 ## Deprecated versions
 
@@ -21,13 +23,15 @@ The following container versions are also available.  However, due to their lack
 * 1.9
 * 1.10
 
+{{< image-versions image="golang" status="deprecated" >}}
+
 ## Go modules
 
 The recommended way to handle Go dependencies on Platform.sh is using Go module support in Go 1.11 and later.  That allows the build process to use `go build` directly without any extra steps, and you can specify an output executable file of your choice.  (See the examples below.)
 
 ## Platform.sh variables
 
-Platform.sh exposes relationships and other configuration as [environment variables](/development/variables.md).  To make them easier to access you should use the provided [GoHelper library](https://github.com/platformsh/gohelper).  Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services.md).
+Platform.sh exposes relationships and other configuration as [environment variables](/development/variables.html).  To make them easier to access you should use the provided [Config Reader library](https://github.com/platformsh/config-reader-go).  Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services.html).
 
 ```go
 package main
@@ -63,7 +67,7 @@ The following basic `.platform.app.yaml` file is sufficient to run most Go appli
 ```yaml
 name: app
 
-type: golang:1.14
+type: golang:1.12
 
 hooks:
     build: |
@@ -94,28 +98,50 @@ Note that there will still be an Nginx proxy server sitting in front of your app
 
 ## Accessing services
 
-To access various [services](/configuration/services.md) with Go, see the following examples. The individual service pages have more information on configuring each service.
+To access various [services](/configuration/services.html) with Go, see the following examples. The individual service pages have more information on configuring each service.
 
-{% codetabs name="Memcached", type="go", url="https://examples.docs.platform.sh/golang/memcached" -%}
+{{< tabs "Memcached" "MongoDB" "MySQL" "PostgreSQL" "RabbitMQ" "Solr" >}}
 
-{% language name="MongoDB", type="go", url="https://examples.docs.platform.sh/golang/mongodb" -%}
+{{< tab id="Memcached" active="true" >}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/memcached" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{% language name="MySQL", type="go", url="https://examples.docs.platform.sh/golang/mysql" -%}
+{{< tab id="MongoDB" >}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/mongodb" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{% language name="PostgreSQL", type="go", url="https://examples.docs.platform.sh/golang/postgresql" -%}
+{{< tab id="MySQL">}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/mysql" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{% language name="RabbitMQ", type="go", url="https://examples.docs.platform.sh/golang/rabbitmq" -%}
+{{< tab id="PostgreSQL" >}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/postgresql" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{% language name="Solr", type="go", url="https://examples.docs.platform.sh/golang/solr" -%}
+{{< tab id="RabbitMQ">}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/rabbitmq" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- endcodetabs %}
+{{< tab id="Solr" >}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/solr" >}}
+{{< /highlight >}}
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Project templates
 
 Platform.sh offers a project templates for Go applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
 
-* [Generic Go application](https://github.com/platformsh-templates/golang)
-* [Beego](https://github.com/platformsh-templates/beego)
-* [Echo](https://github.com/platformsh-templates/echo)
-* [Gin](https://github.com/platformsh-templates/gin)
-* [Hugo](https://github.com/platformsh-templates/hugo)
+{{< repolist lang="golang" >}}

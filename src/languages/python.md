@@ -1,14 +1,13 @@
-# Python
-
-Platform.sh supports deploying Python applications. Your application can use WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
+---
+title: "Python"
+weight: 7
+description: Platform.sh supports deploying Python applications. Your application can use WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
+ 
+---
 
 ## Supported
 
-* 2.7
-* 3.5
-* 3.6
-* 3.7
-* 3.8
+{{< image-versions image="python" status="supported" >}}
 
 ## Support libraries
 
@@ -168,19 +167,4 @@ To access various [services](/configuration/services.md) with Python, see the fo
 
 A number of project templates for Python applications are available on GitHub.  Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
 
-### Examples
-
-* [Python UWSGI with Unix Sockets](https://github.com/platformsh-templates/python3-uwsgi)
-
-### Frameworks
-
-* [Django 1](https://github.com/platformsh-templates/django1)
-* [Django 2](https://github.com/platformsh-templates/django2)
-* [Flask](https://github.com/platformsh-templates/flask)
-
-### Applications
-
-* [Moin Moin](https://github.com/platformsh-templates/moinmoin)
-* [Pelican](https://github.com/platformsh-templates/pelican)
-* [Pyramid](https://github.com/platformsh-templates/pyramid)
-* [Wagtail](https://github.com/platformsh-templates/wagtail)
+{{< repolist lang="python" >}}

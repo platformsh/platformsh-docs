@@ -1,57 +1,75 @@
-# Elasticsearch (Search Service)
+---
+title: "Elasticsearch (Search service)"
+weight: 1
+description: |
+  Elasticsearch is a distributed RESTful search engine built for the cloud.
+sidebarTitle: "Elasticsearch"
+---
 
-Elasticsearch is a distributed RESTful search engine built for the cloud.
+{{< description >}}
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
 ## Supported versions
 
-* 6.5
-* 7.2
+{{< image-versions image="elasticsearch" status="supported" >}}
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 0.90
-* 1.4
-* 1.7
-* 2.4
-* 5.2
-* 5.4
+{{< image-versions image="elasticsearch" status="deprecated" >}}
 
 ## Relationship
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://examples.docs.platform.sh/relationships/elasticsearch", language="json" %}{% endcodesnippet %}
+{{< highlight json >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/elasticsearch" >}}
+{{< /highlight >}}
 
 ## Usage example
 
 In your `.platform/services.yaml`:
 
-{% codesnippet "/registry/images/examples/full/elasticsearch.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" >}}
 
 In your `.platform.app.yaml`:
 
-{% codesnippet "/registry/images/examples/full/elasticsearch.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" >}}
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="Java", type="java", url="https://examples.docs.platform.sh/java/elasticsearch" -%}
+{{< tabs "Java" "Nodejs" "PHP" "Python" >}}
 
-{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/elasticsearch" -%}
+{{< tab id="Java" active="true" >}}
+{{< highlight java >}}
+{{< readFile file="static/files/fetch/examples/java/elasticsearch" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
+{{< tab id="Nodejs" >}}
+{{< highlight js >}}
+{{< readFile file="static/files/fetch/examples/nodejs/elasticsearch" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
+{{< tab id="PHP">}}
+{{< highlight php >}}
+{{< readFile file="static/files/fetch/examples/php/elasticsearch" >}}{{< /highlight >}}
+{{< /tab >}}
 
-{%- endcodetabs %}
+{{< tab id="Python" >}}
+{{< highlight python >}}
+{{< readFile file="static/files/fetch/examples/python/elasticsearch" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
+{{< /tabs >}}
 
-> **note**
->
-> When you create an index on Elasticsearch, you should not specify `number_of_shards` and `number_of_replicas` settings in your Elasticsearch API call. These values will be set automatically based on available resources.
+{{< note >}}
+When you create an index on Elasticsearch, you should not specify `number_of_shards` and `number_of_replicas` settings in your Elasticsearch API call. These values will be set automatically based on available resources.
+{{< /note >}}
 
 
 ## Plugins
@@ -90,7 +108,7 @@ This is the complete list of official Elasticsearch plugins that can be enabled:
 | delete-by-query       | Support for deleting documents matching a given query                                     | *   |     |     |     |     |
 | discovery-multicast   | Ability to form a cluster using TCP/IP multicast messages                                 | *   |     |     |     |     |
 | ingest-attachment     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    |     | *   | *   | *   | *   |
-| ingest-user-agent     | Extracts details from the user agent string a browser sends with its web requests         |     | *   | *   | *   |     |
+| ingest-user-agent     | Extracts details from the user agent string a browser sends with its web requests         |     | *   | *   | *   | *   |
 | lang-javascript       | Javascript language plugin, allows the use of Javascript in Elasticsearch scripts         |     | *   | *   |     |     |
 | lang-python           | Python language plugin, allows the use of Python in Elasticsearch scripts                 | *   | *   | *   |     |     |
 | mapper-annotated-text | Adds support for text fields with markup used to inject annotation tokens into the index  |     |     |     | *   | *   |

@@ -1,6 +1,10 @@
-# Composer manager
+---
+title: "Composer manager"
+weight: 2
+sidebarTitle: "Using Composer Manager"
+---
 
-Drupal 7 does not natively support installing packages via Composer.  Although there is a [Drupal Composer project for Drupal 7](https://github.com/drupal-composer/drupal-project/tree/7.x), many projects are still built using a vanilla Drupal download or with Drush Make.  For sites built without Drupal Composer that still want to use modules that have Composer dependences, the most widely used option is the [Composer Manager](https://www.drupal.org/project/composer_manager) module.  Because of the read-only file system, however, there are specific configuration parameters necessary on Platform.sh.
+Drupal 7 does not natively support installing packages via Composer. Although there is a [Drupal Composer project for Drupal 7](https://github.com/drupal-composer/drupal-project/tree/7.x), many projects are still built using a vanilla Drupal download or with Drush Make.  For sites built without Drupal Composer that still want to use modules that have Composer dependences, the most widely used option is the [Composer Manager](https://www.drupal.org/project/composer_manager) module.  Because of the read-only file system, however, there are specific configuration parameters necessary on Platform.sh.
 
 ## 1. Install and patch Composer Manager
 
@@ -31,7 +35,7 @@ The above lines will direct Composer Manager to put the generated `composer.json
 
 Then, manually create the `composer` directory and place a `.gitignore` file inside it, containing the following, and commit it to Git:
 
-```
+```text
 # Exclude Composer dependencies.
 /vendor
 ```

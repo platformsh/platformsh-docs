@@ -1,10 +1,19 @@
-# Accessing logs
+---
+title: "Accessing logs"
+weight: 9
+description: |
+  Logs for various tasks on an application container are available in the `/var/log` directory. They can be accessed on the normal shell after logging in with `platform ssh`.
+---
 
-Logs for various tasks on an application container are available in the `/var/log` directory.  They can be accessed on the normal shell after loging in with `platform ssh`.  Alternatively, they may also be accessed remotely using the `platform log` command.  The CLI lets you specify which log file to access (the name of the file below minus the `.log` extension), as well as view the entire file in a pager, only the most recent lines, and so forth.  Run `platform log --help` for complete documentation.
+{{< description >}}
+
+Alternatively, they may also be accessed remotely using the <code>platform log</code> command.  The CLI lets you specify which log file to access (the name of the file below minus the  `.log` extension, as well as view the entire file in a pager, only the most recent lines, and so forth.
+
+Run `platform log --help` for complete documentation.
 
 A number of different log files are available depending on the application container in use.
 
-Although the files in `/var/log` are writable, they should not be written to directly. Only write to it via standard logging mechanisms, such as your application's logging facility.  If your application has its own logging mechanism that should be written to a dedicated logs mount in your application.
+Although the `/var/log` directory is writable, it should not be written to directly. Only write to it via standard logging mechanisms, such as your application's logging facility.
 
 All log files are trimmed to 100 MB automatically. But if you need to have complete logs, you can set up cron which will upload them to third-party storage. [Contextual Code](https://www.contextualcode.com/) made a [simple and well-described example](https://gitlab.com/contextualcode/platformsh-store-logs-at-s3) how to achieve it.
 

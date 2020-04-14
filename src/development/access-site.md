@@ -1,6 +1,11 @@
-# Accessing your site
+---
+title: "Accessing your site"
+weight: 6
+description: |
+  Once you have an environment running, there are many ways to access it to perform needed tasks. The most obvious of course is to view it in a web browser; the available URLs are shown in the Platform.sh management console and on the command line after every Git push.
+---
 
-Once you have an environment running, there are many ways to access it to perform needed tasks. The most obvious of course is to view it in a web browser; the available URLs are shown in the Platform.sh management console and on the command line after every Git push.
+{{< description >}}
 
 By design, the only way to deploy new code is to push to the corresponding branch.  That ensures a consistent, repeatable, auditable application instance at all times.
 
@@ -38,7 +43,7 @@ The writable static files in an application - including uploads, temporary and p
 
 The Platform.sh CLI can list mounts inside an application:
 
-```
+```bash
 $ platform mounts
 Mounts in the app drupal (environment master):
 +-------------------------+----------------------+
@@ -54,7 +59,7 @@ The CLI also helps transferring files to and from a mount, using the `mount:uplo
 
 For example, to download files from the 'private' mount:
 
-```
+```bash
 $ platform mount:download --mount private --target ./private
 
 This will add, replace, and delete files in the local directory 'private'.
@@ -71,7 +76,7 @@ The download completed successfully.
 
 Uploading files to a mount is similar:
 
-```
+```bash
 $ platform mount:upload --mount private --source ./private
 
 This will add, replace, and delete files in the remote mount 'private'.

@@ -1,17 +1,19 @@
-# .NET Core
-
-Platform.sh supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
+---
+title: "C#/.NET Core"
+weight: 1
+description: Platform.sh supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
+ 
+---
 
 ## Supported versions
 
-* 2.0
-* 2.1
-* 2.2
-* 3.1
+{{< image-versions image="dotnet" status="supported" >}}
 
 To specify a .NET Core container, use the `type` property in your `.platform.app.yaml`.
 
-{% codesnippet "/registry/images/examples/full/dotnet.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< highlight yaml >}}
+{{< readFile file="src/registry/images/examples/full/dotnet.app.yaml" >}}
+{{< /highlight >}}
 
 ## Building the application
 
@@ -78,4 +80,4 @@ web:
 
 Platform.sh offers project templates for .NET Core applications using the structure described above.  They can be used as a starting point or reference for building your own website or web application.
 
-[ASP.NET Core](https://github.com/platformsh-templates/aspnet-core)
+{{< repolist lang="dotnet" >}}

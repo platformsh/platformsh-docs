@@ -1,4 +1,9 @@
-# Network Storage
+---
+title: "Network Storage"
+weight: 8
+description: "Platform.sh supports internal \"storage as a service\" to provide a file store that can be shared between different application containers.<br><br>The network storage service enables a new kind of <code>mount</code> that refers to a shared service rather than to a local directory.  Any application can use both <code>local</code> and/or <code>service</code> mounts, or neither."
+
+---
 
 Platform.sh supports internal "storage as a service" to provide a file store that can be shared between different application containers.
 
@@ -6,7 +11,7 @@ The network storage service enables a new kind of `mount` that refers to a share
 
 ## Supported versions
 
-* 1.0
+{{< image-versions image="network-storage" status="supported" >}}
 
 (This is a reference to a version of our network storage implementation, not to a version of a 3rd party application.)
 
@@ -14,8 +19,8 @@ The network storage service enables a new kind of `mount` that refers to a share
 
 The Network storage service is available on all regions except:
 
-* eu.platform.sh
-* us.platform.sh
+* `eu.platform.sh`
+* `us.platform.sh`
 
 If you are on one of those and require the service we suggest you [migrate](https://docs.platform.sh/tutorials/region-migration.html#region-migration) your project to one of the newer regions (such as eu-2, us-2, ca, au, fr-1 or de-2).
 
@@ -23,7 +28,7 @@ If you are on one of those and require the service we suggest you [migrate](http
 
 First, declare a new service in the `services.yaml` file like so:
 
-{% codesnippet "/registry/images/examples/full/network-storage.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/network-storage.services.yaml" highlight="yaml" >}}
 
 This example creates a service named `files` that is of type `network-storage`, and gives it 256 MB of storage total.
 
@@ -31,7 +36,7 @@ This example creates a service named `files` that is of type `network-storage`, 
 
 Second, add the following entry to your mounts list:
 
-{% codesnippet "/registry/images/examples/full/network-storage.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/network-storage.app.yaml" highlight="yaml" >}}
 
 This block will declare a writeable mount on the application container at the path `my/files`, which will be provided by the `files` service defined above.  The `source_path` specifies the path within the network service that the mount points to.  It is often easiest to have it match the name of the mount point itself but that is not required.
 
@@ -39,8 +44,9 @@ Note that you do *not* need to add a relationship to point to the `files` servic
 
 The application container can now read from and write to the `my/files` path just as if it were a local writeable mount.
 
-> **note**
-> There is a small performance hit for using a network mount over a local mount.  In most cases it should not be noticeable.  However, high-volume sequential file creation (that is, creating a large number of small files in rapid succession) may see a more significant performance hit.  If that is something your application does regularly then a local mount will be more effective.
+{{< note >}}
+There is a small performance hit for using a network mount over a local mount.  In most cases it should not be noticeable.  However, high-volume sequential file creation (that is, creating a large number of small files in rapid succession) may see a more significant performance hit.  If that is something your application does regularly then a local mount will be more effective.
+{{< /note >}}
 
 ## Multi-application usage
 
@@ -48,11 +54,11 @@ If your project contains more than one application (that is, multiple directorie
 
 It is also possible to have one application mount a `source_path` that is a subdirectory of another application's mount.  For example:
 
-app1:
+`app1`:
 
-{% codesnippet "/registry/images/examples/full/network-storage.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/network-storage.app.yaml" highlight="yaml" >}}
 
-app2:
+`app2`:
 
 ```yaml
 mounts:

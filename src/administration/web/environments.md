@@ -1,6 +1,13 @@
-# Platform.sh Environments
+---
+title: "Platform.sh environments"
+weight: 2
 
-Platform.sh helps a coder with the development workflow by making it easy to manage multiple environments, including the Master environment which runs the production website. It's precisely like a "development" or a "staging" server, except they are created on the fly, and they are absolutely identical copies of their parent environments.
+sidebarTitle: "Environments"
+description: |
+  Platform.sh helps a coder with the development workflow by making it easy to manage multiple environments, including the Master environment which runs the production website. It's precisely like a "development" or a "staging" server, except they are created on the fly, and they are absolutely identical copies of their parent environments.
+---
+
+{{< description >}}
 
 An environment is tied to a Git branch, plus all the services that are serving that branch. You can see that as a **complete working website**. With Bitbucket and GitHub integrations you can even get a "development server" for each and every pull request.
 
@@ -12,12 +19,14 @@ Every Platform.sh project starts with a Master environment which corresponds to 
 
 If you subscribed to a production plan, this environment is your **live site** and can be mapped to a domain name and a custom SSL certificate.
 
-> **note**
-> Your project must have a `master` branch: it will not function properly without one.
+{{< note >}}
+Your project must have a `master` branch: it will not function properly without one.
+{{< /note >}}
+
 
 ## Hierarchy
 
-![Hierarchy](/images/management-console/environments.png)
+![Hierarchy](/images/management-console/environments.png "0.5")
 
 Platform.sh brings the concept of a hierarchy between your environments. Each new environment you create is considered a **child** of the **parent** environment from which it was branched.
 
@@ -51,7 +60,7 @@ There are no rules you must follow when branching the master environment. You si
 
 Here is an example of a possible Agile workflow.
 
-![Branches](/images/workflow/branches.png)
+![Branches](/images/workflow/branches.png "0.2")
 
 
 The administrator creates a Sprint environment and gives each of the developers permission to create new feature environments. Another approach is that the administrator could create an environment for each developer.
@@ -62,13 +71,13 @@ As a feature is completed, the administrator can review the work by accessing th
 
 ------------------------------------------------------------------------
 
-![Sync](/images/workflow/sync.png)
+![Sync](/images/workflow/sync.png "0.2")
 
 The remaining features will sync with the Sprint environment to ensure their working environment is up-to-date with the latest code.
 
 ------------------------------------------------------------------------
 
-![Live](/images/workflow/merge-live.png)
+![Live](/images/workflow/merge-live.png "0.2")
 
 When the objectives of the sprint are complete, the administrator can then make a backup of the live site, then merge the Sprint environment into the live (Master) environment.
 

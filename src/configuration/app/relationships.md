@@ -1,13 +1,11 @@
 ---
-search:
-    keywords: ['.platform.app.yaml', 'relationships']
+title: "Relationships"
+weight: 5
 ---
-
-# Relationships
 
 The `relationships` block defines how services are mapped within your application.  By default, your application may not talk to any other container within a project.  To access another container you must define a relationship to it.
 
-![Relationships Diagram](/images/management-console/relationships.png)
+![Relationships Diagram](/images/management-console/relationships.png "0.5")
 
 Each relationship has an arbitrary name, although by convention the primary SQL database of an application (if any) is usually `database`.  That is the name by which the relationship will be known in the `PLATFORM_RELATIONSHIPS` environment variable, which will include credentials for accessing the service.
 

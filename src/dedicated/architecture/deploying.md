@@ -1,4 +1,8 @@
-# Deployment
+---
+title: "Deployment"
+weight: 3
+sidebarTitle: "Deploying"
+---
 
 ## Deploying to Production and Staging
 

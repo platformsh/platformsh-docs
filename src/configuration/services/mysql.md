@@ -1,4 +1,8 @@
-# MariaDB/MySQL (Database service)
+---
+title: "MariaDB/MySQL (Database service)"
+weight: 7
+sidebarTitle: "MariaDB/MySQL"
+---
 
 Platform.sh supports both MariaDB and Oracle MySQL.  While there are some differences at the application level for developers, they function nearly identically from an infrastructure point of view.
 
@@ -8,50 +12,43 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 The service types `mariadb` and `mysql` both refer to MariaDB for compatibility reasons. The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc. Other than the type, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
 
-* mariadb:10.0
-* mariadb:10.1
-* mariadb:10.2
-* mariadb:10.3
-* mariadb:10.4
+| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
+|----------------------------------|---------------|-------------------------|
+|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
-
-* mysql:10.0
-* mysql:10.1
-* mysql:10.2
-
-
-* oracle-mysql:5.7
-* oracle-mysql:8.0
-
-> **note**
->
-> Downgrades of MySQL or MariaDB are not supported. Both will update their own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+{{< note >}}
+Downgrades of MySQL or MariaDB are not supported. Both will update their own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+{{< /note >}}
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* mysql:5.5
+| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
+|----------------------------------|---------------|-------------------------|
+|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://examples.docs.platform.sh/relationships/mysql", language="json" %}{% endcodesnippet %}
+{{< highlight json >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/mysql" >}}
+{{< /highlight >}}
 
 ## Usage example
 
 For MariaDB your `.platform/services.yaml` can use the `mysql` service type:
 
-{% codesnippet "/registry/images/examples/full/mysql.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/mysql.services.yaml" highlight="yaml" >}}
 
 or the `mariadb` service type.
 
-{% codesnippet "/registry/images/examples/full/mariadb.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/mariadb.services.yaml" highlight="yaml" >}}
 
 Oracle-mysql uses the `oracle-mysql` service type:
 
-{% codesnippet "/registry/images/examples/full/oracle-mysql.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/oracle-mysql.services.yaml" highlight="yaml" >}}
 
 Note that the minimum disk size for `mysql`/`oracle-mysql` is 256MB.
 
@@ -59,28 +56,50 @@ Despite these service type differences, MariaDB and Oracle MySQL both use the `m
 
 For MariaDB, the endpoint does not change whether you used the `mysql` or `mariadb` service type:
 
-{% codesnippet "/registry/images/examples/full/mariadb.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/mariadb.app.yaml" highlight="yaml" >}}
 
 The same goes for using the `oracle-mysql` service type as well.
 
-{% codesnippet "/registry/images/examples/full/oracle-mysql.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/oracle-mysql.app.yaml" highlight="yaml" >}}
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/mysql" -%}
+{{< tabs "Go" "Java" "Nodejs" "PHP" "Python" >}}
 
-{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/mysql" -%}
+{{< tab id="Go" active="true" >}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/mysql" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Node.js", type="js", url="https://examples.docs.platform.sh/nodejs/mysql" -%}
+{{< tab id="Java" >}}
+{{< highlight java >}}
+{{< readFile file="static/files/fetch/examples/java/mysql" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/mysql" -%}
+{{< tab id="Nodejs" >}}
+{{< highlight js >}}
+{{< readFile file="static/files/fetch/examples/nodejs/mysql" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/mysql" -%}
+{{< tab id="PHP">}}
+{{< highlight php >}}
+{{< readFile file="static/files/fetch/examples/php/mysql" >}}{{< /highlight >}}
+{{< /tab >}}
 
-{%- endcodetabs %}
+{{< tab id="Python" >}}
+{{< highlight python >}}
+{{< readFile file="static/files/fetch/examples/python/mysql" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-> **note**
-> MySQL schema names can not use system reserved namespace. (mysql, information_schema, etc)
+{{< /tabs >}}
+
+{{< note >}}
+MySQL schema names can not use system reserved namespace. (mysql, information_schema, etc)
+{{< /note >}}
 
 ## Multiple databases
 
@@ -147,13 +166,11 @@ configuration:
 
 If either schemas or endpoints are defined, then no default will be applied and you must specify the full configuration.
 
-## Adjusting database configuration
+## Adjusting MariaDB configuration
 
-For MariaDB 10.1 and later Oracle MySQL 8.0 and later, a select few configuration properties from the `my.cnf` file are available for adjustment.
+For version 10.2 and later, a select few MariaDB configuration properties from the `my.cnf` file are available for adjustment.
 
-### Packet and connection sizing
-
-This value defaults to `16` (in MB).  Legal values are from `1` to `100`.
+At this time, only the `max_allowed_packet` size is available, and defaults to `16` (in MB).  Legal values are from `1` to `100`.
 
 ```yaml
 db:
@@ -165,39 +182,6 @@ db:
 ```
 
 The above code will increase the maximum allowed packet size (the size of a query or response) to 64 MB.  However, increasing the size of the maximum packet will also automatically decrease the `max_connections` value.  The number of connections allowed will depend on the packet size and the memory available to the service.  In most cases leaving this value at the default is recommended.
-
-## Character encoding
-
-For services created prior to February 2020, the default character set and collation is `latin1`, which is the default in most MySQL/MariaDB.
-
-For services created after February 2020, the default character set is `utf8mb4` and the default collation is `utf8mb4_unicode_ci`.
-
-Both values can be adjusted at the server level in `services.yaml`:
-
-```yaml
-db:
-  type: mariadb:10.4
-  disk: 2048
-  configuration:
-    properties:
-      default_charset: utf8mb4
-      default_collation: utf8mb4_unicode_ci
-```
-
-Note that the effect of this setting is to set the character set and collation of any tables created once those properties are set.  Tables created prior to when those settings are changed will be unaffected by changes to the `services.yaml` configuration.  However, you can change your own table's character set and collation through `ALTER TABLE` commands.  For example:
-
-```
-# To change defaults when creating new tables:
-ALTER DATABASE main CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-# To change defaults when creating new columns:
-ALTER TABLE table_name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-# To convert existing data:
-ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-```
-
-Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charset-mysql.html) for further details.
 
 ## Access your MariaDB service
 
@@ -249,9 +233,10 @@ That will run the database backup against the SQL database on Platform.sh.  That
 platform sql --relationship database -e master < my_database_backup.sql
 ```
 
-> **note**
-> Importing a database backup is a destructive operation. It will overwrite data already in your database.
-> Taking a backup or a database export before doing so is strongly recommended.
+{{< note >}}
+Importing a database backup is a destructive operation. It will overwrite data already in your database.
+Taking a backup or a database export before doing so is strongly recommended.
+{{< /note >}}
 
 ## Troubleshooting
 

@@ -1,3 +1,8 @@
+---
+title: "Lando"
+weight: 3
+---
+
 # Using Lando for local development
 
 [Lando](https://github.com/lando/lando) is a container-based local development toolchain that plays nicely with Platform.sh.  It is maintained by [Tandem](https://thinktandem.io), a 3rd party agency, but is a viable option for most Platform.sh projects.
@@ -40,22 +45,3 @@ lando db-import database.sql.gz
 ```
 
 Rsync can download user files easily and efficiently.  See the [exporting tutorial](/tutorials/exporting.md) for information on how to use rsync.
-
-Then you need to update your `sites/default/settings.local.php` to configure your codebase to connect to the local database that you just imported:
-
-```php
-/* Working in local with Lando */
-if (getenv('LANDO') === 'ON') {
-  $lando_info = json_decode(getenv('LANDO_INFO'), TRUE);
-  $settings['trusted_host_patterns'] = ['.*'];
-  $settings['hash_salt'] = 'CHANGE THIS TO SOME RANDOMLY GENERATED STRING';
-  $databases['default']['default'] = [
-    'driver' => 'mysql',
-    'database' => $lando_info['database']['creds']['database'],
-    'username' => $lando_info['database']['creds']['user'],
-    'password' => $lando_info['database']['creds']['password'],
-    'host' => $lando_info['database']['internal_connection']['host'],
-    'port' => $lando_info['database']['internal_connection']['port'],
-  ];
-}
-```

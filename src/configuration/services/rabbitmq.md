@@ -1,43 +1,65 @@
-# RabbitMQ (Message Queue service)
+---
+title: "RabbitMQ (Message queue service)"
+weight: 10
+description: "RabbitMQ is an open source message broker software (sometimes called message-oriented middleware) that implements the Advanced Message Queuing Protocol (AMQP).<br><br>See the <a href=\"http://www.rabbitmq.com/documentation.html\">RabbitMQ documentation</a> for more information."
+
+sidebarTitle: "RabbitMQ"
+---
 
 RabbitMQ is an open source message broker software (sometimes called message-oriented middleware) that implements the Advanced Message Queuing Protocol (AMQP).
 
-See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for more information.
+See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for more information."
 
 ## Supported versions
 
-* 3.5
-* 3.6
-* 3.7
-* 3.8
+{{< image-versions image="rabbitmq" status="supported" >}}
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{% codesnippet "https://examples.docs.platform.sh/relationships/rabbitmq", language="json" %}{% endcodesnippet %}
+{{< highlight json >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/rabbitmq" >}}
+{{< /highlight >}}
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+In your `.platform/services.yaml`:
 
-{% codesnippet "/registry/images/examples/full/rabbitmq.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/rabbitmq.services.yaml" highlight="yaml" >}}
 
-In your ``.platform.app.yaml``:
+In your `.platform.app.yaml`:
 
-{% codesnippet "/registry/images/examples/full/rabbitmq.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/rabbitmq.app.yaml" highlight="yaml" >}}
 
 You can then use the service in a configuration file of your application with something like:
 
-{% codetabs name="Go", type="go", url="https://examples.docs.platform.sh/golang/rabbitmq" -%}
+{{< tabs "Go" "Java" "PHP" "Python" >}}
 
-{%- language name="Java", type="java", url="https://examples.docs.platform.sh/java/rabbitmq" -%}
+{{< tab id="Go" active="true" >}}
+{{< highlight go >}}
+{{< readFile file="static/files/fetch/examples/golang/rabbitmq" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="PHP", type="php", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
+{{< tab id="Java" >}}
+{{< highlight java >}}
+{{< readFile file="static/files/fetch/examples/java/rabbitmq" >}}
+{{< /highlight >}}
+{{< /tab >}}
 
-{%- language name="Python", type="py", url="https://examples.docs.platform.sh/python/rabbitmq" -%}
+{{< tab id="PHP">}}
+{{< highlight php >}}
+{{< readFile file="static/files/fetch/examples/php/rabbitmq" >}}{{< /highlight >}}
+{{< /tab >}}
 
-{%- endcodetabs %}
+{{< tab id="Python" >}}
+{{< highlight python >}}
+{{< readFile file="static/files/fetch/examples/python/rabbitmq" >}}
+{{< /highlight >}}
+{{< /tab >}}
+
+{{< /tabs >}}
 
 (The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)
 
@@ -83,19 +105,3 @@ dependencies:
 ```
 
 Then, when you SSH into your container, you can simply type any `amqp-` command available to manage your queues.
-
-## Configuration
-
-### Virtual hosts
-
-You can configure additional [virtual hosts](https://www.rabbitmq.com/vhosts.html) to a RabbitMQ service, which can be useful for separating resources, such as exchanges, queues, and bindings, to their own namespace. In your `.platform/services.yaml` file define the names of the virtual hosts under the `configuration.vhosts` attribute:
-
-```yaml
-rabbitmq:
-  type: rabbitmq:3.8
-  disk: 512
-  configuration:
-    vhosts:
-      - foo
-      - bar
-```

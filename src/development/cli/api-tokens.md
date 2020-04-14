@@ -1,4 +1,7 @@
-# API Tokens
+---
+title: "API tokens"
+weight: 1
+---
 
 ## Obtaining a token
 
@@ -8,19 +11,19 @@ An API token can be created through the management console. Go to the "User" pag
 
 Click the "Create an API Token" link.
 
-![API Token screen](/images/management-console/account-api-tokens-new.png)
+![API Token screen](/images/management-console/account-api-tokens-new.png "0.6")
 
 You may be asked to reverify your password, then enter a unique application name to identify the token.
 
-![API Token screen](/images/management-console/account-api-tokens-edit.png)
+![API Token screen](/images/management-console/account-api-tokens-edit.png "0.6")
 
 After creating the token it will be displayed once at the top of the page in a green banner.  You may also view it later by clicking the "view" link next to the token name.  You will be asked to reverify your password as well when viewing the token.
 
 Now set that token to an environment variable named `PLATFORMSH_CLI_TOKEN` on your system where the CLI will run.  Consult the documentation for your CI system to see how to do that.
 
-> **note**
->
-> If running CLI commands from any automated system, including a Platform.sh cron task, we urge you to use the `--no-wait` flag on any commands that may take more than a second or two to avoid blocking the process.
+{{< note >}}
+If running CLI commands from any automated system, including a Platform.sh cron task, we urge you to use the `--no-wait` flag on any commands that may take more than a second or two to avoid blocking the process.
+{{< /note >}}
 
 ## Machine users
 
@@ -43,9 +46,10 @@ First, create a machine user (see above) that you invite to your project. Then, 
 ```bash
 platform variable:create -e master --level environment --name env:PLATFORMSH_CLI_TOKEN --sensitive true --value 'your API token'
 ```
-> **note**
->
-> It is important to include the `env:` so as to expose `$PLATFORMSH_CLI_TOKEN` on its own as a top level Unix environment variable, rather than as a part of `$PLATFORM_VARIABLES` like normal environment variables.
+
+{{< note >}}
+It is important to include the `env:` so as to expose `$PLATFORMSH_CLI_TOKEN` on its own as a top level Unix environment variable, rather than as a part of `$PLATFORM_VARIABLES` like normal environment variables.
+{{< /note >}}
 
 Second, add a build hook to your `.platform.app.yaml` file to download the CLI as part of the build process.
 
@@ -69,6 +73,6 @@ crons:
             fi
 ```
 
-> **note**
->
-> Seriously, please use `--no-wait` for all CLI commands placed in a cron hook. Failure to do so may result in long deploy times and site downtime.
+{{< note >}}
+Seriously, please use `--no-wait` for all CLI commands placed in a cron hook. Failure to do so may result in long deploy times and site downtime.
+{{< /note >}}

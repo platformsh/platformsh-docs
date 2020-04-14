@@ -1,6 +1,11 @@
-# GDPR Overview page
-
-Platform.sh has taken numerous steps to ensure GDPR compliance.
+---
+title: "GDPR Overview Page"
+sidebarTitle: "GDPR"
+weight: 1
+toc: false
+description: |
+  Platform.sh has taken numerous steps to ensure GDPR compliance.
+---
 
 As part of our measures we have implemented the following:
 
@@ -17,5 +22,3 @@ As part of our measures we have implemented the following:
 * **Data Collection**: We've documented information about [what data we collect](/security/data-collection.md).
 * **Data Retention**: We documented information about our [data retention](/security/data-retention.md).
 * **DPA**: We have revised our [Terms of Service](https://platform.sh/tos) and [Privacy Policy](https://platform.sh/privacy-policy) to align with the GDPR and we offer a pre-signed DPA agreement that can be downloaded at the top of the [Privacy Policy](https://platform.sh/privacy-policy)
-
-

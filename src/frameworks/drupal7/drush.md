@@ -1,6 +1,10 @@
-# Working with Drush in Drupal 7
+---
+title: " Working with Drush in Drupal 7"
+weight: 5
+sidebarTitle: "Drush"
+---
 
-Drush is a command-line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those who spend their working hours hacking away at the command prompt. 
+Drush is a command-line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those who spend their working hours hacking away at the command prompt.
 
 You can use the CLI to set up Drush aliases, to easily run Drush commands on specific remote Platform.sh environments.
 
@@ -14,7 +18,21 @@ Your make file can be called: `project.make` or `drupal-org.make`.
 
 A basic make file looks like this:
 
-{% codesnippet "https://raw.githubusercontent.com/platformsh-templates/drupal7/master/project.make", language="ini" %}{% endcodesnippet %}
+```ini
+api = 2
+core = 7.x
+
+; Drupal core.
+projects[drupal][type] = core
+projects[drupal][version] = 7.67
+projects[drupal][patch][] = "https://drupal.org/files/issues/install-redirect-on-empty-database-728702-36.patch"
+
+; Drush make allows a default sub directory for all contributed projects.
+defaults[projects][subdir] = contrib
+
+; Platform indicator module.
+projects[platform][version] = 1.4
+```
 
 When building as a profile, you need a make file for Drupal core called: `project-core.make`:
 
@@ -35,7 +53,9 @@ $ drush make-generate project.make
 
 This will output a make file containing all your contributed modules, themes and libraries.
 
-> [Make generate command](http://www.drushcommands.com/drush-6x/make/make-generate)
+{{< note >}}
+[Make generate command](http://www.drushcommands.com/drush-6x/make/make-generate)
+{{< /note >}}
 
 ### Apply patches
 

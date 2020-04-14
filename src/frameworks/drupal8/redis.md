@@ -1,8 +1,10 @@
-# Using Redis with Drupal 8.x
+---
+title: "Using Redis with Drupal 8.x"
+weight: 3
+sidebarTitle: "Redis"
+---
 
-If you are using the Platform.sh-provided Drupal 8 template, most of this work is already done for you.  All you need to do is uncomment a the Redis relationship in `.platform.app.yaml` after your site is installed and Redis-based caching should "just work".
-
-If you are working from an older repository or migrating a pre-built site to Platform.sh, see the instructions below.
+The Drupal 8 Redis module currently only supports the [PhpRedis](https://github.com/nicolasff/phpredis) option, which relies on a PHP extension. Fortunately, that extension is trivial to enable on Platform.sh.
 
 ## Requirements
 
@@ -30,7 +32,14 @@ The key (left side) is the name that will be exposed to the application in the `
 
 ### Add the Redis PHP extension
 
-Because the Redis extension for PHP has been known to have BC breaks at times, we do not bundle a specific verison by default.  Instead, we provide a script to allow you to build your desired version in the build hook.  See the [PHP-Redis page](/languages/php/redis.md) for a simple-to-install script and instructions.
+You will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
+
+```yaml
+# Additional extensions
+runtime:
+    extensions:
+        - redis
+```
 
 ### Add the Drupal module
 
@@ -52,18 +61,23 @@ Place the following at the end of `settings.platformsh.php`. Note the inline com
 
 The example below is intended as a "most common case".  (Note: This example assumes Drupal 8.2 or later.)
 
-> **note**
->
-> If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
->
-> ```php
-> $platformsh = new \Platformsh\ConfigReader\Config();
-> if (!$platformsh->inRuntime()) {
->   return;
-> }
-> ```
+{{< note >}}
+If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
 
 ```php
+<?php
+
+$platformsh = new \Platformsh\ConfigReader\Config();
+if (!$platformsh->inRuntime()) {
+   return;
+}
+```
+{{< /note >}}
+
+
+```php
+<?php
+
 // Set redis configuration.
 if ($platformsh->hasRelationship('redis') && !drupal_installation_attempted() && extension_loaded('redis')) {
   $redis = $platformsh->credentials('redis');

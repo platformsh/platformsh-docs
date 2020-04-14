@@ -1,10 +1,15 @@
-# Platform.sh Development environments
+---
+title: "Platform.sh development environments"
+weight: 3
+sidebarTitle: "Dev environments"
 
-Platform.sh Dedicated customers will have a development environment for their project that consists of a Platform.sh Grid project, typically provisioned by the Platform.sh team to reflect the amount of storage in your contract.  This environment will provide you with all the DevOps, Continuous Integration, Continuous Deployment, and other workflow tooling of the professional product, but will segregate the performance impacts from your production hardware.
+description: |
+  Platform.sh Dedicated customers will have a development environment for their project that consists of a Platform.sh Grid project, typically provisioned by the Platform.sh team to reflect the amount of storage in your contract. This environment will provide you with all the DevOps, Continuous Integration, Continuous Deployment, and other workflow tooling of the professional product, but will segregate the performance impacts from your production hardware.
+---
 
 ## Architecture (Development Environments)
 
-![Platform.sh Professional architecture](/images/dedicated/PS-Arch-NoHA.svg)
+![Platform.sh Professional architecture](/images/dedicated/PS-Arch-NoHA.svg "0.6")
 
 ## Default limits
 

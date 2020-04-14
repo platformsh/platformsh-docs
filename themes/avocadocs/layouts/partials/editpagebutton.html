@@ -1,0 +1,6 @@
+<!-- Edit page button link -->
+
+<div class="col-xl-12 order-xl-1 edit-page">
+  {{ $editLocation := printf "%s%s/%s" .Site.Params.repo .Page.Language .File.Path}}
+  <button type="button" class="btn btn-edit-page" onclick="window.location.href='{{ $editLocation }}'"><i class="fa fa-edit"></i>&nbsp;Edit Page</button>
+</div>

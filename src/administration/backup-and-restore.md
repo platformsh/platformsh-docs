@@ -1,16 +1,23 @@
-# Backup and Restore
+---
+title: "Backup and restore"
+weight: 2
+
+description: |
+  Backups are triggered directly via the management console or via the CLI. The backup creates a complete snapshot of the environment. It includes all persistent data from all running services (MySQL, Solr,...) and any files stored on the mounted volumes.
+
+---
+
+{{< description >}}
 
 ## Backups
-
-Backups are triggered directly via the management console or via the CLI. The backup creates a complete snapshot of the environment. It includes all persistent data from all running services (MySQL, SOLR,...) and any files stored on the mounted volumes.
 
 You need to have the "admin" role in order to create a backup of an environment.
 
 Backups on Platform.sh Professional are retained for at least 7 days. They will be purged between 7 days and 6 months, at Platform.sh's discretion. Please see the [data retention](/security/data-retention.md) page for more information.
 
-> **note**
->
-> We advise you to make backups of your live environment before merging an environment to the live environment, or each time you increase the storage space of your services.
+{{< note >}}
+We advise you to make backups of your live environment before merging an environment to the live environment, or each time you increase the storage space of your services.
+{{< /note >}}
 
 Using the CLI:
 
@@ -61,8 +68,9 @@ If no branch already exists, you can specify the parent of the branch that will 
 $ platform backup:restore --branch-from=PARENT_BRANCH 2ca4d90639f706283fee
 ```
 
-> **note**
-> You need "admin" role to restore your environment from a backup.
+{{< note >}}
+You need "admin" role to restore your environment from a backup.
+{{< /note >}}
 
 Be aware that the older US and EU regions do not support restoring backups to different environments.  If your project is on one of the older regions you may file a support ticket to ask that a backup be restored to a different environment for you, or [migrate your project](/tutorials/region-migration.md) to one of the new regions that supports this feature.
 
@@ -78,9 +86,9 @@ Backups may be triggered by calling the CLI from an automated system such as Jen
 
 ### Automated backups using Cron
 
-> **note**
->
-> Automated backups using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
+{{< note >}}
+Automated backups using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.html).
+{{< /note >}}
 
 We ask that you not schedule a backup task more than once a day to minimize data usage.
 
@@ -100,9 +108,9 @@ crons:
 
 The above cron task will run once a day at 5 am (UTC), and, if the current environment is the master branch, it will run `platform backup:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the backup to complete.
 
-> **note**
->
-> It is very important to include the `--no-wait` flag.  If you do not, the cron process will block and you will be unable to deploy new versions of the site until the backup creation process is complete.
+{{< note >}}
+It is very important to include the `--no-wait` flag.  If you do not, the cron process will block and you will be unable to deploy new versions of the site until the backup creation process is complete.
+{{< /note >}}
 
 ### Retention
 

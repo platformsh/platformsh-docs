@@ -1,9 +1,7 @@
 ---
-search:
-    keywords: ['.platform.app.yaml', 'disk', 'mounts']
+title: "Storage"
+weight: 7
 ---
-
-# Storage
 
 The built file system image that results from your build process is mounted read-only.  That means it cannot be edited in production, even by accident.
 
@@ -13,7 +11,7 @@ Many applications still require the ability to write and store files, however.  
 
 Your _plan storage size_ specifies the maximum total space available to _all_ applications and services.
 
-When deploying your project, the sum of all `disk` keys defined in `.platform.app.yaml` and `.platform/services.yaml` 
+When deploying your project, the sum of all `disk` keys defined in `.platform.app.yaml` and `.platform/services.yaml`
 must be *equal or less* than the _plan storage size_. For example, if your _plan storage size_ is 5 GB, you can assign:
 
 * 2 GB to your application, 3 GB to your database
@@ -23,7 +21,7 @@ must be *equal or less* than the _plan storage size_. For example, if your _plan
 
 If you receive an error on `git push` mentioning the total disk space configured for the application and its services exceeds the plan storage size, you need to either increase the disk space reserved for your project on the project setup page or lower the storage assigned to each service and the application.
 
-The `disk` key is optional.  If set, it defines the size of the persistent disk of the application (in MB).  Its minimum value is 256 MB and a validation error will occur if you try to set it lower.
+The `disk` key is required, and defines the size of the persistent disk of the application (in MB).  Its minimum value is 256 MB and a validation error will occur if you try to set it lower.
 
 ## Mounts
 
@@ -51,8 +49,6 @@ The `source` specifies where the writable mount is.  `source_path` specifies the
 The `local` source indicates that the mount point will point to a local directory on the application container.  The `source_path` is then a subpath of that.  That means they may overlap.  `local` mounts are not shared between different application containers or workers.
 
 Be aware that the entire `local` space for a single app container is a common directory, and the directory is not wiped.  That means if you create a mount point with a `source_path` of "uploads", then write files there, then remove the mount point, the files will still exist on disk indefinitely until manually removed.
-
-Local mounts require that the `disk` key be set.  If it is omitted there will be no storage space available at all.
 
 ### `service` mounts
 
@@ -151,7 +147,7 @@ You can use standard commands such as `df -ah` to find the total disk usage of m
 
 The CLI provides a command that combines these checks:
 
-```
+```text
 $ platform mount:size
 Checking disk usage for all mounts of the application 'app'...
 +-------------------------+-----------+---------+-----------+-----------+----------+

@@ -1,3 +1,8 @@
+---
+title: "Docksal"
+weight: 4
+---
+
 # Using Docksal for local development
 
 [Docksal](https://docksal.io) is a docker based local development tool that plays nicely with Platform.sh. It is maintained by a community of developers and is a viable option for most Platform.sh projects.
@@ -22,7 +27,7 @@ fin config set --global SECRET_PLATFORMSH_CLI_TOKEN=XXX
 
 ## Pulling a Platform.sh project
 
-The Docksal CLI ships with the Platform.sh CLI tool. To use the tool and pull a project locally, make sure you have uploaded your SSH key to your Platform.sh account. Once that is done and a `SECRET_PLATFORMSH_CLI_TOKEN` has been added using the above step, you can set up your project with the following instructions. 
+The Docksal CLI ships with the Platform.sh CLI tool. To use the tool and pull a project locally, make sure you have uploaded your SSH key to your Platform.sh account. Once that is done and a `SECRET_PLATFORMSH_CLI_TOKEN` has been added using the above step, you can set up your project with the following instructions.
 
 Note: Replace `PROJECT_ID` with your project's ID, which can found within the Platform.sh dashboard. Replace `PROJECT_DIRECTORY` with the name of the local directory you'd like the project cloned into.
 
@@ -57,7 +62,7 @@ fin config set docroot=XXX # Replacing XXX with the new document root.
 
 By default, Docksal comes configured with a PHP 7.1 container, an Apache 2.4 web container, and a MySQL 5.6 database container. Additional versions are available in the images and you can set the desired versions by setting following variables within your `.docksal/docksal.env` file.
 
-```
+```text
 # Apache Versions 2.2 / 2.4
 #WEB_IMAGE='docksal/web:2.1-apache-2.2'
 WEB_IMAGE='docksal/web:2.1-apache-2.4'

@@ -1,4 +1,8 @@
-# Drupal Frequently Asked Questions (FAQ)
+---
+title: "Drupal Frequently Asked Questions (FAQ)"
+weight: 12
+sidebarTitle: "FAQ"
+---
 
 ## How should I name my make files?
 
@@ -77,7 +81,6 @@ $ php ../tmp/registry_rebuild/registry_rebuild.php
 ```
 
 ## Can I use Backup & Migrate?
-
 
 The [Backup & Migrate module](https://www.drupal.org/project/backup_migrate) is a Drupal module that provides automated scheduled dumps of a Drupal site's content.  It does so in the form of an SQL dump and/or `tar.gz` archived copy of your site's file directory, which can then be optionally uploaded to a remote storage service.
 

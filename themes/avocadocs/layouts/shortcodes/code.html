@@ -1,0 +1,5 @@
+<pre>
+  <code class="language-{{- if .IsNamedParams -}}{{- with .Get "lang" -}}{{.}}{{else}}bash{{end}}{{else}}bash{{end}}" data-lang="{{- if .IsNamedParams -}}{{- with .Get "lang" -}}{{.}}{{else}}bash{{end}}{{else}}bash{{end}}">
+    {{- printf "%s" .Inner -}}
+  </code>
+</pre>

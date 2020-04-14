@@ -1,9 +1,15 @@
-# Backups
+---
+title: "Backups"
+weight: 4
+toc: false
+description: |
+  Platform.sh takes a byte-for-byte snapshot of Dedicated production environments every six (6) hours.  They are retained on a sliding scale, so more recent time frames have more frequent backups.
+---
 
-Platform.sh takes a byte-for-byte snapshot of Dedicated production environments every six (6) hours.  They are retained on a sliding scale, so more recent time frames have more frequent backups.
+{{< description >}}
 
 | Time frame | Backup retention     |
-|-----------------------------------|
+|------------|----------------------|
 | Days 1-3   | Every backup         |
 | Days 4-6   | One backup per day   |
 | Weeks 2-6  | One backup per week  |

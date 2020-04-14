@@ -1,4 +1,8 @@
-# Using Elasticsearch with Drupal 8.x
+---
+title: "Using Elasticsearch with Drupal 8.x"
+weight: 5
+sidebarTitle: "Elasticsearch"
+---
 
 ## Requirements
 
@@ -28,7 +32,7 @@ The above definition defines a single Elasticsearch 6.5 server.  Because Elastic
 
 In your `.platform.app.yaml` file, you now need to open a connection to the new Elasticsearch service.  Under the `relationships` section, add or uncomment the following:
 
-```
+```yaml
 relationships:
     elasticsearch: 'elasticsearch:elasticsearch'
 ```
@@ -39,22 +43,28 @@ Because Drupal defines connection information via the Configuration Management s
 
 Then, paste the following code snippet into your `settings.platformsh.php` file.
 
-> **note**
->
-> If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
->
-> ```php
-> $platformsh = new \Platformsh\ConfigReader\Config();
-> if (!$platformsh->inRuntime()) {
->   return;
-> }
-> ```
+{{< note >}}
+
+If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+
+```php
+<?php
+
+$platformsh = new \Platformsh\ConfigReader\Config();
+if (!$platformsh->inRuntime()) {
+   return;
+}
+```
+
+{{< /note >}}
 
 - Edit the value of `$relationship_name` if you are using a different relationship.
 
 - Edit the value of `$es_server_name` to match the machine name of your cluster in Drupal.
 
 ```php
+<?php
+
 // Update these values to the relationship name (from .platform.app.yaml)
 // and the machine name of the server from your Drupal configuration.
 $relationship_name = 'elasticsearch';

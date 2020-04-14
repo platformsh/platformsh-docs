@@ -1,8 +1,13 @@
-# GitLab
+---
+title: "GitLab"
+weight: 6
+description: |
+  The [GitLab](https://gitlab.com) integration allows you to manage your Platform.sh environments directly from your GitLab repository.
+---
 
-The [GitLab](https://gitlab.com) integration allows you to manage your Platform.sh environments directly from your GitLab repository.
+{{< description >}}
 
-Features supported:
+**Features supported:**
 
 * Create a new environment when creating a branch or opening a pull request on GitLab.
 * Rebuild the environment when pushing new code to GitLab.
@@ -61,7 +66,7 @@ Note that the `--prune-branches` option depends on `--fetch-branches` being enab
 
 The previous command, if successful should output the configuration of the integration. The last element would look like:
 
-```
+```bash
 | hook_url | https://{region}.platform.sh/api/projects/{projectid}/integrations/{hook_id}/hook |
 ```
 
@@ -78,8 +83,8 @@ You can now start pushing code, creating new branches or opening merge requests 
 
 You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
 
-```
-$ platform integration:validate
+```bash
+platform integration:validate
 ```
 
 ## Types of environments

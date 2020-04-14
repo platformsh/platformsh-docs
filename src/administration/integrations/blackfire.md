@@ -1,8 +1,11 @@
-# Blackfire
+---
+title: "Blackfire"
+weight: 2
+description: |
+  Platform.sh supports [Blackfire.io](https://blackfire.io/). Blackfire is a PHP profiler and automated performance testing tool that can be used in the development Integration, Staging, and Production environments.
+---
 
-Platform.sh supports [Blackfire.io](https://blackfire.io/).
-
-Blackfire is a PHP profiler and automated performance testing tool that can be used in the development Integration, Staging, and Production environments.
+{{< description >}}
 
 It grants details information on your PHP code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
 
@@ -18,19 +21,20 @@ Check the latest versions of the probe and CLI tool on [Blackfire's documentatio
 
 ### 1. Get your credentials
 
-**Sign up for the free 15 days Premium trial** at [blackfire.io](https://blackfire.io/pricing) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld) or [Firefox](https://addons.mozilla.org/firefox/addon/blackfire/)).
+**Sign up for the free 15 days Premium trial** at [Blackfire.io](https://blackfire.io/pricing) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld) or [Firefox](https://addons.mozilla.org/firefox/addon/blackfire/)).
 
-> **note**
->
-> Blackfire also offers a perpetually-free edition but it is for local development only and will not run on Platform.sh.
+
+{{< note >}}
+Blackfire also offers a perpetually-free edition but it is for local development only and will not run on Platform.sh.
+{{< /note >}}
 
 Go to your Dashboard and create a new environment [under the Environments tab](https://blackfire.io/my/environments).
 
-![Blackfire environments](/images/integrations/blackfire/blackfire-environments.png)
+![Blackfire environments](/images/integrations/blackfire/blackfire-environments.png "0.4")
 
 You will need to store the server credentials for further configuration. You can find them any time under the "Settings" tab of your environment in Blackfire.
 
-![Blackfire credentials](/images/integrations/blackfire/blackfire-credentials.png)
+![Blackfire credentials](/images/integrations/blackfire/blackfire-credentials.png "0.4")
 
 ### 2. Enable the Blackfire extension
 
@@ -76,7 +80,7 @@ platform variable:create -e=<insert your branch name> env:BLACKFIRE_SERVER_TOKEN
 
 Login via SSH to your container and confirm that Blackfire is running as follows:
 
-```bash
+```text
 php --ri blackfire
 
 blackfire
@@ -100,7 +104,7 @@ Note, Blackfire integration works only on profiling your cluster via the URL to 
 
 Access your site via your browser and click `Profile` in the Blackfire Companion.
 
-![Blackfire Companion](/images/integrations/blackfire/blackfire-companion.png)
+![Blackfire Companion](/images/integrations/blackfire/blackfire-companion.png "0.3")
 
 That's it! Your site will be profiled and you should get all the results in your Blackfire account.
 
@@ -108,7 +112,7 @@ That's it! Your site will be profiled and you should get all the results in your
 
 To profile your PHP CLI scripts, use the following command line:
 
-```
+```bash
 blackfire --config /etc/platform/$USER/blackfire.ini <command>
 ```
 
@@ -125,11 +129,9 @@ Blackfire also enables to:
 
 Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for more information.
 
-> **note**
->
-> Those features may require a Premium or an Enterprise subscription.
-> We offer attractive bundles of Platform.sh and Blackfire.io subscriptions.
-> Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
+{{< note >}}
+Those features may require a Premium or an Enterprise subscription. We offer attractive bundles of Platform.sh and Blackfire.io subscriptions. Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
+{{< /note >}}
 
 ## Troubleshooting
 

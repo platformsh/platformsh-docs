@@ -1,4 +1,7 @@
-# Varnish HTTP Proxy
+---
+title: "Varnish"
+weight: 13
+---
 
 Varnish is a popular HTTP proxy server, often used for caching.  It is usually not needed on Platform.sh, as each project's router provides an HTTP cache already and most more advanced use cases will use a CDN instead, both of which render Varnish redundant.
 
@@ -6,17 +9,17 @@ However, it is possible to configure a Varnish instance as part of an applicatio
 
 ## Supported versions
 
-* 5.2
-* 6.0
+{{< image-versions image="varnish" status="supported" >}}
 
 ## How it works
 
-All incoming requests still go through the environment's router first.  When using Varnish, a Varnish service sits between the router and the application server or servers.
+All incoming requests still go through the environment's router first. When using Varnish, a Varnish service sits between the router and the application server or servers.
 
-```
+```text
 web -> router -> varnish -> application
                          -> application2
 ```
+
 
 ## Configuration
 
@@ -24,7 +27,7 @@ web -> router -> varnish -> application
 
 Add the following to your `.platform/services.yaml` file:
 
-{% codesnippet "/registry/images/examples/full/varnish.services.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/varnish.services.yaml" highlight="yaml" >}}
 
 In the `relationships` block, define a relationship (`application`) to the application container (`app`) using the `http` endpoint.  That allows Varnish to talk to the application container.
 
@@ -40,7 +43,7 @@ The VCL file you provide has three specific requirements over and above the VCL 
 
 The absolute bare minimum VCL file is:
 
-```
+```bash
 sub vcl_recv {
     set req.backend_hint = application.backend();
 }
@@ -62,7 +65,7 @@ varnish:
             path: config.vcl
 ```
 
-```
+```bash
 # config.vcl
 sub vcl_recv {
     if (req.url ~ "^/blog/") {
@@ -77,8 +80,10 @@ This configuration will direct all requests to a URL beginning with a `/blog/` p
 
 Besides that, the VCL file, including the `vcl_recv()` function, can be arbitrarily complex to suit the needs of the project.  That includes additional `include` directives if appropriate.  See the [Varnish documentation](https://varnish-cache.org/docs/index.html) for more details on the functionality offered by Varnish.
 
-> **note**
-> A misconfigured VCL file can result in incorrect, often mysterious and confusing behavior.  Platform.sh does not provide support for VCL configuration options beyond the basic connection logic documented here.
+{{< note >}}
+A misconfigured VCL file can result in incorrect, often mysterious and confusing behavior.  Platform.sh does not provide support for VCL configuration options beyond the basic connection logic documented here.
+
+{{< /note >}}
 
 ### Route incoming requests to Varnish
 
@@ -86,7 +91,7 @@ To enable Varnish now, edit the `.platform/routes.yaml` file to point to the Var
 
 For example:
 
-{% codesnippet "/registry/images/examples/full/varnish.routes.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/varnish.routes.yaml" highlight="yaml" >}}
 
 That will map all incoming requests to the Varnish service rather than the application.  Varnish will then, based on the VCL file, forward requests to the application as appropriate.
 
@@ -105,7 +110,7 @@ Platform.sh supports a number of optional modules you can include in your VCLs, 
 
 To use in your VCL, add an import such as:
 
-```
+```bash
 import xkey;
 ```
 
@@ -117,7 +122,7 @@ At this time Platform.sh does not support circular relationships between service
 
 The Varnish service also offers an `http+stats` endpoint, which provides access to some Varnish analysis and debugging tools.  To access it, from a dedicated app container add the following to `.platform.app.yaml`:
 
-{% codesnippet "/registry/images/examples/full/varnish.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/varnish.app.yaml" highlight="yaml" >}}
 
 You can then access the `varnishstats` relationship over HTTP at the following paths to get diagnostic information:
 
