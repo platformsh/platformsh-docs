@@ -53,6 +53,24 @@ You can then use the service in a configuration file of your application with so
 >
 > When you create an index on Elasticsearch, you should not specify `number_of_shards` and `number_of_replicas` settings in your Elasticsearch API call. These values will be set automatically based on available resources.
 
+## Authentication
+
+By default, Elasticsearch has no authentication.  No username or password is required to connect to it.
+
+Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.  To do so, include the following in your `services.yaml1` configuration:
+
+```yaml
+search:
+    type: elasticsearch:7.2
+    disk: 2048
+    configuration:
+        authentication:
+            enabled: true
+```
+
+That will enable mandatory HTTP Basic auth on all requests.  The credentials will be available in any relationships that point at that service, in the `username` and `password` properties, respectively.
+
+This functionality is generally not required if Elasticsearch is not exposed on it own public HTTP route.  However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.  To do so, add a route to `routes.yaml` that has `search:http` as its upstream (where `search` is whatever you named the service in `services.yaml`).
 
 ## Plugins
 
