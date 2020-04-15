@@ -56,7 +56,9 @@ Git integration can be configured to send commits made to the Platform.sh Git re
 
 > **note**
 >
-> Source Operations can only be triggered on environment created by a branch, and not to environment created by a Pull Request on the external upstream (GitHub, Bitbucket, Gitlab).
+> Currently, this configuration requires the `enable_codesource_integration_push` setting to be turned on by a Platform.sh staff and is only available to selected Beta customers.
+
+Source Operations can only be triggered on environment created by a branch, and not to environment created by a Pull Request on the external upstream (GitHub, Bitbucket, Gitlab).
 
 ## Automated Source Operations using cron
 
