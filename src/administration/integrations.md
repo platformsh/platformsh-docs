@@ -85,33 +85,29 @@ See the `--help` output of the command for more options.
 
 ### Showing detailed information on an activity
 
-You can call up more detailed information on a specific activity by its ID, using the `platform integration:activity:get` command.  It requires both the integration ID and an activity ID from the list above.
+You can call up more detailed information on a specific activity by its ID, using the `platform integration:activity:log` command.  It requires both the integration ID and an activity ID from the list above.  It also works best with the `-t` option to include timestamps.
 
 ```bash
-$ platform integration:activity:get c4opi5tjv3yfd 4qojtv7a6rk2w
-Environment ID [master]:
+$ platform integration:activity:log c4opi5tjv3yfd 6456zmdtoykxa -t
 
-+--------------------+-------------------------------------------------------------+
-| Property           | Value                                                       |
-+--------------------+-------------------------------------------------------------+
-| id                 | 4qojtv7a6rk2w                                               |
-| created_at         | 2020-04-14T15:27:26-05:00                                   |
-| updated_at         |                                                             |
-| type               | integration.github.fetch                                    |
-| parameters         | user: 'integration:c4opi5tjv3yfd'                           |
-| project            | 6b2eocegfkwwg                                               |
-| integration        | c4opi5tjv3yfd                                               |
-| environments       | {  }                                                        |
-| state              | complete                                                    |
-| result             | success                                                     |
-| started_at         | 2020-04-14T15:29:26-05:00                                   |
-| completed_at       | 2020-04-14T15:30:17-05:00                                   |
-| completion_percent | 100                                                         |
-| description        | Fetching from https://github.com/platformsh/platformsh-docs |
-| text               | Fetching from https://github.com/platformsh/platformsh-docs |
-| expires_at         | 2020-05-14T15:21:35-05:00                                   |
-| duration           | 51                                                          |
-+--------------------+-------------------------------------------------------------+
+Integration ID: ceopz5tgj3yfc
+Activity ID: 6456zmdtoykxa
+Type: integration.github.fetch
+Description: Fetching from https://github.com/platformsh/platformsh-docs
+Created: 2020-04-15T08:44:07-05:00
+State: complete
+Log:
+[2020-04-15T13:44:17-05:00] Waiting for other activities to complete
+[2020-04-15T13:46:07-05:00] Fetching from GitHub repository platformsh/platformsh-docs
+[2020-04-15T13:46:09-05:00]   No changes since last fetch
+[2020-04-15T13:46:09-05:00]
+[2020-04-15T13:46:09-05:00] Synchronizing branches
+[2020-04-15T13:46:09-05:00]
+[2020-04-15T13:46:09-05:00] Synchronizing pull requests
+[2020-04-15T13:46:59-05:00]
+[2020-04-15T13:46:59-05:00] W: No changes found, scheduling a retry..
 ```
+
+That will show the full output of the activity, including timestamps.  That can be especially helpful if trying to determine why an integration is not behaving as expected.
 
 See the `--help` output of the command for more options.
