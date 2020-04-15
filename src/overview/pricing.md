@@ -14,7 +14,7 @@ You can switch between plans (downgrade or upgrade) freely, but note that reduci
 
 You may cancel your plan at any time and you will only be billed for the actual period used.
 
-For Enterprise and Agency Plans you can pay by purchase order. For all other plans you need to add a credit card to your account.
+For Elite, Enterprise and Agency Plans you can pay by purchase order. For all other plans you need to add a credit card to your account.
 
 We offer a free trial period so you can test the service and see how great it is. If ever you need more time to evaluate Platform.sh, please contact our sales representatives. They can issue you an extra voucher to prolong your test.
 
@@ -70,7 +70,7 @@ A Medium plan, for example, can support 3 Apps with a MySQL instance and a Redis
 
 If you wonder if a specific setup would fit in a plan, don't hesitate to contact our support.
 
-## Enterprise-Dedicated
+## Dedicated Instances
 
 For a price lower than traditional managed hosting, you get included development and staging environments, as well as triple redundancy on every element of the stack with:
 
