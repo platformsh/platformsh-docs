@@ -166,3 +166,10 @@
   color: #1A182A;
   font-family: Overpass Mono;
 }
+
+/* Sidebar Mobile book links */
+@media (min-width: 768px) {
+  .mobile-books-sidebar {
+    display: none;
+  }
+}
