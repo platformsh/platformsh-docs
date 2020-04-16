@@ -1,6 +1,6 @@
 # New Relic
 
-Platform.sh supports [New Relic APM](https://newrelic.com/products/application-monitoring).
+Platform.sh supports [New Relic APM](https://newrelic.com/products/application-monitoring) for profiling PHP applications. These instructions do not apply to other languages.
 
 ## On a Grid plan
 
