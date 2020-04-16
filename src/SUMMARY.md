@@ -97,6 +97,7 @@
 * [C#/.NET](languages/dotnet.md)
 * [Go](languages/go.md)
 * [Java](languages/java.md)
+  * [Tuning](languages/java/tuning.md)
   * [Frameworks](languages/java/frameworks.md)
 * [Lisp](languages/lisp.md)
 * [Node.js](languages/nodejs.md)
@@ -113,6 +114,7 @@
 * [Ruby](languages/ruby.md)
 
 ## Development
+
 * [Project templates](development/templates.md)
 * [Tools](development/tools.md)
 * [CLI](development/cli.md)

@@ -2,7 +2,6 @@
 
 Java is a general-purpose programming language, and one of the most popular in the world today. Platform.sh supports Java runtimes that can be used with build management tools such as Gradle, Maven, and Ant.
 
-
 ## Supported versions
 
 ### OpenJDK versions:
@@ -28,11 +27,9 @@ Platform.sh supports the most common project management tools in the Java ecosys
 * [Maven](https://maven.apache.org/)
 * [Ant](https://ant.apache.org/)
 
-
 ## Accessing services
 
 To access various [services](/configuration/services.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
-
 
 {% codetabs name="Elasticsearch", type="java", url="https://examples.docs.platform.sh/java/elasticsearch" -%}
 
