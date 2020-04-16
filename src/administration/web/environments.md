@@ -1,7 +1,6 @@
 ---
 title: "Platform.sh environments"
 weight: 2
-
 sidebarTitle: "Environments"
 description: |
   Platform.sh helps a coder with the development workflow by making it easy to manage multiple environments, including the Master environment which runs the production website. It's precisely like a "development" or a "staging" server, except they are created on the fly, and they are absolutely identical copies of their parent environments.

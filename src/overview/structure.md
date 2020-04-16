@@ -1,9 +1,11 @@
 ---
 title: "Structure"
 weight: 1
-description: "Every application you deploy on Platform.sh is built as a <b>virtual cluster</b>, containing a set of containers.  The master branch of your Git repository is always deployed as the production cluster.  Any other branch can be deployed as a development cluster.<br><br>By default, you can have up to three live development clusters at once, but you can buy more on a per-project basis."
-
 ---
+
+Every application you deploy on Platform.sh is built as a **virtual cluster**, containing a set of containers.  The master branch of your Git repository is always deployed as the production cluster.  Any other branch can be deployed as a development cluster.
+
+By default, you can have up to three live development clusters at once, but you can buy more on a per-project basis.
 
 There are three types of containers within your cluster:
 

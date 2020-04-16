@@ -1,10 +1,12 @@
 ---
 title: "Going Live - Troubleshooting"
 weight: 4
-
-description: "If all steps above have been followed and the site still does not resolve (after waiting for the DNS update to propagate), here are a few simple self-help steps to take before contacting support."
+description: |
+  If all steps above have been followed and the site still does not resolve (after waiting for the DNS update to propagate), here are a few simple self-help steps to take before contacting support.
 sidebarTitle: "Troubleshooting"
 ---
+
+{{< description >}}
 
 ## Verify DNS
 
@@ -31,6 +33,6 @@ The response should be long. Look for error messages. They are usually explicit 
 
 On the command line type `platform logs app` and see there are no clear anomalies there. Do the same with `platform logs error`
 
-## Something still wrong ? [Contact support](/overview/getting-help/)
+## Something still wrong ? [Contact support](/overview/getting-help.md)
 
 We are here to help. Please include as much detail as possible (we will be able to provide quicker help).

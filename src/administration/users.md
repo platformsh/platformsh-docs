@@ -2,7 +2,6 @@
 title: "User administration"
 weight: 1
 sidebarTitle: "Users"
-
 description: |
   Every Platform.sh user has a role which controls access and improves security on your project. Different roles are authorized to do different things with your applications, environments and users. You can use your collection of Roles to manage how users interact with Platform.sh.
 ---

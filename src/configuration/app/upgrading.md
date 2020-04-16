@@ -9,7 +9,7 @@ weight: 14
 
 ## Changes in version 2017.11 (2017-11-09)
 
-* The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/configuration/yaml/).  For example, the following `services.yaml` snippet:
+* The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/configuration/yaml.md).  For example, the following `services.yaml` snippet:
 
 ```yaml
 mysearch:
@@ -31,7 +31,7 @@ mysearch:
             path: "myconfdir"
 ```
 
-* The syntax for the `mounts` key in `.platform.app.yaml` has changed.  Rather than a parsed string, the value of each mount is a [multi-key definition](/configuration/app/storage/).  That is, the following example:
+* The syntax for the `mounts` key in `.platform.app.yaml` has changed.  Rather than a parsed string, the value of each mount is a [multi-key definition](/configuration/app/storage.md).  That is, the following example:
 
 ```yaml
 mounts:

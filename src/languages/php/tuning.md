@@ -1,9 +1,11 @@
 ---
 title: "Performance tuning"
 weight: 3
-description: "Once your application is up and running it still needs to be kept fast.  Platform.sh offers a wide degree of flexibility in how PHP behaves, but that does mean you may need to take a few steps to ensure your site is running optimally.<br><br>The following recommendations are guidelines only.  They're also listed in approximately the order we recommend investigating them, although your mileage may vary."
- 
 ---
+
+Once your application is up and running it still needs to be kept fast.  Platform.sh offers a wide degree of flexibility in how PHP behaves, but that does mean you may need to take a few steps to ensure your site is running optimally.
+
+The following recommendations are guidelines only.  They're also listed in approximately the order we recommend investigating them, although your mileage may vary.
 
 ## Upgrade to PHP 7.2+
 

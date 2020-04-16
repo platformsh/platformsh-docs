@@ -2,6 +2,8 @@
 title: "Connect to services"
 weight: 9
 toc: false
+aliases:
+  - "/gettingstarted/own-code/connect-services.html"
 ---
 
 {{< note >}}
@@ -19,7 +21,7 @@ which was configured in `.platform/services.yaml` with
 
 ```yaml
 mysqldb:
-    type: mysql:10.2
+    type: mysql:10.4
     disk: 1024
 ```
 
@@ -251,7 +253,7 @@ You can find out more information about Platform.sh Config Reader libraries on G
 * [Java Config Reader](https://github.com/platformsh/config-reader-java)
 * [Go Config Reader](https://github.com/platformsh/config-reader-go)
 
-You can also find examples of how to connect to each of Platform.sh managed services in multiple languages in the [Services Documentation](/configuration/services/).
+You can also find examples of how to connect to each of Platform.sh managed services in multiple languages in the [Services Documentation](/configuration/services.html).
 
 Project configured, services connected - time to commit the changes and push your repository onto your project.
 

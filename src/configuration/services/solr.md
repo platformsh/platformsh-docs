@@ -14,7 +14,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables/#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.html#platformsh-provided-variables):
 
 {{< highlight json >}}
 {{< remote url="https://examples.docs.platform.sh/relationships/solr" >}}
@@ -32,40 +32,47 @@ In your `.platform.app.yaml`:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabs "Go" "Java" "Nodejs" "PHP" "Python" >}}
+{{< tabtest >}}
 
-{{< tab id="Go" active="true" >}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/solr" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Go
+file=static/files/fetch/examples/golang/solr
+highlight=go
+---
 
-{{< tab id="Java" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/solr" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="Nodejs" >}}
-{{< highlight js >}}
-{{< readFile file="static/files/fetch/examples/nodejs/solr" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Java
+file=static/files/fetch/examples/java/solr
+highlight=java
+---
 
-{{< tab id="PHP">}}
-{{< highlight php >}}
-{{< readFile file="static/files/fetch/examples/php/solr" >}}{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="Python" >}}
-{{< highlight python >}}
-{{< readFile file="static/files/fetch/examples/python/solr" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Node.js
+file=static/files/fetch/examples/nodejs/solr
+highlight=js
+---
 
-{{< /tabs >}}
+<--->
 
-## Configuration
+---
+title=PHP
+file=static/files/fetch/examples/php/solr
+highlight=php
+---
+
+<--->
+
+---
+title=Python
+file=static/files/fetch/examples/python/solr
+highlight=python
+---
+
+{{< /tabtest >}}
 
 ## Solr 4
 

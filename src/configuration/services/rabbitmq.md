@@ -1,8 +1,6 @@
 ---
 title: "RabbitMQ (Message queue service)"
 weight: 10
-description: "RabbitMQ is an open source message broker software (sometimes called message-oriented middleware) that implements the Advanced Message Queuing Protocol (AMQP).<br><br>See the <a href=\"http://www.rabbitmq.com/documentation.html\">RabbitMQ documentation</a> for more information."
-
 sidebarTitle: "RabbitMQ"
 ---
 
@@ -16,7 +14,7 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables/#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.html#platformsh-provided-variables):
 
 {{< highlight json >}}
 {{< remote url="https://examples.docs.platform.sh/relationships/rabbitmq" >}}
@@ -34,32 +32,39 @@ In your `.platform.app.yaml`:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabs "Go" "Java" "PHP" "Python" >}}
+{{< tabtest >}}
 
-{{< tab id="Go" active="true" >}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/rabbitmq" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Go
+file=static/files/fetch/examples/golang/rabbitmq
+highlight=go
+---
 
-{{< tab id="Java" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/rabbitmq" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="PHP">}}
-{{< highlight php >}}
-{{< readFile file="static/files/fetch/examples/php/rabbitmq" >}}{{< /highlight >}}
-{{< /tab >}}
+---
+title=Java
+file=static/files/fetch/examples/java/rabbitmq
+highlight=java
+---
 
-{{< tab id="Python" >}}
-{{< highlight python >}}
-{{< readFile file="static/files/fetch/examples/python/rabbitmq" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< /tabs >}}
+---
+title=PHP
+file=static/files/fetch/examples/php/rabbitmq
+highlight=php
+---
+
+<--->
+
+---
+title=Python
+file=static/files/fetch/examples/python/rabbitmq
+highlight=python
+---
+
+{{< /tabtest >}}
 
 (The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)
 

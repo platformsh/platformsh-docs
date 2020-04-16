@@ -1,8 +1,6 @@
 ---
 title: "Network Storage"
 weight: 8
-description: "Platform.sh supports internal \"storage as a service\" to provide a file store that can be shared between different application containers.<br><br>The network storage service enables a new kind of <code>mount</code> that refers to a shared service rather than to a local directory.  Any application can use both <code>local</code> and/or <code>service</code> mounts, or neither."
-
 ---
 
 Platform.sh supports internal "storage as a service" to provide a file store that can be shared between different application containers.
@@ -22,7 +20,7 @@ The Network storage service is available on all regions except:
 * `eu.platform.sh`
 * `us.platform.sh`
 
-If you are on one of those and require the service we suggest you [migrate](https://docs.platform.sh/tutorials/region-migration.html#region-migration) your project to one of the newer regions (such as eu-2, us-2, ca, au, fr-1 or de-2).
+If you are on one of those and require the service we suggest you [migrate](/tutorials/region-migration.html#region-migration) your project to one of the newer regions (such as eu-2, us-2, ca, au, fr-1 or de-2).
 
 ## Define the service
 
@@ -242,4 +240,4 @@ Once that's done you can remove the `old-uploads` mount and push again to finish
 
 The `network-storage` service is only available on our newer regions.  If you are running on the older `us` or `eu` regions and try to create a `network-storage` service you will receive this error.
 
-To make use of `network-storage` you will need to migrate to the newer `us-2` or `eu-2` regions.  See our [tutorial on how to migrate regions](/tutorials/region-migration/) for more information.
+To make use of `network-storage` you will need to migrate to the newer `us-2` or `eu-2` regions.  See our [tutorial on how to migrate regions](/tutorials/region-migration.md) for more information.

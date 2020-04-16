@@ -2,6 +2,8 @@
 title: "Next steps"
 weight: 4
 toc: false
+aliases:
+  - "/gettingstarted/local-development/next-steps.html"
 ---
 
 In this guide you opened an SSH tunnel to your Platform.sh project and built your application locally.

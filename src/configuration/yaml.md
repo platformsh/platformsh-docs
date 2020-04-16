@@ -160,4 +160,4 @@ mysearch:
         conf_dir: !archive "solr/conf"
 ```
 
-In this case, the `mysearch.configuration.conf_dir` value is not the string "solr/conf", but the contents of the `solr/conf` directory (relative to the `services.yaml` file).  On Platform.sh, that is used primarily for service definitions in [`services.yaml`](/configuration/services/) to provide a directory of configuration files for the service (such as Solr in this case).  Platform.sh will use that directive to copy the entire specified directory into our management system so that it can be deployed with the specified service.
+In this case, the `mysearch.configuration.conf_dir` value is not the string "solr/conf", but the contents of the `solr/conf` directory (relative to the `services.yaml` file).  On Platform.sh, that is used primarily for service definitions in [`services.yaml`](/configuration/services.html) to provide a directory of configuration files for the service (such as Solr in this case).  Platform.sh will use that directive to copy the entire specified directory into our management system so that it can be deployed with the specified service.

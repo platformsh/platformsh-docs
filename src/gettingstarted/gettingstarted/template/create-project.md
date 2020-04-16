@@ -2,9 +2,11 @@
 title: "Create a new project"
 weight: 2
 toc: false
+aliases:
+  - "/gettingstarted/template/create-project.html"
 ---
 
-In the previous step, you set up a free trial account with Platform.sh. Now you have access to the Platform.sh [management console](/administration/web/).
+In the previous step, you set up a free trial account with Platform.sh. Now you have access to the Platform.sh [management console](/administration/web.html).
 
 From here you can create projects, adjust account settings, and a lot more that you will explore throughout these Getting Started guides.
 

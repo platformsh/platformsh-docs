@@ -1,7 +1,8 @@
 ---
 title: "Going Live - Pre-Launch Checklist"
 weight: 1
-description: "Before you can take your site live there are a few preparation steps to take."
+description: |
+  Before you can take your site live there are a few preparation steps to take.
 sidebarTitle: "Pre-Launch Checklist"
 ---
 
@@ -17,7 +18,7 @@ You will not be able to use a `A` record. Verify your DNS provider supports CNAM
 
 ## 2. Test your site!
 
-Make sure your site is running and configured as you want it to be, on your master branch.  In particular, see the [Routes documentation](/configuration/routes/). You will need your routes configured appropriately before you begin.  Make sure you have turned off [basic-authentication](/administration/web/configure-environment/) if it was turned on during development.
+Make sure your site is running and configured as you want it to be, on your master branch.  In particular, see the [Routes documentation](/configuration/routes.html). You will need your routes configured appropriately before you begin.  Make sure you have turned off [basic-authentication](/administration/web/configure-environment.md) if it was turned on during development.
 
 If your production environment is on a Dedicated instance, ensure that the code is up to date in both your `staging` and `production` branches, as those are what will be mirrored to the Dedicated instances.  Also ensure that the data on the production instance is up to date and ready to launch.
 
@@ -38,7 +39,7 @@ If you are using a CDN, either one included with an Enterprise plan or one you p
 
 Consult your CDN's documentation for how to set the CDN's upstream address.
 
-For Enterprise plans you may need to obtain a DNS TXT record from your Platform.sh support representative by opening a ticket.  Consult the documentation for your CDN provider and our own [CDN guide](/golive/cdn/).
+For Enterprise plans you may need to obtain a DNS TXT record from your Platform.sh support representative by opening a ticket.  Consult the documentation for your CDN provider and our own [CDN guide](cdn.html).
 
 ---
 
@@ -48,4 +49,4 @@ For Enterprise plans you may need to obtain a DNS TXT record from your Platform.
 * Your custom TLS certificate is purchased, if you're using one?
 * Your CDN is configured to serve from Platform.sh, if you're using one?
 
-**Time to [Go Live](/golive/steps/).**
+**Time to [Go Live](steps.html).**

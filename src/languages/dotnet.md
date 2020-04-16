@@ -1,9 +1,11 @@
 ---
 title: "C#/.NET Core"
 weight: 1
-description: Platform.sh supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
- 
+description: |
+  Platform.sh supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
 ---
+
+{{< description >}}
 
 ## Supported versions
 
@@ -11,9 +13,7 @@ description: Platform.sh supports deploying .NET applications by allowing develo
 
 To specify a .NET Core container, use the `type` property in your `.platform.app.yaml`.
 
-{{< highlight yaml >}}
-{{< readFile file="src/registry/images/examples/full/dotnet.app.yaml" >}}
-{{< /highlight >}}
+{{< readFile file="src/registry/images/examples/full/dotnet.app.yaml" highlight="yaml" >}}
 
 ## Building the application
 

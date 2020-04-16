@@ -3,6 +3,8 @@ title: "Development environments"
 weight: 2
 layout: single
 toc: false
+aliases:
+  - "/gettingstarted/dev-environments.html"
 ---
 
 While you're developing your application, you will at some point create some new features for it. Typically you're going to develop that feature on a separate branch in your Git repository, run some tests, and then merge that feature into your production application.
@@ -14,7 +16,7 @@ Platform.sh removes this stress considerably by providing *live development envi
 This guide assumes that you have already:
 
 * Signed up for a [free trial account](https://accounts.platform.sh/platform/trial/general/setup) with Platform.sh.
-* Started either a [template project](/gettingstarted/template/) or [pushed your own code](/gettingstarted/own-code/) to Platform.sh.
+* Started either a [template project](/gettingstarted/template.html) or [pushed your own code](/gettingstarted/own-code.html) to Platform.sh.
 
 If you have not completed these steps by now, click the links and do so before you begin.
 

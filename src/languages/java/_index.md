@@ -2,9 +2,10 @@
 title: "Java"
 weight: 3
 description: Java is a general-purpose programming language, and one of the most popular in the world today. Platform.sh supports Java runtimes that can be used with build management tools such as Gradle, Maven, and Ant.
- 
 layout: single
 ---
+
+{{< description >}}
 
 ## Supported versions
 
@@ -15,13 +16,9 @@ layout: single
 * 12
 * 13
 
-{{< image-versions image="java" status="supported" >}}
-
 To specify a Java container, use the `type` property in your `.platform.app.yaml`.
 
-{{< highlight yaml >}}
-{{< readFile file="src/registry/images/examples/full/java.app.yaml" >}}
-{{< /highlight >}}
+{{< readFile file="src/registry/images/examples/full/java.app.yaml" highlight="yaml" >}}
 
 ## Support libraries
 
@@ -40,63 +37,79 @@ Platform.sh supports the most common project management tools in the Java ecosys
 
 To access various [services](/configuration/services.html) with Java, see the following examples.  The individual service pages have more information on configuring each service.
 
-{{< tabs "Elasticsearch" "Kafka" "Memcached" "MongoDB" "MySQL" "PostgreSQL" "RabbitMQ" "Redis" "Solr" >}}
+{{< tabtest >}}
 
-{{< tab id="Elasticsearch" active="true" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/elasticsearch" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Elasticsearch
+file=static/files/fetch/examples/java/elasticsearch
+highlight=java
+---
 
-{{< tab id="Kafka" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/kafka" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="Memcached" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/memcached" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Kafka
+file=static/files/fetch/examples/java/kafka
+highlight=java
+---
 
-{{< tab id="MongoDB" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/mongodb" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="MySQL">}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/mysql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Memcached
+file=static/files/fetch/examples/java/memcached
+highlight=java
+---
 
-{{< tab id="PostgreSQL" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/postgresql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="RabbitMQ">}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/rabbitmq" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=MongoDB
+file=static/files/fetch/examples/java/mongodb
+highlight=java
+---
 
-{{< tab id="Redis">}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/redis" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="Solr" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/solr" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=MySQL
+file=static/files/fetch/examples/java/mysql
+highlight=java
+---
 
-{{< /tabs >}}
+<--->
+
+---
+title=PostgreSQL
+file=static/files/fetch/examples/java/postgresql
+highlight=java
+---
+
+<--->
+
+---
+title=RabbitMQ
+file=static/files/fetch/examples/java/rabbitmq
+highlight=java
+---
+
+<--->
+
+---
+title=Redis
+file=static/files/fetch/examples/java/redis
+highlight=java
+---
+
+<--->
+
+---
+title=Solr
+file=static/files/fetch/examples/java/solr
+highlight=java
+---
+
+{{< /tabtest >}}
 
 ## Project templates
 

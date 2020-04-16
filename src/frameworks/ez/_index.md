@@ -2,11 +2,9 @@
 title: "eZ Platform"
 weight: 3
 layout: single
-description: |
-  eZ Platform is a Composer-based PHP CMS, and as such fits well with the Platform.sh model.  As a Symfony-based application its setup is very similar to Symfony.
 ---
 
-{{< description >}}
+eZ Platform is a Composer-based PHP CMS, and as such fits well with the Platform.sh model.  As a Symfony-based application its setup is very similar to Symfony.
 
 eZ Platform comes pre-configured for use with Platform.sh in version 1.13 and later. Version 2.5 and later is recommended. Those are the only versions that are supported.  Appropriate Platform.sh configuration files are included in the eZ Platform application itself, but of course may be modified to suit your particular site if needed.
 
@@ -89,7 +87,7 @@ Actions needed are:
 
 #### Environment variables (optional)
 
-eZ Launchpad allows you to define environment variables in the `provisioning/dev/docker-compose.yml` file. You may use that to set [Platform.sh variables](/development/variables/) to match Platform.sh environments so that you can keep your environment behavior in sync.
+eZ Launchpad allows you to define environment variables in the `provisioning/dev/docker-compose.yml` file. You may use that to set [Platform.sh variables](/development/variables.md) to match Platform.sh environments so that you can keep your environment behavior in sync.
 
 Such variables have to be set in the `engine` container.
 
@@ -103,7 +101,7 @@ engine:
 
 ### Local development with Platform.sh
 
-Thanks to eZ Launchpad you are able to be work 100% locally: [untethered](/development/local/untethered/). We have the whole project working offline on our local machine.
+Thanks to eZ Launchpad you are able to be work 100% locally: [untethered](/development/local/untethered.md). We have the whole project working offline on our local machine.
 
 {{< note >}}
 Platform.sh also provides a smooth SSH tunnels integration described in the [tethered](/development/local/tethered.html) page.
@@ -116,7 +114,7 @@ The main ones are:
 * **Downstream database synchronization**: Getting it from the remote to the local.
 * **Downstream file storage synchronization**: Getting it from the remote to the local.
 
-To help you with that, Platform.sh provides a CLI that you probably already have. If you don't, see the [install guide](/development/cli/#installation).
+To help you with that, Platform.sh provides a CLI that you probably already have. If you don't, see the [install guide](/development/cli.html#installation).
 
 Combined together, eZ Launcphad and Platform.sh CLI make those actions straight forward and simple.
 

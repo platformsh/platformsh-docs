@@ -2,6 +2,8 @@
 title: "Configure services"
 weight: 6
 toc: false
+aliases:
+  - "/gettingstarted/own-code/service-configuration.html"
 ---
 
 In the previous step, you created a collection of empty configuration files that will allow the project to be deployed on Platform.sh.

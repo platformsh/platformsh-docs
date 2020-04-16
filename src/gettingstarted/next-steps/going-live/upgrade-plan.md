@@ -2,6 +2,8 @@
 title: "Upgrade plan"
 weight: 2
 toc: false
+aliases:
+  - "/gettingstarted/going-live/upgrade-plan.html"
 ---
 
 "Development" plan projects cannot be assigned a domain name, so you will not be able to go live until you upgrade to at least a Standard plan. This can be done using the management console.

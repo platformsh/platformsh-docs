@@ -2,8 +2,9 @@
 title: "Go"
 weight: 2
 description: Platform.sh supports building and deploying applications written in Go using Go modules.  They are compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
- 
 ---
+
+{{< description >}}
 
 ## Supported versions
 
@@ -11,9 +12,7 @@ description: Platform.sh supports building and deploying applications written in
 
 To specify a Go container, use the `type` property in your `.platform.app.yaml`.
 
-{{< highlight yaml >}}
-{{< readFile file="src/registry/images/examples/full/golang.app.yaml" >}}
-{{< /highlight >}}
+{{< readFile file="src/registry/images/examples/full/golang.app.yaml" highlight="yaml" >}}
 
 ## Deprecated versions
 
@@ -22,8 +21,6 @@ The following container versions are also available.  However, due to their lack
 * 1.8
 * 1.9
 * 1.10
-
-{{< image-versions image="golang" status="deprecated" >}}
 
 ## Go modules
 
@@ -100,45 +97,61 @@ Note that there will still be an Nginx proxy server sitting in front of your app
 
 To access various [services](/configuration/services.html) with Go, see the following examples. The individual service pages have more information on configuring each service.
 
-{{< tabs "Memcached" "MongoDB" "MySQL" "PostgreSQL" "RabbitMQ" "Solr" >}}
+{{< tabtest >}}
 
-{{< tab id="Memcached" active="true" >}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/memcached" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Memcached
+file=static/files/fetch/examples/golang/memcached
+highlight=go
+markdownify=false
+---
 
-{{< tab id="MongoDB" >}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/mongodb" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="MySQL">}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/mysql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=MongoDB
+file=static/files/fetch/examples/golang/mongodb
+highlight=golang
+markdownify=false
+---
 
-{{< tab id="PostgreSQL" >}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/postgresql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="RabbitMQ">}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/rabbitmq" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=MySQL
+file=static/files/fetch/examples/golang/mysql
+highlight=golang
+markdownify=false
+---
 
-{{< tab id="Solr" >}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/solr" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< /tabs >}}
+---
+title=PostgreSQL
+file=static/files/fetch/examples/golang/postgresql
+highlight=golang
+markdownify=false
+---
+
+<--->
+
+---
+title=RabbitMQ
+file=static/files/fetch/examples/golang/rabbitmq
+highlight=golang
+markdownify=false
+---
+
+<--->
+
+---
+title=Solr
+file=static/files/fetch/examples/golang/solr
+highlight=golang
+markdownify=false
+---
+
+{{< /tabtest >}}
 
 ## Project templates
 

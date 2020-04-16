@@ -17,42 +17,42 @@ View the [C#/.NET Core documentation](/languages/dotnet).
 
 ## Go
 
-View the [Go documentation](/languages/go.html).
+View the [Go documentation](/languages/go).
 
 {{< repolist lang="golang" >}}
 
 ## Java
 
-View the [Java documentation](/languages/java.html).
+View the [Java documentation](/languages/java).
 
 {{< repolist lang="java" >}}
 
 ## Lisp
 
-View the [Lisp documentation](/languages/lisp.html).
+View the [Lisp documentation](/languages/lisp).
 
 {{< repolist lang="lisp" >}}
 
 ## Node.js
 
-View the [Node.js documentation](/languages/nodejs.html).
+View the [Node.js documentation](/languages/nodejs).
 
 {{< repolist lang="nodejs" >}}
 
 ## PHP
 
-View the [PHP documentation](/languages/php.html).
+View the [PHP documentation](/languages/php).
 
 {{< repolist lang="php" >}}
 
 ## Python
 
-View the [Python documentation](/languages/python.html).
+View the [Python documentation](/languages/python).
 
 {{< repolist lang="python" >}}
 
 ## Ruby
 
-View the [Ruby documentation](/languages/ruby.html).
+View the [Ruby documentation](/languages/ruby).
 
 {{< repolist lang="ruby" >}}

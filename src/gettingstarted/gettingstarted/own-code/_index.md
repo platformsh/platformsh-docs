@@ -3,6 +3,8 @@ title: "Import your own code"
 weight: 2
 layout: single
 toc: false
+aliases:
+  - "/gettingstarted/own-code.html"
 ---
 
 Welcome to Platform.sh! Importing your own code to Platform.sh is as easy as installing the CLI and configuring your application with a few YAML files.

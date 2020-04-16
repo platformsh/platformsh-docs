@@ -2,9 +2,11 @@
 title: Next steps
 weight: 5
 toc: false
+aliases:
+  - "/gettingstarted/template/next-steps.html"
 ---
 
-In this guide you created a project using the [management console](/administration/web/) and installed the [Platform.sh CLI](/development/cli/). Now you can explore some of the next steps for working with Platform.sh.
+In this guide you created a project using the [management console](/administration/web.html) and installed the [Platform.sh CLI](/development/cli.html). Now you can explore some of the next steps for working with Platform.sh.
 
 ## Import your own code
 

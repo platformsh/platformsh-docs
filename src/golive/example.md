@@ -1,9 +1,11 @@
 ---
 title: "Example"
 weight: 5
-
-description: "In this short section we will give you a  very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this)."
+description: |
+  In this short section we will give you a  very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this).
 ---
+
+{{< description >}}
 
 Suppose your project ID is `abc123` in the US region, and you've registered `mysite.com`.  You want `www.mysite.com` to be the "real" site and `mysite.com` to redirect to it.
 

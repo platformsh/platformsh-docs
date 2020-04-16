@@ -2,8 +2,9 @@
 title: "Python"
 weight: 7
 description: Platform.sh supports deploying Python applications. Your application can use WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
- 
 ---
+
+{{< description >}}
 
 ## Supported
 
@@ -19,7 +20,7 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
 1. Specify the language of your application (available versions are listed above):
 
-    {% codesnippet "/registry/images/examples/full/python.app.yaml", language="yaml" %}{% endcodesnippet %}
+    {{< readFile file="/registry/images/examples/full/python.app.yaml" highlight="yaml" >}}
 
 2. Build your application with the build hook. Assuming you have your pip dependencies stored in `requirements.txt` and a `setup.py` at the root of your application folder to execute build steps:
 
@@ -141,27 +142,91 @@ The above Gunicorn based WSGI example can be modified to use the Python 3.5+ asy
 
 ## Accessing services
 
-To access various [services](/configuration/services/) with Python, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](/configuration/services.md) with Python, see the following examples.  The individual service pages have more information on configuring each service.
 
-{% codetabs name="Elasticsearch", type="python", url="https://examples.docs.platform.sh/python/elasticsearch" -%}
+{{< tabtest >}}
 
-{% language name="Kafka", type="python", url="https://examples.docs.platform.sh/python/kafka" -%}
+---
+title=Elasticsearch
+file=static/files/fetch/examples/python/elasticsearch
+highlight=python
+markdownify=false
+---
 
-{% language name="Memcached", type="python", url="https://examples.docs.platform.sh/python/memcached" -%}
+<--->
 
-{% language name="MongoDB", type="python", url="https://examples.docs.platform.sh/python/mongodb" -%}
+---
+title=Kafka
+file=static/files/fetch/examples/python/kafka
+highlight=python
+markdownify=false
+---
 
-{% language name="MySQL", type="python", url="https://examples.docs.platform.sh/python/mysql" -%}
+<--->
 
-{% language name="PostgreSQL", type="python", url="https://examples.docs.platform.sh/python/postgresql" -%}
+---
+title=Memcached
+file=static/files/fetch/examples/python/memcached
+highlight=python
+markdownify=false
+---
 
-{% language name="RabbitMQ", type="python", url="https://examples.docs.platform.sh/python/rabbitmq" -%}
+<--->
 
-{% language name="Redis", type="python", url="https://examples.docs.platform.sh/python/redis" -%}
+---
+title=MongoDB
+file=static/files/fetch/examples/python/kafka
+highlight=python
+markdownify=false
+---
 
-{% language name="Solr", type="python", url="https://examples.docs.platform.sh/python/solr" -%}
+<--->
 
-{%- endcodetabs %}
+---
+title=MySQL
+file=static/files/fetch/examples/python/mysql
+highlight=python
+markdownify=false
+---
+
+<--->
+
+---
+title=PostgreSQL
+file=static/files/fetch/examples/python/postgresql
+highlight=python
+markdownify=false
+---
+
+<--->
+
+---
+title=RabbitMQ
+file=static/files/fetch/examples/python/rabbitmq
+highlight=python
+markdownify=false
+---
+
+<--->
+
+---
+title=Redis
+file=static/files/fetch/examples/python/redis
+highlight=python
+markdownify=false
+---
+
+<--->
+
+---
+title=Solr
+file=static/files/fetch/examples/python/solr
+highlight=python
+markdownify=false
+---
+
+{{< /tabtest >}}
+
 
 ## Project templates
 

@@ -2,6 +2,8 @@
 title: "Set your domain"
 weight: 4
 toc: false
+aliases:
+  - "/gettingstarted/going-live/set-domain.html"
 ---
 
 You will need to configure your registered domain on your Platform.sh project before going live, and you can do that either through the management console or by using the CLI.

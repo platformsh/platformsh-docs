@@ -1,7 +1,6 @@
 ---
 title: "Project configuration"
 weight: 1
-
 description: |
   You can access the project-wide configuration settings by selecting the project from your list of projects, then click the `Settings` tab at the top of the screen.
 ---
@@ -42,7 +41,7 @@ The `Domains` screen allows you to manage your domains that your project will be
 
 ![project domain](/images/management-console/settings-domains.png)
 
-More information on how to [setup your domain](/golive/steps/).
+More information on how to [setup your domain](/golive/steps.html).
 
 {{< note >}}
 Platform.sh expects an ASCII representation of the domain here. In case you want to use an internationalized domain name you can use the [conversion tool provided by Verisign](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-conversion-tool/index.xhtml) to convert your IDN domain to ASCII.
@@ -58,7 +57,7 @@ You can view current certificates by hovering over one on the list and clicking 
 
 ![add certs](/images/management-console/add-cert.png)
 
-All projects get TLS certificates provided by [Let's Encrypt](/configuration/routes/https/#lets-encrypt) automatically. In most cases no user action is required. You will only need to add certificates on this page if you are using TLS certificates provided by a third party.
+All projects get TLS certificates provided by [Let's Encrypt](/configuration/routes/https.md#lets-encrypt) automatically. In most cases no user action is required. You will only need to add certificates on this page if you are using TLS certificates provided by a third party.
 
 
 ## Deploy Key

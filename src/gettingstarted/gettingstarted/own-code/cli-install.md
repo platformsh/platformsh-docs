@@ -2,6 +2,8 @@
 title: "Install the CLI"
 weight: 3
 toc: false
+aliases:
+  - "/gettingstarted/own-code/cli-install.html"
 ---
 
 In the previous steps you checked that the requirements on your computer were met and configured an SSH key on your Platform.sh account. Now all we have to do is install the CLI and you can access your projects from the command line.

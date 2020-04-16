@@ -1,10 +1,12 @@
 ---
 title: "Node.js"
 weight: 5
-description: Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine.  Platform.sh supports deploying Node.js applications quickly and easily. Using our Multi-App support you can build a micro-service oriented system mixing both Javascript and PHP applications.
- 
+description: |
+  Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine.  Platform.sh supports deploying Node.js applications quickly and easily. Using our Multi-App support you can build a micro-service oriented system mixing both Javascript and PHP applications.
 layout: single
 ---
+
+{{< description >}}
 
 ## Supported versions
 
@@ -26,7 +28,7 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
 
 1. Specify the language of your application (available versions are listed above):
 
-    {% codesnippet "/registry/images/examples/full/nodejs.app.yaml", language="yaml" %}{% endcodesnippet %}
+    {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" >}}
 
 2. Specify your dependencies under the `nodejs` key, like this:
 
@@ -56,9 +58,9 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
    }
    ```
 
-   > **Note:**
-   >
-   > If using the `pm2` process manager to start your application, it is recommended that you do so directly in `web.commands.start` as described above, rather than by calling a separate script the contains that command. Calling `pm2 start` at `web.commands.start` from within a script, even with the `--no-daemon` flag, has been found to daemonize itself and block other processes (such as backups) with continuous respawns.
+   {{< note >}}
+  If using the `pm2` process manager to start your application, it is recommended that you do so directly in `web.commands.start` as described above, rather than by calling a separate script the contains that command. Calling `pm2 start` at `web.commands.start` from within a script, even with the `--no-daemon` flag, has been found to daemonize itself and block other processes (such as backups) with continuous respawns.
+   {{< /note >}}
 
 4. Create any Read/Write mounts. The root file system is read only. You must explicitly describe writable mounts. In (3) we set the home of the process manager to `/app/run` so this needs to be writable.
 
@@ -150,21 +152,63 @@ server.listen(config.port);
 
 To access various [services](/configuration/services/) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
 
-{% codetabs name="Elasticsearch", type="js", url="https://examples.docs.platform.sh/nodejs/elasticsearch" -%}
+{{< tabtest >}}
 
-{% language name="Memcached", type="js", url="https://examples.docs.platform.sh/nodejs/memcached" -%}
+---
+title=Elasticsearch
+file=static/files/fetch/examples/nodejs/elasticsearch
+highlight=js
+---
 
-{% language name="MongoDB", type="js", url="https://examples.docs.platform.sh/nodejs/mongodb" -%}
+<--->
 
-{% language name="MySQL", type="js", url="https://examples.docs.platform.sh/nodejs/mysql" -%}
+---
+title=Memcached
+file=static/files/fetch/examples/nodejs/memcached
+highlight=js
+---
 
-{% language name="PostgreSQL", type="js", url="https://examples.docs.platform.sh/nodejs/postgresql" -%}
+<--->
 
-{% language name="Redis", type="js", url="https://examples.docs.platform.sh/nodejs/redis" -%}
+---
+title=MongoDB
+file=static/files/fetch/examples/nodejs/mongodb
+highlight=js
+---
 
-{% language name="Solr", type="js", url="https://examples.docs.platform.sh/nodejs/solr" -%}
+<--->
 
-{%- endcodetabs %}
+---
+title=MySQL
+file=static/files/fetch/examples/nodejs/mysql
+highlight=js
+---
+
+<--->
+
+---
+title=PostgreSQL
+file=static/files/fetch/examples/nodejs/postgresql
+highlight=js
+---
+
+<--->
+
+---
+title=Redis
+file=static/files/fetch/examples/nodejs/redis
+highlight=js
+---
+
+<--->
+
+---
+title=Solr
+file=static/files/fetch/examples/nodejs/solr
+highlight=js
+---
+
+{{< /tabtest >}}
 
 ## Project templates
 

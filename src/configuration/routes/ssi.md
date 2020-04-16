@@ -1,6 +1,7 @@
 ---
 title: "Server Side Includes"
 weight: 4
+toc: false
 description: |
   Server side includes is a powerful mechanism by which you can at the same time leverage caching and serve dynamic content.
 ---

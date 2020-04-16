@@ -1,8 +1,6 @@
 ---
 title: "Redis (Object cache)"
 weight: 11
-
-description: "Redis is a high-performance in-memory object store, well-suited for application level caching.<br><br>See the <a href=\"https://redis.io/documentation\">Redis documentation</a> for more information.<br><br>Platform.sh supports two different Redis configurations: One persistent (useful for key-value application data) and one ephemeral (in-memory only, useful for application caching).  Aside from that distinction they are identical."
 sidebarTitle: "Redis"
 ---
 
@@ -76,32 +74,39 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabs "Java" "Nodejs" "PHP" "Python" >}}
+{{< tabtest >}}
 
-{{< tab id="Java" active="true" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/redis" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Java
+file=static/files/fetch/examples/java/redis
+highlight=java
+---
 
-{{< tab id="Nodejs" >}}
-{{< highlight js >}}
-{{< readFile file="static/files/fetch/examples/nodejs/redis" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="PHP">}}
-{{< highlight php >}}
-{{< readFile file="static/files/fetch/examples/php/redis" >}}{{< /highlight >}}
-{{< /tab >}}
+---
+title=Node.js
+file=static/files/fetch/examples/nodejs/redis
+highlight=js
+---
 
-{{< tab id="Python" >}}
-{{< highlight python >}}
-{{< readFile file="static/files/fetch/examples/python/redis" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< /tabs >}}
+---
+title=PHP
+file=static/files/fetch/examples/php/redis
+highlight=php
+---
+
+<--->
+
+---
+title=Python
+file=static/files/fetch/examples/python/redis
+highlight=python
+---
+
+{{< /tabtest >}}
 
 ## Multiple databases
 
@@ -149,7 +154,7 @@ and `services.yaml`
 
 {{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
 
-The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `applicationcache.internal` and `6379`. Open an [SSH session](/development/ssh/) and access the Redis server using the `redis-cli` tool as follows:
+The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `applicationcache.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
 
 ```bash
 redis-cli -h applicationcache.internal -p 6379

@@ -42,8 +42,8 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.access.add`: A new user has been given access to the environment.
 * `environment.access.remove`: A user has been removed from the environment.
 ---
-* `environment.backup`: A user triggered a [backup](/administration/backup-and-restore/)
-* `environment.restore`: A user restored a [backup](/administration/backup-and-restore/)
+* `environment.backup`: A user triggered a [backup](/administration/backup-and-restore.md)
+* `environment.restore`: A user restored a [backup](/administration/backup-and-restore.md)
 ---
 * `environment.push`: A user has pushed code to a branch, either existing or new.
 * `environment.branch`: A new branch has been created via the management console. (A branch created via a push will show up only as an `environment.push`.)
@@ -97,7 +97,7 @@ The Platform.sh user that triggered the activity.
 
 ### `deployment`
 
-This large block details all information about all services in the environment.  That includes the resulting configuration objects derived from [`routes.yaml`](/configuration/routes/), [`services.yaml`](/configuration/services/), and [`.platform.app.yaml`](/configuration/app-containers/).
+This large block details all information about all services in the environment.  That includes the resulting configuration objects derived from [`routes.yaml`](/configuration/routes.html), [`services.yaml`](/configuration/services.html), and [`.platform.app.yaml`](/configuration/app-containers.html).
 
 Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.  Note that some will be redirects.  To find those that are live URLs filter to those objects whose `type` property is `upstream`.
 
@@ -405,7 +405,7 @@ The following is an example of a webhook message.  Specifically, this one was cr
 
 ## Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/administration/integrations/#validating-integrations) command
+You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.html#validating-integrations) command
 
 ```bash
 platform integration:validate

@@ -1,9 +1,11 @@
 ---
 title: "Ruby"
 weight: 8
-description: Platform.sh supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
- 
+description: |
+  Platform.sh supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
 ---
+
+{{< description >}}
 
 ## Supported versions
 
@@ -19,7 +21,7 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
 
 1. Specify the language of your application (available versions are listed above):
 
-    {% codesnippet "/registry/images/examples/full/ruby.app.yaml", language="yaml" %}{% endcodesnippet %}
+    {{< readFile file="/registry/images/examples/full/ruby.app.yaml" highlight="yaml" >}}
 
 2. Build your application with the build hook.
 
@@ -31,7 +33,7 @@ hooks:
   deploy: RACK_ENV=production bundle exec rake db:migrate
 ```
 
-These are installed as your project dependencies in your environment. You can also use the `dependecies` key to install global dependecies theses can be Ruby, Python, NodeJS or PHP libraries.
+These are installed as your project dependencies in your environment. You can also use the `dependencies` key to install global dependencies theses can be Ruby, Python, NodeJS or PHP libraries.
 
 3. Configure the command you use to start serving your application (this must be a foreground-running process) under the `web` section, e.g.:
 
@@ -148,7 +150,7 @@ database:
 
 ## Connecting to services
 
-You can [define services](/configuration/services/) in your environment. And, link to the services using `.platform.app.yaml`:
+You can [define services](/configuration/services.md) in your environment. And, link to the services using `.platform.app.yaml`:
 
 ```yaml
 relationships:

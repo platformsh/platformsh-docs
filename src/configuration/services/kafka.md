@@ -34,23 +34,29 @@ In your ``.platform.app.yaml``:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabs "Java" "Python" "Ruby" >}}
+{{< tabtest >}}
 
-{{< tab id="Java" active="true" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/kafka" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Java
+file=static/files/fetch/examples/java/kafka
+highlight=java
+---
 
-{{< tab id="Python" >}}
-{{< highlight js >}}
-{{< readFile file="static/files/fetch/examples/python/kafka" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="Ruby" >}}
-{{< highlight ruby >}}
+---
+title=Python
+file=static/files/fetch/examples/python/kafka
+highlight=python
+---
 
+<--->
+
+---
+title=Ruby
+file=none
+highlight=ruby
+---
 ## With the ruby-kafka gem
 
 # Producer
@@ -62,9 +68,7 @@ kafka.deliver_message("Hello, World!", topic: "greetings")
 kafka.each_message(topic: "greetings") do |message|
   puts message.offset, message.key, message.value
 end
-{{< /highlight >}}
-{{< /tab >}}
 
-{{< /tabs >}}
+{{< /tabtest >}}
 
 (The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)

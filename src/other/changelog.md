@@ -5,8 +5,12 @@ description: |
   Look here for all the most recent additions to Platform.sh.
 ---
 
+{{< description >}}
+
 ## 2020
 
+* **April 2020**
+  * We now offer [Xdebug on PHP](/languages/php/xdebug.md) containers.
 * **March 2020**
   * Go 1.14: We now support [Go 1.14](/languages/go/).
   * Ruby 2.7: We now support [Ruby 2.7](/languages/ruby/).

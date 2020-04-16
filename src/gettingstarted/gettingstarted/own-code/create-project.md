@@ -2,6 +2,8 @@
 title: "Create a new project"
 weight: 4
 toc: false
+aliases:
+  - "/gettingstarted/own-code/create-project.html"
 ---
 
 With the Platform.sh CLI now installed and configured to communicate with your account, you can create a new project from the command line and connect it to your application.

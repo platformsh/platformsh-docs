@@ -4,6 +4,8 @@ sidebarTitle: "Install the CLI"
 actualTitleBreaksNavs: "Next Steps: Installing the Platform.sh CLI"
 weight: 5
 toc: false
+aliases:
+  - "/gettingstarted/template/cli-install.html"
 ---
 
 With all of the requirements met, install the CLI to start developing with Platform.sh.

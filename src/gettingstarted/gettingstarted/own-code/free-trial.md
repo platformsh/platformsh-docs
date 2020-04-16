@@ -2,6 +2,8 @@
 title: "Open a free trial account"
 weight: 1
 toc: false
+aliases:
+  - "/gettingstarted/own-code/free-trial.html"
 ---
 
 The best way to understand a tool is to use it. That's why Platform.sh offers a free one month trial.<br><br>

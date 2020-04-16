@@ -2,8 +2,10 @@
 title: "Lisp"
 weight: 4
 description: Platform.sh supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support.  They are compiled during the Build phase, and support both committed dependencies and download-on-demand.
- 
+
 ---
+
+{{< description >}}
 
 ## Supported versions
 
@@ -11,9 +13,7 @@ description: Platform.sh supports building and deploying applications written in
 
 To specify a Lisp container, use the `type` property in your `.platform.app.yaml`.
 
-{{< highlight yaml >}}
-{{< readFile file="src/registry/images/examples/full/lisp.app.yaml" >}}
-{{< /highlight >}}
+{{< readFile file="src/registry/images/examples/full/lisp.app.yaml" highlight="yaml">}}
 
 ## Assumptions
 
@@ -59,7 +59,7 @@ runtime:
 
 ## Platform.sh variables
 
-Platform.sh exposes relationships and other configuration as [environment variables](/development/variables/). Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services/).
+Platform.sh exposes relationships and other configuration as [environment variables](/development/variables.md). Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services.md).
 
 To get the `PORT` environment variable (the port on which your web application is supposed to listen) you would:
 

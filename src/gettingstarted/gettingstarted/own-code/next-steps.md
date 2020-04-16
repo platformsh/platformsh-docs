@@ -2,9 +2,11 @@
 title: "Next steps"
 weight: 11
 toc: false
+aliases:
+  - "/gettingstarted/own-code/next-steps.html"
 ---
 
-In this guide you created a project using the [CLI](/development/cli/) and configured your project to run on Platform.sh using a few simple configuration files.
+In this guide you created a project using the [CLI](/development/cli.html) and configured your project to run on Platform.sh using a few simple configuration files.
 
 Don't stop now! There are far more features that make Platform.sh profoundly helpful to developers that you have left to explore.
 

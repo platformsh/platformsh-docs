@@ -10,7 +10,7 @@ If you have never used Drush before, you can learn more about it on the [Drush G
 
 * Platform.sh's Drupal templates have Drush installed.
 * Drush commands can be run in build, deploy, and post_deploy hooks, although remember that as the database is not available at build time many Drush commands will not work at build time.
-* In addition, you can use the [Platform.sh CLI](/gettingstarted/cli.html) to set up Drush aliases easily for all of your project's environments. See the section below on [use drush aliases](#use-drush-aliases)
+* In addition, you can use the [Platform.sh CLI](/development/cli.html) to set up Drush aliases easily for all of your project's environments. See the section below on [use drush aliases](#use-drush-aliases)
 
 {{< note >}}
 Platform's CLI requires **Drush 6 or higher**.

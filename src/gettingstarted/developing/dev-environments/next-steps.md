@@ -2,9 +2,11 @@
 title: "Next steps"
 weight: 4
 toc: false
+aliases:
+  - "/gettingstarted/dev-environments/next-steps.html"
 ---
 
-In this guide you learned how to create and activate live feature environments, test them, and merge them into production safely using [backups](/administration/backup-and-restore/).
+In this guide you learned how to create and activate live feature environments, test them, and merge them into production safely using [backups](/administration/backup-and-restore.html).
 
 Don't stop now! There are many more features that make Platform.sh helpful to developers.
 

@@ -2,6 +2,8 @@
 title: "Build, Deploy, Done!"
 weight: 10
 toc: false
+aliases:
+  - "/gettingstarted/own-code/push-project.html"
 ---
 
 With your configuration files complete, all that's left is to commit the changes and push to Platform.sh.

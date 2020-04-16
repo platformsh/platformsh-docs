@@ -24,7 +24,9 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables/#platformsh-provided-variables):
 
-{{< remote url="https://examples.docs.platform.sh/relationships/elasticsearch" highlight="json" >}}
+{{< highlight json >}}
+{{< remote url="https://examples.docs.platform.sh/relationships/elasticsearch">}}
+{{< /highlight >}}
 
 ## Usage example
 
@@ -38,30 +40,39 @@ In your `.platform.app.yaml`:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabs "Java" "Nodejs" "PHP" "Python" >}}
+{{< tabtest >}}
 
-{{< tab id="Java" active="true" >}}
-{{< readFile file="static/files/fetch/examples/java/elasticsearch" highlight="java">}}
-{{< /tab >}}
+---
+title=Java
+file=static/files/fetch/examples/java/elasticsearch
+highlight=java
+---
 
-{{< tab id="Nodejs" >}}
-{{< highlight js >}}
-{{< readFile file="static/files/fetch/examples/nodejs/elasticsearch" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="PHP">}}
-{{< highlight php >}}
-{{< readFile file="static/files/fetch/examples/php/elasticsearch" >}}{{< /highlight >}}
-{{< /tab >}}
+---
+title=Nodejs
+file=static/files/fetch/examples/nodejs/elasticsearch
+highlight=js
+---
 
-{{< tab id="Python" >}}
-{{< highlight python >}}
-{{< readFile file="static/files/fetch/examples/python/elasticsearch" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< /tabs >}}
+---
+title=PHP
+file=static/files/fetch/examples/php/elasticsearch
+highlight=php
+---
+
+<--->
+
+---
+title=Python
+file=static/files/fetch/examples/python/elasticsearch
+highlight=python
+---
+
+{{< /tabtest >}}
 
 {{< note >}}
 When you create an index on Elasticsearch, you should not specify `number_of_shards` and `number_of_replicas` settings in your Elasticsearch API call. These values will be set automatically based on available resources.

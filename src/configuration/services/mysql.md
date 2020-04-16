@@ -30,7 +30,7 @@ The following versions are available but are not receiving security updates from
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables/#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.html#platformsh-provided-variables):
 
 {{< highlight json >}}
 {{< remote url="https://examples.docs.platform.sh/relationships/mysql" >}}
@@ -64,38 +64,48 @@ The same goes for using the `oracle-mysql` service type as well.
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabs "Go" "Java" "Nodejs" "PHP" "Python" >}}
 
-{{< tab id="Go" active="true" >}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/mysql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+{{< tabtest >}}
 
-{{< tab id="Java" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/mysql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Go
+file=static/files/fetch/examples/golang/mysql
+highlight=go
+---
 
-{{< tab id="Nodejs" >}}
-{{< highlight js >}}
-{{< readFile file="static/files/fetch/examples/nodejs/mysql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="PHP">}}
-{{< highlight php >}}
-{{< readFile file="static/files/fetch/examples/php/mysql" >}}{{< /highlight >}}
-{{< /tab >}}
+---
+title=Java
+file=static/files/fetch/examples/java/mysql
+highlight=java
+---
 
-{{< tab id="Python" >}}
-{{< highlight python >}}
-{{< readFile file="static/files/fetch/examples/python/mysql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< /tabs >}}
+---
+title=Node.js
+file=static/files/fetch/examples/nodejs/mysql
+highlight=js
+---
+
+<--->
+
+---
+title=PHP
+file=static/files/fetch/examples/php/mysql
+highlight=php
+---
+
+<--->
+
+---
+title=Python
+file=static/files/fetch/examples/python/mysql
+highlight=python
+---
+
+{{< /tabtest >}}
 
 {{< note >}}
 MySQL schema names can not use system reserved namespace. (mysql, information_schema, etc)
@@ -185,7 +195,7 @@ The above code will increase the maximum allowed packet size (the size of a quer
 
 ## Access your MariaDB service
 
-Assuming your MariaDB relationship is named `database`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `database.internal` and `3306`. Open an [SSH session](/development/ssh/) and run the MySQL command line client.
+Assuming your MariaDB relationship is named `database`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `database.internal` and `3306`. Open an [SSH session](/development/ssh.md) and run the MySQL command line client.
 
 ```bash
 mysql -h database.internal -P 3306 -u user main
@@ -240,6 +250,6 @@ Taking a backup or a database export before doing so is strongly recommended.
 
 ## Troubleshooting
 
-* [MySQL lock wait timeout](/development/troubleshoot/#mysql-lock-wait-timeout)
-* [definer/invoker of view lack rights to use them](/development/troubleshoot/#mysql-definerinvoker-of-view-lack-rights-to-use-them)
+* [MySQL lock wait timeout](/development/troubleshoot.html#mysql-lock-wait-timeout)
+* [definer/invoker of view lack rights to use them](/development/troubleshoot.html#mysql-definerinvoker-of-view-lack-rights-to-use-them)
 * [MySQL server has gone away](/development/troubleshoot.html#mysql-server-has-gone-away)

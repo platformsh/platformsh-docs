@@ -2,9 +2,11 @@
 title: "Build, Deploy, Done!"
 weight: 3
 toc: false
+aliases:
+  - "/gettingstarted/template/check-status.html"
 ---
 
-Once you have configured the template application in the previous step, Platform.sh will build your project for you. If you created a blank project, be sure to [set up your SSH keys](/development/ssh/) before trying to upload your files.
+Once you have configured the template application in the previous step, Platform.sh will build your project for you. If you created a blank project, be sure to [set up your SSH keys](/development/ssh.md) before trying to upload your files.
 
 {{< video src="videos/management-console/check-status.mp4" >}}
 
@@ -39,6 +41,6 @@ Once you have configured the template application in the previous step, Platform
 
 In these few steps you created a free trial account, configured a template application on a project and deployed it using the management console entirely from your browser.
 
-Using the [Platform.sh CLI](/development/cli/), however, you get even more control over your project configurations, including the ability to migrate your own applications to Platform.sh. Move onto the next step to install it.
+Using the [Platform.sh CLI](/development/cli.html), however, you get even more control over your project configurations, including the ability to migrate your own applications to Platform.sh. Move onto the next step to install it.
 
 {{< guide-buttons next="I've deployed a template application" >}}

@@ -10,7 +10,7 @@ description: |
 
 ![Management Console](/images/management-console/project.png)
 
-Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)](/development/cli/).
+Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)](/development/cli.html).
 
 ## Environment List
 
@@ -80,7 +80,7 @@ These options are provided in a separate dialog box that will appear when you cl
 
 ![sync confirmation cli](/images/management-console/header-sync-box.png "0.4")
 
-Be aware that sync uses the [Backup](https://docs.platform.sh/administration/backup-and-restore.html#backups-and-downtime) mechanism and will have the same caveats.
+Be aware that sync uses the [Backup](/administration/backup-and-restore.html#backups-and-downtime) mechanism and will have the same caveats.
 
 Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded.
 

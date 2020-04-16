@@ -44,38 +44,47 @@ runtime:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabs "Go" "Java" "Nodejs" "PHP" "Python" >}}
+{{< tabtest >}}
 
-{{< tab id="Go" active="true" >}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/mongodb" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Go
+file=static/files/fetch/examples/golang/mongodb
+highlight=go
+---
 
-{{< tab id="Java" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/mongodb" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="Nodejs" >}}
-{{< highlight js >}}
-{{< readFile file="static/files/fetch/examples/nodejs/mongodb" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Java
+file=static/files/fetch/examples/java/mongodb
+highlight=java
+---
 
-{{< tab id="PHP">}}
-{{< highlight php >}}
-{{< readFile file="static/files/fetch/examples/php/mongodb" >}}{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="Python" >}}
-{{< highlight python >}}
-{{< readFile file="static/files/fetch/examples/python/mongodb" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Node.js
+file=static/files/fetch/examples/nodejs/mongodb
+highlight=js
+---
 
-{{< /tabs >}}
+<--->
+
+---
+title=PHP
+file=static/files/fetch/examples/php/mongodb
+highlight=php
+---
+
+<--->
+
+---
+title=Python
+file=static/files/fetch/examples/python/mongodb
+highlight=python
+---
+
+{{< /tabtest >}}
 
 ## Exporting data
 

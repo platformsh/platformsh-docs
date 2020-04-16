@@ -25,7 +25,7 @@ Notifications are generated every 5 minutes, so there may be a brief delay betwe
 
 ## Configuring notifications
 
-Health notifications can be set up via the [Platform.sh CLI](/gettingstarted/cli.html), through a number of different channels.
+Health notifications can be set up via the [Platform.sh CLI](/development/cli.html), through a number of different channels.
 
 ### Email notifications
 
@@ -123,7 +123,7 @@ Please refer to the [JOSE Cookbook](https://github.com/ietf-jose/cookbook) for e
 
 ## Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/administration/integrations/#validating-integrations) command
+You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.html#validating-integrations) command
 
 ```bash
 $ platform integration:validate

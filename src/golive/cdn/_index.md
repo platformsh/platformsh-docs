@@ -6,9 +6,9 @@ layout: single
 
 Platform.sh Enterprise plans (both Grid and Dedicated) include a Fastly CDN account by default, which will be managed by Platform.sh.  Our experience has shown that effective caching can mean a huge difference in the perceived performance of an application by its users, and that placing the caches closer to your users (wherever they may be) is the best solution currently available.
 
-Self-Service Grid plans do not include a CDN by default, but you are welcome to configure one yourself.  See our [guidelines](/bestpractices/http-caching/) for when and if to use a CDN for HTTP caching.
+Self-Service Grid plans do not include a CDN by default, but you are welcome to configure one yourself.  See our [guidelines](/bestpractices/http-caching.md) for when and if to use a CDN for HTTP caching.
 
-We have partnerships with a variety of CDN vendors depending on your application’s needs.  Our recommended CDN provider is [Fastly](/golive/cdn/fastly/).
+We have partnerships with a variety of CDN vendors depending on your application’s needs.  Our recommended CDN provider is [Fastly](/golive/cdn/fastly.md).
 
 ## DNS management
 
@@ -56,3 +56,71 @@ When using a CDN the Platform.sh router's HTTP cache becomes redundant.  In most
         # Disable the HTTP cache on this route. It will be handled by the CDN instead.
         enabled: false
 ```
+
+## Preventing direct access
+
+When using a CDN, you might not want users to access your Platform.sh origin directly. There are three ways to secure your origin.
+
+### Password protected HTTP Authentication
+
+You can password protect your project using [HTTP access control](/administration/web/configure-environment.html#http-access-control).
+
+Make sure that you generate a password of sufficient strength. You can then share the password with your CDN provider. Make sure the CDN adds a header to authenticate correctly to your origin.
+
+Add a custom header to the origin request with the base64 encoded username:password.
+
+For example: `Aladdin:OpenSesame` would become `Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l`.
+
+Be aware that this approach will apply the same user and password to all development environments, too.  You can have developers enter credentials through their browser, or override the access control setting for each child environment.
+
+{{< note >}}
+This is the recommended approach for CloudFlare.
+{{< /note >}}
+
+### IP whitelisting
+
+If your CDN does not support adding headers to the request to origin, you can allow the IP addresses of your CDN.
+
+{{< note >}}
+You *WILL* have to update your configuration when your CDN updates their IP addresses.
+{{< /note >}}
+
+List of IP ranges for:
+
+- [CloudFlare](https://www.cloudflare.com/ips/)
+- [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges)
+
+Be aware that this approach will apply the same IP restrictions to all development environments, too.  To remove it from development environments, you will need to disable it on each environment or else create a single child of `master` where it is disabled, and them make all development branches off of that environment.
+
+### Client authenticated TLS
+
+If your CDN offers this option, an alternative way of securing the connection is [client authenticated TLS](/configuration/routes/https.html#client-authenticated-tls).
+
+{{< note >}}
+Please remember to permit your developers to access the origin by creating your own certificate or else they won't be able to access the project url directly. (see below)
+{{< /note >}}
+
+CloudFlare has [a very good article](https://support.cloudflare.com/hc/en-us/articles/204899617-Authenticated-Origin-Pulls) on what client authenticated TLS is, and how to set this up.
+
+To activate authenticated TLS follow the following steps:
+
+- Download the correct certificate from your CDN provider.
+     - [CloudFlare](https://support.cloudflare.com/hc/en-us/article_attachments/360044928032/origin-pull-ca.pem)
+         - *Caveat! an attacker could make a Cloudflare account to bypass your origin restriction. For CloudFlare, using the HTTP access control described above is the recommended way of securing your origin.*
+     - [Fastly](https://docs.fastly.com/products/waf-tuning-plus-package#authenticated-tls-to-origin)
+- Make sure you have a `.crt` file. If you have have `.pem` file, simply rename it to `cdn.crt`
+- Add the `cdn.crt` to your git repository
+- Add the relevant configuration to your `.platform.app.yaml` file
+
+```text
+tls:
+    client_authentication: "require"
+    client_certificate_authorities:
+        - !include
+            type: string
+            path: cdn.crt
+```
+
+{{< note >}}
+The steps above are generally similar but can vary for different CDN providers. Contact your CDN provider's support department for specific assistance.
+{{< /note >}}

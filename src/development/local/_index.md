@@ -9,7 +9,7 @@ layout: single
 
 {{< description >}}
 
-You must have an [SSH key](/development/tools/#ssh) already configured on your account, and have both [Git](/development/tools/#git) and the [Platform.sh CLI](/development/cli/) installed before continuing.
+You must have an [SSH key](/development/tools.html#ssh) already configured on your account, and have both [Git](/development/tools.html#git) and the [Platform.sh CLI](/development/cli.html) installed before continuing.
 
 ## Download the code
 

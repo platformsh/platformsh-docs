@@ -18,7 +18,7 @@ Both Memcached and Redis can be used for application caching.  As a general rule
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables/#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.html#platformsh-provided-variables):
 
 {{< highlight json >}}
 {{< remote url="https://examples.docs.platform.sh/relationships/memcached" >}}
@@ -52,43 +52,51 @@ dependencies:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabs "Go" "Java" "Nodejs" "PHP" "Python" >}}
+{{< tabtest >}}
 
-{{< tab id="Go" active="true" >}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/memcached" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Go
+file=static/files/fetch/examples/golang/memcached
+highlight=go
+---
 
-{{< tab id="Java" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/memcached" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="Nodejs" >}}
-{{< highlight js >}}
-{{< readFile file="static/files/fetch/examples/nodejs/memcached" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Java
+file=static/files/fetch/examples/java/memcached
+highlight=java
+---
 
-{{< tab id="PHP" >}}
-{{< highlight php >}}
-{{< readFile file="static/files/fetch/examples/php/memcached" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="Python" >}}
-{{< highlight python >}}
-{{< readFile file="static/files/fetch/examples/python/memcached" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Node.js
+file=static/files/fetch/examples/nodejs/memcached
+highlight=js
+---
 
-{{< /tabs >}}
+<--->
+
+---
+title=PHP
+file=static/files/fetch/examples/php/memcached
+highlight=php
+---
+
+<--->
+
+---
+title=PHP
+file=static/files/fetch/examples/python/memcached
+highlight=python
+---
+
+{{< /tabtest >}}
 
 ## Accessing Memcached directly
 
-To access the Memcached service directly you can simply use `netcat` as Memcached does not have a dedicated client tool.  Assuming your Memcached relationship is named `cache`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh/) and access the Memcached server as follows:
+To access the Memcached service directly you can simply use `netcat` as Memcached does not have a dedicated client tool.  Assuming your Memcached relationship is named `cache`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh.md) and access the Memcached server as follows:
 
 ```bash
 netcat cache.internal 11211

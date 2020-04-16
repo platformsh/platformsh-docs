@@ -20,7 +20,7 @@ The following versions are available but are not receiving security updates from
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables/#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.html#platformsh-provided-variables):
 
 {{< highlight json >}}
 {{< remote url="https://examples.docs.platform.sh/relationships/postgresql" >}}
@@ -46,38 +46,47 @@ runtime:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabs "Go" "Java" "Nodejs" "PHP" "Python" >}}
+{{< tabtest >}}
 
-{{< tab id="Go" active="true" >}}
-{{< highlight go >}}
-{{< readFile file="static/files/fetch/examples/golang/postgresql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Go
+file=static/files/fetch/examples/golang/postgresql
+highlight=go
+---
 
-{{< tab id="Java" >}}
-{{< highlight java >}}
-{{< readFile file="static/files/fetch/examples/java/postgresql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="Nodejs" >}}
-{{< highlight js >}}
-{{< readFile file="static/files/fetch/examples/nodejs/postgresql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Java
+file=static/files/fetch/examples/java/postgresql
+highlight=java
+---
 
-{{< tab id="PHP">}}
-{{< highlight php >}}
-{{< readFile file="static/files/fetch/examples/php/postgresql" >}}{{< /highlight >}}
-{{< /tab >}}
+<--->
 
-{{< tab id="Python" >}}
-{{< highlight python >}}
-{{< readFile file="static/files/fetch/examples/python/postgresql" >}}
-{{< /highlight >}}
-{{< /tab >}}
+---
+title=Node.js
+file=static/files/fetch/examples/nodejs/postgresql
+highlight=js
+---
 
-{{< /tabs >}}
+<--->
+
+---
+title=PHP
+file=static/files/fetch/examples/php/postgresql
+highlight=php
+---
+
+<--->
+
+---
+title=Python
+file=static/files/fetch/examples/python/postgresql
+highlight=python
+---
+
+{{< /tabtest >}}
 
 ## Exporting data
 

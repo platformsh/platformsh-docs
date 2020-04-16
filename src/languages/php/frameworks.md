@@ -1,16 +1,17 @@
 ---
 title: "Frameworks"
 weight: 2
- 
-description: "Full Drush support and Composer-based builds make handling dependencies and builds for PHP frameworks as simple as committing your <code>composer.json</code> to your project."
 ---
+
+Full Drush support and Composer-based builds make handling dependencies and builds for PHP frameworks as simple as committing your `composer.json` to your project.
+
 
 ## Drupal
 
-[Drupal](https://www.drupal.org/) is an open-source content management framework written in PHP. Since Composer comes pre-installed on Platform.sh, Drupal can be installed and updated completely using Composer. The default [build flavor](/overview/build-deploy/#building-the-application) for PHP application runs `composer install` during build, handling all of your dependencies automatically.
+[Drupal](https://www.drupal.org/) is an open-source content management framework written in PHP. Since Composer comes pre-installed on Platform.sh, Drupal can be installed and updated completely using Composer. The default [build flavor](/overview/build-deploy.md#building-the-application) for PHP application runs `composer install` during build, handling all of your dependencies automatically.
 
-* [Drupal 7 Best Practices](/frameworks/drupal7/)
-* [Drupal 8 Best Practices](/frameworks/drupal8/)
+* [Drupal 7 Best Practices](/frameworks/drupal7.md)
+* [Drupal 8 Best Practices](/frameworks/drupal8.md)
 
 ### Community Support
 
@@ -31,12 +32,13 @@ Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](
 
 [eZ Platform](https://ezplatform.com/) is a CMS based on the Symfony full-stack framework. eZ Platform comes pre-configured for use with Platform.sh for versions 1.13 and later, all it takes is mapping a few environment variables to an existing project. Consult the caching, configuration, and local development best practices for eZ Platform and Fastly integration for more information.
 
-* [eZ Platform Best Practices](/frameworks/ez/)
+* [eZ Platform Best Practices](/frameworks/ez.md)
 
 ### Example Projects
 
-> **Note:**
-> Template projects (repositories in the `platformsh-templates` GitHub organization) are actively maintained by the Platform.sh team. Any other example projects come with less support, and remain in public repositories as proof-of-concepts.
+{{< note >}}
+Template projects (repositories in the `platformsh-templates` GitHub organization) are actively maintained by the Platform.sh team. Any other example projects come with less support, and remain in public repositories as proof-of-concepts.
+{{< /note >}}
 
 * [eZ Platform](https://github.com/ezsystems/ezplatform)
 
@@ -44,7 +46,7 @@ Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](
 
 [Symfony](https://symfony.com/) is a web application framework written in PHP. Like Drupal, Symfony projects can utilize native Composer to build applications and manage dependencies.
 
-* [Symfony Best Practices](/frameworks/symfony/)
+* [Symfony Best Practices](/frameworks/symfony.md)
 
 ### Community Support
 
@@ -62,12 +64,13 @@ Symfony FAQs, how-to guides and other tutorials right on [Platform.sh Community]
 
 [TYPO3](https://typo3.org/) is an open-source CMS written in PHP. Utilized Platform.sh native Composer to handle builds and maintain dependencies.
 
-* [TYPO3 Best Practices](/frameworks/typo3/)
+* [TYPO3 Best Practices](/frameworks/typo3.md)
 
 ### Example Projects
 
-> **Note:**
-> Template projects (repositories in the `platformsh-templates` GitHub organization) are actively maintained by the Platform.sh team. Any other example projects come with less support, and remain in public repositories as proof-of-concepts.
+{{< note >}}
+Template projects (repositories in the `platformsh-templates` GitHub organization) are actively maintained by the Platform.sh team. Any other example projects come with less support, and remain in public repositories as proof-of-concepts.
+{{< /note >}}
 
 * [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
 
@@ -75,7 +78,7 @@ Symfony FAQs, how-to guides and other tutorials right on [Platform.sh Community]
 
 [Wordpress](https://wordpress.com/) is a PHP content management system. Platform.sh recommends using the composer-based installation method for Wordpress.
 
-* [Wordpress Best Practices](/frameworks/wordpress/)
+* [Wordpress Best Practices](/frameworks/wordpress.md)
 
 ### Community Support
 
