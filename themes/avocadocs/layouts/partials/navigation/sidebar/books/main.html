@@ -25,12 +25,13 @@
     <ul class="duik-sidebar__nav">
 
     <!-- Add the homepage as the first entry of the first section -->
-    {{ if eq .Site.Params.home.section .Section }}
+
+    {{ if eq "overview" .Section }}
 
       <!-- FIRST LEVEL ITEM -->
       <li class="duik-sidebar__item">
         <a href="/" class="duik-sidebar__link{{ if $currentPage.IsHome }} active{{ end }}">
-            {{ .Site.Params.home.title }}
+            {{ .Site.Home.Title }}
         </a>
       </li>
 

@@ -934,9 +934,22 @@ hr {
   color: #ffffff;
 }
 
+.nav-link-top {
+  display: block;
+  padding: .25rem .5rem;
+  font-size: 22px;
+  line-height: 40px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.nav-link-top:hover {
+  color: #ffffff;
+}
+
 /* Underline active books */
 
-.nav-link > .active-book {
+.nav-link-top > .active-book {
   border-bottom: .1rem solid #ffffff;
 }
 
