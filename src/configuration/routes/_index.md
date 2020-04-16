@@ -58,7 +58,7 @@ If your `routes.yaml` file would result in too large of a route information valu
 
 The full list of generated route information is often much larger than what is literally specified in the `routes.yaml` file.  For example, by default all HTTPS routes will be duplicated to create an HTTP redirect route.  Also, the `{all}` placeholder will create two routes (one HTTP, one HTTPS) for each domain that is configured.
 
-As a general rule we recommend keeping the defined routes under 100.  Should you find your `routes.yaml` file rejected due to an excessive size the best alternative is to move any redirect routes to the application rather than relying on the router, or collapsing them into a [regular expression-based redirect](/configuration/routes/redirects.md#partial-redirects) within a route definition.
+As a general rule we recommend keeping the defined routes under 100.  Should you find your `routes.yaml` file rejected due to an excessive size the best alternative is to move any redirect routes to the application rather than relying on the router, or collapsing them into a [regular expression-based redirect](/configuration/routes/redirects/#partial-redirects) within a route definition.
 
 Let's Encrypt also limits an environment to 100 configured domains.  If you try to add more than that some of them will fail to get an SSL certificate.
 
@@ -75,7 +75,7 @@ Here is an example of a basic `.platform/routes.yaml` file:
   to: "https://{default}/"
 ```
 
-In this example, we will route both the apex domain and the www subdomain to an [application called "app"](/configuration/app/name.md), the www subdomain being redirected to the apex domain using an HTTP 301 `Moved Permanently` response.
+In this example, we will route both the apex domain and the www subdomain to an [application called "app"](/configuration/app/name/), the www subdomain being redirected to the apex domain using an HTTP 301 `Moved Permanently` response.
 
 In the following example, we are not redirecting from the www subdomain to the apex domain but serving from both:
 
@@ -117,7 +117,7 @@ https://www.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platformsh.site/
 https://blog.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platformsh.site/
 ```
 
-If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generally best to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains then you will need to use a static domain for all but one of them.
+If your project involves only a single apex domain with one app or multiple apps under subdomains, it's generally best to use the `{default}` placeholder.  If you are running [multiple applications](/configuration/app/multi-app/) on different apex domains then you will need to use a static domain for all but one of them.
 
 Please note that when there are two routes sharing the same HTTP scheme, domain, and path, where the first route is using the `{default}` placeholder and the other is using the `{all}` placeholder, the route using `{default}` takes precedence.
 
@@ -249,13 +249,13 @@ If you need to see more detailed info, such as cache and ssi, use `platform rout
 
 Platform.sh supports wildcard routes, so you can map multiple subdomains to the same application. This works both for redirect and upstream routes. You can simply prefix the route with a star (`*`), for example `*.example.com`, and HTTP request to `www.example.com`, `blog.example.com`, `us.example.com` will all get routed to the same endpoint.
 
-For your master environment, this would function as a catch-all domain once you [added the parent domain](/administration/web/configure-project.md#domains) to the project settings.
+For your master environment, this would function as a catch-all domain once you [added the parent domain](/administration/web/configure-project/#domains) to the project settings.
 
 For development environments, we will also be able to handle this. Here is how:
 
 Let's say we have a project on the EU cluster whose ID is "vmwklxcpbi6zq" and we created a branch called "add-theme". It's environment name will be similar to `add-theme-def123`.  The generated apex domain of this environment will be `add-theme-def123-vmwklxcpbi6zq.eu.platform.sh`. If we have a `http://*.{default}/` route defined, the generated route will be `http://*.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/`. This means you could put any subdomain before the left-most `.` to reach your application. HTTP request to both `http://foo.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` and `http://bar.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` URLs will be routed to your application properly. However, request to `http://*.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` will not be routed since it is not a legitimate domain name.
 
-Be aware, however, that we do not support Let's Encrypt wildcard certificates (they would need DNS validation).  That means if you want to use a wildcard route and protect it with HTTPS you will need to provide a [custom TLS certificate](/golive/steps/tls.md).
+Be aware, however, that we do not support Let's Encrypt wildcard certificates (they would need DNS validation).  That means if you want to use a wildcard route and protect it with HTTPS you will need to provide a [custom TLS certificate](/golive/steps/tls/).
 
 {{< note >}}
 In projects created before November 2017 the `.` in subdomains was replaced with a triple dash (`---`).  It was switched to preserve `.` to simplify SSL handling and improve support for longer domains.  If your project was created before November 2017 then it will still use `---` to the left of the environment name.  If you wish to switch to dotted-domains please file a support ticket and we can do that for you.  Be aware that doing so may change the domain name that your production domain name should CNAME to.

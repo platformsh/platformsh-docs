@@ -35,7 +35,7 @@ The machine user can be given a very restrictive set of permissions limited to j
 
 It will also show up in logs and activity streams as a separate entry from human users.
 
-Consult the [Users](/administration/users.md) documentation for more information about the differences between access levels.
+Consult the [Users](/administration/users/) documentation for more information about the differences between access levels.
 
 ## Install the CLI on a Platform.sh environment
 

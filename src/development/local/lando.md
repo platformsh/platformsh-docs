@@ -44,4 +44,4 @@ platform db:dump --gzip -f database.sql.gz
 lando db-import database.sql.gz
 ```
 
-Rsync can download user files easily and efficiently.  See the [exporting tutorial](/tutorials/exporting.md) for information on how to use rsync.
+Rsync can download user files easily and efficiently.  See the [exporting tutorial](/tutorials/exporting/) for information on how to use rsync.

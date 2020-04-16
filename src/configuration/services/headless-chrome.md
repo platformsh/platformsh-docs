@@ -17,7 +17,7 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables/#platformsh-provided-variables):
 
 ```yaml
 {

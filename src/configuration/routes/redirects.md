@@ -11,7 +11,7 @@ You can manage redirection rules on your Platform.sh projects in two different w
 
 ## Whole-route redirects
 
-Using whole-route redirects, you can define very basic routes in your [`.platform/routes.yaml`](/configuration/routes.md) file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.` prefix to your domain, as the following example shows:
+Using whole-route redirects, you can define very basic routes in your [`.platform/routes.yaml`](/configuration/routes/) file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.` prefix to your domain, as the following example shows:
 
 ```yaml
 https://{default}/:
@@ -21,7 +21,7 @@ https://{default}/:
 
 ## Partial redirects
 
-In the [`.platform/routes.yaml`](/configuration/routes.md) file you can also add partial redirect rules to existing routes:
+In the [`.platform/routes.yaml`](/configuration/routes/) file you can also add partial redirect rules to existing routes:
 
 ```yaml
 https://{default}/:

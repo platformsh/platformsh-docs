@@ -4,7 +4,7 @@ weight: 5
 toc: false
 ---
 
-In this guide you created a project using the [management console](/administration/web.md) and installed the [Platform.sh CLI](/development/cli.md). Now you can explore some of the next steps for working with Platform.sh.
+In this guide you created a project using the [management console](/administration/web/) and installed the [Platform.sh CLI](/development/cli/). Now you can explore some of the next steps for working with Platform.sh.
 
 ## Import your own code
 

@@ -5,7 +5,7 @@ weight: 8
 
 # Using Solr with the module Apache Solr Search on Drupal 7.x
 
-This page is about configuring Solr with the module [Apache Solr Search](https://www.drupal.org/project/apachesolr). If your project uses [Search API](https://www.drupal.org/project/search_api) then you should follow the instructions [Search API](search-api-module.md).
+This page is about configuring Solr with the module [Apache Solr Search](https://www.drupal.org/project/apachesolr). If your project uses [Search API](https://www.drupal.org/project/search_api) then you should follow the instructions [Search API](search-api-module/).
 
 ## Requirements
 You will need the module  [Apache Solr Search](https://www.drupal.org/project/apachesolr)

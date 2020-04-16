@@ -9,7 +9,7 @@ layout: single
 
 {{< description >}}
 
-You must have an [SSH key](/development/tools.md#ssh) already configured on your account, and have both [Git](/development/tools.md#git) and the [Platform.sh CLI](/development/cli.md) installed before continuing.
+You must have an [SSH key](/development/tools/#ssh) already configured on your account, and have both [Git](/development/tools/#git) and the [Platform.sh CLI](/development/cli/) installed before continuing.
 
 ## Download the code
 
@@ -68,8 +68,8 @@ If that is undesireable, a local virtual machine will let you create an enclosed
 
 ## Running the code
 
-Platform.sh supports whatever local development environment you wish to use.  There is no dependency on any particular tool so if you already have a local development workflow you're comfortable with you can keep using it without changes.  That's the "[untethered](/development/local/untethered.md)" option.
+Platform.sh supports whatever local development environment you wish to use.  There is no dependency on any particular tool so if you already have a local development workflow you're comfortable with you can keep using it without changes.  That's the "[untethered](/development/local/untethered/)" option.
 
-For quick changes, you can also run your code locally but use the services hosted on Platform.sh.  That is, your site is "[tethered](/development/local/tethered.md)" to Platform.sh.  While this approach requires installing less on your system it can be quite slow as all communication with the database or cache server will need to travel from your computer to Platform.sh's servers.
+For quick changes, you can also run your code locally but use the services hosted on Platform.sh.  That is, your site is "[tethered](/development/local/tethered/)" to Platform.sh.  While this approach requires installing less on your system it can be quite slow as all communication with the database or cache server will need to travel from your computer to Platform.sh's servers.
 
-Specific documentation is also available for the local development tools [Lando](/development/local/lando.md) and [Docksal](/development/local/docksal.md), which support most applications that Platform.sh supports.
+Specific documentation is also available for the local development tools [Lando](/development/local/lando/) and [Docksal](/development/local/docksal/), which support most applications that Platform.sh supports.

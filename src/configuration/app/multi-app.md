@@ -238,7 +238,7 @@ The `commondb` comes from the name we put in `services.yaml`.
 
 The `:postgresql` suffix, which is required, is there because in the future
 Platform.sh will support multiple endpoints per service (for services that
-support multiple protocols).  See the [Services](/configuration/services.md) section.
+support multiple protocols).  See the [Services](/configuration/services/) section.
 
 {{< note >}}
 The name `database` is freely chosen by us and will be exposed in the environment variable `PLATFORM_RELATIONSHIPS` of the application (it can be different between the different application of the same project).

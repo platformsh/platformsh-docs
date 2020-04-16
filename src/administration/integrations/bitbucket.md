@@ -93,7 +93,7 @@ Optional parameters:
 
 ## Validate the integration
 
-In both cases, you can verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
+In both cases, you can verify that your integration is functioning properly [using the CLI](/administration/integrations/#validating-integrations) command
 
 ```bash
 platform integration:validate

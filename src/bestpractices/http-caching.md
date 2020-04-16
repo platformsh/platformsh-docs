@@ -7,7 +7,7 @@ description: |
 
 {{< description >}}
 
-* **The Platform.sh [Router cache](/configuration/routes/cache.md)**.  Every project includes a router instance, which includes optional HTTP caching.  It is reasonably configurable and obeys HTTP cache directives, but does not support push-based clearing.  If you are uncertain what caching tool to use, start with this one.  It is more than sufficient for the majority of use cases.
+* **The Platform.sh [Router cache](/configuration/routes/cache/)**.  Every project includes a router instance, which includes optional HTTP caching.  It is reasonably configurable and obeys HTTP cache directives, but does not support push-based clearing.  If you are uncertain what caching tool to use, start with this one.  It is more than sufficient for the majority of use cases.
 
 * **A Content Delivery Network (CDN)**.  Platform.sh is compatible with most commercial CDNs.  If your Platform.sh Enterprise project has a Dedicated production environment it will typically come with the [Fastly CDN](/golive/steps/fastly.html).  A CDN will generally offer the best performance as it is the only option that includes multiple geographic locations, but it also tends to be the most expensive.  Functionality will vary widely depending on the CDN.  Setup instructions for Fastly and [Cloudflare](/golive/steps/cloudflare.html) are available, and will be similar for most other CDNs.
 

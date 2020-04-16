@@ -64,7 +64,7 @@ That will run a `mysqldump` command on the server, compress it using gzip, and s
 
 To transfer data into either the staging or production environments, you can either download it from your Platform.sh Development environment to your local system first or transfer it directly between environments using SSH based tools (e.g. SCP, Rsync).
 
-First, set up [SSH forwarding](/dedicated/support/ssh-agent.md#forwarding-keys-by-default) by default for Platform.sh domains.
+First, set up [SSH forwarding](/dedicated/support/ssh-agent/#forwarding-keys-by-default) by default for Platform.sh domains.
 
 Then run `platform ssh` with the `master` branch checked out to connect to the master dev environment.  Files are the easier data to transfer, and can be done with `rsync`.
 

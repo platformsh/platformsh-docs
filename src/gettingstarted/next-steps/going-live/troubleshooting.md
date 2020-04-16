@@ -12,14 +12,14 @@ As mentioned before, it may take a little time for the DNS to fully propagate, d
 
 If through the following steps your project did not successfully configure to your domain, you can consult the Troubleshooting guide here:
 
-* [Going Live: Troubleshooting](/golive/troubleshoot.md)
+* [Going Live: Troubleshooting](/golive/troubleshoot/)
 
 Consider using the Fastly CDN for increased performance and more control over caching:
 
-* [Going Live: Fastly](/golive/steps/fastly.md)
+* [Going Live: Fastly](/golive/steps/fastly/)
 
 Consider using Cloudflare's TLS/SSL service to secure your site via HTTPS when using a CDN:
 
-* [Going Live: Cloudflare](/golive/steps/cloudflare.md)
+* [Going Live: Cloudflare](/golive/steps/cloudflare/)
 
 {{< guide-buttons type="last">}}

@@ -87,7 +87,7 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
      upstream: "app:http"
    ```
 
-7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor](/configuration/app/build.md#build), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
+7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor](/configuration/app/build/#build), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
 
    ```yaml
    build:
@@ -148,7 +148,7 @@ server.listen(config.port);
 
 ## Accessing services
 
-To access various [services](/configuration/services.md) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](/configuration/services/) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
 
 {% codetabs name="Elasticsearch", type="js", url="https://examples.docs.platform.sh/nodejs/elasticsearch" -%}
 

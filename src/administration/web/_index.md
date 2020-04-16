@@ -10,7 +10,7 @@ description: |
 
 ![Management Console](/images/management-console/project.png)
 
-Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)](/development/cli.md).
+Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)](/development/cli/).
 
 ## Environment List
 

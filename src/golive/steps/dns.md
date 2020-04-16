@@ -10,7 +10,7 @@ sidebarTitle: "DNS and CNAMEs"
 
 Platform.sh is a cloud hosting provider.  That means each individual "site" is not its own computer but a set of containers running on one or more virtual machines, which are themselves running on any number of physical computers, all of which are shared with other customers running the same configuration.  An entire region of projects runs behind our dedicated, high-performance edge routers, which are responsible for mapping incoming requests to the particular container on a particular host that is appropriate.
 
-All of that logic is quite robust and fast, but it does require that incoming requests all get sent first to the edge routers.  While the [IP addresses of the edge routers](/development/public-ips.md) are fairly stable, they are not guaranteed to never change.  We also may add or remove routers to help scale the region, or take them offline one at a time for upgrades and maintenance.  It is therefore critical that inbound requests always know what the IPs are of the edge routers at the time of the request.
+All of that logic is quite robust and fast, but it does require that incoming requests all get sent first to the edge routers.  While the [IP addresses of the edge routers](/development/public-ips/) are fairly stable, they are not guaranteed to never change.  We also may add or remove routers to help scale the region, or take them offline one at a time for upgrades and maintenance.  It is therefore critical that inbound requests always know what the IPs are of the edge routers at the time of the request.
 
 All of Platform.sh's "edge hostnames" (the auto-generated URLs in the form `<branch>-<hash>-<project_id>.<region>.platformsh.site`) are DNS records we control that resolve to the IP addresses of the edge routers for that region.  If an edge router is updated, taken out of rotation, etc. then those domains will update quickly and automatically with no further action required.
 
@@ -65,4 +65,4 @@ This process has a few limitations:
 For that reason using A records is _strongly discouraged_ and should only be used as a last resort.
 {{< /note >}}
 
-See the [Public IP](/development/public-ips.md) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request.
+See the [Public IP](/development/public-ips/) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request.

@@ -5,20 +5,20 @@ sidebarTitle: "Requirements for the CLI"
 toc: false
 ---
 
-With the [management console](/administration/web.md) you can start new projects from templates just as you did in the previous steps, but deploying your own applications requires you to also use the [Platform.sh CLI](/development/cli.md).
+With the [management console](/administration/web/) you can start new projects from templates just as you did in the previous steps, but deploying your own applications requires you to also use the [Platform.sh CLI](/development/cli/).
 
 Before you install it there are a few requirements that must be met first.
 
 ### Git
 
-[Git](/development/tools.md#git) is the open source version control system used by Platform.sh. Any change you make to your Platform.sh project will need to be committed via Git. You can see all the Git commit messages of an environment in the `Environment Activity` feed of the [management console](/administration/web.md) for each project you create.
+[Git](/development/tools/#git) is the open source version control system used by Platform.sh. Any change you make to your Platform.sh project will need to be committed via Git. You can see all the Git commit messages of an environment in the `Environment Activity` feed of the [management console](/administration/web/) for each project you create.
 
 Before getting started, make sure you [have Git installed](https://git-scm.com/) on your computer.
 
 ### SSH key pair
 
-Once your account has been set up and the [CLI](/development/cli.md) is installed, Platform.sh needs one additional piece of information about your computer so that you can access your projects from the command line.
-If you are unfamiliar with how to generate an SSH public and private key, there are instructions in the documentation about [how to do so](/development/tools.md#ssh).
+Once your account has been set up and the [CLI](/development/cli/) is installed, Platform.sh needs one additional piece of information about your computer so that you can access your projects from the command line.
+If you are unfamiliar with how to generate an SSH public and private key, there are instructions in the documentation about [how to do so](/development/tools/#ssh).
 
 ### Add your SSH public key to your account
 

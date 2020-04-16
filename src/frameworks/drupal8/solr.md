@@ -13,7 +13,7 @@ Search API Solr stores its configuration in the Drupal Configuration API.  Howev
 
 Search API Solr requires Solr 6.6 or higher, and recommends Solr 8 or higher.
 
-Advanced Solr service configuration and implementation in other frameworks other than Drupal can be found at the [Solr services page](../../configuration/services/solr.md).
+Advanced Solr service configuration and implementation in other frameworks other than Drupal can be found at the [Solr services page](../../configuration/services/solr/).
 
 ## Steps
 
@@ -71,7 +71,7 @@ relationships:
 
 That is, the application's environment would include a `solrsearch` relationship that connects to the `main` endpoint, which is the `maincore` core.
 
-The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service specified above (`search`) and the endpoint (`main`).  If you named the service or endpoint something than different above, change those values accordingly.
+The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables/).  The right hand side is the name of the service specified above (`search`) and the endpoint (`main`).  If you named the service or endpoint something than different above, change those values accordingly.
 
 ### 4. Add auto-configuration code to `settings.platformsh.php`
 

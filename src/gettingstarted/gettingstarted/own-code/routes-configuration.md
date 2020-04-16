@@ -28,7 +28,7 @@ Each route can then be configured with the following properties:
   * `type`:
       * `upstream`: serves the application. Takes the form `upstream: <application name>:http`, using the application `name` set in your `.platform.app.yaml`.
       * `redirect`: configures redirects from `http://{default}` to your application.
-  * `cache`: controls [caching behavior of the route](/configuration/routes/cache.md).
+  * `cache`: controls [caching behavior of the route](/configuration/routes/cache/).
   * `redirects`: controls [redirect rules](/configuration/routes/redirects.html) associated with the route.
 
 {{< note >}}

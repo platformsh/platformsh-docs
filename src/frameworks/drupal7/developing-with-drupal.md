@@ -141,7 +141,7 @@ appropriate changes to master.
 
 ![Merge your changes.](/images/management-console/header.png "0.3")
 
-A dialog box will appear that will provide commands to execute future merges from the command line using the [Platform.sh CLI](/development/cli.md).
+A dialog box will appear that will provide commands to execute future merges from the command line using the [Platform.sh CLI](/development/cli/).
 
 ![Merge confirmation cli](/images/management-console/header-merge-box.png "0.4")
 

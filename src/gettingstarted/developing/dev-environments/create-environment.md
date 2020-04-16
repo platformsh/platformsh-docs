@@ -45,7 +45,7 @@ Platform.sh supports the deployment of isolated development environments from yo
     platform url
     ```
 
-    The command will provide a list of the generated routes for the application according to how the [routes](/configuration/routes.md) were configured. The structure will be:
+    The command will provide a list of the generated routes for the application according to how the [routes](/configuration/routes/) were configured. The structure will be:
 
     ```text
     Enter a number to open a URL

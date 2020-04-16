@@ -123,7 +123,7 @@ Please refer to the [JOSE Cookbook](https://github.com/ietf-jose/cookbook) for e
 
 ## Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.md#validating-integrations) command
+You can then verify that your integration is functioning properly [using the CLI](/administration/integrations/#validating-integrations) command
 
 ```bash
 $ platform integration:validate

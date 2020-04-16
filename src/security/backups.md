@@ -9,7 +9,7 @@ description: |
 
 ## Platform.sh Professional
 
-With Platform.sh Professional, we have enabled our clients to manage their own backup and restore functions. Please see the [backup and restore](/administration/backup-and-restore.md) page for details.
+With Platform.sh Professional, we have enabled our clients to manage their own backup and restore functions. Please see the [backup and restore](/administration/backup-and-restore/) page for details.
 
 **RPO**: User defined. The RPO is configured by our clients.
 

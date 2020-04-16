@@ -11,7 +11,7 @@ Each relationship has an arbitrary name, although by convention the primary SQL 
 
 The relationship is specified in the form `service_name:endpoint_name`.  The "service name" is the name of the service given in `.platform/services.yaml`, or the name of another application in the same project (that is, the `name` property of the `.platform.app.yaml` file for that application).  The "endpoint" is the exposed functionality of the service to use.  For most services that is simply the same as the service type, but on MySQL, for example, could be different if the service is running multiple databases.
 
-See the [Services](/configuration/services.md) documentation for a full list of currently supported service types and service endpoints.
+See the [Services](/configuration/services/) documentation for a full list of currently supported service types and service endpoints.
 
 ## How do I get access to multiple services?
 

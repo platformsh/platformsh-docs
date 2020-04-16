@@ -30,4 +30,4 @@ Default storage is based on the default SSD block-storage offering for each clou
 | [Redis](https://docs.platform.sh/configuration/services/redis.html)          | 3.2, 5.0                      |
 | [Memcached](https://docs.platform.sh/configuration/services/memcached.html)      | 1.4                      |
 
-Your application will be able to connect to each service by referencing the exact same environment variables as a Grid environment.  While the configuration of the service will be performed by our team, the application configuration is the same and your code should be the same.  See the [services documentation](/configuration/services.md) for service-specific details.
+Your application will be able to connect to each service by referencing the exact same environment variables as a Grid environment.  While the configuration of the service will be performed by our team, the application configuration is the same and your code should be the same.  See the [services documentation](/configuration/services/) for service-specific details.

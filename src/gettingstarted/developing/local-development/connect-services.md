@@ -14,7 +14,7 @@ Now that you have a local copy of your application code, you can make changes to
 
 1. **Open an SSH tunnel to connect to your services**
 
-    Open local [SSH tunnels](/development/local/tethered.md#ssh-tunneling) to your environment's services.
+    Open local [SSH tunnels](/development/local/tethered/#ssh-tunneling) to your environment's services.
 
     ```bash
     platform tunnel:open

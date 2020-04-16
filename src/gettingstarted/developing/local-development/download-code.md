@@ -5,7 +5,7 @@ toc: false
 ---
 
 
-If you have already [pushed your code](/gettingstarted/own-code.md) to Platform.sh, then you should already have a local repository that you can build from.
+If you have already [pushed your code](/gettingstarted/own-code/) to Platform.sh, then you should already have a local repository that you can build from.
 
 Otherwise, it will be necessary to download a local copy of your project first.
 
