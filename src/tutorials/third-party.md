@@ -1,11 +1,13 @@
 ---
 title: "Platform.sh Third-Party Resources"
 weight: 4
- 
+
 sidebarTitle: "Third-party resources"
 description: |
   This is a Big List of known third party resources for Platform.sh. These resources are not vetted by Platform.sh, but may be useful for people working with the platform.
 ---
+
+{{< description >}}
 
 ## Blogs
 

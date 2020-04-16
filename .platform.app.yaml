@@ -26,7 +26,6 @@ web:
             # The public directory of the application relative to its root.
             root: 'public'
             index: ['index.html']
-            passthru: '/404.html'
             scripts: false
             allow: true
             expires: 24h

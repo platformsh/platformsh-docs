@@ -1,12 +1,14 @@
 ---
 title: "Migrating to Platform.sh"
 weight: 3
- 
-description: |
-  Moving an already-built site to Platform.sh is generally straightforward.  For the most part, the only part that will vary from one framework to another is the details of the Platform.sh configuration files.<br><br>
 
-  See the <a href="/frameworks.html"><b>Featured Frameworks</b></a> section or our <a href="/development/templates.html"><b>Project Templates</b></a> for more project-specific documentation.
+description: |
+  Moving an already-built site to Platform.sh is generally straightforward.  For the most part, the only part that will vary from one framework to another is the details of the Platform.sh configuration files.
 ---
+
+{{< description >}}
+
+See the [Featured Frameworks](/frameworks) section or our [Project Templates](/development/templates.md) for more project-specific documentation.
 
 ## Preparation
 
@@ -14,11 +16,11 @@ First, assemble your Git repository as appropriate, on your master branch.  Be s
 
 For some applications, such as Drupal you will need to dump configuration to files before proceeding.  You will also need to provide appropriate configuration to read the credentials for your services at runtime and integrate them into your application's configuration.  The details of that integration will vary between systems.  Be sure to see the appropriate project templates for our recommended configuration.
 
-* [Go Templates](/languages/go/#project-templates)
-* [Java Templates](/languages/java/#project-templates)
-* [Node.js Templates](/languages/nodejs/#project-templates)
-* [PHP Templates](/languages/php/#project-templates)
-* [Python Templates](/languages/python/#project-templates)
+* [Go Templates](/languages/go.md#project-templates)
+* [Java Templates](/languages/java.md#project-templates)
+* [Node.js Templates](/languages/nodejs.md#project-templates)
+* [PHP Templates](/languages/php.md#project-templates)
+* [Python Templates](/languages/python.md#project-templates)
 
 
 In the management console, click `+ Add project` to create a new Platform.sh project. When asked to select a template pick "Create a blank project".
@@ -38,7 +40,7 @@ When you push, a new environment will be created using your code and the provide
 
 ## Import your database
 
-You will need to have a dump or backup of the database you wish to start from.  The process is essentially the same for each type of persistent data service.  See the [MySQL](/configuration/services/mysql/), [PostgreSQL](/configuration/services/postgresql/), or [MongoDB](/configuration/services/mongodb/) documentation as appropriate.
+You will need to have a dump or backup of the database you wish to start from.  The process is essentially the same for each type of persistent data service.  See the [MySQL](/configuration/services/mysql.md), [PostgreSQL](/configuration/services/postgresql.md), or [MongoDB](/configuration/services/mongodb.md) documentation as appropriate.
 
 ## Import your files
 
@@ -74,8 +76,8 @@ rsync -az ./private `platform ssh --pipe`:/app/private/
 rsync -az ./web/uploads `platform ssh --pipe`:/app/web/uploads
 ```
 
-> **note**
->
-> If you're running `rsync` on MacOS, you should add `--iconv=utf-8-mac,utf-8` to your `rsync` call.
+{{< note >}}
+If you're running `rsync` on MacOS, you should add `--iconv=utf-8-mac,utf-8` to your `rsync` call.
+{{< /note >}}
 
 See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html) for more details on how to adjust the upload process.

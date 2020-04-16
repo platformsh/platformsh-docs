@@ -2,12 +2,14 @@
 title: "Region migration"
 weight: 5
 sidebarTitle: "Changing regions"
- 
-description: |
-  Platform.sh is available in a number of different <b>Regions</b>.  Each region is a self-contained copy of Platform.sh in a single datacenter.  When you first create a project you can specify which region it should be in.<br><br>
 
-  Platform.sh does not offer an automated way to migrate a project from one region to another after it is created.  However, the process to do so manually is fairly straightforward and scriptable.
+description: |
+  Platform.sh is available in a number of different **Regions**.  Each region is a self-contained copy of Platform.sh in a single datacenter.  When you first create a project you can specify which region it should be in.
 ---
+
+{{< description >}}
+
+Platform.sh does not offer an automated way to migrate a project from one region to another after it is created.  However, the process to do so manually is fairly straightforward and scriptable.
 
 ## Why migrate between regions?
 
@@ -54,7 +56,7 @@ Make a Git clone of your existing project.  Then add a Git remote to the new pro
 
 Alternatively, if you are using a 3rd party Git repository (GitHub, BitBucket, GitLab, etc.), you can add an integration to the new project just as you did the old one.  It will automatically mirror your 3rd party repository exactly the same way as the old project and you won't need to update it manually.
 
-Copy your existing user files on the old project to your computer using `rsync`.  See the [exporting](/tutorials/exporting/) page for details.  Then use `rsync` to copy them to the same directory on the new project.  See the [migrating](/tutorials/migrating/) page for details.
+Copy your existing user files on the old project to your computer using `rsync`.  See the [exporting](/tutorials/exporting.md) page for details.  Then use `rsync` to copy them to the same directory on the new project.  See the [migrating](/tutorials/migrating.md) page for details.
 
 Export your database from the old project and import it into the new project.  Again, see the exporting and migration pages, as well as the instructions for your specific database services.
 
@@ -62,7 +64,7 @@ Re-enter any project or environment variables you've defined on your old project
 
 Add any users to your new project that you want to continue to have access.
 
-If you have any 3rd party integrations active, especially the [Health Notification](/administration/integrations/notifications/) checks, add them to the new project.
+If you have any 3rd party integrations active, especially the [Health Notification](/administration/integrations/notifications.md) checks, add them to the new project.
 
 ### 2. Maintain the mirror
 

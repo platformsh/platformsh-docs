@@ -1,15 +1,17 @@
 ---
 title: "Authenticated Composer repositories"
 weight: 1
- 
+
 sidebarTitle: "Authenticated Composer"
 description: |
-  Some PHP projects may need to leverage a private, third party Composer repository in addition to the public Packagist.org repository.  Often, such third party repositories require authentication in order to download packages, and not everyone is comfortable putting those credentials into their Git repository source code (for obvious reasons).<br><br>
-
-  To handle that situation, you can define a <code>env:COMPOSER_AUTH</code> <a href="/development/variables.html#project-variables">project variable</a> which allows you to set up authentication as an environment variable. The contents of the variable should be a JSON formatted object containing an <code>http-basic</code> object (see <a href="https://getcomposer.org/doc/03-cli/#composer-auth">composer-auth specifications</a>).<br><br>
-
-  The advantage is that you can control who in your team has access to those variables.
+  Some PHP projects may need to leverage a private, third party Composer repository in addition to the public Packagist.org repository.  Often, such third party repositories require authentication in order to download packages, and not everyone is comfortable putting those credentials into their Git repository source code (for obvious reasons).
 ---
+
+{{< description >}}
+
+To handle that situation, you can define a `env:COMPOSER_AUTH` [project variable](/development/variables.md#project-variables) which allows you to set up authentication as an environment variable. The contents of the variable should be a JSON formatted object containing an `http-basic` object (see [composer-auth specifications](https://getcomposer.org/doc/03-cli/#composer-auth).
+
+The advantage is that you can control who in your team has access to those variables.
 
 ## Specify a third party repository in `composer.json`
 

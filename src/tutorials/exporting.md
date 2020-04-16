@@ -1,10 +1,12 @@
 ---
 title: "Exporting data"
 weight: 2
- 
+
 description: |
   Platform.sh aims to be a great host, but we never want to lock you in to our service. Your code and your data belong to you, and you should always be able to download your site's data for local development, backup, or to "take your data elsewhere".
 ---
+
+{{< description >}}
 
 ## Downloading code
 
@@ -29,13 +31,13 @@ mounts:
 
 The CLI provides a useful `mount` command for accessing mount data.
 
-```
+```bash
 platform mount:list
 ```
 
 Downloading a mount is then as simple as running the following:
 
-```
+```bash
 platform mount:download
 ```
 
@@ -47,9 +49,10 @@ rsync -az `platform ssh --pipe`:/app/private/ ./private/
 rsync -az `platform ssh --pipe`:/app/web/uploads ./uploads/
 ```
 
-> **note**
->
-> If you're running `rsync` on MacOS, you should add `--iconv=utf-8,utf-8-mac` to your `rsync` call.
+
+{{< note >}}
+If you're running `rsync` on MacOS, you should add `--iconv=utf-8,utf-8-mac` to your `rsync` call.
+{{< /note >}}
 
 See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html) for more details on how to adjust the download process.
 
@@ -57,4 +60,4 @@ See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html)
 
 The mechanism for downloading from each service (such as your database) varies.  For services designed to hold non-persistent information (such as Redis or Solr) it's generally not necessary to download data as it can be rebuilt from the primary data store.
 
-To download data from persistent services ([MySQL](/configuration/services/mysql/), [PostgreSQL](/configuration/services/postgresql/), [MongoDB](/configuration/services/mongodb/), or [InfluxDB](/configuration/services/influxdb/)), see each service's page for instructions.
+To download data from persistent services ([MySQL](/configuration/services/mysql.md), [PostgreSQL](/configuration/services/postgresql.md), [MongoDB](/configuration/services/mongodb.md), or [InfluxDB](/configuration/services/influxdb.md)), see each service's page for instructions.
