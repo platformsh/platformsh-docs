@@ -6,9 +6,10 @@
 {{ range sort $templates "name" }}
 
   <div class="card">
-    <div class="card-header" id="heading{{ .shortname }}">
-      <h5 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ .shortname }}" aria-expanded="false" aria-controls="collapse{{ .shortname }}">
+    <div class="card-header-template" id="heading{{ .shortname }}">
+      <h5 class="template-card">
+        <span class="icon"><img class="chevron-template js-rotate-if-collapsed" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+        <button class="btn-template" type="button" data-toggle="collapse" data-target="#collapse{{ .shortname }}" aria-expanded="false" aria-controls="collapse{{ .shortname }}">
           {{ .name }}
         </button>
       </h5>
@@ -16,9 +17,9 @@
 
     <div id="collapse{{ .shortname }}" class="collapse" aria-labelledby="heading{{ .shortname }}" data-parent="#accordion{{ $lang }}">
       <div class="card-body">
-        <p align="center">
+        <!-- <p align="center"> -->
           <img {{ printf "src=%q" .image | safeHTMLAttr }} style="max-height:150px; max-width:250px;" alt="{{ .name }}">
-        </p>
+        <!-- </p> -->
         <h2>{{ .name }}</h2>
         {{ .description | safeHTML }}
         {{ $content:= split .content "<br/>" }}

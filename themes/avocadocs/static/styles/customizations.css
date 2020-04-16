@@ -438,6 +438,36 @@ MAIN
   padding-right: 3rem;
 } */
 
+.card-header-template {
+  border: 1px solid var(--sidebar-bg-color);
+  /* display: block; */
+  padding-top: 0.25rem !important;
+}
+
+.chevron-template {
+  margin-left: 1rem;
+}
+
+.template-card {
+  color: var(--brand-color-primary-blue);
+}
+
+.btn-template {
+  margin-left: 1rem;
+  background-color: transparent;
+  border: none;
+  color: var(--brand-color-primary-blue)
+}
+
+/* [data-toggle="collapse"][aria-expanded="true"] > .js-rotate-if-collapsed
+{
+    -webkit-transform: rotate(90deg);
+    -moz-transform:    rotate(90deg);
+    -ms-transform:     rotate(90deg);
+    -o-transform:      rotate(90deg);
+    transform:         rotate(90deg);
+} */
+
 .card-header {
   /* padding: 1rem 1rem; */
   /* top | right | bottom | left */
