@@ -6,10 +6,13 @@
 
       <div class="col-xl-12 order-xl-1 duik-content">
 
-        {{ partial "editpagebutton" . }}
-
-        <!-- Welcome message -->
-        {{ partial "welcome" . }}
+        <div class="edit-page">
+          {{ $editLocation := printf "%sedit/master/src/%s" .Site.Params.repo .File.Path}}
+          <button onclick="window.location.href = '{{ $editLocation }}';" type="button" class="btn-ep btn-next btn-edit-page">
+            <span class="text-button-">Edit page</span>
+            <span class="icon"><img class="chevron-next2" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+          </button>
+        </div>
 
         <!-- Page content, anchorized -->
         {{ partial "headline-hash.html" .Content }}

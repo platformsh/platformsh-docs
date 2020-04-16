@@ -746,7 +746,7 @@ body {
 }
 
 
-@media (min-width: 800px) {
+@media (min-width: 825px) {
   .duik-content {
     min-height: calc(100vh - 5rem - 5.5rem);
     /* top | right | bottom | left */
@@ -758,7 +758,7 @@ body {
   .duik-content {
     min-height: calc(100vh - 5rem - 5.5rem);
     /* top | right | bottom | left */
-    padding: 5rem 15rem 3rem 15rem;
+    padding: 5rem 7rem 3rem 7rem;
   }
 }
 

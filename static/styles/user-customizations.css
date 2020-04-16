@@ -98,3 +98,71 @@
   color: var(--white);
   text-decoration: underline;
 }
+
+/* Edit page button */
+
+.btn-ep {
+  border: 0px solid transparent;
+  border-radius: 0rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  line-height: 19px;
+  text-align: left;
+  color: #1A182A;
+  font-family: Overpass Mono;
+  cursor: pointer;
+}
+
+.btn-next{
+  display: inline-block;
+  position: relative;
+  background: linear-gradient(to right, #FFEEEE 0%, #FFEEEE 50px, #FFFFFF 50px);
+  z-index: 0;
+}
+
+.edit-page {
+  text-align: right;
+}
+
+@media (max-width: 1100px) {
+  .edit-page {
+    display: none;
+  }
+}
+
+.edit-page-button {
+  background-color: var(--body-background);
+  border: 1px solid var(--logo-background);
+  color: var(--font-black);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  font-family: Overpass;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 25px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.edit-page-button:hover {
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+  color: var(--font-white);
+}
+
+.btn-edit-page {
+  border: 0px solid transparent;
+  border-radius: 0rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  padding: 1rem 1rem;
+  font-size: 13px;
+  line-height: 13px;
+  text-align: left;
+  color: #1A182A;
+  font-family: Overpass Mono;
+}

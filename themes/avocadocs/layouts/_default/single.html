@@ -3,15 +3,16 @@
   <main class="ml-sm-auto col-md-9 col-lg-10 px-4 pt-0 pt-md-11">
     <div class="row pt-3">
 
-      <!-- Edit page button -->
-      {{ if isset .Site.Params "editpagebutton"}}
-        {{ if .Site.Params.editPageButton }}
-          {{ partial "editpagebutton" . }}
-        {{ end }}
-      {{ end }}
-
       <div class="col-xl-12 order-xl-1 duik-content">
         <div class="mb-7">
+
+          <div class="edit-page">
+            {{ $editLocation := printf "%sedit/master/src/%s" .Site.Params.repo .File.Path}}
+            <button onclick="window.location.href = '{{ $editLocation }}';" type="button" class="btn-ep btn-next btn-edit-page">
+              <span class="text-button-">Edit page</span>
+              <span class="icon"><img class="chevron-next2" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+            </button>
+          </div>
 
           <!-- Page title -->
           <div class="page-title">
