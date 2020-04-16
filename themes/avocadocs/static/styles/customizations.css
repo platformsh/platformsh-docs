@@ -650,7 +650,7 @@ body {
 }
 
 .toc nav a {
-  color: var(--brand-font-color-black);
+  color: var(--brand-color-primary-blue);
 }
 
 .page-item {
