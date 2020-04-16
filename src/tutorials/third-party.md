@@ -47,7 +47,7 @@ description: |
 
 ### Sylius
 
-* The [Sylius documentation]https://docs.sylius.com/en/latest/cookbook/deployment/platform-sh.html) has a solid set of instructions for setting up Sylius with Platform.sh.
+* The [Sylius documentation](https://docs.sylius.com/en/latest/cookbook/deployment/platform-sh.html) has a solid set of instructions for setting up Sylius with Platform.sh.
 
 ## Examples
 
