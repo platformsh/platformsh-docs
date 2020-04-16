@@ -58,7 +58,7 @@ Optional parameters:
 * `--merge-requests-clone-parent-data` : should merge requests clone the data from the parent environment (true by default)
 * `--fetch-branches`: Track and deploy branches (true by default)
 * `--prune-branches`: Delete branches that do not exist in the remote GitLab repository (true by default)
-
+* `--base-url`: Only set if using self-hosted GitLab on your own server.  If so, set this to the base URL of your private server (the part before the user and repository name).
 
 Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.  If `--fetch-branches` is disabled, `--prune-branches` will automatically be set to false, even if specifically set to true.
 
