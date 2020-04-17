@@ -44,7 +44,7 @@ runtime:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Go
@@ -84,7 +84,7 @@ file=static/files/fetch/examples/python/mongodb
 highlight=python
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 ## Exporting data
 

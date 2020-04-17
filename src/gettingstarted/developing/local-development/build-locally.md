@@ -24,7 +24,7 @@ Now that you've opened tunnels into your services, you'll have access to all of 
 
     Move to the build destination (i.e. `cd _www`) and then run a local web server to verify the build.
 
-{{< tabtest >}}
+{{< codetabs >}}
 ---
 title=PHP
 file=none
@@ -56,7 +56,7 @@ markdownify=false
 
 ruby -run -e httpd . -p 8000
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 
   Applications written in Node.js, Go and Java can be configured to listen on a port locally, so it will only be necessary to execute the program directly.

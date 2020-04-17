@@ -52,7 +52,7 @@ dependencies:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Go
@@ -92,7 +92,7 @@ file=static/files/fetch/examples/python/memcached
 highlight=python
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 ## Accessing Memcached directly
 

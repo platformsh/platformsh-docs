@@ -29,7 +29,7 @@ In order to connect to this service and use it in your application, Platform.sh 
 
 To access this variable you can install a Platform.sh configuration reader library
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Go
@@ -99,12 +99,12 @@ markdownify=false
 
 pip install platformshconfig
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 
 and access the credentials of `database`
 
-{{< tabtest >}}
+{{< codetabs >}}
 ---
 title=PHP
 file=none
@@ -173,14 +173,14 @@ config, err := psh.NewRuntimeConfig()
 credentials, err := config.Credentials("database")
 // Handle err
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 
 
 or read and decode the environment variable directly.
 
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Node.js
@@ -219,7 +219,7 @@ import os, json, base64
 relationships = json.loads(base64.b64decode(os.environ["PLATFORM_RELATIONSHIPS"]))
 credentials = relationships['database']
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 In either case, `credentials` can now be used to connect to `database`:
 

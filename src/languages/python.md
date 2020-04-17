@@ -144,7 +144,7 @@ The above Gunicorn based WSGI example can be modified to use the Python 3.5+ asy
 
 To access various [services](/configuration/services.md) with Python, see the following examples.  The individual service pages have more information on configuring each service.
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Elasticsearch
@@ -225,7 +225,7 @@ highlight=python
 markdownify=false
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 
 ## Project templates

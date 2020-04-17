@@ -243,7 +243,7 @@ Check the individual documentation pages for accessing environment variables for
 * [Python: the os.environ object](https://docs.python.org/3/library/os.html#os.environ)
 * [Ruby: the ENV accessor](https://ruby-doc.org/core-2.1.4/ENV.html)
 
-{{< tabtest >}}
+{{< codetabs >}}
 ---
 title=PHP
 file=none
@@ -317,7 +317,7 @@ project_id = ENV["PLATFORM_PROJECT"] || nil
 // A JSON-encoded value.
 variables = JSON.parse(Base64.decode64(ENV["PLATFORM_VARIABLES"]))
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 ## Variable prefixes
 

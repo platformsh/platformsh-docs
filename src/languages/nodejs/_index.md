@@ -154,7 +154,7 @@ server.listen(config.port);
 
 To access various [services](/configuration/services/) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Elasticsearch
@@ -210,7 +210,7 @@ file=static/files/fetch/examples/nodejs/solr
 highlight=js
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 ## Project templates
 

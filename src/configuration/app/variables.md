@@ -58,7 +58,7 @@ variables:
 
 Would appear this way in various languages:
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=PHP
@@ -132,4 +132,4 @@ print variables['stuff:STEPS']
 print variables['stuff:COLORS']
 // {u'blue': u'#0000FF', u'green': u'#00FF00', u'red': u'#FF0000'}
 
-{{< /tabtest >}}
+{{< /codetabs >}}

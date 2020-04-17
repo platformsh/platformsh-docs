@@ -65,7 +65,7 @@ The same goes for using the `oracle-mysql` service type as well.
 You can then use the service in a configuration file of your application with something like:
 
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Go
@@ -105,7 +105,7 @@ file=static/files/fetch/examples/python/mysql
 highlight=python
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 {{< note >}}
 MySQL schema names can not use system reserved namespace. (mysql, information_schema, etc)

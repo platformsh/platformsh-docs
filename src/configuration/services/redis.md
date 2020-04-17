@@ -74,7 +74,7 @@ relationships:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Java
@@ -106,7 +106,7 @@ file=static/files/fetch/examples/python/redis
 highlight=python
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 ## Multiple databases
 

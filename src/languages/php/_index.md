@@ -139,7 +139,7 @@ $ php-fpm-status --socket=unix://$SOCKET --path=/-/status --full
 
 To access various [services](/configuration/services/) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Elasticsearch
@@ -211,7 +211,7 @@ highlight=php
 markdownify=false
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 
 ## Runtime configuration

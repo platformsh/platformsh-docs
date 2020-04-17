@@ -37,7 +37,7 @@ Platform.sh supports the most common project management tools in the Java ecosys
 
 To access various [services](/configuration/services.html) with Java, see the following examples.  The individual service pages have more information on configuring each service.
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Elasticsearch
@@ -109,7 +109,7 @@ file=static/files/fetch/examples/java/solr
 highlight=java
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 ## Project templates
 

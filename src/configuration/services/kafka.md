@@ -34,7 +34,7 @@ In your ``.platform.app.yaml``:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Java
@@ -69,6 +69,6 @@ kafka.each_message(topic: "greetings") do |message|
   puts message.offset, message.key, message.value
 end
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 (The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)

@@ -21,7 +21,7 @@ With the following project structure:
 
 An example `.platform.app.yaml` looks like this:
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Go
@@ -57,7 +57,7 @@ highlight=yaml
 markdownify=false
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 The `.platform.app.yaml` file is extremely flexible, and can contain many lines with very fine-grained control over your application. At the very least, Platform.sh requires three principle attributes in this file to control your builds:
 

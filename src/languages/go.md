@@ -97,7 +97,7 @@ Note that there will still be an Nginx proxy server sitting in front of your app
 
 To access various [services](/configuration/services.html) with Go, see the following examples. The individual service pages have more information on configuring each service.
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Memcached
@@ -151,7 +151,7 @@ highlight=golang
 markdownify=false
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 ## Project templates
 

@@ -32,7 +32,7 @@ In your `.platform.app.yaml`:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Go
@@ -64,7 +64,7 @@ file=static/files/fetch/examples/python/rabbitmq
 highlight=python
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 (The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)
 

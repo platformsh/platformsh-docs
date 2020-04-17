@@ -40,7 +40,7 @@ In your `.platform.app.yaml`:
 
 You can then use the service in a configuration file of your application with something like:
 
-{{< tabtest >}}
+{{< codetabs >}}
 
 ---
 title=Java
@@ -72,7 +72,7 @@ file=static/files/fetch/examples/python/elasticsearch
 highlight=python
 ---
 
-{{< /tabtest >}}
+{{< /codetabs >}}
 
 {{< note >}}
 When you create an index on Elasticsearch, you should not specify `number_of_shards` and `number_of_replicas` settings in your Elasticsearch API call. These values will be set automatically based on available resources.
