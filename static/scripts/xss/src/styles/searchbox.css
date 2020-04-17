@@ -1,10 +1,13 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans:400,700";
 @import url("https://fonts.googleapis.com/css?family=Overpass:300,400,500,700,900");
 
+.xssroot {
+  text-align: center;
+}
+
 .searchContainer {
     /* position: fixed; */
     /* font-family: "Open Sans", sans-serif; */
-    text-align: center;
     font-family: "Overpass";
     font-size:12px !important;
     line-height: 22px !important;
