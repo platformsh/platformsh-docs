@@ -18,6 +18,8 @@ If you need other versions, take a look at our [options for installing them with
 
 Some versions with a minor (such as 8.9) are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
+{{< image-versions image="nodejs" status="deprecated" >}}
+
 ## Support libraries
 
 While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh-config`](https://github.com/platformsh/config-reader-nodejs) NPM library which handles decoding of service credential information for you.

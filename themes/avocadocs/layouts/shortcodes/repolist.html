@@ -22,11 +22,16 @@
         <!-- </p> -->
         <h2>{{ .name }}</h2>
         {{ .description | safeHTML }}
+
         {{ $content:= split .content "<br/>" }}
+
         <h3>Services:</h3>
         <ul>
           {{ range $content}}
-            <li>{{ . }}</li>
+            {{ $content2 := split . "<br />" }}
+            {{ range $content2}}
+              <li>{{ . }}</li>
+            {{ end }}
           {{ end }}
         </ul>
         <p><a href="{{ .repo }}">View the repository</a> on GitHub.</p>

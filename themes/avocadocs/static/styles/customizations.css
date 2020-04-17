@@ -77,16 +77,20 @@ a {
 }
 
 .highlight {
-    position: relative;
+    /* position: relative; */
     word-wrap: normal !important;
-    page-break-inside: avoid;
+    page-break-inside: avoid !important;
+    /* overflow: auto !important; */
 }
 .highlight pre {
     padding: 1rem;
+    overflow: auto !important;
+    /* overflow-x: scroll; */
 }
 
 pre {
   background-color: var(--primary);
+  white-space: pre-wrap;
 }
 
 code {
@@ -1011,6 +1015,16 @@ hr {
   border-bottom: 1px solid var(--brand-font-color-black); */
   /* padding: 1rem !important; */
   padding-bottom: .5rem;
+  /* box-sizing: none !important; */
+  /* max-height: 200px;
+  overflow-y: scroll;
+  top: 0;
+  bottom: 0; */
+}
+
+.tab-content > .active > .highlight > pre {
+  max-height: 30rem;
+  overflow: scroll;
 }
 
 /* Clear floats after the columns */

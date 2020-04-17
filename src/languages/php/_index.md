@@ -3,14 +3,10 @@ title: "PHP"
 weight: 6
 description: PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
 layout: single
- 
+
 ---
 
 ## Supported versions
-
-* 7.2
-* 7.3
-* 7.4
 
 {{< image-versions image="php" status="supported" >}}
 
@@ -18,19 +14,13 @@ Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
 To specify a PHP container, use the `type` property in your `.platform.app.yaml`.
 
-{% codesnippet "/registry/images/examples/full/php.app.yaml", language="yaml" %}{% endcodesnippet %}
+{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" >}}
 
 ## Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-* 5.4
-* 5.5
-* 5.6
-* 7.0
-* 7.1
-
-{{< image-versions image="php" status="supported" >}}
+{{< image-versions image="php" status="deprecated" >}}
 
 ## Support libraries
 
@@ -149,23 +139,80 @@ $ php-fpm-status --socket=unix://$SOCKET --path=/-/status --full
 
 To access various [services](/configuration/services/) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
 
-{% codetabs name="Elasticsearch", type="php", url="https://examples.docs.platform.sh/php/elasticsearch" -%}
+{{< tabtest >}}
 
-{% language name="Memcached", type="php", url="https://examples.docs.platform.sh/php/memcached" -%}
+---
+title=Elasticsearch
+file=static/files/fetch/examples/php/elasticsearch
+highlight=php
+markdownify=false
+---
 
-{% language name="MongoDB", type="php", url="https://examples.docs.platform.sh/php/mongodb" -%}
+<--->
 
-{% language name="MySQL", type="php", url="https://examples.docs.platform.sh/php/mysql" -%}
+---
+title=Memcached
+file=static/files/fetch/examples/php/memcached
+highlight=php
+markdownify=false
+---
 
-{% language name="PostgreSQL", type="php", url="https://examples.docs.platform.sh/php/postgresql" -%}
+<--->
 
-{% language name="RabbitMQ", type="php", url="https://examples.docs.platform.sh/php/rabbitmq" -%}
+---
+title=MongoDB
+file=static/files/fetch/examples/php/mongodb
+highlight=php
+markdownify=false
+---
 
-{% language name="Redis", type="php", url="https://examples.docs.platform.sh/php/redis" -%}
+<--->
 
-{% language name="Solr", type="php", url="https://examples.docs.platform.sh/php/solr" -%}
+---
+title=MySQL
+file=static/files/fetch/examples/php/mysql
+highlight=php
+markdownify=false
+---
 
-{%- endcodetabs %}
+<--->
+
+---
+title=PostgreSQL
+file=static/files/fetch/examples/php/postgresql
+highlight=php
+markdownify=false
+---
+
+<--->
+
+---
+title=RabbitMQ
+file=static/files/fetch/examples/php/rabbitmq
+highlight=php
+markdownify=false
+---
+
+<--->
+
+---
+title=Redis
+file=static/files/fetch/examples/php/redis
+highlight=php
+markdownify=false
+---
+
+<--->
+
+---
+title=Solr
+file=static/files/fetch/examples/php/solr
+highlight=php
+markdownify=false
+---
+
+{{< /tabtest >}}
+
 
 ## Runtime configuration
 

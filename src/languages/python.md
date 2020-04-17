@@ -175,7 +175,7 @@ markdownify=false
 
 ---
 title=MongoDB
-file=static/files/fetch/examples/python/kafka
+file=static/files/fetch/examples/python/mongodb
 highlight=python
 markdownify=false
 ---
