@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Setting up the Hugo site
 HUGOVERSION=0.68.3
 
 # Download Hugo
@@ -16,9 +15,6 @@ npm run fetch-templates
 
 # Update config snippets from registry
 npm run registry-files
-
-
-# Meilisearch
 
 # Install Meilisearch
 cd $PLATFORM_APP_DIR/meilisearch
@@ -38,18 +34,12 @@ chmod +x ./scrape.sh
 
 # Build Interface
 cd $PLATFORM_APP_DIR/static/scripts/xss
-# mv interface/* interface/.* public/scripts/xss
 npm install
 npm run-script build
 
-# Building the Hugo site
-
+# Build the Hugo site
 cd $PLATFORM_APP_DIR
-
-# Build the site
 ./hugo
 
+# Handle assets
 npm run assets-dist
-
-# # Move interface to Hugo source
-# mv interface/* interface/.* public/scripts/xss

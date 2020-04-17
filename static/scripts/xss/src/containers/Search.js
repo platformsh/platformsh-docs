@@ -63,7 +63,7 @@ class Search extends Component {
     return (
       <form>
         <input
-          placeholder="Type to search..."
+          placeholder="Search Platform.sh"
           ref={input => this.search = input}
           onChange={this.handleInputChange}
         />
