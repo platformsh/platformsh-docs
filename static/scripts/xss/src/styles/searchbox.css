@@ -1,15 +1,16 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans:400,700";
 @import url("https://fonts.googleapis.com/css?family=Overpass:300,400,500,700,900");
 .searchContainer {
-    position: fixed;
+    /* position: fixed; */
     /* font-family: "Open Sans", sans-serif; */
     font-family: "Overpass";
     font-size:12px !important;
-    left:20px;
-    top: 120px;
+    line-height: 22px !important;
+    /* left:20px;
+    top: 120px; */
     list-style: none;
     z-index: 9999;
-    margin: 0px;
+    margin: 1rem;
     background: white;
 }
 .suggestions div.hits ul  em {
@@ -41,8 +42,6 @@
 .suggestions div.hits {display:inline-block;}
 
 .suggestions {width: 800px;}
-/* .suggestions .section {display:inline-block;width:180px;font-family: "Open Sans", sans-serif; vertical-align:middle;}
-.suggestions .hits {width:400px;display:inline-block;width:100%;font-family: "Open Sans", sans-serif; vertical-align:middle;} */
 .suggestions .section {display:inline-block;width:180px;font-family: "Overpass"; vertical-align:middle;}
 .suggestions .hits {width:400px;display:inline-block;width:100%;font-family: "Overpass"; vertical-align:middle;}
 
