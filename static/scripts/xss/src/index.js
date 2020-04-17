@@ -7,7 +7,7 @@ import App from 'App'
 
 ReactDOM.render(
   <App className="App searchbox" />,
-  document.querySelector("xssroot")
+  document.getElementById('xssroot')
 )
 
 if (module.hot) {
