@@ -19,7 +19,6 @@ function javascriptBuild() {
       browserify({
         entries: [[
           './public/docsuikit/assets/js/main.js',
-          './public/docsuikit/assets/js/autocomplete.js',
           './public/docsuikit/assets/js/custom-scrollbar.js'
         ]],
         transform: [babelify.configure({ presets: ['@babel/preset-env'] })]
