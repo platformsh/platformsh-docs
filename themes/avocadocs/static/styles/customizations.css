@@ -762,7 +762,7 @@ body {
   .duik-content {
     min-height: calc(100vh - 5rem - 5.5rem);
     /* top | right | bottom | left */
-    padding: 3rem 7rem 3rem 7rem;
+    padding: 0rem 7rem 3rem 7rem;
   }
 }
 
