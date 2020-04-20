@@ -5,7 +5,7 @@ import Suggestions from 'components/Suggestions'
 
 let config = {}
 const request = async () => {
-    const response = await fetch("scripts/xss/dist/config/config.json");
+    const response = await fetch("/scripts/xss/dist/config/config.json");
     config = await response.json();
 }
 request();
