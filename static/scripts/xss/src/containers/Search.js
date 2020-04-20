@@ -13,9 +13,6 @@ request();
 
   // public API key from
 const API_URL = process.env.API_URL || '/indexes/docs/search'
-// const API_URL = process.env.API_URL || '/indexes/docs/search'
-// const API_URL = 'https://pr-1366-yd3epia-652soceglkw4u.eu-3.platformsh.site/indexes/docs/search'
-
 
 class Search extends Component {
   state = {
