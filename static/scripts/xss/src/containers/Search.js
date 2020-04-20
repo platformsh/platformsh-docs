@@ -10,7 +10,6 @@ const request = async () => {
 }
 request();
 
-
   // public API key from
 const API_URL = process.env.API_URL || '/indexes/docs/search'
 

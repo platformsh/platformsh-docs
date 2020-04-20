@@ -23,12 +23,12 @@ class CommunitySpider(scrapy.Spider):
             self.seen.add(response.url)
         for url in hxs.xpath('//a/@href').extract():
             url = urljoin(response.url, url)
-            if not url in self.seen and not re.search(r'.(pdf|zip)$', url) and url.startswith( self.start_urls[0] ):
+            if not url in self.seen and not re.search(r'.(pdf|zip|png|gif|jpeg)$', url) and url.startswith( self.start_urls[0] ):
                 self.log("yielding request " + url)
                 yield Request(url, callback=self.parse)
         item = DocsItem()
         item['site'] = self.name
-        item['title'] = hxs.xpath('//title/text()').get().replace('- Platform.sh Community', '') 
+        item['title'] = hxs.xpath('//title/text()').get().replace('- Platform.sh Community', '')
         item['url'] = response.url
         item['documentId'] = hashlib.sha1(str(response.url).encode('utf-8')).hexdigest()
         item['text'] = re.sub(r'<.*?>', '', ' '.join(hxs.css('.crawler').extract()))
