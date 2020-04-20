@@ -29,9 +29,6 @@ pip3 install wheel --upgrade --ignore-installed
 pip3 install pipenv --upgrade --ignore-installed
 pipenv install
 
-# Allow scrape script to execute
-chmod +x ./scrape.sh
-
 # Build Interface
 cd $PLATFORM_APP_DIR/static/scripts/xss
 npm install

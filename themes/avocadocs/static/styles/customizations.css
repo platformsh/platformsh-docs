@@ -316,6 +316,9 @@ MAIN
 /* } */
 
 
+/* .duik-sidebar {
+  padding: 5rem 0 0 0;
+} */
 
 /* Search */
 
@@ -756,6 +759,10 @@ body {
     /* top | right | bottom | left */
     padding: 3rem 5rem 3rem 10rem;
   }
+
+  .duik-sidebar {
+    padding: 1rem 0 0 0;
+  }
 }
 
 @media (min-width: 1030px) {
@@ -763,6 +770,9 @@ body {
     min-height: calc(100vh - 5rem - 5.5rem);
     /* top | right | bottom | left */
     padding: 0rem 7rem 3rem 7rem;
+  }
+  .duik-sidebar {
+    padding: 5rem 0 0 0;
   }
 }
 

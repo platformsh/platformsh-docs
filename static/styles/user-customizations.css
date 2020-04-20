@@ -173,3 +173,18 @@
     display: none;
   }
 }
+
+
+@media (min-width: 825px) {
+
+  /* .duik-sidebar {
+    padding: 1rem 0 0 0;
+  } */
+}
+
+@media (min-width: 1030px) {
+
+  .duik-sidebar {
+    padding: 5rem 0 0 0;
+  }
+}
