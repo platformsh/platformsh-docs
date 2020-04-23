@@ -196,7 +196,8 @@ By default, aliases will inject their child contents entirely.  If you want to o
 foo: &foo
     thing: stuff
     many: {'stuff', 'here'}
-bar: <<: *foo
+bar:
+    <<: *foo
     thing: other
 ```
 
