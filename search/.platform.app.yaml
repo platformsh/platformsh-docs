@@ -1,0 +1,35 @@
+name: 'search'
+
+type: 'python:3.7'
+
+dependencies:
+    python3:
+       pipenv: '2018.11.26'
+
+hooks:
+    build: !include
+        type: string
+        path: build.sh
+    post_deploy: !include
+        type: string
+        path: deploy.sh
+
+web:
+    commands:
+      # Run the Meilisearch server
+      start: "./meilisearch --http-addr localhost:${PORT}"
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+mounts:
+    "data.ms":
+        source: local
+        source_path: "datams"
+    "output":
+        source: local
+        source_path: "output"
+    "config":
+        source: service
+        service: files
+        source_path: config

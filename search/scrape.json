@@ -1,0 +1,60 @@
+{
+  "docs_index": "docs",
+  "primaryKey": "documentId",
+  "index_name": "Docs",
+  "attributes": {
+    "displayed": [
+      "title",
+      "text",
+      "url",
+      "site"
+    ],
+    "searchable": [
+      "title",
+      "text",
+      "site"
+    ]
+  },
+  "indexes": {
+    "docs": {
+      "name": "docs",
+      "spider": "docs/spiders/docsspider.py",
+      "allowed_domains": [
+        "docs.platform.sh"
+      ],
+      "start_urls": [
+        "https://docs.platform.sh/"
+      ]
+    },
+    "community": {
+      "name": "community",
+      "spider": "docs/spiders/communityspider.py",
+      "allowed_domains": [
+        "community.platform.sh"
+      ],
+      "start_urls": [
+        "https://community.platform.sh/"
+      ]
+    },
+    "website": {
+      "name": "website",
+      "spider": "docs/spiders/websitespider.py",
+      "allowed_domains": [
+        "platform.sh"
+      ],
+      "start_urls": [
+        "https://platform.sh/"
+      ]
+    },
+    "apidocs": {
+      "name": "apidocs",
+      "spider": "docs/spiders/apidocsspider.py",
+      "allowed_domains": [
+        "api.platform.sh"
+      ],
+      "start_urls": [
+        "https://api.platform.sh/docs/"
+      ]
+    }
+  }
+}
