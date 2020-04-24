@@ -70,7 +70,7 @@ class DocsSpider(scrapy.Spider):
             item['section'] = "Docs"
 
         item['title'] = hxs.xpath('//title/text()').get().replace(' · Platform.sh Documentation', '')
-        item['url'] = response.url
+        item['url'] = "/{}".format("/".join(split_section[1:]))
         item['documentId'] = hashlib.sha1(str(response.url).encode('utf-8')).hexdigest()
         item['text'] = re.sub(r'<.*?>', '', ' '.join(hxs.css('.page-wrapper').extract()))
         item['rank'] = self.rank
