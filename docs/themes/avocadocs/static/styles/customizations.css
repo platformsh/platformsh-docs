@@ -1172,3 +1172,7 @@ blockquote p {
 .duik-sidebar {
   padding-top: 5rem;
 }
+
+.duik-sidebar-sticky {
+  overflow: hidden !important;
+}
