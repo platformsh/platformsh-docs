@@ -32,7 +32,7 @@
 .btn2 {
   border: 0px solid transparent;
   border-radius: 0rem;
-  font-weight: bold;s
+  /* font-weight: bold; */
   letter-spacing: 0.05em;
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -166,7 +166,7 @@
 .btn-edit-page {
   border: 0px solid transparent;
   border-radius: 0rem;
-  font-weight: 900;
+  /* font-weight: 900; */
   letter-spacing: 0.05em;
   padding: 1rem 1rem;
   font-size: 13px;

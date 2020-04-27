@@ -67,7 +67,7 @@ class Search extends Component {
 
     const summedSecondary = this.state.hits.community.length + this.state.hits.website.length + this.state.hits.apidocs.length + this.state.hits.templates.length
     const noPrimaryResults = ( this.state.hits.docs.length == 0 && summedSecondary > 0 ) ? <div className="suggestions suggestions-primary"><h4 className="section">{"Documentation"}</h4><div className="hits"><ul>{"Sorry, no documentation matched your search."}</ul> </div> </div> : ''
-    const secondaryResults = summedSecondary > 0 ? <h4 className="section section-secondary">Other resources from Platform.sh</h4> : ''
+    const secondaryResults = summedSecondary > 0 ? <div className="secondary-header"><h4 className="section section-secondary">Other resources from Platform.sh</h4></div> : ''
 
     return (
       <form>
