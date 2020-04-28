@@ -26,6 +26,7 @@ The service types `mariadb` and `mysql` both refer to MariaDB for compatibility 
 > **note**
 >
 > Downgrades of MySQL or MariaDB are not supported. Both will update their own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+> Dedicated environments do not support any storage engine other than InnoDB. Tables created using the MyISAM storage engine on dedicated environments will not replicate between cluster nodes.
 
 ### Deprecated versions
 
@@ -198,6 +199,17 @@ ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 ```
 
 Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charset-mysql.html) for further details.
+
+## Storage Engine
+
+We recommend using the InnoDB storage engine wherever possible. MyISAM is only properly supported in Grid environments, in dedicated cluster environments there is no replication of MyISAM tables.
+
+If MyISAM tables are inadventently created or imported in a dedicated environment they can be easily converted to use the InnoDB storage engine using the following proceedure:
+
+```sql
+RENAME TABLE <existing> <old>;
+INSERT INTO <existing> SELECT * from <old>;
+```
 
 ## Access your MariaDB service
 
