@@ -643,34 +643,10 @@ h6 {
   padding-left: 30px;
 }
 
-/* .branding {
-  float: left;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 75%;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  background-color: var(--sidebar-bg-logo);
-  padding-left: 30px;
-} */
-
-/* @media (min-width: 600px) {
-  .navbar-brand {
-    width: 250px;
-  }
-}
-@media (min-width: 1024px) {
-  .navbar-brand {
-    width: 300px;
-  }
-} */
-
 body {
   margin-top: 0rem;
   font-family: "Overpass", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 1.75vh;
   font-weight: 400;
   line-height: 1.5;
   color: var(--brand-font-color-black);
@@ -1163,6 +1139,10 @@ blockquote p {
 }
 
 @media (max-width: 1024px) {
+
+  body {
+    font-size: 1rem !important;
+  }
 
   .duik-sidebar {
     padding-top: 3rem !important;
