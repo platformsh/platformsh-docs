@@ -17,7 +17,7 @@ The application runtime timezone can also be set, although the mechanism varies 
 * PHP runtime - You can change the timezone by providing a [custom php.ini](/languages/php/ini.md).
 * Node.js runtime - You can change the timezone by starting the server with `env TZ='<timezone>' node server.js`.
 * Python runtime - You can change the timezone by starting the server with `env TZ='<timezone>' python server.py`.
-* Java runtime - You can change the timezone by starting the server with `env TZ='<timezone>' java -jar ...`. An alternative to setting an environment variable is setting the JVM argument user.timezone. This JVM argument takes precedence over the environment variable TZ. For example, we can use the flag -D when we run our application: `java -jar -Duser.timezone=GMT` or `java -jar -Duser.timezone="Asia/Kolkata"`
+* Java runtime - You can change the timezone by starting the server with `env TZ='<timezone>' java -jar ...`. An alternative to setting an environment variable is setting the JVM argument `user.timezone`. This JVM argument takes precedence over the environment variable TZ. For example, you can use the flag -D when running the application: `java -jar -Duser.timezone=GMT` or `java -jar -Duser.timezone="Asia/Kolkata"`
 
 Setting the application timezone will only affect the application itself, not system operations such as log files.
 
