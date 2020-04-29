@@ -7,7 +7,7 @@ description: |
 
 {{< description >}}
 
-YAML is a whitespace-sensitive format that is especially good at key/value type configuration, such as that used by Platform.sh. There are many good YAML tutorials online and the format is reasonably self-documenting.  We especially recommend:
+YAML is a whitespace-sensitive format that is especially good at key/value type configuration, such as that used by Platform.sh. There are many good YAML tutorials online, and the format is reasonably self-documenting.  We especially recommend:
 
 * [GravCMS's YAML tutorial](https://learn.getgrav.org/advanced/yaml)
 * [Learn YAML in Y Minutes](https://learnxinyminutes.com/docs/yaml/)
@@ -20,7 +20,7 @@ A YAML file is a text file that ends in `.yaml`.  (Some systems use an alternati
 
 ```yaml
 name: 'app'
-type: 'php:7.1'
+type: 'php:7.4'
 build:
     flavor: 'composer'
 
@@ -160,4 +160,88 @@ mysearch:
         conf_dir: !archive "solr/conf"
 ```
 
-In this case, the `mysearch.configuration.conf_dir` value is not the string "solr/conf", but the contents of the `solr/conf` directory (relative to the `services.yaml` file).  On Platform.sh, that is used primarily for service definitions in [`services.yaml`](/configuration/services.html) to provide a directory of configuration files for the service (such as Solr in this case).  Platform.sh will use that directive to copy the entire specified directory into our management system so that it can be deployed with the specified service.
+In this case, the `mysearch.configuration.conf_dir` value is not the string "solr/conf", but the contents of the `solr/conf` directory (relative to the `services.yaml` file).  On Platform.sh, that is used primarily for service definitions in [`services.yaml`](/configuration/services.md) to provide a directory of configuration files for the service (such as Solr in this case).  Platform.sh will use that directive to copy the entire specified directory into our management system so that it can be deployed with the specified service.
+
+## Anchors
+
+YAML supports internal named references, known as "anchors."  They can be referenced using an "alias."  That allows you to have a large block of YAML that gets repeated multiple times in different places within a single file without having to copy-paste the whole block.
+
+An anchor is defined by appending `&name` to a segment, where "name" is some unique identifier.  For example:
+
+```yaml
+relationships: &rels
+    database: 'mysqldb:db1'
+    cache: 'rediscache:redis'
+    search: 'searchserver:elasticsearch'
+```
+
+This block defines an anchor called `rels`, the contents of which is the 3 key/value pairs for `database`, `cache`, and `search`.
+
+An anchor can be referenced using an alias like `*name`, which will inject the anchored value into the file at that point.  That is, the following two snippets are logically equivalent:
+
+```yaml
+foo: &foo
+    thing: stuff
+    many: {'stuff', 'here'}
+bar: *foo
+```
+
+```yaml
+foo:
+    thing: stuff
+    many: {'stuff', 'here'}
+bar:
+    thing: stuff
+    many: {'stuff', 'here'}
+```
+
+By default, aliases will inject their child contents entirely.  If you want to overwrite a specific child key of an anchor there is a different alias syntax you must use:
+
+```yaml
+foo: &foo
+    thing: stuff
+    many: {'stuff', 'here'}
+bar:
+    <<: *foo
+    thing: other
+```
+
+Which is equivalent to:
+
+```yaml
+foo:
+    thing: stuff
+    many: {'stuff', 'here'}
+bar:
+    thing: other
+    many: {'stuff', 'here'}
+```
+
+Be aware that aliases have sometimes non-obvious requirements around their whitespace formatting.  In particular, when aliasing a anchor into a YAML array the alias reference must be at the same indentation level as any overrides.  That is:
+
+```yaml
+- &mylist
+    list: of
+    values: here
+
+-
+    <<: *mylist    # These two lines must start at the same indentation.
+    values: there
+```
+
+### Anchor example
+
+Anchors and aliases are mainly useful when you want to repeat a given block of configuration.  For example, the following snippet will define three identical worker instances within a `.platform.app.yaml` file:
+
+```yaml
+workers:
+    queue1: &runner
+        size: 'S'
+        commands:
+            start: python queue-worker.py
+        variables:
+            env:
+                type: 'worker'
+    queue2: *runner
+    queue3: *runner
+```

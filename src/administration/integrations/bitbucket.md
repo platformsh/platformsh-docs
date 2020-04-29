@@ -7,45 +7,9 @@ description: |
 
 {{< description >}}
 
-There are two options for setting up Bitbucket integrations with Platform.sh.
-
-* [Using the Platform.sh add-on](#platformsh-bitbucket-add-on)
-* [Setting up an OAuth consumer manually](#setting-up-an-oauth-consumer)
-
-## Platform.sh Bitbucket add-on
-
-The Bitbucket add-on allows you to manage your Platform.sh environments directly from your Bitbucket repository.
-
-Supported:
-
-* Create a new environment when creating a branch or opening a pull request on Bitbucket.
-* Rebuild the environment when pushing new code to Bitbucket.
-* Delete the environment when merging a pull request.
-
-### Install the add-on
-
-On your Bitbucket account, click on your avatar and select [App Marketplace](https://bitbucket.org/account/addon-directory/). Filter the list of available add-ons for the "Deployment" category. Add the add-on titled "Platform.sh PHP PaaS" and grant its access to the account.
-
-![Bitbucket add-on](/images/integrations/bitbucket-addon.png "0.4")
-
-{{< note >}}
-* The Bitbucket Integration can only be connected by the Platform.sh account owner.
-* Platform.sh recommends you install the add-on at the *team* level (select ``Manage Team`` instead) so that every repository that belongs to the team can use the add-on.
-* If you have created your account using the bitbucket oAuth Login in order to use the Platform CLI you will need to setup a password which you can do by visiting this page [https://accounts.platform.sh/user/password](https://accounts.platform.sh/user/password)
-{{< /note >}}
-
-### Setup the integration
-
-To connect your Bitbucket repository to Platform.sh, go to the repository page *as an administrator*  and click on the `Settings` icon. Then click `Platform.sh integration` under the `PLATFORM.SH` section.
-
-The add-on will give you two options when you grant Platform.sh access to the repository:
-
-1. Create a new project: this will allow you to choose a region and create a project for the repository.
-2. Connect to an existing project (bottom of the page): this will allow you to connect the repository to a pre-initialized empty project on Platform.sh.
-
 ## Setting up an OAuth consumer
 
-If that Platform.sh add-on does not configure the integration automatically, you can also do so manually by creating an [OAuth consumer](https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html) for your account.
+You can integrate your Bitbucket repositories with Platform.sh by creating an [OAuth consumer](https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html) for your account.
 
 ### On Bitbucket
 

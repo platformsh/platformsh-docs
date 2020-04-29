@@ -25,7 +25,7 @@ The following versions are available but are not receiving security updates from
 Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database.
 {{< /note >}}
 
-### Ephemeral Redis
+## Ephemeral Redis
 
 The `redis` service type is configured to serve as a LRU cache; its storage is not persistent.  It is not suitable for use except as a disposable cache.
 
@@ -35,7 +35,7 @@ To add an Ephemeral Redis service, specify it in your `.platform/services.yaml` 
 
 Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
 
-### Persistent Redis
+## Persistent Redis
 
 The `redis-persistent` service type is configured for persistent storage. That makes it a good choice for fast application-level key-value storage.
 
@@ -44,6 +44,10 @@ To add a Persistent Redis service, specify it in your `.platform/services.yaml` 
 {{< readFile file="src/registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" >}}
 
 The `disk` key is required for redis-persistent to tell Platform.sh how much disk space to reserve for Redis' persistent data.
+
+>> **note**
+>
+> Switching a service from Persistent to Ephemeral configuration is not supported at this time.  To switch between modes, use a different service with a different name.
 
 ## Relationship
 
