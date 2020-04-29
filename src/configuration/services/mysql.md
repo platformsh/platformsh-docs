@@ -202,7 +202,7 @@ Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charse
 
 ## Storage Engine
 
-We recommend using the InnoDB storage engine wherever possible. MyISAM is only properly supported in Grid environments, in dedicated cluster environments there is no replication of MyISAM tables.
+We recommend using the InnoDB storage engine wherever possible. MyISAM is only properly supported in Grid environments. In dedicated cluster environments there is no replication of MyISAM tables.
 
 If MyISAM tables are inadventently created or imported in a dedicated environment they can be converted to use the InnoDB storage engine using the following procedure:
 
