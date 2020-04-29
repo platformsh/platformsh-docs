@@ -1,0 +1,11 @@
+{{ $image := .Get "image" }}
+{{ $status := .Get "status" }}
+{{ $registry := ( readFile "registry/images/registry.json" ) | transform.Unmarshal }}
+
+{{ $supported  := index $registry $image "versions" $status }}
+
+<ul>
+{{ range $supported }}
+  <li>{{.}}</li>
+{{ end }}
+</ul>

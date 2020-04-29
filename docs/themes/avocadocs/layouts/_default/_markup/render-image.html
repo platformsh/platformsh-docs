@@ -1,0 +1,13 @@
+{{ $alt := .PlainText | safeHTML }}
+{{ $widthScale := 100 }}
+{{ $scale := 1.0 }}
+{{ with .Title }}
+  {{ $scale = float . }}
+  {{ $widthScale = mul $scale $widthScale }}
+{{ end }}
+
+<div class="centered-image" align="center">
+  <p class="mb-4" style="max-width: {{ $widthScale }}rem;">
+    <img class="img-fluid w-100 duik-browser-img" src="{{ .Destination }}" alt="{{ $alt }}">
+  </p>
+</div>

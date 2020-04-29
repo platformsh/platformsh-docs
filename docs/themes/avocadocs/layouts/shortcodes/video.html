@@ -1,0 +1,13 @@
+<!-- Video resources -->
+
+<div class="video-div" align="center">
+  <p class="mb-4">
+
+    {{- with .Get "src" -}}
+      <video width="100%" controls>
+          <source src="{{ . | relURL}}" type="video/mp4">
+      </video>
+    {{end}}
+    
+  </p>
+</div>

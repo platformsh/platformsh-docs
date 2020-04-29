@@ -1,0 +1,47 @@
+<!-- Welcome message -->
+{{ $docstyle := "avocadocs" }}
+{{ if isset .Site.Params "docstyle" }}
+  {{ $docstyle = .Site.Params.docstyle }}
+{{ end }}
+
+{{ if isset .Site.Params "welcome" }}
+
+  <section class="pb-11">
+    <div class="container welcome">
+      <div class="w-md-75 mx-auto">
+
+        <!-- Logo -->
+        {{ if isset .Site.Params.welcome "logo" }}
+          <img class="img-fluid w-100 duik-browser-img" src="{{ .Site.Params.welcome.logo }}" {{ if isset .Site.Params.meta "sitename" }}alt="{{ .Site.Params.meta.sitename }}"{{end}}>
+        {{ end }}
+
+        <!-- Credit -->
+        {{ if isset .Site.Params.welcome "credit" }}
+          <h2 class="d-flex align-items-center justify-content-center text-uppercase font-weight-bold small text-space-1 mb-3">
+            <span class="text-dark">{{ .Site.Params.welcome.credit }}</span>
+          </h2>
+        {{ end }}
+
+        <!-- Description -->
+        {{ if isset .Site.Params.welcome "desc" }}
+          <p class="text-center mb-5">{{ .Site.Params.welcome.desc | safeHTML }}</p>
+        {{ end }}
+
+        <!-- Deploy on Platform.sh -->
+        {{ if isset .Site.Params.welcome "dop" }}
+
+          {{ if ( isset .Site.Params.welcome.dop "template" ) and ( isset .Site.Params.welcome.dop "utm_content" ) }}
+            <p align="center">
+            <a href="https://console.platform.sh/projects/create-project?template={{ .Site.Params.welcome.dop.template }}&utm_content={{ .Site.Params.welcome.dop.utm_content }}&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform">
+                <img class="img-fluid w-100 duik-browser-img" src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" style="max-width: 225px;" />
+            </a>
+            </p>
+          {{ end }}
+
+        {{ end }}
+
+      </div>
+    </div>
+  </section>
+
+{{ end }}

@@ -1,6 +1,6 @@
 https://{default}/:
   type: upstream
-  upstream: app:http
+  upstream: docs:http
   cache:
     enabled: true
   ssi:
@@ -86,3 +86,16 @@ https://{default}/:
 
       # Renamed in August 2019.
       "/administration/snapshot-and-restore.html": { "to": "/administration/backup-and-restore.html", "code": 301, "prefix": false}
+
+"https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"
+
+"https://search.{default}/":
+    type: upstream
+    upstream: "search:http"
+    id: "search"
+
+"https://www.search.{default}/":
+    type: redirect
+    to: "https://search.{default}/"
