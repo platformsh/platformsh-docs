@@ -60,35 +60,12 @@ export MEILI_MASTER_KEY=test
 ./meilisearch
 ```
 
-In another terminal window, scrape all sites outlined in `scrape.json`, and update the `config/config.json` to include the search only public key and the url of the Meilisearch server:
+In another terminal window, build the React app interface so that search can be pulled into the Hugo site:
 
 ```bash
-cd search
-# Scrapes sites in `scrape.json`.
-./scrape.sh
-# Export again in this terminal window.
-export MEILI_MASTER_KEY=test
-# Refreshes the Meilisearch index, adds scraped documents to it, and retrieves
-#   the search only public api key.
-pipenv run python main.py
-# Modifies `config/config.json` to include the public api key.
-pipenv run python update_url.py
-```
-
-> **Note:**
->
-> `update_url.py` behaves differently locally and on Platform.sh:
->
-> * **Platform.sh:** In order to pass the public api url to the `docs` application, this project uses [Network Storage](https://docs.platform.sh/configuration/services/network-storage.html) to define a mount accessible from both the `search` and `docs` applications, defined by the `files` service in `.platform/services.yaml`. The script modifies `config/config.json` (which initially was written to include the public api key from `main.py`) to add the `search` apps upstream route during the deploy hook. Because the `files` directory is also visible in `docs`, the documentation can use those credentials.
-> * **Locally:** Obviously, this shared access needed to be replicated locally. If `update_url.py` does not detect that the project is running on Platform.sh, the `config.json` file updates are written instead to the expected location in `docs` (`docs/static/scripts/xss/dist/config/config.json`).
-
-When Scrapy has finished scraping the sites to be included in the index, and the index has been updated, build the React app interface so that search can be pulled into the Hugo site:
-
-
-```bash
-cd ../docs/static/scripts/xss
+cd ../docs
 npm install
-npm run-script build
+npm run build-searchapp
 ```
 
 > **Note:**
@@ -99,16 +76,19 @@ npm run-script build
 > npm install webpack-cli -g
 > ```
 
-First, retrieve all example files and config snippets for the documentation:
+Then update the Meilisearch server:
 
 ```bash
-cd ../../.. # (docs root)
-npm install
-npm run dev
+cd ../search
+# Export again in this terminal window.
+export MEILI_MASTER_KEY=test
+# Update the index
+./update_search.sh
 ```
 
 Then finally, build the site:
 
 ```bash
+cd ../docs
 hugo serve
 ```

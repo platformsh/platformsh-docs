@@ -91,7 +91,7 @@
 }
 
 .search-all-results {
-  display: none;
+  /* display: none; */
   width: 600px;
   max-width: 90vw;
   position: absolute;
@@ -178,7 +178,6 @@
 .suggestions div.hits {display:inline-block;}
 
 .suggestions .hits {
-  padding-right: 2rem;
   display:inline-block;
   width:100%;
   font-family: "Overpass";

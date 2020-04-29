@@ -6,13 +6,9 @@
 }
 
 .searchContainer {
-    /* position: fixed; */
-    /* font-family: "Open Sans", sans-serif; */
     font-family: "Overpass";
     font-size:12px !important;
     line-height: 22px !important;
-    /* left:20px;
-    top: 120px; */
     list-style: none;
     z-index: 9999;
     margin: 1rem;
