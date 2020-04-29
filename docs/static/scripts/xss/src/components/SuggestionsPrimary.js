@@ -8,7 +8,7 @@ const SuggestionsPrimary = (props) => {
       {r._formatted ? renderHTML(r._formatted.text) : r.text}
     </li>
   ))
-  return <div className="suggestions suggestions-primary"><h4 className="section">{props.title}</h4><div className="hits"><ul>{results}</ul> </div> </div>
+  return <div className="suggestions suggestions-primary" style={{display: "block"}}><h4 className="section">{props.title}</h4><div className="hits"><ul>{results}</ul> </div> </div>
 }
 
 export default SuggestionsPrimary

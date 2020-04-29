@@ -101,6 +101,7 @@
 }
 
 .suggestions-primary {
+  display: none;
   background-color: #F5F7FA !important;
 }
 
