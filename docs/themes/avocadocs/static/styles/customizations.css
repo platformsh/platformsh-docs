@@ -646,7 +646,7 @@ h6 {
 body {
   margin-top: 0rem;
   font-family: "Overpass", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.75vh;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: var(--brand-font-color-black);
@@ -1139,11 +1139,7 @@ blockquote p {
 }
 
 @media (max-width: 1024px) {
-
-  body {
-    font-size: 1rem !important;
-  }
-
+  
   .duik-sidebar {
     padding-top: 3rem !important;
   }
