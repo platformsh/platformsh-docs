@@ -10,8 +10,85 @@ Every pull request is automatically built on Platform.sh, and a link provided to
 
 Our documentation site is build using [Hugo](https://gohugo.io), a Go static site generator. We rerun the build script on every deploy to produce a fresh static site instance. As we transition to Hugo from Gitbook, currently the site's layouts are built on top of [DocsUIKit](https://github.com/htmlstreamofficial/docs-ui-kit).
 
+Our cross-site search in the documentation is built in a separate application on Platform.sh in `search` using [Meilisearch](https://www.meilisearch.com/).
+
+
 ## Contributing
 
 Our documentation is public because we want your help in improving and maintaining it.  See our [Contributing guidelines](CONTRIBUTING.md) for guidelines on filing pull requests.  All documentation is released under the [Creative Commons Attribution](LICENSE.md) license.
 
 If you spot a problem, send us a pull request to fix it!  If you're not sure how, you can also file an issue and we'll try to get to it ourselves.
+
+## Running locally
+
+Requires:
+
+* Hugo >= 0.68.3
+* Node.js 12
+
+### Running locally without search
+
+The documentation and the Meilisearch search service are separate applications. It is not necessary to run the Meilisearch app to build the docs locally, but the field will not appear in the sidebar either.
+
+Clone this repo, then install its dependencies and download its example files:
+
+```bash
+cd docs
+npm install
+npm run dev
+```
+
+Then build the site,
+
+```bash
+hugo serve
+```
+
+### Running locally with search
+
+If you would like to test the search server, you can run it by exporting the `MEILI_MASTER_KEY` environment variable and installing Meilisearch locally:
+
+```bash
+cd search
+# Install dependencies for communicating with Meilisearch.
+pipenv --three install
+# Download Meilisearch.
+curl -L https://install.meilisearch.com | sh
+# Set a master key.
+export MEILI_MASTER_KEY=test
+# Run it.
+./meilisearch
+```
+
+In another terminal window, build the React app interface so that search can be pulled into the Hugo site:
+
+```bash
+cd ../docs
+npm install
+npm run build-searchapp
+```
+
+> **Note:**
+>
+> If you receive an error about the Webpack CLI missing, you will need to install it on your local machine:
+>
+> ```bash
+> npm install webpack-cli -g
+> ```
+
+Then update the Meilisearch server:
+
+```bash
+cd ../search
+# Export again in this terminal window.
+export MEILI_MASTER_KEY=test
+# Update the index
+./update_search.sh
+```
+
+Then finally, build the site:
+
+```bash
+cd ../docs
+hugo serve
+```

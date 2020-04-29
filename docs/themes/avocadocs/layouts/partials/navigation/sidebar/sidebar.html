@@ -1,0 +1,44 @@
+<!-- Sidebar -->
+
+<nav class="col-md-3 col-xl-2 bg-light duik-sidebar navbar-expand-md border-md-right">
+
+  <div class="searcharea">
+
+    <!-- Sidebar search -->
+    {{ partial "navigation/sidebar/search" . }}
+
+    <!-- Sidebar Responsive Toggle (mobile) -->
+    {{ partial "navigation/sidebar/hamburger" . }}
+
+  </div>
+
+  <!-- Sidebar Nav -->
+  <div class="collapse navbar-collapse border-bottom border-md-0" id="sidebar-nav">
+    <div class="js-scrollbar duik-sidebar-sticky">
+
+      <div class="mobile-books-sidebar">
+        <h4 class="duik-sidebar__heading">Books</h4>
+        <ul class="duik-sidebar__nav">
+          <li class="duik-sidebar__item">
+            <a href="/" class="duik-sidebar__link">Documentation</a>
+            <a href="/gettingstarted.html" class="duik-sidebar__link">Getting started</a>
+          </li>
+        </ul>
+
+        <hr>
+      </div>
+
+
+
+      <!-- Sidebar navigation entries -->
+      {{ partial "navigation/sidebar/nav" . }}
+
+      <!-- Space injected after last entry for visibility -->
+      {{ partial "inject/menu-after" . }}
+
+    </div>
+  </div>
+  <!-- End Sidebar Nav -->
+
+</nav>
+<!-- End Sidebar -->
