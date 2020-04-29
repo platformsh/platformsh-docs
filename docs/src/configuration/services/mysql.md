@@ -241,7 +241,6 @@ RENAME TABLE <existing> <old>;
 INSERT INTO <existing> SELECT * from <old>;
 ```
 
->>>>>>> master
 ## Access your MariaDB service
 
 Assuming your MariaDB relationship is named `database`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `database.internal` and `3306`. Open an [SSH session](/development/ssh.md) and run the MySQL command line client.
