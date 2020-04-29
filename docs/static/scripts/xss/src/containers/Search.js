@@ -66,8 +66,12 @@ class Search extends Component {
     const apidocs = this.state.hits.apidocs.length > 0 ? <Suggestions title="API Docs" hits={this.state.hits.apidocs} /> : ''
 
     const summedSecondary = this.state.hits.community.length + this.state.hits.website.length + this.state.hits.apidocs.length + this.state.hits.templates.length
-    const noPrimaryResults = ( this.state.hits.docs.length == 0 && summedSecondary > 0 ) ? <div className="suggestions suggestions-primary" style={{display: "block"}}><h4 className="section">{"Documentation"}</h4><div className="hits"><ul>{"Sorry, no documentation matched your search."}</ul> </div> </div> : ''
+    const noPrimaryResults = ( this.state.hits.docs.length == 0 && summedSecondary > 0 ) ? <div className="suggestions suggestions-primary"><h4 className="section">{"Documentation"}</h4><div className="hits"><ul>{"Sorry, no documentation matched your search."}</ul> </div> </div> : ''
     const secondaryResults = summedSecondary > 0 ? <div className="suggestions"><h4 className="section section-secondary">Other resources from Platform.sh</h4></div> : ''
+
+    const allResults = <div className="search-all-results">{docs}{noPrimaryResults}{secondaryResults}{templates}{community}{website}{apidocs}</div>
+    const noQuery = ""
+
 
     return (
       <form>
@@ -85,15 +89,7 @@ class Search extends Component {
           value={ ( this.state.query && this.state.query.length > 1 ) ? "+" : ""}
           onClick={this.search = ""}
         />
-        <div className="search-all-results" style={{overflow: "scroll"}}>
-          {docs}
-          {noPrimaryResults}
-          {secondaryResults}
-          {templates}
-          {community}
-          {website}
-          {apidocs}
-        </div>
+        { ( this.state.query && this.state.query.length > 1 ) ? allResults : noQuery }
       </form>
     )
   }
