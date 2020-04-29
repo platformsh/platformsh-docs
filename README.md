@@ -65,6 +65,7 @@ In another terminal window, build the React app interface so that search can be 
 ```bash
 cd ../docs
 npm install
+npm run dev
 npm run build-searchapp
 ```
 
