@@ -763,6 +763,10 @@ body {
     /* margin-left: 0rem !important; */
   }
 
+  .duik-sidebar-sticky {
+    height: 22rem;
+  }
+
 }
 
 @media (min-width: 1185px) {
@@ -1139,7 +1143,7 @@ blockquote p {
 }
 
 @media (max-width: 1024px) {
-  
+
   .duik-sidebar {
     padding-top: 3rem !important;
   }
