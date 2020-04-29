@@ -20,3 +20,9 @@ Platform.sh adds a number of response headers automatically to assist in debuggi
 * `X-Platform-Cluster`: The ID of the cluster that received the request.  The cluster name is formed from the project ID and environment ID.
 * `X-Platform-Processor`: The ID of the container that generated the response.  The container ID is the cluster ID plus the container name.
 * `X-Platform-Router`: The ID of the router that served the request.  The router ID is the processor ID of the router container, specifically.
+
+## Custom headers
+
+Apart from those listed above, your application is responsible for setting its own response headers.
+
+To add headers to static files, use the `headers` key in the application's [web locations configuration](/configuration/app/web.md#how-can-i-control-the-headers-sent-with-my-files).
