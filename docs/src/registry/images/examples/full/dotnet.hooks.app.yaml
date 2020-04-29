@@ -1,4 +1,0 @@
-hooks:
-    build: |
-        set -e
-        dotnet publish --output "$PLATFORM_OUTPUT_DIR" -p:UseRazorBuildServer=false -p:UseSharedCompilation=false

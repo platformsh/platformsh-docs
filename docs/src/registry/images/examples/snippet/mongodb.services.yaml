@@ -1,3 +1,0 @@
-dbmongo:
-    type: mongodb:3.6
-    disk: 512

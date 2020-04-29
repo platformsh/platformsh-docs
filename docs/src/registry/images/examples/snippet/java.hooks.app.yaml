@@ -1,2 +1,0 @@
-hooks:
-    build: mvn clean install

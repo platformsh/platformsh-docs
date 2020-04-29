@@ -1,6 +1,0 @@
-# 'build' defines what happens when building the application. Its only
-# property is 'flavor', which specifies a default set of build tasks to run.
-# Flavors are language-specific.
-# DOCS: https://docs.platform.sh/configuration/app/build.html#build
-build:
-    flavor: composer

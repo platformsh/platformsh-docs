@@ -1,3 +1,0 @@
-hooks:
-    build: |
-        pipenv install --system --deploy

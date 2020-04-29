@@ -1,5 +1,0 @@
----
-title: "Figures"
----
-
-FIGURES

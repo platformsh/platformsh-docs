@@ -1,5 +1,0 @@
-hooks:
-    build: |
-        set -e
-    deploy: |
-        set -e

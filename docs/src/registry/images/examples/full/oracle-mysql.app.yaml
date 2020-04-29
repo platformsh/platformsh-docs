@@ -1,2 +1,0 @@
-relationships:
-    mysqldatabase: "dbmysql:mysql"

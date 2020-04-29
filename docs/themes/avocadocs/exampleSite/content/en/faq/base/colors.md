@@ -1,5 +1,0 @@
----
-title: "Colors"
----
-
-COLORS

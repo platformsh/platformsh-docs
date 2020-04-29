@@ -1,5 +1,0 @@
-hooks:
-    build: |
-        bundle install --without development test
-    deploy: |
-        RACK_ENV=production bundle exec rake db:migrate

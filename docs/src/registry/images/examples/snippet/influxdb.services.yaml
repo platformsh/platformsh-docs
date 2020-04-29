@@ -1,3 +1,0 @@
-timedb:
-    type: influxdb:1.7
-    disk: 256
