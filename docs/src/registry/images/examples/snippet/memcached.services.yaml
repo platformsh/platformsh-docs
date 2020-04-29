@@ -1,0 +1,2 @@
+cachemc:
+    type: memcached:1.4

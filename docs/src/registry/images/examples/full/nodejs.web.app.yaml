@@ -1,0 +1,3 @@
+web:
+    commands:
+        start: node index.js

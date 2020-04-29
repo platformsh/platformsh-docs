@@ -1,0 +1,7 @@
+web:
+    commands:
+        start: ./example
+    locations:
+        /:
+            passthru: true
+            allow: false

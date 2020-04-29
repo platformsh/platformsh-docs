@@ -1,0 +1,2 @@
+relationships:
+    solrsearch: "searchsolr:solr"

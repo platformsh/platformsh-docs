@@ -1,0 +1,13 @@
+# The 'web' key defines a single web instance container running a single web server
+# process (currently Nginx), behind which runs your application. It configures
+# the web server, including what requests should be served directly
+# (such as static files) and which should be passed to your application.
+# DOCS: https://docs.platform.sh/configuration/app/web.html
+web:
+    # The 'commands' key defines the command to launch the application.
+    # DOCS: https://docs.platform.sh/configuration/app/web.html#commands
+    commands:
+        # The 'start' key specifies the command to use to launch your application.
+        # If the command specified by the 'start' key terminates it will
+        # be restarted automatically.
+        start: python server.py

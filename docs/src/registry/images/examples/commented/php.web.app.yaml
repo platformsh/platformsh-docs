@@ -1,0 +1,17 @@
+# The 'web' key defines a single web instance container running a single web server
+# process (currently Nginx), behind which runs your application. It configures
+# the web server, including what requests should be served directly
+# (such as static files) and which should be passed to your application.
+# DOCS: https://docs.platform.sh/configuration/app/web.html
+web:
+    # 'locations' allows you to control how the application container responds
+    # to incoming requests at a very fine-grained level.
+    # DOCS: https://docs.platform.sh/configuration/app/web.html#locations
+    locations:
+        /:
+            # The public directory of the app, relative to its root.
+            root: "web"
+            # Whether to forward disallowed and missing resources from this
+            # location to the application. Can be 'true', 'false', or an absolute
+            # URI path (as in PHP, when it is typically the front controller).
+            passthru: /index.php

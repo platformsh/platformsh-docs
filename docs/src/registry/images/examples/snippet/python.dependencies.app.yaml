@@ -1,0 +1,3 @@
+dependencies:
+    python3:
+        pipenv: 2018.10.13

@@ -1,0 +1,2 @@
+relationships:
+    redisdata: "data:redis"

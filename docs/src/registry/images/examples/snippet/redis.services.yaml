@@ -1,0 +1,2 @@
+cacheredis:
+    type: redis:5.0

@@ -1,0 +1,2 @@
+relationships:
+    postgresdatabase: "dbpostgres:postgresql"

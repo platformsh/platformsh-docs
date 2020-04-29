@@ -1,0 +1,2 @@
+relationships:
+    rediscache: "cacheredis:redis"

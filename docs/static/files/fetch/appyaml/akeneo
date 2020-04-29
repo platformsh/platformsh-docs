@@ -1,0 +1,115 @@
+# This file describes an application.
+
+# The name of this app. Must be unique within a project.
+name: app
+
+# The toolstack used to build the application.
+type: php:7.2
+
+# Enable non-default extensions required by Akeneo
+runtime:
+    extensions:
+        - apcu
+        - imagick
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the environment variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: "db:mysql"
+    elasticsearch: "search:elasticsearch"
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        "/":
+            root: "web"
+            passthru: "/app.php"
+
+# The size of the persistent disk of the application (in MB).
+disk: 3072
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+    "var/logs":
+        source: local
+        source_path: "app-logs"
+    "var/cache":
+        source: local
+        source_path: "app-cache"
+    "var/uploads":
+        source: local
+        source_path: "app-uploads"
+    "app/file_storage":
+        source: local
+        source_path: "app-file_storage"
+    "app/archive":
+        source: local
+        source_path: "app-archive"
+    "app/uploads/product":
+        source: local
+        source_path: "app-uploads"
+    "installer":
+        source: local
+        source_path: "installer"
+    "web/media":
+        source: local
+        source_path: "media-cache"
+    "upgrades/schema":
+        source: local
+        source_path: "upgrades-schema"
+
+hooks:
+    # We run the build hook before your application has been packaged.
+    build: |
+        # install nvm to use newer version of node
+        unset NPM_CONFIG_PREFIX
+        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | dash
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        # install node 10 (currently latest LTS)
+        nvm install 10
+
+        # install yarn
+        npm install -g yarn
+
+        # run yarn to install frontend
+        yarn install
+        yarn run webpack
+
+        # remove dev file
+        rm web/app_dev.php
+
+    # We run the deploy hook after your application has been deployed and started.
+    deploy: |
+        # clear caches
+        bin/console cache:clear --no-warmup --env=prod
+
+        # create tmp folders
+        mkdir -p /tmp/pim/file_storage
+        mkdir -p /tmp/pim/upload_tmp_dir
+
+        # run installer if no lockfile exists
+        if [ ! -f installer/.platform.installed ]; then
+            bin/console pim:installer:db --env=prod
+            touch installer/.platform.installed
+        fi
+
+crons:
+    calculate_completeness:
+        spec: '0 23 * * *'
+        cmd: 'php /app/bin/console pim:completeness:calculate > /app/var/logs/calculate_completeness.log 2>&1'
+    refresh_versioning:
+        spec: '0 5 * * *'
+        cmd: 'php /app/bin/console pim:versioning:refresh > /app/var/logs/refresh_versioning.log 2>&1'
+    volume_aggregate:
+        spec: '0 22 * * *'
+        cmd: 'php /app/bin/console pim:volume:aggregate > /app/var/logs/volume_aggregate.log 2>&1'
+
+workers:
+    queue:
+        disk: 512
+        commands:
+            start: |
+                php /app/bin/console akeneo:batch:job-queue-consumer-daemon

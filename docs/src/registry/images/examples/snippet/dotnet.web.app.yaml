@@ -1,0 +1,8 @@
+web:
+    commands:
+        start: dotnet application.dll
+    locations:
+        /:
+            root: "wwwroot"
+            passthru: true
+            allow: true

@@ -1,0 +1,102 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+
+# The name of this app. Must be unique within a project.
+name: app
+
+# The type of the application to build.
+type: php:7.4
+build:
+    flavor: composer
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: 'db:mysql'
+    rediscache: 'cache:redis'
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        '/':
+            # The public directory of the app, relative to its root.
+            root: 'public'
+            passthru: '/index.php'
+            index:
+                - 'index.php'
+            allow: false
+            rules:
+                # Allow access to common static files.
+                '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+                    allow: true
+                '^/robots\.txt$':
+                    allow: true
+                '^/sitemap\.xml$':
+                    allow: true
+        '/fileadmin':
+            root: 'public/fileadmin'
+            scripts: false
+            allow: true
+            passthru: '/index.php'
+        '/typo3temp/assets':
+            root: 'public/typo3temp/assets'
+            scripts: false
+            allow: true
+            passthru: '/index.php'
+            rules:
+                '\.js\.gzip$':
+                    headers:
+                        Content-Type: text/javascript
+                        Content-Encoding: gzip
+                '\.css\.gzip$':
+                    headers:
+                        Content-Type: text/css
+                        Content-Encoding: gzip
+        '/typo3conf/LocalConfiguration.php':
+            allow: false
+        '/typo3conf/AdditionalConfiguration.php':
+            allow: false
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+    "public/typo3temp":
+        source: local
+        source_path: "typo3temp"
+    "public/fileadmin":
+        source: local
+        source_path: "fileadmin"
+    "var":
+        source: local
+        source_path: "var"
+
+# The hooks that will be performed when the package is deployed.
+hooks:
+    build: |
+        set -e
+
+        bash install-redis.sh 5.1.1
+
+        php src/installer.php install:setup
+        # Enable the install tool for 60mins after deployment
+        touch public/typo3conf/ENABLE_INSTALL_TOOL
+    deploy: |
+        set -e
+        php src/installer.php install:wireconfig
+        if [ ! -f var/platformsh.installed ]; then
+            php src/installer.php install:dbimport
+            php src/installer.php install:activateextensions
+            # This creates the initial admin user with a default password.
+            # *CHANGE THIS VALUE IMMEDIATELY AFTER INSTALLATION*
+            php src/installer.php install:createuser "admin" "password"
+            touch var/platformsh.installed
+        fi;
+
+crons:
+    typo3:
+        spec: "*/5 * * * *"
+        cmd: "vendor/bin/typo3 scheduler:run"

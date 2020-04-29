@@ -1,0 +1,9 @@
+# It is also possible to install additional system-level dependencies as part of
+# the build process. These can be installed before the build hook runs using the
+# native package manager for several web-focused languages.
+# DOCS: https://docs.platform.sh/configuration/app/build.html#build-dependencies
+# When specifying dependencies for each language, use the appropriate block for
+# that language (https://docs.platform.sh/configuration/app/build.html#specifying-dependencies).
+dependencies:
+    python3:
+        pipenv: 2018.10.13

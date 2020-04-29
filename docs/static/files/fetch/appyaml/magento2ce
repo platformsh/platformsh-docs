@@ -1,0 +1,106 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+#
+# See https://docs.platform.sh/user_guide/reference/platform-app-yaml.html
+
+# The name of this app. Must be unique within a project.
+name: app
+
+# The runtime the application uses.
+type: php:7.2
+
+# Specify additional PHP extensions that should be loaded.
+runtime:
+    extensions:
+    - xsl
+    - sodium
+
+# Configuration of the build of this application.
+build:
+    flavor: composer
+
+# The relationships of the application with services or other applications.
+#
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: db:mysql
+    redis: cache:redis
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The 'mounts' describe writable, persistent filesystem mounts in the application.
+mounts:
+    "/var":
+        source: local
+        source_path: "var"
+    "/generated":
+        source: local
+        source_path: "generated"
+    "/pub/media":
+        source: local
+        source_path: "media"
+    "/pub/static":
+        source: local
+        source_path: "static"
+    "/.config":
+        source: local
+        source_path: "config"
+
+# The hooks executed at various points in the lifecycle of the application.
+hooks:
+    # The build hook runs on your code to prepare it for an active environment.
+    build: |
+        set -e
+        ln -sfn "$PLATFORM_APP_DIR"/.config/env.php "$PLATFORM_APP_DIR"/app/etc/env.php
+        ln -sfn "$PLATFORM_APP_DIR"/.config/config.php "$PLATFORM_APP_DIR"/app/etc/config.php
+    # The deploy hook runs after your application has been deployed and started.
+    deploy: |
+        set -e
+        ./deploy
+        php disable-cron-workers.php
+
+# The configuration of scheduled execution.
+crons:
+    magento:
+        spec: "* * * * *"
+        cmd: "php bin/magento cron:run"
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        '/':
+            root: "pub"
+            passthru: "/index.php"
+            index:
+            - index.php
+            scripts: true
+            allow: false
+            rules:
+                \.(css|js|gif|jpe?g|svg):
+                    allow: true
+        '/media':
+            root: "pub/media"
+            allow: true
+            scripts: false
+            passthru: "/get.php"
+            expires: 1y
+        '/static':
+            root: "pub/static"
+            allow: true
+            scripts: false
+            passthru: "/static-versioned.php"
+            expires: 1y
+            rules:
+                ^/static/version\d+/(?<resource>.*)$:
+                    passthru: "/static/$resource"
+
+workers:
+    queue:
+        size: S
+        disk: 128
+        commands:
+            start: |
+                bin/magento queue:consumers:start async.operations.all --single-thread --max-messages=10000

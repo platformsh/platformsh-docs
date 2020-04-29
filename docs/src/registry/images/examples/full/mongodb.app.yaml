@@ -1,0 +1,2 @@
+relationships:
+    mongodatabase: "dbmongo:mongodb"

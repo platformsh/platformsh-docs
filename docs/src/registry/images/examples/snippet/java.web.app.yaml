@@ -1,0 +1,3 @@
+web:
+    commands:
+        start: java -jar target/application.jar --server.port=$PORT
