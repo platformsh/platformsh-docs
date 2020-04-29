@@ -21,7 +21,6 @@ Platform.sh adds a number of response headers automatically to assist in debuggi
 * `X-Platform-Processor`: The ID of the container that generated the response.  The container ID is the cluster ID plus the container name.
 * `X-Platform-Router`: The ID of the router that served the request.  The router ID is the processor ID of the router container, specifically.
 
-
 ## Custom headers
 
 Apart from those listed above, your application is responsible for setting its own response headers.
