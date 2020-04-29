@@ -85,7 +85,7 @@ class Search extends Component {
           value={ ( this.state.query && this.state.query.length > 1 ) ? "+" : ""}
           onClick={this.search = ""}
         />
-        <div className="search-all-results">
+        <div className="search-all-results" style={{overflow: "scroll"}}>
           {docs}
           {noPrimaryResults}
           {secondaryResults}
