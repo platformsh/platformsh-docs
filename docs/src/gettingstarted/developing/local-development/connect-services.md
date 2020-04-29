@@ -6,11 +6,11 @@ aliases:
   - "/gettingstarted/local-development/connect-services.html"
 ---
 
+Now that you have a local copy of your application code, you can make changes to the project without pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
+
 {{< note >}}
 If your application does not contain any services, you do not need to open a tunnel and can proceed to the next step.
 {{< /note >}}
-
-Now that you have a local copy of your application code, you can make changes to the project without pushing to Platform.sh each time to test them. Instead you can locally build your application using the CLI, even when its functionality depends on a number of services.
 
 {{< asciinema src="videos/asciinema/tunnel-open.cast" >}}
 

@@ -16,16 +16,6 @@
     ]
   },
   "indexes": {
-    "docs": {
-      "name": "docs",
-      "spider": "docs/spiders/docsspider.py",
-      "allowed_domains": [
-        "docs.platform.sh"
-      ],
-      "start_urls": [
-        "https://docs.platform.sh/"
-      ]
-    },
     "community": {
       "name": "community",
       "spider": "docs/spiders/communityspider.py",

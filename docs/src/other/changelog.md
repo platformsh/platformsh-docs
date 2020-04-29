@@ -3,8 +3,6 @@ title: "Changelog"
 weight: 2
 description: |
   Look here for all the most recent additions to Platform.sh.
-aliases:
-  - "/changelog.html"
 ---
 
 {{< description >}}

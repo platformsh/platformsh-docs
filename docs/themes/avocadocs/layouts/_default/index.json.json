@@ -1,0 +1,1 @@
+{{- $numPages := len .Site.Pages -}}{{- $count := 0 -}}[{{- range .Site.Pages -}}{{- chomp ( partial "json/createindex.json" . ) -}}{{- $count = add $count 1 -}}{{- if ne $count $numPages -}},{{- end -}}{{- end -}}]

@@ -10,6 +10,7 @@ class XSSearch:
         self.host = self.get_host()
 
         self.scrape_dir = "output"
+        # self.scrape_dir = "final"
         self.scrape_config = "config/scrape.json"
 
         self.public_key_file = "config/config.json"
@@ -19,7 +20,7 @@ class XSSearch:
         self.index_name = "Docs"
 
         self.displayed_attributes = ['title', 'text', 'url', 'site', 'section']
-        self.searchable_attributes = ['title', 'text', 'section', 'site']
+        self.searchable_attributes = ['rank', 'title', 'text', 'section', 'site']
 
         # Ranking rules:
         #
@@ -33,9 +34,7 @@ class XSSearch:
         #   - wordsPosition: query terms earlier in document > later in document
         #   - exactness: similarity of matched words in document with query
 
-        # self.ranking_rules = ["typo", "words", "proximity", "attribute", "wordsPosition", "exactness"]
         self.ranking_rules = [ "typo", "words", "proximity", "asc(rank)", "attribute", "wordsPosition", "exactness"]
-        # self.ranking_rules = [ "typo", "words", "proximity", "attribute", "asc(rank)", "wordsPosition", "exactness"]
 
         self.updated_settings = {
             "rankingRules": self.ranking_rules,

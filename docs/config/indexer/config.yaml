@@ -17,9 +17,8 @@ languages:
     languageName: English
     weight: 10
 
-disableKinds: ["taxonomy", "taxonomyTerm"]
-
-summaryLength: 3
 
 outputs:
-    home: ['json', 'html']
+    page: ['json']
+    section: ['json']
+    home: ['json']

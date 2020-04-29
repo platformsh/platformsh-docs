@@ -6,10 +6,6 @@ aliases:
   - "/gettingstarted/own-code/connect-services.html"
 ---
 
-{{< note >}}
-If your application does not require access to services and you left `.platform/services.yaml` blank, feel free to proceed to the next step.
-{{< /note >}}
-
 At this point you have configured your application's services as well as its build and deploy process in your `.platform/services.yaml` and `.platform.app.yaml` files. As an example, in your `.platform.app.yaml` file you may have defined a relationship called `database`:
 
 ```yaml
@@ -24,6 +20,10 @@ mysqldb:
     type: mysql:10.4
     disk: 1024
 ```
+
+{{< note >}}
+If your application does not require access to services and you left `.platform/services.yaml` blank, feel free to proceed to the next step.
+{{< /note >}}
 
 In order to connect to this service and use it in your application, Platform.sh exposes its credentials in the application container within a base64-encoded JSON `PLATFORM_RELATIONSHIPS` environment variable.
 

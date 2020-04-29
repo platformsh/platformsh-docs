@@ -7,15 +7,18 @@
       <div class="page-wrapper">
 
         <div class="col-xl-12 order-xl-1 duik-content">
-          <div class="mb-7">
 
+          <div class="mb-7">
             <div class="edit-page">
-              {{ $editLocation := printf "%sedit/master/src/%s" .Site.Params.repo .File.Path}}
+              {{ $editLocation := printf "%sedit/master/docs/src/%s" .Site.Params.repo .File.Path}}
               <button onclick="window.location.href = '{{ $editLocation }}';" type="button" class="btn2 btn-primary2 btn-edit-page">
                 <span class="text-button-">Edit page</span>
                 <span class="icon"><img class="chevron-next2" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
               </button>
             </div>
+          </div>
+
+          <div class="mb-7">
 
             <!-- List page title -->
             <h1>{{ .Title }}</h1>

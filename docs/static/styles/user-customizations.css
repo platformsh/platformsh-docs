@@ -14,25 +14,21 @@
   }
 }
 
-.buttons-integrations {
-  text-align: left;
-  margin: 3rem 3rem;
-}
-
-.btn-integration {
-  margin: 2rem 0rem;
-}
-
 /* Getting Started Guide buttons */
 .buttons-nav {
   text-align: center;
   margin: 5rem;
 }
 
+.buttons-integrations {
+  text-align: left;
+  margin: 3rem 3rem;
+}
+
 .btn2 {
   border: 0px solid transparent;
   border-radius: 0rem;
-  /* font-weight: bold; */
+  font-weight: bold;s
   letter-spacing: 0.05em;
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -132,13 +128,8 @@
 }
 
 .edit-page {
-  text-align: right;
-}
-
-@media (max-width: 1100px) {
-  .edit-page {
-    display: none;
-  }
+  height: 50px;
+  margin-bottom: 3rem;
 }
 
 .edit-page-button {
@@ -150,7 +141,7 @@
   text-decoration: none;
   font-family: Overpass;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 600;
   font-size: 16px;
   line-height: 25px;
   display: inline-block;
@@ -164,12 +155,13 @@
 }
 
 .btn-edit-page {
+  float: none;
   border: 0px solid transparent;
   border-radius: 0rem;
-  /* font-weight: 900; */
+  font-weight: 400;
   letter-spacing: 0.05em;
   padding: 1rem 1rem;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 13px;
   text-align: left;
   color: #1A182A;
