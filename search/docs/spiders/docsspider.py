@@ -10,10 +10,10 @@ import re
 class DocsSpider(scrapy.Spider):
     rank = 1
     name = 'docs'
-    allowed_domains = ['docs.platform.sh']
-    start_urls = ['https://docs.platform.sh/']
-    # allowed_domains = ['localhost:1313/']
-    # start_urls = ['http://localhost:1313/']
+    # allowed_domains = ['docs.platform.sh']
+    # start_urls = ['https://docs.platform.sh/']
+    allowed_domains = ['pr-1381-5xcfdjy-652soceglkw4u.eu-3.platformsh.site/']
+    start_urls = ['https://pr-1381-5xcfdjy-652soceglkw4u.eu-3.platformsh.site/']
 
     seen = set()
 
@@ -54,6 +54,7 @@ class DocsSpider(scrapy.Spider):
             self.log('parsing  %s' % response.url)
             self.seen.add(response.url)
         for url in hxs.xpath('//a/@href').extract():
+            print(url)
             # print(url)
             url = urljoin(response.url, url)
             if not url in self.seen and not re.search(r'.(pdf|zip)$', url) and url.startswith( self.start_urls[0] ):
@@ -63,15 +64,17 @@ class DocsSpider(scrapy.Spider):
         item = DocsItem()
         item['site'] = self.name
 
-        split_section = response.url.split("//")[1].split("/")
-        if len(split_section) > 2:
-            item['section'] = self.get_section(split_section)
-        else:
-            item['section'] = "Docs"
+        print(response.url)
 
-        item['title'] = hxs.xpath('//title/text()').get().replace(' · Platform.sh Documentation', '')
-        item['url'] = "/{}".format("/".join(split_section[1:]))
-        item['documentId'] = hashlib.sha1(str(response.url).encode('utf-8')).hexdigest()
-        item['text'] = re.sub(r'<.*?>', '', ' '.join(hxs.css('.page-wrapper').extract()))
-        item['rank'] = self.rank
+        # split_section = response.url.split("//")[1].split("/")
+        # if len(split_section) > 2:
+        #     item['section'] = self.get_section(split_section)
+        # else:
+        #     item['section'] = "Docs"
+        #
+        # item['title'] = hxs.xpath('//title/text()').get().replace(' · Platform.sh Documentation', '')
+        # item['url'] = "/{}".format("/".join(split_section[1:]))
+        # item['documentId'] = hashlib.sha1(str(response.url).encode('utf-8')).hexdigest()
+        # item['text'] = re.sub(r'<.*?>', '', ' '.join(hxs.css('.page-wrapper').extract()))
+        # item['rank'] = self.rank
         yield item
