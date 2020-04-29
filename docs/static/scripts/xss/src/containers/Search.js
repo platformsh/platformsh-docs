@@ -87,7 +87,7 @@ class Search extends Component {
           type="submit"
           className="clearinput"
           value={ ( this.state.query && this.state.query.length > 1 ) ? "+" : ""}
-          onClick={ this.search = noQuery }
+          onClick={ this.search = "" }
         />
         { ( this.state.query && this.state.query.length > 1 ) ? allResults : noQuery }
       </form>
