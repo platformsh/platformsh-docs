@@ -26,6 +26,7 @@ The service types `mariadb` and `mysql` both refer to MariaDB for compatibility 
 > **note**
 >
 > Downgrades of MySQL or MariaDB are not supported. Both will update their own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+>
 > Dedicated environments do not support any storage engine other than InnoDB. Tables created using the MyISAM storage engine on dedicated environments will not replicate between cluster nodes.
 
 ### Deprecated versions
