@@ -15,7 +15,7 @@ Platform.sh also exposes additional information to your application that way, in
 | [Application](/development/variables.html#application-provided-variables)   | Application | Application | n/a         | Yes   | Yes      |
 | [Project](/development/variables.html#project-variables)       | User        | Project     | n/a         | Yes   | Yes      |
 | [Environment](/development/variables.html#environment-variables)   | User        | Environment | Optional    | No    | Yes      |
-| [Platform.sh](/development/variables.html#platformsh-provided-variables)   | Pre-defined | Environment     | n/a         | Some  | Yes      |   
+| [Platform.sh](/development/variables.html#platformsh-provided-variables)   | Pre-defined | Environment     | n/a         | Some  | Yes      |
 
 All of those may be simple strings or base64-encoded JSON-serialized values.  In case of name collisions, Platform.sh-provided values override user-provided environment variables, which override user-provided project-level variables, which override application-provided variables.  (That is, lower items in the list above take precedence.)
 
@@ -238,12 +238,25 @@ While the same command on the `feature-x` branch would produce:
 
 Check the individual documentation pages for accessing environment variables for your given application language.
 
+* [Shell: the jq utility](https://stedolan.github.io/jq/)
 * [PHP: the getenv() function](http://php.net/manual/en/function.getenv.php)
 * [Node.js: the process.env object](https://nodejs.org/api/process.html#process_process_env)
 * [Python: the os.environ object](https://docs.python.org/3/library/os.html#os.environ)
 * [Ruby: the ENV accessor](https://ruby-doc.org/core-2.1.4/ENV.html)
 
 {{< codetabs >}}
+
+---
+title=Shell
+file=none
+highlight=bash
+markdownify=false
+---
+
+export DB_USER="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].username')"
+
+<--->
+
 ---
 title=PHP
 file=none
@@ -325,7 +338,7 @@ Certain variable name prefixes have special meaning.  A few of these are defined
 
 ### Top-level environment variables
 
-By default, project and environment variables are only added as part of the `$PLATFORM_VARIABLES` Unix environment variable.  However, you can also expose a variable as its own Unix environment variable by giving it the prefix `env:`.  
+By default, project and environment variables are only added as part of the `$PLATFORM_VARIABLES` Unix environment variable.  However, you can also expose a variable as its own Unix environment variable by giving it the prefix `env:`.
 
 For example, the variable `env:foo` will create a Unix environment variable called `FOO`.  (Note the automatic upper-casing.)
 

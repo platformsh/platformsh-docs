@@ -603,7 +603,11 @@ lisp:
     name: Lisp Hunchentoot
     repo: 'https://github.com/platformsh-templates/lisp'
     description: >
+<<<<<<< HEAD
       <p>This template is a simple Lisp Hunchentoot web server on Platform.sh.
+=======
+      <p>This template is a simple Lisp Hunchentoot web server on Platform.sh. 
+>>>>>>> master
       It includes a minimalist application  for demonstration, but you are free
       to alter it as needed.</p>
 

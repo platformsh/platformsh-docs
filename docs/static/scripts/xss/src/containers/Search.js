@@ -35,6 +35,12 @@ class Search extends Component {
       .catch(() => this.setState({ error: true }))
   }
 
+  clearInput = () => {
+    this.setState({
+      search: ''
+    })
+  }
+
   handleInputChange = () => {
     this.setState({
       query: this.search.value
@@ -87,7 +93,7 @@ class Search extends Component {
           type="submit"
           className="clearinput"
           value={ ( this.state.query && this.state.query.length > 1 ) ? "+" : ""}
-          onClick={this.search = ""}
+          onClick={ this.clearInput }
         />
         { ( this.state.query && this.state.query.length > 1 ) ? allResults : noQuery }
       </form>
