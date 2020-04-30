@@ -31,7 +31,7 @@ platform variable:create --visible-build false php:tideways.api_key --value '<yo
 
 Enable the Tideways extension in your `.platform.app.yaml` as follows:
 
-```bash
+```yaml
 runtime:
     extensions:
         - tideways
