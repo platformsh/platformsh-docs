@@ -45,9 +45,9 @@ To add a Persistent Redis service, specify it in your `.platform/services.yaml` 
 
 The `disk` key is required for redis-persistent to tell Platform.sh how much disk space to reserve for Redis' persistent data.
 
->> **note**
->
-> Switching a service from Persistent to Ephemeral configuration is not supported at this time.  To switch between modes, use a different service with a different name.
+{{< note >}}
+Switching a service from Persistent to Ephemeral configuration is not supported at this time.  To switch between modes, use a different service with a different name.
+{{< /note >}}
 
 ## Relationship
 

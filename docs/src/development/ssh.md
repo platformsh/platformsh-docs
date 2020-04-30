@@ -18,16 +18,16 @@ Searching for a public key file:
 1. Open up a command prompt.
 2. Run the following commands:
 
-```bash
-$ cd ~/.ssh
-$ ls -a
-id_rsa
-id_rsa.pub
-known_hosts
-authorized_keys
-```
+    ```bash
+    $ cd ~/.ssh
+    $ ls -a
+    id_rsa
+    id_rsa.pub
+    known_hosts
+    authorized_keys
+    ```
 
-If you find a file named `id_rsa.pub`, you can use it with Platform.sh. If you don't find an existing key, see the steps to create a new one in the [next section](#create-a-new-public-private-keypair).
+    If you find a file named `id_rsa.pub`, you can use it with Platform.sh. If you don't find an existing key, see the steps to create a new one in the [next section](#create-a-new-public-private-keypair).
 
 ## Create a New Public-Private Keypair
 
@@ -192,24 +192,24 @@ If your private key and public key both look OK but you don't have any luck logg
 
 1.  Run the SSH command with the `-v` option, like this:
 
-```bash
-$ ssh -v [SSH-URL]
-OpenSSH_6.7.8, OpenSSL 1.2.3 1 Sep 2014
-debug1: Connecting to ssh.eu.platform.sh [54.32.10.98] port 22.
-debug1: Connection established.
-debug1: identity file /Users/nick/.ssh/id_rsa type 1
-...(30 more lines of this light reading)...
-debug1: Offering RSA public key: /Users/nick/.ssh/id_rsa
-debug1: Authentications that can continue: publickey
-debug1: No more authentication methods to try.
-Permission denied (publickey).
-```
+    ```bash
+    $ ssh -v [SSH-URL]
+    OpenSSH_6.7.8, OpenSSL 1.2.3 1 Sep 2014
+    debug1: Connecting to ssh.eu.platform.sh [54.32.10.98] port 22.
+    debug1: Connection established.
+    debug1: identity file /Users/nick/.ssh/id_rsa type 1
+    ...(30 more lines of this light reading)...
+    debug1: Offering RSA public key: /Users/nick/.ssh/id_rsa
+    debug1: Authentications that can continue: publickey
+    debug1: No more authentication methods to try.
+    Permission denied (publickey).
+    ```
 
-or
+    or
 
-```bash
-$ GIT_SSH_COMMAND="git -v" git clone [REPO-URL]
-```
+    ```bash
+    $ GIT_SSH_COMMAND="git -v" git clone [REPO-URL]
+    ```
 
 You can use this information to make one last check of the private key file.
 

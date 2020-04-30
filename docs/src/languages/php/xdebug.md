@@ -78,9 +78,9 @@ It may be easier to allow the debug process to connect once, allow it to fail, a
 
 ### 4. Listen for connections
 
-Toggle on PHPStorm's Xdebug listener.  Either select `Run` > `Start listening for PHP debug connections` from the menu or click the ![Listen for connections](/images/xdebug/xdebug-phpstorm-not-listening.png "0.025") icon in the toolbar.
+Toggle on PHPStorm's Xdebug listener.  Either select `Run` > `Start listening for PHP debug connections` from the menu or click the ![Listen for connections](/images/xdebug/xdebug-phpstorm-not-listening.png "0.025-inline") icon in the toolbar.
 
-To disable PHPStorm's listener, either select `Run` > `Stop listening for PHP debug connections` from the menu or toggle the ![Stop listening for connections](/images/xdebug/xdebug-phpstorm-listening.png "0.025") icon in the toolbar.
+To disable PHPStorm's listener, either select `Run` > `Stop listening for PHP debug connections` from the menu or toggle the ![Stop listening for connections](/images/xdebug/xdebug-phpstorm-listening.png "0.025-inline") icon in the toolbar.
 
 ### 5. Start debugging
 

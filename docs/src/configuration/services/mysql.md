@@ -195,8 +195,6 @@ db:
 
 The above code will increase the maximum allowed packet size (the size of a query or response) to 64 MB.  However, increasing the size of the maximum packet will also automatically decrease the `max_connections` value.  The number of connections allowed will depend on the packet size and the memory available to the service.  In most cases leaving this value at the default is recommended.
 
-<<<<<<< HEAD
-=======
 ## Character encoding
 
 For services created prior to February 2020, the default character set and collation is `latin1`, which is the default in most MySQL/MariaDB.
@@ -217,7 +215,7 @@ db:
 
 Note that the effect of this setting is to set the character set and collation of any tables created once those properties are set.  Tables created prior to when those settings are changed will be unaffected by changes to the `services.yaml` configuration.  However, you can change your own table's character set and collation through `ALTER TABLE` commands.  For example:
 
-```
+```text
 # To change defaults when creating new tables:
 ALTER DATABASE main CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -234,7 +232,7 @@ Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charse
 
 We recommend using the InnoDB storage engine wherever possible. MyISAM is only properly supported in Grid environments. In dedicated cluster environments there is no replication of MyISAM tables.
 
-If MyISAM tables are inadventently created or imported in a dedicated environment they can be converted to use the InnoDB storage engine using the following procedure:
+If MyISAM tables are inadvertently created or imported in a dedicated environment they can be converted to use the InnoDB storage engine using the following procedure:
 
 ```sql
 RENAME TABLE <existing> <old>;

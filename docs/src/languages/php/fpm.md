@@ -31,7 +31,7 @@ These are deliberately conservative values that should allow most programs to ru
 
 You can change them by using the `runtime.sizing_hints.reserved_memory` and `runtime.sizing_hints.request_memory` in your `.platform.app.yaml`. For example, if your application consumes on average `110 MB` of memory for a request use:
 
-```
+```yaml
 runtime:
     sizing_hints:
         request_memory: 110
@@ -41,7 +41,7 @@ The `request_memory` has a lower limit of 10 MB while `reserved_memory` has a lo
 
 You can check the maximum number of PHP-FPM workers by opening an [SSH session](/development/ssh.md) and running following command (example for PHP 7.x):
 
-```
+```bash
 grep -e '^pm.max_children' /etc/php/*/fpm/php-fpm.conf
 pm.max_children = 2
 ```
@@ -50,19 +50,21 @@ pm.max_children = 2
 
 To see how much memory your PHP worker processes are using, you can open an [SSH session](/development/ssh.md) and look at the PHP access log:
 
-    less /var/log/php.access.log
+```bash
+less /var/log/php.access.log
+```
 
 In the fifth column, you'll see the peak memory usage that occurred while each request was handled. The peak usage will probably vary between requests, but in order to avoid the severe performance costs that come from swapping, your size hint should be somewhere between the average and worst case memory usages that you observe.
 
 A good way to determine an optimal request memory is with the following command:
 
-```
+```bash
 tail -n5000 /var/log/php.access.log | awk '{print $6}' | sort -n | uniq -c
 ```
 
 This will print out a table of how many requests used how much memory, in KB, for the last 5000 requests that reached PHP-FPM.  (On an especially busy site you may need to increase that number).  As an example, consider the following output:
 
-```
+```text
       1
    4800 2048
     948 4096

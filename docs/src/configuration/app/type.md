@@ -19,4 +19,4 @@ Available languages and their supported versions include:
 
 The `.platform.app.yaml` file also supports a `runtime` key that allows selected customizations to the language runtime. As those possibilities vary by language, please see the appropriate language documentation.
 
-* [PHP](/languages/php.html)
+* [PHP](/languages/php.html#runtime-configuration)
