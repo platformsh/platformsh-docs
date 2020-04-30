@@ -1,13 +1,23 @@
 {{ $alt := .PlainText | safeHTML }}
+{{ $checkInline := split .Title "-"}}
 {{ $widthScale := 100 }}
 {{ $scale := 1.0 }}
-{{ with .Title }}
-  {{ $scale = float . }}
-  {{ $widthScale = mul $scale $widthScale }}
-{{ end }}
 
-<div class="centered-image" align="center">
-  <p class="mb-4" style="max-width: {{ $widthScale }}rem;">
-    <img class="img-fluid w-100 duik-browser-img" src="{{ .Destination }}" alt="{{ $alt }}">
-  </p>
-</div>
+{{ if gt (len $checkInline) 1 }}
+  {{ index $checkInline 1 }}
+  {{ with ( index $checkInline 0 ) }}
+    {{ $scale = float . }}
+    {{ $widthScale = mul $scale $widthScale }}
+  {{ end }}
+  <img class="img-fluid w-100 duik-browser-img" src="{{ .Destination }}" alt="{{ $alt }}" style="max-width: {{ $widthScale }}rem;">
+{{ else }}
+  {{ with .Title }}
+    {{ $scale = float . }}
+    {{ $widthScale = mul $scale $widthScale }}
+  {{ end }}
+  <div class="centered-image" align="center">
+    <p class="mb-4" style="max-width: {{ $widthScale }}rem;">
+      <img class="img-fluid w-100 duik-browser-img" src="{{ .Destination }}" alt="{{ $alt }}">
+    </p>
+  </div>
+{{ end }}

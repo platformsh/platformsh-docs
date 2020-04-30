@@ -35,8 +35,9 @@ If you are not using PHP 7.4, this is a good reason to upgrade.
 
 PHP 5.5 and later include an opcache that is enabled at all times, as it should be.  It may still need to be tuned, however.  The opcache can be configured using `php.ini` values, which in this case are best set using the `variables` block in `.platform.app.yaml`.
 
-> **note**
-> If using opcache preloading on PHP 7.4 or later, configure that first and let the application run for a while before tuning the opcache itself as the preload script may change the necessary configuration here.
+{{< note >}}
+If using opcache preloading on PHP 7.4 or later, configure that first and let the application run for a while before tuning the opcache itself as the preload script may change the necessary configuration here.
+{{< /note >}}
 
 The most important values to set are:
 

@@ -199,42 +199,46 @@ And want to move that to a network storage mount.  The following approximate ste
 
 2) Add a new mount to the network storage service on a non-public directory:
 
-```yaml
-mounts:
-    new-uploads:
-        source: service
-        service: files
-        source_path: uploads
-```
+    ```yaml
+    mounts:
+        new-uploads:
+            source: service
+            service: files
+            source_path: uploads
+    ```
 
-(Remember the `source_path` can be the same since they're on different storage services.)
+    (Remember the `source_path` can be the same since they're on different storage services.)
 
 3) Deploy these changes.  Then use `rsync` to copy all files from the local mount to the network mount.  (Be careful of the trailing `/`.)
 
-`rsync -avz web/uploads/* new-uploads/`
+    ```bash
+    rsync -avz web/uploads/* new-uploads/
+    ```
 
 4) Reverse the mounts.  That is, point the `web/uploads` directory to the network mount instead:
 
-```yaml
-mounts:
-    web/uploads:
-        source: service
-        service: files
-        source_path: uploads
-    old-uploads:
-        source: local
-        source_path: uploads
-```
+    ```yaml
+    mounts:
+        web/uploads:
+            source: service
+            service: files
+            source_path: uploads
+        old-uploads:
+            source: local
+            source_path: uploads
+    ```
 
-Commit and push that.  Test to make sure the network files are accessible.
+    Commit and push that.  Test to make sure the network files are accessible.
 
 5) Cleanup.  First, run another rsync just to make sure any files uploaded during the transition are not lost.  (Note the command is different here.)
 
-`rsync -avz old-uploads/* web/uploads/`
+    ```bash
+    rsync -avz old-uploads/* web/uploads/
+    ```
 
-Once you're confident all the files are accounted for, delete the entire contents of `old-uploads`.  If you do not, the files will remain on disk but inaccessible, just eating up disk space needlessly.
+    Once you're confident all the files are accounted for, delete the entire contents of `old-uploads`.  If you do not, the files will remain on disk but inaccessible, just eating up disk space needlessly.
 
-Once that's done you can remove the `old-uploads` mount and push again to finish the process.  You are also free to reduce the `disk` size in the `.platform.app.yaml` file if desired, but make sure to leave enough for any remaining local mounts.
+    Once that's done you can remove the `old-uploads` mount and push again to finish the process.  You are also free to reduce the `disk` size in the `.platform.app.yaml` file if desired, but make sure to leave enough for any remaining local mounts.
 
 ## Why do I get an `invalid service type` error with network storage?
 

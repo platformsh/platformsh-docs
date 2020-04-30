@@ -191,7 +191,7 @@ One reason that this can happen has to do with the limits of Let's Encrypt itsel
 
 At this time, generated URLs have the following pattern:
 
-```
+```text
 <PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
 ```
 

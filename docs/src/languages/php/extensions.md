@@ -177,6 +177,6 @@ It is possible to use an extension not listed here but it takes slightly more wo
 
 2. Provide a custom `php.ini` file in the application root (as a sibling of your `.platform.app.yaml` file) that loads the extension using an absolute path. For example, if the extension is named `spiffy.so` and is in the root of your application, you would have a `php.ini` file that reads:
 
-```ini
-extension=/app/spiffy.so
-```
+    ```ini
+    extension=/app/spiffy.so
+    ```

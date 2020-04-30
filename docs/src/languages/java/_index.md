@@ -11,10 +11,7 @@ layout: single
 
 ### OpenJDK versions:
 
-* 8
-* 11
-* 12
-* 13
+{{< image-versions image="java" status="supported" >}}
 
 To specify a Java container, use the `type` property in your `.platform.app.yaml`.
 
