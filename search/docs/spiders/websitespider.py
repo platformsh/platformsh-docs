@@ -62,4 +62,5 @@ class WebsiteSpider(scrapy.Spider):
         item['documentId'] = hashlib.sha1(str(response.url).encode('utf-8')).hexdigest()
         item['text'] =  " ".join(response.xpath('.//div[contains(@class,"container-fluid") and not(contains(@class,"footer"))]//text()').getall())
         item['rank'] = self.rank
+        item['subsections'] = item['section']
         yield item

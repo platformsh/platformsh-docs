@@ -31,6 +31,7 @@ with open(template_data, 'r') as stream:
                 temp["text"] = template['description']
                 temp["url"] = template['repo']
                 temp["documentId"] = hashlib.sha1(template['repo'].encode('utf-8')).hexdigest()
+                temp["subsections"] = "template"
 
                 indexData.append(temp)
 

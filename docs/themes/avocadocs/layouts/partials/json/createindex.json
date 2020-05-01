@@ -39,6 +39,15 @@
     {{- end }}
   {{- end }}
 {{- end }}
+{{- $text := "" -}}
+{{- range .PlainWords -}}
+  {{- if in . "\\" -}}
+  {{- else -}}
+    {{- $cs := htmlUnescape . -}}
+    {{- $replaceChar := replace $cs "\"" " " -}}
+    {{- $text =  printf "%s %s" $text $replaceChar -}}
+  {{- end -}}
+{{- end -}}
 {
     "site": "docs",
     "section": "{{ $section }}",
@@ -46,5 +55,6 @@
     "url": "{{ $url }}",
     "documentId": "{{ .File.UniqueID }}",
     "rank": 1,
-    "text": "{{- if .IsPage -}}{{- chomp .Summary -}}{{- else -}}{{- chomp .Params.description -}}{{- end -}}"
+    "text": "{{ if .IsPage }}{{ $text }}{{ else }}{{ chomp .Description }}{{ end }}",
+    "subsections": "{{ .TableOfContents | plainify }}"
 }
