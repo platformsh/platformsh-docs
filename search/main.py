@@ -22,6 +22,18 @@ class XSSearch:
         self.displayed_attributes = ['title', 'text', 'url', 'site', 'section']
         self.searchable_attributes = ['rank', 'title', 'text', 'section', 'site']
 
+        self.synonyms = {
+            "routes.yaml": ["routes"],
+            "routes": ["routes.yaml"],
+            "services": ["services.yaml"],
+            "services.yaml": ["services"],
+            "application": [".platform.app.yaml", "app.yaml", "applications.yaml"],
+            ".platform.app.yaml": ["application"],
+            "app.yaml": ["application"],
+            "applications.yaml": ["application", "multi-app"],
+            "multi-app": ["applications.yaml"]
+        }
+
         # Ranking rules:
         #
         #   - Default order: ["typo", "words", "proximity", "attribute", "wordsPosition", "exactness"]
@@ -102,6 +114,10 @@ class XSSearch:
 
         # Create a new index
         index = client.create_index(uid=self.docs_index, primary_key=self.primaryKey, name=self.index_name)
+
+        # Add synonyms for the index
+        index.update_synonyms(self.synonyms)
+        print(index.get_synonyms())
 
         # Update its settings: what can be searched, what's displyable, and how results should be ranked.
         index.update_settings(self.updated_settings)
