@@ -174,7 +174,6 @@ highlight=php
 
 ---
 title=Memcached
-file=none
 highlight=python
 ---
 
@@ -187,7 +186,7 @@ The first tab *Elasticsearch* will read from a local file and highlight it for P
 
 `markdownify` is `false` by default, although everything placed below `---` will be Markdown-rendered properly. This attribute really only needs to be `true` in cases where the `file` you are using for the tab's content is itself a `.md` file.
 
-All of these parameters need not be present for `codetabs` to function properly. You could very easily only include `title` and `highlight` for a code snippet. 
+Not all of these parameters need to be present for `codetabs` to function properly.  The only required properties are `title` and `highlight`.
 
 ## Content
 
