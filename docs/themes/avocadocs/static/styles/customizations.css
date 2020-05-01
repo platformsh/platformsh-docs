@@ -983,6 +983,18 @@ hr {
   margin-bottom: 2rem;
 }
 
+.nav-tabs .nav-link {
+  border: 1px solid var(--dark);
+  background: linear-gradient(var(--light), var(--brand-font-color-dark) 99%);
+}
+
+.nav-tabs .nav-link.active {
+  background: inherit;
+}
+
+.nav-tabs .nav-link:hover {
+  border: 1px solid var(--light);
+}
 
 .nav-link {
   display: block;
