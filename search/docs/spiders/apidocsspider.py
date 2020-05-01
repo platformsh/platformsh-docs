@@ -39,5 +39,5 @@ class ApidocsSpider(scrapy.Spider):
                     item['documentId'] = hashlib.sha1(str( item['url']).encode('utf-8')).hexdigest()
                     item['text'] =  " ".join(text)
                     item['rank'] = self.rank
-                    item['subsections'] = ""
+                    item['subsections'] = endpoint_section
                     yield item

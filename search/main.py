@@ -48,7 +48,6 @@ class XSSearch:
         #   - wordsPosition: query terms earlier in document > later in document
         #   - exactness: similarity of matched words in document with query
 
-        # self.ranking_rules = [ "typo", "words", "proximity", "asc(rank)", "attribute", "wordsPosition", "exactness"]
         self.ranking_rules = ["asc(rank)", "attribute", "typo", "words", "proximity", "wordsPosition", "exactness"]
 
         self.updated_settings = {

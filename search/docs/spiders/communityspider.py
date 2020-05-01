@@ -43,5 +43,5 @@ class CommunitySpider(scrapy.Spider):
         item['documentId'] = hashlib.sha1(str(response.url).encode('utf-8')).hexdigest()
         item['text'] = re.sub(r'<.*?>', '', ' '.join(hxs.css('.crawler').extract()))
         item['rank'] = self.rank
-        item['subsections'] = ""
+        item['subsections'] = item['section']
         yield item
