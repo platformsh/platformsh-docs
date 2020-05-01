@@ -47,7 +47,7 @@ The `platform ssh` command allows you to log into your application container (wh
 
 ## Can I edit a quick fix on a Platform environment without triggering a rebuild?
 
-No.  Changes to the code can only be made through deploying new Git commits.  That ensures that "hot patches" don't get lost in the net update, that all changes are auditable, and that if a security break-in happen the attacker still cannot modify your application code.
+No.  Changes to the code can only be made through deploying new Git commits.  That ensures that "hot patches" don't get lost in the net update, that all changes are auditable, and that if a security break-in happens the attacker still cannot modify your application code.
 
 ## What do I see when I push code?
 
