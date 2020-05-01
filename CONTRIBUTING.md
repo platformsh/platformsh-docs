@@ -10,7 +10,7 @@ Hugo (which we use for documentation) uses Markdown as its file format.
 
 * All files should end in `.md`. They should be all-lower-case and match the title of the page, or in some cases an abbridged version of it.
 * All pages should start with a title, denoted with # (first level header).
-* All pages should start with a [*front matter*](https://gohugo.io/content-management/front-matter/) that describes its title and the order in which it should appear in the sidebar. This requirement applies both to single and list (`_index.md`) pages. See the **Hugo: Front matter** section below for more details. Defining the `title` attribute will automatically place the `<h1>` header for that title, so begin writing your sections with ##. 
+* All pages should start with a [*front matter*](https://gohugo.io/content-management/front-matter/) that describes its title and the order in which it should appear in the sidebar. This requirement applies both to single and list (`_index.md`) pages. See the **Hugo: Front matter** section below for more details. Defining the `title` attribute will automatically place the `<h1>` header for that title, so begin writing your sections with ##.
 * Subsections within a page are encouraged, and should use ## for a 2nd level and ### for a 3rd level. Do not have more than 3 levels of header.
 * Inline code statements, file names, and keys that would appear in a file should use backticks ``like this``.
 * Longer code samples should be denoted with triple backticks before and after, with no extra whitespace between the backticks and the code block. Always specify the language of the code block.  See the [highlight.js docs](https://highlightjs.org/static/demo/) for available language options.  (`yaml`, `bash`, and `php` are the most common we're likely to see).
@@ -186,6 +186,8 @@ from jwcrypto import jws, jwk
 The first tab *Elasticsearch* will read from a local file and highlight it for PHP, whereas the second tab will apply Python highlighting to the content below `---`. Individual tabs are separated with the `<--->` line.
 
 `markdownify` is `false` by default, although everything placed below `---` will be Markdown-rendered properly. This attribute really only needs to be `true` in cases where the `file` you are using for the tab's content is itself a `.md` file.
+
+All of these parameters need not be present for `codetabs` to function properly. You could very easily only include `title` and `highlight` for a code snippet. 
 
 ## Content
 
