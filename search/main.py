@@ -20,7 +20,7 @@ class XSSearch:
         self.index_name = "Docs"
 
         self.displayed_attributes = ['title', 'text', 'url', 'site', 'section']
-        self.searchable_attributes = ['rank', 'title', 'text', 'section', 'site']
+        self.searchable_attributes = ['title', 'subsections', 'text', 'section']
 
         self.synonyms = {
             "routes.yaml": ["routes"],
@@ -31,7 +31,9 @@ class XSSearch:
             ".platform.app.yaml": ["application"],
             "app.yaml": ["application"],
             "applications.yaml": ["application", "multi-app"],
-            "multi-app": ["applications.yaml"]
+            "multi-app": ["applications.yaml"],
+            "regions": ["public ip addresses"],
+            "public ip addresses": ["regions"]
         }
 
         # Ranking rules:
@@ -46,7 +48,8 @@ class XSSearch:
         #   - wordsPosition: query terms earlier in document > later in document
         #   - exactness: similarity of matched words in document with query
 
-        self.ranking_rules = [ "typo", "words", "proximity", "asc(rank)", "attribute", "wordsPosition", "exactness"]
+        # self.ranking_rules = [ "typo", "words", "proximity", "asc(rank)", "attribute", "wordsPosition", "exactness"]
+        self.ranking_rules = ["asc(rank)", "attribute", "typo", "words", "proximity", "wordsPosition", "exactness"]
 
         self.updated_settings = {
             "rankingRules": self.ranking_rules,
@@ -117,7 +120,6 @@ class XSSearch:
 
         # Add synonyms for the index
         index.update_synonyms(self.synonyms)
-        print(index.get_synonyms())
 
         # Update its settings: what can be searched, what's displyable, and how results should be ranked.
         index.update_settings(self.updated_settings)

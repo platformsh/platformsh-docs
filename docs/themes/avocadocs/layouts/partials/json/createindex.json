@@ -55,5 +55,6 @@
     "url": "{{ $url }}",
     "documentId": "{{ .File.UniqueID }}",
     "rank": 1,
-    "text": "{{ if .IsPage }}{{ $text }}{{ else }}{{ chomp .Description }}{{ end }}"
+    "text": "{{ if .IsPage }}{{ $text }}{{ else }}{{ chomp .Description }}{{ end }}",
+    "subsections": "{{ .TableOfContents | plainify }}"
 }
