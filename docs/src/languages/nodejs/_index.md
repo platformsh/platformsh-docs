@@ -105,7 +105,7 @@ Here's a complete example that also serves static assets (.png from the `/public
 
 ```yaml
 name: node
-type: nodejs:10
+type: nodejs:12
 
 web:
   commands:
