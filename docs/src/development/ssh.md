@@ -91,7 +91,6 @@ It may be helpful to set your SSH client to always forward keys to Platform.sh s
 ```text
 Host *.us.platform.sh
        ForwardAgent yes
-
 Host *.eu.platform.sh
        ForwardAgent yes
 ```
