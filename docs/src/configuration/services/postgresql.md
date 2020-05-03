@@ -12,6 +12,12 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 {{< image-versions image="postgresql" status="supported" >}}
 
+{{< note >}}
+Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+
+See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
+{{< /note >}}
+
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
@@ -139,7 +145,7 @@ Platform.sh supports a number of PostgreSQL extensions.  To enable them, list th
 
 ```yaml
 db:
-    type: postgresql:11
+    type: postgresql:12
     disk: 1025
     configuration:
         extensions:
@@ -208,6 +214,12 @@ extensions not listed here.
 * **uuid-ossp** - generate universally unique identifiers (UUIDs)
 * **xml2** - XPath querying and XSLT
 
+{{< note >}}
+Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+
+See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
+{{< /note >}}
+
 ## Notes
 
 ### Could not find driver
@@ -229,3 +241,9 @@ Be sure to take a backup of your master environment **before** you merge this ch
 {{< /note >}}
 
 Downgrading is not supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
+
+### Upgrading to PostgreSQL 12 with the `postgis` extension
+
+Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
+
+If you need to upgrade, you should follow the same steps recommended for performing downgrades: dump the database, remove the service, recreate the service with PostgreSQL 12, and then import the dump to that service.

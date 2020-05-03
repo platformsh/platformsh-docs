@@ -78,7 +78,7 @@ highlight=python
 
 For Solr 4, Platform.sh supports only a single core per server called `collection1`.
 
-If you want to provide your own Solr configuration, you can add a `core_config` key in your ``.platform/services.yaml``:
+You must provide your own Solr configuration via a `core_config` key in your ``.platform/services.yaml``:
 
 ```yaml
 search:
@@ -104,7 +104,7 @@ For Solr 6 and later Platform.sh supports multiple cores via different endpoints
 
 ```yaml
 search:
-    type: solr:8.0
+    type: solr:8.4
     disk: 1024
     configuration:
         cores:
@@ -162,7 +162,7 @@ For even more customizability, it's also possible to define Solr configsets.  Fo
 
 ```yaml
 search:
-    type: solr:8.0
+    type: solr:8.4
     disk: 1024
     configuration:
         configsets:
@@ -193,7 +193,7 @@ If no configuration is specified, the default configuration is equivalent to:
 
 ```yaml
 search:
-    type: solr:8.0
+    type: solr:8.4
     configuration:
         cores:
             collection1:
@@ -203,7 +203,7 @@ search:
                 core: collection1
 ```
 
-The Solr 6.x Drupal 8 configuration files are reasonably generic and should work in many other circumstances, but explicitly defining a core, configuration, and endpoint is generally recommended.
+The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.  While it may work for generic cases defining your own custom configuration, core, and endpoint is strongly recommended.
 
 ### Limitations
 

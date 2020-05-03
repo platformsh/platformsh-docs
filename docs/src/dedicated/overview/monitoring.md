@@ -15,7 +15,7 @@ These alerts are sent to our support and operations teams, and are not directly 
 
 ## Monitoring systems
 
-We use well known open source tooling to collect metrics and to alert our staff if any of these metrics goes out of bounds.  We use Munin for collecting time-series data on server metrics, and dashboarding of these metrics so that we can monitor trends over time.  We also use Nagios as a point in time alerting system for our operations staff.
+Platform.sh uses well-known open source tooling to collect metrics and to alert our staff if any of these metrics goes out of bounds.  That includes the use of Munin for collecting time-series data on server metrics, and dashboarding of these metrics so that our team can monitor trends over time.  It also includes use Nagios as a point in time alerting system for our operations staff.
 
 These tools are internal Platform.sh tools only.
 
@@ -29,7 +29,7 @@ Platform.sh is a [Blackfire.io](/administration/integrations/blackfire.html#on-a
 
 ## Availability incident handling procedure
 
-Automated monitoring may trigger alerts that will page the on-call engineer, or the end-user may file an urgent or high priority ticket.  PagerDuty will page the on-call using several methods. The on-call engineer responds to the alerts and begins to triage the issue.
+Automated monitoring may trigger alerts that will page the on-call engineer, or the end-user may file an urgent priority ticket.  PagerDuty will page the on-call using several methods. The on-call engineer responds to the alerts and begins to triage the issue.
 
 Cloud infrastructure issues are handled by the customer success team. *Application problems are escalated to an application support specialist if an agreement is part of the customer subscription.  Otherwise, they are returned to the user and may be downgraded*.
 

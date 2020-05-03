@@ -178,11 +178,13 @@ configuration:
 
 If either schemas or endpoints are defined, then no default will be applied and you must specify the full configuration.
 
-## Adjusting MariaDB configuration
+## Adjusting database configuration
 
-For version 10.2 and later, a select few MariaDB configuration properties from the `my.cnf` file are available for adjustment.
+For MariaDB 10.1 and later Oracle MySQL 8.0 and later, a select few configuration properties from the `my.cnf` file are available for adjustment.
 
-At this time, only the `max_allowed_packet` size is available, and defaults to `16` (in MB).  Legal values are from `1` to `100`.
+### Packet and connection sizing
+
+This value defaults to `16` (in MB).  Legal values are from `1` to `100`.
 
 ```yaml
 db:

@@ -12,73 +12,74 @@ description: |
 * **April 2020**
   * We now offer [Xdebug on PHP](/languages/php/xdebug.md) containers.
 * **March 2020**
-  * Go 1.14: We now support [Go 1.14](/languages/go/).
-  * Ruby 2.7: We now support [Ruby 2.7](/languages/ruby/).
-  * .NET Core: We now support [.NET Core 3.1](/languages/dotnet/).
-  * Memcached 1.6: We now support [Memcached 1.6](/configuration/services/memcached/).
-  * Solr 8.4: We now support [Solr 8.4](/configuration/services/solr/).
+  * Go 1.14: We now support [Go 1.14](/languages/go.md).
+  * Ruby 2.7: We now support [Ruby 2.7](/languages/ruby.md).
+  * .NET Core: We now support [.NET Core 3.1](/languages/dotnet.md).
+  * Memcached 1.6: We now support [Memcached 1.6](/configuration/services/memcached.md).
+  * Solr 8.4: We now support [Solr 8.4](/configuration/services/solr.md).
 * **February 2020**
-  * Memcached 1.5: We now support [Memcached 1.5](/configuration/services/memcached/).
+  * Memcached 1.5: We now support [Memcached 1.5](/configuration/services/memcached.md).
+  * Character set and collation are now configurable on [MySQL/MariaDB](/configuration/services/mysql.md).
 * **January 2020**
-  * RabbitMQ: We now support [RabbitMQ virtual host configuration](/configuration/services/rabbitmq/#virtual-hosts)
+  * RabbitMQ: We now support [RabbitMQ virtual host configuration](/configuration/services/rabbitmq.html#virtual-hosts)
 
 ## 2019
 
 * **December 2019**
-  * Python 3.8: We now support [Python 3.8](/languages/python/).
-  * Node.js 12: We now support [Node.js 12](/languages/nodejs/).
-  * RabbitMQ 3.8: We now support [RabbitMQ 3.8](/configuration/services/rabbitmq/).
+  * Python 3.8: We now support [Python 3.8](/languages/python.md).
+  * Node.js 12: We now support [Node.js 12](/languages/nodejs.md).
+  * RabbitMQ 3.8: We now support [RabbitMQ 3.8](/configuration/services/rabbitmq.md).
 * **October 2019**
-  * PHP 7.4: We now support [PHP 7.4](/languages/php/).
+  * PHP 7.4: We now support [PHP 7.4](/languages/php.md).
 * **October 2019**
   * Projects can now have larger application containers in development environments.
 * **September 2019**
   * "Dark mode" now available in the Console.
-  * Go 1.13: We now support [Go 1.13](/languages/go/).
+  * Go 1.13: We now support [Go 1.13](/languages/go.md).
 * **July 2019**
-  * Elasticsearch 7.2: We now support [Elasticsearch 7.2](/configuration/services/elasticsearch/).
-  * [Elasticsearch](/configuration/services/elasticsearch/) 5.2 and 5.4 support is now deprecated
-  * Kafka 2.2: We now support [Kafka 2.2](/configuration/services/kafka/).
-  * Java 13: We now support [Java 13](/languages/java/).
+  * Elasticsearch 7.2: We now support [Elasticsearch 7.2](/configuration/services/elasticsearch.md).
+  * [Elasticsearch](/configuration/services/elasticsearch.md) 5.2 and 5.4 support is now deprecated
+  * Kafka 2.2: We now support [Kafka 2.2](/configuration/services/kafka.md).
+  * Java 13: We now support [Java 13](/languages/java.md).
 * **June 2019**
-  * Java: We support and documented the use of [Java](/languages/java/) runtimes 8, 11, and 12, that includes examples that use the [Java Config Reader](https://github.com/platformsh/config-reader-java/).
-  * Headless Chrome: Users can now define a [Headless Chrome](/configuration/services/headless-chrome/) service to access a service container with a headless browser, which can be used for automated UI testing.
+  * Java: We support and documented the use of [Java](/languages/java.md) runtimes 8, 11, and 12, that includes examples that use the [Java Config Reader](https://github.com/platformsh/config-reader-java/).
+  * Headless Chrome: Users can now define a [Headless Chrome](/configuration/services/headless-chrome.md) service to access a service container with a headless browser, which can be used for automated UI testing.
 * **May 2019**
-  * InfluxDB: We now support [InfluxDB](/configuration/services/influxdb/) 1.7.
-  * Solr 7 & 8: We now support [Solr](/configuration/services/solr/) 7.7 and 8.0.
+  * InfluxDB: We now support [InfluxDB](/configuration/services/influxdb.md) 1.7.
+  * Solr 7 & 8: We now support [Solr](/configuration/services/solr.md) 7.7 and 8.0.
 * **April 2019**
-  * Network storage service: Users can now define a [Network storage](/configuration/services/network-storage/) service for sharing files between containers.
-  * Kafka message queue service: Users can now define a [Kafka](/configuration/services/kafka/) service for storing, reading and analysing streaming data.
-  * Management Console: Images and wording updated throughout entire documentation alongside [Management Console](/administration/web/) release.
+  * Network storage service: Users can now define a [Network storage](/configuration/services/network-storage.md) service for sharing files between containers.
+  * Kafka message queue service: Users can now define a [Kafka](/configuration/services/kafka.md) service for storing, reading and analysing streaming data.
+  * Management Console: Images and wording updated throughout entire documentation alongside [Management Console](/administration/web.md) release.
 * **March 2019**
-  * Ruby 2.6: A new version of [Ruby](/languages/ruby/) is now available.
-  * Go 1.12: We now support [Go 1.12](/languages/go/).
-  * Elasticsearch 6.5: We now support [Elasticsearch 6.5](/configuration/services/elasticsearch/).
+  * Ruby 2.6: A new version of [Ruby](/languages/ruby.md) is now available.
+  * Go 1.12: We now support [Go 1.12](/languages/go.md).
+  * Elasticsearch 6.5: We now support [Elasticsearch 6.5](/configuration/services/elasticsearch.md).
 * **January 2019**
-  * RabbitMQ 3.7: We now support [RabbitMQ 3.7](/configuration/services/rabbitmq/).
-  * Solr 7: We now support [Solr 7.6](/configuration/services/solr/).
-  * Varnish: We now offer [Varnish](/configuration/services/varnish/) 5.2 and 6.0.
+  * RabbitMQ 3.7: We now support [RabbitMQ 3.7](/configuration/services/rabbitmq.md).
+  * Solr 7: We now support [Solr 7.6](/configuration/services/solr.md).
+  * Varnish: We now offer [Varnish](/configuration/services/varnish.md) 5.2 and 6.0.
 
 ## 2018
 
 * **December 2018**
-  * Elasticsearch 5.4: We now offer [Elasticsearch 5.4](/configuration/services/elasticsearch/).
+  * Elasticsearch 5.4: We now offer [Elasticsearch 5.4](/configuration/services/elasticsearch.md).
   * Improved Bash support: Bash history on application containers now persists between logins.
-  * PHP 7.3: We now support [PHP 7.3](/languages/php/).
-  * PostgreSQL 10.0 and 11.0: We now support [PostgreSQL 10.0 and 11.0](/configuration/services/postgresql/) with an automated upgrade path.
-  * Ruby 2.5 out of beta: We now fully support [Ruby 2.5](/languages/ruby/).
+  * PHP 7.3: We now support [PHP 7.3](/languages/php.md).
+  * PostgreSQL 10.0 and 11.0: We now support [PostgreSQL 10.0 and 11.0](/configuration/services/postgresql.md) with an automated upgrade path.
+  * Ruby 2.5 out of beta: We now fully support [Ruby 2.5](/languages/ruby.md).
 * **October 2018**
-  * Redis updates: [Redis 4.0 and 5.0](/configuration/services/redis/) are now supported.
-  * Go language support: [Go](/languages/go/) is now a fully supported language platform.
+  * Redis updates: [Redis 4.0 and 5.0](/configuration/services/redis.md) are now supported.
+  * Go language support: [Go](/languages/go.md) is now a fully supported language platform.
 * **September 2018**
-  * Python 3.7 support: We now support [Python 3.7](/languages/python/).
+  * Python 3.7 support: We now support [Python 3.7](/languages/python.md).
 * **August 2018**
   * New public Canadian region: Our new Canadian region is now open for business.
 * **July 2018**
   * Security and Compliance: We have created a new "Security and Compliance" section to help customers address common questions relating to GDPR, Data Collection, Data Retention, Encryption, and similar topics.
 * **June 2018**
-  * Node.js 10: We now offer [Node.js version 10](/languages/nodejs/).  All releases in the 10.x series will be included in that container.
-  * MongoDB 3.6: We now offer [MongoDB 3.2, 3.4, and 3.6](/configuration/services/mongodb/).  Note that upgrading from MongoDB 3.0 requires upgrading through all intermediary versions.
+  * Node.js 10: We now offer [Node.js version 10](/languages/nodejs.md).  All releases in the 10.x series will be included in that container.
+  * MongoDB 3.6: We now offer [MongoDB 3.2, 3.4, and 3.6](/configuration/services/mongodb.md).  Note that upgrading from MongoDB 3.0 requires upgrading through all intermediary versions.
 * **March 2018**
   * Web Application Firewall (WAF): Platform.sh is securing your applications and you don't need to change anything. Read more on our [blog post](https://platform.sh/blog/announcing-the-platformsh-waf).
 * **February 2018**
@@ -88,37 +89,37 @@ description: |
 
 * **December 2017**
   * New project subdomains: The routes generated for subdomains and literal domains in development environments will now use `.` instead of translating them to `---`, for projects created after this date.
-  * `!include` tag support in YAML files: All YAML configuration files now support a generic [`!include`](/configuration/yaml/) tag that can be used to embed one file within another.
-  * Extended mount definitions: A new syntax has been added for defining [mount points](/configuration/app/storage/) that is more self-descriptive and makes future extension easier.
-  * Blocking older TLS versions: It is now possible to disable support for [HTTPS requests](/configuration/routes/https/) using older versions of TLS.  TLS 1.0 is known to be insecure in some circumstances and some compliance standards require a higher minimum supported version.
-  * `{all}` placeholder for routes: A new placeholder is available in [`routes.yaml`](/configuration/routes/) files that matches all configured domains.
-  * GitLab source code integration: Synchronize Git repository host on [GitLab](/administration/integrations/gitlab/) to Platform.sh.
+  * `!include` tag support in YAML files: All YAML configuration files now support a generic [`!include`](/configuration/yaml.md) tag that can be used to embed one file within another.
+  * Extended mount definitions: A new syntax has been added for defining [mount points](/configuration/app/storage.md) that is more self-descriptive and makes future extension easier.
+  * Blocking older TLS versions: It is now possible to disable support for [HTTPS requests](/configuration/routes/https.md) using older versions of TLS.  TLS 1.0 is known to be insecure in some circumstances and some compliance standards require a higher minimum supported version.
+  * `{all}` placeholder for routes: A new placeholder is available in [`routes.yaml`](/configuration/routes.md) files that matches all configured domains.
+  * GitLab source code integration: Synchronize Git repository host on [GitLab](/administration/integrations/gitlab.md) to Platform.sh.
 * **November 2017**
-  * PHP 7.2 supported: With the release of PHP 7.2.0, Platform.sh now offers [PHP 7.2](/languages/php/) containers on Platform Professional.
+  * PHP 7.2 supported: With the release of PHP 7.2.0, Platform.sh now offers [PHP 7.2](/languages/php.md) containers on Platform Professional.
 * **September 2017**
-  * Health notifications: Low-disk warnings will now trigger a [notification](/administration/integrations/notifications/) via email, Slack, or PagerDuty.
+  * Health notifications: Low-disk warnings will now trigger a [notification](/administration/integrations/notifications.md) via email, Slack, or PagerDuty.
 * **August 2017**
-  * Worker instances: Applications now support [worker instances](/configuration/app/workers/).
+  * Worker instances: Applications now support [worker instances](/configuration/app/workers.md).
 * **July 2017**
-  * Node.js 8.2: [Node.js 8.2](/languages/nodejs/) is now available.
+  * Node.js 8.2: [Node.js 8.2](/languages/nodejs.md) is now available.
 * **June 2017**
-  * Memcache 1.4: [Memcache 1.4](/configuration/services/memcached/) is now available as a caching backend.
-  * Custom static headers in .platform.app.yaml: Added support for setting custom headers for static files in `.platform.app.yaml`.  [See the example](/configuration/app/web/#how-can-i-control-the-headers-sent-with-my-files) for more information.
+  * Memcache 1.4: [Memcache 1.4](/configuration/services/memcached.md) is now available as a caching backend.
+  * Custom static headers in .platform.app.yaml: Added support for setting custom headers for static files in `.platform.app.yaml`.  [See the example](/configuration/app/web.html#how-can-i-control-the-headers-sent-with-my-files) for more information.
 * **May 2017**
-  * Code-driven variables in .platform.app.yaml: Added support for setting [environment variables via `.platform.app.yaml`](/configuration/app/variables/).
+  * Code-driven variables in .platform.app.yaml: Added support for setting [environment variables via `.platform.app.yaml`](/configuration/app/variables.md).
   * Python 3.6, Ruby 2.4, Node.js 6.10: Added support for updated versions of several languages.
 * **April 2017**
-  * Support for automatic SSL certificates: All production environments are now issued an SSL certificate automatically through Let's Encrypt.  See the [routing documentation](/configuration/routes/https/) for more information.
+  * Support for automatic SSL certificates: All production environments are now issued an SSL certificate automatically through Let's Encrypt.  See the [routing documentation](/configuration/routes/https.md) for more information.
   * MariaDB 10.1: MariaDB 10.1 is now available (accessible as `mysql:10.1`).  Additionally, both MariaDB 10.0 and 10.1 now use the Barracuda file format with `innodb_large_prefix` enabled, which allows for much longer indexes and resolves issues with some UTF-8 MB use cases.
 * **March 2017**
-  * Elasticsearch 2.4 and 5.2 with support for plugins: Elasticsearch 2.4 and 5.2 are now available.  Both have a number of optional plugins avaialble.  See the [Elasticsearch documentation](/configuration/services/elasticsearch/) for more information.
-  * InfluxDB 1.2: A new service type is available for InfluxDB 1.2, a time-series database.  See the [InfluxDB documentation](/configuration/services/influxdb/) for more information.
+  * Elasticsearch 2.4 and 5.2 with support for plugins: Elasticsearch 2.4 and 5.2 are now available.  Both have a number of optional plugins avaialble.  See the [Elasticsearch documentation](/configuration/services/elasticsearch.md) for more information.
+  * InfluxDB 1.2: A new service type is available for InfluxDB 1.2, a time-series database.  See the [InfluxDB documentation](/configuration/services/influxdb.md) for more information.
 * **February 2017**
   * HHVM 3.15 and 3.18: Two new HHVM versions are now available.
 * **January 2017**
-  * Support for Multiple MySQL databases and restricted users: MySQL now supports multiple databases, and restricted users per MySQL service.  See the [MySQL documentation](/configuration/services/mysql/) for details or read our [blog post](https://platform.sh/2017/02/multi-mysql).
-  * Support for Persistent Redis services: Added a `redis-persistent` service that is appropriate for persistent key-value data. The `redis` service is still available for caching.  See the [Redis documentation](/configuration/services/redis/) for details.
-  * Support Apache Solr 6.3 with multiple cores: Added an Apache 6.3 service, which can be configured with multiple cores.  See the [Solr documentation](/configuration/services/solr/) for details.
+  * Support for Multiple MySQL databases and restricted users: MySQL now supports multiple databases, and restricted users per MySQL service.  See the [MySQL documentation](/configuration/services/mysql.md) for details or read our [blog post](https://platform.sh/2017/02/multi-mysql).
+  * Support for Persistent Redis services: Added a `redis-persistent` service that is appropriate for persistent key-value data. The `redis` service is still available for caching.  See the [Redis documentation](/configuration/services/redis.md) for details.
+  * Support Apache Solr 6.3 with multiple cores: Added an Apache 6.3 service, which can be configured with multiple cores.  See the [Solr documentation](/configuration/services/solr.md) for details.
   * Support for HTTP/2: Any site configured with HTTPS will now automatically support HTTP/2.  Read more on our [blog post](https://platform.sh/2017/1/http2).
 
 ## 2016
@@ -126,7 +127,7 @@ description: |
 * **December 2016**
   * Support Async PHP: Deploy applications like ReactPHP and Amp which allow PHP to run as a single-process asynchronous process.  Read more on our [blog post](https://platform.sh/2016/12/php-71).
   * Pthreads: Multithreaded PHP: Our PHP 7.1 containers are running PHP 7.1 ZTS, and include the Pthreads extension. Read more on our [blog post](https://platform.sh/2016/12/php-71/).
-  * PHP 7.1: Service is [documented here](/languages/php/).
+  * PHP 7.1: Service is [documented here](/languages/php.md).
   * Support .environment files: This file will get sourced as a bash script by the system when a container boots up, as well as on all SSH logins. Feature is [documented here](https://docs.platform.sh/development/variables.html#shell-variables).
   * Support web.commands.start for PHP: That option wasn't available for PHP as PHP only has one applicable application runner, PHP-FPM. It is now available for PHP.  Read more on our [blog post](https://platform.sh/2016/12/app-updates-php/).
 * **November 2016**
@@ -134,10 +135,10 @@ description: |
 * **October 2016**
   * PostgreSQL 9.6: Service is [documented here](https://docs.platform.sh/configuration/services/postgresql.html).
   * PostgreSQL extensions: Read more in our [blog post](https://platform.sh/blog/the-new-and-newer-postgresql/).
-  * Node.js 6.8: Language is [documented here](languages/nodejs/).
+  * Node.js 6.8: Language is [documented here](languages/nodejs.md).
 * **September 2016**
-  * Python 2.7 & 3.5: Language is [documented here](/languages/python/).
-  * Ruby 2.3: Language is [documented here](/languages/ruby/).
+  * Python 2.7 & 3.5: Language is [documented here](/languages/python.md).
+  * Ruby 2.3: Language is [documented here](/languages/ruby.md).
 * **August 2016**
   * Support Gitflow: Read more in our [blog post](https://platform.sh/2016/08/gitflow-is-now-supported/).
 * **July 2016**

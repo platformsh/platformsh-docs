@@ -26,8 +26,9 @@ The following properties apply only at the global level, and cannot be replicate
 * [`timezone`](/configuration/app/timezone.md) - Sets the timezone of cron tasks in application container.
 * [`build`, `dependencies`, and `hooks`](/configuration/app/build.md) - Control how the application gets compiled.  Note that this compilation happens before the application is copied into different instances, so any steps here will apply to all web and worker instances.
 * [`cron`](/configuration/app/cron.md) - Defines scheduled tasks for the application.  Cron tasks will, technically, run as part of the web instance regardless of how many workers are defined.
+* [`source.root`](/configuration/app/multi-app.md) - This nested value specifies the path where all code for the application lives.  It defaults to the directory where the `.platform.app.yaml` file is defined.  It is rarely needed except in advanced configurations.
 
-The following properties can be set at the top level of the `.platform.app.yaml` file and apply to all application instances, or set within a given instance definition and apply just to that one.  If set in both places then the instance-specific one will take precidence, and completely replace the global one.  That is, if you want to make a change to just one sub-property of one of the following keys you need to replicate the entire block.
+The following properties can be set at the top level of the `.platform.app.yaml` file and apply to all application instances, or set within a given instance definition and apply just to that one.  If set in both places then the instance-specific one will take precedence, and completely replace the global one.  That is, if you want to make a change to just one sub-property of one of the following keys you need to replicate the entire block.
 
 * [`size`](/configuration/app/size.md) - Sets an explicit sizing hint for the application.
 * [`relationships`](/configuration/app/relationships.md) - Defines connections to other services and applications.

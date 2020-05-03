@@ -96,9 +96,7 @@ Be aware that this approach will apply the same IP restrictions to all developme
 
 If your CDN offers this option, an alternative way of securing the connection is [client authenticated TLS](/configuration/routes/https.html#client-authenticated-tls).
 
-{{< note >}}
-Please remember to permit your developers to access the origin by creating your own certificate or else they won't be able to access the project url directly. (see below)
-{{< /note >}}
+**note**: Please remember to permit your developers to access the origin by creating your own certificate or else they won't be able to access the project url directly. (see below)
 
 CloudFlare has [a very good article](https://support.cloudflare.com/hc/en-us/articles/204899617-Authenticated-Origin-Pulls) on what client authenticated TLS is, and how to set this up.
 
@@ -111,8 +109,7 @@ To activate authenticated TLS follow the following steps:
 - Make sure you have a `.crt` file. If you have have `.pem` file, simply rename it to `cdn.crt`
 - Add the `cdn.crt` to your git repository
 - Add the relevant configuration to your `.platform.app.yaml` file
-
-```text
+```
 tls:
     client_authentication: "require"
     client_certificate_authorities:

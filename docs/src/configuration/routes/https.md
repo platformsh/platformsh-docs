@@ -182,7 +182,6 @@ Provisioning certificates
   E: Error provisioning the new certificate, will retry in the background.
   (Next refresh will be at 2020-02-13 14:29:22.860563+00:00.)
   Environment certificates
-
 W: Missing certificate for domain www.<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
 W: Missing certificate for domain <PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
 ```
@@ -191,7 +190,7 @@ One reason that this can happen has to do with the limits of Let's Encrypt itsel
 
 At this time, generated URLs have the following pattern:
 
-```text
+```
 <PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
 ```
 
