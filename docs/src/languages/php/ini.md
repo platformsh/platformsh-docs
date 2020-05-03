@@ -39,19 +39,18 @@ Environment-specific `php.ini` configuration directives can be provided via envi
 
 ## Disabling functions
 
-A common recommendation for securing a PHP installation is to disable certain built-in functions that are frequently used in remote attacks.  By default, Platform.sh does not disable any functions as they all do have some legitimate use in various applications.  However, you may wish to disable them yourself if you know they are not needed.  For example, to disable `pcntl_exec` and `pcntl_fork` (which are not usable in a web request anyway):
+A common recommendation for securing a PHP installation is to disable certain built-in functions that are frequently used in remote attacks.  By default, Platform.sh does not disable any functions as they all do have some legitimate use in various applications.  However, you may wish to disable them yourself if you know they are not needed.  For example, to disable `eval` and `create_function` (two very rarely needed functions):
 
  ```yaml
  variables:
     php:
-        "disable_functions": "pcntl_exec,pcntl_fork"
+        "disable_functions": "eval,create_function"
  ```
 
-Common functions to disable include:
+Other common functions to disable include:
 
-* `create_function` - `create_function` has no useful purpose since PHP 5.3 and should not be used, ever.  It has been effectively replaced by anonymous functions.
+* `eval,create_function` - These functions allow for arbitrary strings to be evaluated as PHP code.  Legitimate uses for `eval` do exist, but are extremely rare.  `create_function` has no useful purpose since PHP 5.3 and should not be used, ever.
 * `exec,passthru,shell_exec,system,proc_open,popen` - These functions all allow a PHP script to run a bash shell command. That is rarely used by web applications, although build scripts may need them.
-* `pcntl_exec,pcntl_fork,pcntl_setpriority` - The `pcntl_*` functions (including those not listed here) are responsible for process management.  Most of them will cause a fatal error if used within a web request.  Cron tasks or workers may make use of them, however.  Most are safe to disable unless you know that you are using them.
 * `curl_exec,curl_multi_exec` - These functions allow a PHP script to make arbitrary HTTP requests.  Note that they are frequently used by other HTTP libraries such as Guzzle, in which case you should *not* disable them.
 * `show_source` - This function shows a syntax highlighted version of a named PHP source file.  That is rarely useful outside of development.
 
