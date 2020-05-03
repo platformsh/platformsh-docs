@@ -121,7 +121,7 @@ The primary use case for this configuration is defining multiple applications wi
 
 Platform.sh supports Git submodules, so each application can be in a separate repository.  However, there is currently a notable limitation: the `.platform.app.yaml` files must be in the top-level repository. That means the project must be structured like this:
 
-```
+```text
 .git/
 .platform/
     routes.yaml
