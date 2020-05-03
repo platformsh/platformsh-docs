@@ -21,7 +21,7 @@ If an application defines both a `web` instance and a `worker` instance, cron ta
 
 ## How do I setup Cron for a typical Drupal site?
 
-The following example runs Drupal's normal cron hook every 20 minutes, using Drush.  It also sets up a second cron task to run Drupal's queue runner on the aggregator_feeds queue every 5 minutes.
+The following example runs Drupal's normal cron hook every 20 minutes, using Drush.  It also sets up a second cron task to run Drupal's queue runner on the aggregator_feeds queue every 7 minutes.
 
 ```yaml
 crons:
