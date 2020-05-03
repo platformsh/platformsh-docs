@@ -19,6 +19,7 @@ description: |
   * Solr 8.4: We now support [Solr 8.4](/configuration/services/solr.md).
 * **February 2020**
   * Memcached 1.5: We now support [Memcached 1.5](/configuration/services/memcached.md).
+  * Character set and collation are now configurable on [MySQL/MariaDB](/configuration/services/mysql.md).
 * **January 2020**
   * RabbitMQ: We now support [RabbitMQ virtual host configuration](/configuration/services/rabbitmq.html#virtual-hosts)
 
