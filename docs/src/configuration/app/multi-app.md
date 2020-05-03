@@ -5,26 +5,19 @@ weight: 13
 
 Platform.sh supports building multiple applications per project (for example RESTful web services with a front-end, or a main website and a blog).  For resource allocation reasons, however, that is not supported on Standard plan.
 
-## Introduction
+## Project structure
 
-### File structure
-
-All of the applications share a common configuration through the files present
-in the `.platform/` folder at the root of the Git repository. Then each
-application provides its own configuration via the `.platform.app.yaml` file.
+There are multiple ways to structure such a project, depending on the way your source code is organized and what your goal is.  All of these approaches may be used within a single project simultaneously, although it is often easier to maintain if you settle on just one approach for a given project.
 
 ![Multi-app](/images/config-diagrams/multiple-applications.png "0.5")
 
-When you push via Git, Platform.sh will build each application separately. Only
-the application(s) that have been modified will be rebuilt.
+### Discrete code bases
 
-To create a multi-application setup put each application in its own directory
-with a `.platform.app.yaml` file at its root.
+If your project consists of a discrete code base for each application, the most straightforward approach is to put both code bases into a single project repository in separate directories.  Each will have its own `.platform.app.yaml` file, which will define how that particular application gets built, using the code in that directory.
 
-For example, if you have a Drupal back end with an AngularJS front end:
+For example, if you have a Drupal back end with an AngularJS front end you could organize the repository like this:
 
 ```bash
-$ ls -a
 .git/
 .platform/
 drupal/
@@ -34,16 +27,87 @@ angular/
   .platform.app.yaml
 ```
 
+Each `.platform.app.yaml` file will define a single application container, and build code in that directory.  The `.platform` directory is outside of all of them and still defines additional services you require, as well as routes.
+
+Note that disk paths in the `.platform.app.yaml` file are relative to the directory where that file lives by default.
+
+This is the recommended approach for most configurations.
+
+### Explicit `source.root`
+
+As an alternative, you may specify a `source.root` key in a `.platform.app.yaml` file to override the "application root is where the file is" logic.  The `.platform.app.yaml` file may then live anywhere in the repository but use code from another directory.  Two separate `.platform.app.yaml` files may refer to the same directory if desired.
+
+For example:
+
+```yaml
+# .platform.app.yaml
+
+source:
+    root: restapp
+```
+
+```bash
+.platform/
+main/
+    .platform.app.yaml
+.platform.app.yaml
+restapp/
+    # Your code here
+```
+
+In this case, the `.platform.app.yaml` file in `main` does not specify a `source.root`, and so will be built from the code in `main`.  The top-level `.platform.app.yaml` includes the YAML fragment above.  It will get built using the code in `restapp`, as if it were in that directory.
+
+Note that disk parameters in the `.platform.app.yaml` file will be relative to the `source.root` directory if specified.  The `source.root` path is relative to the repository root.
+
+The primary use case for this configuration is if the source code is pulled in as a [Git submodule](#submodules) or downloaded during the build phase.
+
+### `applications.yaml`
+
+It is possible to define an application in a `.platform/applications.yaml` file in addition to discrete `.platform.app.yaml` files.  The syntax is nearly identical, but the `source.root` key is required.  The `applications.yaml` file is then a YAML array of application definitions.
+
+For example, the following `.platform/applications.yaml` file defines two applications:
+
+```yaml
+# .platform/applications.yaml
+-   name: users
+    type: golang:1.14
+    source:
+        root: userapp
+    hooks:
+        build: |
+            go build -o bin/app
+    web:
+        upstream:
+            socket_family: tcp
+            protocol: http
+        commands:
+            start: ./bin/app
+        locations:
+            /:
+                allow: false
+                passthru: true
+
+
+-   name: orders
+    type: "php:7.4"
+    source:
+        root: ordersapp
+    web:
+        locations:
+            "/":
+                root: "web"
+                passthru: "/index.php"
+```
+
+In this example, the `userapp` directory will get built as a Go application while the `ordersapp` directory will get built as a PHP application, even though neither of those directories has a `.platform.app.yaml` file.
+
+The primary use case for this configuration is defining multiple applications with different configuration off of the same source code, or when the source code is downloaded during the build phase.
+
 ## Submodules
-Platform.sh supports Git submodules, so each application can be in a separate
-repository. This is a powerful feature which allows you to create a `Staging`
-server with different versions of each application in a single commit.
 
-However, there is currently a notable limitation: the `.platform.app.yaml`
-files must be in the top-level repository. For now, you'll have to implement a
-repository layout that looks like this:
+Platform.sh supports Git submodules, so each application can be in a separate repository.  However, there is currently a notable limitation: the `.platform.app.yaml` files must be in the top-level repository. That means the project must be structured like this:
 
-```text
+```
 .git/
 .platform/
     routes.yaml
@@ -58,26 +122,25 @@ app2/
         index.php
 ```
 
-This puts your applications' files at a different path relative to your
-`.platform.app.yaml` files, so you'll also have to update your web
-configuration to match. For example, your first application's
-`.platform.app.yaml` file would include something like this:
+This puts your applications' files at a different path relative to your `.platform.app.yaml` files.  The recommended way to handle that is to specify a `source.root` key in the `.platform.app.yaml` file and have it reference the submodule directory.
 
-```yaml
-web:
-    locations:
-        "/":
-            root: "app1-submodule"
-            # Or app1-submodule/path/to/webroot, if appropriate.
-            passthru: "/index.php"
+## Multi-app Routes
+
+Every application, however it is defined, must have a unique `name` property.  The `routes.yaml` file may then refer to that application by name as an `upstream` for whatever route is appropriate.
+
+For example, assuming this configuration from above:
+
+```bash
+.git/
+.platform/
+drupal/
+  .platform.app.yaml
+  ...
+angular/
+  .platform.app.yaml
 ```
 
-
-### Multi-app Routes
-
-If you setup the AngularJS `.platform.app.yaml` with `name: angular`, and the
-Drupal one `name: drupal`, you need to configure your `.platform/routes.yaml`
-like the following (names need to match):
+The `.platform/routes.yaml` file can be structured like this:
 
 ```yaml
 "https://backend.{default}/":
@@ -88,177 +151,17 @@ like the following (names need to match):
     upstream: "angular:http"
 ```
 
-This will result (if we consider we are on the `http://example.com` domain):
-* `http://backend.example.com` being served by the Drupal instance
-* `http://example.com/` and all the urls below it to be served by the AngularJS
-one.
+(This assumes your Drupal application is named `drupal` and your Angular front-end is named `angular`.)
 
-{{< note >}}
-Subdomain routes in development environments will be accessible using three dashes (---) instead of a dot (.), e.g:  `http://backend---BRANCH-MACHINE_NAME-PROJECTID-.REGION.platformsh.site`.
-{{< /note >}}
+Assuming a domain name of `example.com`, that will result in:
 
-### SSH in each application
+* `https://backend.example.com/` being served by the Drupal instance.
+* `https://example.com/` being served by the AngularJS instance.
 
-You can SSH in any application that is deployed.
+There is no requirement that an application be web-accessible.  If it is not specified in `routes.yaml` then it will not be web-accessible at all.  However, if you are building a non-routable application off of the same code base as another application, you should probably consider defining it as a [`worker`](/configuration/app/worker.md) instead.  The net result is the same but it is much easier to manage.
 
-If you are not sure how to construct the SSH URL, you can use the generic one
-provided by the Platform.sh management console:
+## Relationships
 
-```bash
-ssh 3bdcrrivykjsm-master@git.eu-2.platform.sh
+In a multi-app configuration, applications by default cannot access each other.  However, they may declare a `relationships` block entry that references another application rather than a service.  In that case the endpoint is `http`.
 
-The user name '3bdcrrivykjsm-master' resolves to multiple services, use one of
-those more specific names:
- - 3bdcrrivykjsm-master--angular
- - 3bdcrrivykjsm-master--drupal
-Received disconnect from 54.76.137.151: 14: No more auth methods available
-Disconnected from 54.76.137.151
-```
-
-## Example of a micro-service multi-app
-
-Here is a more detailed and complete example for a project that is designed with
-a *micro-service* architecture.
-
-### Setup
-
-Imagine that our front end (*front*) application depends on two REST services
-that both connect to the same PostgreSQL database:
-* User API (*user*)
-* Content API (*content*)
-
-The *front* does not connect directly to the database but does everything
-through these APIs, and it uses Redis as a Cache.
-
-The directory structure may look something like this:
-
-```bash
-$ ls -a
-.git/
-.platform/
-  routes.yaml
-  services.yaml
-user_api/
-  .platform.app.yaml
-  public/
-    index.php
-    [...]
-content_api/
-  .platform.app.yaml
-  public/
-    index.php
-    [...]
-front_end/
-  .platform.app.yaml
-  public/
-    index.php
-    assets/
-    [...]
-```
-
-{{< note >}}
-There is no relationship between the directory names and the application names, which are defined in the configuration files.
-{{< /note >}}
-
-### Routes
-
-In our use case the User API is accessible through a URL like
-`https://api.example.com/v1/users`, and the Content API is accessible through
-`https://api.example.com/v1/content`.
-
-In this case we are not doing HTTP caching on the two APIs, but we are caching
-on the *front* application.
-
-The `.platform/routes.yaml` may look like:
-
-```yaml
-"https://api.{default}/v1/users":
-    type: upstream
-    upstream: "user:http"
-    cache:
-        enabled: false
-"https://api.{default}/v1/content":
-    type: upstream
-    upstream: "content:http"
-    cache:
-        enabled: false
-"https://{default}/":
-    type: upstream
-    upstream: "front:http"
-    cache:
-        enabled: true
-```
-
-For the later, we simply tell our router to connect, to a service called `front` and
-route HTTP traffic to the application service running there.
-
-{{< note >}}
-The upstream virtually always ends in `:http`, since Platform.sh only supports HTTP-based applications exposed to the outside world. See the [Routing](/configuration/routes.html) section.
-{{< /note >}}
-
-### Services
-
-The `.platform/services.yaml` may look like:
-
-```yaml
-commondb:
-    type: postgresql:9.3
-    disk: 4096
-cache:
-    type: redis:2.8
-```
-
-Here we define two services that could be available to any application in the
-project. The keys `commondb` and `cache` are names (need to be alphanumeric with
-no special characters) which describe the role theses services will have in the
-project. We use these names in each application's `.platform.app.yaml` to link
-the service to the application.
-
-The User API `user_api/.platform.app.yaml` will look like the following (only
-putting here the relevant parts `[...]` representing the stuff we cut out):
-
-```yaml
-name: user
-[...]
-relationships:
-    "database": "commondb:postgresql"
-```
-
-The Content API `content_api/.platform.app.yaml` will, in this case, be very
-similar:
-
-```yaml
-name: content
-[...]
-relationships:
-    "database": "commondb:postgresql"
-```
-
-The `commondb` comes from the name we put in `services.yaml`.
-
-The `:postgresql` suffix, which is required, is there because in the future
-Platform.sh will support multiple endpoints per service (for services that
-support multiple protocols).  See the [Services](/configuration/services.html) section.
-
-{{< note >}}
-The name `database` is freely chosen by us and will be exposed in the environment variable `PLATFORM_RELATIONSHIPS` of the application (it can be different between the different application of the same project).
-{{< /note >}}
-
-The *front* `front_end/.platform.app.yaml` will look like:
-
-```yaml
-name: front
-[...]
-relationships:
-    "database": "cache:redis"
-    "user_service": "user:http"
-    "content_service": "content:http"
-```
-
-These relationships allow an application to connect to another, and will expose
-in its environment variables everything that is needed for it to be used
-dynamically in its configuration.
-
-{{< note >}}
-The names `database`, `user_service` and `content_service` are freely chosen by us. It's often better to stick to a simple naming scheme.
-{{< /note >}}
+However, be aware that circular relationships are not supported.  That is, application A cannot have a relationship to application B if application B also has a relationship to application A.  Such circular relationships are usually a sign that the applications should be coordinating through a shared data store, like a database, [RabbitMQ server](/configuration/services/rabbitmq.md), or similar.
