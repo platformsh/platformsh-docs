@@ -105,7 +105,7 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
 
     ```yaml
     name: 'app'
-    type: "ruby:2.6"
+    type: "ruby:2.7"
 
     web:
         upstream:
