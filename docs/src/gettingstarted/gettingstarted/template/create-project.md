@@ -14,33 +14,31 @@ From here you can create projects, adjust account settings, and a lot more that 
 
 Since you do not yet have any projects on Platform.sh, the first thing you will see when you sign in is a workflow for creating a new project.
 
-1. **Name your project**
+1. **Project type**
 
-   Give your project a name like `My First Project` and then click `Next`.
+   You will first be given the option of creating a `New Project` that is empty ([one that you can migrate your own code base to](/gettingstarted/own-code.html)), or to `Use a Template`. Select the `Use a Template` option, and then click `Next`.
 
-2. **Set code base**
+2. **Details**
 
-   Now you will be able to see the large collection of Platform.sh's supported templates. There are several types of templates available, including simple language-specific examples, ready-to-use frameworks you can build upon, and full installed applications you can start using immediately after installation.
+  Give your project a name like `My First Project`.
 
-   If you are more comfortable with a particular language, click the dropdown labeled `All languages`. Select a language and the template list will update.
+  In the next field, you have the option to configure the project's region, which corresponds with the data center where your project will live.  Select the region that most closely matches where most of your traffic will come from and click `Next`.
 
-   Select a template and click `Next`.
+3. **Template**
 
-   {{< note >}}
-   You can find the source code for all Platform.sh templates in the [GitHub Templates Organization](https://github.com/platformsh-templates).
-   {{< /note >}}
+  Now you will be able to see the large collection of Platform.sh's supported templates. There are several types of templates available, including simple language-specific examples, ready-to-use frameworks you can build upon, and setapplications you can start using immediately after installation.
 
-3. **Plan size**
+  If you are more comfortable with a particular language, click the dropdown labeled `All languages`. Select a language and the template list will update.
 
-   The management console gives you the option of setting your plan size from the very beginning, but you can always upgrade your plan later on as well.
+  Select a template and click `Next`.
 
-   For now, select the `Development` plan size and click `Next`.
+  {{< note >}}
+  You can find the source code for all Platform.sh templates in the [GitHub Templates Organization](https://github.com/platformsh-templates).
+  {{< /note >}}
 
-4. **Project region**
+4. **Plan & Pricing**
 
-   The last step for setting up a new project is to configure its region, which corresponds with the data center where your project will live.
-
-   Select the region that most closely matches where most of your traffic will come from and click `Next`.
+  Under your free trial, your project will be created under a "Development" plan size. The management console will tell you how many users, development environments, and the price of that plan after your trial has completed. After you have read through the features, click `Continue`.
 
 With these few selections Platform.sh will create the project and build the template in less than two minutes.
 
