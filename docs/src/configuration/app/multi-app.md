@@ -65,14 +65,14 @@ The primary use case for this configuration is if the source code is pulled in a
 
 It is possible to define an application in a `.platform/applications.yaml` file in addition to discrete `.platform.app.yaml` files.  The syntax is nearly identical, but the `source.root` key is required.  The `applications.yaml` file is then a YAML array of application definitions.
 
-For example, the following `.platform/applications.yaml` file defines two applications:
+For example, the following `.platform/applications.yaml` file defines three applications:
 
 ```yaml
 # .platform/applications.yaml
--   name: users
+-   name: api
     type: golang:1.14
     source:
-        root: userapp
+        root: apiapp
     hooks:
         build: |
             go build -o bin/app
@@ -87,19 +87,29 @@ For example, the following `.platform/applications.yaml` file defines two applic
                 allow: false
                 passthru: true
 
-
--   name: orders
+-   name: main
     type: "php:7.4"
     source:
-        root: ordersapp
+        root: mainapp
     web:
         locations:
             "/":
                 root: "web"
                 passthru: "/index.php"
+
+-   name: admin
+    type: "php:7.4"
+    size: S
+    source:
+        root: mainapp
+    web:
+        locations:
+            "/":
+                root: "web"
+                passthru: "/admin.php"
 ```
 
-In this example, the `userapp` directory will get built as a Go application while the `ordersapp` directory will get built as a PHP application, even though neither of those directories has a `.platform.app.yaml` file.
+In this example, the `apiapp` directory will get built as a Go application while the `mainapp` directory will get built as two separate PHP applications, even though none of those directories has a `.platform.app.yaml` file.  The two PHP applications will use the same source code, but have different front controllers for the `admin` and `main` applications.  The `admin` instance will also be fixed at an `S` size container, while `main` will scale freely.
 
 The primary use case for this configuration is defining multiple applications with different configuration off of the same source code, or when the source code is downloaded during the build phase.
 
