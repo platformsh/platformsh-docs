@@ -78,6 +78,7 @@ This is the complete list of extensions that can be enabled:
 | enchant       | *   | *   | *   | *   | *   | *   | *   | *   |
 | event         |     |     |     |     | *   | *   | *   | *   |
 | exif          |     |     |     | *   | *   | *   | *   | *   |
+| ffi           |     |     |     |     |     |     |     | *   |
 | fileinfo      |     |     |     | *   | *   | *   | *   | *   |
 | ftp           |     |     |     | *   | *   | *   | *   | *   |
 | gd            | *   | *   | *   | *   | *   | *   | *   | *   |
