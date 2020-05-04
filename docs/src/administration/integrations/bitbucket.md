@@ -45,14 +45,6 @@ where
 * `CONSUMER_SECRET` is the `Secret` variable of the consumer you created.
 * `USER/REPOSITORY` is the location of the repository.
 
-Optional parameters:
-
-* `--fetch-branches`: Track and deploy branches (true by default)
-* `--prune-branches`: Delete branches that do not exist in the remote Bitbucket repository (true by default)
-* `--build-pull-requests`: Track and deploy pull-requests (true by default)
-* `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`false` by default)
-* `--pull-requests-clone-parent-data`: Set to `false` to disable cloning of parent environment data when creating a PR environment, so each PR environment starts with no data. (`true` by default)
-
 ## Validate the integration
 
 In both cases, you can verify that your integration is functioning properly [using the CLI](/administration/integrations.html#validating-integrations) command

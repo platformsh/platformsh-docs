@@ -4,7 +4,6 @@
 {{ $scale := 1.0 }}
 
 {{ if gt (len $checkInline) 1 }}
-  {{ index $checkInline 1 }}
   {{ with ( index $checkInline 0 ) }}
     {{ $scale = float . }}
     {{ $widthScale = mul $scale $widthScale }}

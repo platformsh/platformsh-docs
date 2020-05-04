@@ -52,6 +52,7 @@ If you are willing to make the `www.` version of your site the canonical version
 If your preferred registrar/DNS provider doesn't support either custom records or the apex domain forwarding options above, the following free services both allow blind redirects and allow you to use a CNAME record to Platform.sh for `www.example.com` and an `A` record to their service at `example.com`, which will in turn send a redirect.
 
 * [WWWizer](http://wwwizer.com/)
+* [redirectssl](http://redirectssl.com/)
 
 ### (Alternate) Using A records
 

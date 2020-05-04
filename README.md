@@ -67,6 +67,7 @@ cd ../docs
 npm install
 npm run dev
 npm run build-searchapp
+hugo
 ```
 
 > **Note:**
