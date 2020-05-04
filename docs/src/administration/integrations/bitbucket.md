@@ -7,16 +7,14 @@ description: |
 
 {{< description >}}
 
-## Setting up an OAuth consumer
+## Set up an OAuth consumer
 
-You can integrate your Bitbucket repositories with Platform.sh by creating an [OAuth consumer](https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html) for your account.
+You can integrate your Bitbucket repositories with Platform.sh by creating an [OAuth consumer](https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html) for your Workspace.
 
-### On Bitbucket
-
-1. Go to your user account and click "Settings".
-2. Under "ACCESS MANAGEMENT" click OAuth.
-3. At the bottom of that page under "OAuth consumers", click the "Add consumer" button.
-4. Fill out the information for the consumer. In order for OAuth2 to work correctly, it's recommended that you include:
+1. Go to your Bitbucket Workspace and click "Settings".
+2. Under "APPS AND FEATURES" click "OAuth Consumers".
+3. Click the "Add consumer" button.
+4. Fill out the information for the consumer. In order for the integration to work correctly, it's required that you include:
     * **Name:** Give the consumer a recognizable name, like `Platform.sh consumer` or `Platform.sh integration`.
     * **Callback URL:** The URL users will be redirected to after access authorization. It is sufficient to set this value to `http://localhost`.
     * **Set as a private consumer:** At the bottom of the "Details" section, select the "This is a private consumer" checkbox.
@@ -26,7 +24,7 @@ You can integrate your Bitbucket repositories with Platform.sh by creating an [O
       * **Pull requests** - Read
       * **Webhooks** - Read and write
 5. After you have completed the form, `Save` the consumer.
-6. After you have saved, you will see `Platform.sh consumer` listed in the "OAuth consumers" section. If you open that item, it will expose two variables that you will need to complete the integration using the Platform.sh CLI: `Key` and `Secret`.
+6. After you have saved, you will see your consumer listed in the "OAuth consumers" section. If you open that item, it will expose two variables that you will need to complete the integration using the Platform.sh CLI: `Key` and `Secret`.
 
 ### Local
 
@@ -37,7 +35,7 @@ Retrieve a `PROJECT_ID` for an existing project with `platform project:list` or 
 Then run the integration command:
 
 ```bash
-platform integration:add --type=bitbucket --project <PLATFORMSH_PROJECT_ID> --key <CONSUMER_KEY> --secret <CONSUMER_SECRET> --repository <USER>/<REPOSITORY>
+ platform integration:add --type=bitbucket --project <PLATFORMSH_PROJECT_ID> --key <CONSUMER_KEY> --secret <CONSUMER_SECRET> --repository <USER>/<REPOSITORY>
 ```
 
 where
