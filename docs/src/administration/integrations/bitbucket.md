@@ -7,7 +7,7 @@ description: |
 
 {{< description >}}
 
-### Set up an OAuth consumer
+## Set up an OAuth consumer
 
 You can integrate your Bitbucket repositories with Platform.sh by creating an [OAuth consumer](https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html) for your Workspace.
 
