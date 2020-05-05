@@ -35,6 +35,7 @@ The following properties can be set at the top level of the `.platform.app.yaml`
 * [`access`](/configuration/app/access.md) - Restricts SSH access with more granularity than the management console.
 * [`disk` and `mounts`](/configuration/app/storage.md) *(required)* - Defines writable file directories for the application.
 * [`variables`](/configuration/app/variables.md) - Sets environment variables that control application behavior.
+* [`firewall`](/configuration/app/firewall.md) - Defines outbound firewall rules for the application.
 
 The `.platform.app.yaml` file needs at least one of the following to define an instance, but may define both.
 
