@@ -113,11 +113,6 @@ async function getTemplateRuntime(template){
 
 }
 
-function cleanupUndefined(data) {
-  delete data["undefined"];
-  return data
-}
-
 async function fetchTemplates() {
 
     rp(options)
@@ -135,9 +130,10 @@ async function fetchTemplates() {
               }
               count += 1;
               if (count === array.length - 1) {
+                // Delete templates with undefined types
+                delete data["undefined"]
                 // Write the template data yaml
-
-                fs.writeFileSync(finalFileLocation, yaml.safeDump(cleanupUndefined(data), {noRefs:true}), function (err) {
+                fs.writeFileSync(finalFileLocation, yaml.safeDump(data, {noRefs:true}), function (err) {
                   if (err) throw err;
                 });
               }
