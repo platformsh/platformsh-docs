@@ -1,4 +1,7 @@
-# Outbound firewall
+---
+title: "Outbound firewall"
+weight: 15
+---
 
 In some situations, compliance regulations may require you to limit outbound traffic from your application.  The `firewall` property allows you to do so.
 
