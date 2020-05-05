@@ -66,7 +66,8 @@ async function getTemplateRuntime(template){
     "strapi": "nodejs",
     "mattermost": "golang",
     "probot": "nodejs",
-    "gatsby-wordpress": "nodejs"
+    "gatsby-wordpress": "nodejs",
+    "quarkus": "java"
   }
 
   var templateData = {
@@ -87,7 +88,6 @@ async function getTemplateRuntime(template){
           'User-Agent': 'Request-Promise'
       }
   };
-
 
   if (!( template.name in parseErrorTemplates )) {
 
@@ -113,6 +113,11 @@ async function getTemplateRuntime(template){
 
 }
 
+function cleanupUndefined(data) {
+  delete data["undefined"];
+  return data
+}
+
 async function fetchTemplates() {
 
     rp(options)
@@ -131,7 +136,8 @@ async function fetchTemplates() {
               count += 1;
               if (count === array.length - 1) {
                 // Write the template data yaml
-                fs.writeFileSync(finalFileLocation, yaml.safeDump(data, {noRefs:true}), function (err) {
+
+                fs.writeFileSync(finalFileLocation, yaml.safeDump(cleanupUndefined(data), {noRefs:true}), function (err) {
                   if (err) throw err;
                 });
               }
