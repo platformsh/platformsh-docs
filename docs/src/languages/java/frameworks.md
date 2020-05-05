@@ -24,6 +24,8 @@ sidebarTitle: "Frameworks"
 * [KumuluzEE](https://github.com/platformsh-templates/microprofile-kumuluzee)
 * [Helidon](https://github.com/platformsh-templates/microprofile-helidon)
 * [Open Liberty](https://github.com/platformsh-templates/microprofile-openliberty)
+* [Quarkus](https://github.com/platformsh-templates/quarkus)
+* [Tomcat](https://github.com/platformsh-templates/tomcat)
 
 ## Spring
 
