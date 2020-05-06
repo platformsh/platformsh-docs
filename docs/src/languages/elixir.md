@@ -1,7 +1,7 @@
 ---
 title: "Elixir"
 weight: 2
-description: Platform.sh supports building and deploying applications written in Elixir.  They are automatically compiled during the build phase, and support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7.
+description: Platform.sh supports building and deploying applications written in Elixir. There is no default flavor for the build phase, but you can define it explicitly in your build hook. Platform.sh Elixir images support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7.
 ---
 
 {{< description >}}
@@ -16,37 +16,28 @@ To specify an Elixir container, use the `type` property in your `.platform.app.y
 
 ## Assumptions
 
-Platform.sh is making assumptions about your application to provide a more streamlined experience. These assumptions are the following:
+Unlike other runtime containers that come with a default build `flavor`, Platform.sh does not make certain assumptions about how your Elixir application should be built or how dependencies should be handled, due to small differences between frameworks.
 
-- Your application requires both Hex and rebar
-- Your `mix.exs` file is at the root of your application.
-- Your application may need a `SECRET_KEY_BASE` environment variable, which is set to the value of `PLATFORM_PROJECT_ENTROPY`.
-
-Platform.sh will install Hex and rebars into the container, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
-
-If you don't want these assumptions, you can disable this behavior by specifying in your `.platform.app.yaml`:
-
-{{< readFile file="src/registry/images/examples/full/elixir.build.app.yaml" highlight="yaml" >}}
-
-For clarity, below is the default build behavior executed by Platform.sh replicated with `build.flavor: none`:
+If you are, for example, using Hex to manage your dependencies, it will be necessary to specify a set of environment variables in your `.platform.app.yaml` file that define the `MIX_ENV` and `SECRET_KEY_BASE`, which can be set to the Platform.sh-provided `PLATFORM_PROJECT_ENTROPY` environment variable:
 
 ```yaml
-build:
-    flavor: none
-hooks:
-    build: |
-        mix local.hex --force
-        mix local.rebar --force
-        mix do deps.get, deps.compile, compile
 variables:
     env:
-        MIX_ENV: 'prod'
         SECRET_KEY_BASE: $PLATFORM_PROJECT_ENTROPY
+        MIX_ENV: 'prod'
 ```
+
+Include in your build hook the steps to retrieve a local Hex and rebar, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
+
+{{< readFile file="src/registry/images/examples/full/elixir.hooks.app.yaml" highlight="yaml" >}}
+
+{{< note >}}
+The above build hook will work for most cases, and assumes that your `mix.exs` file is located at the root of your application.
+{{< /note >}}
 
 ## Dependencies
 
-The recommended way to handle Elixir dependencies on Platform.sh is using Hex. Commit a `mix.exs` file in your repository and the system will automatically download the dependencies in you `deps` section.
+The recommended way to handle Elixir dependencies on Platform.sh is using Hex. You can commit a `mix.exs` file in your repository and the system will download the dependencies in your `deps` section using the build hook above.
 
 ```elixir
   defp deps do
@@ -55,7 +46,6 @@ The recommended way to handle Elixir dependencies on Platform.sh is using Hex. C
     ]
   end
 ```
-
 
 ## Platform.sh variables
 
@@ -67,7 +57,7 @@ To get the `PORT` environment variable (the port on which your web application i
 String.to_integer(System.get_env("PORT") || "8888")
 ```
 
-Some of the environment variables are in JSON format and are base64 encoded. You would need to import a JSON parsing library such as Jason or Poison to read those.
+Some of the environment variables are in JSON format and are base64 encoded. You would need to import a JSON parsing library such as [Jason](https://hexdocs.pm/json/readme.html) or [Poison](https://hexdocs.pm/poison/api-reference.html) to read those.
 
 {{< note title="Caveat">}}
 Remember `config/prod.exs` is evaluated at **build time** and will not have access to runtime configuration. Use `config/releases.exs` to configure your runtime environment.
@@ -75,13 +65,30 @@ Remember `config/prod.exs` is evaluated at **build time** and will not have acce
 
 ## Building and running the application
 
-Assuming `mix.exs` is present in your repository, the application will be automatically built on push.  You can then start it from the `web.commands.start` directive.  Note that the start command _must_ run in the foreground, so you should set the `--no-halt` flag when calling `mix run`.
+Assuming `mix.exs` is present at the root of your repository and your build hook has been defined to match the [above example](#assumptions), you can then start it from the `web.commands.start` directive.  
+
+{{< note >}}
+The start command _must_ run in the foreground, so you should set the `--no-halt` flag when calling `mix run`.
+{{< /note >}}
 
 The following basic `.platform.app.yaml` file is sufficient to run most Elixir applications.
 
 ```yaml
 name: app
+
 type: elixir:1.9
+
+variables:
+    env:
+        MIX_ENV: 'prod'
+        SECRET_KEY_BASE: $PLATFORM_PROJECT_ENTROPY
+
+hooks:
+    build: |
+        mix local.hex --force
+        mix local.rebar --force
+        mix do deps.get --only prod, deps.compile, compile
+
 web:
     commands:
         start: mix run --no-halt
@@ -89,9 +96,7 @@ web:
         /:
             allow: false
             passthru: true
-variables:
-    env:
-        MIX_ENV: 'prod'
+
 disk: 512
 ```
 
@@ -146,9 +151,15 @@ config :my_app, Repo,
   hostname: postgresql_config["host"]
 ```
 
+and setup Ecto during the deploy hook:
+
+```yaml
+deploy: |
+    mix do ecto.setup
+```
+
 ## Project templates
 
 Platform.sh offers a number of project templates using the structure described above. It can be used as a starting point or reference for building your own website or web application.
 
-- [Basic Elixir HTTP Server](https://github.com/platformsh-templates/elixir)
-- [Phoenix](https://github.com/platformsh-templates/phoenix_elixir)
+{{< repolist lang="elixir" >}}

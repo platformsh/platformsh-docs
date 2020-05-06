@@ -112,9 +112,15 @@
           }
         }
       },
-      "build": {
-        "flavor": "none"
+      "hooks": {
+        "build": [
+          "|",
+          "mix local.hex --force",
+          "mix local.rebar --force",
+          "mix do deps.get --only prod, deps.compile, compile"
+        ]
       }
+
     },
     "endpoint": null,
     "min_disk_size": null,
@@ -124,8 +130,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "1.9",
-        "1.10"
+        "1.9"
       ]
     }
   },
