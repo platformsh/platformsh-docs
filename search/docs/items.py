@@ -8,3 +8,4 @@ class DocsItem(Item):
     url = Field()
     text = Field()
     section = Field()
+    subsections = Field()

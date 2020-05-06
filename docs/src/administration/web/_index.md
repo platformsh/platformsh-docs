@@ -78,6 +78,8 @@ Synchronization performs a merge from a parent into a child environment, and the
 You have the option of performing a Sync on only the code, replacing the data (i.e. databases) of that environment from its parent, or both.
 These options are provided in a separate dialog box that will appear when you click the `Sync` button, along with the Platform.sh CLI commands that perform the same action.
 
+Be aware that sync uses the [Snapshot](/administration/snapshot-and-restore.html#snapshots-and-downtime) mechanism and will have the same caveats.
+
 ![sync confirmation cli](/images/management-console/header-sync-box.png "0.4")
 
 Be aware that sync uses the [Backup](/administration/backup-and-restore.html#backups-and-downtime) mechanism and will have the same caveats.

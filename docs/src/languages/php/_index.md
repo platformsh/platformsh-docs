@@ -117,7 +117,33 @@ foreach ($regex as $key => $file) {
 }
 ```
 
-Note: Preloading all `.php` files may not be optimal for your application, and may even introduce errors.  Your application framework may provide recommendations or a pre-made presload script to use instead.  Determining an optimal preloading strategy is the user's responsibility.
+{{< note >}}
+Preloading all `.php` files may not be optimal for your application, and may even introduce errors.  Your application framework may provide recommendations or a pre-made presload script to use instead.  Determining an optimal preloading strategy is the user's responsibility.
+{{< /note >}}
+
+## FFI
+
+PHP 7.4 introduced support for Foreign Function Interfaces (FFI), which allows user-space code to bridge to existing C-ABI-compatible libraries.  FFI is fully supported on Platform.sh.
+
+Note: FFI is only intended for advanced use cases, and is rarely a net win for routine web requests.  Use with caution.
+
+There are a few steps to leveraging FFI:
+
+1. Enable the FFI extension in `.platform.app.yaml`:
+
+    ```yaml
+    runtime:
+        extensions:
+            - ffi
+   ```
+
+2. Specify a [preload file](#opcache-preloading) in which you can call `FFI::load()`.  Using `FFI::load()` in preload will be considerably faster than loading the linked library on each request or script run.
+
+3. Ensure the library is available locally, but not in a web-accessible directory.  `.so` files may included in your repository, downloaded i your build hook, or compiled in your build hook.  If compiling C code, `gcc` is available by default.  If compiling Rust code, you can download the [Rust compiler in the build hook](https://doc.rust-lang.org/stable/book/ch01-01-installation.html).
+
+4. For running FFI from the command line, you will need to enable the opcache for command line scripts in addition to the preloader.  The standard pattern for the command would be `php -d opcache.preload="your-preload-script.php" -d opcache.enable_cli=true your-cli-script.php`.
+
+A working [FFI example](https://github.com/platformsh-examples/php-ffi) is available online for both C and Rust.
 
 ## Debug PHP-FPM
 

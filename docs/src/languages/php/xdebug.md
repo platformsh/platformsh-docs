@@ -4,8 +4,6 @@ weight: 6
 sidebarTitle: "Xdebug"
 ---
 
-# Using Xdebug
-
 [Xdebug](https://xdebug.org/) is a real-time debugger extension for PHP.  While usually used for local development, it can also be helpful for debugging aberrant behavior on the server.  It is available on Platform.sh Grid instances running PHP 7.2 and higher.
 
 As configured on Platform.sh, it avoids any runtime overhead for non-debug requests, even in production, and only allows SSH-tunneled connections to avoid any security issues.
@@ -52,7 +50,7 @@ In your PHPStorm Settings window, go to `Languages & Frameworks` > `PHP` > `Debu
 
 Ensure that the "Debug port" is set to the expected value (9000, or whatever you want to use in the `--port` flag) and that "Can accept external connections" is checked.  Other settings are at your discretion.
 
-![Xdebug configuration screen](/images/xdebug/xdebug-settings.png "0.5")
+![Xdebug configuration screen](/images/xdebug/xdebug-settings.png "0.6")
 
 ### 2. Set DBGp Proxy
 
@@ -60,7 +58,7 @@ In your PHPStorm Settings window, go to `Languages & Frameworks` > `PHP` > `Debu
 
 Ensure that the "IDE key" field is set to the same value as the `idekey` in `.platform.app.yaml`.  The exact value doesn't matter as long as it matches.
 
-![DBGp configuration screen](/images/xdebug/xdebug-dbgp-proxy.png "0.5")
+![DBGp configuration screen](/images/xdebug/xdebug-dbgp-proxy.png "0.6")
 
 ### 3. Configure a server
 
@@ -70,7 +68,7 @@ Add a new server for your Platform.sh environment.  The "Host" should be the hos
 
 This page lets you define what remote paths on the server correspond to what path on your local machine.  In the majority of cases you can just define the root of your application (either the repository root or the root of your PHP code base specifically in a multi-app setup) to map to `app`, as in the example below.
 
-![PHP server configuration](/images/xdebug/xdebug-servers.png "0.5")
+![PHP server configuration](/images/xdebug/xdebug-servers.png "0.6")
 
 {{< note >}}
 It may be easier to allow the debug process to connect once, allow it to fail, and then select the "Configure server mappings" error message.  That will pre-populate most of the fields in this page and only require you to set the `app` root mapping.

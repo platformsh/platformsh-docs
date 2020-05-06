@@ -70,19 +70,16 @@ Make note of the location of your public key, you're going to need that in the n
 
 ## Add the SSH key to your Platform account
 
-You have your SSH keys (if not, take a look at the section above), but you need to make sure Platform has a copy of your public key. It's pretty easy to add it to your account.
-
 1.  First off, you'll need to copy your public key to the clipboard.
-2.  Head over to your user account page on [the Platform.sh Accounts page](https://accounts.platform.sh/user) and navigate to the `SSH Keys` tab.
-3.  Click on the `Add a public key` link.
-4.  Paste the key that you copied earlier into the 'Key' text box. You can also add a title if you like, otherwise it will be auto-generated.
-5.  Click 'Save'.
+2.  Head over to your user account page on [the Platform.sh Accounts page](https://accounts.platform.sh/user) and navigate to the `Account Settings` tab.
+3. In the left side-bar, select `SSH keys`.
+4. Click the `Add a public key` button.
+5.  Paste the key that you copied earlier into the 'Key' text box. You can also add a title if you like, otherwise it will be auto-generated.
+6.  Click 'Save'.
 
-![Setting Up Your Project Add SSH Key Done](/images/management-console/account-ssh-key-add.png "0.5")
+{{< video src="videos/management-console/add-ssh-mc.mp4" >}}
 
 That's it! You're all set. Now you'll be able to use Git and command shells with any Platform.sh environment that your user account is authorized to work with.
-
-![Setting Up Your Project Add SSH Key Done](/images/management-console/account-ssh-keys.png "0.5")
 
 ### Forwarding keys by default
 
@@ -91,7 +88,6 @@ It may be helpful to set your SSH client to always forward keys to Platform.sh s
 ```text
 Host *.us.platform.sh
        ForwardAgent yes
-
 Host *.eu.platform.sh
        ForwardAgent yes
 ```
@@ -100,7 +96,7 @@ Include one `Host` entry for each Platform.sh region you want to connect to, suc
 
 ## SSH to your Web Server
 
-In the management console header to the top right of the screen, click the `SSH` drop down button. Copy the SSH URL of that environment and past the link into your terminal. You should see something like this:
+In the management console header, click on the environment tab and select the environment that you want to SSH into. Then click the `SSH` dropdown button towards the top right.
 
 ```bash
 $ ssh wk5fqz6qoo123-master@ssh.eu.platform.sh

@@ -22,9 +22,9 @@ A Project Reader can have a specific role on different environments. At the envi
 * **Environment Viewer** - An environment reader can only view this environment.
 
 {{< note theme="warning" title="Important" >}}
-After a new user is added to an environment, it needs to be rebuilt. Rebuilds are triggered when you push a new commit to the environment in question.  To be able to rebuild without new code changes you can issue the command `git commit --allow-empty -m'rebuild' && git push` to create an empty commit and "force" rebuilding the environment.
+After a user is added to (or deleted from) an environment, it will be automatically redeployed, after which the new permissions will be fully updated.
 
-When the environment rebuild is complete, allow a minute for the routes to update fully and for the new user to be able to use SSH access.
+When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger a redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
 {{< /note >}}
 
 ------------------------------------------------------------------------

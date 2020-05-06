@@ -4,12 +4,8 @@ weight: 6
 sidebarTitle: "Redis"
 ---
 
-There are two options for using Redis with Drupal on Platform.sh, you
-can either use the [PhpRedis](https://github.com/nicolasff/phpredis)
-extension or the [Predis](http://github.com/nrk/predis) library.  PhpRedis
-requires a PHP extension (which we provide) and should therefore be faster in
-most situations. Predis is written entirely in PHP and so would require no PHP
-extension to install locally, but at the cost of some performance.
+There are two options for using Redis with Drupal on Platform.sh, you can either use the [PhpRedis](https://github.com/nicolasff/phpredis)
+extension or the [Predis](http://github.com/nrk/predis) library.  PhpRedis requires a PHP extension and should therefore be faster in most situations. Predis is written entirely in PHP and so would require no PHP extension to install locally, but at the cost of some performance.
 
 If you are unsure which to use, we recommend using PhpRedis.
 
@@ -22,7 +18,7 @@ add or uncomment the following:
 
 ```yaml
 rediscache:
-    type: redis:3.0
+    type: redis:5.0
 ```
 
 That will create a service named `rediscache`, of type `redis`, specifically version `3.0`.
@@ -40,14 +36,7 @@ The key (left side) is the name that will be exposed to the application in the P
 
 ### Add the Redis PHP extension
 
-If you're using the PhpRedis option you will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
-
-```yaml
-# Additional extensions
-runtime:
-    extensions:
-        - redis
-```
+Because the Redis extension for PHP has been known to have BC breaks at times, we do not bundle a specific verison by default.  Instead, we provide a script to allow you to build your desired version in the build hook.  See the [PHP-Redis page](/languages/php/redis.md) for a simple-to-install script and instructions.
 
 (Skip this part if using Predis.)
 
