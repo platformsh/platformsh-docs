@@ -1,6 +1,5 @@
 ---
 title: "Node.js"
-weight: 6
 description: |
   Node.js is a popular JavaScript runtime built on Chrome's V8 JavaScript engine.  Platform.sh supports deploying Node.js applications quickly and easily. Using our Multi-App support you can build a micro-service oriented system mixing both Javascript and PHP applications.
 layout: single

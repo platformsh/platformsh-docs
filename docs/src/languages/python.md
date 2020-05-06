@@ -1,6 +1,5 @@
 ---
 title: "Python"
-weight: 8
 description: Platform.sh supports deploying Python applications. Your application can use WSGI-based (Gunicorn / uWSGI) application server, Tornado, Twisted, or Python 3.5+ asyncio server.
 ---
 

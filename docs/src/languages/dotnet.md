@@ -1,6 +1,5 @@
 ---
 title: "C#/.NET Core"
-weight: 1
 description: |
   Platform.sh supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
 ---

@@ -1,6 +1,5 @@
 ---
 title: "Ruby"
-weight: 9
 description: |
   Platform.sh supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
 ---

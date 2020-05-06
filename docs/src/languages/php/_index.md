@@ -1,6 +1,5 @@
 ---
 title: "PHP"
-weight: 7
 description: PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
 layout: single
 
