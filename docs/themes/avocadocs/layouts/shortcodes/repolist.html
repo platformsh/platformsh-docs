@@ -1,50 +1,59 @@
 {{ $lang := .Get "lang" }}
-{{ $templates := index .Site.Data.templates $lang }}
 
-<div class="accordion" id="accordion{{ $lang }}">
+{{ if isset .Site.Data.templates $lang }}
 
-{{ range sort $templates "name" }}
+  {{ $templates := index .Site.Data.templates $lang }}
 
-  <div class="card">
-    <div class="card-header-template" id="heading{{ .shortname }}">
-      <h5 class="template-card">
-        <span class="icon"><img class="chevron-template js-rotate-if-collapsed" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
-        <button class="btn-template" type="button" data-toggle="collapse" data-target="#collapse{{ .shortname }}" aria-expanded="false" aria-controls="collapse{{ .shortname }}">
-          {{ .name }}
-        </button>
-      </h5>
-    </div>
+  <div class="accordion" id="accordion{{ $lang }}">
 
-    <div id="collapse{{ .shortname }}" class="collapse" aria-labelledby="heading{{ .shortname }}" data-parent="#accordion{{ $lang }}">
-      <div class="card-body">
-        <!-- <p align="center"> -->
-          <img {{ printf "src=%q" .image | safeHTMLAttr }} style="max-height:150px; max-width:250px;" alt="{{ .name }}">
-        <!-- </p> -->
-        <h2>{{ .name }}</h2>
-        {{ .description | safeHTML }}
+  {{ range sort $templates "name" }}
 
-        {{ $content:= split .content "<br/>" }}
+    <div class="card">
+      <div class="card-header-template" id="heading{{ .shortname }}">
+        <h5 class="template-card">
+          <span class="icon"><img class="chevron-template js-rotate-if-collapsed" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+          <button class="btn-template" type="button" data-toggle="collapse" data-target="#collapse{{ .shortname }}" aria-expanded="false" aria-controls="collapse{{ .shortname }}">
+            {{ .name }}
+          </button>
+        </h5>
+      </div>
 
-        <h3>Services:</h3>
-        <ul>
-          {{ range $content}}
-            {{ $content2 := split . "<br />" }}
-            {{ range $content2}}
-              <li>{{ . }}</li>
+      <div id="collapse{{ .shortname }}" class="collapse" aria-labelledby="heading{{ .shortname }}" data-parent="#accordion{{ $lang }}">
+        <div class="card-body">
+          <!-- <p align="center"> -->
+            <img {{ printf "src=%q" .image | safeHTMLAttr }} style="max-height:150px; max-width:250px;" alt="{{ .name }}">
+          <!-- </p> -->
+          <h2>{{ .name }}</h2>
+          {{ .description | safeHTML }}
+
+          {{ $content:= split .content "<br/>" }}
+
+          <h3>Services:</h3>
+          <ul>
+            {{ range $content}}
+              {{ $content2 := split . "<br />" }}
+              {{ range $content2}}
+                <li>{{ . }}</li>
+              {{ end }}
             {{ end }}
-          {{ end }}
-        </ul>
-        <p><a href="{{ .repo }}">View the repository</a> on GitHub.</p>
-        <p align="center">
-          <a href="{{ .deploy }}">
-              <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" height="50px"/>
-          </a>
-        </p>
+          </ul>
+          <p><a href="{{ .repo }}">View the repository</a> on GitHub.</p>
+          <p align="center">
+            <a href="{{ .deploy }}">
+                <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" height="50px"/>
+            </a>
+          </p>
+        </div>
       </div>
     </div>
+
+  {{ end }}
   </div>
 
-{{ end }}
-</div>
+  <br />
 
-<br>
+  {{ else }}
+
+  <em>Templates in development.</em>
+
+{{ end }}

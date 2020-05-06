@@ -1,6 +1,5 @@
 ---
 title: "Java"
-weight: 3
 description: Java is a general-purpose programming language, and one of the most popular in the world today. Platform.sh supports Java runtimes that can be used with build management tools such as Gradle, Maven, and Ant.
 layout: single
 ---

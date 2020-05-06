@@ -5,7 +5,7 @@
     "docs": {
       "relationship_name": "chromeheadlessbrowser",
       "service_name": "headlessbrowser",
-      "url": "\/configuration\/services\/headless-chrome.html"
+      "url": "/configuration/services/headless-chrome.html"
     },
     "endpoint": "http",
     "min_disk_size": null,
@@ -14,9 +14,7 @@
     "runtime": false,
     "type": "chrome-headless",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "73"
       ]
@@ -29,13 +27,13 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/dotnet.html",
+      "url": "/languages/dotnet.html",
       "web": {
         "commands": {
           "start": "dotnet application.dll"
         },
         "locations": {
-          "\/": {
+          "/": {
             "root": "\"wwwroot\"",
             "allow": true,
             "passthru": true
@@ -52,13 +50,11 @@
     },
     "endpoint": null,
     "min_disk_size": null,
-    "name": "C#\/.Net Core",
+    "name": "C#/.Net Core",
     "runtime": true,
     "type": "dotnet",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "2.0",
         "2.1",
@@ -73,7 +69,7 @@
     "docs": {
       "relationship_name": "essearch",
       "service_name": "searchelastic",
-      "url": "\/configuration\/services\/elasticsearch.html"
+      "url": "/configuration/services/elasticsearch.html"
     },
     "endpoint": "elasticsearch",
     "min_disk_size": 256,
@@ -96,23 +92,65 @@
       ]
     }
   },
+  "elixir": {
+    "description": "",
+    "repo_name": "elixir",
+    "disk": false,
+    "docs": {
+      "relationship_name": null,
+      "service_name": null,
+      "url": "/languages/elixir.html",
+      "web": {
+        "commands": {
+          "start": "mix run --no-halt"
+        },
+        "locations": {
+          "/": {
+            "allow": false,
+            "root": "\"web\"",
+            "passthru": true
+          }
+        }
+      },
+      "hooks": {
+        "build": [
+          "|",
+          "mix local.hex --force",
+          "mix local.rebar --force",
+          "mix do deps.get --only prod, deps.compile, compile"
+        ]
+      }
+
+    },
+    "endpoint": null,
+    "min_disk_size": null,
+    "name": "Elixir",
+    "runtime": true,
+    "type": "elixir",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "1.9"
+      ]
+    }
+  },
   "golang": {
     "description": "",
     "disk": false,
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/go.html",
+      "url": "/languages/go.html",
       "web": {
         "upstream": {
           "socket_family": "tcp",
           "protocol": "http"
         },
         "commands": {
-          "start": ".\/bin\/app"
+          "start": "./bin/app"
         },
         "locations": {
-          "\/": {
+          "/": {
             "allow": false,
             "passthru": true
           }
@@ -120,7 +158,7 @@
       },
       "hooks": {
         "build": [
-          "go build -o bin\/app"
+          "go build -o bin/app"
         ]
       }
     },
@@ -150,7 +188,7 @@
     "docs": {
       "relationship_name": "influxtimedb",
       "service_name": "timedb",
-      "url": "\/configuration\/services\/influxdb.html"
+      "url": "/configuration/services/influxdb.html"
     },
     "endpoint": "influxdb",
     "min_disk_size": null,
@@ -159,9 +197,7 @@
     "runtime": false,
     "type": "influxdb",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "1.2",
         "1.3",
@@ -174,10 +210,10 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/java.html",
+      "url": "/languages/java.html",
       "web": {
         "commands": {
-          "start": "java -jar target\/application.jar --server.port=$PORT"
+          "start": "java -jar target/application.jar --server.port=$PORT"
         }
       },
       "hooks": {
@@ -193,9 +229,7 @@
     "runtime": true,
     "type": "java",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "11",
         "12",
@@ -210,7 +244,7 @@
     "docs": {
       "relationship_name": "kafkaqueue",
       "service_name": "queuekafka",
-      "url": "\/configuration\/services\/kafka.html"
+      "url": "/configuration/services/kafka.html"
     },
     "endpoint": "kafka",
     "min_disk_size": 512,
@@ -219,9 +253,7 @@
     "runtime": false,
     "type": "kafka",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "2.1",
         "2.2",
@@ -238,13 +270,13 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/lisp.html",
+      "url": "/languages/lisp.html",
       "web": {
         "commands": {
-          "start": ".\/example"
+          "start": "./example"
         },
         "locations": {
-          "\/": {
+          "/": {
             "allow": false,
             "passthru": true
           }
@@ -257,9 +289,7 @@
     "runtime": true,
     "type": "lisp",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "1.5"
       ]
@@ -272,7 +302,7 @@
     "docs": {
       "relationship_name": "database",
       "service_name": "db",
-      "url": "\/configuration\/services\/mysql.html"
+      "url": "/configuration/services/mysql.html"
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
@@ -299,7 +329,7 @@
     "docs": {
       "relationship_name": "memcachedcache",
       "service_name": "cachemc",
-      "url": "\/configuration\/services\/memcached.html"
+      "url": "/configuration/services/memcached.html"
     },
     "endpoint": "memcached",
     "min_disk_size": null,
@@ -307,9 +337,7 @@
     "runtime": false,
     "type": "memcached",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "1.4",
         "1.5",
@@ -324,7 +352,7 @@
     "docs": {
       "relationship_name": "mongodatabase",
       "service_name": "dbmongo",
-      "url": "\/configuration\/services\/mongodb.html"
+      "url": "/configuration/services/mongodb.html"
     },
     "endpoint": "mongodb",
     "min_disk_size": 512,
@@ -332,9 +360,7 @@
     "runtime": false,
     "type": "mongodb",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "3.0",
         "3.2",
@@ -350,7 +376,7 @@
     "docs": {
       "relationship_name": "null",
       "service_name": "files",
-      "url": "\/configuration\/services\/network-storage.html"
+      "url": "/configuration/services/network-storage.html"
     },
     "endpoint": "something",
     "min_disk_size": null,
@@ -358,9 +384,7 @@
     "runtime": false,
     "type": "network-storage",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "1.0"
       ]
@@ -373,7 +397,7 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/nodejs.html",
+      "url": "/languages/nodejs.html",
       "web": {
         "commands": {
           "start": "node index.js"
@@ -409,7 +433,7 @@
     "docs": {
       "relationship_name": "mysqldatabase",
       "service_name": "dbmysql",
-      "url": "\/configuration\/services\/mysql.html"
+      "url": "/configuration/services/mysql.html"
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
@@ -417,9 +441,7 @@
     "runtime": false,
     "type": "oracle-mysql",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "5.7",
         "8.0"
@@ -433,12 +455,12 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/php.html",
+      "url": "/languages/php.html",
       "web": {
         "locations": {
-          "\/": {
+          "/": {
             "root": "\"web\"",
-            "passthru": "\/index.php"
+            "passthru": "/index.php"
           }
         }
       },
@@ -483,7 +505,7 @@
     "docs": {
       "relationship_name": "postgresdatabase",
       "service_name": "dbpostgres",
-      "url": "\/configuration\/services\/postgresql.html"
+      "url": "/configuration/services/postgresql.html"
     },
     "endpoint": "postgresql",
     "min_disk_size": null,
@@ -509,7 +531,7 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/python.html",
+      "url": "/languages/python.html",
       "web": {
         "commands": {
           "start": "python server.py"
@@ -533,9 +555,7 @@
     "runtime": true,
     "type": "python",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "2.7",
         "3.5",
@@ -552,7 +572,7 @@
     "docs": {
       "relationship_name": "rabbitmqqueue",
       "service_name": "queuerabbit",
-      "url": "\/configuration\/services\/rabbitmq.html"
+      "url": "/configuration/services/rabbitmq.html"
     },
     "endpoint": "rabbitmq",
     "min_disk_size": 256,
@@ -560,9 +580,7 @@
     "runtime": false,
     "type": "rabbitmq",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "3.5",
         "3.6",
@@ -578,7 +596,7 @@
     "docs": {
       "relationship_name": "rediscache",
       "service_name": "cacheredis",
-      "url": "\/configuration\/services\/redis.html"
+      "url": "/configuration/services/redis.html"
     },
     "endpoint": "redis",
     "min_disk_size": null,
@@ -604,7 +622,7 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "\/languages\/ruby.html",
+      "url": "/languages/ruby.html",
       "web": {
         "upstream": {
           "socket_family": "unix"
@@ -613,7 +631,7 @@
           "start": "\"unicorn -l $SOCKET -E production config.ru\""
         },
         "locations": {
-          "\/": {
+          "/": {
             "root": "\"public\"",
             "passthru": true,
             "expires": "1h",
@@ -638,9 +656,7 @@
     "runtime": true,
     "type": "ruby",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "2.3",
         "2.4",
@@ -657,7 +673,7 @@
     "docs": {
       "relationship_name": "solrsearch",
       "service_name": "searchsolr",
-      "url": "\/configuration\/services\/solr.html"
+      "url": "/configuration/services/solr.html"
     },
     "endpoint": "solr",
     "min_disk_size": 256,
@@ -665,9 +681,7 @@
     "runtime": false,
     "type": "solr",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "3.6",
         "4.1",
@@ -687,7 +701,7 @@
     "docs": {
       "relationship_name": "varnishstats",
       "service_name": "proxy",
-      "url": "\/configuration\/services\/varnish.html"
+      "url": "/configuration/services/varnish.html"
     },
     "endpoint": "http+stats",
     "min_disk_size": null,
@@ -695,9 +709,7 @@
     "runtime": false,
     "type": "varnish",
     "versions": {
-      "deprecated": [
-
-      ],
+      "deprecated": [],
       "supported": [
         "5.6",
         "6.0"
