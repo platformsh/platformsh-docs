@@ -81,7 +81,7 @@ web:
             passthru: true
 ```
 
-Note that there will still be a proxy server in front of your application.  If desired, certain paths may be served directly by our router without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
+Note that there will still be an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
 
 ## Dependencies
 
