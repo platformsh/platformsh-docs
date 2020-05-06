@@ -102,7 +102,7 @@
       "url": "/languages/elixir.html",
       "web": {
         "commands": {
-          "start": "mix run--no-halt"
+          "start": "mix run --no-halt"
         },
         "locations": {
           "/": {
