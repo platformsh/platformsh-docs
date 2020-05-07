@@ -30,6 +30,8 @@ In your `.platform.app.yaml`:
 
 {{< readFile file="src/registry/images/examples/full/rabbitmq.app.yaml" highlight="yaml" >}}
 
+{{< endpoint-clarification "rabbitmq" >}}
+
 You can then use the service in a configuration file of your application with something like:
 
 {{< codetabs >}}

@@ -1,0 +1,37 @@
+
+{{ $data := index .Site.Data.registry ( .Get 0 )}}
+{{ $link := ""}}
+{{ $multiples := "" }}
+{{ if or ( eq (.Get 0) "solr") (eq (.Get 0) "mariadb") }}
+  {{ $link = (.Get 1) }}
+  {{ $multiples = (.Get 2)}}
+{{ end }}
+
+<div class="alert alert-primary" role="alert">
+    <p><strong>Note:</strong></p>
+    <p>You will need to use
+      {{ if eq (.Get 0) "mariadb" }}
+        either the <code>{{ $data.type }}</code>, <code>mysql</code>, or <code>oracle-mysql</code> type
+      {{ else }}
+        the <code>{{ $data.type }}</code> type
+      {{ end }}
+      when defining the service</p>
+    <div class="highlight">
+        <pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># .platform/services.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">service_name</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">type</span><span class="p">:</span><span class="w"> </span>{{ $data.type }}<span class="p">:</span>version<span class="w">
+</span>{{ if $data.disk }}<span class="w">    </span><span class="k">disk</span><span class="p">:</span><span class="w"> </span><span class="m">256</span><span class="w">{{ end }}</code></pre>
+    </div>
+    <p>and the endpoint <code>{{ $data.endpoint }}</code> when defining the relationship</p>
+    <div class="highlight">
+        <pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># .platform.app.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">relationships</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">relationship_name</span><span class="p">:</span><span class="w"> </span>“service_name<span class="p">:</span>{{ $data.endpoint }}”<span class="w">
+</span></code></pre>
+    </div>
+    <p>Your <code>service_name</code> and <code>relationship_name</code> are defined by you, but we recommend making them distinct from each other.</p>
+
+    {{ if or ( eq (.Get 0) "solr") (eq (.Get 0) "mariadb") }}
+      <p><strong>Exception:</strong> This pattern will be the case <strong>unless</strong> you explictly set additional endpoints for <strong>multiple {{$multiples}}</strong>, as shown in the <a href="{{$link}}">section below</a>.</p>
+    {{ end }}
+</div>

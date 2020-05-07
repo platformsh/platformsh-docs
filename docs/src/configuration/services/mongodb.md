@@ -32,6 +32,8 @@ The minimum disk size for MongoDB is `512` (MB).
 
 {{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" >}}
 
+{{< endpoint-clarification "mongodb" >}}
+
 For PHP, in your `.platform.app.yaml` add:
 
 ```yaml

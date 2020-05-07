@@ -53,6 +53,8 @@ In your `.platform.app.yaml`:
 
 {{< readFile file="src/registry/images/examples/full/chrome-headless.app.yaml" highlight="yaml" >}}
 
+{{< endpoint-clarification "chrome-headless" >}}
+
 After configuration, include Puppeteer as a dependency in your `package.json`:
 
 ```json
