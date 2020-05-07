@@ -51,12 +51,12 @@ platform variable:create -e master --level environment --name env:PLATFORMSH_CLI
 It is important to include the `env:` so as to expose `$PLATFORMSH_CLI_TOKEN` on its own as a top level Unix environment variable, rather than as a part of `$PLATFORM_VARIABLES` like normal environment variables.
 {{< /note >}}
 
-Second, add a build hook to your `.platform.app.yaml` file to download the CLI as part of the build process.
+Second, add CLI to your dependenciesin the `.platform.app.yaml`:
 
 ```yaml
-hooks:
-    build: |
-        curl -sS https://platform.sh/cli/installer | php
+dependencies:
+    php:
+        platformsh/cli: '*'
 ```
 
 This will download the CLI to a known directory, `.platformsh/bin`, which will be added to the PATH at runtime (via the .environment file). Because the API token is available, the CLI will now be able to run authenticated commands, acting as the user who created the token.
