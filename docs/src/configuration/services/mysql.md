@@ -62,9 +62,9 @@ For MariaDB, the endpoint does not change whether you used the `mysql` or `maria
 
 The same goes for using the `oracle-mysql` service type as well.
 
-{{< endpoint-clarification "mariadb" "#multiple-databases" "databases" >}}
-
 {{< readFile file="src/registry/images/examples/full/oracle-mysql.app.yaml" highlight="yaml" >}}
+
+{{< endpoint-clarification "mariadb" "#multiple-databases" "databases" >}}
 
 You can then use the service in a configuration file of your application with something like:
 
