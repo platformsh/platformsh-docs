@@ -26,7 +26,7 @@ function examples(target) {
 // /configuration/app/web.html#how-can-i-serve-a-static-only-site. So you can use
 // the file locally, but not on Platform.sh.
 function docsappyaml(target) {
-  return fetchRoots.docsappyaml + target + "/master/.platform.app.yaml";
+  return fetchRoots.docsappyaml + target + "/master/docs/.platform.app.yaml";
 }
 
 // URL formatting function for "appyaml" files, which only grab
