@@ -90,6 +90,16 @@
         "6.5",
         "7.2"
       ]
+    },
+    "versions-dedicated": {
+      "supported": [
+        "5.2",
+        "6.5"
+      ],
+      "deprecated" : [
+        "1.7",
+        "2.4"
+      ]
     }
   },
   "elixir": {
@@ -320,6 +330,13 @@
         "10.3",
         "10.4"
       ]
+    },
+    "versions-dedicated": {
+      "supported": [
+        "10.0 Galera",
+        "10.1 Galera",
+        "10.2 Galera"
+      ]
     }
   },
   "memcached": {
@@ -343,6 +360,9 @@
         "1.5",
         "1.6"
       ]
+    },
+    "versions-dedicated": {
+      "supported": ["1.4"]
     }
   },
   "mongodb": {
@@ -628,6 +648,10 @@
         "4.0",
         "5.0"
       ]
+    },
+    "versions-deprecated": {
+      "supported": ["5.0"],
+      "deprecated": ["3.2"]
     }
   },
   "ruby": {
@@ -706,6 +730,14 @@
         "7.7",
         "8.0",
         "8.4"
+      ]
+    },
+    "versions-dedicated": {
+      "supported": [
+        "4.10",
+        "6.3",
+        "6.6",
+        "8.0"
       ]
     }
   },

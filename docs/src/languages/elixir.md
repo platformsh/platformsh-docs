@@ -7,7 +7,9 @@ description: Platform.sh supports building and deploying applications written in
 
 ## Supported versions
 
-{{< image-versions image="elixir" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="elixir" status="supported" environment="grid" >}} | {{< image-versions image="elixir" status="supported" environment="dedicated" >}} |
 
 To specify an Elixir container, use the `type` property in your `.platform.app.yaml`.
 
@@ -48,7 +50,7 @@ Include in your build hook the steps to retrieve a local Hex and rebar, and then
 The above build hook will work for most cases, and assumes that your `mix.exs` file is located at the root of your application.
 {{< /note >}}
 
-Assuming `mix.exs` is present at the root of your repository and your build hook matches the above, you can then start it from the `web.commands.start` directive.  
+Assuming `mix.exs` is present at the root of your repository and your build hook matches the above, you can then start it from the `web.commands.start` directive.
 
 {{< note >}}
 The start command _must_ run in the foreground, so you should set the `--no-halt` flag when calling `mix run`.

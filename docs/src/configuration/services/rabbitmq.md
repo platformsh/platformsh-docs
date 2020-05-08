@@ -10,6 +10,11 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 ## Supported versions
 
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated" >}} |
+
+
 {{< image-versions image="rabbitmq" status="supported" >}}
 
 ## Relationship

@@ -8,7 +8,9 @@ sidebarTitle: "MongoDB"
 
 ## Supported versions
 
-{{< image-versions image="mongodb" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="mongodb" status="supported" environment="grid" >}} | {{< image-versions image="mongodb" status="supported" environment="dedicated" >}} |
 
 {{< note >}}
 Downgrades of MongoDB are not supported. MongoDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
@@ -88,7 +90,7 @@ highlight=python
 
 ## Exporting data
 
-The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and simply export the data directly using MongoDB's tools.  
+The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and simply export the data directly using MongoDB's tools.
 
 First, open an SSH tunnel with the Platform.sh CLI:
 

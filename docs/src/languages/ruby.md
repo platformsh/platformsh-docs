@@ -10,7 +10,9 @@ description: |
 
 ### Ruby MRI
 
-{{< image-versions image="ruby" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="ruby" status="supported" environment="grid" >}} | {{< image-versions image="ruby" status="supported" environment="dedicated" >}} |
 
 ## Unicorn based Rails configuration
 

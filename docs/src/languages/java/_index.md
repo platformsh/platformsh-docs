@@ -10,7 +10,9 @@ layout: single
 
 ### OpenJDK versions:
 
-{{< image-versions image="java" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="java" status="supported" environment="grid" >}} | {{< image-versions image="java" status="supported" environment="dedicated" >}} |
 
 To specify a Java container, use the `type` property in your `.platform.app.yaml`.
 
@@ -27,7 +29,6 @@ Platform.sh supports the most common project management tools in the Java ecosys
 * [Gradle](https://gradle.org/)
 * [Maven](https://maven.apache.org/)
 * [Ant](https://ant.apache.org/)
-
 
 ## Accessing services
 

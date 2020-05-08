@@ -9,7 +9,10 @@ The network storage service enables a new kind of `mount` that refers to a share
 
 ## Supported versions
 
-{{< image-versions image="network-storage" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated" >}} |
+
 
 (This is a reference to a version of our network storage implementation, not to a version of a 3rd party application.)
 
@@ -106,7 +109,7 @@ workers:
                 php worker.php
 ```
 
-In this case, both the web instance and the `queue` worker will have two mount points: `network_dir` and `local_dir`.  
+In this case, both the web instance and the `queue` worker will have two mount points: `network_dir` and `local_dir`.
 
 * The `local_dir` mount on each will be independent and not connected to each other at all, and they will *each* take 1024 MB of space.
 * The `network_dir` mount on each will point to the same network storage space on the `files` service.  They will both be able to read and write to it simultaneously.  The amount of space it has available will depend on the `disk` key specified in `services.yaml`.

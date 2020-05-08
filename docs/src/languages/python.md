@@ -7,7 +7,9 @@ description: Platform.sh supports deploying Python applications. Your applicatio
 
 ## Supported
 
-{{< image-versions image="python" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="python" status="supported" environment="grid" >}} | {{< image-versions image="python" status="supported" environment="dedicated" >}} |
 
 ## Support libraries
 
