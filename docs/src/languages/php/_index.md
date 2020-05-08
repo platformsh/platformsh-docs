@@ -2,12 +2,13 @@
 title: "PHP"
 description: PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
 layout: single
-
 ---
 
 ## Supported versions
 
-{{< image-versions image="php" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="php" status="supported" >}} | {{< image-versions image="php" status="supported" environment="dedicated" >}} |
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
