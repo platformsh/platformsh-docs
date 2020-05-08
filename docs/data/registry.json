@@ -424,6 +424,10 @@
         "10",
         "12"
       ]
+    },
+    "versions-dedicated": {
+      "supported": ["10"],
+      "deprecated": ["9.8"]
     }
   },
   "oracle-mysql": {
