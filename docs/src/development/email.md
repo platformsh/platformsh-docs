@@ -60,10 +60,9 @@ mounts:
 ```
 
 
-### Ports
+## Ports
 
 - Port 465 and 587 should be used to send email to your own external email server.
 - Port 25 should be used to send through PLATFORM_SMTP_HOST. (this is the default in most mailers).
 
 We proxy your emails through our own smtp host, and encrypt them over port 465 before sending them through to the outside world.
-
