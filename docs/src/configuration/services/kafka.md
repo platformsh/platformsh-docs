@@ -12,7 +12,9 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 ## Supported versions
 
-{{< image-versions image="kafka" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="kafka" status="supported" environment="grid" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated" >}} |
 
 ## Relationship
 

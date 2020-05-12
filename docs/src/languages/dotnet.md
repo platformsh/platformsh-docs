@@ -8,7 +8,9 @@ description: |
 
 ## Supported versions
 
-{{< image-versions image="dotnet" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="dotnet" status="supported" environment="grid" >}} | {{< image-versions image="dotnet" status="supported" environment="dedicated" >}} |
 
 To specify a .NET Core container, use the `type` property in your `.platform.app.yaml`.
 
