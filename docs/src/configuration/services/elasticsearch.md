@@ -82,7 +82,7 @@ When you create an index on Elasticsearch, you should not specify `number_of_sha
 
 By default, Elasticsearch has no authentication.  No username or password is required to connect to it.
 
-Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.  To do so, include the following in your `services.yaml1` configuration:
+Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.  To do so, include the following in your `services.yaml` configuration:
 
 ```yaml
 search:
