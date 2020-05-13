@@ -649,7 +649,7 @@
         "5.0"
       ]
     },
-    "versions-deprecated": {
+    "versions-dedicated": {
       "supported": ["5.0"],
       "deprecated": ["3.2"]
     }
