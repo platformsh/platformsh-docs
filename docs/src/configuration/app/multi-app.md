@@ -179,3 +179,11 @@ There is no requirement that an application be web-accessible.  If it is not spe
 In a multi-app configuration, applications by default cannot access each other.  However, they may declare a `relationships` block entry that references another application rather than a service.  In that case the endpoint is `http`.
 
 However, be aware that circular relationships are not supported.  That is, application A cannot have a relationship to application B if application B also has a relationship to application A.  Such circular relationships are usually a sign that the applications should be coordinating through a shared data store, like a database, [RabbitMQ server](/configuration/services/rabbitmq.md), or similar.
+
+## The Build Process
+
+When you push or merge changes the Platform.sh will look at what has changed, it cuts your source tree for each application, and will only rebuild and redeploy applications that had they source code changed. 
+
+{{< note >}}
+Changes to configuration files such as `.platform/applications.yaml` will only trigger a build if configuration values actually changed. Whitespace changes or changing comments will not trigger a build.
+{{< /note >}}
