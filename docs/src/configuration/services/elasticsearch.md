@@ -12,13 +12,17 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-{{< image-versions image="elasticsearch" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} |
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-{{< image-versions image="elasticsearch" status="deprecated" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated" >}} |
 
 ## Relationship
 
@@ -84,7 +88,7 @@ When you create an index on Elasticsearch, you should not specify `number_of_sha
 
 By default, Elasticsearch has no authentication.  No username or password is required to connect to it.
 
-Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.  To do so, include the following in your `services.yaml1` configuration:
+Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authentication.  To do so, include the following in your `services.yaml` configuration:
 
 ```yaml
 search:

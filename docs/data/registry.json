@@ -90,6 +90,16 @@
         "6.5",
         "7.2"
       ]
+    },
+    "versions-dedicated": {
+      "supported": [
+        "5.2",
+        "6.5"
+      ],
+      "deprecated" : [
+        "1.7",
+        "2.4"
+      ]
     }
   },
   "elixir": {
@@ -320,6 +330,13 @@
         "10.3",
         "10.4"
       ]
+    },
+    "versions-dedicated": {
+      "supported": [
+        "10.0 Galera",
+        "10.1 Galera",
+        "10.2 Galera"
+      ]
     }
   },
   "memcached": {
@@ -343,6 +360,9 @@
         "1.5",
         "1.6"
       ]
+    },
+    "versions-dedicated": {
+      "supported": ["1.4"]
     }
   },
   "mongodb": {
@@ -424,6 +444,10 @@
         "10",
         "12"
       ]
+    },
+    "versions-dedicated": {
+      "supported": ["10"],
+      "deprecated": ["9.8"]
     }
   },
   "oracle-mysql": {
@@ -483,6 +507,17 @@
     "name": "PHP",
     "runtime": true,
     "type": "php",
+    "versions-dedicated": {
+      "supported": [
+        "7.2",
+        "7.3"
+      ],
+      "deprecated": [
+        "5.6",
+        "7.0",
+        "7.1"
+      ]
+    },
     "versions": {
       "deprecated": [
         "5.4",
@@ -613,6 +648,10 @@
         "4.0",
         "5.0"
       ]
+    },
+    "versions-dedicated": {
+      "supported": ["5.0"],
+      "deprecated": ["3.2"]
     }
   },
   "ruby": {
@@ -691,6 +730,14 @@
         "7.7",
         "8.0",
         "8.4"
+      ]
+    },
+    "versions-dedicated": {
+      "supported": [
+        "4.10",
+        "6.3",
+        "6.6",
+        "8.0"
       ]
     }
   },

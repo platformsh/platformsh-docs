@@ -9,7 +9,9 @@ layout: single
 
 ## Supported versions
 
-{{< image-versions image="nodejs" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated" >}} |
 
 If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.html).
 
@@ -17,7 +19,9 @@ If you need other versions, take a look at our [options for installing them with
 
 Some versions with a minor (such as 8.9) are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-{{< image-versions image="nodejs" status="deprecated" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="nodejs" status="deprecated" environment="grid" >}} | {{< image-versions image="nodejs" status="deprecated" environment="dedicated" >}} |
 
 ## Support libraries
 

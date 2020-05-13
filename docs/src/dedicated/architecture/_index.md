@@ -17,17 +17,6 @@ Each Dedicated cluster comes with 50GB of storage per environment by default.  T
 
 Default storage is based on the default SSD block-storage offering for each cloud. Extra provisioned IOPS can be discussed with your sales representative.
 
-## Compatible services
+## Accessing services
 
-| Service        | Versions                 |
-| ---------------|:------------------------:|
-| [PHP](/languages/php.html)            | 5.6, 7.0, 7.1 (ZTS), 7.2 (ZTS), 7.3 (ZTS) |
-| [NodeJS](/languages/nodejs.html)         | 9.8, 10                      |
-| [MariaDB](/configuration/services/mysql.html)        | 10.0 Galera, 10.1 Galera, 10.2 Galera |
-| [RabbitMQ](/configuration/services/rabbitmq.html)       | 3.6                      |
-| [Solr](/configuration/services/solr.html)           | 4.10, 6.3, 6.6                |
-| [ElasticSearch](/configuration/services/elasticsearch.html)  | 1.7, 2.4, 5.2, 6.5            |
-| [Redis](/configuration/services/redis.html)          | 3.2, 5.0                      |
-| [Memcached](/configuration/services/memcached.html)      | 1.4                      |
-
-Your application will be able to connect to each service by referencing the exact same environment variables as a Grid environment.  While the configuration of the service will be performed by our team, the application configuration is the same and your code should be the same.  See the [services documentation](/configuration/services.html) for service-specific details.
+Your application will be able to connect to each service by referencing the exact same environment variables as a Grid environment.  While the configuration of the service will be performed by our team, the application configuration is the same and your code should be the same.  See the [services documentation](/configuration/services.html) for service-specific details.  Note that not all services and languages are available in a Dedicated environment.

@@ -7,7 +7,9 @@ description: Platform.sh supports building and deploying applications written in
 
 ## Supported versions
 
-{{< image-versions image="golang" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="golang" status="supported" environment="grid" >}} | {{< image-versions image="golang" status="supported" environment="dedicated" >}} |
 
 To specify a Go container, use the `type` property in your `.platform.app.yaml`.
 

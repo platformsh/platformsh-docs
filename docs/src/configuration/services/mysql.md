@@ -12,9 +12,14 @@ See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentat
 
 The service types `mariadb` and `mysql` both refer to MariaDB for compatibility reasons. The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc. Other than the type, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
 
+
 | **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
 |----------------------------------|---------------|-------------------------|
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
+
+Only MariaDB is available on Dedicated environments, using Galera for replication:
+
+{{< image-versions image="mariadb" status="supported" environment="dedicated" >}}
 
 {{< note >}}
 Downgrades of MySQL or MariaDB are not supported. Both will update their own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.

@@ -1,8 +1,18 @@
 {{ $image := .Get "image" }}
 {{ $status := .Get "status" }}
+{{ $envParam := .Get "environment" }}
 
-<ul>
-{{ range sort ( index .Site.Data.registry $image "versions" $status ) }}
-  <li>{{ . }}</li>
+{{ $environment := "versions" }}
+{{ if eq $envParam "dedicated" }}
+  {{ $environment = "versions-dedicated" }}
 {{ end }}
-</ul>
+
+{{ if isset (index .Site.Data.registry $image $environment) $status  }}
+  <ul>
+  {{ range sort ( index .Site.Data.registry $image $environment $status ) }}
+    <li>{{ . }}</li>
+  {{ end }}
+  </ul>
+{{ else }}
+  None available
+{{ end }}

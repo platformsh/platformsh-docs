@@ -2,12 +2,14 @@
 title: "PHP"
 description: PHP is a popular scripting language designed especially for the web. It currently powers over 80% of websites.
 layout: single
-
 ---
 
 ## Supported versions
 
-{{< image-versions image="php" status="supported" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated" >}} |
+
 
 Note that as of PHP 7.1 we use the Zend Thread Safe (ZTS) version of PHP.
 
@@ -19,7 +21,9 @@ To specify a PHP container, use the `type` property in your `.platform.app.yaml`
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-{{< image-versions image="php" status="deprecated" >}}
+| **Grid** | **Dedicated** |
+|----------------------------------|---------------|
+|  {{< image-versions image="php" status="deprecated" environment="grid" >}} | {{< image-versions image="php" status="deprecated" environment="dedicated" >}} |
 
 ## Support libraries
 
