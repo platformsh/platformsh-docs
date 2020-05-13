@@ -1,7 +1,7 @@
-<!-- Creates an example services.yaml file from the registry's example naming in `.docs` -->
-<!-- Note: this will only replace the endpoint and service type for demonstration purposes.-->
-<!-- To use this partial, pass the image data as the context. -->
-<!-- Ex: partial "examples/servicedefn" $data  -->
+<!-- Creates an example services.yaml file from the registry's example naming in `.docs`
+    Note: this will only replace the endpoint and service type for demonstration purposes.
+    To use this partial, pass the image data as the context (Ex: partial "examples/servicedefn" $data)
+-->
 {{ $comment := "# .platform/services.yaml"}}
 {{ $l1 := "service_name:" }}
 {{ $l2 := printf "    type: %s:version" .type }}
