@@ -2,11 +2,11 @@
 <!-- Pass service `type` as unnamed param (0), get registry data for it. -->
 {{ $data := index .Site.Data.registry ( .Get 0 )}}
 
-<!-- In cases where explicit endpoints are defined, two additional unnamed params can be passed -->
-<!-- 0 - the service image's `type` -->
-<!-- 1 - (link) the section of the docs page where more detail can be found (i.e. #multiple-databases for mysql.md) -->
-<!-- 2 - (multiple) Modified the sentence for what the explicit endpoints define. For MySQL its multiple
-    "databases". For Solr, it's multiple "cores". -->
+<!-- In cases where explicit endpoints are defined, two additional unnamed params can be passed
+   0 - the service image's `type`
+   1 - (link) the section of the docs page where more detail can be found (i.e. #multiple-databases for mysql.md)
+   2 - (multiple) Modified the sentence for what the explicit endpoints define. For MySQL its multiple
+      "databases". For Solr, it's multiple "cores". -->
 {{ $link := ""}}
 {{ $multiples := "" }}
 <!-- Checks to see if subsection link and "multiple" has been set -->
@@ -42,8 +42,8 @@
     <!-- Adds a note about naming conventions between relationship and service names. Keep em unique. -->
     <p>Your <code>service_name</code> and <code>relationship_name</code> are defined by you, but we recommend making them distinct from each other.</p>
 
-    <!-- Adds the exception sentence that directs users to the subsection that describes explicit endpoints. -->
-    <!-- Checks to see if subsection link and "multiple" has been set -->
+    <!-- Adds the exception sentence that directs users to the subsection that describes explicit endpoints.
+          First checks to see if subsection link and "multiple" has been set -->
     {{ if and (gt (len ( .Get 1 )) 0) (gt (len ( .Get 2 )) 0) }}
       <p><strong>Exception:</strong> This pattern will be the case <strong>unless</strong> you explictly set additional endpoints for <strong>multiple {{$multiples}}</strong>, as shown in the <a href="{{$link}}">section below</a>.</p>
     {{ end }}
