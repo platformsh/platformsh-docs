@@ -42,7 +42,7 @@ In your `.platform.app.yaml`:
 
 {{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" >}}
 
-{{< endpoint-clarification "elasticsearch" >}}
+{{< endpoint-description "elasticsearch" >}}
 
 You can then use the service in a configuration file of your application with something like:
 

@@ -46,7 +46,7 @@ Add a relationship to the service in your ``.platform.app.yaml``:
 
 {{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" >}}
 
-{{< endpoint-clarification "postgresql" >}}
+{{< endpoint-description "postgresql" >}}
 
 For PHP, in your `.platform.app.yaml` add:
 

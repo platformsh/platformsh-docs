@@ -34,7 +34,7 @@ In your ``.platform.app.yaml``:
 
 {{< readFile file="src/registry/images/examples/full/kafka.app.yaml" highlight="yaml" >}}
 
-{{< endpoint-clarification "kafka" >}}
+{{< endpoint-description "kafka" >}}
 
 You can then use the service in a configuration file of your application with something like:
 
