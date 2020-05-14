@@ -150,7 +150,7 @@ Activity scripts have access to a limited key/value storage API to persist value
 // Access the storage API.  It is not pre-required.
 var storage = require("storage");
 
-// Retireve a stored value. If the value is not set it will return null.
+// Retrieve a stored value. If the value is not set it will return null.
 var counter = storage.get('counter') || 0;
 
 if (counter) {
