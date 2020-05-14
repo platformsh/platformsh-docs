@@ -135,7 +135,7 @@ description: |
 * **October 2016**
   * PostgreSQL 9.6: Service is [documented here](https://docs.platform.sh/configuration/services/postgresql.html).
   * PostgreSQL extensions: Read more in our [blog post](https://platform.sh/blog/the-new-and-newer-postgresql/).
-  * Node.js 6.8: Language is [documented here](languages/nodejs.md).
+  * Node.js 6.8: Language is [documented here](/languages/nodejs.html).
 * **September 2016**
   * Python 2.7 & 3.5: Language is [documented here](/languages/python.md).
   * Ruby 2.3: Language is [documented here](/languages/ruby.md).

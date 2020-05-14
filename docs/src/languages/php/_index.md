@@ -166,7 +166,7 @@ $ php-fpm-status --socket=unix://$SOCKET --path=/-/status --full
 
 ## Accessing services
 
-To access various [services](/configuration/services/) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](/configuration/services.md) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 
