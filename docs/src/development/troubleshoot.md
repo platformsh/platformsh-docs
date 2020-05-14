@@ -53,7 +53,7 @@ Because storage is a billable component of your project, only the project's owne
 
 ## Low disk space
 
-When you receive a [low-disk space notification](/administrtion/integrations/notifications.md) for your application container:
+When you receive a [low-disk space notification](/administration/integrations/notifications.md) for your application container:
 
 ### Check your application's disk space
 
@@ -168,7 +168,7 @@ SELECT
 
 ### Disk space issues
 
-Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.md).
+Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.html).
 
 The current disk usage can be checked using the CLI command `platform db:size`. Because of issues with the way InnoDB reports its size, this can out by up to 20%. As table space can grow rapidly, *it is usually advisable to make your database mount size twice the size reported by the `db:size` command*.
 

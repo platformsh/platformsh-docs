@@ -15,8 +15,8 @@ Hugo (which we use for documentation) uses Markdown as its file format.
 * Inline code statements, file names, and keys that would appear in a file should use backticks ``like this``.
 * Longer code samples should be denoted with triple backticks before and after, with no extra whitespace between the backticks and the code block. Always specify the language of the code block.  See the [highlight.js docs](https://highlightjs.org/static/demo/) for available language options.  (`yaml`, `bash`, and `php` are the most common we're likely to see).
 * Always use inline links.
-* Do not hard-wrap prose text.  Set your text editor to soft wrapping.
-* Internal links should be absolute (starting with `/`) and link to a file ending in `.md`, not `.html`. That makes them easier to find when needed to update.
+* Do not hard-wrap prose text. Set your text editor to soft wrapping.
+* Internal links should be absolute (starting with `/`). Single pages (i.e. `/configuration/services/elasticsearch.md` should be linked using the `.md` suffix. List pages `/configuration/services/_index.md`, which will be served from `/configuration/services.html` should use the explicit `.html` suffix.
 
 ## Hugo: Front matter
 

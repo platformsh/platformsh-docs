@@ -22,7 +22,7 @@ With the Platform.sh CLI now installed and configured to communicate with your a
 
     * `Plan`: Select the development plan for your trial project.
 
-    * `Environments`: The `master` branch will become the `Master` environment, the live production environment for your application. Additionally, other branches may be activated as fully running environments for developing new features. More on that [later](/gettingstarted/dev-environments/). This value selects the maximum number of development environments the project will allow. You can change this value later at any time.
+    * `Environments`: The `master` branch will become the `Master` environment, the live production environment for your application. Additionally, other branches may be activated as fully running environments for developing new features. More on that [later](/gettingstarted/dev-environments.html). This value selects the maximum number of development environments the project will allow. You can change this value later at any time.
 
        For now, press Enter to select the default number of environments.
 

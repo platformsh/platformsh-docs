@@ -29,10 +29,10 @@ description: |
 
 * **December 2019**
   * Python 3.8: We now support [Python 3.8](/languages/python.md).
-  * Node.js 12: We now support [Node.js 12](/languages/nodejs.md).
+  * Node.js 12: We now support [Node.js 12](/languages/nodejs.html).
   * RabbitMQ 3.8: We now support [RabbitMQ 3.8](/configuration/services/rabbitmq.md).
 * **October 2019**
-  * PHP 7.4: We now support [PHP 7.4](/languages/php.md).
+  * PHP 7.4: We now support [PHP 7.4](/languages/php.html).
 * **October 2019**
   * Projects can now have larger application containers in development environments.
 * **September 2019**
@@ -42,9 +42,9 @@ description: |
   * Elasticsearch 7.2: We now support [Elasticsearch 7.2](/configuration/services/elasticsearch.md).
   * [Elasticsearch](/configuration/services/elasticsearch.md) 5.2 and 5.4 support is now deprecated
   * Kafka 2.2: We now support [Kafka 2.2](/configuration/services/kafka.md).
-  * Java 13: We now support [Java 13](/languages/java.md).
+  * Java 13: We now support [Java 13](/languages/java.html).
 * **June 2019**
-  * Java: We support and documented the use of [Java](/languages/java.md) runtimes 8, 11, and 12, that includes examples that use the [Java Config Reader](https://github.com/platformsh/config-reader-java/).
+  * Java: We support and documented the use of [Java](/languages/java.html) runtimes 8, 11, and 12, that includes examples that use the [Java Config Reader](https://github.com/platformsh/config-reader-java/).
   * Headless Chrome: Users can now define a [Headless Chrome](/configuration/services/headless-chrome.md) service to access a service container with a headless browser, which can be used for automated UI testing.
 * **May 2019**
   * InfluxDB: We now support [InfluxDB](/configuration/services/influxdb.md) 1.7.
@@ -52,7 +52,7 @@ description: |
 * **April 2019**
   * Network storage service: Users can now define a [Network storage](/configuration/services/network-storage.md) service for sharing files between containers.
   * Kafka message queue service: Users can now define a [Kafka](/configuration/services/kafka.md) service for storing, reading and analysing streaming data.
-  * Management Console: Images and wording updated throughout entire documentation alongside [Management Console](/administration/web.md) release.
+  * Management Console: Images and wording updated throughout entire documentation alongside [Management Console](/administration/web.html) release.
 * **March 2019**
   * Ruby 2.6: A new version of [Ruby](/languages/ruby.md) is now available.
   * Go 1.12: We now support [Go 1.12](/languages/go.md).
@@ -67,7 +67,7 @@ description: |
 * **December 2018**
   * Elasticsearch 5.4: We now offer [Elasticsearch 5.4](/configuration/services/elasticsearch.md).
   * Improved Bash support: Bash history on application containers now persists between logins.
-  * PHP 7.3: We now support [PHP 7.3](/languages/php.md).
+  * PHP 7.3: We now support [PHP 7.3](/languages/php.html).
   * PostgreSQL 10.0 and 11.0: We now support [PostgreSQL 10.0 and 11.0](/configuration/services/postgresql.md) with an automated upgrade path.
   * Ruby 2.5 out of beta: We now fully support [Ruby 2.5](/languages/ruby.md).
 * **October 2018**
@@ -80,7 +80,7 @@ description: |
 * **July 2018**
   * Security and Compliance: We have created a new "Security and Compliance" section to help customers address common questions relating to GDPR, Data Collection, Data Retention, Encryption, and similar topics.
 * **June 2018**
-  * Node.js 10: We now offer [Node.js version 10](/languages/nodejs.md).  All releases in the 10.x series will be included in that container.
+  * Node.js 10: We now offer [Node.js version 10](/languages/nodejs.html).  All releases in the 10.x series will be included in that container.
   * MongoDB 3.6: We now offer [MongoDB 3.2, 3.4, and 3.6](/configuration/services/mongodb.md).  Note that upgrading from MongoDB 3.0 requires upgrading through all intermediary versions.
 * **March 2018**
   * Web Application Firewall (WAF): Platform.sh is securing your applications and you don't need to change anything. Read more on our [blog post](https://platform.sh/blog/announcing-the-platformsh-waf).
@@ -94,16 +94,16 @@ description: |
   * `!include` tag support in YAML files: All YAML configuration files now support a generic [`!include`](/configuration/yaml.md) tag that can be used to embed one file within another.
   * Extended mount definitions: A new syntax has been added for defining [mount points](/configuration/app/storage.md) that is more self-descriptive and makes future extension easier.
   * Blocking older TLS versions: It is now possible to disable support for [HTTPS requests](/configuration/routes/https.md) using older versions of TLS.  TLS 1.0 is known to be insecure in some circumstances and some compliance standards require a higher minimum supported version.
-  * `{all}` placeholder for routes: A new placeholder is available in [`routes.yaml`](/configuration/routes.md) files that matches all configured domains.
+  * `{all}` placeholder for routes: A new placeholder is available in [`routes.yaml`](/configuration/routes.html) files that matches all configured domains.
   * GitLab source code integration: Synchronize Git repository host on [GitLab](/administration/integrations/gitlab.md) to Platform.sh.
 * **November 2017**
-  * PHP 7.2 supported: With the release of PHP 7.2.0, Platform.sh now offers [PHP 7.2](/languages/php.md) containers on Platform Professional.
+  * PHP 7.2 supported: With the release of PHP 7.2.0, Platform.sh now offers [PHP 7.2](/languages/php.html) containers on Platform Professional.
 * **September 2017**
   * Health notifications: Low-disk warnings will now trigger a [notification](/administration/integrations/notifications.md) via email, Slack, or PagerDuty.
 * **August 2017**
   * Worker instances: Applications now support [worker instances](/configuration/app/workers.md).
 * **July 2017**
-  * Node.js 8.2: [Node.js 8.2](/languages/nodejs.md) is now available.
+  * Node.js 8.2: [Node.js 8.2](/languages/nodejs.html) is now available.
 * **June 2017**
   * Memcache 1.4: [Memcache 1.4](/configuration/services/memcached.md) is now available as a caching backend.
   * Custom static headers in .platform.app.yaml: Added support for setting custom headers for static files in `.platform.app.yaml`.  [See the example](/configuration/app/web.html#how-can-i-control-the-headers-sent-with-my-files) for more information.
@@ -129,7 +129,7 @@ description: |
 * **December 2016**
   * Support Async PHP: Deploy applications like ReactPHP and Amp which allow PHP to run as a single-process asynchronous process.  Read more on our [blog post](https://platform.sh/2016/12/php-71).
   * Pthreads: Multithreaded PHP: Our PHP 7.1 containers are running PHP 7.1 ZTS, and include the Pthreads extension. Read more on our [blog post](https://platform.sh/2016/12/php-71/).
-  * PHP 7.1: Service is [documented here](/languages/php.md).
+  * PHP 7.1: Service is [documented here](/languages/php.html).
   * Support .environment files: This file will get sourced as a bash script by the system when a container boots up, as well as on all SSH logins. Feature is [documented here](https://docs.platform.sh/development/variables.html#shell-variables).
   * Support web.commands.start for PHP: That option wasn't available for PHP as PHP only has one applicable application runner, PHP-FPM. It is now available for PHP.  Read more on our [blog post](https://platform.sh/2016/12/app-updates-php/).
 * **November 2016**
@@ -137,7 +137,7 @@ description: |
 * **October 2016**
   * PostgreSQL 9.6: Service is [documented here](https://docs.platform.sh/configuration/services/postgresql.html).
   * PostgreSQL extensions: Read more in our [blog post](https://platform.sh/blog/the-new-and-newer-postgresql/).
-  * Node.js 6.8: Language is [documented here](languages/nodejs.md).
+  * Node.js 6.8: Language is [documented here](/languages/nodejs.html).
 * **September 2016**
   * Python 2.7 & 3.5: Language is [documented here](/languages/python.md).
   * Ruby 2.3: Language is [documented here](/languages/ruby.md).
@@ -198,7 +198,7 @@ May update is summarized in our [blog post](https://platform.sh/2016/05/new-feat
   * Build dependencies: Support for specifying build dependencies, i.e. PHP, Python, Ruby or Node.js tools (like sass, grunt, uglifyjs and more) that you want to leverage to build your PHP application.
   * Elasticsearch 0.90, 1.4 & 1.7: Service is [documented here](https://docs.platform.sh/configuration/services/elasticsearch.html).
 * **October 2014**
-  * Automated protective block: Platform.sh provides a unique approach to protect your applications from known security issues.  An automated protective blocking system which works a bit like an antivirus: it compares the code you deploy on Platform.sh with a database of signatures of known security issues in open source projects. This feature is [documented here](/security/protective-block/).  Read more in our [blog post](https://platform.sh/2014/10/21/protecting-your-apps).
+  * Automated protective block: Platform.sh provides a unique approach to protect your applications from known security issues.  An automated protective blocking system which works a bit like an antivirus: it compares the code you deploy on Platform.sh with a database of signatures of known security issues in open source projects. This feature is [documented here](/security/protective-block.md).  Read more in our [blog post](https://platform.sh/2014/10/21/protecting-your-apps).
   * Solr 4.10: Service is [documented here](https://docs.platform.sh/configuration/services/solr.html).
 * **July 2014**
   * MariaDB/MySQL 5.5: Service is [documented here](https://docs.platform.sh/configuration/services/mysql.html).

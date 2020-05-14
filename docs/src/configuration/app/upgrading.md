@@ -70,9 +70,7 @@ disable client-side caching. This change only affects static files served
 directly by the web server. Responses served from passthru URLs continue to use
 whatever caching headers were set by the application..
 
-To enable caching on your static files, make sure you include an `expires` key
-in your [web configuration](/configuration/app/web/),
-as shown below:
+To enable caching on your static files, make sure you include an `expires` key in your [web configuration](/configuration/app/web.md), as shown below:
 
 ```yaml
 web:

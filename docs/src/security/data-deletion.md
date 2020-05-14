@@ -26,4 +26,4 @@ Our product is a Platform as a Service. Platform does not directly edit customer
 * Azure [Data Retention](https://www.microsoft.com/en-us/trustcenter/privacy/you-own-your-data)
 * Google Cloud Platform [Compliance Information](https://cloud.google.com/security/compliance/)
 * Interoute [Compliance Information](https://www.gtt.net/gb-en/company/security-and-compliance/)
-* Orange Cloud for Business [certifications](https://cloud.orange-business.com/en/certifications-of-cloud-offerings/)
+* Orange Cloud for Business [certifications](https://cloud.orange-business.com/en/choosing-orange-cloud/certifications/)

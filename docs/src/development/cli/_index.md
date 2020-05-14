@@ -21,7 +21,7 @@ You can install the CLI easily using this command:
 curl -sS https://platform.sh/cli/installer | php
 ```
 
-You can find the system requirements and more information in the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README/#installation).
+You can find the system requirements and more information in the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md#installation).
 
 ## Authentication
 
@@ -78,7 +78,7 @@ Options:
 
 ## CLI features
 
-Additional settings to control the operation of the Platform.sh CLI can be managed in the configuration file (`.platform/local/project.yaml`) or environment variables. See the [`README` for the CLI for details](https://github.com/platformsh/platformsh-cli/blob/master/README/#usage).
+Additional settings to control the operation of the Platform.sh CLI can be managed in the configuration file (`.platform/local/project.yaml`) or environment variables. See the [`README` for the CLI for details](https://github.com/platformsh/platformsh-cli/blob/master/README.md#usage).
 
 ## Auto-selecting your project
 
