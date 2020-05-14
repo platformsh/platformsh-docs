@@ -61,16 +61,9 @@ Note that the minimum disk size for `mysql`/`oracle-mysql` is 256MB.
 
 Despite these service type differences, MariaDB and Oracle MySQL both use the `mysql` endpoint in their configuration.
 
-For MariaDB, the endpoint does not change whether you used the `mysql` or `mariadb` service type:
-
-{{< readFile file="src/registry/images/examples/full/mariadb.app.yaml" highlight="yaml" >}}
-
-The same goes for using the `oracle-mysql` service type as well.
-
-{{< readFile file="src/registry/images/examples/full/oracle-mysql.app.yaml" highlight="yaml" >}}
+{{< endpoint-description "mariadb" "#multiple-databases" "databases" >}}
 
 You can then use the service in a configuration file of your application with something like:
-
 
 {{< codetabs >}}
 
