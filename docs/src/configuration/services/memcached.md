@@ -38,7 +38,7 @@ Now add a relationship in your `.platform.app.yaml` file:
 
 {{< endpoint-description "memcached" >}}
 
-If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php.html#php-extensions/) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
+If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php/extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 
 ```yaml
 runtime:
