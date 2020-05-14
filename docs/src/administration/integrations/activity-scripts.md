@@ -1,6 +1,12 @@
-#  Custom activity scripts
+---
+title: "Custom activity scripts"
+weight: 10
+sidebarTitle: "Activity scripts"
+description: |
+  Platform.sh supports custom scripts that can fire in response to any activity.  These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
+---
 
-Platform.sh supports custom scripts that can fire in response to any activity.  These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
+{{< description >}}
 
 Activity scripts are written in a scope-limited version of Javascript ES5.  That means they do not support newer ES6 and later features such as classes, nor do they support installing additional packages.  A series of utility functions you can reuse are included below.
 
