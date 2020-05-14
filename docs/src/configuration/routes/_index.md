@@ -39,7 +39,7 @@ Each route can be configured separately. It has the following properties
     * It will then also have an `upstream` property which will be the name of the application (as defined in `.platform.app.yaml`), followed by ":http" (see examples below).
   * `redirect` redirects to another route
     * It will then be followed by a `to` property, this defines a HTTP 301 redirect to any URL or another route (see examples below).
-* `cache` controls [caching behavior of the route](/configuration/routes/cache.html).
+* `cache` controls [caching behavior of the route](/configuration/routes/cache.md).
 * `ssi` controls whether Server Side Includes are enabled. For more information: see [SSI](/configuration/routes/ssi.html).
 * `redirects` controls [redirect rules](/configuration/routes/redirects.html) associated with the route.
 

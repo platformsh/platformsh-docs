@@ -99,7 +99,7 @@ That allows you to install a forked version of a global dependency from a custom
 
 PHP 7.4 introduced a new feature called Opcache Preloading, which allows you to load selected files into shared memory when PHP-FPM starts.  That means functions and classes in those files are always available and do not need to be autoloaded, at the cost of any changes to those files requiring a PHP-FPM restart.  Since PHP-FPM restarts anyway when a new deploy happens this feature is a major win on Platform.sh, and we recommend using it aggressively.
 
-To enable preloading, add a `php.ini` value that specifies a preload script.  Any [`php.ini` mechanism](/languages/php/ini/) will work, but using a variable in `.platform.app.yaml` is the recommended approach:
+To enable preloading, add a `php.ini` value that specifies a preload script.  Any [`php.ini` mechanism](/languages/php/ini.md) will work, but using a variable in `.platform.app.yaml` is the recommended approach:
 
 ```yaml
 variables:

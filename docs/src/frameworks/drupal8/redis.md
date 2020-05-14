@@ -130,7 +130,7 @@ if ($platformsh->hasRelationship('redis') && !drupal_installation_attempted() &&
 
 The `example.services.yml` file noted above will also use Redis for the lock and flood control systems.
 
-The redis module is able to use Redis as a queue backend, however, that should not be done on an ephemeral Redis instance as that could result in lost items when the Redis service instance is restarted or fills up.  If you wish to use Redis for the queue we recommend using a separate persistent Redis instance.  See the [Redis documentation page](/configuration/services/redis/) for more information.
+The redis module is able to use Redis as a queue backend, however, that should not be done on an ephemeral Redis instance as that could result in lost items when the Redis service instance is restarted or fills up.  If you wish to use Redis for the queue we recommend using a separate persistent Redis instance.  See the [Redis documentation page](/configuration/services/redis.md) for more information.
 
 ### Verifying Redis is running
 

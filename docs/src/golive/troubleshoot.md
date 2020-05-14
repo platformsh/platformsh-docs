@@ -33,6 +33,6 @@ The response should be long. Look for error messages. They are usually explicit 
 
 On the command line type `platform logs app` and see there are no clear anomalies there. Do the same with `platform logs error`
 
-## Something still wrong ? [Contact support](/overview/getting-help.md)
+## Something still wrong ? [Contact support](/overview/getting-help.html)
 
 We are here to help. Please include as much detail as possible (we will be able to provide quicker help).

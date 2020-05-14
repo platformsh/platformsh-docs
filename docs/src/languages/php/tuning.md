@@ -15,11 +15,11 @@ To change your PHP version, simply change the `type` key in your `.platform.app.
 
 ## Ensure that the router cache is properly configured
 
-Although not PHP-specific, a common source of performance issues is a misconfigured cache.  The most common issue is not whitelisting session cookies, which results in a site with any cookies at all, including from analytics tools, never being cached.  See the [router cache](/configuration/routes/cache/) documentation, and the [cookie entry](/configuration/routes/cache/#cookies) specifically.
+Although not PHP-specific, a common source of performance issues is a misconfigured cache.  The most common issue is not whitelisting session cookies, which results in a site with any cookies at all, including from analytics tools, never being cached.  See the [router cache](/configuration/routes/cache.md) documentation, and the [cookie entry](/configuration/routes/cache.md#cookies) specifically.
 
 You will also need to ensure that your application is sending the correct `cache-control` header.  The router cache will obey whatever cache headers your application sends, so send it good ones.
 
-Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.  See the [`web.locations`](/configuration/app/web/#locations) documentation for more details.
+Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.  See the [`web.locations`](/configuration/app/web.md#locations) documentation for more details.
 
 ## Optimize the FPM worker count
 

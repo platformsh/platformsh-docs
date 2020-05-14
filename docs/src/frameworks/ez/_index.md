@@ -26,7 +26,7 @@ In particular, see:
 
  * The [.platform.app.yaml](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml) file, which automatically builds eZ Platform in dev mode or production mode depending on your defined project-level variables.
  * The [.platform](https://github.com/ezsystems/ezplatform/tree/master/.platform) directory
- * The [platformsh.php](https://github.com/ezsystems/ezplatform/blob/master/config/packages/000-platformsh.php) configuration file, which does the work of mapping Platform.sh environment variables into eZ Platform.  It also will automatically  enable Redis-based cache and session support if detected.
+ * The [platformsh.php](https://github.com/ezsystems/ezplatform/blob/master/config/packages/overrides/platformsh.php) configuration file, which does the work of mapping Platform.sh environment variables into eZ Platform.  It also will automatically  enable Redis-based cache and session support if detected.
 
 ## Local Development with eZ Platform 2.x and later
 

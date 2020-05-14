@@ -43,4 +43,4 @@ Sponsored projects will receive the same level of support as any other self-serv
 
 ## Contact
 
-If you are an eligible Free Software project or community group, <a href="#" onclick="drift.api.startInteraction({ interactionId: 128990 });return false;">contact our Developer Relations team</a> and let us know that you are interested.
+If you are an eligible Free Software project or community group, {{< devrel-drift >}} and let us know that you are interested.
