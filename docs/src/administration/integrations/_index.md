@@ -119,3 +119,5 @@ Log:
 That will show the full output of the activity, including timestamps.  That can be especially helpful if trying to determine why an integration is not behaving as expected.
 
 See the `--help` output of the command for more options.
+
+If you omit the activity ID (the second random-seeming string), the command will default to the most recent activity recorded.
