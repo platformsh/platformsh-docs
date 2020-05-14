@@ -40,6 +40,8 @@ In your `.platform.app.yaml`:
 
 {{< readFile file="src/registry/images/examples/full/solr.app.yaml" highlight="yaml" >}}
 
+{{< endpoint-description "solr" "#solr-6-and-later" "cores" >}}
+
 You can then use the service in a configuration file of your application with something like:
 
 {{< codetabs >}}
