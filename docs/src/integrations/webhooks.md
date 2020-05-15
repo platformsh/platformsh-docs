@@ -1,6 +1,5 @@
 ---
 title: "Generic webhook"
-weight: 9
 sidebarTitle: "Webhooks"
 description: |
   This hook allows you to capture any push events on platform and POST a JSON message describing the activity to the url of your choice. You can use this to further automate your Platform.sh workflow.

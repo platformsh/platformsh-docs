@@ -1,6 +1,5 @@
 ---
 title: "Blackfire"
-weight: 2
 description: |
   Platform.sh supports [Blackfire.io](https://blackfire.io/). Blackfire is a PHP profiler and automated performance testing tool that can be used in the development Integration, Staging, and Production environments.
 ---

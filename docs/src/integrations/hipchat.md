@@ -1,6 +1,5 @@
 ---
 title: "HipChat"
-weight: 7
 description: |
   The [HipChat](https://hipchat.com) integration allows you to send notifications about your Platform.sh activity directly to HipChat.
 ---
