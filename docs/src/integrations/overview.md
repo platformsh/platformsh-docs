@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-weight: -1
+weight: -10
 layout: single
 sidebarTitle: "External integrations"
 description: |

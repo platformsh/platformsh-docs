@@ -1,7 +1,7 @@
 ---
 title: "Utility routines"
 sidebarTitle: "Utility routines"
-weight: -10
+weight: -5
 description: |
     The following utility routines can help simplify common tasks in your activity scripts.  They are free to copy, modify, bend, fold, spindle, and mutilate as needed for your own scripts.  They also demonstrate some common patterns for working with the `activity` and `project` data structures in ES5 code.
 ---
