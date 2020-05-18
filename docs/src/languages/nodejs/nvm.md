@@ -39,3 +39,11 @@ export NO_UPDATE_NOTIFIER=1
 export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```
+
+You can set the `latest` to always use the NPM version as the code below:
+
+```yaml
+dependencies:
+    nodejs:
+        npm: latest
+```
