@@ -1,8 +1,7 @@
 ---
-title: "Generic webhook"
-sidebarTitle: "Webhooks"
+title: "Webhooks"
 description: |
-  This hook allows you to capture any push events on platform and POST a JSON message describing the activity to the url of your choice. You can use this to further automate your Platform.sh workflow.
+  Webhooks allow you to host a script yourself externally that receives the same payload as an activity script and responds to the same events, but can be hosted on your own server in your own language.
 layout: single
 ---
 
@@ -20,7 +19,7 @@ It's also possible to set the integration to only send certain activity types, o
 
 ## Webhook schema
 
-See the [activity script]({{< relref "/integrations/webhooks/activity-scripts/activity.md" >}}) reference for a description of the webhook payload.
+See the [activity script]({{< relref "/integrations/activity-integrations/reference.md" >}}) reference for a description of the webhook payload.
 
 ## Validate the integration
 

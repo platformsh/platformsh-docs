@@ -1,6 +1,6 @@
 ---
-title: "Custom activity scripts"
-sidebarTitle: "Activity scripts"
+title: "Activity integrations"
+sidebarTitle: "Activities"
 weight: -5
 layout: single
 description: |
@@ -9,9 +9,11 @@ description: |
 
 {{< description >}}
 
-Activity scripts are written in a scope-limited version of Javascript ES5.  That means they do not support newer ES6 and later features such as classes, nor do they support installing additional packages.  A series of utility functions you can reuse are included below.
+A legacy integration is also available for [HipChat]({{< relref "/integrations/activity-integrations/hipchat.md" >}}).
 
-## Managing scripts
+## Activity scripts
+
+Activity scripts are written in a scope-limited version of Javascript ES5.  That means they do not support newer ES6 and later features such as classes, nor do they support installing additional packages.  A series of utility functions you can reuse are also [available]({{< relref "/integrations/activity-integrations/utility.md" >}}).
 
 ### Installing
 
@@ -213,13 +215,11 @@ if (!resp.ok) {
 
 See the Mozilla Dev Network link above for more `fetch()` options.
 
-## Cryptographic API
+### Cryptographic API
 
 A minimalist cryptographic API is also available to activity scripts.  Its main use is for signing requests to 3rd party APIs.
 
-### crypto.createHmac(): create an HMAC signature
-
-The `crypto.createHmac()` function allows you to create a secure hash and digest.
+The `crypto.createHmac()` function allows you to create a secure HMAC hash and digest.
 
 ```javascript
 var h = crypto.createHmac("sha256", "foo");

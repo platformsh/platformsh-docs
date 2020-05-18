@@ -1,8 +1,8 @@
 ---
-title: "Overview"
+sidebarTitle: "Overview"
+title: "External Integrations"
 weight: -10
 layout: single
-sidebarTitle: "External integrations"
 description: |
   Platform.sh can be integrated with external services.
 ---
