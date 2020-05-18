@@ -19,6 +19,8 @@ Cron runs are executed using the dash shell, not the bash shell used by normal S
 
 If an application defines both a `web` instance and a `worker` instance, cron tasks will be run only on the `web` instance.
 
+> Different from the application, the Cron job log is on the `/var/log/cron.log`.
+
 ## How do I setup Cron for a typical Drupal site?
 
 The following example runs Drupal's normal cron hook every 19 minutes, using Drush.  It also sets up a second cron task to run Drupal's queue runner on the aggregator_feeds queue every 7 minutes.
