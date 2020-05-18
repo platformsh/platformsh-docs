@@ -11,15 +11,17 @@ An API token can be created through the management console. Go to the "User" pag
 
 Click the "Create an API Token" link.
 
-![API Token screen](/images/management-console/account-api-tokens-new.png "0.6")
+![API Token list](/images/management-console/api-tokens-new.png "0.6")
 
-You may be asked to reverify your password, then enter a unique application name to identify the token.
+Enter a name to easily identify your token in the future, in case of multiple tokens ("CLI automated" is one example).
 
-![API Token screen](/images/management-console/account-api-tokens-edit.png "0.6")
+![API Token name field](/images/management-console/api-tokens-name.png "0.6")
 
-After creating the token it will be displayed once at the top of the page in a green banner.  You may also view it later by clicking the "view" link next to the token name.  You will be asked to reverify your password as well when viewing the token.
+Once done, the newly created token will be displayed at the top of the page, and can be copied to the clipboard using the Copy button. After this, you will not be able to view the API token again.
 
-Now set that token to an environment variable named `PLATFORMSH_CLI_TOKEN` on your system where the CLI will run.  Consult the documentation for your CI system to see how to do that.
+![After creating an API token](/images/management-console/api-tokens-view.png "0.6")
+
+Now set that token in an environment variable named `PLATFORMSH_CLI_TOKEN` on the system where the CLI will run.  Consult the documentation for your CI system to see how to do that.
 
 {{< note >}}
 If running CLI commands from any automated system, including a Platform.sh cron task, we urge you to use the `--no-wait` flag on any commands that may take more than a second or two to avoid blocking the process.
@@ -27,7 +29,7 @@ If running CLI commands from any automated system, including a Platform.sh cron 
 
 ## Machine users
 
-For security reasons we recommend creating a dedicated machine user to run automation tasks such as taking backups, renewing SSL certificates or triggering source operations. We also recommend creating a unique machine user for each project to be automated.
+For security reasons we recommend creating a dedicated machine user to run automation tasks such as taking backups, renewing SSL certificates or triggering source operations. We also strongly recommend creating a unique machine user for each project to be automated.
 
 Like human users, every machine user account needs its own unique email address.
 
