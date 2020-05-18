@@ -3,6 +3,7 @@ title: "Generic webhook"
 sidebarTitle: "Webhooks"
 description: |
   This hook allows you to capture any push events on platform and POST a JSON message describing the activity to the url of your choice. You can use this to further automate your Platform.sh workflow.
+layout: single
 ---
 
 {{< description >}}
@@ -19,7 +20,7 @@ It's also possible to set the integration to only send certain activity types, o
 
 ## Webhook schema
 
-See the [activity script]({{< relref "/integrations/activity-scripts/activity.md" >}}) reference for a description of the webhook payload.
+See the [activity script]({{< relref "/integrations/webhooks/activity-scripts/activity.md" >}}) reference for a description of the webhook payload.
 
 ## Validate the integration
 
