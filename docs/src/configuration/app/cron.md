@@ -19,7 +19,9 @@ Cron runs are executed using the dash shell, not the bash shell used by normal S
 
 If an application defines both a `web` instance and a `worker` instance, cron tasks will be run only on the `web` instance.
 
-> Different from the application, the Cron job log is on the `/var/log/cron.log`.
+{{< note >}}
+Cron logs can be found within the application container at `/var/log/cron.log`.
+{{< /note >}}
 
 ## How do I setup Cron for a typical Drupal site?
 
