@@ -1,6 +1,6 @@
 ---
 title: "Health notifications"
-weight: 3
+weight: -1
 description: |
   Platform.sh can notify you when various events happen on your project, in any environment. At this time the only notification provided is a low disk space warning, but others may be added in the future.
 ---

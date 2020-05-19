@@ -1,24 +1,14 @@
 ---
-title: "Generic webhook"
-weight: 9
-sidebarTitle: "Webhooks"
+title: "Activity reference"
+sidebarTitle: "Activity reference"
+weight: -10
 description: |
   This hook allows you to capture any push events on platform and POST a JSON message describing the activity to the url of your choice. You can use this to further automate your Platform.sh workflow.
 ---
 
 {{< description >}}
 
-## Setup
-
-```bash
-platform integration:add --type=webhook --url=A-URL-THAT-CAN-RECEIVE-THE-POSTED-JSON
-```
-
-The webhook URL will receive a POST message for every "Activity" that is triggered, and the message will contain complete information about the entire state of the project at that time.  In practice most of the message can be ignored but is available if needed.  The most commonly used values are documented below.
-
-It's also possible to set the integration to only send certain activity types, or only activities on certain branches.  The CLI will prompt you to specify which to include or exclude.  Leave at the default values to get all events on all environments in a project.
-
-## Webhook schema
+## Activity schema
 
 ### `id`
 
@@ -31,7 +21,6 @@ The Project ID for which the activity was triggered.  Use this value if you want
 ### `type`
 
 The `type` property specifies the event that happened.  Its value is one of:
-
 
 * `project.modify.title`: The human-friendly title of the project has been changed.
 * `project.create`: A project has been created.  Although it will appear in the activity feed exactly once, it will not be sent via a webhook as it will always happen before a webhook can be configured.
@@ -101,12 +90,11 @@ This large block details all information about all services in the environment. 
 
 Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.  Note that some will be redirects.  To find those that are live URLs filter to those objects whose `type` property is `upstream`.
 
-
-## Example webhook payload
+## Example activity
 
 The following is an example of a webhook message.  Specifically, this one was created by a "push" event.
 
-```javascript
+```json
 {
   "id": "774-this-is-an-example-valuexzs4no",
   "_links": {
@@ -401,12 +389,4 @@ The following is an example of a webhook message.  Specifically, this one was cr
     }
   }
 }
-```
-
-## Validate the integration
-
-You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.html#validating-integrations) command
-
-```bash
-platform integration:validate
 ```

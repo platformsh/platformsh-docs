@@ -87,6 +87,19 @@ https://{default}/:
       # Renamed in August 2019.
       "/administration/snapshot-and-restore.html": { "to": "/administration/backup-and-restore.html", "code": 301, "prefix": false}
 
+      # Reorganized in May 2020
+      "/administration/integrations.html": { "to": "/integrations/overview.html", "code": 301, "prefix": false }
+      "/administration/integrations/bitbucket.html": { "to": "/integrations/source/bitbucket.html", "code": 301, "prefix": false }
+      "/administration/integrations/blackfire.html": { "to": "/integrations/profiling/blackfire.html", "code": 301, "prefix": false }
+      "/administration/integrations/tideways.html": { "to": "/integrations/profiling/tideways.html", "code": 301, "prefix": false }
+      "/administration/integrations/notifications.html": { "to": "/integrations/notifications.html", "code": 301, "prefix": false }
+      "/administration/integrations/new-relic.html": { "to": "/integrations/profiling/new-relic.html", "code": 301, "prefix": false }
+      "/administration/integrations/github.html": { "to": "/integrations/source/github.html", "code": 301, "prefix": false }
+      "/administration/integrations/gitlab.html": { "to": "/integrations/source/gitlab.html", "code": 301, "prefix": false }
+      "/administration/integrations/hipchat.html": { "to": "/integrations/activity/hipchat.html", "code": 301, "prefix": false }
+      "/administration/integrations/webhooks.html": { "to": "/integrations/activity/webhooks.html", "code": 301, "prefix": false }
+      "/administration/integrations/activity-scripts.html": { "to": "/integrations/activity.html", "code": 301, "prefix": false }
+
 "https://www.{default}/":
     type: redirect
     to: "https://{default}/"

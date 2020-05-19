@@ -1,6 +1,5 @@
 ---
 title: "Bitbucket"
-weight: 1
 description: |
   The Bitbucket integration allows you to manage your Platform.sh environments directly from your Bitbucket repository.
 ---
