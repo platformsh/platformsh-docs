@@ -81,7 +81,7 @@ highlight=python
 For debugging purposes, it's sometimes useful to be able to directly connect to a service instance. You can do this using SSH tunneling. To open a tunnel, log into your application container like usual, but with an extra flag to enable local port forwarding:
 
 ```bash
-ssh -L 5672:mq.internal:5672 <projectid>-<branch_ID>@ssh.eu.platform.sh
+ssh -L 5672:rabbitmqqueue.internal:5672 <projectid>-<branch_ID>@ssh.eu.platform.sh
 ```
 
 Within that SSH session, use the following command to pretty-print your relationships. This lets you see which username and password to use, and you can double check that the remote service's port is 5672.
@@ -90,7 +90,7 @@ Within that SSH session, use the following command to pretty-print your relation
 php -r 'print_r(json_decode(base64_decode($_ENV["PLATFORM_RELATIONSHIPS"])));'
 ```
 
-If your service is running on a different port, you can re-open your SSH session with the correct port by modifying your `-L` flag: `-L 5672:mq.internal:<remote port>`.
+If your service is running on a different port, you can re-open your SSH session with the correct port by modifying your `-L` flag: `-L 5672:rabbitmqqueue.internal:<remote port>`.
 
 Finally, while the session is open, you can launch a RabbitMQ client of your choice from your local workstation, configured to connect to `localhost:5672` using the username and password you found in the relationship variable.
 
@@ -98,7 +98,7 @@ Finally, while the session is open, you can launch a RabbitMQ client of your cho
 In case you want to access the browser-based UI, you have to use an SSH tunnel. To open a tunnel, log into your application container like usual, but with an extra flag to enable local port forwarding:
 
 ```bash
-ssh -L 15672:mq.internal:15672 <projectid>-<branch_ID>@ssh.eu.platform.sh
+ssh -L 15672:rabbitmqqueue.internal:15672 <projectid>-<branch_ID>@ssh.eu.platform.sh
 ```
 
 After you successfully established a connection, you should be able to open http://localhost:15672 in your browser. You'll find the credentials like mentioned above.
