@@ -9,17 +9,17 @@ description: |
 
 {{< description >}}
 
-A legacy integration is also available for [HipChat]({{< relref "/integrations/activity-integrations/hipchat.md" >}}).
+A legacy integration is also available for [HipChat]({{< relref "/integrations/activity/hipchat.md" >}}).
 
 ## Activity scripts
 
-Activity scripts are written in a scope-limited version of Javascript ES5.  That means they do not support newer ES6 and later features such as classes, nor do they support installing additional packages.  A series of utility functions you can reuse are also [available]({{< relref "/integrations/activity-integrations/utility.md" >}}).
+Activity scripts are written in a scope-limited version of Javascript ES5.  That means they do not support newer ES6 and later features such as classes, nor do they support installing additional packages.  A series of utility functions you can reuse are also [available]({{< relref "/integrations/activity/utility.md" >}}).
 
 ### Installing
 
 Activity scripts are configured as integrations.  That means they are at the *project level*, not at the level of an individual environment.  While you can store the scripts in your Git repository for easy access, they will have no effect there.
 
-To install a new activity script, use the [Platform.sh CLI](/development/cli.md).
+To install a new activity script, use the [Platform.sh CLI]({{< relref "/development/cli/_index.md" >}}).
 
 ```bash
 platform integration:add --type script --file ./my_script.js
@@ -65,7 +65,7 @@ platform integration:delete nadbowmhd67do
 
 Activity logs are available through their own CLI command, `platform integration:activities`.  Every time your activity script runs it will generate a new log entry, including the output from the script.  Any output produced by `console.log` will be available in the activity log, and that is the recommended way to debug scripts.
 
-See the [activity log](/adminsitration/integrations.md#debugging-integrations) documentation for further details.
+See the [activity log]({{< relref "/integrations/overview.md#debugging-integrations" >}}) documentation for further details.
 
 To get more readable output of a variable you're trying to debug, you can make `JSON.stringify` use human-friendly formatting.
 
@@ -83,7 +83,7 @@ For example, to have a script trigger any time an environment is activated or de
 platform integration:update --events=['environment:activate', 'environment:deactivate'] nadbowmhd67do
 ```
 
-A complete list of possible events is available in the [webhook documentation](/administration/webhooks.md).
+A complete list of possible events is available in the [webhook documentation]({{< relref "/integrations/activity/reference.md" >}}).
 
 Scripts can also trigger only when an action reaches a given state, such as "pending", "in_progress", or "complete".  The default is only when they reach "complete".  To have a script execute when a synchronize action first starts, for example, you would run:
 
@@ -109,9 +109,9 @@ Activity scripts have a series of APIs available to them to facilitate building 
 
 ### `activity`
 
-Every activity script has a global variable `activity` that contains detailed information about the activity, including embedded, JSON-ified versions of the routes configuration and relevant `.platform.app.yaml` files.  The `activity` variable is the same as the [webhook payload](/administration/webhooks.md).  See the documentation there for details and a complete example.
+Every activity script has a global variable `activity` that contains detailed information about the activity, including embedded, JSON-ified versions of the routes configuration and relevant `.platform.app.yaml` files.  The `activity` variable is the same as the [webhook payload]({{< relref "/integrations/activity/webhooks.md" >}}).  See the documentation there for details and a complete example.
 
-Several of the utility functions below work by pulling out common portions of the `activity` object.  Most notably, scripts can be configured via [Project-level variables](/development/variables.md#project-variables) that can be accessed from the `activity` object.
+Several of the utility functions below work by pulling out common portions of the `activity` object.  Most notably, scripts can be configured via [Project-level variables]({{< relref "/development/variables.md#project-variables" >}}) that can be accessed from the `activity` object.
 
 ### `project`
 

@@ -19,11 +19,11 @@ It's also possible to set the integration to only send certain activity types, o
 
 ## Webhook schema
 
-See the [activity script]({{< relref "/integrations/activity-integrations/reference.md" >}}) reference for a description of the webhook payload.
+See the [activity script]({{< relref "/integrations/activity/reference.md" >}}) reference for a description of the webhook payload.
 
 ## Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.html#validating-integrations) command
+You can then verify that your integration is functioning properly [using the CLI]({{< relref "/integrations/overview.md#validating-integrations" >}}) command
 
 ```bash
 platform integration:validate

@@ -27,7 +27,7 @@ You can integrate your Bitbucket repositories with Platform.sh by creating an [O
 
 ### Local
 
-[Install the Platform.sh CLI](/development/cli.html#installation) if you have not already done so.
+[Install the Platform.sh CLI]({{< relref "/development/cli/_index.md#installation" >}}) if you have not already done so.
 
 Retrieve a `PROJECT_ID` for an existing project with `platform project:list` or create a new project with `platform project:create`.
 
@@ -46,7 +46,7 @@ where
 
 ## Validate the integration
 
-In both cases, you can verify that your integration is functioning properly [using the CLI](/administration/integrations.html#validating-integrations) command
+In both cases, you can verify that your integration is functioning properly [using the CLI]({{< relref "/integrations/overview.md#validating-integrations" >}}) command
 
 ```bash
 platform integration:validate
