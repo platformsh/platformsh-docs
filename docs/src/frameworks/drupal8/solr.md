@@ -47,7 +47,7 @@ search:
     configuration:
         cores:
             maincore:
-                conf_dir: {}
+                conf_dir: ''
         endpoints:
             main:
                 core: maincore
