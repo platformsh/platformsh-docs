@@ -60,4 +60,4 @@ See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html)
 
 The mechanism for downloading from each service (such as your database) varies.  For services designed to hold non-persistent information (such as Redis or Solr) it's generally not necessary to download data as it can be rebuilt from the primary data store.
 
-To download data from persistent services ([MySQL](/configuration/services/mysql.md), [PostgreSQL](/configuration/services/postgresql.md), [MongoDB](/configuration/services/mongodb.md), or [InfluxDB](/configuration/services/influxdb.md)), see each service's page for instructions.
+To download data from persistent services ([MySQL]({{< relref "/configuration/services/mysql.md" >}}), [PostgreSQL]({{< relref "/configuration/services/postgresql.md" >}}), [MongoDB]({{< relref "/configuration/services/mongodb.md" >}}), or [InfluxDB]({{< relref "/configuration/services/influxdb.md" >}})), see each service's page for instructions.
