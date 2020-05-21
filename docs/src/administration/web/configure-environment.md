@@ -64,7 +64,7 @@ By default, Platform.sh includes an additional `X-Robots-Tag` header on all non-
 X-Robots-Tag: noindex, nofollow
 ```
 
-That tells search engines to not index sites on non-production environments entirely nor traverse links from those sites, even if they are publicly visible.  That keeps non-production sites out of search engine indexes that would dilute the SEO of the production site.  To disable that feature for a non-production environment, use the [Platform.sh CLI](/development/cli.html) command below:
+That tells search engines to not index sites on non-production environments entirely nor traverse links from those sites, even if they are publicly visible.  That keeps non-production sites out of search engine indexes that would dilute the SEO of the production site.  To disable that feature for a non-production environment, use the [Platform.sh CLI]({{< relref "/development/cli/_index.md" >}}) command below:
 
 ```
 platform environment:info restrict_robots false
@@ -78,7 +78,7 @@ platform environment:info -e ENVNAME restrict_robots false
 
 where `ENVNAME` is the name of the environment.
 
-On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`](/configuration/app/web.html#locations).
+On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`]({{< relref "/configuration/app/web.md#locations" >}}).
 
 ### HTTP access control
 
@@ -133,4 +133,4 @@ The `Routes` screen describes the configuration features that define the routes 
 
 ![Configure Platform.sh environment routes](/images/management-console/routes.png "0.7")
 
-Consult the documentation for more information about properly configuring [Routes](/configuration/routes.html) for your project.
+Consult the documentation for more information about properly configuring [Routes]({{< relref "/configuration/routes/_index.md" >}}) for your project.
