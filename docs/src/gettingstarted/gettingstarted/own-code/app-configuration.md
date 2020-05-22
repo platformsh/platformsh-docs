@@ -136,7 +136,7 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
 Each language and framework may have additional attributes that you will need to include in `.platform.app.yaml` depending on the needs of your application. To find out what else you may need to include to configure your application, consult
 
-* **The [Application](/configuration/app-containers.html) documentation for Platform.sh:**
+* **The [Application]({{< relref "/configuration/app/_index.md" >}}) documentation for Platform.sh:**
 
   The documentation goes into far more extensive detail of which attributes can also be included for application configuration, and should be used as your primary reference.
 
