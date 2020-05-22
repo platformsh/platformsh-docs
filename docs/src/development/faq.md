@@ -25,7 +25,7 @@ Yes! Branching an environment creates an exact copy (snapshot) of the parent env
 
 ## Do you have a local writable file-system?
 
-Yes!  Platform.sh supports non-ephemeral storage.  When you configure your application you can tell it what directories you want to be read/write. (These are called [mounts](/configuration/app/storage.md).) These will be mounted on a distributed file system (which is transparent for you).  When you backup your environment they will be backed up as well.  When you create a new staging environment, these mounts will be cloned with the rest of your data.
+Yes!  Platform.sh supports non-ephemeral storage.  When you configure your application you can tell it what directories you want to be read/write. (These are called [mounts]({{< relref "/configuration/app/storage.md" >}}).) These will be mounted on a distributed file system (which is transparent for you).  When you backup your environment they will be backed up as well.  When you create a new staging environment, these mounts will be cloned with the rest of your data.
 
 ## What happens if I push a local branch to my project?
 
@@ -39,7 +39,7 @@ You are able to convert an `inactive environment` into an `active environment` a
 
 The `master` environment gets a pool of resources based on your plan size, which is then split up between the applications and services you have defined.  (For example, PHP 40%, MySQL 30%, Redis 10%, Solr 20%, etc).  Increasing your plan size will increase the pool of CPU and RAM that gets split between each container.
 
-All containers on development plans are "small" containers.  See the [sizing configuration page](/configuration/app/size.md) for more details.
+All containers on development plans are "small" containers.  See the [sizing configuration page]({{< relref "/configuration/app/size.md" >}}) for more details.
 
 ## What exactly am I SSHing into?
 

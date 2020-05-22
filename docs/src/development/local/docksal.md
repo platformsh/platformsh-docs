@@ -102,4 +102,4 @@ Password | user
 Host | db
 Port | 3306
 
-See the [exporting tutorial](/tutorials/exporting.md) for information on how to use rsync.
+See the [exporting tutorial]({{< relref "/tutorials/exporting.md" >}}) for information on how to use rsync.

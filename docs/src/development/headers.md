@@ -31,4 +31,4 @@ Platform.sh adds a number of response headers automatically to assist in debuggi
 
 Apart from those listed above, your application is responsible for setting its own response headers.
 
-To add headers to static files, use the `headers` key in the application's [web locations configuration](/configuration/app/web.md#how-can-i-control-the-headers-sent-with-my-files).
+To add headers to static files, use the `headers` key in the application's [web locations configuration]({{< relref "/configuration/app/web.md#how-can-i-control-the-headers-sent-with-my-files" >}}).

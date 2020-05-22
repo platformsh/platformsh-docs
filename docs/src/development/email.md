@@ -3,7 +3,7 @@ title: "Sending E-mail"
 weight: 8
 sidebarTitle: "E-mail"
 description: |
-  By default only the master environment can send emails.  For the non-master environments, you can configure outgoing emails via the [management console](/administration/web/configure-environment.html#settings). Emails from Platform.sh are sent via a SendGrid-based SMTP proxy.
+  By default only the master environment can send emails.  For the non-master environments, you can configure outgoing emails via the [management console]({{< relref "/administration/web/configure-environment.md#settings" >}}). Emails from Platform.sh are sent via a SendGrid-based SMTP proxy.
 ---
 
 {{< description >}}
