@@ -313,7 +313,7 @@ For a blocked _build_ (when you don't find the `Re-deployment environment ...` l
 When a _deployment_ is blocked, you should try the following:
 
 1. Use [SSH]({{< relref "/development/access-site.md" >}}) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id shown by `ps afx`.
-2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH](< relref "/development/access-site.md" >}}s) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
+2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH]({{< relref "/development/access-site.md" >}}s) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
 
 ## Slow or failing build or deployment
 
@@ -325,7 +325,7 @@ Here are a few tips that can help you solve the issues you are experiencing.
 
 Invisible errors during the build and deploy phase can cause increased wait times, failed builds and other problems. Investigating each log and fixing errors is essential.
 
-Related documentation: [Accessing logs](< relref "/development/logs.md#accessing-logs" >}})
+Related documentation: [Accessing logs]({{< relref "/development/logs.md#accessing-logs" >}})
 
 ### Build and deploy hooks
 
@@ -342,7 +342,7 @@ time $cmd # Print execution time
 strace -T $cmd # Print a system call report
 ```
 
-Related documentation: [Build and deploy hooks](< relref "/configuration/app/build.md#hooks" >}})
+Related documentation: [Build and deploy hooks]({{< relref "/configuration/app/build.md#hooks" >}})
 
 ### Cron jobs
 
@@ -353,4 +353,4 @@ For that reason, make sure your custom cron jobs execution times are low and tha
 **note**
 Drupal's `drush core-cron` run installed module's cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to frequently benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
 
-Related documentation: [Cron and scheduled tasks](< relref "/configuration/app/cron.md#cron-jobs" >}})
+Related documentation: [Cron and scheduled tasks]({{< relref "/configuration/app/cron.md#cron-jobs" >}})
