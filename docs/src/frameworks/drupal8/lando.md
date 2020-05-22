@@ -4,7 +4,7 @@ weight: 8
 sidebarTitle: "Lando"
 ---
 
-[Lando](/development/local/lando.md) is a local development platform that works well with Platform.sh.  Once installed locally it is a simple matter to create an approximate equivalent of your Platform.sh environment for development.
+[Lando]({{< relref "/development/local/lando.md" >}}) is a local development platform that works well with Platform.sh.  Once installed locally it is a simple matter to create an approximate equivalent of your Platform.sh environment for development.
 
 If using Drupal 8 there is a [`drupal8`](https://docs.devwithlando.io/tutorials/drupal8.html) recipe available that is a good starting point for your site.
 
@@ -23,7 +23,7 @@ git add .lando.yml
 git commit -m "Add Lando configuration"
 ```
 
-You can now customize the configuration file as needed.  In addition to the [general recommendations](/development/local/lando.md#lando-yml-configuration) for all Lando-with-Platform.sh sites the following additions are recommended for Drupal 8:
+You can now customize the configuration file as needed.  In addition to the [general recommendations]({{< relref "/development/local/lando.md#lando-yml-configuration" >}}) for all Lando-with-Platform.sh sites the following additions are recommended for Drupal 8:
 
 ```yaml
 # Name the application the same as in your .platform.app.yaml.
