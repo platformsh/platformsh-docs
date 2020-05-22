@@ -84,7 +84,7 @@ Sometimes it can take Let's Encrypt a couple of minutes to provision the certifi
 
 ### Configure health notifications
 
-While not required, it's strongly recommended that you set up [health notifications](/administration/integrations/notifications.md) to advise you if your site is experiencing issues such as running low on disk space.  Notifications can be sent via email, Slack, or PagerDuty.
+While not required, it's strongly recommended that you set up [health notifications](/integrations/notifications.md) to advise you if your site is experiencing issues such as running low on disk space.  Notifications can be sent via email, Slack, or PagerDuty.
 
 ### Configure production cron tasks
 
