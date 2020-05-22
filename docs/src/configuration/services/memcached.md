@@ -20,7 +20,7 @@ Both Memcached and Redis can be used for application caching.  As a general rule
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.html#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable]({{< relref "/development/variables.md#platformsh-provided-variables" >}}):
 
 {{< highlight json >}}
 {{< remote url="https://examples.docs.platform.sh/relationships/memcached" >}}
@@ -38,7 +38,7 @@ Now add a relationship in your `.platform.app.yaml` file:
 
 {{< endpoint-description "memcached" >}}
 
-If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php/extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
+If you are using PHP, configure the relationship and enable the [PHP memcached extension]({{< relref "/languages/php/extensions.md" >}}) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 
 ```yaml
 runtime:
@@ -100,7 +100,7 @@ highlight=python
 
 ## Accessing Memcached directly
 
-To access the Memcached service directly you can simply use `netcat` as Memcached does not have a dedicated client tool.  Assuming your Memcached relationship is named `cache`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh.md) and access the Memcached server as follows:
+To access the Memcached service directly you can simply use `netcat` as Memcached does not have a dedicated client tool.  Assuming your Memcached relationship is named `cache`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session]({{< relref "/development/ssh.md" >}}) and access the Memcached server as follows:
 
 ```bash
 netcat cache.internal 11211

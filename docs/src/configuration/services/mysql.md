@@ -37,7 +37,7 @@ The following versions are available but are not receiving security updates from
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.html#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable]({{< relref "/development/variables.md#platformsh-provided-variables" >}}):
 
 {{< highlight json >}}
 {{< remote url="https://examples.docs.platform.sh/relationships/mysql" >}}
@@ -241,7 +241,7 @@ INSERT INTO <existing> SELECT * from <old>;
 
 ## Access your MariaDB service
 
-Assuming your MariaDB relationship is named `database`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `database.internal` and `3306`. Open an [SSH session](/development/ssh.md) and run the MySQL command line client.
+Assuming your MariaDB relationship is named `database`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `database.internal` and `3306`. Open an [SSH session]({{< relref "/development/ssh.md" >}}) and run the MySQL command line client.
 
 ```bash
 mysql -h database.internal -P 3306 -u user main
@@ -296,6 +296,6 @@ Taking a backup or a database export before doing so is strongly recommended.
 
 ## Troubleshooting
 
-* [MySQL lock wait timeout](/development/troubleshoot.html#mysql-lock-wait-timeout)
-* [definer/invoker of view lack rights to use them](/development/troubleshoot.html#mysql-definerinvoker-of-view-lack-rights-to-use-them)
-* [MySQL server has gone away](/development/troubleshoot.html#mysql-server-has-gone-away)
+* [MySQL lock wait timeout]({{< relref "/development/troubleshoot.md#mysql-lock-wait-timeout" >}})
+* [definer/invoker of view lack rights to use them]({{< relref "/development/troubleshoot.md#mysql-definerinvoker-of-view-lack-rights-to-use-them" >}})
+* [MySQL server has gone away]({{< relref "/development/troubleshoot.md#mysql-server-has-gone-away" >}})

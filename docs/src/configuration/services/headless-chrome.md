@@ -19,7 +19,7 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.html#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable]({{< relref "/development/variables.md#platformsh-provided-variables" >}}):
 
 ```yaml
 {
@@ -43,7 +43,7 @@ Using the Platform.sh [Config Reader](https://github.com/platformsh/config-reade
 
 ### Other languages
 
-It will be necessary to upgrade the version of Node.js in other language containers before using Puppeteer. You can use [Node Version Manager](https://github.com/nvm-sh/nvm) or NVM to change or update the version available in your application container by following the instructions in the [Alternate Node.js install](/languages/nodejs/nvm.html) documentation.
+It will be necessary to upgrade the version of Node.js in other language containers before using Puppeteer. You can use [Node Version Manager](https://github.com/nvm-sh/nvm) or NVM to change or update the version available in your application container by following the instructions in the [Alternate Node.js install]({{< relref "/languages/nodejs/nvm.md" >}}) documentation.
 
 ## Usage example
 
