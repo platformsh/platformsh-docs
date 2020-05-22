@@ -8,7 +8,7 @@ aliases:
 
 In the previous step, you created a collection of empty configuration files that will allow the project to be deployed on Platform.sh.
 
-Now you will need to include information that will tell Platform.sh how you want your application to connect to its [services](/configuration/services.html) in a `.platform/services.yaml` file.
+Now you will need to include information that will tell Platform.sh how you want your application to connect to its [services]({{< relref "/configuration/services/_index.md" >}}) in a `.platform/services.yaml` file.
 
 With the following project structure:
 

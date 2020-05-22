@@ -12,7 +12,7 @@ Now that you have a project on Platform.sh, it would be helpful to run the same 
 These steps assume that you have already:
 
 * Signed up for a [free trial account](https://accounts.platform.sh/platform/trial/general/setup) with Platform.sh.
-* Started either a [template project](/gettingstarted/template.html) or [pushed your own code](/gettingstarted/own-code.html) to Platform.sh.
+* Started either a [template project]({{< relref "/gettingstarted/gettingstarted/template/_index.md" >}}) or [pushed your own code]({{< relref "/gettingstarted/gettingstarted/own-code/_index.md" >}}) to Platform.sh.
 
 If you have not completed these steps by now, click the links and do so before you begin.
 
