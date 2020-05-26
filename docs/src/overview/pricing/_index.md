@@ -104,7 +104,7 @@ Please [contact our sales department](https://platform.sh/contact/) to discuss h
 
 ## Agencies
 
-We propose three tiers for agencies with many perks.
+We offer three tiers for agencies with many perks.
 
 * Free user licenses
 * A free site for your own agency
