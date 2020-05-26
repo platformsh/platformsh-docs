@@ -36,7 +36,7 @@ The key (left side) is the name that will be exposed to the application in the P
 
 ### Add the Redis PHP extension
 
-Because the Redis extension for PHP has been known to have BC breaks at times, we do not bundle a specific verison by default.  Instead, we provide a script to allow you to build your desired version in the build hook.  See the [PHP-Redis page](/languages/php/redis.md) for a simple-to-install script and instructions.
+Because the Redis extension for PHP has been known to have BC breaks at times, we do not bundle a specific verison by default.  Instead, we provide a script to allow you to build your desired version in the build hook.  See the [PHP-Redis page]({{< relref "/languages/php/redis.md" >}}) for a simple-to-install script and instructions.
 
 (Skip this part if using Predis.)
 

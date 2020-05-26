@@ -59,7 +59,7 @@ runtime:
 
 ## Platform.sh variables
 
-Platform.sh exposes relationships and other configuration as [environment variables](/development/variables.md). Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services.html).
+Platform.sh exposes relationships and other configuration as [environment variables]({{< relref "/development/variables.md" >}}). Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services]({{< relref "/configuration/services/_index.md" >}}).
 
 To get the `PORT` environment variable (the port on which your web application is supposed to listen) you would:
 

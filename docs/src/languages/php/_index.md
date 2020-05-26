@@ -99,7 +99,7 @@ That allows you to install a forked version of a global dependency from a custom
 
 PHP 7.4 introduced a new feature called Opcache Preloading, which allows you to load selected files into shared memory when PHP-FPM starts.  That means functions and classes in those files are always available and do not need to be autoloaded, at the cost of any changes to those files requiring a PHP-FPM restart.  Since PHP-FPM restarts anyway when a new deploy happens this feature is a major win on Platform.sh, and we recommend using it aggressively.
 
-To enable preloading, add a `php.ini` value that specifies a preload script.  Any [`php.ini` mechanism](/languages/php/ini.md) will work, but using a variable in `.platform.app.yaml` is the recommended approach:
+To enable preloading, add a `php.ini` value that specifies a preload script.  Any [`php.ini` mechanism]({{< relref "/languages/php/ini.md" >}}) will work, but using a variable in `.platform.app.yaml` is the recommended approach:
 
 ```yaml
 variables:
@@ -140,7 +140,7 @@ There are a few steps to leveraging FFI:
             - ffi
    ```
 
-2. Specify a [preload file](#opcache-preloading) in which you can call `FFI::load()`.  Using `FFI::load()` in preload will be considerably faster than loading the linked library on each request or script run.
+2. Specify a [preload file]({{< relref "#opcache-preloading" >}}) in which you can call `FFI::load()`.  Using `FFI::load()` in preload will be considerably faster than loading the linked library on each request or script run.
 
 3. Ensure the library is available locally, but not in a web-accessible directory.  `.so` files may included in your repository, downloaded i your build hook, or compiled in your build hook.  If compiling C code, `gcc` is available by default.  If compiling Rust code, you can download the [Rust compiler in the build hook](https://doc.rust-lang.org/stable/book/ch01-01-installation.html).
 
@@ -166,7 +166,7 @@ $ php-fpm-status --socket=unix://$SOCKET --path=/-/status --full
 
 ## Accessing services
 
-To access various [services](/configuration/services.html) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services]({{< relref "/configuration/services/_index.md" >}}) with PHP, see the following examples.  The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 

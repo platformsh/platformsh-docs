@@ -176,7 +176,7 @@ The cache duration is decided based on the `Cache-Control` response header value
 
 The `default_ttl` only applies to **non-static responses**, that is, those generated your application.
 
-To set a cache lifetime for static resources configure that in your [.platform.app.yaml](/configuration/app/web.html#locations) file. All static assets will have a Cache-Control header with a max age defaulting to 0 (which is the default for `expires` in the `.platform.app.yaml`).
+To set a cache lifetime for static resources configure that in your [.platform.app.yaml]({{< relref "/configuration/app/web.md#locations" >}}) file. All static assets will have a Cache-Control header with a max age defaulting to 0 (which is the default for `expires` in the `.platform.app.yaml`).
 
 {{< note title="none">}}
 **Type:** integer
@@ -244,7 +244,7 @@ cache:
 
 ### Cache HTTP and HTTPS separately using the `Vary` header
 
-Set the Vary header to `X-Forwarded-Proto` [custom request header](/development/headers.html) to render content based on the request protocol (i.e. HTTP or HTTPS). By adding `Vary: X-Forwarded-Proto` to the response header, HTTP and HTTPS content would be cached separately.
+Set the Vary header to `X-Forwarded-Proto` [custom request header]({{< relref "/development/headers.md" >}}) to render content based on the request protocol (i.e. HTTP or HTTPS). By adding `Vary: X-Forwarded-Proto` to the response header, HTTP and HTTPS content would be cached separately.
 
 ### Cache zipped content separately
 

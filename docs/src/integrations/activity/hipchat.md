@@ -38,7 +38,7 @@ You're given a chance to customize these parameters in an interactive shell prom
 
 ## Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.html#validating-integrations) command
+You can then verify that your integration is functioning properly [using the CLI]({{< relref "/integrations/overview.md#validating-integrations" >}}) command
 
 ```bash
 platform integration:validate

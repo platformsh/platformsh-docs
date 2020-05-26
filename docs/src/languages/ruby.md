@@ -151,7 +151,7 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
 
 ## Connecting to services
 
-You can [define services](/configuration/services.html) in your environment. And, link to the services using `.platform.app.yaml`:
+You can [define services]({{< relref "/configuration/services/_index.md" >}}) in your environment. And, link to the services using `.platform.app.yaml`:
 
 ```yaml
 relationships:

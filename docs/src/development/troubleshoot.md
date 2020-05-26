@@ -35,9 +35,9 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 
 ## Error provisioning the new certificate
 
-One reason [Let's Encrypt certificates](/configuration/routes/https.html#lets-encrypt) may fail to provision on your environments has to do with the 64 character limit Let's Encrypt places on URLs. If the names of your branches are too long, the Platform.sh generated environment URL will go over this limit, and the certificate will be rejected.
+One reason [Let's Encrypt certificates]({{< relref "/configuration/routes/https.md#lets-encrypt" >}}) may fail to provision on your environments has to do with the 64 character limit Let's Encrypt places on URLs. If the names of your branches are too long, the Platform.sh generated environment URL will go over this limit, and the certificate will be rejected.
 
-See [Let's Encrypt limits and branch names](/configuration/routes/https.html#lets-encrypt-limits-and-branch-names) for a more detailed breakdown of this issue.  
+See [Let's Encrypt limits and branch names]({{< relref "/configuration/routes/https.md#lets-encrypt-limits-and-branch-names" >}}) for a more detailed breakdown of this issue.  
 
 ## Total disk usage exceeds project maximum
 
@@ -53,7 +53,7 @@ Because storage is a billable component of your project, only the project's owne
 
 ## Low disk space
 
-When you receive a [low-disk space notification](/administration/integrations/notifications.md) for your application container:
+When you receive a [low-disk space notification]({{< relref "/integrations/notifications.md" >}}) for your application container:
 
 ### Check your application's disk space
 
@@ -71,7 +71,7 @@ Filesystem                                                       Size  Used Avai
 /dev/mapper/platform-tmp--syd7waxqy4n5q--master--7rqtwti----app  3.9G   42M  3.8G   2% /tmp
 ```
 
-The first line shows the storage device that is shared by all of your [persistent disk mounts](/configuration/app/storage.html#mounts).  All defined mounts use a common storage pool.  In this example, the application container has allocated 2 GB of the total disk space. Of those 2GB, 2% (37 MB) is used by all defined mounts.
+The first line shows the storage device that is shared by all of your [persistent disk mounts]({{< relref "/configuration/app/storage.md#mounts" >}}).  All defined mounts use a common storage pool.  In this example, the application container has allocated 2 GB of the total disk space. Of those 2GB, 2% (37 MB) is used by all defined mounts.
 
 The second line is the operating system `temporary directory`, which is always the same size.
   While you can write to the `/tmp` directory files there are not guaranteed to persist and may be deleted on deploy.
@@ -82,7 +82,7 @@ The sum of all disk keys defined in your project's `.platform.app.yaml` and `.pl
 
 1. Buy extra storage for your project
 
-  Each project comes with 5GB of Disk Storage available to each environment. To increase the disk space available for your project, click on "Edit Plan" to increase your storage in bulks of 5GB.  See [Extra Storage](/overview/pricing.html#extra-storage) for more information.
+  Each project comes with 5GB of Disk Storage available to each environment. To increase the disk space available for your project, click on "Edit Plan" to increase your storage in bulks of 5GB.  See [Extra Storage]({{< relref "/overview/pricing/_index.md#external-storage" >}}) for more information.
 
 2. Increase your application and services disk space
 
@@ -90,8 +90,8 @@ The sum of all disk keys defined in your project's `.platform.app.yaml` and `.pl
 
   Check the following resources for more details:
 
-   - [Application's disk space](/configuration/app/storage.html#disk)
-   - [Services' disk space](/configuration/services.html#disk)
+   - [Application's disk space]({{< relref "/configuration/app/storage.md#disk" >}})
+   - [Services' disk space]({{< relref "/configuration/services/_index.md#disk" >}})
 
 ### Check your database disk space
 
@@ -107,7 +107,7 @@ For a MariaDB database, the command `platform db:size` will give approximate dis
 +--------------+--------+
 ```
 
-For the most reliable disk usage warnings, we strongly recommend all customers enable [Health notifications](/administration/integrations/notifications.md) on all projects.  That will provide you with a push-notification through your choice of channel when the available disk space on any service drops too low.
+For the most reliable disk usage warnings, we strongly recommend all customers enable [Health notifications]({{< relref "/integrations/notifications.md" >}}) on all projects.  That will provide you with a push-notification through your choice of channel when the available disk space on any service drops too low.
 
 ## No space left on device
 
@@ -119,7 +119,7 @@ W: [Errno 28] No space left on device: ...
 
 The cause of this issue has to do with the amount of disk provided to the build container before it is deployed. Application images are restricted to 4 GB during build, no matter how much writable disk has been set aside for the deployed application.
 
-Some build tools (yarn/npm) store cache for different versions of their modules. This can cause the build cache to grow over time beyond the maximum of 4GB. Try [clearing the build cache](/development/troubleshoot.md#clear-the-build-cache) and redeploying. In most cases, this will resolve the issue.
+Some build tools (yarn/npm) store cache for different versions of their modules. This can cause the build cache to grow over time beyond the maximum of 4GB. Try [clearing the build cache]({{< relref "/development/troubleshoot.md#clear-the-build-cache" >}}) and redeploying. In most cases, this will resolve the issue.
 
 If for some reason your application requires more than 4 GB during build, you can open a support ticket to have this limit increased.  The most disk space available during build still caps off at 8 GB in these cases.
 
@@ -136,7 +136,7 @@ This means a process running in your application acquired a lock from MySQL for 
 * There are multiple places acquiring locks in different order. For example, code path 1 first locks record A and then locks record B.  Code path 2, in contrast, first locks record B and then locks record A.
 * There is a long running background process executed by your application that holds the lock until it ends.
 
-If you're using [MariaDB 10+](/configuration/services/mysql.md), you can use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.  Find output like the following, and start debugging.
+If you're using [MariaDB 10+]({{< relref "/configuration/services/mysql.md" >}}), you can use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.  Find output like the following, and start debugging.
 
 ```text
 < skipped >
@@ -168,11 +168,11 @@ SELECT
 
 ### Disk space issues
 
-Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services.html).
+Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml]({{< relref "/configuration/services/_index.md" >}}).
 
 The current disk usage can be checked using the CLI command `platform db:size`. Because of issues with the way InnoDB reports its size, this can out by up to 20%. As table space can grow rapidly, *it is usually advisable to make your database mount size twice the size reported by the `db:size` command*.
 
-You are encouraged to add a [low-disk warning notification](/administration/integrations/notifications.html#low-disk-warning) to proactively warn of low disk space before it becomes an issue.
+You are encouraged to add a [low-disk warning notification]({{< relref "/integrations/notifications.md#low-disk-warning" >}}) to proactively warn of low disk space before it becomes an issue.
 
 ### Worker timeout
 
@@ -184,7 +184,7 @@ Alternatively, if your worker is idle for too long it can self-terminate.  Platf
 
 ### Packet size limitations
 
-Another cause of the "MySQL server has gone away" errors can be the size of the database packets. If that is the case, the logs may show warnings like  "Error while sending QUERY packet" before the error. One way to resolve the issue is to use the `max_allowed_packet` parameter described [above](/configuration/services/mysql.md#adjusting-mariadb-configuration).
+Another cause of the "MySQL server has gone away" errors can be the size of the database packets. If that is the case, the logs may show warnings like  "Error while sending QUERY packet" before the error. One way to resolve the issue is to use the `max_allowed_packet` parameter described [above]({{< relref "/configuration/services/mysql.md#adjusting-mariadb-configuration" >}}).
 
 ## ERROR: permission denied to create database
 
@@ -193,13 +193,13 @@ The database is created for you and can be found in the `path` field of the `$PL
 
 ## "Read-only file system" error
 
-Everything will be read-only, except the writable [mounts](/configuration/app/storage.md) you declare.  Writable mounts are there for your data: for file uploads, logs and temporary files. Not for your code.  In order to change code on Platform.sh you have to go through Git.
+Everything will be read-only, except the writable [mounts]({{< relref "/configuration/app/storage.md" >}}) you declare.  Writable mounts are there for your data: for file uploads, logs and temporary files. Not for your code.  In order to change code on Platform.sh you have to go through Git.
 
 This is what gives you all of the benefits of having repeatable deployments, consistent backups, traceability, and the magically fast creation of new staging/dev environments.
 
 In Platform.sh, you cannot just "hack production".  It is a constraint, but it is a good constraint.
 
-During the [build phase](/overview/build-deploy.html#building-the-application) of your application, the main filesystem is writable.  So you can do whatever you want (e.g. compile code or generate anything you need).  But during and after the [deploy phase](/overview/build-deploy.html#deploying-the-application), the main filesystem will be read-only.
+During the [build phase]({{< relref "/overview/build-deploy.md#building-the-application" >}}) of your application, the main filesystem is writable.  So you can do whatever you want (e.g. compile code or generate anything you need).  But during and after the [deploy phase]({{< relref "/overview/build-deploy.md#deploying-the-application" >}}), the main filesystem will be read-only.
 
 ## RootNotFoundException from the CLI
 
@@ -221,7 +221,7 @@ where `<project_id>` is the random-character ID of the project.  That can be fou
 
 If you see a bare "File not found" error when accessing your Drupal site with a browser, this means that you've pushed your code as a vanilla project but no *index.php* has been found.
 
-Make sure your repository contains an *index.php* file in the [web location root](/configuration/app-containers.html#locations), or that your [Drush](/frameworks/drupal7/drush.md) make files are properly named.
+Make sure your repository contains an *index.php* file in the [web location root]({{< relref "/configuration/app/_index.md#locations" >}}), or that your [Drush]({{< relref "/frameworks/drupal7/drush.md" >}}) make files are properly named.
 
 
 ## PHP-specific error messages
@@ -238,7 +238,7 @@ That indicates that the server is receiving more concurrent requests than it has
 
 Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process.  There are two ways to increase the number of workers:
 
-* Adjust the [worker sizing hints](/languages/php/fpm.md) for your project.
+* Adjust the [worker sizing hints]({{< relref "/languages/php/fpm.md" >}}) for your project.
 * Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
 
 
@@ -260,11 +260,11 @@ The following command will identify the 20 slowest requests in the last hour, wh
 grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20
 ```
 
-If you see that the processing time of certain requests is slow (e.g. taking more than 1000ms), you may wish to consider using a profiler like [Blackfire](/administration/integrations/blackfire.md) to debug the performance issue.
+If you see that the processing time of certain requests is slow (e.g. taking more than 1000ms), you may wish to consider using a profiler like [Blackfire]({{< relref "/integrations/profiling/blackfire.md" >}}) to debug the performance issue.
 
 Otherwise, you may check if the following options are applicable:
 
-* Find the most visited pages and see if they can be cached and/or put behind a CDN.  You may refer to [how caching works](/configuration/routes/cache.md).
+* Find the most visited pages and see if they can be cached and/or put behind a CDN.  You may refer to [how caching works]({{< relref "/configuration/routes/cache.md" >}}).
 * Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project subscription.
 
 ### PHP process crashed
@@ -288,7 +288,7 @@ WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 secon
 That means the memory usage of your container exceeds the limit allowed on your plan so the kernel kills the offending process. You should try the following:
 
 * Check if the memory usage of your application is expected and try to optimize it.
-* Use [sizing hints](/languages/php/fpm.md) to reduce the amount of PHP workers which reduces the memory footprint.
+* Use [sizing hints]({{< relref "/languages/php/fpm.md" >}}) to reduce the amount of PHP workers which reduces the memory footprint.
 * Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
 
 ## Stuck build or deployment
@@ -312,8 +312,8 @@ For a blocked _build_ (when you don't find the `Re-deployment environment ...` l
 
 When a _deployment_ is blocked, you should try the following:
 
-1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id shown by `ps afx`.
-2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
+1. Use [SSH]({{< relref "/development/access-site.md" >}}) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id shown by `ps afx`.
+2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH]({{< relref "/development/access-site.md" >}}s) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
 
 ## Slow or failing build or deployment
 
@@ -325,7 +325,7 @@ Here are a few tips that can help you solve the issues you are experiencing.
 
 Invisible errors during the build and deploy phase can cause increased wait times, failed builds and other problems. Investigating each log and fixing errors is essential.
 
-Related documentation: [Accessing logs](https://docs.platform.sh/development/logs.html#accessing-logs)
+Related documentation: [Accessing logs]({{< relref "/development/logs.md#accessing-logs" >}})
 
 ### Build and deploy hooks
 
@@ -342,7 +342,7 @@ time $cmd # Print execution time
 strace -T $cmd # Print a system call report
 ```
 
-Related documentation: [Build and deploy hooks](https://docs.platform.sh/configuration/app/build.html#hooks)
+Related documentation: [Build and deploy hooks]({{< relref "/configuration/app/build.md#hooks" >}})
 
 ### Cron jobs
 
@@ -353,4 +353,4 @@ For that reason, make sure your custom cron jobs execution times are low and tha
 **note**
 Drupal's `drush core-cron` run installed module's cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to frequently benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
 
-Related documentation: [Cron and scheduled tasks](https://docs.platform.sh/configuration/app/cron.html#cron-jobs)
+Related documentation: [Cron and scheduled tasks]({{< relref "/configuration/app/cron.md#cron-jobs" >}})

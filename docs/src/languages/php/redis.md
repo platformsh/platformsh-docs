@@ -4,9 +4,9 @@ sidebarTitle: Redis
 weight: 7
 ---
 
-[Redis](/configuration/services/redis.md) is a popular structured key-value service, supported by Platform.sh.  It's frequently used for caching.
+[Redis]({{< relref "/configuration/services/redis.md" >}}) is a popular structured key-value service, supported by Platform.sh.  It's frequently used for caching.
 
-For PHP, Redis support is provided through a PECL extension called [PhpRedis](https://github.com/phpredis/phpredis).  Unfortunately, the extension has been known to break its API between versions, even between minor versions.  That makes it difficult for Platform.sh to bundle like [other PHP extensions](/languages/php/extensions.md).
+For PHP, Redis support is provided through a PECL extension called [PhpRedis](https://github.com/phpredis/phpredis).  Unfortunately, the extension has been known to break its API between versions, even between minor versions.  That makes it difficult for Platform.sh to bundle like [other PHP extensions]({{< relref "/languages/php/extensions.md" >}}).
 
 Fortunately, the extension is small enough that it's reasonable to compile as part of the build step and enable yourself.  That makes it possible to install the specific version of the extension that your application code requires.  All of the necessary tools to compile PHP extensions are included in our PHP containers, so cloning the source code and compiling it on each build is straightforward.  That does entail a few minute additions to each build, however.
 

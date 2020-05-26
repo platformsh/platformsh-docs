@@ -7,11 +7,11 @@ weight: 4
 
 ## Services
 
-The [configuration reader library](https://github.com/platformsh/config-reader-java) for Java is used in these examples, so be sure to check out the [documentation](/languages/java.html#support-libraries) for installation instructions and the latest version.
+The [configuration reader library](https://github.com/platformsh/config-reader-java) for Java is used in these examples, so be sure to check out the [documentation]({{< relref "/languages/java/_index.md#support-libraries" >}}) for installation instructions and the latest version.
 
 ### MySQL
 
-[MySQL](/configuration/services/mysql.md) is an open-source relational database technology. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java), and the Java dependencies. Then determine the SessionFactory client programmatically:
+[MySQL]({{< relref "/configuration/services/mysql.md" >}}) is an open-source relational database technology. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java), and the Java dependencies. Then determine the SessionFactory client programmatically:
 
 ```java
 import org.hibernate.Session;
@@ -44,7 +44,7 @@ You can use the same MySQL driver for MariaDB as well if you wish to do so.
 
 ### MariaDB
 
-[MariaDB](/configuration/services/mysql.md) is an open-source relational database technology. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client), and the Java dependencies. Then determine the SessionFactory client programmatically:
+[MariaDB]({{< relref "/configuration/services/mysql.md" >}}) is an open-source relational database technology. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client), and the Java dependencies. Then determine the SessionFactory client programmatically:
 
 ```java
 import org.hibernate.Session;
@@ -73,7 +73,7 @@ public class HibernateApp {
 
 ### PostgreSQL
 
-[PostgreSQL](/configuration/services/postgresql.md) is an open-source relational database technology. Define the driver for [PostgreSQL](https://mvnrepository.com/artifact/postgresql/postgresql), and the Java dependencies. Then determine the SessionFactory client programmatically:
+[PostgreSQL]({{< relref "/configuration/services/postgresql.md" >}}) is an open-source relational database technology. Define the driver for [PostgreSQL](https://mvnrepository.com/artifact/postgresql/postgresql), and the Java dependencies. Then determine the SessionFactory client programmatically:
 
 ```java
 import org.hibernate.Session;

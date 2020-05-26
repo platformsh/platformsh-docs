@@ -16,7 +16,7 @@ Hugo (which we use for documentation) uses Markdown as its file format.
 * Longer code samples should be denoted with triple backticks before and after, with no extra whitespace between the backticks and the code block. Always specify the language of the code block.  See the [highlight.js docs](https://highlightjs.org/static/demo/) for available language options.  (`yaml`, `bash`, and `php` are the most common we're likely to see).
 * Always use inline links.
 * Do not hard-wrap prose text. Set your text editor to soft wrapping.
-* Internal links should be absolute (starting with `/`). Single pages (i.e. `/configuration/services/elasticsearch.md` should be linked using the `.md` suffix. List pages `/configuration/services/_index.md`, which will be served from `/configuration/services.html` should use the explicit `.html` suffix.
+* Internal links should be absolute (starting with `/`), and should use Hugo's built-in [`relref`](https://gohugo.io/functions/relref/) shortcode syntax. Using `relref` ensures that internal links are always valid by explicitly defining the file that should be linked, and tying all internal links to the documentation's build. That is, if you write a link to an non-existent file, the build will fail. Single pages should be specified by its page (i.e. `{{< relref "/configuration/services/elasticsearch.md#some-subsection" >}}`) and list pages to that section's index file (i.e. `{{< relref "/configuration/services/php/_index.md#some-subsection" >}}`).
 
 ## Hugo: Front matter
 

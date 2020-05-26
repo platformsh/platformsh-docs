@@ -4,7 +4,7 @@ weight: 9
 sidebarTitle: "Search API"
 ---
 
-This page is about configuring Solr with the module [Search API](https://www.drupal.org/project/search_api). If your project uses [Apache Solr Search](https://www.drupal.org/project/apachesolr) then you should follow the instructions [Apache Solr Search](apachesolr-module/).
+This page is about configuring Solr with the module [Search API](https://www.drupal.org/project/search_api). If your project uses [Apache Solr Search](https://www.drupal.org/project/apachesolr) then you should follow the instructions [Apache Solr Search]({{< relref "/frameworks/drupal7/apachesolr-module.md" >}}).
 
 ## Requirements
 You will need to add the [Search API](https://www.drupal.org/project/search_api) and [Search API

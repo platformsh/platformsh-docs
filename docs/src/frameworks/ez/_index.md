@@ -87,7 +87,7 @@ Actions needed are:
 
 #### Environment variables (optional)
 
-eZ Launchpad allows you to define environment variables in the `provisioning/dev/docker-compose.yml` file. You may use that to set [Platform.sh variables](/development/variables.md) to match Platform.sh environments so that you can keep your environment behavior in sync.
+eZ Launchpad allows you to define environment variables in the `provisioning/dev/docker-compose.yml` file. You may use that to set [Platform.sh variables]({{< relref "/development/variables.md" >}}) to match Platform.sh environments so that you can keep your environment behavior in sync.
 
 Such variables have to be set in the `engine` container.
 
@@ -101,10 +101,10 @@ engine:
 
 ### Local development with Platform.sh
 
-Thanks to eZ Launchpad you are able to be work 100% locally: [untethered](/development/local/untethered.md). We have the whole project working offline on our local machine.
+Thanks to eZ Launchpad you are able to be work 100% locally: [untethered]({{< relref "/development/local/untethered.md" >}}). We have the whole project working offline on our local machine.
 
 {{< note >}}
-Platform.sh also provides a smooth SSH tunnels integration described in the [tethered](/development/local/tethered.html) page.
+Platform.sh also provides a smooth SSH tunnels integration described in the [tethered]({{< relref "/development/local/tethered.html" >}}) page.
 {{< /note >}}
 
 Local services are provided by the Docker stack but there are minimum day-to-day tasks that you might need with Platform.sh.
@@ -114,7 +114,7 @@ The main ones are:
 * **Downstream database synchronization**: Getting it from the remote to the local.
 * **Downstream file storage synchronization**: Getting it from the remote to the local.
 
-To help you with that, Platform.sh provides a CLI that you probably already have. If you don't, see the [install guide](/development/cli.html#installation).
+To help you with that, Platform.sh provides a CLI that you probably already have. If you don't, see the [install guide]({{< relref "/development/cli/_index.md#installation" >}}).
 
 Combined together, eZ Launcphad and Platform.sh CLI make those actions straight forward and simple.
 

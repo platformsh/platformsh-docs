@@ -8,12 +8,12 @@ description: |
 {{< description >}}
 
 {{< note >}}
-Remember that you must have `admin` access to a project in order to add or modify an integration.  See [User administration roles](/administration/users.html#user-roles) for more details.
+Remember that you must have `admin` access to a project in order to add or modify an integration.  See [User administration roles]({{< relref "/administration/users.md#user-roles" >}}) for more details.
 {{< /note >}}
 
 ## Default low-disk email notifications
 
-When you create a new project, Platform.sh creates a default [low-disk email notification](administration/integrations/notifications.html#low-disk-warning) for all [Project Admins](/administration/users.html#user-roles).
+When you create a new project, Platform.sh creates a default [low-disk email notification]({{< relref "#low-disk-warning" >}}) for all [Project Admins]({{< relref "/administration/users.md#user-roles" >}}).
 
 {{< note >}}
 All projects created prior to 6 April 2020 that did not have any health notifications enabled had an email notification added for admin users.
@@ -33,7 +33,7 @@ Notifications are generated every 5 minutes, so there may be a brief delay betwe
 
 ## Configuring notifications
 
-Health notifications can be set up via the [Platform.sh CLI](/development/cli.html), through a number of different channels.
+Health notifications can be set up via the [Platform.sh CLI]({{< relref "/development/cli/_index.md" >}}), through a number of different channels.
 
 ### Email notifications
 
@@ -157,7 +157,7 @@ Please refer to the [JOSE Cookbook](https://github.com/ietf-jose/cookbook) for e
 
 ## Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.html#validating-integrations) command
+You can then verify that your integration is functioning properly [using the CLI]({{< relref "/integrations/overview.md#validating-integrations" >}}) command
 
 ```bash
 $ platform integration:validate

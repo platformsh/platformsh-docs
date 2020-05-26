@@ -11,7 +11,7 @@ layout: single
 
 Behinds the scenes it uses both the Git interface and our REST API. The source code of the CLI is hosted on [GitHub](https://github.com/platformsh/platformsh-cli).
 
-Find detailed information on [setting up a local development environment](/gettingstarted/developing/local-development.html).
+Find detailed information on [setting up a local development environment]({{< relref "/gettingstarted/developing/local-development/_index.md" >}}).
 
 ## Installation
 

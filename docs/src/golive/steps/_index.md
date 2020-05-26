@@ -33,7 +33,7 @@ You can find more information on pricing on the [pricing page](https://platform.
 
 ## 2. (CDN version) Configure your DNS provider
 
-If you are serving the site through a CDN, configure your DNS provider to point at your CDN account.  The address or CNAME to set for that will vary with the CDN provider.  Refer to their documentation or to the [CDN guide](/golive/cdn.html).
+If you are serving the site through a CDN, configure your DNS provider to point at your CDN account.  The address or CNAME to set for that will vary with the CDN provider.  Refer to their documentation or to the [CDN guide]({{< relref "/golive/cdn/_index.md" >}}).
 
 ## 2. (Non-CDN version) Configure your DNS provider
 
@@ -47,7 +47,7 @@ If you have multiple domains you want to be served by the same application you w
 
 Note that depending on your registrar and the TTL you set, it could take anywhere from 15 minutes to 72 hours for the DNS change to fully propagate across the Internet.
 
-If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records](/golive/steps/dns.md).
+If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records]({{< relref "/golive/steps/dns.md" >}}).
 
 ## 3. (Non-CDN version) Set your domain in Platform.sh
 
@@ -55,7 +55,7 @@ If you are using an apex domain (`example.com`), see the additional information 
 If using a CDN, skip this step.  The CDN should already have been configured in advance to point to Platform.sh as its upstream.
 {{< /note >}}
 
-This step will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.html#domains).
+This step will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console]({{< relref "/administration/web/configure-project.md#domains" >}}).
 
 You can add multiple domains to point to your project. Each domain can have its own custom SSL certificate, or use the default one provided.
 
@@ -84,11 +84,11 @@ Sometimes it can take Let's Encrypt a couple of minutes to provision the certifi
 
 ### Configure health notifications
 
-While not required, it's strongly recommended that you set up [health notifications](/integrations/notifications.md) to advise you if your site is experiencing issues such as running low on disk space.  Notifications can be sent via email, Slack, or PagerDuty.
+While not required, it's strongly recommended that you set up [health notifications]({{< relref "/integrations/notifications.md" >}}) to advise you if your site is experiencing issues such as running low on disk space.  Notifications can be sent via email, Slack, or PagerDuty.
 
 ### Configure production cron tasks
 
-It's strongly recommended that you [set up automatic backups](/administration/backup-and-restore.md#automated-backups) and [automatic certificate renewal](/configuration/routes/https.md#automatic-certificate-renewal) cron tasks.  You will first need to set up an [API token](/development/cli/api-tokens.md) and install the CLI as part of the build hook.  Then you can easily configure the appropriate cron tasks.  The following snippet is generally sufficient but see the the links above for more details, and please modify the cron schedules listed to match your use case.
+It's strongly recommended that you [set up automatic backups]({{< relref "/administration/backup-and-restore.md#automated-backups" >}}) and [automatic certificate renewal]({{< relref "/configuration/routes/https.md#automatic-certificate-renewal" >}}) cron tasks.  You will first need to set up an [API token]({{< relref "/development/cli/api-tokens.md" >}}) and install the CLI as part of the build hook.  Then you can easily configure the appropriate cron tasks.  The following snippet is generally sufficient but see the the links above for more details, and please modify the cron schedules listed to match your use case.
 
 ```yaml
 crons:

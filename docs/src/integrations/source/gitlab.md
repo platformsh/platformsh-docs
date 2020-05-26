@@ -80,7 +80,7 @@ You can now start pushing code, creating new branches or opening merge requests 
 
 ### 4. Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/administration/integrations.html#validating-integrations) command
+You can then verify that your integration is functioning properly [using the CLI]({{< relref "/integrations/overview.md#validating-integrations" >}}) command
 
 ```bash
 platform integration:validate

@@ -6,7 +6,7 @@ sidebarTitle: "Multi-site"
 sidebarIgnore: true
 ---
 
-Platform.sh supports running [multiple applications in the same project](/bestpractices/oneormany)
+Platform.sh supports running [multiple applications in the same project]({{< relref "/bestpractices/oneormany.md" >}})
 and these can be two or more Drupal site. But, they would be separate Drupal
 instances , they will have their assets separate and live their lives apart and
 it would be much better for them not to share the same database (though they
@@ -14,7 +14,7 @@ could).
 
 Note, that the same Drupal instance can also use multiple databases (just add
 multiple instances to services.yaml and use  db_select) you will need to
-override settings.php [as described here](customizing-settings-php.html) and
+override settings.php [as described here]({{< relref "/frameworks/drupal7/customizing-settings-php.md" >}}) and
 add the other databases you could then use `db_select` to switch between those.
 
 # Old Style "Mutlisite" and Platform.sh

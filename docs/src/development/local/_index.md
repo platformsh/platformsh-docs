@@ -9,7 +9,7 @@ layout: single
 
 {{< description >}}
 
-You must have an [SSH key](/development/tools.html#ssh) already configured on your account, and have both [Git](/development/tools.html#git) and the [Platform.sh CLI](/development/cli.html) installed before continuing.
+You must have an [SSH key]({{< relref "/development/tools.md#ssh" >}}) already configured on your account, and have both [Git]({{< relref "/development/tools.md#git" >}}) and the [Platform.sh CLI]({{< relref "/development/cli/_index.md" >}}) installed before continuing.
 
 ## Download the code
 

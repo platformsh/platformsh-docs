@@ -18,7 +18,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable]({{< relref "/development/variables.md#platformsh-provided-variables" >}}):
 
 {{< highlight json >}}
 {{< remote url="https://examples.docs.platform.sh/relationships/kafka" >}}

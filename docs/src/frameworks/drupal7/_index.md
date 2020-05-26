@@ -23,7 +23,7 @@ This build mode supports having a `project.make` file for your contributed modul
 
 {{< note >}}
 When building as a profile, you **need a make file for Drupal core** called: `project-core.make`. See
-[drush make files](/frameworks/drupal7/drush.html).
+[drush make files]({{< relref "/frameworks/drupal7/drush.md" >}}).
 {{< /note >}}
 
 ```text

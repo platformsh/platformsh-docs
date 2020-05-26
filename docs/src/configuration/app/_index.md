@@ -21,26 +21,26 @@ Different configuration properties can be applied to individual web and worker i
 
 The following properties apply only at the global level, and cannot be replicated inside an instance definition.
 
-* [`name`](/configuration/app/name.md) *(required)* - Sets the unique name of the application container.
-* [`type`](/configuration/app/type.md) *(required)* - Sets the container base image to use, including application language.
-* [`timezone`](/configuration/app/timezone.md) - Sets the timezone of cron tasks in application container.
-* [`build`, `dependencies`, and `hooks`](/configuration/app/build.md) - Control how the application gets compiled.  Note that this compilation happens before the application is copied into different instances, so any steps here will apply to all web and worker instances.
-* [`cron`](/configuration/app/cron.md) - Defines scheduled tasks for the application.  Cron tasks will, technically, run as part of the web instance regardless of how many workers are defined.
-* [`source.root`](/configuration/app/multi-app.md) - This nested value specifies the path where all code for the application lives.  It defaults to the directory where the `.platform.app.yaml` file is defined.  It is rarely needed except in advanced configurations.
+* [`name`]({{< relref "/configuration/app/name.md" >}}) *(required)* - Sets the unique name of the application container.
+* [`type`]({{< relref "/configuration/app/type.md" >}}) *(required)* - Sets the container base image to use, including application language.
+* [`timezone`]({{< relref "/configuration/app/timezone.md" >}}) - Sets the timezone of cron tasks in application container.
+* [`build`, `dependencies`, and `hooks`]({{< relref "/configuration/app/build.md" >}}) - Control how the application gets compiled.  Note that this compilation happens before the application is copied into different instances, so any steps here will apply to all web and worker instances.
+* [`cron`]({{< relref "/configuration/app/cron.md" >}}) - Defines scheduled tasks for the application.  Cron tasks will, technically, run as part of the web instance regardless of how many workers are defined.
+* [`source.root`]({{< relref "/configuration/app/multi-app.md" >}}) - This nested value specifies the path where all code for the application lives.  It defaults to the directory where the `.platform.app.yaml` file is defined.  It is rarely needed except in advanced configurations.
 
 The following properties can be set at the top level of the `.platform.app.yaml` file and apply to all application instances, or set within a given instance definition and apply just to that one.  If set in both places then the instance-specific one will take precedence, and completely replace the global one.  That is, if you want to make a change to just one sub-property of one of the following keys you need to replicate the entire block.
 
-* [`size`](/configuration/app/size.md) - Sets an explicit sizing hint for the application.
-* [`relationships`](/configuration/app/relationships.md) - Defines connections to other services and applications.
-* [`access`](/configuration/app/access.md) - Restricts SSH access with more granularity than the management console.
-* [`disk` and `mounts`](/configuration/app/storage.md) *(required)* - Defines writable file directories for the application.
-* [`variables`](/configuration/app/variables.md) - Sets environment variables that control application behavior.
-* [`firewall`](/configuration/app/firewall.md) - Defines outbound firewall rules for the application.
+* [`size`]({{< relref "/configuration/app/size.md" >}}) - Sets an explicit sizing hint for the application.
+* [`relationships`]({{< relref "/configuration/app/relationships.md" >}}) - Defines connections to other services and applications.
+* [`access`]({{< relref "/configuration/app/access.md" >}}) - Restricts SSH access with more granularity than the management console.
+* [`disk` and `mounts`]({{< relref "/configuration/app/storage.md" >}}) *(required)* - Defines writable file directories for the application.
+* [`variables`]({{< relref "/configuration/app/variables.md" >}}) - Sets environment variables that control application behavior.
+* [`firewall`]({{< relref "/configuration/app/firewall.md" >}}) - Defines outbound firewall rules for the application.
 
 The `.platform.app.yaml` file needs at least one of the following to define an instance, but may define both.
 
-* [`web`](/configuration/app/web.md) - Controls how the web application is served.
-* [`worker`](/configuration/app/workers.md) - Defines alternate copies of the application to run as background processes.
+* [`web`]({{< relref "/configuration/app/web.md" >}}) - Controls how the web application is served.
+* [`worker`]({{< relref "/configuration/app/workers.md" >}}) - Defines alternate copies of the application to run as background processes.
 
 ## Available resources
 
@@ -124,9 +124,9 @@ web:
 ```
 
 {{< note >}}
-This configuration file is specific to one application. If you have multiple applications inside your Git repository (such as a RESTful web service and a front-end, or a main web site and a blog), you need `.platform.app.yaml` at the root of each application. See the [Multi-app](/configuration/app/multi-app.html) documentation.
+This configuration file is specific to one application. If you have multiple applications inside your Git repository (such as a RESTful web service and a front-end, or a main web site and a blog), you need `.platform.app.yaml` at the root of each application. See the [Multi-app]({{< relref "/configuration/app/multi-app.md" >}}) documentation.
 {{< /note >}}
 
 ## Upgrading from previous versions of the configuration file.
 
-Although we make an effort to always maintain backward compatibility in the `.platform.app.yaml` format, we do from time to time [upgrade the file](/configuration/app/upgrading.md) and encourage you to upgrade as well.
+Although we make an effort to always maintain backward compatibility in the `.platform.app.yaml` format, we do from time to time [upgrade the file]({{< relref "/configuration/app/upgrading.md" >}}) and encourage you to upgrade as well.

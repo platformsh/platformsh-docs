@@ -32,7 +32,7 @@ Platform.sh supports the most common project management tools in the Java ecosys
 
 ## Accessing services
 
-To access various [services](/configuration/services.html) with Java, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services]({{< relref "/configuration/services/_index.md" >}}) with Java, see the following examples.  The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 
