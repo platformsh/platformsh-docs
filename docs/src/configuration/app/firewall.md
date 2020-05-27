@@ -10,7 +10,9 @@ This setting has no impact on inbound requests to your application.  For that, u
 
 {{< note >}}
 The outbound firewall is currently in Beta.  While the syntax is not expected to change, some behavior might in the future.
+{{< /note >}}
 
+{{< note title="Enterprise only" >}}
 Outbound firewall rules are only available to Enterprise and Elite customers. Contact our sales team for more information.
 {{< /note >}}
 
