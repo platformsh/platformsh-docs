@@ -107,6 +107,10 @@ As a general rule, it is better to have an activity script only execute on the s
 
 Activity scripts have a series of APIs available to them to facilitate building out custom functionality.
 
+### `underscore.js`
+
+Underscore.js 1.9.2 is available out-of-the-box to make writing Activity scripts more pleasant.  See [Underscore's documentation](https://cdn.rawgit.com/jashkenas/underscore/1.9.2/index.html) for available functions and utilities.
+
 ### `activity`
 
 Every activity script has a global variable `activity` that contains detailed information about the activity, including embedded, JSON-ified versions of the routes configuration and relevant `.platform.app.yaml` files.  The `activity` variable is the same as the [webhook payload]({{< relref "/integrations/activity/webhooks.md" >}}).  See the documentation there for details and a complete example.
