@@ -1,6 +1,6 @@
 ---
-title: "Activity integrations"
-sidebarTitle: "Activities"
+title: "Activity Scripts"
+sidebarTitle: "Activity Scripts"
 weight: -5
 layout: single
 description: |
