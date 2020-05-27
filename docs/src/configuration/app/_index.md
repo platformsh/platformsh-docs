@@ -75,7 +75,7 @@ type: 'php:7.0'
 # On PHP, there are multiple build flavors available. Pretty much everyone
 # except Drupal 7 users will want the composer flavor.
 build:
-  flavor: composer
+    flavor: composer
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
@@ -88,10 +88,10 @@ relationships:
 hooks:
     # Build hooks can modify the application files on disk but not access any services like databases.
     build: |
-      rm web/app_dev.php
+        rm web/app_dev.php
     # Deploy hooks can access services but the file system is now read-only.
     deploy: |
-      app/console --env=prod cache:clear
+        app/console --env=prod cache:clear
 
 
 # The size of the persistent disk of the application (in MB).
