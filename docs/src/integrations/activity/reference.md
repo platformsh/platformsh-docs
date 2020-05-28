@@ -10,13 +10,47 @@ description: |
 
 ## Activity schema
 
+### `created_at`, `started_at`, `completed_at`
+
+These values are all timestamps in UTC.  If you need only a point in time when the action happened, use `completed_at`.  You can also combine it with `started_at` to see how long the activity took.
+
+### `environments`
+
+An array listing the environments that were involved in the activity. This is usually single-value.
+
 ### `id`
 
 A unique opaque value to identify the activity.
 
+### `log`
+
+A text description of the action that happened.  This is a human-friendly string that may be displayed to a user but should not be parsed for data as its structure is not guaranteed.
+
+### `payload.environment`
+
+This block contains information about the environment itself, after the action has taken place.  The most notable properties of this key are
+
+* `name` (the name of the branch)
+* `machine_name` (the name of the environment)
+* `head_commit` (the Git commit ID that triggered the event)
+
+### `payload.deployment`
+
+This large block details all information about all services in the environment.  That includes the resulting configuration objects derived from [`routes.yaml`]({{< relref "/configuration/routes/_index.md" >}}), [`services.yaml`]({{< relref "/configuration/services/_index.md" >}}), and [`.platform.app.yaml`]({{< relref "/configuration/app/_index.md" >}}).
+
+Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.  Note that some will be redirects.  To find those that are live URLs filter to those objects whose `type` property is `upstream`.
+
+### `payload.user`
+
+The Platform.sh user that triggered the activity.
+
 ### `project`
 
 The Project ID for which the activity was triggered.  Use this value if you want to have multiple projects POST to the same URL.
+
+### `result`
+
+Whether the activity was completed successfully or not. It should be `success` if all went as planned.
 
 ### `type`
 
@@ -50,6 +84,24 @@ The `type` property specifies the event that happened.  Its value is one of:
     * `environment.update.http_access`: HTTP access rules for an environment have been modified.
     * `environment.update.smtp`: Sending of emails has been enabled/disabled for an environment.
     * `environment.update.restrict_robots`: The block-all-robots feature has been enabled/disabled.
+* `integration`:
+  * `integration.bitbucket`:
+    * `integration.bitbucket.fetch`: Changes in BitBucket repository have been pulled.
+    * `integration.bitbucket.register_hooks`: Integration hook have been registered on BitBucket.
+  * `integration.bitbucket_server`:
+    * `integration.bitbucket_server.fetch`: Changes in BitBucket repository have been pulled.
+    * `integration.bitbucket_server.register_hooks`: Integration hook have been registered on BitBucket.
+  * `integration.github`:
+    * `integration.github.fetch`: Changes in GitHub repository have been pulled.
+  * `integration.gitlab`:
+    * `integration.github.fetch`: Changes in GitLab repository have been pulled.
+  * `integration.health`:
+    * `integration.health.email`: Health event sent by email.
+    * `integration.health.pagerduty`: Health event sent to PagerDuty.
+    * `integration.health.slack`: Health event sent to Slack.
+  * `integration.hipchat`: Event sent to HipChat.
+  * `integration.script`: An [activity script]({{< relref "/integrations/activity/_index.md#activity-scripts" >}}) has run.
+  * `integrtation.webhook`: Webhook triggered.
 * `project`:
   * `project.create`: A project has been created.  Although it will appear in the activity feed exactly once, it will not be sent via a webhook as it will always happen before a webhook can be configured.
   * `project.domain`:
@@ -58,41 +110,6 @@ The `type` property specifies the event that happened.  Its value is one of:
     * `project.domain.update`: A domain associated with the project has been updated, including modifying it's SSL certificate.
   * `project.modify`:
       * `project.modify.title`: The human-friendly title of the project has been changed.
-
-
-### `environments`
-
-An array listing the environments that were involved in the activity. This is usually single-value.
-
-### `result`
-
-Whether the activity was completed successfully or not. It should be `success` if all went as planned.
-
-### `created_at`, `started_at`, `completed_at`
-
-These values are all timestamps in UTC.  If you need only a point in time when the action happened, use `completed_at`.  You can also combine it with `started_at` to see how long the activity took.
-
-### `log`
-
-A text description of the action that happened.  This is a human-friendly string that may be displayed to a user but should not be parsed for data as its structure is not guaranteed.
-
-### `payload.environment`
-
-This block contains information about the environment itself, after the action has taken place.  The most notable properties of this key are
-
-* `name` (the name of the branch)
-* `machine_name` (the name of the environment)
-* `head_commit` (the Git commit ID that triggered the event)
-
-### `payload.user`
-
-The Platform.sh user that triggered the activity.
-
-### `payload.deployment`
-
-This large block details all information about all services in the environment.  That includes the resulting configuration objects derived from [`routes.yaml`]({{< relref "/configuration/routes/_index.md" >}}), [`services.yaml`]({{< relref "/configuration/services/_index.md" >}}), and [`.platform.app.yaml`]({{< relref "/configuration/app/_index.md" >}}).
-
-Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.  Note that some will be redirects.  To find those that are live URLs filter to those objects whose `type` property is `upstream`.
 
 ## Example activity
 
