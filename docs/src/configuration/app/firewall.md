@@ -1,11 +1,20 @@
 ---
-title: "Outbound firewall"
+title: "[Beta] Outbound firewall"
+sidebarTitle: "Outbound firewall"
 weight: 15
 ---
 
 In some situations, compliance regulations may require you to limit outbound traffic from your application.  The `firewall` property allows you to do so.
 
 This setting has no impact on inbound requests to your application.  For that, use the environment access control settings in the Management Console.
+
+{{< note >}}
+The outbound firewall is currently in Beta.  While the syntax is not expected to change, some behavior might in the future.
+{{< /note >}}
+
+{{< note title="Enterprise only" >}}
+Outbound firewall rules are only available to Enterprise and Elite customers. Contact our sales team for more information.
+{{< /note >}}
 
 ## Syntax
 

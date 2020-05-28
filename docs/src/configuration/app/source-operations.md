@@ -9,10 +9,11 @@ An application can define a number of operations that apply to its source code a
 
 {{< note >}}
 Source Operations are currently in Beta.  While the syntax is not expected to change, some behavior might in the future.
-
-Also, Source Operations are only available to Enterprise and Elite customers. Contact our sales team for more information.
 {{< /note >}}
 
+{{< note title="Enterprise only" >}}
+Source Operations are only available to Enterprise and Elite customers. Contact our sales team for more information.
+{{< /note >}}
 
 A basic, common source operation could be to automatically update Composer dependencies like this:
 
