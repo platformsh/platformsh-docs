@@ -61,12 +61,12 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.cron`: A cron task just completed.
 * `environment.source-operation`: A source operation triggered and has completed.
 ---
-* `integration.bitbucket.fetch`: Changes in bitbucket repository have been pulled.
-* `integration.bitbucket.register_hooks`: Integration hook have been registered on bitbucket.
-* `integration.bitbucket_server.fetch`: Changes in bitbucket repository have been pulled.
-* `integration.bitbucket_server.register_hooks`: Integration hook have been registered on bitbucket.
-* `integration.github.fetch`: Changes in github repository have been pulled.
-* `integration.gitlab.fetch`: Changes in gitlab repository have been pulled.
+* `integration.bitbucket.fetch`: Changes in BitBucket repository have been pulled.
+* `integration.bitbucket.register_hooks`: Integration hook have been registered on BitBucket.
+* `integration.bitbucket_server.fetch`: Changes in BitBucket repository have been pulled.
+* `integration.bitbucket_server.register_hooks`: Integration hook have been registered on BitBucket.
+* `integration.github.fetch`: Changes in GitHub repository have been pulled.
+* `integration.gitlab.fetch`: Changes in GitLab repository have been pulled.
 * `integration.health.email`: Health event sent by email.
 * `integration.health.pagerduty`: Health event sent to pagerduty.
 * `integration.health.slack`: Health event sent to slack.
