@@ -42,9 +42,7 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.deactivate`: A branch has been "deactivated". The code is still there, but the environment was destroyed.
 * `environment.synchronize`: An environment has had its data and/or code re-copied from its parent environment.
 * `environment.merge`: A branch was merged through the management console or Platform.sh API. A basic Git merge will not trigger this event.
-* `environment.merge-pr`: A pull request / merge request branch was merged, generally on the third party Git site (GitHub, GitLab, etc.)
-* `environment.deploy`: An environment was deployed.
-* `environment.redeploy`: An environment was redeployed without a rebuild.
+* `environment.redeploy`: An environment was redeployed.
 * `environment.delete`: A branch was deleted.
 ---
 * `environment.route.create`: A new route has been created through the management console. This will not fire for route edits made to the `routes.yaml` file directly.
@@ -61,22 +59,20 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.subscription.update`: The master environment has been resized because the subscription has changed.  There are no content changes.
 ---
 * `environment.cron`: A cron task just completed.
-* `environment.migrate`: ?????
 * `environment.source-operation`: A source operation triggered and has completed.
 ---
-* `integration.activity`: ?????
-* `integration.bitbucket.fetch`: ?????
-* `integration.bitbucket.register_hooks`: ?????
-* `integration.bitbucket_server.fetch`: ?????
-* `integration.bitbucket_server.register_hooks`: ?????
-* `integration.github.fetch`: ?????
-* `integration.gitlab.fetch`: ?????
-* `integration.health.email`: ?????
-* `integration.health.slack`: ?????
-* `integration.health.webhook`: ?????
-* `integration.hipchat`: ?????
-* `integration.script`: ?????
-* `integration.webhook`: ?????
+* `integration.bitbucket.fetch`: Changes in bitbucket repository have been pulled.
+* `integration.bitbucket.register_hooks`: Integration hook have been registered on bitbucket.
+* `integration.bitbucket_server.fetch`: Changes in bitbucket repository have been pulled.
+* `integration.bitbucket_server.register_hooks`: Integration hook have been registered on bitbucket.
+* `integration.github.fetch`: Changes in github repository have been pulled.
+* `integration.gitlab.fetch`: Changes in gitlab repository have been pulled.
+* `integration.health.email`: Health event sent by email.
+* `integration.health.pagerduty`: Health event sent to pagerduty.
+* `integration.health.slack`: Health event sent to slack.
+* `integration.webhook`: Webhook triggered.
+* `integration.hipchat`: Event sent to hipchat.
+* `integration.script`: An activity script has run.
 
 ### `environments`
 
