@@ -21,6 +21,7 @@ The Project ID for which the activity was triggered.  Use this value if you want
 ### `type`
 
 The `type` property specifies the event that happened.  Its value is one of:
+
 * `environment`:
   * `environment.access`:
     * `environment.access.add`: A new user has been given access to the environment.
@@ -57,6 +58,7 @@ The `type` property specifies the event that happened.  Its value is one of:
     * `project.domain.update`: A domain associated with the project has been updated, including modifying it's SSL certificate.
   * `project.modify`:
       * `project.modify.title`: The human-friendly title of the project has been changed.
+
 
 ### `environments`
 
