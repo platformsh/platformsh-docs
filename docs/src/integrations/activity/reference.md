@@ -33,14 +33,16 @@ The `type` property specifies the event that happened.  Its value is one of:
 ---
 * `environment.backup`: A user triggered a [backup]({{< relref "/administration/backup-and-restore.md" >}}).
 * `environment.restore`: A user restored a [backup]({{< relref "/administration/backup-and-restore.md" >}}).
+* `environment.backup.delete`: A user deleted a [backup]({{< relref "/administration/backup-and-restore.md" >}})
 ---
 * `environment.push`: A user has pushed code to a branch, either existing or new.
 * `environment.branch`: A new branch has been created via the management console. (A branch created via a push will show up only as an `environment.push`.)
 * `environment.activate`: A branch has been "activated", and an environment created for it.
 * `environment.initialize`: The master branch of the project has just been initialized with its first commit.
-* `environment.deactivate`: A branch has been "deactivated". The code is still there but the environment was destroyed.
+* `environment.deactivate`: A branch has been "deactivated". The code is still there, but the environment was destroyed.
 * `environment.synchronize`: An environment has had its data and/or code re-copied from its parent environment.
 * `environment.merge`: A branch was merged through the management console or Platform.sh API. A basic Git merge will not trigger this event.
+* `environment.redeploy`: An environment was redeployed.
 * `environment.delete`: A branch was deleted.
 ---
 * `environment.route.create`: A new route has been created through the management console. This will not fire for route edits made to the `routes.yaml` file directly.
@@ -55,6 +57,22 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.update.smtp`: Sending of emails has been enabled/disabled for an environment.
 * `environment.update.restrict_robots`: The block-all-robots feature has been enabled/disabled.
 * `environment.subscription.update`: The master environment has been resized because the subscription has changed.  There are no content changes.
+---
+* `environment.cron`: A cron task just completed.
+* `environment.source-operation`: A source operation triggered and has completed.
+---
+* `integration.bitbucket.fetch`: Changes in BitBucket repository have been pulled.
+* `integration.bitbucket.register_hooks`: Integration hook have been registered on BitBucket.
+* `integration.bitbucket_server.fetch`: Changes in BitBucket repository have been pulled.
+* `integration.bitbucket_server.register_hooks`: Integration hook have been registered on BitBucket.
+* `integration.github.fetch`: Changes in GitHub repository have been pulled.
+* `integration.gitlab.fetch`: Changes in GitLab repository have been pulled.
+* `integration.health.email`: Health event sent by email.
+* `integration.health.pagerduty`: Health event sent to pagerduty.
+* `integration.health.slack`: Health event sent to slack.
+* `integration.webhook`: Webhook triggered.
+* `integration.hipchat`: Event sent to hipchat.
+* `integration.script`: An activity script has run.
 
 ### `environments`
 
