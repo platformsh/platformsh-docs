@@ -1,12 +1,16 @@
+<!-- Creates single page banner note for tier-specific feature warning -->
 {{ if isset .Params "tier" }}
   {{ $tiers := .Params.tier }}
+  <!-- Note -->
   <div class="alert alert-light">
 
     <p><strong>Enterprise only:</strong></p>
 
     <p>This feature is only available to
 
+    <!-- Format sentence based on number of tiers listed -->
     {{ if gt (len $tiers) 1 }}
+      <!-- Sort alphabetically -->
       {{ range $index, $tier := sort $tiers }}
         {{ if eq $index ( sub ( len $tiers ) 1 ) }}
 
@@ -18,6 +22,7 @@
 
         {{ end }}
       {{ end }}
+    <!-- If only a single tier listed, just get that string -->
     {{ else }}
 
       {{ index .Params.tier 0 }}
