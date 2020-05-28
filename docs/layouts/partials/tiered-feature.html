@@ -1,0 +1,29 @@
+{{ if isset .Params "tier" }}
+  {{ $tiers := .Params.tier }}
+  <div class="alert alert-light">
+
+    <p><strong>Enterprise only:</strong></p>
+
+    <p>This feature is only available to
+
+    {{ if gt (len $tiers) 1 }}
+      {{ range $index, $tier := sort $tiers }}
+        {{ if eq $index ( sub ( len $tiers ) 1 ) }}
+
+          and {{ $tier }}
+
+        {{ else }}
+
+          {{ $tier }}{{ if gt (len $tiers) 2 }},{{ end }}
+
+        {{ end }}
+      {{ end }}
+    {{ else }}
+
+      {{ index .Params.tier 0 }}
+
+    {{ end }}
+
+    customers. <a href="https://platform.sh/contact/" target="_blank">Contact our sales team</a> for more information.</p>
+  </div>
+{{ end }}

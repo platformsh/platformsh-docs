@@ -192,6 +192,11 @@ blockquote {
   color: #fff3c2;
 }
 
+.alert-light {
+  color: var(--alert-font-color);
+  background-color: var(--brand-color-light-blue);
+  border-color: var(--brand-color-light-blue);
+}
 
 /* Download button */
 
