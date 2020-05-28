@@ -21,40 +21,42 @@ The Project ID for which the activity was triggered.  Use this value if you want
 ### `type`
 
 The `type` property specifies the event that happened.  Its value is one of:
-
-* `project.modify.title`: The human-friendly title of the project has been changed.
-* `project.create`: A project has been created.  Although it will appear in the activity feed exactly once, it will not be sent via a webhook as it will always happen before a webhook can be configured.
-* `project.domain.create`: A new domain has been added to the project.
-* `project.domain.delete`: A domain associated with the project has been removed.
-* `project.domain.update`: A domain associated with the project has been updated, including modifying it's SSL certificate.
----
-* `environment.access.add`: A new user has been given access to the environment.
-* `environment.access.remove`: A user has been removed from the environment.
----
-* `environment.backup`: A user triggered a [backup]({{< relref "/administration/backup-and-restore.md" >}}).
-* `environment.restore`: A user restored a [backup]({{< relref "/administration/backup-and-restore.md" >}}).
----
-* `environment.push`: A user has pushed code to a branch, either existing or new.
-* `environment.branch`: A new branch has been created via the management console. (A branch created via a push will show up only as an `environment.push`.)
-* `environment.activate`: A branch has been "activated", and an environment created for it.
-* `environment.initialize`: The master branch of the project has just been initialized with its first commit.
-* `environment.deactivate`: A branch has been "deactivated". The code is still there but the environment was destroyed.
-* `environment.synchronize`: An environment has had its data and/or code re-copied from its parent environment.
-* `environment.merge`: A branch was merged through the management console or Platform.sh API. A basic Git merge will not trigger this event.
-* `environment.delete`: A branch was deleted.
----
-* `environment.route.create`: A new route has been created through the management console. This will not fire for route edits made to the `routes.yaml` file directly.
-* `environment.route.delete`: A route has been deleted through the management console. This will not fire for route edits made to the `routes.yaml` file directly.
-* `environment.route.update`: A route has been modified through the management console. This will not fire for route edits made to the `routes.yaml` file directly.
----
-* `environment.variable.create`: A new variable has been created.
-* `environment.variable.delete`: A variable has been deleted.
-* `environment.variable.update`: A variable has been modified.
----
-* `environment.update.http_access`: HTTP access rules for an environment have been modified.
-* `environment.update.smtp`: Sending of emails has been enabled/disabled for an environment.
-* `environment.update.restrict_robots`: The block-all-robots feature has been enabled/disabled.
-* `environment.subscription.update`: The master environment has been resized because the subscription has changed.  There are no content changes.
+* `environment`:
+  * `environment.access`:
+    * `environment.access.add`: A new user has been given access to the environment.
+    * `environment.access.remove`: A user has been removed from the environment.
+  * `environment.activate`: A branch has been "activated", and an environment created for it.
+  * `environment.backup`: A user triggered a [backup]({{< relref "/administration/backup-and-restore.md" >}}).
+  * `environment.branch`: A new branch has been created via the management console. (A branch created via a push will show up only as an `environment.push`.)
+  * `environment.deactivate`: A branch has been "deactivated". The code is still there but the environment was destroyed.
+  * `environment.delete`: A branch was deleted.
+  * `environment.initialize`: The master branch of the project has just been initialized with its first commit.
+  * `environment.merge`: A branch was merged through the management console or Platform.sh API. A basic Git merge will not trigger this event.
+  * `environment.push`: A user has pushed code to a branch, either existing or new.
+  * `environment.restore`: A user restored a [backup]({{< relref "/administration/backup-and-restore.md" >}}).
+  * `environment.route`:
+    * `environment.route.create`: A new route has been created through the management console. This will not fire for route edits made to the `routes.yaml` file directly.
+    * `environment.route.delete`: A route has been deleted through the management console. This will not fire for route edits made to the `routes.yaml` file directly.
+    * `environment.route.update`: A route has been modified through the management console. This will not fire for route edits made to the `routes.yaml` file directly.
+  * `environment.subscription`:
+    * `environment.subscription.update`: The master environment has been resized because the subscription has changed.  There are no content changes.
+  * `environment.synchronize`: An environment has had its data and/or code re-copied from its parent environment.
+  * `environment.variable`:
+    * `environment.variable.create`: A new variable has been created.
+    * `environment.variable.delete`: A variable has been deleted.
+    * `environment.variable.update`: A variable has been modified.
+  * `environment.update`:
+    * `environment.update.http_access`: HTTP access rules for an environment have been modified.
+    * `environment.update.smtp`: Sending of emails has been enabled/disabled for an environment.
+    * `environment.update.restrict_robots`: The block-all-robots feature has been enabled/disabled.
+* `project`:
+  * `project.create`: A project has been created.  Although it will appear in the activity feed exactly once, it will not be sent via a webhook as it will always happen before a webhook can be configured.
+  * `project.domain`:
+    * `project.domain.create`: A new domain has been added to the project.
+    * `project.domain.delete`: A domain associated with the project has been removed.
+    * `project.domain.update`: A domain associated with the project has been updated, including modifying it's SSL certificate.
+  * `project.modify`:
+      * `project.modify.title`: The human-friendly title of the project has been changed.
 
 ### `environments`
 
@@ -84,7 +86,7 @@ This block contains information about the environment itself, after the action h
 
 The Platform.sh user that triggered the activity.
 
-### `deployment`
+### `payload.deployment`
 
 This large block details all information about all services in the environment.  That includes the resulting configuration objects derived from [`routes.yaml`]({{< relref "/configuration/routes/_index.md" >}}), [`services.yaml`]({{< relref "/configuration/services/_index.md" >}}), and [`.platform.app.yaml`]({{< relref "/configuration/app/_index.md" >}}).
 
