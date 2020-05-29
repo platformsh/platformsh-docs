@@ -80,7 +80,7 @@ There are many types of activity to which a script could respond.  By default, i
 For example, to have a script trigger any time an environment is activated or deactivated, you would run:
 
 ```bash
-platform integration:update --events=['environment:activate', 'environment:deactivate'] nadbowmhd67do
+platform integration:update --events=['environment.activate', 'environment.deactivate'] nadbowmhd67do
 ```
 
 A complete list of possible events is available in the [webhook documentation]({{< relref "/integrations/activity/reference.md" >}}).
@@ -88,7 +88,7 @@ A complete list of possible events is available in the [webhook documentation]({
 Scripts can also trigger only when an action reaches a given state, such as "pending", "in_progress", or "complete".  The default is only when they reach "complete".  To have a script execute when a synchronize action first starts, for example, you would run:
 
 ```bash
-platform integration:update --events=['environment:synchronize'] --states="in_progress" nadbowmhd67do
+platform integration:update --events=['environment.synchronize'] --states="in_progress" nadbowmhd67do
 ```
 
 It is also possible to restrict scripts to certain environments by name.  Most commonly that is used to have them execute only for the `master` environment, or for all environments except `master`.
@@ -96,7 +96,7 @@ It is also possible to restrict scripts to certain environments by name.  Most c
 The following example executes only for backup actions on the `master` environment:
 
 ```bash
-platform integration:update --events=['environment:backup'] --environments="master" nadbowmhd67do
+platform integration:update --events=['environment.backup'] --environments="master" nadbowmhd67do
 ```
 
 There is also an `--exclude-environments` switch to blacklist environments by name rather than whitelist.
