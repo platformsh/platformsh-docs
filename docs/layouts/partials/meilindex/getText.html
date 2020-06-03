@@ -1,0 +1,18 @@
+{{- $text := "" -}}
+{{- range .PlainWords -}}
+  {{- if in . "\\" -}}
+  {{- else -}}
+    {{- $cs := htmlUnescape . -}}
+    {{- $replaceChar := replace $cs "\"" " " -}}
+    {{- $text =  printf "%s %s" $text $replaceChar -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $finalText := "" -}}
+{{- if .IsPage -}}
+  {{- $finalText = $text -}}
+{{- else -}}
+  {{- chomp .Description -}}
+{{- end -}}
+
+{{ $finalText }}

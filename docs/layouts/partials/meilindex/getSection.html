@@ -1,17 +1,8 @@
-
 {{- $tempURL := index ( split .RelPermalink "." ) 0 -}}
 
 {{- $url := "/" -}}
 {{- if ne $tempURL "/index" -}}
   {{- $url = printf "%s.html" $tempURL -}}
-{{- end -}}
-
-{{- $contentSplitPTAG := ( split .Content "p>" ) -}}
-{{- $text := index ( split ( index $contentSplitPTAG 1) "</" ) 0 | safeHTML -}}
-
-{{- $title := .Title }}
-{{- if isset .Page.Params "sidebartitle" -}}
-  {{- $title = .Page.Params.sidebartitle -}}
 {{- end -}}
 
 {{- $sections := split $url "/" -}}
@@ -39,22 +30,5 @@
     {{- end }}
   {{- end }}
 {{- end }}
-{{- $text := "" -}}
-{{- range .PlainWords -}}
-  {{- if in . "\\" -}}
-  {{- else -}}
-    {{- $cs := htmlUnescape . -}}
-    {{- $replaceChar := replace $cs "\"" " " -}}
-    {{- $text =  printf "%s %s" $text $replaceChar -}}
-  {{- end -}}
-{{- end -}}
-{
-    "site": "docs",
-    "section": "{{ $section }}",
-    "title": "{{ $title }}",
-    "url": "{{ $url }}",
-    "documentId": "{{ .File.UniqueID }}",
-    "rank": 1,
-    "text": "{{ if .IsPage }}{{ $text }}{{ else }}{{ chomp .Description }}{{ end }}",
-    "subsections": "{{ .TableOfContents | plainify }}"
-}
+
+{{- $section -}}
