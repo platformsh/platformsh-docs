@@ -1,5 +1,6 @@
 ---
 title: "HipChat"
+sidebarTitle: "Built-in: HipChat"
 description: |
   The [HipChat](https://hipchat.com) integration allows you to send notifications about your Platform.sh activity directly to HipChat.
 ---

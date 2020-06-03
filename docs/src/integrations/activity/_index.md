@@ -1,6 +1,5 @@
 ---
-title: "Activity integrations"
-sidebarTitle: "Activities"
+title: "Activity scripts"
 weight: -5
 layout: single
 description: |
@@ -13,7 +12,7 @@ A legacy integration is also available for [HipChat]({{< relref "/integrations/a
 
 ## Activity scripts
 
-Activity scripts are written in a scope-limited version of Javascript ES5.  That means they do not support newer ES6 and later features such as classes, nor do they support installing additional packages.  A series of utility functions you can reuse are also [available]({{< relref "/integrations/activity/utility.md" >}}).
+Activity scripts are written in a [scope-limited version of Javascript ES5](https://github.com/robertkrimen/otto).  That means they do not support newer ES6 and later features such as classes, nor do they support installing additional packages.  A series of utility functions you can reuse are also [available]({{< relref "/integrations/activity/utility.md" >}}).
 
 ### Installing
 
