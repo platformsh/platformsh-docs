@@ -1,0 +1,34 @@
+<!-- Creates single page banner note for tier-specific feature warning -->
+{{ if isset .Params "tier" }}
+  {{ $tiers := .Params.tier }}
+  <!-- Note -->
+  <div class="alert alert-pshtieredfeature">
+
+    <p><strong>Tier availability</strong></p>
+
+    <p>This feature is only available to
+
+    <!-- Format sentence based on number of tiers listed -->
+    {{ if gt (len $tiers) 1 }}
+      <!-- Sort alphabetically -->
+      {{ range $index, $tier := sort $tiers }}
+        {{ if eq $index ( sub ( len $tiers ) 1 ) }}
+
+          and {{ $tier }}
+
+        {{ else }}
+
+          {{ $tier }}{{ if gt (len $tiers) 2 }},{{ end }}
+
+        {{ end }}
+      {{ end }}
+    <!-- If only a single tier listed, just get that string -->
+    {{ else }}
+
+      {{ index .Params.tier 0 }}
+
+    {{ end }}
+
+    customers. <a href="https://platform.sh/pricing/#compare" target="_blank">Compare the Platform.sh tiers</a> on our pricing page, or <a href="https://platform.sh/contact/" target="_blank">contact our sales team</a> for more information.</p>
+  </div>
+{{ end }}
