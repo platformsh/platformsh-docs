@@ -1,34 +1,22 @@
-{{- $tempURL := index ( split .RelPermalink "." ) 0 -}}
-
-{{- $url := "/" -}}
-{{- if ne $tempURL "/index" -}}
-  {{- $url = printf "%s.html" $tempURL -}}
-{{- end -}}
-
-{{- $sections := split $url "/" -}}
 {{- $section := "" -}}
-
-{{- if le (len $sections) 3}}
-  {{- if isset .Site.Data.indexing.replacements .Section }}
-    {{- $section = index .Site.Data.indexing.replacements .Section }}
-  {{- else }}
-    {{- $section =  .Section | humanize }}
-  {{- end }}
-{{- else }}
-  {{- if in .Site.Data.indexing.priority .Section }}
-    {{- if isset .Site.Data.indexing.replacements .Section }}
-      {{- $section =  index .Site.Data.indexing.replacements .Section }}
-    {{- else }}
-      {{- $section =  .Section | humanize }}
-    {{- end }}
-  {{- else }}
-    {{- $subsection := index $sections 2}}
-    {{- if isset .Site.Data.indexing.replacements $subsection }}
-      {{- $section =  index .Site.Data.indexing.replacements $subsection }}
-    {{- else }}
-      {{- $section =  $subsection | humanize }}
-    {{- end }}
-  {{- end }}
-{{- end }}
-
+<!-- Regular single pages -->
+{{- if .IsPage -}}
+  <!-- Everything in Getting started uses that section -->
+  {{- if eq .Section "gettingstarted" -}}
+    {{- $section = "Getting started" -}}
+  <!-- Otherwise, title of the current section -->
+  {{- else -}}
+    {{- with .CurrentSection -}}
+      {{- $section = .Title -}}
+    {{- end -}}
+  {{- end -}}
+<!-- Just Platform.sh for the home page -->
+{{- else if .IsHome -}}
+  {{- $section = .Site.Params.author -}}
+<!-- List Pages, use the top level section -->
+{{- else -}}
+  {{- with .GetPage .Section -}}
+    {{- $section = .Title -}}
+  {{- end -}}
+{{- end -}}
 {{- $section -}}

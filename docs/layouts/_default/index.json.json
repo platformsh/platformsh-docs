@@ -1,5 +1,5 @@
 {{- $index := slice -}}
-{{- range .Site.RegularPages -}}
+{{- range .Site.Pages -}}
   {{- $url := chomp ( partial "meilindex/getURL" . ) -}}
   {{- $subsections := chomp (.TableOfContents | plainify) -}}
   {{- $text := chomp ( partial "meilindex/getText" . ) -}}
