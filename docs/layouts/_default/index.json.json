@@ -1,9 +1,11 @@
 {{- $index := slice -}}
 {{- range .Site.Pages -}}
-  {{- $url := chomp ( partial "meilindex/getURL" . ) -}}
-  {{- $subsections := chomp (.TableOfContents | plainify) -}}
-  {{- $text := chomp ( partial "meilindex/getText" . ) -}}
-  {{- $section := chomp ( partial "meilindex/getSection" . ) -}}
-  {{- $index = $index | append (dict "title" .Title "documentId" .File.UniqueID "site" "docs" "rank" 1 "url" $url "subsections" $subsections "text" $text "section" $section ) -}}
+  {{- if ne ( partial "meilindex/getSection" . ) "DELETE" -}}
+    {{- $url := chomp ( partial "meilindex/getURL" . ) -}}
+    {{- $subsections := chomp (.TableOfContents | plainify) -}}
+    {{- $text := chomp ( partial "meilindex/getText" . ) -}}
+    {{- $section := chomp ( partial "meilindex/getSection" . ) -}}
+    {{- $index = $index | append (dict "title" .Title "documentId" .File.UniqueID "site" "docs" "rank" 1 "url" $url "subsections" $subsections "text" $text "section" $section ) -}}
+  {{- end -}}
 {{- end -}}
 {{- $index | jsonify -}}
