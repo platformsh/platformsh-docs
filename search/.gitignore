@@ -1,3 +1,7 @@
 data.ms
 meilisearch
 config/config.json
+.env
+test.json
+test.py
+test.yaml

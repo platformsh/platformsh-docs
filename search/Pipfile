@@ -11,6 +11,7 @@ scrapy3 = ">=1.0.1"
 meilisearch = ">=0.10.0"
 platformshconfig = "*"
 pyyaml = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
