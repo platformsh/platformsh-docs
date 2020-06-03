@@ -14,7 +14,6 @@ hooks:
       path: build.sh
     deploy: |
       cp data/templates.yaml public/scripts/xss/dist/config/templates.yaml
-      cp data/templates.yaml public/templates.yaml
       cp public/index.json public/scripts/xss/dist/config/index.json
 
 # The configuration of the application when it is exposed to the web.

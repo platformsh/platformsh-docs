@@ -27,3 +27,6 @@ cd $PLATFORM_APP_DIR
 
 # Handle/minify assets
 npm run assets-dist
+
+# Copy templates data straight to public
+cp data/templates.yaml public/templates.yaml
