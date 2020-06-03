@@ -14,6 +14,9 @@ hooks:
         type: string
         path: update_search.sh
 
+relationships:
+    docs: "docs:http"
+
 web:
     commands:
       # Run the Meilisearch server
