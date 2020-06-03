@@ -81,7 +81,7 @@ def loadDataPSH(path):
         dict: Loaded data from the file endpoint.
     """
     docsLocation = config.credentials('docs')['host']
-    r = requests.get("{}/{}".format(docsLocation, path)
+    r = requests.get("{}/{}".format(docsLocation, path))
     if path.split(".")[1] == "json":
         return json.loads(r.text)
     elif path.split(".")[1] == "yaml":
