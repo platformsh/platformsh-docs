@@ -49,6 +49,7 @@ async function getTemplateInfo(template, templateData){
           // API call failed...
       });
 
+  console.log(results.name)
   templateData.data.name = results.name;
   templateData.data.description = results.description;
   templateData.data.image = results.image;
