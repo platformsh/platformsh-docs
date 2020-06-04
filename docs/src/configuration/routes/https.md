@@ -19,7 +19,7 @@ Alternatively, see the [section below]({{< relref "#automated-ssl-certificate-re
 
 Platform.sh recommends using HTTPS requests for all sites exclusively.  Doing so provides better security, access to certain features that web browsers only permit over HTTPS, and access to HTTP/2 connections on all sites which can greatly improve performance.
 
-How HTTPS redirection is handled depends on the routes you have defined.  Platform.sh recommends specifying all HTTPS routes in your `routes.yaml` file.  That will result in all pages being served over SSL, and any requests for an HTTP URL will automatically be redirected to HTTPS.
+How HTTPS redirection is handled depends on the routes you have defined.  Platform.sh recommends specifying all HTTPS routes in your `routes.yaml` file.  If you retain [the default configuration]({{< relref "/gettingstarted/gettingstarted/own-code/routes-configuration.md" >}}) of redirecting all `www.` requests to the shorter, primary domain, then this will result in all pages being served over SSL, and any requests for an HTTP URL will automatically be redirected to HTTPS. 
 
 ```yaml
 "https://{default}/":
@@ -32,6 +32,26 @@ How HTTPS redirection is handled depends on the routes you have defined.  Platfo
 ```
 
 Specifying only HTTP routes will result in duplicate HTTPS routes being created automatically, allowing the site to be served from both HTTP and HTTPS without redirects.
+
+If you have another configuration requirement, such as enforcing a redirect from non-`www` to a `www.` prefix, it's preferable to list all 4 permutations of with/without `www` prefixes and `http`/`https` in `routes.yaml` to explicitly define which redirects go to which upstream alias.
+
+```yaml
+"https://www.{default}/":
+    type: upstream
+    upstream: "app:http"
+
+"https://{default}/":
+    type: redirect
+    to: "https://www.{default}/"
+
+"http://www.{default}/":
+    type: redirect
+    to: "https://www.{default}/"
+    
+"http://{default}/":
+    type: redirect
+    to: "https://www.{default}/"
+```
 
 Although Platform.sh does not recommend it, you can also redirect HTTPS requests to HTTP explicitly to serve the site over HTTP only.  The use cases for this configuration are few.
 
