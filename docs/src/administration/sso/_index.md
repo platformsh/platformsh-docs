@@ -25,6 +25,5 @@ A deactivated user will no longer be able to use SSH, Git, or other Platform.sh 
 
 If you have a service user with an email address under your SSO domain, e.g. `machine-user@example.com`, you can whitelist that user so that they will not be required to authenticate through your identity provider. 
 
-Whitelisted users are only allowed to login or register with a password or via a federated login (Google, GitHub, Bitbucket).
 
 Please open a support ticket if you need to whitelist a user.
