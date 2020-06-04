@@ -3,7 +3,6 @@ title: "Single sign-on (SSO)"
 weight: 4
 description: |
   Platform.sh allows you to set up mandatory SSO with a third-party identity provider (IdP) for all your users.
-sidebarTitle: "Single sign-on (SSO)"
 tier:
   - Elite
   - Enterprise
@@ -23,7 +22,20 @@ A deactivated user will no longer be able to use SSH, Git, or other Platform.sh 
 
 ## Service users
 
-If you have a service user with an email address under your SSO domain, e.g. `machine-user@example.com`, you can whitelist that user so that they will not be required to authenticate through your identity provider. 
-
+If you have a service user with an email address under your SSO domain, e.g. `machine-user@example.com`, you can whitelist that user so that they will not be required to authenticate through your identity provider.
 
 Please open a support ticket if you need to whitelist a user.
+
+## SSO providers
+
+### Google
+
+{{< tiered-feature "Enterprise" >}}
+
+Enforce your users to authenticate with your OpenID Connect provider. Please open a support ticket to enable SSO with your OpenID Connect provider.
+
+### OpenId Connect
+
+{{< tiered-feature "Elite" >}}
+
+Enforce your users to authenticate with Google. Please open a support ticket to enable Google SSO.
