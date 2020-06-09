@@ -67,4 +67,4 @@ This process has a few limitations:
 For that reason using A records is _strongly discouraged_ and should only be used as a last resort.
 {{< /note >}}
 
-See the [Public IP]({{< relref "/development/public-ips.md" >}}s) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request.
+See the [Public IP]({{< relref "/development/public-ips.md" >}}) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request.
