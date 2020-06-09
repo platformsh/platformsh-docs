@@ -86,6 +86,20 @@ Inbound IPs (gw.fr-1.platformsh.site):
 * 90.84.46.222
 * 90.84.46.40
 
+### France 2 (ovh-fr-2.platform.sh)
+
+Outbound IPs:
+
+* 51.178.62.146
+* 51.178.61.63
+* 51.178.56.77
+
+Inbound IPs (gw.ovh-fr-2.platformsh.site):
+
+* 51.178.62.146
+* 51.178.61.63
+* 51.178.56.77
+
 ### United Kingdom 1 (uk-1.platform.sh)
 
 Outbound IPs:
