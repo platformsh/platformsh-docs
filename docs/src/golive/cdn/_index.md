@@ -4,7 +4,7 @@ weight: 3
 layout: single
 ---
 
-Platform.sh Enterprise plans (both Grid and Dedicated) include a Fastly CDN account by default, which will be managed by Platform.sh.  Our experience has shown that effective caching can mean a huge difference in the perceived performance of an application by its users, and that placing the caches closer to your users (wherever they may be) is the best solution currently available.
+Platform.sh Dedicated plans include a Fastly CDN account by default, which will be managed by Platform.sh.  Our experience has shown that effective caching can mean a huge difference in the perceived performance of an application by its users, and that placing the caches closer to your users (wherever they may be) is the best solution currently available.
 
 Self-Service Grid plans do not include a CDN by default, but you are welcome to configure one yourself.  See our [guidelines]({{< relref "/bestpractices/http-caching.md" >}}) for when and if to use a CDN for HTTP caching.
 
