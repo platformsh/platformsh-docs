@@ -124,7 +124,7 @@ A full list of the possible subkeys for `locations` is below.
 
 The rules block warrants its own discussion as it allows overriding most other keys according to a regular expression. The key of each item under the `rules` block is a regular expression matching paths more specifically than the `locations` block entries.  If an incoming request matches the rule, then its handling will be overridden by the properties under the rule.  Note that it will override the entire rule in the case of a compound rule like `headers`.  (See example below.)
 
-For example, the following file will serve dynamic requests from `index.php` in the `public` directory and disallow requests for static files anywhere.  Then it sets a rule to explicitly whitelist common image file formats, and sets a cache lifetime for them of 5 minutes.
+For example, the following file will serve dynamic requests from `index.php` in the `public` directory and disallow requests for static files anywhere.  Then it sets a rule to explicitly safe-list common image file formats, and sets a cache lifetime for them of 5 minutes.
 
 ```yaml
 web:
@@ -179,7 +179,7 @@ web:
 
 ## How can I serve a static-only site?
 
-Although most websites today have some dynamic component, static site generators are a valid way to build a site.  This documentation is built using a tool called Hugo, and served by Platform.sh as a static site.  You can see the [entire repository](https://github.com/platformsh/platformsh-docs) on GitHub.  The `.platform.app.yaml` file it uses is listed below.  Note in particular the `web.commands.start` directive. There needs to be some background process so it's set to the `sleep` shell command, which will simply block forever (or some really long time, as computers don't know about forever) and restart if needed.  The file also runs the Hugo build process, and then whitelists the files to serve.
+Although most websites today have some dynamic component, static site generators are a valid way to build a site.  This documentation is built using a tool called Hugo, and served by Platform.sh as a static site.  You can see the [entire repository](https://github.com/platformsh/platformsh-docs) on GitHub.  The `.platform.app.yaml` file it uses is listed below.  Note in particular the `web.commands.start` directive. There needs to be some background process so it's set to the `sleep` shell command, which will simply block forever (or some really long time, as computers don't know about forever) and restart if needed.  The file also runs the Hugo build process, and then safe-lists the files to serve.
 
 {{< readFile file="static/files/fetch/docsappyaml/platformsh-docs" highlight="yaml" >}}
 

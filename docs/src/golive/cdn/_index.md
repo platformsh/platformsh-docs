@@ -77,7 +77,7 @@ Be aware that this approach will apply the same user and password to all develop
 This is the recommended approach for CloudFlare.
 {{< /note >}}
 
-### IP whitelisting
+### IP safe-listing
 
 If your CDN does not support adding headers to the request to origin, you can allow the IP addresses of your CDN.
 
