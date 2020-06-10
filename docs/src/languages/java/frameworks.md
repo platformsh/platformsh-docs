@@ -24,8 +24,6 @@ sidebarTitle: "Frameworks"
 * [Helidon](https://github.com/platformsh-templates/microprofile-helidon)
 * [Open Liberty](https://github.com/platformsh-templates/microprofile-openliberty)
 
-
-
 ## Payara
 
 [Payara](https://www.payara.fish/) Micro is an Open Source, lightweight Java EE (Jakarta EE) microservices deployments.
@@ -33,8 +31,6 @@ sidebarTitle: "Frameworks"
 ### Templates
 
 * [Payara Micro](https://github.com/platformsh-templates/microprofile-payara)
-
-
 
 ### References
 
@@ -45,8 +41,6 @@ sidebarTitle: "Frameworks"
 | [JPA](https://platform.sh/blog/2019/eclipse-microprofiles-gain-agility-release-faster/) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/jpa) |
 | [Hello World](https://dzone.com/articles/payara-and-paas-with-platformsh) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/hello) |
 
-
-
 ## Quarkus
 
 [QuarkusIO](https://quarkus.io/), the Supersonic Subatomic Java, promises to deliver small artifacts, extremely fast boot time, and lower time-to-first-request.
@@ -54,8 +48,6 @@ sidebarTitle: "Frameworks"
 ### Templates
 
 * [Quarkus](https://github.com/platformsh-templates/quarkus)
-
-
 
 ### References
 
@@ -68,8 +60,6 @@ sidebarTitle: "Frameworks"
 | [PostgreSQL with JPA](https://dzone.com/articles/quarkus-supersonic-subatomic-java-deploy-faster-in) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/jpa) |
 | [Hello World](https://dzone.com/articles/quarkus-supersonic-subatomic-java-goes-faster-in-t) |    [Source](https://github.com/platformsh-templates/quarkus) |
 
-
-
 ## Spring
 
 The [Spring Framework](https://spring.io/projects/spring-framework) provides a comprehensive programming and configuration model for modern Java-based enterprise applications - on any kind of deployment platform. Platform.sh is flexible, and allows you to use Spring Framework in several flavors such as [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html) and [Spring Boot](https://spring.io/projects/spring-boot).
@@ -80,8 +70,6 @@ The [Spring Framework](https://spring.io/projects/spring-framework) provides a c
 
 * [Spring Boot MySQL](https://github.com/platformsh-templates/spring-boot-maven-mysql)
 * [Spring Boot MongoDB](https://github.com/platformsh-templates/spring-mvc-maven-mongodb)
-
-
 
 ### References
 
@@ -95,8 +83,6 @@ The [Spring Framework](https://spring.io/projects/spring-framework) provides a c
 | [Spring MVC and MongoDB: a match made in Platform.sh heaven](https://platform.sh/blog/2019/spring-mvc-and-mongodb-a-match-made-in-platform.sh-heaven/) | [Code](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-mongodb) |
 | [Java: Hello, World! at Platform.sh](https://platform.sh/blog/2019/java-hello-world-at-platform.sh/) |                                                              |
 
-
-
 ## Tomcat
 
 Apache Tomcat is an open-source implementation of the Java Servlet,  JavaServer Pages, Java Expression Language and WebSocket technologies.
@@ -105,13 +91,9 @@ Apache Tomcat is an open-source implementation of the Java Servlet,  JavaServer 
 
 * [Tomcat](https://github.com/platformsh-templates/tomcat)
 
-
-
 ## Micronaut
 
 [Micronaut](https://micronaut.io/) is a modern, JVM-based, full-stack framework for building modular, easily testable microservice and serverless applications.
-
-
 
 ### Templates
 
