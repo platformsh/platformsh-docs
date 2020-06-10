@@ -107,7 +107,7 @@ Unzip `newrelic-java.zip` by configuring `maven-dependency-plugin` in your `pom.
       </plugin>
 ```
 
-The next step is to configure the [`.platform.app.yaml`](https://docs.platform.sh/configuration/app-containers.html) file to:
+The next step is to configure the [`.platform.app.yaml`]({{< relref "/configuration/app/_index.md" >}}) file to:
 
 1. Set the agent in the JVM parameters
 2. Overwrite the application file with the proper license key and application name. You can also do it using the [API](https://docs.platform.sh/development/variables.html) or [the web UI](https://docs.platform.sh/administration/web/configure-project.html#variables). Therefore this configuration will work outside the code very useful when the application is on a public repository.
