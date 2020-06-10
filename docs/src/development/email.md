@@ -120,7 +120,7 @@ public class JavaEmailSender {
 
 
 
-There is plenty of additional l documentation about using JavaMail,  like this one, [that shows how to send email with HTML format and an  attachment](https://mkyong.com/java/java-how-to-send-email/).
+There is plenty of additional documentation about using JavaMail,  like this one, [that shows how to send email with HTML formatting and attachments](https://mkyong.com/java/java-how-to-send-email/).
 
 ### References
 
