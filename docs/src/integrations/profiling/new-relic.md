@@ -60,7 +60,7 @@ This section explains how to configure Maven to download and unzip the `newrelic
 To set up the application with New Relic, you have two options:
 
 
-1. Configuring and download from Maven
+1. Configuring and downloading from Maven
 2. Downloading on your own
 
 Configure your `pom.xml` to download `newrelic-java.zip`. For example:
