@@ -136,8 +136,6 @@ variables:
 web:
     commands:
         start: |
-            cp target/dependency/webapp-runner.jar server/webapp-runner.jar
-            cp target/tomcat.war server/tomcat.war
              java -jar \
             -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError \
             -javaagent:/app/newrelic/newrelic.jar //the other parameters here
