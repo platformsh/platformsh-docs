@@ -526,6 +526,7 @@ MAIN
 .duik-content h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  scroll-margin-top: 1.5em;
 }
 
 .duik-content h1, .duik-content h2, .duik-content  h3, .duik-content h4, .duik-content h5, .duik-content h6,
