@@ -243,6 +243,7 @@ Check the individual documentation pages for accessing environment variables for
 * [Node.js: the process.env object](https://nodejs.org/api/process.html#process_process_env)
 * [Python: the os.environ object](https://docs.python.org/3/library/os.html#os.environ)
 * [Ruby: the ENV accessor](https://ruby-doc.org/core-2.1.4/ENV.html)
+* [Java: the java.lang.System accessor](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
 
 {{< codetabs >}}
 
@@ -329,6 +330,37 @@ project_id = ENV["PLATFORM_PROJECT"] || nil
 
 // A JSON-encoded value.
 variables = JSON.parse(Base64.decode64(ENV["PLATFORM_VARIABLES"]))
+
+<--->
+
+---
+title=Java
+file=none
+highlight=java
+markdownify=false
+---
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.util.Base64;
+import java.util.Map;
+
+import static java.lang.System.getenv;
+import static java.util.Base64.getDecoder;
+
+public class App {
+
+    public static void main(String[] args) throws IOException {
+        // A simple variable.
+        final String project = getenv("PLATFORM_PROJECT");
+        // A JSON-encoded value.
+        ObjectMapper mapper = new ObjectMapper();
+        final Map<String, Object> variables = mapper.readValue(
+                String.valueOf(getDecoder().decode(getenv("PLATFORM_VARIABLES"))), Map.class);
+    }
+}
+
 
 {{< /codetabs >}}
 
