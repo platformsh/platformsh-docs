@@ -144,6 +144,8 @@ web:
 
 
 
+#### Manual Configuration
+
 To use this installation it is only required that you modify `.platform.app.yaml` , which will download and set the New Relic Java agent for you.
 
 
