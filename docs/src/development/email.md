@@ -125,7 +125,7 @@ There is plenty of additional l documentation about using JavaMail,  like this o
 ### References
 
 - [Platform.sh Email documentation]({{< relref "/development/email.md" >}})
-- [https://mkyong.com/java/java-how-to-send-email/ 1](https://mkyong.com/java/java-how-to-send-email/)
+- [https://mkyong.com/java/java-how-to-send-email/](https://mkyong.com/java/java-how-to-send-email/)
 - https://javaee.github.io/javamail/
 
 
