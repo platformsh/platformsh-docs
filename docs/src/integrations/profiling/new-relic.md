@@ -48,7 +48,7 @@ That's it! You need to wait a little bit for your New Relic dashboard to be gene
 
 
 
-To set up new-relic in the Java project, we have two ways:
+To set up New Relic in the Java project, we have two ways:
 
 - Using the maven project
 - Download the code through `application.app.yaml`.
