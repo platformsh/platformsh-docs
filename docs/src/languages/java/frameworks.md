@@ -75,17 +75,23 @@ The [Spring Framework](https://spring.io/projects/spring-framework) provides a c
 
 | Article                                                      | Link                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Intro to Spring Data MongoDB Reactive and How to Move It to the Cloud](https://dzone.com/articles/introduction-to-spring-data-mongodb-reactive-and-h) | [Code](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mongodb-reactive) |
-| [Introduction of Spring Webflux and How to Apply Cloud on It](https://dzone.com/articles/introduction-of-spring-webflux-and-how-to-apply-cl) | [Code](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-webflux) |
-| [Spring Data Redis in the cloud](https://platform.sh/blog/2019/spring-data-redis-in-the-cloud/) | [Code](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-boot-maven-redis) |
-| [Simplify your script build with Gradle](https://platform.sh/blog/2019/simplify-your-script-build-with-gradle/) | [code](https://github.com/platformsh-templates/spring-boot-gradle-mysql) |
-| [Elasticsearch vs. Solr: have both with Spring Data and Platform.sh](https://platform.sh/blog/2019/elasticsearch-vs-solr-have-both-with-spring-data-and-platform.sh/) | [Elasticsearch](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-elasticsearch) and [Solr](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-solr) |
-| [Spring MVC and MongoDB: a match made in Platform.sh heaven](https://platform.sh/blog/2019/spring-mvc-and-mongodb-a-match-made-in-platform.sh-heaven/) | [Code](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-mongodb) |
-| [Java: Hello, World! at Platform.sh](https://platform.sh/blog/2019/java-hello-world-at-platform.sh/) |                                                              |
+| [Spring Data MongoDB Reactive](https://dzone.com/articles/introduction-to-spring-data-mongodb-reactive-and-h) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mongodb-reactive) |
+| [Spring Webflux](https://dzone.com/articles/introduction-of-spring-webflux-and-how-to-apply-cl) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-webflux) |
+| [Spring Data Redis](https://platform.sh/blog/2019/spring-data-redis-in-the-cloud/) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-boot-maven-redis) |
+| [Spring with Gradle](https://platform.sh/blog/2019/simplify-your-script-build-with-gradle/) | [Source](https://github.com/platformsh-templates/spring-boot-gradle-mysql) |
+| [Spring Data ElasticSearch and Spring Data Sorl](https://platform.sh/blog/2019/elasticsearch-vs-solr-have-both-with-spring-data-and-platform.sh/) | [Elasticsearch](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-elasticsearch) and [Solr](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-solr) |
+| [Spring MVC and Spring Data MongoDB](https://platform.sh/blog/2019/spring-mvc-and-mongodb-a-match-made-in-platform.sh-heaven/) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-mongodb) |
+| [Spring Boot and Spring Data JPA](https://platform.sh/blog/2019/java-hello-world-at-platform.sh/) | [Source](https://github.com/platformsh-templates/spring-boot-maven-mysql) |
 
 ## Tomcat
 
 Apache Tomcat is an open-source implementation of the Java Servlet,  JavaServer Pages, Java Expression Language and WebSocket technologies.
+
+
+
+> TIP: By default, Spring Boot provides an embedded Apache Tomcat build. Therefore, if you want to use Tomcat with Spring, check the Spring section.
+
+
 
 ### Templates
 
