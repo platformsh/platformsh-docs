@@ -59,6 +59,76 @@ mounts:
         source_path: spool
 ```
 
+## Sending email in Java
+
+JavaMail is a Java API used to send and receive email via SMTP, POP3 and IMAP. JavaMail is built into the [Jakarta EE](https://jakarta.ee/) platform, but also provides an optional package for use in Java SE.
+
+Jakarta Mail defines a platform-independent and protocol-independent framework to build mail and messaging applications.
+
+Below the sample code that uses [Jakarta Mail](https://projects.eclipse.org/projects/ee4j.mail):
+
+
+
+```java
+import sh.platform.config.Config;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class JavaEmailSender {
+
+    private static final Logger LOGGER = Logger.getLogger(JavaEmailSender.class.getName());
+
+    public void send() {
+        Config config = new Config();
+        String to = "";//change accordingly
+        String from = "";//change accordingly
+        String host = config.getSmtpHost();
+        //or IP address
+        //Get the session object
+        Properties properties = System.getProperties();
+        properties.setProperty("mail.smtp.host", host);
+        Session session = Session.getDefaultInstance(properties);
+
+        //compose the message
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject("Ping");
+            message.setText("Hello, this is example of sending email  ");
+
+            // Send message
+            Transport.send(message);
+            System.out.println("message sent successfully....");
+
+        } catch (MessagingException exp) {
+            exp.printStackTrace();
+            LOGGER.log(Level.SEVERE, "there is an error to send an message", exp);
+        }
+    }
+}
+
+```
+
+
+
+There is plenty of additional documentation about using JavaMail,  like this one, [that shows how to send email with HTML formatting and attachments](https://mkyong.com/java/java-how-to-send-email/).
+
+### References
+
+- [Platform.sh Email documentation]({{< relref "/development/email.md" >}})
+- [https://mkyong.com/java/java-how-to-send-email/](https://mkyong.com/java/java-how-to-send-email/)
+- [JavaMail API](https://javaee.github.io/javamail/)
+
+
 
 ## Ports
 
