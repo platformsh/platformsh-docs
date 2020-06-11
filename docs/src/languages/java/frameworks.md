@@ -87,11 +87,7 @@ The [Spring Framework](https://spring.io/projects/spring-framework) provides a c
 
 Apache Tomcat is an open-source implementation of the Java Servlet,  JavaServer Pages, Java Expression Language and WebSocket technologies.
 
-
-
 > TIP: By default, Spring Boot provides an embedded Apache Tomcat build. Therefore, if you want to use Tomcat with Spring, check the Spring section.
-
-
 
 ### Templates
 
