@@ -19,7 +19,7 @@ Once that's run, commit both `composer.json` and `composer.lock` to your reposit
 
 ## Include SimpleSAML cookies in the cache key
 
-The SimpleSAML client uses additional cookies besides the Drupal session cookie that need to be whitelisted for the cache.  To do so, modify your `routes.yaml` file for the route that points to your Drupal site and add two additional cookies to the `cache.cookies` line.  It should end up looking approximately like this:
+The SimpleSAML client uses additional cookies besides the Drupal session cookie that need to be safelisted for the cache.  To do so, modify your `routes.yaml` file for the route that points to your Drupal site and add two additional cookies to the `cache.cookies` line.  It should end up looking approximately like this:
 
 ```yaml
 "https://{default}/":

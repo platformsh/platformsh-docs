@@ -100,7 +100,7 @@ The following example executes only for backup actions on the `master` environme
 platform integration:update --events=environment.backup --environments=master nadbowmhd67do
 ```
 
-There is also an `--exclude-environments` switch to blacklist environments by name rather than whitelist.
+There is also an `--exclude-environments` switch to exclude some environments by name.
 
 As a general rule, it is better to have an activity script only execute on the specific events and branches you're interested in rather than firing on all activities and then filtering out undesired use cases in the script itself.
 

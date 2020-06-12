@@ -198,7 +198,7 @@ function get_domain_for(string $id) {
 }
 ```
 
-That can be used, for example, for inbound request whitelisting, a feature of many PHP frameworks.
+That can be used, for example, for inbound hostname validation, a feature of many PHP frameworks.
 
 ## Route attributes
 

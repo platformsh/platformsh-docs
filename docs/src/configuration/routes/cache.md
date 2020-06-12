@@ -137,7 +137,7 @@ A full list of HTTP headers is available on [Wikipedia](https://en.wikipedia.org
 
 ### `cookies`
 
-A whitelist of cookie names to include values for in the cache key.
+A safelist of cookie names to include values for in the cache key.
 
 All cookies will bypass the cache when using the default (`['*']`) or if the `Set-Cookie` header is present.
 
@@ -155,7 +155,7 @@ cache:
 **Values:**
 * `['*']`: any request with a cookie will bypass the cache [default]
 * `[]`: Ignore all cookies
-* `['cookie_1','cookie_2']`: A whitelist of cookies to include in the cache key. All other cookies are ignored.
+* `['cookie_1','cookie_2']`: A safelist of cookies to include in the cache key. All other cookies are ignored.
 {{< /note >}}
 
 A cookie value may also be a regular expression.  An entry that begins and ends with a `/` will be interpreted as a PCRE regular expression to match the cookie name.  For example:

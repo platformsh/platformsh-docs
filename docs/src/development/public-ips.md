@@ -8,7 +8,7 @@ description: |
 
 {{< description >}}
 
-Use the inbound IP addresses if you have a corporate firewall which blocks outgoing SSH connections.  In that case, simply add our IP addresses for inbound traffic below to your whitelist.
+Use the inbound IP addresses if you have a corporate firewall which blocks outgoing SSH connections.  In that case, simply add our IP addresses for inbound traffic below to your safelist.
 
 {{< note >}}
 These IP addresses are stable, but not guaranteed to never change. Prior to any future change, all affected customers will receive ample warning.
