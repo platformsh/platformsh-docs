@@ -18,7 +18,7 @@ A default TYPO3 installation has a risk of deadlocks when run on low-worker PHP-
     $GLOBALS['TYPO3_CONF_VARS']['HTTP']['timeout'] = 3;
     ```
 
-to your `typo3config/AdditionalConfiguration.php` file, which will set an HTTP timeout of 3 seconds instead of the default several minutes.  (You may select a different number, but keep it under 10 seconds.)
+    to your `typo3config/AdditionalConfiguration.php` file, which will set an HTTP timeout of 3 seconds instead of the default several minutes.  (You may select a different number, but keep it under 10 seconds.)
 
 2. Install and enable the [Local Page Error Handler](https://extensions.typo3.org/extension/pxa_lpeh/) plugin for TYPO3.  The easiest way to do so is through composer:
 
@@ -26,7 +26,7 @@ to your `typo3config/AdditionalConfiguration.php` file, which will set an HTTP t
     composer require pixelant/pxa-lpeh
     ```
 
-that will provide a non-loopback way to handle error pages which avoids this race condition entirely.
+    that will provide a non-loopback way to handle error pages which avoids this race condition entirely.
 
 Both of these steps are already set in the [Platform.sh TYPO3 template](https://github.com/platformsh-templates/typo3), although you will need to enable the plugin yourself post-install.
 
