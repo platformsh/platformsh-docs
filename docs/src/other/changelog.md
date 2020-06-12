@@ -9,6 +9,9 @@ description: |
 
 ## 2020
 
+* **June 2020**
+  * Node.js 14: We now support [Node.js 14]({{< relref "/languages/nodejs/_index.md" >}}).
+
 * **April 2020**
   * We now offer [Xdebug on PHP]({{< relref "/languages/php/xdebug.md" >}}) containers.
   * Custom [activity scripts]({{< relref "/integrations/activity/_index.md#activity-scripts" >}}) are now available, in alpha.
