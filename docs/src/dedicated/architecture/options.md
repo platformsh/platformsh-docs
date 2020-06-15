@@ -46,7 +46,7 @@ By default, Platform.sh will serve generic Platform.sh-branded error pages for e
 
 ## IP restrictions
 
-Platform.sh supports project-level IP restrictions (whitelisting) and HTTP Basic authentication.  These may be configured through the Development Environment and will be automatically replicated from the `production` and `staging` branches to the production and staging environments, respectively.
+Platform.sh supports project-level IP restrictions (allow/deny) and HTTP Basic authentication.  These may be configured through the Development Environment and will be automatically replicated from the `production` and `staging` branches to the production and staging environments, respectively.
 
 {{< note >}}
 Changing access control will trigger a new deploy of the current environment. However, the changes will not propagate to child environments until they are manually redeployed.
