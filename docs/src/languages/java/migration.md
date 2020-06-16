@@ -6,7 +6,7 @@ sidebarTitle: "Moving to Platform.sh"
 It is common to have a Java application that wants to migrate to Platform.sh. It has support to several styles of Java application such as monolith, microservices, stateful, and stateless.
 ## Minimum Requirement
 
-To run a Java application at Platform.sh you must check: 
+To run a Java application at Platform.sh you will need: 
 
 * [A supported Java version](https://docs.platform.sh/languages/java.html#supported-versions)
 * [A build management tool](https://docs.platform.sh/languages/java.html#support-build-automation)
