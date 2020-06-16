@@ -36,6 +36,8 @@ To start a Java application, you need to understand the [Platform.sh structure](
 ### Application
 
 ```yaml
+# .platform.app.yaml
+
 name: app
 type: "java:<version>"
 disk: 1024
