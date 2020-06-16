@@ -9,7 +9,7 @@ It is common to have a Java application that wants to migrate to Platform.sh. It
 To run a Java application at Platform.sh you must check: 
 
 * [A supported Java version](https://docs.platform.sh/languages/java.html#supported-versions)
-* [A build management](https://docs.platform.sh/languages/java.html#support-build-automation)
+* [A build management tool](https://docs.platform.sh/languages/java.html#support-build-automation)
   * [Gradle](https://docs.gradle.org/current/userguide/gradle_wrapper.html)
   * [Maven](https://maven.apache.org/) 
   * [Maven Wrapper](https://www.baeldung.com/maven-wrapper)
