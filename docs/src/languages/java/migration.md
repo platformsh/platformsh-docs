@@ -4,9 +4,6 @@ weight: 2
 sidebarTitle: "Moving to Platform.sh"
 ---
 It is common to have a Java application that wants to migrate to Platform.sh. It has support to several styles of Java application such as monolith, microservices, stateful, and stateless.
-
-
-
 ## Minimum Requirement
 
 
