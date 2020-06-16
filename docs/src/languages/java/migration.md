@@ -39,7 +39,7 @@ To start a Java application, you need to understand the Platform.sh [structure](
 
 ```yaml
 name: app
-type: "java:<version>" 1
+type: "java:<version>"
 disk: 1024
 hooks:
     build: 2
