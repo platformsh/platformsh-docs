@@ -47,7 +47,7 @@ web:
 ```
 
 1. [A Java version](https://docs.platform.sh/languages/java.html#supported-versions), e,g.: `java:11`
-2. [The build defines what happens when building the application](https://docs.platform.sh/configuration/app/build.html#build), This build process might generate an executable file such as a uber-jar e.g.: `mvn clean package`
+2. [The build defines what happens when building the application](https://docs.platform.sh/configuration/app/build.html#build), This build process will typically generate an executable file such as a uber-jar e.g.: `mvn clean package`
 3. [The commands key defines the command to launch the application](https://docs.platform.sh/configuration/app/web.html#commands). E.g.:  `java -jar file.jar`
 4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That is trivial if your application follows the port bind principle. E.g.: `java -jar jar --port=$PORT`
 
