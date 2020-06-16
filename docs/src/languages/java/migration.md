@@ -132,10 +132,10 @@ Several variables might pollute the application files if you wish there is the `
 E.g.:
 
 ```shell
-export HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].host"`
-export PASSWORD=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].password"`
-export USER=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].username"`
-export DATABASE=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].path"`
+export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host"`
+export DB_PASSWORD=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].password"`
+export DB_USER=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username"`
+export DB_DATABASE=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].path"`
 export JDBC=jdbc:postgresql://${HOST}/${DATABASE}
 export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
 export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
