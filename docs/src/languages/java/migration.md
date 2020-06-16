@@ -25,7 +25,7 @@ To run a Java application at Platform.sh you must check:
   * The default Git repository provided by Platform.sh
 
 {{< note >}}
-A container application cannot be bigger than **8 GB**, checkout, [tunning](https://docs.platform.sh/languages/java/tuning.html) to more details.
+A container application cannot be bigger than **8 GB**, see  [tunning](https://docs.platform.sh/languages/java/tuning.html) to more details.
 {{< /note >}}
 
 ## Monolith/Single Application
