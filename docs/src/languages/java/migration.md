@@ -54,6 +54,8 @@ web:
 ### Route
 
 ```yaml
+# .platform/routes.yaml
+
 "https://{default}/":
   type: upstream
   upstream: 1
