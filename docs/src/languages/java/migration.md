@@ -119,7 +119,7 @@ The services information is available in the **PLATFORM_RELATIONSHIPS** [environ
 Platform.sh has support to [jq](https://stedolan.github.io/jq/) that allows to extract information from this JSON.
 
 ```shell
-export HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].host"`
+export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host"`
 ```
 
 | Article                                                      | Source                                                       |
