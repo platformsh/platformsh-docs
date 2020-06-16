@@ -110,7 +110,7 @@ After activating the container application to access other services or another a
 
 ### Overwrite
 
-If you are using some frameworks that follow the [Twelve-Factor App](https://12factor.net/), mainly the [third term](https://12factor.net/config) such as Spring, Eclipse MicroProfile Config, Quarkus, Micronauts, and so on, that is easy because you can overwrite the configuration on the application file without add any dependency.
+If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you will be able to configure the application directly from environment variables.  Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
 
 The services information are on the as **PLATFORM_RELATIONSHIPS** [environment that will exist only on a runtime](https://docs.platform.sh/development/variables.html) that is A base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. 
 
