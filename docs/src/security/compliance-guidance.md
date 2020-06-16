@@ -26,7 +26,7 @@ Cardholder processing activity is discouraged. Please use a third party processo
 
 * Because customers can use our PaaS in a variety of ways, the best approach with auditors is to focus on “What do I, the customer, control/configure and how is it managed in a compliant manner?”
 
-* The `OVH-FR-2` region is excluded from our PCI and SOC2 certifications. 
+* The `OVH-FR-2` region is excluded from our PCI and SOC2 certifications.
 
 ## Responsibility
 
