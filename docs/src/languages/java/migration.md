@@ -10,28 +10,28 @@ It is common to have a Java application that wants to migrate to Platform.sh. It
 
 To run a Java application at Platform.sh you will need: 
 
-* [A supported Java version](https://docs.platform.sh/languages/java.html#supported-versions)
-* [A build management tool](https://docs.platform.sh/languages/java.html#support-build-automation)
+* [A supported Java version]({{< relref "/languages/java.md#supported-versions" >}})
+* [A build management tool]({{< relref "/languages/java.md#support-build-automation" >}})
   * [Gradle](https://docs.gradle.org/current/userguide/gradle_wrapper.html)
   * [Maven](https://maven.apache.org/) 
   * [Maven Wrapper](https://www.baeldung.com/maven-wrapper)
   * [Ant](https://ant.apache.org/)
 * A Git Repository:
-  * [GitHub](https://docs.platform.sh/integrations/source/github.html)
-  * [BitBucket](https://docs.platform.sh/integrations/source/bitbucket.html)
-  * [GitLab](https://docs.platform.sh/integrations/source/gitlab.html)
+  * [GitHub]({{< relref "integrations/source/github.md" >}})
+  * [BitBucket]({{< relref "integrations/source/bitbucket.md" >}})
+  * [GitLab]({{< relref "integrations/source/gitlab.md" >}})
   * The default Git repository provided by Platform.sh
 
 {{< note >}}
-A container application cannot be bigger than **8 GB**, see  [tunning](https://docs.platform.sh/languages/java/tuning.html) to more details.
+A container application cannot be bigger than **8 GB** of memory, see  [tunning](https://docs.platform.sh/languages/java/tuning.html) to more details.
 {{< /note >}}
 
 ## Monolith/Single Application
 
 To start a Java application, you need to understand the [Platform.sh structure](https://docs.platform.sh/overview/structure.html).  At minimum you will need three [YAML files](https://docs.platform.sh/configuration/yaml.html): 
 
-1. [Application](https://docs.platform.sh/configuration/app.html)
-2. [Route](https://docs.platform.sh/configuration/routes.html)
+1. [Application]({{< relref "configuration/app.md" >}})
+2. [Route]({{< relref "configuration/routes.md" >}})
 
 ### Application
 
@@ -48,9 +48,9 @@ web:
         start: 3
 ```
 
-1. [A Java version](https://docs.platform.sh/languages/java.html#supported-versions), e,g.: `java:11`
-2. [The build defines what happens when building the application](https://docs.platform.sh/configuration/app/build.html#build), This build process will typically generate an executable file such as a uber-jar e.g.: `mvn clean package`
-3. [The commands key defines the command to launch the application](https://docs.platform.sh/configuration/app/web.html#commands). E.g.:  `java -jar file.jar`
+1. [A Java version]({{< relref "languages/java.md#supported-versions" >}}), e,g.: `java:11`
+2. [The build defines what happens when building the application]({{< relref "configuration/app/build.md#build" >}}), This build process will typically generate an executable file such as a uber-jar e.g.: `mvn clean package`
+3. [The commands key defines the command to launch the application]({{< relref "configuration/app/web.md#commands" >}}). E.g.:  `java -jar file.jar`
 4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That is trivial if your application follows the port bind principle. E.g.: `java -jar jar --port=$PORT`
 
 ### Route
@@ -72,7 +72,7 @@ web:
 
 Be aware that the container has a maximum memory if the application is stateless to increase a more powerful computer, there is the strategy to use a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553).
 
-Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](https://docs.platform.sh/configuration/app/storage.html#mounts).
+Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder]({{< relref "configuration/app/storage.md#mounts" >}}).
 
 {{< /note >}}
 
@@ -84,10 +84,10 @@ You have the option to use several languages in microservices. If you're using J
 * [Gradle Multi-project](https://guides.gradle.org/creating-multi-project-builds/)
 * [Git submodules](https://docs.platform.sh/development/submodules.html)
 
-[Platform.sh supports multiple applications](https://docs.platform.sh/configuration/app/multi-app.html) and there are two options:
+[Platform.sh supports multiple applications]({{< relref "configuration/app/multi-app.md" >}}) and there are two options:
 
-* [One application YAML file to each application](https://docs.platform.sh/configuration/app.html)
-* [Aggregate all applications in a single file with applications.yaml](https://docs.platform.sh/configuration/app/multi-app.html#applicationsyaml)
+* [One application YAML file to each application]({{< relref "configuration/app.md" >}})
+* [Aggregate all applications in a single file with applications.yaml]({{< relref "configuration/app/multi-app.md#applicationsyaml" >}})
 
 | Article                                                      | Content                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -104,9 +104,9 @@ As a single application, you have the option to set load balancer to some or [al
 
 ## Access to services included at Platform.sh
 
-[Unlike other PaaS services, Platform.sh is batteries included, which means that you don’t need to subscribe to an external service to get a cache or a search engine](https://docs.platform.sh/configuration/services.html). However, you can use a database or any services such as a transition process, just be aware of the [firewall](https://docs.platform.sh/configuration/app/firewall.html). 
+[Unlike other PaaS services, Platform.sh is batteries included, which means that you don’t need to subscribe to an external service to get a cache or a search engine]({{< relref "configuration/services.md" >}}). However, you can use a database or any services such as a transition process, just be aware of the [firewall]({{< relref "configuration/app/firewall.md" >}}). 
 
-When applications need to access a service, it is important to include the [Relationships key](https://docs.platform.sh/configuration/app/relationships.html), because. by default an application may not talk to any other container within a project it includes others projects as a microservices architecture.
+When applications need to access a service, it is important to include the [Relationships key]({{< relref "configuration/app/relationships.md" >}}), because. by default an application may not talk to any other container within a project it includes others projects as a microservices architecture.
 
 To connect to a service from your deployed application, you will need to pass the relationships information into your application's configuration.  The way to do so varies with the application.  The most common mechanisms are listed below.
 
@@ -129,7 +129,7 @@ export HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].host"`
 | [Spring Data JPA](https://community.platform.sh/t/how-to-overwrite-spring-data-variable-to-access-platform-sh-services/518) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/tree/master/spring-jpa) |
 | [Payara JPA](https://community.platform.sh/t/how-to-overwrite-variables-to-payara-jpa-access-platform-sh-sql-services/519) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/blob/master/payara/README.md) |
 
-Several variables might pollute the application files if you wish there is the `.environment` [file as part of your application](https://docs.platform.sh/development/variables.html?#shell-variables). 
+Several variables might pollute the application files if you wish there is the `.environment` [file as part of your application]({{< relref "development/variables.md?#shell-variables" >}}). 
 
 E.g.:
 
