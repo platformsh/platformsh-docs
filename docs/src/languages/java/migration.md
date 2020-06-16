@@ -112,7 +112,7 @@ To connect to a service from your deployed application, you will need to pass th
 
 If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you will be able to configure the application directly from environment variables.  Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
 
-The services information are on the as **PLATFORM_RELATIONSHIPS** [environment that will exist only on a runtime](https://docs.platform.sh/development/variables.html) that is A base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. 
+The services information is available in the **PLATFORM_RELATIONSHIPS** [environment variable]({{< relref development/variables.md >}}).  It is a base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. 
 
 Platform.sh has support to [jq](https://stedolan.github.io/jq/) that allows to extract information from this JSON.
 
