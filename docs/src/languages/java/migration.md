@@ -30,7 +30,7 @@ A container application cannot be bigger than **8 GB**, checkout, [tunning](http
 
 ## Monolith/Single Application
 
-To start a Java application, you need to understand the Platform.sh [structure](https://docs.platform.sh/overview/structure.html), as mimimium it requests two [YAML files](https://docs.platform.sh/configuration/yaml.html): 
+To start a Java application, you need to understand the [Platform.sh structure](https://docs.platform.sh/overview/structure.html).  At minimum you will need three [YAML files](https://docs.platform.sh/configuration/yaml.html): 
 
 1. [Application](https://docs.platform.sh/configuration/app.html)
 2. [Route](https://docs.platform.sh/configuration/routes.html)
