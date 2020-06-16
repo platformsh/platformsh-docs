@@ -104,7 +104,7 @@ As a single application, you have the option to set load balancer to some or [al
 
 [Unlike other PaaS services, Platform.sh is batteries included, which means that you don’t need to subscribe to an external service to get a cache or a search engine](https://docs.platform.sh/configuration/services.html). However, you can use a database or any services such as a transition process, just be aware of the [firewall](https://docs.platform.sh/configuration/app/firewall.html). 
 
-When applications need to access a service, it is important to activate the [Relationships tag](https://docs.platform.sh/configuration/app/relationships.html), because. by default an application may not talk to any other container within a project it includes others projects as a microservices architecture.
+When applications need to access a service, it is important to include the [Relationships key](https://docs.platform.sh/configuration/app/relationships.html), because. by default an application may not talk to any other container within a project it includes others projects as a microservices architecture.
 
 After activating the container application to access other services or another application container, the next step is to connect your app to those services. There are several ways to do that, we'll explain the main ones.
 
