@@ -70,7 +70,7 @@ web:
 
 {{< note >}}
 
-Be aware that the container has a maximum memory if the application is stateless to increase a more powerful computer, there is the strategy to use a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553).
+Application instances have a limited amount of memory, the size of which depends on your plan and configuration.  The largest available is 8 GB.  A stateless application can be scaled horizontally to multiple application instances using Varnish in a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553) configuration.
 
 Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder]({{< relref "configuration/app/storage.md#mounts" >}}).
 
