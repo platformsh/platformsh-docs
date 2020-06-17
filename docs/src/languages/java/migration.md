@@ -116,7 +116,7 @@ If you are using a framework that follows the [Twelve-Factor App](https://12fact
 
 The services information is available in the **PLATFORM_RELATIONSHIPS** [environment variable]({{< relref development/variables.md >}}).  It is a base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. 
 
-Platform.sh has support to [jq](https://stedolan.github.io/jq/) that allows to extract information from this JSON.
+Platform.sh supports [jq](https://stedolan.github.io/jq/) that allows to extract information from this JSON.
 
 ```shell
 export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host"`
