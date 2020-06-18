@@ -30,7 +30,7 @@ Platform.sh supports the most common project management tools in the Java ecosys
 * [Maven](https://maven.apache.org/)
 * [Ant](https://ant.apache.org/)
 
-## Polyglot Java
+## Other JVM languages
 
 It’s worth remembering that the JVM by its specification [does not read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages).
 
