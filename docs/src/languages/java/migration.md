@@ -4,7 +4,7 @@ weight: 2
 sidebarTitle: "Moving to Platform.sh"
 ---
 
-It is common to have a Java application that wants to migrate to Platform.sh. It has support to several styles of Java application such as monolith, microservices, stateful, and stateless.
+It is common to have a Java application that you want to migrate to Platform.sh.  Platform.sh supports several styles of Java application, such as monolith, microservices, stateful, and stateless.
 
 ## Minimum Requirement
 
@@ -72,6 +72,7 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 1. It defines the application will link in the route, e.g.: `"app:http"`
 
 {{< note >}}
+Application instances have a limited amount of memory, the size of which depends on your plan and configuration.  The largest available is 8 GB.  A stateless application can be scaled horizontally to multiple application instances using Varnish in a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553) configuration.
 Be aware that the container has a maximum memory if the application is stateless to increase a more powerful computer, there is the strategy to use a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553).
 {{< /note >}}
 
@@ -97,7 +98,7 @@ You have the option to use several languages in microservices. If you're using J
 
 {{< note >}}
 
-As a single application, you have the option to set load balancer to some or [all applications in the project cluster](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-multiple-applications/554).
+As a single application, in the multi-app, you have the option to set load balancer to some or [all applications in the project cluster](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-multiple-applications/554).
 
 {{< /note >}}
 
@@ -115,7 +116,7 @@ If you are using a framework that follows the [Twelve-Factor App](https://12fact
 
 The services information is available in the **PLATFORM_RELATIONSHIPS** [environment variable]({{< relref development/variables.md >}}).  It is a base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. 
 
-Platform.sh has support to [jq](https://stedolan.github.io/jq/) that allows to extract information from this JSON.
+Platform.sh supports [jq](https://stedolan.github.io/jq/) that allows to extract information from this JSON.
 
 ```shell
 export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host"`
