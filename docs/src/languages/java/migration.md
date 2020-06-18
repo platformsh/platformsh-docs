@@ -53,6 +53,9 @@ web:
 3. [The commands key defines the command to launch the application]({{< relref "configuration/app/web.md#commands" >}}). E.g.:  `java -jar file.jar`
 4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That is trivial if your application follows the port bind principle. E.g.: `java -jar jar --port=$PORT`
 
+{{< note >}}
+Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder]({{< relref "configuration/app/storage.md#mounts" >}}).
+{{< /note >}}
 ### Route
 
 ```yaml
@@ -69,11 +72,7 @@ web:
 1. It defines the application will link in the route, e.g.: `"app:http"`
 
 {{< note >}}
-
 Be aware that the container has a maximum memory if the application is stateless to increase a more powerful computer, there is the strategy to use a [load balancer](https://community.platform.sh/t/how-to-configure-load-balancer-in-a-single-application/553).
-
-Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder]({{< relref "configuration/app/storage.md#mounts" >}}).
-
 {{< /note >}}
 
 ## Microservices
@@ -104,7 +103,7 @@ As a single application, you have the option to set load balancer to some or [al
 
 ## Access to services included at Platform.sh
 
-[Unlike other PaaS services, Platform.sh is batteries included, which means that you don’t need to subscribe to an external service to get a cache or a search engine]({{< relref "configuration/services.md" >}}). However, you can use a database or any services such as a transition process, just be aware of the [firewall]({{< relref "configuration/app/firewall.md" >}}). 
+[Platform.sh has services managed by Platform.sh itself such as database, cache and search engine]({{< relref "configuration/services.md" >}}). However, you can use a database or any services such as a transition process, just be aware of the [firewall]({{< relref "configuration/app/firewall.md" >}}). 
 
 When applications need to access a service, it is important to include the [Relationships key]({{< relref "configuration/app/relationships.md" >}}), because. by default an application may not talk to any other container within a project it includes others projects as a microservices architecture.
 
@@ -129,7 +128,7 @@ export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".databas
 | [Spring Data JPA](https://community.platform.sh/t/how-to-overwrite-spring-data-variable-to-access-platform-sh-services/518) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/tree/master/spring-jpa) |
 | [Payara JPA](https://community.platform.sh/t/how-to-overwrite-variables-to-payara-jpa-access-platform-sh-sql-services/519) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/blob/master/payara/README.md) |
 
-Several variables might pollute the application files if you wish there is the `.environment` [file as part of your application]({{< relref "development/variables.md?#shell-variables" >}}). 
+To reduce the number of lines in the application file and to make it cleaner, you have the option to move the variable environment to another file: the `.environment` [file as part of your application]({{< relref "development/variables.md?#shell-variables" >}}). 
 
 E.g.:
 
