@@ -16,7 +16,9 @@ Every application container as well as every service in `.platform/services.yaml
 
 Legal values for the `size` key are `AUTO` (the default), `S`, `M`, `L`, `XL`, `2XL`, `4XL`.
 
-Note that in a development environment this value is ignored and always set to `S`.  It will only take effect in a production deployment (a master branch with an associated domain).  If the total resources requested by all apps and services is larger than what the plan size allows then a production deployment will fail with an error.
+If the total resources requested by all apps and services is larger than what the plan size allows then a production deployment will fail with an error.
+
+Note that in a development environment this value is ignored.  Service containers are always set to size `S` in development environments.  The application container is always set to the "Development Application Size" as configured on the plan.  That defaults to `S` but you can increase it on your plan settings page for a fee.
 
 ## How do I make a background processing container smaller to save resources?
 
