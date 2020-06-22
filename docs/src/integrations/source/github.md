@@ -58,6 +58,7 @@ Optional parameters:
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`false` by default)
 * `--pull-requests-clone-parent-data`: Set to `false` to disable cloning of parent environment data when creating a PR environment, so each PR environment starts with no data. (`true` by default)
 * `--base-url`: Only set if using GitHub Enterprise, hosted on your own server.  If so, set this to the base URL of your private server (the part before the user and repository name).
+* `--build-draft-pull-requests`: If set to `true`, [draft pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) will also have an environment created.  If false they will be ignored.  (`true` by default)
 
 The CLI will create the necessary webhook for you when there's correct permission set in the given token.
 
