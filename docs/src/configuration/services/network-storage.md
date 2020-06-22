@@ -57,17 +57,23 @@ It is also possible to have one application mount a `source_path` that is a subd
 
 `app1`:
 
-{{< readFile file="src/registry/images/examples/full/network-storage.app.yaml" highlight="yaml" >}}
+```yaml
+mounts:
+    'web/uploads':
+        source: service
+        service: files
+        source_path: uploads
+```
 
 `app2`:
 
 ```yaml
 mounts:
-    'process':
+    'web/uploads/process':
         source: service
         service: files
         source_path: uploads/incoming
-    'done':
+    'web/uploads/done':
         source: service
         service: files
         source_path: uploads/done
