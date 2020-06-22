@@ -55,6 +55,10 @@ Although Platform.sh does not recommend it, you can also redirect HTTPS requests
 
 Of course, more complex routing logic is possible if the situation calls for it. However, we recommend defining HTTPS routes exclusively.
 
+{{< note >}}
+Let's Encrypt has a limit of 100 TLS certificates per environment.  If you define both a `{default}` and `www.{default}` route for each domain you use, that will give you a limit of 50 domains.  Adding more than that will result in a warning on deploy and some domains will not be issued a TLS certificate.  If you need more than that, we recommend obtaining additional certificates or a wildcard certificate from another TLS provider.  Alternatively, consider splitting your project up into multiple discrete Platform.sh projects.
+{{< /note >}}
+
 ## TLS configuration
 
 Optionally, it's possible to further refine how secure TLS connections are handled on your cluster via the `tls` route property.
