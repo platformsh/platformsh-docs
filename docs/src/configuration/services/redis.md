@@ -77,7 +77,7 @@ runtime:
         - redis
 
 relationships:
-    rediscache: "cache:redis"
+    rediscache: "cacheredis:redis"
 ```
 
 You can then use the service in a configuration file of your application with something like:

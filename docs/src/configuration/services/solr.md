@@ -93,7 +93,7 @@ For Solr 4, Platform.sh supports only a single core per server called `collectio
 You must provide your own Solr configuration via a `core_config` key in your ``.platform/services.yaml``:
 
 ```yaml
-search:
+searchsolr:
     type: solr:4.10
     disk: 1024
     configuration:
@@ -103,7 +103,7 @@ search:
 The `directory` parameter points to a directory in the Git repository, in or below the `.platform/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.  For example, place them in `.platform/solr/conf/` such that the `schema.xml` file is located at `.platform/solr/conf/schema.xml`.   You can then reference that path like this -
 
 ```yaml
-search:
+searchsolr:
     type: solr:4.10
     disk: 1024
     configuration:
@@ -115,7 +115,7 @@ search:
 For Solr 6 and later Platform.sh supports multiple cores via different endpoints.  Cores and endpoints are defined separately, with endpoints referencing cores.  Each core may have its own configuration or share a configuration.  It is best illustrated with an example.
 
 ```yaml
-search:
+searchsolr:
     type: solr:8.4
     disk: 1024
     configuration:
@@ -139,8 +139,8 @@ Each endpoint is then available in the relationships definition in `.platform.ap
 
 ```yaml
 relationships:
-    solrsearch1: 'search:main'
-    solrsearch2: 'search:extra'
+    solrsearch1: 'searchsolr:main'
+    solrsearch2: 'searchsolr:extra'
 ```
 
 That is, the application's environment would include a `solr1` relationship that connects to the `main` endpoint, which is the `mainindex` core, and a `solr2` relationship that connects to the `extra` endpoint, which is the `extraindex` core.
@@ -173,7 +173,7 @@ The relationships array would then look something like the following:
 For even more customizability, it's also possible to define Solr configsets.  For example, the following snippet would define one configset, which would be used by all cores.  Specific details can then be overriden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
 ```yaml
-search:
+searchsolr:
     type: solr:8.4
     disk: 1024
     configuration:
@@ -204,7 +204,7 @@ Note that not all core.properties features make sense to specify in the core_pro
 If no configuration is specified, the default configuration is equivalent to:
 
 ```yaml
-search:
+searchsolr:
     type: solr:8.4
     configuration:
         cores:
@@ -234,7 +234,7 @@ platform tunnel:open
 That will open an SSH tunnel to all services on the current environment, and give an output similar to:
 
 ```bash
-SSH tunnel opened on port 30000 to relationship: solr
+SSH tunnel opened on port 30000 to relationship: solrsearch
 SSH tunnel opened on port 30001 to relationship: database
 Logs are written to: /home/myuser/.platformsh/tunnels.log
 
