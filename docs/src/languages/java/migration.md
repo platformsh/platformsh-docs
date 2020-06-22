@@ -39,13 +39,13 @@ To start a Java application, you need to understand the [Platform.sh structure](
 # .platform.app.yaml
 
 name: app
-type: "java:<version>" 1
+type: "java:<version>" [1]
 disk: 1024
 hooks:
-    build: 2
+    build: [2]
 web:
     commands:
-        start: 3
+        start: [3]
 ```
 
 1. [A Java version]({{< relref "languages/java.md#supported-versions" >}}), e,g.: `java:11`
@@ -63,7 +63,7 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 
 "https://{default}/":
   type: upstream
-  upstream: 1
+  upstream: [1]
 "https://www.{default}/":
   type: redirect
   to: "https://{default}/"
