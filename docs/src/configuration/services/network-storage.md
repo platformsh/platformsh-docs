@@ -69,11 +69,11 @@ mounts:
 
 ```yaml
 mounts:
-    'web/uploads/process':
+    'process':
         source: service
         service: files
         source_path: uploads/incoming
-    'web/uploads/done':
+    'done':
         source: service
         service: files
         source_path: uploads/done
