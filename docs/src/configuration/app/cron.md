@@ -24,7 +24,7 @@ If an application defines both a `web` instance and a `worker` instance, cron ta
 Cron log output is captured in the at `/var/log/cron.log`.  See the [Log page](/development/logs.md) for more information on logging.
 {{< /note >}}
 
-### commands
+### Commands
 
 There are two mutually-exclusive ways to define the cron commands.
 
@@ -71,10 +71,12 @@ crons:
     # Run Drupal's cron tasks every 19 minutes.
     drupal:
         spec: '*/19 * * * *'
-        cmd: 'cd web ; drush core-cron'
+        commands:
+            start: 'cd web ; drush core-cron'
     # But also run pending queue tasks every 7 minutes.
     # Use an odd number to avoid running at the same time as the `drupal` cron.
     drush-queue:
         spec: '*/7 * * * *'
-        cmd: 'cd web ; drush queue-run aggregator_feeds'
+        commands:
+            start: 'cd web ; drush queue-run aggregator_feeds'
 ```
