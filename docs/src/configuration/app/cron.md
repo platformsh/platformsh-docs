@@ -42,7 +42,7 @@ crons:
 
 The `start` key is the cron command that should execute according to the specified schedule.  If a cron task is interrupted by a user through the CLI or Web Admin Console, then the `stop` command will be issued to give the cron command a chance to shutdown gracefully, such as finish an active item in a list of tasks.  If no `stop` command is specified then a `SIGTERM` signal will be sent to the process.
 
-If the cron process is still running after `shutdown_timeout` seconds, a `SIGKILL` signal will be sent to the process to force terminate it.  If not specified, the default `shutdown_timer` is 10 seconds.
+If the cron process is still running after `shutdown_timeout` seconds, a `SIGKILL` signal will be sent to the process to force terminate it.  If not specified, the default `shutdown_timeout` is 10 seconds.
 
 The second cron variant uses `cmd` and specifies only a start command.  That is a shorthand for the default `shutdown_timeout` and no custom `stop` command.  That is, the following two declarations are equivalent.
 
