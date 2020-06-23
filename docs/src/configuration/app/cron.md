@@ -9,7 +9,8 @@ Cron jobs allow you to run scheduled tasks at specified times or intervals. The 
 It has a few subkeys listed below:
 
 * **spec**: The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). For example: `*/19 * * * *` to run every 19 minutes.
-* **cmd**: The command that is executed, or a pair of start and stop commands.
+* **cmd**: The command to execute.
+* **commands**: A set of lifecycle commands to execute.
 
 The minimum interval between cron runs is 5 minutes, even if specified as less.  Additionally, a variable delay is added to each cron job in each project in order to prevent host overloading should every project try to run their nightly tasks at the same time.  Your crons will *not* run exactly at the time that you specify, but will be delayed by 0-300 seconds.
 
@@ -23,15 +24,17 @@ If an application defines both a `web` instance and a `worker` instance, cron ta
 Cron log output is captured in the at `/var/log/cron.log`.  See the [Log page](/development/logs.md) for more information on logging.
 {{< /note >}}
 
-### `cron` commands
+### commands
 
-The `cmd` key has two variants.  The full version is the following:
+There are two mutually-exclusive ways to define the cron commands.
+
+The full version is the following:
 
 ```yaml
 crons:
     mycommand:
         spec: '*/17 * * * *'
-        cmd:
+        commands:
             start: <command here>
             stop: <command here>
             shutdown_timeout: 10
@@ -41,13 +44,13 @@ The `start` key is the cron command that should execute according to the specifi
 
 If the cron process is still running after `shutdown_timeout` seconds, a `SIGKILL` signal will be sent to the process to force terminate it.  If not specified, the default `shutdown_timer` is 10 seconds.
 
-The second cron variant specifies only a `start` command.  That is a shorthand for the default `shutdown_timeout` and no custom `stop` command.  That is, the following two declarations are equivalent.
+The second cron variant uses `cmd` and specifies only a start command.  That is a shorthand for the default `shutdown_timeout` and no custom `stop` command.  That is, the following two declarations are equivalent.
 
 ```yaml
 crons:
     sendemails:
         spec: '*/7 * * * *'
-        cmd:
+        commands:
             start: cd public && send-pending-emails.sh
             shutdown_timeout: 10
 
