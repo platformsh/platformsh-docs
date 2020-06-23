@@ -3,6 +3,30 @@ title: "Upgrading"
 weight: 14
 ---
 
+# Changes in version 2020.08
+
+* The cron `cmd` syntax is now deprecated in favor of `commands`.  If you have a cron definition similar to this:
+
+```yaml
+crons:
+    sendemails:
+        spec: '*/7 * * * *'
+        cmd: cd public && send-pending-emails.sh
+```
+
+it can now be written like:
+
+```yaml
+crons:
+    sendemails:
+        spec: '*/7 * * * *'
+        commands:
+            start: cd public && send-pending-emails.sh
+            shutdown_timeout: 10
+```
+
+The new syntax offers greater flexibility and configuration.  See the [cron documentation]({{< relref "/configuration/app/cron.md" >}}) for more details.
+
 ## Changes in version 2019.05
 
 * The `!archive` tag in YAML has been un-deprecated, and is now favored over the `!include` option. `!include` is still available for other include types (`yaml`, `binary`, and `string`).

@@ -9,7 +9,6 @@ Cron jobs allow you to run scheduled tasks at specified times or intervals. The 
 It has a few subkeys listed below:
 
 * **spec**: The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). For example: `*/19 * * * *` to run every 19 minutes.
-* **cmd**: The command to execute.
 * **commands**: A set of lifecycle commands to execute.
 
 The minimum interval between cron runs is 5 minutes, even if specified as less.  Additionally, a variable delay is added to each cron job in each project in order to prevent host overloading should every project try to run their nightly tasks at the same time.  Your crons will *not* run exactly at the time that you specify, but will be delayed by 0-300 seconds.
@@ -26,9 +25,7 @@ Cron log output is captured in the at `/var/log/cron.log`.  See the [Log page](/
 
 ### Commands
 
-There are two mutually-exclusive ways to define the cron commands.
-
-The full version is the following:
+There are two cron-related commands you can specify, one required and one optional.
 
 ```yaml
 crons:
@@ -40,11 +37,13 @@ crons:
             shutdown_timeout: 10
 ```
 
-The `start` key is the cron command that should execute according to the specified schedule.  If a cron task is interrupted by a user through the CLI or Web Admin Console, then the `stop` command will be issued to give the cron command a chance to shutdown gracefully, such as finish an active item in a list of tasks.  If no `stop` command is specified then a `SIGTERM` signal will be sent to the process.
+The `start` key is the cron command that should execute according to the specified schedule.  It is required, and is often all you need.
+
+If a cron task is interrupted by a user through the CLI or Web Admin Console, then the `stop` command will be issued to give the cron command a chance to shutdown gracefully, such as finish an active item in a list of tasks.  The `stop` command is optional, and if not specified then a `SIGTERM` signal will be sent to the process.
 
 If the cron process is still running after `shutdown_timeout` seconds, a `SIGKILL` signal will be sent to the process to force terminate it.  If not specified, the default `shutdown_timeout` is 10 seconds.
 
-The second cron variant uses `cmd` and specifies only a start command.  That is a shorthand for the default `shutdown_timeout` and no custom `stop` command.  That is, the following two declarations are equivalent.
+A legacy syntax uses `cmd` and specifies only a start command.  That is a shorthand for the default `shutdown_timeout` and no custom `stop` command.  That is, the following two declarations are equivalent.
 
 ```yaml
 crons:
@@ -61,6 +60,8 @@ crons:
         spec: '*/7 * * * *'
         cmd: cd public && send-pending-emails.sh
 ```
+
+The first version, with `command`, is preferred.
 
 ## How do I setup Cron for a typical Drupal site?
 
