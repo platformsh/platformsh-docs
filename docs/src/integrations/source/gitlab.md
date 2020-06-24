@@ -54,6 +54,7 @@ platform integration:add --type=gitlab --token=GITLAB-ACCESS-TOKEN --base-url=ht
 
 Optional parameters:
 * `--build-merge-requests`: Track and deploy merge-requests (true by default)
+* `--build-wip-merge-requests`: If set to `true`, [WIP merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/work_in_progress_merge_requests.html) will also have an environment created.  If false they will be ignored.  If `--build-merge-requests` is `false` this value is ignored.  (`true` by default)
 * `--merge-requests-clone-parent-data` : should merge requests clone the data from the parent environment (true by default)
 * `--fetch-branches`: Track and deploy branches (true by default)
 * `--prune-branches`: Delete branches that do not exist in the remote GitLab repository (true by default)
