@@ -2,10 +2,12 @@
 title: "Backup and restore"
 weight: 2
 description: |
-  Backups are triggered directly via the management console or via the CLI. The backup creates a complete snapshot of the environment. It includes all persistent data from all running services (MySQL, Solr,...) and any files stored on the mounted volumes.
+  Backups are triggered directly via the management console or via the CLI. The backup creates a complete snapshot of the environment's data. It includes all persistent data from all running services (MySQL, Solr,...) and any files stored on the mounted volumes.
 ---
 
 {{< description >}}
+
+Code is managed through Git and can be restored using normal Git routines.  The built code file system is not affected by backups or restores.
 
 ## Backups
 
