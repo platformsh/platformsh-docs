@@ -34,7 +34,7 @@
       {{- else -}}
         {{- $finalRelURL = printf "%s#%s" $url $currentHeadingAnchor -}}
       {{- end -}}
-      {{- $finalFullURL := printf "%s%s" $rootURL $finalRelURL -}}
+      {{- $finalFullURL := $finalRelURL -}}
       {{- $documentId := sha1 $finalFullURL -}}
       {{- $documents = $documents | append ( dict "title" $currentHeadingTitle "site" $site "rank" $rank "relurl" $finalRelURL "url" $finalFullURL "text" ( $runningText | safeHTML ) "documentId" $documentId "section" $section ) -}}
     {{- else -}}
