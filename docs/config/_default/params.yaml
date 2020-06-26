@@ -14,9 +14,10 @@ logolinksto: "https://platform.sh"
 favicon: "images/logos/favicon.ico"
 
 # Search
-searchtext: "Type to search"
-searchIndex:
-  base: /
+rank: 1
+site: docs
+# Don't include trailing slash. It's just easier that way.
+rooturl: "https://docs.platform.sh"
 
 # 404
 _404:
