@@ -456,6 +456,19 @@ MAIN
 
 .template-card {
   color: var(--brand-color-primary-blue);
+  margin: 1rem;
+}
+
+.template-title {
+  padding: 1rem 0rem;
+  font-size: 1.5rem;
+  line-height: 1.7;
+}
+
+.template-subheader {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  padding: 1rem 0rem;
 }
 
 .btn-template {

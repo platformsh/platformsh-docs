@@ -23,3 +23,5 @@ summaryLength: 3
 
 outputs:
     home: ['json', 'html']
+    page: ['json', 'html']
+    section: ['json', 'html']
