@@ -1,6 +1,6 @@
 name: 'search'
 
-type: 'python:3.7'
+type: 'python:3.8'
 
 dependencies:
     python3:

@@ -56,6 +56,8 @@ class XSSearch:
             "displayedAttributes": self.displayed_attributes
         }
 
+        self.distinct_attribute = "url"
+
     def get_host(self):
         """
         Sets the Meilisearch host string, depending on the environment.
@@ -115,13 +117,16 @@ class XSSearch:
             client.get_index(self.docs_index).delete()
 
         # Create a new index
-        index = client.create_index(uid=self.docs_index, primary_key=self.primaryKey, name=self.index_name)
+        index = client.create_index(uid=self.docs_index, options={'primaryKey': self.primaryKey, 'name': self.index_name})
 
         # Add synonyms for the index
         index.update_synonyms(self.synonyms)
 
         # Update its settings: what can be searched, what's displyable, and how results should be ranked.
         index.update_settings(self.updated_settings)
+
+        # Update distinct attribute.
+        index.update_distinct_attribute(self.distinct_attribute)
 
         # Add documents to the index
         self.add_documents(index)
