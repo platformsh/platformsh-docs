@@ -23,6 +23,7 @@ sidebarTitle: "Frameworks"
 * [KumuluzEE](https://github.com/platformsh-templates/microprofile-kumuluzee)
 * [Helidon](https://github.com/platformsh-templates/microprofile-helidon)
 * [Open Liberty](https://github.com/platformsh-templates/microprofile-openliberty)
+* [Wildfly](https://github.com/platformsh-templates/microprofile-wildfly/)
 
 ## Payara
 
