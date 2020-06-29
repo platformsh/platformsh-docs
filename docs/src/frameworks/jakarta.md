@@ -407,3 +407,4 @@ Furthermore, Apache Delta Spike has a [post](https://deltaspike.apache.org/docum
 * [Open Liberty](https://github.com/platformsh-templates/microprofile-openliberty)
 * [Quarkus](https://github.com/platformsh-templates/quarkus)
 * [Tomcat](https://github.com/platformsh-templates/tomcat)
+* [Wildfly](https://github.com/platformsh-templates/microprofile-wildfly/)
