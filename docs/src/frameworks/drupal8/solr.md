@@ -16,7 +16,7 @@ Advanced Solr service configuration and implementation in other frameworks other
 
 ### 0. Upgrade Symfony Event Dispatcher
 
-If you are running Drupal older than 9.0, a small workaround will be needed.  The Solarium library used by Search API Solr requires the 4.3 version of the Symfony Event Dispatcher, whereas Drupal core ships with 3.4.  The Search API Solr issue queue has a [more detailed description](https://www.drupal.org/project/search_api_solr/issues/3085196) of the problem.
+If you are running Drupal older than 9.0 and installing Search API Solr older than 4.1, a small workaround will be needed.  The Solarium library used by Search API Solr requires the 4.3 version of the Symfony Event Dispatcher, whereas Drupal core ships with 3.4.  The Search API Solr issue queue has a [more detailed description](https://www.drupal.org/project/search_api_solr/issues/3085196) of the problem.
 
 As noted there, the workaround for now is to run:
 
@@ -25,6 +25,8 @@ composer require symfony/event-dispatcher:"4.3.4 as 3.4.35"
 ```
 
 in your project root and commit the resulting change to `composer.json` and `composer.lock`.  That will cause Composer to install the 4.3 version of Event Dispatcher.  Once [this issue](https://www.drupal.org/project/drupal/issues/2876675) is resolved in core this step will no longer be necessary.
+
+If you are using the latest version of Search API Solr and running Drupal 8.8 or higher on PHP7.2 or higher, this step is no longer necessary and you should be able to proceed directly to the next step. 
 
 ### 1. Add the Drupal modules
 
