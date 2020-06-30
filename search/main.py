@@ -20,7 +20,7 @@ class XSSearch:
         self.index_name = "Docs"
 
         self.displayed_attributes = ['title', 'text', 'url', 'site', 'section']
-        self.searchable_attributes = ['title', 'subsections', 'text', 'section']
+        self.searchable_attributes = ['title', 'text', 'section']
 
         self.synonyms = {
             "routes.yaml": ["routes"],

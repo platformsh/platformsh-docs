@@ -27,6 +27,7 @@
         {{- if ne $currentHeadingTitle $pageTitle -}}
           {{- $section = $pageTitle -}}
         {{- end -}}
+        {{- $runningText = replace $runningText "\n" " " -}}
         {{- $documents = $documents | append ( dict "title" $currentHeadingTitle "site" $site "rank" $rank "relurl" $finalRelURL "url" $finalFullURL "text" ( $runningText | plainify | safeHTML ) "documentId" $documentId "section" $section ) -}}
         {{- $runningText = "" -}}
         {{- $currentHeadingAnchor = . |  plainify | anchorize -}}
@@ -43,6 +44,7 @@
         {{- if ne $currentHeadingTitle $pageTitle -}}
           {{- $section = $pageTitle -}}
         {{- end -}}
+        {{- $runningText = replace $runningText "\n" " " -}}
         {{- $documents = $documents | append ( dict "title" $currentHeadingTitle "site" $site "rank" $rank "relurl" $finalRelURL "url" $finalFullURL "text" ( $runningText | plainify | safeHTML ) "documentId" $documentId "section" $section ) -}}
       {{- else -}}
         {{- $runningText = printf "%s %s" $runningText . -}}
