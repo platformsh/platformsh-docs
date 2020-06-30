@@ -17,7 +17,7 @@ multiple instances to services.yaml and use  db_select) you will need to
 override settings.php [as described here]({{< relref "/frameworks/drupal7/customizing-settings-php.md" >}}) and
 add the other databases you could then use `db_select` to switch between those.
 
-# Old Style "Mutlisite" and Platform.sh
+# Old Style "Multisite" and Platform.sh
 
 Platform.sh actively discourages running Drupal in "multisite" mode. Doing so
 eliminates many of the advantages Platform.sh offers, such as isolation, safe
