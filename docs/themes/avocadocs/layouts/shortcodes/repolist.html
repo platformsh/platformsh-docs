@@ -10,12 +10,12 @@
 
     <div class="card">
       <div class="card-header-template" id="heading{{ .shortname }}">
-        <div class="template-card">
+        <h5 class="template-card">
           <span class="icon"><img class="chevron-template js-rotate-if-collapsed" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
           <button class="btn-template" type="button" data-toggle="collapse" data-target="#collapse{{ .shortname }}" aria-expanded="false" aria-controls="collapse{{ .shortname }}">
             {{ .name }}
           </button>
-        </div>
+        </h5>
       </div>
 
       <div id="collapse{{ .shortname }}" class="collapse" aria-labelledby="heading{{ .shortname }}" data-parent="#accordion{{ $lang }}">
@@ -23,12 +23,12 @@
           <!-- <p align="center"> -->
             <img {{ printf "src=%q" .image | safeHTMLAttr }} style="max-height:150px; max-width:250px;" alt="{{ .name }}">
           <!-- </p> -->
-          <div class="template-title"><strong>{{ .name }}</strong></div>
+          <h2>{{ .name }}</h2>
           {{ .description | safeHTML }}
 
           {{ $content:= split .content "<br/>" }}
 
-          <div class="template-subheader"><strong>Services:</strong></div>
+          <h3>Services:</h3>
           <ul>
             {{ range $content}}
               {{ $content2 := split . "<br />" }}
