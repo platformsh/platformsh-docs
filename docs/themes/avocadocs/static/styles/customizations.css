@@ -456,6 +456,7 @@ MAIN
 
 .template-card {
   color: var(--brand-color-primary-blue);
+  margin: 1rem;
 }
 
 .btn-template {
