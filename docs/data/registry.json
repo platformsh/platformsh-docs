@@ -511,7 +511,8 @@
     "versions-dedicated": {
       "supported": [
         "7.2",
-        "7.3"
+        "7.3",
+        "7.4"
       ],
       "deprecated": [
         "5.6",
