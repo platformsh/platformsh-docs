@@ -89,7 +89,7 @@ This is the complete list of extensions that can be enabled:
 | http          | *   | *   |     |     |     |     |     | *   |
 | iconv         |     |     |     | *   | *   | *   | *   | *   |
 | igbinary      |     |     |     | *   | *   | *   | *   | *   |
-| imagick       | *   | *   | *   | *   | *   | *   | *   |     |
+| imagick       | *   | *   | *   | *   | *   | *   | *   | *   |
 | imap          | *   | *   | *   | *   | *   | *   | *   | *   |
 | interbase     | *   | *   | *   | *   | *   | *   | *   | *   |
 | intl          | *   | *   | *   | *   | *   | *   | *   | *   |
