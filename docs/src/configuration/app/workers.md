@@ -55,6 +55,12 @@ To connect to a worker called `queue` (as in the example above) you would use an
 ssh 3seb7f2j6ogbm-master-7rqtwti--app--queue@ssh.us-2.platform.sh
 ```
 
+## Stopping a worker
+
+If a worker instance needs to be updated during a new deployment, a `SIGTERM` signal will first be sent to the worker process to allow it to shut down gracefully.  If your worker process cannot be interrupted mid-task, make sure it reacts to `SIGTERM` to pause its work gracefully.
+
+If the process is still running after 15 seconds, a `SIGKILL` message will be sent that force-terminates the worker process, allowing the container to be shut down and restarted.
+
 ## Workers vs Cron
 
 Both worker instances and cron tasks address similar use cases: They both address out-of-band work that an application needs to do but that should not or cannot be done as part of a normal web request.  They do so in different ways, however, and so are fit for different use cases.
@@ -224,7 +230,7 @@ workers:
 
 There's a lot going on here, but it's all reasonably straightforward.  This configuration will take a single Python 3.7 code base from your repository, download all dependencies in `requirements.txt`, and the install Gunicorn.  That artifact (your code plus the downloaded dependencies) will be deployed as three separate container instances, all running Python 3.7.
 
-The `web` instance will start a gunicorn process to serve a web application.  
+The `web` instance will start a gunicorn process to serve a web application.
 
 * It will run the gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application` definition.
 * It will have an environment variable named `TYPE` with value `web`.
