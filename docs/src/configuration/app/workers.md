@@ -57,7 +57,7 @@ ssh 3seb7f2j6ogbm-master-7rqtwti--app--queue@ssh.us-2.platform.sh
 
 ## Stopping a worker
 
-If a worker instance needs to be updated during a new deployment, a `SIGTERM` signal will first be sent to worker process to allow it to shut down gracefully.  If your worker process cannot be interrupted mid-task, make sure it reacts to `SIGTERM` to pause its work gracefully.
+If a worker instance needs to be updated during a new deployment, a `SIGTERM` signal will first be sent to the worker process to allow it to shut down gracefully.  If your worker process cannot be interrupted mid-task, make sure it reacts to `SIGTERM` to pause its work gracefully.
 
 If the process is still running after 15 seconds, a `SIGKILL` message will be sent that force-terminates the worker process, allowing the container to be shut down and restarted.
 
