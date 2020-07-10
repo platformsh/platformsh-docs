@@ -30,13 +30,22 @@ If using Fastly as a CDN, it is possible to provide either custom VCL snippets o
 
 ## TLS encryption
 
-Security and the related topic of encryption of data are fundamental principles here at Platform.sh, and as such we provide TLS certificates in the default Enterprise-Dedicated package.  This allows for encryption of all traffic between your users and your application.  By default we will provision a shared certificate with the chosen CDN vendor.  If you opt for the Global Application Cache, we will provision certificates for both the site subdomain (www) and the asset/CDN subdomain.  We use wildcard certificates to secure production, staging, and any other subdomains simultaneously.  If you need Extended Validation TLS certificates you will need to provide your own from an issuer of your choice that we can install for you.
+Security and the related topic of encryption of data are fundamental principles here at Platform.sh, and as such we provide TLS certificates in the default Enterprise-Dedicated package.  This allows for encryption of all traffic between your users and your application.  By default, we will provision a shared certificate with the chosen CDN vendor.  If you opt for the Global Application Cache, we will provision certificates for both the site subdomain (www) and the asset/CDN subdomain.  We use wildcard certificates to secure production, staging, and any other subdomains simultaneously.  If you need Extended Validation TLS certificates you will need to provide your own from an issuer of your choice that we can install for you.
 
 If you need to provide your own TLS certificate, place the certificate, the unencrypted private key, and the necessary certificate chain supplied by your TLS provider in your application's `private` directory (not web accessible), and then open a ticket to let our team know to install it.
 
 Platform.sh Enterprise-Dedicated supports a single TLS certificate on the origin. Support for multiple certificates is offered only through a CDN such as CloudFront or Fastly. Self-signed certificates can optionally be used on the origin for development purposes or for enabling TLS between the CDN and origin.
 
 All TLS certificates used with CloudFront MUST be 2048 bit certificates.  Larger sizes will not work.
+
+## Host Header forwarding
+
+The `Host` HTTP header tells the server what domain name is being requested, which may vary when multiple domains are served from the same server or through the same proxy, as is the case with a CDN.  However, the CDN cannot use the production domain name in order to reach Platform.sh, as that domain already routes to the CDN.  It therefore will use the origin name provided by Platform.sh.
+
+In order to ensure your TLS certificates are valid for both requests from clients to the CDN and from the CDN to the server on Platform.sh, you will need to take two additional steps:
+
+1. Configure your CDN to set the `X-Forwarded-Host` HTTP header to the public domain (`example.com`).  That allows the request from the CDN to Platform.sh to still carry the original requested domain.  The specific way to do so will vary by the CDN.
+2. Ensure your application can read from the `X-Forwarded-Host` header should it need the Host information.  Many popular applications already do so, but if you have a custom application make sure that it checks for that header and uses it instead of `Host` as appropriate.
 
 ## Web Application Firewall & Anti-DDoS
 
@@ -77,7 +86,7 @@ Be aware that this approach will apply the same user and password to all develop
 This is the recommended approach for CloudFlare.
 {{< /note >}}
 
-### Allowing and denying IP addresses 
+### Allowing and denying IP addresses
 
 If your CDN does not support adding headers to the request to origin, you can allow the IP addresses of your CDN.
 
