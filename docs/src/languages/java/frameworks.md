@@ -106,7 +106,7 @@ By default, Spring Boot provides an embedded Apache Tomcat build. Therefore, if 
 
 ### References
 
-| Aritcle                                                     | Source                                                       |
+| Article                                                     | Source                                                       |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | [Hello World](https://dzone.com/articles/micronaut-cloud)   | [Source](https://github.com/platformsh-templates/micronaut)  |
 | [JPA](https://dzone.com/articles/micronaut-cloud-jpa)       | [Source](https://github.com/platformsh-examples/micronaut/tree/master/jpa) |
