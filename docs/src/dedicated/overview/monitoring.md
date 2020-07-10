@@ -12,14 +12,13 @@ Alerting is set up on these metrics, so if any of them goes outside of normal bo
 
 These alerts are sent to our support and operations teams, and are not directly accessible to the customer.
 
-
 ## Monitoring systems
 
 Platform.sh uses well-known open source tooling to collect metrics and to alert our staff if any of these metrics goes out of bounds.  That includes the use of Munin for collecting time-series data on server metrics, and dashboarding of these metrics so that our team can monitor trends over time.  It also includes use Nagios as a point in time alerting system for our operations staff.
 
 These tools are internal Platform.sh tools only.
 
-A third-party availability monitoring system is configured for every Dedicated project. The customer can be subscribed to email alerts upon request.
+A third-party availability monitoring system is configured for every Dedicated project.
 
 ## Application performance monitoring
 
