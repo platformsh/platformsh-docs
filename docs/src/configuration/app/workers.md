@@ -145,6 +145,10 @@ workers:
 
 In both cases, there will be two worker instances named `queue` and `mail`.  Both will have access to a MySQL/MariaDB service defined in `services.yaml` named `mysqldb` through the `database` relationship.  Both will also have their own separate, independent local disk mount at `/app/test` with 256 MB of allowed space.
 
+## Deployment
+
+On deployment workers are stoped by sending a SIGTERM (`kill -15`) signal. Be sure you're worker react to that by stopping itself or your deployment can be stuck waiting for the end of your worker.
+
 ## Customizing a worker
 
 The most common properties to set in a worker to override the top-level settings are `size` and `variables`.  `size` lets you allocate fewer resources to a container that will be running only a single background process (unlike the web site which will be handling many requests at once), while `variables` lets you instruct the application to run differently as a worker than as a web site.
