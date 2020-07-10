@@ -38,6 +38,15 @@ Platform.sh Enterprise-Dedicated supports a single TLS certificate on the origin
 
 All TLS certificates used with CloudFront MUST be 2048 bit certificates.  Larger sizes will not work.
 
+## Host Header forwarding
+
+The `Host` HTTP header tells the server what domain name is being requested, which may vary when multiple domains are served from the same server or through the same proxy, as is the case with a CDN.  However, the CDN cannot use the production domain name in order to reach Platform.sh, as that domain already routes to the CDN.  It therefore will use the origin name provided by Platform.sh.
+
+In order to ensure your TLS certificates are valid for both requests from clients to the CDN and from the CDN to the server on Platform.sh, you will need to take two additional steps:
+
+1. Configure your CDN to set the `X-Forwarded-Host` HTTP header to the public domain (`example.com`).  That allows the request from the CDN to Platform.sh to still carry the original requested domain.  The specific way to do so will vary by the CDN.
+2. Ensure your application can read from the `X-Forwarded-Host` header should it need the Host information.  Many popular applications already do so, but if you have a custom application make sure that it checks for that header and uses it instead of `Host` as appropriate.
+
 ## Web Application Firewall & Anti-DDoS
 
 All Platform.sh-hosted sites, either Grid or Dedicated, live on infrastructure provided by major cloud vendors.  These vendors include their own Level 3 DDoS protection that is sufficient for the vast majority of cases.
@@ -77,7 +86,7 @@ Be aware that this approach will apply the same user and password to all develop
 This is the recommended approach for CloudFlare.
 {{< /note >}}
 
-### Allowing and denying IP addresses 
+### Allowing and denying IP addresses
 
 If your CDN does not support adding headers to the request to origin, you can allow the IP addresses of your CDN.
 
