@@ -629,6 +629,9 @@
         "3.7",
         "3.8"
       ]
+    },
+    "versions-dedicated": {
+      "supported": ["3.7", "3.8"]
     }
   },
   "redis": {
