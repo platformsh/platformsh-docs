@@ -44,7 +44,7 @@ Add the following to your `.platform/services.yaml` file.
 
 ```yaml
 search:
-    type: solr:8.4
+    type: solr:8.6
     disk: 1024
     configuration:
         cores:
@@ -135,7 +135,7 @@ Finally, move that directory to `.platform/`, and update the `maincore.conf_dir`
 
 ```yaml
 search:
-    type: solr:8.4
+    type: solr:8.6
     disk: 1024
     configuration:
         cores:
