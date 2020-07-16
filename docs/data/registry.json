@@ -731,13 +731,14 @@
     "runtime": false,
     "type": "solr",
     "versions": {
-      "deprecated": [],
-      "supported": [
+      "deprecated": [
         "3.6",
         "4.1",
         "6.3",
         "6.6",
-        "7.6",
+        "7.6"
+      ],
+      "supported": [
         "7.7",
         "8.0",
         "8.4",
