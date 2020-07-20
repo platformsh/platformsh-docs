@@ -3,7 +3,7 @@ title: "Differences from Platform.sh on the Grid"
 weight: 5
 sidebarTitle: "Differences from the Grid"
 description: |
-  When using Platform.sh Dedicated, a few configuration options and tools function differently from Platform.sh on the Grid, aka the Development Environment.
+  When using Platform.sh Dedicated, a few configuration options and tools function differently from Platform.sh on the Grid, or the Development Environment.
 ---
 
 {{< description >}}
