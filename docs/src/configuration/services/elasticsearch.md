@@ -169,3 +169,7 @@ For a transitional approach you will temporarily have two Elasticsearch services
 Once you're ready to cut over, remove the old Elasticsearch service and relationship.  You may optionally have the new Elasticsearch service use the old relationship name if that's easier for your application to handle.  Your application is now using the new Elasticsearch service.
 
 This approach has the benefit of never being without a working Elasticsearch instance.  On the downside, it requires two running Elasticsearch servers temporarily, each of which will consume resources and need adequate disk space.  Depending on the size of your data that may be a lot of disk space.
+
+## Note about deployment
+
+⚠️ Be careful when choosing to use elasticsearch. The shutdown of your ES node may take a long time generating 10min down (more time may be required for huge amount of data). As soon as you add elasticsearch to your stack, you will understand that deployment cannot be done at any time depending on your audience.
