@@ -19,16 +19,14 @@ You may follow SendGrid's SPF setup guidelines to improve email deliverability w
 >v=spf1 include:sendgrid.net -all
 ```
 
-However, as we do not support white-labeling of emails, DKIM is not provided for our standard email handling (meaning that DMARC can't be set up either). Thus, for maximum deliverability own mail host must be engaged.
-{{< /note >}}
+However, as we do not support white-labeling of emails, DKIM is not provided for our standard email handling (meaning that DMARC can't be set up either). Thus, for maximum deliverability you should use your own mail service.
 
-{{< note theme="warning" title="Subuser Account ID (Dedicated only)" >}}
 [SendGrid's current SPF setup guidelines](https://sendgrid.com/docs/glossary/spf/) specify that your TXT record includes your subuser account ID:
 
 ```txt
 >v=spf1 include:u17504801.wl.sendgrid.net -all
 ```
-This ID is only available on Dedicated projects. Follow the previous note above when configuring for Grid projects.
+This ID is only available on Dedicated projects. Use the previous format above when configuring for Grid projects.
 {{< /note >}}
 
 ## Enabling/disabling email
