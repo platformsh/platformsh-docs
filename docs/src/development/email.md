@@ -28,7 +28,7 @@ However, as we do not support white-labeling of emails, DKIM is not provided for
 ```txt
 >v=spf1 include:u17504801.wl.sendgrid.net -all
 ```
-This ID is only available on Dedicated projects. Follow the previous snote above when configuring for Grid projects.
+This ID is only available on Dedicated projects. Follow the previous note above when configuring for Grid projects.
 {{< /note >}}
 
 ## Enabling/disabling email
