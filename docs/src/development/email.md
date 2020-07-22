@@ -12,8 +12,21 @@ Each Platform.sh project is provisioned as a SendGrid sub-account. These SendGri
 
 We do not guarantee the deliverability of emails, and we do not support white-labeling them.  Our SMTP proxy is intended as a zero-configuration, best effort service.  If needed, you can instead use your own SMTP server or email delivery service provider. In that case, please bear in mind that TCP port 25 is blocked for security reasons; use TCP port 465 or 587 instead.
 
-{{< note >}}
-You may follow the [SPF setup guidelines on SendGrid](https://sendgrid.com/docs/glossary/spf/) to improve email deliverability with our SMTP proxy. However, as we do not support white-labeling of emails, DKIM is not provided for our standard email handling (meaning that DMARC can't be set up either). Thus, for maximum deliverability own mail host must be engaged.
+{{< note>}}
+You may follow SendGrid's SPF setup guidelines to improve email deliverability with our SMTP proxy, by including the following TXT record to the domain's DNS records:
+
+```txt
+>v=spf1 include:sendgrid.net -all
+```
+
+However, as we do not support white-labeling of emails, DKIM is not provided for our standard email handling (meaning that DMARC can't be set up either). Thus, for maximum deliverability you should use your own mail service.
+
+[SendGrid's current SPF setup guidelines](https://sendgrid.com/docs/glossary/spf/) specify that your TXT record includes your subuser account ID:
+
+```txt
+>v=spf1 include:u17504801.wl.sendgrid.net -all
+```
+This ID is only available on Dedicated projects. Use the previous format above when configuring for Grid projects.
 {{< /note >}}
 
 ## Enabling/disabling email
