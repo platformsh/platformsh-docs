@@ -85,7 +85,7 @@ tls:
     min_version: TLSv1.2
 ```
 
-The above configuration will result in requests using older TLS versions to be rejected.  Legal values are `TLSv1.2`.
+The above configuration will result in requests using older TLS versions to be rejected.  Legal values are `TLSv1.2` and `TLSv1.3`.
 
 Note that if multiple routes for the same domain have different `min_version`s specified, the highest specified will be used for the whole domain.
 
