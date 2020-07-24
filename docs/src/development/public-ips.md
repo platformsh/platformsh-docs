@@ -167,7 +167,7 @@ Outbound IPs:
 * 52.60.213.255
 * 35.182.220.113
 
-Inbound IPs:
+Inbound IPs (gw.ca-1.platformsh.site):
 
 * 35.182.174.169
 * 35.182.59.77
