@@ -89,8 +89,9 @@ exports.takeScreenshot = async function (url) {
 
         return browser
 
-    } catch (e) {
-        return Promise.reject(e);
+    } catch (error) {
+        console.error({ error }, 'Something happened!');
+        browser.close();
     }
 };
 ```
