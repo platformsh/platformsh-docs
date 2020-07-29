@@ -68,10 +68,13 @@ The `recipients` field may be any valid email address, or one of the following s
 To add a new email notification, register a `health.email` integration as follows:
 
 ```bash
-platform integration:add --type health.email --from-address you@example.com --recipients them@example.com --recipients others@example.com
+platform integration:add --type health.email --recipients them@example.com --recipients others@example.com
 ```
 
-The `from-address` is whatever address you want the email to appear to be from.  You must specify one or more `recipients`, each as its own switch.  It is completely fine to use the same email address for both `from-address` and `recipients`.
+The default `from-address` points to the "Platform.sh Bot". You must specify one or more `recipients`, each as its own switch.
+
+You can also configure a custom `from-address`. The `from-address` is whatever address you want the email to appear to be from. It is completely fine to use the same email address for both `from-address` and `recipients`. Note that using SPF logging like `v=spf1 include:spf.protection.outlook.com -all` combined with a custom `from-address`, will result in emails ending up lost / in spam.
+
 
 ### Slack notifications
 
