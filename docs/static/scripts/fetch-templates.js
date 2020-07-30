@@ -131,7 +131,7 @@ async function fetchTemplates() {
               count += 1;
               if (count === array.length - 1) {
                 // Delete templates with undefined types
-                // delete data["undefined"]
+                delete data["undefined"]
                 // Write the template data yaml
                 fs.writeFileSync(finalFileLocation, yaml.safeDump(data, {noRefs:true}), function (err) {
                   if (err) throw err;
