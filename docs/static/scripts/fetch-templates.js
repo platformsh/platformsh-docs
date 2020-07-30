@@ -78,7 +78,7 @@ async function getTemplateRuntime(template){
       "repo": "https://github.com/platformsh-templates/" + template.name,
       "description": "",
       "image": "",
-      "deploy": `https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/${template.name}/.platform.template.yaml&utm_content=${template.name}&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform`
+      "deploy": `https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/${template.name}/.platform.template.yaml`
     }
   };
 
@@ -131,7 +131,7 @@ async function fetchTemplates() {
               count += 1;
               if (count === array.length - 1) {
                 // Delete templates with undefined types
-                delete data["undefined"]
+                // delete data["undefined"]
                 // Write the template data yaml
                 fs.writeFileSync(finalFileLocation, yaml.safeDump(data, {noRefs:true}), function (err) {
                   if (err) throw err;
