@@ -17,6 +17,24 @@ var options = {
     json: true
 };
 
+// .platform.app.yaml files that use the `!include` tag in their build hook have trouble parsing.
+//    Multi-app templates that uses  a single runtime (i.e. gatsby-strapi) can be placed here as well.
+const parseErrorTemplates = {
+  "hugo": "golang",
+  "strapi": "nodejs",
+  "mattermost": "golang",
+  "probot": "nodejs",
+  "gatsby-strapi": "nodejs",
+  "quarkus": "java"
+}
+
+// Multi-app overrides that use two different runtimes.
+const multiAppTemplates = {
+  "gatsby-wordpress": ["nodejs", "php"],
+  "gatsby-drupal": ["nodejs", "php"],
+  "elastic-apm": ["nodejs", "golang"],
+}
+
 async function getTemplateInfo(template, templateData){
 
   var optionsInfo = {
@@ -60,16 +78,6 @@ async function getTemplateInfo(template, templateData){
 
 async function getTemplateRuntime(template){
 
-  // .platform.app.yaml files that use the `!include` tag in their build hook have trouble parsing. Come back to this one.
-  const parseErrorTemplates = {
-    "hugo": "golang",
-    "strapi": "nodejs",
-    "mattermost": "golang",
-    "probot": "nodejs",
-    "gatsby-wordpress": "nodejs",
-    "quarkus": "java"
-  }
-
   var templateData = {
     "runtime": "",
     "data": {
@@ -78,7 +86,7 @@ async function getTemplateRuntime(template){
       "repo": "https://github.com/platformsh-templates/" + template.name,
       "description": "",
       "image": "",
-      "deploy": `https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/${template.name}/.platform.template.yaml&utm_content=${template.name}&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform`
+      "deploy": `https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/${template.name}/.platform.template.yaml`
     }
   };
 
@@ -113,6 +121,15 @@ async function getTemplateRuntime(template){
 
 }
 
+function addTemplateToData(runtime, data, templates) {
+  if (!( runtime in data )) {
+    data[runtime] = [ templates.data ];
+  } else {
+    data[runtime].push(templates.data);
+  }
+  return data
+}
+
 async function fetchTemplates() {
 
     rp(options)
@@ -123,11 +140,16 @@ async function fetchTemplates() {
             if ( template.name != "__init__.py") {
               var templateData =  await getTemplateRuntime(template);
               var templatesWithInfo = await getTemplateInfo(template, templateData);
-              if (!( templateData.runtime in data )) {
-                data[templateData.runtime] = [ templatesWithInfo.data ];
+
+              // Check if template is a known multi-app.
+              if ( template.name in multiAppTemplates) {
+                for (runtime in multiAppTemplates[template.name]) {
+                  data = addTemplateToData(multiAppTemplates[template.name][runtime], data, templatesWithInfo)
+                }
               } else {
-                data[templateData.runtime].push(templatesWithInfo.data);
+                data = addTemplateToData(templateData.runtime, data, templatesWithInfo)
               }
+
               count += 1;
               if (count === array.length - 1) {
                 // Delete templates with undefined types
