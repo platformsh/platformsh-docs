@@ -455,7 +455,10 @@
       ]
     },
     "versions-dedicated": {
-      "supported": ["10"],
+      "supported": [
+        "10",
+        "12"
+      ],
       "deprecated": ["9.8"]
     }
   },
