@@ -72,7 +72,7 @@ The basic plan (Development) starts at $10 per month, and includes 4 environment
 You can not map a custom domain name to a development plan
 {{< /note >}}
 
-Development environments have less resources than production environments.
+Development environments default to the Standard size, but they can be increased to match your production environment if needed. Go to the "Edit plan" administration section for your project, and at the bottom of the page you can modify the dropdown under **Development Application Size** to increase the default size for the project. The new size will increase the cost of your plan, which you can accept by clicking "Update plan".
 
 ## Production
 
