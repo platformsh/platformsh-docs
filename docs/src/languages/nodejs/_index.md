@@ -199,6 +199,14 @@ highlight=js
 <--->
 
 ---
+title=RabbitMQ
+file=static/files/fetch/examples/nodejs/rabbitmq
+highlight=js
+---
+
+<--->
+
+---
 title=Redis
 file=static/files/fetch/examples/nodejs/redis
 highlight=js
