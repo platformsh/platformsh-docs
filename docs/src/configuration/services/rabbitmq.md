@@ -72,6 +72,14 @@ file=static/files/fetch/examples/python/rabbitmq
 highlight=python
 ---
 
+<--->
+
+---
+title=RabbitMQ
+file=static/files/fetch/examples/nodejs/rabbitmq
+highlight=js
+---
+
 {{< /codetabs >}}
 
 (The specific way to inject configuration into your application will vary. Consult your application or framework's documentation.)
