@@ -68,6 +68,8 @@ Then run the integration command:
 platform integration:add --type=bitbucket_server --project <PLATFORMSH_PROJECT_ID> --base-url=<BASE_URL> --username=<USERNAME> --token=<TOKEN> --repository=<REPOSITORY>
 ```
 
+where
+
 * `PLATFORMSH_PROJECT_ID` is the project ID for your Platform.sh project.
 * `BASE_URL`: The base URL of the server installation.
 * `USERNAME`: Your Bitbucket Server username.
