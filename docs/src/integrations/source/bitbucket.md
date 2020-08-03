@@ -68,7 +68,7 @@ Then run the integration command:
 platform integration:add --type=bitbucket_server --project <PLATFORMSH_PROJECT_ID> --base-url=<BASE_URL> --username=<USERNAME> --token=<TOKEN> --repository=<REPOSITORY>
 ```
 
-where
+Where
 
 * `PLATFORMSH_PROJECT_ID` is the project ID for your Platform.sh project.
 * `BASE_URL`: The base URL of the server installation.
@@ -101,5 +101,5 @@ platform help integration:update
 ```
 
 {{< note >}}
-The --prune-branches option depends on --fetch-branches being enabled. If --fetch-branches is disabled, --prune-branches will automatically be set to false, even if specifically set to true.
+The `--prune-branches` option depends on `--fetch-branches` being enabled. If `--fetch-branches` is disabled, `--prune-branches` will automatically be set to false, even if specifically set to true.
 {{< /note >}}
