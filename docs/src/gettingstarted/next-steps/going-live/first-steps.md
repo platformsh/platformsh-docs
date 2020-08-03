@@ -14,7 +14,7 @@ Before you take your site live, there are a few steps that will help you prepare
 
 2. **Test your routes**
 
-    Test your application and make sure that all of your routes are functioning as you intended. Consult the [routes]() documentation as well to verify that your `routes.yaml` has been properly written.
+    Test your application and make sure that all of your routes are functioning as you intended. Consult the [routes]({{< relref "/configuration/routes/_index.md" >}}) documentation as well to verify that your `routes.yaml` has been properly written.
 
     If any [access restrictions]({{< relref "/administration/web/configure-environment.md#http-access-control" >}}) have been enabled during development, be sure to remove them as well.
 
