@@ -1,16 +1,16 @@
 ---
-title: "Using Redis with PHP"
-sidebarTitle: Redis
+title: "Custom Redis versions"
+sidebarTitle: Custom Redis
 weight: 7
 ---
 
 [Redis]({{< relref "/configuration/services/redis.md" >}}) is a popular structured key-value service, supported by Platform.sh.  It's frequently used for caching.
 
-For PHP, Redis support is provided through a PECL extension called [PhpRedis](https://github.com/phpredis/phpredis).  Unfortunately, the extension has been known to break its API between versions, even between minor versions.  That makes it difficult for Platform.sh to bundle like [other PHP extensions]({{< relref "/languages/php/extensions.md" >}}).
+The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on Platform.sh's PHP container images.  However, the extension has been known to break its API between versions when removing deprecated functionality.  The version available on each application image is the latest available at the time that PHP version was built, which if your application is very sensitive to PhpRedis versions may not be ideal.
 
-Fortunately, the extension is small enough that it's reasonable to compile as part of the build step and enable yourself.  That makes it possible to install the specific version of the extension that your application code requires.  All of the necessary tools to compile PHP extensions are included in our PHP containers, so cloning the source code and compiling it on each build is straightforward.  That does entail a few minute additions to each build, however.
+If the version of the PhpRedis extension available for your PHP version is not compatible with your application and upgrading your application is not feasible, you can use the script below as an alternative to download and compile a precise version of the extension on the fly.
 
-Alternatively, we have written a shell script that leverages the build cache directory to only compile the extension once, and supports compiling any version of the extension.
+Do *not* use this approach unless you really need to.  Using the provided PhpRedis extension is preferred in the vast majority of cases.
 
 ## Using the Redis builder script
 
