@@ -102,7 +102,7 @@ This is the complete list of extensions that can be enabled:
 | memcache      | *   | *   | *   |     |     |     |     |     |
 | memcached     | *   | *   | *   | *   | *   | *   |     | *   |
 | mongo         | *   | *   | *   |     |     |     |     |     |
-| mongodb       |     |     |     | *   | *   | *   | *   |     |
+| mongodb       |     |     |     | *   | *   | *   | *   | *   |
 | msgpack       |     |     | *   | *   | *   | *   |     | *   |
 | mssql         | *   | *   | *   |     |     |     |     |     |
 | mysql         | *   | *   | *   |     |     |     |     |     |
@@ -132,7 +132,7 @@ This is the complete list of extensions that can be enabled:
 | raphf         |     |     | *   |     |     |     |     | *   |
 | readline      | *   | *   | *   | *   | *   | *   | *   | *   |
 | recode        | *   | *   | *   | *   | *   | *   | *   | *   |
-| redis         | *   | *   | *   | *   | *   | *   | *   |     |
+| redis         | *   | *   | *   | *   | *   | *   | *   | *   |
 | shmop         |     |     |     | *   | *   | *   | *   | *   |
 | simplexml     |     |     |     | *   | *   | *   | *   | *   |
 | snmp          | *   | *   | *   | *   | *   | *   | *   | *   |
