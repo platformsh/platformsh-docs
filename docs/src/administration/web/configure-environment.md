@@ -64,9 +64,16 @@ By default, Platform.sh includes an additional `X-Robots-Tag` header on all non-
 X-Robots-Tag: noindex, nofollow
 ```
 
-That tells search engines to not index sites on non-production environments entirely nor traverse links from those sites, even if they are publicly visible.  That keeps non-production sites out of search engine indexes that would dilute the SEO of the production site.  
+That tells search engines to not index sites on non-production environments entirely nor traverse links from those sites, even if they are publicly visible.  That keeps non-production sites out of search engine indexes that would dilute the SEO of the production site, and it cannot be disabled on non-production environments.
 
-On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`]({{< relref "/configuration/app/web.md#locations" >}}).
+On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled automatically and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`]({{< relref "/configuration/app/web.md#locations" >}}).
+
+
+To enable the search-blocker `X-Robots-Tag` header on a production environment, use the [Platform.sh CLI]({{< relref "/development/cli/_index.md" >}}) command below:
+
+```
+platform environment:info restrict_robots true
+```
 
 ### HTTP access control
 
