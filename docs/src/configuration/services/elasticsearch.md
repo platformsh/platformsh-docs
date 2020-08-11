@@ -101,7 +101,7 @@ search:
 
 That will enable mandatory HTTP Basic auth on all requests.  The credentials will be available in any relationships that point at that service, in the `username` and `password` properties, respectively.
 
-This functionality is generally not required if Elasticsearch is not exposed on it own public HTTP route.  However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.  To do so, add a route to `routes.yaml` that has `search:http` as its upstream (where `search` is whatever you named the service in `services.yaml`).
+This functionality is generally not required if Elasticsearch is not exposed on it own public HTTP route.  However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.  To do so, add a route to `routes.yaml` that has `search:elasticsearch` as its upstream (where `search` is whatever you named the service in `services.yaml`).
 
 ## Plugins
 
