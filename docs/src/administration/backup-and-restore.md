@@ -74,6 +74,11 @@ You need "admin" role to restore your environment from a backup.
 
 Be aware that the older US and EU regions do not support restoring backups to different environments.  If your project is on one of the older regions you may file a support ticket to ask that a backup be restored to a different environment for you, or [migrate your project]({{< relref "/tutorials/region-migration.md" >}}) to one of the new regions that supports this feature.
 
+
+{{< note >}}
+Restoring a snapshot does not revert any code changes committed to git. The next redeploy of the environment will use the current commit from git.
+{{< /note >}}
+
 ## Backups and downtime
 
 A backup does cause a momentary pause in service. We recommend running during non-peak hours for your site.
