@@ -72,3 +72,6 @@ meta:
     - Jakarta
     - Spring
     - TYPO3
+
+# Used by the "company" shortcode to make the company name abstracted.
+companyName: Platform.sh
