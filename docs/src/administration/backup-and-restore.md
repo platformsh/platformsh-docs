@@ -76,7 +76,7 @@ Be aware that the older US and EU regions do not support restoring backups to di
 
 
 {{< note >}}
-Restoring a snapshot does not revert any code changes committed to git. The next redeploy of the environment will use the current commit from git with [data retention]({{< relref "/security/data-retention.md" >}})
+Restoring a snapshot does not revert any code changes committed to git. The next redeploy of the environment will use the current commit from git.
 {{< /note >}}
 
 ## Backups and downtime
