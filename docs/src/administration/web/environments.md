@@ -6,7 +6,7 @@ description: |
   An environment on Platform.sh is a logically separate instance of an application, complete with all of the services that application requires. You can think of an environment as a complete working website, related to, but safely isolated from others in the project.
 ---
 
-{{< description >}} 
+{{< description >}}
 
 Each project includes multiple environments--typically the production environment and three or more additional environments which can be used for development, testing, staging, review, etc. 
 
