@@ -102,4 +102,4 @@ When you specify your document root, MAMP will follow the symlink and substitute
 
 ## Do you support MFA/2FA/TFA authentication?
 
-Yes. We support Multi-Factor Authentication, and encourage its use. To do so please go to your **Account Settings** on our [Account site](https://accounts.platform.sh/). Then click on the left tab called **Security** which will propose you to enable an **MFA Application**.
+Yes. We support Multi-Factor Authentication, and encourage its use. To do so please go to your **Account Settings** on our [Account site](https://accounts.platform.sh/). Then click on the left tab called **Security** which will let you enable an **MFA Application**.
