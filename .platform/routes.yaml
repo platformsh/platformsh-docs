@@ -35,7 +35,7 @@ https://{default}/:
       "/administration/integrations/activity-scripts.html": { "to": "/integrations/activity.html", "code": 301, "prefix": false }
 
       # Reorganized August 2020
-      "/gettingstarted/gettingstarted": { "to": "gettingstarted/introductions", "code": 301, "prefix": true }
+      "^/gettingstarted/gettingstarted(.*)": { "to": "/gettingstarted/introduction$1", "code": 301, "regexp": true }
 
 
 "https://www.{default}/":
