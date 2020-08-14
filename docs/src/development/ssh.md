@@ -16,7 +16,7 @@ To connect using certificate-based authentication, install the [Platform.sh CLI]
 
 Once installed, you may run `platform login` or any CLI command that would require authentication.  In either case, a browser window will open and ask you to login with your Platform.sh account credentials.  This web page is already encrypted with TLS over HTTP, making it secure.
 
-The login process will issue a certificate that gets stored in your local SSH configuration.  The certificate is automatically cycled every hour for a new certificate as long as your session is active.  If you are inactive for an extended period your certificate will expire, and you the system will ask you to login again the next time you use a command that requires authentication.
+The login process will issue a certificate that gets stored in your local SSH configuration.  The certificate is automatically cycled every hour for a new certificate as long as your session is active.  If you are inactive for an extended period your certificate will expire, and the system will ask you to login again the next time you use a command that requires authentication.
 
 ## Keypair-based authentication
 
