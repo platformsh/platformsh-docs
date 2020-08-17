@@ -11,36 +11,16 @@ With the [management console]({{< relref "/administration/web/_index.md" >}}) yo
 
 Before you install it there are a few requirements that must be met first.
 
-### Git
+## Git
 
 [Git]({{< relref "/development/tools.md#git" >}}) is the open source version control system used by Platform.sh. Any change you make to your Platform.sh project will need to be committed via Git. You can see all the Git commit messages of an environment in the `Environment Activity` feed of the [management console]({{< relref "/administration/web/_index.md" >}}) for each project you create.
 
 Before getting started, make sure you [have Git installed](https://git-scm.com/) on your computer.
 
-### SSH key pair
+## SSH
 
-Once your account has been set up and the [CLI]({{< relref "/development/cli/_index.md" >}}) is installed, Platform.sh needs one additional piece of information about your computer so that you can access your projects from the command line.
-If you are unfamiliar with how to generate an SSH public and private key, there are instructions in the documentation about [how to do so]({{< relref "/development/tools.md#ssh" >}}).
+You will need Secure Shell (SSH) to securely connect to your Git repository and environments.  SSH clients are readily available for every platform, and may already be installed on your computer.
 
-### Add your SSH public key to your account
+Platform.sh supports both keypair-based and certificate-based authentication.  Both are secure and protect your account from snooping when you log in.  For now, you can use certificate-based authentication as that is easier.  You will be prompted to login via your web browser the first time you run `platform ssh`.  If you wish to use keypair authentication, see the [SSH page]({{< relref "/development/ssh.md" >}}) before continuing.
 
-Add your SSH public key to your Platform.sh account so that you can communicate with your projects using the CLI.
-
-{{< video src="videos/management-console/add-ssh-mc.mp4" >}}
-
-1. **Access SSH key settings in the management console**
-
-    From the management console, move to the top right hand corner of the screen and click the dropdown menu to the left of the settings gear box icon. In the menu, click on `Account`. This next page lists all of your active projects, which now includes `My First Project`.
-
-    Click on the `Account Settings` link at the top of the page, then click the `SSH keys` tab to the left of your account information.
-
-2. **Add your SSH public key to your account**
-
-    Click the `+ Add public key` button in the top right hand corner of the screen. This will open up another window with two fields. Name the key with something memorable, like `home-computer`, and in the field below that, paste the content of your public key.
-
-    When you have finished, click `Save` to save the key.
-
-
-That's it! Now that you have met the requirements and configured an SSH key, all that's left is to install the Platform.sh CLI so you can interact with your projects from the command line.
-
-{{< guide-buttons next="I've added my public SSH key" >}}
+{{< guide-buttons next="I have Git and SSH ready" >}}

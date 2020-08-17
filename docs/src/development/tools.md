@@ -17,35 +17,10 @@ Before getting started, make sure you have it installed on your computer to be a
 * [Learn more about Git](https://git-scm.com/)
 {{< /note >}}
 
-
 ## SSH
 
-You connect to your Platform.sh Git repository and to your applications and services using SSH.  SSH requires two [RSA keys](https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29):
+Secure Shell (SSH) is a secure, encrypted connection between your computer and the Platform.sh environment.  That includes connecting to your Git repository.  SSH offers two secure types of authentication, key-based and certificate-based.  We support both.
 
-* A **private key** kept secret by the user
-* A **public key** stored within the Platform.sh account
+Certificate-based authentication will be used automatically when you use the [Platform CLI]({{< relref "/development/cli/_index.md" >}}) and run `platform ssh`.  You may force a login using `platform login -f` on the command line, provided you have a web browser available.
 
-These keys are called the *public-private keypair* and usually look like random lines of characters, like this:
-
-*A private key*:
-
-```text
------BEGIN RSA PRIVATE KEY-----
-MIIEowIBAAKCAQEAtpw0S4DwDVj2q04mhiIMkhvrYU7Z6hRiNbTFsqg3X7x/uYS/
-dcNrSvT82j/jSeYQP3Dsod9GERW+dmOuLaFNeiqOStZi6jRSWo41hCOWOFbpBum3
-ra1n6nUO1wa/7O5wbgzhUOfnim77oOK0UgkqPArBCNXiNFTUJAvRyVmCtvJOyrqz
-...(20 more lines of this garbage)...
-cPjJ/wKBgGd3eZIBK6Ak92u65HYXgY9EcX3vBNP4NsF087uxV4YfrM18KlGf5I87
-QGerp3VKaGe0St3ot57GlwCAQUJAf1mit8qDTi0I8MhBe7q2lstXkBvde7GY1gKx
-Kng4ohG6xHZ/OvC9tq7/THwAvleaxgLZN5GyXfAqNylDdZ0LtSjl
------END RSA PRIVATE KEY-----
-```
-
-*A public key (one very long line)*:
-
-```text
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2nDRLgPANWParTiaGIgySG+thTtnqFGI1tMWyqDdfvH+5hL91w2tK9PzaP+NJ5hA/cOyh30YRFb52Y64toU16Ko5K1mLqNFJajjWEI5Y4VukG6betrWfqdQ7XBr/s7nBuDOFQ5+eKbvug4rRSCSo8CsEI1eI0VNQkC9HJWYK28k7KurMdTN7X/Z/4vknM4/Rm2bnMk2idoORQgomeZS1p3GkG8dQs/c0j/b4H7azxnqdcCaR4ahbytX3d49BN0WwE84C+ItsnkCt1g5tVADPrab+Ywsm/FTnGY3cJKKdOAHt7Ls5lfpyyug2hNAFeiZF0MoCekjDZ2GH2xdFc7AX/ your_email_address@example.com
-```
-You will need a SSH *public/private keypair* in order to interact with Platform.sh. Your public key is uploaded to your Platform.sh user account, and it then governs authentication for Git, SSH sessions (shell access), and other tools that connect to your Platform.sh project.
-
-GitHub has a good [walk-through of creating an SSH keypair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) on various operating systems.
+If you wish to use keypair authentication, see the [SSH page]({{< relref "/development/ssh.md#keypair-based-authentication" >}}).
