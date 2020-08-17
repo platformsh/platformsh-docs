@@ -8,7 +8,9 @@ sidebarTitle: "SSH"
 
 {{< description >}}
 
-Secure Shell Protocol, SSH, supports certificate-based and keypair-based authentication.  Certificate-based authentication is faster to set up and generally easier to use, provided you have a web browser available on your computer.  Alternatively, you may use keypair-based authentication if you are on a headless environment, setting up an automation tool, or simply prefer that method.
+Secure Shell Protocol, SSH, supports certificate-based and keypair-based authentication.  Certificate-based authentication is faster to set up and generally easier to use, provided you have a web browser available on your computer.  Alternatively, you may use keypair-based authentication if you are setting up an automation tool, or simply prefer that method.
+
+Automation tools may also use an [API Token]({{< relref "/development/cli/api-tokens.md" >}}).
 
 ## Certificate-based authentication
 
