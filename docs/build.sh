@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-HUGOVERSION=0.68.3
+# Treat individual build step errors as fatal for the whole build process.
+set -e
 
 # Download Hugo
-wget https://github.com/gohugoio/hugo/releases/download/v$HUGOVERSION/hugo_${HUGOVERSION}_Linux-64bit.tar.gz
-tar xvzf hugo_${HUGOVERSION}_Linux-64bit.tar.gz
-rm hugo_${HUGOVERSION}_Linux-64bit.tar.gz
+DOWNLOAD=https://github.com/gohugoio/hugo/releases/download/v$HUGOVERSION/hugo_${HUGOVERSION}_Linux-64bit.tar.gz
+wget --quiet -c $DOWNLOAD -O - | tar -xz
 
 # Fetch example files
 npm run fetch-files

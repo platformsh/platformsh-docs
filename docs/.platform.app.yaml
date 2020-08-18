@@ -6,6 +6,10 @@ name: 'docs'
 # The type key specifies the language and version for your application.
 type: 'nodejs:12'
 
+variables:
+    env:
+        HUGOVERSION: 0.74.0
+
 # The hooks that will be triggered when the package is deployed.
 hooks:
     # Build hooks can modify the application files on disk but not access any services like databases.
