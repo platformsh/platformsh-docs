@@ -10,7 +10,7 @@ description: |
 
 Each project includes multiple environments--typically the production environment and three or more additional environments which can be used for development, testing, staging, review, etc. 
 
-New environments can be created in moments through a Git clone, via the [Platform.sh Command Line Interface]({{< relref "/development/cli/_index.md" >}}), or via the [Platform.sh web console]({{< relref "/administration/web.md" >}}), and will be an exact replica of their parent environments. This means new environments will have all of the data, as well as the services (like databases, network storage, queues, routing, etc.) instantly cloned. 
+New environments can be created in moments through a Git clone, via the [Platform.sh Command Line Interface]({{< relref "/development/cli/_index.md" >}}), or via the [Platform.sh web console]({{< relref "/administration/web/_index.md" >}}), and will be an exact replica of their parent environments. This means new environments will have all of the data, as well as the services (like databases, network storage, queues, routing, etc.) instantly cloned. 
 
 The relationships between environments is hierarchical, and can be organized in any way that suits your organization, rather than mandating a strict development → staging → production workflow. An environment is tied to a Git branch and can be created on demand. With Bitbucket and GitHub integrations you can even get a "development server" automatically for each and every pull request.
 
