@@ -16,7 +16,7 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
 1. **Project type**
 
-   You will first be given the option of creating a `New Project` that is empty ([one that you can migrate your own code base to]({{< relref "/gettingstarted/gettingstarted/own-code/_index.md" >}})), or to `Use a Template`. Select the `Use a Template` option, and then click `Next`.
+   You will first be given the option of creating a `New Project` that is empty ([one that you can migrate your own code base to]({{< relref "/gettingstarted/introduction/own-code/_index.md" >}})), or to `Use a Template`. Select the `Use a Template` option, and then click `Next`.
 
 2. **Details**
 

@@ -12,7 +12,7 @@ In this guide you created a project using the [management console]({{< relref "/
 
 Templates are great, but configuring your own application to run on Platform.sh is the goal.
 
-{{< descbutton link="/gettingstarted/gettingstarted/own-code/_index.md" title="Import your own code" desc="Use the CLI and a few configuration files to deploy your code on Platform.sh.">}}
+{{< descbutton link="/gettingstarted/introduction/own-code/_index.md" title="Import your own code" desc="Use the CLI and a few configuration files to deploy your code on Platform.sh.">}}
 
 ## Developing on Platform.sh
 
