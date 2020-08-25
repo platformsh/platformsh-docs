@@ -9,7 +9,7 @@ description: |
 
 {{< description >}}
 
-To handle that situation, you can define a `env:COMPOSER_AUTH` [project variable]({{< relref "/development/variables.md#project-variables" >}}) which allows you to set up authentication as an environment variable. The contents of the variable should be a JSON formatted object containing an `http-basic` object (see [composer-auth specifications](https://getcomposer.org/doc/03-cli.md#composer-auth)).
+To handle that situation, you can define a `env:COMPOSER_AUTH` [project variable](/development/variables.md#project-variables) which allows you to set up authentication as an environment variable. The contents of the variable should be a JSON formatted object containing an `http-basic` object (see [composer-auth specifications](https://getcomposer.org/doc/03-cli.md#composer-auth)).
 
 The advantage is that you can control who in your team has access to those variables.
 
@@ -57,6 +57,6 @@ In that case, Composer will be able to authenticate and download dependencies fr
 
 ## Private repository hosting
 
-Typically, a private dependency will be hosted in a private Git repository.  While Platform.sh supports [private repositories]({{< relref "/development/private-repository.md" >}}) for the site itself, that doesn't help for pulling in third party dependencies from private repositories unless they have the same SSH keys associated with them.
+Typically, a private dependency will be hosted in a private Git repository.  While Platform.sh supports [private repositories](/development/private-repository.md) for the site itself, that doesn't help for pulling in third party dependencies from private repositories unless they have the same SSH keys associated with them.
 
 Fortunately, most private Composer tools (including Satis, Toran Proxy, and [Private Packagist](https://packagist.com/)) mirror tagged releases of dependencies and serve them directly rather than hitting the Git repository.  Therefore as long as your dependencies specify tagged releases there should be no need to authenticate against a remote Git repository and there should be no authentication issue.

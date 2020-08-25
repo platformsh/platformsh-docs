@@ -13,7 +13,7 @@ The `build` defines what happens when building the application.  Its only proper
 
 `composer` will run `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
 
-`drupal` will run `drush make` automatically in one of a few different ways.  See the [Drupal 7]({{< relref "/frameworks/drupal7/_index.md" >}}) documentation for more details. We recommend only using this build mode for Drupal 7.
+`drupal` will run `drush make` automatically in one of a few different ways.  See the [Drupal 7](/frameworks/drupal7/_index.md) documentation for more details. We recommend only using this build mode for Drupal 7.
 
 ### Node.js (`default` by default)
 
@@ -96,17 +96,17 @@ Hooks are executed using the dash shell, not the bash shell used by normal SSH l
 
 ### Build hook
 
-The `build` hook is run after the build flavor (if any).  At this point no services (such as a database) are available nor any persistent file mounts, as the application has not yet been deployed. Environment variables that exist only at runtime such as `PLATFORM_BRANCH`, `PLATFORM_DOCUMENT_ROOT` etc. are not available during this phase. The full list of build time and runtime variables is available on the [variables page]({{< relref "/development/variables.md#platformsh-provided-variables" >}}).  There are three writeable directories at this time:
+The `build` hook is run after the build flavor (if any).  At this point no services (such as a database) are available nor any persistent file mounts, as the application has not yet been deployed. Environment variables that exist only at runtime such as `PLATFORM_BRANCH`, `PLATFORM_DOCUMENT_ROOT` etc. are not available during this phase. The full list of build time and runtime variables is available on the [variables page](/development/variables.md#platformsh-provided-variables).  There are three writeable directories at this time:
 
 * `$PLATFORM_APP_DIR` - This is where your code is checked out, and is the working directory when the build hook starts.  The contents of this directory after the build hook is what will be "the application" that gets deployed.  (This directory is always `/app`, but it's better to use the variable or rely on the working directory than to hard code that.)  Most of the time, this is the only directory you use.
 * `$PLATFORM_CACHE_DIR` - This directory persists between builds, but is NOT deployed as part of your application.  It's a good place for temporary build artifacts, such as downloaded `.tar.gz` or `.zip` files, that can be reused between builds.  Note that it is shared by all builds on all branches, so if using the cache directory make sure your build code accounts for that.
 * `/tmp` - The temp directory is also useful for writing files that are not needed in the final application, but it will be wiped between each build.
 
-There are no constraints on what can be downloaded during your build hook except for the amount of disk available at that time. Independent of the mounted disk size you have allocated for deployment, build environments (the application plus the cache directory) and therefore application images are limited to 4 GB during the build phase. If you exceed this limit you will receive a `No space left on device` error. It is possible to increase this limit in certain situations, but it will be necessary to open a support ticket in order to do so. Consult the [Troubleshooting]({{< relref "/development/troubleshoot.md#no-space-left-on-device" >}}) guide for more information on this topic.
+There are no constraints on what can be downloaded during your build hook except for the amount of disk available at that time. Independent of the mounted disk size you have allocated for deployment, build environments (the application plus the cache directory) and therefore application images are limited to 4 GB during the build phase. If you exceed this limit you will receive a `No space left on device` error. It is possible to increase this limit in certain situations, but it will be necessary to open a support ticket in order to do so. Consult the [Troubleshooting](/development/troubleshoot.md#no-space-left-on-device) guide for more information on this topic.
 
 ### Deploy hook
 
-The `deploy` hook is run after the application container has been started, but before it has started accepting requests.  You can access other services at this stage (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.  Note that the deploy hook will only run on a [`web`]({{< relref "/configuration/app/web.md" >}}) instance, not on a [`worker`]({{< relref "/configuration/app/workers.md" >}}) instance.
+The `deploy` hook is run after the application container has been started, but before it has started accepting requests.  You can access other services at this stage (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.  Note that the deploy hook will only run on a [`web`](/configuration/app/web.md) instance, not on a [`worker`](/configuration/app/workers.md) instance.
 
 Be aware: The deploy hook blocks the site accepting new requests.  If your deploy hook is only a few seconds then incoming requests in that time are paused and will continue when the hook completes, effectively appearing as the site just took a few extra seconds to respond.  If it takes too long, however, requests cannot be held and will appear as dropped connections.  Only run tasks in your deploy hook that have to be run exclusively, such as database schema updates or some types of cache clear.  A post-deploy task that can safely run concurrently with new incoming requests should be run as a `post_deploy` hook instead.
 
@@ -154,7 +154,7 @@ hooks:
 
 ## How can I run certain commands only on certain environments?
 
-The `deploy` and `post_deploy` hooks have access to all of the same [environment variables]({{< relref "/development/variables.md" >}}) as the application does normally, which makes it possible to vary those hooks based on the environment.  A common example is to enable certain modules only in non-production environments.  Because the hook is simply a shell script we have full access to all shell scripting capabilities, such as `if/then` directives.
+The `deploy` and `post_deploy` hooks have access to all of the same [environment variables](/development/variables.md) as the application does normally, which makes it possible to vary those hooks based on the environment.  A common example is to enable certain modules only in non-production environments.  Because the hook is simply a shell script we have full access to all shell scripting capabilities, such as `if/then` directives.
 
 The following Drupal example checks the `$PLATFORM_BRANCH` variable to see if we're in a production environment (the `master` branch) or not.  If so, it forces the `devel` module to be disabled.  If not, it forces the `devel` module to be enabled, and also uses the `drush` Drupal command line tool to strip user-specific information from the database.
 

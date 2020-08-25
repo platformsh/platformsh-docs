@@ -86,11 +86,11 @@ The `commands` key defines the command to launch the worker application.  For no
 
 The `start` key specifies the command to use to launch your worker application.  It may be any valid shell command, although most often it will run a command in your application in the language of your application.  If the command specified by the `start` key terminates it will be restarted automatically.
 
-Note that [`deploy` and `post_deploy` hooks]({{< relref "/configuration/app/build.md" >}}), as well as [`cron` commands]({{< relref "/configuration/app/cron.md" >}}), will run only on the [`web`]({{< relref "/configuration/app/web.md" >}}) container, not on workers.
+Note that [`deploy` and `post_deploy` hooks](/configuration/app/build.md), as well as [`cron` commands](/configuration/app/cron.md), will run only on the [`web`](/configuration/app/web.md) container, not on workers.
 
 ## Inheritance
 
-Any top-level definitions for [`size`]({{< relref "/configuration/app/size.md" >}}), [`relationships`]({{< relref "/configuration/app/relationships.md" >}}), [`access`]({{< relref "/configuration/app/access.md" >}}), [`disk` and `mount`]({{< relref "/configuration/app/storage.md" >}}), and [`variables`]({{< relref "/configuration/app/variables.md" >}}) will be inherited by every worker, unless overridden explicitly.
+Any top-level definitions for [`size`](/configuration/app/size.md), [`relationships`](/configuration/app/relationships.md), [`access`](/configuration/app/access.md), [`disk` and `mount`](/configuration/app/storage.md), and [`variables`](/configuration/app/variables.md) will be inherited by every worker, unless overridden explicitly.
 
 That means, for example, that the following two `.platform.app.yaml` definitions produce identical workers.
 

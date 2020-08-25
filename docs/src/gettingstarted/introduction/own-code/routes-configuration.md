@@ -30,13 +30,13 @@ Each route can then be configured with the following properties:
   * `type`:
       * `upstream`: serves the application. Takes the form `upstream: <application name>:http`, using the application `name` set in your `.platform.app.yaml`.
       * `redirect`: configures redirects from `http://{default}` to your application.
-  * `cache`: controls [caching behavior of the route]({{< relref "/configuration/routes/cache.md" >}}).
-  * `redirects`: controls [redirect rules]({{< relref "/configuration/routes/redirects.md" >}}) associated with the route.
+  * `cache`: controls [caching behavior of the route](/configuration/routes/cache.md).
+  * `redirects`: controls [redirect rules](/configuration/routes/redirects.md) associated with the route.
 
 {{< note >}}
 Each language and framework may have additional attributes that you will need to include in `.platform/routes.yaml` depending on the needs of your application. To find out what else you may need to include to configure your routes, consult
 
-* **The [Routes]({{< relref "/configuration/routes/_index.md" >}}) documentation for Platform.sh**
+* **The [Routes](/configuration/routes/_index.md) documentation for Platform.sh**
 
   The documentation goes into far more extensive detail of which attributes can also be included for route configuration, and should be used as your primary reference.
 

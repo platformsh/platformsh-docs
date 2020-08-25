@@ -40,7 +40,7 @@ It’s worth remembering that the JVM by its specification [does not read Java c
 
 ## Accessing services
 
-To access various [services]({{< relref "/configuration/services/_index.md" >}}) with Java, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](/configuration/services/_index.md) with Java, see the following examples.  The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 

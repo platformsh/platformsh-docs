@@ -15,19 +15,19 @@ To change your PHP version, simply change the `type` key in your `.platform.app.
 
 ## Ensure that the router cache is properly configured
 
-Although not PHP-specific, a common source of performance issues is a misconfigured cache.  The most common issue is not allowing the right cookies as part of the router cache. Some cookies, such as session cookies, need to be allowed, whereas others, such as marketing and analytics cookies, usually shouldn't be allowed to be part of the cache key. See the [router cache]({{< relref "/configuration/routes/cache.md" >}}) documentation, and the [cookie entry]({{< relref "/configuration/routes/cache.md#cookies" >}}) specifically.
+Although not PHP-specific, a common source of performance issues is a misconfigured cache.  The most common issue is not allowing the right cookies as part of the router cache. Some cookies, such as session cookies, need to be allowed, whereas others, such as marketing and analytics cookies, usually shouldn't be allowed to be part of the cache key. See the [router cache](/configuration/routes/cache.md) documentation, and the [cookie entry](/configuration/routes/cache.md#cookies) specifically.
 
 You will also need to ensure that your application is sending the correct `cache-control` header.  The router cache will obey whatever cache headers your application sends, so send it good ones.
 
-Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.  See the [`web.locations`]({{< relref "/configuration/app/web.md#locations" >}}) documentation for more details.
+Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.  See the [`web.locations`](/configuration/app/web.md#locations) documentation for more details.
 
 ## Optimize the FPM worker count
 
-PHP-FPM reserves a fixed number of simultaneous worker processes to handle incoming requests.  If more simultaneous requests are received than the number of workers then some requests will wait.  The default worker count is deliberately set rather conservative but can be improved in many cases.  See the [PHP-FPM sizing]({{< relref "/languages/php/fpm.md" >}}) page for how to determine and set a more optimal value.
+PHP-FPM reserves a fixed number of simultaneous worker processes to handle incoming requests.  If more simultaneous requests are received than the number of workers then some requests will wait.  The default worker count is deliberately set rather conservative but can be improved in many cases.  See the [PHP-FPM sizing](/languages/php/fpm.md) page for how to determine and set a more optimal value.
 
 ## Enable preloading
 
-PHP 7.4 and later supports preloading code files into shared memory once at server startup, bypassing the need to include or autoload them later.  Depending on your application doing so can result in significant improvements to both CPU and memory usage.  If using PHP 7.4, see the [PHP Preload instructions]({{< relref "/languages/php/_index.md#opcache-preloading" >}}) for how to configure it on Platform.sh and consult your application's documentation to see if they have any recommendations for an optimal preload configuration.
+PHP 7.4 and later supports preloading code files into shared memory once at server startup, bypassing the need to include or autoload them later.  Depending on your application doing so can result in significant improvements to both CPU and memory usage.  If using PHP 7.4, see the [PHP Preload instructions](/languages/php/_index.md#opcache-preloading) for how to configure it on Platform.sh and consult your application's documentation to see if they have any recommendations for an optimal preload configuration.
 
 If you are not using PHP 7.4, this is a good reason to upgrade.
 
@@ -108,6 +108,6 @@ variables:
 
 ## Optimize your code
 
-It's also possible that your own code is doing more work than it needs to.  Profiling and optimizing a PHP application is a much larger topic than will fit here, but Platform.sh recommends enabling [Blackfire.io]({{< relref "/integrations/profiling/blackfire.md" >}}) on your project to determine what slow spots can be found and addressed.
+It's also possible that your own code is doing more work than it needs to.  Profiling and optimizing a PHP application is a much larger topic than will fit here, but Platform.sh recommends enabling [Blackfire.io](/integrations/profiling/blackfire.md) on your project to determine what slow spots can be found and addressed.
 
 The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics).  It works only for PHP scripts, but offers good visualizations and insights into the operation of your site that can suggest places to further optimize your configuration and provide guidance on when it's time to increase your plan size.  (Please note that this tool is maintained by a 3rd party, not by Platform.sh.)

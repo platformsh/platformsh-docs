@@ -4,7 +4,7 @@ sidebarTitle: Custom Redis
 weight: 7
 ---
 
-[Redis]({{< relref "/configuration/services/redis.md" >}}) is a popular structured key-value service, supported by Platform.sh.  It's frequently used for caching.
+[Redis](/configuration/services/redis.md) is a popular structured key-value service, supported by Platform.sh.  It's frequently used for caching.
 
 The [PhpRedis](https://github.com/phpredis/phpredis) extension is available on Platform.sh's PHP container images.  However, the extension has been known to break its API between versions when removing deprecated functionality.  The version available on each application image is the latest available at the time that PHP version was built, which if your application is very sensitive to PhpRedis versions may not be ideal.
 

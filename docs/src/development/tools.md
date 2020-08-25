@@ -21,6 +21,6 @@ Before getting started, make sure you have it installed on your computer to be a
 
 Secure Shell (SSH) is a secure, encrypted connection between your computer and the Platform.sh environment.  That includes connecting to your Git repository.  SSH offers two secure types of authentication, key-based and certificate-based.  We support both.
 
-Certificate-based authentication will be used automatically when you use the [Platform CLI]({{< relref "/development/cli/_index.md" >}}) and run `platform ssh`.  You may force a login using `platform login -f` on the command line, provided you have a web browser available.
+Certificate-based authentication will be used automatically when you use the [Platform CLI](/development/cli/_index.md) and run `platform ssh`.  You may force a login using `platform login -f` on the command line, provided you have a web browser available.
 
-If you wish to use keypair authentication, see the [SSH page]({{< relref "/development/ssh.md#keypair-based-authentication" >}}).
+If you wish to use keypair authentication, see the [SSH page](/development/ssh.md#keypair-based-authentication).

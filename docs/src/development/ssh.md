@@ -10,11 +10,11 @@ sidebarTitle: "SSH"
 
 Secure Shell Protocol, SSH, supports certificate-based and keypair-based authentication.  Certificate-based authentication is faster to set up and generally easier to use, provided you have a web browser available on your computer.  Alternatively, you may use keypair-based authentication if you are setting up an automation tool, or simply prefer that method.
 
-Automation tools may also use an [API Token]({{< relref "/development/cli/api-tokens.md" >}}).
+Automation tools may also use an [API Token](/development/cli/api-tokens.md).
 
 ## Certificate-based authentication
 
-To connect using certificate-based authentication, install the [Platform.sh CLI]({{< relref "/development/cli/_index.md" >}}).
+To connect using certificate-based authentication, install the [Platform.sh CLI](/development/cli/_index.md).
 
 Once installed, you may run `platform login` or any CLI command that would require authentication.  In either case, a browser window will open and ask you to login with your Platform.sh account credentials.  This web page is already encrypted with TLS over HTTP, making it secure.
 
@@ -70,7 +70,7 @@ Searching for a public key file:
     authorized_keys
     ```
 
-    If you find a file named `id_rsa.pub`, you can use it with Platform.sh. If you don't find an existing key, see the steps to create a new one in the [next section]({{< relref "#create-a-new-public-private-keypair" >}}).
+    If you find a file named `id_rsa.pub`, you can use it with Platform.sh. If you don't find an existing key, see the steps to create a new one in the [next section](#create-a-new-public-private-keypair).
 
 ### Create a New Public-Private Keypair
 

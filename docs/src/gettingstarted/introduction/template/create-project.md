@@ -6,7 +6,7 @@ aliases:
   - "/gettingstarted/template/create-project.html"
 ---
 
-In the previous step, you set up a free trial account with Platform.sh. Now you have access to the Platform.sh [management console]({{< relref "/administration/web/_index.md" >}}).
+In the previous step, you set up a free trial account with Platform.sh. Now you have access to the Platform.sh [management console](/administration/web/_index.md).
 
 From here you can create projects, adjust account settings, and a lot more that you will explore throughout these Getting Started guides.
 
@@ -16,7 +16,7 @@ Since you do not yet have any projects on Platform.sh, the first thing you will 
 
 1. **Project type**
 
-   You will first be given the option of creating a `New Project` that is empty ([one that you can migrate your own code base to]({{< relref "/gettingstarted/introduction/own-code/_index.md" >}})), or to `Use a Template`. Select the `Use a Template` option, and then click `Next`.
+   You will first be given the option of creating a `New Project` that is empty ([one that you can migrate your own code base to](/gettingstarted/introduction/own-code/_index.md)), or to `Use a Template`. Select the `Use a Template` option, and then click `Next`.
 
 2. **Details**
 

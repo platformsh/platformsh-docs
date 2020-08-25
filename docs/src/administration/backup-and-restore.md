@@ -13,7 +13,7 @@ Code is managed through Git and can be restored using normal Git routines.  The 
 
 You need to have the "admin" role in order to create a backup of an environment.
 
-Backups on Platform.sh Professional are retained for at least 7 days. They will be purged between 7 days and 6 months, at Platform.sh's discretion. Please see the [data retention]({{< relref "/security/data-retention.md" >}}) page for more information.
+Backups on Platform.sh Professional are retained for at least 7 days. They will be purged between 7 days and 6 months, at Platform.sh's discretion. Please see the [data retention](/security/data-retention.md) page for more information.
 
 {{< note >}}
 We advise you to make backups of your live environment before merging an environment to the live environment, or each time you increase the storage space of your services.
@@ -72,7 +72,7 @@ $ platform backup:restore --branch-from=PARENT_BRANCH 2ca4d90639f706283fee
 You need "admin" role to restore your environment from a backup.
 {{< /note >}}
 
-Be aware that the older US and EU regions do not support restoring backups to different environments.  If your project is on one of the older regions you may file a support ticket to ask that a backup be restored to a different environment for you, or [migrate your project]({{< relref "/tutorials/region-migration.md" >}}) to one of the new regions that supports this feature.
+Be aware that the older US and EU regions do not support restoring backups to different environments.  If your project is on one of the older regions you may file a support ticket to ask that a backup be restored to a different environment for you, or [migrate your project](/tutorials/region-migration.md) to one of the new regions that supports this feature.
 
 
 {{< note >}}
@@ -92,7 +92,7 @@ Backups may be triggered by calling the CLI from an automated system such as Jen
 ### Automated backups using Cron
 
 {{< note >}}
-Automated backups using cron requires you to [get an API token and install the CLI in your application container]({{< relref "/development/cli/api-tokens.md" >}}).
+Automated backups using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
 {{< /note >}}
 
 We ask that you not schedule a backup task more than once a day to minimize data usage.
@@ -119,4 +119,4 @@ It is very important to include the `--no-wait` flag.  If you do not, the cron p
 
 ### Retention
 
-Please see our [Data Retention Page]({{< relref "/security/data-retention.md" >}}).
+Please see our [Data Retention Page](/security/data-retention.md).

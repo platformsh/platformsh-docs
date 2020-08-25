@@ -6,9 +6,9 @@ layout: single
 
 Platform.sh Dedicated plans include a Fastly CDN account by default, which will be managed by Platform.sh.  Our experience has shown that effective caching can mean a huge difference in the perceived performance of an application by its users, and that placing the caches closer to your users (wherever they may be) is the best solution currently available.
 
-Self-Service Grid plans do not include a CDN by default, but you are welcome to configure one yourself.  See our [guidelines]({{< relref "/bestpractices/http-caching.md" >}}) for when and if to use a CDN for HTTP caching.
+Self-Service Grid plans do not include a CDN by default, but you are welcome to configure one yourself.  See our [guidelines](/bestpractices/http-caching.md) for when and if to use a CDN for HTTP caching.
 
-We have partnerships with a variety of CDN vendors depending on your application’s needs.  Our recommended CDN provider is [Fastly]({{< relref "/golive/cdn/fastly.md" >}}).
+We have partnerships with a variety of CDN vendors depending on your application’s needs.  Our recommended CDN provider is [Fastly](/golive/cdn/fastly.md).
 
 ## DNS management
 
@@ -72,7 +72,7 @@ When using a CDN, you might not want users to access your Platform.sh origin dir
 
 ### Password protected HTTP Authentication
 
-You can password protect your project using [HTTP access control]({{< relref "/administration/web/configure-environment.md#http-access-control" >}}).
+You can password protect your project using [HTTP access control](/administration/web/configure-environment.md#http-access-control).
 
 Make sure that you generate a password of sufficient strength. You can then share the password with your CDN provider. Make sure the CDN adds a header to authenticate correctly to your origin.
 
@@ -103,7 +103,7 @@ Be aware that this approach will apply the same IP restrictions to all developme
 
 ### Client authenticated TLS
 
-If your CDN offers this option, an alternative way of securing the connection is [client authenticated TLS]({{< relref "/configuration/routes/https.md#client-authenticated-tls" >}}).
+If your CDN offers this option, an alternative way of securing the connection is [client authenticated TLS](/configuration/routes/https.md#client-authenticated-tls).
 
 **note**: Please remember to permit your developers to access the origin by creating your own certificate or else they won't be able to access the project url directly. (see below)
 
