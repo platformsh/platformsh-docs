@@ -71,7 +71,7 @@ On a production instance (the master branch, after a domain has been assigned) t
 
 To enable the search-blocker `X-Robots-Tag` header on a production environment, use the [Platform.sh CLI](/development/cli/_index.md) command below:
 
-```
+```bash
 platform environment:info restrict_robots true
 ```
 
