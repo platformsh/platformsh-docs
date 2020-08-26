@@ -1,1 +1,8 @@
-<a href="{{ if strings.HasPrefix .Destination "http" }}{{ .Destination | safeURL }}{{ else }}{{ relref .Site .Page }}{{ end }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- $url := urls.Parse .Destination -}}
+{{- $remoteSchemes := slice "http" "https" "mailto" -}}
+{{- $isRemote := in $remoteSchemes $url.Scheme -}}
+{{- if $isRemote -}}
+  <a href="{{ .Destination }}" target="_blank" rel="noopener">{{ .Text | safeHTML }}</a>
+{{- else -}}
+  <a href="{{ ref .Page .Destination }}">{{ .Text | safeHTML }}-SOMETHING</a>
+{{- end -}}
