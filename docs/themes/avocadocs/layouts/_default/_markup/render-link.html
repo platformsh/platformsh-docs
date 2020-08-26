@@ -4,5 +4,5 @@
 {{- if $isRemote -}}
   <a href="{{ .Destination }}" target="_blank" rel="noopener">{{ .Text | safeHTML }}</a>
 {{- else -}}
-  <a href="{{ ref .Page .Destination }}">{{ .Text | safeHTML }}-SOMETHING</a>
+  <a href="{{ relref .Page .Destination }}">{{ .Text | safeHTML }}</a>
 {{- end -}}
