@@ -7,6 +7,9 @@ description: Platform.sh User Documentation
 # Themes
 theme: avocadocs
 
+ignorefiles:
+  - registry/.*
+
 uglyurls: true
 pygmentsUseClasses: true
 

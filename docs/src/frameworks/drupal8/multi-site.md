@@ -5,7 +5,7 @@ sidebarTitle: "Multi-site"
 toc: false
 ---
 
-Platform.sh supports running [multiple applications]({{< relref "/bestpractices/oneormany.md" >}}) multiple applications in the same project, and these can be two or more Drupal sites. But they would be separate Drupal instances: they will have their assets separate and live their lives apart, and it would be much better for them not to share the same database (though they could).
+Platform.sh supports running [multiple applications](/bestpractices/oneormany.md) multiple applications in the same project, and these can be two or more Drupal sites. But they would be separate Drupal instances: they will have their assets separate and live their lives apart, and it would be much better for them not to share the same database (though they could).
 
 ## Drupal "Multisite" and Platform.sh
 

@@ -10,28 +10,28 @@ It is common to have a Java application that you want to migrate to Platform.sh.
 
 To run a Java application at Platform.sh you will need:
 
-* [A supported Java version]({{< relref "/languages/java/_index.md#supported-versions" >}})
-* [A build management tool]({{< relref "/languages/java/_index.md#support-build-automation" >}})
+* [A supported Java version](/languages/java/_index.md#supported-versions)
+* [A build management tool](/languages/java/_index.md#support-build-automation)
   * [Gradle](https://docs.gradle.org/current/userguide/gradle_wrapper.html)
   * [Maven](https://maven.apache.org/)
   * [Maven Wrapper](https://www.baeldung.com/maven-wrapper)
   * [Ant](https://ant.apache.org/)
 * A Git Repository:
-  * [GitHub]({{< relref "/integrations/source/github.md" >}})
-  * [BitBucket]({{< relref "/integrations/source/bitbucket.md" >}})
-  * [GitLab]({{< relref "/integrations/source/gitlab.md" >}})
+  * [GitHub](/integrations/source/github.md)
+  * [BitBucket](/integrations/source/bitbucket.md)
+  * [GitLab](/integrations/source/gitlab.md)
   * The default Git repository provided by Platform.sh
 
 {{< note >}}
-A container application cannot be bigger than **8 GB** of memory, see  [tunning]({{< relref "/languages/java/tuning.md" >}}) to more details.
+A container application cannot be bigger than **8 GB** of memory, see  [tunning](/languages/java/tuning.md) to more details.
 {{< /note >}}
 
 ## Monolith/Single Application
 
-To start a Java application, you need to understand the [Platform.sh structure]({{< relref "/overview/structure.md" >}}).  At minimum you will need three [YAML files]({{< relref "/configuration/yaml" >}}):
+To start a Java application, you need to understand the [Platform.sh structure](/overview/structure.md).  At minimum you will need three [YAML files](/configuration/yaml.md):
 
-1. [Application]({{< relref "/configuration/app/_index.md" >}})
-2. [Route]({{< relref "/configuration/routes/_index.md" >}})
+1. [Application](/configuration/app/_index.md)
+2. [Route](/configuration/routes/_index.md)
 
 ### Application
 
@@ -48,13 +48,13 @@ web:
         start: [3]
 ```
 
-1. [A Java version]({{< relref "/languages/java/_index.md#supported-versions" >}}), e,g.: `java:11`
-2. [The build defines what happens when building the application]({{< relref "/configuration/app/build.md#build" >}}), This build process will typically generate an executable file such as a uber-jar e.g.: `mvn clean package`
-3. [The commands key defines the command to launch the application]({{< relref "/configuration/app/web.md#commands" >}}). E.g.:  `java -jar file.jar`
+1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:11`
+2. [The build defines what happens when building the application](/configuration/app/build.md#build), This build process will typically generate an executable file such as a uber-jar e.g.: `mvn clean package`
+3. [The commands key defines the command to launch the application](/configuration/app/web.md#commands). E.g.:  `java -jar file.jar`
 4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That is trivial if your application follows the port bind principle. E.g.: `java -jar jar --port=$PORT`
 
 {{< note >}}
-Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder]({{< relref "/configuration/app/storage.md#mounts" >}}).
+Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](/configuration/app/storage.md#mounts).
 {{< /note >}}
 ### Route
 
@@ -81,12 +81,12 @@ You have the option to use several languages in microservices. If you're using J
 
 * [Maven Modules](https://maven.apache.org/guides/mini/guide-multiple-modules.html)
 * [Gradle Multi-project](https://guides.gradle.org/creating-multi-project-builds/)
-* [Git submodules]({{< relref "/development/submodules.md" >}})
+* [Git submodules](/development/submodules.md)
 
-[Platform.sh supports multiple applications]({{< relref "/configuration/app/multi-app.md" >}}) and there are two options:
+[Platform.sh supports multiple applications](/configuration/app/multi-app.md) and there are two options:
 
-* [One application YAML file to each application]({{< relref "/configuration/app/_index.md" >}})
-* [Aggregate all applications in a single file with applications.yaml]({{< relref "/configuration/app/multi-app.md#applicationsyaml" >}})
+* [One application YAML file to each application](/configuration/app/_index.md)
+* [Aggregate all applications in a single file with applications.yaml](/configuration/app/multi-app.md#applicationsyaml)
 
 | Article                                                      | Content                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -103,9 +103,9 @@ As a single application, in the multi-app, you have the option to set load balan
 
 ## Access to services included at Platform.sh
 
-[Platform.sh has services managed by Platform.sh itself such as database, cache and search engine]({{< relref "/configuration/services/_index.md" >}}). However, you can use a database or any services such as a transition process, just be aware of the [firewall]({{< relref "/configuration/app/firewall.md" >}}).
+[Platform.sh has services managed by Platform.sh itself such as database, cache and search engine](/configuration/services/_index.md). However, you can use a database or any services such as a transition process, just be aware of the [firewall](/configuration/app/firewall.md).
 
-When applications need to access a service, it is important to include the [Relationships key]({{< relref "/configuration/app/relationships.md" >}}), because. by default an application may not talk to any other container within a project it includes others projects as a microservices architecture.
+When applications need to access a service, it is important to include the [Relationships key](/configuration/app/relationships.md), because. by default an application may not talk to any other container within a project it includes others projects as a microservices architecture.
 
 To connect to a service from your deployed application, you will need to pass the relationships information into your application's configuration.  The way to do so varies with the application.  The most common mechanisms are listed below.
 
@@ -113,7 +113,7 @@ To connect to a service from your deployed application, you will need to pass th
 
 If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you will be able to configure the application directly from environment variables.  Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
 
-The services information is available in the **PLATFORM_RELATIONSHIPS** [environment variable]({{< relref "/development/variables.md" >}}).  It is a base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions.
+The services information is available in the **PLATFORM_RELATIONSHIPS** [environment variable](/development/variables.md).  It is a base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions.
 
 Platform.sh supports [jq](https://stedolan.github.io/jq/) that allows to extract information from this JSON.
 
@@ -128,7 +128,7 @@ export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".databas
 | [Spring Data JPA](https://community.platform.sh/t/how-to-overwrite-spring-data-variable-to-access-platform-sh-services/518) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/tree/master/spring-jpa) |
 | [Payara JPA](https://community.platform.sh/t/how-to-overwrite-variables-to-payara-jpa-access-platform-sh-sql-services/519) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/blob/master/payara/README.md) |
 
-To reduce the number of lines in the application file and to make it cleaner, you have the option to move the variable environment to another file: the `.environment` [file as part of your application]({{< relref "/development/variables.md?#shell-variables" >}}).
+To reduce the number of lines in the application file and to make it cleaner, you have the option to move the variable environment to another file: the `.environment` [file as part of your application](/development/variables.md#shell-variables).
 
 E.g.:
 

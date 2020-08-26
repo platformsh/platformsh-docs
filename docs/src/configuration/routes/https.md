@@ -14,7 +14,7 @@ Let's Encrypt certificate renewals are attempted each time your environment is d
 platform redeploy
 ```
 
-Alternatively, see the [section below]({{< relref "#automated-ssl-certificate-renewal-using-cron" >}}) on automatically redeploying the site in order to renew the certificate.
+Alternatively, see the [section below](#automated-ssl-certificate-renewal-using-cron) on automatically redeploying the site in order to renew the certificate.
 {{< /note >}}
 
 Platform.sh recommends using HTTPS requests for all sites exclusively.  Doing so provides better security, access to certain features that web browsers only permit over HTTPS, and access to HTTP/2 connections on all sites which can greatly improve performance.
@@ -149,10 +149,10 @@ tls:
 
 If the Let's Encrypt certificate is due to expire in less than one month then it will be renewed automatically during a deployment.  That makes it feasible to set up regular auto-renewal of the Let's Encrypt certificate.  The caveat is that, like any deploy, there is a very brief downtime (a few seconds, usually) so it's best to do during off-hours.
 
-You will first need to install the CLI in your application container.  See the section on [API tokens]({{< relref "/development/cli/api-tokens.md" >}}) for instructions on how to do so.
+You will first need to install the CLI in your application container.  See the section on [API tokens](/development/cli/api-tokens.md) for instructions on how to do so.
 
 {{< note >}}
-Automated SSL certificate renewal using cron requires you to [get an API token and install the CLI in your application container]({{< relref "/development/cli/api-tokens.md" >}}).
+Automated SSL certificate renewal using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
 {{< /note >}}
 
 Once the CLI is installed in your application container and an API token configured you can add a cron task to run twice a month to trigger a redeploy. For example:

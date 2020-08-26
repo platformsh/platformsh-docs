@@ -8,13 +8,13 @@ sidebarTitle: "Frameworks"
 
 [Hibernate ORM](https://hibernate.org/) is an object-relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database. Hibernate handles object-relational impedance mismatch problems by replacing direct, persistent database accesses with high-level object handling functions.
 
-* [Hibernate Best Practices]({{< relref "/frameworks/hibernate.md" >}})
+* [Hibernate Best Practices](/frameworks/hibernate.md)
 
 ## Jakarta EE/ Eclipse MicroProfile
 
 [Eclipse MicroProfile](https://microprofile.io/) is a semi-new community dedicated to optimizing the Enterprise Java mission for microservice-based architectures. Now Enterprise Java has been standardized under the Eclipse Foundation as [Jakarta EE](https://jakarta.ee/).
 
-* [Jakarta EE/ Eclipse MicroProfile Best Practices]({{< relref "/frameworks/jakarta.md" >}})
+* [Jakarta EE/ Eclipse MicroProfile Best Practices](/frameworks/jakarta.md)
 
 ### Templates
 
@@ -54,8 +54,8 @@ sidebarTitle: "Frameworks"
 
 | Article                                                      |                                                        Links |
 | ------------------------------------------------------------ | -----------------------------------------------------------: |
-| [Panache MongoDB](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-3) |                                  [Source](mongo-db-panache/) |
-| [Command Mode Application](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-2) |                                      [Source](command-mode/) |
+| [Panache MongoDB](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-3) |                                  [Source](https://github.com/platformsh-examples/quarkus/mongo-db-panache/) |
+| [Command Mode Application](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-2) |                                      [Source](https://github.com/platformsh-examples/quarkus/command-mode/) |
 | [Hibernate Search With Elasticsearch](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-1) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/elasticsearch) |
 | [PostgreSQL With Panache](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/panache) |
 | [PostgreSQL with JPA](https://dzone.com/articles/quarkus-supersonic-subatomic-java-deploy-faster-in) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/jpa) |
@@ -65,7 +65,7 @@ sidebarTitle: "Frameworks"
 
 The [Spring Framework](https://spring.io/projects/spring-framework) provides a comprehensive programming and configuration model for modern Java-based enterprise applications - on any kind of deployment platform. Platform.sh is flexible, and allows you to use Spring Framework in several flavors such as [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html) and [Spring Boot](https://spring.io/projects/spring-boot).
 
-* [Spring Best Practices]({{< relref "/frameworks/spring.md" >}})
+* [Spring Best Practices](/frameworks/spring.md)
 
 ### Templates
 

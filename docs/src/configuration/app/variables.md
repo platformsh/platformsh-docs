@@ -4,7 +4,7 @@ weight: 8
 toc: false
 ---
 
-Platform.sh provides a number of ways to set [variables]({{< relref "/development/variables.md" >}}), either globally or specific to a single environment.  For values that should be consistent between different environments (because they're configuring the application or runtime itself, generally) the easiest way to control them is to set them in the `.platform.app.yaml` file.
+Platform.sh provides a number of ways to set [variables](/development/variables.md), either globally or specific to a single environment.  For values that should be consistent between different environments (because they're configuring the application or runtime itself, generally) the easiest way to control them is to set them in the `.platform.app.yaml` file.
 
 Only prefixed variables may be set from the `.platform.app.yaml` file.  Some prefixes have specific meaning while others are only significant to a particular application.  Nested variables will be automatically converted into a nested array or list structure as appropriate to the language.
 

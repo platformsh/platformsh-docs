@@ -30,11 +30,11 @@ relationships:
     redis: "rediscache:redis"
 ```
 
-The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable]({{< relref "/development/variables.md" >}}).  The right hand side is the name of the service we specified above (`rediscache`) and the endpoint (`redis`).  If you named the service something different above, change `rediscache` to that.
+The key (left side) is the name that will be exposed to the application in the `PLATFORM_RELATIONSHIPS` [variable](/development/variables.md).  The right hand side is the name of the service we specified above (`rediscache`) and the endpoint (`redis`).  If you named the service something different above, change `rediscache` to that.
 
 ### Add the Redis PHP extension
 
-Because the Redis extension for PHP has been known to have BC breaks at times, we do not bundle a specific verison by default.  Instead, we provide a script to allow you to build your desired version in the build hook.  See the [PHP-Redis page]({{< relref "/languages/php/redis.md" >}}) for a simple-to-install script and instructions.
+Because the Redis extension for PHP has been known to have BC breaks at times, we do not bundle a specific verison by default.  Instead, we provide a script to allow you to build your desired version in the build hook.  See the [PHP-Redis page](/languages/php/redis.md) for a simple-to-install script and instructions.
 
 ### Add the Drupal module
 

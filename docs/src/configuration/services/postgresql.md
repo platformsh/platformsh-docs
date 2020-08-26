@@ -17,7 +17,7 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 {{< note >}}
 Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
 
-See the [Upgrading to PostgreSQL 12 with `postgis`]({{< relref "#upgrading-to-postgresql-12-with-the-postgis-extension" >}}) section below for more details.
+See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 {{< /note >}}
 
 ### Deprecated versions
@@ -30,7 +30,7 @@ The following versions are available but are not receiving security updates from
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable]({{< relref "/development/variables.md#platformsh-provided-variables" >}}):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 {{< highlight json >}}
 {{< remote url="https://examples.docs.platform.sh/relationships/postgresql" >}}
@@ -223,7 +223,7 @@ extensions not listed here.
 {{< note >}}
 Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
 
-See the [Upgrading to PostgreSQL 12 with `postgis`]({{< relref "#upgrading-to-postgresql-12-with-the-postgis-extension" >}}) section below for more details.
+See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 {{< /note >}}
 
 ## Notes

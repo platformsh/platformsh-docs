@@ -8,7 +8,7 @@ description: |
 
 {{< description >}}
 
-See the [Featured Frameworks]({{< relref "/frameworks/_index.md" >}}) section or our [Project Templates]({{< relref "/development/templates.md" >}}) for more project-specific documentation.
+See the [Featured Frameworks](/frameworks/_index.md) section or our [Project Templates](/development/templates.md) for more project-specific documentation.
 
 ## Preparation
 
@@ -16,11 +16,11 @@ First, assemble your Git repository as appropriate, on your master branch.  Be s
 
 For some applications, such as Drupal you will need to dump configuration to files before proceeding.  You will also need to provide appropriate configuration to read the credentials for your services at runtime and integrate them into your application's configuration.  The details of that integration will vary between systems.  Be sure to see the appropriate project templates for our recommended configuration.
 
-* [Go Templates]({{< relref "/languages/go#project-templates" >}})
-* [Java Templates]({{< relref "/languages/java/_index.md#project-templates" >}})
-* [Node.js Templates]({{< relref "/languages/nodejs/_index.md#project-templates" >}})
-* [PHP Templates]({{< relref "/languages/php/_index.md#project-templates" >}})
-* [Python Templates]({{< relref "/languages/python#project-templates" >}})
+* [Go Templates](/languages/go#project-templates)
+* [Java Templates](/languages/java/_index.md#project-templates)
+* [Node.js Templates](/languages/nodejs/_index.md#project-templates)
+* [PHP Templates](/languages/php/_index.md#project-templates)
+* [Python Templates](/languages/python#project-templates)
 
 
 In the management console, click `+ Add project` to create a new Platform.sh project. When asked to select a template pick "Create a blank project".
@@ -40,7 +40,7 @@ When you push, a new environment will be created using your code and the provide
 
 ## Import your database
 
-You will need to have a dump or backup of the database you wish to start from.  The process is essentially the same for each type of persistent data service.  See the [MySQL]({{< relref "/configuration/services/mysql.md" >}}), [PostgreSQL]({{< relref "/configuration/services/postgresql.md" >}}), or [MongoDB]({{< relref "/configuration/services/mongodb.md" >}}) documentation as appropriate.
+You will need to have a dump or backup of the database you wish to start from.  The process is essentially the same for each type of persistent data service.  See the [MySQL](/configuration/services/mysql.md), [PostgreSQL](/configuration/services/postgresql.md), or [MongoDB](/configuration/services/mongodb.md) documentation as appropriate.
 
 ## Import your files
 
@@ -56,7 +56,7 @@ mounts:
         source_path: private
 ```
 
-While using the CLI and rsync are the most common solutions for uploading files to mounts, you can also use [SCP]({{< relref "/development/access-site.md#scp" >}}).
+While using the CLI and rsync are the most common solutions for uploading files to mounts, you can also use [SCP](/development/access-site.md#scp).
 
 ### Platform.sh CLI
 

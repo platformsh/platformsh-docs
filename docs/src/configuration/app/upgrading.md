@@ -9,7 +9,7 @@ weight: 14
 
 ## Changes in version 2017.11 (2017-11-09)
 
-* The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`]({{< relref "/configuration/yaml.md" >}}).  For example, the following `services.yaml` snippet:
+* The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/configuration/yaml.md).  For example, the following `services.yaml` snippet:
 
     ```yaml
     mysearch:
@@ -31,7 +31,7 @@ weight: 14
                 path: "myconfdir"
     ```
 
-* The syntax for the `mounts` key in `.platform.app.yaml` has changed.  Rather than a parsed string, the value of each mount is a [multi-key definition]({{< relref "/configuration/app/storage.md" >}}).  That is, the following example:
+* The syntax for the `mounts` key in `.platform.app.yaml` has changed.  Rather than a parsed string, the value of each mount is a [multi-key definition](/configuration/app/storage.md).  That is, the following example:
 
     ```yaml
     mounts:
@@ -70,7 +70,7 @@ disable client-side caching. This change only affects static files served
 directly by the web server. Responses served from passthru URLs continue to use
 whatever caching headers were set by the application..
 
-To enable caching on your static files, make sure you include an `expires` key in your [web configuration]({{< relref "/configuration/app/web.md" >}}), as shown below:
+To enable caching on your static files, make sure you include an `expires` key in your [web configuration](/configuration/app/web.md), as shown below:
 
 ```yaml
 web:

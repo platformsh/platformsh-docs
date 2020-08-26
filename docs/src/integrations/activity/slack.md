@@ -10,7 +10,7 @@ To use it, paste it as-is into a `.js` file and then add it as a new integration
 
 Second, create a new Slack webhook through your Slack administrative interface.  See the [Slack documentation](https://api.slack.com/messaging) for how to do so.  At the end you will be given a URL that points to `https://hooks.slack.com/...`.
 
-Third, add that URL to your project as a [variable]({{< relref "/development/variables.md" >}}) named `SLACK_URL`.
+Third, add that URL to your project as a [variable](/development/variables.md) named `SLACK_URL`.
 
 Now, any activities that meet the events/environment criteria you specified will get reported to Slack.
 

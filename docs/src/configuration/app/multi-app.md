@@ -63,7 +63,7 @@ In this case, the `.platform.app.yaml` file in `main` does not specify a `source
 
 Note that disk parameters in the `.platform.app.yaml` file will be relative to the `source.root` directory if specified.  The `source.root` path is relative to the repository root.
 
-The primary use case for this configuration is if the source code is pulled in as a [Git submodule]({{< relref "#submodules" >}}) or downloaded during the build phase.
+The primary use case for this configuration is if the source code is pulled in as a [Git submodule](#submodules) or downloaded during the build phase.
 
 ### `applications.yaml`
 
@@ -172,10 +172,10 @@ Assuming a domain name of `example.com`, that will result in:
 * `https://backend.example.com/` being served by the Drupal instance.
 * `https://example.com/` being served by the AngularJS instance.
 
-There is no requirement that an application be web-accessible.  If it is not specified in `routes.yaml` then it will not be web-accessible at all.  However, if you are building a non-routable application off of the same code base as another application, you should probably consider defining it as a [`worker`]({{< relref "/configuration/app/workers.md" >}}) instead.  The net result is the same but it is much easier to manage.
+There is no requirement that an application be web-accessible.  If it is not specified in `routes.yaml` then it will not be web-accessible at all.  However, if you are building a non-routable application off of the same code base as another application, you should probably consider defining it as a [`worker`](/configuration/app/workers.md) instead.  The net result is the same but it is much easier to manage.
 
 ## Relationships
 
 In a multi-app configuration, applications by default cannot access each other.  However, they may declare a `relationships` block entry that references another application rather than a service.  In that case the endpoint is `http`.
 
-However, be aware that circular relationships are not supported.  That is, application A cannot have a relationship to application B if application B also has a relationship to application A.  Such circular relationships are usually a sign that the applications should be coordinating through a shared data store, like a database, [RabbitMQ server]({{< relref "/configuration/services/rabbitmq.md" >}}), or similar.
+However, be aware that circular relationships are not supported.  That is, application A cannot have a relationship to application B if application B also has a relationship to application A.  Such circular relationships are usually a sign that the applications should be coordinating through a shared data store, like a database, [RabbitMQ server](/configuration/services/rabbitmq.md), or similar.

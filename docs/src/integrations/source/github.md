@@ -78,7 +78,7 @@ Note that if you have created your account using the GitHub oAuth Login then in 
 
 ### 4. Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI]({{< relref "/integrations/overview.md#validating-integrations" >}}) command
+You can then verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validating-integrations) command
 
 ```bash
 platform integration:validate

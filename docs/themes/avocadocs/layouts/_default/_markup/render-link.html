@@ -1,10 +1,8 @@
-{{ $link := .Destination }}
-{{ $isRemote := strings.HasPrefix $link "http" }}
-{{- if not $isRemote -}}
 {{- $url := urls.Parse .Destination -}}
-{{- if $url.Path -}}
-{{- $fragment := "" -}}
-{{- with $url.Fragment }}{{ $fragment = printf "#%s" . }}{{ end -}}
-{{- with .Page.GetPage $url.Path -}}{{- $link = printf "%s%s" .RelPermalink $fragment -}}{{- end -}}{{- end -}}
+{{- $remoteSchemes := slice "http" "https" "mailto" -}}
+{{- $isRemote := in $remoteSchemes $url.Scheme -}}
+{{- if $isRemote -}}
+  <a href="{{ .Destination }}" target="_blank" rel="noopener">{{ .Text | safeHTML }}</a>
+{{- else -}}
+  <a href="{{ relref .Page .Destination }}">{{ .Text | safeHTML }}</a>
 {{- end -}}
-<a href="{{- $link | safeURL -}}"{{- with .Title -}} title="{{- . -}}"{{- end -}}{{- if $isRemote -}} target="_blank"{{- end -}}>{{- .Text | safeHTML -}}</a>

@@ -44,7 +44,7 @@ platform db:dump --gzip -f database.sql.gz
 lando db-import database.sql.gz
 ```
 
-Rsync can download user files easily and efficiently.  See the [exporting tutorial]({{< relref "/tutorials/exporting.md" >}}) for information on how to use rsync.
+Rsync can download user files easily and efficiently.  See the [exporting tutorial](/tutorials/exporting.md) for information on how to use rsync.
 
 Then you need to update your `sites/default/settings.local.php` to configure your codebase to connect to the local database that you just imported:
 

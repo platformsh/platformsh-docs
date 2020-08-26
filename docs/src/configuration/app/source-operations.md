@@ -36,7 +36,7 @@ The environment resource gets a new `source-operation` action which can be trigg
 platform source-operation:run update
 ```
 
-The `source-operation:run` command takes the command name to run. Additional variables can be added to inject into the environment of the source operation.  They will be interpreted the same way as any other [variable]({{< relref "/development/variables.md" >}}) set through the UI or CLI, which means you need an `env:` prefix to expose them as a Unix environment variable.  They can then be referenced by the source operation like any other variable.
+The `source-operation:run` command takes the command name to run. Additional variables can be added to inject into the environment of the source operation.  They will be interpreted the same way as any other [variable](/development/variables.md) set through the UI or CLI, which means you need an `env:` prefix to expose them as a Unix environment variable.  They can then be referenced by the source operation like any other variable.
 
 ```bash
 platform source-operation:run update --variable env:FOO=bar --variable env:BAZ=beep
@@ -65,7 +65,7 @@ Source Operations can only be triggered on environment created by a branch, and 
 You can use cron to automatically run your source operations.
 
 {{< note >}}
-Automated source operations using cron requires to [get an API token and install the CLI in your application container]({{< relref "/development/cli/api-tokens.md" >}}).
+Automated source operations using cron requires to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
 {{< /note >}}
 
 Once the CLI is installed in your application container and an API token has been configured, you can add a cron task to run your source operations once a day. We do not recommend triggering source operations on your `master` production environment, but rather on a dedicated environment which you can use for testing before deployment.

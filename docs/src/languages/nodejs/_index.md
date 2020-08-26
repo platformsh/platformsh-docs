@@ -13,7 +13,7 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated" >}} |
 
-If you need other versions, take a look at our [options for installing them with NVM]({{< relref "/languages/nodejs/nvm.md" >}}).
+If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.md).
 
 ## Deprecated versions
 
@@ -94,14 +94,14 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
      upstream: "app:http"
    ```
 
-7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor]({{< relref "/configuration/app/build.md#build" >}}), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
+7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor](/configuration/app/build.md#build), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
 
    ```yaml
    build:
      flavor: none
    ```
 
-   Consult the documentation specific to [Node.js builds]({{< relref "/configuration/app/build.html#nodejs-default-by-default" >}}) for more information.
+   Consult the documentation specific to [Node.js builds](/configuration/app/build.html#nodejs-default-by-default) for more information.
 
 
 Here's a complete example that also serves static assets (.png from the `/public` directory):
@@ -155,7 +155,7 @@ server.listen(config.port);
 
 ## Accessing services
 
-To access various [services]({{< relref "/configuration/services/_index.md" >}}) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](/configuration/services/_index.md) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 

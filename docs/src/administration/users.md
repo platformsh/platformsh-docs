@@ -34,7 +34,7 @@ When a development team works on a project, the team leader can be the project a
 If you want your users to be able to see everything (Reader), but only commit to a specific branch, change their permission level on that environment to "Contributor".
 
 {{< note theme="info" title="SSH Access Control">}}
-An environment contributor can push code to the environment and has SSH access to the environment. You can change this by [specifying user types]({{< relref "/configuration/app/access.md" >}}) with SSH access.
+An environment contributor can push code to the environment and has SSH access to the environment. You can change this by [specifying user types](/configuration/app/access.md) with SSH access.
 {{< /note >}}
 
 {{< note >}}

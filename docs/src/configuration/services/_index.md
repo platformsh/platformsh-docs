@@ -70,7 +70,7 @@ Currently we do not support downsizing the persistent disk of a service.
 
 ### Size
 
-By default, Platform.sh will allocate CPU and memory resources to each container automatically.  Some services are optimized for high CPU load, some for high memory load.  By default, Platform.sh will try to allocate the largest "fair" size possible to all services, given the available resources on the plan.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing]({{< relref "/configuration/app/size.md" >}}) page for more details.
+By default, Platform.sh will allocate CPU and memory resources to each container automatically.  Some services are optimized for high CPU load, some for high memory load.  By default, Platform.sh will try to allocate the largest "fair" size possible to all services, given the available resources on the plan.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing](/configuration/app/size.md) page for more details.
 
 ## Service timezones
 
@@ -81,11 +81,11 @@ All services have their system timezone set to UTC by default.  In most cases th
 
 ## Using the services
 
-In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml]({{< relref "/configuration/app/_index.md" >}}) file which configures the *relationships* between applications and services.
+In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml](/configuration/app/_index.md) file which configures the *relationships* between applications and services.
 
 ## Endpoints
 
-All services offer one or more `endpoints`.  An endpoint is simply a named set of credentials that can be used to gives access to other applications and services in your project to that service.  Only some services support multiple user-defined endpoints.  If you do not specify one then one will be created with a standard defined name, generally the name of the service type (e.g., `mysql` or `solr`).  An application container, defined by a `.platform.app.yaml` file, always exposes and endpoint named `http` to allow the [router]({{< relref "/configuration/routes/_index.md" >}}) to forward requests to it.
+All services offer one or more `endpoints`.  An endpoint is simply a named set of credentials that can be used to gives access to other applications and services in your project to that service.  Only some services support multiple user-defined endpoints.  If you do not specify one then one will be created with a standard defined name, generally the name of the service type (e.g., `mysql` or `solr`).  An application container, defined by a `.platform.app.yaml` file, always exposes and endpoint named `http` to allow the [router](/configuration/routes/_index.md) to forward requests to it.
 
 When defining relationships in a configuration file you will always address a service as `<servicename>`:`<endpoint>`.  See the appropriate service page for details on how to configure multiple endpoints for each service that supports it.
 

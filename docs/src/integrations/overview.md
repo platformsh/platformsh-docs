@@ -12,8 +12,8 @@ description: |
 Platform.sh supports native integrations with multiple services, first and foremost Git hosting services such as GitHub, GitLab, or Bitbucket.  You can continue to use those tools for your development workflow, and have Platform.sh environments created automatically for your pull requests and branches.
 
 You can also add our native integrations with performance monitoring tools such as Blackfire, New Relic, or Tideways, as well as setting up health notifications.  Or create your own integration using our webhooks.
-{{< relref "/integrations/overview.md#validating-integrations" >}}
-Be aware that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.  See [User administration]({{< relref "/administration/users.md" >}}) for more details.
+/integrations/overview.md#validating-integrations
+Be aware that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.  See [User administration](/administration/users.md) for more details.
 
 ## Listing active integrations
 
