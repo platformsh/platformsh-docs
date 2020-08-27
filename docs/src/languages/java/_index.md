@@ -32,11 +32,13 @@ Platform.sh supports the most common project management tools in the Java ecosys
 
 ## Other JVM languages
 
-It’s worth remembering that the JVM by its specification [does not read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages).
+It’s worth remembering that the JVM by its specification [does not read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). Platform.sh supports several of them, such as Kotlin, Groovy, and Scala, so long as that language works with any build automation that Platform.sh supports.
 
 | Article                                                      | Link                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [Kotlin and Spring](https://platform.sh/blog/2019/ready-to-have-fun-try-kotlin-and-spring/) | [Source](https://github.com/platformsh-templates/spring-kotlin) |
+| [Scala and Spring](https://dzone.com/articles/spring-scala-cloud-psh) | [Source](https://github.com/platformsh-examples/scala)       |
+| Groovy and Spring                                            | [Source](https://github.com/platformsh-examples/groovy)      |
 
 ## Accessing services
 
@@ -115,6 +117,10 @@ highlight=java
 ---
 
 {{< /codetabs >}}
+
+ {{< note >}}
+These samples use the [Configuration Reader library](https://github.com/platformsh/config-reader-java) that Platform.sh provides. However, if your favorite Java frameworks allow you to overwrite the configurations following [The Twelve-Factor App](https://12factor.net/config) (such as Spring, Micronaut, Quarkus, Jakarta EE/MicroProfile), then as a developer you have the option to not use the library, removing the need for an additional dependency.
+{{< /note >}}
 
 ## Project templates
 
