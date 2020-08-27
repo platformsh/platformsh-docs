@@ -32,7 +32,7 @@ Platform.sh supports the most common project management tools in the Java ecosys
 
 ## Other JVM languages
 
-It’s worth remembering that the JVM by its specification [does not read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). Because the JVM is polyglot, Platform.sh has support to several such as Kotlin, Groovy, Scala, and so on. As long as that language works with any build automation that Platform.sh supports.
+It’s worth remembering that the JVM by its specification [does not read Java code](https://docs.oracle.com/javase/specs/jvms/se8/html/index.html), but bytecode. So within the JVM, it’s possible to [run several languages](https://en.wikipedia.org/wiki/List_of_JVM_languages). Platform.sh supports several of them, such as Kotlin, Groovy, and Scala, so long as that language works with any build automation that Platform.sh supports.
 
 | Article                                                      | Link                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
