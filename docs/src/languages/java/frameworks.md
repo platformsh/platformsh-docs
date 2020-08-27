@@ -54,8 +54,8 @@ sidebarTitle: "Frameworks"
 
 | Article                                                      |                                                        Links |
 | ------------------------------------------------------------ | -----------------------------------------------------------: |
-| [Panache MongoDB](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-3) |                                  [Source](https://github.com/platformsh-examples/quarkus/mongo-db-panache/) |
-| [Command Mode Application](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-2) |                                      [Source](https://github.com/platformsh-examples/quarkus/command-mode/) |
+| [Panache MongoDB](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-3) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/mongo-db-panache) |
+| [Command Mode Application](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-2) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/command-mode) |
 | [Hibernate Search With Elasticsearch](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-1) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/elasticsearch) |
 | [PostgreSQL With Panache](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/panache) |
 | [PostgreSQL with JPA](https://dzone.com/articles/quarkus-supersonic-subatomic-java-deploy-faster-in) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/jpa) |
