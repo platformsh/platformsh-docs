@@ -118,6 +118,10 @@ highlight=java
 
 {{< /codetabs >}}
 
+ {{< note >}}
+Those samples are using the [Configuration Reader](https://github.com/platformsh/config-reader-java) that Platform.sh provides to you if you wish, however, if your favorite Java frameworks allow you to overwrite the configurations following [The Twelve-Factor App](https://12factor.net/config) such as Spring, Micronaut, Quarkus, Jakarta EE/MicroProfile, and so on. 
+{{< /note }}
+
 ## Project templates
 
 A number of project templates for major Java applications are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
