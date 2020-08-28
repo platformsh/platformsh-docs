@@ -13,19 +13,25 @@ You can use NVM with any of our container types that have node installed to chan
 Installing NVM is done in the build hook of your `.platform.app.yaml`, which some additional calls to ensure that environment variables are set correctly.
 
 ```yaml
+variables:
+    env:
+        # Update these for your desired NVM and Node versions.
+        NVM_VERSION: v0.35.2
+        NODE_VERSION: 14
+
 hooks:
     build: |
         unset NPM_CONFIG_PREFIX
-        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | dash
+        curl -o- https://raw.githubusercontent.com/creationix/nvm/$NVM_VERSION/install.sh | dash
         export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
         nvm current
-        nvm install 9.5.0
+        nvm install $NODE_VERSION
     deploy: |
         unset NPM_CONFIG_PREFIX
         export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        nvm use 9.5.0
+        nvm use $NODE_VERSION
  ```
 
 And in a `.environment` file in the root of your project:
