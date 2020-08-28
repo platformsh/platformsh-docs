@@ -26,6 +26,16 @@ When that key is defined, Platform.sh will start a second PHP-FPM process on the
 
 Xdebug has numerous other configuration options available.  They are all set as `php.ini` values, and can be configured the same way as any other [`php.ini` setting](/languages/php/ini.md).  Consult the [Xdebug documentation](https://xdebug.org/docs/) for a full list of available options, although in most cases the default configuration is sufficient.
 
+If you have the [router cache](/configuration/routes/cache.md) enabled, you will also need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie whitelist.  Depending on the cookies you already have listed there the result should look similar to this:
+
+```yaml
+"https://{default}/":
+    # ...
+    cache:
+      enabled: true
+      cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
+```
+
 ## Using Xdebug
 
 ### Open a tunnel
