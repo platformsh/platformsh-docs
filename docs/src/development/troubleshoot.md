@@ -7,7 +7,7 @@ weight: 16
 
 There are times where you might want to trigger a redeployment of your application. 
 
-You can redeploy each environment in Console by clicking the "Redeploy" button on the top right corner.
+You can redeploy each environment in the management console by clicking the "Redeploy" button on the top right corner.
 
 ![Redeploy button in Console](/images/troubleshoot/platformsh-redeploy-button.png "0.5")
 
