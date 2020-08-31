@@ -5,13 +5,19 @@ weight: 16
 
 ## Force a redeploy
 
-There are times where you might want to trigger a redeployment of your application. That can be done with the following command:
+There are times where you might want to trigger a redeployment of your application. 
+
+You can redeploy each environment in Console by clicking the "Redeploy" button on the top right corner.
+
+![Redeploy button in Console](/images/troubleshoot/platformsh-redeploy-button.png "0.5")
+
+Redeploy is also available using the following Platform.sh CLI command:
 
 ```sh
 platform redeploy
 ```
 
-Do not trigger a redeploy if there are builds in a "Pending" state, as these will block deployment. Wait for those builds to complete.
+Please note that the redeploy will happen after any scheduled builds in either "Running" or "Pending" state. 
 
 ## Clear the build cache
 
