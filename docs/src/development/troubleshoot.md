@@ -11,7 +11,7 @@ You can redeploy each environment in the management console by clicking the "Red
 
 ![Redeploy button in Console](/images/troubleshoot/platformsh-redeploy-button.png "0.5")
 
-Redeploy is also available using the following Platform.sh CLI command:
+Redeploys are also available using the following Platform.sh CLI command:
 
 ```sh
 platform redeploy
