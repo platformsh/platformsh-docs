@@ -1,6 +1,5 @@
 ---
 title: "Region migration"
-weight: 5
 sidebarTitle: "Changing regions"
 
 description: |
