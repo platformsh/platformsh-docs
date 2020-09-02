@@ -19,6 +19,7 @@ We recommend this upgrade for all users.
 The new Project Web Interface provides the following features for the Pro plan Staging and Production environments:
 
 * Backup on Production does not freeze in the process.
+* Support to Data sync
 
 
 You cannot perform the following:
