@@ -110,13 +110,27 @@ server_id=2
 
 And reload the replica instance for the changes to take an effect.
 
+### Set up SSH tunneling
+
+You will need to set up an SSH tunnel from the replica server to the primary, tunneled through the application.  To do so using the Platform.sh CLI, use
+
+```bash
+platform tunnel:open -p your-project-id -e master
+```
+
+Which will open local SSH tunnels to all services accessible from the application.  In practice, you may be better served by setting up the tunnel manually using SSH.  Consult the SSH documentation for the best way to do so.
+
+{{< note >}}
+The SSH connection will be interrupted every time the environment redeploys.  For replication to continue you must setup an auto-restart for the connection.  There are many ways to do so that are out of the scope of this documentation.
+{{< /note >}}
+
 ### Starting the Replica
 
 Once the data has been imported, you are ready to start replicating. Begin by running a `CHANGE MASTER TO`, making sure that `MASTER_LOG_FILE` matches the file and `MASTER_LOG_POS` the position returned by the earlier `SHOW MASTER STATUS` on the Platform.sh database. For example:
 
 ```sql
 mysql> CHANGE MASTER TO
-  MASTER_HOST='master.domain.com',
+  MASTER_HOST='<the.host>',
   MASTER_USER='replicator',
   MASTER_PASSWORD='<your_replicator_password>',
   MASTER_PORT=3306,
@@ -125,6 +139,8 @@ mysql> CHANGE MASTER TO
   MASTER_CONNECT_RETRY=10,
   MASTER_USE_GTID = slave_pos;
 ```
+
+Where `<the.host>` will vary depending on the SSH tunneling configuration you have, and the `<your_replicator_password>` can be obtained by running `platform relationships`.
 
 Now start the replica with the `START SLAVE` command:
 
