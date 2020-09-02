@@ -38,7 +38,7 @@ It’s worth remembering that the JVM by its specification [does not read Java c
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [Kotlin and Spring](https://platform.sh/blog/2019/ready-to-have-fun-try-kotlin-and-spring/) | [Source](https://github.com/platformsh-templates/spring-kotlin) |
 | [Scala and Spring](https://dzone.com/articles/spring-scala-cloud-psh) | [Source](https://github.com/platformsh-examples/scala)       |
-| Groovy and Spring                                            | [Source](https://github.com/platformsh-examples/groovy)      |
+| [Groovy and Spring](https://dzone.com/articles/spring-groovy-cloud-psh) | [Source](https://github.com/platformsh-examples/groovy)      |
 
 ## Accessing services
 
