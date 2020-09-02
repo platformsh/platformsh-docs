@@ -68,7 +68,7 @@ Record the File and Position details. If binary logging has just been enabled, t
 Login to the app container, then run:
 
 ```sh
-# Ddump the data from primary. Note that it will dump only the databases, which "replicator" user has access to
+# Dump the data from primary. Note that it will dump only the databases, which "replicator" user has access to.
 $ mysqldump --all-databases --single-transaction -h database.internal -P 3306 -u replicator -p > /path/to/dump.sql
 ```
 
@@ -89,7 +89,7 @@ mysql> UNLOCK TABLES;
 
 ### Configuring the replica
 
-As mentioned above you have to set up a replica on your own.  We assume that you have a running MariaDB/MySQL replica instance,  give the replica a unique `server_id` (distinct from primary). You can find out primary's `server_id` by running:
+As mentioned above you have to set up a replica on your own. Assuming that you have a running MariaDB/MySQL replica instance, give the replica a unique `server_id` (distinct from primary). You can find out primary's `server_id` by running:
 
 ```sql
 mysql> SHOW VARIABLES LIKE 'server_id';
@@ -101,7 +101,7 @@ mysql> SHOW VARIABLES LIKE 'server_id';
 +---------------+-------+
 ```
 
-Then set a distinct `server_id` number (e.g. server_id+1) in you replica config (e.g. `my.cnf`) under:
+Then set a distinct `server_id` number (e.g. server_id+1) in your replica config (e.g. `my.cnf`) under:
 
 ```
 [mysqld]
