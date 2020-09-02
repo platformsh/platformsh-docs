@@ -1,6 +1,5 @@
 ---
 title: "Authenticated Composer repositories"
-weight: 1
 
 sidebarTitle: "Authenticated Composer"
 description: |

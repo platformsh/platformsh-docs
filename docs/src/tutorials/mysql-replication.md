@@ -1,6 +1,5 @@
 ---
 title: "MariaDB/MySQL External Replication"
-weight: 4
 sidebarTitle: "MariaDB/MySQL Replication"
 ---
 
