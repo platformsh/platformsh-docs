@@ -42,6 +42,7 @@
     "imagemin-pngquant": "^8.0.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
+    "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "yaml-include": "^1.2.1"
   }
