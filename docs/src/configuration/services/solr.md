@@ -170,7 +170,7 @@ The relationships array would then look something like the following:
 
 ### Configsets
 
-For even more customizability, it's also possible to define Solr configsets.  For example, the following snippet would define one configset, which would be used by all cores.  Specific details can then be overriden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
+For even more customizability, it's also possible to define Solr configsets.  For example, the following snippet would define one configset, which would be used by all cores.  Specific details can then be overridden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
 ```yaml
 searchsolr:
