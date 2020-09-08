@@ -142,6 +142,12 @@ platform user:role alice@example.com --level environment --environment developme
 
 Use `platform list` to get the full list of commands.
 
+## User access and integrations
+
+If you have setup an [external integration](/integrations/source/_index.md) to GitHub, GitLab, or Bitbucket, this adds an additional layer of access control to the project that you will need to be aware of. It is, for example, possible that a user that has been given admin privileges to a project on Platform.sh is [unable to clone the project](/administration/web/_index.md#git) locally if they have not also been given access to the repository on GitHub. 
+
+This is a good thing. Otherwise, changes pushed directly to the project would be overwritten or deleted when commits are pushed via the integration. Platform.sh considers your integrated remote repository to be the "source of truth" as soon as it has been configured, and this caveat ensures that all commits go through the integration.
+
 ## Transfer ownership
 
 If you want to transfer ownership of a project to a different user, first invite that user as a project administrator and then submit a support ticket from the current project owner to ask for the transfer.

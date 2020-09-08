@@ -116,7 +116,37 @@ The URLs pull-down exposes the domains that can be used to access application en
 
 #### GIT
 
-The Git pull-down displays the commands to use to clone the codebase via Git.
+The Git pull-down displays the commands to use to clone the codebase via Git. If you are using Platform.sh as your primary remote repository, the command shown will clone from the project. Otherwise if you have set up an [external integration](/integrations/source/_index.md), the command will clone directly from the integrated remote repository, which is considered the [source of truth](/administration/users.md) for the project.
+
+{{< note >}}
+For external integrations, both the "GIT" dropdown command described above *and* the CLI command `platform get <projectID>` will fail if you have not been given access to the remote repository itself on GitHub, GitLab, or Bitbucket, even with admin access to the project on Platform.sh. 
+
+```bash
+$ platform get <projectID>
+```
+
+using the CLI, or
+
+```bash
+$ git clone git@github.com:user/github-repo.git Project Name
+```
+
+using the "GIT" dropdown's command, gives:
+
+```bash
+Failed to connect to the Git repository: git@github.com:user/github-repo.git
+
+Please make sure you have the correct access rights and the repository exists.
+```
+
+This configuration ensures that project commits must go through the integrated repository, rather than to the project itself. Allowing both can result in overwritten or deleted changes, so Platform.sh prioritizes the integration. 
+
+The best course of action is to have your access updated on the integrated repository. If for some reason that is not a quick change, you can still clone through the project using the legacy pattern (which will set the project as its remote), but again, it is not recommended that you commit to the project once you have done so:
+
+```bash
+$ git clone <project>@git.<region>.platform.sh:<project>.git
+```
+{{< /note >}}
 
 #### CLI
 
