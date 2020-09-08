@@ -2,7 +2,7 @@
 title: "Set up your local development environment"
 weight: 4
 description: |
-  While Platform.sh is great as a tool for hosting an application during both development and production, it's naturally not the ideal place to edit code. You can't, in fact, as the file system is read-only (as it should be). The proper place to edit your code is on your computer.
+  While Platform.sh is great as a tool for hosting an application during both development and production, it's naturally not the ideal place to edit code.  You can't, in fact, as the file system is read-only (as it should be). The proper place to edit your code is on your computer.
 sidebarTitle: "Local development"
 layout: single
 ---
