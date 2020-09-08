@@ -144,9 +144,37 @@ Use `platform list` to get the full list of commands.
 
 ## User access and integrations
 
-If you have setup an [external integration](/integrations/source/_index.md) to GitHub, GitLab, or Bitbucket, this adds an additional layer of access control to the project that you will need to be aware of. It is, for example, possible that a user that has been given admin privileges to a project on Platform.sh is [unable to clone the project](/administration/web/_index.md#git) locally if they have not also been given access to the repository on GitHub. 
+If you have setup an [external integration](/integrations/source/_index.md) to GitHub, GitLab, or Bitbucket, this adds an additional layer of access control to the project that you will need to be aware of. It is, for example, possible that a user that has been given admininstrator privileges to a project on Platform.sh is [unable to clone the project](/administration/web/_index.md#git) locally if they have not also been given access to the repository on GitHub. 
 
-This is a good thing. Otherwise, changes pushed directly to the project would be overwritten or deleted when commits are pushed via the integration. Platform.sh considers your integrated remote repository to be the "source of truth" as soon as it has been configured, and this caveat ensures that all commits go through the integration.
+They could use the CLI
+
+```bash
+$ platform get <projectID>
+```
+
+or the command visible from the "Git" dropdown in the management console
+
+```bash
+$ git clone git@github.com:user/github-repo.git Project Name
+```
+
+and both would give
+
+```bash
+Failed to connect to the Git repository: git@github.com:user/github-repo.git
+
+Please make sure you have the correct access rights and the repository exists.
+```
+
+despite their `Admin` access to the project.
+
+This is a good thing, as the project functions as a read-only mirror of your remote repository. Otherwise, changes pushed directly to the project would be overwritten or deleted when commits are pushed via the integration. Platform.sh considers your integrated remote repository to be the "source of truth" as soon as it has been configured, and this caveat ensures that all commits go through the integration.
+
+The best course of action is to have your access updated on the integrated repository. If for some reason that is not a quick change, you can still clone through the project using the legacy pattern (which will set the *project* as its remote), but again, it is not recommended that you commit to the project once you have done so:
+
+```bash
+$ git clone <project>@git.<region>.platform.sh:<project>.git
+```
 
 ## Transfer ownership
 
