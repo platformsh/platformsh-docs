@@ -92,6 +92,6 @@ However, environments based on (non-pull-request) **branches** cannot have paren
 
 ## Clones and commits
 
-When you run `platform get <projectID>` or use the clone command shown in the "GIT" dropdown in the management console to clone the project, you will actually be cloning from your remote integrated repository, so long as you have the [appropriate access to do so](/administration/web/_index.md#git). 
+When you run `platform get <projectID>` or use the clone command shown in the "Git" dropdown in the management console to clone the project, you will actually be cloning from your remote integrated repository, so long as you have the [appropriate access to do so](/administration/web/_index.md#git). 
 
 Your GitHub repository is considered by Platform.sh to be the ["source of truth"](/administration/users.md#user-access-and-integrations) for the project. The project is only a mirror of that repository, and all commits should be pushed only to GitHub.
