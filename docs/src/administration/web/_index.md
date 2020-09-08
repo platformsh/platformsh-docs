@@ -116,7 +116,7 @@ The URLs pull-down exposes the domains that can be used to access application en
 
 #### GIT
 
-The Git pull-down displays the commands to use to clone the codebase via Git. If you are using Platform.sh as your primary remote repository, the command shown will clone from the project. Otherwise if you have set up an [external integration](/integrations/source/_index.md), the command will clone directly from the integrated remote repository, which is considered the [source of truth](/administration/users.md#user-access-and-integrations) for the project.
+The "Git" pull-down displays the commands to use to clone the codebase via Git. If you are using Platform.sh as your primary remote repository, the command shown will clone from the project. Otherwise if you have set up an [external integration](/integrations/source/_index.md), the command will clone directly from the integrated remote repository.
 
 If the project uses an external integration to a repository that you have not been given access to, you will not be able to clone until your access has been updated. See [User access and integrations](/administration/users.md#user-access-and-integrations) for more information.
 
