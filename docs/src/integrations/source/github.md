@@ -89,3 +89,9 @@ platform integration:validate
 Environments based on GitHub **pull requests** will have the correct 'parent' environment on Platform.sh; they will be activated automatically with a copy of the parent's data.
 
 However, environments based on (non-pull-request) **branches** cannot have parents; they will inherit directly from `master` and start inactive by default.
+
+## Clones and commits
+
+When you run `platform get <projectID>` or use the clone command shown in the "Git" dropdown in the management console to clone the project, you will actually be cloning from your remote integrated repository, so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations). 
+
+Your GitHub repository is considered by Platform.sh to be the "source of truth" for the project. The project is only a mirror of that repository, and all commits should be pushed only to GitHub.
