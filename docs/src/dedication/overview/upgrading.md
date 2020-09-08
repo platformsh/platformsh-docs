@@ -20,6 +20,7 @@ The new Project Web Interface provides the following features for the Pro plan S
 
 * Backup on Production does not freeze in the process.
 * Support to Data sync
+* Domains available to non-production environments
 
 
 You cannot perform the following:
