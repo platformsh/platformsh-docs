@@ -20,6 +20,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 {{< note >}}
 Apache Kafka is not available on Dedicated Production Clusters.
 {{< /note >}}
+
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
