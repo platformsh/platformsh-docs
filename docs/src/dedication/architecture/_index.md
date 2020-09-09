@@ -17,6 +17,3 @@ Each Dedicated cluster comes with 50GB of storage per environment by default.  T
 
 Default storage is based on the default SSD block-storage offering for each cloud. Extra provisioned IOPS can be discussed with your sales representative.
 
-## Accessing services
-
-Your application will be able to connect to each service by referencing the exact same environment variables as a Grid environment.  While the configuration of the service will be performed by our team, the application configuration is the same and your code should be the same.  See the [services documentation](/configuration/services/_index.md) for service-specific details.  Note that not all services and languages are available in a Dedicated environment.
