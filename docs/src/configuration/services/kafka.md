@@ -16,6 +16,10 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 |----------------------------------|---------------|
 |  {{< image-versions image="kafka" status="supported" environment="grid" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated" >}} |
 
+
+{{< note >}}
+Apache Kafka is not available in the education plan.
+{{< /note >}}
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):

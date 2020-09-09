@@ -20,6 +20,10 @@ Upgrading to PostgreSQL 12 using the `postgis` extension is not currently suppor
 See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 {{< /note >}}
 
+
+{{< note >}}
+PostgreSQL is not available in the education plan.
+{{< /note >}}
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.

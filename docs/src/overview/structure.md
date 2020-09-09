@@ -50,3 +50,9 @@ There always must be one Application container in a cluster, but there may be mo
 Each Application container corresponds to a `.platform.app.yaml` file in the repository.  If there are 3 `.platform.app.yaml` files, there will be three Application containers.  Application containers hold the code you provide via your Git repository.  Application containers are always built off of one of the Platform.sh-provided language-specific images, such as “PHP 7.4”, “Node.js 14”, or “Python 3.7”. It is also possible to have multiple Application containers running different languages or versions.
 
 For typical applications, there is only one `.platform.app.yaml` file, which is generally placed at the repository root.
+
+## Dedication
+
+The Dedication is gorgeous if you want a mature and extensive application and scalable solution in the cloud.
+It provides a three-Virtual Machine redundant configuration provisioned by Platform.sh for each customer.  Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the VMs is lost entirely.
+In general, it works nearby and the same structure, and it does not require an extra configuration on the client-side, however, the services PostgreSQL or Kafka are not available on this plan.
