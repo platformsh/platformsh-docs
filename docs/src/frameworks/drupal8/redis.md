@@ -54,7 +54,7 @@ To make use of the Redis cache you will need to set some Drupal variables. The c
 
 Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize it further.  Also review the `README.txt` file that comes with the redis module, as it has a great deal more information on possible configuration options. For instance, you may wish to not use Redis for the persistent lock if you have a custom module that needs locks to persist for more than a few seconds.
 
-The example below is intended as a "most common case".  (Note: This example assumes Drupal 8.2 or later.)
+The example below is intended as a "most common case".  (Note: This example assumes Drupal 8.8 or later.  It also works with Drupal 9.0 and later.)
 
 {{< note >}}
 If you do not already have the Platform.sh Config Reader library installed and referenced at the top of the file, you will need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
@@ -74,7 +74,7 @@ if (!$platformsh->inRuntime()) {
 <?php
 
 // Set redis configuration.
-if ($platformsh->hasRelationship('redis') && !drupal_installation_attempted() && extension_loaded('redis')) {
+if ($platformsh->hasRelationship('redis') && !\Drupal\Core\Installer\InstallerKernel::installationAttempted() && extension_loaded('redis')) {
   $redis = $platformsh->credentials('redis');
 
   // Set Redis as the default backend for any cache bin not otherwise specified.
