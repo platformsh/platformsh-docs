@@ -18,7 +18,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 
 {{< note >}}
-Apache Kafka is not available in the dedication plan.
+Apache Kafka is not available on Dedicated Production Clusters.
 {{< /note >}}
 ## Relationship
 
