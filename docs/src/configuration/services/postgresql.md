@@ -24,6 +24,7 @@ See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-
 {{< note >}}
 PostgreSQL is not available on Dedicated Production Clusters.
 {{< /note >}}
+
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
