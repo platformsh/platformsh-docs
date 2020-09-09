@@ -20,7 +20,6 @@ Upgrading to PostgreSQL 12 using the `postgis` extension is not currently suppor
 See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 {{< /note >}}
 
-
 {{< note >}}
 PostgreSQL is not available on [Dedication Production Clusters](/overview/dedication.md)
 {{< /note >}}
