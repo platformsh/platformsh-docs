@@ -22,7 +22,7 @@ See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-
 
 
 {{< note >}}
-PostgreSQL is not available in the dedication plan.
+PostgreSQL is not available on Dedicated Production Clusters.
 {{< /note >}}
 ### Deprecated versions
 
