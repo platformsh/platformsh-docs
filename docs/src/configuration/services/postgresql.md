@@ -22,7 +22,7 @@ See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-
 
 
 {{< note >}}
-PostgreSQL is not available in the education plan.
+PostgreSQL is not available in the dedication plan.
 {{< /note >}}
 ### Deprecated versions
 
