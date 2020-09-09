@@ -4,7 +4,7 @@ weight: 3
 sidebarTitle: "Onboarding"
 toc: false
 description: |
-  On-Boarding a new Dedicated client is a three phase process that begins the moment your contract is closed with your sales representative.
+  On-Boarding a new Dedication client is a three phase process that begins the moment your contract is closed with your sales representative.
 ---
 
 {{< description >}}

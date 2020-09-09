@@ -1,10 +1,10 @@
 ---
-title: "Platform.sh Dedicated cluster specifications"
+title: "Platform.sh Dedication cluster specifications"
 weight: 2
 layout: single
 sidebarTitle: "Architecture"
 description: |
-  Platform.sh Dedicated clusters are launched into a Triple Redundant configuration consisting of 3 virtual machines (VMs). This is an N+1 configuration that is sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime.
+  Platform.sh Dedication clusters are launched into a Triple Redundant configuration consisting of 3 virtual machines (VMs). This is an N+1 configuration that is sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime.
 ---
 
 {{< description >}}
