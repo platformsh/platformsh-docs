@@ -21,7 +21,7 @@ See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-
 {{< /note >}}
 
 {{< note >}}
-PostgreSQL is not available on [Dedication Production Clusters](/overview/dedication.md)
+PostgreSQL is not available on [Dedication Production Clusters](/overview/dedication.html)
 {{< /note >}}
 
 ### Deprecated versions
