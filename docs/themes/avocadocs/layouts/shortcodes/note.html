@@ -22,5 +22,5 @@
 {{- if ne $title "none" -}}
 <p><strong>{{ $title }}:</strong></p>
 {{- end -}}
-<p class="alert-text">{{- .Inner | markdownify -}}</p>
+<p class="alert-text">{{ .Inner | .Page.RenderString }}</p>
 </div>
