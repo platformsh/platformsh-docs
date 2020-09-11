@@ -92,7 +92,7 @@ Backups may be triggered by calling the CLI from an automated system such as Jen
 ### Automated backups using Cron
 
 {{< note >}}
-Automated backups using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens-nope.md).
+Automated backups using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
 {{< /note >}}
 
 We ask that you not schedule a backup task more than once a day to minimize data usage.
