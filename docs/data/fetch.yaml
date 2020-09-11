@@ -44,6 +44,7 @@ appyaml:
   - typo3
   - drupal7
   - drupal8
+  - drupal9
   - akeneo
   - magento2ce
   - spring-boot-maven-mysql
@@ -55,7 +56,9 @@ appyaml:
   - nodejs
 servicesyaml:
   - language-examples
+  - drupal9
 routesyaml:
   - php
+  - drupal9
 docsappyaml:
   - platformsh-docs

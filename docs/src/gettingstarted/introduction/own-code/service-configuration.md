@@ -25,7 +25,7 @@ An example `.platform/services.yaml` will look something like this:
 
 `.platform/services.yaml`
 
-{{< readFile file="static/files/fetch/servicesyaml/language-examples" highlight="yaml" >}}
+{{< readFile file="static/files/fetch/servicesyaml/drupal9" highlight="yaml" >}}
 
 If your application does not use any services at this point then you can leave it blank, but it must exist in your repository to run on Platform.sh. If your application does use a database or other services, you can configure them with the following attributes:
 
