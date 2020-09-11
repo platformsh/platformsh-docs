@@ -49,6 +49,8 @@ Note that depending on your registrar and the TTL you set, it could take anywher
 
 If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records](/golive/steps/dns.md).
 
+If you are planning to host multiple subdomains on different projects, see the additional information about [Subdomains](/golive/steps/subdomains.md) *before* you add your domain to Platform.sh.
+
 ## 3. (Non-CDN version) Set your domain in Platform.sh
 
 {{< note >}}

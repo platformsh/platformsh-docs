@@ -19,6 +19,8 @@ _public-suffix-root.example.com TXT "public-suffix-root=example.com"
 
 Replace `example.com` with your actual domain name.  That will tell Platform.sh that `example.com` is a top-level domain, and allow you to add multiple `something.example.com` domains on different projects on Platform.sh.
 
+Be aware this record must be added *before* adding the first domain to Platform.sh.
+
 ## The details
 
 ### The Public Suffix List
@@ -44,3 +46,7 @@ _public-suffix-root.example.com TXT "public-suffix-root=example.com"
 ```
 
 would tell Platform.sh to only reserve one level down from `example.com`.  In that case, adding `foo.bar.baz.example.com` to a project would reserve only `*.baz.example.com` to that project, allowing `beep.example.com` to be added to a different project without issue, which would therefore reserve `*.beep.example.com` to that project.
+
+## Locked domains
+
+If you accidentally added the domain to Platform.sh before adding the `TXT` record, you may still see an error message when setting up the second project about the domain being in use.  If that happens, open a support ticket and our support team can remove the lock for that domain.
