@@ -5,7 +5,7 @@ weight: 2
 description: "How to handle multiple subdomains on different projects."
 ---
 
-If you want to host multiple projects off of the same domain name, such as `foo.example.com` and `bar.example.com`, you will need to register an additional DNS record to make that possible.  If you do not, the second project you try to create will reject your domain.
+If you want to host multiple projects off of the same domain name, such as `foo.example.com` and `bar.example.com`, you will need to register an additional DNS record to make that possible.  If you do not, you will recieve an error when trying to add the second subdomain to its own project.
 
 ## Quick solution
 
