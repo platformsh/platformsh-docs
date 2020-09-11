@@ -1,9 +1,45 @@
 ---
-title: "Configuring Drupal 9"
-weight: 1
+title: "How to Deploy Drupal 9 on Platform.sh"
+weight: -110
+sidebarTitle: Drupal 9
+layout: single
 description: |
-
+  One-stop-shop for running Drupal on Platform.sh.
 ---
+
+## Introduction
+
+Drupal is a flexible and extensible PHP-based CMS framework.
+
+### Source and structure
+
+https://github.com/drupal/recommended-project/tree/9.0.x
+
+### Requirements
+
+Drupal 9 has the following recommendations you will need to replicate on Platform.sh:
+
+- PHP 7.3+
+- MariaDB 10.3+ or PostgreSQL 10.0 or higher with the `pg_trgm extension` for its primary database. 
+- 
+
+
+## Getting started with Platform.sh
+
+### Account 
+
+### Tools
+
+You need Git. 
+You should install the CLI. 
+
+### Options
+
+#### Follow along with a template
+
+#### Use your own code
+
+## Deployment
 
 Applications on Platform.sh are deployed in a cluster of containers, and the configuration of that cluster is controlled by three [YAML files](/configuration/yaml.md):
 
@@ -13,7 +49,7 @@ Applications on Platform.sh are deployed in a cluster of containers, and the con
 
 All three files can be customized however you need.  However, most Drupal sites will have a fairly similar configuration, at least to start.  More details of each are available below.
 
-## `routes.yaml`
+### Requests configuration: `routes.yaml`
 
 The `routes.yaml` file controls the [routing](/configuration/routes/_index.md) and caching of all HTTP requests sent to your application cluster.  Typically you will just route all incoming requests to your one application container, where your site lives, but many more elaborate configurations are possible.
 
@@ -29,7 +65,7 @@ Don't worry about unencrypted HTTP routes.  All requests on Platform.sh are TLS-
 
 {{< readFile file="static/files/fetch/routesyaml/drupal9" highlight="yaml" >}}
 
-## `services.yaml`
+### Service configuration: `services.yaml`
 
 The `services.yaml` file lists the pre-packaged services you need for your application to run.  You pick the major version of the service, and Platform.sh updates the patch version periodically so that you always get the newest version when you deploy.
 
@@ -43,7 +79,7 @@ If a service stores persistent data then it will also have a `disk` key, which s
 
 {{< readFile file="static/files/fetch/servicesyaml/drupal9" highlight="yaml" >}}
 
-## `.platform.app.yaml`
+### Application container: `.platform.app.yaml`
 
 The `.platform.app.yaml` file is the heart of your application.  It has an [extensive set of options](/configuration/app/_index.md) that allow you to configure nearly any aspect of your application.  Most of it is explained with comments inline.
 
@@ -51,3 +87,14 @@ You can and likely will evolve this file over time as you build out your site.
 
 {{< readFile file="static/files/fetch/appyaml/drupal9" highlight="yaml" >}}
 
+### Application configuration
+
+### Post-install
+
+## Next steps
+
+### Updating Drupal core
+
+### Adding modules and themes
+
+### Other resources
