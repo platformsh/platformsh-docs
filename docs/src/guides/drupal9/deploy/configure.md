@@ -27,10 +27,6 @@ If a service stores persistent data then it will also have a `disk` key, which s
 
 ## Application container: `.platform.app.yaml`
 
-The `.platform.app.yaml` file is the heart of your application.  It has an [extensive set of options](/configuration/app/_index.md) that allow you to configure nearly any aspect of your application.  Most of it is explained with comments inline.
-
-You can and likely will evolve this file over time as you build out your site.
-
-{{< readFile file="static/files/fetch/appyaml/drupal9" highlight="yaml" >}}
+{{< guides/config-app template="drupal9" >}}
 
 {{< guide-buttons next="Customize Drupal9" >}}
