@@ -18,7 +18,7 @@ Dedicated Production Clusters work nearly identically to Grid environments, and 
 
 You cannot perform the following:
 
-* Use PostgreSQL or Kafka.
+* Use PostgreSQL or Kafka (The support for those is upcoming).
 
 
 ## Enter a ticket for updating the Project to Dedication Production Clusters
