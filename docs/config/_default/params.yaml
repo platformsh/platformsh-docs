@@ -40,7 +40,7 @@ books:
   guides:
     title: Guides
     section: guides.html
-    weight: -110
+    weight: -100
 
 # Metadata
 meta:

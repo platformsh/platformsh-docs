@@ -1,7 +1,8 @@
 ---
-title: "Drupal 9"
+title: "Drupal"
 weight: -110
-toc: false
 description: |
-  One-stop-shop for running Drupal on Platform.sh.
+    Everything you need to get started with Drupal on Platform.sh. 
 ---
+
+List. lorem ipsum
