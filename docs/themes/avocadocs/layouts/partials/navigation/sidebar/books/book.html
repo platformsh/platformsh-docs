@@ -25,10 +25,10 @@
 
     <ul class="duik-sidebar__nav">
 
-      {{ if eq $firstSection 0 }}
+      <!-- {{ if eq $firstSection 0 }} -->
 
         <!-- INDEX PAGE as FIRST LEVEL ITEM in the first section -->
-
+<!-- 
         <li class="duik-sidebar__item">
           <a href="/{{ .Section }}.html" class="duik-sidebar__link{{ if eq $currentPage .Page.FirstSection }} active{{ end }}">
               {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
@@ -37,7 +37,7 @@
 
         {{ $firstSection = 1 }}
 
-      {{ end }}
+      {{ end }} -->
 
     <!-- First level is always shown (whether page or section) -->
     {{ range .Pages }}
