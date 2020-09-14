@@ -49,4 +49,4 @@ would tell Platform.sh to only reserve one level down from `example.com`.  In th
 
 ## Locked domains
 
-If you accidentally added the domain to Platform.sh before adding the `TXT` record, you may still see an error message when setting up the second project about the domain being in use.  If that happens, open a support ticket and our support team can remove the lock for that domain.
+If you accidentally added the domain to Platform.sh before adding the `TXT` record, you may still see an error message when setting up a second project with the bare domain (`example.com`).  If that happens, open a support ticket and our support team can remove the lock for that domain.
