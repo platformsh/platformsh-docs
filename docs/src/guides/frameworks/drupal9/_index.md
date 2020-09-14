@@ -20,66 +20,15 @@ Lorem ipsum.
 
 ### Sign up for Platform.sh
 
-The first step to deploying anything on Platform.sh is, of course, to sign up for an account. If you do **not** already have a Drupal 9 site to deploy, and you are going to follow along with this guide using the [**Drupal 9 template**](https://github.com/platformsh-templates/drupal9), you can click the "Deploy on Platform.sh" button below to sign up for an account and initialize your project all in the same step. 
-
-If you are deploying your own pre-existing Drupal 9 site, you will need to visit the [Platform.sh accounts](https://accounts.platform.sh/platform/trial/general/setup) page and fill out your information to set up your trial account. 
-
-{{< note >}}
-For both cases, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose this option, you will be able to set a password for your Platform.sh account later.
-{{< /note >}}
-
-{{< dop-button "drupal9" >}}
+{{< guides/signup name="Drupal 9" template="drupal9" >}}
 
 ### Tools
 
-Next, you're going to need a few tools to be able to interact with your Platform.sh project, two of which you likely already have. 
-
-The first is [Git](https://git-scm.com/), which you will need to have installed before moving forward. As a Platform as a Service, or PaaS, Platform.sh automatically manages everything your application needs in order to run. Git is the primary tool used to do this. Every commit pushed results in a new deployment, and all of your configuration is driven almost entirely by a small number of YAML files in your Git repository (which we will get to in the steps below). Your infrastructure, described in these files, becomes part of your application itself - completely transparent and version-controlled. If you do not already have Git on your computer, you should [install it now](https://help.github.com/articles/set-up-git/).
-
-Second, you will need Secure Shell (SSH) to securely connect to your Git repository and environments. SSH clients are readily available for every platform, and may already be installed on your computer. Platform.sh supports both keypair-based and certificate-based authentication. Both are secure and protect your account from snooping when you log in. For now, you can use certificate-based authentication as that is easier. You will be prompted to login via your web browser the first time you run `platform ssh`. If you wish to use keypair authentication, see the [SSH page](/development/ssh.md) before continuing.
-
-Lastly, in this guide you will be interacting with your project on Platform.sh both from within your browser and from the command line using the [Platform.sh CLI](/development/cli/_index.md). Both utilize our API so that you can make changes to your projects, but the CLI will be the tool you use the most in this guide. Below are a set of installation commands for different operating systems: 
-
-{{< codetabs >}}
-
----
-title=Linux/OSX
-highlight=bash
-file=none
----
-$ curl -sS https://platform.sh/cli/installer | php
-<--->
-
----
-title=Windows
-highlight=bash
-file=none
----
-$ curl https://platform.sh/cli/installer -o cli-installer.php
-$ php cli-installer.php
-{{< /codetabs >}}
-
-Once the installation has completed, you can run the CLI in your terminal with the command
-
-```bash
-$ platform
-```
-
-Take a moment to view some of the available commands with the command
-
-```bash
-$ platform list
-```
+{{< guides/tools >}}
 
 ## Steps
 
-Applications on Platform.sh are deployed in a cluster of containers, and the configuration of that cluster is controlled by three [YAML files](/configuration/yaml.md):
-
-* `.platform/routes.yaml` controls how incoming requests are routed to your application, or applications if running a multi-app setup.  It also controls the built-in HTTP cache.
-* `.platform/services.yaml` controls what additional services are created to support your application, such as databases or search servers.  Every environment has its own independent copy of every service.
-* `.platform.app.yaml` controls the configuration of the container where your application lives.  It is the most powerful with the most options, and therefore can also get somewhat long depending on your configuration.
-
-All three files can be customized however you need.  However, most Drupal sites will have a fairly similar configuration, at least to start.  More details of each are available below.
+{{< guides/config-desc name="Drupal 9" >}}
 
 ### Requests configuration: `routes.yaml`
 

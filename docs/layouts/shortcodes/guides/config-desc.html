@@ -1,0 +1,9 @@
+<p>Applications on Platform.sh are deployed in a cluster of containers, and the configuration of that cluster is controlled by three <a href="{{ relref . "/configuration/yaml.md" }}">YAML files</a>:</p>
+
+<ul>
+    <li><code>.platform/routes.yaml</code> controls how incoming requests are routed to your application, or applications if running a multi-app setup.  It also controls the built-in HTTP cache.</li>
+    <li><code>.platform/services.yaml</code> controls what additional services are created to support your application, such as databases or search servers.  Every environment has its own independent copy of every service.</li>
+    <li><code>.platform.app.yaml</code> controls the configuration of the container where your application lives.  It is the most powerful with the most options, and therefore can also get somewhat long depending on your configuration.</li>
+</ul>
+
+<p>All three files can be customized however you need.  However, most {{ .Get "name" }} sites will have a fairly similar configuration, at least to start.  More details of each are available below.</p>
