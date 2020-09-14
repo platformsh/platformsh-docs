@@ -14,6 +14,7 @@ Dedicated Production Clusters work nearly identically to Grid environments, and 
 * The master branch with three-Virtual Machine
 * Support to Data sync
 * Backup on Production does not freeze in the process.
+* You can deploy your application in any of our [supported cloud providers](development/faq.md#which-geographic-zones-does-platformsh-cover). 
 
 
 You cannot perform the following:
