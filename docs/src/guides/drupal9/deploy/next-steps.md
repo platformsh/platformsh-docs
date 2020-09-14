@@ -1,5 +1,5 @@
 ---
-title: "Next steps"
+title: "Additional resources"
 sidebarTitle: "Next steps"
 weight: -70
 toc: false
