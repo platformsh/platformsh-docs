@@ -30,7 +30,11 @@ In your `.platform/services.yaml`:
 
 {{< readFile file="src/registry/images/examples/full/rabbitmq.services.yaml" highlight="yaml" >}}
 
+{{< note >}}
+
 The minimum disk size for RabbitMQ is `512` (MB).
+
+{{< /note }}
 
 In your `.platform.app.yaml`:
 
@@ -115,7 +119,7 @@ For example, you can use [amqp-utils](https://github.com/dougbarth/amqp-utils/) 
 dependencies:
   ruby:
     amqp-utils: "0.5.1"
-```
+ ```
 
 Then, when you SSH into your container, you can simply type any `amqp-` command available to manage your queues.
 
