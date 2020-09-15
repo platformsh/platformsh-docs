@@ -30,7 +30,9 @@ In your `.platform/services.yaml`:
 
 {{< readFile file="src/registry/images/examples/full/rabbitmq.services.yaml" highlight="yaml" >}}
 
+{{< note >}}
 The minimum disk size for RabbitMQ is `512` (MB).
+{{< /note >}}
 
 In your `.platform.app.yaml`:
 
