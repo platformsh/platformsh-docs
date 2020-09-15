@@ -7,7 +7,11 @@
 {{ $l2 := printf "    type: %s:version" .type }}
 {{ $l3 := ""}}
 {{ if .disk }}
+  {{ if .min_disk_size }}
+  {{ $l3 = printf "\n    disk: %s" ( string .min_disk_size ) }}
+  {{ else }}
   {{ $l3 = "\n    disk: 256"}}
+  {{ end }}
 {{ end }}
 
 {{ return (highlight (printf "%s\n%s\n%s%s" $comment $l1 $l2 $l3) "yaml" "") }}

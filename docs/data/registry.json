@@ -623,7 +623,7 @@
       "url": "/configuration/services/rabbitmq.html"
     },
     "endpoint": "rabbitmq",
-    "min_disk_size": 256,
+    "min_disk_size": 512,
     "name": "RabbitMQ",
     "runtime": false,
     "type": "rabbitmq",
