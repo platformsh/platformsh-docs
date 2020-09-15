@@ -54,11 +54,14 @@ appyaml:
   - golang
   - python3
   - nodejs
+  - typo3
 servicesyaml:
   - language-examples
   - drupal9
+  - typo3
 routesyaml:
   - php
   - drupal9
+  - typo3
 docsappyaml:
   - platformsh-docs
