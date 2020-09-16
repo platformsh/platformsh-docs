@@ -3,6 +3,8 @@ title: "Additional resources"
 sidebarTitle: "Next steps"
 weight: -70
 toc: false
+description: |
+    After deployment, you can review the some of the additional TYPO3 resources that will help to keep your application updated and customizable on Platform.sh.
 ---
 
 ## Updating Drupal core

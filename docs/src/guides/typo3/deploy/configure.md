@@ -3,11 +3,11 @@ title: "Configure TYPO3 for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
 toc: false
+description: |
+    Review the basics of what makes up a Platform.sh project, including it's three principle configuration files and how to define them for TYPO3.
 ---
 
 {{< guides/config-desc name="TYPO3" >}}
-
-You can find the full list of requirements for TYPO3 in its [documentation](https://docs.typo3.org/m/typo3/guide-installation/10.4/en-us/In-depth/SystemRequirements/Index.html#system-requirements).
 
 ## Requests configuration: `routes.yaml`
 
