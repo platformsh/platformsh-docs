@@ -8,6 +8,43 @@
     <li><code>.platform.app.yaml</code> controls the configuration of the container where your application lives.  It is the most powerful with the most options, and therefore can also get somewhat long depending on your configuration.</li>
 </ul>
 
+<p>Each project on Platform.sh needs at least three files, and except for multi-app and microservice projects, their addition will result in the following structure for your code:</p>
+
+<div class="alert alert-primary" role="alert">
+    <p><strong>Note:</strong></p>
+    <p class="alert-text">The files added or modified in this step are indicated with <code>* filename.ext *</code>.</p>
+</div>
+
+<div class="highlight">
+<pre class="chroma"><code class="language-bash" data-lang="bash">.
+├── .gitignore
+├── * .platform *
+│   ├── * routes.yaml  *
+│   └── * services.yaml *
+├── * .platform.app.yaml *
+├── LICENSE
+├── README.md
+├── composer.json
+├── composer.lock
+├── config
+│   └── sites
+├── * install-redis.sh *
+├── public
+│   ├── fileadmin
+│   ├── index.php
+│   ├── typo3
+│   ├── typo3conf
+│   └── typo3temp
+├── var
+│   ├── .htaccess
+│   ├── cache
+│   ├── charset
+│   ├── labels
+│   ├── lock
+│   └── log
+└── vendor</code></pre>
+</div>
+
 <p>All three files can be customized however you need.  However, most {{ .Get "name" }} sites will have a fairly similar configuration, at least to start.  More details of each are available below.</p>
 
 {{-  $branch_name := "platformify" -}}
@@ -21,4 +58,4 @@ $ git checkout -b {{ $branch_name }}
 $ touch .platform.app.yaml && mkdir .platform && touch .platform/routes.yaml && touch .platform/services.yaml</code></pre>
 </div>
 
-<p>It's this <code>{{ $branch_name }}</code> branch that you will turn into an active environment on Platform.sh. Now that you've added these files to your project, let's go through and configure each of them for {{ .Get "name" }} one by one.</p>
+<p>It's this <code>{{ $branch_name }}</code> branch that you will turn into an active environment on Platform.sh. Now that you've added these files to your project, you can go through and configure each of them for {{ .Get "name" }} one by one in the sections below. Each section covers a particular configuration file, defines what each attribute configures, and then shows a final code snippet that includes the recommended configuration for {{ .Get "name" }} pulled from its template. Within that snippet, be sure to read each of the comments as they provide additional information and reasoning for why {{ .Get "name" }} requires those values.</p>
