@@ -17,17 +17,15 @@ And then commit the changes to `composer.json` and `composer.lock`.
 
 ### Add an Elasticsearch service
 
-First you need to create an Elasticsearch service.  In your `.platform/services.yaml` file, add or uncomment the following:
+In your `.platform/services.yaml`:
 
 {{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" >}}
 
-The above definition defines a single Elasticsearch server.  Because Elasticsearch defines additional indexes dynamically there is no need to define custom endpoints.
-
-### Expose the Elasticsearch service to your application
-
-In your `.platform.app.yaml` file, you now need to open a connection to the new Elasticsearch service.  Under the `relationships` section, add or uncomment the following:
+In your `.platform.app.yaml`:
 
 {{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" >}}
+
+{{< endpoint-description "elasticsearch" >}}
 
 ## Configuration
 
