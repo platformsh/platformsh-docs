@@ -24,7 +24,7 @@ When differing from UTC, the runtime application requires the specific timezone 
 The underlying mechanism on how to set that timezone however depends on the runtime used, for which you can find a non-exhaustive list below:
 * PHP runtime - You can change the timezone by providing a [custom php.ini](/languages/php/ini.md) or by adding the following lines to your `.platform.app.yaml` file:
 
-  ```
+  ```yaml
   variables:
      php:
          "date.timezone": "Europe/Paris"
