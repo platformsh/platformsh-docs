@@ -27,6 +27,9 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `project.domain.create`: A new domain has been added to the project.
 * `project.domain.delete`: A domain associated with the project has been removed.
 * `project.domain.update`: A domain associated with the project has been updated, including modifying it's SSL certificate.
+* `project.variable.create`: A new project variable has been created.
+* `project.variable.delete`: A project variable has been deleted.
+* `project.variable.update`: A project variable has been modified.
 ---
 * `environment.access.add`: A new user has been given access to the environment.
 * `environment.access.remove`: A user has been removed from the environment.
