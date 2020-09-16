@@ -19,22 +19,15 @@ And then commit the changes to `composer.json` and `composer.lock`.
 
 First you need to create an Elasticsearch service.  In your `.platform/services.yaml` file, add or uncomment the following:
 
-```yaml
-elasticsearch:
-    type: elasticsearch:6.5
-    disk: 2014
-```
+{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" >}}
 
-The above definition defines a single Elasticsearch 6.5 server.  Because Elasticsearch defines additional indexes dynamically there is no need to define custom endpoints.
+The above definition defines a single Elasticsearch server.  Because Elasticsearch defines additional indexes dynamically there is no need to define custom endpoints.
 
 ### Expose the Elasticsearch service to your application
 
 In your `.platform.app.yaml` file, you now need to open a connection to the new Elasticsearch service.  Under the `relationships` section, add or uncomment the following:
 
-```yaml
-relationships:
-    elasticsearch: 'elasticsearch:elasticsearch'
-```
+{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" >}}
 
 ## Configuration
 
@@ -66,7 +59,7 @@ if (!$platformsh->inRuntime()) {
 
 // Update these values to the relationship name (from .platform.app.yaml)
 // and the machine name of the server from your Drupal configuration.
-$relationship_name = 'elasticsearch';
+$relationship_name = 'essearch';
 $es_cluster_name = 'YOUR_CLUSTER_HERE';
 if ($platformsh->hasRelationship($relationship_name)) {
   $platformsh->registerFormatter('drupal-elastic', function($creds) {
