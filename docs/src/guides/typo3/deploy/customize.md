@@ -76,23 +76,34 @@ You're going to add and/or edit a few files described in the sections below, whi
 
 ### Setup
 
-It's likely that you have a setup configuration file (`SetupConfiguration.yaml`) already present in your repository which manages your installation during build when running the `typo3 install:setup` command. On Platform.sh, it is recommended that that file  include at least the following commands.
+It's likely that you have a setup configuration file (`src/SetupConfiguration.yaml`) already present in your repository which manages your installation during build when running the `typo3 install:setup` command. On Platform.sh, it is recommended that that file  include at least the following commands.
 
 {{< github repo="platformsh-templates/typo3" file="src/SetupConfiguration.yaml" lang="yaml" >}}
 
 ### Site
 
+Similarly, you likely have a `config.yaml` file in your repo, althout it may not be in the `config/sites/main` subdirectory as shown above. This file contains settings for the error handling of your site, the languages it will support, and a few others. For the purposes of this guide, you will need to set the `base` attribute to an environment variable called `PLATFORM_ROUTES_MAIN`. 
+
 {{< github repo="platformsh-templates/typo3" file="config/sites/main/config.yaml" lang="yaml" >}}
 
+You will define this environment variable in the next sections, but it's purpose is to retrieve the root domain (since you have not yet registered a domain name on the Platform.sh project, this will be a hashed placeholder domain generated from the environment) from the environment varable `PLATFORM_ROUTES`.
+
 ### Database
+
+Next you will need a `src/SetupDatabase.yaml` file, which is used on the first installation of TYPO3 in the  dedploy hook to set up the database and the initial `admin` user.
 
 {{< github repo="platformsh-templates/typo3" file="src/SetupDatabase.yaml" lang="yaml" >}}
 
 ### Environment
 
-{{< github repo="platformsh-templates/typo3" file="public/typo3conf/AdditionalConfiguration.php" lang="php" >}}
+Finally, you can start using the Platform.sh Configuration Reader library to starting reading from the environment from within your application.
 
 {{< github repo="platformsh-templates/typo3" file="public/typo3conf/PlatformshConfiguration.php" lang="php" >}}
+
+Then include the `require_once()` function within your `public/typo3conf/AdditionalConfiguration.php` file to load the Platform.sh-specific configuration into the site.
+
+{{< github repo="platformsh-templates/typo3" file="public/typo3conf/AdditionalConfiguration.php" lang="php" >}}
+
 
 
 {{< guide-buttons next="Deploy Drupal 9" >}}
