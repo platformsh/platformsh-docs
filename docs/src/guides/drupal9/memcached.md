@@ -34,7 +34,7 @@ runtime:
 
 ### Add the Drupal module
 
-You will need to add the [Memcache](https://www.drupal.org/project/memcache) module to your project.  If you are using Composer to manage your Drupal 9 site (which we recommend), run:
+You will need to add the [Memcache](https://www.drupal.org/project/memcache) module to your project.  If you are using Composer to manage your Drupal site (which we recommend), run:
 
 ```bash
 composer require drupal/memcache
