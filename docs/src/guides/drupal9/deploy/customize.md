@@ -5,7 +5,7 @@ weight: -90
 toc: false
 ---
 
-Now that Platform.sh is ready for your Drupal site, it's time to make your Drupal site ready for Platform.sh.  There are a number of additional steps that are eiher required or recommended, depending on how well you want to optimize your site.
+Now that Platform.sh is ready for your Drupal site, it's time to make your Drupal site ready for Platform.sh.  There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
 
 ## Install the Config Reader
 
@@ -21,6 +21,8 @@ The `settings.platformsh.php` file contains glue code that configures Drupal bas
 
 The file itself is a bit long, but reasonably self-explanatory.
 
+{{< github repo="platformsh-templates/drupal9" file="web/sites/default/settings.platformsh.php" lang="php" >}}
+
 **Include settings.platformsh.php here**
 
 If you add additional services to your application, such as Solr, Elasticsearch, or RabbitMQ, you would add configuration for those services to the `settings.platformsh.php` file as well.
@@ -31,10 +33,12 @@ Platform.sh runs `source .environment` in the application root when a project st
 
 For Drupal, a small [`.environment`](https://github.com/platformsh-templates/drupal9/blob/master/.environment) file modifies the `$PATH` to include the `vendor/bin` directory, where command line tools like Drush or Drupal Console are stored.  While this step is optional, the Drupal cron task assumes it has run so that the `drush` command is always available.
 
+{{< github repo="platformsh-templates/drupal9" file=".environment" lang="bash" >}}
+
 ## Drush configuration
 
-Drush requires a YAML file that declares what its URL is.  That value will vary depending on the branch you're on, so cannot be included in a static file.  Instead, the `drush` directory includes two [short](https://github.com/platformsh-templates/drupal9/blob/master/drush/platformsh_generate_drush_yml.php) [scripts](https://github.com/platformsh-templates/drupal9/blob/master/drush/platformsh_drush.inc) that generate that file on each deploy, writing it to `.drush/drush.yml`.  That allows drush to run successfully on Platform.sh, such as to run cron tasks.
+Drush requires a YAML file that declares what its URL is.  That value will vary depending on the branch you're on, so cannot be included in a static file.  Instead, the `drush` directory includes a [short script](https://github.com/platformsh-templates/drupal9/blob/master/drush/platformsh_generate_drush_yml.php) that generate that file on each deploy, writing it to `.drush/drush.yml`.  That allows drush to run successfully on Platform.sh, such as to run cron tasks.
 
-The script contents are not especially interesting.  For the most part, you can download them from the template, place them in a `drush` directory in your project so they can be called from the deploy hook, and then forget about them.
+The script contents are not especially interesting.  For the most part, you can download it from the template, place it in a `drush` directory in your project so they can be called from the deploy hook, and then forget about it.
 
 {{< guide-buttons next="Deploy Drupal 9" >}}
