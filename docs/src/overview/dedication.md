@@ -5,7 +5,7 @@ weight: 1
 
 Platform.sh Dedication Production Clusters provide a scalable solution as an additional option on top of your existing Grid applications.
 It provides redundant configuration, a minimum of three Virtual Machine instances, provisioned by Platform.sh for each customer. Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the VMs is lost entirely.
-Dedicated Production Clusters work nearly identically to Grid environments, and does not require additional  configuration on your part. The only difference is that of service availability - the services PostgreSQL or Kafka are not available on Dedication.
+Dedicated Production Clusters work nearly identically to Grid environments, and does not require additional  configuration on your part. The only difference is that of service availability.
 
 
 ## Features
@@ -30,4 +30,4 @@ We will review the infrastructure and settings, create user and environment vari
 
 Once started the process usually takes less than an hour.  There should be no downtime on your production site, although you should not push any code to Git while the upgrade is in progress.
 
-When done, you can access review your project through the Project Web Interface.
+When done, you can review the changes to your project through the management console.
