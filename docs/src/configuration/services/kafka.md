@@ -17,7 +17,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 |  {{< image-versions image="kafka" status="supported" environment="grid" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated" >}} |
 
 {{< note >}}
-Apache Kafka is not available on [Dedication Production Clusters.](/overview/dedication.html)
+Apache Kafka is not available on [Dedication Production Clusters.](/overview/dedication.md)
 {{< /note >}}
 
 ## Relationship
