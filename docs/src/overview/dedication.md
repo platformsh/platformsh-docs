@@ -22,7 +22,7 @@ You cannot perform the following:
 * Use PostgreSQL or Kafka (The support for those is upcoming).
 
 
-## Enter a ticket for updating the Project to Dedication Production Clusters
+## Setting up
 
 Enter a Support ticket with the suggested title “Upgrade to Dedication Production Clusters. In the ticket, request to have your project Upgrade.
 
