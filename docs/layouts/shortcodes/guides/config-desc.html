@@ -8,44 +8,7 @@
     <li><code>.platform.app.yaml</code> controls the configuration of the container where your application lives.  It is the most powerful with the most options, and therefore can also get somewhat long depending on your configuration.</li>
 </ul>
 
-<p>Each project on Platform.sh needs at least three files, and except for multi-app and microservice projects, their addition will result in the following structure for your code:</p>
-
-<div class="alert alert-primary" role="alert">
-    <p><strong>Note:</strong></p>
-    <p class="alert-text">The files added or modified in this step are indicated with <code>* filename.ext *</code>.</p>
-</div>
-
-<div class="highlight">
-<pre class="chroma"><code class="language-bash" data-lang="bash">.
-├── .gitignore
-├── * .platform *
-│   ├── * routes.yaml  *
-│   └── * services.yaml *
-├── * .platform.app.yaml *
-├── LICENSE
-├── README.md
-├── composer.json
-├── composer.lock
-├── config
-│   └── sites
-├── * install-redis.sh *
-├── public
-│   ├── fileadmin
-│   ├── index.php
-│   ├── typo3
-│   ├── typo3conf
-│   └── typo3temp
-├── var
-│   ├── .htaccess
-│   ├── cache
-│   ├── charset
-│   ├── labels
-│   ├── lock
-│   └── log
-└── vendor</code></pre>
-</div>
-
-<p>All three files can be customized however you need.  However, most {{ .Get "name" }} sites will have a fairly similar configuration, at least to start.  More details of each are available below.</p>
+<p>Each project on Platform.sh needs at least three files, and except for multi-app and microservice projects, and all three files can be customized however you need.  However, most {{ .Get "name" }} sites will have a fairly similar configuration, at least to start.  More details of each are available below.</p>
 
 {{-  $branch_name := "platformify" -}}
 <p>You can start by creating a new branch called <code>{{ $branch_name }}</code>, and add empty versions of each of these files:</p>

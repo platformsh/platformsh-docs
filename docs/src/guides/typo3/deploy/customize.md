@@ -38,7 +38,7 @@ First, you will need to install the [Local Page Error Handler](https://extension
 $ composer require pixelant/pxa-lpeh
 ```
 
-Second, you will need to add a timeout which will set an HTTP timeout of 3 seconds instead of the default several minutes to a new `public/typo3conf/PlatformshConfiguration.php`. You can see this line in context of the full file in the [configuration](#configuration) section below.
+Second, you will need to add a timeout which will set an HTTP timeout of 3 seconds instead of the default several minutes to a new `public/typo3conf/PlatformshConfiguration.php`. You can see this line in context of the full file in the [configuration](#environment) section below.
 
 ```php
 $GLOBALS['TYPO3_CONF_VARS']['HTTP']['timeout'] = 3;
@@ -96,7 +96,14 @@ Next you will need a `src/SetupDatabase.yaml` file, which is used on the first i
 
 ### Environment
 
-Finally, you can start using the Platform.sh Configuration Reader library to starting reading from the environment from within your application.
+Finally, you can start using the Platform.sh Configuration Reader library to starting reading from the environment from within your application. In a `public/typo3confg/PlatformshConfiguration.php` file, you can use the library to:
+
+- verify the deployment is occuring on a Platform.sh project (`if (!$platformConfig->isValidPlatform())`)
+- verify that it is not run during build, when services are not yet available (`if ($platformConfig->inBuild())`)
+- set the `PLATFORM_ROUTES_MAIN` environment variable used in `config/sites/main/config.yaml`)
+- configure TYPO3's database (`TYPO3_CONF_VARS.DB.Connections.Default`) using credentials from the `database` relationship (`$databaseConfig = $platformConfig->credentials('database')`)
+- configure TYPO3's `cacheConfigurations` to use Redis via your `rediscache` relationship
+- Configure the HTTP timeout to 3 seconds to avoid the PHP-FPM-related deadlock described above in [Avoiding deadlock with the Local Page Error Handler](#avoiding-deadlock-with-the-local-page-error-handler).
 
 {{< github repo="platformsh-templates/typo3" file="public/typo3conf/PlatformshConfiguration.php" lang="php" >}}
 
@@ -104,6 +111,10 @@ Then include the `require_once()` function within your `public/typo3conf/Additio
 
 {{< github repo="platformsh-templates/typo3" file="public/typo3conf/AdditionalConfiguration.php" lang="php" >}}
 
+With these files in place, you have everything you need to deploy TYPO3 on Platform.sh. 
 
+```bash
+$ git add && git commit -m "Update TYPO3 configuration for Platform.sh."
+```
 
-{{< guide-buttons next="Deploy Drupal 9" >}}
+{{< guide-buttons next="Deploy TYPO3" >}}

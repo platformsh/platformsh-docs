@@ -24,17 +24,6 @@ If a service stores persistent data then it will also have a `disk` key, which s
 
 {{< readFile file="static/files/fetch/servicesyaml/typo3" highlight="yaml" >}}
 
-You will also need to add an additional script in order to install the `redis` extension for use with PHP 7.4. Add the file `install-redis.sh` to the root of your project and copy the code below into it. 
-
-```bash
-$ touch install-redis.sh
-```
-
-This script will be run during TYPO3's build phase on Platform.sh so that it can use the Redis services you defined above.
-
-{{< github repo="platformsh-templates/typo3" file="install-redis.sh" lang="bash" >}}
-
-
 ## Application container: `.platform.app.yaml`
 
 {{< guides/config-app template="typo3" >}}
