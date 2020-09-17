@@ -24,7 +24,7 @@ You cannot perform the following:
 
 ## Setting up
 
-Enter a Support ticket with the suggested title “Upgrade to Dedication Production Clusters. In the ticket, request to have your project Upgrade.
+Open a Support ticket with the suggested title “Upgrade to Dedication Production Clusters". In the ticket, request to have your project Upgrade.
 
 We will review the infrastructure and settings, create user and environment variables for Staging and Production environments, and update the ticket with results.
 
