@@ -10,7 +10,7 @@ Dedicated Production Clusters work nearly identically to Grid environments, and 
 
 ## Features
 
-* Domains available to dev environments
+* Domains can be added to your development environments, such as to a dedicated staging environment.
 * The master branch with three-Virtual Machine
 * Support to Data sync
 * Backup on Production does not freeze in the process.
