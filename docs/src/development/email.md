@@ -42,7 +42,7 @@ platform environment:info enable_smtp false
 When SMTP support is enabled the environment variable `PLATFORM_SMTP_HOST` will be populated with the address of the SMTP host that should be used.  When SMTP support is disabled that environment variable will be empty.
 
 {{< note >}}
-Changing the SMTP status will not take effect immediately.  You will need to issue a new *build*, not just a new deploy, for the changes to take effect. So you need to change something in git to generate a new git hash because a redeploy closes all services and restarts the application.
+Changing the SMTP status will not take effect immediately.  You will need to issue a new *build*, not just a new deploy, for the changes to take effect. That means making a trivial change to some file in Git for the application.
 {{< /note >}}
 
 ## Sending email in PHP
