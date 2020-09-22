@@ -17,12 +17,12 @@ This guide assumes you are using the well-supported Composer flavor of Drupal 9.
 This guide is written for Drupal 9, but should apply almost exactly the same for later Drupal 8 releases (8.8 and later).
 {{< /note >}}
 
-## Sign up for Platform.sh
-
-{{< guides/signup name="Drupal 9" template="drupal9" >}}
-
 ## Tools
 
 {{< guides/tools >}}
+
+## Sign up for Platform.sh and initialize your project
+
+{{< guides/signup name="Drupal 9" template="drupal9" >}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}
