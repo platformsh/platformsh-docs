@@ -73,7 +73,7 @@ The previous command, if successful should output the configuration of the integ
 The CLI will create the necessary webhook using the above URL for you when there's correct permission set in the given token. If you see the message `Failed to read or write webhooks`, you will need to add a webhook manually:
 
 1. Copy the hook URL shown in the message.
-2. Go to your GitLab repository and click Settings > Integrations.
+2. Go to your GitLab repository and click Settings > Webhooks.
 3. Paste the hook URL. In the Triggers section choose Push events, Tag push events and Merge Request events. Click on Add webhook.
 
 
