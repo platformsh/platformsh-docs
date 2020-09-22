@@ -41,4 +41,4 @@ In the vast majority of cases it's best to leave all timezones in UTC and store 
 
 ### Logs
 
-[All logs](https://docs.platform.sh/development/logs.html) will always be logged in UTC. You cannot change the timezone for them and changing any of the above time zone settings will not affect this.
+[All logs](https://docs.platform.sh/development/logs.html) will always be logged in UTC. You cannot change the timezone for them and changing any of the above time zone settings will not affect log timestamps.
