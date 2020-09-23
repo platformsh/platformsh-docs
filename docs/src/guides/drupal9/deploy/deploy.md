@@ -3,6 +3,8 @@ title: "Deploy Drupal 9"
 sidebarTitle: "Deploy"
 weight: -80
 toc: false
+description: |
+    Now that your site is ready, push it to Platform.sh and import your data.
 ---
 
 ## Deployment

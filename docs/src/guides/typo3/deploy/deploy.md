@@ -4,12 +4,12 @@ sidebarTitle: "Deploy"
 weight: -80
 toc: false
 description: |
-    Now that you've made your changes, you'll create a project and integrate it with your TYPO3 repository, resulting in a Platform.sh deployment.
+    Now that your site is ready, push it to Platform.sh and import your data.
 ---
 
 ## Deployment
 
-With all of your files in place, it's time to create a project on Platform.sh, connect it to your repository and deploy your TYPO3 site. 
+With all of your files in place, it's time to create a project on Platform.sh, connect it to your repository and deploy your TYPO3 site.
 
 ### Push your changes
 
@@ -28,22 +28,22 @@ You will be able to give the project a title and choose a region closest to the 
 When the setup has completed, your terminal will provide some information about the new project:
 
 ```bash
-The project is now ready!                                                                               
-<PLATFORMSH_PROJECT_ID>                                                                                          
-                                                                                                        
-  Region: <REGION>.platform.sh                                                                              
-  Project ID: <PLATFORMSH_PROJECT_ID>                                                                             
-  Project title: <TITLE>                                                                                
+The project is now ready!
+<PLATFORMSH_PROJECT_ID>
+
+  Region: <REGION>.platform.sh
+  Project ID: <PLATFORMSH_PROJECT_ID>
+  Project title: <TITLE>
   URL: https://console.platform.sh/<USERNAME>/<PLATFORMSH_PROJECT_ID>
 ```
 
-This let's you know that the empty Platform.sh project has been created, and is ready to have code pushed to it. You will do exactly that with your TYPO3 repository in the next step by setting up an integration. 
+This let's you know that the empty Platform.sh project has been created, and is ready to have code pushed to it. You will do exactly that with your TYPO3 repository in the next step by setting up an integration.
 
 ### Integrate and deploy
 
-It is possible to push your code  directly to Platform.sh at this point, and use the project as a remote repository all on its own. Since this guide assumes you are either considering Platform.sh or actively migrating, the step will continue to assume that you would like to connect a third party repository on GitHub, GitLab, or Bitbucket to your new project. 
+It is possible to push your code  directly to Platform.sh at this point, and use the project as a remote repository all on its own. Since this guide assumes you are either considering Platform.sh or actively migrating, the step will continue to assume that you would like to connect a third party repository on GitHub, GitLab, or Bitbucket to your new project.
 
-First off, push all of the commits you have made throughout this guide to that repository. 
+First off, push all of the commits you have made throughout this guide to that repository.
 
 ```bash
 $ git push origin platformify
@@ -55,7 +55,7 @@ Actually setting up the integration will differ only slightly depending on wheth
 $ platform integration:add --type=github --project=PLATFORMSH_PROJECT_ID --token=GITHUB-USER-TOKEN --repository=USER/REPOSITORY
 ```
 
-Where `PLATFORMSH_PROJECT_ID` is the ID provided when you created the project, `USER` is your GitHub username, and `REPOSITORY` is the repository name (without the `.git` ending). The `GITHUB-USER-TOKEN` in this case is a Personal access token generated from  within your Developer Settings. 
+Where `PLATFORMSH_PROJECT_ID` is the ID provided when you created the project, `USER` is your GitHub username, and `REPOSITORY` is the repository name (without the `.git` ending). The `GITHUB-USER-TOKEN` in this case is a Personal access token generated from  within your Developer Settings.
 
 You can find the specific integration command for your third-party Git service from the links below:
 
@@ -116,11 +116,11 @@ The template is designed to run the TYPO3 installer only on the first deploy by 
 
 Next, when the deploy hook ran through the installer, it set an intial username and password for the TYPO3 site, which you will want to update immediately. Visit `/typo3` on the generated url for the environment and login with those temporary `admin` credentials. Then click on the user icon in the top right of the page and go to User Settings > Password to update.
 
-Lastly you will need to enable the `pixelant/pxa-lpeh` extension you added with Composer. From the Backend, click on the Extensions icon in the sidebar. Search for the extension and then `Activate` it. 
+Lastly you will need to enable the `pixelant/pxa-lpeh` extension you added with Composer. From the Backend, click on the Extensions icon in the sidebar. Search for the extension and then `Activate` it.
 
-**Note:** I'm not sure that this is true anymore. Using Composer on P.sh looks more like 
+**Note:** I'm not sure that this is true anymore. Using Composer on P.sh looks more like
 - the extension is already activated
-- `typo3conf` not being writable makes it so you can't "Deactivate" the extension, so you wouldn't be able  to  activate it anyway. 
+- `typo3conf` not being writable makes it so you can't "Deactivate" the extension, so you wouldn't be able  to  activate it anyway.
 - looks like it's just put it all through composer
 
 {{< guide-buttons next="More resources" >}}

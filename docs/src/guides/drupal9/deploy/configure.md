@@ -3,7 +3,8 @@ title: "Configure Drupal 9 for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
 toc: false
-description:
+description: |
+    Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Drupal.
 ---
 
 {{< guides/config-desc name="Drupal 9" >}}

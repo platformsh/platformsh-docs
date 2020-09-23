@@ -3,6 +3,8 @@ title: "Additional resources"
 sidebarTitle: "Next steps"
 weight: -70
 toc: false
+description: |
+    Upgrading, adding modules, and further development of your site.
 ---
 
 ## Adding modules and themes
@@ -18,7 +20,7 @@ toc: false
 ]
 ```
 
-(Drupal 8 and 9 share the same remote package repository.)
+(Drupal 8 and 9 share the same package repository.)
 
 Once that's there, you can install any module or theme with the following command:
 

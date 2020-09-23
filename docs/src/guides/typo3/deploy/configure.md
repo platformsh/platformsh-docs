@@ -3,7 +3,7 @@ title: "Configure TYPO3 for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-    Review the basics of what makes up a Platform.sh project, including it's three principle configuration files and how to define them for TYPO3.
+    Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for TYPO3.
 ---
 
 {{< guides/config-desc name="TYPO3" >}}

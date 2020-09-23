@@ -1,5 +1,7 @@
 ---
 title: "SimpleSAML"
+description: |
+    Configure third party authentication using SimpleSAML.
 ---
 
 SimpleSAMLphp is a library for authenticating a PHP-based application against a SAML server, such as Shibboleth.  Although Drupal has modules available to authenticate using SimpleSAML some additional setup is required.

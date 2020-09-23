@@ -3,6 +3,8 @@ title: "Customize Drupal 9 for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
 toc: false
+description: |
+    Add some helpful dependencies, and modify your Drdupal site to read from a Platform.sh environment.
 ---
 
 Now that Platform.sh is ready for your Drupal site, it's time to make your Drupal site ready for Platform.sh.  There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.

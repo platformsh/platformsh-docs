@@ -1,6 +1,8 @@
 ---
 title: "Using Redis with Drupal 9.x"
 sidebarTitle: "Redis"
+description: |
+    Add Redis caching to your existing Drupal site.
 ---
 
 If you are using the Platform.sh-provided Drupal template, most of this work is already done for you.  Redis is already configured and will be enabled after the installatoin is complete.
