@@ -33,7 +33,7 @@ You can find more information on pricing on the [pricing page](https://platform.
 
 ## 2. (CDN version) Configure your DNS provider
 
-If you are serving the site through a CDN, configure your DNS provider to point at your CDN account.  The address or CNAME to set for that will vary with the CDN provider.  Refer to their documentation or to the [CDN guide](/golive/cdn/_index.md).
+If you are serving the site through a CDN, configure your DNS provider to point at your CDN account.  The address or CNAME to set for that will vary with the CDN provider.  Refer to their documentation or to the [CDN guide](/domains/cdn/_index.md).
 
 ## 2. (Non-CDN version) Configure your DNS provider
 
@@ -47,9 +47,9 @@ If you have multiple domains you want to be served by the same application you w
 
 Note that depending on your registrar and the TTL you set, it could take anywhere from 15 minutes to 72 hours for the DNS change to fully propagate across the Internet.
 
-If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records](/golive/steps/dns.md).
+If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records](/domains/steps/dns.md).
 
-If you are planning to host multiple subdomains on different projects, see the additional information about [Subdomains](/golive/steps/subdomains.md) *before* you add your domain to Platform.sh.
+If you are planning to host multiple subdomains on different projects, see the additional information about [Subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
 
 ## 3. (Non-CDN version) Set your domain in Platform.sh
 

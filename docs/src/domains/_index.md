@@ -8,12 +8,6 @@ description: |
 
 By default, a Platform.sh app is available at its Platform.sh domain. The following resources will help you take your application live in domain that you wish. The custom domain allows using your unique branding and improves your web application recognition over the Internet in a friendly and beautiful URL such as: `http://www.mybusiness.com`.
 
-## Summary of steps
-
-* Register a domain name with a supported provider
-* Add the custom domain to your app with the `platform environment:info <DOMAIN>` command.
-* [To futher information](/golive/steps/_index.md)
-
 ## Getting Starting
 
 In this short section we will give you a  very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this).
@@ -74,3 +68,6 @@ Here's what will now happen under the hood.  Assume for a moment that all caches
 6. Your browser sends a request to `1.2.3.4` for domain `www.mysite.com`.  Your router passes the request through to your application which in turn responds with whatever it's supposed to do.
 
 On subsequent requests, your browser will know to simply connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.  The entire process takes only a few milliseconds.
+
+
+[To futher information](/domains/steps/_index.md)

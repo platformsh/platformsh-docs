@@ -8,7 +8,7 @@ Platform.sh Dedicated plans include a Fastly CDN account by default, which will 
 
 Self-Service Grid plans do not include a CDN by default, but you are welcome to configure one yourself.  See our [guidelines](/bestpractices/http-caching.md) for when and if to use a CDN for HTTP caching.
 
-We have partnerships with a variety of CDN vendors depending on your application’s needs.  Our recommended CDN provider is [Fastly](/golive/cdn/fastly.md).
+We have partnerships with a variety of CDN vendors depending on your application’s needs.  Our recommended CDN provider is [Fastly](/domains/cdn/fastly.md).
 
 ## DNS management
 
