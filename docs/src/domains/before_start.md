@@ -1,5 +1,5 @@
 ---
-title: "Custom Domain Name - Pre-Launch Checklist"
+title: "Custom Domain Name - Before Start"
 weight: 1
 description: |
   Before you can take your site live there are a few preparation steps to take.
