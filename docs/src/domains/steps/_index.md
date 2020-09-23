@@ -1,9 +1,9 @@
 ---
-title: "Custom Domain Name - Steps"
+title: "Custom Domain - Steps"
 weight: 2
-sidebarTitle: "Custom Domain Name steps"
+sidebarTitle: "Custom Domain steps"
 description: |
-  Custom Domain Name on Platform.sh is a simple two or three step process. You can either use the Platform.sh management console or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes.
+  Custom Domain on Platform.sh is a simple two or three step process. You can either use the Platform.sh management console or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes.
 layout: single
 ---
 

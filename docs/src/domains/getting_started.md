@@ -70,4 +70,4 @@ Here's what will now happen under the hood.  Assume for a moment that all caches
 On subsequent requests, your browser will know to simply connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.  The entire process takes only a few milliseconds.
 
 
-[To futher information](/domains/steps/_index.md)
+[If that is not your case and you want more details, please, click here to further information.](/domains/steps/_index.md)
