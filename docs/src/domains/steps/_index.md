@@ -1,9 +1,9 @@
 ---
-title: "Going Live - Steps"
+title: "Custom Domain Name - Steps"
 weight: 2
-sidebarTitle: "Go-live steps"
+sidebarTitle: "Custom Domain Name steps"
 description: |
-  Going live on Platform.sh is a simple two or three step process. You can either use the Platform.sh management console or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes.
+  Custom Domain Name on Platform.sh is a simple two or three step process. You can either use the Platform.sh management console or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes.
 layout: single
 ---
 
