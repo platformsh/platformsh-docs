@@ -22,13 +22,7 @@ Once the template is deployed, you can then follow along the rest of this guide 
 
 <p>Then initialize or clone your Git repository with existing code, or create a new Composer-based project from scratch.  The commands below will create a brand new {{ .Get "name" }} project using composer, which you can then modify according to the rest of this guide.</p>
 
-<div class="highlight">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ composer create-project drupal/core-recommended &lt;PROJECT_NAME>
-$ cd &lt;PROJECT_NAME>
-$ git init
-$ git add . && git commit -m "Init Drupal from upstream."
-</code></pre>
-</div>
+{{ .Inner | markdownify }}
 
 <p>Then, add a Git remote for the Platform.sh project you just created.  The easiest way to get the ID of the project is to run just <code>plaform</code> on its own, which lists all of your projects.  As you have only one you can copy its ID.  Then in your Git repository run</p>
 

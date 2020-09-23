@@ -3,6 +3,7 @@ title: "Configure Drupal 9 for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
 toc: false
+description:
 ---
 
 {{< guides/config-desc name="Drupal 9" >}}

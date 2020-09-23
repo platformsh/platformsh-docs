@@ -5,7 +5,7 @@ weight: -70
 toc: false
 ---
 
-### Adding modules and themes
+## Adding modules and themes
 
 3rd party modules and themes can be installed and managed using Composer.  All packages on Drupal.org are registered with Drupal's own Packagist clone.  It should be included in the `composer.json` that comes with Drupal, but in case it isn't you can add the following block to the file:
 
@@ -38,13 +38,6 @@ Drupal is fully managed via Composer, which means so are updates to Drupal core 
 
 The [Composer documentation](https://getcomposer.org/doc/) has more information on options to update individual modules or perform other tasks.
 
-Note that updating modules or core through the Drupal UI is not possible, as the the file system is read only.  All updates should be done through composer to update the lock file, and then pushed to Git.
-
-
-### Other resources
-
-List the other guides in this subdirectory.
-
-List Framework-specific references, community links, etc.
+Note that updating modules or core through the Drupal UI is not possible, as the file system is read-only.  All updates should be done through composer to update the lock file, and then pushed to Git.
 
 {{< guide-buttons type="last" >}}

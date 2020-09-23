@@ -24,4 +24,13 @@ Deploying TYPO3 requires the addition of a few files specific to running TYPO3 o
 
 {{< guides/signup name="TYPO3" template="typo3" >}}
 
+```bash
+$ composer create-project typo3/cms-base-distribution <PROJECT_NAME> ^10
+$ cd <PROJECT_NAME>
+$ git init
+$ git add . && git commit -m "Init TYPO3 from upstream."
+```
+
+{{< /guides/signup >}}
+
 {{< guide-buttons next="Configure repository" type="first" >}}
