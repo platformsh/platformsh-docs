@@ -1,5 +1,5 @@
 ---
-title: "Example"
+title: "Getting Starting Custom Domain"
 weight: 5
 description: |
   In this short section we will give you a  very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this).
