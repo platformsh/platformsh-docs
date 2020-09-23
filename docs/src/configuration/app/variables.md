@@ -117,19 +117,19 @@ import json
 import base64
 
 print os.getenv('BASIC')
-// a string
+# a string
 
 print os.getenv('INGREDIENTS')
-// ["peanut butter", "jelly"]
+# ["peanut butter", "jelly"]
 
 print os.getenv('QUANTITIES')
-// {"milk": "1 liter", "cookies": "1 kg"}
+# {"milk": "1 liter", "cookies": "1 kg"}
 
 variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode('utf-8'))
 
 print variables['stuff:STEPS']
-// [u'un', u'deux', u'trois']
+# [u'un', u'deux', u'trois']
 print variables['stuff:COLORS']
-// {u'blue': u'#0000FF', u'green': u'#00FF00', u'red': u'#FF0000'}
+# {u'blue': u'#0000FF', u'green': u'#00FF00', u'red': u'#FF0000'}
 
 {{< /codetabs >}}
