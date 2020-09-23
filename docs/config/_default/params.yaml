@@ -37,6 +37,10 @@ books:
     title: Getting started
     section: gettingstarted.html
     weight: -110
+  guides:
+    title: Guides
+    section: guides.html
+    weight: -100
 
 # Metadata
 meta:
