@@ -72,5 +72,5 @@ On subsequent requests, your browser will know to simply connect to `1.2.3.4` fo
 {{< note >}}
 [If that is not your case and you want more details](/domains/in-depth/_index.md)
 [If you want to run a subdomain see this page first.](/domains/in-depth/subdomains.md)
-{{< /note }}
+{{< /note >}}
 
