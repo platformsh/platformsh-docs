@@ -2,6 +2,7 @@
 title: "Customize TYPO3 for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
+toc: false
 description: |
     Add some helpful dependencies, and modify your TYPO3 site to read from a Platform.sh environment.
 ---
@@ -113,8 +114,4 @@ Then include the `require_once()` function within your `public/typo3conf/Additio
 
 With these files in place, you have everything you need to deploy TYPO3 on Platform.sh. 
 
-```bash
-$ git add && git commit -m "Update TYPO3 configuration for Platform.sh."
-```
-
-{{< guide-buttons next="Deploy TYPO3" >}}
+{{< guide-buttons next="Deploy Drupal 9" >}}

@@ -2,9 +2,9 @@
 
 <h3>With a template</h3>
 
-<p>First, you can deploy a {{ .Get "name" }} template itself straight to Platform.sh.  Use the button below to launch a Drupal 9 template project.  If you do not yet have a Platform.sh account you will create one along the way. If you don't want to sign up initially with your e-mail address, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose one of these options, you will be able to set a password for your Platform.sh account</p>p>
+<p>First, you can deploy a {{ .Get "name" }} template itself straight to Platform.sh.  Use the button below to launch a Drupal 9 template project.  If you do not yet have a Platform.sh account you will create one along the way. If you don't want to sign up initially with your e-mail address, you can sign up using an existing GitHub, Bitbucket, or Google account. If you choose one of these options, you will be able to set a password for your Platform.sh account</p>
 
-Once the template is deployed, you can then follow along the rest of this guide to explain the extra files and tweaks in the repository.
+<p>Once the template is deployed, you can then follow along the rest of this guide to explain the extra files and tweaks in the repository.</p>
 
 <p align="center">
   <a href='https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/{{ .Get "template" }}/.platform.template.yaml&utm_content={{ .Get "template" }}&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform'>
@@ -24,7 +24,7 @@ Once the template is deployed, you can then follow along the rest of this guide 
 
 {{ .Inner | markdownify }}
 
-<p>Then, add a Git remote for the Platform.sh project you just created.  The easiest way to get the ID of the project is to run just <code>plaform</code> on its own, which lists all of your projects.  As you have only one you can copy its ID.  Then in your Git repository run</p>
+<p>Then, add a Git remote for the Platform.sh project you just created.  The easiest way to get the ID of the project is to run just <code>plaform</code> on its own, which lists all of your projects.  As you have only one project, you can copy its ID.  Then in your Git repository run</p>
 
 <div class="highlight">
 <pre class="chroma"><code class="language-bash" data-lang="bash">$ platform set-remote &lt;PROJECT_ID>
@@ -49,6 +49,6 @@ Once the template is deployed, you can then follow along the rest of this guide 
   <li><a href="/integrations/source/gitlab.html">GitLab</a></li>
 </ul>
 
-<p>They have a number of options, all of which you can ignore for now.  The defaults will suffice at this point.  Once you add the integration any existing branches you have will automatically be syncrhonized to Platform.sh.  The deploy on Platform.sh will report a failure at this point; that's OK, you haven't provided configuration files yet.  That will be covered in the next step.  Remember to have a local clone of your project as well.</p>
+<p>They have a number of options, all of which you can ignore for now.  The defaults will suffice at this point.  Once you add the integration any existing branches you have will automatically be synchronized to Platform.sh.  The deploy on Platform.sh will report a failure at this point; that's OK, you haven't provided configuration files yet.  That will be covered in the next step.  Remember to have a local clone of your project as well.</p>
 
 <p>Now that you have a local Git repository, a Platform.sh project, and a way to push code to that project, you're all set to continue.</p>

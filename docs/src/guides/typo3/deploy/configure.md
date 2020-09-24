@@ -2,6 +2,7 @@
 title: "Configure TYPO3 for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
+toc: false
 description: |
     Review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for TYPO3.
 ---
@@ -16,7 +17,9 @@ description: |
 
 The `services.yaml` file lists the pre-packaged services you need for your application to run. You pick the major version of the service, and Platform.sh updates the patch version periodically so that you always get the newest version when you deploy.
 
-We recommend the latest [MariaDB](/configuration/services/mysql.md) version for TYPO3, although you can also use [PostgreSQL](/configuration/services/postgresql.md) if you prefer. We also strongly recommend using [Redis](/configuration/services/redis.md) for TYPO3 caching. You can add [other services](/configuration/services/_index.md) if desired, such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md). You will need to configure TYPO3 to use those services as well once the service is enabled.
+We recommend the latest [MariaDB](/configuration/services/mysql.md) version for Drupal, although you can also use Oracle MySQL or [PostgreSQL](/configuration/services/postgresql.md) if you prefer.  We also strongly recommend using [Redis](/configuration/services/redis.md) for Drupal caching.  Drupal's cache can be very aggressive, and keeping that data out of the database helps with both performance and disk usage. Our Drupal template comes [pre-configured to use Redis](https://github.com/platformsh-templates/drupal9#customizations) for caching.
+
+You can add [other services](/configuration/services/_index.md) if desired, such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md). You will need to configure Drupal to use those services as well once the service is enabled.
 
 Each service entry has a name (`db` and `cache` in the example below), as well as a `type` that specifies the service and version to use.  Note that not all services support clean version upgrades, and none support downgrades.  If you want to try upgrading a service, confirm on its service page that it's supported and test on a branch before pushing to your `master` branch.
 
@@ -27,11 +30,5 @@ If a service stores persistent data then it will also have a `disk` key, which s
 ## Application container: `.platform.app.yaml`
 
 {{< guides/config-app template="typo3" >}}
-
-After you have added the above files to your project, commit them to the repository before proceeding to the next step: customizing your TYPO3 site itself to read from a Platform.sh environment.
-
-```bash
-$ git add && git commit -m "Add Platform.sh config files."
-```
 
 {{< guide-buttons next="Customize TYPO3" >}}

@@ -15,7 +15,7 @@ Now that Platform.sh is ready for your Drupal site, it's time to make your Drupa
 
 ## `settings.php`
 
-`settings.php` is the main Drupal environment-configuration file.  In a stock Drupal installation it contains the database credentials, various other settings, and an enormouns amount of comments.
+`settings.php` is the main Drupal environment-configuration file.  In a stock Drupal installation it contains the database credentials, various other settings, and an enormous amount of comments.
 
 In the Drupal 9 template, the [`settings.php`](https://github.com/platformsh-templates/drupal9/blob/master/web/sites/default/settings.php) file is mostly replaced with a stub that contains only the most basic configuration and then includes a `settings.platformsh.php` and `settings.local.php` file, if they exist.  The latter is a common Drupal pattern, and the `settings.local.php` file should never be committed to Git.  It contains configuration that is specific to your local development environment, such as a local dev database.
 
