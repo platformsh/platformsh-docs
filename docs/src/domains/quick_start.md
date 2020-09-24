@@ -30,7 +30,7 @@ First, configure your `routes.yaml` file like so:
 
 That will result in two domains being created on Platform.sh: `master-def456-abc123.eu-2.platformsh.site` and `www---master-def456-abc123.eu-2.platformsh.site`.  The former will automatically redirect to the latter.  In the `routes.yaml` file, `{default}` will automatically be replaced with `master-def456-abc123.eu-2.platformsh.site`.  In domain prefixes (like `www`), the `.` will be replaced with `---`.
 
-### Set your domain
+## Set your domain
 
 Now, add a single domain to your Platform.sh project for `mysite.com`.  
 
