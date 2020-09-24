@@ -1,5 +1,5 @@
 ---
-title: "Custom Domain - In-depth"
+title: "Custom Domains - In-depth"
 weight: 2
 sidebarTitle: "Custom Domain In-depth"
 description: |
