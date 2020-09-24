@@ -46,7 +46,7 @@ As soon as you do, Platform.sh will no longer serve `master-def456-abc123.eu-2.p
 
 You can still access the original internal domain by running `platform environment:info edge_hostname -e master`.
 
-### Configure your DNS provider
+## Configure your DNS provider
 
 On your DNS provider, you would create two CNAMEs:
 
