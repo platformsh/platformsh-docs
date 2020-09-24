@@ -46,6 +46,10 @@ As soon as you do, Platform.sh will no longer serve `master-def456-abc123.eu-2.p
 
 You can still access the original internal domain by running `platform environment:info edge_hostname -e master`.
 
+{{< note >}}
+If you are planning on using subdomains across multiple projects, [the setup will differ slightly](/domains/in-depth/subdomains.md).
+{{< /note >}}
+
 ## Configure your DNS provider
 
 On your DNS provider, you would create two CNAMEs:
@@ -68,7 +72,3 @@ Here's what will now happen under the hood.  Assume for a moment that all caches
 6. Your browser sends a request to `1.2.3.4` for domain `www.mysite.com`.  Your router passes the request through to your application which in turn responds with whatever it's supposed to do.
 
 On subsequent requests, your browser will know to simply connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.  The entire process takes only a few milliseconds.
-
-{{< note >}}
-If you are planning on using subdomains across multiple projects, [the setup will differ slightly](/domains/in-depth/subdomains.md).
-{{< /note >}}
