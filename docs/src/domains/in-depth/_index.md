@@ -3,7 +3,7 @@ title: "Custom Domains - In-depth"
 weight: 2
 sidebarTitle: "Steps"
 description: |
-  Custom Domain on Platform.sh is a simple two or three step process. You can either use the Platform.sh management console or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes.
+  Configuring custom domains on Platform.sh is a simple two or three step process. You can either use the Platform.sh management console or the CLI to configure your project for production. Once you have gone through it once the whole process usually takes a couple of minutes.
 layout: single
 ---
 
