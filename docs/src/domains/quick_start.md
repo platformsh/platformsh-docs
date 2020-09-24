@@ -70,7 +70,7 @@ Here's what will now happen under the hood.  Assume for a moment that all caches
 On subsequent requests, your browser will know to simply connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.  The entire process takes only a few milliseconds.
 
 {{< note >}}
-[If that is not your case and you want more details](/domains/steps/_index.md)
-[If you want to run a subdomain see this page first.](/domains/steps/subdomains.md)
+[If that is not your case and you want more details](/domains/in-depth/_index.md)
+[If you want to run a subdomain see this page first.](/domains/in-depth/subdomains.md)
 {{< /note }}
 
