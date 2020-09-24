@@ -8,7 +8,6 @@ description: |
 
 By default, a Platform.sh app is available at its Platform.sh domain. The following resources will help you take your application live in domain that you wish. The custom domain allows using your unique branding and improves your web application recognition over the Internet in a friendly and beautiful URL such as: `http://www.mybusiness.com`.
 
-## Quick Start
 
 In this short section we will give you a  very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this).
 
