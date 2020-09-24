@@ -57,7 +57,7 @@ On your DNS provider, you would create two CNAMEs:
 Both point to the same name. See the note above regarding how different registrars handle dynamic apex domains.
 {{< /note >}}
 
-### Result
+## Result
 
 Here's what will now happen under the hood.  Assume for a moment that all caches everywhere are empty.  An incoming request for `mysite.com` will result in the following:
 
