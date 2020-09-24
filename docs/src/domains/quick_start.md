@@ -14,7 +14,7 @@ In this short section we will give you a  very simple, typical example. More inv
 
 Suppose your project ID is `abc123` in the US region, and you've registered `mysite.com`.  You want `www.mysite.com` to be the "real" site and `mysite.com` to redirect to it.
 
-### Configure `routes.yaml`
+## Configure `routes.yaml`
 
 First, configure your `routes.yaml` file like so:
 
