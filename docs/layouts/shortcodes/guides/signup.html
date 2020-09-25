@@ -51,14 +51,10 @@
 
 <p>They have a number of options, all of which you can ignore for now - the defaults will suffice at this point.  Once you add the integration, any existing branches you have will automatically be synchronized to Platform.sh.  The deploy on Platform.sh will report a failure at this point; that's OK, you haven't provided configuration files yet.  That will be covered in the next step.  Remember to have a local clone of your project as well.</p>
 
-<div class="alert alert-primary" role="alert">
-  <p><strong>Note (option 1):</strong></p>
-  <p class="alert-text">Development projects come with three active development environment alongside the production (<code>master</code>) environment. External integration default settings for each service will create a development environment for each open pull request until that environment limit is reached. This will only be a problem if you are planning on 1) migrating using an integrated repository through a pull request, and 2) you already have three or more open pull requests on that repository. If this is your use case, you can visit each opened environment's settings (Settings > General) where it described the enviroment "Status is <strong>Active</strong>" and select <em>Deactivate & Delete Data</em> until the number of active environments is below the limit.</p>
-</div>
-
-<div class="alert alert-primary" role="alert"><p><strong>Note (option 2):</strong></p><p class="alert-text"><p>If you are integrating a repository to Platform.sh that contains a number of open pull requests, the default integration options should not be used. This is because projects are limited to three development environments (active and deployed branches or pull requests), and you would need to deactivate them individually to test this guide&rsquo;s migration changes. Instead, each service integration should be made with the following flag:</p>
-  <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">platform integration:add --type<span class="o">=</span>&lt;service&gt; ... --build-pull-requests<span class="o">=</span><span class="nb">false</span></code></pre></div>
-  <p>You will then be able to go through this guide and activate the environment you&rsquo;ll work on in a later step.</p>
+<div class="alert alert-primary" role="alert"><p><strong>Note:</strong></p><p class="alert-text"><p>If you are integrating a repository to Platform.sh that contains a number of open pull requests, the default integration options should not be used. This is because projects are limited to *three development environments (active and deployed branches or pull requests), and you would need to deactivate them individually to test this guide's migration changes. Instead, each service integration should be made with the following flag:</p>
+  <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ platform integration:add --type<span class="o">=</span>&lt;service&gt; ... --build-pull-requests<span class="o">=</span><span class="nb">false</span></code></pre></div>
+  <p>You will then be able to go through this guide and activate the environment when you're ready to deploy.</p>
+  <p>*Note that it is also possible to purchase additional development environments for your project at any time through the <a href="https://console.platform.sh">management console</a>. View your list of projects and select "Edit plan" from the dropdown of your {{ .Get "name" }} project. From there you can add additional environments on the "Environments" line and get a price estimate for the changes to your plan.</p>
   </p>
   </div>
 
