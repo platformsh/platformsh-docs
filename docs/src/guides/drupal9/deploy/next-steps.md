@@ -25,7 +25,7 @@ description: |
 Once that's there, you can install any module or theme with the following command:
 
 ```bash
-composer require drupal/devel
+$ composer require drupal/devel
 ```
 
 Replace `devel` with the name of the module or theme you're installing.  Do *not* commit the `web/modules/contrib` directory to Git.  The build process will re-download the correct version for you based on the `composer.json` and `composer.lock` files, which should be committed to Git.
