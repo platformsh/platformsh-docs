@@ -9,12 +9,9 @@ description: |
 
 ## Deployment
 
-If you have been customizing your existing project as you go, now is the time to ensure all code is committed to Git and to `git push` to Platform.sh on the `master` branch.  That will cause Platform.sh to build your code, producing a read-only file system image of your application, and then deploy it into a running cluster of containers.
-
-You can view the process from the Management Console; when it is done, click the URL shown in the Console to see your site.
+{{< guides/deployment >}}
 
 ## Post-install (new site)
-
 
 You probably noticed the following lines of code in your `.platform.app.yaml` file during the deploy hook:
 
@@ -64,15 +61,6 @@ If you are moving an existing site to Platform.sh, then in addition to code you 
 ### Importing the database
 
 First, obtain a database dump from your current site.  If you are using MySQL/MariaDB, then the [`mysqldump` command](https://mariadb.com/kb/en/mysqldump/) is all you need.  Save your dump file as `database.sql`.  (Or any name, really, as long as it's the same as you use below.)
-
-{{ note }}
-Drupal has a number of database tables that are entirely useless when migrating, and you're better off excluding their data.
-
-* If you're using a database cache backend then you can and should exclude all `cache_*` table data.  On Platform.sh we recommend using Redis anyway, and the template described on the previous pages uses Redis automatically.
-* The `sessions` table's data can also be excluded.
-
-While you can trim the data out of these tables post-migration, that is wasteful of both time and disk space, so it's better to exclude that data to begin with.
-{{ /note }}
 
 Next, import the database into your Platform.sh site.  The easiest way to do so is with the Platform.sh CLI.
 

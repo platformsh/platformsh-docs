@@ -11,15 +11,15 @@ description: |
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="typo3" >}}
+{{< guides/config-routes template="typo3" name="TYPO3" >}}
 
 ## Service configuration: `services.yaml`
 
 The `services.yaml` file lists the pre-packaged services you need for your application to run. You pick the major version of the service, and Platform.sh updates the patch version periodically so that you always get the newest version when you deploy.
 
-We recommend the latest [MariaDB](/configuration/services/mysql.md) version for Drupal, although you can also use Oracle MySQL or [PostgreSQL](/configuration/services/postgresql.md) if you prefer.  We also strongly recommend using [Redis](/configuration/services/redis.md) for Drupal caching.  Drupal's cache can be very aggressive, and keeping that data out of the database helps with both performance and disk usage. Our Drupal template comes [pre-configured to use Redis](https://github.com/platformsh-templates/drupal9#customizations) for caching.
+We recommend the latest [MariaDB](/configuration/services/mysql.md) version for TYPO3, although you can also use Oracle MySQL or [PostgreSQL](/configuration/services/postgresql.md) if you prefer.  We also strongly recommend using [Redis](/configuration/services/redis.md) for TYPO3 caching. Our TYPO3 template comes [pre-configured to use Redis](https://github.com/platformsh-templates/typo3#customizations) for caching.
 
-You can add [other services](/configuration/services/_index.md) if desired, such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md). You will need to configure Drupal to use those services as well once the service is enabled.
+You can add [other services](/configuration/services/_index.md) if desired, such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md). You will need to configure TYPO3 to use those services as well once the service is enabled.
 
 Each service entry has a name (`db` and `cache` in the example below), as well as a `type` that specifies the service and version to use.  Note that not all services support clean version upgrades, and none support downgrades.  If you want to try upgrading a service, confirm on its service page that it's supported and test on a branch before pushing to your `master` branch.
 

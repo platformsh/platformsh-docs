@@ -9,9 +9,7 @@ description: |
 
 ## Deployment
 
-If you have been customizing your existing project as you go, now is the time to ensure all code is committed to Git and to `git push` to Platform.sh on the `master` branch.  That will cause Platform.sh to build your code, producing a read-only file system image of your application, and then deploy it into a running cluster of containers.
-
-You can view the process from the Management Console; when it is done, click the URL shown in the Console to see your site.
+{{< guides/deployment >}}
 
 ## Post-install (new site)
 
@@ -51,7 +49,7 @@ You will first need to download your files from your current hosting environment
 The `platform mount:upload` command provides a simple, straightforward way to upload an entire directory to your site at once.  Under the hood it uses an SSH tunnel and `rsync`, so it will be as efficient as possible.  (There is also a `platform mount:download` command you can use to download files later.)  Run the following from your local Git repository root (modifying the `--source` path if needed).
 
 ```bash
-$ platform mount:upload -e mster --mount web/sites/default/files/ --source ./web/sites/default/files/
+$ platform mount:upload -e master --mount web/sites/default/files/ --source ./web/sites/default/files/
 $ platform mount:upload -e master --mount private/ --source ./private/
 ```
 

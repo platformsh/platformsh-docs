@@ -10,15 +10,11 @@
 
 <p>Each project on Platform.sh needs at least these three files, and each can be customized however you need.  However, most {{ .Get "name" }} sites will have a fairly similar configuration, at least to start.  More details of each are available below.</p>
 
-{{-  $branch_name := "platformify" -}}
-<p>You can start by creating a new branch called <code>{{ $branch_name }}</code>, and add empty versions of each of these files:</p>
+<p>You can start by creating empty versions of each of these files in your repository:</p>
 
 <div class="highlight">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Create a new branch for the environment</span>
-$ git checkout -b {{ $branch_name }}
-
-<span class="c1"># Create empty Platform.sh configuration files</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Create empty Platform.sh configuration files</span>
 $ touch .platform.app.yaml && mkdir .platform && touch .platform/routes.yaml && touch .platform/services.yaml</code></pre>
 </div>
 
-<p>It's this <code>{{ $branch_name }}</code> branch that you will turn into an active environment on Platform.sh. Now that you've added these files to your project, you can go through and configure each of them for {{ .Get "name" }} one by one in the sections below. Each section covers a particular configuration file, defines what each attribute configures, and then shows a final code snippet that includes the recommended configuration for {{ .Get "name" }} pulled from its template. Within that snippet, be sure to read each of the comments as they provide additional information and reasoning for why {{ .Get "name" }} requires those values.</p>
+<p>Now that you've added these files to your project, you can go through and configure each of them for {{ .Get "name" }} one by one in the sections below. Each section covers a particular configuration file, defines what each attribute configures, and then shows a final code snippet that includes the recommended configuration for {{ .Get "name" }} pulled from its template. Within that snippet, be sure to read each of the comments as they provide additional information and reasoning for why {{ .Get "name" }} requires those values.</p>

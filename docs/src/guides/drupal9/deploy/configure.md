@@ -11,7 +11,7 @@ description: |
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="drupal9" >}}
+{{< guides/config-routes template="drupal9" name="Drupal 9" >}}
 
 ## Service configuration: `services.yaml`
 
