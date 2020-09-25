@@ -36,7 +36,7 @@ The suggested timeout of three seconds above may end up being too short if your 
 You will still need to enable the `pixelant/pxa-lpeh` extension, which you can do by running the command:
 
 ```bash
-$ vendor/bin/typo3 extension:activate pxa_lpeh
+$ php vendor/bin/typo3 extension:activate pxa_lpeh
 ```
 
 ## TYPO3 CMS's `web-dir`
