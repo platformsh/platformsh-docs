@@ -12,7 +12,6 @@ Dedicated Production Clusters work nearly identically to Grid environments, and 
 
 * Domains can be added to your development environments, such as to a dedicated staging environment.
 * The master branch with three-Virtual Machine
-* Support to Data sync
 * Backup on Production does not freeze in the process.
 * You can deploy your application in any of our [supported cloud providers](development/faq.md#which-geographic-zones-does-platformsh-cover). 
 
