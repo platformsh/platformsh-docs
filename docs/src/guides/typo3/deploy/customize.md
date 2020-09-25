@@ -23,13 +23,21 @@ First, you will need to install the [Local Page Error Handler](https://extension
 $ composer require pixelant/pxa-lpeh
 ```
 
-Second, you will need to add a timeout which will set an HTTP timeout of 3 seconds instead of the default several minutes to a new `public/typo3conf/PlatformshConfiguration.php`. You can see this line in context of the full file in the [configuration](#environment) section below.
+Second, you will need to add a timeout which will set an HTTP timeout of at least 3 seconds instead of the default several minutes to a new `public/typo3conf/PlatformshConfiguration.php`. You can see this line in context of the full file in the [configuration](#environment) section below.
 
 ```php
 $GLOBALS['TYPO3_CONF_VARS']['HTTP']['timeout'] = 3;
 ```
 
-You will still need to enable the `pixelant/pxa-lpeh` extension, which you will be able to do in the [post-install](/guides/typo3/deploy/deploy.md#post-install) steps later in this guide.
+{{< note >}}
+The suggested timeout of three seconds above may end up being too short if your TYPO3 instance performs external requests other than to itself as described here. If the instance makes long requests, such as when synchronizing data as a part of a TYPO3 Scheduler task with an external API, it is best instead to place these operations in workers. 
+{{< /note >}}
+
+You will still need to enable the `pixelant/pxa-lpeh` extension, which you can do by running the command:
+
+```bash
+$ vendor/bin/typo3 extension:activate pxa_lpeh
+```
 
 ## TYPO3 CMS's `web-dir`
 
@@ -39,37 +47,33 @@ Platform.sh recommends serving TYPO3 from it's default subdirectory `public`. `p
 $ composer config extra.typo3/cms.web-dir public && composer update --no-scripts
 ```
 
-## (Optional) Introductory examples
-
-The TYPO3 template for Platform.sh loads a number of example content pages provided by TYPO3 into the site when dependencies are installed pre-build. Their inclusion is completely optional, but a helpful choice if you are creating a new TYPO3 site from scratch using Composer.
-
-```bash
-$ composer require typo3/cms-introduction
-```
-
-## Setup
-
-It's likely that you have a setup configuration file (`src/SetupConfiguration.yaml`) already present in your repository which manages your installation during build when running the `typo3 install:setup` command. On Platform.sh, it is recommended that that file  include at least the following commands.
-
-{{< github repo="platformsh-templates/typo3" file="src/SetupConfiguration.yaml" lang="yaml" >}}
-
 ## Site
 
-Similarly, you likely have a `config.yaml` file in your repo, althout it may not be in the `config/sites/main` subdirectory as shown above. This file contains settings for the error handling of your site, the languages it will support, and a few others. For the purposes of this guide, you will need to set the `base` attribute to an environment variable called `PLATFORM_ROUTES_MAIN`. 
+You will have to locate the site configuration file(s), `config.yaml`, in your repository's `config/sites/<SITEID>` subdirectories. For the purposes of this guide, you will need to set the `base` attribute to an environment variable called `PLATFORM_ROUTES_MAIN`. You can also add the definition to your existing `baseVariant` attribute for production if desired. 
 
 {{< github repo="platformsh-templates/typo3" file="config/sites/main/config.yaml" lang="yaml" >}}
 
-You will define this environment variable in the next sections, but it's purpose is to retrieve the root domain (since you have not yet registered a domain name on the Platform.sh project, this will be a hashed placeholder domain generated from the environment) from the environment varable `PLATFORM_ROUTES`.
+You will define this environment variable in the next section, but it's purpose is to retrieve the root domain (since you have not yet registered a domain name on the Platform.sh project, this will be a hashed placeholder domain generated from the environment) from the environment varable `PLATFORM_ROUTES`.
 
-## Database
+{{< note >}}
 
-Next you will need a `src/SetupDatabase.yaml` file, which is used on the first installation of TYPO3 in the  dedploy hook to set up the database and the initial `admin` user.
+The above `base` configuration only includes the production case - that is, running on Platform.sh - or at least exporting a `PLATFORM_ROUTES_MAIN` environment variable to match during local development. Alternatively, you can place the above definition within a `baseVariant` definition for the production environment alongside another development environment `condition` for local. 
 
-{{< github repo="platformsh-templates/typo3" file="src/SetupDatabase.yaml" lang="yaml" >}}
+```yaml
+baseVariants:
+  -
+    base: '%env(VIRTUAL_HOST)%'
+    condition: 'applicationContext == "Development/local"'
+  -
+    base: '%env(PLATFORM_ROUTES_MAIN)%'
+    condition: 'applicationContext == "Production/local"'
+```
+
+{{< /note >}}
 
 ## Environment
 
-Finally, you can start using the Platform.sh Configuration Reader library to starting reading from the environment from within your application. In a `public/typo3confg/PlatformshConfiguration.php` file, you can use the library to:
+Finally, you can start using the Platform.sh Configuration Reader library to starting reading from the environment from within your application. In a `public/typo3conf/PlatformshConfiguration.php` file, you can use the library to:
 
 - verify the deployment is occuring on a Platform.sh project (`if (!$platformConfig->isValidPlatform())`)
 - verify that it is not run during build, when services are not yet available (`if ($platformConfig->inBuild())`)
@@ -80,7 +84,7 @@ Finally, you can start using the Platform.sh Configuration Reader library to sta
 
 {{< github repo="platformsh-templates/typo3" file="public/typo3conf/PlatformshConfiguration.php" lang="php" >}}
 
-Then include the `require_once()` function within your `public/typo3conf/AdditionalConfiguration.php` file to load the Platform.sh-specific configuration into the site.
+Then include the `require_once()` function within your `public/typo3conf/AdditionalConfiguration.php` file to load the Platform.sh-specific configuration into the site if present.
 
 {{< github repo="platformsh-templates/typo3" file="public/typo3conf/AdditionalConfiguration.php" lang="php" >}}
 

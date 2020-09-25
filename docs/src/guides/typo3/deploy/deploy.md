@@ -13,7 +13,7 @@ description: |
 
 ## Post-install (new site)
 
-You probably noticed the following lines of code in your `.platform.app.yaml` file during the deploy hook:
+The following section will only be relevant when deploying the TYPO3 template or creating a new site from scratch locally using Composer. If migrating an existing site, you can move on to the next step. 
 
 ```yaml
     # The deploy hook runs after your application has been deployed and started.
@@ -52,11 +52,9 @@ The template is designed to run the TYPO3 installer only on the first deploy by 
 
 Next, when the deploy hook ran through the installer, it set an intial username and password for the TYPO3 site, which you will want to update immediately. Visit `/typo3` on the generated url for the environment and login with those temporary `admin` credentials. Then click on the user icon in the top right of the page and go to User Settings > Password to update.
 
-Lastly you will need to enable the `pixelant/pxa-lpeh` extension you added with Composer. From the Backend, click on the Extensions icon in the sidebar. Search for the extension and then `Activate` it.
-
 ## Data migration
 
-If you are moving an existing site to Platform.sh, then in addition to code you will also need to migrate your data.  That means your database (generally [MySQL/MariaDB](/configuration/services/mysql.md), although [PostgreSQL](/configuration/services/postgresql.md) is also available) and your files.
+If you are moving an existing site to Platform.sh, then in addition to code you will also need to migrate your data.
 
 ### Importing the database
 
@@ -77,7 +75,7 @@ You will first need to download your files from your current hosting environment
 The `platform mount:upload` command provides a simple, straightforward way to upload an entire directory to your site at once.  Under the hood it uses an SSH tunnel and `rsync`, so it will be as efficient as possible.  (There is also a `platform mount:download` command you can use to download files later.)  Run the following from your local Git repository root (modifying the `--source` path if needed).
 
 ```bash
-$ platform mount:upload -e mster --mount web/sites/default/files/ --source ./web/sites/default/files/
+$ platform mount:upload -e master --mount web/sites/default/files/ --source ./web/sites/default/files/
 $ platform mount:upload -e master --mount private/ --source ./private/
 ```
 
