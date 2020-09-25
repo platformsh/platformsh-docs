@@ -23,7 +23,7 @@ The Network storage service is available on all regions except:
 * `eu.platform.sh`
 * `us.platform.sh`
 
-If you are on one of those and require the service we suggest you [migrate](/tutorials/region-migration.md#region-migration) your project to one of the newer regions (such as eu-2, us-2, ca, au, fr-1 or de-2).
+If you are on one of those and require the service we suggest you [migrate](/guides/general/region-migration.md#region-migration) your project to one of the newer regions (such as eu-2, us-2, ca, au, fr-1 or de-2).
 
 ## Define the service
 
@@ -253,4 +253,4 @@ And want to move that to a network storage mount.  The following approximate ste
 
 The `network-storage` service is only available on our newer regions.  If you are running on the older `us` or `eu` regions and try to create a `network-storage` service you will receive this error.
 
-To make use of `network-storage` you will need to migrate to the newer `us-2` or `eu-2` regions.  See our [tutorial on how to migrate regions](/tutorials/region-migration.md) for more information.
+To make use of `network-storage` you will need to migrate to the newer `us-2` or `eu-2` regions.  See our [tutorial on how to migrate regions](/guides/general/region-migration.md) for more information.
