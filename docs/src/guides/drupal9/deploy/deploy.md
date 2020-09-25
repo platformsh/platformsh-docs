@@ -17,7 +17,7 @@ You can view the process from the Management Console; when it is done, click the
 
 If you are creating a new site, visiting the site in your browser will trigger the Drupal installer.  Run through it as normal, but note that you will not be asked for the database credentials.  The `settings.platformsh.php` file added earlier automatically provides the database credentials, and the installer is smart enough to not ask for them again.
 
-Once the installer is complete you will be presented with your new site.  Go forth and Deploy (even on Friday)!
+Once the installer is complete you will be presented with your new site. 
 
 ## Data migration
 
@@ -27,14 +27,14 @@ If you are moving an existing site to Platform.sh, then in addition to code you 
 
 First, obtain a database dump from your current site.  If you are using MySQL/MariaDB, then the [`mysqldump` command](https://mariadb.com/kb/en/mysqldump/) is all you need.  Save your dump file as `database.sql`.  (Or any name, really, as long as it's the same as you use below.)
 
-{{ note }}
+{{< note >}}
 Drupal has a number of database tables that are entirely useless when migrating, and you're better off excluding their data.
 
 * If you're using a database cache backend then you can and should exclude all `cache_*` table data.  On Platform.sh we recommend using Redis anyway, and the template described on the previous pages uses Redis automatically.
 * The `sessions` table's data can also be excluded.
 
 While you can trim the data out of these tables post-migration, that is wasteful of both time and disk space, so it's better to exclude that data to begin with.
-{{ /note }}
+{{< /note >}}
 
 Next, import the database into your Platform.sh site.  The easiest way to do so is with the Platform.sh CLI.
 
@@ -46,7 +46,7 @@ That will connect to the database service on the `master` environment, through a
 
 ### Importing files
 
-You will first need to download your files from your current hosting environment, whatever that is.  The easiest way is likely with `rsync`, but consult your old host's documentation.  For this guide, we'll assume that you have already downloaded all of your user files to your local `web/sites/default/files` directory, and your public files to `public`.  If you have them in a different directory, ajust the following commands accordingly.
+You will first need to download your files from your current hosting environment, whatever that is.  The easiest way is likely with `rsync`, but consult your old host's documentation.  For this guide, we'll assume that you have already downloaded all of your user files to your local `web/sites/default/files` directory, and your public files to `public`.  If you have them in a different directory, adjust the following commands accordingly.
 
 The `platform mount:upload` command provides a simple, straightforward way to upload an entire directory to your site at once.  Under the hood it uses an SSH tunnel and `rsync`, so it will be as efficient as possible.  (There is also a `platform mount:download` command you can use to download files later.)  Run the following from your local Git repository root (modifying the `--source` path if needed).
 
