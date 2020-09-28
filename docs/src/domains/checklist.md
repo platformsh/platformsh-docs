@@ -49,4 +49,4 @@ For Enterprise plans you may need to obtain a DNS TXT record from your Platform.
 * Your custom TLS certificate is purchased, if you're using one?
 * Your CDN is configured to serve from Platform.sh, if you're using one?
 
-**Time to [Go Live](/domains/quick_start.md).**
+**Time to [Go Live](/domains/quick-start.md).**
