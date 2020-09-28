@@ -14,3 +14,14 @@ Dedicated Production Clusters work nearly identically to Grid environments, and 
 * The master branch with three-Virtual Machine
 * Backup on Production does not freeze in the process.
 * You can deploy your application in any of our [supported cloud providers](development/faq.md#which-geographic-zones-does-platformsh-cover). 
+
+
+## Setting up
+
+Open a Support ticket with the suggested title “Upgrade to Dedicated Production Clusters". In the ticket, request to have your project Upgrade.
+
+We will review the infrastructure and settings, create user and environment variables for Staging and Production environments, and update the ticket with results.
+
+Once started the process usually takes less than an hour.  There should be no downtime on your production site, although you should not push any code to Git while the upgrade is in progress.
+
+When done, you can review the changes to your project through the management console.
