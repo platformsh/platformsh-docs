@@ -11,7 +11,7 @@ const savePath = "static/files/fetch/";
 const fetchRoots = {
   "examples": "https://examples.docs.platform.sh/",
   "appyaml": "https://raw.githubusercontent.com/platformsh-templates/",
-  "servicesyaml": "https://raw.githubusercontent.com/platformsh/",
+  "servicesyaml": "https://raw.githubusercontent.com/platformsh-templates/",
   "routesyaml":  "https://raw.githubusercontent.com/platformsh-templates/",
   "docsappyaml": "https://raw.githubusercontent.com/platformsh/",
 }

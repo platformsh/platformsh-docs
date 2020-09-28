@@ -298,7 +298,7 @@ Taking a backup or a database export before doing so is strongly recommended.
 
 On-site primary/replica support is not available on Grid plans.  On a Dedicated environment, it is provided automatically as part of the default configuration.
 
-In abnormal cases you may also enable [remote replication](/tutorials/mysql-replication.md) to your own replica data.  This is an advanced configuration not appropriate for most circumstances (and the replica will not be available to your application), but may be useful for certain backup purposes.
+In abnormal cases you may also enable [remote replication](/guides/general/mysql-replication.md) to your own replica data.  This is an advanced configuration not appropriate for most circumstances (and the replica will not be available to your application), but may be useful for certain backup purposes.
 
 ## Troubleshooting
 

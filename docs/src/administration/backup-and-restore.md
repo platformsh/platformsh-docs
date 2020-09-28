@@ -72,7 +72,7 @@ $ platform backup:restore --branch-from=PARENT_BRANCH 2ca4d90639f706283fee
 You need "admin" role to restore your environment from a backup.
 {{< /note >}}
 
-Be aware that the older US and EU regions do not support restoring backups to different environments.  If your project is on one of the older regions you may file a support ticket to ask that a backup be restored to a different environment for you, or [migrate your project](/tutorials/region-migration.md) to one of the new regions that supports this feature.
+Be aware that the older US and EU regions do not support restoring backups to different environments.  If your project is on one of the older regions you may file a support ticket to ask that a backup be restored to a different environment for you, or [migrate your project](/guides/general/region-migration.md) to one of the new regions that supports this feature.
 
 
 {{< note >}}
