@@ -11,7 +11,7 @@ description: |
 The custom domain allows you to use your unique branding and improves your web application recognition over the Internet.
 
 
-In this short section we will give you a  very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this).
+In this short section we will give you a very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this).
 
 Suppose your project ID is `abc123` in the US region, and you've registered `mysite.com`.  You want `www.mysite.com` to be the "real" site and `mysite.com` to redirect to it.
 
