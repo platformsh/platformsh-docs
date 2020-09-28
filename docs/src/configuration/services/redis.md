@@ -180,7 +180,7 @@ Using the same configuration but with your Redis relationship named `sessionstor
 
 ```yaml
 relationships:
-  sessionstorage: "cache:redis"
+  sessionstorage: "cacheredis:redis"
 
 variables:
     php:
