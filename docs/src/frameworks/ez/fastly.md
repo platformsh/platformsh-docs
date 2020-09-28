@@ -51,4 +51,4 @@ platform variable:set -e production env:FASTLY_KEY YOUR_ID_HERE
 
 ## Configure Fastly and Platform.sh
 
-See the alternate [Go-live process for Fastly](/golive/cdn/_index.md#client-authenticated-tls) on Platform.sh.  This process is the same for any application.
+See the alternate [Go-live process for Fastly](/domains/cdn/_index.md#client-authenticated-tls) on Platform.sh.  This process is the same for any application.

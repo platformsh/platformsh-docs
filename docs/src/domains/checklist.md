@@ -1,5 +1,5 @@
 ---
-title: "Going Live - Pre-Launch Checklist"
+title: "Pre-Launch Checklist"
 weight: 1
 description: |
   Before you can take your site live there are a few preparation steps to take.
@@ -39,7 +39,7 @@ If you are using a CDN, either one included with an Enterprise plan or one you p
 
 Consult your CDN's documentation for how to set the CDN's upstream address.
 
-For Enterprise plans you may need to obtain a DNS TXT record from your Platform.sh support representative by opening a ticket.  Consult the documentation for your CDN provider and our own [CDN guide](/golive/cdn/_index.md).
+For Enterprise plans you may need to obtain a DNS TXT record from your Platform.sh support representative by opening a ticket.  Consult the documentation for your CDN provider and our own [CDN guide](/domains/cdn/_index.md).
 
 ---
 
@@ -49,4 +49,4 @@ For Enterprise plans you may need to obtain a DNS TXT record from your Platform.
 * Your custom TLS certificate is purchased, if you're using one?
 * Your CDN is configured to serve from Platform.sh, if you're using one?
 
-**Time to [Go Live](/golive/steps/_index.md).**
+**Time to [Go Live](/domains/quick-start.md).**

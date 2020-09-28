@@ -1,11 +1,17 @@
 ---
-title: "Example"
-weight: 5
+title: "Quick Start"
+weight: -70
 description: |
-  In this short section we will give you a  very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this).
+  By default, a Platform.sh app is available at its Platform.sh domain. The following resources will help you take your application live in domain that you wish.
 ---
 
+
 {{< description >}}
+
+The custom domain allows you to use your unique branding and improves your web application recognition over the Internet.
+
+
+In this short section we will give you a very simple, typical example. More involved use-cases (such as site with many domains or multiple applications are simply variations on this).
 
 Suppose your project ID is `abc123` in the US region, and you've registered `mysite.com`.  You want `www.mysite.com` to be the "real" site and `mysite.com` to redirect to it.
 
@@ -40,6 +46,10 @@ You can also use the management console for that.
 As soon as you do, Platform.sh will no longer serve `master-def456-abc123.eu-2.platformsh.site` at all.  Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywhere it appears when generating routes to respond to.
 
 You can still access the original internal domain by running `platform environment:info edge_hostname -e master`.
+
+{{< note >}}
+If you are planning on using subdomains across multiple projects, [the setup will differ slightly](/domains/in-depth/subdomains.md).
+{{< /note >}}
 
 ## Configure your DNS provider
 
