@@ -19,14 +19,3 @@ Dedicated Production Clusters work nearly identically to Grid environments, and 
 You cannot perform the following:
 
 * Use PostgreSQL or Kafka (The support for those is upcoming).
-
-
-## Setting up
-
-Open a Support ticket with the suggested title “Upgrade to Dedicated Production Clusters". In the ticket, request to have your project Upgrade.
-
-We will review the infrastructure and settings, create user and environment variables for Staging and Production environments, and update the ticket with results.
-
-Once started the process usually takes less than an hour.  There should be no downtime on your production site, although you should not push any code to Git while the upgrade is in progress.
-
-When done, you can review the changes to your project through the management console.
