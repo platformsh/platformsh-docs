@@ -14,6 +14,10 @@ Solr search with generic schemas provided, and a custom schema is also supported
 |----------------------------------|---------------|
 |  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated" >}} |
 
+{{< note >}}
+Sorl is not available on [Dedicated Production Clusters.](/overview/dedicated.md)
+{{< /note >}}
+
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.

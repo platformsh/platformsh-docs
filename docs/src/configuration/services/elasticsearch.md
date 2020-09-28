@@ -24,6 +24,11 @@ The following versions are available but are not receiving security updates from
 |----------------------------------|---------------|
 |  {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated" >}} |
 
+{{< note >}}
+Elasticsearch is not available on [Dedicated Production Clusters.](/overview/dedicated.md)
+{{< /note >}}
+
+
 ## Relationship
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
