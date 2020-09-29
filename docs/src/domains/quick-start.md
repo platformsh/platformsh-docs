@@ -6,11 +6,17 @@ description: |
 ---
 {{< description >}}
 
-WARNING: Do not add a custom domain to your project until you are fully ready to change your DNS. Until that time, continue working with the Platform.sh generated URLS.
+{{< note theme="warning" title="Danger, Will Robinson" >}}
+ Do not add a custom domain to your project until you are fully ready to change your DNS. Until that time, continue working with the Platform.sh generated URLS.  
+{{< /note >}}
 
-NOTE: Custom domains can only be added to the main environment on production plans (Standard or larger).
 
-Steps:
+{{< note>}}
+Custom domains can only be added to the main environment on production plans (Standard or larger).
+{{< /note >}}
+
+
+## Summary of steps
 
 1. Express your desired future URL structure in .platform/routes.yaml
 2. Understand what DNS records you will need, and whether your DNS provider can support them
@@ -19,7 +25,7 @@ Steps:
 5. Update your DNS
 
 
-In this short section we will give you a simple, typical example. See the [in-depth guide](/domains/in-depth.md) for more complex cases.
+In this short section we will give you a simple, typical example. See the [in-depth guide](domains/in-depth/_index.md) for more complex cases.
 
 ## Set your domain
 
