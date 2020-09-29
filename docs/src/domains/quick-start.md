@@ -29,7 +29,7 @@ First, configure your `routes.yaml` file like so:
   to: "https://www.{default}/"
 ```
 
-That will result in two domains being created on Platform.sh: `master-def456-abc123.eu-2.platformsh.site` and `www---master-def456-abc123.eu-2.platformsh.site`.  The former will automatically redirect to the latter.  In the `routes.yaml` file, `{default}` will automatically be replaced with generated URL.  In domain prefixes (like `www`), the `.` will be replaced with `---`.
+That will result in two domains being created on Platform.sh: `master-def456-abc123.eu-2.platformsh.site` and `www---master-def456-abc123.eu-2.platformsh.site`.  The former will automatically redirect to the latter.  In the `routes.yaml` file, `{default}` will automatically be replaced with the generated URL.  In domain prefixes (like `www`), the `.` will be replaced with `---`.
 
 ## Set your domain
 
