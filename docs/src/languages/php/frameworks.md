@@ -60,20 +60,15 @@ Symfony FAQs, how-to guides and other tutorials right on [Platform.sh Community]
 * [Symfony 3](https://github.com/platformsh-templates/symfony3)
 * [Symfony 4](https://github.com/platformsh-templates/symfony4)
 
-
 ## TYPO3
 
 [TYPO3](https://typo3.org/) is an open-source CMS written in PHP. Utilized Platform.sh native Composer to handle builds and maintain dependencies.
 
-* [TYPO3 Best Practices](/frameworks/typo3/_index.md)
+* [TYPO3 Guide](/guides/typo3/deploy/_index.md)
 
-### Example Projects
+### Templates
 
-{{< note >}}
-Template projects (repositories in the `platformsh-templates` GitHub organization) are actively maintained by the Platform.sh team. Any other example projects come with less support, and remain in public repositories as proof-of-concepts.
-{{< /note >}}
-
-* [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
+* [TYPO3](https://github.com/platformsh-templates/typo3)
 
 ## Wordpress
 
