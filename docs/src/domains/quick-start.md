@@ -6,7 +6,7 @@ description: |
 ---
 {{< description >}}
 
-{{< note theme="warning" title="Danger, Will Robinson" >}}
+{{< note theme="warning">}}
  Do not add a custom domain to your project until you are fully ready to change your DNS. Until that time, continue working with the Platform.sh generated URLS.  
 {{< /note >}}
 
