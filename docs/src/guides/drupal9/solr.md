@@ -3,6 +3,7 @@ title: "Using Solr with Drupal 9.x"
 sidebarTitle: "Solr"
 description: |
     Add a Solr server to your site and connect it to Drupal.
+weight: -50
 ---
 
 The Drupal [Search API Solr](https://www.drupal.org/project/search_api_solr) module has a somewhat involved setup process, as it requires live access to the Solr server in order to generate the configuration files for it.  The following procedure is therefore necessary to ensure each step is able to proceed.
