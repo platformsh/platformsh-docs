@@ -882,8 +882,15 @@ body {
   text-transform: none;
   letter-spacing: 1px;
   /* padding-left: calc(.7rem + 4px); */
-  padding-left: 30px;
+  padding-left: 0rem !important;
   padding-right: 1rem;
+
+  /* border-left: 10px solid transparent; */
+}
+
+.duik-sidebar__heading > .duik-sidebar__link {
+  /* padding: .3rem 1rem .25rem 2rem; */
+  padding-left: 1.25rem;
 }
 
 .duik-sidebar__link {
@@ -896,6 +903,15 @@ body {
 
 .duik-sidebar__link.active {
   color: var(--brand-color-primary-blue) !important;
+  /* display: inline-block; */
+  /* border-left: 10px solid transparet; */
+  /* top | right | bottom | left */
+  /* padding: .3rem 1rem .25rem 2rem; */
+}
+
+.duik-sidebar__heading.active {
+  color: var(--brand-color-primary-blue) !important;
+  /* border-left: 10px solid var(--brand-color-primary-blue) !important; */
   /* display: inline-block; */
   /* border-left: 10px solid transparet; */
   /* top | right | bottom | left */
