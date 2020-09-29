@@ -24,8 +24,8 @@ Custom domains can only be added to the main environment on production plans (St
 4. Add (sub)domain(s) to your project
 5. Update your DNS
 
-
 In this short section we will give you a simple, typical example. See the [in-depth guide](domains/in-depth/_index.md) for more complex cases.
+
 
 ## Set your domain
 
