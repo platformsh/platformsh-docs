@@ -38,7 +38,7 @@ https://{default}/:
       "^/gettingstarted/gettingstarted(.*)": { "to": "/gettingstarted/introduction$1", "code": 301, "regexp": true }
 
       # Reorganized September 2020
-      "/golive/steps/dns.html": { "to": "/domains/steps/dns.html", "code": 301, "prefix": false}
+      "/golive/steps/dns.html": { "to": "/domains/in-depth/dns.html", "code": 301, "prefix": false}
 
 
 "https://www.{default}/":

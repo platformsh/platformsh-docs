@@ -45,7 +45,7 @@ The `Domains` screen allows you to manage your domains that your project will be
 
 ![project domain](/images/management-console/settings-domains.png "0.7")
 
-More information on how to [setup your domain](/domains/steps/_index.md).
+More information on how to [setup your domain](/domains/in-depth/_index.md).
 
 {{< note >}}
 Platform.sh expects an ASCII representation of the domain here. In case you want to use an internationalized domain name you can use the [conversion tool provided by Verisign](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-conversion-tool/index.xhtml) to convert your IDN domain to ASCII.

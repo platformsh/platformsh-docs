@@ -24,7 +24,7 @@ Custom domains can only be added to the main environment on production plans (St
 4. Add (sub)domain(s) to your project
 5. Update your DNS
 
-In this short section we will give you a simple, typical example. See the [Step by step guide](domains/steps/_index.md) for more complex cases.
+In this short section we will give you a simple, typical example. See the [Step by step guide](domains/in-depth/_index.md) for more complex cases.
 
 
 ## Set your domain
@@ -44,7 +44,7 @@ As soon as you do, Platform.sh will no longer serve `master-def456-abc123.eu-2.p
 You can still access the original internal domain by running `platform environment:info edge_hostname -e master`.
 
 {{< note >}}
-If you are planning on using subdomains across multiple projects, [the setup will differ slightly](/domains/steps/subdomains.md).
+If you are planning on using subdomains across multiple projects, [the setup will differ slightly](/domains/in-depth/subdomains.md).
 {{< /note >}}
 
 ## Configure your DNS provider
