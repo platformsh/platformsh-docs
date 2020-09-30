@@ -39,6 +39,7 @@ https://{default}/:
 
       # Reorganized September 2020
       "/golive/steps/dns.html": { "to": "/domains/in-depth/dns.html", "code": 301, "prefix": false}
+      "/golive/steps/subdomains.html": { "to": "/domains/in-depth/subdomains.html", "code": 301, "prefix": false}
 
 
 "https://www.{default}/":
