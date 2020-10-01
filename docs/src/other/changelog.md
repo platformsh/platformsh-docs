@@ -9,6 +9,9 @@ description: |
 
 ## 2020
 
+* **September 2020**
+  * Go 1.15: We now support [Go 1.15](/languages/go.md).
+
 * **June 2020**
   * Node.js 14: We now support [Node.js 14](/languages/nodejs/_index.md).
 
