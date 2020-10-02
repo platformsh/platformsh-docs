@@ -30,7 +30,7 @@ web:
         '/':
             # The public directory of the application relative to its root.
             root: 'public'
-            passthru: true
+            passthru: false
             index: ['index.html']
             scripts: false
             allow: true
