@@ -47,9 +47,9 @@ If you have multiple domains you want to be served by the same application you w
 
 Note that depending on your registrar and the TTL you set, it could take anywhere from 15 minutes to 72 hours for the DNS change to fully propagate across the Internet.
 
-If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records](/domains/in-depth/dns.md).
+If you are using an apex domain (`example.com`), see the additional information about [Apex domains and CNAME records](/domains/steps/dns.md).
 
-If you are planning to host multiple subdomains on different projects, see the additional information about [Subdomains](/domains/in-depth/subdomains.md) *before* you add your domain to Platform.sh.
+If you are planning to host multiple subdomains on different projects, see the additional information about [Subdomains](/domains/steps/subdomains.md) *before* you add your domain to Platform.sh.
 
 ## 3. (Non-CDN version) Set your domain in Platform.sh
 
