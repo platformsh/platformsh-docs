@@ -3,6 +3,7 @@ title: "Using Elasticsearch with Drupal 9.x"
 sidebarTitle: "Elasticsearch"
 description: |
     Add an Elasticsearch server to your site and connect it to Drupal.
+weight: -100
 ---
 
 ## Requirements

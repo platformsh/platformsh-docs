@@ -11,7 +11,7 @@ Full Drush support and Composer-based builds make handling dependencies and buil
 [Drupal](https://www.drupal.org/) is an open-source content management framework written in PHP. Since Composer comes pre-installed on Platform.sh, Drupal can be installed and updated completely using Composer. The default [build flavor](/overview/build-deploy.md#building-the-application) for PHP application runs `composer install` during build, handling all of your dependencies automatically.
 
 * [Drupal 7 Best Practices](/frameworks/drupal7/_index.md)
-* [Drupal 8 Best Practices](/frameworks/drupal8/_index.md)
+* [Drupal 8/9 Guide](/guides/drupal9/_index.md)
 
 ### Community Support
 
@@ -24,6 +24,7 @@ Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](
 * [Drupal 7](https://github.com/platformsh-templates/drupal7)
 * [Drupal 7 (Vanilla)](https://github.com/platformsh-templates/drupal7-vanilla)
 * [Drupal 8](https://github.com/platformsh-templates/drupal8)
+* [Drupal 9](https://github.com/platformsh-templates/drupal9)
 * [Drupal 8 (Multisite variant)](https://github.com/platformsh-templates/drupal8-multisite)
 * [Opigno](https://github.com/platformsh-templates/drupal8-opigno)
 * [GovCMS8](https://github.com/platformsh-templates/drupal8-govcms8)
@@ -59,20 +60,15 @@ Symfony FAQs, how-to guides and other tutorials right on [Platform.sh Community]
 * [Symfony 3](https://github.com/platformsh-templates/symfony3)
 * [Symfony 4](https://github.com/platformsh-templates/symfony4)
 
-
 ## TYPO3
 
 [TYPO3](https://typo3.org/) is an open-source CMS written in PHP. Utilized Platform.sh native Composer to handle builds and maintain dependencies.
 
-* [TYPO3 Best Practices](/frameworks/typo3/_index.md)
+* [TYPO3 Guide](/guides/typo3/deploy/_index.md)
 
-### Example Projects
+### Templates
 
-{{< note >}}
-Template projects (repositories in the `platformsh-templates` GitHub organization) are actively maintained by the Platform.sh team. Any other example projects come with less support, and remain in public repositories as proof-of-concepts.
-{{< /note >}}
-
-* [TYPO3](https://github.com/platformsh/platformsh-example-typo3)
+* [TYPO3](https://github.com/platformsh-templates/typo3)
 
 ## Wordpress
 

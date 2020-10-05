@@ -42,4 +42,31 @@ The [Composer documentation](https://getcomposer.org/doc/) has more information 
 
 Note that updating modules or core through the Drupal UI is not possible, as the file system is read-only.  All updates should be done through composer to update the lock file, and then pushed to Git.
 
+## Use drush aliases
+
+### Create Drush aliases
+
+[Drush aliases](http://drush.readthedocs.org/en/master/usage/index.html#site-aliases) make it easy to manage your development websites.
+
+The Platform.sh CLI can generate Drush aliases for you automatically when you clone a project using the `platform get <PROJECT_ID>` command.
+
+To see the aliases that are created, run `platform drush-aliases` and you should get output similar to that below:
+
+```bash
+$ platform drush-aliases
+Aliases for My Site (tqmd2kvitnoly):
+    @my-site._local
+    @my-site.master
+    @my-site.staging
+    @my-site.sprint1
+```
+
+### Recreating Drush aliases
+
+To recreate existing aliases, or after pushing a new branch via git to create the new alias, run:
+
+```bash
+platform drush-aliases -r
+```
+
 {{< guide-buttons type="last" >}}

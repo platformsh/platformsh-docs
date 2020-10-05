@@ -14,6 +14,12 @@ description: |
 
 ## Setup
 
+{{< note >}}
+At this time, the root/default branch of your GitHub repository must be `master`, as that value is what will be used for the production environment on Platform.sh.  As of October 2020 that is not the default name on GitHub anymore.  You will need to change it before enabling a source integration.
+
+We are actively working to make the production branch name configurable on Platform.sh, but at this time it cannot be changed.
+{{</ note >}}
+
 ### 1. Generate a token
 
 To integrate your Platform.sh project with an existing GitHub repository, you first need to generate a token on your GitHub user profile. Simply go to your Settings, then select `Developer settings` and click `Personal access tokens`. Here you can [Generate a new token](https://github.com/settings/tokens/new).
@@ -92,6 +98,6 @@ However, environments based on (non-pull-request) **branches** cannot have paren
 
 ## Clones and commits
 
-When you run `platform get <projectID>` or use the clone command shown in the "Git" dropdown in the management console to clone the project, you will actually be cloning from your remote integrated repository, so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations). 
+When you run `platform get <projectID>` or use the clone command shown in the "Git" dropdown in the management console to clone the project, you will actually be cloning from your remote integrated repository, so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations).
 
 Your GitHub repository is considered by Platform.sh to be the "source of truth" for the project. The project is only a mirror of that repository, and all commits should be pushed only to GitHub.

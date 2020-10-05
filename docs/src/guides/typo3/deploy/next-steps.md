@@ -23,4 +23,10 @@ The [Composer documentation](https://getcomposer.org/doc/) has more information 
 
 Note that updating modules or core through the TYPO3 backend is not possible, as the file system is read-only.  All updates should be done through composer to update the lock file, and then pushed to Git.
 
+## Why are there warnings in the install tool?
+
+The TYPO3 install tool doesn't yet fully understand when you are working on a cloud envirionment and may warn you that some folders are not writable.
+
+Don't worry, your TYPO3 installation will be fully functional.
+
 {{< guide-buttons type="last" >}}
