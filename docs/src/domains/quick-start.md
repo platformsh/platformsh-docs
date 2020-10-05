@@ -12,7 +12,7 @@ description: |
 
 
 {{< note>}}
-Custom domains can only be added to the main environment on production plans (Standard or larger).
+Custom domains can only be added to the `master` environment on production plans (Standard or larger).
 {{< /note >}}
 
 
