@@ -7,11 +7,11 @@ Once your application is up and running it still needs to be kept fast.  Platfor
 
 The following recommendations are guidelines only.  They're also listed in approximately the order we recommend investigating them, although your mileage may vary.
 
-## Upgrade to PHP 7.2+
+## Upgrade to PHP 7.3+
 
 There is very little purpose to trying to optimize a PHP application on PHP 5.  PHP 7 is generally twice as fast and uses half as much memory as PHP 5, making it unquestionably the first step to take when trying to make a PHP-based site run faster.
 
-To change your PHP version, simply change the `type` key in your `.platform.app.yaml` to the desired PHP version.  As always, test it on a branch first before merging to `master`.
+To change your PHP version, change the `type` key in your `.platform.app.yaml` to the desired PHP version.  As always, test it on a branch first before merging to `master`.
 
 ## Ensure that the router cache is properly configured
 
@@ -27,7 +27,7 @@ PHP-FPM reserves a fixed number of simultaneous worker processes to handle incom
 
 ## Enable preloading
 
-PHP 7.4 and later supports preloading code files into shared memory once at server startup, bypassing the need to include or autoload them later.  Depending on your application doing so can result in significant improvements to both CPU and memory usage.  If using PHP 7.4, see the [PHP Preload instructions](/languages/php/_index.md#opcache-preloading) for how to configure it on Platform.sh and consult your application's documentation to see if they have any recommendations for an optimal preload configuration.
+PHP 7.4 and later supports preloading code files into shared memory once at server startup, bypassing the need to include or autoload them later.  Depending on your application doing so can result in significant improvements to both CPU and memory usage.  If using PHP 7.4 or later, see the [PHP Preload instructions](/languages/php/_index.md#opcache-preloading) for how to configure it on Platform.sh and consult your application's documentation to see if they have any recommendations for an optimal preload configuration.
 
 If you are not using PHP 7.4, this is a good reason to upgrade.
 
@@ -50,11 +50,11 @@ To determine how many files you have, run this command from the root of your app
 find . -type f -name '*.php' | wc -l
 ```
 
-That will report the number of files in your file tree that end in `.php`.  That may not be perfectly accurate (some applications have PHP code in files that don't end in `.php`, it may not catch generated files that haven't been generated yet, etc.) but it's a reasonable approximation.  Set the `opcache.max_accelerated_files` option to a value slightly higher than this.  Note that PHP will automatically round the value you specify up to the next highest prime number, for reasons long lost to the sands of time.
+That will report the number of files in your file tree that end in `.php`.  That may not be perfectly accurate (some applications have PHP code in files that don't end in `.php`, it may not catch generated files that haven't been generated yet, etc.) but it's a reasonable approximation.  Set the `opcache.max_accelerated_files` option to a value slightly higher than this.  Note that PHP will automatically round the value you specify up to the next highest prime number, for reasons long-lost to the sands of time.
 
 Determining an optimal `opcache.memory_consumption` is a bit harder, unfortunately, as it requires executing code via a web request to get adequate statistics.  Fortunately there is a command line tool that will handle most of that.
 
-Change to the `/tmp` directory (or any other non-web-accessible writable directory) and install [`CacheTool`](https://github.com/gordalina/cachetool).  It has a large number of commands and options but we're only interested in the opcache status for FastCGI command.  The really short version of downloading and using it would be:
+Change to the `/tmp` directory (or any other non-web-accessible writable directory) and install [`CacheTool`](https://github.com/gordalina/cachetool).  It has numerous commands and options, but we're only interested in the opcache status for FastCGI command.  The really short version of downloading and using it would be:
 
 ```bash
 cd /tmp
