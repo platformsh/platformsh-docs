@@ -106,6 +106,20 @@ variables:
 
 (Memory consumption is set in megabytes.)
 
+## Disable opcache timestamp validation
+
+By default, the opcache will recheck every file on disk every time it is required to see if it has changed, and thus needs to be reloaded and recached.  If you know your code is not going to change outside of a new deploy, however, you can disable that check and often get a small performance improvement.
+
+Note that some applications will generate PHP code at runtime based on user configuration.  If your application does that, you cannot disable the timestamp validation as it would prevent updates to the generated code from being loaded.
+
+The timestamp validation may be disabled with an ini setting, and the easiest way to do so is via `.platform.app.yaml`:
+
+```yaml
+variables:
+    php:
+        'opcache.validate_timestamps': 0
+```
+
 ## Optimize your code
 
 It's also possible that your own code is doing more work than it needs to.  Profiling and optimizing a PHP application is a much larger topic than will fit here, but Platform.sh recommends enabling [Blackfire.io](/integrations/profiling/blackfire.md) on your project to determine what slow spots can be found and addressed.
