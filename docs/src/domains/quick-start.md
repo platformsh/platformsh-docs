@@ -21,7 +21,6 @@ Custom domains can only be added to the `master` environment on production plans
 * Describe your desired future URL structure in [.platform/routes.yaml](configuration/routes/_index.md)
 * Understand [what DNS records you will need](domains/steps/dns.md), and whether your DNS provider can support them
 * Optional: [use a CDN](domains/cdn/_index.md)
-* Add [(sub)domain(s) to your project](domains/steps/subdomains.md)
 * Update your [DNS](domains/steps/dns.md)
 
 In this short section we will give you a simple, typical example. See the [Step by step guide](domains/steps/_index.md) for more complex cases.
