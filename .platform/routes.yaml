@@ -37,8 +37,8 @@ https://{default}/:
       # Reorganized August 2020
       "^/gettingstarted/gettingstarted(.*)": { "to": "/gettingstarted/introduction$1", "code": 301, "regexp": true }
       # Reorganized September 2020
-      "/golive/steps/dns.html": { "to": "/domains/in-depth/dns.html", "code": 301, "prefix": false}
-      "/golive/steps/subdomains.html": { "to": "/domains/in-depth/subdomains.html", "code": 301, "prefix": false}
+      "/golive/steps/dns.html": { "to": "/domains/steps/dns.html", "code": 301, "prefix": false}
+      "/golive/steps/subdomains.html": { "to": "/domains/steps/subdomains.html", "code": 301, "prefix": false}
       # Framework Guides reorganization October 2020
       # PR 1553
       "/tutorials/region-migration.html": { "to": "/guides/general/region-migration.html", "code": 301, "prefix": false }
