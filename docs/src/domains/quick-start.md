@@ -7,7 +7,7 @@ description: |
 {{< description >}}
 
 {{< note theme="warning">}}
- Do not add a custom domain to your project until you are fully ready to change your DNS. Until that time, continue working with the Platform.sh generated URLS.  
+ Do not add a custom domain to your project until you are fully ready to change your DNS. Until that time, continue working with the Platform.sh generated URLs.  
 {{< /note >}}
 
 
