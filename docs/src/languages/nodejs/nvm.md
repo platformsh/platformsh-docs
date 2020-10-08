@@ -1,5 +1,5 @@
 ---
-title: "Alernative Node.js install"
+title: "Alternative Node.js install"
 weight: 1
 toc: false
 ---
