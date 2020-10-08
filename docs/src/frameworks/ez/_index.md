@@ -30,7 +30,7 @@ In particular, see:
 
 ## Local Development with eZ Platform 2.x and later
 
-eZ Systems provide a tool called [eZ Launchpad](https://ezsystems.github.io/launchpad/) for local development on top of a Docker stack. It improves Developer eXperience and reduces complexity for common actions by simplifying your interactions with Docker containers. eZ Launchpad is ready to work with Platform.sh.
+Ibexa provide a tool called [eZ Launchpad](https://ezsystems.github.io/launchpad/) for local development on top of a Docker stack. It improves Developer eXperience and reduces complexity for common actions by simplifying your interactions with Docker containers. eZ Launchpad is ready to work with Platform.sh.
 
 It serves as a wrapper that allows you to run console commands from within the container without logging into it explicitly. For example to run `bin/console` `cache:clear` inside the PHP container do:
 
@@ -80,7 +80,7 @@ Solr is fully functional with eZ Launchpad but it is not enabled by default on P
 
 Actions needed are:
 
-* Generate the Solr configuration thanks to the script provided by eZ Systems.
+* Generate the Solr configuration thanks to the script provided by Ibexa.
 * Put the result in the `.platform` at the root of your project.
 * Add the service in the `.platform/services.yaml`.
 * Add the relationship in the `.platform.app..yaml`.
