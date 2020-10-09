@@ -8,6 +8,8 @@ description: |
 
 {{< description >}}
 
+Any user added to a project or an environment on Platform.sh will need to [register for an account](https://auth.api.platform.sh/register) before they can contribute. If you need to delete your account at any time you can [transfer ownership](/administration/users.md#transfer-ownership) of your existing projects and then open a [support ticket](/development/troubleshoot.md#deleting-your-platformsh-account) to request your account be deleted.  
+
 ## User roles
 
 At the project level:
