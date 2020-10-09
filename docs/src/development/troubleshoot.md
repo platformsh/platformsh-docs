@@ -366,3 +366,7 @@ For that reason, make sure your custom cron jobs execution times are low and tha
 Drupal's `drush core-cron` run installed module's cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to frequently benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
 
 Related documentation: [Cron and scheduled tasks](/configuration/app/cron.md#cron-jobs)
+
+## Deleting your Platform.sh account
+
+If you would like to delete your Platform.sh account, log in and select "Support" from the dropdown options when you click on your avatar in the top right hand corner of the management console. Create a new ticket, and request for your account to be deleted in the form provided there. A support agent will receive your request and delete your account shortly thereafter. 
