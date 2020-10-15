@@ -25,7 +25,7 @@ This means that traffic to your site is encrypted from the client (browser) to C
 User <---------------> Cloudflare <-------------> Platform.sh
 ```
 
-The other option known as "Flexible SSL" will cause issues if you intend to redirect all traffic to HTTPS.  The "Flexible SSL" option will use Cloudflare's TLS/SSL certificate to encrypt traffic between your users and the CDN, but will pass requests from the CDN back to your project at Platform.sh via HTTP.  This can make it easy for sites that don't have a TLS/SSL certificate to begin ofering their users a more secure experience, by at the least eliminating the unencrypted attack vector on the the "last mile" to the user's browser.
+The other option known as "Flexible SSL" will cause issues if you intend to redirect all traffic to HTTPS.  The "Flexible SSL" option will use Cloudflare's TLS/SSL certificate to encrypt traffic between your users and the CDN, but will pass requests from the CDN back to your project at Platform.sh via HTTP.  This can make it easy for sites that don't have a TLS/SSL certificate to begin offering their users a more secure experience, by at the least eliminating the unencrypted attack vector on the the "last mile" to the user's browser.
 
 ```text
 # Cloudflare's Flexible SSL option
