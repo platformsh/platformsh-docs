@@ -286,10 +286,10 @@ import os
 import json
 import base64
 
-// A simple variable.
+# A simple variable.
 project_id = os.getenv('PLATFORM_PROJECT')
 
-// A JSON-encoded value.
+# A JSON-encoded value.
 variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode('utf-8'))
 
 <--->
