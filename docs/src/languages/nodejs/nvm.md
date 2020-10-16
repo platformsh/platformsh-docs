@@ -16,16 +16,16 @@ Installing NVM is done in the build hook of your `.platform.app.yaml`, which som
 variables:
     env:
         # Update these for your desired NVM and Node versions.
-        NVM_VERSION: v0.35.2
-        NODE_VERSION: 14
+        NVM_VERSION: v0.36.0
+        NODE_VERSION: v14.13.1
 
 hooks:
     build: |
         unset NPM_CONFIG_PREFIX
-        curl -o- https://raw.githubusercontent.com/creationix/nvm/$NVM_VERSION/install.sh | dash
         export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
+        # install.sh will automatically install NodeJS based on the presence of $NODE_VERSION
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        nvm install $NODE_VERSION
  ```
 
 And in a `.environment` file in the root of your project:
