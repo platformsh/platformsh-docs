@@ -35,7 +35,7 @@ This means there won't be any services attached to this branch.
 
 You are able to convert an `inactive environment` into an `active environment` and vice versa back from the environment configuration page or using the CLI with `platform environment:activate`.
 
-## How does Master  (the live site) scale?
+## How does Master (the live site) scale?
 
 The `master` environment gets a pool of resources based on your plan size, which is then split up between the applications and services you have defined.  (For example, PHP 40%, MySQL 30%, Redis 10%, Solr 20%, etc).  Increasing your plan size will increase the pool of CPU and RAM that gets split between each container.
 
