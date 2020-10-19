@@ -24,3 +24,8 @@ If you have no TYPO3 site to start from, Platform.sh maintains a ready-made [TYP
 
 {{< guides/tools >}}
 
+## Repository integration with Bitbucket, GitHub, or GitLab
+
+Platform.sh allows you to [maintain your code base in a third party repository](/integrations/source/_index.md) such as Bitbucket, GitHub, or GitLab and link it to your Platform.sh project. The remote repository is the canonical, definitive copy of your application code and the Platform.sh project is just a read-only mirror.
+
+Note that when a source integration is enabled, you should not push code directly to the Platform.sh repository. It will get overwritten the next time the integration is triggered.
