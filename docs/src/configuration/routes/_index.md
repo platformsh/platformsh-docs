@@ -189,6 +189,7 @@ Array
 That makes it straightforward to look up the domain of a particular route, regardless of what branch it's on, from within application code.  For example, the following PHP function will retrieve the domain for a specific route id, regardless of the branch it's on.
 
 ```php
+<?php
 function get_domain_for(string $id) {
   foreach ($routes as $domain => $route) {
     if ($route['id'] == $id) {

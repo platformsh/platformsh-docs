@@ -110,6 +110,7 @@ variables:
 The `opcache.preload` value is evaluated as a file path relative to the application root (where `.platform.app.yaml` is), and it may be any PHP script that calls `opcache_compile_file()`.  The following example will preload all `.php` files anywhere in the `vendor` directory:
 
 ```php
+<?php
 $directory = new RecursiveDirectoryIterator(getenv('PLATFORM_APP_DIR') . '/vendor');
 $iterator = new RecursiveIteratorIterator($directory);
 $regex = new RegexIterator($iterator, '/^.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
