@@ -146,6 +146,8 @@ The default value if not specified is `allkeys-lru`, which will simply remove th
 * noeviction
 * allkeys-lru
 * volatile-lru
+* allkeys-lfu _(Avaialble as of [Redis 4.0](https://redis.io/topics/lru-cache#the-new-lfu-mode))_
+* volatile-lfu _(Avaialble as of [Redis 4.0](https://redis.io/topics/lru-cache#the-new-lfu-mode))_
 * allkeys-random
 * volatile-random
 * volatile-ttl
