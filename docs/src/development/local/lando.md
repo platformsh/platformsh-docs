@@ -49,6 +49,7 @@ Rsync can download user files easily and efficiently.  See the [exporting tutori
 Then you need to update your `sites/default/settings.local.php` to configure your codebase to connect to the local database that you just imported:
 
 ```php
+<?php
 /* Working in local with Lando */
 if (getenv('LANDO') === 'ON') {
   $lando_info = json_decode(getenv('LANDO_INFO'), TRUE);

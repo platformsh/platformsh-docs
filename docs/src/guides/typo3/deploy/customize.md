@@ -26,11 +26,12 @@ $ composer require pixelant/pxa-lpeh
 Second, you will need to add a timeout which will set an HTTP timeout of at least 3 seconds instead of the default several minutes to a new `public/typo3conf/PlatformshConfiguration.php`. You can see this line in context of the full file in the [configuration](#environment) section below.
 
 ```php
+<?php
 $GLOBALS['TYPO3_CONF_VARS']['HTTP']['timeout'] = 3;
 ```
 
 {{< note >}}
-The suggested timeout of three seconds above may end up being too short if your TYPO3 instance performs external requests other than to itself as described here. If the instance makes long requests, such as when synchronizing data as a part of a TYPO3 Scheduler task with an external API, it is best instead to place these operations in workers. 
+The suggested timeout of three seconds above may end up being too short if your TYPO3 instance performs external requests other than to itself as described here. If the instance makes long requests, such as when synchronizing data as a part of a TYPO3 Scheduler task with an external API, it is best instead to place these operations in workers.
 {{< /note >}}
 
 You will still need to enable the `pixelant/pxa-lpeh` extension, which you can do by running the command:
@@ -49,7 +50,7 @@ $ composer config extra.typo3/cms.web-dir public && composer update --no-scripts
 
 ## Site
 
-You will have to locate the site configuration file(s), `config.yaml`, in your repository's `config/sites/<SITEID>` subdirectories. For the purposes of this guide, you will need to set the `base` attribute to an environment variable called `PLATFORM_ROUTES_MAIN`. You can also add the definition to your existing `baseVariant` attribute for production if desired. 
+You will have to locate the site configuration file(s), `config.yaml`, in your repository's `config/sites/<SITEID>` subdirectories. For the purposes of this guide, you will need to set the `base` attribute to an environment variable called `PLATFORM_ROUTES_MAIN`. You can also add the definition to your existing `baseVariant` attribute for production if desired.
 
 {{< github repo="platformsh-templates/typo3" file="config/sites/main/config.yaml" lang="yaml" >}}
 
@@ -57,7 +58,7 @@ You will define this environment variable in the next section, but it's purpose 
 
 {{< note >}}
 
-The above `base` configuration only includes the production case - that is, running on Platform.sh - or at least exporting a `PLATFORM_ROUTES_MAIN` environment variable to match during local development. Alternatively, you can place the above definition within a `baseVariant` definition for the production environment alongside another development environment `condition` for local. 
+The above `base` configuration only includes the production case - that is, running on Platform.sh - or at least exporting a `PLATFORM_ROUTES_MAIN` environment variable to match during local development. Alternatively, you can place the above definition within a `baseVariant` definition for the production environment alongside another development environment `condition` for local.
 
 ```yaml
 baseVariants:

@@ -31,6 +31,7 @@ To avoid this problem:
 Add the following lines to your `settings.php` file:
 
 ```php
+<?php
 $conf['composer_manager_autobuild_file'] = false;
 $conf['composer_manager_autobuild_packages'] = false;
 ```
@@ -42,6 +43,7 @@ This will force the configs otherwise seen on `admin/config/system/composer-mana
 Composer Manager works by using a Drush command to aggregate all module-provided `composer.json` files into a single file, which can then be installed via a normal Composer command.  Both the generated file and the resulting `vendor` directory must be in the application portion of the file system, that is, not in a writable file mount.  As that is not the default configuration for Composer Manager it will need to be changed.  Add the following lines to your `settings.php` file:
 
 ```php
+<?php
 $conf['composer_manager_vendor_dir'] = '../composer/vendor';
 $conf['composer_manager_file_dir'] = '../composer';
 ```

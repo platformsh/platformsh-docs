@@ -131,6 +131,7 @@ Depending on your Identity Provider (IdP), you may need to generate an [SSL/TLS 
 Then add the following line to your `simplesamlphp/config/config.php` file to tell the library where to find the certificate:
 
 ```php
+<?php
 $config['certdir'] = dirname(__DIR__) . '/cert';
 ```
 
