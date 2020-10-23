@@ -1,67 +1,45 @@
 ---
-title: "Lando"
+title: Using Lando for local development
+sidebarTitle: "Lando"
 weight: 3
 ---
 
-# Using Lando for local development
+[Lando](https://github.com/lando/lando) is Platform.sh's recommended local development tool.  It is a third party tool developed by [Tandem](https://thinktandem.io), which now includes direct support for Platform.sh projects.  Lando can read your Platform.sh configuration files and produce an approximately equivalent configuration using Docker with minimal effort on the part of the developer.
 
-[Lando](https://github.com/lando/lando) is a container-based local development toolchain that plays nicely with Platform.sh.  It is maintained by [Tandem](https://thinktandem.io), a 3rd party agency, but is a viable option for most Platform.sh projects.
+At this time, Lando supports only PHP-based applications but works with any service supported by Platform.sh.  Support for other application languages is in progress.
 
-See the [Lando documentation](https://docs.devwithlando.io/) for installing and setting up Lando on your system.
+See the [Lando documentation](https://docs.lando.dev/config/platformsh.html) for installing and setting up Lando on your system.  A quick-start guide is included below, but the Lando documentation is the primary source of truth.
 
-Lando will ask you to create a `.lando.yml` file in your application root, which functions similarly to the `.platform.app.yaml` file.  (Note the different file extension.)  It is safe to check this file into your Git repository as Platform.sh will simply ignore it.
+## Quick start
 
-If your application is one of those with a specific "recipe" available from Lando, you can use that directly in your `.lando.yml` file.  It can be customized further as needed for your application, and some customizations are specific to certain applications.
+First, ensure that you have the Platform.sh CLI installed and that you have authenticated your account.  Then, [install Lando](https://docs.lando.dev/basics/installation.html) and Docker per Lando's installation instructions.
 
-## `.lando.yml` configuration
-
-In particular, we recommend:
-
-```yaml
-# Name the application the same as in your .platform.app.yaml.
-name: app
-# Use the recipe appropriate for your application.
-recipe: drupal8
-
-config:
-  # Lando defaults to Apache. Switch to nginx to match Platform.sh.
-  via: nginx
-
-  # Set the webroot to match your .platform.app.yaml.
-  webroot: web
-
-  # Lando defaults to the latest MySQL release, but Platform.sh uses MariaDB.
-  # Specify the version to match what's in services.yaml.
-  database: mariadb:10.1
-```
-
-## Downloading data from Platform.sh into Lando
-
-In most cases downloading data from Platform.sh and loading it into Lando is straightforward.  If you have a single MySQL database then the following two commands, run from your application root, will download a compressed database backup and load it into the local Lando database container.
+If you do not yet have your project checked out, run:
 
 ```bash
-platform db:dump --gzip -f database.sql.gz
-lando db-import database.sql.gz
+$ lando init --source platformsh
 ```
 
-Rsync can download user files easily and efficiently.  See the [exporting tutorial](/tutorials/exporting.md) for information on how to use rsync.
+That will offer an interactive dialog to select the Platform.sh project to download, and then setup basic Lando configuration.
 
-Then you need to update your `sites/default/settings.local.php` to configure your codebase to connect to the local database that you just imported:
+If you already have your project checked out locally, change into the project directory and run:
 
-```php
-<?php
-/* Working in local with Lando */
-if (getenv('LANDO') === 'ON') {
-  $lando_info = json_decode(getenv('LANDO_INFO'), TRUE);
-  $settings['trusted_host_patterns'] = ['.*'];
-  $settings['hash_salt'] = 'CHANGE THIS TO SOME RANDOMLY GENERATED STRING';
-  $databases['default']['default'] = [
-    'driver' => 'mysql',
-    'database' => $lando_info['database']['creds']['database'],
-    'username' => $lando_info['database']['creds']['user'],
-    'password' => $lando_info['database']['creds']['password'],
-    'host' => $lando_info['database']['internal_connection']['host'],
-    'port' => $lando_info['database']['internal_connection']['port'],
-  ];
-}
+```bash
+$ lando init --source cwd --recipe platformsh
 ```
+
+That will use your existing git clone and add the appropriate Lando configuration.
+
+Either way, start the local environment by running:
+
+```bash
+$ lando start
+```
+
+You can then download data from the environment for your current branch and load it into your local Lando environment by running:
+
+```bash
+lando pull -r database -m web/sites/default/files
+```
+
+Where the value after `-r` is the relationship name in the application for the service you want to download, and `-m` is the Platform.sh mount path you want to download.  You may specify as many relationships (multiple `-r` switches) and as many mounts (multiple `-m` switches) as you wish.
