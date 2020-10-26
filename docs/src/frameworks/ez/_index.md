@@ -1,32 +1,32 @@
 ---
-title: "eZ Platform"
+title: "Ibexa DXP"
 weight: 3
 layout: single
 ---
 
-eZ Platform is a Composer-based PHP CMS, and as such fits well with the Platform.sh model.  As a Symfony-based application its setup is very similar to Symfony.
+Ibexa DXP is a Composer-based PHP CMS, and as such fits well with the Platform.sh model.  As a Symfony-based application its setup is very similar to Symfony.
 
-eZ Platform comes pre-configured for use with Platform.sh in version 1.13 and later. Version 2.5 and later is recommended. Those are the only versions that are supported.  Appropriate Platform.sh configuration files are included in the eZ Platform application itself, but of course may be modified to suit your particular site if needed.
+Ibexa DXP has come pre-configured for use with Platform.sh since its predecessor, eZ Platform 1.13. Version 2.5 and later is recommended. Those are the only versions that are supported.  Appropriate Platform.sh configuration files are included in the Ibexa DXP application itself, but of course may be modified to suit your particular site if needed.
 
 ## Cache and sessions
 
-By default, eZ Platform is configured to use a single Redis instance for both the application cache and session storage.  You may optionally choose to use a separate Redis instance for session storage in case you have a lot of authenticated traffic (and thus there would be many session records).
+By default, Ibexa DXP is configured to use a single Redis instance for both the application cache and session storage.  You may optionally choose to use a separate Redis instance for session storage in case you have a lot of authenticated traffic (and thus there would be many session records).
 
 To do so, uncomment the `redissession` entry in the `.platform/services.yaml` file and the corresponding relationship in the `.platform.app.yaml` file.  The bridge code that is provided with eZ Platform 1.13 and later will automatically detect the additional Redis service and use it for session storage.
 
-On a Dedicated instance, we strongly recommend using two separate Redis instances for Cache and Sessions.  The service and relationship names that ship with the default Platform.sh configuration in eZ Platform should be used as-is.  To ensure the development environment works like Production, uncomment the `redissession` entry in the `.platform/services.yaml` file and the corresponding relationship in the `.platform.app.yaml` file.  The bridge code that is provided with eZ Platform 1.13 and later will automatically detect the additional Redis service and use it for session storage.
+On a Dedicated instance, we strongly recommend using two separate Redis instances for Cache and Sessions.  The service and relationship names that ship with the default Platform.sh configuration in Ibexa DXP should be used as-is.  To ensure the development environment works like Production, uncomment the `redissession` entry in the `.platform/services.yaml` file and the corresponding relationship in the `.platform.app.yaml` file.  The bridge code that is provided with eZ Platform 1.13 and later will automatically detect the additional Redis service and use it for session storage.
 
 By default, on Dedicated instances we will configure both Cache and Session storage in "persistent" mode, so that data is not lost in case of a system or process restart.  That reduces the potential for cache stampede issues or inadvertently logging people out.
 
-## Modifying an existing eZ Platform project
+## Modifying an existing Ibexa DXP project
 
-If you have an existing eZ Platform project that was upgraded from a previous version, or want to resynchronize with the latest recommended configuration, please see the [eZ Platform official repository](https://github.com/ezsystems/ezplatform).
+If you have an existing Ibexa DXP project that was upgraded from a previous version, or want to resynchronize with the latest recommended configuration, please see the [Ibexa DXP official repository](https://github.com/ezsystems/ezplatform).
 
 In particular, see:
 
- * The [.platform.app.yaml](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml) file, which automatically builds eZ Platform in dev mode or production mode depending on your defined project-level variables.
+ * The [.platform.app.yaml](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml) file, which automatically builds Ibexa DXP in dev mode or production mode depending on your defined project-level variables.
  * The [.platform](https://github.com/ezsystems/ezplatform/tree/master/.platform) directory
- * The [platformsh.php](https://github.com/ezsystems/ezplatform/blob/master/config/packages/overrides/platformsh.php) configuration file, which does the work of mapping Platform.sh environment variables into eZ Platform.  It also will automatically  enable Redis-based cache and session support if detected.
+ * The [platformsh.php](https://github.com/ezsystems/ezplatform/blob/master/config/packages/overrides/platformsh.php) configuration file, which does the work of mapping Platform.sh environment variables into Ibexa DXP.  It also will automatically  enable Redis-based cache and session support if detected.
 
 ## Local Development with eZ Platform 2.x and later
 
@@ -46,7 +46,7 @@ eZ Launchpad's approach is to stay as decoupled as possible from your developmen
 curl -LSs https://ezsystems.github.io/launchpad/install_curl.bash | bash
 ```
 
-Then you can start to use it to initialize your eZ Platform project on top Docker.
+Then you can start to use it to initialize your Ibexa DXP project on top Docker.
 
 ```bash
 ~/ez init
@@ -62,7 +62,7 @@ cd application
 
 You will find more details on the [eZ Launchpad documentation](https://ezsystems.github.io/launchpad/).
 
-At this time you will have a working eZ Platform application with many services including Varnish, Solr, Redis etc.
+At this time you will have a working Ibexa DXP application with many services including Varnish, Solr, Redis etc.
 
 ### Platform.sh integration
 
@@ -116,7 +116,7 @@ The main ones are:
 
 To help you with that, Platform.sh provides a CLI that you probably already have. If you don't, see the [install guide](/development/cli/_index.md#installation).
 
-Combined together, eZ Launcphad and Platform.sh CLI make those actions straight forward and simple.
+Combined together, eZ Launchpad and Platform.sh CLI make those actions straight forward and simple.
 
 #### Database and storage synchronization
 
@@ -129,5 +129,5 @@ platform mount:download -m ezplatform/web/var --target=ezplatform/web/var/ -y
 The two first lines get the remote database and storage from the remote environment and stores it locally in `data/`. The third tells to eZ Launchpad to import those data in the Docker stack.
 
 {{< note >}}
-The storage (images and files) synchronization is optional. eZ Platform provides a [placeholder generator mechanism](https://doc.ezplatform.com/en/latest/guide/images/#setting-placeholder-generator) which allows you to forget about the real images for your local.
+The storage (images and files) synchronization is optional. Ibexa DXP provides a [placeholder generator mechanism](https://doc.ibexa.co/en/latest/guide/images/#setting-placeholder-generator) which allows you to forget about the real images for your local.
 {{< /note >}}
