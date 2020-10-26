@@ -101,7 +101,7 @@ The recommended way to handle Elixir dependencies on Platform.sh is using Hex. Y
 
 The simplest possible way to go around this is to use the [Platform.sh Config Reader](https://hex.pm/packages/platformshconfig) library from hex. The library source is also available [on GitHub](https://github.com/platformsh/config-reader-elixir).
 
-If you are building a Phoenix app for example, it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`. Put the lib in your `deps` and, assuming you renamed the `proc.secrets.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
+If you are building a Phoenix app for example, it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`. Put the lib in your `deps` and, assuming you renamed the `prod.secret.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
 
 ```elixir
 System.get_env("DATABASE_URL")
