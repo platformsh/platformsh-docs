@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-cryptography = "==2.9"
+cryptography = "==3.2"
 scrapy3 = ">=1.0.1"
 meilisearch = ">=0.10.0"
 platformshconfig = "*"
