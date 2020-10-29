@@ -1,16 +1,16 @@
 ---
-title: "eZ Platform Enterprise with Fastly"
+title: "Ibexa DXP with Fastly"
 weight: 1
 sidebarTitle: "Fastly"
 description: |
-  eZ Platform Enterprise is a "commercial extended" version of ez Platform that includes, among other things, support for push-based purging on the Fastly CDN.
+  Ibexa DXP is a "commercial extended" version of Ibexa OSS that includes, among other things, support for push-based purging on the Fastly CDN.
 ---
 
 {{< description >}}
 
 ## Remove Varnish configuration
 
-As of eZ Platform 1.13.5, 2.4.3 and 2.5.0, Varnish is enabled by default when deploying on Platform.sh. In order to use Fastly, Varnish must be disabled:
+Since eZ Platform 1.13.5, 2.4.3 and 2.5.0, Varnish is enabled by default when deploying on Platform.sh. In order to use Fastly, Varnish must be disabled:
 
  - Remove environment variable `SYMFONY_TRUSTED_PROXIES: "TRUST_REMOTE"` in [.platform.app.yaml](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml)
  - Remove the Varnish service in [.platform/services.yaml](https://github.com/ezsystems/ezplatform/blob/master/.platform/services.yaml)
@@ -23,13 +23,13 @@ As of eZ Platform 1.13.5, 2.4.3 and 2.5.0, Varnish is enabled by default when de
 +     upstream: "app:http"
 ```
 
-## Setting up eZ Platform to use Fastly
+## Setting up Ibexa DXP to use Fastly
 
-eZ Platform's documentation includes instructions on how to [configure eZ Platform for Fastly](https://doc.ezplatform.com/en/latest/guide/http_cache/#serving-varnish-through-fastly).  Follow the steps there to prepare eZ Platform for Fastly.
+Ibexa DXP's documentation includes instructions on how to [configure Ibexa DXP for Fastly](https://doc.ibexa.co/en/latest/guide/http_cache/#serving-varnish-through-fastly).  Follow the steps there to prepare Ibexa DXP for Fastly.
 
 ## Set credentials on Platform.sh
 
-The best way to provide the Fastly credentials and configuration to eZ Platform on Platform.sh is via environment variables.  That way private credentials are never stored in Git.
+The best way to provide the Fastly credentials and configuration to Ibexa DXP on Platform.sh is via environment variables.  That way private credentials are never stored in Git.
 
 Using the CLI, run the following commands to set the configuration on your master environment.  (Note that they will inherit to all other environments by default unless overridden.)
 
