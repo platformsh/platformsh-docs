@@ -9,7 +9,7 @@ type: 'nodejs:12'
 # Specify the Hugo version as an env variable.
 variables:
     env:
-        HUGOVERSION: 0.74.0
+        HUGOVERSION: 0.77.0
 
 # The hooks that will be triggered when the package is deployed.
 hooks:
