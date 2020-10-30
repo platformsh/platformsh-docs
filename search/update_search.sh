@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Delete the existing data in mount. Updates to upstream can cause incompatibility failure.
+# rm -rf data.ms/*
+
 # Scrape sites
 ./scrape.sh
 
