@@ -11,5 +11,5 @@ for i in $(jq '.indexes | keys | .[]' $DATA); do
   index_spider=$(jq --arg index "$index" '.indexes[$index].spider' $DATA)
   spider=`echo $index_spider | sed 's/.\(.*\)/\1/' | sed 's/\(.*\)./\1/'`
   echo "- Scraping $index..."
-  pipenv run scrapy runspider --output -t=jsonlines -o output/$index.json $spider -L ERROR
+  poetry run scrapy runspider --output -t=jsonlines -o output/$index.json $spider -L ERROR
 done

@@ -4,7 +4,7 @@
 curl -L https://install.meilisearch.com | sh
 
 # Instal dependencies for scrapy
-pipenv install
+poetry install
 
 # Make scraping script executable
 chmod +x ./scrape.sh
