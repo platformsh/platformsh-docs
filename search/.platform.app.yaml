@@ -16,7 +16,7 @@ hooks:
 
         # Install poetry
         curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-        .poetry/bin/poetry config virtualenvs.inproject true
+        .poetry/bin/poetry config virtualenvs.in-project true
         . $PLATFORM_APP_DIR/.poetry/env
         # Install dependencies for scrapy
         poetry install -vvv
