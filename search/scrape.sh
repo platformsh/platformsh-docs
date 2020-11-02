@@ -4,7 +4,8 @@
 OUTPUT_DIR=output
 rm $OUTPUT_DIR/*.json
 
-. $PLATFORM_APP_DIR/.poetry/env
+# Source the Poetry command.
+# . $PLATFORM_APP_DIR/.poetry/env
 
 # Scrape all indexes defined in config/scrape.json
 DATA=scrape.json
@@ -13,6 +14,5 @@ for i in $(jq '.indexes | keys | .[]' $DATA); do
   index_spider=$(jq --arg index "$index" '.indexes[$index].spider' $DATA)
   spider=`echo $index_spider | sed 's/.\(.*\)/\1/' | sed 's/\(.*\)./\1/'`
   echo "- Scraping $index..."
-  echo "- test thee scrape..."
   poetry run scrapy runspider --output -t=jsonlines -o output/$index.json $spider -L ERROR
 done

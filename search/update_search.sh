@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-. $PLATFORM_APP_DIR/.poetry/env
+# Source the Poetry command.
+# . $PLATFORM_APP_DIR/.poetry/env
 
 # Delete the existing data in mount. Updates to upstream can cause incompatibility failure.
 rm -rf data.ms/*

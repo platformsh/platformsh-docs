@@ -9,28 +9,9 @@ variables:
         POETRY_VIRTUALENVS_CREATE: false
 
 hooks:
-    # build: |
-        # # Install Meilisearch
-        # curl -L https://install.meilisearch.com | sh
-
-        # # Install poetry
-        # curl https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py >> get-poetry.py
-        # python get-poetry.py --version $POETRY_VERSION
-
-        # . $PLATFORM_APP_DIR/.poetry/env
-        # echo ". $PLATFORM_APP_DIR/.poetry/env" >> ~/.bash_profile
-
-        # # poetry config virtualenvs.create false
-        # # poetry config virtualenvs.in-project true
-        # poetry install -vvv
-
-        # # Make scraping script executable
-        # chmod +x ./scrape.sh
-
     build: !include
         type: string
-        path: build.sh
-
+        path: build.s
     post_deploy: !include
         type: string
         path: update_search.sh
@@ -54,7 +35,3 @@ mounts:
         source: service
         service: files
         source_path: config
-    # "/.config":
-    #     source: service
-    #     service: files
-    #     source_path: poetry-config
