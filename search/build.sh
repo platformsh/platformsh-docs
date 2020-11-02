@@ -3,7 +3,7 @@
 # Install Meilisearch
 curl -L https://install.meilisearch.com | sh
 
-# Instal dependencies for scrapy
+# Install dependencies for scrapy
 poetry install
 
 # Make scraping script executable
