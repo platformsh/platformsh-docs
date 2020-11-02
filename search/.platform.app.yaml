@@ -5,6 +5,9 @@ type: 'python:3.8'
 # dependencies:
 #     python3:
 #        poetry: '1.1.4'
+variables:
+    env:
+        POETRY_VIRTUALENVS_IN_PROJECT: true
 
 hooks:
     build: |
@@ -13,7 +16,7 @@ hooks:
 
         # Install poetry
         curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-        # export PATH=$PLATFORM_APP_DIR/.poetry/bin:$PATH
+        source $PLATFORM_APP_DIR/.poetry/env
 
         # Install dependencies for scrapy
         poetry install
@@ -46,7 +49,7 @@ mounts:
         source: service
         service: files
         source_path: config
-    "/.config":
-        source: service
-        service: files
-        source_path: poetry-config
+    # "/.config":
+    #     source: service
+    #     service: files
+    #     source_path: poetry-config
