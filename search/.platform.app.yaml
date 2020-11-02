@@ -4,8 +4,9 @@ type: 'python:3.8'
 
 variables:
     env:
-        # POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VERSION: '1.1.4'
+        POETRY_VIRTUALENVS_IN_PROJECT: true
+        POETRY_VIRTUALENVS_CREATE: false
 
 hooks:
     build: |
@@ -15,29 +16,17 @@ hooks:
         # Install poetry
         curl https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py >> get-poetry.py
         python get-poetry.py --version $POETRY_VERSION
-        . $PLATFORM_APP_DIR/.poetry/env
 
-        poetry config virtualenvs.create false
-        poetry config virtualenvs.in-project true
+        . $PLATFORM_APP_DIR/.poetry/env
+        echo ". $PLATFORM_APP_DIR/.poetry/env" >> ~/.bash_profile
+
+        # poetry config virtualenvs.create false
+        # poetry config virtualenvs.in-project true
         poetry install -vvv
 
         # Make scraping script executable
         chmod +x ./scrape.sh
 
-        # curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-        # .poetry/bin/poetry config --list
-        # .poetry/bin/poetry config virtualenvs.create false virtualenvs.in-project true
-        # .poetry/bin/poetry config --list
-        # .poetry/bin/poetry env list
-        # .poetry/bin/poetry install -vvv
-
-        # .poetry/bin/poetry config virtualenvs.in-project true virtualenvs.create false
-        # . $PLATFORM_APP_DIR/.poetry/env
-        # Install dependencies for scrapy
-        # poetry install -vvv
-
-        # Make scraping script executable
-        # chmod +x ./scrape.sh
     # build: !include
     #     type: string
     #     path: build.sh
