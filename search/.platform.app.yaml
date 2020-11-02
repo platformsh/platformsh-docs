@@ -2,12 +2,9 @@ name: 'search'
 
 type: 'python:3.8'
 
-# dependencies:
-#     python3:
-#        poetry: '1.1.4'
 variables:
     env:
-        POETRY_VIRTUALENVS_IN_PROJECT: true
+        # POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VERSION: '1.1.4'
 
 hooks:
@@ -19,13 +16,18 @@ hooks:
         curl https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py >> get-poetry.py
         python get-poetry.py --version $POETRY_VERSION
 
+        .poetry/bin/poetry config virtualenvs.create false virtualenvs.in-project true
+        .poetry/bin/poetry install -vvv
+
+        # Make scraping script executable
+        chmod +x ./scrape.sh
 
         # curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-        .poetry/bin/poetry config --list
-        .poetry/bin/poetry config virtualenvs.create false
-        .poetry/bin/poetry config --list
-        .poetry/bin/poetry env list
-        .poetry/bin/poetry install -vvv
+        # .poetry/bin/poetry config --list
+        # .poetry/bin/poetry config virtualenvs.create false virtualenvs.in-project true
+        # .poetry/bin/poetry config --list
+        # .poetry/bin/poetry env list
+        # .poetry/bin/poetry install -vvv
 
         # .poetry/bin/poetry config virtualenvs.in-project true virtualenvs.create false
         # . $PLATFORM_APP_DIR/.poetry/env
@@ -38,9 +40,9 @@ hooks:
     #     type: string
     #     path: build.sh
 
-    # post_deploy: !include
-    #     type: string
-    #     path: update_search.sh
+    post_deploy: !include
+        type: string
+        path: update_search.sh
 
 web:
     commands:
