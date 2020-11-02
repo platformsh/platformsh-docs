@@ -24,19 +24,23 @@ hooks:
         .poetry/bin/poetry config --list
         .poetry/bin/poetry config virtualenvs.create false
         .poetry/bin/poetry config --list
+        .poetry/bin/poetry env list
+        .poetry/bin/poetry install -vvv
+
         # .poetry/bin/poetry config virtualenvs.in-project true virtualenvs.create false
-        . $PLATFORM_APP_DIR/.poetry/env
+        # . $PLATFORM_APP_DIR/.poetry/env
         # Install dependencies for scrapy
         # poetry install -vvv
 
         # Make scraping script executable
-        chmod +x ./scrape.sh
+        # chmod +x ./scrape.sh
     # build: !include
     #     type: string
     #     path: build.sh
-    post_deploy: !include
-        type: string
-        path: update_search.sh
+
+    # post_deploy: !include
+    #     type: string
+    #     path: update_search.sh
 
 web:
     commands:
