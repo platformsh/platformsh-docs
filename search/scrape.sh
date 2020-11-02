@@ -4,6 +4,8 @@
 OUTPUT_DIR=output
 rm $OUTPUT_DIR/*.json
 
+. $PLATFORM_APP_DIR/.poetry/env
+
 # Scrape all indexes defined in config/scrape.json
 DATA=scrape.json
 for i in $(jq '.indexes | keys | .[]' $DATA); do
