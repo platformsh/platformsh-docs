@@ -13,7 +13,7 @@ hooks:
 
         # Install poetry
         curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-        export PATH=$PLATFORM_APP_DIR/.poetry/bin:$PATH
+        # export PATH=$PLATFORM_APP_DIR/.poetry/bin:$PATH
 
         # Install dependencies for scrapy
         poetry install
@@ -46,3 +46,7 @@ mounts:
         source: service
         service: files
         source_path: config
+    "/.config":
+        source: service
+        service: files
+        source_path: poetry-config
