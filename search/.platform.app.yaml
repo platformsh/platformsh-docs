@@ -7,9 +7,22 @@ type: 'python:3.8'
 #        poetry: '1.1.4'
 
 hooks:
-    build: !include
-        type: string
-        path: build.sh
+    build: |
+        # Install Meilisearch
+        curl -L https://install.meilisearch.com | sh
+
+        # Install poetry
+        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+        export PATH=$PLATFORM_APP_DIR/.poetry/bin:$PATH
+
+        # Install dependencies for scrapy
+        poetry install
+
+        # Make scraping script executable
+        chmod +x ./scrape.sh
+    # build: !include
+    #     type: string
+    #     path: build.sh
     post_deploy: !include
         type: string
         path: update_search.sh

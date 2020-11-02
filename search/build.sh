@@ -7,6 +7,7 @@ curl -L https://install.meilisearch.com | sh
 # pip install --upgrade pip
 # pip install poetry
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+. .poetry/bin/poetry
 
 # Install dependencies for scrapy
 poetry install
