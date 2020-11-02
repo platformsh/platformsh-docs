@@ -16,10 +16,10 @@ hooks:
 
         # Install poetry
         curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-        source $PLATFORM_APP_DIR/.poetry/env
+        . $PLATFORM_APP_DIR/.poetry/env
 
         # Install dependencies for scrapy
-        poetry install
+        .poetry/bin/poetry install
 
         # Make scraping script executable
         chmod +x ./scrape.sh
