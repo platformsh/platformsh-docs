@@ -11,7 +11,7 @@ variables:
 hooks:
     build: !include
         type: string
-        path: build.s
+        path: build.sh
     post_deploy: !include
         type: string
         path: update_search.sh
