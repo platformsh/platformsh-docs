@@ -5,7 +5,7 @@ OUTPUT_DIR=output
 rm $OUTPUT_DIR/*.json
 
 # Source the Poetry command.
-# . $PLATFORM_APP_DIR/.poetry/env
+. $PLATFORM_APP_DIR/.poetry/env
 
 # Scrape all indexes defined in config/scrape.json
 DATA=scrape.json
