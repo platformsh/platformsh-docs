@@ -25,6 +25,7 @@ Requires:
 
 * Hugo >= 0.68.3
 * Node.js 12
+* [Poetry](https://python-poetry.org/docs/)
 
 ### Running locally without search
 
@@ -51,7 +52,7 @@ If you would like to test the search server, you can run it by exporting the `ME
 ```bash
 cd search
 # Install dependencies for communicating with Meilisearch.
-pipenv --three install
+poetry install
 # Download Meilisearch.
 curl -L https://install.meilisearch.com | sh
 # Set a master key.

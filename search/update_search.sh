@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
-# Source the Poetry command.
+# if [ -n "$PLATFORM_APP_DIR" ]; then
+#     echo "Building search app on Platform.sh."
+#     # Source the Poetry command.
+#     . $PLATFORM_APP_DIR/.poetry/env
+# else
+#   echo "Building search app locally."
+# fi
+
 . $PLATFORM_APP_DIR/.poetry/env
 
 # Delete the existing data in mount. Updates to upstream can cause incompatibility failure.

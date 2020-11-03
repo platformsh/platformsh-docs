@@ -4,12 +4,12 @@
 name: 'docs'
 
 # The type key specifies the language and version for your application.
-type: 'nodejs:12'
+type: 'nodejs:14'
 
 # Specify the Hugo version as an env variable.
 variables:
     env:
-        HUGOVERSION: 0.77.0
+        HUGOVERSION: 0.78.0
 
 # The hooks that will be triggered when the package is deployed.
 hooks:
