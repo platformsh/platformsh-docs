@@ -4,6 +4,7 @@ type: 'python:3.8'
 
 variables:
     env:
+        MEILISEARCH_VERSION: 'v0.15.0'
         POETRY_VERSION: '1.1.4'
         POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VIRTUALENVS_CREATE: false
