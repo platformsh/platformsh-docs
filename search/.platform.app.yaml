@@ -15,7 +15,7 @@ hooks:
         path: build.sh
     post_deploy: !include
         type: string
-        path: update_search.sh
+        path: post_deploy.sh
 
 web:
     commands:
