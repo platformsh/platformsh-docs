@@ -4,7 +4,6 @@ cleanup(){
     echo "* CLEANING UP MOUNTS"
     # Delete the existing data in mount. Updates to upstream can cause incompatibility failure.
     rm -rf data.ms/*
-
     # Clean up output mounts.
     OUTPUT_DIR=output
     rm $OUTPUT_DIR/*.json

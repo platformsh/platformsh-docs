@@ -25,5 +25,3 @@ setup_venv(){
 install_meilisearch
 setup_venv
 
-# # Make scraping script executable
-# chmod +x ./scrape.sh
