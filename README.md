@@ -86,7 +86,7 @@ cd ../search
 # Export again in this terminal window.
 export MEILI_MASTER_KEY=test
 # Update the index
-./update_search.sh
+./post_deploy.sh
 ```
 
 Then finally, build the site:
