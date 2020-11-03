@@ -34,6 +34,7 @@ update_index(){
 
 # Source the Poetry command.
 . $PLATFORM_APP_DIR/.poetry/env
+
 cleanup 
 scrape 
 update_index
