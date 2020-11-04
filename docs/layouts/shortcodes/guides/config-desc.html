@@ -14,7 +14,7 @@
 
 <div class="highlight">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Create empty Platform.sh configuration files</span>
-$ touch .platform.app.yaml && mkdir .platform && touch .platform/routes.yaml && touch .platform/services.yaml</code></pre>
+$ touch .platform.app.yaml && touch .platform/routes.yaml && touch .platform/services.yaml</code></pre>
 </div>
 
 <p>Now that you've added these files to your project, you can go through and configure each of them for {{ .Get "name" }} one by one in the sections below. Each section covers a particular configuration file, defines what each attribute configures, and then shows a final code snippet that includes the recommended configuration for {{ .Get "name" }} pulled from its template. Within that snippet, be sure to read each of the comments as they provide additional information and reasoning for why {{ .Get "name" }} requires those values.</p>
