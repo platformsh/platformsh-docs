@@ -27,7 +27,7 @@ class Search extends Component {
   }
 
   getInfo = () => {
-    axios.get(`http://search.internal/indexes/docs/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${this.state.query}&limit=7&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': process.env.MEILI_TOKEN } })
+    axios.get(`search.internal/indexes/docs/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${this.state.query}&limit=7&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': process.env.MEILI_TOKEN } })
     // axios.get(`${config["url"]}?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${this.state.query}&limit=7&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': config["public_api_key"] } })
       .then(({ data }) => {
 
