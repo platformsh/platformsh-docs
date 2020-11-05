@@ -4,14 +4,17 @@ import axios from 'axios'
 import Suggestions from 'components/Suggestions'
 import SuggestionsPrimary from 'components/SuggestionsPrimary'
 
-import Config from 'platformsh-config'
+// import Config from 'platformsh-config'
+const pshConfig = require("platformsh-config").config();
+
 
 let config = {}
 const request = async () => {
-    pshConfig = Config();
-    console.log(pshConfig.getRoute("search"))
-    const response = await fetch("/scripts/xss/dist/config/config.json");
-    config = await response.json();
+    // pshConfig = Config();
+    const response = await fetch(pshConfig.getRoute("search")["url"]);
+    config["url"] = await response.json();
+    const responseKey = await fetch(config["url"]);
+    config["public_key"] = await responseKey.json()["public"]
 }
 request();
 
