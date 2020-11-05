@@ -32,7 +32,7 @@ buildDocs(){
 
 set -e
 
-download_hugo
+downloadHugo
 getExampleFiles
 buildSearchApp
 buildDocs
