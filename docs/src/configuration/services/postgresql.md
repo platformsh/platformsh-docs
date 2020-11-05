@@ -128,6 +128,12 @@ platform db:dump --stdout | bzip2 > dump.sql.bz2
 
 ## Importing data
 
+Make sure that the imported file contains objects with cleared ownership and `IF EXISTS` clauses. For example, you can create a DB dump with following parameters:
+
+```bash
+pg_dump --no-owner --clean --if-exists
+```
+
 The easiest way to load data into a database is to pipe an SQL dump through the `platform sql` command, like so:
 
 ```bash
