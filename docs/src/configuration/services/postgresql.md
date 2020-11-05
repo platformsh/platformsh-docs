@@ -128,7 +128,7 @@ platform db:dump --stdout | bzip2 > dump.sql.bz2
 
 ## Importing data
 
-Please make sure that the imported file contains objects with cleared ownership and `IF EXISTS` clauses. For example, you can create a DB dump with following parameters:
+Make sure that the imported file contains objects with cleared ownership and `IF EXISTS` clauses. For example, you can create a DB dump with following parameters:
 
 ```bash
 pg_dump --no-owner --clean --if-exists
