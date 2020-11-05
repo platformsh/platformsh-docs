@@ -11,15 +11,20 @@ variables:
     env:
         HUGOVERSION: 0.78.0
 
+relationships:
+    search: "search:http"
+
 # The hooks that will be triggered when the package is deployed.
 hooks:
-    # Build hooks can modify the application files on disk but not access any services like databases.
     build: !include
       type: string
       path: build.sh
-    deploy: |
-      cp data/templates.yaml public/scripts/xss/dist/config/templates.yaml
-      cp public/index.json public/scripts/xss/dist/config/index.json
+    deploy: !include
+      type: string
+      path: deploy.sh
+    post_deploy: !include
+      type: string
+      path: post_deploy.sh
 
 # The configuration of the application when it is exposed to the web.
 web:

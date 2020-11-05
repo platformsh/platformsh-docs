@@ -40,6 +40,7 @@
     "gulp-uglify": "^3.0.2",
     "imagemin-jpeg-recompress": "^6.0.0",
     "imagemin-pngquant": "^8.0.0",
+    "platformsh-config": "^2.3.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "vinyl-buffer": "^1.0.1",
