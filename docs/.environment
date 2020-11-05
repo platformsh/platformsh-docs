@@ -1,0 +1,2 @@
+export PUBLIC_TOKEN=$(curl -H "X-Meili-API-Key: $PLATFORM_PROJECT_ENTROPY" -X GET "search.internal/keys" | jq -r ".public")
+export TOKEN_TEST=test

@@ -32,6 +32,8 @@ update_index(){
     poetry run python update_url.py
 }
 
+set -e 
+
 # Source the Poetry command.
 . $PLATFORM_APP_DIR/.poetry/env
 

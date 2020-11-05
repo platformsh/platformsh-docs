@@ -7,6 +7,8 @@ moveDataToNS(){
 
 set -e
 
+export PUBLIC_TOKEN=$(curl -H "X-Meili-API-Key: $PLATFORM_PROJECT_ENTROPY" -X GET "search.internal/keys" | jq -r ".public")
+
 moveDataToNS
 
 node test.js

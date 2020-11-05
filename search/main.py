@@ -15,7 +15,7 @@ class Search:
         self.scrape_dir = "output"
         self.scrape_config = "config/scrape.json"
 
-        self.public_key_file = "config/config.json"
+        # self.public_key_file = "config/config.json"
 
         self.docs_index = "docs"
         self.primaryKey = "documentId"
