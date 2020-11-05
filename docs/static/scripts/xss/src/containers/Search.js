@@ -9,14 +9,15 @@ const pshConfig = require("platformsh-config").config();
 
 
 let config = {}
-const request = async () => {
-    // pshConfig = Config();
-    const response = await fetch(pshConfig.getRoute("search")["url"]);
-    config["url"] = await response.json();
-    const responseKey = await fetch(config["url"]);
-    config["public_key"] = await responseKey.json()["public"]
-}
-request();
+// const request = async () => {
+//     // pshConfig = Config();
+//     const response = await fetch(pshConfig.getRoute("search")["url"]);
+//     const response = await fetch("search.internal");
+//     config["url"] = await response.json();
+//     const responseKey = await fetch(config["url"]);
+//     config["public_key"] = await responseKey.json()["public"]
+// }
+// request();
 
 class Search extends Component {
   state = {
@@ -26,7 +27,8 @@ class Search extends Component {
   }
 
   getInfo = () => {
-    axios.get(`${config["url"]}?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${this.state.query}&limit=7&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': config["public_api_key"] } })
+    axios.get(`http://search.internal/indexes/docs/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${this.state.query}&limit=7&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': process.env.MEILI_TOKEN } })
+    // axios.get(`${config["url"]}?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${this.state.query}&limit=7&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': config["public_api_key"] } })
       .then(({ data }) => {
 
         this.setState({
