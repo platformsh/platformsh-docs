@@ -20,7 +20,7 @@ hooks:
 web:
     commands:
       # Run the Meilisearch server
-      start: "./meilisearch --http-addr localhost:${PORT}"
+      start: "./meilisearch --http-addr localhost:${PORT} --master-key $PLATFORM_PROJECT_ENTROPY"
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048
