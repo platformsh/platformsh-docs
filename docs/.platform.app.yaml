@@ -47,8 +47,8 @@ web:
 disk: 1024
 
 mounts:
-  "public/scripts/xss/dist/config":
+  "public/scripts/xss/dist":
       source: service
       service: files
-      source_path: config
+      source_path: dist
 

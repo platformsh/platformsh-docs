@@ -18,7 +18,7 @@ buildSearchApp(){
     # Build Interface app for XSS
     cd $PLATFORM_APP_DIR/static/scripts/xss
     npm install
-    npm run-script build
+    # npm run-script build
 }
 
 buildDocs(){
