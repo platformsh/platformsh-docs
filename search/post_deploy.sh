@@ -6,7 +6,7 @@ cleanup(){
     rm -rf data.ms/*
     # Clean up output mounts.
     OUTPUT_DIR=output
-    rm $OUTPUT_DIR/*.json
+    rm -f $OUTPUT_DIR/*.json
 }
 
 getDocsData() {
