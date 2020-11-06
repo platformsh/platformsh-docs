@@ -1,3 +1,1 @@
-export MEILI_INDEX=$(curl -s -H "X-Meili-API-Key: $PLATFORM_PROJECT_ENTROPY" -X GET "http://search.internal/indexes" | jq -r ".[0].uid")
-export MEILI_TOKEN=$(curl -s -H "X-Meili-API-Key: $PLATFORM_PROJECT_ENTROPY" -X GET "search.internal/keys" | jq -r ".public")
-export MEILI_URL=https://search.pr-1599-4y3uczi-652soceglkw4u.eu-3.platformsh.site
+

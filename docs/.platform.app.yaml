@@ -51,4 +51,3 @@ mounts:
       source: service
       service: files
       source_path: dist
-
