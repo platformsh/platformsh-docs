@@ -32,3 +32,6 @@ mounts:
     "output":
         source: local
         source_path: "output"
+    "config":
+        source: local
+        source_path: "config"
