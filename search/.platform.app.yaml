@@ -32,7 +32,3 @@ mounts:
     "output":
         source: local
         source_path: "output"
-    "config":
-        source: service
-        service: files
-        source_path: config
