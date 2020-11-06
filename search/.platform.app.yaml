@@ -9,8 +9,8 @@ variables:
         POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VIRTUALENVS_CREATE: false
 
-relationships:
-    docs: "docs:http"
+# relationships:
+#     docs: "docs:http"
 
 hooks:
     build: !include
@@ -39,6 +39,5 @@ mounts:
         source: local
         source_path: "output"
     "config":
-        source: service
-        service: files
+        source: local
         source_path: config
