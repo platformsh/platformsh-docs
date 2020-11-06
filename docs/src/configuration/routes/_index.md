@@ -282,5 +282,5 @@ web:
     '/':
       passthru: true
       request_buffering:
-        enabled: true
+        enabled: false
 ```
