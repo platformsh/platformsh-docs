@@ -273,3 +273,14 @@ To use WebSocket on a route, `cache` must be disabled because WebSocket is incom
     cache:
         enabled: false
 ```
+
+You will also need to [disable request buffering](/configuration/app/web.md#locations) in the `.platform.app.yaml`.
+
+```yaml
+web:
+  locations:
+    '/':
+      passthru: true
+      request_buffering:
+        enabled: false
+```
