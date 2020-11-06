@@ -49,5 +49,6 @@ set -e
 . $PLATFORM_APP_DIR/.poetry/env
 
 cleanup 
+getDocsData
 scrape 
 update_index
