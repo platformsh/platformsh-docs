@@ -15,11 +15,11 @@ getDocsData() {
     # Delete docs index in the mount if it exists
     [ ! -e data/index.json ] || rm data/index.json
     # Get the updated index for docs
-    curl "${FRONTEND_URL}index.json" >> data/index.json
+    curl -s "${FRONTEND_URL}index.json" >> data/index.json
     # Delete templates index in the mount if it exists
     [ ! -e data/templates.yaml ] || rm data/templates.yaml
     # Get the updated index for templates
-    curl "${FRONTEND_URL}files/indexes/templates.yaml" >> data/templates.yaml
+    curl -s "${FRONTEND_URL}files/indexes/templates.yaml" >> data/templates.yaml
 }
 
 scrape(){
