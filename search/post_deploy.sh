@@ -13,11 +13,11 @@ getDocsData() {
     # Get the frontend URL
     FRONTEND_URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary) | .key')
     # Delete docs index in the mount if it exists
-    [ ! -e data/index.json ] || rm data/index.json
+    rm -f data/index.json
     # Get the updated index for docs
     curl -s "${FRONTEND_URL}index.json" >> data/index.json
     # Delete templates index in the mount if it exists
-    [ ! -e data/templates.yaml ] || rm data/templates.yaml
+    rm -f data/templates.yaml
     # Get the updated index for templates
     curl -s "${FRONTEND_URL}files/indexes/templates.yaml" >> data/templates.yaml
 }
