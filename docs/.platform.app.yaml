@@ -46,7 +46,6 @@ disk: 1024
 
 mounts:
   "public/scripts/xss/dist/config":
-      source: service
-      service: files
-      source_path: config
+      source: local
+      source_path: "config"
 
