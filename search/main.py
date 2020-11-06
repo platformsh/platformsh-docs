@@ -120,3 +120,4 @@ class Search:
 if __name__ == "__main__":
     meili = Search()
     meili.update()
+    
