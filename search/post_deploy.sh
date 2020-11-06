@@ -9,6 +9,19 @@ cleanup(){
     rm $OUTPUT_DIR/*.json
 }
 
+getDocsData() {
+    # Get the frontend URL
+    FRONTEND_URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary) | .key')
+    # Delete docs index in the mount if it exists
+    [ ! -e config/index.json ] || rm config/index.json
+    # Get the updated index for docs
+    curl "${FRONTEND_URL}index.json" >> config/index.json
+    # Delete templates index in the mount if it exists
+    [ ! -e config/templates.yaml ] || rm config/templates.yaml
+    # Get the updated index for templates
+    curl "${FRONTEND_URL}files/indexes/templates.yaml" >> config/templates.yaml
+}
+
 scrape(){
     echo "* SCRAPING SITES"
     # Scrape all indexes defined in config/scrape.json
