@@ -6,8 +6,8 @@ from platformshconfig import Config
 config = Config()
 
 if config.is_valid_platform():
-    template_data = "config/templates.yaml"
-    docs_data = "config/index.json"
+    template_data = "data/templates.yaml"
+    docs_data = "data/index.json"
 else:
     template_data = "../docs/data/templates.yaml"
     docs_data = "../docs/public/index.json"
