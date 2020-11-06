@@ -25,7 +25,7 @@ npm run-script build
 cd $PLATFORM_APP_DIR
 
 # Copy templates index so it will be served for search to grab
-cp data/templates.yaml static/files/indexes
+cp data/templates.yaml static/files/indexes/templates.yaml
 
 # Build the Hugo site
 ./hugo
