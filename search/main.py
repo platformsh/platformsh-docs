@@ -108,7 +108,7 @@ class Search:
         # Add synonyms for the index
         index.update_synonyms(self.synonyms)
 
-        # Update its settings: what can be searched, what's displyable, and how results should be ranked.
+        # Update its settings: what can be searched, what's displayable, and how results should be ranked.
         index.update_settings(self.updated_settings)
 
         # Update distinct attribute.
