@@ -10,7 +10,7 @@ createSearchConfig(){
     # Delete config file in the mount if it exists
     [ ! -e $MEILI_CONFIG_DEST ] || rm $MEILI_CONFIG_DEST
     # Make the config file
-    echo $( jq -n --arg ix $MEILI_INDEX --arg key $MEILI_TOKEN --arg url $MEILI_URL '{index: $ix, public_key: $key, url: $url}' ) >> $MEILI_CONFIG_DEST
+    echo $( jq -n --arg ix $MEILI_INDEX --arg key $MEILI_TOKEN --arg url $MEILI_URL '{index: $ix, public_api_key: $key, url: $url}' ) >> $MEILI_CONFIG_DEST
 }
 
 set -e

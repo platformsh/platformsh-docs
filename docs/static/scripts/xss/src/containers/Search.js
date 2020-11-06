@@ -19,7 +19,7 @@ class Search extends Component {
   }
 
   getInfo = () => {
-    axios.get(`${config["url"]}?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${this.state.query}&limit=7&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': config["public_api_key"] } })
+    axios.get(`${config["url"]}/indexes/${config["index"]}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${this.state.query}&limit=7&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': config["public_api_key"] } })
       .then(({ data }) => {
 
         this.setState({
