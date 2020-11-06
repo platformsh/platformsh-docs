@@ -23,6 +23,8 @@ setup_venv(){
     poetry install
 }
 
+set -e
+
 install_meilisearch
 setup_venv
 
