@@ -9,6 +9,9 @@ variables:
         POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VIRTUALENVS_CREATE: false
 
+relationships:
+    docs: "docs:http"
+
 hooks:
     build: !include
         type: string

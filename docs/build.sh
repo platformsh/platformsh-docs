@@ -22,12 +22,18 @@ buildSearchApp(){
 }
 
 buildDocs(){
-    # Build the Hugo site
     cd $PLATFORM_APP_DIR
+
+    # Copy templates index so it will be served for search to grab
+    cp data/templates.yaml static/files/indexes
+    
+    # Build the Hugo site
     ./hugo
 
     # Handle/minify assets
     npm run assets-dist
+
+    # Copy templates index so it will be served
 }
 
 set -e
