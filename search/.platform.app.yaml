@@ -13,7 +13,7 @@ hooks:
     build: !include
         type: string
         path: build.sh
-    deploy: !include
+    post_deploy: !include
         type: string
         path: post_deploy.sh
 

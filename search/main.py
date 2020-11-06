@@ -83,11 +83,11 @@ class Search:
     
     def add_documents(self, index):
         documents = [f for f in glob.glob("{}/*.json".format(self.scrape_dir))]
-        for docs in documents:
-            self.add(docs, index)
+        for doc in documents:
+            self.add(doc, index)
 
-    def add(self, docs, index):
-        with open(docs) as scraped_index:
+    def add(self, doc, index):
+        with open(doc) as scraped_index:
             data = json.load(scraped_index)
             index.add_documents(data)
     
@@ -120,4 +120,3 @@ class Search:
 if __name__ == "__main__":
     meili = Search()
     meili.update()
-    
