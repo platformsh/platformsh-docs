@@ -7,7 +7,11 @@ from pprint import pprint
 import hashlib
 import re
 
+# Main scrapy settings for platform.sh. The below functions match the HTML grabbed from the API documentation
+# to our final Meilisearch index. 
+
 class WebsiteSpider(scrapy.Spider):
+    # Relative priority of search results compared to those from the documentation. 
     rank = 4
     name = 'website'
     allowed_domains = ['platform.sh']
@@ -17,7 +21,8 @@ class WebsiteSpider(scrapy.Spider):
     seen = set()
 
     def get_section(self, section, subsection):
-
+        # Subsections on the marketing site need some TLC. For example, "Demos" should be listed as its own section "Demos", as opposed to their
+        # scraped location under "Product".
         remove_dashes = section.split("-")
         year_section = False
         try:
@@ -37,6 +42,7 @@ class WebsiteSpider(scrapy.Spider):
                 return new_section
 
     def parse(self, response):
+        # Parses each scraped section into its own Meilisearch document.
         hxs = Selector(response)
         if response.url in self.seen:
             self.log('already seen  %s' % response.url)
@@ -59,6 +65,7 @@ class WebsiteSpider(scrapy.Spider):
         else:
             item['title'] = hxs.xpath('//title/text()').get().replace('| Platform.sh', '')
         item['url'] = response.url
+        # Every document in Meilisearch needs a unique documentID.
         item['documentId'] = hashlib.sha1(str(response.url).encode('utf-8')).hexdigest()
         item['text'] =  " ".join(response.xpath('.//div[contains(@class,"container-fluid") and not(contains(@class,"footer"))]//text()').getall())
         item['rank'] = self.rank

@@ -6,7 +6,20 @@ cleanup(){
     rm -rf data.ms/*
     # Clean up output mounts.
     OUTPUT_DIR=output
-    rm $OUTPUT_DIR/*.json
+    rm -f $OUTPUT_DIR/*.json
+}
+
+getDocsData() {
+    # Get the frontend URL
+    FRONTEND_URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary) | .key')
+    # Delete docs index in the mount if it exists
+    rm -f data/index.json
+    # Get the updated index for docs
+    curl -s "${FRONTEND_URL}index.json" >> data/index.json
+    # Delete templates index in the mount if it exists
+    rm -f data/templates.yaml
+    # Get the updated index for templates
+    curl -s "${FRONTEND_URL}files/indexes/templates.yaml" >> data/templates.yaml
 }
 
 scrape(){
@@ -28,13 +41,14 @@ update_index(){
     poetry run python createPrimaryIndex.py
     # Update indexes
     poetry run python main.py
-    # Update url attribute for docs to retrieve
-    poetry run python update_url.py
 }
+
+set -e
 
 # Source the Poetry command.
 . $PLATFORM_APP_DIR/.poetry/env
 
 cleanup 
+getDocsData
 scrape 
 update_index

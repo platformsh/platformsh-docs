@@ -21,8 +21,13 @@ cd $PLATFORM_APP_DIR/static/scripts/xss
 npm install
 npm run-script build
 
-# Build the Hugo site
+# Go back home
 cd $PLATFORM_APP_DIR
+
+# Copy templates index so it will be served for search to grab
+mkdir static/files/indexes && cp data/templates.yaml static/files/indexes/templates.yaml
+
+# Build the Hugo site
 ./hugo
 
 # Handle/minify assets
