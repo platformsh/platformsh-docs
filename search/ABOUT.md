@@ -17,7 +17,7 @@ There are a two goals accomplished by all the implementation details in the `bui
         1. *docs.platform.sh*: Hugo builds markdown files and provided templates and themes to generate static HTML output. It is also possible to define [custom output formats](https://gohugo.io/templates/output-formats/), which we use to create an index for the documentation during builds.
         2. *github.com/platformsh-templates*: We also include an index of templates within the docs, which was originally created to support the accordians on language pages. We can take that data and modify it slightly to be included in the final search index. 
         3. *api.platform.sh, community.platform.sh, platform.sh:* To collect documents from each of these sites, we can use the python web scraping tool [scrapy](https://scrapy.org/) to create them. 
-    - *Getting docs & templates index to `search`:* docs & github indexes are made within the `docs` container, and are accessible by the `search` app via the `docs` relationship. All other sites are scraped during the post_deploy hook. 
+    - *Getting docs & templates index to `search`:* docs & github indexes are made within the `docs` container, and are accessible by the `search` app via an external request. All other sites are scraped during the post_deploy hook. 
     - *Prioritizing results:* Each site is given a `rank`. Pages from the public documentation are given a rank of `1`, and all other sites a greater number. We then modify Meilisearch's setting to list results according to `rank` first, so that docs results are prioritized during queries. 
 
 ## Data transfer
