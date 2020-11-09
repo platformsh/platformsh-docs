@@ -36,26 +36,3 @@ There are a two goals accomplished by all the implementation details in the `bui
 1. If you replicate some kind of self-indexing (as for the Hugo site), you only need to place that index into the `search` container's `/output` subdirectory before the `post_deploy` hook is run for it to be included. 
 2. If you would like to have another site scraped before it is included, add the site's details to the `scrape.json` file. You will also need to write a matching `docs/spiders/<sitename>spider.py` file that configures how that site is scraped, and matches the final index made for that site to the Meilisearch index we're building. 
 
-
-
-
-The public docs project contains two applications: one for the Hugo documentation itself (`docs`), and another for the Meilisearch search engine (`search`). There are a number of moving parts in play to get search working (updating its index and connecting it to Hugo) that are worth going over in an overview. This is not an overview of the full build-deploy process for each of the apps, only the steps relevant to functional search.
-
-
-- four bullet point overview
-- make these inline
-- how would I add another site to index
-- having bash and python together (y not all python etc) adds to confusion
-
-## Post-Deploy (`search`)
-
-The last steps get all of our data sources together, and then reset and post the final index to the Meilisearch server. 
-
-1. Clear the mounts: The previous deploy's data and individual index sources are in mounts, so we clear them out so we start with fresh data on each deploy.
-2. Get index data from `docs`: In the build hook for `docs` we made the main docs index (`index.json`) and the templates index (`templates.yaml`) available. Here we grab them.
-3. Scrape: For the other sites we want to include in the final index we are scraping their content using the Python library `scrapy`. Definitions for each of those sources is found in `scrape.json`. Resulting indexes are placed in the mount `output` (i.e. `output/apidocs.json`) for each source.
-4. `createPrimaryIndex.py`: Makes `index.json` available in the `output` directory for the final steps. The templates index is at this point incomplete (it was generated originally only for our template showcase accordians in the docs), and here we add information Meilisearch needs for each template (for example, each entry needs a unique `documentId`).
-5. `main.py`: Last steps. Here our index is defined and updated. There is some initial logic setting up the host so that everything runs locally and on Platform.sh. We override Meilisearch's default attributes: we included some synonyms and updated ranking rules that include `asc(rank)` as our highest level ranking rule. `rank` is a key on every document from every content source included in the index. Since this search is embedded in the public docs site, documents from the documentation have a `rank` of 1, and all other sources some number greater than that. This assures that results from the documentation have a higher rank and therefore preferred to appear first over other results. 
-
-    This file likewise assumes that `PLATFORM_PROJECT_ENTROPY` is the master key for the Meilisearch server. 
-    We finally connect to the Meilisearch server, delete existing indices should they exist, update our custom ranking rules and attributes, and then finally add each of the content sources' indices to the search server. 
