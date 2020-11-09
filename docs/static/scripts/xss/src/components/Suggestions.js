@@ -2,6 +2,10 @@ import React from 'react'
 import renderHTML from 'react-render-html';
 const ReactMarkdown = require('react-markdown');
 
+
+// This class defines the template for "secondary"search results, which in this case are documents coming from 
+// api.platform.sh/docs, platform.sh, community.platform.sh, and GitHub templates. All secondary results are presented
+// together in the dropdown below primary results from the documentation itself.
 const Suggestions = (props) => {
   const results = props.hits.map(r => (
     <li key={r.relurl}>

@@ -18,9 +18,15 @@ class Search:
         self.primaryKey = "documentId"
         self.index_name = "Docs"
 
+        # Below are Platform.sh custom settings for how the search engine functions.
+
+        # Data available to the dropdown React app in docs, used to fill out autocomplete results.
         self.displayed_attributes = ['title', 'text', 'url', 'site', 'section']
+        # Data actually searchable by our queries. 
         self.searchable_attributes = ['title', 'text', 'section']
 
+        # Show results for one query with the listed pages, when they by default would not show up as best results. Note: these
+        # are not automatically two-way, so that's why they all appear to be defined twice.
         self.synonyms = {
             "routes.yaml": ["routes"],
             "routes": ["routes.yaml"],
@@ -82,11 +88,17 @@ class Search:
             return self.default["key"]
     
     def add_documents(self, index):
+        """
+        Cycle through the individual site indexes in /outputs so their individual documents can be added to Meilisearch.
+        """
         documents = [f for f in glob.glob("{}/*.json".format(self.scrape_dir))]
         for doc in documents:
             self.add(doc, index)
 
     def add(self, doc, index):
+        """
+        Add an individual site's index to the Meilisearch service. 
+        """
         with open(doc) as scraped_index:
             data = json.load(scraped_index)
             index.add_documents(data)
