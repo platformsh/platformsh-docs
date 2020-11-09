@@ -10,7 +10,7 @@ The public docs project contains two applications: one for the Hugo documentatio
 
     Within Hugo there is a React autocomplete app at `doc/static/scripts/xss`. The relevant files here are:
 
-    - `.../xss/src/components/[Suggestions|SuggestionsPrimary.js`: This defines the template for search results appearing in the dropdown. They differ between Primary results (results from the documentation), and other results (from the API Docs, marketing site, templates, etc.).
+    - `.../xss/src/components/[Suggestions|SuggestionsPrimary].js`: This defines the template for search results appearing in the dropdown. They differ between Primary results (results from the documentation), and other results (from the API Docs, marketing site, templates, etc.).
     - `.../xss/src/containers/Search.js`: Where most of the configuration for the search app happens. All configuration needed to query Meilisearch is done here. 
         ```js
         let config = {}
@@ -20,7 +20,7 @@ The public docs project contains two applications: one for the Hugo documentatio
         }
         request();
         ```
-        The `config.json` file does not yet exist and is only later built during the deploy hook when the `search` container becomes available. Webpack isn't a fan of reading from `config-reader-nodejs` or environment variables here if they are not yet set, but a file works just fine. We also have defined a mount in the *built* Hugo site at `public/scripts/xss/dist/config/` do allow writing this file in the deploy hook. 
+        The `config.json` file does not yet exist and is only later built during the deploy hook when the `search` container becomes available. Webpack isn't a fan of reading from `config-reader-nodejs` or environment variables here if they are not yet set, but a file works just fine. We also have defined a mount in the *built* Hugo site at `public/scripts/xss/dist/config/` to allow writing this file in the deploy hook. 
 
 2. Copy the templates index
 
@@ -28,7 +28,7 @@ The public docs project contains two applications: one for the Hugo documentatio
 
 3. Build the Hugo site
 
-    Hugo allows you to define custom output formats besides HTML. We've defined a `json` output format as well for the root `_index.md` location, which uses the below files to index the documentation itself and serve that index at `docs.platform.sh/index.json` (`public/index.json` when built).
+    Hugo allows you to define custom output formats besides HTML. We've defined a `json` output format as well for the root `_index.md` location, which uses the files below to index the documentation itself and serve that index at `docs.platform.sh/index.json` (`public/index.json` when built).
 
     - `config/_default/config.yaml`: The `json` output format is defined, but only for `home` (`_index.md`).
     - `layouts/partials/meilindex/fields/section.html`: Subsections need special handling to show their subsection header in search results rather than the top-level section. 
