@@ -1,5 +1,0 @@
-# Keep it empty to not deploy the default services.
-
-files:
-    type: network-storage:1.0
-    disk: 256
