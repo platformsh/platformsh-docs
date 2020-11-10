@@ -9,7 +9,7 @@ description: |
 
 ## Adding plugins and themes without Composer
 
-As previously mentions, Composer is strongly recommended, but it is possible to use some non-Composer plugins and themes in your site, provided that they do not require write access at runtime. In your build hook, include:
+As previously mentioned, Composer is strongly recommended, but it is possible to use some non-Composer plugins and themes in your site, provided that they do not require write access at runtime. In your build hook, include:
 
 ```yaml
 hooks:
@@ -17,7 +17,7 @@ hooks:
         rsync -a plugins/* wordpress/wp-content/plugins/
 ```
 
-Here, you will need to commit plugins to the repository in a `plugins` subdirectory or similar, which will then be placed into the WordPress installation during the build. 
+Here, you can commit plugins to the repository in a `plugins` subdirectory, which will then be placed into the WordPress installation during the build. 
 
 ## Adding public plugins and themes via Composer
 
@@ -30,7 +30,7 @@ $ composer require wpackagist-plugin/cache-control
 $ composer require wpackagist-theme/neve
 ```
 
-This will updated your `composer.json` and `composer.lock` files, and once you push the change to Platform.sh the package will be downloaded during the build hook. All that is left is to sign in to the administration dashboard on your deployed site and enable plugins and themes from the Plugins and Appearance settings, respectively. 
+This will update your `composer.json` and `composer.lock` files, and once you push the change to Platform.sh the package will be downloaded during WordPress's build. All that is left is to sign in to the administration dashboard on your deployed site and enable plugins and themes from the Plugins and Appearance settings, respectively. 
 
 ## Adding private plugins and themes via Composer
 
@@ -59,7 +59,7 @@ If your plugins are not accessible from WPPackagist or packagist, but are still 
 ]
 ```
 
-In the snippet above, packages can still be downloaded from WPPackagist, but custom `path` repositories have been defined from `/custom/[themes|plugins]` locally. Adding packages from these source then only requires `composer require author/custom_plugin` to ensure that the plugin at `/custom/plugin/author/custom_plugin` is installed by Platform.sh when WordPress is built. 
+In the snippet above, other packages can still be downloaded from WPPackagist, but now two custom `path` repositories have been defined from `/custom/[themes|plugins]` locally. Adding packages from these sources then only require `composer require author/custom_plugin` to ensure that the plugin at `/custom/plugin/author/custom_plugin` is installed by Platform.sh when WordPress is built. 
 
 ## Updating Wordpress, plugins, and themes
 
