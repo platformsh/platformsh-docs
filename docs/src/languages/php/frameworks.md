@@ -74,7 +74,7 @@ Symfony FAQs, how-to guides and other tutorials right on [Platform.sh Community]
 
 [Wordpress](https://wordpress.com/) is a PHP content management system. Platform.sh recommends using the composer-based installation method for Wordpress.
 
-* [Wordpress Best Practices](/frameworks/wordpress/_index.md)
+* [Wordpress Best Practices](/guides/wordpress/_index.md)
 
 ### Community Support
 
