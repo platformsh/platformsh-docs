@@ -84,4 +84,4 @@ All your Wordpress FAQs, plus how-to guides and tutorials right on [Platform.sh 
 
 ### Templates
 
-* [Wordpress](https://github.com/platformsh-templates/wordpress)
+* [Wordpress](https://github.com/platformsh-templates/wordpress-composer)
