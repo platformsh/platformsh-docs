@@ -78,8 +78,6 @@ We've finished the application, and it is ready to run. Be prepared to see how f
 java -jar target/file.jar
 ```
 
-
-
 ## Configure Quarkus for Platform.sh
 
 Congratulations, you have your first Quarkus application running locally. This topic will review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Quarkus.

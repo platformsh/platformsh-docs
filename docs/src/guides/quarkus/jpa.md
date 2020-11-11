@@ -96,3 +96,57 @@ quarkus.hibernate-orm.database.generation=update
 quarkus.hibernate-orm.log.sql=true
 ```
 
+## Configure Quarkus for Platform.sh
+
+In this section, we'll move this JPA application to Platform.sh, if we compare with the [getting start](_index.md) application, we'll change two files:
+
+* The services to include SQL database services, in this sample PostgreSQL.
+
+  ```yaml
+  db:
+    type: postgresql:11
+    disk: 512
+  ```
+
+* The application container file adds the relationship between the services to grant access between the application and the service.
+
+```yaml
+name: app
+type: "java:11"
+disk: 1024
+hooks:
+    build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
+relationships:
+    database: "db:postgresql"
+web:
+    commands:
+        start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT target/file.jar
+```
+
+To simplify the application file, we'll use [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. That is the right choice because you don't need to change the application file, only the environment file.
+
+```properties
+export HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].host"`
+export PASSWORD=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].password"`
+export USER=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].username"`
+export DATABASE=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].path"`
+export JDBC=jdbc:postgresql://${HOST}/${DATABASE}
+export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
+export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
+export CREDENTIAL="-Dquarkus.datasource.username=$USER -Dquarkus.datasource.password=$PASSWORD -Dquarkus.datasource.jdbc.url=$JDBC"
+```
+
+The application is now ready, so it’s time to move it to the cloud with Platform.sh using the [following steps](https://docs.platform.sh/gettingstarted/first-project.html):
+
+- Create a new [free trial account](gettingstarted/introduction/template/create-project.md).
+- Sign up with a new user and password, or login using a current GitHub, Bitbucket, or Google account. If you use a third-party login, you’ll be able to set a password for your Platform.sh account later.
+- Select the region of the world where your site should live.
+- Select the `Create empty project` option
+
+{{< note title="Tip">}}
+
+You have the option to either integrate to [GitHub](integrations/source/github.md), [GitLab](integrations/source/gitlab.md), or Platform.sh will provide to you. 
+
+{{< /note >}}
+
+Done! We have a simple and nice [Quarkus application ready to go to the cloud](https://github.com/platformsh-examples/quarkus/tree/master/jpa).
