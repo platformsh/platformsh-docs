@@ -108,7 +108,7 @@ Simply explaining the file line by line, we have the following settings.
 
 To simplify the application file, we'll use [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. That is the right choice because you don't need to change the application file, only the environment file.
 
-```she
+```shell
 export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
 export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 ```
