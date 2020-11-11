@@ -10,7 +10,7 @@ description: |
 
 Quarkus provides two ways of accessing Elasticsearch: via the lower level `RestClient` or via the `RestHighLevelClient` we will call them the low level and the high level clients.
 
-To move your Quarkus application with Panache Elasticsearch to Platform.sh, it needs to change two configurations files, if you compare it with [a Quarkus project from scratch](_index.md).
+To move your Quarkus application with Elasticsearch to Platform.sh, it needs to change two configurations files, if you compare it with [a Quarkus project from scratch](_index.md).
 
 * The services to include Elasticsearch.
 
@@ -46,3 +46,4 @@ export CREDENTIAL="-Dquarkus.hibernate-search.elasticsearch.hosts=${ES_HOST}:${E
 ```
 
 Commit that code and push. The application is ready and connected to a Elasticsearch instance.
+
