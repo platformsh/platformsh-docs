@@ -14,7 +14,7 @@ Quarkus is, in its own words, a cloud-native, (Linux) container-first framework 
 Quarkus became so popular because it is light and straightforward to use. Quarkus has integration with several databases such as [PostgreSQL](configuration/services/postgresql.md), [MariaDB](configuration/services/mysql.md), [MySQL](configuration/services/mysql.md), [MongoDB](configuration/services/mongodb.md), [Redis](configuration/services/redis.md), [Elasticsearch](configuration/services/elasticsearch.md), etc. 
 To Dependency injection, it provides a Quarkus DI based on CDI. As Java Developer, you can let the frameworks handle the Object life cycle, besides taking advantage of the inversion of control (IoC) programming principle.
 
-{{< note title="Tip">}}
+{{< note >}}
 [Quarkus has a vast guide](https://quarkus.io/guides/), where you can take advantage and learn the complete resources from there.
 {{< /note >}}
 
