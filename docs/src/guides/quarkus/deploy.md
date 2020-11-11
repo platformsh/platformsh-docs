@@ -31,7 +31,7 @@ Let's start with the basics, where we'll create a Quarkus application from scrat
 
 1. [Maven Archetype](https://quarkus.io/guides/getting-started): where you can create your first project from a terminal using Maven. E.g.:
 
-   * ```
+    ```
      mvn io.quarkus:quarkus-maven-plugin:1.9.2.Final:create \
          -DprojectGroupId=org.acme \
          -DprojectArtifactId=getting-started \
