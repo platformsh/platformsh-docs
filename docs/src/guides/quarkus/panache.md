@@ -10,7 +10,7 @@ description: |
 
 Hibernate ORM is the de facto JPA implementation and offers you the full breadth of an Object Relational Mapper. It makes complex mappings possible, but it does not make simple and common mappings trivial. Hibernate ORM with Panache focuses on making your entities trivial and fun to write in Quarkus.
 
-To move your Quarkus application with Panache to Platform.sh, it needs to change two configurations files, if you compare it with [an empty Quarkus project](_index.md).
+To move your Quarkus application with Panache to Platform.sh, it needs to change two configurations files, if you compare it with [a Quarkus project from scratch](_index.md).
 
 * The services to include SQL database services, in this sample PostgreSQL.
 

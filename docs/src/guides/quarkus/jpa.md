@@ -10,7 +10,7 @@ description: |
 
 Hibernate ORM is the de facto standard [JPA](https://jakarta.ee/specifications/persistence/) implementation and offers you the full breadth of an Object Relational Mapper. It works beautifully in Quarkus.
 
-To move your Quarkus application with JPA to Platform.sh, it needs to change two configurations files, if you compare it with [an empty Quarkus project](_index.md).
+To move your Quarkus application with JPA to Platform.sh, it needs to change two configurations files, if you compare it with [a Quarkus project from scratch](_index.md).
 
 * The services to include SQL database services, in this sample PostgreSQL.
 
