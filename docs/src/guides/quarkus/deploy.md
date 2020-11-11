@@ -60,7 +60,7 @@ public class ExampleResource {
 }
 ```
 
-{{< note title="Tip">}}
+{{< note >}}
 If you want to change the hello world message, please, don't forget to update the test as well.
 {{< /note >}}
 
