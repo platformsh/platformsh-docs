@@ -9,10 +9,7 @@ description: |
 ---
 
 
-Quarkus is, in its own words, a cloud-native, (Linux) container-first framework for writing Java applications. It has become popular lately because of its fast boot time and low RSS memory. In this series of articles about Quarkus, we'll discuss how to deploy a Quarkus application even faster to the cloud with Platform.sh.
-
-Quarkus became so popular because it is light and straightforward to use. Quarkus has integration with several databases such as [PostgreSQL](configuration/services/postgresql.md), [MariaDB](configuration/services/mysql.md), [MySQL](configuration/services/mysql.md), [MongoDB](configuration/services/mongodb.md), [Redis](configuration/services/redis.md), [Elasticsearch](configuration/services/elasticsearch.md), etc. 
-To Dependency injection, it provides a Quarkus DI based on CDI. As Java Developer, you can let the frameworks handle the Object life cycle, besides taking advantage of the inversion of control (IoC) programming principle.
+Quarkus is, in its own words, a cloud-native, (Linux) container-first framework for writing Java applications. It has become popular lately because of its fast boot time. In this series of articles about Quarkus, we'll discuss how to deploy a Quarkus application even faster to the cloud with Platform.sh.
 
 {{< note >}}
 [Quarkus has a vast guide](https://quarkus.io/guides/), where you can take advantage and learn the complete resources from there.
@@ -24,7 +21,7 @@ To Dependency injection, it provides a Quarkus DI based on CDI. As Java Develope
 
 
 
-Let's start with the basics, where we'll create a Quarkus application from scratch and then move it to Platform.sh. There two ways to make a Quarkus application:
+You'll start with the basics, where we'll create a Quarkus application from scratch and then move it to Platform.sh. There two ways to make a Quarkus application:
 
 
 
@@ -36,11 +33,11 @@ Let's start with the basics, where we'll create a Quarkus application from scrat
          -DprojectArtifactId=getting-started \
          -DclassName="org.acme.getting.started.GreetingResource" \
          -Dpath="/hello"
-     ```
+    ```
 
      
 
-2. [The start code link](https://code.quarkus.io/): A Ui interface that helps you bootstrap your Quarkus application and discover its extension ecosystem.
+2. [The start code link](https://code.quarkus.io/): A UI interface that helps you bootstrap your Quarkus application and discover its extension ecosystem.
 
 As soon as you generate the application it will create an  `ExemploResource` with the Hello world message.
 
@@ -70,7 +67,7 @@ Quarkus requires Apache Maven 3.6.2 or higher to run the application, but even i
  ./mvnw package
 ```
 
-We've finished the application, and it is ready to run. Be prepared to see how fast this application starts.
+You've finished the application, and it is ready to run. Be prepared to see how fast this application starts.
 
 ```java
 java -jar target/file.jar

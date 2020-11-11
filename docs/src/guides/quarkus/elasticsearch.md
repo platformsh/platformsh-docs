@@ -1,6 +1,6 @@
 ---
 title: "How to Deploy Quarkus on Platform.sh with Elasticsearch"
-sidebarTitle: "JPA"
+sidebarTitle: "Elasticsearch"
 weight: -110
 layout: single
 toc: false
