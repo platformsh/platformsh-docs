@@ -17,7 +17,6 @@ To Dependency injection, it provides a Quarkus DI based on CDI. As Java Develope
 {{< note title="Tip">}}
 [Quarkus has a vast guide](https://quarkus.io/guides/), where you can take advantage and learn the complete resources from there.
 {{< /note >}}
-```
 
 
 
