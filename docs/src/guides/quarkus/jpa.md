@@ -1,14 +1,12 @@
 ---
 title: "How to Deploy Quarkus on Platform.sh with JPA"
-sidebarTitle: "Get started"
+sidebarTitle: "JPA"
 weight: -110
 layout: single
 toc: false
 description: |
     Configure a Quarkus application with JPA.
 ---
-
-
 
 Hibernate ORM is the de facto standard [JPA](https://jakarta.ee/specifications/persistence/) implementation and offers you the full breadth of an Object Relational Mapper. It works beautifully in Quarkus.
 
@@ -80,7 +78,7 @@ Example dependencies using Maven with PostgreSQL JDBC driver:
 ```
 
 {{< note title="Tip">}}
-[To get more details about Quarkus configuration.](https://quarkus.io/guides/hibernate-orm)
+[To get more details about Quarkus JPA configuration.](https://quarkus.io/guides/hibernate-orm)
 {{< /note >}}
 
 The application.properties` file will enable you to run locally where you can use [SSH tunneling](development/local/tethered.md#ssh-tunneling).  Don't worry about it on production once we'll overwrite those configurations later.
