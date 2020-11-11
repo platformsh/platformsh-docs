@@ -39,28 +39,6 @@ You'll start with the basics, where we'll create a Quarkus application from scra
 
 2. [The start code link](https://code.quarkus.io/): A UI interface that helps you bootstrap your Quarkus application and discover its extension ecosystem.
 
-As soon as you generate the application it will create an  `ExemploResource` with the Hello world message.
-
-```java
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-@Path("/hello")
-public class ExampleResource {
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello World From Platform.sh";
-    }
-
-}
-```
-
-{{< note >}}
-If you want to change the hello world message, please, don't forget to update the test as well.
-{{< /note >}}
-
 Quarkus requires Apache Maven 3.6.2 or higher to run the application, but even if your machine does not have the generated project brings a Maven Wrapper with the Maven version that it needs to run. So you can package and run this application from this [Maven Wrapper](https://www.baeldung.com/maven-wrapper).
 
 ```shell
