@@ -27,7 +27,7 @@ build:
 disk: 1024
 ```
 
-This example defines a key `name` with value `app`, a key `type` with value `php:7.1`, a key `disk` with a value 1024, and a key `build` that is itself a nested set of key/value pairs, of which there is only one: `flavor`, whose value is `composer`.  Informally, nested values are often referenced using a dotted syntax, such as `build.flavor`, and that format is used in this documentation in various places.
+This example defines a key `name` with value `app`, a key `type` with value `php:7.4`, a key `disk` with a value of `1024`, and a key `build` that is itself a nested set of key/value pairs, of which there is only one: `flavor`, whose value is `composer`.  Informally, nested values are often referenced using a dotted syntax, such as `build.flavor`, and that format is used in this documentation in various places.
 
 Keys are always strings, and may be quoted or not.  Values may be strings, numbers, booleans, or further nested key/value pairs.  Alphanumeric strings may be quoted or not.  More complex strings (with punctuation, etc.) must be quoted.  Numbers should not be quoted.  The boolean values `true` and `false` should never be quoted.
 

@@ -4,7 +4,7 @@ weight: 11
 sidebarTitle: "Worker configuration"
 ---
 
-Every application may also define zero or more worker instances.  A worker instance runs as its own container independently of the web instance and has no Nginx instance running.  The router service cannot direct public requests to it, either, so running your own web server on a worker (using Node.js or Go) is not useful.
+Every application may also define zero or more worker instances.  A worker instance runs as its own container independently of the web instance and has no Nginx instance running.  The router service cannot direct public requests to it, either, so running your own web server on a worker is not useful.
 
 A worker instance is the exact same code and compilation output as a web instance.  The container image is built only once, and then deployed multiple times if needed.  That is, the `build` hook and `dependencies` may not vary from one instance to another.  What may vary is how the container is then configured and how resources are allocated.
 
@@ -18,10 +18,10 @@ workers:
         size: S
         commands:
             start: |
-                php worker.php
+                ./worker.sh
 ```
 
-That defines a single worker named `queue`, which will be a "small" container, and wil run the command `php worker.php` on startup.  If `worker.php` ever exits it will be automatically restarted.
+That defines a single worker named `queue`, which will be a "small" container, and will run the command `./worker.sh` on startup.  If `worker` ever exits it will be automatically restarted.
 
 Any number of workers may be defined with their own distinct name, subject to available resources on your plan. For resource allocation reasons, using workers in your project requires a Medium plan or larger.
 

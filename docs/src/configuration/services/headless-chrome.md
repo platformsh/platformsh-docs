@@ -72,7 +72,7 @@ Using the [Node.js Config Reader](https://github.com/platformsh/config-reader-no
 ```js
 const platformsh = require('platformsh-config');
 
-let config = platformsh.config();
+const config = platformsh.config();
 const credentials = config.credentials('chromeheadlessbrowser');
 ```
 

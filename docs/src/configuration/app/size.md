@@ -27,7 +27,7 @@ Simply set the `size` key to `S` to ensure that the container gets fewer resourc
 ```yaml
 name: processing
 
-type: nodejs:6.11
+type: nodejs:14
 size: S
 
 ...

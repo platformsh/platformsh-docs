@@ -66,7 +66,6 @@ file=none
 highlight=php
 markdownify=false
 ---
-
 <?php
 var_dump($_ENV['BASIC']);
 // string(8) "a string"
@@ -111,7 +110,6 @@ file=none
 highlight=python
 markdownify=false
 ---
-
 import os
 import json
 import base64
@@ -131,5 +129,30 @@ print variables['stuff:STEPS']
 # [u'un', u'deux', u'trois']
 print variables['stuff:COLORS']
 # {u'blue': u'#0000FF', u'green': u'#00FF00', u'red': u'#FF0000'}
+
+<--->
+
+---
+title=Node.js
+file=none
+highlight=javascript
+markdownify=false
+---
+const { BASIC, INGREDIENTS, QUANTITIES, PLATFORM_VARIABLES } = process.env;
+
+const { "stuff:COLORS": stuffColors, "stuff:STEPS": stuffSteps } = JSON.parse(
+  Buffer.from(PLATFORM_VARIABLES, "base64").toString()
+);
+
+console.log(BASIC);
+// "a string"
+console.log(INGREDIENTS);
+// ["peanut butter", "jelly"]
+console.log(QUANTITIES);
+// {"cookies": "1 kg", "milk": "1 liter"}
+console.log(stuffColors);
+// { blue: '#0000FF', green: '#00FF00', red: '#FF0000' }
+console.log(stuffSteps);
+// [ 'un', 'deux', 'trois' ]
 
 {{< /codetabs >}}

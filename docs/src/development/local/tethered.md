@@ -11,7 +11,7 @@ The simplest way to run a project locally is to use a local web server, but keep
 
 In your application directory run `platform tunnel:open &&  export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"`. This will open an SSH tunnel to your current Platform.sh environment and expose a local environment variable that mimics the relationships array on Platform.sh.
 
-You can now run your application locally (for example by running `php -d variables_order=EGPCS -S localhost:8001` for PHP), assuming it is configured to read its configuration from the Platform.sh environment variables.
+You can now run your application locally, assuming it is configured to read its configuration from the Platform.sh environment variables.
 
 Note that other Platform.sh environment configuration such as the routes or application secret value will still not be available.  Also be aware that the environment variable exists only in your current shell.  If you are starting multiple local command shells you will need to rerun the `export` command above in each of them.
 
@@ -84,13 +84,26 @@ That will create a `PLATFORM_RELATIONSHIPS` environment variable locally that lo
 
 Note that the environment variable is set globally so you cannot use this mechanism to load mutiple tethered Platform.sh projects at the same time.  If you need to run multiple tethered environments at once you will have to read the relationships information for each one from the application code, like so:
 
-```php
+{{< codetabs >}}
+
+---
+title=PHP
+file=none
+highlight=php
+markdownify=false
+---
 <?php
 if ($relationships_encoded = shell_exec('platform tunnel:info --encode')) {
     $relationships = json_decode(base64_decode($relationships_encoded, TRUE), TRUE);
     // ...
 }
-{%- language name="Python", type="py" -%}
+<--->
+---
+title=Python
+file=none
+highlight=python
+markdownify=false
+---
 import json
 import base64
 import subprocess
@@ -99,4 +112,17 @@ encoded = subprocess.check_output(['platform', 'tunnel:info', '--encode'])
 if (encoded):
     json.loads(base64.b64decode(relationships).decode('utf-8'))
     # ...
-```
+<--->
+---
+title=Node.js
+file=none
+highlight=javascript
+mardownify=false
+---
+const child_process = require("child_process");
+
+const { stdout: encoded } = child_process.spawnSync("platform", ["tunnel:info", "--encode"], { encoding : "utf8" });
+const relationships = encoded ? JSON.parse(Buffer.from(encoded, "base64").toString()) : {};
+
+// ...
+{{< /codetabs >}}

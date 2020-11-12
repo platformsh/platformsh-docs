@@ -10,8 +10,6 @@ aliases:
 
 {{< description >}}
 
-You can see our full pricing information at: https://platform.sh/pricing/
-
 All Platform.sh plans include:
 
 * four Environments (3 for staging/development, 1 for the live site).
@@ -19,6 +17,8 @@ All Platform.sh plans include:
 * 5GB of Storage per environment
 * multiple Backend services (MySQL, PostgreSQL, Elasticsearch, Redis, Solr..)
 * support
+
+Our full pricing information is available at: https://platform.sh/pricing/
 
 You can switch between plans (downgrade or upgrade) freely, but note that reducing storage is currently not supported for technical reasons. If you need to reduce storage, please create a support ticket. You will always be billed the prorated rate of your plan over the period it was used.
 

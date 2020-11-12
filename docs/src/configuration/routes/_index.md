@@ -9,7 +9,7 @@ layout: single
 
 {{< description >}}
 
-A route describes how an incoming HTTP request is going to be processed by Platform.sh. The routes are defined using `.platform/routes.yaml` file in your Git repository.
+A route describes how an incoming HTTP request is going to be processed by Platform.sh. The routes are defined using the `.platform/routes.yaml` file in your Git repository.
 
 If you don't have one, use the commands below to create it:
 
@@ -140,66 +140,47 @@ Consider this `routes.yaml` configuration example:
     upstream: 'site2:http'
 ```
 
-This example defines two routes, on two separate subdomains, pointing at two separate app containers. (However, they could just as easily be pointing at the same container for our purposes).  On a branch named `test`, the route array in PHP would look like this:
+This example defines two routes, on two separate subdomains, pointing at two separate app containers. (However, they could just as easily be pointing at the same container for our purposes).  On a branch named `test`, the JSON object that would be base64-encoded in the `PLATFORM_ROUTES` environment variable would look like this:
 
-```text
-Array
-(
-    [https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
-        (
-            [primary] => 1
-            [id] =>
-            [type] => upstream
-            [upstream] => site1
-            [original_url] => https://site1.{default}/
-            // ...
-        )
-
-    [https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
-        (
-            [primary] =>
-            [id] => the-second
-            [type] => upstream
-            [upstream] => site2
-            [original_url] => https://site2.{default}/
-            // ...
-        )
-    [http://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
-        (
-            [to] => https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/
-            [original_url] => http://site1.{default}/
-            [type] => redirect
-            [primary] =>
-            [id] =>
-        )
-
-    [http://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
-        (
-            [to] => https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/
-            [original_url] => http://site2.{default}/
-            [type] => redirect
-            [primary] =>
-            [id] =>
-        )
-)
+```json
+{
+    "https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+        "primary": 1,
+        "id": null,
+        "type": "upstream",
+        "upstream": "site1",
+        "original_url": "https://site1.{default}/"
+        // ...
+    },
+    "https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+        "primary": null,
+        "id": "the-second",
+        "type": "upstream",
+        "upstream": "site2",
+        "original_url": "https://site2.{default}/"
+        // ...
+    },
+    "http://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+        "to": "https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/",
+        "original_url": "http://site1.{default}/",
+        "type": "redirect",
+        "primary": null,
+        "id": null
+    },
+    "http://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+        "to": "https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/",
+        "original_url": "http://site2.{default}/",
+        "type": "redirect",
+        "primary": null,
+        "id": null
+    }
+}
 ```
 
 (Some keys omitted for space.)  Note that the `site2` HTTPS route has an `id` specified as `the-second` while other routes have no ID. Futhermore, because we did not specify a `primary` route, the first non-redirect route defined is marked as the primary route by default. In each case, the `original_url` specified in the configuration file is accessible if desired.
 
-That makes it straightforward to look up the domain of a particular route, regardless of what branch it's on, from within application code.  For example, the following PHP function will retrieve the domain for a specific route id, regardless of the branch it's on.
-
-```php
-<?php
-function get_domain_for(string $id) {
-  foreach ($routes as $domain => $route) {
-    if ($route['id'] == $id) {
-      return $domain;
-    }
-  }
-}
-```
-
-That can be used, for example, for specifically allowing inbound requests, a feature of many PHP frameworks.
+That makes it straightforward to look up the domain of a particular route, given its `id`, regardless of what branch it's on, from within application code.
+That could be used, for example, for specifically allowing inbound requests.
 
 ## Route attributes
 
@@ -213,22 +194,20 @@ Route attributes are an arbitrary key/value pair attached to a route.  This meta
         "foo": "bar"
 ```
 
-Attributes will appear in the routes data for PHP like so:
+Attributes will appear in the routes data like so:
 
-```text
-[https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/] => Array
-    (
-        [primary] => 1
-        [id] =>
-        [type] => upstream
-        [upstream] => site1
-        [original_url] => https://site1.{default}/
-        [attributes] => Array
-            (
-                [foo] => bar
-            )
-        // ...
-    )
+```json
+"https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+    "primary": 1,
+    "id": null,
+    "type": "upstream",
+    "upstream": "site1",
+    "original_url": "https://site1.{default}/",
+    "attributes": {
+        "foo": "bar"
+    },
+    // ...
+}
 ```
 
 These extra attributes may be used to "tag" routes in more complex scenarios that can then be read by your application.
