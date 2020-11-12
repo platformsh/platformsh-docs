@@ -18,10 +18,10 @@ workers:
         size: S
         commands:
             start: |
-                ./worker
+                ./worker.sh
 ```
 
-That defines a single worker named `queue`, which will be a "small" container, and wil run the command `./worker` on startup.  If `worker` ever exits it will be automatically restarted.
+That defines a single worker named `queue`, which will be a "small" container, and will run the command `./worker.sh` on startup.  If `worker` ever exits it will be automatically restarted.
 
 Any number of workers may be defined with their own distinct name, subject to available resources on your plan. For resource allocation reasons, using workers in your project requires a Medium plan or larger.
 
