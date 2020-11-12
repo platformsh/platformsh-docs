@@ -81,7 +81,7 @@ tls:
 ```
 
 The above configuration will result in requests using older TLS versions to be rejected. Legal values are `TLSv1.2` and `TLSv1.3`.
-Any version older than 1.2 will be rejected.
+TLS versions older than 1.2 are not supported by Platform.sh and will be rejected regardless of the setting here.
 
 Note that if multiple routes for the same domain have different `min_version`s specified, the highest specified will be used for the whole domain.
 
