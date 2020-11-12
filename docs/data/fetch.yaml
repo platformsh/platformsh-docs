@@ -55,13 +55,16 @@ appyaml:
   - python3
   - nodejs
   - typo3
+  - wordpress-composer
 servicesyaml:
   - language-examples
   - drupal9
   - typo3
+  - wordpress-composer
 routesyaml:
   - php
   - drupal9
   - typo3
+  - wordpress-composer
 docsappyaml:
   - platformsh-docs
