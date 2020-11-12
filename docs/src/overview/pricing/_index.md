@@ -8,6 +8,8 @@ aliases:
   - "/overview/pricing.html"
 ---
 
+{{< description >}}
+
 All Platform.sh plans include:
 
 * four Environments (3 for staging/development, 1 for the live site).
