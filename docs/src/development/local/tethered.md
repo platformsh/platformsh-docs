@@ -11,7 +11,7 @@ The simplest way to run a project locally is to use a local web server, but keep
 
 In your application directory run `platform tunnel:open &&  export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"`. This will open an SSH tunnel to your current Platform.sh environment and expose a local environment variable that mimics the relationships array on Platform.sh.
 
-You can now run your application locally (for example by running `php -d variables_order=EGPCS -S localhost:8001` for PHP), assuming it is configured to read its configuration from the Platform.sh environment variables.
+You can now run your application locally, assuming it is configured to read its configuration from the Platform.sh environment variables.
 
 Note that other Platform.sh environment configuration such as the routes or application secret value will still not be available.  Also be aware that the environment variable exists only in your current shell.  If you are starting multiple local command shells you will need to rerun the `export` command above in each of them.
 

@@ -27,11 +27,11 @@ dependencies:
 
 `default` will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
 
-In all languages you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js); as the name suggests it will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom Composer command or use an alternate Node.js package manager.
+In all languages, you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js); as the name suggests it will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom Composer command or use an alternate Node.js package manager.
 
 ```yaml
 build:
-    flavor: composer
+    flavor: none
 ```
 
 ## Build dependencies
@@ -71,7 +71,7 @@ dependencies:
   ruby: # Specify one Bundler package per line.
     sass: '3.4.7'
   nodejs: # Specify one NPM package per line.
-    grunt-cli: '~0.1.13'
+    pm2: '^4.5.0'
 ```
 
 Note that the package name format for each language is defined by the package manager used; similarly, the version constraint string will be interpreted by the package manager.  Consult the appropriate package manager's documentation for the supported formats.
@@ -138,45 +138,19 @@ What is "safe" to run in a `post_deploy` hook vs. in a `deploy` hook will vary b
 
 The `post_deploy` hook logs to its own file in addition to the activity log, `/var/log/post-deploy.log`.
 
-## How do I compile Sass files as part of a build?
-
-As a good example of combining dependencies and hooks, you can compile your SASS files using Grunt.
-
-Let's assume that your application has Sass source files (Sass being a Ruby tool) in the `web/styles` directory.  That directory also contains a `package.json` file for npm and `Gruntfile.js` for Grunt (a Node.js tool).
-
-The following blocks will download a specific version of Sass and Grunt pre-build, then during the build step will use them to install any Grunt dependencies and then run the grunt command.  This assumes that your Grunt command includes the Sass compile command.
-
-```yaml
-dependencies:
-  ruby:
-    sass: '3.4.7'
-  nodejs:
-    grunt-cli: '~0.1.13'
-
-hooks:
-  build: |
-    cd web/styles
-    npm install
-    grunt
-```
-
 ## How can I run certain commands only on certain environments?
 
 The `deploy` and `post_deploy` hooks have access to all of the same [environment variables](/development/variables.md) as the application does normally, which makes it possible to vary those hooks based on the environment.  A common example is to enable certain modules only in non-production environments.  Because the hook is simply a shell script we have full access to all shell scripting capabilities, such as `if/then` directives.
 
-The following Drupal example checks the `$PLATFORM_BRANCH` variable to see if we're in a production environment (the `master` branch) or not.  If so, it forces the `devel` module to be disabled.  If not, it forces the `devel` module to be enabled, and also uses the `drush` Drupal command line tool to strip user-specific information from the database.
+The following example checks the `$PLATFORM_BRANCH` variable to see if we're in a production environment (the `master` branch) or not.
 
 ```yaml
 hooks:
     deploy: |
         if [ "$PLATFORM_BRANCH" = master ]; then
-            # Use Drush to disable the Devel module on the Master environment.
-            drush dis devel -y
+            # Run commands only when deploying on master
         else
-            # Use Drush to enable the Devel module on other environments.
-            drush en devel -y
-            # Sanitize your database and get rid of sensitive information from Master environment.
-            drush -y sql-sanitize --sanitize-email=user_%uid@example.com --sanitize-password=custompassword
+            # Run commands only when deploying on dev environments
         fi
-        drush -y updatedb
+        # Commands to run regardless of the environment
 ```

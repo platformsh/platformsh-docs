@@ -6,7 +6,7 @@ sidebarTitle: "Private repositories"
 
 ## Pull code from a private Git repository
 
-Let's say you're building a module (*or theme, library...*) which is stored in a private Git repository that you have access to, and you want to use it on your project. Platform.sh allows you to include code dependencies that are stored in external private Git repositories (e.g. from a Drupal `.make` file, a PHP `composer.json` file).
+Let's say you're building a module (*or theme, library...*) which is stored in a private Git repository that you have access to, and you want to use it on your project. Platform.sh allows you to include code dependencies that are stored in external private Git repositories.
 
 To grant Platform.sh access to your private Git repository, you need to add the project public SSH key to the deploy keys of your Git repository.
 

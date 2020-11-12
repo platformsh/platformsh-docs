@@ -10,7 +10,7 @@ The first section on this page explains the various options the file supports.  
 
 You can also examine the `.platform.app.yaml` files of the provided project templates for various common Free Software applications.  See the various language pages for an index of available examples.
 
-The `web` key defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content, including static files, front-controller scripts, index files, index scripts, and so on. We support any directory structure, so the static files can be in a subdirectory and the `index.php` file can be further down.
+The `web` key defines how the application is exposed to the web (in HTTP). Here we tell the web application how to serve content, including static files, front-controller scripts, index files, index scripts, and so on. We support any directory structure, so the static files can be in a subdirectory and the entrypoint of your application can be farther down.
 
 ## Commands
 
