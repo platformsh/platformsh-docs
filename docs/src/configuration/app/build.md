@@ -138,6 +138,25 @@ What is "safe" to run in a `post_deploy` hook vs. in a `deploy` hook will vary b
 
 The `post_deploy` hook logs to its own file in addition to the activity log, `/var/log/post-deploy.log`.
 
+## How do I compile Sass files as part of a build?
+
+As a good example of combining dependencies and hooks, you can compile your SASS.
+
+Let's assume that your application has Sass source files in the `web/styles` directory. That directory also contains a `package.json` file for npm.
+
+The following blocks will download a specific version of Sass, then during the build step will call a `build-css` npm script to proceed with the Sass files compilation. This assumes that you have a `build-css` npm script set up to run `sass`, be it with a tool such as webpack or using the binary directly.
+
+```yaml
+dependencies:
+  nodejs:
+    sass: "^3.4.21"
+
+hooks:
+  build: |
+    npm install
+    npm run build-css
+```
+
 ## How can I run certain commands only on certain environments?
 
 The `deploy` and `post_deploy` hooks have access to all of the same [environment variables](/development/variables.md) as the application does normally, which makes it possible to vary those hooks based on the environment.  A common example is to enable certain modules only in non-production environments.  Because the hook is simply a shell script we have full access to all shell scripting capabilities, such as `if/then` directives.
