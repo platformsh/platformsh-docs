@@ -61,7 +61,7 @@ If your plugins are not accessible from WPPackagist or packagist, but are still 
 
 In the snippet above, other packages can still be downloaded from WPPackagist, but now two custom `path` repositories have been defined from `/custom/[themes|plugins]` locally. Adding packages from these sources then only require `composer require author/custom_plugin` to ensure that the plugin at `/custom/plugin/author/custom_plugin` is installed by Platform.sh when WordPress is built. 
 
-## Updating Wordpress, plugins, and themes
+## Updating WordPress, plugins, and themes
 
 Your WordPress site is fully managed by Composer, which means so are updates to WordPress core itself. Run `composer update` periodically to get new versions of WordPress core, as well as any plugins or themes your have installed. Commit the resulting changes to your `composer.lock` file and push again to Platform.sh 
 

@@ -1,11 +1,11 @@
 ---
-title: "How to Deploy Wordpress on Platform.sh"
+title: "How to Deploy WordPress on Platform.sh"
 sidebarTitle: "Get started"
 weight: -110
 layout: single
 toc: false
 description: |
-    Create a Platform.sh account, download a few tools, and prepare to deploy Wordpress.
+    Create a Platform.sh account, download a few tools, and prepare to deploy WordPress.
 ---
 
 WordPress is a popular Content Management System written in PHP. The recommended way to deploy WordPress on Platform.sh is by using Composer, the PHP package management suite. The most popular and supported way to do so is with the [John Bloch](https://github.com/johnpbloch/wordpress) Composer fork script. This guide assumes from the beginning that you're migrating a Composer-flavored WordPress repository. 
@@ -18,7 +18,7 @@ If you have a WordPress site that is not using Composer, there are a [few guides
 
 Going through the steps below you will have two options:
 
-1. You already have a [Composer flavored Wordpress](https://github.com/johnpbloch/wordpress) site your are trying to deploy. In this case, you will able to go through each step to make the recommended changes to your repository to prepare it for Platform.sh.
+1. You already have a [Composer flavored WordPress](https://github.com/johnpbloch/wordpress) site your are trying to deploy. In this case, you will able to go through each step to make the recommended changes to your repository to prepare it for Platform.sh.
 2. You have no code at this point. In this case, Platform.sh maintains a ready-made [WordPress template](https://github.com/platformsh-templates/wordpress-composer) that you will be able to deploy very quickly. The steps below will then hopefully help to clarify why the modifications have been made to a base WordPress project that is using Composer.
 
 ## Tools
@@ -27,7 +27,7 @@ Going through the steps below you will have two options:
 
 ## Sign up for Platform.sh and initialize your project
 
-{{< guides/signup name="Wordpress" template="wordpress-composer" >}}
+{{< guides/signup name="WordPress" template="wordpress-composer" >}}
 
 ```bash
 $ git clone https://github.com/johnpbloch/wordpress && cd wordpress

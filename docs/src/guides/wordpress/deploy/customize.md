@@ -1,5 +1,5 @@
 ---
-title: "Customize Wordpress for Platform.sh"
+title: "Customize WordPress for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
 toc: false
