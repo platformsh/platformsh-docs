@@ -67,6 +67,6 @@ Your WordPress site is fully managed by Composer, which means so are updates to 
 
 The [Composer documentation](https://getcomposer.org/doc/) has more information on options to update individual modules or perform other tasks.
 
-Note that updating modules or core through the Drupal UI is not possible, as the file system is read-only.  All updates should be done through composer to update the lock file, and then pushed to Git.
+Note that updating modules or core through the WordPress UI is not possible, as the file system is read-only.  All updates should be done through Composer to update the lock file, and then push to Git.
 
 {{< guide-buttons type="last" >}}

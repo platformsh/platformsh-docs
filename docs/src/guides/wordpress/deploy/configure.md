@@ -32,7 +32,7 @@ If a service stores persistent data then it will also have a `disk` key, which s
 Notice that the build `flavor` is set to `composer`, which will automatically download WordPress core, as well as your plugins, themes, and dependencies during the build step as defined in your `composer.json` file. Since WordPress's caching and uploads require write access at runtime, they've been given corresponding [mounts](/configuration/app/storage.md#basic-mounts) defined for them at the bottom of the file. MariaDB will be accessible to WordPress internally at `database.internal` thanks to the relationship definition `database`. The [WordPress CLI](https://packagist.org/packages/wp-cli/wp-cli) is added as a build dependency, but we will still need to add some additional dependencies in the next step so that it can be used by the application and via SSH. 
 
 {{< note >}}
-During the template's build hook above, you will see an `rsync` command that allows you to commit and use plugins that are not accessible via Composer. A committed `plugins` directory moves all non-Composer plugins to the final `wp-content/plugins` destination so that they can be enabled through the adminstration panel. You can commit and at build time move a committed `themes` directory in the same way. 
+During the template's build hook above, you will see an `rsync` command that allows you to commit and use plugins that are not accessible via Composer. A committed `plugins` directory moves all non-Composer plugins to the final `wp-content/plugins` destination so that they can be enabled through the adminstration panel. You can commit and at build time move a committed `themes` directory in the same way if needed. 
 {{< /note >}}
 
 {{< guide-buttons next="Customize Wordpress" >}}
