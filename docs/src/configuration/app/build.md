@@ -140,7 +140,7 @@ The `post_deploy` hook logs to its own file in addition to the activity log, `/v
 
 ## How do I compile Sass files as part of a build?
 
-As a good example of combining dependencies and hooks, you can compile your SASS.
+As a good example of combining dependencies and hooks, you can compile your Sass files.
 
 Let's assume that your application has Sass source files in the `web/styles` directory. That directory also contains a `package.json` file for npm.
 
