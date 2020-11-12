@@ -177,13 +177,13 @@ Using the same configuration but with your Redis relationship named `sessionstor
 
 `.platform/services.yaml`
 
-{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/redis-persistent-session.services.yaml" highlight="yaml" >}}
 
 `.platform.app.yaml`
 
 ```yaml
 relationships:
-  sessionstorage: "cacheredis:redis"
+  sessionstorage: "sessionredis:redis"
 
 variables:
     php:
