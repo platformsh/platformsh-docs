@@ -4,7 +4,7 @@ weight: 2
 ---
 
 Every time you push to a live branch (a git branch with an active environment attached to it) or activate an
-[environment](/administration/web/environments.md) for a branch, there are two main processes that happen: **Build** and **Deploy**."
+[environment](/administration/web/environments.md) for a branch, there are two main processes that happen: **Build** and **Deploy**.
 
 1. The build process looks through the configuration files in your repository and assembles the necessary containers.  
 2. The deploy process makes those containers live, replacing the previous versions, with virtually no interruption in service.
@@ -36,11 +36,11 @@ The live environment is composed of multiple containers&mdash;both for your appl
 
 Based on your application type the system will select one of our pre-built container images and run the following:
 
-1. First, any dependencies specified in the `.platform.app.yaml` file are installed.  Those include tools like Sass, Gulp, Drupal Console, or any others that you may need.  
+1. First, any dependencies specified in the `.platform.app.yaml` file are installed. Those include tools like Sass, Webpack, Drupal Console, or any others that you may need.
 
 2. Then, depending on the “build flavor” specified in the configuration file, we run a series of standard commands. The default for PHP containers, for example, is simply to run `composer install`.
 
-3. Finally, we run the “build hook” from the configuration file.  The build hook comprises one or more shell commands that you write to finish creating your production code base.  That could be compiling Sass files, running a Gulp or Grunt script, rearranging files on disk, compiling an application in a compiled language, or whatever else you want.  Note that, at this point, all you are able to access is the file system; there are no services or other databases available.
+3. Finally, we run the “build hook” from the configuration file.  The build hook comprises one or more shell commands that you write to finish creating your production code base.  That could be compiling Sass files, running a bundler, rearranging files on disk, compiling an application in a compiled language, or whatever else you want.  Note that, at this point, all you are able to access is the file system; there are no services or other databases available.
 
 Once all of that is completed, we freeze the file system and produce a read-only container image.  That image is the final build artifact: a reliable, repeatable snapshot of your application, built the way you want, with the environment you want.
 

@@ -44,10 +44,10 @@ function sendSlackMessage(title, message) {
         : '#ff0000';
 
     var body = {
-        'attachments': [{
-            "title": title,
-            "text": message,
-            "color": color,
+        attachments: [{
+            title: title,
+            text: message,
+            color: color,
         }],
     };
 
@@ -57,7 +57,7 @@ function sendSlackMessage(title, message) {
         throw new Error('You must define a SLACK_URL project variable.');
     }
 
-    var resp = fetch(url,{
+    var resp = fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
