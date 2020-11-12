@@ -45,6 +45,13 @@ When SMTP support is enabled the environment variable `PLATFORM_SMTP_HOST` will 
 Changing the SMTP status will not take effect immediately.  You will need to issue a new *build*, not just a new deploy, for the changes to take effect. That means making a trivial change to some file in Git for the application.
 {{< /note >}}
 
+## Ports
+
+- Port 465 and 587 should be used to send email to your own external email server.
+- Port 25 should be used to send through PLATFORM_SMTP_HOST. (this is the default in most mailers).
+
+We proxy your emails through our own smtp host, and encrypt them over port 465 before sending them through to the outside world.
+
 ## Sending email in PHP
 
 When you send email, you can simply use the built-in `mail()` function in PHP. The PHP runtime is configured to send email automatically via the assigned SendGrid sub-account.  Note that the `From` header is required; email will not send if that header is missing.
@@ -140,12 +147,3 @@ There is plenty of additional documentation about using JavaMail,  like this one
 - [Platform.sh Email documentation](/development/email.md)
 - [https://mkyong.com/java/java-how-to-send-email/](https://mkyong.com/java/java-how-to-send-email/)
 - [JavaMail API](https://javaee.github.io/javamail/)
-
-
-
-## Ports
-
-- Port 465 and 587 should be used to send email to your own external email server.
-- Port 25 should be used to send through PLATFORM_SMTP_HOST. (this is the default in most mailers).
-
-We proxy your emails through our own smtp host, and encrypt them over port 465 before sending them through to the outside world.
