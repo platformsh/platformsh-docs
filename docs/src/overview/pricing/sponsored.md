@@ -43,4 +43,6 @@ Sponsored projects will receive the same level of support as any other self-serv
 
 ## Contact
 
-If you are an eligible Free Software project or community group, {{< devrel-drift >}} and let us know that you are interested.
+If you are an eligible Free Software project or community group, contact the DevRel team with the form below and let us know that you are interested.
+
+{{< devrel-sponsored-sites-form >}}
