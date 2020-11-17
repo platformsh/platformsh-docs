@@ -29,6 +29,6 @@ If a service stores persistent data then it will also have a `disk` key, which s
 
 ## Application container: `.platform.app.yaml`
 
-{{< guides/config-app template="drupal9" >}}
+{{< guides/config-app template="drupal9" >}}{{< /guides/config-app >}}
 
 {{< guide-buttons next="Customize Drupal9" >}}

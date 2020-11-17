@@ -67,7 +67,7 @@ baseVariants:
     condition: 'applicationContext == "Development/local"'
   -
     base: '%env(PLATFORM_ROUTES_MAIN)%'
-    condition: 'applicationContext == "Production/local"'
+    condition: 'applicationContext == "Production"'
 ```
 
 {{< /note >}}
