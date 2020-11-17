@@ -59,7 +59,7 @@ https://{default}/:
       "/frameworks/typo3.html": { "to": "/guides/typo3/deloy.html", "code": 301, "prefix": false }
       "/frameworks/typo3/faq.html": { "to": "/guides/typo3/deploy/next-steps.html", "code": 301, "prefix": false }
       # PR 1602
-      "/frameworks/wordpress.html": { "to": "/guides/wordpress/deloy.html", "code": 301, "prefix": false }
+      "/frameworks/wordpress.html": { "to": "/guides/wordpress/deploy.html", "code": 301, "prefix": false }
       "/frameworks/wordpress/redis.html": { "to": "/guides/wordpress/redis.html", "code": 301, "prefix": false }
 
 "https://www.{default}/":
