@@ -167,3 +167,11 @@ The "Configuration" tab provides an overview of the service configuration that h
 ![Service tab - Routes](/images/management-console/service-tab/routes.png "0.7")
 
 Each route will appear when you select the Routes tab on the left and describe its type and whether caching and SSI have been enabled for it.
+
+## Display settings
+
+You are able to personalize the accessibility display settings for the management console, which can be updated on the first page of your account settings. Your account can be presented in one of three ways:
+
+* Light mode (default)
+* High contrast mode
+* Dark mode
