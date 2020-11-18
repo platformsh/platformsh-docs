@@ -10,9 +10,9 @@ description: |
 
 Quarkus provides two ways of accessing Elasticsearch: via the lower level `RestClient` or via the `RestHighLevelClient` we will call them the low level and the high level clients.
 
-To move your Quarkus application with Elasticsearch to Platform.sh, it needs to change two configurations files, if you compare it with [a Quarkus project from scratch](_index.md).
+To activate Elasticsearch and then have it accessed by the Quarkus application already in Platform.sh, it is necessary to modify two files. [There is also instruction in case it is necessary to move an application from scratch](_index.md).
 
-* The services to include Elasticsearch.
+* The first file is the services, where it will include Elasticsearch as a service.
 
   ```yaml
   searchelastic:
@@ -20,7 +20,7 @@ To move your Quarkus application with Elasticsearch to Platform.sh, it needs to 
     disk: 1024
   ```
 
-* The application container file adds the relationship between the services to grant access between the application and the service.
+* The second and last file is to grant access to the service to the application; otherwise, it won't access it.
 
 ```yaml
 name: app
