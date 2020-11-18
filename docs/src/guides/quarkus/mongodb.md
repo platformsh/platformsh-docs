@@ -10,9 +10,9 @@ description: |
 
 MongoDB with Panache provides active record style entities (and repositories) like you have in [Hibernate ORM with Panache](https://quarkus.io/guides/hibernate-orm-panache) and focuses on making your entities trivial and fun to write in Quarkus.
 
-To move your Quarkus application with Panache MongoDB to Platform.sh, it needs to change two configurations files, if you compare it with [a Quarkus project from scratch](_index.md).
+To activate MongoDB and then have it accessed by the Quarkus application already in Platform.sh, it is necessary to modify two files. [There is also instruction in case it is necessary to move an application from scratch](_index.md).
 
-* The services to include MongoDB.
+* The first file is the services, where it will include MongoDB as a service.
 
   ```yaml
   mongodb:
@@ -20,7 +20,7 @@ To move your Quarkus application with Panache MongoDB to Platform.sh, it needs t
     disk: 1024
   ```
 
-* The application container file adds the relationship between the services to grant access between the application and the service.
+* The second and last file is to grant access to the service to the application; otherwise, it won't access it.
 
 ```yaml
 name: app
