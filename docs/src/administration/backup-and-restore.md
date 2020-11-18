@@ -7,7 +7,7 @@ description: |
 
 {{< description >}}
 
-Code is managed through Git and can be restored using normal Git routines.  The built code file system is not affected by backups or restores.
+Code is managed through Git and can be restored using normal Git routines. The built code file system is not affected by backups or restores.
 
 ## Backups
 
