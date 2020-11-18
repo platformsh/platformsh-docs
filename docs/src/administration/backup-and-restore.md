@@ -7,7 +7,7 @@ description: |
 
 {{< description >}}
 
-Code is managed through Git and can be restored using normal Git routines.  The built code file system is not affected by backups or restores.
+Code is managed through Git and can be restored using normal Git routines. The built code file system is not affected by backups or restores.
 
 ## Backups
 
@@ -47,6 +47,10 @@ Finding backups for the environment master
 | 2015-05-20 13:31:57 | 100        | c1f2c976263bec03a10e |
 | 2015-05-19 14:51:18 | 100        | 71051a8fe6ef78bca0eb |
 ```
+
+{{< note >}}
+The list of backups retrieved from the API, and therefore from the CLI and management console, represents a list of recent completed backup *activities*, rather than a list of those available for restoration. In most cases when creating regular backups the list should match up as expected, but depending on their age some backups may no longer be available as per our [data retention policy](https://docs.platform.sh/administration/backup-and-restore.html#restore). As a rule, backup often and use the most recent in your restores.
+{{< /note >}}
 
 You can then restore a specific backup with the CLI as follows:
 
