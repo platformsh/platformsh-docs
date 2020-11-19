@@ -15,45 +15,7 @@ Quarkus is, in its own words, a cloud-native, (Linux) container-first framework 
 [Quarkus has a vast guide](https://quarkus.io/guides/), where you can take advantage and learn the complete resources from there.
 {{< /note >}}
 
-
-
-## Hello World Quarkus
-
-
-
-You'll start with the basics, where we'll create a Quarkus application from scratch and then move it to Platform.sh. There two ways to make a Quarkus application:
-
-
-
-1. [Maven Archetype](https://quarkus.io/guides/getting-started): where you can create your first project from a terminal using Maven. E.g.:
-
-    ```
-     mvn io.quarkus:quarkus-maven-plugin:1.9.2.Final:create \
-         -DprojectGroupId=org.acme \
-         -DprojectArtifactId=getting-started \
-         -DclassName="org.acme.getting.started.GreetingResource" \
-         -Dpath="/hello"
-    ```
-
-     
-
-2. [The start code link](https://code.quarkus.io/): A UI interface that helps you bootstrap your Quarkus application and discover its extension ecosystem.
-
-Quarkus requires Apache Maven 3.6.2 or higher to run the application, but even if your machine does not have the generated project brings a Maven Wrapper with the Maven version that it needs to run. So you can package and run this application from this [Maven Wrapper](https://www.baeldung.com/maven-wrapper).
-
-```shell
- ./mvnw package
-```
-
-You've finished the application, and it is ready to run. Be prepared to see how fast this application starts.
-
-```java
-java -jar target/file.jar
-```
-
-## Configure Quarkus for Platform.sh
-
-Congratulations, you have your first Quarkus application running locally. This topic will review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Quarkus.
+This topic will review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Quarkus.
 
 To move your application to the cloud, briefly, you need three files: 
 
@@ -102,13 +64,11 @@ To check the Garbage collector settings, please, check the [Java Performance tun
 
 The `services.yaml` file lists the pre-packaged services you need for your application to run. You pick the major version of the service, and Platform.sh updates the patch version periodically so that you always get the newest version when you deploy.
 
-When your application needs a service, you'll need to append in this services file and then set the [relationship](configuration/app/relationships.md) attribute in the application container file. The attribute is safety reasons. By default, the access is revoked and needs to grand between application and services and between application and application (in the microservices age).
-
-We'll explain the credential configuration to its respective page later.
+When a application needs a service, it will need to append in this services file and then set the [relationship](configuration/app/relationships.md) attribute in the application container file. The attribute is safety reasons. By default, the access is revoked and needs to grand between application and services and between application and application (in the microservices age).
 
 ### Requests configuration:`routes.yaml`
 
-This file defines its application will be public and the URL. In the sample below, we'll expose an application with the name `app`. 
+This file defines its application will be public and the URL. In the sample below, it will expose an application with the name `app`. 
 
 ```yaml
 "https://{default}/":
@@ -129,8 +89,6 @@ The application is now ready, so it’s time to move it to the cloud with Platfo
 
 {{< note title="Tip">}}
 
-You have the option to either integrate to [GitHub](integrations/source/github.md), [GitLab](integrations/source/gitlab.md), or Platform.sh will provide to you. 
+There is the option to either integrate to [GitHub](integrations/source/github.md), [GitLab](integrations/source/gitlab.md).
 
 {{< /note >}}
-
-Done! We have a simple and nice [Quarkus application ready to go to the cloud](https://github.com/platformsh-templates/quarkus).
