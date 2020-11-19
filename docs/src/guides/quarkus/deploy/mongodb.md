@@ -33,21 +33,24 @@ relationships:
     mongodb: 'mongodb:mongodb'
 web:
     commands:
-        start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT target/file.jar
+        start: java -jar $JAVA_OPTS -Dquarkus.http.port=$PORT target/file.jar
 ```
 
-To simplify the application file, we'll use [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. That is the right choice because you don't need to change the application file, only the environment file.
+To simplify the application file, there is [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. This way,  it does not need to change the application file, only the environment file.
 
 ```properties
 export MONGO_PORT=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].port"`
 export MONGO_HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].host"`
-export MONGO_ADDRESS="${MONGO_HOST}:${MONGO_PORT}"
-export MONGO_PASSWORD=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].password"`
-export MONGO_USER=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].username"`
-export MONGO_DATABASE=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].path"`
-export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
-export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
-export CREDENTIAL="-Dquarkus.mongodb.hosts=$MONGO_ADDRESS -Dquarkus.mongodb.credentials.username=$MONGO_USER -Dquarkus.mongodb.credentials.password=$MONGO_PASSWORD -Dquarkus.mongodb.database=$MONGO_DATABASE"
+export QUARKUS_MONGODB_HOSTS="${MONGO_HOST}:${MONGO_PORT}"
+export QUARKUS_MONGODB_CREDENTIALS.PASSWORD=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].password"`
+export QUARKUS_MONGODB_CREDENTIALS.USERNAME=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].username"`
+export QUARKUS_MONGODB_DATABASE=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].path"`
+export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
+{{< note title="Tip">}}
+Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#default-configsources)
+{{< /note >}}
+
 Commit that code and push. The application is ready and connected to a MongoDB instance.
+

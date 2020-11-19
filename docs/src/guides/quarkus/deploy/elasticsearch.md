@@ -28,22 +28,22 @@ type: "java:11"
 disk: 1024
 hooks:
     build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
-
 relationships:
     search: "searchelastic:elasticsearch"
 web:
     commands:
-        start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT target/file.jar
+        start: java -jar $JAVA_OPTS -Dquarkus.http.port=$PORT target/file.jar
 ```
 
-To simplify the application file, we'll use [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. That is the right choice because you don't need to change the application file, only the environment file.
+To simplify the application file, there is [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. This way,  it does not need to change the application file, only the environment file.
 
 ```properties
 export ES_HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".search[0].host"`
 export ES_PORT=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".search[0].port"`
-export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
-export CREDENTIAL="-Dquarkus.hibernate-search.elasticsearch.hosts=${ES_HOST}:${ES_PORT}"
+export QUARKUS_HIBERNATE_SEARCH_ELASTICSEARCH_HOSTS=${ES_HOST}:${ES_PORT}
+export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
-
+{{< note title="Tip">}}
+Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#default-configsources)
+{{< /note >}}
 Commit that code and push. The application is ready and connected to a Elasticsearch instance.
-

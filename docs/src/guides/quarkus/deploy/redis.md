@@ -31,18 +31,16 @@ relationships:
     redis:  "data:redis"
 web:
     commands:
-        start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT target/file.jar
+        start: java -jar $JAVA_OPTS -Dquarkus.http.port=$PORT target/file.jar
 ```
 
-To simplify the application file, we'll use [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. That is the right choice because you don't need to change the application file, only the environment file.
+To simplify the application file, there is [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. This way,  it does not need to change the application file, only the environment file.
 
 ```properties
 export REDIS_HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".redis[0].host"`
 export REDIS_PORT=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".redis[0].port"`
-export REDIS=redis://${REDIS_HOST}:${REDIS_PORT}
-export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
-export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
-export CREDENTIAL="-Dquarkus.redis.hosts=$REDIS"
+export QUARKUS_REDIS_HOSTS=redis://${REDIS_HOST}:${REDIS_PORT}
+export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
 Commit that code and push. The application is ready and connected to a Redis instance.
