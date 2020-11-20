@@ -33,7 +33,7 @@ relationships:
     mongodb: 'mongodb:mongodb'
 web:
     commands:
-        start: java -jar $JAVA_OPTS -Dquarkus.http.port=$PORT target/file.jar
+        start: java -jar $JAVA_OPTS target/file.jar
 ```
 
 To simplify the application file, there is [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. This way,  it does not need to change the application file, only the environment file.
@@ -45,6 +45,7 @@ export QUARKUS_MONGODB_HOSTS="${MONGO_HOST}:${MONGO_PORT}"
 export QUARKUS_MONGODB_CREDENTIALS.PASSWORD=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].password"`
 export QUARKUS_MONGODB_CREDENTIALS.USERNAME=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].username"`
 export QUARKUS_MONGODB_DATABASE=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodb[0].path"`
+export QUARKUS_HTTP_PORT=$PORT
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 

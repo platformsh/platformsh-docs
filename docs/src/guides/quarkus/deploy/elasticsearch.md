@@ -32,7 +32,7 @@ relationships:
     search: "searchelastic:elasticsearch"
 web:
     commands:
-        start: java -jar $JAVA_OPTS -Dquarkus.http.port=$PORT target/file.jar
+        start: java -jar $JAVA_OPTS target/file.jar
 ```
 
 To simplify the application file, there is [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. This way,  it does not need to change the application file, only the environment file.
@@ -41,6 +41,7 @@ To simplify the application file, there is [Shell variables](https://docs.platfo
 export ES_HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".search[0].host"`
 export ES_PORT=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".search[0].port"`
 export QUARKUS_HIBERNATE_SEARCH_ELASTICSEARCH_HOSTS=${ES_HOST}:${ES_PORT}
+export QUARKUS_HTTP_PORT=$PORT
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 {{< note title="Tip">}}
