@@ -20,13 +20,6 @@ This guide assumes you are using the well-supported Quarkus. Going through the s
 
 {{< guides/signup name="Quarkus" template="quarkus" >}}
 
-```bash
-$ composer create-project drupal/core-recommended <PROJECT_NAME>
-$ cd <PROJECT_NAME>
-$ git init
-$ git add . && git commit -m "Init Quarkus from upstream."
-```
-
 {{< /guides/signup >}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}
