@@ -31,7 +31,7 @@ You will need to enable the PHP Memcached extension.  In your `.platform.app.yam
 ```yaml
 runtime:
     extensions:
-        - memcached
+        - redis
 ```
 
 ### Add the Drupal module
