@@ -49,8 +49,6 @@ This domain is already claimed by another project. If this is incorrect or you a
 
 is related to Platform.sh's [subdomain highjacking prevention](/domains/steps/subdomains.md#subdomain-hijacking-protection) assumptions, and likely occurred during an attempt to assign subdomains across multiple projects. Consult the documentation linked above for instructions for how to modify your DNS records to bypass some those assumptions regarding project domain ownership. 
 
-The above error will occur 
-
 ## Error provisioning the new certificate
 
 One reason [Let's Encrypt certificates](/configuration/routes/https.md#lets-encrypt) may fail to provision on your environments has to do with the 64 character limit Let's Encrypt places on URLs. If the names of your branches are too long, the Platform.sh generated environment URL will go over this limit, and the certificate will be rejected.
