@@ -39,6 +39,18 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 * A PHP process is crashing because of a segmentation fault (see below).
 * A PHP process is killed by the kernel out-of-memory killer (see below).
 
+## Claimed domains
+
+The error 
+
+```text
+This domain is already claimed by another project. If this is incorrect or you are trying to add a subdomain, please open a ticket with support.
+``` 
+
+is related to Platform.sh's [subdomain highjacking prevention](/domains/steps/subdomains.md#subdomain-hijacking-protection) assumptions, and likely occurred during an attempt to assign subdomains across multiple projects. Consult the documentation linked above for instructions for how to modify your DNS records to bypass some those assumptions regarding project domain ownership. 
+
+The above error will occur 
+
 ## Error provisioning the new certificate
 
 One reason [Let's Encrypt certificates](/configuration/routes/https.md#lets-encrypt) may fail to provision on your environments has to do with the 64 character limit Let's Encrypt places on URLs. If the names of your branches are too long, the Platform.sh generated environment URL will go over this limit, and the certificate will be rejected.
