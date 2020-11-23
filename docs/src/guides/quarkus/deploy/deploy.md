@@ -49,8 +49,7 @@ Simply explaining the file line by line, we have the following settings.
 To simplify the application file, we'll use [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. That is the right choice because you don't need to change the application file, only the environment file.
 
 ```shell
-export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
-export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
+export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
 Thanks to the [Eclipse MicroProfile Configurations](https://github.com/eclipse/microprofile-config), it is possible to overwrite the configurations without impact the application itself. Therefore, you can have a local configuration in the properties file and then overwrite in the cloud with Platform.sh.
@@ -79,16 +78,3 @@ This file defines its application will be public and the URL. In the sample belo
   type: redirect
   to: "https://{default}/"
 ```
-
-The application is now ready, so it’s time to move it to the cloud with Platform.sh using the [following steps](https://docs.platform.sh/gettingstarted/first-project.html):
-
-- Create a new [free trial account](gettingstarted/introduction/template/create-project.md).
-- Sign up with a new user and password, or login using a current GitHub, Bitbucket, or Google account. If you use a third-party login, you’ll be able to set a password for your Platform.sh account later.
-- Select the region of the world where your site should live.
-- Select the `Create empty project` option
-
-{{< note title="Tip">}}
-
-There is the option to either integrate to [GitHub](integrations/source/github.md), [GitLab](integrations/source/gitlab.md).
-
-{{< /note >}}
