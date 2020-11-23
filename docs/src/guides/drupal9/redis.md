@@ -26,12 +26,12 @@ Now add a relationship in your `.platform.app.yaml` file:
 
 ### Add the Redis PHP extension
 
-You will need to enable the PHP Memcached extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
+You will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
 
 ```yaml
 runtime:
     extensions:
-        - memcached
+        - redis
 ```
 
 ### Add the Drupal module
