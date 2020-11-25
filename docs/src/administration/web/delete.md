@@ -12,6 +12,8 @@ To delete a Platform.sh project, including all data, code, and active environmen
 * Hover the gear icon on the project and select "Delete".
 * Confirm your intent to delete the project.
 
+Please note that currently only the owner of a project can delete it.
+
 You will only be billed for the portion of a month during which the project was active.  If you delete a project part way through the month the cost of the project will be prorated accordingly.
 
 A user account with no projects associated with it will have no charges.
