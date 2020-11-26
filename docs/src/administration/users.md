@@ -3,7 +3,7 @@ title: "User administration"
 weight: 1
 sidebarTitle: "Users"
 description: |
-  Every Platform.sh user has a role which controls access and improves security on your project. Different roles are authorized to do different things with your applications, environments and users. You can use your collection of Roles to manage how users interact with Platform.sh.
+  Every Platform.sh user has a role that controls access and improves security on your project. Different roles are authorized to do different things with your applications, environments and users. You can use your collection of Roles to manage how users interact with Platform.sh.
 ---
 
 {{< description >}}
@@ -14,10 +14,10 @@ Any user added to a project or an environment on Platform.sh will need to [regis
 
 At the project level:
 
-* **Project Administrator** - A project administrator can change settings and execute actions on any environment.
+* **Project Administrator** - A project administrator can change settings and execute actions in any environment.
 * **Project Viewer** - A project reader can view all environments within a project but cannot execute any actions on them.
 
-A Project Reader can have a specific role on different environments. At the environment level:
+A Project Reader can have a specific role in different environments. At the environment level:
 
 * **Environment Administrator** - An environment administrator can change settings and execute actions on this environment.
 * **Environment Contributor** - An environment contributor can push code to this environment and branch the environment.
@@ -26,7 +26,7 @@ A Project Reader can have a specific role on different environments. At the envi
 {{< note theme="warning" title="Important" >}}
 After a user is added to (or deleted from) an environment, it will be automatically redeployed, after which the new permissions will be fully updated.
 
-When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger a redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
+When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
 {{< /note >}}
 
 ------------------------------------------------------------------------
@@ -87,7 +87,7 @@ Remember the user will only be able to access the environment once it has been r
 
 ## Manage users with the CLI
 
-You can user the Platform.sh command line client to fully manage your users and integrate this with any other automated system.
+You can use the Platform.sh command line client to fully manage your users and integrate this with any other automated system.
 
 Available commands:
 
