@@ -17,7 +17,7 @@ At the project level:
 * **Project Administrator** - A project administrator can change settings and execute actions in any environment.
 * **Project Viewer** - A project reader can view all environments within a project but cannot execute any actions on them.
 
-A Project Reader can have a specific role in different environments. At the environment level:
+A Project Viewer can have a specific role in different environments. At the environment level:
 
 * **Environment Administrator** - An environment administrator can change settings and execute actions on this environment.
 * **Environment Contributor** - An environment contributor can push code to this environment and branch the environment.
