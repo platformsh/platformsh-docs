@@ -116,4 +116,4 @@ We offer three tiers for agencies with many perks.
 
 [Learn more and join today...](https://platform.sh/solutions/agency)
 
-If you have any questions don't hesitate to [contact our sales department](https://platform.sh/contact/).
+If you have any questions, don't hesitate to [contact our sales department](https://platform.sh/contact/).
