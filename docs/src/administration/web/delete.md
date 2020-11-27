@@ -14,7 +14,7 @@ To delete a Platform.sh project, including all data, code, and active environmen
 
 {{< note >}}
 Only the "Owner" of a project has the ability to delete that project. 
-{{< /note> }}
+{{< /note >}}
 
 You will only be billed for the portion of a month during which the project was active.  If you delete a project part way through the month the cost of the project will be prorated accordingly.
 
