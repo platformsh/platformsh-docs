@@ -68,7 +68,7 @@ Activity logs are available through their own CLI command, `platform integration
 
 See the [activity log](/integrations/overview.md#debugging-integrations) documentation for further details.
 
-To get more readable output of a variable you're trying to debug, you can make `JSON.stringify` use human-friendly formatting.
+To get a more readable output of a variable you're trying to debug, you can make `JSON.stringify` use human-friendly formatting.
 
 ```javascript
 console.log(JSON.stringify(project, null, 2));
@@ -120,7 +120,7 @@ Several of the utility functions below work by pulling out common portions of th
 
 ### `project`
 
-The `project` global variable includes information about the project subscription itself.  That includes its ID and name, how many users are associated with the project, it's SSH public key, and various other values.  An example of this object is below:
+The `project` global variable includes information about the project subscription itself.  That includes its ID and name, how many users are associated with the project, it's SSH public key and various other values.  An example of this object is below:
 
 ```json
 {
@@ -158,7 +158,7 @@ The `project` global variable includes information about the project subscriptio
 
 ### Storage API
 
-Activity scripts have access to a limited key/value storage API to persist values from one execution to another.  The API is similar to the Javscript `LocalStorage` API.
+Activity scripts have access to a limited key/value storage API to persist values from one execution to another.  The API is similar to the Javascript `LocalStorage` API.
 
 ```javascript
 // Access the storage API.  It is not pre-required.
