@@ -156,7 +156,7 @@ This is the complete list of official Elasticsearch plugins that can be enabled:
 
 ### Plugins removal
 
-Removing plugins previously added in your `services.yaml` file will not automatically deinstall them from your Elasticsearch instances, this may sound counter intuitive, but it's on purpose and the rationale with it is that deinstalling a plugin usually require carefull toughts about potential data-loss/corruption and almost certainly the need for re-indexing.
+Removing plugins previously added in your `services.yaml` file will not automatically deinstall them from your Elasticsearch instances.  This is deliberate, as removing a plugin may result in data loss or corruption of existing data that relied on that plugin.  Removing a plugin will usually require reindexing.
 
 If you wish to permanently remove a previously-enabled plugin, you will need to follow the "Upgrading" procedure below to create a new instance of Elasticsearch and migrate to it.  In most cases that is not necessary, however, as an unused plugin has no appreciable impact on the server.
 
