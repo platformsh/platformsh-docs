@@ -158,6 +158,10 @@ This is the complete list of official Elasticsearch plugins that can be enabled:
 
 Removing plugins previously added in your `services.yaml` file will not automatically deinstall them from your Elasticsearch instances, this may sound counter intuitive, but it's on purpose and the rationale with it is that deinstalling a plugin usually require carefull toughts about potential data-loss/corruption and almost certainly the need for re-indexing.
 
+If you have to remove a previously installed plugin for good, the recommended way is:
+1. Rename the service
+2. Reindex your data
+
 ## Upgrading
 
 The Elasticsearch data format sometimes changes between versions in incompatible ways.  Elasticsearch does not include a data upgrade mechanism as it is expected that all indexes can be regenerated from stable data if needed.  To upgrade (or downgrade) Elasticsearch you will need to use a new service from scratch.
