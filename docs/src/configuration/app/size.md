@@ -20,6 +20,10 @@ If the total resources requested by all apps and services is larger than what th
 
 Note that in a development environment this value is ignored.  Service containers are always set to size `S` in development environments.  The application container is always set to the "Development Application Size" as configured on the plan.  That defaults to `S` but you can increase it on your plan settings page for a fee.
 
+## How to modify my Platform.sh project plan and its resources
+
+Please consult [this community article](https://community.platform.sh/t/how-to-modify-my-platform-sh-project-plan-and-its-resources/130) on that subject.
+
 ## How do I make a background processing container smaller to save resources?
 
 Simply set the `size` key to `S` to ensure that the container gets fewer resources, leaving more to be allocated to other containers.
