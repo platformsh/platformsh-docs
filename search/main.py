@@ -11,7 +11,7 @@ class Search:
             "key": None,
             "port": 7700
         }
-        
+
         self.scrape_dir = "output"
         self.scrape_config = "config/scrape.json"
         self.docs_index = "docs"
@@ -22,7 +22,7 @@ class Search:
 
         # Data available to the dropdown React app in docs, used to fill out autocomplete results.
         self.displayed_attributes = ['title', 'text', 'url', 'site', 'section']
-        # Data actually searchable by our queries. 
+        # Data actually searchable by our queries.
         self.searchable_attributes = ['title', 'text', 'section']
 
         # Show results for one query with the listed pages, when they by default would not show up as best results. Note: these
@@ -38,7 +38,9 @@ class Search:
             "applications.yaml": ["application", "multi-app"],
             "multi-app": ["applications.yaml"],
             "regions": ["public ip addresses"],
-            "public ip addresses": ["regions"]
+            "public ip addresses": ["regions"],
+            "ssl": ["https", "tls"],
+            "https": ["ssl"],
         }
 
         # Ranking rules:
@@ -62,7 +64,7 @@ class Search:
         }
 
         self.distinct_attribute = "url"
-    
+
     def getConnectionString(self):
         """
         Sets the Meilisearch host string, depending on the environment.
@@ -86,7 +88,7 @@ class Search:
             return os.environ["MEILI_MASTER_KEY"]
         else:
             return self.default["key"]
-    
+
     def add_documents(self, index):
         """
         Cycle through the individual site indexes in /outputs so their individual documents can be added to Meilisearch.
@@ -97,12 +99,12 @@ class Search:
 
     def add(self, doc, index):
         """
-        Add an individual site's index to the Meilisearch service. 
+        Add an individual site's index to the Meilisearch service.
         """
         with open(doc) as scraped_index:
             data = json.load(scraped_index)
             index.add_documents(data)
-    
+
     def update(self):
         """
         Updates the Meilisearch index.
