@@ -56,15 +56,18 @@ appyaml:
   - nodejs
   - typo3
   - wordpress-composer
+  - quarkus
 servicesyaml:
   - language-examples
   - drupal9
   - typo3
   - wordpress-composer
+  - quarkus
 routesyaml:
   - php
   - drupal9
   - typo3
   - wordpress-composer
+  - quarkus
 docsappyaml:
   - platformsh-docs
