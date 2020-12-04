@@ -43,7 +43,7 @@ It serves as a wrapper that allows you to run console commands from within the c
 eZ Launchpad's approach is to stay as decoupled as possible from your development machine and your remote hosting whether you are Linux or Mac OSX. To install run:
 
 ```bash
-curl -LSs https://ezsystems.github.io/launchpad/install_curl.bash | bash
+curl -fLSs https://ezsystems.github.io/launchpad/install_curl.bash | bash
 ```
 
 Then you can start to use it to initialize your Ibexa DXP project on top Docker.
