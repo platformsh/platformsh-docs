@@ -1,7 +1,6 @@
 ---
-title: "WordPress without Composer on Platform.sh"
+title: "Example: WooCommerce"
 weight: 2
-sidebarTitle: "Not using Composer"
 description: |
     Everything you need to get started with WordPress on Platform.sh. 
 ---

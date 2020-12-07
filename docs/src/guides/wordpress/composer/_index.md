@@ -1,6 +1,6 @@
 ---
 title: "Using Composer with WordPress: the how and why"
-weight: 1
+weight: -100
 sidebarTitle: "Using Composer"
 description: |
     Everything you need to get started with WordPress on Platform.sh. 
@@ -8,7 +8,19 @@ description: |
 
 ## Why use Composer
 
-It's not at all uncommon for WordPress developers and users to fully commit their WordPress sites 
+It's not at all uncommon for WordPress developers to fully commit their WordPress sites, or to expect that they will be able to install modules and themes from within the admin panel at runtime. Platform.sh recommends neither of these, but instead that your WordPress sites should be managed with Composer on a read-only file system at runtime. There are specific reasons for these assumptions, mostly due to the restrictions Platform.sh makes about your running application, but they are good reasons addressed in detail below. 
+
+Ultimately, it is best that your Wordpress site managed with Composer
+
+- Downloads WordPress core on the fly, rather than committing it. 
+- Downloads WordPress themes and plugins during the build process, allowing you to *enable* them at runtime but not install new ones without additional commits. 
+
+## Advantages of using Composer
+
+- explicitly declared dependencies
+- Composer takes care of both installation and updates
+- Project is never locked into specific versions
+- No third-party code needs to be included in your repository (without this, you either have to commit everything or use Git submodules)
 
 ### Adding plugins & themes: Platform.sh limitations and commit histories
 
@@ -30,4 +42,4 @@ Aside from trying to install plugins and themes
 
 ## How to update your WordPress site to use Composer
 
-Lorem ipsum
+In this short guide it is assummed that you already have (locally) a *vanilla* version of WordPress, where all of core, themes and plugins are committed to the repository (the [Not using Composer](/guides/wordpress/composer/vanilla.md) guide and corresponding [template](https://github.com/platformsh-templates/wordpress-vanilla)).
