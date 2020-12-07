@@ -17,7 +17,7 @@ If you need other versions, take a look at our [options for installing them with
 
 ## Deprecated versions
 
-Some versions with a minor (such as 8.9) are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+Some versions with a minor (such as 8.9) are available but are not receiving security updates from upstream, so their use is not recommended.
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
