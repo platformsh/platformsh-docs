@@ -1,0 +1,8 @@
+<p><a href="https://github.com/lando/lando" target="_blank" rel="noopener">Lando</a> is Platform.sh&rsquo;s recommended local development tool. Lando can read your Platform.sh configuration files for Wordpress and produce an approximately equivalent configuration using Docker with minimal effort. See the <a href="https://docs.lando.dev/config/platformsh.html" target="_blank" rel="noopener">Lando documentation</a> for installing and setting up Lando on your system.</p>
+<p>Templates come configured for use already with a base <a href="https://docs.lando.dev/config/lando.html" target="_blank" rel="noopener">Landofile</a> shown below, which can be helpful getting started with Lando without the need to have a project on Platform.sh. This file sets up good defaults for Lando and Platform.sh-configured codebases, most notably through the <code>recipe</code> attribute.</p>
+
+{{ $dataJ := getJSON "https://api.github.com/repos/"  (.Get "repo")  "/contents/"  ".lando.upstream.yml"  }}
+{{ $con := base64Decode $dataJ.content }}
+{{ highlight $con "yaml" (.Get "options") }}
+
+<p>{{ .Inner }}</p>

@@ -2,7 +2,6 @@
 title: "Additional resources"
 sidebarTitle: "Next steps"
 weight: -70
-toc: false
 description: |
     Upgrading, adding modules, and further development of your site.
 ---
@@ -68,5 +67,13 @@ Your WordPress site is fully managed by Composer, which means so are updates to 
 The [Composer documentation](https://getcomposer.org/doc/) has more information on options to update individual modules or perform other tasks.
 
 Note that updating modules or core through the WordPress UI is not possible, as the file system is read-only.  All updates should be done through Composer to update the lock file, and then push to Git.
+
+## Local development with Lando
+
+{{< guides/lando repo="platformsh-templates/wordpress-composer" >}}
+
+This Landofile is also the place where you can configure access to tools that would normally be available within a Platform.sh app container (such as the WordPress CLI), that you would also want access to locally. 
+
+{{< /guides/lando >}}
 
 {{< guide-buttons type="last" >}}

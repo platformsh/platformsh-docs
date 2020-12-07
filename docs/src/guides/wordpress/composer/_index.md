@@ -1,6 +1,7 @@
 ---
 title: "Using Composer with WordPress: the how and why"
 weight: -100
+layout: single
 sidebarTitle: "Using Composer"
 description: |
     Everything you need to get started with WordPress on Platform.sh. 
