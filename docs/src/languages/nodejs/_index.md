@@ -40,7 +40,7 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
    ```yaml
    dependencies:
      nodejs:
-       pm2: "^2.5.0"
+       pm2: "^4.5.0"
    ```
 
    These are the global dependencies of your project (the ones you would have installed with `npm install -g`). Here we specify the `pm2` process manager that will allow us to run the node process.
@@ -83,7 +83,6 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
      build: |
        npm install
        npm run build
-       bower install
    ```
 
 6. Setup the routes to your Node.js application in `.platform/routes.yaml`.
@@ -101,14 +100,14 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
      flavor: none
    ```
 
-   Consult the documentation specific to [Node.js builds](/configuration/app/build.html#nodejs-default-by-default) for more information.
+   Consult the documentation specific to [Node.js builds](/configuration/app/build.html#nodejs-npm-by-default) for more information.
 
 
 Here's a complete example that also serves static assets (.png from the `/public` directory):
 
 ```yaml
 name: node
-type: nodejs:12
+type: nodejs:14
 
 web:
   commands:
@@ -126,7 +125,7 @@ web:
           expires: -1
 dependencies:
   nodejs:
-    pm2: "^2.5.0"
+    pm2: "^4.5.0"
 mounts:
    run:
        source: local
@@ -146,8 +145,8 @@ const http = require('http');
 const config = require('platformsh-config').config();
 
 const server = http.createServer(function (request, response) {
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.end("<html><head><title>Hello Node.js</title></head><body><h1><img src='public/js.png'>Hello Node.js</h1><h3>Platform configuration:</h3><pre>"+JSON.stringify(config, null, 4) + "</pre></body></html>");
+  response.writeHead(200, {"Content-Type": "application/json"});
+  response.end(JSON.stringify(config));
 });
 
 server.listen(config.port);

@@ -7,10 +7,10 @@ import SuggestionsPrimary from 'components/SuggestionsPrimary'
 let config = {}
 const request = async () => {
   // Primary configuration occurs here, which allows the Search bar in docs to communicate with the Meilisearch service.
-  // The `config.json` file does not exist at build time, but is built later during the deploy hook when the `search` 
-  // container becomes available. Webpack isn't a fan of reading from `config-reader-nodejs` or environment variables 
+  // The `config.json` file does not exist at build time, but is built later during the deploy hook when the `search`
+  // container becomes available. Webpack isn't a fan of reading from `config-reader-nodejs` or environment variables
   // here if they are not yet set, but a file works just fine. The mount `public/scripts/xss/dist/config` has been defined
-  // to support this. 
+  // to support this.
     const response = await fetch("/scripts/xss/dist/config/config.json");
     config = await response.json();
 }
@@ -93,6 +93,7 @@ class Search extends Component {
           ref={input => this.search = input}
           onChange={this.handleInputChange}
           className="searchinput"
+          autoComplete="off"
         />
         <input
           type="submit"

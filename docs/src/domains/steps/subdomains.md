@@ -13,7 +13,7 @@ To enable multiple projects to use subdomains of the same domain, you must add a
 
 The record should look like the following:
 
-```
+```text
 _public-suffix-root.example.com TXT "public-suffix-root=example.com"
 ```
 
@@ -41,7 +41,7 @@ To limit what domains get reserved, Platform.sh supports a small extension to th
 
 That is, adding the following DNS record:
 
-```
+```text
 _public-suffix-root.example.com TXT "public-suffix-root=example.com"
 ```
 

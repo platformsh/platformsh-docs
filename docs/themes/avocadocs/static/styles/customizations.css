@@ -96,7 +96,8 @@ pre {
 code {
   color: var(--brand-color-primary-blue);
   background-color: var(--primary);
-  padding: .25rem;
+  padding: 0 .25rem;
+  display: inline-block;
 }
 
 .chroma {

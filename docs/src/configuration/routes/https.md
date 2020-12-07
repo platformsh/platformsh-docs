@@ -73,19 +73,15 @@ https://{default}/:
 
 ### `min_version`
 
-{{< note >}}
-This directive was put into place when Platform.sh supported older versions of TLS for customers.
-Currently only TLS v1.2 is supported. Support for TLS v1.3 will be added in the near future.
-{{< /note >}}
-
 Setting a minimum version of TLS will cause the server to automatically reject any connections using an older version of TLS.  Rejecting older versions with known security vulnerabilities is necessary for some security compliance processes.
 
 ```yaml
 tls:
-    min_version: TLSv1.2
+    min_version: TLSv1.3
 ```
 
-The above configuration will result in requests using older TLS versions to be rejected.  Legal values are `TLSv1.2` and `TLSv1.3`.
+The above configuration will result in requests using older TLS versions to be rejected. Legal values are `TLSv1.2` and `TLSv1.3`.
+TLS versions older than 1.2 are not supported by Platform.sh and will be rejected regardless of the setting here.
 
 Note that if multiple routes for the same domain have different `min_version`s specified, the highest specified will be used for the whole domain.
 
@@ -149,13 +145,12 @@ tls:
 
 If the Let's Encrypt certificate is due to expire in less than one month then it will be renewed automatically during a deployment.  That makes it feasible to set up regular auto-renewal of the Let's Encrypt certificate.  The caveat is that, like any deploy, there is a very brief downtime (a few seconds, usually) so it's best to do during off-hours.
 
-You will first need to install the CLI in your application container.  See the section on [API tokens](/development/cli/api-tokens.md) for instructions on how to do so.
 
 {{< note >}}
 Automated SSL certificate renewal using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
 {{< /note >}}
 
-Once the CLI is installed in your application container and an API token configured you can add a cron task to run twice a month to trigger a redeploy. For example:
+Once the CLI is installed in your application container and an API token configured, you can add a cron task to run twice a month to trigger a redeploy. For example:
 
 ```yaml
 crons:
@@ -174,7 +169,7 @@ The above cron task will run on the 1st and 15th of the month at 10 am (UTC), an
 It is very important to include the `--no-wait` flag.  If you do not, the cron process will block waiting on the deployment to finish, but the deployment will be blocked by the running cron task.  That will take your site offline until you log in and manually terminate the running cron task.  You want the `--no-wait` flag.  We're not joking.
 {{< /note >}}
 
-The certificate will not renew unless it has less than one month remaining; trying twice a month is sufficient to ensure a certificate is never less than 2 weeks from expiring.  As the redeploy does cause a momentary pause in service we recommend running during non-peak hours for your site.
+The certificate will not renew unless it has less than one month remaining; trying twice a month is sufficient to ensure a certificate is never less than 2 weeks from expiring.
 
 ## Let's Encrypt limits and branch names
 
@@ -190,7 +185,7 @@ W: Missing certificate for domain www.<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.
 W: Missing certificate for domain <PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
 ```
 
-One reason that this can happen has to do with the limits of Let's Encrypt itself, which caps off at 64 characters for URLS. If your TLS certificates are not being provisioned, it's possible that the names of your branches are too long, and the environment's generated URL goes over that limit.
+One reason that this can happen has to do with the limits of Let's Encrypt itself, which caps off at 64 characters for URLs. If your TLS certificates are not being provisioned, it's possible that the names of your branches are too long, and the environment's generated URL goes over that limit.
 
 At this time, generated URLs have the following pattern:
 

@@ -31,4 +31,8 @@ If a service stores persistent data then it will also have a `disk` key, which s
 
 {{< guides/config-app template="typo3" >}}
 
+Note that the command `php vendor/bin/typo3cms install:generatepackagestate` is run during the build hook. The command will make sure all installed extensions are enabled and that they can be ommitted if you commit your own [`PackageStates.php`](https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ExtensionArchitecture/ExtensionManagement/Index.html#package-manager) file.
+
+{{< /guides/config-app >}}
+
 {{< guide-buttons next="Customize TYPO3" >}}

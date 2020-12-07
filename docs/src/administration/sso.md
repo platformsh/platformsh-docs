@@ -32,10 +32,10 @@ Please open a support ticket if you need to exclude a service user.
 
 {{< tiered-feature "Enterprise" >}}
 
-Enforce your users to authenticate with your OpenID Connect provider. Please open a support ticket to enable SSO with your OpenID Connect provider.
+Enforce your users to authenticate with Google. Please open a support ticket to enable Google SSO.
 
 ### OpenId Connect
 
 {{< tiered-feature "Elite" >}}
 
-Enforce your users to authenticate with Google. Please open a support ticket to enable Google SSO.
+Enforce your users to authenticate with your OpenID Connect provider. Please open a support ticket to enable SSO with your OpenID Connect provider.

@@ -25,7 +25,7 @@ An eligible project is entitled to one (1) Standard instance, with the standard 
 
 There is no limit on the number of domains or application containers (subject to resource limits of the Standard Plan) that a project may use, although the project is expected to register and manage its own domain(s). Platform.sh will provision SSL certificates for free (as may be limited by the Let’s Encrypt API) but the hosted site may provide their own.
 
-A project is under no obligation to use the application container of their project.  (Eg, a PHP project is free to use Jekyll to produce a static site using Platform.sh, a Python project is free to host a PHPBB site, etc.)
+A project is under no obligation to use the application container of their project (e.g. a PHP project is free to use Jekyll to produce a static site using Platform.sh, a Python project is free to host a PHPBB site, etc.)
 
 ## Expectations
 
@@ -43,4 +43,6 @@ Sponsored projects will receive the same level of support as any other self-serv
 
 ## Contact
 
-If you are an eligible Free Software project or community group, {{< devrel-drift >}} and let us know that you are interested.
+If you are an eligible Free Software project or community group, contact the DevRel team with the form below and let us know that you are interested.
+
+{{< devrel-sponsored-sites-form >}}
