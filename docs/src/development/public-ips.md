@@ -91,13 +91,13 @@ Inbound IPs (gw.fr-1.platformsh.site):
 Outbound IPs:
 
 * 51.178.62.146
-* 51.178.61.63
+* 51.210.127.240
 * 51.178.56.77
 
 Inbound IPs (gw.ovh-fr-2.platformsh.site):
 
 * 51.178.62.146
-* 51.178.61.63
+* 51.210.127.240
 * 51.178.56.77
 
 ### United Kingdom 1 (uk-1.platform.sh) (Data Location Guarantee)

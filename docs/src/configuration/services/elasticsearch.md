@@ -154,6 +154,12 @@ This is the complete list of official Elasticsearch plugins that can be enabled:
 | mapper-size           | Size mapper plugin, enables the `_size` meta field                                        | *   | *   | *   | *   | *   |
 | repository-s3         | Support for using S3 as a repository for Snapshot/Restore                                 |     | *   | *   | *   | *   |
 
+### Plugins removal
+
+Removing plugins previously added in your `services.yaml` file will not automatically uninstall them from your Elasticsearch instances.  This is deliberate, as removing a plugin may result in data loss or corruption of existing data that relied on that plugin.  Removing a plugin will usually require reindexing.
+
+If you wish to permanently remove a previously-enabled plugin, you will need to follow the "Upgrading" procedure below to create a new instance of Elasticsearch and migrate to it.  In most cases that is not necessary, however, as an unused plugin has no appreciable impact on the server.
+
 ## Upgrading
 
 The Elasticsearch data format sometimes changes between versions in incompatible ways.  Elasticsearch does not include a data upgrade mechanism as it is expected that all indexes can be regenerated from stable data if needed.  To upgrade (or downgrade) Elasticsearch you will need to use a new service from scratch.
