@@ -19,7 +19,7 @@ TLS certificates are often still called SSL certificates.  TLS is a newer encryp
 
 Platform.sh recommends using HTTPS requests for all sites exclusively.  Doing so provides better security, access to certain features that web browsers only permit over HTTPS, and access to HTTP/2 connections on all sites which can greatly improve performance.
 
-How HTTPS redirection is handled depends on the routes you have defined.  Platform.sh recommends specifying only HTTPS routes in your `routes.yaml` file.  That will result in all pages being served over SSL, and any requests for an HTTP URL will automatically be redirected to HTTPS.
+How HTTPS redirection is handled depends on the routes you have defined.  Platform.sh recommends specifying all HTTPS routes in your `routes.yaml` file.  That will result in all pages being served over TLS, and any requests for an HTTP URL will automatically be redirected to HTTPS.
 
 ```yaml
 "https://{default}/":
@@ -111,7 +111,7 @@ Note: If multiple routes for the same domain specify different HSTS settings, th
 
 In some non-browser applications (such as mobile applications, IoT devices, or other restricted-client-list use cases), it is beneficial to restrict access to selected devices using TLS.  This process is known as client-authenticated TLS, and functions effectively as a more secure alternative to HTTP Basic Auth.
 
-By default, any valid SSL cert issued by one of the common certificate issuing authorities will be accepted.  Alternatively, you can restrict access to SSL certs issued by just those certificate authorities you specify, including a custom authority.  (The latter is generally only applicable if you are building a mass-market IoT device or similar.)  To do so, set `client_authentication` required and then provide a list of the certificates of the certificate authorities you wish to allow.
+By default, any valid TLS cert issued by one of the common certificate issuing authorities will be accepted.  Alternatively, you can restrict access to TLS certs issued by just those certificate authorities you specify, including a custom authority.  (The latter is generally only applicable if you are building a mass-market IoT device or similar.)  To do so, set `client_authentication` required and then provide a list of the certificates of the certificate authorities you wish to allow.
 
 ```yaml
 tls:
