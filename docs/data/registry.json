@@ -229,7 +229,7 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "/languages/java.html",
+      "url": "/languages/java/_index.md",
       "web": {
         "commands": {
           "start": "java -jar target/application.jar --server.port=$PORT"
@@ -428,7 +428,7 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "/languages/nodejs.html",
+      "url": "/languages/nodejs/_index.md",
       "web": {
         "commands": {
           "start": "node index.js"
@@ -495,7 +495,7 @@
     "docs": {
       "relationship_name": null,
       "service_name": null,
-      "url": "/languages/php.html",
+      "url": "/languages/php/_index.md",
       "web": {
         "locations": {
           "/": {
