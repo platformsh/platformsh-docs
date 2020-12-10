@@ -31,6 +31,16 @@ $ composer require wpackagist-theme/neve
 
 This will update your `composer.json` and `composer.lock` files, and once you push the change to Platform.sh the package will be downloaded during WordPress's build. All that is left is to sign in to the administration dashboard on your deployed site and enable plugins and themes from the Plugins and Appearance settings, respectively. 
 
+## Set up a WooCommerce site
+
+Platform.sh maintains a [WooCommerce template](https://github.com/platformsh-templates/wordpress-woocommerce) that you can deploy quickly from the button in its README, but using Composer you can quickly install WooCommerce yourself:
+
+```bash
+$ composer require woocommerce/woocommerce
+```
+
+Push those changes on a new environment and configure your store through the administration panel.
+
 ## Adding private plugins and themes via Composer
 
 If your plugins are not accessible from WPPackagist or packagist, but are still valid packages, you can use them in your project by defining local `repositories` for them in your `composer.json` file. 
