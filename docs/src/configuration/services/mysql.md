@@ -45,11 +45,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## Usage example
 
-For MariaDB your `.platform/services.yaml` can use the `mysql` service type:
-
-{{< readFile file="src/registry/images/examples/full/mysql.services.yaml" highlight="yaml" >}}
-
-or the `mariadb` service type.
+For MariaDB your `.platform/services.yaml` can use `mariadb` service type:
 
 {{< readFile file="src/registry/images/examples/full/mariadb.services.yaml" highlight="yaml" >}}
 
@@ -125,7 +121,7 @@ Consider the following illustrative example:
 
 ```yaml
 db:
-    type: mariadb:10.4
+    type: mariadb:10.5
     disk: 2048
     configuration:
         schemas:
@@ -186,7 +182,7 @@ This value defaults to `16` (in MB).  Legal values are from `1` to `100`.
 
 ```yaml
 db:
-    type: mariadb:10.4
+    type: mariadb:10.5
     disk: 2048
     configuration:
         properties:
@@ -205,7 +201,7 @@ Both values can be adjusted at the server level in `services.yaml`:
 
 ```yaml
 db:
-  type: mariadb:10.4
+  type: mariadb:10.5
   disk: 2048
   configuration:
     properties:
