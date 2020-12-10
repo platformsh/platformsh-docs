@@ -45,7 +45,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## Usage example
 
-For MariaDB your `.platform/services.yaml` can use `mariadb` service type:
+For MariaDB your `.platform/services.yaml` use `mariadb` service type:
 
 {{< readFile file="src/registry/images/examples/full/mariadb.services.yaml" highlight="yaml" >}}
 
