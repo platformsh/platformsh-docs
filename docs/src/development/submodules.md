@@ -95,7 +95,21 @@ Original can be found in a [gist by Mahdi Yusuf](https://gist.github.com/myusuf3
     ```
 
 3. Remove the submodule's configuration from `.git/config`.
-4. Remove the submodule from the repository (without trailing slash): `git rm --cached path_to_submodule`.
-5. Remove the submodule's files in `.git` from the repository  (without trailing slash): `rm -rf .git/modules/path_to_submodule`.
+4. Remove the submodule from the repository (without trailing slash): 
+
+    ```bash
+    $ `git rm --cached path_to_submodule`
+    ```
+
+5. Remove the submodule's files in `.git` from the repository  (without trailing slash): 
+
+    ```bash
+    $ rm -rf .git/modules/path_to_submodule
+    ```
+
 6. Commit the changes: `git commit -m "Removed submodule."
-7. Remove the submodule code locally, now untracked: `rm -rf path_to_submodule`.
+7. Remove the submodule code locally, now untracked: 
+
+
+
+`rm -rf path_to_submodule`.
