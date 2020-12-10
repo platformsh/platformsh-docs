@@ -40,7 +40,3 @@ Aside from trying to install plugins and themes it can also be common practice t
 Aside from trying to install plugins and themes 
 
 ### Updating WordPress core, plugins, & themes
-
-## How to update your WordPress site to use Composer
-
-In this short guide it is assummed that you already have (locally) a *vanilla* version of WordPress, where all of core, themes and plugins are committed to the repository (the [Not using Composer](/guides/wordpress/composer/vanilla.md) guide and corresponding [template](https://github.com/platformsh-templates/wordpress-vanilla)).

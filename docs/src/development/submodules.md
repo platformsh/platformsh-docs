@@ -77,3 +77,25 @@ To fix this, you need to:
     ```
 
 2. Add the SSH public key in the Platform.sh project settings "Deploy Key" tab in the Web UI as per the [Private Repository](/development/private-repository.md) documentation page, which will allow our Git service to pull the module from the remote git service. This assumes you have configured the remote git repository to allow this by generating a private/public key pair. For example, see the [Bitbucket documentation](https://confluence.atlassian.com/bitbucket/use-ssh-keys-in-bitbucket-pipelines-847452940.html).
+
+
+## Removing submodules
+
+These steps are not specific to Platform.sh, but kept as a reference for Git so that submodules are effectively removed prior to entering the build process.
+
+{{< note title="Credit" theme="info" >}}
+Original can be found in a [gist by Mahdi Yusuf](https://gist.github.com/myusuf3/7f645819ded92bda6677), replicated here for internal linking.
+{{< /note >}}
+
+1. Delete information for the submodule you'd like to remove from `.gitmodules`.
+2. Stage changes to `.gitmodules`: 
+
+    ```bash
+    $ git add .gitmodules
+    ```
+
+3. Remove the submodule's configuration from `.git/config`.
+4. Remove the submodule from the repository (without trailing slash): `git rm --cached path_to_submodule`.
+5. Remove the submodule's files in `.git` from the repository  (without trailing slash): `rm -rf .git/modules/path_to_submodule`.
+6. Commit the changes: `git commit -m "Removed submodule."
+7. Remove the submodule code locally, now untracked: `rm -rf path_to_submodule`.
