@@ -83,10 +83,6 @@ To fix this, you need to:
 
 These steps are not specific to Platform.sh, but kept as a reference for Git so that submodules are effectively removed prior to entering the build process.
 
-{{< note title="Credit" theme="info" >}}
-Original can be found in a [gist by Mahdi Yusuf](https://gist.github.com/myusuf3/7f645819ded92bda6677), replicated here for internal linking.
-{{< /note >}}
-
 1. Delete information for the submodule you'd like to remove from `.gitmodules`.
 2. Stage changes to `.gitmodules`: 
 
@@ -98,7 +94,7 @@ Original can be found in a [gist by Mahdi Yusuf](https://gist.github.com/myusuf3
 4. Remove the submodule from the repository (without trailing slash): 
 
     ```bash
-    $ `git rm --cached path_to_submodule`
+    $ git rm --cached path_to_submodule
     ```
 
 5. Remove the submodule's files in `.git` from the repository  (without trailing slash): 
@@ -107,9 +103,18 @@ Original can be found in a [gist by Mahdi Yusuf](https://gist.github.com/myusuf3
     $ rm -rf .git/modules/path_to_submodule
     ```
 
-6. Commit the changes: `git commit -m "Removed submodule."
+6. Commit the changes: 
+
+    ```bash
+    $ git commit -m "Removed submodule."
+    ```
+
 7. Remove the submodule code locally, now untracked: 
 
+    ```bash
+    $ rm -rf path_to_submodule
+    ```
 
-
-`rm -rf path_to_submodule`.
+{{< note title="Credit" theme="info" >}}
+Original can be found in a [gist by Mahdi Yusuf](https://gist.github.com/myusuf3/7f645819ded92bda6677), replicated here for internal linking.
+{{< /note >}}
