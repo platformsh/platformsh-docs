@@ -350,6 +350,40 @@
       ]
     }
   },
+  "mysql": {
+    "description": "A manufacture-based container for MariaDB",
+    "repo_name": "mariadb",
+    "disk": true,
+    "docs": {
+      "relationship_name": "database",
+      "service_name": "db",
+      "url": "/configuration/services/mysql.html"
+    },
+    "endpoint": "mysql",
+    "min_disk_size": 256,
+    "name": "MariaDB",
+    "runtime": false,
+    "type": "mysql",
+    "versions": {
+      "deprecated": [
+        "5.5"
+      ],
+      "supported": [
+        "10.0",
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4"
+      ]
+    },
+    "versions-dedicated": {
+      "supported": [
+        "10.0 Galera",
+        "10.1 Galera",
+        "10.2 Galera"
+      ]
+    }
+  },
   "memcached": {
     "description": "Memcached service.",
     "repo_name": "memcached",
