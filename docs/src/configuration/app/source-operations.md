@@ -50,16 +50,6 @@ When this operation is triggered:
 
 Note that these operations run in an isolated container: it is not part of the runtime cluster of the environment, and doesn't require the environment to be running.  Also be aware that if multiple applications in a single project both result in a new commit, that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur.
 
-## Source Operations with an external Git integration
-
-Git integration can be configured to send commits made to the Platform.sh Git remote, to the upstream repository instead. This means that if a source operation did generate a new commit, the commit will be pushed to the upstream repository.
-
-{{< note >}}
-Currently, this configuration requires the `enable_codesource_integration_push` setting to be turned on by a Platform.sh staff and is only available to selected Beta customers.
-{{< /note >}}
-
-Source Operations can only be triggered on environment created by a branch, and not to environment created by a Pull Request on the external upstream (GitHub, Bitbucket, Gitlab).
-
 ## Automated Source Operations using cron
 
 You can use cron to automatically run your source operations.
