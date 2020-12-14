@@ -19,13 +19,13 @@ With all of the requirements met, install the CLI to start developing with Platf
     * **Installing on OSX or Linux**
 
        ```bash
-       curl -sS https://platform.sh/cli/installer | php
+       curl -fsS https://platform.sh/cli/installer | php
        ```
 
     * **Installing on Windows**
 
        ```bash
-       curl https://platform.sh/cli/installer -o cli-installer.php
+       curl -f https://platform.sh/cli/installer -o cli-installer.php
        php cli-installer.php
        ```
 

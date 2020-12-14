@@ -1,80 +1,47 @@
 ---
-title: "How to Deploy Quarkus on Platform.sh"
-sidebarTitle: "Get started"
-weight: -110
-layout: single
+title: "Deploy Quarkus"
+sidebarTitle: "Deploy"
+weight: -80
 toc: false
 description: |
-    Create a Platform.sh account, download a few tools, and prepare to deploy Quarkus.
+    Now that your site is ready, push it to Platform.sh and import your data.
 ---
 
+## Deployment
 
-Quarkus is, in its own words, a cloud-native, (Linux) container-first framework for writing Java applications. It has become popular lately because of its fast boot time. In this series of articles about Quarkus, we'll discuss how to deploy a Quarkus application even faster to the cloud with Platform.sh.
+{{< guides/deployment >}}
 
-{{< note >}}
-[Quarkus has a vast guide](https://quarkus.io/guides/), where you can take advantage and learn the complete resources from there.
-{{< /note >}}
+## Data migration
 
-This topic will review the basics of what makes up a Platform.sh project, including its three principle configuration files and how to define them for Quarkus.
+If you are moving an existing site to Platform.sh, then in addition to code you will also need to migrate your data.  That means your database and your files.
 
-To move your application to the cloud, briefly, you need three files: 
+### Importing the database
 
-1. [A file to define application](configuration/app/_index.md)
-2. [A file to define services](configuration/services/_index.md)
-3. [A file to define routes](configuration/routes/_index.md)
+First, obtain a database dump from your current site.  If you are using MySQL/MariaDB, then the [`mysqldump` command](https://mariadb.com/kb/en/mysqldump/) is all you need.  Save your dump file as `database.sql`.  (Or any name, really, as long as it's the same as you use below.)
 
-### Application container: `.platform.app.yaml`
+Next, import the database into your Platform.sh site.  The easiest way to do so is with the Platform.sh CLI.
 
-The application file is the file where you define how you'll package and run your Quarkus application.
-
-```yaml
-name: app
-type: "java:11"
-disk: 1024
-hooks:
-    build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
-web:
-    commands:
-        start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT target/file.jar
+```bash
+$ platform sql -e master < database.sql
 ```
 
-Simply explaining the file line by line, we have the following settings.
+That will connect to the database service on the `master` environment, through an SSH tunnel, and run the SQL import.
 
-1. `name`: The application name
-2. `type` where you'll define the language, in this case, Java, and the version.
-3. `disk`: the space in the disk that the application needs in megabytes.
-4. `book.build`: the command to package the application
-5. `web.commands`: The order to start the application, it is essential to overwrite the port with `-Dquarkus.http.port=$PORT`
+### Importing files
 
-To simplify the application file, we'll use [Shell variables](https://docs.platform.sh/development/variables.html#shell-variables) int the  `.environment` file. That is the right choice because you don't need to change the application file, only the environment file.
+You will first need to download your files from your current hosting environment, whatever that is.  The easiest way is likely with `rsync`, but consult your old host's documentation.  For this guide, we'll assume that you have already downloaded all of your user files to your local `files/user` directory, and your public files to `files/public`, but adjust accordingly for their actual locations.
 
-```shell
-export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
+The `platform mount:upload` command provides a simple, straightforward way to upload an entire directory to your site at once.  Under the hood it uses an SSH tunnel and `rsync`, so it will be as efficient as possible.  (There is also a `platform mount:download` command you can use to download files later.)  Run the following from your local Git repository root (modifying the `--source` path if needed).
+
+```bash
+$ platform mount:upload -e master --mount src/main/resources/files/user --source ./files/user
+$ platform mount:upload -e master --mount src/main/resources/files/public --source ./files/public
 ```
 
-Thanks to the [Eclipse MicroProfile Configurations](https://github.com/eclipse/microprofile-config), it is possible to overwrite the configurations without impact the application itself. Therefore, you can have a local configuration in the properties file and then overwrite in the cloud with Platform.sh.
+Note that `rsync` is picky about its trailing slashes, so be sure to include those.
 
-{{< note title="Tip">}}
-To check the Garbage collector settings, please, check the [Java Performance tuning session.](languages/java/tuning.md)
-{{< /note >}}
+Your files and database are now loaded onto your Platform.sh production environment.  When you make a new branch environment off of it, all of your data will be fully cloned to that new environment so you can test with your complete dataset without impacting production.
 
+Go forth and Deploy (even on Friday)!
 
-### Service configuration: `services.yaml`
-
-The `services.yaml` file lists the pre-packaged services you need for your application to run. You pick the major version of the service, and Platform.sh updates the patch version periodically so that you always get the newest version when you deploy.
-
-When a application needs a service, it will need to append in this services file and then set the [relationship](configuration/app/relationships.md) attribute in the application container file. The attribute is safety reasons. By default, the access is revoked and needs to grand between application and services and between application and application (in the microservices age).
-
-### Requests configuration:`routes.yaml`
-
-This file defines its application will be public and the URL. In the sample below, it will expose an application with the name `app`. 
-
-```yaml
-"https://{default}/":
-  type: upstream
-  upstream: "app:http"
-
-"https://www.{default}/":
-  type: redirect
-  to: "https://{default}/"
-```
+{{< guide-buttons next="More resources" >}}

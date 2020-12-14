@@ -58,7 +58,7 @@ Change to the `/tmp` directory (or any other non-web-accessible writable directo
 
 ```bash
 cd /tmp
-curl -sO http://gordalina.github.io/cachetool/downloads/cachetool.phar
+curl -fsO http://gordalina.github.io/cachetool/downloads/cachetool.phar
 php cachetool.phar opcache:status --fcgi=$SOCKET
 ```
 
