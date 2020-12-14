@@ -25,7 +25,7 @@ crons:
             shutdown_timeout: 10
 ```
 
-The new syntax offers greater flexibility and configuration.  See the [cron documentation]({{< relref "/configuration/app/cron.md" >}}) for more details.
+The new syntax offers greater flexibility and configuration.  See the [cron documentation](/configuration/app/cron.md) for more details.
 
 ## Changes in version 2019.05
 
