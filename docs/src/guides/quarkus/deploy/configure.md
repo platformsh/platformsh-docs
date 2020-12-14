@@ -30,7 +30,7 @@ If a service stores persistent data then it will also have a `disk` key, which s
 ## Application container: `.platform.app.yaml`
 
 {{< guides/config-app template="quarkus" >}}
-Explaining the file line by line, we have the following settings:
+Explaining the file line by line, notice the following settings:
 
 1. `name`: The application name
 2. `type` where you'll define the language, in this case, Java, and the version.

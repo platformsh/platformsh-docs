@@ -23,7 +23,7 @@ In your `.platform/services.yaml` file, include MongoDB with a [valid supported 
 
 ## 2. Grant access to MongoDb through a relationship
 
-In your `.platform.app.yaml` files, use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
+In your `.platform.app.yaml` file, use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
 
 {{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" >}}
 
@@ -32,12 +32,12 @@ In your `.platform.app.yaml` files, use the service name `dbmongo` to grant the 
 Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the databse into it's own environment variables that can be easily used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
 ```text
-export MONGO_PORT=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodatabase[0].port"`
-export MONGO_HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodatabase[0].host"`
+export MONGO_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatabase[0].port")
+export MONGO_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatabase[0].host")
 export QUARKUS_MONGODB_HOSTS="${MONGO_HOST}:${MONGO_PORT}"
-export QUARKUS_MONGODB_CREDENTIALS.PASSWORD=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodatabase[0].password"`
-export QUARKUS_MONGODB_CREDENTIALS.USERNAME=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodatabase[0].username"`
-export QUARKUS_MONGODB_DATABASE=`echo $PLATFORM_RELATIONSHIPS|base64 -d|json_pp|jq -r ".mongodatabase[0].path"`
+export QUARKUS_MONGODB_CREDENTIALS_PASSWORD=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatabase[0].password")
+export QUARKUS_MONGODB_CREDENTIALS_USERNAME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatabase[0].username")
+export QUARKUS_MONGODB_DATABASE=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatbase[0].path")
 export QUARKUS_HTTP_PORT=$PORT
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```

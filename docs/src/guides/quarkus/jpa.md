@@ -7,7 +7,7 @@ description: |
     Configure a Quarkus application with JPA.
 ---
 
-Hibernate ORM is the de facto standard [JPA](https://jakarta.ee/specifications/persistence/) implementation. It offers you the full breadth of an Object Relational Mapper and it works well in Quarkus. To activate JPA and then have it accessed by the Quarkus application already in Platform.sh, it is necessary to modify two files.
+Hibernate ORM is the de facto standard [JPA](https://jakarta.ee/specifications/persistence/) implementation. It offers you the full breadth of an Object Relational Mapper and it works well in Quarkus. To activate JPA and then have it accessed by the Quarkus application already configured for Platform.sh, it is necessary to modify two files.
 
 {{< note >}}
 This guide only covers the *addition* of a service configuration to an existing Quarkus project already configured to deploy on Platform.sh. Please see the [deployment guide](/guides/quarkus/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
@@ -30,10 +30,10 @@ Your `.platform.app.yaml` file will require a [`relationship`](/configuration/ap
 Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the databse into it's own environment variables that can be easily used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
 ```text
-export HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".postgresdatabase[0].host"`
-export DATABASE=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].path"`
-export QUARKUS_DATASOURCE_PASSWORD=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".postgresdatabase[0].password"`
-export QUARKUS_DATASOURCE_USERNAME=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".postgresdatabase[0].username"`
+export HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresdatabase[0].host")
+export DATABASE=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresdatabase[0].path")
+export QUARKUS_DATASOURCE_PASSWORD=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresdatabase[0].password")
+export QUARKUS_DATASOURCE_USERNAME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresdatabase[0].username")
 export QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://${HOST}/${DATABASE}
 export QUARKUS_HTTP_PORT=$PORT
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"

@@ -58,7 +58,7 @@ export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOut
 ```
 
 {{< note title="Tip">}}
-To check the Garbage collector settings, please, check the [Java Performance tuning session.](/languages/java/tuning.md)
+To check the Garbage collector settings, please, check the [Java Performance tuning section.](/languages/java/tuning.md)
 {{< /note >}}
 
 {{< guide-buttons next="Deploy Quarkus" >}}
