@@ -16,7 +16,7 @@ hooks:
         rsync -a plugins/* wordpress/wp-content/plugins/
 ```
 
-Here, you can commit plugins to the repository in a `plugins` subdirectory, which will then be placed into the WordPress installation during the build. 
+Here, you can commit plugins to the repository in a `plugins` subdirectory, which will then be placed into the WordPress installation during the build. It is assumed that these packages stick to best practices and do not write to the file system at runtime and when enabling them. You can get around this issue by defining a [mount](/configuration/app/storage.md#basic-mounts) where a plugin requires write access, but you will have to remember that the contents at that mount location will be wiped when deployment begins, so you will need to copy and re-copy accordingly.  
 
 ## Adding public plugins and themes via Composer
 

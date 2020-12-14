@@ -2,10 +2,15 @@
 title: "Using Composer with WordPress: the how and why"
 weight: -100
 layout: single
-sidebarTitle: "Using Composer"
+sidebarTitle: "Why use Composer?"
 description: |
     Everything you need to get started with WordPress on Platform.sh. 
 ---
+
+
+Using Composer is not traditionally the norm for WordPress development, but it is strongly recommended when deploying on Platform.sh. Like any other application, your WordPress site is most secure when you can ensure repeatable builds and commitable updates to your dependencies. Your infrastructure is committed through a set of configuration files which specifiy which version of PHP and MariaDB you want to use, and Composer provides the best way to make sure that your versions of WordPress core and your plugins are tied to your commit history in the same way. 
+
+Also, Platform.sh's build and deploy pipeline prevents write access to the file system post-build, and it's here where plugins that cannot be downloaded via Composer fail, since many require write acccess to their own file system as part of their setup process. 
 
 ## Why use Composer
 

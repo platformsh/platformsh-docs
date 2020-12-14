@@ -1,7 +1,7 @@
 ---
 title: "How to update your WordPress site to use Composer"
 sidebarTitle: Upgrade to use Composer
-weight: 1
+weight: 2
 description: |
     Everything you need to get started with WordPress on Platform.sh. 
 ---
