@@ -87,6 +87,16 @@ Restoring a snapshot does not revert any code changes committed to git. The next
 
 A backup does cause a momentary pause in service. We recommend running during non-peak hours for your site.
 
+### Unsafe backups
+
+There is an option available to create backups in an "unsafe" state. This flavor leaves the environment running and open to connections, reducing downtime while the backup is taken. While use cases certainly exist, it is generally recommended to schedule the default "safe" backup during non-peak hours in most cases, since an unsafe backup may produce an inconsistent states that is less reliable during restorations. 
+
+You can trigger an unsafe backup through the CLI using the `--unsafe` flag:
+
+```bash
+$ platform backup:create --unsafe
+```
+
 ## Automated backups
 
 Backups are not triggered automatically on Platform.sh Professional.
