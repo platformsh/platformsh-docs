@@ -22,6 +22,14 @@
 
           </div>
 
+          <!-- Table of contents -->
+          {{ if eq .Params.toc true }}
+            <div class="toc">
+              <h4>Contents:</h4>
+              {{ .TableOfContents }}
+            </div>
+          {{ end }}
+
           <!-- Page content, anchorized -->
           {{ partial "headline-hash.html" .Content }}
 
