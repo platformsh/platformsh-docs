@@ -12,7 +12,7 @@ WordPress is a popular Content Management System written in PHP. The recommended
 
 Going through the steps below you will have two options:
 
-1. You already have a WordPress site your are trying to deploy. In this case, you will able to go through each step to make the recommended changes to your repository to prepare it for Platform.sh.
+1. You already have a WordPress site you are trying to deploy. In this case, you will be able to go through each step to make the recommended changes to your repository to prepare it for Platform.sh.
 2. You have no code at this point. In this case, Platform.sh maintains a ready-made [WordPress template](https://github.com/platformsh-templates/wordpress-vanilla) that you will be able to deploy very quickly. The steps below will then hopefully help to clarify why the modifications have been made to a base WordPress project.
 
 ## Tools

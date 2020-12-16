@@ -29,7 +29,7 @@ If a service stores persistent data then it will also have a `disk` key, which s
 
 {{< guides/config-app template="wordpress-vanilla" >}}
 
-There are a few things to notice in this file specific to running non-Composer variants of WordPress on Platform.sh. Defined in the `dependencies` block, all of the packages needed to run the WordPress CLI in both the application container and via SSH are included and installed in the first stages of the build process using Composer. Also, the `web.locations` block will expose `wordpress/index.php` under the primary route. 
+There are a few things to notice in this file specific to running non-Composer variants of WordPress on Platform.sh. Defined in the `dependencies` block, all of the packages needed to run the WordPress CLI in both the application container and via SSH are installed in the first stages of the build process using Composer. Also, the `web.locations` block will expose `wordpress/index.php` under the primary route. 
 {{< /guides/config-app >}}
 
 {{< guide-buttons next="Customize WordPress" >}}

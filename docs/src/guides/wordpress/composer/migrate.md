@@ -6,7 +6,7 @@ description: |
     Everything you need to get started with WordPress on Platform.sh. 
 ---
 
-This guide will take you through the steps to move your *vanilla*, fully-committed, WordPress repository to a new version fully managed with Composer. It is assummed that you already have (locally) a vanilla version of WordPress where all of core, themes, and plugins are committed to the repository or committed as submodules. Because of this assumption, you should already have Platform.sh configuration files in your repository to deploy the resulting Composer-based WordPress site on Platform.sh. If you do not, follow the [previous guide](/guides/wordpress/composer/vanilla.md) and add them. 
+This guide will take you through the steps to update your [*vanilla*](/guides/wordpress/vanilla/_index.md), fully-committed, WordPress repository to one fully managed with Composer. It is assummed that you already have (locally) a vanilla version of WordPress where all of core, themes, and plugins are committed to the repository or committed as submodules, and that it has been set up for deployment on Platform.sh. Because of these assumptions, you should already have Platform.sh configuration files in your repository to deploy the resulting Composer-based WordPress site on Platform.sh. If you do not, follow the [previous guide](/guides/wordpress/vanilla/_index.md) and add them. 
 
 For more context regarding why Platform.sh recommends Composer-based installations of Wordpress, see the ["Using Composer" guide](/guides/wordpress/composer/_index.md).
 
@@ -39,7 +39,7 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
 
 4. **Cleanup WordPress core**
 
-    Your existing installation of WordPress core is assumed to be in some subdirectory of your repository, such as `wordpress`. When we start managing WordPress with Composer in the next step, *all code in this subdirectory will be overwritten*. The [previous guide](/guides/wordpress/composer/vanilla.md) instructs you to move all plugins and themes out of WordPress core and into a separate `plugins` subdirectory, so if you have not already done so consult that guide and do so now. 
+    Your existing installation of WordPress core is assumed to be in some subdirectory of your repository, such as `wordpress`. When we start managing WordPress with Composer in the next step, *all code in this subdirectory will be overwritten*. The [previous guide](/guides/wordpress/vanilla/_index.md) instructs you to move all plugins and themes out of WordPress core and into a separate `plugins` subdirectory, so if you have not already done so consult that guide and do so now. 
 
     Inspect WordPress core carefully, and ensure that their is not any data in that subdirectory you would not like to lose specific to your site. Unless you are managing WordPress core as a [submodule](/development/submodules.md#removing-submodules), you can now remove that subdirectory 
 
@@ -84,7 +84,7 @@ Instead of committing all of WordPress to your repository (or adding it as a sub
 
 ## Platform.sh configuration
 
-Switching to Composer-based installation will not require any modifications to your Platform.sh configuration files added in the The [previous guide](/guides/wordpress/composer/vanilla.md). Again, add them now if you would like to deploy your WordPress site on Platform.sh if you have not already.
+Switching to Composer-based installation will not require any modifications to your Platform.sh configuration files added in the The [previous guide](/guides/wordpress/vanilla/_index.md). Again, add them now if you would like to deploy your WordPress site on Platform.sh if you have not already.
 
 ## Themes and Plugins
 
@@ -151,7 +151,7 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
 
 ## Deploying to Platform.sh
 
-So long as you already have the [three Platform.sh configuration files from the previous guide](/guides/wordpress/composer/vanilla.md), you can now commit these changes and deploy your new Composer-based WordPress site to Platform.sh.
+So long as you already have the [three Platform.sh configuration files from the previous guide](/guides/wordpress/vanilla/_index.md), you can now commit these changes and deploy your new Composer-based WordPress site to Platform.sh.
 
 ```bash
 $ git add . && git commit -m "Composerify plugins and themes."
