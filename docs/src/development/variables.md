@@ -38,7 +38,7 @@ platform variable:create --level project --name foo --value bar
 
 Project variables are a good place to store secret information that is needed at build time, such as credentials for a private 3rd party code repository.
 
-By default, project variables will be available at both build time and runtime. You can suppress one or the other with the `--no-visible-build` and `--no-visible-runtime` flags, such as if you want to hide certain credentials from runtime entirely.  For example, the following (silly) example will define a project variable but hide it from both build and runtime:
+By default, project variables will be available at both build time and runtime. You can suppress one or the other with the `--visible-build` and `--visible-runtime` flags, such as if you want to hide certain credentials from runtime entirely.  For example, the following (silly) example will define a project variable but hide it from both build and runtime:
 
 ```bash
 platform variable:create --level project --name foo --value bar --visible-build false --visible-runtime false
