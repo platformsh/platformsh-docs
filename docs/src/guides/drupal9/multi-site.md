@@ -3,7 +3,7 @@ title: "Multiple Drupal sites in a single Project"
 sidebarTitle: "Multi-site"
 toc: false
 description: |
-    Platform.sh supports running [multiple applications](/bestpractices/oneormany.md) multiple applications in the same project, and these can be two or more Drupal sites.
+    Platform.sh supports running [multiple applications](/bestpractices/oneormany.md) in the same project, and these can be two or more Drupal sites.
 weight: -80
 ---
 
