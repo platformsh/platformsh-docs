@@ -65,7 +65,7 @@ You can optionally combine the application configuration (`.platform.app.yaml`) 
 
 ### Multiple content sources
 
-Lorem ipsum.
+Gatsby supports pulling multiple sources into its build. This can include external services like Stripe, or additional backend CMSs for different sets of content. 
 
 ### Plan size
 
