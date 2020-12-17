@@ -9,9 +9,29 @@ toc: true
 
 ## Background
 
-An increasingly common pattern is to decouple content resources from a frontend Gatsby site. Decoupled sites leverage Gatsby's source plugin ecosystem to pull external content resources into builds, which are typically located on a server elsewhere. 
+A common pattern for Gatsby sites is to decouple services from the main site, pulling in external data at build time. Supported by Gatsby's source plugin ecosystem, data from conventional (or headless) content management systems can be collected into a common [Data Layer](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/), with that CMS typically located on a server elsewhere, and that data then used to fill out content on the frontend. 
 
-Alternatively, Platform.sh supports [multi-app configuration](/configuration/app/multi-app.md) on projects - that is, including code for two separate sites that are deployed on their own containers within a single project cluster. Within a single repository, Gatsby would reside in a subdirectory alongside another directory that contains the code for the resource.
+The location of an external CMS is usually hardcoded into Gatsby's configuration, so when you're developing your site every branch points to the same backend resource. Should the location of that resource change, you would need to commit the new URL to update the configuration. 
+
+The decoupled pattern can work differently on Platform.sh due to support for [multi-app configuration](/configuration/app/multi-app.md) on your projects. Consider the following project structure:
+
+```bash
+.
+├── .platform
+│   ├── routes.yaml
+│   └── services.yaml
+├── drupal
+│   ├── <application code>
+│   └── .platform.app.yaml
+├── gatsby
+│   ├── <application code>
+│   └── .platform.app.yaml
+└── README.md
+```
+
+Above is the repository structure for a Decoupled Drupal (Gatsby sourcing Drupal content) project on Platform.sh. Here, Gatsby and Drupal reside in their own subdirectories within the same repository. They are deployed to the same project from separate application containers, and from this cluster Gatsby can read data from Drupal internally. Their commit histories are tied together, such that each new pull request environment can test changes to either the frontend or backend freely from the same place. 
+
+Drupal is just one example of a backend CMS that can be used with this pattern, and at the bottom of this page are a few additional guides for alternatives that work well on Platform.sh. 
 
 ## Tools
 
@@ -29,7 +49,7 @@ After creating an account, you will be prompted to create your first project. Si
 
 There are a few important points you will need to keep in mind when deploying this pattern if you have already [deployed Gatsby by itself](/guides/gatsby/deploy/_index.md) on Platform.sh, which are relevant to each backend example. After following the steps below, you may find that Gatsby fails to bundle assets during its build on projects of the "Development" plan size. This is a factor of both the size and number of Gatsby's dependencies on the frontend, as well as the amount of data being pulled from the backend. 
 
-Multi-application projects generally require more resources to run on Platform.sh, and so the trial's default `development` plan may not be enough to run your existing site. You are free to either proceed with a smaller plan with your code or increase the resources at this point for the project. Otherwise, it may be best to initially deploy the templates listed in each backend guide to start out, and later modify that project to include your own code with more resources as you get used to developing on Platform.sh.
+Multi-application projects generally require more resources to run on Platform.sh, and so the trial's default `development` plan may not be enough to run your existing site. You are free to either proceed with a smaller plan to test or increase the resources at this point for the project. Otherwise, it may be best to initially deploy the templates listed in each backend guide to start out, and later modify that project to include your own code with more resources as you get used to developing on Platform.sh.
 
 ## Headless backends
 
