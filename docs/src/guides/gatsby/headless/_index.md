@@ -27,13 +27,9 @@ After creating an account, you will be prompted to create your first project. Si
 
 ## Plan size
 
-There are a few important points you will need to keep in mind when deploying this pattern on Platform.sh if you have already [deployed Gatsby by itself](/guides/gatsby/deploy/_index.md) on Platform.sh, which are relevant to each backend example. After following the steps below, you may find that Gatsby fails to bundle assets during its build on projects of the "Development" plan size. This is a factor of both the size and number of Gatsby's dependencies on the frontend, as well as the amount of data being pulled from the backend. 
+There are a few important points you will need to keep in mind when deploying this pattern if you have already [deployed Gatsby by itself](/guides/gatsby/deploy/_index.md) on Platform.sh, which are relevant to each backend example. After following the steps below, you may find that Gatsby fails to bundle assets during its build on projects of the "Development" plan size. This is a factor of both the size and number of Gatsby's dependencies on the frontend, as well as the amount of data being pulled from the backend. 
 
 Multi-application projects generally require more resources to run on Platform.sh, and so the trial's default `development` plan may not be enough to run your existing site. You are free to either proceed with a smaller plan with your code or increase the resources at this point for the project. Otherwise, it may be best to initially deploy the templates listed in each backend guide to start out, and later modify that project to include your own code with more resources as you get used to developing on Platform.sh.
-
-{{< note >}}
-In general, it's recommended to have at least a Medium plan for your multi-app projects. Note that this plan size affects the resources available on the production environment (Master), but not its development environments (which default to "Standard"). As you continue to work with Gatsby and a backend headless CMS, you may find that it is also necessary to upsize your development environments to match production (the "Environments application size" setting for your plan).
-{{< /note >}}
 
 ## Headless backends
 
