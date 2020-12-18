@@ -25,7 +25,13 @@ description: |
 
 ## Gatsby
 
-{{< guides/gatsby/headless-gatsby template="gatsby-strapi" >}}
+{{< guides/gatsby/headless-gatsby name="Strapi" template="gatsby-strapi" >}}
+
+**Strapi specifics**
+
+{{< /guides/gatsby/headless-gatsby >}}
+
+**Strapi specifics**
 
 ## Deploy and post-install
 

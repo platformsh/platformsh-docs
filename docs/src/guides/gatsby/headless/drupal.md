@@ -33,41 +33,13 @@ The [Pathauto](https://www.drupal.org/project/pathauto) module will help you ass
 
 ## Gatsby
 
-The frontend Gatsby app on the other hand has a slightly different configuration from the basic [Gatsby deployment](/guides/gatsby/deploy/_index.md). Below is the `gatsby/.platform.app.yaml` file that configures the application. 
-
-{{< github repo="platformsh-templates/gatsby-drupal" file="gatsby/.platform.app.yaml" lang="yaml" >}}
-
-In particular, notice:
-
-- `relationships`
-
-    Access to another service or application container in the cluster is given through [`relationships`](/configuration/app/relationships.md), and in this case one has been defined to the backend Drupal container using it's `name`. 
-
-- `post_deploy`
-
-    Platform.sh containers reside in separate build containers at build time, before their images are moved to the final application container at deploy time. These build containers are isolated, and therefore Gatsby does not have access to Drupal during the build hook, where you would normally run [`gatsby build`](https://github.com/platformsh-templates/gatsby/blob/master/.platform.app.yaml#L21). Drupal will not be available until after the deploy hook, and so Gatsby's build is postponed until the `post_deploy` hook below.
-
-- `mounts`
-
-    To the point above, there are additional consequences to postponing the Gatsby build, namely that you will only have write access to the container this late in the build-deploy pipeline. In order to allow Gatsby to write to `public`, that directory has been defined as a [mount](/configuration/app/storage.md).
-
-
----
+{{< guides/gatsby/headless-gatsby name="Drupal" template="gatsby-drupal" >}}
 
 Additionally, there has been a change to Gatsby's start command,`web.commands.start`. In the generic Gatsby template, the static files in `public` are served via the [`web.locations` block](https://github.com/platformsh-templates/gatsby/blob/c764ed717752eacc3c3f3322b7e5415e276d02df/.platform.app.yaml#L29), but that attribute is removed in the file below. Instead, two separate start commands are defined depending on which branch you are developing on. This has been included in order to support [Live Preview and Incremental Builds](https://www.drupal.org/project/gatsby). It is not required, but you can consult the [section below](#live-preview-and-incremental-builds) for more information about enabling it.
 
 You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) to read from the backend Drupal container through the `drupal` relationship defined above to configure the `baseUrl` attribute for `gatsby-source-drupal`. 
 
---- inner
-
-You will notice that this is made easier by using Platform.sh's [Config Reader library for Node.js](https://github.com/platformsh/config-reader-nodejs), so be sure to install this to the Gatsby dependencies first when replicating. When used, Gatsby pulls the information to communicate with the Drupal container *on the current branch*.
-
-{{< github repo="platformsh-templates/gatsby-drupal" file="gatsby/gatsby-config.js" lang="js" >}}
-
-Lastly, the Gatsby application itself needs to have updated [GraphQL](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/) queries to handle the data coming from Drupal and turn it into frontend content pages. The most important files in the template you can consult are:
-
-
---- after
+{{< /guides/gatsby/headless-gatsby >}}
 
 - [`gatsby/gatsby-node.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/gatsby-node.js): which [dynamically creates](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/) individual pages from the data source.
 - [`gatsby/src/pages/articles.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/src/pages/articles.js): which places a query for all Drupal articles to generate a list page at of all of your articles at `/articles` on the Gatsby site. 
