@@ -26,6 +26,8 @@ Given the points raised above, managing your WordPress site with Composer has cl
 
 Composer also removes the need to commit large numbers of external code in your repository. In the case of WordPress, *not* using Composer will often require you to commit all of the code for a theme, and even for WordPress core itself, in your own project. Besides making the repository unnecessarily large and slow to clone, updating these copies becomes version control management that nobody needs to deal with.  
 
+Through Composer you can easily add and update dependencies to your project, 
+
 ---
 
 
