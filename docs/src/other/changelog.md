@@ -9,6 +9,9 @@ description: |
 
 ## 2020
 
+* **December 2020**
+  * `us-4` region: We have [added](/development/public-ips.md#west-4-us-4platformsh-data-location-guarantee) another US region, `us-4`.
+
 * **September 2020**
   * Go 1.15: We now support [Go 1.15](/languages/go.md).
 
