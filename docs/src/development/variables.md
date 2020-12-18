@@ -23,7 +23,7 @@ All of those may be simple strings or base64-encoded JSON-serialized values.  In
 
 ### Application-provided variables
 
-Variables may be [set in code](/configuration/app/variables.md), using the `.platform.app.yaml` file.  These values of course will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, some runtimes or frameworks use environment variables to configure their behavior, such as a `dev` vs `production` flag. You might want to set those as application-provided variables to ensure a consistent build across every environment. They may also be used to set [PHP configuration values](#php-specific-variables).
+Variables may be [set in code](/configuration/app/variables.md), using the `.platform.app.yaml` file.  These values will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, some runtimes or frameworks use environment variables to configure their behavior, such as a `dev` vs `production` flag. You might want to set those as application-provided variables to ensure a consistent build across every environment. They may also be used to set [PHP configuration values](#php-specific-variables).
 
 Application-provided variables are available at both build time and runtime.
 
