@@ -35,6 +35,8 @@ The [Pathauto](https://www.drupal.org/project/pathauto) module will help you ass
 
 The frontend Gatsby app on the other hand has a slightly different configuration from the basic [Gatsby deployment](/guides/gatsby/deploy/_index.md). Below is the `gatsby/.platform.app.yaml` file that configures the application. 
 
+{{< github repo="platformsh-templates/gatsby-drupal" file="gatsby/.platform.app.yaml" lang="yaml" >}}
+
 In particular, notice:
 
 - `relationships`
@@ -49,13 +51,14 @@ In particular, notice:
 
     To the point above, there are additional consequences to postponing the Gatsby build, namely that you will only have write access to the container this late in the build-deploy pipeline. In order to allow Gatsby to write to `public`, that directory has been defined as a [mount](/configuration/app/storage.md).
 
-- `web.commands.start`
 
-    In the generic Gatsby template, the static files in `public` are served via the [`web.locations` block](https://github.com/platformsh-templates/gatsby/blob/c764ed717752eacc3c3f3322b7e5415e276d02df/.platform.app.yaml#L29), but that attribute is removed in the file below. Instead, two separate start commands are defined depending on which branch you are developing on. This has been included in order to support [Live Preview and Incremental Builds](https://www.drupal.org/project/gatsby). It is not required, but you can consult the [section below](#live-preview-and-incremental-builds) for more information about enabling it.
+---
 
-{{< github repo="platformsh-templates/gatsby-drupal" file="gatsby/.platform.app.yaml" lang="yaml" >}}
+Additionally, there has been a change to Gatsby's start command,`web.commands.start`. In the generic Gatsby template, the static files in `public` are served via the [`web.locations` block](https://github.com/platformsh-templates/gatsby/blob/c764ed717752eacc3c3f3322b7e5415e276d02df/.platform.app.yaml#L29), but that attribute is removed in the file below. Instead, two separate start commands are defined depending on which branch you are developing on. This has been included in order to support [Live Preview and Incremental Builds](https://www.drupal.org/project/gatsby). It is not required, but you can consult the [section below](#live-preview-and-incremental-builds) for more information about enabling it.
 
 You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) to read from the backend Drupal container through the `drupal` relationship defined above to configure the `baseUrl` attribute for `gatsby-source-drupal`. 
+
+--- inner
 
 You will notice that this is made easier by using Platform.sh's [Config Reader library for Node.js](https://github.com/platformsh/config-reader-nodejs), so be sure to install this to the Gatsby dependencies first when replicating. When used, Gatsby pulls the information to communicate with the Drupal container *on the current branch*.
 
@@ -63,17 +66,20 @@ You will notice that this is made easier by using Platform.sh's [Config Reader l
 
 Lastly, the Gatsby application itself needs to have updated [GraphQL](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/) queries to handle the data coming from Drupal and turn it into frontend content pages. The most important files in the template you can consult are:
 
+
+--- after
+
 - [`gatsby/gatsby-node.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/gatsby-node.js): which [dynamically creates](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/) individual pages from the data source.
 - [`gatsby/src/pages/articles.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/src/pages/articles.js): which places a query for all Drupal articles to generate a list page at of all of your articles at `/articles` on the Gatsby site. 
 - [`gatsby/src/templates/article.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/src/templates/article.js): which places queries to individual articles, formatting their single content pages on the Gatsby site.
 
-## Post-install
+## Deploy and post-install
 
-When you first deploy the template, the frontend Gatsby site will fail to deploy. Visit the `backend` subdomain of your site and finish Drupal's installation. Database credentials will already be provided for you, so you will not need to set them up manually. 
+{{< guides/gatsby/headless-postinstall name="Drupal">}}
 
 After you have completed the installation you will need to enable the JSON API and Gatsby related modules, and then set up aliases for your articles using Pathauto. See [the post-installation](https://github.com/platformsh-templates/gatsby-drupal#post-install) instructions on the template for the detailed instructions.
 
-Once you have completed those steps, you can redeploy the project with the CLI command `platform redeploy` to view your Gatsby site, now pulling its content from a backend Drupal container on the same project. 
+{{< /guides/gatsby/headless-postinstall >}}
 
 ## Next steps
 
@@ -81,17 +87,15 @@ With Gatsby now deployed and pulling content from a backend Drupal application, 
 
 ### `applications.yaml`
 
-You can optionally combine the application configuration (`.platform.app.yaml`) for Gatsby and Drupal into a single configuration file called `applications.yaml`. Like `services.yaml` and `routes.yaml`, this file is shared across the project and resides in the `.platform` subdirectory. It does require that you explicitly define the source of each application, so [consult the documentation](/configuration/app/multi-app.md#applicationsyaml) for more information.
+{{< guides/gatsby/headless-applicationsyaml name="Drupal" >}}
 
 ### Multiple content sources
 
-Gatsby supports pulling multiple sources into its build. This can include external services like Stripe, or additional backend CMSs for different sets of content. Like shown here with Drupal, you can branch off your repository and add an additional subdirectory that contains the codebase for [another backend](/guides/gatsby/headless/_index.md#headless-backends), and then add the source plugin for that backend to `gatsby-config.js`. 
+{{< guides/gatsby/headless-multiplesources name="Drupal" >}}
 
 ### Plan size
 
-As mentioned previously, it's generally recommended to have at least a Medium plan for your multi-app projects. This size will give the project enough resources for all of your containers as well as the memory necessary to actually pull content from the Drupal container into Gatsby during its build. 
-
-Keep in mind that increasing the plan size applies only to the production environment of your project, and not to its development environments (which default to "Standard"). As you continue to work with Gatsby and a backend headless CMS, you may find that it is also desirable to upsize your development environments to match production (the "Environments application size" setting for your plan).
+{{< guides/gatsby/headless-plansize >}}
 
 ### Live preview and incremental builds
 

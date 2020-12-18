@@ -21,6 +21,32 @@ description: |
 
 ## Strapi
 
-Lorem ipsum specifics.
+**Strapi specifics**
 
 ## Gatsby
+
+{{< guides/gatsby/headless-gatsby template="gatsby-strapi" >}}
+
+## Deploy and post-install
+
+{{< guides/gatsby/headless-postinstall name="Strapi">}}
+
+**Strapi post-install description...**
+
+{{< /guides/gatsby/headless-postinstall >}}
+
+## Next steps
+
+With Gatsby now deployed and pulling content from a backend Strapi application, there are a few things you may wish to change about your project going forward.
+
+### `applications.yaml`
+
+{{< guides/gatsby/headless-applicationsyaml name="Strapi" >}}
+
+### Multiple content sources
+
+{{< guides/gatsby/headless-multiplesources name="Strapi" >}}
+
+### Plan size
+
+{{< guides/gatsby/headless-plansize >}}
