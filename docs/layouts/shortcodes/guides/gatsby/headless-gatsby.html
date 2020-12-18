@@ -29,4 +29,4 @@
 {{ $con := base64Decode $dataJ.content }}
 {{ highlight $con "js" (.Get "options") }}
 
-<p>Lastly, the Gatsby application itself needs to have updated <a href="https://www.gatsbyjs.com/docs/reference/graphql-data-layer/" target="_blank" rel="noopener">GraphQL</a> queries to handle the data coming from {{ .Get "name" }} and turn it into frontend content pages. The most important files in the template you can consult are:</p>
+<p>Lastly, the Gatsby application itself needs to include <a href="https://www.gatsbyjs.com/docs/reference/graphql-data-layer/" target="_blank" rel="noopener">GraphQL</a> queries to handle the data coming from {{ .Get "name" }} and turn it into frontend content pages. The most important files in the template you should consult are:</p>

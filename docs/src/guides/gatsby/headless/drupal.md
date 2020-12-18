@@ -21,9 +21,9 @@ description: |
 
 ## Drupal
 
-There has only been a single modification Platform.sh's [standard Drupal template](https://github.com/platformsh-templates/drupal9) configuration in the multi-app template: the `name` attibribute in Drupal's `.platform.app.yaml` has been updated to `drupal`. You will notice this value used when the `relationship` between Gatsby and Drupal is defined [below for Gatsby](#gatsby) and in the [routes](#platformroutesyaml) configuration above.
+{{< guides/gatsby/headless-backend name="Drupal" >}}
 
-The only additional setup required to prepare the backend is to install a few additional modules that will configure the JSON API for consumption. In your Drupal directory, add the following dependencies.
+The only setup required to prepare the backend is to install a few additional modules that will configure the JSON API for consumption. In your Drupal directory, add the following dependencies.
 
 ```bash
 $ composer require drupal/gatsby drupal/jsonapi_extras drupal/pathauto
@@ -41,9 +41,17 @@ You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference
 
 {{< /guides/gatsby/headless-gatsby >}}
 
-- [`gatsby/gatsby-node.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/gatsby-node.js): which [dynamically creates](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/) individual pages from the data source.
-- [`gatsby/src/pages/articles.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/src/pages/articles.js): which places a query for all Drupal articles to generate a list page at of all of your articles at `/articles` on the Gatsby site. 
-- [`gatsby/src/templates/article.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/src/templates/article.js): which places queries to individual articles, formatting their single content pages on the Gatsby site.
+- [`gatsby/gatsby-node.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/gatsby-node.js) 
+
+    Dynamically creates individual pages from the data source using Gatsby's [Node API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/). It retrieves all of Drupal's articles (see [post-install below](#deploy-and-post-install)) using the GraphQL query `allNodeArticle`. A page is created (`createPage`) with formatting described by the template file `article.js` below (`component`). A `path` is also defined for each article, in this case using an `alias` you will define within Drupal using the Pathauto module.
+
+- [`gatsby/src/templates/article.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/gatsby/src/templates/article.js)
+
+    The template file that defines how a single Drupal article should be formatted on Gatsby, retrieving the data from that article using the `nodeArticle` GraphQL query.
+
+- [`gatsby/src/pages/articles.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/pages/articles.js)
+
+    Retrieves all of Drupal's content to generate a list of articles at `/articles` on the Gatsby site using the `allNodeArticle` GraphQL query. 
 
 ## Deploy and post-install
 
