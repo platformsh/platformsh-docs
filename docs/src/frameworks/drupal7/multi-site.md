@@ -36,7 +36,7 @@ Of course Platform.sh supports the Domain Access module, as it supports anything
 
 If the multiple sites are part of the same project this makes sense.
 
-Because of the dynamic nature of routes in Platform.sh you will need to implement
+Because of the dynamic nature of routes in Platform.sh, you'll need to implement
 some logic (here you would replace MYMODULE with a convenient name of your own
 and include it in your custom modules for your Drupal installation).
 
