@@ -19,7 +19,7 @@ Alternatively, see the [section below](#automated-ssl-certificate-renewal-using-
 
 Platform.sh recommends using HTTPS requests for all sites exclusively.  Doing so provides better security, access to certain features that web browsers only permit over HTTPS, and access to HTTP/2 connections on all sites which can greatly improve performance.
 
-How HTTPS redirection is handled depends on the routes you have defined.  Platform.sh recommends specifying all HTTPS routes in your `routes.yaml` file.  That will result in all pages being served over SSL, and any requests for an HTTP URL will automatically be redirected to HTTPS.
+How HTTPS redirection is handled depends on the routes you have defined.  Platform.sh recommends specifying only HTTPS routes in your `routes.yaml` file.  That will result in all pages being served over SSL, and any requests for an HTTP URL will automatically be redirected to HTTPS.
 
 ```yaml
 "https://{default}/":
@@ -53,7 +53,7 @@ Although Platform.sh does not recommend it, you can also redirect HTTPS requests
     to: "http://{default}/"
 ```
 
-Of course, more complex routing logic is possible if the situation calls for it. However, we recommend defining HTTPS routes exclusively.
+More complex routing logic is also possible if the situation calls for it.
 
 {{< note >}}
 Let's Encrypt has a limit of 100 TLS certificates per environment.  If you define both a `{default}` and `www.{default}` route for each domain you use, that will give you a limit of 50 domains.  Adding more than that will result in a warning on deploy and some domains will not be issued a TLS certificate.  If you need more than that, we recommend obtaining additional certificates or a wildcard certificate from another TLS provider.  Alternatively, consider splitting your project up into multiple discrete Platform.sh projects.

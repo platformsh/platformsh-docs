@@ -32,7 +32,7 @@ the various "single instance" options available such as [Domain Access](https://
 [Organic Groups](https://www.drupal.org/project/og), or [Workbench Access](https://www.drupal.org/project/workbench_access).
 
 ## Using Domain Access
-Of course Platform.sh supports the Domain Access module, as it supports anything Drupal.
+Platform.sh has broad support for custom Drupal modules, including the Domain Access module.
 
 If the multiple sites are part of the same project this makes sense.
 
