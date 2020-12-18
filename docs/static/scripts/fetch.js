@@ -112,6 +112,7 @@ function fetch () {
         targets[dataRoot] = getTargets(data, dataRoot);
         // Request and write the files.
         for (var target in targets[dataRoot]) {
+          console.log(target)
           writeFile(targets[dataRoot][target], target)
         }
       }

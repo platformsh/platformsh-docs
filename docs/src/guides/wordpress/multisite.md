@@ -6,23 +6,23 @@ description: |
 weight: -80
 ---
 
-It is possible to maintain a [WordPress Network](https://wordpress.org/support/article/create-a-network/), also known as a multi-site installation, on Platform.sh. In this case, multiple WordPress sites share the same core files, they share the same database, and each can have access to the same collection of themes an plugins, all managed from the same administration panel. Each site is "virtual", in that they do not have distinct directories for any part of their installation aside those for media uploads. Consult WordPress's [Before You Create a Network](https://wordpress.org/support/article/before-you-create-a-network/) guide about how your WordPress installation will be affected by these changes if you are still considering multi-site.
+It is possible to maintain a [WordPress Network](https://wordpress.org/support/article/create-a-network/), also known as a multisite installation, on Platform.sh. In this case, multiple WordPress sites share the same core files. They share the same database, and each have access to the same collection of themes and plugins, all managed from one administration panel. Each site is "virtual", in that they do not have distinct directories for any part of their installation except those for media uploads. Consult WordPress's [Before You Create a Network](https://wordpress.org/support/article/before-you-create-a-network/) guide about how your WordPress installation will be affected by these changes if you are still considering multisite.
 
-In this guide you will learn how to set up the two variations of WordPress multi-site on Platform.sh:
+In this guide you will learn how to set up the two variations of WordPress multisite on Platform.sh:
 
 - [Path-based](#subdirectory-path-based-wordpress-networks): invidual WordPress sites are served from *subdirectories* of the main domain, like `https://my-wordpress-site/site1`.
 - [Domain-based](#subdomain-domain-based-wordpress-networks): individual WordPress sites are served from *subdomains*, like `https://site1.my-wordpress-site`.
 
 ## Starting assumptions
 
-This documentation contains a number of guides for setting up and maintaining WordPress on Platform.sh, [ideally through Composer](/guides/wordpress/composer/_index.md). This guide will not directly address deployment, and will only focus on modifying an existing site already configured for Platform.sh for multi-site. If you have not already gone through this configuration, consult the guides and templates below before continuing:
+This documentation contains a number of guides for setting up and maintaining WordPress on Platform.sh, [ideally through Composer](/guides/wordpress/composer/_index.md). This guide will not directly address deployment, and will only focus on modifying an existing site already configured for Platform.sh to support a WordPress Network. It also assumed that you have already deployed that site to a Platform.sh project. If you have not already gone through this setup, consult the guides and templates below before continuing:
 
 - [How to Deploy WordPress on Platform.sh with Composer](/guides/wordpress/deploy/_index.md)
 - [WordPress (Composer) template](https://github.com/platformsh-templates/wordpress-composer)
 - [WordPress (Bedrock) template](https://github.com/platformsh-templates/wordpress-bedrock)
 - [How to Deploy WordPress on Platform.sh without Composer](/guides/wordpress/vanilla/_index.md)
 
-Additionally, each of the examples below have been applied to the [Bedrock](https://github.com/platformsh-templates/wordpress-bedrock) template, a Composer-managed WordPress. It comes with a few starting constraints for the directory structure of your projects, but makes configuration changes easier to illustrate. If you are using another [Composer-based](https://github.com/platformsh-templates/wordpress-composer) or [Vanilla](https://github.com/platformsh-templates/wordpress-vanilla) version of WordPress, replicate the steps in your own project. 
+Additionally, each of the examples below have been applied to the [Bedrock](https://github.com/platformsh-templates/wordpress-bedrock) template, a particular Composer-managed WordPress distribution. It comes with a few starting constraints for the directory structure of your projects, but makes configuration changes easier to illustrate. If you are using another [Composer-based](https://github.com/platformsh-templates/wordpress-composer) or [Vanilla](https://github.com/platformsh-templates/wordpress-vanilla) version of WordPress, replicate the steps in your own project. 
 
 ## Subdirectory: path-based WordPress Networks
 
@@ -58,7 +58,7 @@ $ platform environment:activate multisite
 
 ### Configure the network
 
-When the deployment has completed for the new environment, log into the administration panel and visit "Network Setup" under "Tool" in the sidebar. By default, the **Sub-directories** option should be selected already for you. Modify the the networks "Title" and "Admin Email" if desired, and then save the changes by clicking the "Install" button at the bottom of the page. 
+When the deployment has completed for the new environment, log into the administration panel and visit "Network Setup" under "Tools" in the sidebar. By default, the **Sub-directories** option should be selected already for you. Modify the the network's "Title" and "Admin Email" if desired, and then save the changes by clicking the "Install" button at the bottom of the page. 
 
 WordPress will offer you an additional block of configuration to then add to your `config/application.php` file:
 

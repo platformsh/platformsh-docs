@@ -1,5 +1,5 @@
 ---
-title: "Using Composer with WordPress: the how and why"
+title: "Why you should manage WordPress with Composer"
 weight: -100
 layout: single
 sidebarTitle: "Why use Composer?"
