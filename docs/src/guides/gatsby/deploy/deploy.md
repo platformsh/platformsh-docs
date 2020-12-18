@@ -1,5 +1,5 @@
 ---
-title: "Deploy Drupal 9"
+title: "Deploy Gatsby"
 sidebarTitle: "Deploy"
 weight: -80
 toc: false
@@ -13,13 +13,11 @@ description: |
 
 ## Additional changes
 
-For a standard Gatsby site, or for the example starter blog example, you have all of the configuration necessary to deploy your project. Below are a few modifications that may help you to develop your site more efficiently going forward.
+A standard Gatsby site - either one created interactively through npm (`npm init gatsby`) or through a starter such as the [Blog starter](https://github.com/gatsbyjs/gatsby-starter-blog) used in the Platform.sh template - will generate a static site without the use of any external services. If this is your starting point you have all of the configuration necessary to deploy your project, but below are a few modifications that may help you develop your site more efficiently going forward.
 
 ### Install the Config Reader
 
 {{< guides/config-reader-nodejs >}}
-
-When you make a new branch environment off of it, all of your data will be fully cloned to that new environment so you can test with your complete dataset without impacting production.
 
 Go forth and Deploy (even on Friday)!
 
