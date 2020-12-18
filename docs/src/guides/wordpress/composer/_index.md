@@ -12,59 +12,68 @@ Using Composer is not traditionally the norm for WordPress development, but it i
 
 ## Why use Composer
 
-Like any other application, your WordPress site is most secure when you can ensure repeatable builds and commitable updates for both your code and its dependencies. On Platform.sh, your infrastructure is committed through a set of configuration files which specifiy which version of PHP and MariaDB you want to use, because that's the best way to ensure that infrastructure remains consistent when developing new features.
+Like any other application, your WordPress site is most secure when you can ensure repeatable builds and commitable updates for both your code and its dependencies. This is a priority at Platform.sh, and that's why you can control your infrastructure in the same way. Your infrastructure is committed through a set of configuration files which specify which version of PHP and MariaDB you want to use, because that's the best way to ensure that your project remains reproducible when developing new features.
 
-WordPress core, as well as its themes in plugins, should ideally work the same way, but very often this is not the case. WordPress's adminintration panel provides one-click buttons to update all of these components when they are out of date, or otherwise expects write access to the file system to make configuration changes at runtime. Developing this has has it's consequences, however. 
+WordPress core, as well as its themes iand plugins, should ideally work the same way, but very often this is not the case. WordPress's adminintration panel provides one-click buttons to update all of these components when they are out of date, or otherwise expects write access to the file system to make configuration changes at runtime. Developing this way has it's consequences, however. 
 
-First off, you are not always going to have write access to the file system at runtime (which is the case for Platform.sh), so depending on this mechanism for updates and configuration changes is entirely restricted for many hosting solutions. On the other hand, if you *do* have write access at runtime where you're hosting currently, allowing a module or theme is a security risk if the source is unknown. 
+First off, you are not always going to have write access to the file system at runtime (which is the case for Platform.sh), so depending on this mechanism for updates and configuration changes is entirely restricted for many hosting solutions. On the other hand, if you *do* have write access at runtime where you're hosting currently, installing a new module or theme presents a nontrivial security risk when the source is unknown. 
 
-But, taking it back to the previous paragraphs, updating WordPress core or its modules at runtime decouples the state of your site from the code in your repository. A colleague working on a new feature on their local clone of the project could very well be a full major version behind the live site, introducing bugs with unknown (and more importantly, untested) consequences completely as a result of this workflow. 
-
-## Advantages of using Composer
-
-Given the points raised above, managing your WordPress site with Composer has clear advantages. First, it allows you to explicitly define your dependencies in a committed file (`composer.lock`). This lock file is generated from a more descriptive list of dependency constraints (`composer.json`) when your dependencies are installed, and it becomes a part of your project's commit history. From then on, any new branch will work from the identical collection of dependencies, down to the exact minor version. It does not matter at that point who contributes to the project or even where it is deployed, it's the same code for everyone everywhere.
-
-Composer also removes the need to commit large numbers of external code in your repository. In the case of WordPress, *not* using Composer will often require you to commit all of the code for a theme, and even for WordPress core itself, in your own project. Besides making the repository unnecessarily large and slow to clone, updating these copies becomes version control management that nobody needs to deal with.  
-
-Through Composer you can easily add and update dependencies to your project, 
-
----
-
-
-and it also provides the best way to make sure that your versions of WordPress core and your plugins are tied to your commit history in the same way. 
-
-Additionally, Platform.sh's build and deploy pipeline prevents write access to the file system at runtime, and it's here where plugins that cannot be downloaded via Composer fail since many require write acccess to their own file system as part of their setup process. 
-
-## Why use Composer
-
-It's not at all uncommon for WordPress developers to fully commit their WordPress sites, or to expect that they will be able to install modules and themes from within the admin panel at runtime. Platform.sh recommends neither of these, but instead that your WordPress sites should be managed with Composer on a read-only file system at runtime. There are specific reasons for these assumptions, mostly due to the restrictions Platform.sh makes about your running application, but they are good reasons addressed in detail below. 
-
-Ultimately, it is best that your Wordpress site managed with Composer
-
-- Downloads WordPress core on the fly, rather than committing it. 
-- Downloads WordPress themes and plugins during the build process, allowing you to *enable* them at runtime but not install new ones without additional commits. 
+But, perhaps most importantly, updating WordPress at runtime decouples the state of your site from the code in your repository. A colleague working on a new feature on their local clone of the project could very well be a full major version behind the live site, introducing bugs with unknown (and more importantly, untested) consequences completely as a result of this workflow. 
 
 ## Advantages of using Composer
 
-- explicitly declared dependencies
-- Composer takes care of both installation and updates
-- Project is never locked into specific versions
-- No third-party code needs to be included in your repository (without this, you either have to commit everything or use Git submodules)
+Given the points raised above, managing your WordPress site with Composer has clear advantages. First, it allows you to explicitly define your dependencies in a committed file (`composer.lock`). This lock file is generated from a more descriptive list of dependency constraints (`composer.json`) when your dependencies are installed, and it becomes a part of your project's commit history. From then on, any new branch will work from the identical collection of dependencies, down to the exact commit hash. It does not matter at that point who contributes to the project or even where it is deployed - it's the same code for everyone everywhere.
 
-### Adding plugins & themes: Platform.sh limitations and commit histories
+Composer also removes the need to commit lots of external code to your repository. In the case of WordPress, *not* using Composer will often require you to commit all of the code for a theme, and even for WordPress core itself, to your own project. Besides making the repository unnecessarily large and slow to clone, updating these copies becomes a juggling act that nobody needs to deal with.  
 
-Platform.sh helps tie codebases to infrastructure, to leverage Git in your DevOps workflow, and to ensure repeatable builds and secure sites at runtime. For all of these reasons, the typical method of adding and installing plugins and themes from within the admin panel at runtime just doesn't fit. 
+Through Composer you can easily add and update dependencies to your project, and then lock their exact versions so that each new branch gets that same update. Had the update been performed on the deployed site at runtime, you would have to remember to `git pull` first.
 
-Specifically, Platform.sh provides a fully writable file system *only* during the build stages (the build hook) of your deployment. From the deploy stage (deploy hook) on, you're project is running on containers with read-only filesystems. It's a change to get used to, but a huge advantage in the long run. Installing modules at runtime detaches code that your site depends on from your actual codebase. Additionally, allowing code to run on your server with write access is a security risk, which is why we don't allow it by default and do not recommend configuring manually in these cases.
+### Adding themes and modules with Composer
 
-Instead, Platform.sh maintains the assumption that your site at runtime should run on a read-only filesystem. 
+Through Composer, themes and modules are then treated the same as any other PHP dependency. You can, for example, add the [Neve](https://wordpress.org/themes/neve/) theme to your project by using `composer require`:
 
-### Updating WordPress core, plugins, & themes
+```bash
+$ composer require wpackagist-theme/neve
+```
 
-Aside from trying to install plugins and themes it can also be common practice to actually commit those packages to your codebase. This is better than the previous point, but not by much, mostly 
+or add the [cache-control](https://wordpress.org/plugins/cache-control-by-cacholong/) plugin:
 
-### Adding plugins & themes
+```bash
+$ composer require wpackagist-plugin/cache-control
+```
 
-Aside from trying to install plugins and themes 
+These commands will add the packages to your `composer.json` file, and then lock the exact version to `composer.lock`. Just push those updates up to your project at Platform.sh, and enable them through the administration panel as you would normally. 
 
-### Updating WordPress core, plugins, & themes
+{{< note >}}
+Typically, Composer dependencies install to a `vendor` directory in the project root, but themes and plugins need to install to `wp-content` instead. There is an `installer-paths` attribute that is added to `composer.json` to accomplish this, which is explained in more detail in the [How to Deploy WordPress on Platform.sh](/guides/wordpress/deploy/_index.md) guide (which uses Composer from the start), as well as the [How to update your WordPress site to use Composer](/guides/wordpress/composer/migrate.md) guide. 
+{{< /note >}}
+
+
+### Installing WordPress core with Composer
+
+In the same way, using Composer makes it unnecessary for your to commit all of WordPress to your repository, since you can add it as a dependency. There are a number of different ways to do this (i.e. [Bedrock](https://github.com/platformsh-templates/wordpress-bedrock)) depending on how many assumptions you want made for your configuration and project structure. The simplest leverages the [John Bloch Composer fork]https://github.com/johnpbloch/wordpress) to add an installer to your builds for WordPress:
+
+```bash
+$ composer require johnpbloch/wordpress-core-installer
+$ composer require johnpbloch/wordpress-core
+```
+
+### Updates
+
+Now that WordPress core, your themes and your plugins have been added as dependencies with Composer, updates become simple. 
+
+```bash
+$ composer update
+```
+
+This command will update everything in your project locally, after which you can push to Platform.sh on a new environment, and after you are satisfied with the changes merge into your production site. 
+
+## Resources
+
+Platform.sh has written a number of guides for WordPress alongside the Composer recommendation:
+
+- [How to Deploy WordPress on Platform.sh](/guides/wordpress/deploy/_index.md): From here, you can create a Composer-based version of WordPress from scratch and deploy to Platform.sh.
+- [How to update your WordPress site to use Composer](/guides/wordpress/composer/migrate.md): This guide will take you through the steps of updating your fully-committed *vanilla* WordPress repository into one that uses Composer and deploy it to Platform.sh.
+- [Multiple WordPress sites in a single Project](/guides/wordpress/multisite.md): This guide will instruct you how to deploy a WordPress Network (aka multi-site) to Platform.sh
+- [Redis](/guides/wordpress/redis.md): This guide will show you how to add a Redis container to your configuration and add it to your deployed WordPress site.
+- [How to Deploy WordPress without Composer on Platform.sh](/guides/wordpress/vanilla/_index.md): If you do not want to switch to using Composer and you are willing to work around some of Platform.sh runtime constraints, this guide will show you how to deploy a fully-committed *vanilla* WordPress site to Platform.sh
