@@ -5,7 +5,7 @@ weight: -110
 layout: single
 toc: false
 description: |
-    Create a Platform.sh account, download a few tools, and prepare to deploy WordPress.
+    Create a Platform.sh account, download a few tools, and prepare to deploy WordPress using Composer.
 ---
 
 WordPress is a popular Content Management System written in PHP. The recommended way to deploy WordPress on Platform.sh is by using Composer, the PHP package management suite. The most popular and supported way to do so is with the [John Bloch](https://github.com/johnpbloch/wordpress) Composer fork script. This guide assumes from the beginning that you're migrating a Composer-flavored WordPress repository. 

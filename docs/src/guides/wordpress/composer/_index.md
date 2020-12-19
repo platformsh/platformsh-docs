@@ -4,7 +4,7 @@ weight: -100
 layout: single
 sidebarTitle: "Why use Composer?"
 description: |
-    Everything you need to get started with WordPress on Platform.sh. 
+    This guide will give you a greater understanding for why Platform.sh recommends using Composer to manage WordPress. 
 ---
 
 
@@ -30,7 +30,7 @@ Through Composer you can easily add and update dependencies to your project, and
 
 ### Adding themes and modules with Composer
 
-Through Composer, themes and modules are then treated the same as any other PHP dependency. You can, for example, add the [Neve](https://wordpress.org/themes/neve/) theme to your project by using `composer require`:
+Through Composer, themes and modules are then treated the same as any other PHP dependency. You can, for example, add the [Neve](https://wordpress.org/themes/neve/) theme to your project by using `composer require`
 
 ```bash
 $ composer require wpackagist-theme/neve
@@ -42,7 +42,7 @@ or add the [cache-control](https://wordpress.org/plugins/cache-control-by-cachol
 $ composer require wpackagist-plugin/cache-control
 ```
 
-These commands will add the packages to your `composer.json` file, and then lock the exact version to `composer.lock`. Just push those updates up to your project at Platform.sh, and enable them through the administration panel as you would normally. 
+These commands will add the packages to your `composer.json` file, and then lock the exact version to `composer.lock`. Just push those updates to your project on Platform.sh, and enable them through the administration panel as you would normally. 
 
 {{< note >}}
 Typically, Composer dependencies install to a `vendor` directory in the project root, but themes and plugins need to install to `wp-content` instead. There is an `installer-paths` attribute that is added to `composer.json` to accomplish this, which is explained in more detail in the [How to Deploy WordPress on Platform.sh](/guides/wordpress/deploy/_index.md) guide (which uses Composer from the start), as well as the [How to update your WordPress site to use Composer](/guides/wordpress/composer/migrate.md) guide. 
@@ -66,7 +66,7 @@ Now that WordPress core, your themes and your plugins have been added as depende
 $ composer update
 ```
 
-This command will update everything in your project locally, after which you can push to Platform.sh on a new environment, and after you are satisfied with the changes merge into your production site. 
+This command will update everything in your project locally, after which you can push to Platform.sh on a new environment. After you are satisfied with the changes merge into your production site. 
 
 ## Resources
 
@@ -74,6 +74,6 @@ Platform.sh has written a number of guides for WordPress alongside the Composer 
 
 - [How to Deploy WordPress on Platform.sh](/guides/wordpress/deploy/_index.md): From here, you can create a Composer-based version of WordPress from scratch and deploy to Platform.sh.
 - [How to update your WordPress site to use Composer](/guides/wordpress/composer/migrate.md): This guide will take you through the steps of updating your fully-committed *vanilla* WordPress repository into one that uses Composer and deploy it to Platform.sh.
-- [Multiple WordPress sites in a single Project](/guides/wordpress/multisite.md): This guide will instruct you how to deploy a WordPress Network (aka multi-site) to Platform.sh
+- [Multiple WordPress sites in a single Project](/guides/wordpress/multisite/_index.md): This guide will instruct you how to deploy a WordPress Network (aka multi-site) to Platform.sh
 - [Redis](/guides/wordpress/redis.md): This guide will show you how to add a Redis container to your configuration and add it to your deployed WordPress site.
 - [How to Deploy WordPress without Composer on Platform.sh](/guides/wordpress/vanilla/_index.md): If you do not want to switch to using Composer and you are willing to work around some of Platform.sh runtime constraints, this guide will show you how to deploy a fully-committed *vanilla* WordPress site to Platform.sh
