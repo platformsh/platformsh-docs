@@ -74,6 +74,5 @@ Platform.sh has written a number of guides for WordPress alongside the Composer 
 
 - [How to Deploy WordPress on Platform.sh](/guides/wordpress/deploy/_index.md): From here, you can create a Composer-based version of WordPress from scratch and deploy to Platform.sh.
 - [How to update your WordPress site to use Composer](/guides/wordpress/composer/migrate.md): This guide will take you through the steps of updating your fully-committed *vanilla* WordPress repository into one that uses Composer and deploy it to Platform.sh.
-- [Multiple WordPress sites in a single Project](/guides/wordpress/multisite/_index.md): This guide will instruct you how to deploy a WordPress Network (aka multi-site) to Platform.sh
 - [Redis](/guides/wordpress/redis.md): This guide will show you how to add a Redis container to your configuration and add it to your deployed WordPress site.
 - [How to Deploy WordPress without Composer on Platform.sh](/guides/wordpress/vanilla/_index.md): If you do not want to switch to using Composer and you are willing to work around some of Platform.sh runtime constraints, this guide will show you how to deploy a fully-committed *vanilla* WordPress site to Platform.sh
