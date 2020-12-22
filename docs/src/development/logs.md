@@ -33,6 +33,10 @@ The cron log contains the output of all recent cron executions.  If there is no 
 
 The deploy log contains the output of the most recent run of the `deploy` hook for the container.  If there is no `deploy` hook then this file will be absent.
 
+## `dns.log`
+
+All DNS queries made by processes in the container (the application, crons, etc.) will be sent to this file.
+
 ## `nginx/error.log`
 
 nginx startup log messages will be recorded in this file.  It is rarely needed except when debugging possible nginx configuration errors. This file is not currently available using the `platform log` command.
