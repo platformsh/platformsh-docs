@@ -1,6 +1,6 @@
 ---
 title: "Data collection"
-weight: 3
+weight: 4
 description: |
   As part of our normal business operations, we collect various types of data.
 ---

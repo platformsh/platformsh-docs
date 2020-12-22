@@ -1,6 +1,6 @@
 ---
 title: "Protective block"
-weight: 8
+weight: 9
 description: |
   The Platform.sh service has a protective blocking feature that, under certain circumstances, restricts access to web sites with security vulnerabilities. We use this partial blocking method to prevent exploitation of known security vulnerabilities.
 ---

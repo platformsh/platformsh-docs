@@ -1,6 +1,6 @@
 ---
 title: "Encryption"
-weight: 7
+weight: 8
 ---
 
 ## Data in Transit
