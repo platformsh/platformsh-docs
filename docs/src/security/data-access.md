@@ -5,7 +5,6 @@ description: |
   Data Access and Disclosure.
 ---
 
-**Data Access**
 
 We ensure Customer data is protected by limiting internal access and preventing unauthorized access by implementing security measures such as encryption of data in transport and at rest. We only access data internally for support reasons at the Customer's request, or to fix or prevent an outage. Additionally, we maintain a list of Platform.sh employees with access to customer data, which is reviewed monthly.   
 
