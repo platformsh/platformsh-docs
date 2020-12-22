@@ -2,7 +2,6 @@
 title: "Additional resources"
 sidebarTitle: "Next steps"
 weight: -70
-toc: false
 description: |
     Upgrading, adding modules, and further development of your site.
 ---
@@ -17,7 +16,7 @@ hooks:
         rsync -a plugins/* wordpress/wp-content/plugins/
 ```
 
-Here, you can commit plugins to the repository in a `plugins` subdirectory, which will then be placed into the WordPress installation during the build. 
+Here, you can commit plugins to the repository in a `plugins` subdirectory, which will then be placed into the WordPress installation during the build. It is assumed that these packages stick to best practices and do not write to the file system at runtime and when enabling them. You can get around this issue by defining a [mount](/configuration/app/storage.md#basic-mounts) where a plugin requires write access, but you will have to remember that the contents at that mount location will be wiped when deployment begins, so you will need to copy and re-copy accordingly.  
 
 ## Adding public plugins and themes via Composer
 
@@ -31,6 +30,16 @@ $ composer require wpackagist-theme/neve
 ```
 
 This will update your `composer.json` and `composer.lock` files, and once you push the change to Platform.sh the package will be downloaded during WordPress's build. All that is left is to sign in to the administration dashboard on your deployed site and enable plugins and themes from the Plugins and Appearance settings, respectively. 
+
+## Set up a WooCommerce site
+
+Platform.sh maintains a [WooCommerce template](https://github.com/platformsh-templates/wordpress-woocommerce) that you can deploy quickly from the button in its README, but using Composer you can quickly install WooCommerce yourself:
+
+```bash
+$ composer require woocommerce/woocommerce
+```
+
+Push those changes on a new environment and configure your store through the administration panel.
 
 ## Adding private plugins and themes via Composer
 
@@ -68,5 +77,13 @@ Your WordPress site is fully managed by Composer, which means so are updates to 
 The [Composer documentation](https://getcomposer.org/doc/) has more information on options to update individual modules or perform other tasks.
 
 Note that updating modules or core through the WordPress UI is not possible, as the file system is read-only.  All updates should be done through Composer to update the lock file, and then push to Git.
+
+## Local development with Lando
+
+{{< guides/lando repo="platformsh-templates/wordpress-composer" >}}
+
+This Landofile is also the place where you can configure access to tools that would normally be available within a Platform.sh app container (such as the WordPress CLI), that you would also want access to locally. 
+
+{{< /guides/lando >}}
 
 {{< guide-buttons type="last" >}}

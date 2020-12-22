@@ -56,6 +56,7 @@ appyaml:
   - nodejs
   - typo3
   - wordpress-composer
+  - wordpress-vanilla
   - quarkus
   - gatsby
 servicesyaml:
@@ -63,6 +64,7 @@ servicesyaml:
   - drupal9
   - typo3
   - wordpress-composer
+  - wordpress-vanilla
   - quarkus
   - gatsby
 routesyaml:
@@ -70,6 +72,7 @@ routesyaml:
   - drupal9
   - typo3
   - wordpress-composer
+  - wordpress-vanilla
   - quarkus
   - gatsby
 docsappyaml:

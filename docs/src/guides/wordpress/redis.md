@@ -1,6 +1,6 @@
 ---
 title: "Using Redis with WordPress"
-weight: 1
+weight: -70
 sidebarTitle: "Redis"
 description: |
     Configure Redis for your WordPress site.
