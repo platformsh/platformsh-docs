@@ -58,7 +58,7 @@ Second, add a build hook to your `.platform.app.yaml` file to download the CLI a
 ```yaml
 hooks:
     build: |
-        curl -sS https://platform.sh/cli/installer | php
+        curl -fsS https://platform.sh/cli/installer | php
 ```
 
 This will download the CLI to a known directory, `.platformsh/bin`, which will be added to the PATH at runtime (via the .environment file). Because the API token is available, the CLI will now be able to run authenticated commands, acting as the user who created the token.

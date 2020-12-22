@@ -6,7 +6,7 @@ layout: single
 
 Ibexa DXP is a Composer-based PHP CMS, and as such fits well with the Platform.sh model.  As a Symfony-based application its setup is very similar to Symfony.
 
-Ibexa DXP has come pre-configured for use with Platform.sh since its predecessor, eZ Platform 1.13. Version 2.5 and later is recommended. Those are the only versions that are supported.  Appropriate Platform.sh configuration files are included in the Ibexa DXP application itself, but of course may be modified to suit your particular site if needed.
+Ibexa DXP has come pre-configured for use with Platform.sh since its predecessor, eZ Platform 1.13. Version 2.5 and later is recommended. Those are the only versions that are supported.  Appropriate Platform.sh configuration files are included in the Ibexa DXP application itself, but may be modified to suit your particular site, if needed.
 
 ## Cache and sessions
 
@@ -43,7 +43,7 @@ It serves as a wrapper that allows you to run console commands from within the c
 eZ Launchpad's approach is to stay as decoupled as possible from your development machine and your remote hosting whether you are Linux or Mac OSX. To install run:
 
 ```bash
-curl -LSs https://ezsystems.github.io/launchpad/install_curl.bash | bash
+curl -fLSs https://ezsystems.github.io/launchpad/install_curl.bash | bash
 ```
 
 Then you can start to use it to initialize your Ibexa DXP project on top Docker.

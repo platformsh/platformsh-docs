@@ -158,6 +158,19 @@ Inbound IPs (gw.us-3.platformsh.site):
 * 52.156.93.30
 * 51.143.107.76
 
+### West 4 (us-4.platform.sh) (Data Location Guarantee)
+
+Outbound IPs:
+
+* 34.73.189.215
+* 34.74.8.155
+* 34.75.104.115
+
+Inbound IPs (gw.us-4.platformsh.site):
+
+* 34.73.189.215
+* 34.74.8.155
+* 34.75.104.115
 
 ## Canada
 
