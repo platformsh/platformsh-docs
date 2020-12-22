@@ -59,3 +59,27 @@ See the [`rsync` documentation](https://download.samba.org/pub/rsync/rsync.html)
 The mechanism for downloading from each service (such as your database) varies.  For services designed to hold non-persistent information (such as Redis or Solr) it's generally not necessary to download data as it can be rebuilt from the primary data store.
 
 To download data from persistent services ([MySQL](/configuration/services/mysql.md), [PostgreSQL](/configuration/services/postgresql.md), [MongoDB](/configuration/services/mongodb.md), or [InfluxDB](/configuration/services/influxdb.md)), see each service's page for instructions.
+
+
+## Get the environment variables
+
+If your project uses some environment variable (tokens, ...) it can be helpful to backup them if you didn't store them separately.
+
+As precised in the management console, several possibilities exist for the environment variables.
+> • Variables beginning with env: will be exposed as Unix environment variables
+
+> • Variables beginning with php: will be interpreted as php.ini directives.
+
+> • All other variables will be part of the environment $PLATFORM_VARIABLES variable
+More details can be found [here](https://docs.platform.sh/administration/web/configure-environment.html#variables
+)
+
+You can access the content of the environment variable through the management console unless the `--sensitive true` flag was set.
+
+In that case, you can run:
+`platform ssh -p <project id> -e <environment>`
+To access all the environment variables's values
+
+and `platform ssh -p <project id> -e <environment> "echo \$PLATFORM_VARIABLES | base64 -d | jq"` to access the `PLATFORM_VARIABLES`'s values.
+
+ 
