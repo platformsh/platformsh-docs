@@ -91,7 +91,7 @@ highlight=php
 <--->
 
 ---
-title=PHP
+title=Python
 file=static/files/fetch/examples/python/memcached
 highlight=python
 ---
