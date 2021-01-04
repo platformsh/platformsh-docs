@@ -67,7 +67,7 @@ The primary use case for this configuration is if the source code is pulled in a
 
 ### `applications.yaml`
 
-It is possible to define an application in a `.platform/applications.yaml` file in addition to discrete `.platform.app.yaml` files.  The syntax is nearly identical, but the `source.root` key is required.  The `applications.yaml` file is then a YAML array of application definitions.
+It is possible to define an application in a `.platform/applications.yaml` file rather than in discrete `.platform.app.yaml` files.  The syntax is nearly identical, but the `source.root` key is required.  The `applications.yaml` file is then a YAML array of application definitions.
 
 For example, the following `.platform/applications.yaml` file defines three applications:
 
