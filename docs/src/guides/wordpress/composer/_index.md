@@ -51,7 +51,7 @@ Typically, Composer dependencies install to a `vendor` directory in the project 
 
 ### Installing WordPress core with Composer
 
-In the same way, using Composer makes it unnecessary for your to commit all of WordPress to your repository, since you can add it as a dependency. There are a number of different ways to do this (i.e. [Bedrock](https://github.com/platformsh-templates/wordpress-bedrock)) depending on how many assumptions you want made for your configuration and project structure. The simplest leverages the [John Bloch Composer fork]https://github.com/johnpbloch/wordpress) to add an installer to your builds for WordPress:
+In the same way, using Composer makes it unnecessary for your to commit all of WordPress to your repository, since you can add it as a dependency. There are a number of different ways to do this (i.e. [Bedrock](https://github.com/platformsh-templates/wordpress-bedrock)) depending on how many assumptions you want made for your configuration and project structure. The simplest leverages the [John Bloch Composer fork](https://github.com/johnpbloch/wordpress) to add an installer to your builds for WordPress:
 
 ```bash
 $ composer require johnpbloch/wordpress-core-installer
