@@ -11,6 +11,8 @@ layout: single
 
 Unlike other PaaS services, Platform.sh is **batteries included** which means that you don't need to subscribe to an external service to get a cache or a search engine. And that those services are managed. When you back up your project, all of the services are backed-up. **Services** are configured through the `.platform/services.yaml` file you will need to commit to your Git repository. This section describes specifics you might want to know about for each service."
 
+If you do not need additional services, you can leave the `.platform/services.yaml` file empty. This is the recommended approach for a static website.
+
 ![Services](/images/management-console/relationships.png "0.50")
 
 Here is an example of a `.platform/services.yaml` file:
