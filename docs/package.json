@@ -26,6 +26,8 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.10",
     "async": "^3.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
     "babelify": "^10.0.0",
     "bl": "^2.2.1",
     "browserify": "^16.5.2",
