@@ -25,7 +25,7 @@ In the [`.platform/routes.yaml`](/configuration/routes/_index.md) file you can a
 
 ```yaml
 https://{default}/:
-  # [...]
+  # ...
   redirects:
     expires: 1d
     paths:
@@ -51,7 +51,7 @@ Each rule under `paths` is defined by its key describing the expression to match
    ```yaml
    https://{default}/:
      type: upstream
-       # [...]
+     # ...
      redirects:
        paths:
          '^/foo/(.*)/bar':
@@ -68,7 +68,7 @@ Each rule under `paths` is defined by its key describing the expression to match
    ```yaml
    https://{default}/:
      type: upstream
-       # [...]
+     # ...
      redirects:
        paths:
          '/from':
@@ -84,7 +84,7 @@ Each rule under `paths` is defined by its key describing the expression to match
    ```yaml
    https://{default}/:
      type: upstream
-       # [...]
+     # ...
      redirects:
        paths:
          '/from':
@@ -98,7 +98,7 @@ Each rule under `paths` is defined by its key describing the expression to match
    ```yaml
    https://{default}/:
      type: upstream
-       # [...]
+     # ...
      redirects:
        paths:
          '/from':
@@ -114,7 +114,7 @@ Each rule under `paths` is defined by its key describing the expression to match
    ```yaml
    https://{default}/:
      type: upstream
-       # [...]
+     # ...
      redirects:
        expires: 1d
        paths:
