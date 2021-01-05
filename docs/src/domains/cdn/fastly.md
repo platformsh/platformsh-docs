@@ -21,7 +21,7 @@ Rather than create a DNS CNAME for your Platform.sh master branch (for instance 
 
 ## HTTP Redirect
 
-If you are connecting to origin using TLS then you should enable the `Force TLS and HSTS` setting under your Fastly service. Connecting over TLS will force every request to origin over port 443 meaning none of the http to https rules found in `routes.yaml` will not work.
+If you are connecting to origin using TLS then you should enable the `Force TLS and HSTS` setting under your Fastly service. Connecting over TLS will force every request to origin over port 443 meaning the http to https rules found in `routes.yaml` will not work.
 
 ## DNS TXT records
 
