@@ -105,9 +105,9 @@ This is the complete list of extensions that can be enabled:
 | mongodb          |     |     |     | *   | *   | *   | *   | *   |     |
 | msgpack          |     |     | *   | *   | *   | *   |     | *   |     |
 | mssql            | *   | *   | *   |     |     |     |     |     |     |
-| mysql            | *   | *   | *   |     |     |     |     |     | *   |
-| mysqli           | *   | *   | *   | *   | *   | *   | *   | *   |     |
-| mysqlnd          | *   | *   | *   | *   | *   | *   | *   | *   |     |
+| mysql            | *   | *   | *   |     |     |     |     |     |     |
+| mysqli           | *   | *   | *   | *   | *   | *   | *   | *   | *   |
+| mysqlnd          | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | newrelic         |     |     | *   | *   | *   | *   | *   | *   |     |
 | oauth            |     |     |     | *   | *   | *   | *   | *   |     |
 | odbc             | *   | *   | *   | *   | *   | *   | *   | *   | *   |
@@ -116,10 +116,10 @@ This is the complete list of extensions that can be enabled:
 | pdo              | *   | *   | *   | *   | *   | *   | *   | *   |     |
 | pdo_dblib        | *   | *   | *   | *   | *   | *   | *   | *   |     |
 | pdo_firebird     | *   | *   | *   | *   | *   | *   | *   | *   |     |
-| pdo_mysql        | *   | *   | *   | *   | *   | *   | *   | *   |     |
-| pdo_odbc         | *   | *   | *   | *   | *   | *   | *   | *   |     |
-| pdo_pgsql        | *   | *   | *   | *   | *   | *   | *   | *   |     |
-| pdo_sqlite       | *   | *   | *   | *   | *   | *   | *   | *   |     |
+| pdo_mysql        | *   | *   | *   | *   | *   | *   | *   | *   | *   |
+| pdo_odbc         | *   | *   | *   | *   | *   | *   | *   | *   | *   |
+| pdo_pgsql        | *   | *   | *   | *   | *   | *   | *   | *   | *   |
+| pdo_sqlite       | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | pdo_sqlsrv       |     |     |     | *   | *   | *   |     | *   |     |
 | http             |     |     | *   |     |     |     |     | *   |     |
 | pgsql            | *   | *   | *   | *   | *   | *   | *   | *   | *   |
