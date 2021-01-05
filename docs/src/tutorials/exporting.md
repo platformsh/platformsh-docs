@@ -65,12 +65,10 @@ To download data from persistent services ([MySQL](/configuration/services/mysql
 
 If your project uses some environment variable (tokens, ...) it can be helpful to backup them if you didn't store them separately.
 
-As precised in the management console, several possibilities exist for the environment variables.
-> • Variables beginning with env: will be exposed as Unix environment variables
-
-> • Variables beginning with php: will be interpreted as php.ini directives.
-
-> • All other variables will be part of the environment $PLATFORM_VARIABLES variable
+As stated in the management console, several possibilities exist for the environment variables.
+• Variables beginning with `env`: will be exposed as Unix environment variables
+• Variables beginning with `php`: will be interpreted as php.ini directives.
+• All other variables will be part of the environment $PLATFORM_VARIABLES variable
 More details can be found [here](https://docs.platform.sh/administration/web/configure-environment.html#variables
 )
 
