@@ -11,9 +11,7 @@ aliases:
 
 A Fastly CDN is included for Platform.sh Dedicated instances.  Platform.sh does not offer an integrated CDN on self-service Grid projects at this time, but it is a common choice for customers to self-configure.
 
-Launching a Platform.sh site with Fastly in front of it is nearly the same as launching normally.  There are only two notable differences.
-
-Note that individual applications may have their own Fastly setup instructions or additional modules.  Consult the documentation for your application for specific details.
+Launching a Platform.sh site with Fastly in front of it is nearly the same as launching normally.  There are only a few notable differences. Individual applications may have their own Fastly setup instructions or additional modules. Consult the documentation for your application for specific details.
 
 ## Set the Platform.sh domain on Fastly
 
@@ -21,7 +19,9 @@ Rather than create a DNS CNAME for your Platform.sh master branch (for instance 
 
 ## HTTP Redirect
 
-If you are connecting to origin using TLS then you should enable the `Force TLS and HSTS` setting under your Fastly service. Connecting over TLS will force every request to origin over port 443 meaning the http to https rules found in `routes.yaml` will not work.
+Platform.sh recommends specifying only HTTPS routes in your `routes.yaml` file. This results in all pages being served over SSL and any requests for an HTTP URL automatically redirected to HTTPS.
+
+Connecting to your origin from Fastly [with TLS enabled](https://docs.fastly.com/products/tls-service-options) will force every request over port 443, breaking these automatic redirects. It will be necessary to enable the ["Force TLS and enable HSTS"](https://docs.fastly.com/en/guides/enabling-hsts-through-fastly) setting to complete your Fastly configuration in this case. 
 
 ## DNS TXT records
 
