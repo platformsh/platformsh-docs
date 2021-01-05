@@ -8,7 +8,7 @@ toc: false
 
 {{< description >}}
 
-If a data breach occurs, we will execute a breach notification and response process in accordance with our Data Breach Policy. As part of this process, we will prepare a data breach notification with as much detail as possible, such as the nature of the data breach, possible consequences, and the measures we are taking to deal with the breach. 
+As part of this process, we will prepare a data breach notification with as much detail as possible, such as the nature of the data breach, possible consequences, and the measures we are taking to deal with the breach. 
 
 If you want an email address other than the one connected to your Account to be notified of a data breach, please ensure the "Security Contact" field in your Account Settings is updated with the email address you wish to receive data breach notifications.  
 
