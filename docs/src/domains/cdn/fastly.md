@@ -19,6 +19,10 @@ Note that individual applications may have their own Fastly setup instructions o
 
 Rather than create a DNS CNAME for your Platform.sh master branch (for instance `master-7rqtwti-qwertyqwerty.eu.platform.sh`), [configure Fastly](https://docs.fastly.com/guides/basic-configuration/working-with-domains) to respond to requests for your domain name and to treat the Platform.sh master branch as its backend server.  Be sure to enable TLS for the backend connection to Platform.sh.  Then configure your DNS to point your domain at Fastly instead.  See the [Fastly documentation](https://docs.fastly.com/guides/basic-configuration/connecting-to-origins) for further details.
 
+## HTTP Redirect
+
+If you are connecting to origin using TLS then you should enable the `Force TLS and HSTS` setting under your Fastly service. Connecting over TLS will force every request to origin over port 443 meaning none of the http to https rules found in `routes.yaml` will not work.
+
 ## DNS TXT records
 
 If using the Fastly CDN that is included with a Platform.sh Enterprise subscription, You will need to obtain a DNS TXT record from your Customer Support Engineer prior to going live.  You will need to enter that as a DNS TXT record with your domain registrar.  This step should be done well in advance of the actual go-live.
