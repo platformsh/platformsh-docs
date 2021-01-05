@@ -70,24 +70,24 @@ This is the complete list of extensions that can be enabled:
 | bcmath           |     |     |     | *   | *   | *   | *   | *   | *   |
 | blackfire        | *   | *   | *   | *   | *   | *   | *   | *   |     |
 | bz2              |     |     |     | *   | *   | *   | *   | *   | *   |
-| calendar         |     |     |     | *   | *   | *   | *   | *   |     |
-| ctype            |     |     |     | *   | *   | *   | *   | *   |     |
+| calendar         |     |     |     | *   | *   | *   | *   | *   | *   |
+| ctype            |     |     |     | *   | *   | *   | *   | *   | *   |
 | curl             | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | dba              |     |     |     | *   | *   | *   | *   | *   | *   |
-| dom              |     |     |     | *   | *   | *   | *   | *   |     |
+| dom              |     |     |     | *   | *   | *   | *   | *   | *   |
 | enchant          | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | event            |     |     |     |     | *   | *   | *   | *   |     |
-| exif             |     |     |     | *   | *   | *   | *   | *   |     |
+| exif             |     |     |     | *   | *   | *   | *   | *   | *   |
 | ffi              |     |     |     |     |     |     |     | *   | *   |
-| fileinfo         |     |     |     | *   | *   | *   | *   | *   |     |
-| ftp              |     |     |     | *   | *   | *   | *   | *   |     |
+| fileinfo         |     |     |     | *   | *   | *   | *   | *   | *   |
+| ftp              |     |     |     | *   | *   | *   | *   | *   | *   |
 | gd               | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | gearman          | *   | *   | *   |     |     |     |     |     |     |
 | geoip            | *   | *   | *   | *   | *   | *   | *   | *   |     |
-| gettext          |     |     |     | *   | *   | *   | *   | *   |     |
+| gettext          |     |     |     | *   | *   | *   | *   | *   | *   |
 | gmp              | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | http             | *   | *   |     |     |     |     |     | *   |     |
-| iconv            |     |     |     | *   | *   | *   | *   | *   |     |
+| iconv            |     |     |     | *   | *   | *   | *   | *   | *   |
 | igbinary         |     |     |     | *   | *   | *   | *   | *   | *   |
 | imagick          | *   | *   | *   | *   | *   | *   | *   | *   |     |
 | imap             | *   | *   | *   | *   | *   | *   | *   | *   | *   |
@@ -108,13 +108,13 @@ This is the complete list of extensions that can be enabled:
 | mysql            | *   | *   | *   |     |     |     |     |     |     |
 | mysqli           | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | mysqlnd          | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| newrelic         |     |     | *   | *   | *   | *   | *   | *   |     |
+| newrelic         |     |     | *   | *   | *   | *   | *   | *   | *   |
 | oauth            |     |     |     | *   | *   | *   | *   | *   |     |
 | odbc             | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | opcache          |     | *   | *   | *   | *   | *   | *   | *   | *   |
 | openssl          |     |     |     |     |     |     |     |     |     |
-| pdo              | *   | *   | *   | *   | *   | *   | *   | *   |     |
-| pdo_dblib        | *   | *   | *   | *   | *   | *   | *   | *   |     |
+| pdo              | *   | *   | *   | *   | *   | *   | *   | *   | *   |
+| pdo_dblib        | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | pdo_firebird     | *   | *   | *   | *   | *   | *   | *   | *   |     |
 | pdo_mysql        | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | pdo_odbc         | *   | *   | *   | *   | *   | *   | *   | *   | *   |
@@ -123,9 +123,9 @@ This is the complete list of extensions that can be enabled:
 | pdo_sqlsrv       |     |     |     | *   | *   | *   |     | *   |     |
 | http             |     |     | *   |     |     |     |     | *   |     |
 | pgsql            | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| phar             |     |     |     | *   | *   | *   | *   | *   |     |
+| phar             |     |     |     | *   | *   | *   | *   | *   | *   |
 | pinba            | *   | *   | *   |     |     |     |     |     |     |
-| posix            |     |     |     | *   | *   | *   | *   | *   |     |
+| posix            |     |     |     | *   | *   | *   | *   | *   | *   |
 | propro           |     |     | *   |     |     |     |     |     |     |
 | pspell           | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | pthreads         |     |     |     |     | *   |     |     |     |     |
@@ -133,11 +133,11 @@ This is the complete list of extensions that can be enabled:
 | readline         | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | recode           | *   | *   | *   | *   | *   | *   | *   | *   |     |
 | redis            | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| shmop            |     |     |     | *   | *   | *   | *   | *   |     |
-| simplexml        |     |     |     | *   | *   | *   | *   | *   |     |
+| shmop            |     |     |     | *   | *   | *   | *   | *   | *   |
+| simplexml        |     |     |     | *   | *   | *   | *   | *   | *   |
 | snmp             | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | soap             |     |     |     | *   | *   | *   | *   | *   | *   |
-| sockets          |     |     |     | *   | *   | *   | *   | *   |     |
+| sockets          |     |     |     | *   | *   | *   | *   | *   | *   |
 | sodium           |     |     |     |     |     | *   | *   | *   | *   |
 | sourceguardian   |     |     |     | *   | *   |     |     |     |     |
 | spplus           | *   | *   |     |     |     |     |     |     |     |
@@ -145,21 +145,21 @@ This is the complete list of extensions that can be enabled:
 | sqlsrv           |     |     |     | *   | *   | *   |     | *   |     |
 | ssh2             | *   | *   | *   | *   | *   | *   | *   | *   |     |
 | sybase           |     |     |     |     | *   | *   | *   | *   | *   |
-| sysvmsg          |     |     |     | *   | *   | *   | *   | *   |     |
-| sysvsem          |     |     |     | *   | *   | *   | *   | *   |     |
-| sysvshm          |     |     |     | *   | *   | *   | *   | *   |     |
-| tideways         |     |     |     | *   | *   | *   | *   | *   |     |
-| tideways-xhprof  |     |     |     | *   | *   | *   | *   | *   |     |
+| sysvmsg          |     |     |     | *   | *   | *   | *   | *   | *   |
+| sysvsem          |     |     |     | *   | *   | *   | *   | *   | *   |
+| sysvshm          |     |     |     | *   | *   | *   | *   | *   | *   |
+| tideways         |     |     |     | *   | *   | *   | *   | *   | *   |
+| tideways-xhprof  |     |     |     | *   | *   | *   | *   | *   | *   |
 | tidy             | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| tokenizer        |     |     |     | *   | *   | *   | *   | *   |     |
+| tokenizer        |     |     |     | *   | *   | *   | *   | *   | *   |
 | uuid             |     |     |     |     | *   | *   | *   | *   | *   |
 | wddx             |     |     |     | *   | *   | *   | *   | *   |     |
 | xcache           | *   | *   |     |     |     |     |     |     |     |
 | xhprof           | *   | *   | *   |     |     |     |     |     |     |
 | xml              |     |     |     | *   | *   | *   | *   | *   | *   |
-| xmlreader        |     |     |     | *   | *   | *   | *   | *   |     |
-| xmlrpc           | *   | *   | *   | *   | *   | *   | *   | *   |     |
-| xmlwriter        |     |     |     | *   | *   | *   | *   | *   |     |
+| xmlreader        |     |     |     | *   | *   | *   | *   | *   | *   |
+| xmlrpc           | *   | *   | *   | *   | *   | *   | *   | *   | *   |
+| xmlwriter        |     |     |     | *   | *   | *   | *   | *   | *   |
 | xsl              | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | yaml             |     |     |     |     | *   | *   | *   | *   |     |
 | zbarcode         |     |     |     | *   | *   | *   | *   |     |     |
