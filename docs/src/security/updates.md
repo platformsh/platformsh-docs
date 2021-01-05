@@ -1,6 +1,6 @@
 ---
 title: "Update all the things"
-weight: 12
+weight: 13
 sidebarTitle: "Updating"
 toc: false
 description: |
