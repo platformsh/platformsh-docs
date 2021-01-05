@@ -2,7 +2,7 @@
 title: "Data breach notification"
 weight: 4
 description: |
-  Some description
+  If a data breach occurs, we will execute a breach notification and response process in accordance with our Data Breach Policy.
 toc: false  
 ---
 
