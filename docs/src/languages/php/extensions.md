@@ -10,6 +10,7 @@ You can define the PHP extensions you want to enable or disable:
 runtime:
     extensions:
         - http
+        - igbinary
         - redis
         - ssh2
     disabled_extensions:
