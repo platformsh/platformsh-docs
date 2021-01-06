@@ -45,6 +45,7 @@
     "request-promise": "^4.2.6",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
+    "webpack-cli": "^3.3.12",
     "yaml-include": "^1.2.1"
   }
 }
