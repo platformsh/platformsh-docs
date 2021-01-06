@@ -21,9 +21,7 @@ Rather than create a DNS CNAME for your Platform.sh master branch (for instance 
 
 From the Fastly interface under "Configure", edit the configuration for your origin to enable the ["Force TLS and enable HSTS"](https://docs.fastly.com/en/guides/enabling-hsts-through-fastly).
 
-Generally, Platform.sh recommends specifying only HTTPS routes in your `routes.yaml` file. This results in all pages being served over SSL and any requests for an HTTP URL automatically redirected to HTTPS. When Fastly has been added as an intermediary to your project, however, this automatic redirect fails. Once a user visits your site with an HTTP request and is directed to Fastly, Fastly continues to query Platform.sh using HTTPS (since that is how origin has been configured). Platform.sh never detects the HTTP request in the first place, resulting 
-
-Connecting to your origin from Fastly [with TLS enabled](https://docs.fastly.com/products/tls-service-options) will force every request over port 443, breaking these automatic redirects. It will be necessary to enable the ["Force TLS and enable HSTS"](https://docs.fastly.com/en/guides/enabling-hsts-through-fastly) setting to complete your Fastly configuration in this case. 
+Generally, Platform.sh recommends specifying only HTTPS routes in your `routes.yaml` file. This results in all pages being served over SSL and any requests for an HTTP URL automatically redirected to HTTPS. When Fastly has been added as an intermediary to your project, however, this automatic redirect fails. Once a user visits your site with an HTTP request and is directed to Fastly, Fastly continues to query Platform.sh using HTTPS (since that is how origin has been configured), resulting in Platform.sh never detecting the HTTP request in the first place. Enabling the "Force TLS and enable HSTS" option will get around this issue so that HTTP requests are handled as expected. 
 
 ## DNS TXT records
 
