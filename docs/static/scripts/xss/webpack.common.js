@@ -31,6 +31,7 @@ module.exports = {
       'node_modules'
     ],
     alias: {
+      buffer: "buffer",
       path: "path-browserify",
       stream: "stream-browserify"
     }
