@@ -21,7 +21,6 @@
     "eslint-plugin-react": "^7.22.0",
     "styled-components": "^5.2.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.1",
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
@@ -45,6 +44,6 @@
     "react-markdown": "^4.3.1",
     "react-render-html": "^0.6.0",
     "style-loader": "^1.2.1",
-    "webpack": "^3.8.1"
+    "webpack": "^5.11.1"
   }
 }

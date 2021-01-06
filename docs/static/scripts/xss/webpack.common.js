@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+  mode: 'production',
   context: path.resolve(__dirname, 'src'),
   entry: ['babel-polyfill', 'index.js'],
   output: {
@@ -14,7 +15,10 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       {
         test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-        loader: 'file-loader?name=[name].[ext]'
+        loader: 'file-loader',
+        options: {
+            name: '[path][name].[ext]'
+        }
       }
     ]
   },
@@ -25,6 +29,10 @@ module.exports = {
     modules: [
       path.join(__dirname, 'src'),
       'node_modules'
-    ]
+    ],
+    alias: {
+      path: "path-browserify",
+      stream: "stream-browserify"
+    }
   }
 }
