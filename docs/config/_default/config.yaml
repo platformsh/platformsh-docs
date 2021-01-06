@@ -23,4 +23,3 @@ summaryLength: 3
 
 outputs:
     home: ['json', 'html']
-    
