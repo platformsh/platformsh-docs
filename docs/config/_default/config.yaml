@@ -23,6 +23,4 @@ summaryLength: 3
 
 outputs:
     home: ['json', 'html']
-
-ignoreErrors:
-    - error-remote-getjson
+    
