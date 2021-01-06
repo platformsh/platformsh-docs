@@ -2,6 +2,11 @@
   "name": "platformsh-docs",
   "version": "1.0.0",
   "description": "This repository holds the public user documentation for [Platform.sh](https://platform.sh/).",
+  "license": "CC-BY-NC-SA-4.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/platformsh/platformsh-docs.git"
+  },
   "main": "gulpfile.js",
   "author": "Platform.sh",
   "scripts": {
@@ -18,14 +23,11 @@
     "prod": "npm run fetch-files && npm run registry-files && npm run scss-build"
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.6",
-    "browser-sync": "^2.26.13",
-    "npm-run-all": "^4.1.3",
     "pshregistry-parser": "^1.2.0"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "async": "^3.1.0",
     "babelify": "^10.0.0",
     "bl": "^2.2.1",
@@ -42,7 +44,6 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0",
-    "yaml-include": "^1.2.1"
+    "vinyl-source-stream": "^2.0.0"
   }
 }
