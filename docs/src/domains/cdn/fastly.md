@@ -21,7 +21,7 @@ Rather than create a DNS CNAME for your Platform.sh master branch (for instance 
 
 Platform.sh recommends specifying only HTTPS routes in your `routes.yaml` file. This results in all pages being served over SSL and any requests for an HTTP URL automatically redirected to HTTPS.
 
-Connecting to your origin from Fastly [with TLS enabled](https://docs.fastly.com/products/tls-service-options) will force every request over port 443, breaking these automatic redirects. It will be necessary to enable the ["Force TLS and enable HSTS"](https://docs.fastly.com/en/guides/enabling-hsts-through-fastly) setting to complete your Fastly configuration in this case. 
+Connecting to your origin from Fastly [with TLS enabled](https://docs.fastly.com/products/tls-service-options) will force every request over port 443, breaking these automatic redirects.  You will need to enable the ["Force TLS and enable HSTS"](https://docs.fastly.com/en/guides/enabling-hsts-through-fastly) setting as well to complete your Fastly configuration in this case. 
 
 ## DNS TXT records
 
