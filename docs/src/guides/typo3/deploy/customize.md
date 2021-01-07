@@ -58,7 +58,7 @@ You will define this environment variable in the next section, but it's purpose 
 
 {{< note >}}
 
-The `base` configuration only includes the production case - that is, running on Platform.sh - or at least exporting a `PLATFORM_ROUTES_MAIN` environment variable to match during local development. Alternatively, you can place the above definition within a `baseVariant` definition for the production environment alongside another development environment `condition` for local.
+The above `base` configuration only includes the production case - that is, running on Platform.sh - or at least exporting a `PLATFORM_ROUTES_MAIN` environment variable to match during local development. Alternatively, you can place the above definition within a `baseVariant` definition for the production environment alongside another development environment `condition` for local.
 
 ```yaml
 baseVariants:
