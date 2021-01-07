@@ -52,13 +52,13 @@ $ composer config extra.typo3/cms.web-dir public && composer update --no-scripts
 
 You will have to locate the site configuration file(s), `config.yaml`, in your repository's `config/sites/<SITEID>` subdirectories. For the purposes of this guide, you will need to set the `base` attribute to an environment variable called `PLATFORM_ROUTES_MAIN`. You can also add the definition to your existing `baseVariant` attribute for production if desired.
 
-{{< github repo="platformsh-templates/typo3" file="config/sites/main/config.yaml" lang="yaml" >}}
+[View `config.yaml` in the template](https://github.com/platformsh-templates/typo3/blob/master/config/sites/main/config.yaml).
 
 You will define this environment variable in the next section, but it's purpose is to retrieve the root domain (since you have not yet registered a domain name on the Platform.sh project, this will be a hashed placeholder domain generated from the environment) from the environment varable `PLATFORM_ROUTES`.
 
 {{< note >}}
 
-The above `base` configuration only includes the production case - that is, running on Platform.sh - or at least exporting a `PLATFORM_ROUTES_MAIN` environment variable to match during local development. Alternatively, you can place the above definition within a `baseVariant` definition for the production environment alongside another development environment `condition` for local.
+The `base` configuration only includes the production case - that is, running on Platform.sh - or at least exporting a `PLATFORM_ROUTES_MAIN` environment variable to match during local development. Alternatively, you can place the above definition within a `baseVariant` definition for the production environment alongside another development environment `condition` for local.
 
 ```yaml
 baseVariants:
@@ -83,10 +83,28 @@ Finally, you can start using the Platform.sh Configuration Reader library to sta
 - configure TYPO3's `cacheConfigurations` to use Redis via your `rediscache` relationship
 - Configure the HTTP timeout to 3 seconds to avoid the PHP-FPM-related deadlock described above in [Avoiding deadlock with the Local Page Error Handler](#avoiding-deadlock-with-the-local-page-error-handler).
 
-{{< github repo="platformsh-templates/typo3" file="public/typo3conf/PlatformshConfiguration.php" lang="php" >}}
+[View the template's `PlatformshConfiguration.php`](https://github.com/platformsh-templates/typo3/blob/master/public/typo3conf/PlatformshConfiguration.php) for more details.
 
 Then include the `require_once()` function within your `public/typo3conf/AdditionalConfiguration.php` file to load the Platform.sh-specific configuration into the site if present.
 
-{{< github repo="platformsh-templates/typo3" file="public/typo3conf/AdditionalConfiguration.php" lang="php" >}}
+```php
+<?php
+
+/**
+ * Additional configuration file.
+ *
+ * Place configuration here you want to be shared by Platform.sh environments and local development.
+ *
+ * Platform.sh-specific configuration should be added to PlatformshConfiguration.php.
+ * Environment-specific configuration should be added to LocalConfiguration.php as normal.
+ */
+
+// Include the Platform.sh-specific configuration.
+// This file will no-op on its own if not on Platform.sh.
+$platformshFile = __DIR__ . '/PlatformshConfiguration.php';
+if (file_exists($platformshFile)) {
+    require_once($platformshFile);
+}
+```
 
 {{< guide-buttons next="Deploy TYPO3" >}}
