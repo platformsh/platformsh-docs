@@ -191,4 +191,4 @@ relationships:
 ```
 
 Once committed and rebuilt, you will be able to access `app2` from `app1` via this url `http://app2.internal`. (e.g `curl http://app2.internal`). 
-*Note: the `http`. The relationship is created within the internal network over port 80, not https supported.`
+*Note: the `http`. The relationship is created within the internal network over port 80, not https supported.*
