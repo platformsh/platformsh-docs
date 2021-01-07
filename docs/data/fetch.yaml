@@ -67,6 +67,9 @@ servicesyaml:
   - wordpress-vanilla
   - quarkus
   - gatsby
+  - gatsby-drupal
+  - gatsby-strapi
+  - gatsby-wordpress
 routesyaml:
   - php
   - drupal9
@@ -75,5 +78,8 @@ routesyaml:
   - wordpress-vanilla
   - quarkus
   - gatsby
+  - gatsby-drupal
+  - gatsby-strapi
+  - gatsby-wordpress
 docsappyaml:
   - platformsh-docs
