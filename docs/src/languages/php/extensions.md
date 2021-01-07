@@ -121,7 +121,7 @@ This is the complete list of extensions that can be enabled:
 | pdo_odbc         | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | pdo_pgsql        | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | pdo_sqlite       | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| pdo_sqlsrv       |     |     |     | *   | *   | *   |     | *   |     |
+| pdo_sqlsrv       |     |     |     | *   | *   | *   | *   | *   |     |
 | http             |     |     | *   |     |     |     |     | *   |     |
 | pgsql            | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | phar             |     |     |     | *   | *   | *   | *   | *   | *   |
@@ -143,7 +143,7 @@ This is the complete list of extensions that can be enabled:
 | sourceguardian   |     |     |     | *   | *   |     |     |     |     |
 | spplus           | *   | *   |     |     |     |     |     |     |     |
 | sqlite3          | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| sqlsrv           |     |     |     | *   | *   | *   |     | *   |     |
+| sqlsrv           |     |     |     | *   | *   | *   | *   | *   |     |
 | ssh2             | *   | *   | *   | *   | *   | *   | *   | *   |     |
 | sybase           |     |     |     |     | *   | *   | *   | *   | *   |
 | sysvmsg          |     |     |     | *   | *   | *   | *   | *   | *   |
