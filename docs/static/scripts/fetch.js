@@ -14,6 +14,7 @@ const fetchRoots = {
   "servicesyaml": "https://raw.githubusercontent.com/platformsh-templates/",
   "routesyaml":  "https://raw.githubusercontent.com/platformsh-templates/",
   "docsappyaml": "https://raw.githubusercontent.com/platformsh/",
+  "multiappyaml": "https://raw.githubusercontent.com/platformsh-templates/",
 }
 
 // URL formatting function for "examples" files.
@@ -33,6 +34,18 @@ function docsappyaml(target) {
 //    .platform.app.yaml files from template master branch.
 function appyaml(target) {
   return fetchRoots.appyaml + target + "/master/.platform.app.yaml";
+}
+
+// URL formatting function for "appyaml" files, which only grab
+//    .platform.app.yaml files from template master branch for a given subdirectory.
+//    Note: the subdirectory is specified in the same string as the repo, split by '@'.
+//      Example: To get .platform.app.yaml in gatsby-strapi for Gatsby -> gatsby-strapi@gatsby.
+function multiappyaml(target) {
+  let template = target.split('@')[0]
+  let subdirApp = target.split('@')[1]
+  console.log(template)
+  console.log(subdirApp)
+  return fetchRoots.multiappyaml + template + "/master/" + subdirApp +  "/.platform.app.yaml";
 }
 
 // URL formatting function for "servicesyaml" files, which only grab
