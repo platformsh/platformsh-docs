@@ -3,9 +3,22 @@
 const yaml = require('js-yaml');
 const fs   = require('fs');
 const request = require("request");
+const config = require("platformsh-config").config();
 
 const fetchData = "data/fetch.yaml";
 const savePath = "static/files/fetch/";
+
+// Request headers
+if (!config.isValidPlatform()) {
+  var headers = {
+    'User-Agent': 'request',
+  }
+} else {
+  var headers = {
+    'User-Agent': 'request',
+    "Authorization": `token ${process.env.GITHUB_APITOKEN}`,
+  }
+}
 
 // Root urls for each class of example files requested in fetch.yaml.
 const fetchRoots = {
@@ -81,11 +94,18 @@ function getTargets(data, dataRoot) {
 
 // Places the request and writes the file.
 function writeFile(url, filename) {
-  request.get(url, (error, response, body) => {
+
+  var options = {
+    url: url,
+    headers: headers
+  }
+
+  request.get(options, (error, response, body) => {
     fs.writeFileSync(filename, body, function (err) {
       if (err) throw err;
     });
   });
+
 }
 
 // Get fetch file, or throw exception on error.
