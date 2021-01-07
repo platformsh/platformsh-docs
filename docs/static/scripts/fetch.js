@@ -43,8 +43,6 @@ function appyaml(target) {
 function multiappyaml(target) {
   let template = target.split('@')[0]
   let subdirApp = target.split('@')[1]
-  console.log(template)
-  console.log(subdirApp)
   return fetchRoots.multiappyaml + template + "/master/" + subdirApp +  "/.platform.app.yaml";
 }
 
