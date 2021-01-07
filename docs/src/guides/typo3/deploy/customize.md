@@ -52,7 +52,7 @@ $ composer config extra.typo3/cms.web-dir public && composer update --no-scripts
 
 You will have to locate the site configuration file(s), `config.yaml`, in your repository's `config/sites/<SITEID>` subdirectories. For the purposes of this guide, you will need to set the `base` attribute to an environment variable called `PLATFORM_ROUTES_MAIN`. You can also add the definition to your existing `baseVariant` attribute for production if desired.
 
-[View `config.yaml` in the template](https://github.com/platformsh-templates/typo3/blob/master/config/sites/main/config.yaml).
+{{< github repo="platformsh-templates/typo3" file="config/sites/main/config.yaml" lang="yaml" >}}
 
 You will define this environment variable in the next section, but it's purpose is to retrieve the root domain (since you have not yet registered a domain name on the Platform.sh project, this will be a hashed placeholder domain generated from the environment) from the environment varable `PLATFORM_ROUTES`.
 
@@ -83,7 +83,7 @@ Finally, you can start using the Platform.sh Configuration Reader library to sta
 - configure TYPO3's `cacheConfigurations` to use Redis via your `rediscache` relationship
 - Configure the HTTP timeout to 3 seconds to avoid the PHP-FPM-related deadlock described above in [Avoiding deadlock with the Local Page Error Handler](#avoiding-deadlock-with-the-local-page-error-handler).
 
-[View the template's `PlatformshConfiguration.php`](https://github.com/platformsh-templates/typo3/blob/master/public/typo3conf/PlatformshConfiguration.php) for more details.
+{{< github repo="platformsh-templates/typo3" file="public/typo3conf/PlatformshConfiguration.php" lang="php" >}}
 
 Then include the `require_once()` function within your `public/typo3conf/AdditionalConfiguration.php` file to load the Platform.sh-specific configuration into the site if present.
 

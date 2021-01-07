@@ -21,7 +21,9 @@ With the Configuration Reader library installed, add or update a `wp-config.php`
 - Use the project's [routes](/configuration/routes/_index.md) to set `WP_HOME` and `WP_SITEURL` settings. 
 - Set all of WordPress's security and authentication keys to the Platform.sh-provided `PLATFORM_PROJECT_ENTROPY` - a hashed variable specific to your repository consistent across environments. 
 
-Many other WordPress settings are pre-defined in this file for you, so [consult the inline comments](https://github.com/platformsh-templates/wordpress-composer/blob/master/wp-config.php) for more information.
+Many other WordPress settings are pre-defined in this file for you, so consult the inline comments for more information.
+
+{{< github repo="platformsh-templates/wordpress-composer" file="wp-config.php" lang="php" >}}
 
 ## Setting up Composer
 

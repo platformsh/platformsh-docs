@@ -58,7 +58,9 @@ As you can see above, you can define a number of environment-specific or project
 
 Now that your database credentials have been cleaned up and `WP_HOME` defined, you can pull these values into `wp-config.php` to configure WordPress for deployment on a Platform.sh environment. 
 
-The `wp-config.php` file from the [WordPress template](https://github.com/platformsh-templates/wordpress-vanilla) uses the variables defined in the previous section. Many other WordPress settings are pre-defined in this file for you, so [consult the inline comments for more information](https://github.com/platformsh-templates/wordpress-vanilla/blob/master/wordpress/wp-config.php).
+The `wp-config.php` file from the [WordPress template](https://github.com/platformsh-templates/wordpress-vanilla) uses the variables defined in the previous section. Many other WordPress settings are pre-defined in this file for you, so consult the inline comments for more information.
+
+{{< github repo="platformsh-templates/wordpress-vanilla" file="wordpress/wp-config.php" lang="php" >}}
 
 Up to this point, this guide should give you the following project structure:
 

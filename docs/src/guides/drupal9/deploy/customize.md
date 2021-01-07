@@ -21,7 +21,9 @@ In the Drupal 9 template, the [`settings.php`](https://github.com/platformsh-tem
 
 The `settings.platformsh.php` file contains glue code that configures Drupal based on the information available in Platform.sh's environment variables.  That includes the database credentials as well as Redis caching, file system paths, etc.
 
-[The file itself](https://github.com/platformsh-templates/drupal9/blob/master/web/sites/default/settings.platformsh.php) is a bit long, but reasonably self-explanatory.
+The file itself is a bit long, but reasonably self-explanatory.
+
+{{< github repo="platformsh-templates/drupal9" file="web/sites/default/settings.platformsh.php" lang="php" >}}
 
 If you add additional services to your application, such as Solr, Elasticsearch, or RabbitMQ, you would add configuration for those services to the `settings.platformsh.php` file as well.
 
