@@ -132,7 +132,7 @@ This is the complete list of extensions that can be enabled:
 | pthreads         |     |     |     |     | *   |     |     |     |     |
 | raphf            |     |     | *   |     |     |     |     | *   | *   |
 | readline         | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| recode           | *   | *   | *   | *   | *   | *   | *   | *   |     |
+| recode           | *   | *   | *   | *   | *   | *   | *   |     |     |
 | redis            | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | shmop            |     |     |     | *   | *   | *   | *   | *   | *   |
 | simplexml        |     |     |     | *   | *   | *   | *   | *   | *   |
