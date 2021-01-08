@@ -32,9 +32,26 @@ Platform.sh validates and retrieves submodules in the first stages of its build 
 Platform.sh provides multiple *environments* for your projects, that can be customized (with different values for staging and development), but that inherit features from the (`master`) production environment. One clear case where this can be useful is environment variables. Each environment on Platform.sh comes with a set of [pre-defined variables](/development/variables.html#platformsh-provided-variables) that provide information about the branch you are working on, the application's configuration, and the credentials to connect to each service defined in `services.yaml`. 
 
 Service credentials reside in a base64 encoded JSON object variable called `PLATFORM_RELATIONSHIPS`, and it is from this variable that you can define your database connection to the MariaDB container. To make each property (username, password, etc.) more easily accessible to `wp-config.php`, you can use the pre-installed `jq` package to clean the object into individual variables.
- 
-{{< github repo="platformsh-templates/wordpress-vanilla" file=".environment" lang="txt" >}}
 
+```text
+# .environment
+
+export DB_NAME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].path")
+export DB_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host")
+export DB_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].port")
+export DB_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username")
+export DB_PASSWORD=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].password")
+
+export WP_HOME=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')
+export WP_SITEURL="${WP_HOME}wp"
+export WP_DEBUG_LOG=/var/log/app.log
+if [ "$PLATFORM_BRANCH" != "master" ] ; then
+    export WP_ENV='development'
+else
+    export WP_ENV='production'
+fi
+```
+ 
 As you can see above, you can define a number of environment-specific or project-wide variable settings in this file that will be applied when deployed on Platform.sh but not locally. 
 
 ## `wp-config.php`
