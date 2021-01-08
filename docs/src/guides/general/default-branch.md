@@ -86,7 +86,7 @@ This means it can overwrite all the code in your project.
 Are you sure you want to continue? [y/N] y
 ```
 
-which will override the code on the "Main" environment - the template you started with - with the contents of the `main` branch of your external repository. You can not consult the rest of the [migration steps](/tutorials/migrating.md) to finish migrating your site to Platform.sh.
+which will override the code on the "Main" environment - the template you started with - with the contents of the `main` branch of your external repository. You can now consult the rest of the [migration steps](/tutorials/migrating.md) to finish migrating your site to Platform.sh.
 
 ## Updating existing projects
 
