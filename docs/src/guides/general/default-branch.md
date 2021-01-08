@@ -9,7 +9,6 @@ description: |
 
 Soon you will be able to select your default branch during the project creation steps, but until that time this guide will show you how to manually make the switch yourself. You can complete some of these steps through the management console, but since all can be completed with the CLI those commands alone are listed. Be sure to [install the CLI](http://localhost:1313/development/cli.html#installation) if you have not already done so. It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`. If using another name for the default branch, update the commands accordingly. 
 
-
 ## New projects
 
 The steps below assume:
@@ -96,8 +95,60 @@ The steps below assume:
 - You have already integrated an external repository GitHub, GitLab, or BitBucket.
 - You are trying to safely change the name of your default branch from `master` to `main` on both your external repository and on Platform.sh.
 
-8. Change your external repository to `main` if you have not already done so:
+### 1. Create the `main` branch
 
-    - [GitHub](https://github.com/github/renaming)
-    - [GitLab](https://docs.gitlab.com/ee/user/project/repository/branches/#default-branch)
-    - [BitBucket](https://community.atlassian.com/t5/Bitbucket-questions/How-to-change-MAIN-branch-in-BitBucket/qaq-p/977418#:~:text=In%20Bitbucket%20Cloud%2C%20please%20go,repository%20details%20%3E%3E%20Main%20branch.)
+Within your local copy of the external repository, create the main branch and push:
+
+```bash
+$ git checkout master && git pull origin master
+$ git checkout -b main
+$ git push origin main
+```
+
+Then activate it on Platform.sh
+
+```bash
+platform environment:activate main -p <Project ID>
+```
+
+### 2. Clean up repository around the new parent
+
+Most external services do not yet automatically remap to a new default branch, and in order to preserve your data on Platform.sh, it's best to take a moment to prepare all of your work in progress around `master` to instead compare to `main`. 
+
+First, close any open pull requests and resubmit them against `main`. Be sure to rebase your local brances with `git rebase --onto main master` if you still plan on continuing to work on them after the default branch switch. Once you resubmit them, they will appear under the "main" environment on Platform.sh. 
+
+![Resubmitted PRs](/images/management-console/resubmit-prs.png "0.75")
+
+### 3. Change the default branch on the external Git service
+
+Platform.sh supports external Git integrations to a number of services, so follow the linked instructions below for changing the default branch to `main` for your provider:
+
+- [GitHub](https://github.com/github/renaming)
+- [GitLab](https://docs.gitlab.com/ee/user/project/repository/branches/#default-branch)
+- [BitBucket](https://community.atlassian.com/t5/Bitbucket-questions/How-to-change-MAIN-branch-in-BitBucket/qaq-p/977418#:~:text=In%20Bitbucket%20Cloud%2C%20please%20go,repository%20details%20%3E%3E%20Main%20branch.)
+
+### 4. Deactivate the Master environment
+
+Master is currently the parent environment, and you will need to deactivate in order to make `main` into the new parent. First, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
+
+```bash
+$ platform project:curl -X POST -p 7rdlelwixyc46 environments/master/deactivate 
+```
+
+### 5. Make "Main" the parent environment
+
+First, update the project's `default_branch` property with another authenticated request:
+
+```bash
+$ platform project:curl -X PATCH -p 7rdlelwixyc46 -d '{"default_branch": "main"}'
+```
+
+Then, update the "Main" environment's `parent` property to `null`. It's currently set to master, and the command below will update the project to - at this point - contain two parent environments: Master and Main.
+
+```bash
+$ platform environment:info -p 7rdlelwixyc46 -e main parent -
+```
+
+![Make main a parent](/images/management-console/existing-parentnull.png "0.75")
+
+You can now delete the `master` branch from your external repository.
