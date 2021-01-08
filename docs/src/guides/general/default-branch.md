@@ -129,7 +129,7 @@ Platform.sh supports external Git integrations to a number of services, so follo
 
 ### 4. Deactivate the Master environment
 
-Master is currently the parent environment, and you will need to deactivate in order to make `main` into the new parent. First, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
+Master is currently the root environment, and you will need to deactivate it in order to make `main` into the new root. First, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
 
 ```bash
 $ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
