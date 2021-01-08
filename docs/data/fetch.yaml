@@ -56,15 +56,24 @@ appyaml:
   - nodejs
   - typo3
   - wordpress-composer
+  - wordpress-vanilla
+  - quarkus
+  - gatsby
 servicesyaml:
   - language-examples
   - drupal9
   - typo3
   - wordpress-composer
+  - wordpress-vanilla
+  - quarkus
+  - gatsby
 routesyaml:
   - php
   - drupal9
   - typo3
   - wordpress-composer
+  - wordpress-vanilla
+  - quarkus
+  - gatsby
 docsappyaml:
   - platformsh-docs

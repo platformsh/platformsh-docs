@@ -19,7 +19,7 @@ To specify a PHP container, use the `type` property in your `.platform.app.yaml`
 
 ## Deprecated versions
 
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended.
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|

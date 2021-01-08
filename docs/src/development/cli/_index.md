@@ -18,7 +18,7 @@ Find detailed information on [setting up a local development environment](/getti
 You can install the CLI easily using this command:
 
 ```bash
-curl -sS https://platform.sh/cli/installer | php
+curl -fsS https://platform.sh/cli/installer | php
 ```
 
 You can find the system requirements and more information in the [installation instructions on GitHub](https://github.com/platformsh/platformsh-cli/blob/master/README.md#installation).
@@ -136,5 +136,5 @@ Upon starting Bash, you will be asked to choose a username. According to the art
 Once Bash for Windows is installed, you can install the Platform.sh CLI with the same command as above:
 
 ```bash
-curl -sS https://platform.sh/cli/installer | php
+curl -fsS https://platform.sh/cli/installer | php
 ```

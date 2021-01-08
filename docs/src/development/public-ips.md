@@ -91,13 +91,13 @@ Inbound IPs (gw.fr-1.platformsh.site):
 Outbound IPs:
 
 * 51.178.62.146
-* 51.178.61.63
+* 51.210.127.240
 * 51.178.56.77
 
 Inbound IPs (gw.ovh-fr-2.platformsh.site):
 
 * 51.178.62.146
-* 51.178.61.63
+* 51.210.127.240
 * 51.178.56.77
 
 ### United Kingdom 1 (uk-1.platform.sh) (Data Location Guarantee)
@@ -158,6 +158,19 @@ Inbound IPs (gw.us-3.platformsh.site):
 * 52.156.93.30
 * 51.143.107.76
 
+### West 4 (us-4.platform.sh) (Data Location Guarantee)
+
+Outbound IPs:
+
+* 34.73.189.215
+* 34.74.8.155
+* 34.75.104.115
+
+Inbound IPs (gw.us-4.platformsh.site):
+
+* 34.73.189.215
+* 34.74.8.155
+* 34.75.104.115
 
 ## Canada
 

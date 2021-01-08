@@ -338,6 +338,41 @@
         "10.1",
         "10.2",
         "10.3",
+        "10.4",
+        "10.5"
+      ]
+    },
+    "versions-dedicated": {
+      "supported": [
+        "10.0 Galera",
+        "10.1 Galera",
+        "10.2 Galera"
+      ]
+    }
+  },
+  "mysql": {
+    "description": "A manufacture-based container for MariaDB",
+    "repo_name": "mariadb",
+    "disk": true,
+    "docs": {
+      "relationship_name": "database",
+      "service_name": "db",
+      "url": "/configuration/services/mysql.html"
+    },
+    "endpoint": "mysql",
+    "min_disk_size": 256,
+    "name": "MariaDB",
+    "runtime": false,
+    "type": "mysql",
+    "versions": {
+      "deprecated": [
+        "5.5"
+      ],
+      "supported": [
+        "10.0",
+        "10.1",
+        "10.2",
+        "10.3",
         "10.4"
       ]
     },
@@ -540,12 +575,13 @@
         "5.5",
         "5.6",
         "7.0",
-        "7.1"
+        "7.1",
+        "7.2"
       ],
       "supported": [
-        "7.2",
         "7.3",
-        "7.4"
+        "7.4",
+        "8.0"
       ]
     }
   },
@@ -571,7 +607,8 @@
         "9.6",
         "10",
         "11",
-        "12"
+        "12",
+        "13"
       ]
     }
   },

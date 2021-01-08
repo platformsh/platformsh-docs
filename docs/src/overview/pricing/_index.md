@@ -116,11 +116,4 @@ We offer three tiers for agencies with many perks.
 
 [Learn more and join today...](https://platform.sh/solutions/agency)
 
-## German Cloud Pricing
-
-
-The prices for Germany are currently set at 10% above the EU and US plan prices. Thus, a "Production Standard" environment on the Sovereign German Cloud will be $55 instead of $50.
-
-Our estimation page (which you can reach by clicking on your account dashboard on the edit link for a project) does reflect these new options.
-
-If you have any questions don't hesitate to [contact our sales department](https://platform.sh/contact/).
+If you have any questions, don't hesitate to [contact our sales department](https://platform.sh/contact/).

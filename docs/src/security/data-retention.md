@@ -1,6 +1,6 @@
 ---
 title: "Data retention"
-weight: 4
+weight: 7
 description: |
   Platform.sh logs and stores various types of data as a normal part of its business.  This information is only retained as needed to perform relevant business functions. Retention periods vary depending on the type of data stored. If a legal obligation, law enforcement request, or ongoing business need so requires, data may be retained after the original purpose for which it was collected ceases to exist.
 ---
