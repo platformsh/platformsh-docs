@@ -132,7 +132,7 @@ Platform.sh supports external Git integrations to a number of services, so follo
 Master is currently the parent environment, and you will need to deactivate in order to make `main` into the new parent. First, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
 
 ```bash
-$ platform project:curl -X POST -p 7rdlelwixyc46 environments/master/deactivate 
+$ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
 ```
 
 ### 5. Make "Main" the parent environment
@@ -140,13 +140,13 @@ $ platform project:curl -X POST -p 7rdlelwixyc46 environments/master/deactivate
 First, update the project's `default_branch` property with another authenticated request:
 
 ```bash
-$ platform project:curl -X PATCH -p 7rdlelwixyc46 -d '{"default_branch": "main"}'
+$ platform project:curl -X PATCH -p <Project ID> -d '{"default_branch": "main"}'
 ```
 
 Then, update the "Main" environment's `parent` property to `null`. It's currently set to master, and the command below will update the project to - at this point - contain two parent environments: Master and Main.
 
 ```bash
-$ platform environment:info -p 7rdlelwixyc46 -e main parent -
+$ platform environment:info -p <Project ID> -e main parent -
 ```
 
 ![Make main a parent](/images/management-console/existing-parentnull.png "0.75")
