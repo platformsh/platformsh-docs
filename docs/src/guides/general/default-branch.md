@@ -1,13 +1,13 @@
 ---
-title: "Renaming a project's parent environment"
-sidebarTitle: "Rename the parent environment"
+title: "Renaming a project's root environment"
+sidebarTitle: "Rename the root environment"
 description: |
-    By default, Platform.sh considers `master` to be the parent branch for all projects, making Master the parent and production environment. With this guide, you can change a `default_branch` property on your projects to match an externally integrated repository on GitHub, GitLab, or Bitbucket.
+    By default, Platform.sh considers `master` to be the root branch for all projects, making Master the root and production environment. With this guide, you can change a `default_branch` property on your projects to match an externally integrated repository on GitHub, GitLab, or Bitbucket.
 ---
 
 {{< description >}}
 
-Soon you will be able to select your default branch during the project creation steps, but until that time this guide will show you how to manually make the switch yourself. You can complete some of these steps through the management console, but since all can be completed with the CLI those commands alone are listed. Be sure to [install the CLI](http://localhost:1313/development/cli.html#installation) if you have not already done so. It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`. If using another name for the default branch, update the commands accordingly. 
+Soon you will be able to select your root branch during the project creation steps, but until that time this guide will show you how to manually make the switch yourself. You can complete some of these steps through the management console, but since all can be completed with the CLI those commands alone are listed. Be sure to [install the CLI](http://localhost:1313/development/cli.html#installation) if you have not already done so. It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`. If using another name for the default branch, update the commands accordingly. 
 
 ## New projects
 
@@ -24,7 +24,7 @@ First, create an empty project with the Platform.sh CLI command `platform create
 $ platform create --title='Main Project' --region=us-3.platform.sh --plan=development --environments=3 --storage=5 --no-set-remote
 ```
 
-This will create a new project with Master as the parent environment by default. Modify the flags to fit your use case, otherwise exclude and the CLI will ask you to set them individually during creation. Copy the `Project ID` provided when the command completes, and substitute the value in the steps below. You can also visit the provided management console URL for the project (i.e. `https://console.platform.sh/<USER>/<Project ID>`) to verify the steps as you go along.
+This will create a new project with Master as the root environment by default. Modify the flags to fit your use case, or skip them and the CLI will ask you to set them individually during creation. Copy the `Project ID` provided when the command completes, and substitute the value in the steps below. You can also visit the provided management console URL for the project (i.e. `https://console.platform.sh/<USER>/<Project ID>`) to verify the steps as you go along.
 
 The project you just created is empty, that is, there is no code initialized on it's Master environment. You will need to have something on that environment to begin with in order to create the `main` branch, so you can initialize it with a template for now:
 
@@ -44,7 +44,7 @@ The CLI assume that you are running this command within a local copy of your rep
 
 ### 2. Deactivate the Master environment
 
-Since Master is currently the parent environment, it is protected, and so the normal `platform environment:delete` command will not work at this stage. To get around this, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
+Since Master is currently the root environment, it is protected, and so the normal `platform environment:delete` command will not work at this stage. To get around this, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
 
 ```bash
 $ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
