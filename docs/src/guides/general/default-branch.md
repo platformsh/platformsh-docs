@@ -21,7 +21,7 @@ The steps below assume:
 To start, create a new environment off `master` called `main`:
 
 ```bash
-$ platform environment:branch main --title=Main -p <Project ID> --force
+$ platform environment:branch main master --title=Main -p <Project ID> --force
 ```
 
 {{< note >}}
@@ -88,7 +88,7 @@ $ platform environment:init -p <Project ID> -e master https://github.com/platfor
 Then, create the "Main" environment:
 
 ```bash
-$ platform environment:branch main --title=Main -p <Project ID> --force
+$ platform environment:branch main master --title=Main -p <Project ID> --force
 ```
 
 {{< note >}}
@@ -141,7 +141,7 @@ Are you sure you want to continue? [y/N] y
 
 which will override the code on the "Main" environment - the template you started with - with the contents of the `main` branch of your external repository. You can now consult the rest of the [migration steps](/tutorials/migrating.md) to finish migrating your site to Platform.sh.
 
-## Updating an external integration
+## Updating externally integrated projects
 
 The steps below assume:
 
