@@ -16,14 +16,12 @@ The relationships between environments is hierarchical, and can be organized in 
 
 You can have branches that are not tied to a running instance of your application; these are what we call "inactive environments".
 
-## Master environment
+## Root environment
 
-Every Platform.sh project starts with a Master environment which corresponds to the Master branch in Git.
-
-If you subscribed to a production plan, this environment is your **live site** and can be mapped to a domain name and a custom SSL certificate.
+Every Platform.sh project starts with a root environment. It is Master by default, and corresponds to the `master` branch in Git. If you subscribed to a production plan, this environment is your **live site** and can be mapped to a domain name and a custom SSL certificate.
 
 {{< note >}}
-Your project must have a `master` branch: it will not function properly without one.
+Your project must have a root environment, but you can configure it to be a different branch than master. See the ["Renaming a project's root environment"](/guides/general/default-branch.md) guide for more details.
 {{< /note >}}
 
 
