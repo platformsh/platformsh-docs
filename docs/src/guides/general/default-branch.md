@@ -2,14 +2,67 @@
 title: "Renaming the default branch"
 sidebarTitle: "Rename the default branch"
 description: |
-    Platform.sh considers `master` to be the default branch for all projects, making Master the default production environment. With this guide, you can change a `default_branch` property on your projects to match an externally integrated repository on GitHub, GitLab, or Bitbucket.
+    Platform.sh considers `master` to be the default branch for all projects, making Master the default production environment. Soon you will be able to select your default branch during the project creation steps, but until that time this guide will show you how to manually make the switch yourself. 
 ---
 
 {{< description >}}
 
-Soon you will be able to select your default branch during the project creation steps, but until that time this guide will show you how to manually make the switch yourself. You can complete some of these steps through the management console, but since all can be completed with the CLI those commands alone are listed. Be sure to [install the CLI](http://localhost:1313/development/cli.html#installation) if you have not already done so. It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`. If using another name for the default branch, update the commands accordingly. 
+You can complete some of these steps through the management console, but since all can be completed with the CLI those commands alone are listed. Be sure to [install the CLI](http://localhost:1313/development/cli.html#installation) if you have not already done so. It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`. If using another name for the default branch, update the commands accordingly. 
 
-## New projects
+## Projects without external integrations
+
+The steps below assume:
+
+- You already have a project on Platform.sh containing your code.
+- No external [source integrations](/integrations/source/_index.md) have been set up for the project. That is, the Platform.sh project contains your primary remote repository for the site. 
+
+### 1. Create the Main environment
+
+To start, create a new environment off `master` called `main`:
+
+```bash
+$ platform environment:branch main --title=Main -p <Project ID> --force
+```
+
+{{< note >}}
+The CLI assumes that you are running this command within a local copy of your repository, so the `--force` flag is included above to bypass that.
+{{< /note >}}
+
+`main` is currently the child of `master`, so use the below command to remove it's parent and make it a top-level branch:
+
+```bash
+$ platform environment:info -p <Project ID> -e main parent -
+```
+
+At this point, all of your environments, active and inactive, are still children of `master`. In the next step, you will deactivate `master`, which will not work if it still has child environments associated with it. Before going any further, take the time to update each environment's parent to `main`:
+
+```bash
+$ platform environment:info -p <Project ID> -e <BRANCH> parent main
+```
+
+![Update the parent environment](/images/management-console/main-newparent.png "0.75")
+
+### 2. Reconfigure the default branch
+
+First, deactivate the `master` environment with the following command: 
+
+```bash
+$ platform environment:delete master --no-delete-branch -p <Project ID>
+```
+
+Once `master` has been deactivated, you can then set the project's `default_branch` property to `main`:
+
+```bash
+$ platform project:info default_branch main -p <Project ID>
+```
+
+Finally, delete the `master` enviroment completely. 
+
+```bash
+$ platform environment:delete master --delete-branch -p <Project ID>
+```
+
+## Setting up an external integration on a new project
 
 The steps below assume:
 
@@ -44,10 +97,10 @@ The CLI assumes that you are running this command within a local copy of your re
 
 ### 2. Deactivate the Master environment
 
-Since `master` is currently the default branch, it is protected, and so the normal `platform environment:delete` command will not work at this stage. To get around this, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
+Deactivate the master environment with the following command: 
 
 ```bash
-$ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
+$ platform environment:delete master --no-delete-branch -p <Project ID>
 ```
 
 ### 3. Make "Main" the default branch
@@ -68,7 +121,7 @@ You have already deactivated Master, so all that's left now is to delete the `ma
 
 ```bash
 $ platform environment:info -p <Project ID> -e master parent main
-$ platform project:curl -X DEL -p <Project ID> environments/master
+$ platform environment:delete master -p <Project ID> --delete-branch
 ```
 
 You will then be left with "Main" as your top-level parent environment for the project.
@@ -88,7 +141,7 @@ Are you sure you want to continue? [y/N] y
 
 which will override the code on the "Main" environment - the template you started with - with the contents of the `main` branch of your external repository. You can now consult the rest of the [migration steps](/tutorials/migrating.md) to finish migrating your site to Platform.sh.
 
-## Updating existing projects
+## Updating an external integration
 
 The steps below assume:
 
@@ -108,7 +161,7 @@ $ git push origin main
 Then activate it on Platform.sh
 
 ```bash
-platform environment:activate main -p <Project ID>
+$ platform environment:activate main -p <Project ID>
 ```
 
 ### 2. Clean up repository
@@ -129,10 +182,10 @@ Platform.sh supports external Git integrations to a number of services, so follo
 
 ### 4. Deactivate the Master environment
 
-`master` is still the default branch on Platform.sh, and you will need to deactivate it in order to change it to `main`. First, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
+Deactivate the master environment with the following command: 
 
 ```bash
-$ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
+$ platform environment:delete master --no-delete-branch -p <Project ID>
 ```
 
 ### 5. Make "Main" the default branch
