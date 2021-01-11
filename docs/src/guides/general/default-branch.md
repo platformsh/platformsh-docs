@@ -1,13 +1,13 @@
 ---
-title: "Renaming a project's root environment"
-sidebarTitle: "Rename the root environment"
+title: "Renaming the default branch"
+sidebarTitle: "Rename the default branch"
 description: |
-    By default, Platform.sh considers `master` to be the root branch for all projects, making Master the root and production environment. With this guide, you can change a `default_branch` property on your projects to match an externally integrated repository on GitHub, GitLab, or Bitbucket.
+    Platform.sh considers `master` to be the default branch for all projects, making Master the default production environment. With this guide, you can change a `default_branch` property on your projects to match an externally integrated repository on GitHub, GitLab, or Bitbucket.
 ---
 
 {{< description >}}
 
-Soon you will be able to select your root branch during the project creation steps, but until that time this guide will show you how to manually make the switch yourself. You can complete some of these steps through the management console, but since all can be completed with the CLI those commands alone are listed. Be sure to [install the CLI](http://localhost:1313/development/cli.html#installation) if you have not already done so. It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`. If using another name for the default branch, update the commands accordingly. 
+Soon you will be able to select your default branch during the project creation steps, but until that time this guide will show you how to manually make the switch yourself. You can complete some of these steps through the management console, but since all can be completed with the CLI those commands alone are listed. Be sure to [install the CLI](http://localhost:1313/development/cli.html#installation) if you have not already done so. It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`. If using another name for the default branch, update the commands accordingly. 
 
 ## New projects
 
@@ -24,7 +24,7 @@ First, create an empty project with the Platform.sh CLI command `platform create
 $ platform create --title='Main Project' --region=us-3.platform.sh --plan=development --environments=3 --storage=5 --no-set-remote
 ```
 
-This will create a new project with Master as the root environment by default. Modify the flags to fit your use case, or skip them and the CLI will ask you to set them individually during creation. Copy the `Project ID` provided when the command completes, and substitute the value in the steps below. You can also visit the provided management console URL for the project (i.e. `https://console.platform.sh/<USER>/<Project ID>`) to verify the steps as you go along.
+This will create a new project with `master` as the default branch by default. Modify the flags to fit your use case, or skip them and the CLI will ask you to set them individually during creation. Copy the `Project ID` provided when the command completes, and substitute the value in the steps below. You can also visit the provided management console URL for the project (i.e. `https://console.platform.sh/<USER>/<Project ID>`) to verify the steps as you go along.
 
 The project you just created is empty, that is, there is no code initialized on it's Master environment. You will need to have something on that environment to begin with in order to create the `main` branch, so you can initialize it with a template for now:
 
@@ -39,26 +39,26 @@ $ platform environment:branch main --title=Main -p <Project ID> --force
 ```
 
 {{< note >}}
-The CLI assume that you are running this command within a local copy of your repository, so the `--force` flag is included above to bypass that.
+The CLI assumes that you are running this command within a local copy of your repository, so the `--force` flag is included above to bypass that.
 {{< /note >}}
 
 ### 2. Deactivate the Master environment
 
-Since Master is currently the root environment, it is protected, and so the normal `platform environment:delete` command will not work at this stage. To get around this, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
+Since `master` is currently the default branch, it is protected, and so the normal `platform environment:delete` command will not work at this stage. To get around this, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
 
 ```bash
 $ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
 ```
 
-### 3. Make "Main" the parent environment
+### 3. Make "Main" the default branch
 
 First, update the project's `default_branch` property with another authenticated request:
 
 ```bash
-$ platform project:curl -X PATCH -p <Project ID> -d '{"default_branch": "main"}'
+$ platform project:info default_branch main -p <Project ID>
 ```
 
-Then, update the "Main" environment's `parent` property to `null`. It's currently set to master, and the command below will update the project to - at this point - contain two parent environments: Master and Main.
+At this point, while the repository considers `main` to be the default branch for the project, `master` is still considered to be the parent branch of `main`. You can change this by updating `main` to have a parent of `null` with the command:
 
 ```bash
 $ platform environment:info -p <Project ID> -e main parent -
@@ -71,13 +71,13 @@ $ platform environment:info -p <Project ID> -e master parent main
 $ platform project:curl -X DEL -p <Project ID> environments/master
 ```
 
-You will then be left with a single parent environment: Main. 
+You will then be left with "Main" as your top-level parent environment for the project.
 
 ![Default environment main](/images/management-console/defaultbranch-main.png "0.75")
 
 ### 4. Setup the integration 
 
-Place the command to integrate Platform.sh with your external [GitHub](/integrations/source/github.md), [GitLab](/integrations/source/gitlab.md), or [BitBucket](/integrations/source/bitbucket.md) repository. Select the settings you would like for the integration, but in most cases the default settings are best. The last stage will provide a warning: 
+Place the command to integrate Platform.sh with your external [GitHub](/integrations/source/github.md), [GitLab](/integrations/source/gitlab.md), or [BitBucket](/integrations/source/bitbucket.md) repository that has already been set up with `main` as the default branch. Select the settings you would like for the integration, but in most cases the default settings are best. The last stage will provide a warning: 
 
 ```bash
 Warning: adding a 'github' integration will automatically synchronize code from the external Git repository.
@@ -93,7 +93,7 @@ which will override the code on the "Main" environment - the template you starte
 The steps below assume:
 
 - You have already integrated an external repository GitHub, GitLab, or BitBucket.
-- You are trying to safely change the name of your default branch from `master` to `main` on both your external repository and on Platform.sh.
+- You are trying to safely change the name of your default branch from `master` to `main` on both your external repository and on a Platform.sh project.
 
 ### 1. Create the `main` branch
 
@@ -111,7 +111,7 @@ Then activate it on Platform.sh
 platform environment:activate main -p <Project ID>
 ```
 
-### 2. Clean up repository around the new parent
+### 2. Clean up repository
 
 Most external services do not yet automatically remap to a new default branch, and in order to preserve your data on Platform.sh, it's best to take a moment to prepare all of your work in progress around `master` to instead compare to `main`. 
 
@@ -129,21 +129,21 @@ Platform.sh supports external Git integrations to a number of services, so follo
 
 ### 4. Deactivate the Master environment
 
-Master is currently the root environment, and you will need to deactivate it in order to make `main` into the new root. First, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
+`master` is still the default branch on Platform.sh, and you will need to deactivate it in order to change it to `main`. First, place an authenticated cURL request on the project's API with the CLI command to deactivate it:
 
 ```bash
 $ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
 ```
 
-### 5. Make "Main" the parent environment
+### 5. Make "Main" the default branch
 
-First, update the project's `default_branch` property with another authenticated request:
+Update the project's `default_branch` property with another authenticated request:
 
 ```bash
-$ platform project:curl -X PATCH -p <Project ID> -d '{"default_branch": "main"}'
+$ platform project:info default_branch main -p <Project ID>
 ```
 
-Then, update the "Main" environment's `parent` property to `null`. It's currently set to master, and the command below will update the project to - at this point - contain two parent environments: Master and Main.
+At this point, while the repository considers `main` to be the default branch for the project, `master` is still considered to be the parent branch of `main`. You can change this by updating `main` to have a parent of `null` with the command:
 
 ```bash
 $ platform environment:info -p <Project ID> -e main parent -
