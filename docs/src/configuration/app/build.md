@@ -13,7 +13,7 @@ The `build` defines what happens when building the application.  Its only proper
 
 `composer` will run `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
 
-Note that by default, PHP containers include the latest Composer 1.x release.  If you wish to use Composer 2.x, add it as a `dependency` (see the section below).
+Note that by default, PHP 7 containers include the latest Composer 1.x release.  If you wish to use Composer 2.x, add it as a `dependency` (see the section below). PHP 8 containers include the latest Composer 2.x release.
 
 ```yaml
 dependencies:
