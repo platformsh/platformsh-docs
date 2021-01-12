@@ -44,10 +44,10 @@ $ platform environment:info -p <Project ID> -e <BRANCH> parent main
 
 ### 2. Reconfigure the default branch
 
-First, deactivate the `master` environment with the following command: 
+First, you will need to deactivate the `master` environment. Since it is currently the default branch, it is protected, and so the normal `platform environment:delete` CLI command will not work at this stage. This restriction will soon be removed, but for now you can get around this by placing an authenticated cURL request on the project's API with the following CLI command to deactivate it:
 
 ```bash
-$ platform environment:delete master --no-delete-branch -p <Project ID>
+$ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
 ```
 
 Once `master` has been deactivated, you can then set the project's `default_branch` property to `main`:
@@ -97,10 +97,10 @@ The CLI assumes that you are running this command within a local copy of your re
 
 ### 2. Deactivate the Master environment
 
-Deactivate the master environment with the following command: 
+You will need to deactivate the `master` environment. Since it is currently the default branch, it is protected, and so the normal `platform environment:delete` CLI command will not work at this stage. This restriction will soon be removed, but for now you can get around this by placing an authenticated cURL request on the project's API with the following CLI command to deactivate it:
 
 ```bash
-$ platform environment:delete master --no-delete-branch -p <Project ID>
+$ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
 ```
 
 ### 3. Make "Main" the default branch
@@ -182,10 +182,10 @@ Platform.sh supports external Git integrations to a number of services, so follo
 
 ### 4. Deactivate the Master environment
 
-Deactivate the master environment with the following command: 
+You will need to deactivate the `master` environment. Since it is currently the default branch, it is protected, and so the normal `platform environment:delete` CLI command will not work at this stage. This restriction will soon be removed, but for now you can get around this by placing an authenticated cURL request on the project's API with the following CLI command to deactivate it:
 
 ```bash
-$ platform environment:delete master --no-delete-branch -p <Project ID>
+$ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
 ```
 
 ### 5. Make "Main" the default branch
