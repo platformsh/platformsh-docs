@@ -185,9 +185,6 @@ If you do no require any additional service, you can leave the `.platform/servic
 
 {{< readFile file="static/files/fetch/docsappyaml/platformsh-docs" highlight="yaml" >}}
 
-
-{{< readFile file=".platform.app.yaml" highlight="yaml" >}}
-
 ## How can I control the headers sent with my files?
 
 There are many use cases for setting custom headers on static content, such as custom content type headers, limiting cross-origin usage, etc.  Consider the following example:
