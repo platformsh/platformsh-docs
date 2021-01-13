@@ -1,16 +1,16 @@
 ---
-title: "How to Deploy Quarkus on Platform.sh with Redis"
-sidebarTitle: "Redis"
+title: "How to Deploy Micronaut on Platform.sh with Redis"
+sidebarTitle: "Micronaut"
 weight: -110
 layout: single
 description: |
-    Configure a Quarkus application with Redis.
+    Configure a Micronaut application with Redis.
 ---
 
-To activate Redis and then have it accessed by the Quarkus application already in Platform.sh, it is necessary to modify two files. 
+To activate Redis and then have it accessed by the Micronaut application already in Platform.sh, it is necessary to modify two files. 
 
 {{< note >}}
-This guide only covers the *addition* of a service configuration to an existing Quarkus project already configured to deploy on Platform.sh. Please see the [deployment guide](/guides/quarkus/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
+This guide only covers the *addition* of a service configuration to an existing Micronaut project already configured to deploy on Platform.sh. Please see the [deployment guide](/guides/micronaut/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
 {{< /note >}}
 
 ## 1. Add the Redis service
@@ -32,15 +32,14 @@ Connection credentials for Elasticsearch, like any service, are exposed to the a
 ```text
 export REDIS_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".redisdata[0].host")
 export REDIS_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".redisdata[0].port")
-export QUARKUS_REDIS_HOSTS=redis://${REDIS_HOST}:${REDIS_PORT}
-export QUARKUS_HTTP_PORT=$PORT
+export REDIS_URI=redis://${REDIS_HOST}:${REDIS_PORT}
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
 {{< note title="Tip" >}}
-Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#default-configsources).
+Environment variables names are following the conversion rules of the [Micronaut Documentation](https://docs.micronaut.io/latest/guide/index.html).
 {{< /note >}}
 
 ## 4. Connect to Redis
 
-Commit that code and push. The Redis instance is ready to be connected from within the Quarkus application.
+Commit that code and push. The Redis instance is ready to be connected from within the Micronaut application.
