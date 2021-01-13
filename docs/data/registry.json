@@ -349,7 +349,7 @@
         "10.2 Galera",
         "10.3 Galera",
         "10.4 Galera",
-        "10.5 Galera (debian 9 only)",
+        "10.5 Galera",
       ]
     }
   },
@@ -386,7 +386,7 @@
         "10.2 Galera",
         "10.3 Galera",
         "10.4 Galera",
-        "10.5 Galera (debian 9 only)",
+        "10.5 Galera",
       ]
     }
   },
