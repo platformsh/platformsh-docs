@@ -39,7 +39,9 @@ export MONGO_URL=mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
-
+{{< note title="Tip" >}}
+Environment variables names are following the conversion rules of the [Micronaut Documentation](https://docs.micronaut.io/latest/guide/index.html).
+{{< /note >}}
 
 ## 4. Connect to the service
 
