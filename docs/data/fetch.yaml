@@ -64,26 +64,23 @@ multiappyaml:
   - gatsby-strapi@gatsby
   - gatsby-wordpress@gatsby
 servicesyaml:
-  - language-examples
   - drupal9
   - typo3
   - wordpress-composer
   - wordpress-vanilla
-  - quarkus
-  - gatsby
   - gatsby-drupal
   - gatsby-strapi
   - gatsby-wordpress
 routesyaml:
   - php
-  - drupal9
-  - typo3
-  - wordpress-composer
-  - wordpress-vanilla
-  - quarkus
-  - gatsby
   - gatsby-drupal
   - gatsby-strapi
   - gatsby-wordpress
+  - quarkus
+  - gatsby
+  - drupal9
+  - wordpress-vanilla
+  - wordpress-composer
+  - typo3
 docsappyaml:
   - platformsh-docs

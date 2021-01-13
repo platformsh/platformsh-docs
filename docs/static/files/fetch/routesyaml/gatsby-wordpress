@@ -1,0 +1,11 @@
+"https://www.{default}/":
+  type: upstream
+  upstream: "gatsby:http"
+
+"https://{default}/":
+    type: redirect
+    to: "https://www.{default}/"
+
+"https://backend.{default}/":
+    type: upstream
+    upstream: "wordpress:http"

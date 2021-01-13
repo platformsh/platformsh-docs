@@ -1,0 +1,144 @@
+# This file describes an application.
+
+# The name of this app. Must be unique within a project.
+name: app
+
+# The language and version to use to run the application.
+type: php:7.3
+
+# Enable non-default extensions required by Akeneo
+runtime:
+    extensions:
+        - apcu
+        - imagick
+        - memcached
+        - intl
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the environment variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: "db:mysql"
+    essearch: "search:elasticsearch"
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        "/":
+            root: 'public'
+            passthru: '/index.php'
+
+# The size of the persistent disk of the application (in MB).
+disk: 3072
+
+variables:
+    env:
+        APP_ENV: 'prod'
+        APP_DEBUG: 0
+        APP_DEFAULT_LOCALE: 'en'
+        APP_PRODUCT_AND_PRODUCT_MODEL_INDEX_NAME: 'akeneo_pim_product_and_product_model'
+        # Update these for your desired NVM and Node versions.
+        NVM_VERSION: v0.36.0
+        NODE_VERSION: v14.13.1
+    php:
+        apc.enable_cli: 1
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+    "var":
+        source: local
+        source_path: "var"
+    # Used to control the Platform.sh install process. Do not delete the file inside it.
+    "installer":
+        source: local
+        source_path: "installer"
+    "web":
+        source: local
+        source_path: "web"
+    "config/secrets":
+        source: local
+        source_path: "config/secrets"
+    # This mount is not listed in the Akeneo documentation, but is required for the
+    # Doctrine portion of the installer.
+    "upgrades":
+        source: local
+        source_path: "upgrades"
+
+dependencies:
+    nodejs:
+        yarn: "*"
+
+hooks:
+    # We run the build hook before your application has been packaged.
+    build: |
+        set -e
+
+        # Install nvm to use newer version of node.
+        unset NPM_CONFIG_PREFIX
+        export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
+        # install.sh will automatically install NodeJS based on the presence of $NODE_VERSION
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+        echo "Installing Node dependencies"
+        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 yarn install
+
+        # The PHP parts of the installer require booting Akeneo, which requires all
+        # of these be set even though they're never used. This is an Akeneo bug but
+        # one that is easy enough to work around.
+        export APP_DATABASE_HOST='database.local'
+        export APP_DATABASE_PORT=3600
+        export APP_DATABASE_NAME=main
+        export APP_DATABASE_USER=main
+        export APP_DATABASE_PASSWORD=''
+        export APP_INDEX_HOSTS='essearch.local'
+        export APP_SECRET=$PLATFORM_PROJECT_ENTROPY
+
+        echo "Installing assets"
+        php bin/console pim:installer:assets --symlink
+
+        echo "Running webpack"
+        rm -rf public/dist/*
+        yarn run webpack
+
+    # We run the deploy hook after your application has been deployed and started.
+    deploy: |
+        set -e
+
+        echo "Warming cache"
+        rm -rf var/cache/*
+        php bin/console cache:warmup
+
+        # run installer if no lockfile exists
+        if [ ! -f installer/.platform.installed ]; then
+            echo "Running command line installer..."
+            bin/console pim:installer:db --env=prod --catalog vendor/akeneo/pim-community-dev/src/Akeneo/Platform/Bundle/InstallerBundle/Resources/fixtures/minimal
+            # Change the user and password immediately after creating the site!
+            bin/console pim:user:create -n --admin admin admin admin@example.com Admin Istrator en_US
+            touch installer/.platform.installed
+        fi
+
+crons:
+    refresh:
+        spec: '30 1 * * *'
+        cmd: 'php bin/console pim:versioning:refresh'
+    purge_versioning:
+        spec: '30 2 * * *'
+        cmd: 'php bin/console pim:versioning:purge –more-than-days 90'
+    update_data:
+        spec: '1 * * * *'
+        cmd: 'php bin/console akeneo:connectivity-audit:update-data'
+    purge_jobs:
+        spec: '20 0 1 * *'
+        cmd: 'php bin/console akeneo:batch:purge-job-execution'
+    aggregate:
+        spec: '30 4 * * *'
+        cmd: 'php bin/console pim:volume:aggregate'
+
+workers:
+    queue:
+        disk: 512
+        commands:
+            start: |
+                php /app/bin/console akeneo:batch:job-queue-consumer-daemon

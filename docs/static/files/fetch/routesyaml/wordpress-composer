@@ -1,0 +1,21 @@
+# The routes of the project.
+#
+# Each route describes how an incoming URL is going
+# to be processed by Platform.sh.
+
+"https://{default}/":
+    type: upstream
+    upstream: "app:http"
+    cache:
+        enabled: true
+        # Base the cache on the session cookies. Ignore all other cookies.
+        cookies:
+            - '/^wordpress_logged_in_/'
+            - '/^wordpress_sec_/'
+            - 'wordpress_test_cookie'
+            - '/^wp-settings-/'
+            - '/^wp-postpass/'
+
+"https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"

@@ -1,0 +1,74 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+
+# The name of this app. Must be unique within a project.
+name: app
+
+# The runtime the application uses.
+type: "php:7.4"
+
+# Configuration of the build of the application.
+build:
+    flavor: composer
+
+hooks:
+    build: |
+        set -e
+        # Copy manually-provided plugins into the plugins directory.
+        # This allows manually-provided and composer-provided plugins to coexist.
+        rsync -a plugins/* wordpress/wp-content/plugins/
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: "db:mysql"
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        "/":
+            # The public directory of the app, relative to its root.
+            root: "wordpress"
+            # The front-controller script to send non-static requests to.
+            passthru: "/index.php"
+            # Wordpress has multiple roots (wp-admin) so the following is required
+            index:
+                - "index.php"
+            # The number of seconds whitelisted (static) content should be cached.
+            expires: 600
+            scripts: true
+            allow: true
+            rules:
+                ^/composer\.json:
+                    allow: false
+                ^/license\.txt$:
+                    allow: false
+                ^/readme\.html$:
+                    allow: false
+        "/wp-content/cache":
+            root: "wordpress/wp-content/cache"
+            scripts: false
+            allow: false
+        "/wp-content/uploads":
+            root: "wordpress/wp-content/uploads"
+            scripts: false
+            allow: true
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+dependencies:
+    php:
+        wp-cli/wp-cli: "^2.2.0"
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+    "wordpress/wp-content/cache":
+        source: local
+        source_path: "cache"
+    "wordpress/wp-content/uploads":
+        source: local
+        source_path: "uploads"
+

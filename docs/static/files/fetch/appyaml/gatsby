@@ -1,0 +1,36 @@
+# .platform.app.yaml
+
+# The name of this application, which must be unique within a project.
+name: 'app'
+
+# The type key specifies the language and version for your application.
+type: 'nodejs:14'
+
+# Use Yarn instead of npm.
+build:
+    flavor: none
+
+# Build dependencies. 
+dependencies:
+    nodejs:
+        yarn: "1.22.5"
+
+# The hooks that will be triggered when the package is deployed.
+hooks:
+    # Build hooks can modify the application files on disk but not access any services like databases.
+    build: |
+        yarn
+        yarn build
+
+# The size of the persistent disk of the application (in MB).
+disk: 5120
+
+# The configuration of the application when it is exposed to the web.
+web:
+    locations:
+        '/':
+            # The public directory of the application relative to its root.
+            root: 'public'
+            index: ['index.html']
+            scripts: false
+            allow: true

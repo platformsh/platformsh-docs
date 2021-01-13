@@ -15,7 +15,7 @@
     "assets-dist": "gulp dist",
     "hugo-watch-dev": "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender",
     "hugo-watch-prod": "./hugo",
-    "fetch-files": "rm -rf static/files/fetch/* && node static/scripts/fetch.js",
+    "fetch-files": "rm -rf static/files/fetch/* && node static/scripts/fetch2.js",
     "registry-files": "node static/scripts/updateExampleConfigFiles.js",
     "build-searchapp": "cd static/scripts/xss && npm install && npm run-script build",
     "dev": "npm run fetch-files && npm run registry-files",
