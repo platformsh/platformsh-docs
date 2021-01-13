@@ -4,8 +4,16 @@ const request = require("request");
 const path = require("path");
 
 // Example file data.
-const dirTemplates = 'data/remote-examples/templates/'
-const dirExamples = 'data/remote-examples/language-examples/'
+const dataDirectories = {
+    "templates": {
+        dir: 'data/remote-examples/templates/',
+        fetchFunc: 'fetchFilesTemplates'
+    },
+    "language-examples": {
+        dir: 'data/remote-examples/language-examples/',
+        fetchFunc: 'fetchFilesExamples'
+    }
+}
 
 // Ensure subdirectory we're saving to exists.
 function ensureSubdir(savePath) {
@@ -58,17 +66,11 @@ function fetchFilesExamples(data) {
     }
 }
 
-// Conveniency function for the two data types.
-function fetchFiles(data, dataType) {
-    if (dataType == "templates") {
-        fetchFilesTemplates(data);
-    } else if (dataType == "examples") {
-        fetchFilesExamples(data);
-    }
-}
-
-// Main function.
-function fetch(dir, dataType) {
+// Main fetch function.
+function fetch(exampleGroup) {
+    // Get data for the current group of examples.
+    var dir = dataDirectories[exampleGroup]["dir"];
+    var fetchFunc = dataDirectories[exampleGroup]["fetchFunc"];
     // list all files in the directory
     fs.readdir(dir, (err, files) => {
         if (err) {
@@ -79,7 +81,7 @@ function fetch(dir, dataType) {
                 // Load the data.
                 const data = yaml.safeLoad(fs.readFileSync(dir + file, 'utf8'));
                 // Get the files.
-                fetchFiles(data, dataType)
+                eval(`${fetchFunc}(data)`)
             } catch (e) {
                 console.log(e);
             }
@@ -87,6 +89,12 @@ function fetch(dir, dataType) {
     });
 }
 
+// Main run function.
+function run(){
+    for ( exampleGroup in dataDirectories ){
+        fetch(exampleGroup)
+    }
+}
+
 // Run it.
-fetch(dirTemplates, "templates")
-fetch(dirExamples, "examples")
+run()
