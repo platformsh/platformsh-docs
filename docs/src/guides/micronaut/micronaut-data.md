@@ -1,18 +1,16 @@
 ---
-title: "How to Deploy Quarkus on Platform.sh with Panache"
-sidebarTitle: "Panache"
+title: "How to Deploy Micronaut on Platform.sh with Micronaut Data"
+sidebarTitle: "Micronaut Data"
 weight: -110
 layout: single
 description: |
-    Configure a Quarkus application with Panache.
+    Configure a Micronaut application with Micronaut Data.
 ---
 
-Hibernate ORM is the de facto JPA implementation and offers you the full breadth of an Object Relational Mapper. It makes complex mappings possible, but it does not make simple and common mappings trivial. Hibernate ORM with Panache focuses on making your entities trivial and fun to write in Quarkus.
-
-To activate Hibernate Panache and then have it accessed by the Quarkus application already in Platform.sh, it is necessary to modify two files. 
+[Micronaut Data](https://micronaut-projects.github.io/micronaut-data/latest/guide/) is a database access toolkit that uses Ahead of Time (AoT) compilation to pre-compute queries for repository interfaces that are then executed by a thin, lightweight runtime layer.
 
 {{< note >}}
-This guide only covers the *addition* of a service configuration to an existing Quarkus project already configured to deploy on Platform.sh. Please see the [deployment guide](/guides/quarkus/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
+This guide only covers the *addition* of a service configuration to an existing Micronaut project already configured to deploy on Platform.sh. Please see the [deployment guide](/guides/micronaut/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
 {{< /note >}}
 
 ## 1. Add a SQL database service
@@ -29,20 +27,20 @@ Your `.platform.app.yaml` file will require a [`relationship`](/configuration/ap
 
 ## 3. Export connection credentials to the environment
 
-Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the databse into it's own environment variables that can be easily used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
+Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the databse into it's own environment variables that can be easily used by Micronaut. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
 ```text
-export HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresdatabase[0].host")
-export DATABASE=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresdatabase[0].path")
-export QUARKUS_DATASOURCE_PASSWORD=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresdatabase[0].password")
-export QUARKUS_DATASOURCE_USERNAME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresdatabase[0].username")
-export QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://${HOST}/${DATABASE}
-export QUARKUS_HTTP_PORT=$PORT
+export JDBC_HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].host"`
+export JDBC_PORT=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].port"`
+export DATABASE=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].path"`
+export DATASOURCES_DEFAULT_PASSWORD=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].password"`
+export DATASOURCES_DEFAULT_USERNAME=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].username"`
+export DATASOURCES_DEFAULT_URL=jdbc:postgresql://${JDBC_HOST}:${JDBC_PORT}/${DATABASE}
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
 {{< note title="Tip" >}}
-Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#default-configsources).
+Environment variables names are following the conversion rules of the [Micronaut Documentation](https://docs.micronaut.io/latest/guide/index.html).
 {{< /note >}}
 
 ## 4. Connect to the service
