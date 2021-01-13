@@ -155,6 +155,7 @@ This is the complete list of extensions that can be enabled:
 | tokenizer        |     |     |     | *   | *   | *   | *   | *   | *   |
 | uuid             |     |     |     |     | *   | *   | *   | *   | *   |
 | wddx             |     |     |     | *   | *   | *   | *   | *   |     |
+| xdebug           |     |     |     |     | *   | *   | *   | *   | *   |
 | xcache           | *   | *   |     |     |     |     |     |     |     |
 | xhprof           | *   | *   | *   |     |     |     |     |     |     |
 | xml              |     |     |     | *   | *   | *   | *   | *   | *   |
