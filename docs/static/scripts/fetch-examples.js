@@ -1,7 +1,6 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const request = require("request");
-const path = require("path");
 
 // Example file data.
 const dataDirectories = {
