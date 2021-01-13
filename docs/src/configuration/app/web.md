@@ -183,7 +183,7 @@ Although most websites today have some dynamic component, static site generators
 
 If you do no require any additional service, you can leave the `.platform/services.yaml` file empty. The file itself is required, but its contents are optional.
 
-{{< readFile file=".platform.app.yaml" highlight="yaml" >}}
+{{< readFile file="static/files/fetch/docsappyaml/platformsh-docs" highlight="yaml" >}}
 
 ## How can I control the headers sent with my files?
 
