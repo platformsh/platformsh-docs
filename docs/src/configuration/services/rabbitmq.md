@@ -20,9 +20,7 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/rabbitmq" >}}
-{{< /highlight >}}
+{{< relationship "rabbitmq" >}}
 
 ## Usage example
 

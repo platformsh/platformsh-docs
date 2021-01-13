@@ -39,9 +39,7 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/mysql" >}}
-{{< /highlight >}}
+{{< relationship "mysql" >}}
 
 ## Usage example
 

@@ -57,9 +57,7 @@ Switching a service from Persistent to Ephemeral configuration is not supported 
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/redis" >}}
-{{< /highlight >}}
+{{< relationship "redis" >}}
 
 The format is identical regardless of whether it's a persistent or ephemeral service.
 
