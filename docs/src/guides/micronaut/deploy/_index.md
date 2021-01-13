@@ -16,7 +16,7 @@ Micronaut's cloud support is built right in, including support for common discov
 
 Going through the steps below you will have two options:
 
-1. You already have a [Quarkus](https://github.com/drupal/recommended-project/tree/9.0.x) site your are trying to deploy. In this case, you will able to go through each step to make the recommended changes to your repository to prepare it for Platform.sh.
+1. You already have a [Micronaut](https://micronaut.io/) site your are trying to deploy. In this case, you will able to go through each step to make the recommended changes to your repository to prepare it for Platform.sh.
 2. You have no code at this point. In this case, Platform.sh maintains a ready-made [Micronaut](https://micronaut.io/launch/) that you will be able to deploy very quickly. The steps below will then hopefully help to clarify why the modifications have been made to a base Micronaut project.
 
 ## Tools
