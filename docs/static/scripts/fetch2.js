@@ -4,7 +4,8 @@ const request = require("request");
 const path = require("path");
 
 // Example file data.
-const dir = 'data/remote-files/'
+const dirTemplates = 'data/remote-examples/templates/'
+const dirExamples = 'data/remote-examples/language-examples/'
 
 // Ensure subdirectory we're saving to exists.
 function ensureSubdir(savePath) {
@@ -25,7 +26,7 @@ function writeFileFromTarget(target, destination) {
 }
 
 // Function to parse out an example file's target and destination before request is made.
-function fetchFiles(data) {
+function fetchFilesTemplates(data) {
     for ( repo in data["repos"] ) {
         // Format target and destination.
         var target = `${data["root"]}/${data["repos"][repo]}/${data["branch"]}/${data["file"]}`;
@@ -37,20 +38,48 @@ function fetchFiles(data) {
     }
 }
 
+// Function to parse out an example file's target and destination before request is made.
+function fetchFilesExamples(data) {
+    // Ensure that the examples subdirectory exists.
+    ensureSubdir(data["savePath"]);
+    for ( language in data["paths"] ) {
+        // Format target and destination for each language.
+        var languageTargetDir = `${data["root"]}/${language}`;
+        var languageDestDir = `${data["savePath"]}/${language}`;
+        // Ensure the language subdirectory exists.
+        ensureSubdir(languageDestDir)
+        for ( service in data["paths"][language] ) {
+            // Format target and destination for each service.
+            var target = `${languageTargetDir}/${data["paths"][language][service]}`;
+            var destination = process.cwd() + `${languageDestDir}/${data["paths"][language][service]}`;
+            // Place the request and write the file.
+            writeFileFromTarget(target, destination);
+        }
+    }
+}
+
+// Conveniency function for the two data types.
+function fetchFiles(data, dataType) {
+    if (dataType == "templates") {
+        fetchFilesTemplates(data);
+    } else if (dataType == "examples") {
+        fetchFilesExamples(data);
+    }
+}
+
 // Main function.
-function fetch() {
+function fetch(dir, dataType) {
     // list all files in the directory
     fs.readdir(dir, (err, files) => {
         if (err) {
             throw err;
         }
         files.forEach(file => {
-            console.log(`\n====== ${file} ======\n`);
             try {
                 // Load the data.
                 const data = yaml.safeLoad(fs.readFileSync(dir + file, 'utf8'));
                 // Get the files.
-                fetchFiles(data)
+                fetchFiles(data, dataType)
             } catch (e) {
                 console.log(e);
             }
@@ -58,4 +87,6 @@ function fetch() {
     });
 }
 
-fetch()
+// Run it.
+fetch(dirTemplates, "templates")
+fetch(dirExamples, "examples")
