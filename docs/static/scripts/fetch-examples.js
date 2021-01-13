@@ -7,11 +7,11 @@ const path = require("path");
 const dataDirectories = {
     "templates": {
         dir: 'data/remote-examples/templates/',
-        fetchFunc: 'fetchFilesTemplates'
+        fetchFunc: fetchFilesTemplates,
     },
     "language-examples": {
         dir: 'data/remote-examples/language-examples/',
-        fetchFunc: 'fetchFilesExamples'
+        fetchFunc: fetchFilesExamples
     }
 }
 
@@ -81,7 +81,7 @@ function fetch(exampleGroup) {
                 // Load the data.
                 const data = yaml.safeLoad(fs.readFileSync(dir + file, 'utf8'));
                 // Get the files.
-                eval(`${fetchFunc}(data)`)
+                fetchFunc(data)
             } catch (e) {
                 console.log(e);
             }
