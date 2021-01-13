@@ -77,17 +77,17 @@ This is the complete list of extensions that can be enabled:
 | dba              |     |     |     | *   | *   | *   | *   | *   | *   |
 | dom              |     |     |     | *   | *   | *   | *   | *   | *   |
 | enchant          | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| event            |     |     |     |     | *   | *   | *   | *   |     |
+| event            |     |     |     |     | *   | *   | *   | *   | *   |
 | exif             |     |     |     | *   | *   | *   | *   | *   | *   |
 | ffi              |     |     |     |     |     |     |     | *   | *   |
 | fileinfo         |     |     |     | *   | *   | *   | *   | *   | *   |
 | ftp              |     |     |     | *   | *   | *   | *   | *   | *   |
 | gd               | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | gearman          | *   | *   | *   |     |     |     |     |     |     |
-| geoip            | *   | *   | *   | *   | *   | *   | *   | *   |     |
+| geoip            | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | gettext          |     |     |     | *   | *   | *   | *   | *   | *   |
 | gmp              | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| http             | *   | *   |     |     |     |     |     | *   |     |
+| http             | *   | *   |     |     |     |     |     | *   | *   |
 | iconv            |     |     |     | *   | *   | *   | *   | *   | *   |
 | igbinary         |     |     |     | *   | *   | *   | *   | *   | *   |
 | imagick          | *   | *   | *   | *   | *   | *   | *   | *   |     |
@@ -97,20 +97,20 @@ This is the complete list of extensions that can be enabled:
 | ioncube          |     |     |     | *   | *   | *   |     |     |     |
 | json             |     |     | *   | *   | *   | *   | *   | *   | *   |
 | ldap             | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| mailparse        |     |     |     | *   | *   | *   |     | *   |     |
+| mailparse        |     |     |     | *   | *   | *   |     | *   | *   |
 | mbstring         |     |     |     | *   | *   | *   | *   | *   | *   |
 | mcrypt           | *   | *   | *   | *   | *   |     |     |     |     |
 | memcache         | *   | *   | *   |     |     |     |     |     |     |
-| memcached        | *   | *   | *   | *   | *   | *   |     | *   |     |
+| memcached        | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | mongo            | *   | *   | *   |     |     |     |     |     |     |
 | mongodb          |     |     |     | *   | *   | *   | *   | *   |     |
-| msgpack          |     |     | *   | *   | *   | *   |     | *   |     |
+| msgpack          |     |     | *   | *   | *   | *   | *   | *   | *   |
 | mssql            | *   | *   | *   |     |     |     |     |     |     |
 | mysql            | *   | *   | *   |     |     |     |     |     |     |
 | mysqli           | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | mysqlnd          | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | newrelic         |     |     | *   | *   | *   | *   | *   | *   | *   |
-| oauth            |     |     |     | *   | *   | *   | *   | *   |     |
+| oauth            |     |     |     | *   | *   | *   | *   | *   | *   |
 | odbc             | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | opcache          |     | *   | *   | *   | *   | *   | *   | *   | *   |
 | openssl          |     |     |     |     |     |     |     |     |     |
@@ -163,7 +163,7 @@ This is the complete list of extensions that can be enabled:
 | xmlrpc           | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | xmlwriter        |     |     |     | *   | *   | *   | *   | *   | *   |
 | xsl              | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| yaml             |     |     |     |     | *   | *   | *   | *   |     |
+| yaml             |     |     |     |     | *   | *   | *   | *   | *   |
 | zbarcode         |     |     |     | *   | *   | *   | *   |     |     |
 | zendopcache      | *   |     |     |     |     |     |     |     |     |
 | zip              |     |     |     | *   | *   | *   | *   | *   | *   |
