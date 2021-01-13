@@ -1,6 +1,6 @@
 <p>The frontend Gatsby app on the other hand has a slightly different configuration from the basic <a href="/guides/gatsby/deploy.html">Gatsby deployment</a>. Below is the <code>gatsby/.platform.app.yaml</code> file that configures the application. </p>
 
-{{ $file := printf "static/files/fetch/multiappyaml/%s%s" (.Get "template") "@gatsby"}}
+{{ $file := printf "static/files/fetch/multiappyaml/%s" (.Get "template") }}
 {{ highlight ( readFile $file ) "yaml" ""}}
 
 <p>In particular, notice:</p>
