@@ -84,5 +84,3 @@ routesyaml:
   - gatsby-drupal
   - gatsby-strapi
   - gatsby-wordpress
-docsappyaml:
-  - platformsh-docs
