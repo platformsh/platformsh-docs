@@ -1,13 +1,13 @@
 ---
-title: "Customize Quarkus for Platform.sh"
+title: "Customize Micronaut for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
 toc: false
 description: |
-    Add some helpful dependencies, and modify your Quarkus site to read from a Platform.sh environment.
+    Add some helpful dependencies, and modify your Micronaut site to read from a Platform.sh environment.
 ---
 
-Now that your code contains all of the configuration to deploy on Platform.sh, it's time to make your Quarkus site itself ready to run on a Platform.sh environment. There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
+Now that your code contains all of the configuration to deploy on Platform.sh, it's time to make your Micronaut site itself ready to run on a Platform.sh environment. There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
 
 ## Install the Config Reader
 
@@ -31,7 +31,7 @@ compile group: 'sh.platform', name: 'config', version: '2.2.2'
 
 ## `.environment`
 
-The `.platform.app.yaml` file on the [previous page](/guides/quarkus/deploy/configure.md#application-container-platformappyaml) has been pulled directly from the [Quarkus template](https://github.com/platformsh-templates/quarkus/blob/master/.platform.app.yaml). It is sufficient to deploy Quarkus on it's own, but since [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config) makes it possible to overwrite configurations without impacting the application itself, you might elect to rely more heavily on environment variables in it's place. 
+The `.platform.app.yaml` file on the [previous page](/guides/micronaut/deploy/configure.md#application-container-platformappyaml) has been pulled directly from the [Micronaut template](https://github.com/platformsh-templates/micronaut/blob/master/.platform.app.yaml). It is sufficient to deploy Micronaut on it's own, once Micronaut makes it possible to overwrite configurations without impacting the application itself, you might elect to rely more heavily on environment variables in it's place. 
 
 Consider this simplified `.platform.app.yaml` file:
 
@@ -43,11 +43,11 @@ type: "java:11"
 disk: 1024
 
 hooks:
-    build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
+    build: build: mvn clean package
     
 web:
     commands:
-        start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT target/file.jar
+        start: java -jar $JAVA_OPTS $CREDENTIAL target/file.jar
 ```
 
 On Platform.sh, we can set the environment variable `JAVA_OPTS` by committing a `.environment` file to the repository's root. Platform.sh runs `source .environment` in the application root when a project starts, and when logging into the environment over SSH.  That gives you a place to do extra environment variable setup prior to the application running, including modifying the system `$PATH` and other shell level customizations. It will allow us to define `JAVA_OPTS` when running on Platform.sh, but otherwise not be used during local development testing. 
@@ -61,4 +61,4 @@ export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOut
 To check the Garbage collector settings, please, check the [Java Performance tuning section.](/languages/java/tuning.md)
 {{< /note >}}
 
-{{< guide-buttons next="Deploy Quarkus" >}}
+{{< guide-buttons next="Deploy Micronaut" >}}

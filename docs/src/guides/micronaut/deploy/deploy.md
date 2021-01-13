@@ -1,5 +1,5 @@
 ---
-title: "Deploy Quarkus"
+title: "Deploy Micronaut"
 sidebarTitle: "Deploy"
 weight: -80
 toc: false
