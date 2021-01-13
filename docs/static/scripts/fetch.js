@@ -81,6 +81,8 @@ function getTargets(data, dataRoot) {
 
 // Places the request and writes the file.
 function writeFile(url, filename) {
+  console.log(url)
+  console.log(filename)
   request.get(url, (error, response, body) => {
     fs.writeFileSync(filename, body, function (err) {
       if (err) throw err;
@@ -124,6 +126,8 @@ function fetch () {
         targets[dataRoot] = getTargets(data, dataRoot);
         // Request and write the files.
         for (var target in targets[dataRoot]) {
+          console.log("\n");
+          console.log(target)
           writeFile(targets[dataRoot][target], target)
         }
       }
