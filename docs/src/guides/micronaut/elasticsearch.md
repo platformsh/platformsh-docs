@@ -42,4 +42,4 @@ Environment variables names are following the conversion rules of the [Micronaut
 
 ## 4. Connect to Elasticsearch
 
-Commit that code and push. The Elasticsearch instance is ready to be connected from within the Quarkus application.
+Commit that code and push. The Elasticsearch instance is ready to be connected from within the Micronaut application.
