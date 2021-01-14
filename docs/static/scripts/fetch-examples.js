@@ -5,10 +5,10 @@ const { isString } = require('util');
 
 // Example file data.
 const dataDirectories = {
-    // "templates": {
-    //     dir: 'data/remote-examples/templates/',
-    //     fetchFunc: fetchFilesTemplates,
-    // },
+    "templates": {
+        dir: 'data/remote-examples/templates/',
+        fetchFunc: fetchFilesTemplates,
+    },
     "language-examples": {
         dir: 'data/remote-examples/language-examples/',
         fetchFunc: fetchFilesExamples
@@ -33,7 +33,7 @@ function writeFileFromTarget(target, destination) {
         console.log(typeof target == 'string');
         console.log(typeof destination == 'string');
         console.log(typeof body == 'string');
-        console.log(body)
+        // console.log(body)
         console.log("\n")
         fs.writeFileSync(destination, body);
     })
