@@ -34,12 +34,15 @@ function writeFileFromTarget(target, destination) {
         } else {
             finalBody = body;
         }
-        console.log(target)
-        console.log(typeof target == 'string');
-        console.log(typeof destination == 'string');
-        console.log(typeof finalBody == 'string');
-        // console.log(body)
-        console.log("\n")
+
+        console.log(`
+* ${target}:
+    - isString(target): ${typeof target == 'string'}
+    - isString(destination): ${typeof destination == 'string'}
+    - (pre) isString(body): ${typeof body == 'string'}
+    - (force) isString(body): ${typeof finalBody == 'string'}
+    
+        `)
         fs.writeFileSync(destination, finalBody);
     })
 }
