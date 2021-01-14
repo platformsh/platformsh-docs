@@ -1,7 +1,6 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const request = require("request");
-const { isString } = require('util');
 
 // Example file data.
 const dataDirectories = {
@@ -29,13 +28,19 @@ function writeFileFromTarget(target, destination) {
     // Get the file.
     request.get(target, (error, response, body) => {
         // Write the file.
+        var finalBody;
+        if (!(typeof body == 'string')) {
+            finalBody = new String(body);
+        } else {
+            finalBody = body;
+        }
         console.log(target)
         console.log(typeof target == 'string');
         console.log(typeof destination == 'string');
-        console.log(typeof body == 'string');
+        console.log(typeof finalBody == 'string');
         // console.log(body)
         console.log("\n")
-        fs.writeFileSync(destination, body);
+        fs.writeFileSync(destination, finalBody);
     })
 }
 
