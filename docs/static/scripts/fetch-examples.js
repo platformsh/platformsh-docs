@@ -7,11 +7,11 @@ const dataDirectories = {
     "templates": {
         dir: 'data/remote-examples/templates/',
         fetchFunc: fetchFilesTemplates,
+    },
+    "language-examples": {
+        dir: 'data/remote-examples/language-examples/',
+        fetchFunc: fetchFilesExamples
     }
-    // "language-examples": {
-    //     dir: 'data/remote-examples/language-examples/',
-    //     fetchFunc: fetchFilesExamples
-    // }
 }
 
 // Ensure subdirectory we're saving to exists.
@@ -39,9 +39,9 @@ function fetchFilesTemplates(data) {
         var target = `${data["root"]}/${data["repos"][repo]}/${data["branch"]}/${data["file"]}`;
         var destination = process.cwd() + `${data["savePath"]}/${data["repos"][repo]}`
         // Ensure subdirectory exists.
-        ensureSubdir(data["savePath"])
-        // Place the request and write the file.
+        ensureSubdir(data["savePath"]);
         writeFileFromTarget(target, destination);
+
     }
 }
 
@@ -59,6 +59,19 @@ function fetchFilesExamples(data) {
             // Format target and destination for each service.
             var target = `${languageTargetDir}/${data["paths"][language][service]}`;
             var destination = process.cwd() + `${languageDestDir}/${data["paths"][language][service]}`;
+//             console.log(`
+// * ${data["paths"][language][service]}            
+//     - target: ${target}
+//     - destination: ${destination} 
+
+//             `)
+        // if(fs.existsSync(target)) {
+        //     console.log(`The file ${target} already exists. Skipping.`);
+        // } else {
+        //     console.log('The file does not exist.');
+        //     // Place the request and write the file.
+        //     writeFileFromTarget(target, destination);
+        // }
             // Place the request and write the file.
             writeFileFromTarget(target, destination);
         }

@@ -44,7 +44,6 @@ paths:
         - mysql
         - postgresql
         - rabbitmq
-        - rabbitmq
         - redis
         - solr
     relationships:
@@ -54,7 +53,6 @@ paths:
         - memcached
         - mongodb
         - mysql
-        - postgresql
         - postgresql
         - rabbitmq
         - redis
