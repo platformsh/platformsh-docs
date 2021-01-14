@@ -51,6 +51,8 @@ function writeFileFromTargetExamples(target, destination){
     - finalBody: ${typeof finalBody}
     - body: 
 ${body}
+    - finalBody:
+${finalBody}
             `)
             fs.writeFileSync(destination, finalBody);
         }
