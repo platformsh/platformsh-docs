@@ -27,7 +27,7 @@ function ensureSubdir(savePath) {
 function writeFileFromTarget(target, destination) {
     // Get the file.
     request.get(target, (error, response, body) => {
-        // Write the file.
+        // Write the file, ensuring type='string' in body (which is a problem on some examples).
         var finalBody;
         if (!(typeof body == 'string')) {
             finalBody = new String(body);
@@ -41,7 +41,7 @@ function writeFileFromTarget(target, destination) {
     - isString(destination): ${typeof destination == 'string'}
     - (pre) isString(body): ${typeof body == 'string'}
     - (force) isString(body): ${typeof finalBody == 'string'}
-    
+
         `)
         fs.writeFileSync(destination, finalBody);
     })
