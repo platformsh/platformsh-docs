@@ -1,0 +1,910 @@
+ Found 1 new commit
+ 
+ Building application 'docs' (runtime type: nodejs:14, tree: a13e99c)
+   Generating runtime configuration.
+   
+   Building a NodeJS application, let's make it fly.
+   Found a `package.json`, installing dependencies.
+     
+     > jpeg-recompress-bin@4.0.0 postinstall /app/node_modules/jpeg-recompress-bin
+     > node lib/install.js
+     
+     W:   ✔ jpeg-recompress pre-build test passed successfully
+     
+     > gifsicle@5.1.0 postinstall /app/node_modules/gifsicle
+     > node lib/install.js
+     
+     W:   ⚠ Response code 404 (Not Found)
+     W:   ⚠ gifsicle pre-build test failed
+     W:   ℹ compiling from source
+     W:   ✔ gifsicle built successfully
+     
+     > mozjpeg@6.0.1 postinstall /app/node_modules/mozjpeg
+     > node lib/install.js
+     
+     W:   ✔ mozjpeg pre-build test passed successfully
+     
+     > optipng-bin@6.0.0 postinstall /app/node_modules/optipng-bin
+     > node lib/install.js
+     
+     W:   ✔ optipng pre-build test passed successfully
+     
+     > pngquant-bin@5.0.2 postinstall /app/node_modules/pngquant-bin
+     > node lib/install.js
+     
+     W:   ✔ pngquant pre-build test passed successfully
+     W: npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.13 (node_modules/fsevents):
+     W: npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+     W: 
+     added 1029 packages from 496 contributors and audited 1033 packages in 27.842s
+     
+     52 packages are looking for funding
+       run `npm fund` for details
+     
+     found 0 vulnerabilities
+     
+     W: npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.13 (node_modules/fsevents):
+     W: npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+     W: 
+     audited 1033 packages in 5.274s
+     
+     52 packages are looking for funding
+       run `npm fund` for details
+     
+     found 0 vulnerabilities
+     
+   
+   Executing build hook...
+     
+     > platformsh-docs@1.0.0 fetch-files /app
+     > rm -rf static/files/fetch/* && node static/scripts/fetch-examples.js
+     
+     
+     * https://examples.docs.platform.sh/golang/memcached:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/golang/mongodb:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/golang/mysql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/golang/postgresql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/golang/rabbitmq:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/golang/solr:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/java/elasticsearch:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/java/kafka:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/java/memcached:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/java/mongodb:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/java/mysql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/java/postgresql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/java/redis:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/java/rabbitmq:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/nodejs/elasticsearch:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/java/solr:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/nodejs/memcached:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/nodejs/mongodb:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/nodejs/mysql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/nodejs/postgresql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/nodejs/redis:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/nodejs/solr:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/php/elasticsearch:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/php/influxdb:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/php/memcached:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/php/mongodb:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/php/mysql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/php/postgresql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/php/rabbitmq:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/php/redis:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/php/solr:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/python/elasticsearch:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/python/kafka:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/python/memcached:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/python/mysql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/python/mongodb:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/python/rabbitmq:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/relationships/elasticsearch:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/relationships/mysql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/relationships/rabbitmq:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/python/redis:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/python/postgresql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/relationships/influxdb:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/relationships/kafka:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/python/solr:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/relationships/mongodb:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/akeneo/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/drupal7/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/wordpress-vanilla/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/php/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/drupal8/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/magento2ce/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/golang/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/pyramid/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/relationships/solr:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/relationships/memcached:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/relationships/redis:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/spring-boot-maven-mysql/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://examples.docs.platform.sh/relationships/postgresql:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/python3/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/drupal9/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/gatsby-strapi/master/gatsby/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/gatsby-drupal/master/gatsby/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/drupal8-multisite/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/typo3/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/typo3/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh/platformsh-docs/master/docs/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/gatsby/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/drupal9/master/.platform/routes.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/quarkus/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/wordpress-vanilla/master/.platform/routes.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/drupal9/master/.platform/services.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/gatsby-strapi/master/.platform/services.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/gatsby-wordpress/master/.platform/services.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/gatsby-drupal/master/.platform/services.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/typo3/master/.platform/services.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/wordpress-vanilla/master/.platform/services.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/nodejs/master/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform/services.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/gatsby-wordpress/master/gatsby/.platform.app.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/gatsby/master/.platform/routes.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/master/.platform/routes.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/php/master/.platform/routes.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/quarkus/master/.platform/routes.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/gatsby-drupal/master/.platform/routes.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/gatsby-wordpress/master/.platform/routes.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/typo3/master/.platform/routes.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     * https://raw.githubusercontent.com/platformsh-templates/gatsby-strapi/master/.platform/routes.yaml:
+         - isString(target): true
+         - isString(destination): true
+         - (pre) isString(body): true
+         - (force) isString(body): true
+         
+             
+     
+     > platformsh-docs@1.0.0 registry-files /app
+     > node static/scripts/updateExampleConfigFiles.js
+     
+     
+     ### updateExampleConfigFiles.js: Updating example Platform.sh configuration yamls.
+     
+     W: npm WARN read-shrinkwrap This version of npm is compatible with lockfileVersion@1, but package-lock.json was generated for lockfileVersion@2. I'll try to do my best with it!
+     
+     > node-sass@4.14.1 install /app/static/scripts/xss/node_modules/node-sass
+     > node scripts/install.js
+     
+     Cached binary found at /mnt/cache/npm/node-sass/4.14.1/linux-x64-83_binding.node
+     
+     > core-js@2.6.12 postinstall /app/static/scripts/xss/node_modules/core-js
+     > node -e "try{require('./postinstall')}catch(e){}"
+     
+     Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+     
+     The project needs your help! Please consider supporting of core-js on Open Collective or Patreon: 
+     > https://opencollective.com/core-js 
+     > https://www.patreon.com/zloirock 
+     
+     Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
+     
+     
+     > core-js-pure@3.8.2 postinstall /app/static/scripts/xss/node_modules/core-js-pure
+     > node -e "try{require('./postinstall')}catch(e){}"
+     
+     
+     > node-sass@4.14.1 postinstall /app/static/scripts/xss/node_modules/node-sass
+     > node scripts/build.js
+     
+     Binary found at /app/static/scripts/xss/node_modules/node-sass/vendor/linux-x64-83/binding.node
+     Testing binary
+     Binary is fine
+     W: npm WARN autocomplete@1.0.0 No repository field.
+     W: npm WARN The package styled-components is included as both a dev and production dependency.
+     W: 
+     added 939 packages from 641 contributors and audited 939 packages in 14.392s
+     
+     76 packages are looking for funding
+       run `npm fund` for details
+     
+     found 1 low severity vulnerability
+       run `npm audit fix` to fix them, or `npm audit` for details
+     
+     > autocomplete@1.0.0 build /app/static/scripts/xss
+     > webpack --config webpack.prod.js
+     
+     asset bundle.js 622 KiB [emitted] [minimized] [big] (name: main) 1 related asset
+     543 modules
+     
+     WARNING in configuration
+     The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
+     You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/
+     
+     webpack 5.11.1 compiled with 1 warning in 14542 ms
+     Start building sites … 
+     WARNING: calling IsSet with unsupported type "invalid" (<nil>) will always return false.
+     
+     
+                        |  EN    
+     -------------------+--------
+       Pages            |   345  
+       Paginator pages  |     0  
+       Non-page files   |   186  
+       Static files     | 22702  
+       Processed images |     0  
+       Aliases          |    41  
+       Sitemaps         |     1  
+       Cleaned          |     0  
+     
+     Total in 9090 ms
+     
+     > platformsh-docs@1.0.0 assets-dist /app
+     > gulp dist
+     
+     [16:43:42] Using gulpfile ~/gulpfile.js
+     [16:43:42] Starting 'dist'...
+     [16:43:42] Starting 'cssBuild'...
+     [16:43:42] Starting 'javascriptBuild'...
+     [16:43:42] Starting 'javascriptBuildWidgets'...
+     [16:43:42] Starting 'javascriptMinifyAsciiplayer'...
+     [16:43:55] Finished 'javascriptMinifyAsciiplayer' after 13 s
+     [16:43:56] Finished 'javascriptBuild' after 14 s
+     [16:43:57] Finished 'javascriptBuildWidgets' after 15 s
+     [16:43:59] Finished 'cssBuild' after 17 s
+     [16:43:59] Finished 'dist' after 17 s
+   
+   Executing pre-flight checks...
+ 
+   Compressing application.
+   Beaming package to its final destination.
+ 
+ Building application 'search' (runtime type: python:3.8, tree: f6c79aa)
+   Reusing existing build for this tree ID
+ 
+ Provisioning certificates
+   Environment certificates
+   - certificate 2336121: expiring on 2021-04-14 14:54:49+00:00, covering {,{,www}.search,www}.pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site
+ 
+ 
+ Redeploying environment pr-1689
+   Preparing deployment
+   Closing services docs and router
+   Opening application docs and its relationships
+   Executing deploy hook for application docs
+ 
+   Opening environment
+   Executing post-deploy hook for application search
+     * CLEANING UP MOUNTS
+     * SCRAPING SITES
+     - Scraping apidocs...
+     Skipping virtualenv creation, as specified in config file.
+     - Scraping community...
+     Skipping virtualenv creation, as specified in config file.
+     - Scraping website...
+     Skipping virtualenv creation, as specified in config file.
+     * UPDATING INDEX
+     Skipping virtualenv creation, as specified in config file.
+     Skipping virtualenv creation, as specified in config file.
+ 
+   Environment configuration
+     docs (type: nodejs:14, size: S, disk: 1024)
+     search (type: python:3.8, size: S, disk: 2048)
+ 
+   Environment routes
+     http://pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/ redirects to https://pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/
+     http://search.pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/ redirects to https://search.pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/
+     http://www.pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/ redirects to https://www.pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/
+     http://www.search.pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/ redirects to https://www.search.pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/
+     https://pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/ is served by application `docs`
+     https://search.pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/ is served by application `search`
+     https://www.pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/ redirects to https://pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/
+     https://www.search.pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/ redirects to https://search.pr-1689-r3xgjqq-652soceglkw4u.eu-3.platformsh.site/
+ 
