@@ -50,7 +50,6 @@ ${body}
             finalBody = body;
             fs.writeFileSync(destination, body);
         }
-
 //         console.log(`
 // * ${target}:
 //     - isString(target): ${typeof target == 'string'}
