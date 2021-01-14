@@ -28,6 +28,7 @@ function writeFileFromTarget(target, destination) {
     // Get the file.
     request.get(target, (error, response, body) => {
         // Write the file.
+        console.log(target);
         fs.writeFileSync(destination, body);
     })
 }
