@@ -30,6 +30,7 @@ function writeFileFromTarget(target, destination) {
         // Write the file, ensuring type='string' in body (which is a problem on some examples).
         // var finalBody;
         if (!(typeof body == 'string')) {
+
             var finalBody = new String(body);
             console.log(`
 * ${target}:
@@ -37,6 +38,8 @@ function writeFileFromTarget(target, destination) {
     - destination: ${destination}
     - body: ${typeof body }
     - finalBody: ${typeof finalBody}
+    - body: 
+${body}
             `)
             fs.writeFileSync(destination, finalBody);
         } else {
