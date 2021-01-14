@@ -34,35 +34,43 @@ function writeFileFromTarget(target, destination) {
 function writeFileFromTargetExamples(target, destination){
 
     request.get(target, (error, response, body) => {
-        if (typeof body == "string") {
-            console.log(`
-* ${target}:
-    - OK. Strings all the way down.
-    - target: ${target}
-    - destination: ${destination}
-    - response: 
-${response}
-    - error:
-${error}
-
-            `)
-            fs.writeFileSync(destination, body);
-        } else {
-            var finalBody = new String(body);
-            console.log(`
-* ${target}:
-    - target: ${target}
-    - destination: ${destination}
-    - body: ${typeof body }
-    - finalBody: ${typeof finalBody}
-    - body: 
-${body}
-    - finalBody:
-${finalBody}
-            `)
-            console.log(response)
-            fs.writeFileSync(destination, finalBody);
+        try {
+            fs.writeFileSync(destination, body)
+        } catch (err) {
+            console.log(err);
+            console.log(target);
+            console.log(destination);
+            console.log(response);
         }
+//         if (typeof body == "string") {
+//             console.log(`
+// * ${target}:
+//     - OK. Strings all the way down.
+//     - target: ${target}
+//     - destination: ${destination}
+//     - response: 
+// ${response}
+//     - error:
+// ${error}
+
+//             `)
+//             fs.writeFileSync(destination, body);
+//         } else {
+//             var finalBody = new String(body);
+//             console.log(`
+// * ${target}:
+//     - target: ${target}
+//     - destination: ${destination}
+//     - body: ${typeof body }
+//     - finalBody: ${typeof finalBody}
+//     - body: 
+// ${body}
+//     - finalBody:
+// ${finalBody}
+//             `)
+//             console.log(response)
+//             fs.writeFileSync(destination, finalBody);
+//         }
     })
         
 }
@@ -133,10 +141,34 @@ function run(){
 // Run it.
 run()
 
-// function run2(url) {
-//     request.get(url, (error, response, body) => {
-//         console.log(typeof response.body)
+// function run2(target, id) {
+//     var options = {
+//         url: target,
+//         // headers: headers,
+//         method: 'GET',
+//         // json: true
+//     };
+
+//     request.get(options, (error, response, body) => {
+//         // console.log(body)
+//         console.log(error)
+//         fs.writeFileSync(`test${id}`, new String(body));
 //     })
+//     // console.log(`test${id}`)
+//     // request.get(target, (error, response, body) => {
+//     //     fs.writeFileSync(`test${id}`, body);
+//     // })
+
 // }
 
-// run2("https://examples.docs.platform.sh/golang/solr")
+// var locations = [
+//     "https://examples.docs.platform.sh/relationships/elasticsearch",
+//     "https://examples.docs.platform.sh/golang/solr",
+//     "https://examples.docs.platform.sh/java/elasticsearch"
+// ]
+
+// for (location in locations){
+//     run2(locations[location], location)
+// }
+
+// run2("https://examples.docs.platform.sh/relationships/elasticsearch")
