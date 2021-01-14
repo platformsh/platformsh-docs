@@ -82,8 +82,6 @@ Be aware that sync uses the [Snapshot](/administration/backup-and-restore.md#bac
 
 ![sync confirmation cli](/images/management-console/header-sync-box.png "0.4")
 
-Be aware that sync uses the [Backup](/administration/backup-and-restore.md#backups-and-downtime) mechanism and will have the same caveats.
-
 Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded.
 
 It is good practice to take a backup of your environment before performing a synchronization.
