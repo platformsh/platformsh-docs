@@ -27,10 +27,21 @@ function ensureSubdir(savePath) {
 function writeFileFromTarget(target, destination) {
     // Get the file.
     request.get(target, (error, response, body) => {
-        // Write the file, ensuring type='string' in body (which is a problem on some examples).
-        // var finalBody;
-        if (!(typeof body == 'string')) {
+        fs.writeFileSync(destination, body);
+    })
+}
 
+function writeFileFromTargetExamples(target, destination){
+
+    request.get(target, (error, response, body) => {
+        if (typeof body == "string") {
+            console.log(`
+* ${target}:
+    - OK. Strings all the way down.
+            `)
+            finalBody = body;
+            fs.writeFileSync(destination, body);
+        } else {
             var finalBody = new String(body);
             console.log(`
 * ${target}:
@@ -42,25 +53,9 @@ function writeFileFromTarget(target, destination) {
 ${body}
             `)
             fs.writeFileSync(destination, finalBody);
-        } else {
-            console.log(`
-* ${target}:
-    - OK. Strings all the way down.
-            `)
-            finalBody = body;
-            fs.writeFileSync(destination, body);
         }
-        
-//         console.log(`
-// * ${target}:
-//     - isString(target): ${typeof target == 'string'}
-//     - isString(destination): ${typeof destination == 'string'}
-//     - body: ${typeof body }
-//     - finalBody: ${typeof finalBody}
-
-//         `)
-        // fs.writeFileSync(destination, finalBody);
     })
+        
 }
 
 // Function to parse out an example file's target and destination before request is made.
@@ -90,21 +85,8 @@ function fetchFilesExamples(data) {
             // Format target and destination for each service.
             var target = `${languageTargetDir}/${data["paths"][language][service]}`;
             var destination = process.cwd() + `${languageDestDir}/${data["paths"][language][service]}`;
-//             console.log(`
-// * ${data["paths"][language][service]}            
-//     - target: ${target}
-//     - destination: ${destination} 
-
-//             `)
-        // if(fs.existsSync(target)) {
-        //     console.log(`The file ${target} already exists. Skipping.`);
-        // } else {
-        //     console.log('The file does not exist.');
-        //     // Place the request and write the file.
-        //     writeFileFromTarget(target, destination);
-        // }
             // Place the request and write the file.
-            writeFileFromTarget(target, destination);
+            writeFileFromTargetExamples(target, destination);
         }
     }
 }
