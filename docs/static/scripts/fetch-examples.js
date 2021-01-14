@@ -31,18 +31,29 @@ function writeFileFromTarget(target, destination) {
         var finalBody;
         if (!(typeof body == 'string')) {
             finalBody = new String(body);
+            console.log(`
+* ${target}:
+    - target: ${target}
+    - destination: ${destination}
+    - body: ${typeof body }
+    - finalBody: ${typeof finalBody}
+            `)
         } else {
+            console.log(`
+* ${target}:
+    - OK. Strings all the way down.
+            `)
             finalBody = body;
         }
 
-        console.log(`
-* ${target}:
-    - isString(target): ${typeof target == 'string'}
-    - isString(destination): ${typeof destination == 'string'}
-    - (pre) isString(body): ${typeof body == 'string'}
-    - (force) isString(body): ${typeof finalBody == 'string'}
+//         console.log(`
+// * ${target}:
+//     - isString(target): ${typeof target == 'string'}
+//     - isString(destination): ${typeof destination == 'string'}
+//     - body: ${typeof body }
+//     - finalBody: ${typeof finalBody}
 
-        `)
+//         `)
         fs.writeFileSync(destination, finalBody);
     })
 }
