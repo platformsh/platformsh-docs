@@ -3,7 +3,7 @@ title: "Extensions"
 weight: 1
 ---
 
-You can define the PHP extensions you want to enable or disable:
+You can define the PHP extensions you want to enable or disable using the `runtime` attribute in `.platform.app.yaml`:
 
 ```yaml
 # .platform.app.yaml
