@@ -42,6 +42,8 @@ function writeFileFromTargetExamples(target, destination){
             console.log(destination);
             console.log(response);
         }
+
+        
 //         if (typeof body == "string") {
 //             console.log(`
 // * ${target}:
