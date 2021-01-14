@@ -28,9 +28,9 @@ function writeFileFromTarget(target, destination) {
     // Get the file.
     request.get(target, (error, response, body) => {
         // Write the file, ensuring type='string' in body (which is a problem on some examples).
-        var finalBody;
+        // var finalBody;
         if (!(typeof body == 'string')) {
-            finalBody = new String(body);
+            var finalBody = new String(body);
             console.log(`
 * ${target}:
     - target: ${target}
@@ -38,12 +38,14 @@ function writeFileFromTarget(target, destination) {
     - body: ${typeof body }
     - finalBody: ${typeof finalBody}
             `)
+            fs.writeFileSync(destination, finalBody);
         } else {
             console.log(`
 * ${target}:
     - OK. Strings all the way down.
             `)
             finalBody = body;
+            fs.writeFileSync(destination, body);
         }
 
 //         console.log(`
@@ -54,7 +56,7 @@ function writeFileFromTarget(target, destination) {
 //     - finalBody: ${typeof finalBody}
 
 //         `)
-        fs.writeFileSync(destination, finalBody);
+        // fs.writeFileSync(destination, finalBody);
     })
 }
 
