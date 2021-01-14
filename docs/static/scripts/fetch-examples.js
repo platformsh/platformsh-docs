@@ -33,6 +33,7 @@ function writeFileFromTarget(target, destination) {
         console.log(typeof target == 'string');
         console.log(typeof destination == 'string');
         console.log(typeof body == 'string');
+        console.log(body)
         console.log("\n")
         fs.writeFileSync(destination, body);
     })
