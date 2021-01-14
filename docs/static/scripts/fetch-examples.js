@@ -7,11 +7,11 @@ const dataDirectories = {
     "templates": {
         dir: 'data/remote-examples/templates/',
         fetchFunc: fetchFilesTemplates,
-    },
-    "language-examples": {
-        dir: 'data/remote-examples/language-examples/',
-        fetchFunc: fetchFilesExamples
     }
+    // "language-examples": {
+    //     dir: 'data/remote-examples/language-examples/',
+    //     fetchFunc: fetchFilesExamples
+    // }
 }
 
 // Ensure subdirectory we're saving to exists.
