@@ -1,13 +1,14 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const request = require("request");
+const { isString } = require('util');
 
 // Example file data.
 const dataDirectories = {
-    "templates": {
-        dir: 'data/remote-examples/templates/',
-        fetchFunc: fetchFilesTemplates,
-    },
+    // "templates": {
+    //     dir: 'data/remote-examples/templates/',
+    //     fetchFunc: fetchFilesTemplates,
+    // },
     "language-examples": {
         dir: 'data/remote-examples/language-examples/',
         fetchFunc: fetchFilesExamples
@@ -28,7 +29,11 @@ function writeFileFromTarget(target, destination) {
     // Get the file.
     request.get(target, (error, response, body) => {
         // Write the file.
-        console.log(target);
+        console.log(target)
+        console.log(typeof target == 'string');
+        console.log(typeof destination == 'string');
+        console.log(typeof body == 'string');
+        console.log("\n")
         fs.writeFileSync(destination, body);
     })
 }
