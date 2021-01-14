@@ -38,8 +38,14 @@ function writeFileFromTargetExamples(target, destination){
             console.log(`
 * ${target}:
     - OK. Strings all the way down.
+    - target: ${target}
+    - destination: ${destination}
+    - response: 
+${response}
+    - error:
+${error}
+
             `)
-            finalBody = body;
             fs.writeFileSync(destination, body);
         } else {
             var finalBody = new String(body);
@@ -54,6 +60,7 @@ ${body}
     - finalBody:
 ${finalBody}
             `)
+            console.log(response)
             fs.writeFileSync(destination, finalBody);
         }
     })
@@ -125,3 +132,11 @@ function run(){
 
 // Run it.
 run()
+
+// function run2(url) {
+//     request.get(url, (error, response, body) => {
+//         console.log(typeof response.body)
+//     })
+// }
+
+// run2("https://examples.docs.platform.sh/golang/solr")
