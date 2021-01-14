@@ -7,6 +7,11 @@ description: |
 
 {{< description >}}
 
+## 2021
+
+* **January 2021**
+  * Default branch: [guide added](/guides/general/default-branch.md) that provides step for changing a project's default branch from `master` to `main`
+
 ## 2020
 
 * **December 2020**
