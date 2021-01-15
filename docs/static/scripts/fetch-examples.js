@@ -23,147 +23,15 @@ function ensureSubdir(savePath) {
     }
 }
 
-// Function to place the request and write to the file.
-// function writeFileFromTarget(target, destination) {
-//     // Get the file.
-//     request.get(target, (error, response, body) => {
-//         fs.writeFileSync(destination, body);
-//     })
-// }
-
 function writeFileFromTarget(target, destination) {
     request.get(target, (error, response, body) => {
         fs.writeFile(destination, body, (err) => {
             if (err) {
-                console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
+                console.log(`   ✖ ${destination.split(process.cwd())[1]}: Poor request, file not written.`); 
                 console.log(err);
-            } else {
-                console.log(`   ✔ ${destination.split(process.cwd())[1]}`);     
             }
         })
-        // try {
-        //     fs.writeFile(destination, body, (err) => {
-        //         if (err) {
-        //             console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
-        //             console.log(err);
-        //         } else {
-        //             console.log(`   ✔ ${destination.split(process.cwd())[1]}`);     
-        //         }
-        //     })
-        //     // console.log(`   ✔ ${destination.split(process.cwd())[1]}`); 
-        // } catch {
-        //     console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
-        //     console.log(err)
-        // }
     })
-}
-
-// function writeFileFromTarget(target, destination) {
-//     // Make the request.
-//     request.get(target, (error, response, body) => {
-//         fs.writeFile(destination, body (err) => {
-//             if (err) {
-//                 // console.log(err)
-//                 console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
-// ${err}
-//                 `); 
-//             } else {
-//                 console.log(`   ✔ ${destination}`); 
-//             }
-//         })
-//     }
-//         // Asynchronously write the file.
-//         fs.writeFile(destination, body, (err) => { 
-//             if (err) {
-//                 // console.log(err)
-//                 console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
-// ${err}
-//                 `); 
-//             }
-//             else { 
-//                 console.log(`   ✔ ${destination}`); 
-//             } 
-        // }
-//         try {
-//             // Asynchronously write the file.
-//             fs.writeFile(destination, body, (err) => { 
-//                 if (err) {
-//                     // console.log(err)
-//                     console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
-// $
-//                     `); 
-//                 }
-//                 else { 
-//                     console.log(`   ✔ ${destination}`); 
-//                 } 
-//             }); 
-//         } catch {
-//             console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
-//         }
-    // })
-// }
-
-function writeFileFromTargetExamplesNew(target, destination) {
-
-    request.get(target).then((response) => {
-        fs.writeFileSync(destination, response.body);
-        if (err) throw err;
-    })
-    // cy.request({
-    //     method: 'GET',
-    //     url: downloadUrl 
-    // }).then((response) => {
-    //     const fs = require('fs');
-    //      fs.writeFile("out.xlsx",response.body,(err) => {
-    //        if (err) throw err;
-    //        console.log('The file has been saved!');
-    //       })
-    // })
-}
-
-function writeFileFromTargetExamples(target, destination){
-
-    // Make the request.
-    request.get(target, (error, response, body) => {
-        try {
-            // Asynchronously write the file.
-            fs.writeFile(destination, body, (err) => { 
-                if (err) {
-                    console.log(err)
-                }
-                else { 
-                    console.log(`   ✔ ${destination.split(process.cwd())[1]}`); 
-                } 
-            }); 
-        } catch {
-            console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
-        }
-    })
-//     console.log(`
-// * ${target}
-//                 `)
-//     request.get(target, (error, response, body) => {
-//         try {
-//             fs.writeFileSync(destination, body)
-//             console.log(`
-// * ${target}
-//     - OK
-//             `)
-//         } catch (err) {
-//             console.log(`
-// * ${target}
-//     - ${target}
-//     - ${destination}
-//     - ${response}
-//     - ${err}
-//                     `)
-//             // console.log(err);
-//             // console.log(target);
-//             // console.log(destination);
-//             // console.log(response);
-//             fs.writeFileSync(destination, new String(body))
-//         }
-//     })
 }
 
 // Function to parse out an example file's target and destination before request is made.
@@ -224,7 +92,7 @@ function fetch(exampleGroup) {
 
 // Main run function.
 function run(){
-    console.log("\n\033[1mRetrieving example files from their sources:\033[0m\n");
+    console.log("- Retrieving example files from their sources...");
     for ( exampleGroup in dataDirectories ){
         fetch(exampleGroup)
     }
@@ -232,35 +100,3 @@ function run(){
 
 // Run it.
 run()
-
-// function run2(target, id) {
-//     var options = {
-//         url: target,
-//         // headers: headers,
-//         method: 'GET',
-//         // json: true
-//     };
-
-//     request.get(options, (error, response, body) => {
-//         // console.log(body)
-//         console.log(error)
-//         fs.writeFileSync(`test${id}`, new String(body));
-//     })
-//     // console.log(`test${id}`)
-//     // request.get(target, (error, response, body) => {
-//     //     fs.writeFileSync(`test${id}`, body);
-//     // })
-
-// }
-
-// var locations = [
-//     "https://examples.docs.platform.sh/relationships/elasticsearch",
-//     "https://examples.docs.platform.sh/golang/solr",
-//     "https://examples.docs.platform.sh/java/elasticsearch"
-// ]
-
-// for (location in locations){
-//     run2(locations[location], location)
-// }
-
-// run2("https://examples.docs.platform.sh/relationships/elasticsearch")
