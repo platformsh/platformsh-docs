@@ -36,6 +36,7 @@ async function writeFileFromTarget(target, destination) {
     // Get the file.
     await request.get(target, (error, response, body) => {
         // Write the file.
+        console.log(typeof body)
         fs.writeFile(destination, body, errorFirstCallback)
         // fs.writeFile(destination, body, (err) => {
         //     if (err) {
