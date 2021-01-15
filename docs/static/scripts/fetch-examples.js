@@ -40,6 +40,7 @@ function writeFileFromTargetExamples(target, destination){
             console.log(`
 * ${target}
     - OK
+    - ${body}
             `)
             fs.writeFileSync(destination, body)
         } catch (err) {
