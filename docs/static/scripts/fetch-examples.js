@@ -24,10 +24,32 @@ function ensureSubdir(savePath) {
 }
 
 // Function to place the request and write to the file.
+// function writeFileFromTarget(target, destination) {
+//     // Get the file.
+//     request.get(target, (error, response, body) => {
+//         fs.writeFileSync(destination, body);
+//     })
+// }
+
 function writeFileFromTarget(target, destination) {
-    // Get the file.
+    // Make the request.
     request.get(target, (error, response, body) => {
-        fs.writeFileSync(destination, body);
+        try {
+            // Asynchronously write the file.
+            fs.writeFile(destination, body, (err) => { 
+                if (err) {
+                    // console.log(err)
+                    console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
+${err}
+                    `); 
+                }
+                else { 
+                    console.log(`   ✔ ${destination.split(process.cwd())[1]}`); 
+                } 
+            }); 
+        } catch {
+            console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
+        }
     })
 }
 
@@ -51,16 +73,21 @@ function writeFileFromTargetExamplesNew(target, destination) {
 
 function writeFileFromTargetExamples(target, destination){
 
+    // Make the request.
     request.get(target, (error, response, body) => {
-        fs.writeFile(destination, body, (err) => { 
-            if (err) 
-              console.log(err); 
-            else { 
-              console.log(`* ${target}: File written successfully\n`); 
-            //   console.log("The written has the following contents:"); 
-            //   console.log(fs.readFileSync("books.txt", "utf8")); 
-            } 
-          }); 
+        try {
+            // Asynchronously write the file.
+            fs.writeFile(destination, body, (err) => { 
+                if (err) {
+                    console.log(err)
+                }
+                else { 
+                    console.log(`   ✔ ${destination.split(process.cwd())[1]}`); 
+                } 
+            }); 
+        } catch {
+            console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
+        }
     })
 //     console.log(`
 // * ${target}
@@ -117,7 +144,7 @@ function fetchFilesExamples(data) {
             var target = `${languageTargetDir}/${data["paths"][language][service]}`;
             var destination = process.cwd() + `${languageDestDir}/${data["paths"][language][service]}`;
             // Place the request and write the file.
-            writeFileFromTargetExamples(target, destination);
+            writeFileFromTarget(target, destination);
         }
     }
 }
@@ -147,6 +174,7 @@ function fetch(exampleGroup) {
 
 // Main run function.
 function run(){
+    console.log("\n\033[1mRetrieving example files from their sources:\033[0m\n");
     for ( exampleGroup in dataDirectories ){
         fetch(exampleGroup)
     }
