@@ -23,11 +23,14 @@ function ensureSubdir(savePath) {
     }
 }
 
+// Function to place the request and write to the file.
 function writeFileFromTarget(target, destination) {
+    // Get the file.
     request.get(target, (error, response, body) => {
+        // Write the file.
         fs.writeFile(destination, body, (err) => {
             if (err) {
-                console.log(`   ✖ ${destination.split(process.cwd())[1]}: Poor request, file not written.`); 
+                console.log(`   ✖ (FETCH-EXAMPLES) ${destination.split(process.cwd())[1]}: failed to fetch file.`); 
                 console.log(err);
             }
         })
@@ -42,6 +45,7 @@ function fetchFilesTemplates(data) {
         var destination = process.cwd() + `${data["savePath"]}/${data["repos"][repo]}`
         // Ensure subdirectory exists.
         ensureSubdir(data["savePath"]);
+        // Place the request and write the file.
         writeFileFromTarget(target, destination);
 
     }
@@ -92,7 +96,6 @@ function fetch(exampleGroup) {
 
 // Main run function.
 function run(){
-    console.log("- Retrieving example files from their sources...");
     for ( exampleGroup in dataDirectories ){
         fetch(exampleGroup)
     }
