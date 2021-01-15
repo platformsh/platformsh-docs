@@ -33,20 +33,28 @@ function ensureSubdir(savePath) {
 
 function writeFileFromTarget(target, destination) {
     request.get(target, (error, response, body) => {
-        try {
-            fs.writeFile(destination, body, (err) => {
-                if (err) {
-                    console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
-                    console.log(err);
-                } else {
-                    console.log(`   ✔ ${destination.split(process.cwd())[1]}`);     
-                }
-            })
-            // console.log(`   ✔ ${destination.split(process.cwd())[1]}`); 
-        } catch {
-            console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
-            console.log(err)
-        }
+        fs.writeFile(destination, body, (err) => {
+            if (err) {
+                console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
+                console.log(err);
+            } else {
+                console.log(`   ✔ ${destination.split(process.cwd())[1]}`);     
+            }
+        })
+        // try {
+        //     fs.writeFile(destination, body, (err) => {
+        //         if (err) {
+        //             console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
+        //             console.log(err);
+        //         } else {
+        //             console.log(`   ✔ ${destination.split(process.cwd())[1]}`);     
+        //         }
+        //     })
+        //     // console.log(`   ✔ ${destination.split(process.cwd())[1]}`); 
+        // } catch {
+        //     console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
+        //     console.log(err)
+        // }
     })
 }
 
