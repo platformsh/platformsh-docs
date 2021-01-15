@@ -23,17 +23,26 @@ function ensureSubdir(savePath) {
     }
 }
 
+function errorFirstCallback(err) {
+    if (err) {
+      console.error('There was an error', err);
+      return;
+    }
+    // console.log(data);
+  }
+
 // Function to place the request and write to the file.
-function writeFileFromTarget(target, destination) {
+async function writeFileFromTarget(target, destination) {
     // Get the file.
-    request.get(target, (error, response, body) => {
+    await request.get(target, (error, response, body) => {
         // Write the file.
-        fs.writeFile(destination, body, (err) => {
-            if (err) {
-                console.log(`   ✖ (FETCH-EXAMPLES) ${destination.split(process.cwd())[1]}: failed to fetch file.`); 
-                console.log(err);
-            }
-        })
+        fs.writeFile(destination, body, errorFirstCallback)
+        // fs.writeFile(destination, body, (err) => {
+        //     if (err) {
+        //         console.log(`   ✖ (FETCH-EXAMPLES) ${destination.split(process.cwd())[1]}: failed to fetch file.`); 
+        //         console.log(err);
+        //     }
+        // })
     })
 }
 
