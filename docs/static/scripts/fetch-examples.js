@@ -37,12 +37,12 @@ function writeFileFromTargetExamples(target, destination){
 //                 `)
     request.get(target, (error, response, body) => {
         try {
+            fs.writeFileSync(destination, body)
             console.log(`
 * ${target}
     - OK
     - ${body}
             `)
-            fs.writeFileSync(destination, body)
         } catch (err) {
             console.log(`
 * ${target}
