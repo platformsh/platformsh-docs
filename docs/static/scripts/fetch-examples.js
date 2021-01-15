@@ -32,26 +32,63 @@ function ensureSubdir(savePath) {
 // }
 
 function writeFileFromTarget(target, destination) {
-    // Make the request.
     request.get(target, (error, response, body) => {
-        try {
-            // Asynchronously write the file.
-            fs.writeFile(destination, body, (err) => { 
-                if (err) {
-                    // console.log(err)
-                    console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
+        fs.writeFile(destination, body, (err) => {
+            if (err) {
+                console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
 ${err}
-                    `); 
-                }
-                else { 
-                    console.log(`   ✔ ${destination.split(process.cwd())[1]}`); 
-                } 
-            }); 
-        } catch {
-            console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
-        }
+                `); 
+            } else {
+                console.log(`   ✔ ${destination}`); 
+            }
+        })
     })
 }
+
+// function writeFileFromTarget(target, destination) {
+//     // Make the request.
+//     request.get(target, (error, response, body) => {
+//         fs.writeFile(destination, body (err) => {
+//             if (err) {
+//                 // console.log(err)
+//                 console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
+// ${err}
+//                 `); 
+//             } else {
+//                 console.log(`   ✔ ${destination}`); 
+//             }
+//         })
+//     }
+//         // Asynchronously write the file.
+//         fs.writeFile(destination, body, (err) => { 
+//             if (err) {
+//                 // console.log(err)
+//                 console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
+// ${err}
+//                 `); 
+//             }
+//             else { 
+//                 console.log(`   ✔ ${destination}`); 
+//             } 
+        // }
+//         try {
+//             // Asynchronously write the file.
+//             fs.writeFile(destination, body, (err) => { 
+//                 if (err) {
+//                     // console.log(err)
+//                     console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
+// $
+//                     `); 
+//                 }
+//                 else { 
+//                     console.log(`   ✔ ${destination}`); 
+//                 } 
+//             }); 
+//         } catch {
+//             console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
+//         }
+    // })
+// }
 
 function writeFileFromTargetExamplesNew(target, destination) {
 
