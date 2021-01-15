@@ -1,4 +1,4 @@
-# Platform.sh User Documentation - rebuild
+# Platform.sh User Documentation
 
 This repository holds the public user documentation for Platform.sh.
 
