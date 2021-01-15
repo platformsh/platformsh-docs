@@ -31,20 +31,22 @@ function errorFirstCallback(err) {
     // console.log(data);
   }
 
+function writeTheThing(error, response, body) {
+    // console.log(this.destination)
+    fs.writeFile(this.destination, body, errorFirstCallback)
+}
+
 // Function to place the request and write to the file.
 async function writeFileFromTarget(target, destination) {
     // Get the file.
-    await request.get(target, (error, response, body) => {
-        // Write the file.
-        console.log(typeof body)
-        fs.writeFile(destination, body, errorFirstCallback)
-        // fs.writeFile(destination, body, (err) => {
-        //     if (err) {
-        //         console.log(`   ✖ (FETCH-EXAMPLES) ${destination.split(process.cwd())[1]}: failed to fetch file.`); 
-        //         console.log(err);
-        //     }
-        // })
-    })
+    request.get(target, writeTheThing.bind({
+        "destination": destination
+    }))
+    // await request.get(target, (error, response, body) => {
+    //     // Write the file.
+    //     console.log(typeof body)
+    //     fs.writeFile(destination, body, errorFirstCallback)
+    // })
 }
 
 // Function to parse out an example file's target and destination before request is made.
@@ -115,3 +117,16 @@ function run(){
 
 // Run it.
 run()
+
+// var mainFunction = function(callback) {
+// 	//Did something
+// 	console.log("In Main Function");
+// 	callback();
+// }
+
+// var callbackFunction = function() {
+// 	console.log('Variable: ' + this.variable);
+// 	console.log("In Callback Function");
+// }
+
+// mainFunction(callbackFunction.bind({"variable": "Variable"}));
