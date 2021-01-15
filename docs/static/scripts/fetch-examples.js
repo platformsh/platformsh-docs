@@ -32,15 +32,28 @@ function writeFileFromTarget(target, destination) {
 }
 
 function writeFileFromTargetExamples(target, destination){
-
+//     console.log(`
+// * ${target}
+//                 `)
     request.get(target, (error, response, body) => {
         try {
+            console.log(`
+* ${target}
+    - OK
+            `)
             fs.writeFileSync(destination, body)
         } catch (err) {
-            console.log(err);
-            console.log(target);
-            console.log(destination);
-            console.log(response);
+            console.log(`
+* ${target}
+    - ${target}
+    - ${destination}
+    - ${response}
+    - ${err}
+                    `)
+            // console.log(err);
+            // console.log(target);
+            // console.log(destination);
+            // console.log(response);
             fs.writeFileSync(destination, new String(body))
         }
     })
