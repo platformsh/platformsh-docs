@@ -31,32 +31,62 @@ function writeFileFromTarget(target, destination) {
     })
 }
 
+function writeFileFromTargetExamplesNew(target, destination) {
+
+    request.get(target).then((response) => {
+        fs.writeFileSync(destination, response.body);
+        if (err) throw err;
+    })
+    // cy.request({
+    //     method: 'GET',
+    //     url: downloadUrl 
+    // }).then((response) => {
+    //     const fs = require('fs');
+    //      fs.writeFile("out.xlsx",response.body,(err) => {
+    //        if (err) throw err;
+    //        console.log('The file has been saved!');
+    //       })
+    // })
+}
+
 function writeFileFromTargetExamples(target, destination){
+
+    request.get(target, (error, response, body) => {
+        fs.writeFile(destination, body, (err) => { 
+            if (err) 
+              console.log(err); 
+            else { 
+              console.log(`* ${target}: File written successfully\n`); 
+            //   console.log("The written has the following contents:"); 
+            //   console.log(fs.readFileSync("books.txt", "utf8")); 
+            } 
+          }); 
+    })
 //     console.log(`
 // * ${target}
 //                 `)
-    request.get(target, (error, response, body) => {
-        try {
-            fs.writeFileSync(destination, body)
-            console.log(`
-* ${target}
-    - OK
-            `)
-        } catch (err) {
-            console.log(`
-* ${target}
-    - ${target}
-    - ${destination}
-    - ${response}
-    - ${err}
-                    `)
-            // console.log(err);
-            // console.log(target);
-            // console.log(destination);
-            // console.log(response);
-            fs.writeFileSync(destination, new String(body))
-        }
-    })
+//     request.get(target, (error, response, body) => {
+//         try {
+//             fs.writeFileSync(destination, body)
+//             console.log(`
+// * ${target}
+//     - OK
+//             `)
+//         } catch (err) {
+//             console.log(`
+// * ${target}
+//     - ${target}
+//     - ${destination}
+//     - ${response}
+//     - ${err}
+//                     `)
+//             // console.log(err);
+//             // console.log(target);
+//             // console.log(destination);
+//             // console.log(response);
+//             fs.writeFileSync(destination, new String(body))
+//         }
+//     })
 }
 
 // Function to parse out an example file's target and destination before request is made.
