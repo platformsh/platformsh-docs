@@ -26,9 +26,9 @@ function ensureSubdir(savePath) {
 // Function to place the request and write to the file.
 function writeFileFromTarget(target, destination) {
     // Get the file.
-    request.get(target, async (error, response, body) => {
+    request.get(target, (error, response, body) => {
         // Write the file.
-        await fs.writeFile(destination, body, (err) => {
+        fs.writeFile(destination, body, (err) => {
             if (err) {
                 console.log(`   ✖ (FETCH-EXAMPLES) ${destination.split(process.cwd())[1]}: failed to fetch file.`); 
                 console.log(err);
