@@ -44,9 +44,8 @@ function writeFileFromTarget(target, destination) {
             })
             // console.log(`   ✔ ${destination.split(process.cwd())[1]}`); 
         } catch {
-            console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
-${err}
-                            `); 
+            console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
+            console.log(err)
         }
     })
 }
