@@ -36,9 +36,8 @@ function writeFileFromTarget(target, destination) {
         try {
             fs.writeFile(destination, body, (err) => {
                 if (err) {
-                    console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
-    ${err}
-                    `); 
+                    console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.`); 
+                    console.log(err);
                 } else {
                     console.log(`   ✔ ${destination.split(process.cwd())[1]}`);     
                 }
