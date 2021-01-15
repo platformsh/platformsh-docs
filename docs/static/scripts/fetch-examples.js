@@ -41,38 +41,8 @@ function writeFileFromTargetExamples(target, destination){
             console.log(target);
             console.log(destination);
             console.log(response);
+            fs.writeFileSync(destination, new String(body))
         }
-
-        
-//         if (typeof body == "string") {
-//             console.log(`
-// * ${target}:
-//     - OK. Strings all the way down.
-//     - target: ${target}
-//     - destination: ${destination}
-//     - response: 
-// ${response}
-//     - error:
-// ${error}
-
-//             `)
-//             fs.writeFileSync(destination, body);
-//         } else {
-//             var finalBody = new String(body);
-//             console.log(`
-// * ${target}:
-//     - target: ${target}
-//     - destination: ${destination}
-//     - body: ${typeof body }
-//     - finalBody: ${typeof finalBody}
-//     - body: 
-// ${body}
-//     - finalBody:
-// ${finalBody}
-//             `)
-//             console.log(response)
-//             fs.writeFileSync(destination, finalBody);
-//         }
     })
         
 }
