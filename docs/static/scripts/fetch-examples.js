@@ -32,8 +32,6 @@ function writeFileFromTarget(target, destination) {
             if (err) {
                 console.log(`   ✖ (FETCH-EXAMPLES) ${destination.split(process.cwd())[1]}: failed to fetch file.`); 
                 console.log(err);
-            } else {
-                console.log(`   ✔ ${destination.split(process.cwd())[1]}`);
             }
         })
     })
