@@ -86,12 +86,7 @@
             {{ with ( $allParams.Get . ) }}
               {{ if ne (.Get "highlight") "false" }}
                 {{ if ne (.Get "file") "none" }}
-                  {{ if (fileExists ( .Get "file" )) -}}
-                      {{- $content := readFile ( .Get "file" ) -}}
-                      {{- highlight $content ( .Get "highlight") "style=abap" | chomp  -}}
-                  {{- else -}}
-                      {{- highlight "File not found" "txt" "" -}}
-                  {{- end }}}}
+                  {{ highlight ( readFile ( .Get "file" ) ) ( .Get "highlight") "style=abap" | chomp }}
                 {{ else }}
                   {{ highlight $content ( .Get "highlight") "style=abap" | chomp }}
                 {{ end }}
