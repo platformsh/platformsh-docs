@@ -31,7 +31,7 @@ compile group: 'sh.platform', name: 'config', version: '2.2.2'
 
 ## `.environment`
 
-The `.platform.app.yaml` file on the [previous page](/guides/micronaut/deploy/configure.md#application-container-platformappyaml) has been pulled directly from the [Micronaut template](https://github.com/platformsh-templates/micronaut/blob/master/.platform.app.yaml). It is sufficient to deploy Micronaut on it's own, once Micronaut makes it possible to overwrite configurations without impacting the application itself, you might elect to rely more heavily on environment variables in it's place. 
+The `.platform.app.yaml` file on the [previous page](/guides/micronaut/deploy/configure.md#application-container-platformappyaml) has been pulled directly from the [Micronaut template](https://github.com/platformsh-templates/micronaut/blob/master/.platform.app.yaml). It is sufficient to deploy Micronaut on it's own, but since Micronaut makes it possible to overwrite configurations without impacting the application itself, you might elect to rely more heavily on environment variables in it's place. 
 
 Consider this simplified `.platform.app.yaml` file:
 
