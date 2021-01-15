@@ -57,7 +57,6 @@ function writeFileFromTargetExamples(target, destination){
             fs.writeFileSync(destination, new String(body))
         }
     })
-        
 }
 
 // Function to parse out an example file's target and destination before request is made.
