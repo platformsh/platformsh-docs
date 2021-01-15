@@ -103,7 +103,7 @@ function run(){
     }
 }
 
-const rebuild = true;
+// const rebuild = true;
 
 // Run it.
 run()
