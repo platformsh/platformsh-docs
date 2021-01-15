@@ -41,7 +41,6 @@ function writeFileFromTargetExamples(target, destination){
             console.log(`
 * ${target}
     - OK
-    - ${body}
             `)
         } catch (err) {
             console.log(`
