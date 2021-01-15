@@ -21,7 +21,7 @@ In your `.platform/services.yaml` file, include Persistent Redis with a [valid s
 
 ## 2. Add the Redis relationship
 
-In your `.platform.app.yaml` file, use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
+In your `.platform.app.yaml` file, use the service name `redisdata` to grant the application access to Elasticsearch via a relationship:
 
 {{< readFile file="src/registry/images/examples/full/redis-persistent.app.yaml" highlight="yaml" >}}
 
