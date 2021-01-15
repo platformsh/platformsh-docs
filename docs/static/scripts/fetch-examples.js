@@ -33,15 +33,20 @@ function ensureSubdir(savePath) {
 
 function writeFileFromTarget(target, destination) {
     request.get(target, (error, response, body) => {
-        fs.writeFile(destination, body, (err) => {
-            if (err) {
-                console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
+        try {
+            fs.writeFile(destination, body, (err) => {
+                if (err) {
+                    console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
+    ${err}
+                    `); 
+                }
+            })
+            console.log(`   ✔ ${destination.split(process.cwd())[1]}`); 
+        } catch {
+            console.log(`   ✖ ${destination.split(process.cwd())[1]}: Something went wrong with this one.
 ${err}
-                `); 
-            } else {
-                console.log(`   ✔ ${destination}`); 
-            }
-        })
+                            `); 
+        }
     })
 }
 
