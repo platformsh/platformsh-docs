@@ -1,18 +1,16 @@
 ---
-title: "How to Deploy Quarkus on Platform.sh with MongoDB"
+title: "How to Deploy Spring on Platform.sh with MongoDB"
 sidebarTitle: "MongoDB"
 weight: -110
 layout: single
 description: |
-    Configure a Quarkus application with MongoDB.
+    Configure a Spring application with MongoDB.
 ---
 
-MongoDB with Panache provides active record style entities (and repositories) like you have in [Hibernate ORM with Panache](https://quarkus.io/guides/hibernate-orm-panache). It focuses on making your entities trivial and fun to write in Quarkus.
-
-To activate MongoDB and then have it accessed by the Quarkus application already in Platform.sh, it is necessary to modify two files. 
+To activate MongoDB and then have it accessed by the Spring application already in Platform.sh, it is necessary to modify two files. 
 
 {{< note >}}
-This guide only covers the *addition* of a MongoDB service configuration to an existing Quarkus project already configured to deploy on Platform.sh. Please see the [deployment guide](/guides/quarkus/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
+This guide only covers the *addition* of a MongoDB service configuration to an existing Spring project already configured to deploy on Platform.sh. Please see the [deployment guide](/guides/spring/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
 {{< /note >}}
 
 ## 1. Add the MongoDB service
@@ -32,18 +30,15 @@ In your `.platform.app.yaml` file, use the service name `dbmongo` to grant the a
 Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the databse into it's own environment variables that can be easily used by Quarkus. On Platform.sh, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
 ```text
-export MONGO_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatabase[0].port")
-export MONGO_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatabase[0].host")
-export QUARKUS_MONGODB_HOSTS="${MONGO_HOST}:${MONGO_PORT}"
-export QUARKUS_MONGODB_CREDENTIALS_PASSWORD=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatabase[0].password")
-export QUARKUS_MONGODB_CREDENTIALS_USERNAME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatabase[0].username")
-export QUARKUS_MONGODB_DATABASE=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatbase[0].path")
-export QUARKUS_HTTP_PORT=$PORT
+export SPRING_DATA_MONGODB_USERNAME=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".dbmongo[0].username"`
+export SPRING_DATA_MONGODB_PASSWORD=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".dbmongo[0].password"`
+export SPRING_DATA_MONGODB_HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".dbmongo[0].host"`
+export SPRING_DATA_MONGODB_DATABASE=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".dbmongo[0].path"`
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
 {{< note title="Tip" >}}
-Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#default-configsources).
+Please check the [Spring Common Application properties](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#common-application-properties) and the  [Binding from Environment Variables](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-relaxed-binding-from-environment-variables) to have access to more credentials options.
 {{< /note >}}
 
 ## 4. Connect to the service
