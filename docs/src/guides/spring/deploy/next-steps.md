@@ -14,7 +14,6 @@ Consult those guides below or in the sidebar for more information.
 - [Elasticsearch](/guides/spring/elasticsearch.md)
 - [JPA](/guides/spring/jpa.md)
 - [MongoDB](/guides/spring/mongodb.md)
-- [JMS RabbitMQ](/guides/spring/rabbitmq.md)
 - [Redis](/guides/spring/redis.md)
 
 {{< guide-buttons type="last" >}}
