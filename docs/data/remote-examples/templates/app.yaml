@@ -20,4 +20,5 @@ repos:
     - wordpress-composer
     - wordpress-vanilla
     - quarkus
+    - spring
     - gatsby
