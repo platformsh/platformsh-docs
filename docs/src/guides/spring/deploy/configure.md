@@ -11,7 +11,7 @@ description: |
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="spring-mvc-maven-mongodb" name="Spring" >}}
+{{< guides/config-routes template="spring" name="Spring" >}}
 
 ## Service configuration: `services.yaml`
 
