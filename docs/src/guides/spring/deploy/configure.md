@@ -29,7 +29,7 @@ If a service stores persistent data then it will also have a `disk` key, which s
 
 ## Application container: `.platform.app.yaml`
 
-{{< guides/config-app template="spring-mvc-maven-mongodb" >}}
+{{< guides/config-app template="spring" >}}
 Explaining the file line by line, notice the following settings:
 
 1. `name`: The application name
