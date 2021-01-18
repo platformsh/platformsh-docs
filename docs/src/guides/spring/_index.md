@@ -1,8 +1,8 @@
 ---
-title: "Quarkus"
+title: "Spring"
 weight: -100
 description: |
-    Everything you need to get started with Quarkus on Platform.sh. 
+    Everything you need to get started with Spring on Platform.sh. 
 ---
 
 {{< description >}}
