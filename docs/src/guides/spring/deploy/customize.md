@@ -37,14 +37,10 @@ Consider this simplified `.platform.app.yaml` file:
 
 ```yaml
 name: app
-
 type: "java:11"
-
 disk: 1024
-
 hooks:
     build: mvn clean package
-    
 web:
     commands:
         start: java -jar $JAVA_OPTS target/file.jar --server.port=$PORT
