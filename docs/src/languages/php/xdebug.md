@@ -10,9 +10,9 @@ As configured on Platform.sh, it avoids any runtime overhead for non-debug reque
 
 ## Setting up Xdebug
 
-Xdebug is not enabled the same way as other extensions, as it should not be active on most requests.  Xdebug has a substantial impact on performance and should not be run in production.
+Xdebug is not enabled the same way as other extensions, as it should not be active on most requests.  Xdebug has a substantial impact on performance and should not be run in a production process.  Instead, Platform.sh runs a second PHP-FPM process with Xdebug that is used only for debug requests, leaving the normal process unaffected.
 
-Instead, Xdebug can be enabled by adding the following configuration to the application's `.platform.app.yaml` file:
+Enable Xdebug by adding the following configuration to the application's `.platform.app.yaml` file:
 
 ```yaml
 runtime:
