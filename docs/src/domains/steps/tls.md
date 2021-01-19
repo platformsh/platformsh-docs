@@ -33,6 +33,7 @@ You will need to redeploy the impacted environment(s) for the new certificate to
 platform environment:redeploy
 ```
 {{< /note >}}
+
 ![Management console configuration for TLS](/images/management-console/settings-certificates.png)
 
 
