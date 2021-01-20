@@ -1,11 +1,16 @@
 <!-- Twitter card previews -->
-
 {{ if isset .Params "description" }}
   <meta name="twitter:description" content="{{ .Params.description }}">
 {{ else if isset .Site.Params "meta" }}
   {{ if isset .Site.Params.meta "description" }}
     <meta name="twitter:description" content="{{ .Site.Params.meta.twittercard.description }}">
   {{ end }}
+{{ end }}
+
+{{ if .Page.IsHome }}
+    <meta name="twitter:title" content="{{ .Site.Params.meta.twittercard.title }}">
+{{ else }}
+    <meta name="twitter:title" content="{{ .Title }}">
 {{ end }}
 
 {{ if isset .Site.Params "meta" }}
@@ -18,10 +23,6 @@
 
     {{ if isset .Site.Params.meta.twittercard "site" }}
       <meta name="twitter:site" content="{{ .Site.Params.meta.twittercard.site }}">
-    {{ end }}
-
-    {{ if isset .Site.Params.meta.twittercard "title" }}
-      <meta name="twitter:title" content="{{ .Site.Params.meta.twittercard.title }}">
     {{ end }}
 
     {{ if isset .Site.Params.meta.twittercard "creator" }}
