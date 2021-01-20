@@ -87,6 +87,16 @@ Restoring a snapshot does not revert any code changes committed to git. The next
 
 A backup does cause a momentary pause in service. We recommend running during non-peak hours for your site.
 
+### Live backups
+
+There is an option available to create backups in a "live" state. This flavor leaves the environment running and open to connections, reducing downtime while the backup is taken. While use cases certainly exist, it is generally recommended to schedule [automated backups](#automated-backups) during non-peak hours in most cases, since a live backup may produce inconsistent states that are less reliable during restorations. 
+
+You can trigger a live backup through the CLI using the `--live` flag:
+
+```bash
+$ platform backup:create --live
+```
+
 ## Automated backups
 
 Backups are not triggered automatically on Platform.sh Professional.
