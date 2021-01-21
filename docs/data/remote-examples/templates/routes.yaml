@@ -8,6 +8,7 @@ repos:
     - gatsby-strapi
     - gatsby-wordpress
     - quarkus
+    - micronaut
     - gatsby
     - drupal9
     - wordpress-vanilla
