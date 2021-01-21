@@ -11,7 +11,7 @@ description: |
 
 ## Requests configuration: `routes.yaml`
 
-{{< guides/config-routes template="spring" name="Spring" >}}
+{{< guides/config-routes template="spring-mvc-maven-mongodb" name="Spring" >}}
 
 ## Service configuration: `services.yaml`
 
@@ -29,7 +29,7 @@ If a service stores persistent data then it will also have a `disk` key, which s
 
 ## Application container: `.platform.app.yaml`
 
-{{< guides/config-app template="spring" >}}
+{{< guides/config-app template="spring-mvc-maven-mongodb" >}}
 Explaining the file line by line, notice the following settings:
 
 1. `name`: The application name
