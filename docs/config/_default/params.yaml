@@ -49,12 +49,12 @@ meta:
   image: "images/avocadocs/Platformsh_icon_black.svg"
   url: "https://docs.platform.sh"
   twittercard:
-    card: "product"
+    card: "summary_large_image"
     site: "@platformsh"
     title: "Platform.sh User Documentation"
     description: "Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
     creator: "@platformsh"
-    image: "images/avocadocs/Platformsh_icon_black.svg"
+    image: "https://docs.platform.sh/images/logos/twitter-card.png"
   keywords:
     - PaaS
     - cloud hosting

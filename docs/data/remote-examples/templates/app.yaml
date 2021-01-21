@@ -20,5 +20,6 @@ repos:
     - wordpress-composer
     - wordpress-vanilla
     - quarkus
-    - spring
+    - spring-mvc-maven-mongodb
+    - micronaut
     - gatsby
