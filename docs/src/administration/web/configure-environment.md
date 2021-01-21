@@ -37,7 +37,7 @@ git push origin :BRANCH-NAME
 ```
 
 {{< note >}}
-Deleting the Master environment is forbidden.
+The Master environment is protected. It cannot be deleted through the management console or the CLI, and should not be deleted through the API unless you are planning on configuring another branch to become the `default_branch` to replace it. See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information. 
 {{< /note >}}
 
 ### Outgoing emails

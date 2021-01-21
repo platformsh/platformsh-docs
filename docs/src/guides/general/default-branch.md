@@ -103,9 +103,13 @@ You will need to deactivate the `master` environment. Since it is currently the 
 $ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
 ```
 
+{{< note >}}
+Deactivating any environment is a [destructive operation](/administration/web/configure-environment.md#status), and can result in data loss. Since you are deactivating what was once the production branch for your site, it's recommended that you perform the switch to a new default branch during non-peak hours for your site. As always, be sure to take a [backup](/administration/backup-and-restore.md#backups) of `master` beforehand; you can always [restore this backup](/administration/backup-and-restore.md#restore) to `main` afterwards. 
+{{< /note >}}
+
 ### 3. Make "Main" the default branch
 
-First, update the project's `default_branch` property with another authenticated request:
+First, update the project's `default_branch` property to `main`:
 
 ```bash
 $ platform project:info default_branch main -p <Project ID>
@@ -187,6 +191,10 @@ You will need to deactivate the `master` environment. Since it is currently the 
 ```bash
 $ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
 ```
+
+{{< note >}}
+Deactivating any environment is a [destructive operation](/administration/web/configure-environment.md#status), and can result in data loss. Since you are deactivating what was once the production branch for your site, it's recommended that you perform the switch to a new default branch during non-peak hours for your site. As always, be sure to take a [backup](/administration/backup-and-restore.md#backups) of `master` beforehand; you can always [restore this backup](/administration/backup-and-restore.md#restore) to `main` afterwards. 
+{{< /note >}}
 
 ### 5. Make "Main" the default branch
 
