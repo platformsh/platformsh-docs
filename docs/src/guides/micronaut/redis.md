@@ -1,6 +1,6 @@
 ---
 title: "How to Deploy Micronaut on Platform.sh with Redis"
-sidebarTitle: "Micronaut"
+sidebarTitle: "Redis"
 weight: -110
 layout: single
 description: |
