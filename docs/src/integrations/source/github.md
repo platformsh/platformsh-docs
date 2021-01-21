@@ -30,6 +30,7 @@ Give it a description and then ensure the token has the following scopes:
 * To integrate with your own private repositories: `repo`
 * To integrate with your organization's private repositories: `repo`
     and `read:org`
+* To automatically create web hooks: `admin:repo_hook`
 
 Copy the token and make a note of it (temporarily).
 
