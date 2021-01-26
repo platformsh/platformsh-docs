@@ -34,6 +34,14 @@ Please open a support ticket if you need to exclude a service user.
 
 Enforce your users to authenticate with Google. Please open a support ticket to enable Google SSO.
 
+#### Issue with re-authenticating every 15 minutes
+
+If your organization has Google SSO enabled on Platform.sh, you may be required to re-authenticate with Google every 15 minutes. This happens when Platform.sh does not possess a valid refresh token from your Google account. 
+
+To resolve that, you need to:
+1. Go to https://myaccount.google.com/permissions and revoke the access from the `Platform.sh` application that has `Access given to auth.api.platform.sh`.
+2. Go to https://auth.api.platform.sh/auth/authorize/google?consent=prompt for the system to obtain a valid refresh token for your Google account.
+
 ### OpenId Connect
 
 {{< tiered-feature "Elite" >}}
