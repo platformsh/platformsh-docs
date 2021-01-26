@@ -35,7 +35,7 @@ Once you have it working, you're free to modify the code below as desired.  See 
  *   The message body to send.
  */
 function sendDiscordMessage(title, message) {
-  const url = variables()['DISCORD_URL'];
+  var url = variables()['DISCORD_URL'];
 
   if (!url) {
     throw new Error('You must define a DISCORD_URL project variable.');
@@ -45,7 +45,7 @@ function sendDiscordMessage(title, message) {
     title += " (On a Friday! :calendar:)";
   }
 
-  const body = {
+  var body = {
     content: title,
     embeds: [
       {
@@ -54,7 +54,7 @@ function sendDiscordMessage(title, message) {
     ]
   };
 
-  const resp = fetch(url, {
+  var resp = fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -69,7 +69,9 @@ function sendDiscordMessage(title, message) {
 
 function variables() {
   var vars = {};
-  activity.payload.deployment.variables.forEach((variable) => vars[variable.name] = variable.value);
+  activity.payload.deployment.variables.forEach(function(variable) {
+    vars[variable.name] = variable.value;
+  });
 
   return vars;
 }
