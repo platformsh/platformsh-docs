@@ -6,7 +6,7 @@ toc: false
 
 The following example activity script will post a message to a Slack channel every time it is triggered.
 
-To use it, paste it as-is into a `.js` file and then add it as a new [script integration](https://docs.platform.sh/integrations/activity.html#installing).  Be sure to specify which events it should trigger on using the `--events` switch, and if desired which `--environments` you want.
+To use it, paste it as-is into a `.js` file and then add it as a new [script integration](/integrations/activity/_index.md#installing).  Be sure to specify which events it should trigger on using the `--events` switch, and if desired which `--environments` you want.
 
 Second, create a new Slack webhook through your Slack administrative interface.  See the [Slack documentation](https://api.slack.com/messaging) for how to do so.  At the end you will be given a URL that points to `https://hooks.slack.com/...`.
 
