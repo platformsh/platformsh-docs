@@ -89,7 +89,7 @@ A backup does cause a momentary pause in service. We recommend running during no
 
 ### Live backups
 
-There is an option available to create backups in a "live" state. This flavor leaves the environment running and open to connections, reducing downtime while the backup is taken. While use cases certainly exist, it is generally recommended to schedule [automated backups](#automated-backups) during non-peak hours in most cases, since a live backup may produce inconsistent states that are less reliable during restorations. 
+There is an option available to create backups in a "live" state. This flavor leaves the environment running and open to connections, reducing downtime while the backup is taken. With live backups, however, there can be inconsistent states that make restorations less reliable. For this reason Platform.sh recommends instead scheduling [automated backups](#automated-backups) during non-peak hours, when the short amount of downtime will be least noticed. 
 
 You can trigger a live backup through the CLI using the `--live` flag:
 
