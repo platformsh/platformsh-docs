@@ -171,7 +171,7 @@ It is very important to include the `--no-wait` flag.  If you do not, the cron p
 
 The certificate will not renew unless it has less than one month remaining; trying twice a month is sufficient to ensure a certificate is never less than 2 weeks from expiring.
 
-## Let's Encrypt limits and branch names
+## Let's Encrypt limits, errors and branch names
 
 You may encounter Let's Encrypt certificates failing to provision after the build hook has completed:
 
@@ -200,3 +200,18 @@ At this time, generated URLs have the following pattern:
 * extra characters (`.` & `-`) = 4 characters
 
 This breakdown leaves you with 21-23 characters to work with naming your branches (`PLATFORM_BRANCH`) without going over the 64 character limit, dependent on the region. Since this pattern for generated URLs will remain similar, but could change slightly over time, it's our recommendation to use branch names with a maximum length between 15 and 20 characters.
+
+### DNS Challenge
+
+To be able to provide a valid SSL-certificate, Let's Encrypt needs to make sure that the requester is entitled to receive the SSL-certificate it asked for (usually through the presence of a specific token on the DNS zone of that domain).
+
+This ownership verification is achieved through the so called "_Challenge_" step.
+
+Sometimes, that verification fails which will result in the following error-message:
+`Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
+
+Usually this issue can then be resolved by [redeploying the impacted environment](https://docs.platform.sh/development/troubleshoot.html#force-a-redeploy).
+
+If the issue persists, you can verify if an outage is currently ongoing on [let's encrypt's side](https://letsencrypt.status.io/).
+If that is not the case, please open a support ticket.
+
