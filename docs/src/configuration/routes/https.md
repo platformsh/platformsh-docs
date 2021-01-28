@@ -171,7 +171,7 @@ It is very important to include the `--no-wait` flag.  If you do not, the cron p
 
 The certificate will not renew unless it has less than one month remaining; trying twice a month is sufficient to ensure a certificate is never less than 2 weeks from expiring.
 
-## Let's Encrypt limits, errors and branch names
+## Let's Encrypt limits, errors, and branch names
 
 You may encounter Let's Encrypt certificates failing to provision after the build hook has completed:
 
@@ -214,4 +214,3 @@ Usually this issue can then be resolved by [redeploying the impacted environment
 
 If the issue persists, you can verify if an outage is currently ongoing on [let's encrypt's side](https://letsencrypt.status.io/).
 If that is not the case, please open a support ticket.
-
