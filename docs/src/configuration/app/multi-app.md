@@ -182,8 +182,7 @@ However, be aware that circular relationships are not supported.  That is, appli
 
 Example:
 
-You have 2 applications, `app1` and `app2`. `app1` wants to connect to `app2` (i.e. `app2` is an API).
-In `app1/.platform.app.yaml` you can make a relationship to `app2` like this:
+You have 2 applications, `app1` and `app2`. `app1` wants to connect to `app2` (for instance, if `app2` is a backend data API service).  In `app1/.platform.app.yaml` you would make a relationship to `app2` like so:
 
 ```
 relationships:
