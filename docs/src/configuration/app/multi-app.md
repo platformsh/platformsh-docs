@@ -186,7 +186,7 @@ You have 2 applications, `app1` and `app2`. `app1` wants to connect to `app2` (f
 
 ```yaml
 relationships:
-    backend: "app2:http"
+    app2: "app2:http"
 ```
 
 Once committed and rebuilt, you will be able to access `app2` from `app1` via this url `http://app2.internal`. (e.g `curl http://app2.internal`). The relationships array will be updated within the `app1` container for the newly available `app2` relationship:
