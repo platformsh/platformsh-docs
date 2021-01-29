@@ -179,3 +179,18 @@ There is no requirement that an application be web-accessible.  If it is not spe
 In a multi-app configuration, applications by default cannot access each other.  However, they may declare a `relationships` block entry that references another application rather than a service.  In that case the endpoint is `http`.
 
 However, be aware that circular relationships are not supported.  That is, application A cannot have a relationship to application B if application B also has a relationship to application A.  Such circular relationships are usually a sign that the applications should be coordinating through a shared data store, like a database, [RabbitMQ server](/configuration/services/rabbitmq.md), or similar.
+
+**Example:**
+
+You have 2 applications, `app1` and `app2`. `app1` wants to connect to `app2` (for instance, if `app2` is a backend data API service).  In `app1/.platform.app.yaml` you would make a relationship to `app2` like so:
+
+```yaml
+relationships:
+    app2: "app2:http"
+```
+
+Once committed and rebuilt, you will be able to access `app2` from `app1` via this url `http://app2.internal`. (e.g `curl http://app2.internal`). 
+
+{{< note >}}
+Note the `http`. The relationship is created within the internal network over port 80, not https supported.
+{{< /note >}}
