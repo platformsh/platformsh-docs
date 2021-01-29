@@ -186,11 +186,39 @@ You have 2 applications, `app1` and `app2`. `app1` wants to connect to `app2` (f
 
 ```yaml
 relationships:
-    app2: "app2:http"
+    backend: "app2:http"
 ```
 
-Once committed and rebuilt, you will be able to access `app2` from `app1` via this url `http://app2.internal`. (e.g `curl http://app2.internal`). 
+Once committed and rebuilt, you will be able to access `app2` from `app1` via this url `http://app2.internal`. (e.g `curl http://app2.internal`). The relationships array will be updated within the `app1` container for the newly available `app2` relationship:
+
+```bash
+$ echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq
+{
+  "app2": [
+    {
+      "username": null,
+      "scheme": "http",
+      "service": "app2",
+      "fragment": null,
+      "ip": "169.254.254.97",
+      "hostname": "yk4cdhknk6uqy7x2wdtyueqtei.app2.service._.eu-3.platformsh.site",
+      "public": false,
+      "cluster": "bt3bfggvvcqzg-master-7rqtwti",
+      "host": "app2.internal",
+      "rel": "http",
+      "query": {},
+      "path": null,
+      "password": null,
+      "type": "nodejs:14",
+      "port": 80,
+      "host_mapped": false
+    }
+  ]
+}
+```
+
+Like all other relationships, `app2` will not be available to `app1` until after the build process has completed. 
 
 {{< note >}}
-Note the `http`. The relationship is created within the internal network over port 80, not https supported.
+Note the `http`. The relationship is created within the internal network over port 80. HTTPS is not supported.
 {{< /note >}}
