@@ -173,3 +173,5 @@ hooks:
         fi
         # Commands to run regardless of the environment
 ```
+
+(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)

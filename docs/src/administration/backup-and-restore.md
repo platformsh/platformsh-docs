@@ -115,6 +115,8 @@ crons:
             fi
 ```
 
+(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)
+
 The above cron task will run once a day at 5 am (UTC), and, if the current environment is the master branch, it will run `platform backup:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the backup to complete.
 
 {{< note >}}
