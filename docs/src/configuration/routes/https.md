@@ -163,6 +163,8 @@ crons:
             fi
 ```
 
+(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)
+
 The above cron task will run on the 1st and 15th of the month at 10 am (UTC), and, if the current environment is the master branch, it will run `platform redeploy` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the redeploy to complete.  We recommend adjusting the cron schedule to whenever is off-peak time for your site, and to random days within the month.
 
 {{< note theme="warning" >}}

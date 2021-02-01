@@ -75,6 +75,8 @@ crons:
             fi
 ```
 
+(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)
+
 {{< note >}}
 Seriously, please use `--no-wait` for all CLI commands placed in a cron hook. Failure to do so may result in long deploy times and site downtime.
 {{< /note >}}
