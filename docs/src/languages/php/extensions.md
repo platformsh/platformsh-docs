@@ -169,7 +169,9 @@ This is the complete list of extensions that can be enabled:
 | zip              |     |     |     | *   | *   | *   | *   | *   | *   |
 
 {{< note >}}
-You can check out the output of `ls /etc/php5/mods-available` to see the up-to-date complete list of extensions after you SSH into your environment. For PHP 7, use `ls /etc/php/*/mods-available`.
+You can check out the output of `ls /etc/php5/mods-available` to see the
+up-to-date complete list of extensions after you SSH into your environment. For
+PHP7 and above, use `ls /etc/php/*/mods-available`.
 {{< /note >}}
 
 ## Custom PHP extensions
