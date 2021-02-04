@@ -15,13 +15,13 @@ Any user added to a project or an environment on Platform.sh will need to [regis
 At the project level:
 
 * **Project Administrator** - A project administrator can change settings and execute actions in any environment.
-* **Project Viewer** - A project reader can view all environments within a project but cannot execute any actions on them.
+* **Project Viewer** - A project reader can view all environments within a project through the management console but cannot execute any actions on them.
 
 A Project Viewer can have a specific role in different environments. At the environment level:
 
 * **Environment Administrator** - An environment administrator can change settings and execute actions on this environment.
 * **Environment Contributor** - An environment contributor can push code to this environment and branch the environment.
-* **Environment Viewer** - An environment reader can only view this environment.
+* **Environment Viewer** - An environment reader can only view this environment on the management console, access through SSH is not possible.
 
 {{< note theme="warning" title="Important" >}}
 After a user is added to (or deleted from) an environment, it will be automatically redeployed, after which the new permissions will be fully updated.
