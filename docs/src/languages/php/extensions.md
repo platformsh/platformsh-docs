@@ -9,10 +9,10 @@ You can define the PHP extensions you want to enable or disable:
 # .platform.app.yaml
 runtime:
     extensions:
+        - raphf
         - http
         - igbinary
         - redis
-        - ssh2
     disabled_extensions:
         - sqlite3
 ```
