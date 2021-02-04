@@ -21,13 +21,15 @@ A Project Viewer can have a specific role in different environments. At the envi
 
 * **Environment Administrator** - An environment administrator can change settings and execute actions on this environment.
 * **Environment Contributor** - An environment contributor can push code to this environment and branch the environment.
-* **Environment Viewer** - An environment reader can only view this environment on the management console, access through SSH is not possible.
+* **Environment Viewer** - An environment reader can only view this environment on the management console.
 
 {{< note theme="warning" title="Important" >}}
 After a user is added to (or deleted from) an environment, it will be automatically redeployed, after which the new permissions will be fully updated.
 
 When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
 {{< /note >}}
+
+Accessing the project through SSH may differ depending on the [configuration of the project or environment](https://docs.platform.sh/configuration/app/access.html).
 
 ------------------------------------------------------------------------
 
