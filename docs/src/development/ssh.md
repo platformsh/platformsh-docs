@@ -247,7 +247,7 @@ If your private key and public key both look OK but you don't have any luck logg
     or
 
     ```bash
-    $ GIT_SSH_COMMAND="git -v" git clone [REPO-URL]
+    $ GIT_SSH_COMMAND="ssh -v" git clone [REPO-URL]
     ```
 
 You can use this information to make one last check of the private key file.
