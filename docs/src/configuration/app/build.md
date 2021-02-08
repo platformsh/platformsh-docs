@@ -151,7 +151,7 @@ The following blocks will download a specific version of Sass, then during the b
 ```yaml
 dependencies:
   nodejs:
-    sass: "^3.4.21"
+    sass: "^1"
 
 hooks:
   build: |
