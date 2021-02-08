@@ -58,6 +58,18 @@ Inbound IPs (gw.eu-4.platformsh.site):
 * 52.208.179.40
 * 18.200.179.139
 
+### North 5 (eu-5.platform.sh)
+
+Outbound IPs:
+
+* 13.48.116.14
+* 13.51.46.87
+* 13.48.202.56
+
+Inbound IPs (gw.eu-5.platformsh.site):
+
+* 13.51.62.86
+
 ### Germany 2 (de-2.platform.sh) (Data Location Guarantee)
 
 Outbound IPs:
