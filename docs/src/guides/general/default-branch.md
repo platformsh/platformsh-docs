@@ -7,7 +7,7 @@ description: |
 
 {{< description >}}
 
-You can complete some of these steps through the management console, but since all can be completed with the CLI those commands alone are listed. Be sure to [install the CLI](/development/cli.md#installation) if you have not already done so. It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`. If using another name for the default branch, update the commands accordingly. 
+You can complete some of these steps through the management console, but since all can be completed with the CLI those commands alone are listed. Be sure to [install the CLI](/development/cli/_index.md#installation) if you have not already done so. It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`. If using another name for the default branch, update the commands accordingly. 
 
 ## Projects without external integrations
 
