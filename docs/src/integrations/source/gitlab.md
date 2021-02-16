@@ -14,6 +14,10 @@ description: |
 
 ## Setup
 
+{{< note >}}
+If the repository you are trying to integrate with a Platform.sh project has a default branch that is not `master` (e.g. `main`), there are a few additional steps you will need to perform to setup the integration. See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
+{{< /note >}}
+
 ### 1. Generate a token
 
 To integrate your Platform.sh project with an existing GitLab repository, you first need to generate a token on your GitLab user profile. Simply go to your Settings page on GitLab and click `Access Tokens`.
