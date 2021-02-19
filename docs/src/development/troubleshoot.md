@@ -389,7 +389,3 @@ This project does not support source operations.
 ```
 
 it is due to the fact that the feature is [not currently supported on pull request environments](/configuration/app/source-operations.md#external-integrations).
-
-## Deleting your Platform.sh account
-
-If you would like to delete your Platform.sh account, log in and select "Support" from the dropdown options when you click on your avatar in the top right hand corner of the management console. Create a new ticket, and request for your account to be deleted in the form provided there. A support agent will receive your request and delete your account shortly thereafter. 

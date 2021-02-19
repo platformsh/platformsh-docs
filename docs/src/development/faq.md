@@ -19,6 +19,10 @@ If you want to delete your project and cancel your subscription, simply go to yo
 
 This will delete your project and stop invoicing for this project. If you have multiple projects, your subscription will continue until you don't have any projects left.
 
+## How do I delete my Platform.sh account?
+
+If you would like to delete your Platform.sh account, log in and select "Support" from the dropdown options when you click on your avatar in the top right hand corner of the management console. Create a new ticket, and request for your account to be deleted in the form provided there. A support agent will receive your request and delete your account shortly thereafter. 
+
 ## Does branching an environment duplicate services?
 
 Yes! Branching an environment creates an exact copy (snapshot) of the parent environment, containing the files, the database, and code.  Each environment runs independently of every other, so if you have four active environments then you have four copies of your application, four copies of your database, four copies of your files, etc.
