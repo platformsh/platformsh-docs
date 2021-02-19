@@ -34,7 +34,7 @@ run() {
 enable_lib() {
     # Tell PHP to enable the extension.
     echo "Enabling PhpRedis extension."
-    echo -e "extension=${PLATFORM_APP_DIR}/redis.so" >> $PLATFORM_APP_DIR/php.ini
+    echo -e "\nextension=${PLATFORM_APP_DIR}/redis.so" >> $PLATFORM_APP_DIR/php.ini
 }
 
 copy_lib() {
