@@ -174,7 +174,7 @@ Inbound IPs (gw.us-3.platformsh.site):
 * 52.156.93.30
 * 51.143.107.76
 
-### West 4 (us-4.platform.sh) (Data Location Guarantee)
+### East 4 (us-4.platform.sh) (Data Location Guarantee)
 
 Outbound IPs:
 
