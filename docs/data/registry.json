@@ -96,6 +96,7 @@
     "versions-dedicated": {
       "supported": [
         "5.2",
+        "5.6",
         "6.5",
         "7.2",
         "7.5",
