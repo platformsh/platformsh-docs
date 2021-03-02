@@ -30,7 +30,7 @@ As part of our measures we have implemented the following:
 
 
 
-# Controller vs Processor
+## Controller vs Processor
 
 With respect to the EU GDPR, Platform.sh is both a Controller and Processor:
 
