@@ -40,7 +40,7 @@ With respect to the EU GDPR, Platform.sh is both a Controller and Processor:
 In technical terms, we operate a:
 
 * Infrastructure Control Plane - This is Platform.sh’s orchestration, control, and management environment.
-* Customer Data Plane - This the customer’s data app and data environment.
+* Customer Data Plane - This is the customer’s data app and data environment.
 
 We are the Controller for the Infrastructure Control Plane (and our PaaS service). We are the Processor for the Customer Data Plane. 
 
