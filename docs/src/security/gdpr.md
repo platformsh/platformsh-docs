@@ -44,4 +44,4 @@ In technical terms, we operate a:
 
 We are the Controller for the Infrastructure Control Plane (and our PaaS service). We are the Processor for the Customer Data Plane. 
 
-GDPR Data Processing Agreements (DPAs) and EU Standard Contractual Clauses executed with our customers apply to our processing activities contained in the Customer Data Plane.
+GDPR Data Processing Agreements (DPAs) and EU Standard Contractual Clauses (SCCs) executed with our customers apply to our processing activities contained in the Customer Data Plane.
