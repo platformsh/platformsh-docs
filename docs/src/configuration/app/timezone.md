@@ -15,7 +15,7 @@ The `timezone` property sets the timezone for which the `spec` property of any [
 It defines **relative to which timezone** your cron is being run (to avoid having to calculate to and from UTC).
 
 Its value is one of the [tz database region codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) such as `Europe/Paris` or `America/New_York`.  This key will apply to all cron tasks defined in that file.
-This entry is only meaningful on cron specs that specify a particular time of day, rather than a "time past each hour".  For example, `25 1 * * *` would run every day at 1:25 am in the timezone specified.
+This entry is only meaningful on cron specs that specify a particular time of day, rather than a "time past each hour".  For example, the sample below would run every day at 1:25 am New York time (automatically adjusting for daylight savings).
 
 For example:
 
