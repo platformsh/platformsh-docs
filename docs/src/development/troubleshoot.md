@@ -39,6 +39,19 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 * A PHP process is crashing because of a segmentation fault (see below).
 * A PHP process is killed by the kernel out-of-memory killer (see below).
 
+## Large file upload failing (10MB limit)
+
+When trying to upload a large json file to your api you might see a 400 response code (Malformed request).
+
+We have a built-in 10MB limit on sending files through with `application/json`. If you want to send large files through, you will have to send them with `multipart/form-data`
+
+e.g.
+
+```
+curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' -F file=large_file.json
+```
+
+
 ## Claimed domains
 
 The error 
