@@ -54,7 +54,7 @@ If you are planning to host multiple subdomains on different projects, see the a
 ## 3. (Non-CDN version) Set your domain in Platform.sh
 
 {{< note >}}
-If using a CDN, skip this step.  The CDN should already have been configured in advance to point to Platform.sh as its upstream.
+If using a CDN, skip this step. The CDN should already have been configured in advance to point to Platform.sh as its upstream.
 {{< /note >}}
 
 This step will tell the Platform.sh edge layer where to route requests for your web site. You can do this through the CLI with `platform domain:add example.com` or  [using the managment console](/administration/web/configure-project.md#domains).
