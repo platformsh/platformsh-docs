@@ -136,6 +136,6 @@ You can then access the `varnishstats` relationship over HTTP at the following p
 Note that because of the circular relationship issue noted above this cannot be done on the application that Varnish is forwarding to.  It will need to be run on a separate application container.
 
 To access the Varnish endpoint:
-- Connect to your cluster [using ssh](https://docs.platform.sh/development/ssh.html) or through the CLI `platform ssh -p <project id>`,
+- Connect to your cluster [using ssh](/development/ssh.md) or through the CLI `platform ssh -p <project id>`,
 - Display the [Platform Relationships](https://docs.platform.sh/configuration/app/relationships.html) with `echo $PLATFORM_RELATIONSHIPS | base64 -d | jq '.'`,
 - Query Varnish with for e.g. `curl varnishstats.internal:8081/stats` to access the statistics directly. Port and url may need to be adapted based on the output of the `varnish` platform relationship (previous step).
