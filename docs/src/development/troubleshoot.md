@@ -43,7 +43,7 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 
 When trying to upload a large json file to your api you might see a 400 response code (Malformed request).
 
-We have a built in 10MB limit on sending files through with application/json. If you want to send large files through, you will have to send it with multipart/form-data
+We have a built-in 10MB limit on sending files through with `application/json`. If you want to send large files through, you will have to send them with `multipart/form-data`
 
 e.g.
 
