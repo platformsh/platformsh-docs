@@ -88,26 +88,7 @@ Sometimes it can take Let's Encrypt a couple of minutes to provision the certifi
 
 While not required, it's strongly recommended that you set up [health notifications](/integrations/notifications.md) to advise you if your site is experiencing issues such as running low on disk space.  Notifications can be sent via email, Slack, or PagerDuty.
 
-### Configure production cron tasks
+### Configure automatic backups
 
-It's strongly recommended that you [set up automatic backups](/administration/backup-and-restore.md#automated-backups) and [automatic certificate renewal](/configuration/routes/https.md#automatic-certificate-renewal) cron tasks.  You will first need to set up an [API token](/development/cli/api-tokens.md) and install the CLI as part of the build hook.  Then you can easily configure the appropriate cron tasks.  The following snippet is generally sufficient but see the the links above for more details, and please modify the cron schedules listed to match your use case.
-
-```yaml
-crons:
-    backup:
-        # Take a backup automatically every night at 3 am (UTC).
-        spec: '0 3 * * *'
-        cmd: |
-            if [ "$PLATFORM_BRANCH" = master ]; then
-                platform backup:create --yes --no-wait
-            fi
-    renewcert:
-        # Force a redeploy at 8 am (UTC) on the 14th and 28th of every month.
-        spec: '0 8 14,28 * *'
-        cmd: |
-            if [ "$PLATFORM_BRANCH" = master ]; then
-                platform redeploy --yes --no-wait
-            fi
-```
-
-(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)
+It's strongly recommended that you set up an [API token](/development/cli/api-tokens.md) and install the CLI
+to define [an automatic backup](/administration/backup-and-restore.md#automated-backups) cron task.
