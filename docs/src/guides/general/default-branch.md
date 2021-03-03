@@ -95,6 +95,12 @@ $ platform environment:branch main master --title=Main -p <Project ID> --force
 The CLI assumes that you are running this command within a local copy of your repository, so the `--force` flag is included above to bypass that.
 {{< /note >}}
 
+`main` is currently the child of `master`, so use the below command to remove its parent and make it a top-level branch:
+
+```bash
+$ platform environment:info -p <Project ID> -e main parent -
+```
+
 ### 2. Deactivate the Master environment
 
 You will need to deactivate the `master` environment with the following CLI command:
