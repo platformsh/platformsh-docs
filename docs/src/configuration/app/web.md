@@ -222,7 +222,7 @@ To allow cross origin requests, the `Access-Control-Allow-Origin` header can be 
 1. The value of the `Access-Control-Allow-Origin` will be set to the value of the `Origin` request header
 2. The `Vary` header will be included, and its value will be set to `Origin`.
 
-This concept is explained in more detail here: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-origin
+This concept is explained in more detail in the [CORS section of the Mozilla Developer Network documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-origin):
 
 >If the server specifies a single origin (that may dynamically change based on the requesting origin as part of a white-list) rather than the "`*`" wildcard, then the server should also include `Origin` in the `Vary` response header — to indicate to clients that server responses will differ based on the value of the `Origin` request header.
 
