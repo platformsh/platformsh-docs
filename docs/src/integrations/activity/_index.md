@@ -12,11 +12,7 @@ Check out examples from other users on our [Community site.](https://community.p
 
 A legacy integration is also available for [HipChat](/integrations/activity/hipchat.md).
 
-## Activity scripts
-
-Activity scripts are written in a [scope-limited version of Javascript ES5](https://github.com/robertkrimen/otto).  That means they do not support newer ES6 and later features such as classes, nor do they support installing additional packages.  A series of utility functions you can reuse are also [available](/integrations/activity/utility.md).
-
-### Installing
+## Installing
 
 Activity scripts are configured as integrations.  That means they are at the *project level*, not at the level of an individual environment.  While you can store the scripts in your Git repository for easy access, they will have no effect there.
 
@@ -44,7 +40,7 @@ The just-installed script's ID in this example is `nadbowmhd67do`.
 
 Do not run the `integration:add` command a second time, or it will install a second integration that happens to have the same code.
 
-### Updating
+## Updating
 
 To update an existing activity script, use the `integration:update` command.  You will need the ID Of the integration to update (as above).
 
@@ -54,7 +50,7 @@ platform integration:update --file ./my_script.js nadbowmhd67do
 
 That will update the integration in place, permanently overwriting the previous version.
 
-### Removing
+## Removing
 
 To disable an activity script, use the `integration:delete` command:
 
@@ -106,7 +102,7 @@ As a general rule, it is better to have an activity script only execute on the s
 
 ## Available APIs
 
-Activity scripts have a series of APIs available to them to facilitate building out custom functionality.
+Activity scripts do not support installing additional packages. We provide a series of [utility functions you can reuse](/integrations/activity/utility.md) as well as the following libraries, APIs, and global variables to facilitate building out custom functionality.
 
 ### `underscore.js`
 
