@@ -181,13 +181,14 @@ storage.clear();
 
 ### Fetch API
 
-Activity scripts support a modified version of the browser "Fetch API" for issuing HTTP requests.  Unlike the typical browser version, however, they only support synchronous requests.  That means the return value of `fetch()` is a response object, not a Promise for one.  The API is otherwise essentially the same as that [documented by Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+Activity scripts support a modified version of the browser "Fetch API" for issuing HTTP requests.  Unlike the typical browser version, however, they only support synchronous requests.  That means the return value of `fetch()` is a `Response`, not a `Promise` for one. The returned `Response` is also a bit different: only the `ok`, `status` and `statusText` properties, as well as the `text` and `json` methods are available. Note that because of the synchronous nature of our `fetch` implementation, the `Response.text` and `Response.json` methods are also synchronous, so they will directly return a `string` and an `object`, respectively. The API is otherwise essentially the same as that [documented by Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
 
 For instance, this example sends a GET request every time it executes:
 
 ```javascript
-var resp = fetch("http://example.com/site-deployed.php");
+var resp = fetch("http://example.com/site-deployed");
 
+// The fetch call above being synchronous, we can directly access resp properties.
 // resp.ok is true if the response was a 2xx, false otherwise.
 if (!resp.ok) {
     console.log("Well that didn't work.");
@@ -211,6 +212,9 @@ var resp = fetch("http://example.com/", {
 )
 if (!resp.ok) {
     console.log("Couldn't POST.");
+} else {
+  // resp.json() is synchronous so this will log an object, not `Promise { <pending> }`
+  console.log(resp.json());
 }
 ```
 
