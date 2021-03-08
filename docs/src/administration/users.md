@@ -29,7 +29,7 @@ After a user is added to (or deleted from) an environment, it will be automatica
 When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
 {{< /note >}}
 
-Accessing the project through SSH may differ depending on the [configuration of the project or environment](https://docs.platform.sh/configuration/app/access.html).
+Accessing the project through SSH may differ depending on the [configuration of the project or environment](/configuration/app/access.md).
 
 ------------------------------------------------------------------------
 
