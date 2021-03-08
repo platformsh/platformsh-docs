@@ -15,7 +15,7 @@ Any user added to a project or an environment on Platform.sh will need to [regis
 At the project level:
 
 * **Project Administrator** - A project administrator can change settings and execute actions in any environment.
-* **Project Viewer** - A project reader can view all environments within a project through the management console but cannot execute any actions on them.
+* **Project Viewer** - A project reader can view all environments within a project through the management console but cannot execute any actions on them. Note that a user must be granted access to at least one environment before they can be given project-wide viewer access.
 
 A Project Viewer can have a specific role in different environments. At the environment level:
 
