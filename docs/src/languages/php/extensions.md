@@ -11,7 +11,7 @@ runtime:
     extensions:
         - raphf
         - http
-        - igbinary
+        - igbinary  # redis module depend on igbinary
         - redis
     disabled_extensions:
         - sqlite3
