@@ -111,6 +111,17 @@ This large block details all information about all services in the environment. 
 
 Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.  Note that some will be redirects.  To find those that are live URLs filter to those objects whose `type` property is `upstream`.
 
+## Maximum activities and parallelism
+
+Project activities are distributed across separate queues, which enables **two** simultaneous activities to occur in parallel across your environments. For a given environment, only one activity can run at a time. Those queues include:
+
+* `default`: these include the most common activities on repositories (pushes, merges) and environments (syncs, redeployments).
+* `integrations`: source and webhook integration activities.
+* `backup`: backup activities.
+* `cron`: cron activities.
+
+Production activities are prioritized across all queues. While it is still possible for a non-production environment activity to block production activities, it is temporary and unlikely, since the moment that production activity is triggered it will jump to the top of the queue automatically.
+
 ## Example activity
 
 The following is an example of a webhook message.  Specifically, this one was created by a "push" event.
