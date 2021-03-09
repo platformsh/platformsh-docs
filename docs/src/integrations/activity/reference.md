@@ -111,7 +111,7 @@ This large block details all information about all services in the environment. 
 
 Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.  Note that some will be redirects.  To find those that are live URLs filter to those objects whose `type` property is `upstream`.
 
-## Max activities and parallelism
+## Maximum activities and parallelism
 
 Project activities are distributed across separate queues, which enables **two** simultaneous activities to occur in parallel across your environments. For a given environment, only one activity can run at a time. Those queues include:
 
