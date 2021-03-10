@@ -79,7 +79,7 @@ $ platform branch debug-branch
 
 To get access to your application's relationships locally, open a tunnel to your application container:
 
-```ssh
+```sh
 $ platform tunnel:open
 ```
 
