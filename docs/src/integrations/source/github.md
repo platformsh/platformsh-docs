@@ -15,10 +15,8 @@ description: |
 ## Setup
 
 {{< note >}}
-At this time, the root/default branch of your GitHub repository must be `master`, as that value is what will be used for the production environment on Platform.sh.  As of October 2020 that is not the default name on GitHub anymore.  You will need to change it before enabling a source integration.
-
-We are actively working to make the production branch name configurable on Platform.sh, but at this time it cannot be changed.
-{{</ note >}}
+If the repository you are trying to integrate with a Platform.sh project has a default branch that is not `master` (e.g. `main`), there are a few additional steps you will need to perform to setup the integration. See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
+{{< /note >}}
 
 ### 1. Generate a token
 
@@ -30,6 +28,7 @@ Give it a description and then ensure the token has the following scopes:
 * To integrate with your own private repositories: `repo`
 * To integrate with your organization's private repositories: `repo`
     and `read:org`
+* To automatically create web hooks: `admin:repo_hook`
 
 Copy the token and make a note of it (temporarily).
 

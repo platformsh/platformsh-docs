@@ -49,10 +49,7 @@ If you are willing to make the `www.` version of your site the canonical version
 
 ### (Alternate) Using a www redirection service
 
-If your preferred registrar/DNS provider doesn't support either custom records or the apex domain forwarding options above, the following free services both allow blind redirects and allow you to use a CNAME record to Platform.sh for `www.example.com` and an `A` record to their service at `example.com`, which will in turn send a redirect.
-
-* [WWWizer](http://wwwizer.com/)
-* [redirectssl](http://redirectssl.com/)
+If your preferred registrar/DNS provider doesn't support either custom records or the apex domain forwarding options above, free services such as [WWWizer](http://wwwizer.com/) allow blind redirects and allow you to use a CNAME record to Platform.sh for `www.example.com` and an `A` record to their service at `example.com`, which will in turn send a redirect.
 
 {{< note >}}
 If using a redirection service, you must ensure that `http://example.com/` redirects to `http://www.example.com/`, not to `https://www.example.com/`.  (That is, the HTTP URL redirects to an HTTP URL, not to an HTTPS URL.)  Platform.sh will automatically redirect that request to the HTTPS itself.  Trying to change the protocol and domain in the same redirect will cause issues for Let's Encrypt and prevent the TLS certificate from being issued correctly.  The extra redirect adds only a millisecond or two to the first pageload only, and is imperceptible to most humans.

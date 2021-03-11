@@ -241,6 +241,12 @@ Assuming your MariaDB relationship is named `database`, the host name and port n
 mysql -h database.internal -P 3306 -u user main
 ```
 
+If your database relationship has a password, you need to pass the `-p` switch and enter the password when prompted:
+
+```bash
+mysql -h database.internal -P 3306 -u user -p main
+```
+
 Outside the application container, you can use Platform CLI `platform sql`.
 
 ## Exporting data

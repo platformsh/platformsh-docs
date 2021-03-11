@@ -7,7 +7,7 @@ description: |
 
 {{< description >}}
 
-You can complete some of these steps through the management console, but since all can be completed with the CLI those commands alone are listed. Be sure to [install the CLI](http://localhost:1313/development/cli.html#installation) if you have not already done so. It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`. If using another name for the default branch, update the commands accordingly. 
+You can complete some of these steps through the management console, but since all can be completed with the CLI those commands alone are listed. Be sure to [install the CLI](/development/cli/_index.md#installation) if you have not already done so. It's assumed you are changing the default branch of your project on Platform.sh from `master` to `main`. If using another name for the default branch, update the commands accordingly. 
 
 ## Projects without external integrations
 
@@ -28,7 +28,7 @@ $ platform environment:branch main master --title=Main -p <Project ID> --force
 The CLI assumes that you are running this command within a local copy of your repository, so the `--force` flag is included above to bypass that.
 {{< /note >}}
 
-`main` is currently the child of `master`, so use the below command to remove it's parent and make it a top-level branch:
+`main` is currently the child of `master`, so use the below command to remove its parent and make it a top-level branch:
 
 ```bash
 $ platform environment:info -p <Project ID> -e main parent -
@@ -44,10 +44,10 @@ $ platform environment:info -p <Project ID> -e <BRANCH> parent main
 
 ### 2. Reconfigure the default branch
 
-First, you will need to deactivate the `master` environment. Since it is currently the default branch, it is protected, and so the normal `platform environment:delete` CLI command will not work at this stage. This restriction will soon be removed, but for now you can get around this by placing an authenticated cURL request on the project's API with the following CLI command to deactivate it:
+First, you will need to deactivate the `master` environment with the following CLI command:
 
 ```bash
-$ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
+$ platform environment:delete master --no-delete-branch -p <Project ID>
 ```
 
 Once `master` has been deactivated, you can then set the project's `default_branch` property to `main`:
@@ -95,17 +95,27 @@ $ platform environment:branch main master --title=Main -p <Project ID> --force
 The CLI assumes that you are running this command within a local copy of your repository, so the `--force` flag is included above to bypass that.
 {{< /note >}}
 
-### 2. Deactivate the Master environment
-
-You will need to deactivate the `master` environment. Since it is currently the default branch, it is protected, and so the normal `platform environment:delete` CLI command will not work at this stage. This restriction will soon be removed, but for now you can get around this by placing an authenticated cURL request on the project's API with the following CLI command to deactivate it:
+`main` is currently the child of `master`, so use the below command to remove its parent and make it a top-level branch:
 
 ```bash
-$ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
+$ platform environment:info -p <Project ID> -e main parent -
 ```
+
+### 2. Deactivate the Master environment
+
+You will need to deactivate the `master` environment with the following CLI command:
+
+```bash
+$ platform environment:delete master --no-delete-branch -p <Project ID>
+```
+
+{{< note >}}
+Deactivating any environment is a [destructive operation](/administration/web/configure-environment.md#status), and can result in data loss. Since you are deactivating what was once the production branch for your site, it's recommended that you perform the switch to a new default branch during non-peak hours for your site. As always, be sure to take a [backup](/administration/backup-and-restore.md#backups) of `master` beforehand; you can always [restore this backup](/administration/backup-and-restore.md#restore) to `main` afterwards. 
+{{< /note >}}
 
 ### 3. Make "Main" the default branch
 
-First, update the project's `default_branch` property with another authenticated request:
+First, update the project's `default_branch` property to `main`:
 
 ```bash
 $ platform project:info default_branch main -p <Project ID>
@@ -117,11 +127,10 @@ At this point, while the repository considers `main` to be the default branch fo
 $ platform environment:info -p <Project ID> -e main parent -
 ```
 
-You have already deactivated Master, so all that's left now is to delete the `master` branch from the remote repository with one final authenticated request. It's still considered a parent environment and protected, so temporarily update its parent to `main` and then place the request to delete it.
+You have already deactivated Master, so all that's left now is to delete the `master` branch from the remote repository with one final authenticated request.
 
 ```bash
-$ platform environment:info -p <Project ID> -e master parent main
-$ platform environment:delete master -p <Project ID> --delete-branch
+$ platform environment:delete master --delete-branch -p <Project ID>
 ```
 
 You will then be left with "Main" as your top-level parent environment for the project.
@@ -187,6 +196,10 @@ You will need to deactivate the `master` environment. Since it is currently the 
 ```bash
 $ platform project:curl -X POST -p <Project ID> environments/master/deactivate 
 ```
+
+{{< note >}}
+Deactivating any environment is a [destructive operation](/administration/web/configure-environment.md#status), and can result in data loss. Since you are deactivating what was once the production branch for your site, it's recommended that you perform the switch to a new default branch during non-peak hours for your site. As always, be sure to take a [backup](/administration/backup-and-restore.md#backups) of `master` beforehand; you can always [restore this backup](/administration/backup-and-restore.md#restore) to `main` afterwards. 
+{{< /note >}}
 
 ### 5. Make "Main" the default branch
 

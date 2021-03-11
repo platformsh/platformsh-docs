@@ -39,6 +39,19 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 * A PHP process is crashing because of a segmentation fault (see below).
 * A PHP process is killed by the kernel out-of-memory killer (see below).
 
+## Large file upload failing (10MB limit)
+
+When trying to upload a large json file to your api you might see a 400 response code (Malformed request).
+
+We have a built-in 10MB limit on sending files through with `application/json`. If you want to send large files through, you will have to send them with `multipart/form-data`
+
+e.g.
+
+```
+curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' -F file=large_file.json
+```
+
+
 ## Claimed domains
 
 The error 
@@ -389,7 +402,3 @@ This project does not support source operations.
 ```
 
 it is due to the fact that the feature is [not currently supported on pull request environments](/configuration/app/source-operations.md#external-integrations).
-
-## Deleting your Platform.sh account
-
-If you would like to delete your Platform.sh account, log in and select "Support" from the dropdown options when you click on your avatar in the top right hand corner of the management console. Create a new ticket, and request for your account to be deleted in the form provided there. A support agent will receive your request and delete your account shortly thereafter. 

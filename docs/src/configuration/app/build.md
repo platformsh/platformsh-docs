@@ -13,13 +13,15 @@ The `build` defines what happens when building the application.  Its only proper
 
 `composer` will run `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
 
-Note that by default, PHP 7 containers include the latest Composer 1.x release.  If you wish to use Composer 2.x, add it as a `dependency` (see the section below). PHP 8 containers include the latest Composer 2.x release.
+Note that by default, all PHP containers include the latest Composer 1.x release.  If you wish to use Composer 2.x, add it as a `dependency` (see the section below).
 
 ```yaml
 dependencies:
     php:
-        composer/composer: '^2.0'
+        composer/composer: '^2'
 ```
+
+You will still see a message in the build output warning you about the availability of a new Composer version; that is the pre-packaged Composer 1 running to download Composer 2.  You can safely ignore it.  As Composer 2 is considerably more performant than Composer 1 we strongly recommend upgrading unless your application has a Composer plugin dependency that has not yet been updated.
 
 `drupal` will run `drush make` automatically in one of a few different ways.  See the [Drupal 7](/frameworks/drupal7/_index.md) documentation for more details.  There is no reason to use this build mode except for Drupal 7.
 
@@ -149,7 +151,7 @@ The following blocks will download a specific version of Sass, then during the b
 ```yaml
 dependencies:
   nodejs:
-    sass: "^3.4.21"
+    sass: "^1"
 
 hooks:
   build: |
@@ -173,3 +175,5 @@ hooks:
         fi
         # Commands to run regardless of the environment
 ```
+
+(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)

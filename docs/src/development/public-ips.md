@@ -8,10 +8,14 @@ description: |
 
 {{< description >}}
 
-Use the inbound IP addresses if you have a corporate firewall which blocks outgoing SSH connections.  In that case, simply add our IP addresses for inbound traffic below to your allow list.
-
 {{< note >}}
 These IP addresses are stable, but not guaranteed to never change. Prior to any future change, all affected customers will receive ample warning.
+{{< /note >}}
+
+Use the inbound IP addresses if you have a corporate firewall which blocks outgoing SSH connections.  In that case, simply add our IP addresses for inbound traffic below to your allow list.
+
+{{< note title="Region availability" >}}
+While this list contains IP addresses for datacenters in every Platform.sh region, only those regions listed during provisioning are actually available to new projects. Those regions that are no longer open are included here as reference for existing projects, and to Enterprise customers. Enterprise tier projects can continue to create projects on these "closed" regions when appropriate.  
 {{< /note >}}
 
 ## Europe
@@ -57,6 +61,18 @@ Inbound IPs (gw.eu-4.platformsh.site):
 * 52.215.88.119
 * 52.208.179.40
 * 18.200.179.139
+
+### North 5 (eu-5.platform.sh)
+
+Outbound IPs:
+
+* 13.48.116.14
+* 13.51.46.87
+* 13.48.202.56
+
+Inbound IPs (gw.eu-5.platformsh.site):
+
+* 13.51.62.86
 
 ### Germany 2 (de-2.platform.sh) (Data Location Guarantee)
 
@@ -158,7 +174,7 @@ Inbound IPs (gw.us-3.platformsh.site):
 * 52.156.93.30
 * 51.143.107.76
 
-### West 4 (us-4.platform.sh) (Data Location Guarantee)
+### East 4 (us-4.platform.sh) (Data Location Guarantee)
 
 Outbound IPs:
 

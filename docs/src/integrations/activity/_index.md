@@ -12,11 +12,7 @@ Check out examples from other users on our [Community site.](https://community.p
 
 A legacy integration is also available for [HipChat](/integrations/activity/hipchat.md).
 
-## Activity scripts
-
-Activity scripts are written in a [scope-limited version of Javascript ES5](https://github.com/robertkrimen/otto).  That means they do not support newer ES6 and later features such as classes, nor do they support installing additional packages.  A series of utility functions you can reuse are also [available](/integrations/activity/utility.md).
-
-### Installing
+## Installing
 
 Activity scripts are configured as integrations.  That means they are at the *project level*, not at the level of an individual environment.  While you can store the scripts in your Git repository for easy access, they will have no effect there.
 
@@ -44,7 +40,7 @@ The just-installed script's ID in this example is `nadbowmhd67do`.
 
 Do not run the `integration:add` command a second time, or it will install a second integration that happens to have the same code.
 
-### Updating
+## Updating
 
 To update an existing activity script, use the `integration:update` command.  You will need the ID Of the integration to update (as above).
 
@@ -54,7 +50,7 @@ platform integration:update --file ./my_script.js nadbowmhd67do
 
 That will update the integration in place, permanently overwriting the previous version.
 
-### Removing
+## Removing
 
 To disable an activity script, use the `integration:delete` command:
 
@@ -106,7 +102,7 @@ As a general rule, it is better to have an activity script only execute on the s
 
 ## Available APIs
 
-Activity scripts have a series of APIs available to them to facilitate building out custom functionality.
+Activity scripts do not support installing additional packages. We provide a series of [utility functions you can reuse](/integrations/activity/utility.md) as well as the following libraries, APIs, and global variables to facilitate building out custom functionality.
 
 ### `underscore.js`
 
@@ -185,13 +181,14 @@ storage.clear();
 
 ### Fetch API
 
-Activity scripts support a modified version of the browser "Fetch API" for issuing HTTP requests.  Unlike the typical browser version, however, they only support synchronous requests.  That means the return value of `fetch()` is a response object, not a Promise for one.  The API is otherwise essentially the same as that [documented by Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+Activity scripts support a modified version of the browser "Fetch API" for issuing HTTP requests.  Unlike the typical browser version, however, they only support synchronous requests.  That means the return value of `fetch()` is a `Response`, not a `Promise` for one. The returned `Response` is also a bit different: only the `ok`, `status` and `statusText` properties, as well as the `text` and `json` methods are available. Note that because of the synchronous nature of our `fetch` implementation, the `Response.text` and `Response.json` methods are also synchronous, so they will directly return a `string` and an `object`, respectively. The API is otherwise essentially the same as that [documented by Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
 
 For instance, this example sends a GET request every time it executes:
 
 ```javascript
-var resp = fetch("http://example.com/site-deployed.php");
+var resp = fetch("http://example.com/site-deployed");
 
+// The fetch call above being synchronous, we can directly access resp properties.
 // resp.ok is true if the response was a 2xx, false otherwise.
 if (!resp.ok) {
     console.log("Well that didn't work.");
@@ -215,6 +212,9 @@ var resp = fetch("http://example.com/", {
 )
 if (!resp.ok) {
     console.log("Couldn't POST.");
+} else {
+  // resp.json() is synchronous so this will log an object, not `Promise { <pending> }`
+  console.log(resp.json());
 }
 ```
 
