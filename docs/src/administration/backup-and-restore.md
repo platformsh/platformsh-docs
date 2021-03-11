@@ -130,9 +130,12 @@ Please see our [Data Retention Page](/security/data-retention.md).
 
 ### Physical storage location
 
-Backups are stored on blob storage separate from your cluster (for an AWS backed region, this is S3).
+Backups are stored on Binary Large OBject (BLOB) storage separate from your cluster (for an AWS backed region, this is S3).
 
-Blob storage is replicated over multiple datacenters so in the rare event that an entire datacenter is destroyed, backups should still be available.
+Blob storage is replicated over multiple datacenters on different locations.
+In the rare event, were an entire datacenter is destroyed, unavailable, ... backups should still be available.
 
-Do keep in mind that in such a rare event. _We_ will be using our own disaster recovery backups to move all projects to another datacenter. The disaster recovery backups are also stored on blob storage so they are also replicated over multiple datacenters.
+Do keep in mind that in such a rare event. _We_ will be using our own disaster recovery backups to move all projects to another datacenter. 
+The disaster recovery backups are also stored on blob storage. This means they are also replicated over multiple datacenters.
 
+This being said, as a general word of advice it's common (and good) practise to have backups at several locations but also locally on your own machine.
