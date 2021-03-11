@@ -9,6 +9,17 @@ description: |
 
 ## 2021
 
+* **March 2021**
+  * Node.js debugging: [a new page was added](/languages/nodejs/debug.md) that includes tips for debugging Node.js applications.
+  * Parallel activities: [project activities](/integrations/activity/reference.md#maximum-activities-and-parallelism) have been split into separate queues, allowing for up to two activities across environments to occur simultaneously.
+  * Python 3.9: We now support [Python 3.9](/languages/python.md).
+  * Java 14: We now support [Java 14](/languages/java/_index.md).
+  * PostgreSQL 13: [multiple databases](/configuration/services/postgresql.md#multiple-databases) are now supported for PostgreSQL 13.
+  * Elasticsearch 7.9: We now support [Elasticsearch 7.9](/configuration/services/elasticsearch.md).
+
+* **February 2021**
+  * Elasticsearch 5.6: We now support [Elasticsearch 5.6](/configuration/services/elasticsearch.md) on Dedicated projects.
+
 * **January 2021**
   * Default branch: [guide added](/guides/general/default-branch.md) that provides step for changing a project's default branch from `master` to `main`
 
