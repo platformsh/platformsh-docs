@@ -8,5 +8,3 @@ description: |
 
 {{< description >}}
 
-{{< test-env >}}
-
