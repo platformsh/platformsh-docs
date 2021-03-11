@@ -126,3 +126,13 @@ It is very important to include the `--no-wait` flag.  If you do not, the cron p
 ### Retention
 
 Please see our [Data Retention Page](/security/data-retention.md).
+
+
+### Physical storage location
+
+Backups are stored on blob storage separate from your cluster (for an AWS backed region, this is S3).
+
+Blob storage is replicated over multiple datacenters so in the rare event that an entire datacenter is destroyed, backups should still be available.
+
+Do keep in mind that in such a rare event. _We_ will be using our own disaster recovery backups to move all projects to another datacenter. The disaster recovery backups are also stored on blob storage so they are also replicated over multiple datacenters.
+
