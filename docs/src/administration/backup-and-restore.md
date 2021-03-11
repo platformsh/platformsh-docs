@@ -27,6 +27,56 @@ $ platform backup:create
 
 Please be aware that triggering a backup will cause a momentary pause in site availability so that all requests can complete, allowing the backup to be taken against a known consistent state.  The total interruption is usually only 15 to 30 seconds and any requests during that time are held temporarily, not dropped.
 
+### Backups and downtime
+
+A backup does cause a momentary pause in service. We recommend running during non-peak hours for your site.
+
+### Retention
+
+Please see our [Data Retention Page](/security/data-retention.md).
+
+### Physical storage location
+
+Backups are stored on Binary Large OBject (BLOB) storage separate from your cluster (for example, projects on an AWS backed region are stored on S3). Blob storage is replicated over multiple datacenters on different locations - this means that in the rare event of datacenter unavailability, backups will still be available. 
+	
+In such an event, Platform.sh will move all projects to another datacenter. Disaster recovery backups are also stored on BLOB storage and replicated over multiple datacenters. It is still recommended that you schedule regular backups stored in multiple locations and/or locally alongside this process.
+
+### Automated backups
+
+Backups are not triggered automatically on Platform.sh Professional.
+
+Backups may be triggered by calling the CLI from an automated system such as Jenkins or another CI service, or by installing the CLI tool into your application container and triggering the backup via cron.
+
+#### Automated backups using Cron
+
+{{< note >}}
+Automated backups using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
+{{< /note >}}
+
+We ask that you not schedule a backup task more than once a day to minimize data usage.
+
+Once the CLI is installed in your application container and an API token configured you can add a cron task to run once a day and trigger a backup.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on. In most cases such backups are only useful on the `master` production environment.
+
+A common cron specification for a daily backup on the `master` environment looks like this:
+
+```yaml
+crons:
+    backup:
+        spec: '0 5 * * *'
+        cmd: |
+            if [ "$PLATFORM_BRANCH" = master ]; then
+                platform backup:create --yes --no-wait
+            fi
+```
+
+(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)
+
+The above cron task will run once a day at 5 am (UTC), and, if the current environment is the master branch, it will run `platform backup:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the backup to complete.
+
+{{< note >}}
+It is very important to include the `--no-wait` flag.  If you do not, the cron process will block and you will be unable to deploy new versions of the site until the backup creation process is complete.
+{{< /note >}}
+
 ## Restore
 
 You will see the backup in the activity feed of your environment in the Platform.sh management console. You can trigger the restore by clicking on the `restore` link. You can also restore the backup to a different environment using the CLI.
@@ -82,47 +132,3 @@ Be aware that the older US and EU regions do not support restoring backups to di
 {{< note >}}
 Restoring a snapshot does not revert any code changes committed to git. The next redeploy of the environment will use the current commit from git.
 {{< /note >}}
-
-## Backups and downtime
-
-A backup does cause a momentary pause in service. We recommend running during non-peak hours for your site.
-
-## Automated backups
-
-Backups are not triggered automatically on Platform.sh Professional.
-
-Backups may be triggered by calling the CLI from an automated system such as Jenkins or another CI service, or by installing the CLI tool into your application container and triggering the backup via cron.
-
-### Automated backups using Cron
-
-{{< note >}}
-Automated backups using cron requires you to [get an API token and install the CLI in your application container](/development/cli/api-tokens.md).
-{{< /note >}}
-
-We ask that you not schedule a backup task more than once a day to minimize data usage.
-
-Once the CLI is installed in your application container and an API token configured you can add a cron task to run once a day and trigger a backup.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on. In most cases such backups are only useful on the `master` production environment.
-
-A common cron specification for a daily backup on the `master` environment looks like this:
-
-```yaml
-crons:
-    backup:
-        spec: '0 5 * * *'
-        cmd: |
-            if [ "$PLATFORM_BRANCH" = master ]; then
-                platform backup:create --yes --no-wait
-            fi
-```
-
-(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)
-
-The above cron task will run once a day at 5 am (UTC), and, if the current environment is the master branch, it will run `platform backup:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the backup to complete.
-
-{{< note >}}
-It is very important to include the `--no-wait` flag.  If you do not, the cron process will block and you will be unable to deploy new versions of the site until the backup creation process is complete.
-{{< /note >}}
-
-### Retention
-
-Please see our [Data Retention Page](/security/data-retention.md).
