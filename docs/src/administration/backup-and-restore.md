@@ -39,7 +39,7 @@ Please see our [Data Retention Page](/security/data-retention.md).
 
 Backups are stored on Binary Large OBject (BLOB) storage separate from your cluster (for example, projects on an AWS backed region are stored on S3). Blob storage is replicated over multiple datacenters on different locations - this means that in the rare event of datacenter unavailability, backups will still be available. 
 	
-In such an event, Platform.sh will be use our own disaster recovery backups to move all projects to another datacenter. Disaster recovery backups are also stored on BLOB storage and replicated over multiple datacenters. It is still recommended that you schedule regular backups stored in multiple locations and/or locally alongside this process.
+In such an event, Platform.sh will move all projects to another datacenter. Disaster recovery backups are also stored on BLOB storage and replicated over multiple datacenters. It is still recommended that you schedule regular backups stored in multiple locations and/or locally alongside this process.
 
 ### Automated backups
 
