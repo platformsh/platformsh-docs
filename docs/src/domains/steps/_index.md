@@ -18,7 +18,7 @@ The order of operations is not really important, but if you are migrating a site
 If you are on a Development plan, you cannot add a domain. You will need to upgrade your subscription to a production plan.
 
 {{< note >}}
-The domain used for a Development environment itself can not be customized even if your project itself is on a production plan.
+You are able to add a domain to your production (i.e. `Master`) environment. However, the domain used for non-production environments will always be generated and cannot be customized, even if your project is on a Production plan.
 {{< /note >}}
 
 Go to [your account](https://accounts.platform.sh/user), click on the small wheel next to you project's name and click on edit.
