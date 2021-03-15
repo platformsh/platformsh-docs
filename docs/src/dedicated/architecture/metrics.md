@@ -14,7 +14,7 @@ Within the management console, metrics for your `production` environment can be 
 
 Available on this page are usage metrics for [CPU](#cpu), [RAM](#ram), and [persistent disk](#disk) for each of the three hosts in your [N+1 configuration](/dedicated/architecture/_index.md), as well as an average across them. For each property, usage that crosses an *80% threshold* will trigger a warning message displayed on this dashboard. Usage that crosses *90%* will result in a critical message displayed. 
 
-Measurements are taken for each metric *every second*, and there is a taskbar in the top right-hand corner from which you can select a window to view those samples. You will be able to zoom into observe individual samples, but in the primary three views (the last 15 minutes, the last hour, and the last day) averages are shown over larger intervals depending on the view.
+Measurements are taken for each metric *every ten seconds*, and there is a taskbar in the top right-hand corner from which you can select a window to view those samples. You will be able to zoom-in to observe individual samples, but in the primary three views (the last 15 minutes, the last hour, and the last day) averages are shown over larger intervals depending on the view.
 
 | View                         | Sample average                    | Example                        |
 | :--------------------------- | :-------------------------------- | :----------------------------- | 
