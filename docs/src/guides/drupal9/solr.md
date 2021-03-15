@@ -48,7 +48,10 @@ search:
 
 In your `.platform.app.yaml`:
 
-{{< readFile file="src/registry/images/examples/full/solr.app.yaml" highlight="yaml" >}}
+```yaml
+relationships:
+    solrsearch: "search:main"
+```
 
 {{< endpoint-description "solr" "#solr-6-and-later" "cores" >}}
 
