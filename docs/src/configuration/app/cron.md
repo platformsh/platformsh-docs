@@ -21,6 +21,8 @@ Cron runs are executed using the dash shell, not the bash shell used by normal S
 
 If an application defines both a `web` instance and a `worker` instance, cron tasks will be run only on the `web` instance.
 
+If running the CRON in a specific timezone - different than UTC - is required, please consult [this page](/configuration/app/timezone.html).
+
 {{< note >}}
 Cron log output is captured in the at `/var/log/cron.log`.  See the [Log page](/development/logs.md) for more information on logging.
 {{< /note >}}
