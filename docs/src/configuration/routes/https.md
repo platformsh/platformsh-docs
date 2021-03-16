@@ -186,7 +186,7 @@ For the DNS challenge to work, the domains and subdomains should point directly 
   Unable to validate domains www.some-example.platform.sh, will retry in the background.
 ```
 In that example the `www.some-example.platform.sh` subdowmain does not point to the cluster.
-The step-by-step DNS setup can be found [here](/domains/steps.html).
+The step-by-step DNS setup can be found [here](/domains/steps/_index.md).
 Please note that DNS changes can take up to 24-48 hours to be taken into account due to the Propagation time.
 
 In other cases, [redeploying the impacted environment usually solves the issue](https://docs.platform.sh/development/troubleshoot.html#force-a-redeploy).
