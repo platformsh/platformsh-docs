@@ -819,7 +819,7 @@
     "disk": false,
     "docs": {
       "relationship_name": "varnishstats",
-      "service_name": "proxy",
+      "service_name": "varnish",
       "url": "/configuration/services/varnish.html"
     },
     "endpoint": "http+stats",
