@@ -185,11 +185,7 @@ For the DNS challenge to work, domains and subdomains should point directly to y
   E: Error validating domain www.some-example.platform.sh: Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
   Unable to validate domains www.some-example.platform.sh, will retry in the background.
 ```
-In that example the `www.some-example.platform.sh` subdowmain does not point to the cluster.
-The step-by-step DNS setup can be found [here](/domains/steps/_index.md).
-Please note that DNS changes can take up to 24-48 hours to be taken into account due to the Propagation time.
-
-In other cases, [redeploying the impacted environment usually solves the issue](https://docs.platform.sh/development/troubleshoot.html#force-a-redeploy).
+Note that DNS changes can take up to 24-48 hours to propagate. See the [step-by-step guide](/domains/steps/_index.md) for more information. If you have waited the 24-48 hours, properly configured the subdomain, and are still seeing an error of this type, [redeploying](/development/troubleshoot.md#force-a-redeploy) the impacted environment will usually solve the issue.
 
 If the issue persists, you could also verify if an outage is currently ongoing on [let's encrypt's side](https://letsencrypt.status.io/).
 If that is not the case, please open a support ticket.
