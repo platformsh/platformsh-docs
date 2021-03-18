@@ -12,13 +12,9 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="kafka" status="supported" environment="grid" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated" >}} |
-
-{{< note >}}
-Apache Kafka is not available on [Dedicated Production Clusters.](/overview/dedicated.md)
-{{< /note >}}
+| **Grid** | **Dedicated** | **Dedicated Generation 2** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="kafka" status="supported" environment="grid" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated" >}} | Working on it! |
 
 ## Relationship
 

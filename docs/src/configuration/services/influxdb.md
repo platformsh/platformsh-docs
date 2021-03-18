@@ -12,13 +12,9 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="influxdb" status="supported" environment="grid" >}} | {{< image-versions image="influxdb" status="supported" environment="dedicated" >}} |
-
-{{< note >}}
-InfluxDB is not available on [Dedicated Production Clusters.](/overview/dedicated.md)
-{{< /note >}}
+| **Grid** | **Dedicated** | **Dedicated Generation 2** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="influxdb" status="supported" environment="grid" >}} | {{< image-versions image="influxdb" status="supported" environment="dedicated" >}} | Working on it! |
 
 ## Relationship
 

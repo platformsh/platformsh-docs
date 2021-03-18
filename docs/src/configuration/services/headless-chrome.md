@@ -13,9 +13,9 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="chrome-headless" status="supported" environment="grid" >}} | {{< image-versions image="chrome-headless" status="supported" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 2** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="chrome-headless" status="supported" environment="grid" >}} | {{< image-versions image="chrome-headless" status="supported" environment="dedicated" >}} | Working on it! |
 
 ## Relationship
 

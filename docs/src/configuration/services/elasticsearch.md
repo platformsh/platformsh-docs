@@ -12,9 +12,9 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 2** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} | Working on it! |
 
 ### Deprecated versions
 
@@ -23,11 +23,6 @@ The following versions are available but are not receiving security updates from
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
 |  {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated" >}} |
-
-{{< note >}}
-Elasticsearch is not available on [Dedicated Production Clusters.](/overview/dedicated.md)
-{{< /note >}}
-
 
 ## Relationship
 

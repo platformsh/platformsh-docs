@@ -14,14 +14,9 @@ Both Memcached and Redis can be used for application caching.  As a general rule
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="memcached" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="memcached" environment="dedicated" >}} |
-
-{{< note >}}
-Memcached is not available on [Dedicated Production Clusters.](/overview/dedicated.md)
-{{< /note >}}
-
+| **Grid** | **Dedicated** | **Dedicated Generation 2** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="memcached" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="memcached" environment="dedicated" >}} | Working on it! |
 
 ## Relationship
 

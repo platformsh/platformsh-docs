@@ -392,6 +392,16 @@
         "10.4 Galera",
         "10.5 Galera"
       ]
+    },
+    "versions-dedicated-gen-2": {
+      "supported": [
+        "10.0 Galera",
+        "10.1 Galera",
+        "10.2 Galera",
+        "10.3 Galera",
+        "10.4 Galera",
+        "10.5 Galera"
+      ]
     }
   },
   "memcached": {
@@ -462,6 +472,12 @@
       "deprecated": [],
       "supported": [
         "1.0"
+      ]
+    },
+    "versions-dedicated-gen-2": {
+      "deprecated": [],
+      "supported": [
+        "2.0"
       ]
     }
   },
@@ -810,6 +826,12 @@
         "7.7",
         "8.0",
         "8.6"
+      ]
+    },
+    "versions-dedicated-gen-2": {
+      "supported": [
+        "6.3",
+        "6.6"
       ]
     }
   },

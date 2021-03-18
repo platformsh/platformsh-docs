@@ -17,7 +17,7 @@ The service types `mariadb` and `mysql` both refer to MariaDB for compatibility 
 |----------------------------------|---------------|-------------------------|
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
-Only MariaDB is available on Dedicated environments, using Galera for replication:
+Only MariaDB is available on Dedicated and Dedicated Generation 2 environments, using Galera for replication:
 
 {{< image-versions image="mariadb" status="supported" environment="dedicated" >}}
 
