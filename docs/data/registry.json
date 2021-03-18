@@ -705,6 +705,15 @@
     },
     "versions-dedicated": {
       "supported": ["3.7", "3.8"]
+    },
+    "versions-dedicated-gen-2": {
+      "deprecated": [],
+      "supported": [
+        "3.5",
+        "3.6",
+        "3.7",
+        "3.8"
+      ]
     }
   },
   "redis": {
@@ -736,6 +745,18 @@
     "versions-dedicated": {
       "supported": ["5.0","6.0"],
       "deprecated": ["3.2"]
+    },
+    "versions-dedicated-gen-2": {
+      "deprecated": [
+        "2.8",
+        "3.0"
+      ],
+      "supported": [
+        "3.2",
+        "4.0",
+        "5.0",
+        "6.0"
+      ]
     }
   },
   "ruby": {
@@ -829,6 +850,11 @@
       ]
     },
     "versions-dedicated-gen-2": {
+      "deprecated": [
+        "3.6",
+        "4.10",
+        "7.6"
+      ],
       "supported": [
         "6.3",
         "6.6"
