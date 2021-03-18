@@ -175,12 +175,18 @@ This breakdown leaves you with 21-23 characters to work with naming your branche
 
 To be able to provide a valid SSL-certificate, Let's Encrypt needs to make sure that the requester is entitled to receive the SSL-certificate it asked for (usually through the presence of a specific token on the DNS zone of that domain).
 
-This ownership verification is achieved through the so called _Challenge_ step.
+This ownership verification is achieved through the so called _Challenge_ step, more background information can be found in the [Let's Encrypt Documentation](https://letsencrypt.org/docs/challenge-types/).
 
 Sometimes, that verification fails which will result in the following error-message:
 `Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
 
-Usually this issue can then be resolved by [redeploying the impacted environment](https://docs.platform.sh/development/troubleshoot.html#force-a-redeploy).
+For the DNS challenge to work, domains and subdomains should point directly to your Platform.sh cluster (unless using a CDN). Otherwise, you will see the following error:
 
-If the issue persists, you can verify if an outage is currently ongoing on [let's encrypt's side](https://letsencrypt.status.io/).
+```text
+  E: Error validating domain www.some-example.platform.sh: Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
+  Unable to validate domains www.some-example.platform.sh, will retry in the background.
+```
+Note that DNS changes can take up to 24-48 hours to propagate. See the [step-by-step guide](/domains/steps/_index.md) for more information. If you have waited the 24-48 hours, properly configured the subdomain, and are still seeing an error of this type, [redeploying](/development/troubleshoot.md#force-a-redeploy) the impacted environment will usually solve the issue.
+
+If the issue persists, you could also verify if an outage is currently ongoing on [let's encrypt's side](https://letsencrypt.status.io/).
 If that is not the case, please open a support ticket.
