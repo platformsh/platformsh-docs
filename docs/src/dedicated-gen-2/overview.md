@@ -11,7 +11,7 @@ Dedicated Generation 2 works nearly identically to Grid environments, and does n
 
 ## Why a Generation 2?
 
-Even though our existing [dedicated infrastructure](/dedicated/overview) ensures better uptime and availability for your applications and services, configuration or application topology changes have to go through our Custiomer's Success team, as the VMs are provisionned by us. Our teams have been working hard to bring you a solution that gives you both the high availability from our Dedicated offer and the self-service flexibility and features of the Grid: Dedicated Generation 2. This means that you will now be able to edit your configuration yourself – as you would do on the Grid in your `.platform/services.yaml` and `.platform.app.yaml` files – and see those changes in your Dedicated Generation 2 environments when pushed without having to open a ticket.
+Even though our existing [dedicated infrastructure](/dedicated/overview) ensures better uptime and availability for your applications and services, configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 2 gives you both the high availability from our Dedicated offer and the self-service flexibility and features of the Grid. This means that you will now be able to edit your configuration yourself – as you would do on the Grid in your `.platform/services.yaml` and `.platform.app.yaml` files – and see those changes in your Dedicated Generation 2 environments when pushed without having to open a ticket.
 
 ## Features
 
@@ -34,15 +34,15 @@ As of today, the following services are available on Dedicated Generation 2:
 
 ### Local mounts
 
-Because you get a redundant infrastrcture, note that local mounts will be local to each Virtual Machine. Since you can't know what VM is going to handle a specific request, you don't have a guarantee regarding which local mount is going to be used. Whether you actually want to use a local mount or in fact need to set up a network-storage depends on your specific use-cases.
+Because you get a redundant infrastrcture, note that local mounts will be local to each Virtual Machine. Since you can't know what VM is going to handle a specific request, you don't have a guarantee regarding which local mount is going to be used. Whether you actually want to use a local mount or in fact need to set up a network storage mount depends on your specific use-cases.
 
 ## Setting up
 
 ### Coming from the Grid
 
-Open a Support ticket with the suggested title “Upgrade to Dedicated Generation 2". In the ticket, request to have your project upgrade.
+Open a Support ticket with the suggested title “Upgrade to Dedicated Generation 2". In the ticket, request to have your project upgraded.
 
-We will review the infrastructure and settings, create user and environment variables for Staging and Production environments, and update the ticket with results.
+We will review the infrastructure and settings, create user and environment variables for Staging and Production environments, and update the ticket with those changes.
 
 Once started the process usually takes less than an hour.  There should be no downtime on your production site, although you should not push any code to Git while the upgrade is in progress.
 
