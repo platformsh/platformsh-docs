@@ -180,7 +180,7 @@ This ownership verification is achieved through the so called _Challenge_ step, 
 Sometimes, that verification fails which will result in the following error-message:
 `Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
 
-For the DNS challenge to work, the domains and subdomains should point directly to your platform.sh's cluster (unless using a CDN).
+For the DNS challenge to work, domains and subdomains should point directly to your Platform.sh cluster (unless using a CDN). Otherwise, you will see the following error:
 ```
   E: Error validating domain www.some-example.platform.sh: Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
   Unable to validate domains www.some-example.platform.sh, will retry in the background.
