@@ -14,7 +14,7 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 | **Grid** | **Dedicated** | **Dedicated Generation 2** |
 |----------------------------------|---------------|---------------|
-|  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} | Working on it! |
+|  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-2" >}} |
 
 ### Deprecated versions
 

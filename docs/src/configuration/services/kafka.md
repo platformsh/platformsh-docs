@@ -14,7 +14,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 | **Grid** | **Dedicated** | **Dedicated Generation 2** |
 |----------------------------------|---------------|---------------|
-|  {{< image-versions image="kafka" status="supported" environment="grid" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated" >}} | Working on it! |
+|  {{< image-versions image="kafka" status="supported" environment="grid" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated-gen-2" >}} |
 
 ## Relationship
 

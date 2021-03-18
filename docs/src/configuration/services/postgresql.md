@@ -12,7 +12,7 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 | **Grid** | **Dedicated** | **Dedicated Generation 2** |
 |----------------------------------|---------------|---------------|
-|  {{< image-versions image="postgresql" status="supported" environment="grid" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated" >}} | Working on it! |
+|  {{< image-versions image="postgresql" status="supported" environment="grid" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-2" >}} |
 
 {{< note >}}
 Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.

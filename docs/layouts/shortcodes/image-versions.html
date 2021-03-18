@@ -20,5 +20,9 @@
   {{ end }}
   </ul>
 {{ else }}
-  None available
+  {{ if eq $envParam "dedicated-gen-2" }}
+    Working on it!
+  {{ else }}
+    None available
+  {{ end }}
 {{ end }}
