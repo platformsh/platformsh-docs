@@ -181,7 +181,8 @@ Sometimes, that verification fails which will result in the following error-mess
 `Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
 
 For the DNS challenge to work, domains and subdomains should point directly to your Platform.sh cluster (unless using a CDN). Otherwise, you will see the following error:
-```
+
+```text
   E: Error validating domain www.some-example.platform.sh: Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
   Unable to validate domains www.some-example.platform.sh, will retry in the background.
 ```
