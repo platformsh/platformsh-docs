@@ -29,7 +29,7 @@ As of today, the following services are available on Dedicated Generation 2:
 - [Redis](/configuration/services/redis)
 - [Elasticsearch](/configuration/services/elasticsearch)
 - [RabbitMQ](/configuration/services/rabbitmq)
-- [Solr (6 only)](/configuration/services/solr)
+- [Solr (6 and 8.6 only)](/configuration/services/solr)
 - [Network storage (2.0 only)](/configuration/services/network-storage)
 
 ### Local mounts
