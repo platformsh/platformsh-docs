@@ -850,11 +850,6 @@
       ]
     },
     "versions-dedicated-gen-2": {
-      "deprecated": [
-        "3.6",
-        "4.10",
-        "7.6"
-      ],
       "supported": [
         "6.3",
         "6.6",
