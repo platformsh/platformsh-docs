@@ -1,11 +1,11 @@
 ---
-title: "Platform.sh Dedicated Generation 2"
+title: "Dedicated Generation 2"
 weight: 1
 sidebarTitle: "Overview"
 layout: single
 ---
 
-Platform.sh Dedicated Generation 2 provides a scalable solution as an additional option on top of your existing Grid applications.
+Dedicated Generation 2 provides a scalable solution as an additional option on top of your existing Grid applications.
 It provides redundant configuration with a minimum of three Virtual Machine instances. Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the VMs is lost entirely.
 Dedicated Generation 2 works nearly identically to Grid environments, and does not require additional configuration on your part. The only difference is that of service availability.
 
