@@ -1,0 +1,11 @@
+<ul>
+{{ range $image, $info := .Site.Data.registry }}
+  {{ if (isset $info "versions-dedicated-gen-2") }}
+    {{ $label := $image | humanize }}
+    {{ if (eq $label "Mysql") }}
+      {{ $label = "MariaDB/Mysql" }}
+    {{ end }}
+    <li><a href="/configuration/services/{{ $image }}.html">{{ $label }}</a></li>
+  {{ end }}
+{{ end }}
+</ul>

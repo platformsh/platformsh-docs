@@ -25,12 +25,7 @@ Our existing [dedicated infrastructure](/dedicated/overview) ensures increased u
 ### Available services
 
 As of today, the following services are available on Dedicated Generation 2:
-- [Mariadb/Mysql](/configuration/services/mysql)
-- [Redis](/configuration/services/redis)
-- [Elasticsearch](/configuration/services/elasticsearch)
-- [RabbitMQ](/configuration/services/rabbitmq)
-- [Solr (6 and 8.6 only)](/configuration/services/solr)
-- [Network storage (2.0 only)](/configuration/services/network-storage)
+{{< gen-2-services >}}
 
 ### Local mounts
 
