@@ -20,7 +20,7 @@
   {{ end }}
   </ul>
 {{ else }}
-  {{ if eq $envParam "dedicated-gen-2" }}
+  {{ if and (eq $envParam "dedicated-gen-2") (eq $status "supported") }}
     Working on it!
   {{ else }}
     None available
