@@ -11,7 +11,7 @@ Dedicated Generation 2 works nearly identically to Grid environments, and does n
 
 ## Why a Generation 2?
 
-Even though our existing [dedicated infrastructure](/dedicated/overview) ensures better uptime and availability for your applications and services, configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 2 gives you both the high availability from our Dedicated offer and the self-service flexibility and features of the Grid. This means that you will now be able to edit your configuration yourself – as you would do on the Grid in your `.platform/services.yaml` and `.platform.app.yaml` files – and see those changes in your Dedicated Generation 2 environments when pushed without having to open a ticket.
+Our existing [dedicated infrastructure](/dedicated/overview) ensures increased uptime and availability for your applications and services, configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 2 gives you both the high availability from our Dedicated offer and the self-service flexibility and features of the Grid. This means that you will now be able to edit your configuration yourself – as you would do on the Grid in your `.platform/services.yaml` and `.platform.app.yaml` files – and see those changes in your Dedicated Generation 2 environments when pushed without having to open a ticket.
 
 ## Features
 
@@ -38,7 +38,7 @@ Because you get a redundant infrastrcture, note that local mounts will be local 
 
 ## Setting up
 
-### Coming from the Grid
+### Migrating from the Grid
 
 Open a Support ticket with the suggested title “Upgrade to Dedicated Generation 2". In the ticket, request to have your project upgraded.
 
@@ -48,6 +48,6 @@ Once started the process usually takes less than an hour.  There should be no do
 
 When done, you can review the changes to your project through the management console.
 
-### Coming from Dedicated
+### Migrating from Dedicated
 
 Migrating from Dedicated to Dedicated Generation 2 is not possible for now but feel free to reach out so we're aware of the demand.
