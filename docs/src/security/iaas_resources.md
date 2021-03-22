@@ -25,6 +25,6 @@ Orange Cloud for Business
 
 * [Certifications](https://cloud.orange-business.com/certifications/)
 
-OVH Public Cloud
+OVHcloud Public Cloud
 
 * Certifications: ISO 27001, ISO 27017, ISO 27018, ISO 27701
