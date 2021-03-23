@@ -90,7 +90,7 @@ A Medium plan, for example, can support 3 Apps with a MySQL instance and a Redis
 
 If you wonder if a specific setup would fit in a plan, don't hesitate to contact our support.
 
-## Dedicated Generation 2
+## Dedicated Generation 3
 
 For a price lower than traditional managed hosting, you get included development and staging environments, as well as triple redundancy on every element of the stack with:
 
@@ -100,7 +100,7 @@ For a price lower than traditional managed hosting, you get included development
 24/7 White Glove On-boarding and Support
 {{< /note >}}
 
-Learn more about [Dedicated Generation 2](/dedicated-gen-2/overview).
+Learn more about [Dedicated Generation 3](/dedicated-gen-3/overview).
 
 Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
 

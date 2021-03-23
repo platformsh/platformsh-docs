@@ -1,17 +1,17 @@
 ---
-title: "Dedicated Generation 2"
+title: "Dedicated Generation 3"
 weight: 1
 sidebarTitle: "Overview"
 layout: single
 ---
 
-Dedicated Generation 2 provides a scalable solution as an additional option on top of your existing Grid applications.
+Dedicated Generation 3 provides a scalable solution as an additional option on top of your existing Grid applications.
 It provides redundant configuration with a minimum of three Virtual Machine instances. Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the VMs is lost entirely.
-Dedicated Generation 2 works nearly identically to Grid environments, and does not require additional configuration on your part. The only difference is that of service availability.
+Dedicated Generation 3 works nearly identically to Grid environments, and does not require additional configuration on your part. The only difference is that of service availability.
 
-## Why a Generation 2?
+## Why a Generation 3?
 
-Our existing [dedicated infrastructure](/dedicated/overview) ensures increased uptime and availability for your applications and services, configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 2 gives you both the high availability from our Dedicated offer and the self-service flexibility and features of the Grid. This means that you will now be able to edit your configuration yourself – as you would do on the Grid in your `.platform/services.yaml` and `.platform.app.yaml` files – and see those changes in your Dedicated Generation 2 environments when pushed without having to open a ticket.
+Our existing [dedicated infrastructure](/dedicated/overview) ensures increased uptime and availability for your applications and services, configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 3 gives you both the high availability from our Dedicated offer and the self-service flexibility and features of the Grid. This means that you will now be able to edit your configuration yourself – as you would do on the Grid in your `.platform/services.yaml` and `.platform.app.yaml` files – and see those changes in your Dedicated Generation 3 environments when pushed without having to open a ticket.
 
 ## Features
 
@@ -24,8 +24,8 @@ Our existing [dedicated infrastructure](/dedicated/overview) ensures increased u
 
 ### Available services
 
-As of today, the following services are available on Dedicated Generation 2:
-{{< gen-2-services >}}
+As of today, the following services are available on Dedicated Generation 3:
+{{< gen-3-services >}}
 
 ### Local mounts
 
@@ -35,7 +35,7 @@ Because you get a redundant infrastrcture, note that local mounts will be local 
 
 ### Migrating from the Grid
 
-Open a Support ticket with the suggested title “Upgrade to Dedicated Generation 2". In the ticket, request to have your project upgraded.
+Open a Support ticket with the suggested title “Upgrade to Dedicated Generation 3". In the ticket, request to have your project upgraded.
 
 We will review the infrastructure and settings, create user and environment variables for Staging and Production environments, and update the ticket with those changes.
 
@@ -45,4 +45,4 @@ When done, you can review the changes to your project through the management con
 
 ### Migrating from Dedicated
 
-Migrating from Dedicated to Dedicated Generation 2 is not possible for now but feel free to reach out so we're aware of the demand.
+Migrating from Dedicated to Dedicated Generation 3 is not possible for now but feel free to reach out so we're aware of the demand.

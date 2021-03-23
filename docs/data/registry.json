@@ -110,7 +110,7 @@
         "2.4"
       ]
     },
-    "versions-dedicated-gen-2": {
+    "versions-dedicated-gen-3": {
       "deprecated": [
         "0.9",
         "1.4",
@@ -410,7 +410,7 @@
         "10.5 Galera"
       ]
     },
-    "versions-dedicated-gen-2": {
+    "versions-dedicated-gen-3": {
       "supported": [
         "10.0 Galera",
         "10.1 Galera",
@@ -491,7 +491,7 @@
         "1.0"
       ]
     },
-    "versions-dedicated-gen-2": {
+    "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
         "2.0"
@@ -723,7 +723,7 @@
     "versions-dedicated": {
       "supported": ["3.7", "3.8"]
     },
-    "versions-dedicated-gen-2": {
+    "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
         "3.5",
@@ -763,7 +763,7 @@
       "supported": ["5.0","6.0"],
       "deprecated": ["3.2"]
     },
-    "versions-dedicated-gen-2": {
+    "versions-dedicated-gen-3": {
       "deprecated": [
         "2.8",
         "3.0"
@@ -866,7 +866,7 @@
         "8.6"
       ]
     },
-    "versions-dedicated-gen-2": {
+    "versions-dedicated-gen-3": {
       "supported": [
         "6.3",
         "6.6",

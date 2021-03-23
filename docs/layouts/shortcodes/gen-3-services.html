@@ -1,6 +1,6 @@
 <ul>
 {{ range $image, $info := .Site.Data.registry }}
-  {{ if (isset $info "versions-dedicated-gen-2") }}
+  {{ if (isset $info "versions-dedicated-gen-3") }}
     {{ $label := $image | humanize }}
     {{ if (eq $label "Mysql") }}
       {{ $label = "MariaDB/Mysql" }}

@@ -9,9 +9,9 @@ However, it is possible to configure a Varnish instance as part of an applicatio
 
 ## Supported versions
 
-| **Grid** | **Dedicated** | **Dedicated Generation 2** |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
-|  {{< image-versions image="varnish" status="supported" environment="grid" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-2" >}} |
+|  {{< image-versions image="varnish" status="supported" environment="grid" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}} |
 
 ## How it works
 
