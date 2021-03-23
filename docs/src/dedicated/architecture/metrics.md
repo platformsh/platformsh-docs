@@ -51,7 +51,7 @@ You will notice on the per-host dropdown above, a Host ID is listed of the form 
 In the table above, host IDs and SSH addresses in the same row do not necessarily point to the same host, and do not themselves have naming conventions that could easily resolve one to the other. This makes the step between observing a host's metrics and then SSHing into that host to investigate a potential problem require an intermediate step. In this case, it is to simply SSH into a host, and then verify the Host ID after the fact. 
 
 ```bash
-ssh 3.ent-ljj2omdt2mmuk-production-vohbr3y@ssh.eu-3.platform.sh
+$ ssh 3.ent-ljj2omdt2mmuk-production-vohbr3y@ssh.eu-3.platform.sh
 
  ___ _      _    __                    _
 | _ \ |__ _| |_ / _|___ _ _ _ __    __| |_
@@ -98,8 +98,12 @@ RAM measures overall RAM usage (including user, kernel, and buffer groups), disp
 
 ### Disk
 
-Disk represents that amount of persistent disk granted by the plan over all services and mounts, which in this case is 4GB (actually 4096MB). 
+Disk represents that amount of persistent disk granted by the plan over all services and mounts, which for production Dedicated environments is [50GB](/dedicated/architecture/_index.md).
 
 ![Metrics - disk](/images/management-console/metrics/disk.png)
+
+For each host, you will be provided first with disk metrics from the root (`/`) folder. Disk utilization here does not count against the 50GB set aside for your plan, but rather infrastructure disk which can include the `/tmp` directory. It has been included here in the dashboard so that you can keep track of build artifacts you write to `/tmp`, making sure that they do not get too large and fill up.
+
+On the right are two directories specified for the `mysql` service (shown again below) and the `exports` mount. In this case, only 20GB out of the total 50GB have been allocated for the environment, and you can keep track of the defined space here.
 
 ![Metrics - disk](/images/management-console/metrics/disk-single.png "0.4")
