@@ -1,6 +1,6 @@
 ---
 title: "Platform.sh development environments"
-weight: 3
+weight: 2
 sidebarTitle: "Dev environments"
 
 description: |
