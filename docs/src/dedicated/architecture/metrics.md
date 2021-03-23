@@ -48,7 +48,7 @@ You will notice on the per-host dropdown above, a Host ID is listed of the form 
 | `Host i-04d1ac8319`          | `ssh 2.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh`   |
 | `Host i-0b1e1b96cf`          | `ssh 1.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh`   |
 
-In the table above, host IDs and SSH addresses in the same row do not necessarily point to the same host, and do not themselves have naming conventions that could easily resolve one to the other. This makes the step between observing a host's metrics and then SSHing into that host to investigate a potential problem require an intermediate step. In this case, it is to simply SSH into a host, and then verify the Host ID after the fact. 
+In the table above, host IDs and SSH addresses in the same row do not necessarily point to the same host, and do not themselves have naming conventions that could easily resolve one to the other. Observing a host's metrics and then SSHing into that host to investigate a potential problem first requires an intermediate step. In this case, it is to simply SSH into a host, and then verify the Host ID after the fact. 
 
 ```bash
 $ ssh 3.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh
