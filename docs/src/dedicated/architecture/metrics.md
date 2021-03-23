@@ -39,11 +39,43 @@ From the taskbar you can also filter out individual hosts.
 
 ![Metrics - sampling](/images/management-console/metrics/sampling.png "0.4")
 
+{{< note >}}
+You will notice on the per-host dropdown above, a Host ID is listed of the form `Host i-XXXXXXXXX`. If you navigate to the production environment's overview in the management console, however, you will also see that this Host ID does *not* match identifiers used in interacting with a host, such as the SSH dropdown options for each host on that envirnoment.
+
+| Host ID on Metrics page      | SSH connection string on Overview page                              |
+| :--------------------------- | :------------------------------------------------------------------ |
+| `Host i-04353f1e6f`          | `ssh 3.ent01jj2omdt2mmuk-production-vohbr3y@shh.us-4.platform.sh`   |
+| `Host i-04d1ac8319`          | `ssh 2.ent01jj2omdt2mmuk-production-vohbr3y@shh.us-4.platform.sh`   |
+| `Host i-0b1e1b96cf`          | `ssh 1.ent01jj2omdt2mmuk-production-vohbr3y@shh.us-4.platform.sh`   |
+
+In the table above, host IDs and SSH addresses in the same row do not necessarily point to the same host, and do not themselves have naming conventions that could easily resolve one to the other. This makes the step between observing a host's metrics and then SSHing into that host to investigate a potential problem require an intermediate step. In this case, it is to simply SSH into a host, and then verify the Host ID after the fact. 
+
+```bash
+ssh 3.ent-ljj2omdt2mmuk-production-vohbr3y@ssh.eu-3.platform.sh
+
+ ___ _      _    __                    _
+| _ \ |__ _| |_ / _|___ _ _ _ __    __| |_
+|  _/ / _` |  _|  _/ _ \ '_| '  \ _(_-< ' \
+|_| |_\__,_|\__|_| \___/_| |_|_|_(_)__/_||_|
+
+
+ Welcome to Platform.sh.
+
+ This is environment production-vohbr3y of project ljj2omdt2mmuk.
+
+ljj2omdt2mmuk@i-04d1ac8319f6ab9a6:~$ 
+```
+
+Once you have connected to a host over SSH (above snippet) you can see the host identifier (`ljj2omdt2mmuk@i-04d1ac8319f6ab9a6`) contains the hash for `Host i-04d1ac8319` after the `@`, lettting you know that investigating metrics for that host requires you to SSH into host `3`.
+{{< /note >}}
+
 Standard Dedicated environments will have a single cluster of three hosts, with each additional cluster adding at least three additional hosts to the project. Dedicated environments with two clusters have a split architecture, and their metrics are displayed in two separate groups: one for the web hosts that handle web requests and one for the service hosts that handle database, cache, and other services. 
 
 ![Metrics - sampling](/images/management-console/metrics/split-arch.png "0.75")
 
 Each metric will display thresholds on the available resource *after* those resources used by the operating system have been subtracted (except for CPU). The images below have been taken from a single dedicated cluster, and can be an example for illustrating this difference. 
+
+## Example: reading metrics
 
 The reference project shown in the sections below has configured a single Python application, and three services: Elasticsearch, Redis, and MariaDB. It has been granted 4GB of memory and 2 vCPUs per host based on its plan. Persistent disk for each service have been configured as such:
 
@@ -52,19 +84,19 @@ The reference project shown in the sections below has configured a single Python
 * `mysql`: 2048MB
 * `redis`: no disk defined
 
-## CPU
+### CPU
 
 For the project, 2 vCPUs have been allocated per host, and in this case that value is displayed as the upper limit for the CPU metric. 
 
 ![Metrics - CPU](/images/management-console/metrics/cpu.png "0.5")
 
-## RAM
+### RAM
 
 RAM measures overall RAM usage (including user, kernel, and buffer groups), displaying a percentage over the RAM *available* for each host. For this example, each host has been granted 4GB of memory, while the upper limit in the plot below is listed as *3.62GB*. 0.38 GB of memory are in use by the operating system, leaving the remaining 3.62GB available to the host.
 
 ![Metrics - RAM](/images/management-console/metrics/ram.png "0.5")
 
-## Disk
+### Disk
 
 Disk represents that amount of persistent disk granted by the plan over all services and mounts, which in this case is 4GB (actually 4096MB). 
 
