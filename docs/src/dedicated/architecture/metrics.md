@@ -42,16 +42,16 @@ From the taskbar you can also filter out individual hosts.
 {{< note >}}
 You will notice on the per-host dropdown above, a Host ID is listed of the form `Host i-XXXXXXXXX`. If you navigate to the production environment's overview in the management console, however, you will also see that this Host ID does *not* match identifiers used in interacting with a host, such as the SSH dropdown options for each host on that envirnoment.
 
-| Host ID on Metrics page      | SSH connection string on Overview page                              |
-| :--------------------------- | :------------------------------------------------------------------ |
-| `Host i-04353f1e6f`          | `ssh 3.ent01jj2omdt2mmuk-production-vohbr3y@shh.us-4.platform.sh`   |
-| `Host i-04d1ac8319`          | `ssh 2.ent01jj2omdt2mmuk-production-vohbr3y@shh.us-4.platform.sh`   |
-| `Host i-0b1e1b96cf`          | `ssh 1.ent01jj2omdt2mmuk-production-vohbr3y@shh.us-4.platform.sh`   |
+| Host ID on Metrics page      | SSH connection string on Overview page                                |
+| :--------------------------- | :-------------------------------------------------------------------- |
+| `Host i-04353f1e6f`          | `ssh 3.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh`   |
+| `Host i-04d1ac8319`          | `ssh 2.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh`   |
+| `Host i-0b1e1b96cf`          | `ssh 1.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh`   |
 
 In the table above, host IDs and SSH addresses in the same row do not necessarily point to the same host, and do not themselves have naming conventions that could easily resolve one to the other. This makes the step between observing a host's metrics and then SSHing into that host to investigate a potential problem require an intermediate step. In this case, it is to simply SSH into a host, and then verify the Host ID after the fact. 
 
 ```bash
-$ ssh 3.ent-ljj2omdt2mmuk-production-vohbr3y@ssh.eu-3.platform.sh
+$ ssh 3.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh
 
  ___ _      _    __                    _
 | _ \ |__ _| |_ / _|___ _ _ _ __    __| |_
@@ -61,12 +61,12 @@ $ ssh 3.ent-ljj2omdt2mmuk-production-vohbr3y@ssh.eu-3.platform.sh
 
  Welcome to Platform.sh.
 
- This is environment production-vohbr3y of project ljj2omdt2mmuk.
+ This is environment production-qwerty8 of project abcde3clusterID.
 
-ljj2omdt2mmuk@i-04d1ac8319f6ab9a6:~$ 
+abcde3clusterID@i-04d1ac8319f6ab9a6:~$ 
 ```
 
-Once you have connected to a host over SSH (above snippet) you can see the host identifier (`ljj2omdt2mmuk@i-04d1ac8319f6ab9a6`) contains the hash for `Host i-04d1ac8319` after the `@`, lettting you know that investigating metrics for that host requires you to SSH into host `3`.
+Once you have connected to a host over SSH (above snippet) you can see the host identifier (`abcde3clusterID@i-04d1ac8319f6ab9a6`) contains the hash for `Host i-04d1ac8319` after the `@`, lettting you know that investigating metrics for that host requires you to SSH into host `3`.
 {{< /note >}}
 
 Standard Dedicated environments will have a single cluster of three hosts, with each additional cluster adding at least three additional hosts to the project. Dedicated environments with two clusters have a split architecture, and their metrics are displayed in two separate groups: one for the web hosts that handle web requests and one for the service hosts that handle database, cache, and other services. 
