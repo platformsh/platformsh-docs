@@ -95,13 +95,3 @@ Then finally, build the site:
 cd ../docs
 hugo serve
 ```
-
-### GTAM
-
-By default, Google Tag Manager has been disabled, simply because in most cases it will pop up on Hugo Fast Renders too much. 
-
-If you would like to edit or test the "Accept cookies" dialog that appears on the deployed site, you will need to mock the `PLATFORM_PROJECT` environment variable present on Platform.sh environments. It doesn't matter what you set it to, so long as it is some string with a length greater than 0.
-
-```bash
-$ export PLATFORM_PROJECT=anything
-```
