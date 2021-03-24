@@ -23,6 +23,10 @@ Some versions with a minor (such as 8.9) are available but are not receiving sec
 |----------------------------------|---------------|
 |  {{< image-versions image="nodejs" status="deprecated" environment="grid" >}} | {{< image-versions image="nodejs" status="deprecated" environment="dedicated" >}} |
 
+## Build flavor
+
+Node.js images use the `default` build flavor, which will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
+
 ## Support libraries
 
 While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh-config`](https://github.com/platformsh/config-reader-nodejs) NPM library which handles decoding of service credential information for you.
