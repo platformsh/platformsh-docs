@@ -102,7 +102,7 @@ As a general rule, it is better to have an activity script only execute on the s
 
 ## Available APIs
 
-Activity scripts do not support installing additional packages. We provide a series of [utility functions you can reuse](/integrations/activity/utility.md) as well as the following libraries, APIs, and global variables to facilitate building out custom functionality.
+Activity scripts can be written in ES2021 and do not support installing additional packages. We provide a series of [utility functions you can reuse](/integrations/activity/utility.md) as well as the following libraries, APIs, and global variables to facilitate building out custom functionality.
 
 ### `underscore.js`
 
