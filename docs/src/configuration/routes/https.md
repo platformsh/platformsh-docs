@@ -9,6 +9,10 @@ All environments on Platform.sh support both HTTP and HTTPS automatically.  Prod
 
 Let’s Encrypt TLS Certificates are valid for 90 days and Platform.sh will automatically renew them 28 days before expiration to avoid HTTPS interruptions.  If a renewal is available and needed, the environment will automatically redeploy to renew the certificate.  As no new build is required the process should take at most a few seconds. The deploy and post-deploy hook will be run during this process.
 
+{{< note >}}
+Platform.sh provides managed service and runtime containers for your projects - security and system upgrades to those containers are applied automatically by us in the background. Whether or not an upgrade needs to be applied is judged during redeploys, but also during this renewal process. That means that most of the time renewals take a few seconds *unless* upgrades are available for your containers. In those cases, containers will be rebooted and the process will take a little longer. 
+{{< /note >}}
+
 If you are using a custom TLS certificate, seven days before it expires Platform.sh will issue a Let's Encrypt certificate and replace the custom certificate with it in order to avoid interruption in service.  If you wish to continue using the custom certificate, replace it with an updated certificate more than seven days before it expires.
 
 {{< note >}}
