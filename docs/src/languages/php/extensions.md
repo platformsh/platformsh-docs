@@ -122,7 +122,6 @@ This is the complete list of extensions that can be enabled:
 | pdo_pgsql        | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | pdo_sqlite       | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | pdo_sqlsrv       |     |     |     | *   | *   | *   | *   | *   |     |
-| http             |     |     | *   |     |     |     |     | *   |     |
 | pgsql            | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | phar             |     |     |     | *   | *   | *   | *   | *   | *   |
 | pinba            | *   | *   | *   |     |     |     |     |     |     |
