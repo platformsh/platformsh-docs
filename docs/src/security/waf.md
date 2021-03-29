@@ -3,18 +3,38 @@ title: "Web Application Firewall (WAF)"
 weight: 15
 sidebarTitle: "Enterprise WAF"
 description: |
-    Enterprise projects on Platform.sh come with a Web Application Firewall at no additional cost, which monitors requests to your application and blocks suspicious requests according to our ruleset.
+    Enterprise projects on Platform.sh come with a Web Application Firewall (WAF) at no additional cost, which monitors requests to your application and blocks suspicious requests according to our ruleset. WAFs can be an important first line of defense against well-known exploit vectors, and Platform.sh maintains an extensive ruleset for protecting gateway hosts against malicious requests, such as distrubuted denial of service (DDoS) attacks as well as more specific vulnerabilities for particular languages and frameworks.
 tier:
   - Enterprise
+  - Elite
 ---
 
 {{< description >}}
 
-WAFs can be an important first line of defense against well-known exploit vectors, and Platform.sh maintains an extensive ruleset for protecting gateway hosts against malicious requests, such as distrubuted denial of service (DDoS) attacks as well as more specific protections for particular languages and frameworks. The full ruleset is listed in the tables below split by type.
+## HTTP protocol attacks
 
-## General protections
+Platform.sh's Enterprise WAF implements a number of request filtering rules for common security vulnerabilities on the HTTP protocol itself which are implemented either on the Gateway host or the nginx Router service. 
 
-### Protocol enforcement
+### Request smuggling
+
+The [HTTP specification](https://tools.ietf.org/html/rfc2616) allows for two ways to define where a request ends within its header: Content-Length and Transfer-Encoding. Both can be used, but the specification additionally outlines that if both headers are present in a single request, Transfer-Encoding should be used over Content-Length. HTTP request smuggling occurs when
+
+- the front end and back end services vary slightly in deciding when one header should be used over the other and determining the beginning and end of the same requests.
+- a malicious agent is able to determine and exploit the fact that this disagreement exists, sending malicious requests that get parsed with legitimate requests.
+
+When a malicious request header is mistakenly included as part of a legitimate (victim) request to the site instead of two separate requests, potentially circumventing that application's security methods and disclosing sensitive information in the process. 
+
+### Header injection
+
+As a general class of security vulnerabilities, header injections occur when HTTP response headers are generated based on user input. An attacker is able to exploit the vulnerable cycle to include malicious content in an application's response headers to subsequent requests.
+
+### Response splitting
+
+Response splitting is enabled by the presence of header injection vulnerabilities. The standard HTTP request and response cycle results in a single HTTP response returned to a user for each HTTP request they place on the server. An HTTP response splitting attack occurs when an attacker modifies the data included in the HTTP response header. That malicious data can then be returned to a user placing subsequent requests. 
+
+Depending on the characters an attack successfully adds to the response header (such as line feeds and carriage returns), an attacker may be able gain full control over the remaining headers and body of the application's responses. This level of control can give attackers the ability to create and return additional responses to legitimate user requests, hence the name response *splitting*. 
+
+## HTTP protocol enforcement
 
 | sfdg |  sfdg | sfdg  | sfdg  |
 |------|------|------|------|
@@ -27,29 +47,53 @@ WAFs can be an important first line of defense against well-known exploit vector
 |   Restricted HTTP headers   | LOREM | IPSUM | SOMETHING |
 |   Backup/"working" file extension   | LOREM | IPSUM | SOMETHING |
 
-### Protocol attack
-
-| sfdg |  sfdg | sfdg  | sfdg  |
-|------|------|------|------|
-| HTTP request smuggling | LOREM | IPSUM | SOMETHING |
-| HTTP response splitting | LOREM | IPSUM | SOMETHING |
-| HTTP header injection | LOREM | IPSUM | SOMETHING |
-| HTTP splitting | LOREM | IPSUM | SOMETHING |
 
 ## Framework and runtime specific protections
 
+Platform.sh's Enterprise WAF also included several protective rules specific to supported runtimes and commonly deployed frameworks, such as Drupal and Magento.
+
 ### Drupal
 
-| Vector |  Type |  Details | Enterprise WAF rule(s) |
-|------|------|------|------|
-|   [SA-CORE-2018-002](https://www.drupal.org/sa-core-2018-002)   | Remote Code Execution | Also known as Drupalgeddon2, a remote code execution vulnerability was found to exist within multiple subsystems of Drupal 7.x and 8.x, which could be exploited to completely compromise the site. | Suspicious requests are filtered based on parameter validation.  |  
+#### [SA-CORE-2018-002](https://www.drupal.org/sa-core-2018-002)
+
+| Type:  | Remote code execution   |
+|-----|-----|
+| **Details:** |    Also known as Drupalgeddon2, a remote code execution vulnerability was found to exist within multiple subsystems of Drupal 7.x and 8.x, which could be exploited to completely compromise the site.   |
+| **Rule(s):** | Suspicious requests are filtered based on parameter validation.  |
 
 ### Magento
 
-| Vector |  Type |  Details | Enterprise WAF rule(s) |
-|------|------|------|------|
-|  [Magestore extension vulnerability (2019-SQLi)](https://magento.com/security/news/critical-vulnerability-magestore-store-locator-extension)  | SQL injections | A critical vulnerability exists in the Magestore Store Locator extension, versions 1.0.2 and earlier. The exploit results in unauthorized access to sensitive information. | Suspicious requests are filtered by request path, in addition to query and body validation.  |
-|  [PRODSECBUG-2347](https://magento.com/security/patches/magento-2.3.2-2.2.9-and-2.1.18-security-update-13)  | Denial of Service | 	Insufficient brute-forcing defenses in the token exchange protocol between Magento and payment processors could be abused in carding attacks. | Suspicious requests are filtered based on the request path, method, and certain headers. |
-| [PRODSECBUG-2198](https://magento.com/security/patches/magento-2.3.1-2.2.8-and-2.1.17-security-update) | SQL injections | An unauthenticated user can execute arbitrary code through an SQL injection vulnerability, which causes sensitive data leakage.  | Suspicious requests are filtered based on the request path. |
-| [PRODSECBUG-2403](https://magento.com/security/patches/magento-2.3.3-and-2.2.10-security-update) | Remote Code Execution | An unauthenticated user can insert a malicious payload through Page Builder template methods. | Suspicious requests are filtered based on the request path and query parameters. |
-| [PRODSECBUG-2432](https://magento.com/security/security-update-potential-vulnerability-magento-admin-url-location) | 	Information Disclousure | An issue has been discovered in Magento Open Source and Magento Commerce that can be used to disclose the URL location of a Magento Admin panel. While there is currently no reason to believe this issue would lead to compromise directly, knowing the URL location could make it easier to automate attacks. | Suspicious requests are filtered based on parameter validation. |
+#### [Magestore extension vulnerability (2019-SQLi)](https://magento.com/security/news/critical-vulnerability-magestore-store-locator-extension) 
+
+| Type:  | SQL injection  |
+|-----|-----|
+| **Details:** | A critical vulnerability exists in the Magestore Store Locator extension, versions 1.0.2 and earlier. The exploit results in unauthorized access to sensitive information.   |
+| **Rule(s):** | Suspicious requests are filtered by request path, in addition to query and body validation.  |
+
+#### [PRODSECBUG-2347](https://magento.com/security/patches/magento-2.3.2-2.2.9-and-2.1.18-security-update-13)
+
+| Type:  | Denial of Service  |
+|-----|-----|
+| **Details:** | Insufficient brute-forcing defenses in the token exchange protocol between Magento and payment processors could be abused in carding attacks.   |
+| **Rule(s):** | Suspicious requests are filtered based on the request path, method, and certain headers. |
+
+#### [PRODSECBUG-2198](https://magento.com/security/patches/magento-2.3.1-2.2.8-and-2.1.17-security-update)
+
+| Type:  | SQL injection |
+|-----|-----|
+| **Details:** | An unauthenticated user can execute arbitrary code through an SQL injection vulnerability, which causes sensitive data leakage.   |
+| **Rule(s):** | Suspicious requests are filtered based on the request path and query parameters. |
+
+#### [PRODSECBUG-2403](https://magento.com/security/patches/magento-2.3.3-and-2.2.10-security-update)
+
+| Type:  | Remote Code Execution |
+|-----|-----|
+| **Details:** | An unauthenticated user can insert a malicious payload through Page Builder template methods.  |
+| **Rule(s):** | Suspicious requests are filtered based on the request path. |
+
+#### [PRODSECBUG-2432](https://magento.com/security/security-update-potential-vulnerability-magento-admin-url-location)
+
+| Type:  | Information Disclousure  |
+|-----|-----|
+| **Details:** | An issue has been discovered in Magento Open Source and Magento Commerce that can be used to disclose the URL location of a Magento Admin panel. While there is currently no reason to believe this issue would lead to compromise directly, knowing the URL location could make it easier to automate attacks. |
+| **Rule(s):** | Suspicious requests are filtered based on parameter validation. |
