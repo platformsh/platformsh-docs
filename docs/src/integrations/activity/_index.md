@@ -42,13 +42,20 @@ Do not run the `integration:add` command a second time, or it will install a sec
 
 ## Updating
 
-To update an existing activity script, use the `integration:update` command.  You will need the ID Of the integration to update (as above).
+To update an existing activity script, use the `integration:update` command.  You will need the ID of the integration to update (as above).
 
 ```bash
 platform integration:update --file ./my_script.js nadbowmhd67do
 ```
 
 That will update the integration in place, permanently overwriting the previous version.
+
+{{< note >}}
+To test an Activity Script update, a redeployment can be triggered using the CLI:
+```bash
+platform redeploy
+```
+{{</ note >}}
 
 ## Removing
 
@@ -102,7 +109,7 @@ As a general rule, it is better to have an activity script only execute on the s
 
 ## Available APIs
 
-Activity scripts do not support installing additional packages. We provide a series of [utility functions you can reuse](/integrations/activity/utility.md) as well as the following libraries, APIs, and global variables to facilitate building out custom functionality.
+Activity scripts can be written in ES2021 and do not support installing additional packages. We provide a series of [utility functions you can reuse](/integrations/activity/utility.md) as well as the following libraries, APIs, and global variables to facilitate building out custom functionality.
 
 ### `underscore.js`
 
