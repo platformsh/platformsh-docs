@@ -49,3 +49,7 @@ AWS EBS Volumes are encrypted on Platform.sh Dedicated sites are fully encrypted
 ### Azure
 
 By default, data is encrypted using Microsoft Managed Keys for Azure Blobs, Tables, Files and Queues.
+
+## Enterprise WAF
+
+Enterprise projects on Platform.sh come with a Web Application Firewall at no additional cost, which monitors requests to your application and blocks those requests according to our ruleset. See the [Enterprise WAF](/security/waf.md) security documentation for more information.
