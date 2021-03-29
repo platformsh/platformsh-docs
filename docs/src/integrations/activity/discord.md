@@ -20,8 +20,20 @@ Now, any activities that meet the events/environment criteria you specified will
 Once you have it working, you're free to modify the code below as desired.  See the [Discord webhook API reference](https://discord.com/developers/docs/resources/webhook#execute-webhook) for more on the message format.
 
 ```javascript
+function getEnvironmentVariables() {
+  return activity.payload.deployment.variables.reduce(
+    (vars, { name, value }) => ({
+      ...vars,
+      [name]: value,
+    }),
+    {}
+  );
+}
+
+const ENV_VARIABLES = getEnvironmentVariables();
+
 /**
- * Sends a color-coded formatted message to Discord.
+ * Sends a message to Discord.
  *
  * You must first configure a Platform.sh variable named "DISCORD_URL".
  * That is the group and channel to which the message will be sent.
@@ -35,29 +47,28 @@ Once you have it working, you're free to modify the code below as desired.  See 
  *   The message body to send.
  */
 function sendDiscordMessage(title, message) {
-  var url = variables()['DISCORD_URL'];
+  const url = ENV_VARIABLES.DISCORD_URL;
 
   if (!url) {
-    throw new Error('You must define a DISCORD_URL project variable.');
+    throw new Error("You must define a DISCORD_URL project variable.");
   }
 
-  if ((new Date).getDay() === 5) {
-    title += " (On a Friday! :calendar:)";
-  }
+  const messageTitle =
+    title + (new Date().getDay() === 5) ? " (On a Friday! :calendar:)" : "";
 
-  var body = {
-    content: title,
+  const body = {
+    content: messageTitle,
     embeds: [
       {
         description: message,
-      }
-    ]
+      },
+    ],
   };
 
-  var resp = fetch(url, {
-    method: 'POST',
+  const resp = fetch(url, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
   });
@@ -65,15 +76,6 @@ function sendDiscordMessage(title, message) {
   if (!resp.ok) {
     console.log("Sending Discord message failed: " + resp.body.text());
   }
-}
-
-function variables() {
-  var vars = {};
-  activity.payload.deployment.variables.forEach(function(variable) {
-    vars[variable.name] = variable.value;
-  });
-
-  return vars;
 }
 
 sendDiscordMessage(activity.text, activity.log);
