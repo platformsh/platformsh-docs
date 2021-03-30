@@ -139,7 +139,7 @@ Platform.sh's WAF also included several protective rules for vulnerabilities fou
 
 #### [PRODSECBUG-2432](https://magento.com/security/security-update-potential-vulnerability-magento-admin-url-location)
 
-| Type:  | Information Disclousure  |
+| Type:  | Information Disclosure  |
 |-----|-----|
 | **Details:** | An issue has been discovered in Magento Open Source and Magento Commerce that can be used to disclose the URL location of a Magento Admin panel. While there is currently no reason to believe this issue would lead to compromise directly, knowing the URL location could make it easier to automate attacks. |
 | **Rule(s):** | Suspicious requests are filtered based on parameter validation. |
