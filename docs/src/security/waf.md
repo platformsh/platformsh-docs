@@ -1,9 +1,9 @@
 ---
 title: "Web Application Firewall (WAF)"
 weight: 15
-sidebarTitle: "Enterprise WAF"
+sidebarTitle: "WAF"
 description: |
-    Enterprise projects on Platform.sh come with a Web Application Firewall (WAF) at no additional cost, which monitors requests to your application and blocks suspicious requests according to our ruleset. WAFs can be an important first line of defense against well-known exploit vectors, and Platform.sh maintains an extensive ruleset for protecting gateway hosts against malicious requests, such as distrubuted denial of service (DDoS) attacks as well as more specific vulnerabilities for particular languages and frameworks.
+    Enterprise and Elite projects on Platform.sh come with a Web Application Firewall (WAF) at no additional cost, which monitors requests to your application and blocks suspicious requests according to our ruleset. WAFs can be an important first line of defense against well-known exploit vectors, and Platform.sh maintains an extensive ruleset for protecting gateway hosts against malicious requests, such as distrubuted denial of service (DDoS) attacks as well as more specific vulnerabilities for particular languages and frameworks.
 tier:
   - Enterprise
   - Elite
@@ -13,7 +13,7 @@ tier:
 
 ## HTTP protocol attacks
 
-Platform.sh's Enterprise WAF implements a number of request filtering rules for common security vulnerabilities on the HTTP protocol itself which are implemented either on the Gateway host or the nginx Router service. 
+Platform.sh's WAF implements a number of request filtering rules for common security vulnerabilities on the HTTP protocol itself which are implemented either on the Gateway host or the nginx Router service. 
 
 ### Request smuggling
 
@@ -50,7 +50,7 @@ Depending on the characters an attack successfully adds to the response header (
 
 ## Framework and runtime specific protections
 
-Platform.sh's Enterprise WAF also included several protective rules specific to supported runtimes and commonly deployed frameworks, such as Drupal and Magento.
+Platform.sh's WAF also included several protective rules specific to supported runtimes and commonly deployed frameworks, such as Drupal and Magento.
 
 ### Drupal
 
