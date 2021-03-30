@@ -3,7 +3,7 @@ title: "Web Application Firewall (WAF)"
 weight: 15
 sidebarTitle: "WAF"
 description: |
-    Enterprise and Elite projects on Platform.sh come with a Web Application Firewall (WAF) at no additional cost, which monitors requests to your application and blocks suspicious requests according to our ruleset. WAFs can be an important line of defense against well-known exploit vectors, and Platform.sh maintains an extensive ruleset for protecting gateway hosts against malicious requests, such as distrubuted denial of service (DDoS) attacks and other known vulnerabilities in specific languages and frameworks.
+    Enterprise and Elite projects on Platform.sh come with a Web Application Firewall (WAF) at no additional cost, which monitors requests to your application and blocks suspicious requests according to our ruleset. WAFs can be an important line of defense against well-known exploit vectors that can otherwise make an application vulnerable to malicious requests and distributed denial of service (DDoS) attacks.
 tier:
   - Enterprise
   - Elite
@@ -13,66 +13,90 @@ tier:
 
 ## HTTP protocol attacks
 
-Platform.sh's WAF implements a number of request filtering rules for common security vulnerabilities on the HTTP protocol, which are implemented either on the Gateway host or the nginx Router service. 
+Platform.sh's WAF implements a number of request filtering rules for common security vulnerabilities on the HTTP protocol, which are implemented either on the Gateway proxy or the nginx Router service. 
 
 ### Request smuggling
 
 The [HTTP specification](https://tools.ietf.org/html/rfc2616) allows for two ways to define where a request ends within its header: Content-Length and Transfer-Encoding. Both can be used, but the specification additionally outlines that if both headers are present in a single request, Transfer-Encoding should be used over Content-Length. HTTP request smuggling occurs when
 
 - the front end and back end services vary slightly in deciding when one header should be used over the other and determining the beginning and end of the same requests.
-- a malicious agent is able to determine and exploit the fact that this disagreement exists, sending malicious requests that get parsed with legitimate requests.
+- a malicious agent is able to determine and exploit the fact that this disagreement exists, sending malicious requests that get parsed with legitimate requests in unintended ways.
 
-When a malicious request header is mistakenly included as part of a legitimate (victim) request to the site instead of two separate requests, potentially circumventing that application's security methods and disclosing sensitive information in the process. The malicious request usually attempts to exploit end of message disagreement by including CRLF (carriage return and line feed) characters in the request header, which would typically be used to parse individual requests. 
+When a malicious request header is mistakenly included as part of a legitimate (victim) request to the site instead of two separate requests, it could circumvent that application's security methods and disclose sensitive information in the process. The malicious request usually attempts to exploit this end of message disagreement by including CRLF (carriage return and line feed) characters in the request header, which would typically be used to parse individual requests.
 
-#### Protection rules
-
+{{< note title="Protection rules">}}
 The WAF monitors for requests that include a CRLF character or the word `http/\d`, in combination with an `HTTP` or `WEBDAV` method name, since the presence of these features indicate an attempt to inject a second request.
+{{< /note >}}
 
 ### Header injection
 
 As a general class of security vulnerabilities, header injections occur when HTTP response headers are generated based on user input. An attacker is able to exploit the vulnerable cycle to include malicious content in an application's response headers to subsequent requests.
 
-#### Protection rules
+{{< note title="Protection rules">}}
+The WAF monitors for header injection attempts that can occur via the payload and the header itself. Requests are blocked for those that contain the carriage return (CR; `%0d`) and line feed (LF; `%0a`) characters so that data is not returned in a response header and interpreted by the client, similar to the [response splitting](/security/waf.html#protection-rules-2) and [request smuggling](/security/waf.html#protection-rules) protection rules. 
 
-The WAF monitors for requests that include the carriage return (CR; `%0d`) and line feed (LF; `%0a`) characters so that data is not returned in a response header and interpreted by the client, similar to the [response splitting](/security/waf.html#protection-rules-2) and [request smuggling](/security/waf.html#protection-rules) protection rules. 
+It will also monitor and detect newline characters in `GET` request argument values. 
+{{< /note >}}
 
 ### Response splitting
 
 Response splitting is enabled by the presence of header injection vulnerabilities. The standard HTTP request and response cycle results in a single HTTP response returned to a user for each HTTP request they place on the server. An HTTP response splitting attack occurs when an attacker modifies the data included in the HTTP response header. That malicious data can then be returned to a user placing subsequent requests. 
 
-Depending on the characters an attack successfully adds to the response header (such as line feeds and carriage returns), an attacker may be able gain full control over the remaining headers and body of the application's responses. This level of control can give attackers the ability to create and return additional responses to legitimate user requests, hence the name response *splitting*. 
+Depending on the characters added to the response header (such as line feeds and carriage returns), an attacker can create and return additional responses to legitimate user requests, hence the name response *splitting*. 
 
-#### Protection rules
-
+{{< note title="Protection rules">}}
 The WAF monitors for requests that include the carriage return (CR; `%0d`) and line feed (LF; `%0a`) characters. The presence of these characters indicate an attempt to inject data in the response header and potentially force intermediate proxy servers to treat the message as two separate responses. 
+{{< /note >}}
 
 ### HTTP Splitting
 
-[Need some help with intro description here. Seems like much of the above, only specific to filename POSTs. Or Rewrites, but that seems specific to Apache/PHP?]
+[Need some help with intro description here. Seems like much of the above, only specific to filename POSTs. Or Rewrites, but that seems specific to Apache/PHP? Not really sure.]
 
-#### Protection rules
-
+{{< note title="Protection rules">}}
 The WAF monitors for requests that include `\n` or `\r` characters in the `REQUEST_FILENAME` rewrite variable.
+{{< /note >}}
 
 ## HTTP protocol enforcement
 
 On top of the above ruleset, the Platform.sh WAF implements a number of additional rules intended to enforce the HTTP protocol. 
 
-| sfdg |  sfdg | sfdg  | sfdg  |
-|------|------|------|------|
-|   HTTP Request Line Format Enforcement   | LOREM | IPSUM | SOMETHING |
-|   GET or HEAD requests without Body are not allowed   | LOREM | IPSUM | SOMETHING |
-|   Disallow Content-Length and Transfer-Encoding Headers together   | LOREM | IPSUM | SOMETHING |
-|   Missing/Empty Host Headers  | LOREM | IPSUM | SOMETHING |
-|   File upload limit  | LOREM | IPSUM | SOMETHING |
-|   File extension restriction   | LOREM | IPSUM | SOMETHING |
-|   Restricted HTTP headers   | LOREM | IPSUM | SOMETHING |
-|   Backup/"working" file extension   | LOREM | IPSUM | SOMETHING |
+- **HTTP Request Line Format Enforcement**
 
+    Request lines are validated against the HTTP RFC specification using rule negation with regex, which specifies the proper construction of URI request lines (such as `"http:" "//" host [":" port] [ abs_path ["?" query]]`). The Gateway proxy terminates the incoming connection and then reconstructs requests on the internal network, enforcing the valid format in transit.
 
-## Framework and runtime specific protections
+- **GET or HEAD requests with a body are not allowed**
 
-Platform.sh's WAF also included several protective rules specific to runtimes and commonly deployed frameworks, such as Drupal and Magento.
+    The protocol allows for `GET` requests to have a body - while this is rarely used, attackers could try to force a request body on unsuspecting applications. When the Gateway proxy detects a `GET` request, it will check for the existence of the `Content-Length` and `Transfer-Encoding` headers. If either exist and the payload is either not 0 or not empty, then all body-related headers are stripped from those requests and then passed through otherwise unaltered. 
+
+- **Disallow Content-Length and Transfer-Encoding Headers together**
+
+    Requests [must not contain](https://tools.ietf.org/html/rfc7230#section-3.3.2) both a `Content-Length` and `Transfer-Encoding` header, as the presence of leaves applications vulnerable to [request smuggling](#request-smuggling). The WAF forces requests to use chunked transfer-encoding only on the internal network. 
+
+- **Missing/Empty Host Headers**
+
+    The Gateway proxy implements route mapping based on host names. Because of this, requests are not relayed that do either do not include the host header, or if that header exists but is empty. 
+
+- **File upload limit**
+
+    File upload limits are enforced by the Gateway proxy, but are configured by the application's configuration in `.platform.app.yaml` using the `max_requst_size` attribute in [`web.locations`](/configuration/app/web.md#locations).
+
+    [Do we set some default here if not set? Some default limit on multipart/form-data related to https://docs.platform.sh/development/troubleshoot.html#large-file-upload-failing-10mb-limit?]
+
+- **File extension restriction**
+
+    File extensions are restricted by the Gateway proxy, but are configured by the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or path beneath it, can be configured to allow only certain file extensions by definiing [rules](/configuration/app/web.md#rules) for them using regular expressions.
+
+- **Restricted HTTP headers**
+
+    The use of certain headers is restricted by the nginx Router service. The following headers are disallowed: `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`.
+
+- **Backup/"working" file extension**
+
+    Enforced by the WAF and configured by the user under [`web.locations`](/configuration/app/web.md#locations) using the `scripts` attribute where it can be disabled. [Regular expressions](/configuration/app/web.md#rules) can also be created to catch unwanted requests to script extensions.
+
+## Framework specific protections
+
+Platform.sh's WAF also included several protective rules for vulnerabilities found in commonly deployed frameworks, such as Drupal and Magento.
 
 ### Drupal
 
