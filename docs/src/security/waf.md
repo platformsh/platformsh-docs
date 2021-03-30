@@ -84,7 +84,7 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
 - **File extension restriction**
 
-    File extensions are restricted by the Gateway proxy, but are configured by the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or path beneath it, can be configured to allow only certain file extensions by definiing [rules](/configuration/app/web.md#rules) for them using regular expressions.
+    File extensions are restricted by the Gateway proxy, but are configured by the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or path beneath it, can be configured to allow only certain file extensions by defining [rules](/configuration/app/web.md#rules) for them using regular expressions.
 
 - **Restricted HTTP headers**
 
@@ -96,7 +96,7 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
 ## Framework specific protections
 
-Platform.sh's WAF also included several protective rules for vulnerabilities found in commonly deployed frameworks, such as Drupal and Magento.
+Platform.sh's WAF also includes several protective rules for vulnerabilities found in commonly deployed frameworks, such as Drupal and Magento.
 
 ### Drupal
 
