@@ -80,8 +80,6 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
     File upload limits are enforced by the Gateway proxy, but are configured by the application's configuration in `.platform.app.yaml` using the `max_requst_size` attribute in [`web.locations`](/configuration/app/web.md#locations).
 
-    [Do we set some default here if not set? Some default limit on multipart/form-data related to https://docs.platform.sh/development/troubleshoot.html#large-file-upload-failing-10mb-limit?]
-
 - **File extension restriction**
 
     File extensions are restricted by the Gateway proxy, but are configured by the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or path beneath it, can be configured to allow only certain file extensions by defining [rules](/configuration/app/web.md#rules) for them using regular expressions.
