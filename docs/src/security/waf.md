@@ -78,7 +78,7 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
 - **File upload limit**
 
-    File upload limits are enforced by the Gateway proxy, but are configured by the application's configuration in `.platform.app.yaml` using the `max_requst_size` attribute in [`web.locations`](/configuration/app/web.md#locations).
+    File upload limits are enforced by the Gateway proxy, but are configured by the application's configuration in `.platform.app.yaml` using the `max_requst_size` attribute in [`web.locations`](/configuration/app/web.md#locations). Note that this limit is set by default at 250MB if not set to something different. 
 
 - **File extension restriction**
 
@@ -91,6 +91,11 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 - **Backup/"working" file extension**
 
     Enforced by the WAF and configured by the user under [`web.locations`](/configuration/app/web.md#locations) using the `scripts` attribute where it can be disabled. [Regular expressions](/configuration/app/web.md#rules) can also be created to catch unwanted requests to script extensions.
+
+- **Slowloris DoS attacks** 
+
+    The Slowloris denial of service attack exploits partial HTTP requests, consuming large amounts of bandwidth by continuing to keep those connections open for as long as possible. Apache web servers are vulnerable to Slowloris attacks, but for nginx this is not the case. Since Platform.sh Router services use nginx processes, projects are protected against this kind of an attack. 
+
 
 ## Framework specific protections
 
