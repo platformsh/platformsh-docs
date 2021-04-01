@@ -102,19 +102,19 @@ Inbound IPs (gw.fr-1.platformsh.site):
 * 90.84.46.222
 * 90.84.46.40
 
-### France 2 (ovh-fr-2.platform.sh)
+### France 3 (fr-3.platform.sh)
 
 Outbound IPs:
 
-* 51.178.62.146
-* 51.210.127.240
-* 51.178.56.77
+* 135.125.91.125
+* 135.125.89.47
+* 135.125.90.255
 
-Inbound IPs (gw.ovh-fr-2.platformsh.site):
+Inbound IPs (gw.fr-2.platformsh.site):
 
-* 51.178.62.146
-* 51.210.127.240
-* 51.178.56.77
+* 135.125.91.125
+* 135.125.89.47
+* 135.125.90.255
 
 ### United Kingdom 1 (uk-1.platform.sh) (Data Location Guarantee)
 
