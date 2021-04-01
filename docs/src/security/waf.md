@@ -48,14 +48,6 @@ Depending on the characters added to the response header (such as line feeds and
 The WAF monitors for requests that include the carriage return (CR; `%0d`) and line feed (LF; `%0a`) characters. The presence of these characters indicate an attempt to inject data in the response header and potentially force intermediate proxy servers to treat the message as two separate responses. 
 {{< /note >}}
 
-### HTTP Splitting
-
-[Need some help with intro description here. Seems like much of the above, only specific to filename POSTs. Or Rewrites, but that seems specific to Apache/PHP? Not really sure.]
-
-{{< note title="Protection rules">}}
-The WAF monitors for requests that include `\n` or `\r` characters in the `REQUEST_FILENAME` rewrite variable.
-{{< /note >}}
-
 ## HTTP protocol enforcement
 
 On top of the above ruleset, the Platform.sh WAF implements a number of additional rules intended to enforce the HTTP protocol. 
@@ -95,7 +87,6 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 - **Slowloris DoS attacks** 
 
     The Slowloris denial of service attack exploits partial HTTP requests, consuming large amounts of bandwidth by continuing to keep those connections open for as long as possible. Apache web servers are vulnerable to Slowloris attacks, but for nginx this is not the case. Since Platform.sh Router services use nginx processes, projects are protected against this kind of an attack. 
-
 
 ## Framework specific protections
 
