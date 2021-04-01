@@ -13,7 +13,7 @@ tier:
 
 ## HTTP protocol attacks
 
-Platform.sh's WAF implements a number of request filtering rules for common security vulnerabilities on the HTTP protocol, which are implemented either on the Gateway proxy or the nginx Router service. 
+Platform.sh's WAF implements a number of request filtering rules for common security vulnerabilities on the HTTP protocol. 
 
 ### Request smuggling
 
@@ -54,11 +54,11 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
 - **HTTP Request Line Format Enforcement**
 
-    Request lines are validated against the HTTP RFC specification using rule negation with regex, which specifies the proper construction of URI request lines (such as `"http:" "//" host [":" port] [ abs_path ["?" query]]`). The Gateway proxy terminates the incoming connection and then reconstructs requests on the internal network, enforcing the valid format in transit.
+    Request lines are validated against the HTTP RFC specification using rule negation with regex, which specifies the proper construction of URI request lines (such as `"http:" "//" host [":" port] [ abs_path ["?" query]]`). The incoming connection is terminated, and then the request reconstructed on the internal network, enforcing the valid format in transit.
 
 - **GET or HEAD requests with a body are not allowed**
 
-    The protocol allows for `GET` requests to have a body - while this is rarely used, attackers could try to force a request body on unsuspecting applications. When the Gateway proxy detects a `GET` request, it will check for the existence of the `Content-Length` and `Transfer-Encoding` headers. If either exist and the payload is either not 0 or not empty, then all body-related headers are stripped from those requests and then passed through otherwise unaltered. 
+    The protocol allows for `GET` requests to have a body - while this is rarely used, attackers could try to force a request body on unsuspecting applications. When a `GET` request is detected, the WAF will check for the existence of the `Content-Length` and `Transfer-Encoding` headers. If either exist and the payload is either not 0 or not empty, then all body-related headers are stripped from those requests and then passed through otherwise unaltered. 
 
 - **Disallow Content-Length and Transfer-Encoding Headers together**
 
@@ -66,19 +66,19 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
 - **Missing/Empty Host Headers**
 
-    The Gateway proxy implements route mapping based on host names. Because of this, requests are not relayed that do either do not include the host header, or if that header exists but is empty. 
+    Route mapping is implemented based on host names. Because of this, requests are not relayed that do either do not include the host header, or if that header exists but is empty. 
 
 - **File upload limit**
 
-    File upload limits are enforced by the Gateway proxy, but are configured by the application's configuration in `.platform.app.yaml` using the `max_requst_size` attribute in [`web.locations`](/configuration/app/web.md#locations). Note that this limit is set by default at 250MB if not set to something different. 
+    File upload limits are enforced, but are configured by the application's configuration in `.platform.app.yaml` using the `max_requst_size` attribute in [`web.locations`](/configuration/app/web.md#locations). Note that this limit is set by default at 250MB if not set to something different. 
 
 - **File extension restriction**
 
-    File extensions are restricted by the Gateway proxy, but are configured by the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or path beneath it, can be configured to allow only certain file extensions by defining [rules](/configuration/app/web.md#rules) for them using regular expressions.
+    File extensions are restricted according to the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or path beneath it, can be configured to allow only certain file extensions by defining [rules](/configuration/app/web.md#rules) for them using regular expressions.
 
 - **Restricted HTTP headers**
 
-    The use of certain headers is restricted by the nginx Router service. The following headers are disallowed: `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`.
+    The following headers are disallowed: `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`.
 
 - **Backup/"working" file extension**
 

@@ -43,7 +43,7 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 
 When trying to upload a large JSON file to your API you might see a 400 response code (`Malformed request`).
 
-Platform.sh enforces a 10MB limit on sending files with the `application/json` Content-Type header. If you want to send large files through, you will have to send them instead with `multipart/form-data`
+Platform.sh enforces a 10MB limit on sending files with the `application/json` Content-Type header. If you want to send large files through, you will have to send them with `multipart/form-data` instead:
 
 ```bash
 $ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' -F file=large_file.json
