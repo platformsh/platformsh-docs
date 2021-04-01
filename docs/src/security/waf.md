@@ -17,7 +17,7 @@ Platform.sh's WAF implements a number of request filtering rules for common secu
 
 ### Request smuggling
 
-The [HTTP specification](https://tools.ietf.org/html/rfc2616) allows for two ways to define where a request ends within its header: Content-Length and Transfer-Encoding. Both can be used, but the specification additionally outlines that if both headers are present in a single request, Transfer-Encoding should be used over Content-Length. HTTP request smuggling occurs when
+The [HTTP specification](https://tools.ietf.org/html/rfc2616) allows for two ways to define where a request ends within its header: `Content-Length` and `Transfer-Encoding`. Both can be used, but the specification additionally outlines that if both headers are present in a single request, `Transfer-Encoding` should be used over `Content-Length`. HTTP request smuggling occurs when
 
 - the front end and back end services vary slightly in deciding when one header should be used over the other and determining the beginning and end of the same requests.
 - a malicious agent is able to determine and exploit the fact that this disagreement exists, sending malicious requests that get parsed with legitimate requests in unintended ways.
