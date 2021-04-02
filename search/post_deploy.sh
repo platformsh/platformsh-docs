@@ -33,8 +33,42 @@ scrape(){
     done
 }
 
+# When we upgrade Meilisearch to a new version, the old database becomes incompatible and search fails to deploy. 
+# This function is run before the index is updated. It compares the "live" version @ /version and compares to the 
+#   current database version kept in the `data.ms/VERSION` text file. If not equal, the index is deleted prior to updating
+#   the index. 
+deleteIndexPreMeilisearchUpgrade() {
+
+    # Local
+    if [ -z ${PLATFORM_PROJECT_ENTROPY+x} ]; then 
+        MEILI_URL=http://127.0.0.1:7700
+        MEILIVERSION_LIVE=$(curl -s -H "X-Meili-API-Key: $MEILI_MASTER_KEY" -X GET "$MEILI_URL/version" | jq -r ".pkgVersion" )
+        MEILIVERSION_DB=$(cat data.ms/VERSION)
+        echo "  > Live Meilisearch version: $MEILIVERSION_LIVE"
+        echo "  > Current database version: $MEILIVERSION_DB"
+        if [ "$MEILIVERSION_LIVE" != "$MEILIVERSION_DB" ]; then
+            echo "  > Meilisearch upgraded. Deleting old index."
+            rm -rf data.ms/*
+        fi
+    # Platform.sh
+    else
+        MEILI_URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.id == "search") | .key')
+        MEILIVERSION_LIVE=$(curl -s -H "X-Meili-API-Key: $PLATFORM_PROJECT_ENTROPY" -X GET "$MEILI_URL/version" | jq -r ".pkgVersion" )
+        MEILIVERSION_DB=$(cat data.ms/VERSION)
+        echo "  > Live Meilisearch version: $MEILIVERSION_LIVE"
+        echo "  > Current database version: $MEILIVERSION_DB"
+        if [ "$MEILIVERSION_LIVE" != "$MEILIVERSION_DB" ]; then
+            echo "Meilisearch was upgraded. Deleting old index."
+            rm -rf data.ms/*
+        fi
+    fi
+
+}
+
 update_index(){
     echo "* UPDATING INDEX"
+    # Delete data if there is a Meilisearch upgrade.
+    deleteIndexPreMeilisearchUpgrade
     # Create indices for templates and docs
     poetry run python createPrimaryIndex.py
     # Update indexes
