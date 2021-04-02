@@ -6,7 +6,7 @@ variables:
     env:
         # Do not update meilisearch version without having a plan to
         # delete the .mdb files in data.ms/ on the mounts as well.
-        MEILISEARCH_VERSION: '0.19.0'
+        MEILISEARCH_VERSION: '0.20.0'
         POETRY_VERSION: '1.1.4'
         POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VIRTUALENVS_CREATE: false
