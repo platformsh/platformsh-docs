@@ -53,8 +53,8 @@ deleteIndexPreMeilisearchUpgrade() {
     # Platform.sh
     else
         MEILI_URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.id == "search") | .key')
-        MEILI_URL_STRIPPED=${MEILI_URL::-1}
-        MEILIVERSION_LIVE=$(curl -s -H "X-Meili-API-Key: $PLATFORM_PROJECT_ENTROPY" -X GET "$MEILI_URL_STRIPPED/version" | jq -r ".pkgVersion" )
+        ENDPOINT=version
+        MEILIVERSION_LIVE=$(curl -s -H "X-Meili-API-Key: $PLATFORM_PROJECT_ENTROPY" -X GET "$MEILI_URL$ENDPOINT" | jq -r ".pkgVersion" )
         MEILIVERSION_DB=$(cat data.ms/VERSION)
         echo "  > Live Meilisearch version: $MEILIVERSION_LIVE"
         echo "  > Current database version: $MEILIVERSION_DB"
