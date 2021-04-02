@@ -26,8 +26,8 @@
     "pshregistry-parser": "^1.2.0"
   },
   "dependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
     "async": "^3.1.0",
     "babelify": "^10.0.0",
     "bl": "^2.2.1",
@@ -41,6 +41,7 @@
     "gulp-uglify": "^3.0.2",
     "imagemin-jpeg-recompress": "^6.0.0",
     "imagemin-pngquant": "^8.0.0",
+    "is-svg": "^4.3.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "vinyl-buffer": "^1.0.1",

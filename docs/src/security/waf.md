@@ -1,9 +1,9 @@
 ---
-title: "Web Application Firewall (WAF)"
+title: "Web application firewall (WAF)"
 weight: 15
 sidebarTitle: "WAF"
 description: |
-    Enterprise and Elite projects on Platform.sh come with a Web Application Firewall (WAF) at no additional cost, which monitors requests to your application and blocks suspicious requests according to our ruleset. WAFs can be an important line of defense against well-known exploit vectors that can otherwise make an application vulnerable to malicious requests and distributed denial of service (DDoS) attacks.
+    Enterprise and Elite projects on Platform.sh come with a Web application firewall (WAF) at no additional cost, which monitors requests to your application and blocks suspicious requests according to our ruleset. WAFs can be an important line of defense against well-known exploit vectors that can otherwise make an application vulnerable to malicious requests and distributed denial of service (DDoS) attacks.
 tier:
   - Enterprise
   - Elite
@@ -33,7 +33,7 @@ The WAF monitors for requests that include a CRLF character or the word `http/\d
 As a general class of security vulnerabilities, header injections occur when HTTP response headers are generated based on user input. An attacker is able to exploit the vulnerable cycle to include malicious content in an application's response headers to subsequent requests.
 
 {{< note title="Protection rules">}}
-The WAF monitors for header injection attempts that can occur via the payload and the header itself. Requests are blocked for those that contain the carriage return (CR; `%0d`) and line feed (LF; `%0a`) characters so that data is not returned in a response header and interpreted by the client, similar to the [response splitting](/security/waf.html#protection-rules-2) and [request smuggling](/security/waf.html#protection-rules) protection rules. 
+The WAF monitors for header injection attempts that can occur via the payload and the header itself. Requests are blocked for those that contain the carriage return (CR; `%0d`) and line feed (LF; `%0a`) characters so that data is not returned in a response header and interpreted by the client, similar to the [response splitting](/security/waf.html#response-splitting) and [request smuggling](/security/waf.html#request-smuggling) protection rules. 
 
 It will also monitor and detect newline characters in `GET` request argument values. 
 {{< /note >}}
@@ -74,7 +74,7 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
 - **File extension restriction**
 
-    File extensions are restricted according to the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or path beneath it, can be configured to allow only certain file extensions by defining [rules](/configuration/app/web.md#rules) for them using regular expressions.
+    File extensions are restricted according to the application's configuration in `.platform.app.yaml` in `web.locations`. The root path, or a path beneath it, can be configured to allow only certain file extensions by defining [rules](/configuration/app/web.md#rules) for them using regular expressions.
 
 - **Restricted HTTP headers**
 

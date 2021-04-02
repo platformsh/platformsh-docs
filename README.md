@@ -69,6 +69,7 @@ npm install
 npm run dev
 npm run build-searchapp
 hugo
+./deploy.sh
 ```
 
 > **Note:**
