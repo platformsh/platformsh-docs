@@ -1,3 +1,6 @@
 data.ms
 meilisearch
 config/config.json
+data
+docs/__pycache__
+docs/spiders/__pycache__

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cleanup(){
-    echo "* CLEANING UP MOUNTS"
+    echo "* CLEANING UP OLD DATA"
     # Clean up output mounts.
     OUTPUT_DIR=output
     rm -f $OUTPUT_DIR/*.json
@@ -21,7 +21,7 @@ getDocsData() {
 }
 
 scrape(){
-    echo "* SCRAPING SITES"
+    echo "* SCRAPING EXTERNAL SITES"
     # Scrape all indexes defined in config/scrape.json
     DATA=scrape.json
     for i in $(jq '.indexes | keys | .[]' $DATA); do
@@ -43,10 +43,15 @@ update_index(){
 
 set -e
 
-# Source the Poetry command.
-. $PLATFORM_APP_DIR/.poetry/env
-
 cleanup 
-getDocsData
+
+if [ -z ${PLATFORM_APP_DIR+x} ]; then 
+    echo "Using local poetry."
+else 
+    # Source the Poetry command.
+    . $PLATFORM_APP_DIR/.poetry/env
+    getDocsData
+fi
+
 scrape 
 update_index
