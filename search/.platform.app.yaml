@@ -22,7 +22,6 @@ hooks:
 web:
     commands:
       # Run the Meilisearch server
-    #   start: "./meilisearch --http-addr localhost:${PORT} --master-key $PLATFORM_PROJECT_ENTROPY"
       start: !include 
             type: string
             path: start.sh

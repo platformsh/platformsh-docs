@@ -6,10 +6,10 @@
 #   the index. 
 deleteIndexPreMeilisearchUpgrade() {
     MEILIVERSION_DB=$(cat data.ms/VERSION)
-    echo "  > Live Meilisearch version: $MEILIVERSION_LIVE"
+    echo "  > Downloaded version: $MEILISEARCH_VERSION"
     echo "  > Current database version: $MEILIVERSION_DB"
-    if [ "$MEILIVERSION_LIVE" != "$MEILIVERSION_DB" ]; then
-        echo "Meilisearch was upgraded. Deleting old index before start."
+    if [ "$MEILISEARCH_VERSION" != "$MEILIVERSION_DB" ]; then
+        echo "  > Meilisearch was upgraded. Deleting old index before start."
         rm -rf data.ms/*
     fi
 }
