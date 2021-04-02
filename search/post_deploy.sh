@@ -55,6 +55,7 @@ deleteIndexPreMeilisearchUpgrade() {
         MEILI_URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.id == "search") | .key')
         ENDPOINT=version
         MEILIVERSION_LIVE=$(curl -s -H "X-Meili-API-Key: $PLATFORM_PROJECT_ENTROPY" -X GET "$MEILI_URL$ENDPOINT" | jq -r ".pkgVersion" )
+        MEILIVERSION_CONFIG=
         MEILIVERSION_DB=$(cat data.ms/VERSION)
         echo "  > Live Meilisearch version: $MEILIVERSION_LIVE"
         echo "  > Current database version: $MEILIVERSION_DB"
@@ -69,7 +70,7 @@ deleteIndexPreMeilisearchUpgrade() {
 update_index(){
     echo "* UPDATING INDEX"
     # Delete data if there is a Meilisearch upgrade.
-    deleteIndexPreMeilisearchUpgrade
+    # deleteIndexPreMeilisearchUpgrade
     # Create indices for templates and docs
     poetry run python createPrimaryIndex.py
     # Update indexes
