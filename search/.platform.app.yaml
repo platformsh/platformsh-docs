@@ -1,6 +1,6 @@
 name: 'search'
 
-type: 'python:3.8'
+type: 'python:3.9'
 
 variables:
     env:
