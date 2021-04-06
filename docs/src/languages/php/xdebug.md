@@ -16,6 +16,8 @@ Enable Xdebug by adding the following configuration to the application's `.platf
 
 ```yaml
 runtime:
+    extensions:
+        - xdebug
     xdebug:
         idekey: PHPSTORM
 ```
