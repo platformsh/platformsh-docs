@@ -88,7 +88,7 @@ It is good practice to take a backup of your environment before performing a syn
 
 #### Backup
 
-Creating a backup for an environment means saving a copy of the database so that it can be restored. You will see the backup in the activity feed of you environment in the Platform.sh management console where you can trigger the restore by clicking on the `restore` link.
+Creating a backup for an environment means saving a copy of the environment so that it can be restored. You will see the backup in the activity feed of you environment in the Platform.sh management console where you can trigger the restore by clicking on the `restore` link. For more information please refer [here](/administration/backup-and-restore.md).
 
 After clicking `Backup` a dialog box will appear that will provide commands to execute future merges from the command line using the Platform.sh CLI.
 
