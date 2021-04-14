@@ -42,7 +42,7 @@ Outbound IPs:
 * 52.214.63.84
 * 52.30.200.164
 
-Inbound IPs (gw.eu-2.platformsh.site):
+Inbound IPs (gw.eu-3.platformsh.site):
 
 * 34.248.104.12
 * 34.241.191.143
