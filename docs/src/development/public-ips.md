@@ -110,11 +110,9 @@ Outbound IPs:
 * 135.125.89.47
 * 135.125.90.255
 
-Inbound IPs (gw.fr-2.platformsh.site):
+Inbound IPs (gw.fr-3.platformsh.site):
 
-* 135.125.91.125
-* 135.125.89.47
-* 135.125.90.255
+* 94.23.123.122
 
 ### United Kingdom 1 (uk-1.platform.sh) (Data Location Guarantee)
 
