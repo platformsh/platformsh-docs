@@ -412,7 +412,6 @@
     },
     "versions-dedicated-gen-3": {
       "supported": [
-        "10.0 Galera",
         "10.1 Galera",
         "10.2 Galera",
         "10.3 Galera",
@@ -868,7 +867,6 @@
     },
     "versions-dedicated-gen-3": {
       "supported": [
-        "6.3",
         "6.6",
         "8.6"
       ]
