@@ -347,7 +347,7 @@
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
-    "name": "MariaDB",
+    "name": "MariaDB/MySQL",
     "runtime": false,
     "type": "mariadb",
     "versions": {
@@ -385,7 +385,7 @@
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
-    "name": "MariaDB",
+    "name": "MariaDB/MySQL",
     "runtime": false,
     "type": "mysql",
     "versions": {

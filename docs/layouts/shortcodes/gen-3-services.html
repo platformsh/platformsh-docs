@@ -1,11 +1,26 @@
-<ul>
-{{ range $image, $info := .Site.Data.registry }}
-  {{ if (isset $info "versions-dedicated-gen-3") }}
-    {{ $label := $image | humanize }}
-    {{ if (eq $label "Mysql") }}
-      {{ $label = "MariaDB/Mysql" }}
-    {{ end }}
-    <li><a href="/configuration/services/{{ $image }}.html">{{ $label }}</a></li>
-  {{ end }}
-{{ end }}
-</ul>
+<table>
+  <tr>
+    <th>Service</th>
+    <th>Supported versions</th>
+  </tr>
+  {{- range $image, $info := .Site.Data.registry -}}
+    {{- if (isset $info "versions-dedicated-gen-3") -}}
+      {{- $label :=  index $info "name" -}}
+      {{- $versions := index ( index $info "versions-dedicated-gen-3") "supported" -}}
+      <tr>
+        <td><a href="/configuration/services/{{ $image }}.html">{{ $label }}</a></td>
+        <td>
+          {{- $service_versions := "" -}}
+          {{- range $versions -}}
+            {{- if eq ( len $service_versions ) 0 -}}
+              {{- $service_versions = printf "%s%s" $service_versions . -}}
+            {{- else -}}
+              {{- $service_versions = printf "%s, %s" $service_versions . -}}
+            {{- end -}}
+          {{- end -}}
+          {{ $service_versions }}
+        </td>                                                                                                                                                                                                                                                                                                                                                                          </td>
+      </tr>
+    {{- end -}}
+  {{- end -}}
+</table>

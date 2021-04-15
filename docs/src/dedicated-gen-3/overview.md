@@ -3,15 +3,21 @@ title: "Dedicated Generation 3"
 weight: 1
 sidebarTitle: "Overview"
 layout: single
+description: |
+    Dedicated Generation 3 provides a scalable solution as an additional option on top of your existing Grid applications.
+    It provides redundant configuration with a minimum of three Virtual Machine instances. 
 ---
 
-Dedicated Generation 3 provides a scalable solution as an additional option on top of your existing Grid applications.
-It provides redundant configuration with a minimum of three Virtual Machine instances. Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the VMs is lost entirely.
+{{< description >}}
+
+Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the VMs is lost entirely.
 Dedicated Generation 3 works nearly identically to Grid environments, and does not require additional configuration on your part. The only difference is that of service availability.
 
 ## Why a Generation 3?
 
-Our existing [dedicated infrastructure](/dedicated/overview) ensures increased uptime and availability for your applications and services, configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 3 gives you both the high availability from our Dedicated offer and the self-service flexibility and features of the Grid. This means that you will now be able to edit your configuration yourself – as you would do on the Grid in your `.platform/services.yaml` and `.platform.app.yaml` files – and see those changes in your Dedicated Generation 3 environments when pushed without having to open a ticket.
+Our existing [dedicated infrastructure](/dedicated/overview) ensures increased uptime and availability for your applications and services, but configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 3 gives you both the high availability from our Dedicated offer combined with the self-service flexibility and features of the Grid. 
+
+This means that you are able to edit your configuration yourself the same as you would on the grid - in your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files - and then see those changes reflected in your Dedicated Generation 3 environments every push without opening a ticket. 
 
 ## Features
 
@@ -20,16 +26,19 @@ Our existing [dedicated infrastructure](/dedicated/overview) ensures increased u
 * Backups on Production do not freeze in the process.
 * You can deploy your application in any of our [supported cloud providers](/development/faq.md#which-geographic-zones-does-platformsh-cover).
 
-## Discrepancies with the Grid
+## Differences from the Grid
+
+Although Dedication Generation 3 adds plenty of features to your existing Grid applications, there are a few differences and limitations to be aware of when considering an upgrade. 
 
 ### Available services
 
-As of today, the following services are available on Dedicated Generation 3:
+In our [services documentation](/configuration/services) you will notice that not every service is available on Dedicated Generation 3 that is available on the Grid, nor is every version. The table below shows the currently available services and their versions for Dedicated Generation 3. 
+
 {{< gen-3-services >}}
 
 ### Local mounts
 
-Because you get a redundant infrastrcture, note that local mounts will be local to each Virtual Machine. Since you can't know what VM is going to handle a specific request, you don't have a guarantee regarding which local mount is going to be used. Whether you actually want to use a local mount or in fact need to set up a network storage mount depends on your specific use-cases.
+Because you get a redundant infrastructure, note that local mounts will be local to each Virtual Machine. Since you can't know what VM is going to handle a specific request, you don't have a guarantee regarding which local mount is going to be used. Whether you actually want to use a local mount or in fact need to set up a network storage mount depends on your specific use-cases.
 
 ## Setting up
 
