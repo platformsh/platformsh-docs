@@ -50,4 +50,4 @@ Once started the process usually takes less than an hour.  There should be no do
 
 ### Migrating from Dedicated
 
-Migrating from Dedicated to Dedicated Generation 3 is not possible for now but feel free to reach out so we're aware of the demand.
+Please [contact us](https://platform.sh/contact/) if you are interested in migrating to Dedicated Generation 3. 
