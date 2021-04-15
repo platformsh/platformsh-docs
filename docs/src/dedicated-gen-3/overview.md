@@ -38,19 +38,15 @@ In our [services documentation](/configuration/services) you will notice that no
 
 ### Local mounts
 
-Because you get a redundant infrastructure, note that local mounts will be local to each Virtual Machine. Since you can't know what VM is going to handle a specific request, you don't have a guarantee regarding which local mount is going to be used. Whether you actually want to use a local mount or in fact need to set up a network storage mount depends on your specific use-cases.
+Because you get a redundant infrastructure, note that local mounts will be local to each Virtual Machine. Since you can't know which VM is going to handle a specific request, you also don't have a guarantee regarding which local mount is going to be used. Whether you actually want to use a local mount or in fact need to set up a network storage mount depends on your specific use-case.
 
 ## Setting up
 
 ### Migrating from the Grid
 
-Open a Support ticket with the suggested title “Upgrade to Dedicated Generation 3". In the ticket, request to have your project upgraded.
+Open a Support ticket with the suggested title “Upgrade to Dedicated Generation 3". In the ticket, request to have your project upgraded. We will review the infrastructure and settings, create user and environment variables for Staging and Production environments, and update the ticket with those changes.
 
-We will review the infrastructure and settings, create user and environment variables for Staging and Production environments, and update the ticket with those changes.
-
-Once started the process usually takes less than an hour.  There should be no downtime on your production site, although you should not push any code to Git while the upgrade is in progress.
-
-When done, you can review the changes to your project through the management console.
+Once started the process usually takes less than an hour.  There should be no downtime on your production site, although you should not push any code to Git while the upgrade is in progress. When done, you can review the changes to your project through the management console.
 
 ### Migrating from Dedicated
 
