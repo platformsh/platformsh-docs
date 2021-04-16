@@ -21,8 +21,6 @@ disableKinds: ["taxonomy", "taxonomyTerm"]
 
 summaryLength: 3
 
-enableGitInfo: true
-
 outputs:
     home: 
       - HTML

@@ -16,11 +16,6 @@ npm run-script build
 cd $PLATFORM_APP_DIR
 # Copy templates index so it will be served for search to grab
 mkdir static/files/indexes && cp data/templates.yaml static/files/indexes/templates.yaml
-# Clone the repo itself so that enableGitInfo works properly for "Last updated" & RSS feed.
-git clone https://github.com/platformsh/platformsh-docs.git .repo
-# Move the .git repo into the root directory of the app, and delete the old working tree
-mv .repo/.git .
-rm -rf .repo
 # Build the Hugo site
 ./hugo
 # Handle/minify assets
