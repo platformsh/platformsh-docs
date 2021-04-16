@@ -21,9 +21,8 @@ This means that you are able to edit your configuration yourself the same as you
 
 ## Features
 
-* Domains can be added to your development environments, such as to a dedicated staging environment.
-* Three-Virtual Machine for your master branch.
-* Backups on Production do not freeze in the process.
+* A three virtual machine cluster is associated with your default (production) environment, and also optionally with a staging environment. 
+* Configuration changes on development environments (through your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files) are reflected on these Dedicated Gen 3 clusters when you merge them. It is not necessary to open a support ticket to change production infrastructure like it is on Dedicated. 
 * You can deploy your application in any of our [supported cloud providers](/development/faq.md#which-geographic-zones-does-platformsh-cover).
 
 ## Differences from the Grid
