@@ -114,6 +114,20 @@ Inbound IPs (gw.fr-3.platformsh.site):
 
 * 94.23.123.122
 
+### France 4 (fr-4.platform.sh)
+
+Outbound IPs:
+
+* 20.74.41.190
+* 20.74.41.218
+* 20.74.42.30
+
+Inbound IPs (gw.fr-4.platformsh.site):
+
+* 20.74.41.190
+* 20.74.41.218
+* 20.74.42.30
+
 ### United Kingdom 1 (uk-1.platform.sh) (Data Location Guarantee)
 
 Outbound IPs:
