@@ -6,11 +6,14 @@ layout: single
 description: |
     Dedicated Generation 3 provides a scalable solution as an additional option on top of your existing Grid applications.
     It provides redundant configuration with a minimum of three Virtual Machine instances. 
+    Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding, allowing a site to remain up even if one of the VMs is lost entirely.
 ---
 
 {{< description >}}
 
-Every service is replicated across all three virtual machines in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the VMs is lost entirely.
+Projects will often require a Dedicated production cluster when they require high availability, or they need more resources than offered by Professional. 
+Data location requirements is also common in choosing a Dedicated cluster, such as the need to deploy to a location Platform.sh does not currently have a region, or simply that production data cannot be kept on shared infrastructure.
+
 Dedicated Generation 3 works nearly identically to Grid environments, and does not require additional configuration on your part. The only difference is that of service availability.
 
 ## Why a Generation 3?
@@ -21,7 +24,7 @@ This means that you are able to edit your configuration yourself the same as you
 
 ## Features
 
-* A three virtual machine cluster is associated with your default (production) environment, and also optionally with a staging environment. 
+* A minimum of three virtual machine cluster is associated with your default (production) environment, and also optionally with a staging environment. 
 * Configuration changes on development environments (through your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files) are reflected on these Dedicated Gen 3 clusters when you merge them. It is not necessary to open a support ticket to change production infrastructure like it is on Dedicated. 
 * You can deploy your application in any of our [supported cloud providers](/development/faq.md#which-geographic-zones-does-platformsh-cover).
 
