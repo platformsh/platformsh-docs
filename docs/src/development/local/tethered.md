@@ -110,7 +110,7 @@ import subprocess
 
 encoded = subprocess.check_output(['platform', 'tunnel:info', '--encode'])
 if (encoded):
-    json.loads(base64.b64decode(relationships).decode('utf-8'))
+    json.loads(base64.b64decode(encoded).decode('utf-8'))
     # ...
 <--->
 ---
