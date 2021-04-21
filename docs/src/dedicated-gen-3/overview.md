@@ -11,16 +11,16 @@ description: |
 
 {{< description >}}
 
-Projects will often require a Dedicated production cluster when they require high availability, or they need more resources than offered by Professional. 
+Projects will often require a Dedicated production cluster when they require high availability, or they need more resources than normally offered by Platform.sh plans. 
 Data location requirements is also common in choosing a Dedicated cluster, such as the need to deploy to a location Platform.sh does not currently have a region, or simply that production data cannot be kept on shared infrastructure.
 
-Dedicated Generation 3 works nearly identically to Grid environments, and does not require additional configuration on your part. The only difference is that of service availability.
+Dedicated Generation 3 works nearly identically to Platform.sh environments, and does not require additional configuration on your part. The only difference is that of service availability.
 
 ## Why a Generation 3?
 
-Our existing [dedicated infrastructure](/dedicated/overview) ensures increased uptime and availability for your applications and services, but configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 3 gives you both the high availability from our Dedicated offer combined with the self-service flexibility and features of the Grid. 
+Our existing [dedicated infrastructure](/dedicated/overview) ensures increased uptime and availability for your applications and services, but configuration or application topology changes have to go through our Customer Success team, as the VMs are provisioned by us. Generation 3 gives you both the high availability from our Dedicated offer combined with the self-service flexibility and features of Platform.sh Professional. 
 
-This means that you are able to edit your configuration yourself the same as you would on the grid - in your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files - and then see those changes reflected in your Dedicated Generation 3 environments every push without opening a ticket. 
+This means that you are able to edit your configuration yourself - in your `services.yaml`, `routes.yaml`, and `.platform.app.yaml` files - and then see those changes reflected in your Dedicated Generation 3 environments on every push without opening a ticket. 
 
 ## Features
 
@@ -44,12 +44,8 @@ Because you get a redundant infrastructure, note that local mounts will be local
 
 ## Setting up
 
-### Migrating from the Grid
+If you are running a non-Dedicated Platform.sh project (a Professional or non-Dedicated Enterprise plan), migrating it to Dedicated Generation 3 can be done by opening a support ticket to request it. At the moment, Dedicated projects cannot be migrated to Dedicated Generation 3, but support for this type of migration will soon be available. 
 
 Open a Support ticket with the suggested title “Upgrade to Dedicated Generation 3". In the ticket, request to have your project upgraded. We will review the infrastructure and settings, create user and environment variables for Staging and Production environments, and update the ticket with those changes.
 
 Once started the process usually takes less than an hour.  There should be no downtime on your production site, although you should not push any code to Git while the upgrade is in progress. When done, you can review the changes to your project through the management console.
-
-### Migrating from Dedicated
-
-Please [contact us](https://platform.sh/contact/) if you are interested in migrating to Dedicated Generation 3. 

@@ -47,7 +47,7 @@ By default, Xdebug operates on port 9000.  Generally, it is best to configure yo
 To close the tunnel and terminate the debug connection, press `Ctrl-C`.
 
 {{< note title="On Dedicated Generation 3" >}}
-Note that because you have several VMs running but your tunnel is connected to only one of them, your requests won't always reach it. 
+Note that because you have several VMs running but your tunnel is connected to only one of them, your requests won't always reach the same host. 
 {{< /note >}}
 
 ### Install an Xdebug helper
