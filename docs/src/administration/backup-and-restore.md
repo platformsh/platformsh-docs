@@ -41,6 +41,16 @@ Backups are stored on Binary Large OBject (BLOB) storage separate from your clus
 	
 In such an event, Platform.sh will move all projects to another datacenter. Disaster recovery backups are also stored on BLOB storage and replicated over multiple datacenters. It is still recommended that you schedule regular backups stored in multiple locations and/or locally alongside this process.
 
+### Live backups
+
+There is an option available to create backups in a "live" state. This flavor leaves the environment running and open to connections, reducing downtime while the backup is taken. With live backups, however, there can be inconsistent states that make restorations less reliable. For this reason Platform.sh recommends instead scheduling [automated backups](#automated-backups) during non-peak hours, when the short amount of downtime will be least noticed. 
+
+You can trigger a live backup through the CLI using the `--live` flag:
+
+```bash
+$ platform backup:create --live
+```
+
 ### Automated backups
 
 Backups are not triggered automatically on Platform.sh Professional.
@@ -129,5 +139,5 @@ You need "admin" role to restore your environment from a backup.
 Be aware that the older US and EU regions do not support restoring backups to different environments.  If your project is on one of the older regions (`us` or `eu`, without a number suffix) you may file a support ticket to ask that a backup be restored to a different environment for you, or [migrate your project](/guides/general/region-migration.md) to one of the new regions that supports this feature. Older regions may not appear in the management console in the same way that newer regions to, so to verify if this caveat applies to you, you can check your project's region with the CLI command `platform project:info -p PROJECT_ID`. 
 
 {{< note >}}
-Restoring a snapshot does not revert any code changes committed to git. The next redeploy of the environment will use the current commit from git.
+Restoring a backup does not revert any code changes committed to git. The next redeploy of the environment will use the current commit from git.
 {{< /note >}}
