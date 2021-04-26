@@ -40,7 +40,6 @@
         {{ .Summary | html }}
       {{- end -}}
       </description>
-      <content>{{ .RawContent }}</content>
     </item>
     {{- end -}}
   </channel>
