@@ -1,36 +1,42 @@
 <table class="tranparency-table">
-    <col>
-    <colgroup span="2"></colgroup>
-    <colgroup span="2"></colgroup>
     <tr>
-      <th rowspan="2">Requesting authority</th>
-      <th rowspan="2">Number of requests</th>
-      <th colspan="2" scope="colgroup">Content Data Disclosed</th>
-      <th colspan="2" scope="colgroup">Metadata Disclosed</th>
-      <th rowspan="2">Number of affected clients</th>
+      <th>Type of request</th>
+      <th>Total number of requests</th>
+      <th>Number of unfounded requests</th>
+      <th>Type of illegal content</th>
+      <th>Basis for action taken (Laws or Terms of Service)</th>
+      <th>Average time needed for taking actions (days)</th>
     </tr>
     <tr>
-      <th scope="col"><em>Controller</em></th>
-      <th scope="col"><em>Processor</em></th>
-      <th scope="col"><em>Controller</em></th>
-      <th scope="col"><em>Processor</em></th>
+      <td>Orders received from Government authorities</td>
+      <td>0</td>
+      <td>0</td>
+      <td>n/a</td>
+      <td>n/a</td>
+      <td>n/a</td>
     </tr>
     <tr>
-      <td scope="row">Orders received from Government authorities</td>
-      <td>34</td>
+      <td>Complaints received via support requests</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>Terms of Service</td>
+      <td>1 day</td>
     </tr>
     <tr>
-      <td scope="row">Complaints received via support requests</td>
+      <td>Notices submitted via abuse email</td>
+      <td>10</td>
+      <td>5</td>
+      <td class="width-lg">{{- partial "transparency-reports/listify.html" (slice "phishing attack" "crypto miner (2)" "trademark infingement (2)") -}}</td>
+      <td>Terms of Service</td>
+      <td>1 day</td>
+    </tr>
+    <tr>
+      <td>Content moderation engaged at Platform.sh's own initiative</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>Terms of Service</td>
+      <td>1 day</td>
     </tr>
   </table>

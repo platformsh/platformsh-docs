@@ -30,4 +30,4 @@ file: "/files/reports/transparency-abuse/2020%20Transparency%20and%20Abuse%20Rep
 
 {{< tranparency-reports/info "abuse" >}}
 
-{{< tranparency-reports/tables/2021/noneu-requests >}}
+{{< tranparency-reports/tables/2021/abuse >}}

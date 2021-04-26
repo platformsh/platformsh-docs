@@ -204,7 +204,8 @@
 }
 
 .tranparency-table {
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   font-family: Overpass Mono;
   font-size: 14px;
   font-style: normal;
@@ -221,5 +222,18 @@
 
 .tranparency-table th {
   /* background-color: #A9CDF4; */
-  background-color: #EAE5E7;
+  background-color: #C4BCC0;
 }
+
+.tranparency-table td > ul {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 40px;
+}
+
+.width-lg {
+  text-align: left !important;
+  width: 300px !important;
+}
+
+/* .tranparency-table tr:nth-child(odd) {background-color: #EAE5E7;} */
