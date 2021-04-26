@@ -1,0 +1,7 @@
+<table class="table">
+	{{ range .Page.Pages }}
+		<td>{{ .Name }}</td>
+		<td style="text-align: center;"><a href="{{ .RelPermalink }}">View</a></td>
+		<td style="text-align: center;"><a href="{{ .Params.file }}">Download</a></td>
+	{{ end }}
+</table>

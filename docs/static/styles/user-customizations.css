@@ -198,3 +198,28 @@
     padding: 5rem 0 0 0;
   }
 }
+
+.report-download {
+  text-align: center;
+}
+
+.tranparency-table {
+  margin-top: 20px;
+  font-family: Overpass Mono;
+  font-size: 14px;
+  font-style: normal;
+  color: #2D282B;
+}
+
+.tranparency-table, .tranparency-table td, .tranparency-table th {
+  border: 1px solid #2D282B;
+}
+
+.tranparency-table td, .tranparency-table th {
+    text-align: center;
+}
+
+.tranparency-table th {
+  /* background-color: #A9CDF4; */
+  background-color: #EAE5E7;
+}

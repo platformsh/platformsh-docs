@@ -1,0 +1,55 @@
+governmentauthority: |
+    Platform.sh, like many other technology companies, occasionally receives requests from law enforcement and governmental authorities seeking information about Platform.sh customers. These requests may be in the form of a National Security Letter, FISA or Cloud Act order, or other official law enforcement demand (e.g. subpoena, court order, search warrant). Whenever Platform.sh receives a request for data, we ask the law enforcement or governmental authority to make the request directly to the affected customer. Sometimes, direct governmental contact with the affected customer is not possible. 
+
+    Platform.sh is obligated to comply with legally sound and verified requests for customer data. However, Platform.sh is committed to maintaining the trust of our customers and promises to do the following:
+
+    - diligently review and verify each request,
+    - challenge the release of personal data where possible, and/or narrow the request as much as possible, 
+    - provide notice to our customers when not prohibited from doing so, and 
+    - respond to the request accordingly
+
+    Further, to the extent permitted, Platform.sh informs our customers and the public about valid requests through this Transparency Report.
+
+noneu: |
+    Due to the nature of Platform.sh’s services, we have customers and subsidiaries worldwide. When we receive requests from non-EU law enforcement or governmental authorities, we work with the appropriate outside legal counsel to determine the validity of the request and our ability to respond under applicable laws.
+noneu-usa: |
+    The following chart is a further breakdown of the USA specific type of request received. Note that the numbers below are included in the chart above. 
+abuse: |
+    As an online platform, Platform.sh occasionally receives notices, complaints, or content removal requests from law enforcement, governmental authorities, or other parties regarding illegal content that has been hosted on Platform.sh (Abuse Reports). 
+
+    Platform.sh is legally obligated to comply with valid requests and must take steps to protect its services against misuse, such as blocking users or suspending projects after prior warning to the customer providing the illegal content. Platform.sh may also suspend services on its own accord due to Terms of Service, legal, or other violations. However, Platform.sh will notify its customer of any decision it makes. 
+
+    Further, to increase transparency regarding content moderation Platform.sh has engaged in during the past year, we publish the following report. 
+data:
+    "2020":
+        noneu:
+            lawenforcement: 
+                requests: 0
+                content-disclosed:
+                    controller: 0
+                    processor: 0
+                metadata-disclosed:
+                    controller: 0
+                    processor: 0
+                affected: 0 
+            otheragency:
+                requests: 0
+                content-disclosed:
+                    controller: 0
+                    processor: 0
+                metadata-disclosed:
+                    controller: 0
+                    processor: 0
+                affected: 0 
+        noneu-usa:
+            national-security: blah
+            fisa: blah
+            cloudact: blah
+        eu:
+            lawenforcement: blah
+            otheragency: blah
+        abuse:
+            government: blah
+            requests: blah
+            email: blah
+            platformsh: blah
