@@ -52,7 +52,7 @@ The following extensions are enabled by default:
 * sybase (7.1 and later)
 * tidy (7.1 and later)
 * xml (7.1 and later)
-* xmlrpc (7.1 and later)
+* xmlrpc (7.1 and later, not in 8.0)
 * zendopcache (5.4 only) / opcache (5.5 and later)
 * zip (7.1 and later)
 
@@ -121,7 +121,7 @@ This is the complete list of extensions that can be enabled:
 | pdo_odbc         | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | pdo_pgsql        | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | pdo_sqlite       | *   | *   | *   | *   | *   | *   | *   | *   | *   |
-| pdo_sqlsrv       |     |     |     | *   | *   | *   | *   | *   |     |
+| pdo_sqlsrv       |     |     |     | *   | *   | *   | *   | *   | *   |
 | pgsql            | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | phar             |     |     |     | *   | *   | *   | *   | *   | *   |
 | pinba            | *   | *   | *   |     |     |     |     |     |     |
@@ -159,7 +159,7 @@ This is the complete list of extensions that can be enabled:
 | xhprof           | *   | *   | *   |     |     |     |     |     |     |
 | xml              |     |     |     | *   | *   | *   | *   | *   | *   |
 | xmlreader        |     |     |     | *   | *   | *   | *   | *   | *   |
-| xmlrpc           | *   | *   | *   | *   | *   | *   | *   | *   | *   |
+| xmlrpc           | *   | *   | *   | *   | *   | *   | *   | *   |     |
 | xmlwriter        |     |     |     | *   | *   | *   | *   | *   | *   |
 | xsl              | *   | *   | *   | *   | *   | *   | *   | *   | *   |
 | yaml             |     |     |     |     | *   | *   | *   | *   | *   |
