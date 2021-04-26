@@ -20,36 +20,3 @@ abuse: |
     Platform.sh is legally obligated to comply with valid requests and must take steps to protect its services against misuse, such as blocking users or suspending projects after prior warning to the customer providing the illegal content. Platform.sh may also suspend services on its own accord due to Terms of Service, legal, or other violations. However, Platform.sh will notify its customer of any decision it makes. 
 
     Further, to increase transparency regarding content moderation Platform.sh has engaged in during the past year, we publish the following report. 
-data:
-    "2020":
-        noneu:
-            lawenforcement: 
-                requests: 0
-                content-disclosed:
-                    controller: 0
-                    processor: 0
-                metadata-disclosed:
-                    controller: 0
-                    processor: 0
-                affected: 0 
-            otheragency:
-                requests: 0
-                content-disclosed:
-                    controller: 0
-                    processor: 0
-                metadata-disclosed:
-                    controller: 0
-                    processor: 0
-                affected: 0 
-        noneu-usa:
-            national-security: blah
-            fisa: blah
-            cloudact: blah
-        eu:
-            lawenforcement: blah
-            otheragency: blah
-        abuse:
-            government: blah
-            requests: blah
-            email: blah
-            platformsh: blah
