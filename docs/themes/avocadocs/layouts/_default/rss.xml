@@ -42,6 +42,6 @@
       </description>
       <content>{{ .RawContent }}</content>
     </item>
-    {{ end }}
+    {{- end -}}
   </channel>
 </rss>
