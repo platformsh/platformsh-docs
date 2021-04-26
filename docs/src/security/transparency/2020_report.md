@@ -1,5 +1,5 @@
 ---
-title: "2020 Platform.sh Transparency and Abuse Reports"
+title: "2020 Platform.sh Transparency Reports"
 sidebarTitle: "2020 Reports"
 file: "/files/reports/transparency-abuse/2020%20Transparency%20and%20Abuse%20Report%20.pdf"
 ---
@@ -16,18 +16,18 @@ file: "/files/reports/transparency-abuse/2020%20Transparency%20and%20Abuse%20Rep
 
 {{< tranparency-reports/info "noneu" >}}
 
-{{< tranparency-reports/tables/2021/noneu-requests >}}
+{{< tranparency-reports/tables/2020/noneu-requests >}}
 
 {{< tranparency-reports/info "noneu-usa" >}}
 
-{{< tranparency-reports/tables/2021/usa-requests >}}
+{{< tranparency-reports/tables/2020/usa-requests >}}
 
 ### Requests from EU Authorities
 
-{{< tranparency-reports/tables/2021/noneu-requests >}}
+{{< tranparency-reports/tables/2020/noneu-requests >}}
 
 ## Report on Abuse Reports Received 
 
 {{< tranparency-reports/info "abuse" >}}
 
-{{< tranparency-reports/tables/2021/abuse >}}
+{{< tranparency-reports/tables/2020/abuse >}}
