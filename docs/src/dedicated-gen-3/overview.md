@@ -44,8 +44,8 @@ Because you get a redundant infrastructure, note that local mounts will be local
 
 ## Setting up
 
-If you are running a non-Dedicated Platform.sh project (a Professional or non-Dedicated Enterprise plan), migrating it to Dedicated Generation 3 can be done by opening a support ticket to request it. At the moment, Dedicated projects cannot be migrated to Dedicated Generation 3, but support for this type of migration will soon be available. 
+If you are interested in Platform.sh's data cloning, environment control and infrastructure-as-code philisophy across our supported runtimes and services, but you also need a large amount of resources and data isolation, you can [contact us](https://platform.sh/contact) to start setting up a Dedicated Generation 3 project.
 
-Open a Support ticket with the suggested title “Upgrade to Dedicated Generation 3". In the ticket, request to have your project upgraded. We will review the infrastructure and settings, create user and environment variables for Staging and Production environments, and update the ticket with those changes.
+At this time, existing Platform.sh Professional projects cannot be migrated to Dedicated Generation 3, but they soon will be. Migrations will then require contacting our sales team, at which point your infrastructure will be reviewed for compatibility and pricing. After that, your existing project settings will be modified to set up a production environment using Dedicated Generation 3. 
 
-Once started the process usually takes less than an hour.  There should be no downtime on your production site, although you should not push any code to Git while the upgrade is in progress. When done, you can review the changes to your project through the management console.
+At the moment, Dedicated projects cannot be migrated to Dedicated Generation 3, but support for this type of migration will soon be available. 
