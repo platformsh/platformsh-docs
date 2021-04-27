@@ -1,7 +1,7 @@
 ---
-title: "2020 Platform.sh Transparency Reports"
-sidebarTitle: "2020 Reports"
-file: "/files/reports/transparency-abuse/2020%20Transparency%20and%20Abuse%20Report%20.pdf"
+title: "2020 Platform.sh Transparency Report"
+sidebarTitle: "2020 Report"
+file: "/files/reports/transparency-abuse/2020_platformsh_transparency_report.pdf"
 ---
 
 {{< description >}}
