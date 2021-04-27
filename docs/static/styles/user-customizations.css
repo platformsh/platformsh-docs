@@ -198,3 +198,41 @@
     padding: 5rem 0 0 0;
   }
 }
+
+.report-download {
+  text-align: center;
+}
+
+.tranparency-table {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-family: Overpass Mono;
+  font-size: 14px;
+  font-style: normal;
+  color: #2D282B;
+}
+
+.tranparency-table, .tranparency-table td, .tranparency-table th {
+  border: 1px solid #2D282B;
+}
+
+.tranparency-table td, .tranparency-table th {
+    text-align: center;
+}
+
+.tranparency-table th {
+  background-color: #EDEDEF;
+  font-weight: normal;
+}
+
+.tranparency-table td > ul {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 40px;
+}
+
+.width-lg {
+  text-align: left !important;
+  width: 300px !important;
+}
+
