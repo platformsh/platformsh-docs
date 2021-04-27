@@ -192,7 +192,7 @@ Not all of these parameters need to be present for `codetabs` to function proper
 
 #### Security reports
 
-See [#1788](https://github.com/platformsh/platformsh-docs/pull/1788) for instructions for adding new reports.
+See [#1788](https://github.com/platformsh/platformsh-docs/pull/1788) for instructions to add new reports.
 
 ## Content
 
