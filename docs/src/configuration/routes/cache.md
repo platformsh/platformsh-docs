@@ -83,7 +83,7 @@ If the `If-None-Match` header is sent in the conditional request when `Etag` hea
 
 ### Flushing
 
-The HTTP cache does not support a complete cache flush, however, you can invalidate the cache by setting `cache: false`.
+The HTTP cache does not support a complete cache flush, however, you can invalidate the cache by setting `cache: false`. Alternatively, the cache clears on a rebuild, so triggering a rebuild (pushing a new commit) will effectively cause a complete cache flush.
 
 ## Cache configuration properties
 
