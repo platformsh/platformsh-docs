@@ -21,7 +21,7 @@ That offers two key advantages.
 
 In order to achieve that, the build process can depend only on input reflected in the tree ID, that is, the files in Git.  The tree ID does not reflect the Git branch it is on, because a given commit may be on many branches at different times.  For that reason, Platform.sh also does not expose any branch-specific or environment-specific environment variables in the build process.  Using those as inputs to the build process would fail as soon as the application image is reused.
 
-That is also why dependencies should be downloaded based on a lock file only, which should be committed to Git.  The lock file guarantees precisely what verions will be downloaded.  Downloading from a definition file (`composer.json`, `Pipfile`, `package.json`, etc.) may result in different dependency versions being installed at different times, and thus unpredictable results.
+That is also why dependencies should be downloaded based on a lock file only, which should be committed to Git.  The lock file guarantees precisely what versions will be downloaded.  Downloading from a definition file (`composer.json`, `Pipfile`, `package.json`, etc.) may result in different dependency versions being installed at different times, and thus unpredictable results.
 
 Similarly, while it is possible to download arbitrary additional files during the build process, we strongly recommend doing so only on pinned, fixed versions of a downloaded file, not a "latest" marker or similar.  Doing so could result in unpredictable build output.
 
@@ -73,9 +73,9 @@ For variables that should vary between production and "other" environments, such
 
 ### Static file configuration
 
-A few applications, unfortunately, require configuration values to be specified in a static, non-executable file (such as a `.ini`, `.xml`, or `.yaml` file) and do not support reading from environment variables.  These files cannot be populated at build time as environment-specific values are not available, but cannot be written to in deploy as the file system is read only.  That is a design flaw in the application, and you should file a bug with the application or framework author.
+A few applications, unfortunately, require configuration values to be specified in a static, non-executable file (such as a `.ini`, `.xml`, or `.yaml` file) and do not support reading from environment variables. These files cannot be populated at build time as environment-specific values are not available, but cannot be written to in deploy as the file system is read only.
 
-A possible workaround is to symlink the file to a writeable location, then use a deploy hook script to write files out to that file.  The details of this process will vary by the application, but an outline of this process is shown below.
+This restriction is not the case for environment variables that have been explicitly set to be [visible at build time](/development/variables.md#environment-variables) (`--visible-build`), so it doesn't apply to variables you can set yourself. For other Platform.sh-provided variables (such as `PLATFORM_RELATIONSHIPS`), a possible workaround is to symlink the file to a writeable location, then use a deploy hook script to write files out to that file.  The details of this process will vary by the application, but an outline of this process is shown below.
 
 First, create a non-web-accessible mount point in your `.platform.app.yaml` file:
 
