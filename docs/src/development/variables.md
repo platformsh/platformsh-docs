@@ -188,7 +188,7 @@ $ platform variables
 
 ### At build time
 
-Only Project variables are available at build time.  They will be listed together in a single JSON array and exposed in the `$PLATFORM_VARIABLES` Unix environment variable.
+Only Project variables and environment variables set with build visibility (`--visible-build`) are available at build time.  They will be listed together in a single JSON array and exposed in the `$PLATFORM_VARIABLES` Unix environment variable.
 
 ```bash
 echo $PLATFORM_VARIABLES | base64 --decode
