@@ -3,29 +3,29 @@ title: "Upgrading"
 weight: 14
 ---
 
-# Changes in version 2020.08
+## Changes in version 2021.04
 
 * The cron `cmd` syntax is now deprecated in favor of `commands`.  If you have a cron definition similar to this:
 
-```yaml
-crons:
-    sendemails:
-        spec: '*/7 * * * *'
-        cmd: cd public && send-pending-emails.sh
-```
+    ```yaml
+    crons:
+        sendemails:
+            spec: '*/7 * * * *'
+            cmd: cd public && send-pending-emails.sh
+    ```
 
-it can now be written like:
+    it can now be written like:
 
-```yaml
-crons:
-    sendemails:
-        spec: '*/7 * * * *'
-        commands:
-            start: cd public && send-pending-emails.sh
-            shutdown_timeout: 10
-```
+    ```yaml
+    crons:
+        sendemails:
+            spec: '*/7 * * * *'
+            commands:
+                start: cd public && send-pending-emails.sh
+                shutdown_timeout: 10
+    ```
 
-The new syntax offers greater flexibility and configuration.  See the [cron documentation](/configuration/app/cron.md) for more details.
+    The new syntax offers greater flexibility and configuration.  See the [cron documentation](/configuration/app/cron.md) for more details.
 
 ## Changes in version 2019.05
 
