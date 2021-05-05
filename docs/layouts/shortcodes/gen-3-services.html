@@ -1,0 +1,40 @@
+<table>
+  <tr>
+    <th>Service</th>
+    <th>Supported versions</th>
+  </tr>
+  {{- range $image, $info := .Site.Data.registry -}}
+    {{- if (isset $info "versions-dedicated-gen-3") -}}
+      {{- $label :=  index $info "name" -}}
+      {{- $versions := index ( index $info "versions-dedicated-gen-3") "supported" -}}
+      <tr>
+        <td><a href="/configuration/services/{{ $image }}.html">{{ $label }}</a></td>
+        <td>
+          {{- $service_versions := "" -}}
+          {{- range $versions -}}
+            {{- if eq ( len $service_versions ) 0 -}}
+              {{- if eq $image "mysql" -}}
+                {{- $stripped := index ( split . " ") 0 -}}
+                {{- $service_versions = printf "%s%s" $service_versions $stripped -}}
+              {{- else -}}
+                {{- $service_versions = printf "%s%s" $service_versions . -}}
+              {{- end -}}
+            {{- else -}}
+              {{- if eq $image "mysql" -}}
+                {{- $stripped := index ( split . " ") 0 -}}
+                {{- $service_versions = printf "%s, %s" $service_versions $stripped -}}
+              {{- else -}}
+                {{- $service_versions = printf "%s, %s" $service_versions . -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+          {{- if eq $image "mysql" -}}
+            {{ printf "%s (all using Galera, for replication)" $service_versions }}
+          {{- else -}}
+            {{ $service_versions }}
+          {{- end -}}
+        </td>                                                                                                                                                                                                                                                                                                                                                                          </td>
+      </tr>
+    {{- end -}}
+  {{- end -}}
+</table>
