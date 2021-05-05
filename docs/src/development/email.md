@@ -52,6 +52,22 @@ Changing the SMTP status will not take effect immediately.  You will need to iss
 
 We proxy your emails through our own smtp host, and encrypt them over port 465 before sending them through to the outside world.
 
+## Testing the email service
+
+Before testing that the email service is working, please make sure that:
+
+- E-mail has been [enabled](#enablingdisabling-email) on the environment
+- the environment has been redeployed
+- you have SSH'd into the environment and verified that the `PLATFORM_SMTP_HOST` environment variable is visible
+
+To test the email service, first connect to your cluster through [ssh](/development/ssh.md) using the [cli](/development/cli/_index.md) command `platform ssh`. Substitute the email addresses and run the following snippet in the terminal:
+
+```bash
+$ php -r 'mail("mail@example.com", "test message", "just testing", "From: tester@example.com");'
+```
+
+After a couple minutes you should receive the "test message" in your mailbox.
+
 ## Sending email in PHP
 
 When you send email, you can simply use the built-in `mail()` function in PHP. The PHP runtime is configured to send email automatically via the assigned SendGrid sub-account.  Note that the `From` header is required; email will not send if that header is missing.
