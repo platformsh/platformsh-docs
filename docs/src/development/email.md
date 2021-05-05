@@ -55,15 +55,17 @@ We proxy your emails through our own smtp host, and encrypt them over port 465 b
 ## Testing the email service
 
 Before testing that the email service is working, please make sure that:
-1. the email option is activated,
-2. the application was re-built. 
 
-To test the email service, first connect to your cluster through [ssh](/development/ssh.md); for easier access you can also use the [cli](https://docs.platform.sh/development/cli.html).
+- E-mail has been [enabled](#enablingdisabling-email) on the environment
+- the environment has been redeployed
+- you have SSH'd into the environment and verified that the `PLATFORM_SMTP_HOST` environment variable is visible
 
-Then adapt the email addresses and paste the following snippet in the terminal:
+To test the email service, first connect to your cluster through [ssh](/development/ssh.md) using the [cli](/development/cli/_index.md) command `platform ssh`. Substitute the email addresses and run the following snippet in the terminal:
+
+```bash
+$ php -r 'mail("mail@example.com", "test message", "just testing", "From: tester@example.com");'
 ```
-php -r 'mail("mail@example.com", "test message", "just testing", "From: tester@example.com");'
-```
+
 After a couple minutes you should receive the "test message" in your mailbox.
 
 ## Sending email in PHP
