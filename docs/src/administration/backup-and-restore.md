@@ -109,11 +109,10 @@ A common cron specification for a daily backup on the `master` environment looks
 crons:
     backup:
         spec: '0 5 * * *'
-        commands
-            start: |
-                if [ "$PLATFORM_BRANCH" = master ]; then
-                    platform backup:create --yes --no-wait
-                fi
+        cmd: |
+            if [ "$PLATFORM_BRANCH" = master ]; then
+                platform backup:create --yes --no-wait
+            fi
 ```
 
 The above cron task will run once a day at 5 am (UTC), and, if the current environment is the master branch, it will run `platform backup:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the backup to complete.
