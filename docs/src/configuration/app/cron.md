@@ -43,6 +43,8 @@ crons:
 * `stop` *(optional)* - If a cron task is interrupted by a user through the CLI or Web Admin Console, then the `stop` command will be issued to give the cron command a chance to shutdown gracefully, such as finish an active item in a list of tasks.  The `stop` command is optional, and if not specified then a `SIGTERM` signal will be sent to the process.
 * `shutdown_timeout` *(optional)* - If the cron process is still running after `shutdown_timeout` seconds, a `SIGKILL` signal will be sent to the process to force terminate it.  If not specified, the default `shutdown_timeout` is 10 seconds.
 
+If the cron activity is in a `pending` or `in_progress` state, it can then be cancelled through the CLI using the `platform activity:cancel ACTIVITY_ID` command. In the management console, you can also select the **Stop run** option in the dropdown for that environment's running activity. 
+
 A legacy syntax uses `cmd` and specifies only a start command, resulting in the default `shutdown_timeout` and `stop` command behavior described above. That is, the following two declarations are equivalent:
 
 ```yaml

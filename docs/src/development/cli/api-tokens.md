@@ -69,10 +69,11 @@ You can now call the CLI from within the shell on the app container, or via a cr
 crons:
     backup:
         spec: '0 5 * * *'
-        cmd: |
-            if [ "$PLATFORM_BRANCH" = master ]; then
-                platform backup:create --yes --no-wait
-            fi
+        commands: 
+            start: |
+                if [ "$PLATFORM_BRANCH" = master ]; then
+                    platform backup:create --yes --no-wait
+                fi
 ```
 
 {{< note >}}

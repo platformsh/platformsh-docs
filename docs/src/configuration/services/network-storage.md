@@ -177,7 +177,8 @@ mounts:
 crons:
     drupal:
         spec: '*/20 * * * *'
-        cmd: 'cd web ; drush core-cron'
+        commands: 
+            start: 'cd web ; drush core-cron'
 
 # The worker defined here will also have the same 6 mounts;
 # 2 of them will be shared with the web container,

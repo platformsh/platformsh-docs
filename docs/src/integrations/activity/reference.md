@@ -111,6 +111,12 @@ This large block details all information about all services in the environment. 
 
 Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.  Note that some will be redirects.  To find those that are live URLs filter to those objects whose `type` property is `upstream`.
 
+## Cancelling activities
+
+All activities with a status of `pending` or `in_progress` can be cancelled through the CLI using the command `platform activity:cancel ACTIVITY_ID`. You can retrieve an individual activity's ID by listing them (`platform activity:list`). If an ID is not included, you will be prompted to select one from a list of incomplete activities. In the management console, open the dropdown for that activity and select the **Stop run** option to cancel it. 
+
+For crons, you can specify a stop command that will be used to cancel that activity. See the [cron documentation](/configuration/app/cron.md) for more details. For all other activities, the default behavior is to send a `SIGTERM` signal to the process.
+
 ## Example activity
 
 The following is an example of a webhook message.  Specifically, this one was created by a "push" event.
