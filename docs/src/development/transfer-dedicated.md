@@ -1,12 +1,12 @@
 ---
 title: "Transferring data to and from a Dedicated cluster"
 weight: 13
-sidebarTitle: "Synching to Dedicated"
+sidebarTitle: "Syncing to Dedicated"
 ---
 
 ## Backing up staging and production files
 
-Platform.sh automatically creates a backup of the staging and production instances on a Dedicated cluster every six hours.  However, those are only useful for a full restore of the environment and can only be done by the Platform.sh team.  At times you'll want to make a manual backup yourself.
+Platform.sh automatically creates a backup of the staging and production instances on a Dedicated cluster every six hours.  However, those are only useful for a full restore of the environment and can only be done by the Platform.sh team.  At times, you'll want to make a manual backup yourself.
 
 To create a manual ad-hoc backup of all files on the staging or production environment, use the standard `rsync` command.
 

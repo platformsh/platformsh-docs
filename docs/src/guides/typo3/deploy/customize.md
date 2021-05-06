@@ -87,6 +87,24 @@ Finally, you can start using the Platform.sh Configuration Reader library to sta
 
 Then include the `require_once()` function within your `public/typo3conf/AdditionalConfiguration.php` file to load the Platform.sh-specific configuration into the site if present.
 
-{{< github repo="platformsh-templates/typo3" file="public/typo3conf/AdditionalConfiguration.php" lang="php" >}}
+```php
+<?php
+
+/**
+ * Additional configuration file.
+ *
+ * Place configuration here you want to be shared by Platform.sh environments and local development.
+ *
+ * Platform.sh-specific configuration should be added to PlatformshConfiguration.php.
+ * Environment-specific configuration should be added to LocalConfiguration.php as normal.
+ */
+
+// Include the Platform.sh-specific configuration.
+// This file will no-op on its own if not on Platform.sh.
+$platformshFile = __DIR__ . '/PlatformshConfiguration.php';
+if (file_exists($platformshFile)) {
+    require_once($platformshFile);
+}
+```
 
 {{< guide-buttons next="Deploy TYPO3" >}}

@@ -15,7 +15,7 @@ The service types `mariadb` and `mysql` both refer to MariaDB for compatibility 
 
 | **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
 |----------------------------------|---------------|-------------------------|
-|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
+|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
 Only MariaDB is available on Dedicated environments, using Galera for replication:
 
@@ -39,17 +39,11 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/mysql" >}}
-{{< /highlight >}}
+{{< relationship "mysql" >}}
 
 ## Usage example
 
-For MariaDB your `.platform/services.yaml` can use the `mysql` service type:
-
-{{< readFile file="src/registry/images/examples/full/mysql.services.yaml" highlight="yaml" >}}
-
-or the `mariadb` service type.
+For MariaDB your `.platform/services.yaml` use `mariadb` service type:
 
 {{< readFile file="src/registry/images/examples/full/mariadb.services.yaml" highlight="yaml" >}}
 
@@ -125,7 +119,7 @@ Consider the following illustrative example:
 
 ```yaml
 db:
-    type: mariadb:10.4
+    type: mariadb:10.5
     disk: 2048
     configuration:
         schemas:
@@ -186,7 +180,7 @@ This value defaults to `16` (in MB).  Legal values are from `1` to `100`.
 
 ```yaml
 db:
-    type: mariadb:10.4
+    type: mariadb:10.5
     disk: 2048
     configuration:
         properties:
@@ -205,7 +199,7 @@ Both values can be adjusted at the server level in `services.yaml`:
 
 ```yaml
 db:
-  type: mariadb:10.4
+  type: mariadb:10.5
   disk: 2048
   configuration:
     properties:
@@ -245,6 +239,12 @@ Assuming your MariaDB relationship is named `database`, the host name and port n
 
 ```bash
 mysql -h database.internal -P 3306 -u user main
+```
+
+If your database relationship has a password, you need to pass the `-p` switch and enter the password when prompted:
+
+```bash
+mysql -h database.internal -P 3306 -u user -p main
 ```
 
 Outside the application container, you can use Platform CLI `platform sql`.

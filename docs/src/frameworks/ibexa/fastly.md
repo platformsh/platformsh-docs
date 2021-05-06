@@ -10,7 +10,7 @@ description: |
 
 ## Remove Varnish configuration
 
-Since eZ Platform 1.13.5, 2.4.3 and 2.5.0, Varnish is enabled by default when deploying on Platform.sh. In order to use Fastly, Varnish must be disabled:
+In Ibexa DXP, Varnish is enabled by default when deploying on Platform.sh. In order to use Fastly, Varnish must be disabled:
 
  - Remove environment variable `SYMFONY_TRUSTED_PROXIES: "TRUST_REMOTE"` in [.platform.app.yaml](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml)
  - Remove the Varnish service in [.platform/services.yaml](https://github.com/ezsystems/ezplatform/blob/master/.platform/services.yaml)
@@ -25,7 +25,7 @@ Since eZ Platform 1.13.5, 2.4.3 and 2.5.0, Varnish is enabled by default when de
 
 ## Setting up Ibexa DXP to use Fastly
 
-Ibexa DXP's documentation includes instructions on how to [configure Ibexa DXP for Fastly](https://doc.ibexa.co/en/latest/guide/http_cache/#serving-varnish-through-fastly).  Follow the steps there to prepare Ibexa DXP for Fastly.
+Ibexa DXP's documentation includes instructions on how to [configure Ibexa DXP for Fastly](https://doc.ibexa.co/en/latest/guide/http_cache/#using-fastly-as-httpcache-proxy).  Follow the steps there to prepare Ibexa DXP for Fastly.
 
 ## Set credentials on Platform.sh
 
@@ -48,6 +48,11 @@ platform variable:set -e production env:HTTPCACHE_PURGE_TYPE fastly
 platform variable:set -e production env:FASTLY_SERVICE_ID YOUR_ID_HERE
 platform variable:set -e production env:FASTLY_KEY YOUR_ID_HERE
 ```
+
+## Setup the correct VCL files
+
+There are two VCL files provided as starting points for using Fastly with Ibexa DXP; you can find them in `vendor/ezsystems/ezplatform-http-cache-fastly/fastly/*.vcl`. They handle varying cache by user context hash _(permissions)_ as well as several other needs by Ibexa DXP and it's underlying HttpCache system.
+
 
 ## Configure Fastly and Platform.sh
 

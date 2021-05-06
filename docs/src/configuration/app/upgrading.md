@@ -230,7 +230,7 @@ web:
 
 ### Backward compatibility
 
-Of course, we alway keep backward compatibility with the previous configuration format. Here is what happens if you don't upgrade your configuration:
+We generally try to keep backward compatibility with previous configuration formats. Here is what happens if you don't upgrade your configuration:
 
 ```yaml
 # The following parameters are automatically moved as a "/" block in the

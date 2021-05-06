@@ -17,11 +17,15 @@ If you need other versions, take a look at our [options for installing them with
 
 ## Deprecated versions
 
-Some versions with a minor (such as 8.9) are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+Some versions with a minor (such as 8.9) are available but are not receiving security updates from upstream, so their use is not recommended.
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
 |  {{< image-versions image="nodejs" status="deprecated" environment="grid" >}} | {{< image-versions image="nodejs" status="deprecated" environment="dedicated" >}} |
+
+## Build flavor
+
+Node.js images use the `default` build flavor, which will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
 
 ## Support libraries
 

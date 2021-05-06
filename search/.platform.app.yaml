@@ -1,10 +1,10 @@
 name: 'search'
 
-type: 'python:3.8'
+type: 'python:3.9'
 
 variables:
     env:
-        MEILISEARCH_VERSION: 'v0.15.0'
+        MEILISEARCH_VERSION: '0.20.0'
         POETRY_VERSION: '1.1.4'
         POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VIRTUALENVS_CREATE: false
@@ -20,7 +20,9 @@ hooks:
 web:
     commands:
       # Run the Meilisearch server
-      start: "./meilisearch --http-addr localhost:${PORT} --master-key $PLATFORM_PROJECT_ENTROPY"
+      start: !include 
+            type: string
+            path: start.sh
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048

@@ -130,7 +130,17 @@ The redis module is able to use Redis as a queue backend, however, that should n
 
 ### Verifying Redis is running
 
-Run this command in a SSH session in your environment `redis-cli -h redis.internal info`. You should run it before you push all this new code to your repository.
+You can verify that Redis is running correctly by connecting to it from an SSH session in your environment.  After logging in, run
+
+```bash
+echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
+```
+
+to get the list of relationships and find the `host` property for your Redis relationship.  Then with that value, run
+
+```bash
+redis-cli -h YOUR_REDIS_HOSTNAME info
+```
 
 This should give you a baseline of activity on your Redis installation. There should be very little memory allocated to the Redis cache.
 

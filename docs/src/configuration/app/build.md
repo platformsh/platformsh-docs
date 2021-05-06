@@ -9,23 +9,9 @@ The `.platform.app.yaml` file provides a number of ways to control how an applic
 
 The `build` defines what happens when building the application.  Its only property is `flavor`, which specifies a default set of build tasks to run. Flavors are language-specific.
 
-### PHP (`composer` by default)
-
-`composer` will run `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
-
-Note that by default, PHP containers include the latest Composer 1.x release.  If you wish to use Composer 2.x, add it as a `dependency` (see the section below).
-
-```yaml
-dependencies:
-    php:
-        composer/composer: '^2.0'
-```
-
-`drupal` will run `drush make` automatically in one of a few different ways.  See the [Drupal 7](/frameworks/drupal7/_index.md) documentation for more details.  There is no reason to use this build mode except for Drupal 7.
-
-### Node.js (`default` by default)
-
-`default` will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
+See what the build flavor is for your language:
+- [Node.js](/languages/nodejs#build-flavor)
+- [PHP](/languages/php#build-flavor)
 
 In all languages, you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js); as the name suggests it will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom Composer command or use an alternate Node.js package manager.
 
@@ -149,7 +135,7 @@ The following blocks will download a specific version of Sass, then during the b
 ```yaml
 dependencies:
   nodejs:
-    sass: "^3.4.21"
+    sass: "^1"
 
 hooks:
   build: |
@@ -173,3 +159,5 @@ hooks:
         fi
         # Commands to run regardless of the environment
 ```
+
+(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)

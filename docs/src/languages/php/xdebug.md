@@ -10,9 +10,9 @@ As configured on Platform.sh, it avoids any runtime overhead for non-debug reque
 
 ## Setting up Xdebug
 
-Xdebug is not enabled the same way as other extensions, as it should not be active on most requests.  Xdebug has a substantial impact on performance and should not be run in production.
+Xdebug is not enabled the same way as other extensions, as it should not be active on most requests.  Xdebug has a substantial impact on performance and should not be run in a production process.  Instead, Platform.sh runs a second PHP-FPM process with Xdebug that is used only for debug requests, leaving the normal process unaffected.
 
-Instead, Xdebug can be enabled by adding the following configuration to the application's `.platform.app.yaml` file:
+Enable Xdebug by adding the following configuration to the application's `.platform.app.yaml` file:
 
 ```yaml
 runtime:
@@ -76,7 +76,7 @@ In your PHPStorm Settings window, go to `Languages & Frameworks` > `PHP` > `Serv
 
 Add a new server for your Platform.sh environment.  The "Host" should be the hostname of the environment on Platform.sh you will be debugging.  The "Port" should always be 443 and the "Debugger" set to Xdebug.  Ensure that "Use path mappings" is checked, which will make available a tree of your project with a column to configure the remote path that it should map to.
 
-This page lets you define what remote paths on the server correspond to what path on your local machine.  In the majority of cases you can just define the root of your application (either the repository root or the root of your PHP code base specifically in a multi-app setup) to map to `app`, as in the example below.
+This page lets you define what remote paths on the server correspond to what path on your local machine.  In the majority of cases you can just define the root of your application (either the repository root, or the root of your PHP code base specifically in a multi-app setup) to map to `app`, as in the example below.
 
 ![PHP server configuration](/images/xdebug/xdebug-servers.png "0.6")
 

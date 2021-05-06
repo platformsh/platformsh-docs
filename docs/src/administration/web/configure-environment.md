@@ -37,7 +37,7 @@ git push origin :BRANCH-NAME
 ```
 
 {{< note >}}
-Deleting the Master environment is forbidden.
+The Master environment is protected. It cannot be deleted through the management console or the CLI, and should not be deleted through the API unless you are planning on configuring another branch to become the `default_branch` to replace it. See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information. 
 {{< /note >}}
 
 ### Outgoing emails
@@ -66,7 +66,7 @@ X-Robots-Tag: noindex, nofollow
 
 That tells search engines to not index sites on non-production environments entirely nor traverse links from those sites, even if they are publicly visible.  That keeps non-production sites out of search engine indexes that would dilute the SEO of the production site, and it cannot be disabled on non-production environments.
 
-On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled automatically and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`](/configuration/app/web.md#locations" >}}).
+On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled automatically and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`](/configuration/app/web.md#locations).
 
 
 To enable the search-blocker `X-Robots-Tag` header on a production environment, use the [Platform.sh CLI](/development/cli/_index.md) command below:

@@ -1,0 +1,10 @@
+<table class="table">
+	<!-- This will show the most recent report at the top of the table. -->
+	{{ range .Page.Pages.ByTitle.Reverse }}
+	<tr>
+		<td style="width: 50% !important;">{{ .Name }}</td>
+		<td style="text-align: center; width: 25% !important;"><a href="{{ .RelPermalink }}">View</a></td>
+		<td style="text-align: center; width: 25% !important;"><a href="{{ .Params.file }}">Download</a></td>
+	</tr>
+	{{ end }}
+</table>

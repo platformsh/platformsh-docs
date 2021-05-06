@@ -188,6 +188,12 @@ The first tab *Elasticsearch* will read from a local file and highlight it for P
 
 Not all of these parameters need to be present for `codetabs` to function properly.  The only required properties are `title` and `highlight`.
 
+### Other special cases
+
+#### Security reports
+
+See [#1788](https://github.com/platformsh/platformsh-docs/pull/1788) for instructions to add new reports.
+
 ## Content
 
 The goal of Platform.sh's documentation is to help tech-savvy users self-educate on how to use and get the most out of Platform.sh.  Therefore, the reader should be assumed to be familiar with common web development tools and practices (version control, Git, branching, web servers, databases, etc.), but not necessarily with server administration.  When in doubt, favor providing more background information rather than less, and/or link out to existing resources for background.

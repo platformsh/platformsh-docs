@@ -20,9 +20,7 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/influxdb" >}}
-{{< /highlight >}}
+{{< relationship "influxdb" >}}
 
 ## Usage example
 

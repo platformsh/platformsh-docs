@@ -6,13 +6,18 @@
 <link rel="stylesheet" href="{{"docsuikit/assets/css/layout.css" | relURL}}">
 
 <!-- avocadocs customizations to DocsUIKit -->
-<link rel="stylesheet" href="{{"styles/customizations.css" | relURL}}"> -->
+<link rel="stylesheet" href="{{"styles/customizations.css" | relURL}}">
 
 <!-- Syntax highlighting -->
-<link rel="stylesheet" href="{{"styles/syntax.css" | relURL}}"> -->
+<link rel="stylesheet" href="{{"styles/syntax.css" | relURL}}">
 
 <!-- Asciinema player -->
 <link rel="stylesheet" href="{{"styles/asciinema-player.css" | relURL}}">
+
+<!-- Print stylesheets -->
+{{- if eq .File.Dir "security/transparency/" -}}
+<link rel="stylesheet" media="print" href="{{"styles/print.css" | relURL}}">
+{{- end -}}
 
 <!-- User cusomizations -->
 <link rel="stylesheet" href="{{"styles/user-customizations.css" | relURL}}">

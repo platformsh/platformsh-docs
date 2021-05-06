@@ -31,7 +31,7 @@ Versions 3.0 and higher support up to 64 different databases per instance of the
 
 ## Ephemeral Redis
 
-The `redis` service type is configured to serve as a LRU cache; its storage is not persistent.  It is not suitable for use except as a disposable cache.
+The `redis` service type is configured to serve as an LRU cache; its storage is not persistent.  It is not suitable for use except as a disposable cache.
 
 To add an Ephemeral Redis service, specify it in your `.platform/services.yaml` file like so:
 
@@ -57,9 +57,7 @@ Switching a service from Persistent to Ephemeral configuration is not supported 
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/redis" >}}
-{{< /highlight >}}
+{{< relationship "redis" >}}
 
 The format is identical regardless of whether it's a persistent or ephemeral service.
 
@@ -147,8 +145,8 @@ The default value if not specified is `allkeys-lru`, which will simply remove th
 * noeviction
 * allkeys-lru
 * volatile-lru
-* allkeys-lfu _(Avaialble as of [Redis 4.0](https://redis.io/topics/lru-cache#the-new-lfu-mode))_
-* volatile-lfu _(Avaialble as of [Redis 4.0](https://redis.io/topics/lru-cache#the-new-lfu-mode))_
+* allkeys-lfu _(Available as of [Redis 4.0](https://redis.io/topics/lru-cache#the-new-lfu-mode))_
+* volatile-lfu _(Available as of [Redis 4.0](https://redis.io/topics/lru-cache#the-new-lfu-mode))_
 * allkeys-random
 * volatile-random
 * volatile-ttl

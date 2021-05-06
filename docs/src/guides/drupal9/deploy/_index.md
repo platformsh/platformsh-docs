@@ -27,6 +27,8 @@ This guide is written for Drupal 9, but should apply almost exactly the same for
 
 {{< guides/signup name="Drupal 9" template="drupal9" >}}
 
+Then initialize or clone your Git repository with existing code, or create a new Composer-based project from scratch.  The commands below will create a brand new Drupal project using Composer, which you can then modify according to the rest of this guide.
+
 ```bash
 $ composer create-project drupal/core-recommended <PROJECT_NAME>
 $ cd <PROJECT_NAME>

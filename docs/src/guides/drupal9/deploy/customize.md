@@ -4,7 +4,7 @@ sidebarTitle: "Customize"
 weight: -90
 toc: false
 description: |
-    Add some helpful dependencies, and modify your Drdupal site to read from a Platform.sh environment.
+    Add some helpful dependencies, and modify your Drupal site to read from a Platform.sh environment.
 ---
 
 Now that your code contains all of the configuration to deploy on Platform.sh, it's time to make your Drupal site itself ready to run on a Platform.sh environment. There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
@@ -33,7 +33,15 @@ Platform.sh runs `source .environment` in the application root when a project st
 
 For Drupal, a small [`.environment`](https://github.com/platformsh-templates/drupal9/blob/master/.environment) file modifies the `$PATH` to include the `vendor/bin` directory, where command line tools like Drush or Drupal Console are stored.  While this step is optional, the Drupal cron task assumes it has run so that the `drush` command is always available.
 
-{{< github repo="platformsh-templates/drupal9" file=".environment" lang="bash" >}}
+```text
+# .environment
+
+# Allow executable app dependencies from Composer to be run from the path.
+if [ -n "$PLATFORM_APP_DIR" -a -f "$PLATFORM_APP_DIR"/composer.json ] ; then
+  bin=$(composer config bin-dir --working-dir="$PLATFORM_APP_DIR" --no-interaction 2>/dev/null)
+  export PATH="${PLATFORM_APP_DIR}/${bin:-vendor/bin}:${PATH}"
+fi
+```
 
 ## Drush configuration
 

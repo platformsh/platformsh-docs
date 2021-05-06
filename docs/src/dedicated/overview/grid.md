@@ -58,7 +58,7 @@ Specifically:
 
 ### Cron
 
-Cron tasks may run up to once per minute.  (They are limited to once every 5 minutes on Platform.sh Grid.)
+Cron tasks may run up to once per minute (They are limited to once every 5 minutes on Platform.sh Professional plans).
 
 Cron tasks are always interpreted in UTC time.
 

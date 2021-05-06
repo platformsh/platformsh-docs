@@ -5,7 +5,7 @@ weight: 1
 
 # Tethered Local
 
-The simplest way to run a project locally is to use a local web server, but keep all other services on Platform.sh and connect to them over an SSH tunnel.  This approach requires very little setup, but depending on the speed of your connection and how I/O intensive your application is may not be performant enough to use regularly.  It will also require an active Internet connection, of course.
+The simplest way to run a project locally is to use a local web server, but keep all other services on Platform.sh and connect to them over an SSH tunnel.  This approach needs very little setup, but requires an active Internet connection, and depending on the speed of your connection and how I/O intensive your application is, it may not be performant enough for day-to-day use.
 
 ## Quick Start
 
@@ -110,7 +110,7 @@ import subprocess
 
 encoded = subprocess.check_output(['platform', 'tunnel:info', '--encode'])
 if (encoded):
-    json.loads(base64.b64decode(relationships).decode('utf-8'))
+    json.loads(base64.b64decode(encoded).decode('utf-8'))
     # ...
 <--->
 ---

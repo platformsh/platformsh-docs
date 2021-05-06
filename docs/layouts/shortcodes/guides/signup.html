@@ -20,8 +20,6 @@
 
 <p>After creating an account, you will be prompted to create your first project.  Since you'll be providing your own code, use the "Blank project" option.  You will be able to give the project a title and choose a region closest to the visitors of your site. You also have the option to select more resources for your project, although the <code>development</code> plan should be enough for you to get started.</p>
 
-<p>Then initialize or clone your Git repository with existing code, or create a new Composer-based project from scratch.  The commands below will create a brand new {{ .Get "name" }} project using Composer, which you can then modify according to the rest of this guide.</p>
-
 {{ .Inner | markdownify }}
 
 <p>Then, add a Git remote for the Platform.sh project you just created.  The easiest way to get the ID of the project is to run just <code>plaform</code> on its own, which lists all of your projects.  As you have only one project, you can copy its ID.  Then in your Git repository run</p>

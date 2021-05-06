@@ -69,10 +69,7 @@ Since you'll likely be using [WPPackagist](https://wpackagist.org/) to download 
   ]
 ```
 
-Lastly, to prevent committing WordPress Core when it is installed via Composer, and to otherwise setup your local development environment, add a `.gitignore` file with the following to the root of the project:
-
-{{< github repo="platformsh-templates/wordpress-composer" file=".gitignore" lang="bash" >}}
-
+Lastly, to prevent committing WordPress Core when it is installed via Composer, and to otherwise setup your local development environment, make sure that your `.gitignore` file includes everything in `wordpress`, as [shown in the template](https://github.com/platformsh-templates/wordpress-composer/blob/master/.gitignore).
 
 ## Additional packages
 

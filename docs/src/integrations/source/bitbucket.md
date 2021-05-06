@@ -8,6 +8,10 @@ description: |
 
 It is possible to integrate a Platform.sh project with either the freely available Bitbucket Cloud product, or with the self-hosted [Bitbucket Server](https://confluence.atlassian.com/bitbucketserver/). In both cases, you will need to [install the Platform.sh CLI](/development/cli/_index.md#installation) if you have not already done so to set up the integration.
 
+{{< note >}}
+If the repository you are trying to integrate with a Platform.sh project has a default branch that is not `master` (e.g. `main`), there are a few additional steps you will need to perform to setup the integration. See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
+{{< /note >}}
+
 ## Bitbucket Cloud
 
 ### 1. Set up an OAuth consumer

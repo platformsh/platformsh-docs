@@ -7,9 +7,6 @@ description: Platform.sh User Documentation
 # Themes
 theme: avocadocs
 
-ignorefiles:
-  - registry/.*
-
 uglyurls: true
 pygmentsUseClasses: true
 
@@ -25,4 +22,10 @@ disableKinds: ["taxonomy", "taxonomyTerm"]
 summaryLength: 3
 
 outputs:
-    home: ['json', 'html']
+    home: 
+      - HTML
+      - JSON
+      - RSS
+    section:
+      - HTML
+      - RSS

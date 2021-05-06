@@ -22,9 +22,7 @@ Both Memcached and Redis can be used for application caching.  As a general rule
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/memcached" >}}
-{{< /highlight >}}
+{{< relationship "memcached" >}}
 
 ## Usage example
 
@@ -91,7 +89,7 @@ highlight=php
 <--->
 
 ---
-title=PHP
+title=Python
 file=static/files/fetch/examples/python/memcached
 highlight=python
 ---

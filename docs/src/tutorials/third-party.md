@@ -35,7 +35,7 @@ description: |
 
 ### Drupal
 
-* [Modifying distribution make files for Platform.sh](https://www.nickvahalik.com/blog-entry/modifying-distribution-makefiles-within-your-own-project-makefile-platformsh)
+* [Modifying distribution make files for Platform.sh](https://www.nickvahalik.com/blog/modifying-distribution-makefiles-within-your-own-project-makefile-platformsh)
 * Platform.sh [Drupal 8 Development Workflow](https://github.com/JohnatasJMO/platformsh-development-workflow) by @JohnatasJMO
 * Syslogging is not supported on Platform.sh, instead, you can [Log using Monolog](https://gist.github.com/janstoeckler/7f251bf10fedbfb7f752b61ee5d2ef5e) to keep log files out of the database (and/or use whatever processors & handlers you want)
 

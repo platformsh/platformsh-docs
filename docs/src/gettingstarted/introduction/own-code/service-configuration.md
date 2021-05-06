@@ -57,7 +57,7 @@ If your application does not use any services at this point then you can leave i
 
   {{< /note >}}
 
-Platform.sh provides _managed services_, and each service comes with considerable default configuration that you will not have to include yourself in `.services.yaml`.
+Platform.sh provides _managed services_, and each service comes with considerable default configuration that you will not have to include yourself in `services.yaml`.
 
 Next, you will next need to tell Platform.sh how to build and deploy your application using the `.platform.app.yaml` file.
 

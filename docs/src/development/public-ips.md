@@ -8,10 +8,14 @@ description: |
 
 {{< description >}}
 
-Use the inbound IP addresses if you have a corporate firewall which blocks outgoing SSH connections.  In that case, simply add our IP addresses for inbound traffic below to your allow list.
-
 {{< note >}}
 These IP addresses are stable, but not guaranteed to never change. Prior to any future change, all affected customers will receive ample warning.
+{{< /note >}}
+
+Use the inbound IP addresses if you have a corporate firewall which blocks outgoing SSH connections.  In that case, simply add our IP addresses for inbound traffic below to your allow list.
+
+{{< note title="Region availability" >}}
+While this list contains IP addresses for datacenters in every Platform.sh region, only those regions listed during provisioning are actually available to new projects. Those regions that are no longer open are included here as reference for existing projects, and to Enterprise customers. Enterprise tier projects can continue to create projects on these "closed" regions when appropriate.  
 {{< /note >}}
 
 ## Europe
@@ -58,6 +62,18 @@ Inbound IPs (gw.eu-4.platformsh.site):
 * 52.208.179.40
 * 18.200.179.139
 
+### North 5 (eu-5.platform.sh)
+
+Outbound IPs:
+
+* 13.48.116.14
+* 13.51.46.87
+* 13.48.202.56
+
+Inbound IPs (gw.eu-5.platformsh.site):
+
+* 13.51.62.86
+
 ### Germany 2 (de-2.platform.sh) (Data Location Guarantee)
 
 Outbound IPs:
@@ -86,19 +102,31 @@ Inbound IPs (gw.fr-1.platformsh.site):
 * 90.84.46.222
 * 90.84.46.40
 
-### France 2 (ovh-fr-2.platform.sh)
+### France 3 (fr-3.platform.sh)
 
 Outbound IPs:
 
-* 51.178.62.146
-* 51.210.127.240
-* 51.178.56.77
+* 135.125.91.125
+* 135.125.89.47
+* 135.125.90.255
 
-Inbound IPs (gw.ovh-fr-2.platformsh.site):
+Inbound IPs (gw.fr-3.platformsh.site):
 
-* 51.178.62.146
-* 51.210.127.240
-* 51.178.56.77
+* 94.23.123.122
+
+### France 4 (fr-4.platform.sh)
+
+Outbound IPs:
+
+* 20.74.41.190
+* 20.74.41.218
+* 20.74.42.30
+
+Inbound IPs (gw.fr-4.platformsh.site):
+
+* 20.74.41.190
+* 20.74.41.218
+* 20.74.42.30
 
 ### United Kingdom 1 (uk-1.platform.sh) (Data Location Guarantee)
 
@@ -158,6 +186,19 @@ Inbound IPs (gw.us-3.platformsh.site):
 * 52.156.93.30
 * 51.143.107.76
 
+### East 4 (us-4.platform.sh) (Data Location Guarantee)
+
+Outbound IPs:
+
+* 34.73.189.215
+* 34.74.8.155
+* 34.75.104.115
+
+Inbound IPs (gw.us-4.platformsh.site):
+
+* 34.73.189.215
+* 34.74.8.155
+* 34.75.104.115
 
 ## Canada
 

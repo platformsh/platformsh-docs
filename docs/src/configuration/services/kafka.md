@@ -20,9 +20,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/kafka" >}}
-{{< /highlight >}}
+{{< relationship "kafka" >}}
 
 ## Usage example
 

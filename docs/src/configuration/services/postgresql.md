@@ -32,9 +32,7 @@ The following versions are available but are not receiving security updates from
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/postgresql" >}}
-{{< /highlight >}}
+{{< relationship "postgresql" >}}
 
 ## Usage example
 
@@ -151,6 +149,97 @@ Importing a database backup is a destructive operation. It will overwrite data a
 Taking a backup or a database export before doing so is strongly recommended.
 {{< /note >}}
 
+## Multiple databases
+
+If you are using version `13` or later of this service it is possible to define multiple databases as well as multiple users with different permissions.  To do so requires defining multiple endpoints.  Under the `configuration` key of your service there are two additional keys:
+
+* `databases`:  This is a YAML array listing the databases that should be created.  If not specified, a single database named `main` will be created.
+* `endpoints`: This is a nested YAML object defining different credentials.  Each endpoint may have access to one or more schemas (databases), and may have different levels of permission for each. The valid permission levels are:
+  * `ro`: Using this endpoint only `SELECT` queries are allowed.
+  * `rw`: Using this endpoint `SELECT` queries as well as `INSERT`/`UPDATE`/`DELETE` queries are allowed.
+  * `admin`: Using this endpoint all queries are allowed, including DDL queries (`CREATE TABLE`, `DROP TABLE`, etc.).
+
+Consider the following illustrative example:
+
+```yaml
+dbpostgres:
+    type: postgresql:13
+    disk: 2048
+    configuration:
+        databases:
+            - main
+            - legacy
+        endpoints:
+            admin:
+                privileges:
+                    main: admin
+                    legacy: admin
+            reporter:
+                default_database: main
+                privileges:
+                    main: ro
+            importer:
+                default_database: legacy
+                privileges:
+                    legacy: rw
+```
+
+This example creates a single PostgreSQL service named `dbpostgres`. The server will have two databases, `main` and `legacy` with three endpoints created.
+
+* `admin`: has full access to both databases.
+* `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
+* `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It does not have access to `main`. 
+
+If a given endpoint has access to multiple databases you should also specify which will be listed by default in the relationships array. If one isn't specified, the `path` property of the relationship will be `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the Platform.sh CLI will not be able to access the database on that relationship. For that reason, defining the `default_database` property is always recommended. 
+
+Once these endpoints are defined, you will need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `.platform.app.yaml` might look like:
+
+```yaml
+relationships:
+    database: "dbpostgres:admin"
+    reports: "dbpostgres:reporter"
+    imports: "dbpostgres:importer"
+```
+
+Each database will be accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials.  You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+
+A service configuration without the `configuration` block defined is equivalent to the following default values:
+
+```yaml
+configuration:
+    databases:
+        - main
+    endpoints:
+        postgresql:
+          default_database: main
+          privileges:
+            main: admin
+```
+
+If you do not define `database` but `endpoints` are defined, then the single database `main` will be created with the following assumed configuration:
+
+```yaml
+configuration:
+    databases:
+        - main
+    endpoints: <your configuration>
+```
+
+Alternatively, if you define multiple databases but no endpoints, a single user `main` will be created with `admin` access to each of your databases, equivalent to the configuration below:
+
+```yaml
+configuration:
+    databases: 
+        - firstdb
+        - seconddb
+        - thirddb
+    endpoints:
+        main:
+            firstdb: admin
+            seconddb: admin
+            thirddb: admin
+```
+
 ## Extensions
 
 Platform.sh supports a number of PostgreSQL extensions.  To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
@@ -240,7 +329,7 @@ If you see this error: `Fatal error: Uncaught exception 'PDOException' with mess
 
 ## Upgrading
 
-PostgreSQL 10 and later include an upgrade utility that can convert databases from previous versions to version 10 or 11.  If you upgrade your service from a previous version of PostgreSQL to version 10 or above (by modifying the `services.yaml` file) the upgrader will run automatically.
+PostgreSQL 10 and later include an upgrade utility that can convert databases from previous versions to version 10 or later.  If you upgrade your service from a previous version of PostgreSQL to version 10 or above (by modifying the `services.yaml` file) the upgrader will run automatically.
 
 The upgrader does not work to upgrade to PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 are not supported.  Upgrade straight to version 11 instead.
 

@@ -117,6 +117,17 @@ All activities with a status of `pending` or `in_progress` can be cancelled thro
 
 For crons, you can specify a stop command that will be used to cancel that activity. See the [cron documentation](/configuration/app/cron.md) for more details. For all other activities, the default behavior is to send a `SIGTERM` signal to the process.
 
+## Maximum activities and parallelism
+
+Project activities are distributed across separate queues, which enables **two** simultaneous activities to occur in parallel across your environments. For a given environment, only one activity can run at a time. Those queues include:
+
+* `default`: these include the most common activities on repositories (pushes, merges) and environments (syncs, redeployments).
+* `integrations`: source and webhook integration activities.
+* `backup`: backup activities.
+* `cron`: cron activities.
+
+Production activities are prioritized across all queues. While it is still possible for a non-production environment activity to block production activities, it is temporary and unlikely, since the moment that production activity is triggered it will jump to the top of the queue automatically.
+
 ## Example activity
 
 The following is an example of a webhook message.  Specifically, this one was created by a "push" event.

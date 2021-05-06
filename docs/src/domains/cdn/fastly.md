@@ -11,13 +11,17 @@ aliases:
 
 A Fastly CDN is included for Platform.sh Dedicated instances.  Platform.sh does not offer an integrated CDN on self-service Grid projects at this time, but it is a common choice for customers to self-configure.
 
-Launching a Platform.sh site with Fastly in front of it is nearly the same as launching normally.  There are only two notable differences.
-
-Note that individual applications may have their own Fastly setup instructions or additional modules.  Consult the documentation for your application for specific details.
+Launching a Platform.sh site with Fastly in front of it is nearly the same as launching normally.  There are only a few notable differences. Individual applications may have their own Fastly setup instructions or additional modules. Consult the documentation for your application for specific details.
 
 ## Set the Platform.sh domain on Fastly
 
 Rather than create a DNS CNAME for your Platform.sh master branch (for instance `master-7rqtwti-qwertyqwerty.eu.platform.sh`), [configure Fastly](https://docs.fastly.com/guides/basic-configuration/working-with-domains) to respond to requests for your domain name and to treat the Platform.sh master branch as its backend server.  Be sure to enable TLS for the backend connection to Platform.sh.  Then configure your DNS to point your domain at Fastly instead.  See the [Fastly documentation](https://docs.fastly.com/guides/basic-configuration/connecting-to-origins) for further details.
+
+## HTTP Redirect
+
+From the Fastly interface under "Configure", edit the configuration for your origin to enable the ["Force TLS and enable HSTS"](https://docs.fastly.com/en/guides/enabling-hsts-through-fastly).
+
+Generally, Platform.sh recommends specifying only HTTPS routes in your `routes.yaml` file. This results in all pages being served over SSL and any requests for an HTTP URL automatically redirected to HTTPS. When Fastly has been added as an intermediary to your project, however, this automatic redirect fails. Once a user visits your site with an HTTP request and is directed to Fastly, Fastly continues to query Platform.sh using HTTPS (since that is how origin has been configured), resulting in Platform.sh never detecting the HTTP request in the first place. Enabling the "Force TLS and enable HSTS" option will cause Fastly to do the same HTTP to HTTPS redirect as Platform.sh, ensuring that all requests are over HTTPS end-to-end.
 
 ## DNS TXT records
 

@@ -9,7 +9,7 @@ type: 'nodejs:14'
 # Specify the Hugo version as an env variable.
 variables:
     env:
-        HUGOVERSION: 0.78.0
+        HUGOVERSION: 0.82.0
 
 relationships:
     search: "search:http"
@@ -17,9 +17,9 @@ relationships:
 # The hooks that will be triggered when the package is deployed.
 hooks:
     # Build hooks can modify the application files on disk but not access any services like databases.
-    build: !include
-      type: string
-      path: build.sh
+    build: |
+        ./build_examples.sh
+        ./build_docs.sh
     deploy: !include
       type: string
       path: deploy.sh

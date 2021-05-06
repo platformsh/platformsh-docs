@@ -39,6 +39,16 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 * A PHP process is crashing because of a segmentation fault (see below).
 * A PHP process is killed by the kernel out-of-memory killer (see below).
 
+## Large file upload failing (10MB limit)
+
+When trying to upload a large JSON file to your API you might see a 400 response code (`Malformed request`).
+
+Platform.sh enforces a 10MB limit on sending files with the `application/json` Content-Type header. If you want to send large files through, you will have to send them with `multipart/form-data` instead:
+
+```bash
+$ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' -F file=large_file.json
+```
+
 ## Claimed domains
 
 The error 
@@ -377,6 +387,15 @@ Drupal's `drush core-cron` run installed module's cron task. Those can be, for e
 
 Related documentation: [Cron and scheduled tasks](/configuration/app/cron.md#cron-jobs)
 
-## Deleting your Platform.sh account
+## This project does not support source operations
 
-If you would like to delete your Platform.sh account, log in and select "Support" from the dropdown options when you click on your avatar in the top right hand corner of the management console. Create a new ticket, and request for your account to be deleted in the form provided there. A support agent will receive your request and delete your account shortly thereafter. 
+[Source Operations](/configuration/app/source-operations.md) are a feature only available to [Elite and Enterprise](https://platform.sh/pricing/) customers, and you should [contact the Platform.sh sales team](https://platform.sh/contact/) if you would like access.
+
+For existing Elite and Enterprise customers receiving this error message:
+
+```text
+[ApiFeatureMissingException] 
+This project does not support source operations.
+```
+
+it is due to the fact that the feature is [not currently supported on pull request environments](/configuration/app/source-operations.md#external-integrations).

@@ -35,7 +35,7 @@ Many DNS providers have found a way around the CNAME-on-Apex limitation.  Some D
 
 If you want your site to be accessible with `https://example.com` and not only `https://www.example.com` this is the best way to do so.  Examples of such workaround records include:
 
- * CNAME Flattening at [CloudFlare](https://www.cloudflare.com/)  
+ * CNAME Flattening at [CloudFlare](https://www.cloudflare.com/)
  * ANAME at [easyDNS](https://www.easydns.com/), [DNS Made Easy](http://www.dnsmadeeasy.com/), or [Name.com](https://www.name.com/)
  * ALIAS at [DNSimple](https://dnsimple.com/) or [Cloudns](https://www.cloudns.net/)
 
@@ -49,10 +49,11 @@ If you are willing to make the `www.` version of your site the canonical version
 
 ### (Alternate) Using a www redirection service
 
-If your preferred registrar/DNS provider doesn't support either custom records or the apex domain forwarding options above, the following free services both allow blind redirects and allow you to use a CNAME record to Platform.sh for `www.example.com` and an `A` record to their service at `example.com`, which will in turn send a redirect.
+If your preferred registrar/DNS provider doesn't support either custom records or the apex domain forwarding options above, free services such as [WWWizer](http://wwwizer.com/) allow blind redirects and allow you to use a CNAME record to Platform.sh for `www.example.com` and an `A` record to their service at `example.com`, which will in turn send a redirect.
 
-* [WWWizer](http://wwwizer.com/)
-* [redirectssl](http://redirectssl.com/)
+{{< note >}}
+If using a redirection service, you must ensure that `http://example.com/` redirects to `http://www.example.com/`, not to `https://www.example.com/`.  (That is, the HTTP URL redirects to an HTTP URL, not to an HTTPS URL.)  Platform.sh will automatically redirect that request to the HTTPS itself.  Trying to change the protocol and domain in the same redirect will cause issues for Let's Encrypt and prevent the TLS certificate from being issued correctly.  The extra redirect adds only a millisecond or two to the first pageload only, and is imperceptible to most humans.
+{{< /note >}}
 
 ### (Alternate) Using A records
 
