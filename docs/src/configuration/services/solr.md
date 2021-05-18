@@ -10,17 +10,17 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}} |
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="solr" status="deprecated" environment="grid" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="solr" status="deprecated" environment="grid" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}} |
 
 ## Relationship
 

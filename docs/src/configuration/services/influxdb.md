@@ -12,9 +12,9 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="influxdb" status="supported" environment="grid" >}} | {{< image-versions image="influxdb" status="supported" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="influxdb" status="supported" environment="grid" >}} | {{< image-versions image="influxdb" status="supported" environment="dedicated" >}} | {{< image-versions image="influxdb" status="supported" environment="dedicated-gen-3" >}} |
 
 ## Relationship
 
