@@ -181,6 +181,10 @@ To be able to provide a valid SSL-certificate, Let's Encrypt needs to make sure 
 
 This ownership verification is achieved through the so called _Challenge_ step, more background information can be found in the [Let's Encrypt Documentation](https://letsencrypt.org/docs/challenge-types/).
 
+By default, we will check that both the `some-example.platform.sh` and `www.some-example.platform.sh` domains are pointing to your project.
+The certificate will also encompass both these domains.
+Please make sure that both your apex domain and it's `www` subdomain are pointing to your project, more information can be found in out go live [step-by-step guide](gettingstarted/next-steps/going-live/configure-dns.md).
+
 Sometimes, that verification fails which will result in the following error-message:
 `Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
 
