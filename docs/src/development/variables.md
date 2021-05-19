@@ -159,11 +159,6 @@ $ platform variables
 
 Only Project variables are available at build time.  They will be listed together in a single JSON array and exposed in the `$PLATFORM_VARIABLES` Unix environment variable.
 
-```bash
-echo $PLATFORM_VARIABLES | base64 --decode
-{"my_var": "this is a value"}
-```
-
 They can also be accessed from within a non-shell script via the language's standard way of accessing environment variables.  For instance, in PHP you would use `getenv('PLATFORM_VARIABLES')`. Remember that in some cases they may be base64 JSON strings and will need to be unpacked.  To do so from the shell, for instance, you would do:
 
 ```bash
