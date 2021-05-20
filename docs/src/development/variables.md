@@ -108,6 +108,10 @@ On a Dedicated instance, the following additional variables are available at run
 * **PLATFORM_CLUSTER**: Set to the cluster ID.
 * **PLATFORM_PROJECT**: Set to the document root.  This is typically the same as your cluster name for the production environment, while staging will have `_stg` or similar appended.
 
+{{< note >}}
+The `PLATFORM_CLUSTER`, and `PLATFORM_PROJECT` environment variables are not yet available on [Dedicated Generation 3](/dedicated-gen-3/overview.md). If your application contains logic that depends on whether it is running on a Dedicated Generation 3 host, use `PLATFORM_MODE`.
+{{< /note >}}
+
 Since values can change over time, the best thing is to inspect the variable at runtime then use it to configure your application. For example:
 
 ```bash
