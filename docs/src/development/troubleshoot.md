@@ -360,18 +360,18 @@ Invisible errors during the build and deploy phase can cause increased wait time
 Related documentation: [Accessing logs](/development/logs.md#accessing-logs)
 
 ### Resource temporarily unavailable
-In some cases, you may encounter the following message: `connect() to unix:/run/app.sock failed (11: Resource temporarily unavailable)` in `/var/log/error.log`.
-This message is caused by all the PHP workers being busy.
-The underlying causes can be severalfold: too many requests coming at once, the requests taking too long to be processed (calls to external 3rd party servers with no timeouts?), ...
 
-To address that issue, numerous options do exist such as: 
-- Lowering the memory consumption of each request, so that the amount of PHP workers gets automatically raised. This can be customised with the `runtime.sizing_hints.request_memory` key in the `.platform.app.yaml` file. All the details can be found [in the php fpm sizing page](https://docs.platform.sh/languages/php/fpm.html)
-- Adding a CDN
-- Set up caching
-- Following the global [performance tuning recommendations](https://docs.platform.sh/languages/php/tuning.html)
-- Removing stale plugins and extensions when using a CMS
-- Upgrading the container size to get more ressources
+If you encounter the message `connect() to unix:/run/app.sock failed (11: Resource temporarily unavailable)` in `/var/log/error.log`, it is caused by all of the PHP workers being busy.
+This can be because too many requests are coming in at once, or the requests are taking too long to be processed (such as with calls to external third party servers without timeouts).
 
+To address the issue, you can: 
+
+- Lower the memory consumption of each request, so that the amount of PHP workers gets automatically raised. This can be customized with the `runtime.sizing_hints.request_memory` key in your `.platform.app.yaml` file. Consult the [PHP-FPM sizing documentation](/languages/php/fpm.md) for more details.
+- Adding a [CDN](/domains/cdn/_index.md).
+- Set up [caching](/bestpractices/http-caching.md).
+- Following the global [performance tuning recommendations](languages/php/tuning.md).
+- Removing stale plugins and extensions when using a CMS.
+- Upgrading the container size to get more resources.
 
 ### Build and deploy hooks
 
