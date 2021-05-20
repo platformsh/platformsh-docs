@@ -16,7 +16,7 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 |----------------------------------|---------------|
 |  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} |
 
-Elasticsearch 7.9 is not available in EU-1 and US-1 regions. Please consider [region migration](/guides/general/region-migration.html) if your project is in those regions.
+Elasticsearch 7.9 is not available in EU-1 and US-1 regions. Please consider [region migration](/guides/general/region-migration.md) if your project is in those regions.
 
 ### Deprecated versions
 
