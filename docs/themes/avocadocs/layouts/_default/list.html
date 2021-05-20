@@ -1,0 +1,55 @@
+{{ define "main" }}
+
+  <main class="ml-sm-auto col-md-9 col-lg-10 px-4 pt-0 pt-md-11">
+    <div class="row pt-3">
+
+        <div class="col-xl-12 order-xl-1 duik-content">
+
+          <div class="mb-7">
+            <div class="edit-page">
+              {{ $editLocation := printf "%sedit/master/docs/src/%s" .Site.Params.repo .File.Path}}
+              <button onclick="window.location.href = '{{ $editLocation }}';" type="button" class="btn2 btn-primary2 btn-edit-page">
+                <span class="text-button-">Edit page</span>
+                <span class="icon"><img class="chevron-next2" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-7">
+
+            <!-- List page title -->
+            <h1>{{ .Title }}</h1>
+
+          </div>
+
+          <!-- Table of contents -->
+          {{ if eq .Params.toc true }}
+            <div class="toc">
+              <h4>Contents:</h4>
+              {{ .TableOfContents }}
+            </div>
+          {{ end }}
+
+          <!-- Page content, anchorized -->
+          {{ partial "headline-hash.html" .Content }}
+
+          <!-- Section cards -->
+          {{ range .Pages }}
+            <div class="mx-auto text-center mb-7" style="max-width: 100%;">
+              <button onclick="window.location.href = '{{ .RelPermalink }}';" type="button" class="btn btn-block btn-primary" style="text-align: left;">
+                <p><b>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}</b></p>
+                <p>{{ .Params.description | .RenderString }}</p>
+              </button>
+            </div>
+
+          {{ end }}
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    {{ partial "footer/footer" . }}
+
+  </main>
+
+{{ end }}

@@ -1,0 +1,13 @@
+<!-- Edit page button link -->
+
+<!-- <div class="col-xl-12 order-xl-1 edit-page">
+  Something
+  {{ $editLocation := printf "%s%s/%s" .Site.Params.repo .Page.Language .File.Path}}
+  <button type="button" class="btn btn-edit-page" onclick="window.location.href='{{ $editLocation }}'"><i class="fa fa-edit"></i>&nbsp;Edit Page</button>
+</div> -->
+<div class="edit-page">
+  <button onclick="window.location.href = '#';" type="button" class="btn-ep btn-next btn-edit-page">
+    <span class="text-button-">Edit page</span>
+    <span class="icon"><img class="chevron-next2" aria-hidden="true" src="static/images/icons/chevrons.svg" /></span>
+  </button>
+</div>

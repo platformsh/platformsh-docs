@@ -1,0 +1,61 @@
+savePath: "/static/files/fetch/examples"
+root: "https://examples.docs.platform.sh"
+paths:
+    golang:
+        - memcached
+        - mongodb
+        - mysql
+        - postgresql
+        - rabbitmq
+        - solr
+    java:
+        - elasticsearch
+        - kafka
+        - memcached
+        - mongodb
+        - mysql
+        - postgresql
+        - rabbitmq
+        - redis
+        - solr
+    nodejs:
+        - elasticsearch
+        - memcached
+        - mongodb
+        - mysql
+        - postgresql
+        - redis
+        - solr
+    php:
+        - elasticsearch
+        - influxdb
+        - memcached
+        - mongodb
+        - mysql
+        - postgresql
+        - rabbitmq
+        - redis
+        - solr
+    python:
+        - elasticsearch
+        - kafka
+        - memcached
+        - mongodb
+        - mysql
+        - postgresql
+        - rabbitmq
+        - rabbitmq
+        - redis
+        - solr
+    relationships:
+        - elasticsearch
+        - influxdb
+        - kafka
+        - memcached
+        - mongodb
+        - mysql
+        - postgresql
+        - postgresql
+        - rabbitmq
+        - redis
+        - solr

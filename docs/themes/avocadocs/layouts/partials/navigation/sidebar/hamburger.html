@@ -1,0 +1,13 @@
+<!-- Responsive Toggle Button -->
+
+<!-- Default color is standard black -->
+{{ $fillcolor := "#000000"}}
+{{ if isset .Site.Params.colors "hamburger" }}
+  {{ $fillcolor = .Site.Params.colors.hamburger }}
+{{ end }}
+
+<button class="btn btn-link pl-0 d-md-none hamburger" type="button" data-toggle="collapse" data-target="#sidebar-nav" aria-controls="sidebar-nav" aria-expanded="false" aria-label="Toggle navigation">
+  <svg width="30" height="12" viewBox="0 0 30 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h30v2H0z" fill="{{ $fillcolor }}"></path><path d="M0 10h30v2H0z" fill="{{ $fillcolor }}"></path></svg>
+</button>
+
+<!-- End Responsive Toggle Button -->

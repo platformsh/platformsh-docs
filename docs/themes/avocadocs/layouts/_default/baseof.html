@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Head -->
+  {{ partial "head/head" . }}
+
+  <body class="bg-white">
+
+    <!-- Header -->
+    {{ partial "header/header" . }}
+
+    <!-- Scripts -->
+    {{ partial "scripts/scripts" . }}
+
+    <div class="container-fluid">
+
+      <div class="row pt-3">
+
+        <!-- Sidebar -->
+        {{ partial "navigation/sidebar/sidebar" . }}
+
+        <!-- Main content block -->
+        {{- block "main" . }}{{- end }}
+
+      </div>
+
+    </div>
+
+    <!-- XSS bundle -->
+    <script src="{{"/scripts/xss/dist/bundle.js" | relURL}}"></script>
+
+    <!-- Over-ride search style -->
+    <link rel="stylesheet" href="{{"styles/search.css" | relURL}}">
+
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<!-- Creates an example services.yaml file from the registry's example naming in `.docs`
+    Note: this will only replace the endpoint and service type for demonstration purposes.
+    To use this partial, pass the image data as the context (Ex: partial "examples/servicedefn" $data)
+-->
+{{ $comment := "# .platform/services.yaml"}}
+{{ $l1 := "service_name:" }}
+{{ $l2 := printf "    type: %s:version" .type }}
+{{ $l3 := ""}}
+{{ if .disk }}
+  {{ if .min_disk_size }}
+  {{ $l3 = printf "\n    disk: %s" ( string .min_disk_size ) }}
+  {{ else }}
+  {{ $l3 = "\n    disk: 256"}}
+  {{ end }}
+{{ end }}
+
+{{ return (highlight (printf "%s\n%s\n%s%s" $comment $l1 $l2 $l3) "yaml" "") }}

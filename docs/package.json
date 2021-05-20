@@ -1,0 +1,50 @@
+{
+  "name": "platformsh-docs",
+  "version": "1.0.0",
+  "description": "This repository holds the public user documentation for [Platform.sh](https://platform.sh/).",
+  "license": "CC-BY-NC-SA-4.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/platformsh/platformsh-docs.git"
+  },
+  "main": "gulpfile.js",
+  "author": "Platform.sh",
+  "scripts": {
+    "scss-build": "gulp scss",
+    "scss-watch": "gulp watch",
+    "assets-dist": "gulp dist",
+    "hugo-watch-dev": "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender",
+    "hugo-watch-prod": "./hugo",
+    "fetch-files": "rm -rf static/files/fetch/* && node static/scripts/fetch-examples.js",
+    "registry-files": "node static/scripts/updateExampleConfigFiles.js",
+    "build-searchapp": "cd static/scripts/xss && npm install && npm run-script build",
+    "dev": "npm run fetch-files && npm run registry-files",
+    "build": "npm run fetch-files && npm run registry-files && npm run build-searchapp",
+    "prod": "npm run fetch-files && npm run registry-files && npm run scss-build"
+  },
+  "devDependencies": {
+    "pshregistry-parser": "^1.2.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "async": "^3.1.0",
+    "babelify": "^10.0.0",
+    "bl": "^2.2.1",
+    "browserify": "^16.5.2",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "imagemin-jpeg-recompress": "^6.0.0",
+    "imagemin-pngquant": "^8.0.0",
+    "is-svg": "^4.3.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}

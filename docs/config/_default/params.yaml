@@ -1,0 +1,78 @@
+
+# Basics
+version: "v0.0.1"
+description: Platform.sh User Documentation
+author: Platform.sh
+title: User documentation
+issuerepo: "https://github.com/platformsh/platformsh-docs/"
+repo: "https://github.com/platformsh/platformsh-docs/"
+editPageButton: true
+
+# Images (kept in static/)
+logo: "images/logos/Platformsh_logo_white.svg"
+logolinksto: "https://platform.sh"
+favicon: "images/logos/favicon.ico"
+
+# Search
+rank: 1
+site: docs
+# Don't include trailing slash. It's just easier that way.
+rooturl: "https://docs.platform.sh"
+
+# 404
+_404:
+  title: "Lost in space"
+  image: "/images/404/404-8.png"
+  issues: "https://github.com/platformsh/platformsh-docs/issues/new"
+
+# Books
+# Note: If you would like sections to match uglyurls, add the ".html" extension manually to `section`.
+#     (i.e. books.example.section: example.html)
+books:
+  home:
+    title: Documentation
+    section: "/"
+    weight: -120
+  gettingstarted:
+    title: Getting started
+    section: gettingstarted.html
+    weight: -110
+  guides:
+    title: Guides
+    section: guides.html
+    weight: -100
+
+# Metadata
+meta:
+  sitename: "Platform.sh User Documentation"
+  description: Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
+  image: "images/avocadocs/Platformsh_icon_black.svg"
+  url: "https://docs.platform.sh"
+  twittercard:
+    card: "summary_large_image"
+    site: "@platformsh"
+    title: "Platform.sh User Documentation"
+    description: "Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
+    creator: "@platformsh"
+    image: "https://docs.platform.sh/images/logos/docs_social.jpg"
+  keywords:
+    - PaaS
+    - cloud hosting
+    - DevOps
+    - PHP
+    - Node.js
+    - Go
+    - Golang
+    - Python
+    - .NET
+    - Ruby
+    - Java
+    - Drupal
+    - Wordpress
+    - Symfony
+    - Maven
+    - Lisp
+    - Hibernate
+    - Jakarta
+    - Spring
+    - TYPO3

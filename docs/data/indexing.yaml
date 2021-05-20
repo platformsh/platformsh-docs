@@ -1,0 +1,15 @@
+replacements:
+    gettingstarted: "Getting started"
+    bestpractices: "Best practices"
+    golive: "Go live"
+    ez: "eZ Platform"
+    php: "PHP"
+    nodejs: "Node.js"
+    cli: "CLI"
+    cdn: "CDN"
+    steps: "Go live steps"
+    typo3: "TYPO3"
+    overview: "The big picture"
+priority:
+    - "gettingstarted"
+    - "dedicated"

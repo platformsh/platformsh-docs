@@ -1,0 +1,5 @@
+<!-- shortcodes/github.html: Pull remote GitHub file, present in highlight. -->
+<!--    Modified from: https://github.com/haideralipunjabi/hugo-shortcodes/tree/master/github -->
+{{ $dataJ := getJSON "https://api.github.com/repos/"  (.Get "repo")  "/contents/"  (.Get "file")  }}
+{{ $con := base64Decode $dataJ.content }}
+{{ highlight $con (.Get "lang") (.Get "options") }}

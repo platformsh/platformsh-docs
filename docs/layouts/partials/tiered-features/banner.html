@@ -1,0 +1,4 @@
+<!-- Creates single page banner note for tier-specific feature warning -->
+{{ if isset .Params "tier" }}
+  {{ partial "tiered-features/body.html" (dict "tiers" .Params.tier ) }}
+{{ end }}

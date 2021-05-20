@@ -1,0 +1,24 @@
+<!-- Logo and version badge -->
+
+{{ if isset .Site.Params "logo" }}
+
+  <!-- Logo -->
+  {{ $logolinksto := "/" }}
+  {{ if isset .Site.Params "logolinksto" }}
+    {{ $logolinksto = .Site.Params.logolinksto }}
+  {{ end }}
+
+  <a class="navbar-brand bg-md-primary-darker col-md-3 col-xl-2 mr-0 py-4" href="{{ $logolinksto }}">
+
+    <img class="mr-0" src="{{ .Site.Params.logo | relURL }}" style="max-width: 175px;" {{ if isset .Site.Params.meta "sitename" }}alt="{{ .Site.Params.meta.sitename }}"{{ end }}>
+
+    <!-- Version badge -->
+    {{ if and ( isset .Site.Params "showversionbadge" ) ( isset .Site.Params "version" ) }}
+      <span class="small">
+        <span class="badge badge-light text-space-1">{{ .Site.Params.version }}</span>
+      </span>
+    {{ end }}
+
+  </a>
+
+{{ end }}
