@@ -116,6 +116,10 @@ Performed update: my_custom_profile_update_7001
 Finished performing updates.
 ```
 
+Your `deploy` hook is tied to commits in the same way as your builds. That is, once a commit has been pushed and a new build image has been created, both the `build` and `deplo`y hooks will be resused during operations that are not caused by subsequent commits. 
+
+This means that adding variables, changing access permissions, or even running a `redeploy` using the CLI or management console will not cause the `deploy `hook to run again for the current commit. Redeploys trigger only the `post_deploy` hook to run again from the beginning, and a committed change to the application is needed to rerun the `build` and `deploy` hooks. 
+
 ### Post-Deploy hook
 
 The `post_deploy` hook functions exactly the same as the `deploy` hook, but after the container is accepting connections.  That is, it will run concurrently with normal incoming traffic.  That makes it well suited to any updates that do not require exclusive database access.
@@ -123,6 +127,8 @@ The `post_deploy` hook functions exactly the same as the `deploy` hook, but afte
 What is "safe" to run in a `post_deploy` hook vs. in a `deploy` hook will vary by the application.  Often times content imports, some types of cache warmups, and other such tasks are good candidates for a `post_deploy` hook.
 
 The `post_deploy` hook logs to its own file in addition to the activity log, `/var/log/post-deploy.log`.
+
+The `post_deploy` hook is the only hook provided that will run from the beginning during a redeploy. 
 
 ## How do I compile Sass files as part of a build?
 
