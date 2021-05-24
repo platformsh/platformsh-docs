@@ -20,9 +20,9 @@ Customers who want to run healthcare workloads on Platform.sh must do the follow
 * implement the relevant controls contained in the [Platform.sh HIPAA Shared Responsibility Matrix](https://docs.google.com/spreadsheets/d/1Wsve74Bn8ljfE2vJbN1g8vZA4Jd5_lokmZxgUPcJ98k/edit?usp=sharing) (Excel). This document provides guidance on shared responsibilities required to achieve HIPAA compliance. 
 * take sole responsibility for their application security. 
 * run HIPAA workloads on the HIPAA designated region and take responsibility for managing access to all environments that are included in the HIPAA designated region.
-* use Fastly WAF or a Platform.sh-approved equivalent HIPAA-complaint WAF
+* use [Fastly WAF](https://docs.fastly.com/products/hipaa-compliant-caching-and-delivery) or a Platform.sh-approved equivalent HIPAA-complaint WAF
 * perform, at a minimum on an annual basis, penetration testing and vulnerability scanning against their projects based upon industry standards, and remediate findings in a timely manner.
-* redeploy applications regularly to be able to pick up patches
+* [redeploy applications](https://docs.platform.sh/security/updates.html) regularly to be able to pick up patches
 
 While Platform.sh provides a secure and compliant infrastructure for processing of PHI, the customer is responsible for ensuring that the environment and applications that they host on Platform.sh are properly configured and secured according to HIPAA requirements. Failure to do so results in a non-compliant customer environment.
 
