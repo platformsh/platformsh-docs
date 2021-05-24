@@ -18,4 +18,4 @@ Customers who want to run PCI workloads on Platform.sh must agree to and impleme
 Cardholder processing activity is discouraged. Please use a third-party processor.
 {{< /note >}}
 
-While Platform.sh provides a secure and PCI compliant infrastructure, the customer is responsible for ensuring that the environment and applications that they host on Platform.sh are properly configured and secured according to PCI requirements. Failure to do so results in a non-compliant customer environment.
+While Platform.sh provides a secure and PCI compliant infrastructure, the customer is responsible for ensuring that the environment and applications that they host on Platform.sh are properly configured and secured according to PCI requirements. Failure to do so will result in a non-compliant customer environment.
