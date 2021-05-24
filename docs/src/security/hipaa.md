@@ -26,4 +26,4 @@ Customers who want to run healthcare workloads on Platform.sh must do the follow
 
 While Platform.sh provides a secure and compliant infrastructure for processing of PHI, the customer is responsible for ensuring that the environment and applications that they host on Platform.sh are properly configured and secured according to HIPAA requirements. Failure to do so results in a non-compliant customer environment.
 
-Clients can contact their Platform Account Manager to request a BAA or for more information regarding HIPAA compliance.
+Clients can contact their Platform Account Manager to request a Business Associate Agreement or for more information regarding HIPAA compliance.
