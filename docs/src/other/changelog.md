@@ -9,6 +9,9 @@ description: |
 
 ## 2021
 
+* **May 2021**
+  * Elasticsearch 6.8: We now support [Elasticsearch 6.8](/configuration/services/elasticsearch.md).
+---
 * **April 2021**
   * WAF: [a new page was added](/security/waf.md) describing the filtering rulesets and protections that come with the Platform.sh WAF.
 ---
