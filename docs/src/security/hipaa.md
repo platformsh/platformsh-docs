@@ -6,8 +6,6 @@ description: |
     Platform.sh HIPAA Compliance
 ---
 
-{{< description >}}
-
 Please refer to our [Compliance Guidance](https://docs.platform.sh/security/compliance-guidance.html) page for an overview of our compliance program, including security & compensating controls, and a general allocation of responsibility.
 
 ## Overview
