@@ -3,16 +3,22 @@ title: "HIPAA compliance"
 sidebarTitle: "HIPAA"
 weight: 17
 description: |
-    Platform.sh complies with the requirements under the Health Insurance Portability and Accountability Act of 1996 (HIPAA).
+    Platform.sh HIPAA Compliance
 ---
 
 {{< description >}}
+
+Please refer to our [Compliance Guidance](https://docs.platform.sh/security/compliance-guidance.html) page for an overview of our compliance program, including security & compensating controls, and a general allocation of responsibility.
+
+## Overview
 
 Platform.sh provides a Platform as a Service (PaaS) solution that our customers may use for applications requiring HIPAA compliance. All HIPAA workloads will run on the US-4 region.
 
 Platform.sh has SOC 2 Type 2 and PCI certifications. As a part of those third-party audits, we have been audited on overlapping HIPAA controls. Independent third-party audits provide an external examination of the controls we have implemented on our infrastructure and operations and ensure Platform.sh’s commitment to complying with information security standards and industry best practices.
 
 **Please note that there is no certification recognized by the US Department of Health & Human Services for HIPAA compliance. Thus, complying with HIPAA is a shared responsibility between the customer and Platform.sh.**
+
+## Responsibility
 
 Customers who want to run healthcare workloads on Platform.sh must do the following:
 * sign up for Elite tier
