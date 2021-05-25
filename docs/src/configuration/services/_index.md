@@ -50,7 +50,9 @@ E: Error parsing configuration files:
 ```
 
 Service types and their supported versions include:
-
+<!--
+To update the versions in this table, use docs/data/registry.json
+-->
 {{< readFile file="src/registry/images/tables/services_supported.md" markdownify="true">}}
 
 ### Disk
