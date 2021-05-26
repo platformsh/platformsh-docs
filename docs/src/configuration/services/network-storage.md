@@ -22,7 +22,8 @@ The network storage service enables a new kind of `mount` that refers to a share
 {{< note theme="warning">}}
 It is not possible to upgrade or downgrade the network storage service version
 while keeping existing data in place. Changing the service version will require the service to
-be reinitialized.
+be reinitialized. Any change to the service version will result in existing
+data becoming inaccessible.
 {{< /note >}}
 
 
