@@ -19,6 +19,13 @@ The network storage service enables a new kind of `mount` that refers to a share
 `network-storage` 2.0 will *not* work on the Grid, We recommend using version 1.0 unless you are a Dedicated Generation 3 user. 
 {{< /note >}}
 
+{{< note theme="warning">}}
+It is not possible to upgrade or downgrade the network storage service version
+while keeping existing data in place. Changing the service version will require the service to
+be reinitialized.
+{{< /note >}}
+
+
 ## Supported regions
 
 The Network storage service is available on all regions except:
