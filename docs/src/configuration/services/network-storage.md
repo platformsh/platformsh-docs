@@ -16,7 +16,7 @@ The network storage service enables a new kind of `mount` that refers to a share
 (This is a reference to a version of our network storage implementation, not to a version of a 3rd party application.)
 
 {{< note title="Why is 2.0 available on Dedication Generation 3 but not on the Grid?">}}
-`network-storage` 2.0 will work on the Grid, however we recommend using version 1.0 unless you are a Dedicated Generation 3 user. The 2.0 implementations relies on a distributed file system in order to allow for replication, which comes with a slight performance cost that version 1.0 doesn't have.
+`network-storage` 2.0 will *not* work on the Grid, We recommend using version 1.0 unless you are a Dedicated Generation 3 user. 
 {{< /note >}}
 
 ## Supported regions
