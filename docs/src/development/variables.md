@@ -241,7 +241,7 @@ Check the individual documentation pages for accessing environment variables for
 * [PHP: the getenv() function](http://php.net/manual/en/function.getenv.php)
 * [Node.js: the process.env object](https://nodejs.org/api/process.html#process_process_env)
 * [Python: the os.environ object](https://docs.python.org/3/library/os.html#os.environ)
-* [Ruby: the ENV accessor](https://ruby-doc.org/core-2.1.4/ENV.html)
+* [Ruby: the ENV accessor](https://ruby-doc.org/core/ENV.html)
 * [Java: the java.lang.System accessor](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
 
 {{< codetabs >}}
