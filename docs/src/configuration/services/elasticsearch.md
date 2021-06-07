@@ -16,6 +16,8 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-3" >}} |
 
+Elasticsearch 7.9 is not available in EU-1 and US-1 regions. Please consider [region migration](/guides/general/region-migration.md) if your project is in those regions.
+
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
