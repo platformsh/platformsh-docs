@@ -63,7 +63,7 @@ There are a few additional flags available on environment variables:
 * Setting `--inheritable false` will cause the variable to not be inherited by child environments.  That is useful for setting production-only values on the `master` branch, and allowing all other environments to use a project-level variable of the same name.
 * Setting `--sensitive true` flag will mark the variable to not be readable through the management console once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
 * The `--visible-runtime` (default: `true`) flag defines that variable as accessible during runtime. 
-* The `--visible-build` (default: `true`) flag defines that variable as accessible at build time. Build environment variables change the application's build configuration ID, and triggers a rebuild of the application the same way that a commit would. 
+* The `--visible-build` (default: `true`) flag defines that variable as accessible at build time. Build visible environment variables change the application's build configuration ID, and triggers a rebuild of the application in the same way that a commit would. 
 
 For example, the following command will allow you to set a PayPal secret value on the master branch only; other environments will not inherit it and either get a project variable of the same name if it exists or no value at all.  It will also not be readable through the API.
 
@@ -84,7 +84,7 @@ $ platform variable:create -l environment -e master --prefix env: --name NODE_EN
 $ platform variable:create -l environment -e staging --prefix env: --name NODE_ENV --value development --visible_build true --inheritable true
 ```
 
-With these two commands, while `NODE_ENV` will be `production` on the default branch, it will be `development` on staging as well as each of its child environments. Note that build environment variables change the application's build configuration ID - value updates will trigger a rebuild of the application the same way that a commit would. 
+With these two commands, while `NODE_ENV` will be `production` on the default branch, it will be `development` on staging as well as each of its child environments. Note that build visible environment variables change the application's build configuration ID - value updates will trigger a rebuild of the application in the same way that a commit would. 
 
 ### Platform.sh-provided variables
 
@@ -110,7 +110,7 @@ The following variables are available at both runtime and at build time, and may
 
 `PLATFORM_APPLICATION` is a special case to keep in mind in how it differs between the build and runtime container. Every environment's build is associated with a configuration ID that uniquely identifies it. It's this ID which allows us to reuse builds on merges. The ID itself is a product of your application code, as well as its configuration for Platform.sh in `.platform.app.yaml`. 
 
-Not every attribute in `.platform.app.yaml` is relevant to builds - that is, not every attribute is accessible to the build container in `PLATFORM_APPLICATION`, nor will commits which edit those attributes result in a full rebuild of the application when pushed. Because of this, not all attributes defined in your `.platform.app.yaml` file will be accessible at build time from `PLATFORM_APPLICATION`, only those actually relevant to builds. Some of those attributes that will **not** be available in `PLATFORM_APPLICATION` during buids include:
+Not every attribute in `.platform.app.yaml` is relevant to builds - that is, only a subset of those attributes will result in a full rebuild of the application when an update to them is committed. Because of this, not all attributes defined in your `.platform.app.yaml` file will be accessible at build time from `PLATFORM_APPLICATION`, only those actually relevant to builds. Some of those attributes that will **not** be available in `PLATFORM_APPLICATION` during buids include:
 
 - `size`
 - `disk`
