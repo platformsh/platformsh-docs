@@ -49,9 +49,7 @@ When this operation is triggered:
 
 Note that these operations run in an isolated container which is not part of the runtime cluster of the environment, and doesn't require the environment to be running.  
 
-Also, if multiple applications in a single project both result in a new commit, that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur.
-
-Also, if multiple applications define source operations with the same name, they will all be executed sequentially on each application.
+Also, if multiple applications in a single project both result in a new commit, that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur. If multiple applications define source operations with the same name, they will all be executed sequentially on each application.
 
 ## External integrations
 
