@@ -16,7 +16,7 @@ description: |
   * WAF: [a new page was added](/security/waf.md) describing the filtering rulesets and protections that come with the Platform.sh WAF.
 ---
 * **March 2021**
-  * Observability: [a new page was added](/dedicated/architecture/metrics.md) describing observability and metrics available on Dedicated projects. 
+  * Observability: [a new page was added](/dedicated/architecture/metrics.md) describing observability and metrics available on Dedicated projects.
   * Node.js debugging: [a new page was added](/languages/nodejs/debug.md) that includes tips for debugging Node.js applications.
   * Parallel activities: [project activities](/integrations/activity/reference.md#maximum-activities-and-parallelism) have been split into separate queues, allowing for up to two activities across environments to occur simultaneously.
   * Python 3.9: We now support [Python 3.9](/languages/python.md).
