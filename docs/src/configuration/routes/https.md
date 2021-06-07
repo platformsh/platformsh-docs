@@ -196,5 +196,8 @@ For the DNS challenge to work, domains and subdomains should point directly to y
 ```
 Note that DNS changes can take up to 24-48 hours to propagate. See the [step-by-step guide](/domains/steps/_index.md) for more information. If you have waited the 24-48 hours, properly configured the subdomain, and are still seeing an error of this type, [redeploying](/development/troubleshoot.md#force-a-redeploy) the impacted environment will usually solve the issue.
 
-If the issue persists, you could also verify if an outage is currently ongoing on [let's encrypt's side](https://letsencrypt.status.io/).
+Please also make sure that no conflicting DNS records exist for the domain.
+For example a conflicting AAAA (IPv6) DNS record, will usually result in a `[HTTP01: The client lacks sufficient authorization]` error.
+
+If the certificate generation issue persists, you could also verify if an outage is currently ongoing on [let's encrypt's side](https://letsencrypt.status.io/).
 If that is not the case, please open a support ticket.
