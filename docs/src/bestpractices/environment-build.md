@@ -73,7 +73,7 @@ For variables that should vary between production and "other" environments, such
 
 ### Static file configuration
 
-A few applications, unfortunately, require configuration values to be specified in a static, non-executable file (such as a `.ini`, `.xml`, or `.yaml` file) and do not support reading from environment variables.  These files cannot be populated at build time as environment-specific values are not available, but cannot be written to in deploy as the file system is read only.  That is a design flaw in the application, and you should file a bug with the application or framework author.
+A few applications require configuration values to be specified in a static, non-executable file (such as a `.ini`, `.xml`, or `.yaml` file) and do not support reading from environment variables.  These files cannot be populated at build time as environment-specific values are not available, but cannot be written to in deploy as the file system is read only.
 
 A possible workaround is to symlink the file to a writeable location, then use a deploy hook script to write files out to that file.  The details of this process will vary by the application, but an outline of this process is shown below.
 

@@ -26,7 +26,7 @@ From the `Status` tab, you can activate or deactivate an environment.
 
 The `Deactivate & Delete Data` action will
 
-* Deactivate the environment. Unless is is re-activated, it will no longer deploy and it will not be accessible from the web or via SSH.
+* Deactivate the environment. Unless it is re-activated, it will no longer deploy and it will not be accessible from the web or via SSH.
 * Destroy all services running on this environment.
 * Delete all data specific to the environment. If the environment is reactivated, it will sync data from its parent environment.
 
