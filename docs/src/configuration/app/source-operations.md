@@ -51,9 +51,39 @@ Note that these operations run in an isolated container which is not part of the
 
 Also, if multiple applications in a single project both result in a new commit, that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur. If multiple applications define source operations with the same name, they will all be executed sequentially on each application.
 
+## Examples of source operations
+
+### Update a site from an upstream repository or template
+
+This example will synchronize your branch with the content from an upstream Git repository.
+
+You need to add a project-level variable named `env:UPSTREAM_REMOTE` with the Git URI of the upstream repository. That will make that repository available as a Unix environment variable in all environments, including in the Source Operations environment.
+
+Then, define a Source Operation to that upstream repository:
+
+```
+source:
+    operations:
+        upstream-update:
+            command: |
+                set -e
+                git remote add upstream $UPSTREAM_REMOTE
+                git fetch --all
+                git merge upstream/master
+```
+
+Every time the `upstream-update` source operation is ran on a branch, that branch will get checked out, then add a Git remote for the upstream Git repository, then merge the latest changes from its main branch (called `master` in this example). 
+Because there are now local changes committed in the local repository, those changes will then get pushed, built, and deployed. If there’s a merge conflict, the script will fail without committing anything.
+
+We recommend to run this operation on a Development branch rather than directly on Production.
+
 ## External integrations
 
-Source Operations can only be triggered on environments created by a branch, and is not currently supported for those created from pull requests on an external repository integration (GitHub, Bitbucket, GitLab). Doing so will result in the following error:
+If your project is using an external Git integration, the commits resulting from the Source Operations will be pushed to the external repository, before triggering the integration to redeploy the environment.
+
+Only environments created by a branch on the external repository can run source operations. 
+
+Note that source oprations can not be run on environments created from pull requests on the external repository (GitHub, Bitbucket, GitLab). Doing so will result in the following error:
 
 ```text
 [ApiFeatureMissingException] 
