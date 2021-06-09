@@ -51,7 +51,7 @@ Note that these operations run in an isolated container which is not part of the
 
 Also, if multiple applications in a single project both result in a new commit, that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur. If multiple applications define source operations with the same name, they will all be executed sequentially on each application.
 
-## Examples of source operations
+## Source Operations usage examples
 
 ### Update a site from an upstream repository or template
 
