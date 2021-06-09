@@ -64,7 +64,7 @@ window.gon={};gon.features={"webauthn":false};
 <script src="/assets/webpack/pages.sessions.new.5115afc8.chunk.js" defer="defer"></script>
 
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="oi3AnMHFMaI+12F+HejFb86RAqFtDKyTgd5bpHOg8auE+DhO4WQ5iP6iYGPoENYyc2qOdZZ9cdtqyJYGbg0+tw==" />
+<meta name="csrf-token" content="7I8tDOrvvTMTvv09ToeCIPyDrNdQmLPyCBWew/UjdssaOzfblh7ZeO0B0h21CTNo+cV16d1yA2szKN25KP4EgA==" />
 
 <meta name="action-cable-url" content="/-/cable" />
 <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
@@ -150,7 +150,7 @@ Sign in with
 <form class="button_to" method="post" action="/users/auth/saml"><button id="oauth-login-saml" class="btn gl-button btn-default omniauth-btn oauth-login qa-saml-login-button" type="submit"><span>
 Okta
 </span>
-</button><input type="hidden" name="authenticity_token" value="PTJtgAPjdWscGo50ly7sPuG0n3i7rEANYOkFuJOgbPwb55VSI0J9Qdxvj2li1v9jXE8TrEDdnUWL/8gajg2j4A==" /></form></div>
+</button><input type="hidden" name="authenticity_token" value="6zbArQfYiJsi2J+WuayMINRNTPFP/mx3nGJk1dMqAu4dgtp6eyns0NxnsLZCIj1o0QuVz8IU3O6nXyevDvdwpQ==" /></form></div>
 <fieldset class="remember-me">
 <label>
 <input type="checkbox" name="remember_me" id="remember_me" class="remember-me-checkbox" />

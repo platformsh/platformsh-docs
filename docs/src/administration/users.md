@@ -49,7 +49,7 @@ The project owner - the person licensed to use Platform.sh - doesn't have specia
 
 From your list of projects, select the project where you want to view or edit user permissions. Click the Settings tab at the top of the page, then click the `Access` tab on the left to show the project-level users and their roles.
 
-![Project user management screenshot](/images/management-console/settings-project-access.png)
+![Project user management screenshot](/images/management-console/settings-project-access.jpg)
 
 The `Access` tab shows project-level users and their roles.
 
