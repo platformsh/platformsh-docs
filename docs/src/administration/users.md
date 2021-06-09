@@ -10,40 +10,44 @@ description: |
 
 ## User roles
 
-At the project level:
+{{< note theme="warning" title="Important" >}}
+We are deprecating granting user roles on individual environments. You should use environment types instead.
+{{< /note >}}
 
-* **Project Administrator** - A project administrator can change settings and execute actions on any environment.
-* **Project Viewer** - A project reader can view all environments within a project but cannot execute any actions on them.
+User roles are defined per environment types (Production, Staging, Development):
 
-A Project Reader can have a specific role on different environments. At the environment level:
+* **Administrator** - Administrator can change settings and execute actions on all environment of this type.
+* **Contributor** - Contributor can push code and branch all environments of this type.
+* **Viewer** - Viewer can view all environments of this type.
 
-* **Environment Administrator** - An environment administrator can change settings and execute actions on this environment.
-* **Environment Contributor** - An environment contributor can push code to this environment and branch the environment.
-* **Environment Viewer** - An environment reader can only view this environment.
+User roles can also be granted to the entire project:
+
+* **Project Administrator** - A project administrator can change settings and execute actions on all environments of the project.
+* **Project Viewer** - A project viewer can view all environments of the project.
 
 {{< note theme="warning" title="Important" >}}
-After a user is added to (or deleted from) an environment, it will be automatically redeployed, after which the new permissions will be fully updated.
+After a user is added to (or removed from) an environment type, all environments of this type will be automatically redeployed, after which the new permissions will be fully updated.
 
-When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger a redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
+When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger a redeployments to update permissions for each environment. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
 {{< /note >}}
 
 ------------------------------------------------------------------------
 
-When a development team works on a project, the team leader can be the project administrator and decide which roles to give his team members.  One team member can contribute to one environment, another member can administer a different environment and the customer can be a reader of the `master` environment.
+When a development team works on a project, the team leader can be the project administrator and decide which roles to give his team members.  One team member can contribute to one environment type (e.g Staging), another member can administer a different environment type (e.g Development) and the customer can be a viewer of the Production environment type.
 
-If you want your users to be able to see everything (Reader), but only commit to a specific branch, change their permission level on that environment to "Contributor".
+If you want your users to be able to see everything (Project Viewer), but only commit to environments of a certain type, change their permission on that environment type to "Contributor".
 
 {{< note theme="info" title="SSH Access Control">}}
-An environment contributor can push code to the environment and has SSH access to the environment. You can change this by [specifying user types]({{< relref "/configuration/app/access.md" >}}) with SSH access.
+A contributor can push code to the environment and has SSH access to the environment. You can change this by [specifying user types]({{< relref "/configuration/app/access.md" >}}) with SSH access.
 {{< /note >}}
 
 {{< note >}}
 The project owner - the person licensed to use Platform.sh - doesn't have special powers. A project owner usually has a project administrator role.
 {{< /note >}}
 
-## Manage user permissions at the project level
+## Manage user permissions with Console
 
-From your list of projects, select the project where you want to view or edit user permissions. At this point, you will not have selected a particular environment. Click the Settings tab at the top of the page, then click the `Access` tab on the left to show the project-level users and their roles.
+From your list of projects, select the project where you want to view or edit user permissions. Click the Settings tab at the top of the page, then click the `Access` tab on the left to show the project-level users and their roles.
 
 ![Project user management screenshot](/images/management-console/settings-project-access.png)
 
@@ -53,39 +57,17 @@ Selecting a user will allow you either to edit that user's permissions or delete
 
 Add a new user by clicking on the `Add` button.
 
-If you select the "Viewer" role for the user, you'll have the option of adjusting the user's permissions at the environment level.
+You can either grant the `Project admin` role to the user, which will give them `Admin` access to every environment in the project, or grant specific permissions on each environment type.
 
-From this view, you can assign the user's access. Selecting them to become a "Project admin" will give them "Admin" access to every environment in the project. Alternatively, you can give the user "Admin", "Viewer", "Contributor", or "No Access" to each environment separately.
-
-If you select the "Viewer" role for the user, you'll have the option of adjusting the user's permissions at the environment level.
-
-Once this has been done, if the user does not have a Platform.sh account, they will receive an email asking to confirm their details and register an account name and a password.
+Once this has been done, if the user does not have a Platform.sh account, they will receive an invitation email asking to confirm their details and register an account.
 
 In order to push and pull code (or to SSH to one of the project's environments) the user will need to add an SSH key.
 
-If the user already has an account, they will receive an email with a link to the project.
+If the user already has an account, they will receive an email with a link to access the project.
 
-## Manage user permissions at the environment level
+## Manage users permissions with the CLI
 
-From within a project select an environment from the `ENVIRONMENT` pull-down menu.
-
-Click the `Settings` tab at the top of the screen and then click the `Access` tab on the left hand side.
-
-![Project user management screenshot](/images/management-console/settings-environment-access.png)
-
-The `Access` tab shows environment-level users and their roles.
-
-Selecting a user will allow you either to edit that user's permissions or delete the user's access to the environment entirely.
-
-Add a new user by clicking on the `Add` button.
-
-{{< note >}}
-Remember the user will only be able to access the environment once it has been rebuilt (after a `git push`).
-{{< /note >}}
-
-## Manage users with the CLI
-
-You can user the Platform.sh command line client to fully manage your users and integrate this with any other automated system.
+You can use the Platform.sh command line interface to fully manage your users and integrate this with any other automated system.
 
 Available commands:
 
@@ -98,7 +80,7 @@ Available commands:
 * `user:role`
   * View or change a user's role
 
-For example, the following command would add the 'admin' role to `alice@example.com` in the current project.
+For example, the following command would add the 'Project admin' role to `alice@example.com` in the current project.
 
 ```bash
 platform user:add
@@ -132,12 +114,12 @@ Are you sure you want to add this user? [Y/n]
 User alice@example.com created
 ```
 
-Once this has been done, the user will receive an email asking her to confirm her details and register an account name and a password.
+Once this has been done, the user will receive an invitation email asking her to confirm her details and register an account.
 
-To give Alice the 'contributor' role on the environment 'development', you could run:
+To give Alice the 'contributor' role on all Development environments, you could run:
 
 ```bash
-platform user:role alice@example.com --level environment --environment development --role contributor
+platform user:role alice@example.com --type development --role contributor
 ```
 
 Use `platform list` to get the full list of commands.
