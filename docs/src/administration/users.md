@@ -33,7 +33,7 @@ When adding users at the **project level**, however, redeployments do not occur 
 
 ------------------------------------------------------------------------
 
-When a development team works on a project, the team leader can be the project administrator and decide which roles to give his team members.  One team member can contribute to one environment type (e.g Staging), another member can administer a different environment type (e.g Development) and the customer can be a viewer of the Production environment type.
+When a development team works on a project, the team leader can be the project administrator and decide which roles to give team members. One team member can contribute to one environment type (e.g Staging), another member can administer a different environment type (e.g Development) and the customer can be a viewer of the Production environment type.
 
 If you want your users to be able to see everything (Project Viewer), but only commit to environments of a certain type, change their permission on that environment type to "Contributor".
 
