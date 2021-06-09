@@ -75,7 +75,7 @@ source:
 Every time the `upstream-update` source operation is ran on a branch, that branch will get checked out, then add a Git remote for the upstream Git repository, then merge the latest changes from its main branch (called `master` in this example). 
 Because there are now local changes committed in the local repository, those changes will then get pushed, built, and deployed. If there’s a merge conflict, the script will fail without committing anything.
 
-We recommend to run this operation on a Development branch rather than directly on Production.
+We recommend running this operation on a Development environment rather than directly on Production.
 
 ## External integrations
 
