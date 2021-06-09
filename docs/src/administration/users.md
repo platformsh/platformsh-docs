@@ -16,7 +16,7 @@ We are deprecating granting user roles on individual environments. You should us
 
 User roles are defined per environment types (Production, Staging, Development):
 
-* **Administrator** - Administrator can change settings and execute actions on all environment of this type.
+* **Administrator** - Administrator can change settings and execute actions on all environments of this type.
 * **Contributor** - Contributor can push code and branch all environments of this type.
 * **Viewer** - Viewer can view all environments of this type.
 
