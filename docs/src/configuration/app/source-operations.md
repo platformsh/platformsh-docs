@@ -87,7 +87,6 @@ If your project is using an external Git integration, the commits resulting from
 
 Only environments created by a branch on the external repository can run source operations. 
 
-Note that source oprations can not be run on environments created from pull requests on the external repository (GitHub, Bitbucket, GitLab). Doing so will result in the following error:
 
 ```text
 [ApiFeatureMissingException] 
