@@ -59,24 +59,24 @@ The following Source Operation syncronizes your branch with an upstream Git repo
 
 1. Add a project-level variable named `env:UPSTREAM_REMOTE` with the Git URL of the upstream repository. That will make that repository available as a Unix environment variable in all environments, including in the Source Operations environment.
 
-- Variable name: `env:UPSTREAM:REMOTE`
-- Variable example value: `https://github.com/platformsh/platformsh-docs`
+  - Variable name: `env:UPSTREAM:REMOTE`
+  - Variable example value: `https://github.com/platformsh/platformsh-docs`
 
 2. In your  `.platform.app.yaml` file, define a Source Operation to fetch from that upstream repository:
 
-```
-source:
-    operations:
-        upstream-update:
-            command: |
-                set -e
-                git remote add upstream $UPSTREAM_REMOTE
-                git fetch --all
-                git merge upstream/master
-```
+  ```
+  source:
+      operations:
+          upstream-update:
+              command: |
+                  set -e
+                  git remote add upstream $UPSTREAM_REMOTE
+                  git fetch --all
+                  git merge upstream/master
+  ```
 
 
-Now every time you run `platform source-operation:run upstream-update` using the CLI on a given branch, the branch fetches all changes from the upstream git repository and then merges the latest changes from the `master` branch in the upstream repository.
+3. Now every time you run `platform source-operation:run upstream-update` using the CLI on a given branch, the branch fetches all changes from the upstream git repository and then merges the latest changes from the `master` branch in the upstream repository.
 If there’s a conflict merging from the upstream repository, the source operation will fail and not update from upstream.
 
 Run the `upstream-update` operation on a Development environment rather than directly on Production.
@@ -143,7 +143,7 @@ The Composer command takes the following parameter:
 
 Now every time you run `platform source-operation:run download-drupal-extension --variable env:EXTENSION=drupal/token` using the CLI on a given branch, the operation will download the `drupal/token` on that branch.
 
-Note that the extension is not yet installed, so you need to enable it via the Drupal management interface or using drush.
+Note that the if its a new extension, after the Source Operation finishes, you need to enable the new extension via the Drupal management interface or using drush.
 
 ## External integrations
 
@@ -154,11 +154,10 @@ When using an external Git integration, you can not run Source Operations on env
 
 If you try running a Source Operation on a non-supported environment, the following error will be triggered:
 
-
-```text
-[ApiFeatureMissingException] 
-This project does not support source operations.
-```
+  ```text
+  [ApiFeatureMissingException] 
+  This project does not support source operations.
+  ```
 
 ## Automated Source Operations using cron
 
