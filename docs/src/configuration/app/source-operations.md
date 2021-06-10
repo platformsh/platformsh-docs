@@ -57,7 +57,10 @@ Also, if multiple applications in a single project both result in a new commit, 
 
 The following source operation syncronizes your branch with an upstream Git repository.
 
-You need to add a project-level variable named `env:UPSTREAM_REMOTE` with the Git URI of the upstream repository. That will make that repository available as a Unix environment variable in all environments, including in the Source Operations environment.
+1. Add a project-level variable named `env:UPSTREAM_REMOTE` with the Git URL of the upstream repository. That will make that repository available as a Unix environment variable in all environments, including in the Source Operations environment.
+
+- Variable name: `env:UPSTREAM:REMOTE`
+- Variable example value: `https://github.com/platformsh/platformsh-docs`
 
 Then, define a Source Operation to that upstream repository:
 
