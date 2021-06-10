@@ -51,14 +51,113 @@ Note that these operations run in an isolated container which is not part of the
 
 Also, if multiple applications in a single project both result in a new commit, that will appear as two distinct commits in the Git history but only a single new build/deploy cycle will occur. If multiple applications define source operations with the same name, they will all be executed sequentially on each application.
 
+## Source Operations usage examples
+
+### Update a site from an upstream repository or template
+
+The following Source Operation syncronizes your branch with an upstream Git repository.
+
+1. Add a project-level variable named `env:UPSTREAM_REMOTE` with the Git URL of the upstream repository. That will make that repository available as a Unix environment variable in all environments, including in the Source Operations environment.
+
+  - Variable name: `env:UPSTREAM:REMOTE`
+  - Variable example value: `https://github.com/platformsh/platformsh-docs`
+
+2. In your  `.platform.app.yaml` file, define a Source Operation to fetch from that upstream repository:
+
+  ```
+  source:
+      operations:
+          upstream-update:
+              command: |
+                  set -e
+                  git remote add upstream $UPSTREAM_REMOTE
+                  git fetch --all
+                  git merge upstream/master
+  ```
+
+
+3. Now every time you run `platform source-operation:run upstream-update` using the CLI on a given branch, the branch fetches all changes from the upstream git repository and then merges the latest changes from the `master` branch in the upstream repository.
+If there’s a conflict merging from the upstream repository, the source operation will fail and not update from upstream.
+
+Run the `upstream-update` operation on a Development environment rather than directly on Production.
+
+### Revert to the last commit
+
+The following Source Operation will revert the last commit pushed to the Git repository. This can be useful if you did not properly test the changes of another operation, and you need to quickly revert to the previous state.
+
+In your  `.platform.app.yaml` file, define a Source Operation to revert the last commit:
+
+```
+source:
+    operations:
+        revert:
+            command: |                
+                git reset --hard HEAD~
+```
+
+Now every time you run `platform source-operation:run revert` using the CLI on a given branch, the operation will revert the last commit pushed to that branch.
+
+### Update Drupal Core
+
+The following source operation will use Composer to update Drupal Core.
+
+1. In your  `.platform.app.yaml` file, define a Source Operation to update Drupal Core:
+
+```
+source:
+    operations:
+        update-drupal-core:
+            command: |
+                set -e
+                composer update drupal/core --with-dependencies
+                git add composer.lock
+                git commit -m "Automated Drupal Core update."
+```
+
+The Composer command takes the following parameter:
+
+- `--with-dependencies`: use this parameter to also update Drupal Core dependencies. Read more on how to [update Drupal Core via Composer on Drupal.org](https://www.drupal.org/docs/updating-drupal/updating-drupal-core-via-composer).
+
+Now every time you run `platform source-operation:run update-drupal-core` using the CLI on a given branch, the operation will update Drupal Core.
+
+### Download a Drupal extension
+
+The following Source Operation will download a Drupal extension. You can define the Drupal extension by setting an `$EXTENSION` variable or overriding the `$EXTENSION` variable when running the Source Operation.
+
+1. In your  `.platform.app.yaml` file, define a Source Operation to update Drupal Core:
+
+```
+source:
+    operations:
+        download-drupal-extension:
+            command: |
+                set -e
+                composer require $EXTENSION
+                git add composer.json
+                git commit -am "Automated install of: $EXTENSION via Composer."
+```
+
+The Composer command takes the following parameter:
+
+- `--with-dependencies`: use this parameter to also update Drupal Core dependencies. Read more on how to [update Drupal Core via Composer on Drupal.org](https://www.drupal.org/docs/updating-drupal/updating-drupal-core-via-composer).
+
+Now every time you run `platform source-operation:run download-drupal-extension --variable env:EXTENSION=drupal/token` using the CLI on a given branch, the operation will download the `drupal/token` on that branch.
+
+Note that the if its a new extension, after the Source Operation finishes, you need to enable the new extension via the Drupal management interface or using drush.
+
 ## External integrations
 
-Source Operations can only be triggered on environments created by a branch, and is not currently supported for those created from pull requests on an external repository integration (GitHub, Bitbucket, GitLab). Doing so will result in the following error:
+If your project is using an external Git integration, any new commits resulting from updating your branch using a Source Operation, will be first pushed to that external Git repository. After that, the Git integration pushes those commits to Platform.sh, effectively redeploying the environment.
 
-```text
-[ApiFeatureMissingException] 
-This project does not support source operations.
-```
+
+When using an external Git integration, you can not run Source Operations on environments created from pull or merge requests created on the external repository. 
+
+If you try running a Source Operation on a non-supported environment, the following error will be triggered:
+
+  ```text
+  [ApiFeatureMissingException] 
+  This project does not support source operations.
+  ```
 
 ## Automated Source Operations using cron
 
