@@ -75,7 +75,8 @@ source:
                 git merge upstream/master
 ```
 
-Every time the `upstream-update` source operation is ran on a branch, that branch will get checked out, then add a Git remote for the upstream Git repository, then merge the latest changes from its main branch (called `master` in this example). 
+
+Now every time you run `platform source-operation:run upstream-update` using the CLI on a given branch, the branch fetches all changes from the upstream git repository and then merges the latest changes from the `main` branch in the upstream repository.
 Because there are now local changes committed in the local repository, those changes will then get pushed, built, and deployed. If there’s a merge conflict, the script will fail without committing anything.
 
 We recommend running this operation on a Development environment rather than directly on Production.
