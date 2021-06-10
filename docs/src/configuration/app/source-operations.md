@@ -77,7 +77,7 @@ source:
 
 
 Now every time you run `platform source-operation:run upstream-update` using the CLI on a given branch, the branch fetches all changes from the upstream git repository and then merges the latest changes from the `main` branch in the upstream repository.
-Because there are now local changes committed in the local repository, those changes will then get pushed, built, and deployed. If there’s a merge conflict, the script will fail without committing anything.
+If there’s a conflict merging from the upstream repository, the source operation will fail and not update from upstream.
 
 Run the `upstream-update` operation on a Development environment rather than directly on Production.
 
