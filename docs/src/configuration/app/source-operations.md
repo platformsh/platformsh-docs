@@ -76,7 +76,7 @@ source:
 ```
 
 
-Now every time you run `platform source-operation:run upstream-update` using the CLI on a given branch, the branch fetches all changes from the upstream git repository and then merges the latest changes from the `main` branch in the upstream repository.
+Now every time you run `platform source-operation:run upstream-update` using the CLI on a given branch, the branch fetches all changes from the upstream git repository and then merges the latest changes from the `master` branch in the upstream repository.
 If there’s a conflict merging from the upstream repository, the source operation will fail and not update from upstream.
 
 Run the `upstream-update` operation on a Development environment rather than directly on Production.
