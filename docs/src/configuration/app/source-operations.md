@@ -55,7 +55,7 @@ Also, if multiple applications in a single project both result in a new commit, 
 
 ### Update a site from an upstream repository or template
 
-The following source operation syncronizes your branch with an upstream Git repository.
+The following Source Operation syncronizes your branch with an upstream Git repository.
 
 1. Add a project-level variable named `env:UPSTREAM_REMOTE` with the Git URL of the upstream repository. That will make that repository available as a Unix environment variable in all environments, including in the Source Operations environment.
 
@@ -83,7 +83,7 @@ Run the `upstream-update` operation on a Development environment rather than dir
 
 ### Revert to the last commit
 
-The following source operation will revert the last commit pushed to the Git repository. This can be useful if you did not properly test the changes of another operation, and you need to quickly revert to the previous state.
+The following Source Operation will revert the last commit pushed to the Git repository. This can be useful if you did not properly test the changes of another operation, and you need to quickly revert to the previous state.
 
 In your  `.platform.app.yaml` file, define a Source Operation to revert the last commit:
 
@@ -114,7 +114,7 @@ source:
                 git commit -m "Automated Drupal Core update."
 ```
 
-The Composer command takes the followin parameter:
+The Composer command takes the following parameter:
 
 - `--with-dependencies`: use this parameter to also update Drupal Core dependencies. Read more on how to [update Drupal Core via Composer on Drupal.org](https://www.drupal.org/docs/updating-drupal/updating-drupal-core-via-composer).
 
@@ -122,7 +122,7 @@ Now every time you run `platform source-operation:run update-drupal-core` using 
 
 ### Download a Drupal extension
 
-The following source operation will download a Drupal extension.
+The following Source Operation will download a Drupal extension. You can define the Drupal extension by setting an `$EXTENSION` variable or overriding the `$EXTENSION` variable when running the Source Operation.
 
 1. In your  `.platform.app.yaml` file, define a Source Operation to update Drupal Core:
 
@@ -150,9 +150,9 @@ Note that the extension is not yet installed, so you need to enable it via the D
 If your project is using an external Git integration, any new commits resulting from updating your branch using a Source Operation, will be first pushed to that external Git repository. After that, the Git integration pushes those commits to Platform.sh, effectively redeploying the environment.
 
 
-When using an external Git integration, you can not run source operations on environments created from pull or merge requests created on the external repository. 
+When using an external Git integration, you can not run Source Operations on environments created from pull or merge requests created on the external repository. 
 
-If you try running a source operation over a non-supported environment, the following error will be triggered:
+If you try running a Source Operation on a non-supported environment, the following error will be triggered:
 
 
 ```text
