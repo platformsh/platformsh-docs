@@ -147,7 +147,7 @@ Note that the extension is not yet installed, so you need to enable it via the D
 
 ## External integrations
 
-If your project is using an external Git integration, the commits resulting from the Source Operations will be pushed to the external repository, before triggering the integration to redeploy the environment.
+If your project is using an external Git integration, any new commits resulting from updating your branch using a Source Operation, will be first pushed to that external Git repository. After that, the Git integration pushes those commits to Platform.sh, effectively redeploying the environment.
 
 
 When using an external Git integration, you can not run source operations on environments created from pull or merge requests created on the external repository. 
