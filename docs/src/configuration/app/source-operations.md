@@ -62,7 +62,7 @@ The following source operation syncronizes your branch with an upstream Git repo
 - Variable name: `env:UPSTREAM:REMOTE`
 - Variable example value: `https://github.com/platformsh/platformsh-docs`
 
-Then, define a Source Operation to that upstream repository:
+2. In your  `.platform.app.yaml` file, define a Source Operation to fetch from that upstream repository:
 
 ```
 source:
