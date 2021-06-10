@@ -55,7 +55,7 @@ Also, if multiple applications in a single project both result in a new commit, 
 
 ### Update a site from an upstream repository or template
 
-This example will synchronize your branch with the content from an upstream Git repository.
+The following source operation syncronizes your branch with an upstream Git repository.
 
 You need to add a project-level variable named `env:UPSTREAM_REMOTE` with the Git URI of the upstream repository. That will make that repository available as a Unix environment variable in all environments, including in the Source Operations environment.
 
