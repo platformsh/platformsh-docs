@@ -85,7 +85,10 @@ Run the `upstream-update` operation on a Development environment rather than dir
 
 If your project is using an external Git integration, the commits resulting from the Source Operations will be pushed to the external repository, before triggering the integration to redeploy the environment.
 
-Only environments created by a branch on the external repository can run source operations. 
+
+When using an external Git integration, you can not run source operations on environments created from pull or merge requests created on the external repository. 
+
+If you try running a source operation over a non-supported environment, the following error will be triggered:
 
 
 ```text
