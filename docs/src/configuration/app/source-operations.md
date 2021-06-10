@@ -81,6 +81,70 @@ If there’s a conflict merging from the upstream repository, the source operati
 
 Run the `upstream-update` operation on a Development environment rather than directly on Production.
 
+### Revert to the last commit
+
+The following source operation will revert the last commit pushed to the Git repository. This can be useful if you did not properly test the changes of another operation, and you need to quickly revert to the previous state.
+
+In your  `.platform.app.yaml` file, define a Source Operation to revert the last commit:
+
+```
+source:
+    operations:
+        revert:
+            command: |                
+                git reset --hard HEAD~
+```
+
+Now every time you run `platform source-operation:run revert` using the CLI on a given branch, the operation will revert the last commit pushed to that branch.
+
+### Update Drupal Core
+
+The following source operation will use Composer to update Drupal Core.
+
+1. In your  `.platform.app.yaml` file, define a Source Operation to update Drupal Core:
+
+```
+source:
+    operations:
+        update-drupal-core:
+            command: |
+                set -e
+                composer update drupal/core --with-dependencies
+                git add composer.lock
+                git commit -m "Automated Drupal Core update."
+```
+
+The Composer command takes the followin parameter:
+
+- `--with-dependencies`: use this parameter to also update Drupal Core dependencies. Read more on how to [update Drupal Core via Composer on Drupal.org](https://www.drupal.org/docs/updating-drupal/updating-drupal-core-via-composer).
+
+Now every time you run `platform source-operation:run update-drupal-core` using the CLI on a given branch, the operation will update Drupal Core.
+
+### Download a Drupal extension
+
+The following source operation will download a Drupal extension.
+
+1. In your  `.platform.app.yaml` file, define a Source Operation to update Drupal Core:
+
+```
+source:
+    operations:
+        download-drupal-extension:
+            command: |
+                set -e
+                composer require $EXTENSION
+                git add composer.json
+                git commit -am "Automated install of: $EXTENSION via Composer."
+```
+
+The Composer command takes the following parameter:
+
+- `--with-dependencies`: use this parameter to also update Drupal Core dependencies. Read more on how to [update Drupal Core via Composer on Drupal.org](https://www.drupal.org/docs/updating-drupal/updating-drupal-core-via-composer).
+
+Now every time you run `platform source-operation:run download-drupal-extension --variable env:EXTENSION=drupal/token` using the CLI on a given branch, the operation will download the `drupal/token` on that branch.
+
+Note that the extension is not yet installed, so you need to enable it via the Drupal management interface or using drush.
+
 ## External integrations
 
 If your project is using an external Git integration, the commits resulting from the Source Operations will be pushed to the external repository, before triggering the integration to redeploy the environment.
