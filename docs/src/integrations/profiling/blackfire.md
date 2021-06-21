@@ -132,6 +132,14 @@ Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for mo
 Those features may require a Premium or an Enterprise subscription. We offer attractive bundles of Platform.sh and Blackfire.io subscriptions. Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
 {{< /note >}}
 
+## Enable Blackfire Application Performance Management (APM)
+
+Blackfire Application Performance Management is installed but not activated by default.
+To be able to use it, adding an [environment variable](development/variables.html) is required.
+
+This can be achieved either by adding `env:BLACKFIRE_APM_ENABLED = 1` through the administration console or by using the following CLI command:
+`$ platform variable:create --level environment --name BLACKFIRE_APM_ENABLED --value 1`
+
 ## Troubleshooting
 
 ### Bypassing Reverse Proxy, Cache, and Content Delivery Networks (CDN)
