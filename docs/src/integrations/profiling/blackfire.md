@@ -137,7 +137,7 @@ Those features may require a Premium or an Enterprise subscription. We offer att
 Blackfire Application Performance Management is installed but not activated by default.
 To be able to use it, adding an [environment variable](development/variables.html) is required.
 
-This can be achieved either by adding `env:BLACKFIRE_APM_ENABLED = 1` through the administration console or by using the following CLI command:
+Go to the administration console, and in your environment page, add  `env:BLACKFIRE_APM_ENABLED = 1`, or use the following Platform CLI command:
 `$ platform variable:create --level environment --name BLACKFIRE_APM_ENABLED --value 1`
 
 ## Troubleshooting
