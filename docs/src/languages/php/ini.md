@@ -8,7 +8,7 @@ There are two ways to customize `php.ini` values for your application. The recom
  ```yaml
  variables:
     php:
-        memory_limit: 256M
+        memory_limit: "256M"
  ```
 
 It's also possible to provide a custom `php.ini` file in the repository in the root of the application (where your `.platform.app.yaml` file is).
@@ -24,7 +24,7 @@ Another example is to set the timezone of the PHP runtime (though, the timezone 
  ```yaml
  variables:
     php:
-        "date.timezone": "Europe/Paris"
+        date.timezone: "Europe/Paris"
  ```
 
 or
@@ -44,7 +44,7 @@ A common recommendation for securing a PHP installation is to disable certain bu
  ```yaml
  variables:
     php:
-        "disable_functions": "pcntl_exec,pcntl_fork"
+        disable_functions: "pcntl_exec,pcntl_fork"
  ```
 
 Common functions to disable include:
