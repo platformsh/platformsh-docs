@@ -47,7 +47,39 @@ nginx-level errors that occur once nginx has fully started will be recorded here
 
 ## `php.access.log`
 
-On a PHP container, the php.access.log contains a record of all requests to the PHP service.
+On a PHP container, the `php.access.log` contains a record of all requests to the PHP service.
+These requests are split in several parts into the logs.
+
+The `php.access.log` may look similar the following:
+```
+2021-07-01T13:57:12Z HEAD 200 284.288 ms 10240 kB 38.69% /
+2021-07-01T13:57:13Z POST 200 162.106 ms 10240 kB 61.69% /wp-cron.php?doing_wp_cron=0123456.789
+2021-07-01T14:02:13Z HEAD 200 305.745 ms 10240 kB 39.25% /
+2021-07-01T14:02:13Z POST 200 168.507 ms 10240 kB 65.28% /wp-cron.php?doing_wp_cron=0123457.789
+```
+It is consisting of several parts. 
+Let's have a look first, at how the log is formatted.
+We can get this information in the php settings.
+```
+web@app.0:~$ cat -n /etc/php/7.4-zts/fpm/pool.d/www.conf  | grep "access.format"
+   319	;access.format = "%R - %u %t \"%m %r%Q%q\" %s %f %{mili}d %{kilo}M %C%%"
+```
+Please note that the path may change based on the php version you are using. 
+
+In the detail these would be:
+- `%R` : remote IP address
+- `%u` : remote user
+- `%t` : server time of receiving request (timestamp)
+- `%m` : HTTP request methods - more details can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+- `%r` : request uri
+- `%s` : HTTP response status codes - more details can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+- `%f` : script filename
+- `%d` : time taken to serve request (in miliseconds)
+- `%M` : peak memory allocated by php (in kilobytes)
+- `%C` : CPU used by each request
+
+Not all of these are always displayed. 
+In the previous example for instance, `%R`, `%u` and `%f` are not shown.
 
 ## `post_deploy.log`
 
