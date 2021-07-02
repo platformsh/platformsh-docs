@@ -3,52 +3,49 @@ title: "User administration"
 weight: 1
 sidebarTitle: "Users"
 description: |
-  Every Platform.sh user has a role that controls access and improves security on your project. Different roles are authorized to do different things with your applications, environments and users. You can use your collection of Roles to manage how users interact with Platform.sh.
+  Every Platform.sh user has a role that controls their access and permission levels. Different roles allow different levels of access to your applications, environments and projects. You can manage how users interact with your project and environments at Platform.sh
 ---
 
 {{< description >}}
 
-Any user added to a project or an environment on Platform.sh will need to [register for an account](https://auth.api.platform.sh/register) before they can contribute. If you need to delete your account at any time you can [transfer ownership](/administration/users.md#transfer-ownership) of your existing projects and then open a [support ticket](/development/troubleshoot.md#deleting-your-platformsh-account) to request your account be deleted.  
+Any user added to a project or an environment type on Platform.sh will need to [register for an account](https://auth.api.platform.sh/register) before they can contribute. If you need to delete your account at any time you can [transfer ownership](/administration/users.md#transfer-ownership) of your existing projects and then open a [support ticket](/development/troubleshoot.md#deleting-your-platformsh-account) to request your account deletion.  
 
 ## User roles
 
-{{< note theme="warning" title="Important" >}}
-We are deprecating granting user roles on individual environments. You should use environment types instead.
-{{< /note >}}
 
-User roles are defined per environment types (Production, Staging, Development):
+Grant user permissions to the entire project:
 
-* **Administrator** - Administrator can change settings and execute actions on all environments of this type.
-* **Contributor** - Contributor can push code and branch all environments of this type.
-* **Viewer** - Viewer can view all environments of this type.
-
-User roles can also be granted to the entire project:
-
-* **Project Administrator** - A project administrator can change settings and execute actions on all environments of the project.
 * **Project Viewer** - A project viewer can view all environments of the project.
+* **Project Administrator** - A project administrator can change settings, push code and execute actions on all environments of the project.
 
 {{< note theme="warning" title="Important" >}}
-After a user is added to (or removed from) an environment type, all environments of this type will be automatically redeployed, after which the new permissions will be fully updated.
-
-When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
+Over the next 6 weeks, we're updating environment access controls, so that you can update users' access to groups of environments. You'll see environment types available in the management console and CLI once it's live. 
 {{< /note >}}
 
-Accessing the project through SSH may differ depending on the [configuration of the project or environment](/configuration/app/access.md).
+You can also define user access per environment type (Production, Staging, Development). Each permission level progressively increases access to the environments part of a given environment type:
 
-------------------------------------------------------------------------
+* **Viewer** - Viewer can view all environments of this type.
+* **Contributor** - Contributor can push code and branch all environments of this type.
+* **Administrator** - Administrator can change settings and execute actions on all environments of this type.
 
-When a development team works on a project, the team leader can be the project administrator and decide which roles to give team members. One team member can contribute to one environment type (e.g Staging), another member can administer a different environment type (e.g Development) and the customer can be a viewer of the Production environment type.
 
-If you want your users to be able to see everything (Project Viewer), but only commit to environments of a certain type, change their permission on that environment type to "Contributor".
-
-{{< note theme="info" title="SSH Access Control">}}
-
-A contributor can push code to the environment and has SSH access to the environment. You can change this by [specifying user types]({{< relref "/configuration/app/access.md" >}}) with SSH access.
+{{< note theme="warning" title="Important" >}}
+After you add or remove a user from a project or an environment type, you will need to trigger a redeploy to propagate the access changes to each environment.
+You can redeploy by using the CLI command `platform redeploy` or the management console button **Redeploy**. 
 {{< /note >}}
+
+If you want contributors to be able to see everything across the project, but only commit to environments of a certain type, set their permission as **Project Viewer** for the whole project and their permission on that environment type to **Contributor**.
 
 {{< note >}}
-The project owner - the person licensed to use Platform.sh - doesn't have special powers. A project owner usually has a project administrator role.
+**Project Owner** - is the person licensed to use Platform.sh and whom the project belongs to. A project owner has a project administrator role and is the only person who can delete the project.
 {{< /note >}}
+
+
+## SSH Access
+
+By default, everyone with access equal or greater than `Contributor` can access the project through SSH. 
+
+You can customize who can SSH, by setting the `access` key in your `.platform.app.yaml` file. [See SSH Access restrictions](/configuration/app/access.md).
 
 ## Manage user permissions with Console
 
@@ -64,9 +61,9 @@ Add a new user by clicking on the `Add` button.
 
 You can either grant the `Project admin` role to the user, which will give them `Admin` access to every environment in the project, or grant specific permissions on each environment type.
 
-Once this has been done, if the user does not have a Platform.sh account, they will receive an invitation email asking to confirm their details and register an account.
+After inviting a new user, if the user does not have a Platform.sh account, they will receive an invitation email asking to confirm their details and register an account.
 
-In order to push and pull code (or to SSH to one of the project's environments) the user will need to add an SSH key.
+In order to push and pull code (or to SSH to one of the project's environments) the user will need to add an SSH key or use the Platform CLI.
 
 If the user already has an account, they will receive an email with a link to access the project.
 
@@ -165,6 +162,6 @@ $ git clone <project>@git.<region>.platform.sh:<project>.git
 
 ## Transfer ownership
 
-If you want to transfer ownership of a project to a different user, first invite that user as a project administrator and then submit a support ticket from the current project owner to ask for the transfer.
+If you're the owner of a project, and want to transfer it to a different user, first invite that user as a project administrator and then submit a support ticket from your owner account to ask for the transfer.
 
-This action will automatically transfer the subscription charges to the new owner.
+Transfering a project automatically transfers the upcoming subscription charges to the new owner.
