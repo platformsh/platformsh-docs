@@ -10,25 +10,23 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated" >}} |
-
-
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} |
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable]({{< relref "/development/variables.md#platformsh-provided-variables" >}}):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/rabbitmq" >}}
-{{< /highlight >}}
+{{< relationship "rabbitmq" >}}
 
 ## Usage example
 
 In your `.platform/services.yaml`:
 
 {{< readFile file="src/registry/images/examples/full/rabbitmq.services.yaml" highlight="yaml" >}}
+
+The minimum disk size for RabbitMQ is `512` (MB).
 
 In your `.platform.app.yaml`:
 

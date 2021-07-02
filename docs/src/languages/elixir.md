@@ -17,7 +17,7 @@ To specify an Elixir container, use the `type` property in your `.platform.app.y
 
 ## Platform.sh variables
 
-Platform.sh exposes relationships and other configuration as [environment variables]({{< relref "/development/variables.md" >}}). Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services]({{< relref "/configuration/services/_index.md" >}}).
+Platform.sh exposes relationships and other configuration as [environment variables](/development/variables.md). Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services/_index.md).
 
 To get the `PORT` environment variable (the port on which your web application is supposed to listen) you would:
 
@@ -25,7 +25,7 @@ To get the `PORT` environment variable (the port on which your web application i
 String.to_integer(System.get_env("PORT") || "8888")
 ```
 
-Some of the environment variables are in JSON format and are base64 encoded. You would need to import a JSON parsing library such as [Jason](https://hexdocs.pm/json/readme.html) or [Poison](https://hexdocs.pm/poison/api-reference.html) to read those. (There is an example for doing this to decode the `PLATFORM_RELATIONSHIPS` environment variable in the section [below]({{< relref "#accessing-services-manually" >}}).)
+Some of the environment variables are in JSON format and are base64 encoded. You would need to import a JSON parsing library such as [Json](https://hexdocs.pm/json/readme.html) or [Poison](https://hexdocs.pm/poison/api-reference.html) to read those. (There is an example for doing this to decode the `PLATFORM_RELATIONSHIPS` environment variable in the section [below](#accessing-services-manually).)
 
 {{< note title="Tip">}}
 Remember `config/prod.exs` is evaluated at **build time** and will not have access to runtime configuration. Use `config/releases.exs` to configure your runtime environment.
@@ -99,9 +99,9 @@ The recommended way to handle Elixir dependencies on Platform.sh is using Hex. Y
 
 ## Accessing Services
 
-The simplest possible way to go around this is to use the [Platform.sh Config Reader](https://hex.pm/packages/platformshconfig) library from hex. The libraray source is also available [on GitHub](https://github.com/platformsh/config-reader-elixir).
+The simplest possible way to go around this is to use the [Platform.sh Config Reader](https://hex.pm/packages/platformshconfig) library from hex. The library source is also available [on GitHub](https://github.com/platformsh/config-reader-elixir).
 
-If you are building a Phoenix app for example, it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`. Put the lib in your `deps` and, assuming you renamed the `proc.secrets.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
+If you are building a Phoenix app for example, it would suffice to add a database to `.platform/services.yaml` and a relationship in `.platform.app.yaml`. Put the lib in your `deps` and, assuming you renamed the `prod.secret.exs` to `releases.exs` per the [Phoenix guide](https://hexdocs.pm/phoenix/releases.html), change:
 
 ```elixir
 System.get_env("DATABASE_URL")

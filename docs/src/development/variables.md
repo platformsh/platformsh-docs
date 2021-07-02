@@ -23,7 +23,7 @@ All of those may be simple strings or base64-encoded JSON-serialized values.  In
 
 ### Application-provided variables
 
-Variables may be [set in code]({{< relref "/configuration/app/variables.md" >}}), using the `.platform.app.yaml` file.  These values of course will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, the PHP Symfony framework has a `SYMFONY_ENV` property that users may wish to set to `prod` on all environments to ensure a consistent build, or it may be used to set [PHP configuration values]({{< relref "#php-specific-variables" >}}).
+Variables may be [set in code](/configuration/app/variables.md), using the `.platform.app.yaml` file.  These values will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and such.  This capability is mainly to define values that an application expects via an environment variable that should be consistent across all environments.  For example, some runtimes or frameworks use environment variables to configure their behavior, such as a `dev` vs `production` flag. You might want to set those as application-provided variables to ensure a consistent build across every environment. They may also be used to set [PHP configuration values](#php-specific-variables).
 
 Application-provided variables are available at both build time and runtime.
 
@@ -38,7 +38,7 @@ platform variable:create --level project --name foo --value bar
 
 Project variables are a good place to store secret information that is needed at build time, such as credentials for a private 3rd party code repository.
 
-By default, project variables will be available at both build time and runtime. You can suppress one or the other with the `--no-visible-build` and `--no-visible-runtime` flags, such as if you want to hide certain credentials from runtime entirely.  For example, the following (silly) example will define a project variable but hide it from both build and runtime:
+By default, project variables will be available at both build time and runtime. You can suppress one or the other with the `--visible-build` and `--visible-runtime` flags, such as if you want to hide certain credentials from runtime entirely.  For example, the following (silly) example will define a project variable but hide it from both build and runtime:
 
 ```bash
 platform variable:create --level project --name foo --value bar --visible-build false --visible-runtime false
@@ -50,7 +50,7 @@ Project variables may also be marked `--sensitive true`.  That flag will mark th
 
 ### Environment variables
 
-Environment-level variables can also be set [through the management console]({{< relref "/administration/web/configure-environment.md#settings" >}}), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to create an environment variable "foo" with the value "bar" on the currently checked out environment/branch, run:
+Environment-level variables can also be set [through the management console](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to create an environment variable "foo" with the value "bar" on the currently checked out environment/branch, run:
 
 ```bash
 $ platform variable:create --level environment --name foo --value bar
@@ -91,7 +91,7 @@ The following variables are available at both runtime and at build time, and may
 * **PLATFORM_PROJECT**: The ID of the project.
 * **PLATFORM_TREE_ID**: The ID of the tree the application was built from. It's essentially the SHA hash of the tree in Git.  If you need a unique ID for each build for whatever reason this is the value you should use.
 * **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are variables names and values are variable values (see below).  Note that the values available in this structure may vary between build and runtime depending on the variable type as described above.
-* **PLATFORM_PROJECT_ENTROPY**: A random value created when the project is first created, which is then stable throughout the project's life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
+* **PLATFORM_PROJECT_ENTROPY**: A random, 56-character value created when the project is first created, which is then stable throughout the project's life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
 
 The following variables exist *only* at runtime.  If used in a build hook they will evaluate to an empty string like any other unset variable:
 
@@ -99,7 +99,7 @@ The following variables exist *only* at runtime.  If used in a build hook they w
 * **PLATFORM_DOCUMENT_ROOT**: The absolute path to the web document root, if applicable.
 * **PLATFORM_ENVIRONMENT**: The name of the environment generated by the name of the Git branch.
 * **PLATFORM_SMTP_HOST**: The SMTP host that email messages should be sent through.  This value will be empty if mail is disabled for the current environment.
-* **PLATFORM_RELATIONSHIPS**: A base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. See the documentation for each [Service]({{< relref "/configuration/services/_index.md" >}}) for details on each service type's schema.
+* **PLATFORM_RELATIONSHIPS**: A base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions. See the documentation for each [Service](/configuration/services/_index.md) for details on each service type's schema.
 * **PLATFORM_ROUTES**: A base64-encoded JSON object that describes the routes that you defined in the environment. It maps the content of the `.platform/routes.yaml` file.
 
 On a Dedicated instance, the following additional variables are available at runtime only:
@@ -107,6 +107,10 @@ On a Dedicated instance, the following additional variables are available at run
 * **PLATFORM_MODE**: Set to `enterprise` in an Dedicated environment, both production and staging.  Note that an Enterprise support plan doesn't always imply a Dedicated production, but Dedicated production always implies an Enterprise support plan.
 * **PLATFORM_CLUSTER**: Set to the cluster ID.
 * **PLATFORM_PROJECT**: Set to the document root.  This is typically the same as your cluster name for the production environment, while staging will have `_stg` or similar appended.
+
+{{< note >}}
+The `PLATFORM_CLUSTER`, and `PLATFORM_PROJECT` environment variables are not yet available on [Dedicated Generation 3](/dedicated-gen-3/overview.md). If your application contains logic that depends on whether it is running on a Dedicated Generation 3 host, use `PLATFORM_MODE`.
+{{< /note >}}
 
 Since values can change over time, the best thing is to inspect the variable at runtime then use it to configure your application. For example:
 
@@ -143,7 +147,7 @@ echo $PLATFORM_RELATIONSHIPS | base64 --decode | json_pp
 
 ## Accessing variables
 
-You can get a list of all variables defined on a given environment either [via the management console]({{< relref "/administration/web/configure-environment.md#settings" >}}) or using the CLI:
+You can get a list of all variables defined on a given environment either [via the management console](/administration/web/configure-environment.md#settings) or using the CLI:
 
 ```bash
 $ platform variables
@@ -159,11 +163,6 @@ $ platform variables
 
 Only Project variables are available at build time.  They will be listed together in a single JSON array and exposed in the `$PLATFORM_VARIABLES` Unix environment variable.
 
-```bash
-echo $PLATFORM_VARIABLES | base64 --decode
-{"my_var": "this is a value"}
-```
-
 They can also be accessed from within a non-shell script via the language's standard way of accessing environment variables.  For instance, in PHP you would use `getenv('PLATFORM_VARIABLES')`. Remember that in some cases they may be base64 JSON strings and will need to be unpacked.  To do so from the shell, for instance, you would do:
 
 ```bash
@@ -171,7 +170,7 @@ echo $PLATFORM_VARIABLES | base64 --decode
 {"myvar": "this is a value"}
 ```
 
-See [below]({{< relref "#top-level-environment-variables" >}}) for how to expose a project variable as its own Unix environment variable.
+See [below](#top-level-environment-variables) for how to expose a project variable as its own Unix environment variable.
 
 ### At runtime
 
@@ -242,7 +241,8 @@ Check the individual documentation pages for accessing environment variables for
 * [PHP: the getenv() function](http://php.net/manual/en/function.getenv.php)
 * [Node.js: the process.env object](https://nodejs.org/api/process.html#process_process_env)
 * [Python: the os.environ object](https://docs.python.org/3/library/os.html#os.environ)
-* [Ruby: the ENV accessor](https://ruby-doc.org/core-2.1.4/ENV.html)
+* [Ruby: the ENV accessor](https://ruby-doc.org/core/ENV.html)
+* [Java: the java.lang.System accessor](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
 
 {{< codetabs >}}
 
@@ -285,10 +285,10 @@ import os
 import json
 import base64
 
-// A simple variable.
+# A simple variable.
 project_id = os.getenv('PLATFORM_PROJECT')
 
-// A JSON-encoded value.
+# A JSON-encoded value.
 variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode('utf-8'))
 
 <--->
@@ -300,17 +300,19 @@ highlight=js
 markdownify=false
 ---
 
+const { env } = process;
+
 // Utility to assist in decoding a packed JSON variable.
 function read_base64_json(varName) {
   try {
-    return JSON.parse(new Buffer(process.env[varName], 'base64').toString());
+    return JSON.parse(Buffer.from(env[varName], "base64").toString());
   } catch (err) {
     throw new Error(`no ${varName} environment variable`);
   }
 };
 
 // A simple variable.
-let projectId = process.env.PLATFORM_PROJECT;
+let projectId = env.PLATFORM_PROJECT;
 
 // A JSON-encoded value.
 let variables = read_base64_json('PLATFORM_VARIABLES');
@@ -329,6 +331,37 @@ project_id = ENV["PLATFORM_PROJECT"] || nil
 
 // A JSON-encoded value.
 variables = JSON.parse(Base64.decode64(ENV["PLATFORM_VARIABLES"]))
+
+<--->
+
+---
+title=Java
+file=none
+highlight=java
+markdownify=false
+---
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.util.Base64;
+import java.util.Map;
+
+import static java.lang.System.getenv;
+import static java.util.Base64.getDecoder;
+
+public class App {
+
+    public static void main(String[] args) throws IOException {
+        // A simple variable.
+        final String project = getenv("PLATFORM_PROJECT");
+        // A JSON-encoded value.
+        ObjectMapper mapper = new ObjectMapper();
+        final Map<String, Object> variables = mapper.readValue(
+                String.valueOf(getDecoder().decode(getenv("PLATFORM_VARIABLES"))), Map.class);
+    }
+}
+
 
 {{< /codetabs >}}
 
@@ -356,7 +389,7 @@ Any variable with the prefix `php:` will also be added to the `php.ini` configur
 display_errors = On
 ```
 
-This feature is primarily useful to override debug configuration on development environments, such as enabling errors or configuring the XDebug extension.  For applying a configuration setting to all environments, or to vary them between different PHP containers in the same project, specify the variables in the `.platform.app.yaml` file for your application.  See the [PHP configuration page]({{< relref "/languages/php/_index.md#custom-phpini" >}}) for more information.
+This feature is primarily useful to override debug configuration on development environments, such as enabling errors or configuring the XDebug extension.  For applying a configuration setting to all environments, or to vary them between different PHP containers in the same project, specify the variables in the `.platform.app.yaml` file for your application.  See the [PHP configuration page](/languages/php/_index.md#custom-phpini) for more information.
 
 ### Drupal-specific variables
 

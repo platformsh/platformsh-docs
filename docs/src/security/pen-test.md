@@ -1,6 +1,6 @@
 ---
 title: "Vulnerability Scanning and Penetration Testing"
-weight: 10
+weight: 12
 sidebarTitle: "Security scans"
 description: |
   Platform.sh understands the need for application owners to ensure the integrity, and standards compliance, of their applications. Because there could be adverse impacts to other clients which would violate our terms of service, we only permit certain types of tests.
@@ -30,4 +30,4 @@ description: |
 
 ## Troubleshooting
 
-If your vulnerability scanning suggests there may be an issue with Platform.sh's service, please ensure your container is [updated]({{< relref "/security/updates.md" >}}) and retest. If the problem remains, please [contact support]({{< relref "/overview/getting-help.md" >}}).
+If your vulnerability scanning suggests there may be an issue with Platform.sh's service, please ensure your container is [updated](/security/updates.md) and retest. If the problem remains, please [contact support](/overview/getting-help.md).

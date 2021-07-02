@@ -11,6 +11,7 @@ module.exports = (env) => {
   }
 
   return merge(common, {
+    mode: 'development',
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
       compress: true,

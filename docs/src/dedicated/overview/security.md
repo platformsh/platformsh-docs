@@ -16,7 +16,7 @@ All Dedicated Clusters are single-tenant.  The three VMs are exclusively used by
 
 Outgoing TCP traffic is not firewalled.  Outgoing UDP traffic is disallowed.
 
-The Development Environment deploys each branch as a series of containers hosted on a shared underlying VM.  Many customers will generally share the same VM.  However, all containers are whitelisted to connect only to other containers in their same environment, and even then only if an explicit "relationship" has been defined by the user via configuration file.
+The Development Environment deploys each branch as a series of containers hosted on a shared underlying VM.  Many customers will generally share the same VM.  However, all containers are allowed to connect only to other containers in their same environment, and even then only if an explicit "relationship" has been defined by the user via configuration file.
 
 ## Security incident handling procedure
 
@@ -49,3 +49,7 @@ AWS EBS Volumes are encrypted on Platform.sh Dedicated sites are fully encrypted
 ### Azure
 
 By default, data is encrypted using Microsoft Managed Keys for Azure Blobs, Tables, Files and Queues.
+
+## WAF
+
+Enterprise projects on Platform.sh come with a Web Application Firewall at no additional cost, which monitors requests to your application and blocks those requests according to our ruleset. See the [WAF security documentation](/security/waf.md) for more information.

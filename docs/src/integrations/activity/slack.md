@@ -6,17 +6,29 @@ toc: false
 
 The following example activity script will post a message to a Slack channel every time it is triggered.
 
-To use it, paste it as-is into a `.js` file and then add it as a new integration.  Be sure to specify which events it should trigger on using the `--events` switch, and if desired which `--environments` you want.
+To use it, paste it as-is into a `.js` file and then add it as a new [script integration](/integrations/activity/_index.md#installing).  Be sure to specify which events it should trigger on using the `--events` switch, and if desired which `--environments` you want.
 
 Second, create a new Slack webhook through your Slack administrative interface.  See the [Slack documentation](https://api.slack.com/messaging) for how to do so.  At the end you will be given a URL that points to `https://hooks.slack.com/...`.
 
-Third, add that URL to your project as a [variable]({{< relref "/development/variables.md" >}}) named `SLACK_URL`.
+Third, add that URL to your project as a [variable](/development/variables.md) named `SLACK_URL`.
 
 Now, any activities that meet the events/environment criteria you specified will get reported to Slack.
 
 Once you have it working, you're free to modify the code below as desired.  See the [Slack messaging documentation](https://api.slack.com/messaging/composing/layouts) for how to format more complex messages.
 
 ```javascript
+function getEnvironmentVariables() {
+  return activity.payload.deployment.variables.reduce(
+    (vars, { name, value }) => ({
+      ...vars,
+      [name]: value,
+    }),
+    {}
+  );
+}
+
+const ENV_VARIABLES = getEnvironmentVariables();
+
 /**
  * Sends a color-coded formatted message to Slack.
  *
@@ -32,51 +44,38 @@ Once you have it working, you're free to modify the code below as desired.  See 
  *   The message body to send.
  */
 function sendSlackMessage(title, message) {
+  const url = ENV_VARIABLES.SLACK_URL;
 
-    console.log((new Date).getDay());
+  if (!url) {
+    throw new Error("You must define a SLACK_URL project variable.");
+  }
 
-    if ((new Date).getDay() === 5) {
-        message += "\r\nOn a Friday! :calendar:";
-    }
+  const messageTitle =
+    title + (new Date().getDay() === 5) ? " (On a Friday! :calendar:)" : "";
 
-    var color = activity.result === 'success'
-        ? '#66c000'
-        : '#ff0000';
+  const color = activity.result === "success" ? "#66c000" : "#ff0000";
 
-    var body = {
-        'attachments': [{
-            "title": title,
-            "text": message,
-            "color": color,
-        }],
-    };
+  const body = {
+    attachments: [
+      {
+        title: messageTitle,
+        text: message,
+        color: color,
+      },
+    ],
+  };
 
-    var url = variables()['SLACK_URL'];
+  const resp = fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
 
-    if (!url) {
-        throw new Error('You must define a SLACK_URL project variable.');
-    }
-
-    var resp = fetch(url,{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-    });
-
-    if (!resp.ok) {
-        console.log("Sending slack message failed: " + resp.body.text());
-    }
-}
-
-function variables() {
-    var vars = {};
-    activity.payload.deployment.variables.forEach(function(variable) {
-        vars[variable.name] = variable.value;
-    });
-
-    return vars;
+  if (!resp.ok) {
+    console.log("Sending slack message failed: " + resp.body.text());
+  }
 }
 
 sendSlackMessage(activity.text, activity.log);

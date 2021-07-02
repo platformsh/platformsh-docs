@@ -11,26 +11,28 @@ sidebarTitle: "Elasticsearch"
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
 ## Supported versions
+<!--
+To update the versions in this table, use docs/data/registry.json
+-->
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-3" >}} |
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} |
+Elasticsearch 7.9 is not available in EU-1 and US-1 regions. Please consider [region migration](/guides/general/region-migration.md) if your project is in those regions.
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-3" >}} |
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable]({{< relref "/development/variables.md#platformsh-provided-variables" >}}):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/elasticsearch">}}
-{{< /highlight >}}
+{{< relationship "elasticsearch" >}}
 
 ## Usage example
 
@@ -101,7 +103,13 @@ search:
 
 That will enable mandatory HTTP Basic auth on all requests.  The credentials will be available in any relationships that point at that service, in the `username` and `password` properties, respectively.
 
-This functionality is generally not required if Elasticsearch is not exposed on it own public HTTP route.  However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.  To do so, add a route to `routes.yaml` that has `search:http` as its upstream (where `search` is whatever you named the service in `services.yaml`).
+This functionality is generally not required if Elasticsearch is not exposed on its own public HTTP route.  However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.  To do so, add a route to `routes.yaml` that has `search:elasticsearch` as its upstream (where `search` is whatever you named the service in `services.yaml`).  For example:
+
+```yaml
+"https://es.{default}":
+  type: upstream
+  upstream: search:elasticsearch
+```
 
 ## Plugins
 
@@ -147,6 +155,12 @@ This is the complete list of official Elasticsearch plugins that can be enabled:
 | mapper-murmur3        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | *   | *   | *   | *   |
 | mapper-size           | Size mapper plugin, enables the `_size` meta field                                        | *   | *   | *   | *   | *   |
 | repository-s3         | Support for using S3 as a repository for Snapshot/Restore                                 |     | *   | *   | *   | *   |
+
+### Plugins removal
+
+Removing plugins previously added in your `services.yaml` file will not automatically uninstall them from your Elasticsearch instances.  This is deliberate, as removing a plugin may result in data loss or corruption of existing data that relied on that plugin.  Removing a plugin will usually require reindexing.
+
+If you wish to permanently remove a previously-enabled plugin, you will need to follow the "Upgrading" procedure below to create a new instance of Elasticsearch and migrate to it.  In most cases that is not necessary, however, as an unused plugin has no appreciable impact on the server.
 
 ## Upgrading
 

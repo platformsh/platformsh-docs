@@ -13,13 +13,13 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="chrome-headless" status="supported" environment="grid" >}} | {{< image-versions image="chrome-headless" status="supported" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="chrome-headless" status="supported" environment="grid" >}} | {{< image-versions image="chrome-headless" status="supported" environment="dedicated" >}} | {{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-3" >}} |
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable]({{< relref "/development/variables.md#platformsh-provided-variables" >}}):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
 ```yaml
 {
@@ -43,7 +43,7 @@ Using the Platform.sh [Config Reader](https://github.com/platformsh/config-reade
 
 ### Other languages
 
-It will be necessary to upgrade the version of Node.js in other language containers before using Puppeteer. You can use [Node Version Manager](https://github.com/nvm-sh/nvm) or NVM to change or update the version available in your application container by following the instructions in the [Alternate Node.js install]({{< relref "/languages/nodejs/nvm.md" >}}) documentation.
+It will be necessary to upgrade the version of Node.js in other language containers before using Puppeteer. You can use [Node Version Manager](https://github.com/nvm-sh/nvm) or NVM to change or update the version available in your application container by following the instructions in the [Alternate Node.js install](/languages/nodejs/nvm.md) documentation.
 
 ## Usage example
 
@@ -72,7 +72,7 @@ Using the [Node.js Config Reader](https://github.com/platformsh/config-reader-no
 ```js
 const platformsh = require('platformsh-config');
 
-let config = platformsh.config();
+const config = platformsh.config();
 const credentials = config.credentials('chromeheadlessbrowser');
 ```
 
@@ -89,8 +89,9 @@ exports.takeScreenshot = async function (url) {
 
         return browser
 
-    } catch (e) {
-        return Promise.reject(e);
+    } catch (error) {
+        console.error({ error }, 'Something happened!');
+        browser.close();
     }
 };
 ```

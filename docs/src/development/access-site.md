@@ -2,7 +2,7 @@
 title: "Accessing your site"
 weight: 6
 description: |
-  Once you have an environment running, there are many ways to access it to perform needed tasks. The most obvious of course is to view it in a web browser; the available URLs are shown in the Platform.sh management console and on the command line after every Git push.
+  Once you have an environment running, there are many ways to access it to perform needed tasks. The most straightforward way is to view it in a web browser; the available URLs are shown in the Platform.sh management console and on the command line after every Git push.
 ---
 
 {{< description >}}
@@ -11,9 +11,9 @@ By design, the only way to deploy new code is to push to the corresponding branc
 
 ## Visiting the site on the web
 
-The web URL(s) for the site are listed in the [management console]({{< relref "/administration/web/_index.md" >}}) under "Access site".
+The web URL(s) for the site are listed in the [management console](/administration/web/_index.md) under "Access site".
 
-They can also be found on the command line, using the [Platform.sh CLI]({{< relref "/development/cli/_index.md" >}}):
+They can also be found on the command line, using the [Platform.sh CLI](/development/cli/_index.md):
 
 ```bash
 platform url
@@ -23,7 +23,7 @@ Generally there will be two URLs created per route in your `routes.yaml` file: O
 
 ## Accessing the application with SSH
 
-Most interactions with Platform.sh require SSH key authentication, and you will need to [set up your SSH keys]({{< relref "/development/ssh.md" >}}) before working on a site.
+Most interactions with Platform.sh require SSH key authentication, and you will need to [set up your SSH keys](/development/ssh.md) before working on a site.
 
 Once that's done, you can easily access the command line on your application over SSH. To log in to the environment that corresponds to your current branch, simply type:
 
@@ -33,13 +33,13 @@ platform ssh
 
 To log in to some other environment, use the `-e` flag to specify the environment.  
 
-The application container is a fully working Linux environment using the `bash` shell.  Most of the system consists of a read-only file system (either the underlying container image or your built application image), so you cannot edit code live, but otherwise the full system is available to read and peruse. Any file [mounts]({{< relref "/configuration/app/storage.md" >}}) you have declared in your `.platform.app.yaml` will be writable.
+The application container is a fully working Linux environment using the `bash` shell.  Most of the system consists of a read-only file system (either the underlying container image or your built application image), so you cannot edit code live, but otherwise the full system is available to read and peruse. Any file [mounts](/configuration/app/storage.md) you have declared in your `.platform.app.yaml` will be writable.
 
 Additionally, you will be logged in as the same user that the web server runs as; that means you needn't worry about the common problem of editing a file from the command line and from your application resulting in inconsistent and broken file ownership and permissions.
 
 ## Uploading and downloading files
 
-The writable static files in an application - including uploads, temporary and private files - are stored in [mounts]({{< relref "/configuration/app/storage.md" >}}).
+The writable static files in an application - including uploads, temporary and private files - are stored in [mounts](/configuration/app/storage.md).
 
 The Platform.sh CLI can list mounts inside an application:
 
@@ -131,4 +131,4 @@ However, it is also possible to use `rsync` on its own, for example:
 rsync -az "$(platform ssh --pipe)":web/uploads/ ./uploads/
 ```
 
-This command will copy all files in the `web/uploads` directory on the remote environment to the `uploads` directory locally.  Note that `rsync` is very sensitive about trailing `/` characters, so that may change the meaning of a command.  Consult the `rsync` documentation for more details.  Also see our [migrating]({{< relref "/tutorials/migrating.md" >}}) and [exporting]({{< relref "/tutorials/exporting.md" >}}) guides for more examples using `rsync`.
+This command will copy all files in the `web/uploads` directory on the remote environment to the `uploads` directory locally.  Note that `rsync` is very sensitive about trailing `/` characters, so that may change the meaning of a command.  Consult the `rsync` documentation for more details.  Also see our [migrating](/tutorials/migrating.md) and [exporting](/tutorials/exporting.md) guides for more examples using `rsync`.

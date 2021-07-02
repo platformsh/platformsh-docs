@@ -7,7 +7,11 @@ from pprint import pprint
 import hashlib
 import re
 
+# Main scrapy settings for api.platform.sh/docs. The below functions match the HTML grabbed from the API documentation
+# to our final Meilisearch index. 
+
 class ApidocsSpider(scrapy.Spider):
+    # Relative priority of search results compared to those from the documentation. 
     rank = 5
     name = 'apidocs'
     allowed_domains = ['api.platform.sh']
@@ -23,6 +27,7 @@ class ApidocsSpider(scrapy.Spider):
             return "API - " + " ".join(init_section.split("-"))
 
     def parse(self, response):
+        # Separates each scraped section into its own Meilisearch document.
         sections = response.xpath('.//div[contains(@class,"api-content")]/div')
         for index, section in enumerate(sections):
             title = section.xpath('.//h2/text()').get()
@@ -36,6 +41,7 @@ class ApidocsSpider(scrapy.Spider):
                     item['title'] = title
                     item['url'] = self.start_urls[0] + url
                     item['section'] = endpoint_section
+                    # Every document in Meilisearch needs a unique documentID.
                     item['documentId'] = hashlib.sha1(str( item['url']).encode('utf-8')).hexdigest()
                     item['text'] =  " ".join(text)
                     item['rank'] = self.rank

@@ -9,7 +9,7 @@ layout: single
 
 {{< description >}}
 
-You must have an [SSH key]({{< relref "/development/tools.md#ssh" >}}) already configured on your account, and have both [Git]({{< relref "/development/tools.md#git" >}}) and the [Platform.sh CLI]({{< relref "/development/cli/_index.md" >}}) installed before continuing.
+You must have an [SSH key](/development/tools.md#ssh) already configured on your account, and have both [Git](/development/tools.md#git) and the [Platform.sh CLI](/development/cli/_index.md) installed before continuing.
 
 ## Download the code
 
@@ -62,7 +62,7 @@ Web root: ~/htdocs/my-project/_www
 ~/htdocs/my-project $
 ```
 
-Be aware, of course, that the `platform build` command will run locally, and so require whatever appropriate runtime or other tools you specify.  It may also result in packages referenced in your `dependendencies` block being installed on your local computer.
+Because the `platform build` command will run locally, any runtime or tools used in your build process need to be available in your local environment, or the build will fail.  It may also result in side effects, such as the installation on your local computer of packages referenced in your `dependencies` block.
 
 If that is undesireable, a local virtual machine will let you create an enclosed local development environment that won't affect your main system.
 

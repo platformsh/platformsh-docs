@@ -19,7 +19,7 @@ All log files are trimmed to 100 MB automatically. But if you need to have compl
 
 ## `access.log`
 
-This is the raw access log for the nginx instance running on the application container. That is, it does not include any requests that return a redirect or cache hit from the [router]({{< relref "/configuration/routes/_index.md" >}}).
+This is the raw access log for the nginx instance running on the application container. That is, it does not include any requests that return a redirect or cache hit from the [router](/configuration/routes/_index.md).
 
 ## `app.log`
 
@@ -32,6 +32,10 @@ The cron log contains the output of all recent cron executions.  If there is no 
 ## `deploy.log`
 
 The deploy log contains the output of the most recent run of the `deploy` hook for the container.  If there is no `deploy` hook then this file will be absent.
+
+## `dns.log`
+
+All DNS queries made by processes in the container (the application, crons, etc.) will be sent to this file.
 
 ## `nginx/error.log`
 

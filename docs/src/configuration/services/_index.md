@@ -11,16 +11,11 @@ layout: single
 
 Unlike other PaaS services, Platform.sh is **batteries included** which means that you don't need to subscribe to an external service to get a cache or a search engine. And that those services are managed. When you back up your project, all of the services are backed-up. **Services** are configured through the `.platform/services.yaml` file you will need to commit to your Git repository. This section describes specifics you might want to know about for each service."
 
+If you do not need additional services, you can leave the `.platform/services.yaml` file empty. This is the recommended approach for a static website.
+
 ![Services](/images/management-console/relationships.png "0.50")
 
-If you don't have a `.platform` folder, you need to create one:
-
-```bash
-mkdir .platform
-touch .platform/services.yaml
-```
-
-Here is an example of a `services.yaml` file:
+Here is an example of a `.platform/services.yaml` file:
 
 ```yaml
 database1:
@@ -55,7 +50,9 @@ E: Error parsing configuration files:
 ```
 
 Service types and their supported versions include:
-
+<!--
+To update the versions in this table, use docs/data/registry.json
+-->
 {{< readFile file="src/registry/images/tables/services_supported.md" markdownify="true">}}
 
 ### Disk
@@ -70,7 +67,7 @@ Currently we do not support downsizing the persistent disk of a service.
 
 ### Size
 
-By default, Platform.sh will allocate CPU and memory resources to each container automatically.  Some services are optimized for high CPU load, some for high memory load.  By default, Platform.sh will try to allocate the largest "fair" size possible to all services, given the available resources on the plan.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing]({{< relref "/configuration/app/size.md" >}}) page for more details.
+By default, Platform.sh will allocate CPU and memory resources to each container automatically.  Some services are optimized for high CPU load, some for high memory load.  By default, Platform.sh will try to allocate the largest "fair" size possible to all services, given the available resources on the plan.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing](/configuration/app/size.md) page for more details.
 
 ## Service timezones
 
@@ -81,11 +78,11 @@ All services have their system timezone set to UTC by default.  In most cases th
 
 ## Using the services
 
-In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml]({{< relref "/configuration/app/_index.md" >}}) file which configures the *relationships* between applications and services.
+In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml](/configuration/app/_index.md) file which configures the *relationships* between applications and services.
 
 ## Endpoints
 
-All services offer one or more `endpoints`.  An endpoint is simply a named set of credentials that can be used to gives access to other applications and services in your project to that service.  Only some services support multiple user-defined endpoints.  If you do not specify one then one will be created with a standard defined name, generally the name of the service type (e.g., `mysql` or `solr`).  An application container, defined by a `.platform.app.yaml` file, always exposes and endpoint named `http` to allow the [router]({{< relref "/configuration/routes/_index.md" >}}) to forward requests to it.
+All services offer one or more `endpoints`.  An endpoint is simply a named set of credentials that can be used to give access to other applications and services in your project to that service.  Only some services support multiple user-defined endpoints.  If you do not specify one then one will be created with a standard defined name, generally the name of the service type (e.g., `mysql` or `solr`).  An application container, defined by a `.platform.app.yaml` file, always exposes an endpoint named `http` to allow the [router](/configuration/routes/_index.md) to forward requests to it.
 
 When defining relationships in a configuration file you will always address a service as `<servicename>`:`<endpoint>`.  See the appropriate service page for details on how to configure multiple endpoints for each service that supports it.
 
@@ -95,7 +92,7 @@ Once a service is running and exposed as a relationship, its appropriate credent
 
 Be aware that the keys in the `PLATFORM_RELATIONSHIPS` structure are fixed but the values they hold may change on any deployment or restart.  Never hard-code connection credentials for a service into your application.  You should re-check the environment variable every time your script or application starts.
 
-Access to the database or other services is only available from within the cluster.  For security reasons they cannot be accessed directly.  However, they can be accessed over an SSH tunnel.  There are two ways to do so.  (The example here uses MariaDB but the process is largely identical for any service.)
+Access to the database or other services is only available from within the cluster.  For security reasons, they cannot be accessed directly.  However, they can be accessed over an SSH tunnel.  There are two ways to do so.  (The example here uses MariaDB but the process is largely identical for any service.)
 
 ### Obtaining service credentials
 
@@ -130,7 +127,7 @@ database:
 That indicates that the `database` relationship can be accessed at host `database.internal`, user `user`, and an empty password.  The `path` key contains the database name, `main`.  The other values can be ignored.
 
 {{< note >}}
-When using the default endpoint on MySQL/MariaDB, the password is usually empty. It will be filled in if you define any custom endpoints. As there is only the one user and port access is tightly restricted anyway the lack of a password does not create a security risk.
+When using the default endpoint on MySQL/MariaDB, the password is usually empty. It will be filled in if you define any custom endpoints. As there is only one user and port access is tightly restricted, the lack of a password does not create a security risk.
 {{< /note >}}
 
 ### Open an SSH tunnel directly
@@ -150,8 +147,6 @@ Close tunnels with: platform tunnel:close
 
 The `tunnel:open` command will connect all relationships defined in the `.platform.app.yaml` file to local ports, starting at 30000.  You can then connect to those ports on `localhost` using the program of your choice.
 
-In this example, we would connect to `localhost:30001`, database name `main`, with username `user` and an empty password.
-
 The `platform tunnels` command will list all open tunnels:
 
 ```text
@@ -162,6 +157,8 @@ The `platform tunnels` command will list all open tunnels:
 | 30001 | a43m75zns6k4c | master      | [default] | database     |
 +-------+---------------+-------------+-----------+--------------+
 ```
+
+In this example, we would connect to `localhost:30001`, database name `main`, with username `user` and an empty password.
 
 ### Using an application tunnel
 

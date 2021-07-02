@@ -96,7 +96,8 @@ pre {
 code {
   color: var(--brand-color-primary-blue);
   background-color: var(--primary);
-  padding: .25rem;
+  padding: 0 .25rem;
+  display: inline-block;
 }
 
 .chroma {
@@ -456,6 +457,7 @@ MAIN
 
 .template-card {
   color: var(--brand-color-primary-blue);
+  margin: 1rem;
 }
 
 .btn-template {
@@ -526,6 +528,7 @@ MAIN
 .duik-content h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  scroll-margin-top: 2.5em;
 }
 
 .duik-content h1, .duik-content h2, .duik-content  h3, .duik-content h4, .duik-content h5, .duik-content h6,

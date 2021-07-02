@@ -1,10 +1,13 @@
 name: 'search'
 
-type: 'python:3.7'
+type: 'python:3.9'
 
-dependencies:
-    python3:
-       pipenv: '2018.11.26'
+variables:
+    env:
+        MEILISEARCH_VERSION: '0.20.0'
+        POETRY_VERSION: '1.1.4'
+        POETRY_VIRTUALENVS_IN_PROJECT: true
+        POETRY_VIRTUALENVS_CREATE: false
 
 hooks:
     build: !include
@@ -12,12 +15,14 @@ hooks:
         path: build.sh
     post_deploy: !include
         type: string
-        path: update_search.sh
+        path: post_deploy.sh
 
 web:
     commands:
       # Run the Meilisearch server
-      start: "./meilisearch --http-addr localhost:${PORT}"
+      start: !include 
+            type: string
+            path: start.sh
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048
@@ -29,7 +34,6 @@ mounts:
     "output":
         source: local
         source_path: "output"
-    "config":
-        source: service
-        service: files
-        source_path: config
+    "data":
+        source: local
+        source_path: "data"

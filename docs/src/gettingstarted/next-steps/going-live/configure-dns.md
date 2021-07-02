@@ -16,11 +16,11 @@ You can access the CNAME target from your terminal by using the CLI and the comm
 platform environment:info edge_hostname
 ```
 
-Add a CNAME record from your desired domain to the value of the `edge_hostname`. Depending on your registrar, this value may be called an "Alias" or something similar.
+Add a CNAME record from your desired domain (and it's `www` subdomain) to the value of the `edge_hostname`. Depending on your registrar, this value may be called an "Alias" or something similar.
 
 If your application is going to serve multiple domains, you will need to add a CNAME record for each of them.
 
-You can find out more information about using an apex domain and CNAME records in the [Going Live documentation]({{< relref "/golive/steps/dns.md" >}}).
+You can find out more information about using an apex domain and CNAME records in the [Going Live documentation](/domains/steps/dns.md).
 
 Depending on your registrar and the TTL you set for the domain, it may take up to 72 hours for the DNS change to fully propagate across the Internet.
 

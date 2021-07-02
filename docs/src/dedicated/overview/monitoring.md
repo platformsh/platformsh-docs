@@ -12,20 +12,19 @@ Alerting is set up on these metrics, so if any of them goes outside of normal bo
 
 These alerts are sent to our support and operations teams, and are not directly accessible to the customer.
 
-
 ## Monitoring systems
 
 Platform.sh uses well-known open source tooling to collect metrics and to alert our staff if any of these metrics goes out of bounds.  That includes the use of Munin for collecting time-series data on server metrics, and dashboarding of these metrics so that our team can monitor trends over time.  It also includes use Nagios as a point in time alerting system for our operations staff.
 
 These tools are internal Platform.sh tools only.
 
-A third-party availability monitoring system is configured for every Dedicated project. The customer can be subscribed to email alerts upon request.
+A third-party availability monitoring system is configured for every Dedicated project.
 
 ## Application performance monitoring
 
 Platform.sh does not provide application-level performance monitoring.  However, we strongly recommend that customers leverage application monitoring themselves.
 
-Platform.sh is a [Blackfire.io]({{< relref "/integrations/profiling/blackfire.md#on-a-dedicated-cluster" >}}) reseller. You can contact your sales representative to get a quote for whatever size cluster is running your application. Platform.sh also [supports New Relic APM]({{< relref "/integrations/profiling/new-relic.md#on-a-dedicated-cluster" >}}). After you have signed up with New Relic and gotten your license key, open a support ticket so that it can be installed on your project. New Relic infrastructure monitoring is not supported.
+Platform.sh is a [Blackfire.io](/integrations/profiling/blackfire.md#on-a-dedicated-cluster) reseller. You can contact your sales representative to get a quote for whatever size cluster is running your application. Platform.sh also [supports New Relic APM](/integrations/profiling/new-relic/_index.md#on-a-dedicated-cluster). After you have signed up with New Relic and gotten your license key, open a support ticket so that it can be installed on your project. New Relic infrastructure monitoring is not supported.
 
 ## Availability incident handling procedure
 

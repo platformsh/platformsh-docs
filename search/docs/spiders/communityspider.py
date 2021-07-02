@@ -7,7 +7,11 @@ from pprint import pprint
 import hashlib
 import re
 
+# Main scrapy settings for community.platform.sh. The below functions match the HTML grabbed from the API documentation
+# to our final Meilisearch index. 
+
 class CommunitySpider(scrapy.Spider):
+    # Relative priority of search results compared to those from the documentation. 
     rank = 3
     name = 'community'
     allowed_domains = ['community.platform.sh']
@@ -15,8 +19,8 @@ class CommunitySpider(scrapy.Spider):
 
     seen = set()
 
-
     def parse(self, response):
+        # Parses each scraped section into its own Meilisearch document.
         hxs = Selector(response)
         if response.url in self.seen:
             self.log('already seen  %s' % response.url)
@@ -40,6 +44,7 @@ class CommunitySpider(scrapy.Spider):
             item['title'] = "Platform.sh Community"
             item['section'] = "Platform.sh Community"
         item['url'] = response.url
+        # Every document in Meilisearch needs a unique documentID.
         item['documentId'] = hashlib.sha1(str(response.url).encode('utf-8')).hexdigest()
         item['text'] = re.sub(r'<.*?>', '', ' '.join(hxs.css('.crawler').extract()))
         item['rank'] = self.rank

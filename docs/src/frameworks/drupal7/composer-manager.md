@@ -20,13 +20,30 @@ projects[composer_manager][patch][] = "https://www.drupal.org/files/issues/compo
 
 If you're checking the entire codebase into Git, do so with Composer Manager as well.  Then download and apply the two patches in the issues above and commit the result.
 
-It's important to uncheck the two "Automatically..." options at the config page on `admin/config/system/composer-manager/settings`. If checked, Drupal tries to update the composer folder. Since this isn't a writable mount, installation of composer based modules will fail due to these writing permissions.
+## 2. Disable automatic writes
 
-## 2. Configure file locations
+*If you are preparing the site locally*, it's important to uncheck the two "Automatically..." options at the config page on `admin/config/system/composer-manager/settings`. If checked, Drupal tries to update the composer folder. Since this isn't a writable mount, installation of composer based modules will fail due to these writing permissions.
+
+*If you are adding composer_manager to a site already running on Platform.sh* then enabling the module with its default settings may be problematic - it will immediately attempt to write to the files, and probably fail because it cannot. The error may look like: "`The specified file /tmp/xxx could not be copied, because the destination directory is not properly configured. This may be caused by a problem with file or directory permissions.`
+
+To avoid this problem:
+
+Add the following lines to your `settings.php` file:
+
+```php
+<?php
+$conf['composer_manager_autobuild_file'] = false;
+$conf['composer_manager_autobuild_packages'] = false;
+```
+
+This will force the configs otherwise seen on `admin/config/system/composer-manager/settings` off, which would have been difficult to do if you cannot access the UI.
+
+## 3. Configure file locations
 
 Composer Manager works by using a Drush command to aggregate all module-provided `composer.json` files into a single file, which can then be installed via a normal Composer command.  Both the generated file and the resulting `vendor` directory must be in the application portion of the file system, that is, not in a writable file mount.  As that is not the default configuration for Composer Manager it will need to be changed.  Add the following lines to your `settings.php` file:
 
 ```php
+<?php
 $conf['composer_manager_vendor_dir'] = '../composer/vendor';
 $conf['composer_manager_file_dir'] = '../composer';
 ```
@@ -40,7 +57,7 @@ Then, manually create the `composer` directory and place a `.gitignore` file ins
 /vendor
 ```
 
-## 3. Update the build hook
+## 4. Update the build hook
 
 Create a build hook in your `.platform.app.yaml` file that will install Composer dependencies:
 
@@ -66,7 +83,7 @@ hooks:
 
 The `composer install` command may also be further customized as desired.
 
-## 4. Generate and commit the `composer.*` files locally
+## 5. Generate and commit the `composer.*` files locally
 
 From the Drupal root on your local system, run `drush composer-json-rebuild` to generate the aggregated `composer.json` file.  Then, change to the `composer` directory and run `composer install` yourself, to generate the `composer.lock` file and download all dependencies.
 

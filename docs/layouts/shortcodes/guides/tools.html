@@ -1,0 +1,27 @@
+<p>Next, you’re going to need a few tools to be able to interact with your Platform.sh project, two of which you likely already have.</p>
+
+<p>The first is <a href="https://git-scm.com/">Git</a>, which you will need to have installed before moving forward. As a Platform as a Service, or PaaS, Platform.sh automatically manages everything your application needs in order to run. Git is the primary tool used to do this. Every commit pushed results in a new deployment, and all of your configuration is driven almost entirely by a small number of YAML files in your Git repository (which we will get to in the steps below). Your infrastructure, described in these files, becomes part of your application itself - completely transparent and version-controlled. If you do not already have Git on your computer, you should <a href="https://help.github.com/articles/set-up-git/">install it now</a>.</p>
+
+<p>Second, you will need Secure Shell (SSH) to securely connect to your Git repository and environments. SSH clients are readily available for every platform, and may already be installed on your computer. Platform.sh supports both keypair-based and certificate-based authentication. Both are secure and protect your account from snooping when you log in. For now, you can use certificate-based authentication as that is easier. You will be prompted to login via your web browser the first time you run <code>platform ssh</code>. If you wish to use keypair authentication, see the <a href="{{ relref . "/development/ssh.md" }}">SSH page</a> before continuing.</p>
+
+<p>Lastly, in this guide you will be interacting with your project on Platform.sh both from within your browser and from the command line using the <a href="{{ relref . "/development/cli/_index.md" }}">Platform.sh CLI</a>. Both utilize our API so that you can make changes to your projects, but the CLI will be the tool you use the most in this guide. Below are a set of installation commands for different operating systems:</p>
+
+<!-- CLI install commands -->
+<div class="highlight">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Linux/OSX</span>
+$ curl -sS https://platform.sh/cli/installer <span class="p">|</span> php
+    
+<span class="c1"># Windows</span>
+$ curl https://platform.sh/cli/installer -o cli-installer.php
+$ php cli-installer.php</code></pre>
+</div>
+
+<p>Once the installation has completed, you can run the CLI in your terminal with the command</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Verify the installation</span>
+$ platform</code></pre></div>
+
+<p>Take a moment to view some of the available commands with the command</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># View the list of CLI commands</span>
+$ platform list</code></pre></div>

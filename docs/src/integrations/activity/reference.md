@@ -27,13 +27,16 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `project.domain.create`: A new domain has been added to the project.
 * `project.domain.delete`: A domain associated with the project has been removed.
 * `project.domain.update`: A domain associated with the project has been updated, including modifying it's SSL certificate.
+* `project.variable.create`: A new project variable has been created.
+* `project.variable.delete`: A project variable has been deleted.
+* `project.variable.update`: A project variable has been modified.
 ---
 * `environment.access.add`: A new user has been given access to the environment.
 * `environment.access.remove`: A user has been removed from the environment.
 ---
-* `environment.backup`: A user triggered a [backup]({{< relref "/administration/backup-and-restore.md" >}}).
-* `environment.restore`: A user restored a [backup]({{< relref "/administration/backup-and-restore.md" >}}).
-* `environment.backup.delete`: A user deleted a [backup]({{< relref "/administration/backup-and-restore.md" >}})
+* `environment.backup`: A user triggered a [backup](/administration/backup-and-restore.md).
+* `environment.restore`: A user restored a [backup](/administration/backup-and-restore.md).
+* `environment.backup.delete`: A user deleted a [backup](/administration/backup-and-restore.md)
 ---
 * `environment.push`: A user has pushed code to a branch, either existing or new.
 * `environment.branch`: A new branch has been created via the management console. (A branch created via a push will show up only as an `environment.push`.)
@@ -104,9 +107,20 @@ The Platform.sh user that triggered the activity.
 
 ### `deployment`
 
-This large block details all information about all services in the environment.  That includes the resulting configuration objects derived from [`routes.yaml`]({{< relref "/configuration/routes/_index.md" >}}), [`services.yaml`]({{< relref "/configuration/services/_index.md" >}}), and [`.platform.app.yaml`]({{< relref "/configuration/app/_index.md" >}}).
+This large block details all information about all services in the environment.  That includes the resulting configuration objects derived from [`routes.yaml`](/configuration/routes/_index.md), [`services.yaml`](/configuration/services/_index.md), and [`.platform.app.yaml`](/configuration/app/_index.md).
 
 Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.  Note that some will be redirects.  To find those that are live URLs filter to those objects whose `type` property is `upstream`.
+
+## Maximum activities and parallelism
+
+Project activities are distributed across separate queues, which enables **two** simultaneous activities to occur in parallel across your environments. For a given environment, only one activity can run at a time. Those queues include:
+
+* `default`: these include the most common activities on repositories (pushes, merges) and environments (syncs, redeployments).
+* `integrations`: source and webhook integration activities.
+* `backup`: backup activities.
+* `cron`: cron activities.
+
+Production activities are prioritized across all queues. While it is still possible for a non-production environment activity to block production activities, it is temporary and unlikely, since the moment that production activity is triggered it will jump to the top of the queue automatically.
 
 ## Example activity
 

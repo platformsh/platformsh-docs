@@ -11,16 +11,20 @@ It has a few subkeys listed below:
 * **spec**: The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). For example: `*/19 * * * *` to run every 19 minutes.
 * **cmd**: The command that is executed, for example `cd public ; drush core-cron`
 
-The minimum interval between cron runs is 5 minutes, even if specified as less.  Additionally, a variable delay is added to each cron job in each project in order to prevent host overloading should every project try to run their nightly tasks at the same time.  Your crons will *not* run exactly at the time that you specify, but will be delayed by 0-300 seconds.
+On Platform.sh Professional projects, cron runs may not trigger more frequently than every five (5) minutes.  If specified for a more frequent time, they will still trigger every 5 minutes.  On Enterprise and Elite plans crons may trigger as often as every one minute.
 
-A single application container may have any number of cron tasks configured, but only one may be running at a time.  That is, if a cron task fires while another cron task is still running it will pause and then continue normally once the first has completed.
+Additionally, a random offset is applied to all cron runs in order to minimize cron tasks running simultaneously.  The offset is a random number of seconds up to 5 minutes or the cron frequency, whichever is smaller.  The cron task will still run at the frequency specified, but may be offset.  For example, a cron job set to run every 9 minutes may run at 9, 18, 27, etc. minutes past the hour or up to 14, 23, 32, etc. minutes past the hour.  A nightly cron task for 3:00 am may run anywhere from 3:00 am to 3:05 am.
+
+A single application container may have any number of cron tasks configured, but only one may be running at a time.  That is, if a cron task fires while another cron task is still running it will pause and then continue normally once the first has completed.  In general, it is a good idea to set crons to run on prime number minutes so that they fire simultaneously as rarely as possible.
 
 Cron runs are executed using the dash shell, not the bash shell used by normal SSH logins. In most cases that makes no difference but may impact some more involved cron scripts.
 
 If an application defines both a `web` instance and a `worker` instance, cron tasks will be run only on the `web` instance.
 
+If running the cron task in a specific timezone that is different than UTC is required, you will need to [configure that timezone](/configuration/app/timezone.md) explicitly.
+
 {{< note >}}
-Cron log output is captured in the at `/var/log/cron.log`.  See the [Log page]({{< relref "/development/logs.md" >}}) for more information on logging.
+Cron log output is captured in the at `/var/log/cron.log`.  See the [Log page](/development/logs.md) for more information on logging.
 {{< /note >}}
 
 ## How do I setup Cron for a typical Drupal site?

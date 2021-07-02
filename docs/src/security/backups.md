@@ -1,15 +1,15 @@
 ---
 title: "Backup and restore"
-weight: 6
+weight: 8
 description: |
-  Backups vary by our offering and their retention is governed by our [data retention]({{< relref "/security/data-retention.md" >}}). This section details our Recovery Point Objective (RPO) and Recovery Time Objective (RTO) for our Platform.sh Professional and Platform.sh Enterprise offerings.
+  Backups vary by our offering and their retention is governed by our [data retention](/security/data-retention.md). This section details our Recovery Point Objective (RPO) and Recovery Time Objective (RTO) for our Platform.sh Professional and Platform.sh Enterprise offerings.
 ---
 
 {{< description >}}
 
 ## Platform.sh Professional
 
-With Platform.sh Professional, we have enabled our clients to manage their own backup and restore functions. Please see the [backup and restore]({{< relref "/administration/backup-and-restore.md" >}}) page for details.
+With Platform.sh Professional, we have enabled our clients to manage their own backup and restore functions. Please see the [backup and restore](/administration/backup-and-restore.md) page for details.
 
 **RPO**: User defined. The RPO is configured by our clients.
 

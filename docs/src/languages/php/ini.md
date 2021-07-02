@@ -3,12 +3,12 @@ title: "PHP.ini settings"
 weight: 4
 ---
 
-There are two ways to customize `php.ini` values for your application. The recommended method is to use the [`variables` property]({{< relref "/configuration/app/variables.md" >}}) of `.platform.app.yaml` to set ini values using the `php` prefix. For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
+There are two ways to customize `php.ini` values for your application. The recommended method is to use the [`variables` property](/configuration/app/variables.md) of `.platform.app.yaml` to set ini values using the `php` prefix. For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
 
  ```yaml
  variables:
     php:
-        memory_limit: 256M
+        memory_limit: "256M"
  ```
 
 It's also possible to provide a custom `php.ini` file in the repository in the root of the application (where your `.platform.app.yaml` file is).
@@ -24,7 +24,7 @@ Another example is to set the timezone of the PHP runtime (though, the timezone 
  ```yaml
  variables:
     php:
-        "date.timezone": "Europe/Paris"
+        date.timezone: "Europe/Paris"
  ```
 
 or
@@ -35,7 +35,7 @@ or
 date.timezone = "Europe/Paris"
 ```
 
-Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code. See the note in the [Environment variables]({{< relref "/development/variables.md#php-specific-variables" >}}) section.
+Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code. See the note in the [Environment variables](/development/variables.md#php-specific-variables) section.
 
 ## Disabling functions
 
@@ -44,7 +44,7 @@ A common recommendation for securing a PHP installation is to disable certain bu
  ```yaml
  variables:
     php:
-        "disable_functions": "pcntl_exec,pcntl_fork"
+        disable_functions: "pcntl_exec,pcntl_fork"
  ```
 
 Common functions to disable include:

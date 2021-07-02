@@ -13,15 +13,19 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated" >}} |
 
-If you need other versions, take a look at our [options for installing them with NVM]({{< relref "/languages/nodejs/nvm.md" >}}).
+If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.md).
 
 ## Deprecated versions
 
-Some versions with a minor (such as 8.9) are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+Some versions with a minor (such as 8.9) are available but are not receiving security updates from upstream, so their use is not recommended.
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
 |  {{< image-versions image="nodejs" status="deprecated" environment="grid" >}} | {{< image-versions image="nodejs" status="deprecated" environment="dedicated" >}} |
+
+## Build flavor
+
+Node.js images use the `default` build flavor, which will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
 
 ## Support libraries
 
@@ -40,7 +44,7 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
    ```yaml
    dependencies:
      nodejs:
-       pm2: "^2.5.0"
+       pm2: "^4.5.0"
    ```
 
    These are the global dependencies of your project (the ones you would have installed with `npm install -g`). Here we specify the `pm2` process manager that will allow us to run the node process.
@@ -83,7 +87,6 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
      build: |
        npm install
        npm run build
-       bower install
    ```
 
 6. Setup the routes to your Node.js application in `.platform/routes.yaml`.
@@ -94,21 +97,21 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
      upstream: "app:http"
    ```
 
-7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor]({{< relref "/configuration/app/build.md#build" >}}), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
+7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor](/configuration/app/build.md#build), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
 
    ```yaml
    build:
      flavor: none
    ```
 
-   Consult the documentation specific to [Node.js builds]({{< relref "/configuration/app/build.html#nodejs-default-by-default" >}}) for more information.
+   Consult the documentation specific to [Node.js builds](/configuration/app/build.html#nodejs-npm-by-default) for more information.
 
 
 Here's a complete example that also serves static assets (.png from the `/public` directory):
 
 ```yaml
 name: node
-type: nodejs:12
+type: nodejs:14
 
 web:
   commands:
@@ -126,7 +129,7 @@ web:
           expires: -1
 dependencies:
   nodejs:
-    pm2: "^2.5.0"
+    pm2: "^4.5.0"
 mounts:
    run:
        source: local
@@ -146,8 +149,8 @@ const http = require('http');
 const config = require('platformsh-config').config();
 
 const server = http.createServer(function (request, response) {
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.end("<html><head><title>Hello Node.js</title></head><body><h1><img src='public/js.png'>Hello Node.js</h1><h3>Platform configuration:</h3><pre>"+JSON.stringify(config, null, 4) + "</pre></body></html>");
+  response.writeHead(200, {"Content-Type": "application/json"});
+  response.end(JSON.stringify(config));
 });
 
 server.listen(config.port);
@@ -155,7 +158,7 @@ server.listen(config.port);
 
 ## Accessing services
 
-To access various [services]({{< relref "/configuration/services/_index.md" >}}) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](/configuration/services/_index.md) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 

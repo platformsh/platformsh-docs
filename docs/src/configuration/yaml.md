@@ -27,7 +27,7 @@ build:
 disk: 1024
 ```
 
-This example defines a key `name` with value `app`, a key `type` with value `php:7.1`, a key `disk` with a value 1024, and a key `build` that is itself a nested set of key/value pairs, of which there is only one: `flavor`, whose value is `composer`.  Informally, nested values are often referenced using a dotted syntax, such as `build.flavor`, and that format is used in this documentation in various places.
+This example defines a key `name` with value `app`, a key `type` with value `php:7.4`, a key `disk` with a value of `1024`, and a key `build` that is itself a nested set of key/value pairs, of which there is only one: `flavor`, whose value is `composer`.  Informally, nested values are often referenced using a dotted syntax, such as `build.flavor`, and that format is used in this documentation in various places.
 
 Keys are always strings, and may be quoted or not.  Values may be strings, numbers, booleans, or further nested key/value pairs.  Alphanumeric strings may be quoted or not.  More complex strings (with punctuation, etc.) must be quoted.  Numbers should not be quoted.  The boolean values `true` and `false` should never be quoted.
 
@@ -160,7 +160,7 @@ mysearch:
         conf_dir: !archive "solr/conf"
 ```
 
-In this case, the `mysearch.configuration.conf_dir` value is not the string "solr/conf", but the contents of the `solr/conf` directory (relative to the `services.yaml` file).  On Platform.sh, that is used primarily for service definitions in [`services.yaml`]({{< relref "/configuration/services/_index.md" >}}) to provide a directory of configuration files for the service (such as Solr in this case).  Platform.sh will use that directive to copy the entire specified directory into our management system so that it can be deployed with the specified service.
+In this case, the `mysearch.configuration.conf_dir` value is not the string "solr/conf", but the contents of the `solr/conf` directory (relative to the `services.yaml` file).  On Platform.sh, that is used primarily for service definitions in [`services.yaml`](/configuration/services/_index.md) to provide a directory of configuration files for the service (such as Solr in this case).  Platform.sh will use that directive to copy the entire specified directory into our management system so that it can be deployed with the specified service.
 
 ## Anchors
 

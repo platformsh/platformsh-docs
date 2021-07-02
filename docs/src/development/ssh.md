@@ -1,18 +1,61 @@
 ---
-title: "Using SSH keys"
+title: "Using SSH"
 weight: 12
 description: |
   One of the ways Platform.sh keeps things secure is by using SSH behind the scenes. Users can interact with their environment through a command shell, or push changes to the environment's Git repository, and both of these features rely on SSH.
-sidebarTitle: "Using SSH"
+sidebarTitle: "SSH"
 ---
 
 {{< description >}}
 
-You can manage SSH keys through the CLI (see below), or through the SSH keys tab under Account Settings.
+Secure Shell Protocol, SSH, supports certificate-based and keypair-based authentication.  Certificate-based authentication is faster to set up and generally easier to use, provided you have a web browser available on your computer.  Alternatively, you may use keypair-based authentication if you are setting up an automation tool, or simply prefer that method.
 
-## Find your Public-Private keypair
+Automation tools may also use an [API Token](/development/cli/api-tokens.md).
 
-If you use Linux, you probably already have keys. The private key is usually in a file named `~/.ssh/id_rsa` and the public key in `~/.ssh/id_rsa.pub`,
+## Certificate-based authentication
+
+To connect using certificate-based authentication, install the [Platform.sh CLI](/development/cli/_index.md).
+
+Once installed, you may run `platform login` or any CLI command that would require authentication.  In either case, a browser window will open and ask you to login with your Platform.sh account credentials.  This web page is already encrypted with TLS over HTTP, making it secure.
+
+The login process will issue a certificate that gets stored in your local SSH configuration.  The certificate is automatically cycled every hour for a new certificate as long as your session is active.  If you are inactive for an extended period your certificate will expire, and the system will ask you to login again the next time you use a command that requires authentication.
+
+## Keypair-based authentication
+
+This process requires two [RSA keys](https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29):
+
+* A **private key** kept secret by the user
+* A **public key** stored within the Platform.sh account
+
+These keys are called the *public-private keypair* and usually look like random lines of characters, like this:
+
+*A private key*:
+
+```text
+-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEAtpw0S4DwDVj2q04mhiIMkhvrYU7Z6hRiNbTFsqg3X7x/uYS/
+dcNrSvT82j/jSeYQP3Dsod9GERW+dmOuLaFNeiqOStZi6jRSWo41hCOWOFbpBum3
+ra1n6nUO1wa/7O5wbgzhUOfnim77oOK0UgkqPArBCNXiNFTUJAvRyVmCtvJOyrqz
+...(20 more lines like this)...
+cPjJ/wKBgGd3eZIBK6Ak92u65HYXgY9EcX3vBNP4NsF087uxV4YfrM18KlGf5I87
+QGerp3VKaGe0St3ot57GlwCAQUJAf1mit8qDTi0I8MhBe7q2lstXkBvde7GY1gKx
+Kng4ohG6xHZ/OvC9tq7/THwAvleaxgLZN5GyXfAqNylDdZ0LtSjl
+-----END RSA PRIVATE KEY-----
+```
+
+*A public key (one very long line)*:
+
+```text
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2nDRLgPANWParTiaGIgySG+thTtnqFGI1tMWyqDdfvH+5hL91w2tK9PzaP+NJ5hA/cOyh30YRFb52Y64toU16Ko5K1mLqNFJajjWEI5Y4VukG6betrWfqdQ7XBr/s7nBuDOFQ5+eKbvug4rRSCSo8CsEI1eI0VNQkC9HJWYK28k7KurMdTN7X/Z/4vknM4/Rm2bnMk2idoORQgomeZS1p3GkG8dQs/c0j/b4H7azxnqdcCaR4ahbytX3d49BN0WwE84C+ItsnkCt1g5tVADPrab+Ywsm/FTnGY3cJKKdOAHt7Ls5lfpyyug2hNAFeiZF0MoCekjDZ2GH2xdFc7AX/ your_email_address@example.com
+```
+
+GitHub has a good [walk-through of creating an SSH keypair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) on various operating systems.
+
+A keypair is valid for as long as you have access to the private key on the system from which you are connecting.  If you have a keypair available you will not be prompted to login.
+
+### Find your Public-Private keypair
+
+If you use Linux, you probably already have keys. The private key is usually in a file named `~/.ssh/id_rsa` and the public key in `~/.ssh/id_rsa.pub`.
 
 Searching for a public key file:
 1. Open up a command prompt.
@@ -27,9 +70,9 @@ Searching for a public key file:
     authorized_keys
     ```
 
-    If you find a file named `id_rsa.pub`, you can use it with Platform.sh. If you don't find an existing key, see the steps to create a new one in the [next section]({{< relref "#create-a-new-public-private-keypair" >}}).
+    If you find a file named `id_rsa.pub`, you can use it with Platform.sh. If you don't find an existing key, see the steps to create a new one in the [next section](#create-a-new-public-private-keypair).
 
-## Create a New Public-Private Keypair
+### Create a New Public-Private Keypair
 
 {{< note >}}
 If you already have a SSH keypair, you can skip this step.
@@ -68,7 +111,7 @@ The key fingerprint is:
 Make note of the location of your public key, you're going to need that in the next section.
 {{< /note >}}
 
-## Add the SSH key to your Platform account
+### Add the SSH key to your Platform account
 
 1.  First off, you'll need to copy your public key to the clipboard.
 2.  Head over to your user account page on [the Platform.sh Accounts page](https://accounts.platform.sh/user) and navigate to the `Account Settings` tab.
@@ -182,7 +225,7 @@ $ git commit --allow-empty -m 'force redeploy'
 $ git push origin master
 ```
 
-### If all else fails, generate some SSH debug information
+### Generate SSH debug information
 
 If your private key and public key both look OK but you don't have any luck logging in, print debugging information. These lines often give clues about what is going wrong.
 
@@ -204,7 +247,7 @@ If your private key and public key both look OK but you don't have any luck logg
     or
 
     ```bash
-    $ GIT_SSH_COMMAND="git -v" git clone [REPO-URL]
+    $ GIT_SSH_COMMAND="ssh -v" git clone [REPO-URL]
     ```
 
 You can use this information to make one last check of the private key file.

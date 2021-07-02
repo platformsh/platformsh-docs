@@ -19,13 +19,17 @@ If you want to delete your project and cancel your subscription, simply go to yo
 
 This will delete your project and stop invoicing for this project. If you have multiple projects, your subscription will continue until you don't have any projects left.
 
+## How do I delete my Platform.sh account?
+
+If you would like to delete your Platform.sh account, log in and select "Support" from the dropdown options when you click on your avatar in the top right hand corner of the management console. Create a new ticket, and request for your account to be deleted in the form provided there. A support agent will receive your request and delete your account shortly thereafter. 
+
 ## Does branching an environment duplicate services?
 
 Yes! Branching an environment creates an exact copy (snapshot) of the parent environment, containing the files, the database, and code.  Each environment runs independently of every other, so if you have four active environments then you have four copies of your application, four copies of your database, four copies of your files, etc.
 
 ## Do you have a local writable file-system?
 
-Yes!  Platform.sh supports non-ephemeral storage.  When you configure your application you can tell it what directories you want to be read/write. (These are called [mounts]({{< relref "/configuration/app/storage.md" >}}).) These will be mounted on a distributed file system (which is transparent for you).  When you backup your environment they will be backed up as well.  When you create a new staging environment, these mounts will be cloned with the rest of your data.
+Yes!  Platform.sh supports non-ephemeral storage.  When you configure your application you can tell it what directories you want to be read/write. (These are called [mounts](/configuration/app/storage.md).) These will be mounted on a distributed file system (which is transparent for you).  When you backup your environment they will be backed up as well.  When you create a new staging environment, these mounts will be cloned with the rest of your data.
 
 ## What happens if I push a local branch to my project?
 
@@ -35,11 +39,11 @@ This means there won't be any services attached to this branch.
 
 You are able to convert an `inactive environment` into an `active environment` and vice versa back from the environment configuration page or using the CLI with `platform environment:activate`.
 
-## How does Master  (the live site) scale?
+## How does Master (the live site) scale?
 
 The `master` environment gets a pool of resources based on your plan size, which is then split up between the applications and services you have defined.  (For example, PHP 40%, MySQL 30%, Redis 10%, Solr 20%, etc).  Increasing your plan size will increase the pool of CPU and RAM that gets split between each container.
 
-All containers on development plans are "small" containers.  See the [sizing configuration page]({{< relref "/configuration/app/size.md" >}}) for more details.
+All containers on development plans are "small" containers.  See the [sizing configuration page](/configuration/app/size.md) for more details.
 
 ## What exactly am I SSHing into?
 
@@ -71,7 +75,7 @@ Please validate the syntax of your YAML file. Don't use tabs. If all fails, cont
 
 ## Which geographic zones does Platform.sh cover?
 
-Platform.sh works with multiple cloud infrastructure providers, including Amazon Web Services, Microsoft Azure, and Orange.  We offer public regions in several parts of the world: USA (East Coast), Canada (East Coast), Europe (Dublin), Europe (Germany), and Australia (Sydney).
+Platform.sh works with multiple cloud infrastructure providers, including Amazon Web Services, Microsoft Azure, Google Cloud, and Orange.  We offer public Grid regions in several parts of the world: USA (East Coast), USA (West Coast), Canada (East Coast), Europe (Dublin), Europe (Germany), United Kingdom (London), and Australia (Sydney).
 
 Dedicated projects can deploy production to any public AWS or Azure region.
 
@@ -100,6 +104,6 @@ In order for MAMP to work well with the symlinks created by the [Platform.sh CLI
 When you specify your document root, MAMP will follow the symlink and substitute the actual build folder path. This means that when you rebuild your project locally, you will need to repoint the docroot to the symlink again so that it will refresh the build path.
 {{< /note >}}
 
-## Do you support two-factor authentication?
+## Do you support MFA/2FA/TFA authentication?
 
-Yes, and encourage its use.  To do so please go to your **Account Settings** on our [Account site](https://accounts.platform.sh/). Then click on the left tab called **Security** which will propose you to enable **TFA Application**.
+Yes. We support Multi-Factor Authentication, and encourage its use. To do so please go to your **Account Settings** on our [Account site](https://accounts.platform.sh/). Then click on the left tab called **Security** which will let you enable an **MFA Application**.

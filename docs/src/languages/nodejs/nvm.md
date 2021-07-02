@@ -1,5 +1,5 @@
 ---
-title: "Alernative Node.js install"
+title: "Alternative Node.js install"
 weight: 1
 toc: false
 ---
@@ -13,19 +13,19 @@ You can use NVM with any of our container types that have node installed to chan
 Installing NVM is done in the build hook of your `.platform.app.yaml`, which some additional calls to ensure that environment variables are set correctly.
 
 ```yaml
+variables:
+    env:
+        # Update these for your desired NVM and Node versions.
+        NVM_VERSION: v0.36.0
+        NODE_VERSION: v14.13.1
+
 hooks:
     build: |
         unset NPM_CONFIG_PREFIX
-        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | dash
         export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
+        # install.sh will automatically install NodeJS based on the presence of $NODE_VERSION
+        curl -f -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        nvm current
-        nvm install 9.5.0
-    deploy: |
-        unset NPM_CONFIG_PREFIX
-        export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        nvm use 9.5.0
  ```
 
 And in a `.environment` file in the root of your project:

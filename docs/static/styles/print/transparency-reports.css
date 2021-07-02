@@ -1,0 +1,43 @@
+.edit-page {
+    display: none;
+}
+
+.searcharea {
+    display: none;
+}
+
+.duiksidebar {
+    display: none;
+}
+
+#onetrust-consent-sdk {
+    display: none;
+}
+
+#drift-frame-controller {
+    display: none;
+}
+
+#drift-frame-chat {
+    display: none;
+}
+
+.page-title {
+    text-align: center;
+}
+
+.toc {
+    display: none;
+}
+
+nav {
+    display: none;
+}
+
+h3 {
+    break-before: always !important;
+}
+
+.headline-hash {
+    display: none;
+}

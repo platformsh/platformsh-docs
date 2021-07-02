@@ -34,6 +34,34 @@ https://{default}/:
       "/administration/integrations/webhooks.html": { "to": "/integrations/activity/webhooks.html", "code": 301, "prefix": false }
       "/administration/integrations/activity-scripts.html": { "to": "/integrations/activity.html", "code": 301, "prefix": false }
 
+      # Reorganized August 2020
+      "^/gettingstarted/gettingstarted(.*)": { "to": "/gettingstarted/introduction$1", "code": 301, "regexp": true }
+      # Reorganized September 2020
+      "/golive/steps/dns.html": { "to": "/domains/steps/dns.html", "code": 301, "prefix": false}
+      "/golive/steps/subdomains.html": { "to": "/domains/steps/subdomains.html", "code": 301, "prefix": false}
+      # Framework Guides reorganization October 2020
+      # PR 1553
+      "/tutorials/region-migration.html": { "to": "/guides/general/region-migration.html", "code": 301, "prefix": false }
+      "/tutorials/mysql-replication.html": { "to": "/guides/general/mysql-replication.html", "code": 301, "prefix": false }
+      # PR 1560
+      "/frameworks/drupal8.html": { "to": "/guides/drupal9/deploy.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/developing-with-drupal.html": { "to": "/guides/drupal9/deploy.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/drush.html": { "to": "/guides/drupal9/deploy/next-steps.html#use-drush-aliases", "code": 301, "prefix": false }
+      "/frameworks/drupal8/elasticsearch.html": { "to": "/guides/drupal9/deploy/elasticsearch.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/faq.html": { "to": "/guides/drupal9/deploy/faq.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/lando.html": { "to": "/development/local/lando.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/memcached.html": { "to": "/guides/drupal9/deploy/memcached.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/multi-site.html": { "to": /guides/drupal9/deploy/multi-site.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/redis.html": { "to": "/guides/drupal9/deploy/redis.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/simplesaml.html": { "to": "/guides/drupal9/deploy/simplesaml.html", "code": 301, "prefix": false }
+      "/frameworks/drupal8/solr.html": { "to": "/guides/drupal9/deploy/solr.html", "code": 301, "prefix": false }
+      # PR 1562
+      "/frameworks/typo3.html": { "to": "/guides/typo3/deloy.html", "code": 301, "prefix": false }
+      "/frameworks/typo3/faq.html": { "to": "/guides/typo3/deploy/next-steps.html", "code": 301, "prefix": false }
+      # PR 1602
+      "/frameworks/wordpress.html": { "to": "/guides/wordpress/deploy.html", "code": 301, "prefix": false }
+      "/frameworks/wordpress/redis.html": { "to": "/guides/wordpress/redis.html", "code": 301, "prefix": false }
+
 "https://www.{default}/":
     type: redirect
     to: "https://{default}/"

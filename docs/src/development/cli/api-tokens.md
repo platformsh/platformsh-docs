@@ -37,13 +37,13 @@ The machine user can be given a very restrictive set of permissions limited to j
 
 It will also show up in logs and activity streams as a separate entry from human users.
 
-Consult the [Users]({{< relref "/administration/users.md" >}}) documentation for more information about the differences between access levels.
+Consult the [Users](/administration/users.md) documentation for more information about the differences between access levels.
 
 ## Install the CLI on a Platform.sh environment
 
 A common use case for an API token is to allow the Platform.sh CLI to be run on an app container, often via a cron hook.  An API token is necessary for authentication, but the CLI will be able to auto-detect the current project and environment.
 
-First, create a machine user (see above) that you invite to your project. Then, log in as that machine user to obtain an API token. Set this token as the [top-level]({{< relref "/development/variables.md#top-level-environment-variables" >}}) environment variable `env:PLATFORMSH_CLI_TOKEN` either through the management console or via the CLI, like so:
+First, create a machine user (see above) that you invite to your project. Then, log in as that machine user to obtain an API token. Set this token as the [top-level](/development/variables.md#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN` either through the management console or via the CLI, like so:
 
 ```bash
 platform variable:create -e master --level environment --name env:PLATFORMSH_CLI_TOKEN --sensitive true --value 'your API token'
@@ -58,7 +58,7 @@ Second, add a build hook to your `.platform.app.yaml` file to download the CLI a
 ```yaml
 hooks:
     build: |
-        curl -sS https://platform.sh/cli/installer | php
+        curl -fsS https://platform.sh/cli/installer | php
 ```
 
 This will download the CLI to a known directory, `.platformsh/bin`, which will be added to the PATH at runtime (via the .environment file). Because the API token is available, the CLI will now be able to run authenticated commands, acting as the user who created the token.
@@ -74,6 +74,8 @@ crons:
                 platform backup:create --yes --no-wait
             fi
 ```
+
+(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)
 
 {{< note >}}
 Seriously, please use `--no-wait` for all CLI commands placed in a cron hook. Failure to do so may result in long deploy times and site downtime.

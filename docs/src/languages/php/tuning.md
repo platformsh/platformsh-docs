@@ -7,27 +7,27 @@ Once your application is up and running it still needs to be kept fast.  Platfor
 
 The following recommendations are guidelines only.  They're also listed in approximately the order we recommend investigating them, although your mileage may vary.
 
-## Upgrade to PHP 7.2+
+## Upgrade to PHP 7.3+
 
 There is very little purpose to trying to optimize a PHP application on PHP 5.  PHP 7 is generally twice as fast and uses half as much memory as PHP 5, making it unquestionably the first step to take when trying to make a PHP-based site run faster.
 
-To change your PHP version, simply change the `type` key in your `.platform.app.yaml` to the desired PHP version.  As always, test it on a branch first before merging to `master`.
+To change your PHP version, change the `type` key in your `.platform.app.yaml` to the desired PHP version.  As always, test it on a branch first before merging to `master`.
 
 ## Ensure that the router cache is properly configured
 
-Although not PHP-specific, a common source of performance issues is a misconfigured cache.  The most common issue is not whitelisting session cookies, which results in a site with any cookies at all, including from analytics tools, never being cached.  See the [router cache]({{< relref "/configuration/routes/cache.md" >}}) documentation, and the [cookie entry]({{< relref "/configuration/routes/cache.md#cookies" >}}) specifically.
+Although not PHP-specific, a common source of performance issues is a misconfigured cache.  The most common issue is not allowing the right cookies as part of the router cache. Some cookies, such as session cookies, need to be allowed, whereas others, such as marketing and analytics cookies, usually shouldn't be allowed to be part of the cache key. See the [router cache](/configuration/routes/cache.md) documentation, and the [cookie entry](/configuration/routes/cache.md#cookies) specifically.
 
 You will also need to ensure that your application is sending the correct `cache-control` header.  The router cache will obey whatever cache headers your application sends, so send it good ones.
 
-Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.  See the [`web.locations`]({{< relref "/configuration/app/web.md#locations" >}}) documentation for more details.
+Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.  See the [`web.locations`](/configuration/app/web.md#locations) documentation for more details.
 
 ## Optimize the FPM worker count
 
-PHP-FPM reserves a fixed number of simultaneous worker processes to handle incoming requests.  If more simultaneous requests are received than the number of workers then some requests will wait.  The default worker count is deliberately set rather conservative but can be improved in many cases.  See the [PHP-FPM sizing]({{< relref "/languages/php/fpm.md" >}}) page for how to determine and set a more optimal value.
+PHP-FPM reserves a fixed number of simultaneous worker processes to handle incoming requests.  If more simultaneous requests are received than the number of workers then some requests will wait.  The default worker count is deliberately set rather conservative but can be improved in many cases.  See the [PHP-FPM sizing](/languages/php/fpm.md) page for how to determine and set a more optimal value.
 
 ## Enable preloading
 
-PHP 7.4 and later supports preloading code files into shared memory once at server startup, bypassing the need to include or autoload them later.  Depending on your application doing so can result in significant improvements to both CPU and memory usage.  If using PHP 7.4, see the [PHP Preload instructions]({{< relref "/languages/php/_index.md#opcache-preloading" >}}) for how to configure it on Platform.sh and consult your application's documentation to see if they have any recommendations for an optimal preload configuration.
+PHP 7.4 and later supports preloading code files into shared memory once at server startup, bypassing the need to include or autoload them later.  Depending on your application doing so can result in significant improvements to both CPU and memory usage.  If using PHP 7.4 or later, see the [PHP Preload instructions](/languages/php/_index.md#opcache-preloading) for how to configure it on Platform.sh and consult your application's documentation to see if they have any recommendations for an optimal preload configuration.
 
 If you are not using PHP 7.4, this is a good reason to upgrade.
 
@@ -50,15 +50,16 @@ To determine how many files you have, run this command from the root of your app
 find . -type f -name '*.php' | wc -l
 ```
 
-That will report the number of files in your file tree that end in `.php`.  That may not be perfectly accurate (some applications have PHP code in files that don't end in `.php`, it may not catch generated files that haven't been generated yet, etc.) but it's a reasonable approximation.  Set the `opcache.max_accelerated_files` option to a value slightly higher than this.  Note that PHP will automatically round the value you specify up to the next highest prime number, for reasons long lost to the sands of time.
+That will report the number of files in your file tree that end in `.php`.  That may not be perfectly accurate (some applications have PHP code in files that don't end in `.php`, it may not catch generated files that haven't been generated yet, etc.) but it's a reasonable approximation.  Set the `opcache.max_accelerated_files` option to a value slightly higher than this.  Note that PHP will automatically round the value you specify up to the next highest prime number, for reasons long-lost to the sands of time.
 
 Determining an optimal `opcache.memory_consumption` is a bit harder, unfortunately, as it requires executing code via a web request to get adequate statistics.  Fortunately there is a command line tool that will handle most of that.
 
-Change to the `/tmp` directory (or any other non-web-accessible writable directory) and install [`CacheTool`](https://github.com/gordalina/cachetool).  It has a large number of commands and options but we're only interested in the opcache status for FastCGI command.  The really short version of downloading and using it would be:
+Change to the `/tmp` directory (or any other non-web-accessible writable directory) and install [`CacheTool`](https://github.com/gordalina/cachetool).  It has numerous commands and options, but we're only interested in the opcache status for FastCGI command.  The really short version of downloading and using it would be:
 
 ```bash
 cd /tmp
-curl -sO http://gordalina.github.io/cachetool/downloads/cachetool.phar
+curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar
+chmod +x cachetool.phar
 php cachetool.phar opcache:status --fcgi=$SOCKET
 ```
 
@@ -106,8 +107,22 @@ variables:
 
 (Memory consumption is set in megabytes.)
 
+## Disable opcache timestamp validation
+
+By default, the opcache will recheck every file on disk every time it is required to see if it has changed, and thus needs to be reloaded and recached.  If you know your code is not going to change outside of a new deploy, however, you can disable that check and often get a small performance improvement.
+
+Note that some applications will generate PHP code at runtime based on user configuration.  If your application does that, you cannot disable the timestamp validation as it would prevent updates to the generated code from being loaded.
+
+The timestamp validation may be disabled with an ini setting, and the easiest way to do so is via `.platform.app.yaml`:
+
+```yaml
+variables:
+    php:
+        'opcache.validate_timestamps': 0
+```
+
 ## Optimize your code
 
-It's also possible that your own code is doing more work than it needs to.  Profiling and optimizing a PHP application is a much larger topic than will fit here, but Platform.sh recommends enabling [Blackfire.io]({{< relref "/integrations/profiling/blackfire.md" >}}) on your project to determine what slow spots can be found and addressed.
+It's also possible that your own code is doing more work than it needs to.  Profiling and optimizing a PHP application is a much larger topic than will fit here, but Platform.sh recommends enabling [Blackfire.io](/integrations/profiling/blackfire.md) on your project to determine what slow spots can be found and addressed.
 
 The web agency [Pixelant](https://www.pixelant.net/) has also published a [log analyzer tool for Platform.sh](https://github.com/pixelant/platformsh-analytics).  It works only for PHP scripts, but offers good visualizations and insights into the operation of your site that can suggest places to further optimize your configuration and provide guidance on when it's time to increase your plan size.  (Please note that this tool is maintained by a 3rd party, not by Platform.sh.)

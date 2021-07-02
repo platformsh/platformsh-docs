@@ -10,8 +10,6 @@ aliases:
 
 {{< description >}}
 
-You can see our full pricing information at: https://platform.sh/pricing/
-
 All Platform.sh plans include:
 
 * four Environments (3 for staging/development, 1 for the live site).
@@ -19,6 +17,8 @@ All Platform.sh plans include:
 * 5GB of Storage per environment
 * multiple Backend services (MySQL, PostgreSQL, Elasticsearch, Redis, Solr..)
 * support
+
+Our full pricing information is available at: https://platform.sh/pricing/
 
 You can switch between plans (downgrade or upgrade) freely, but note that reducing storage is currently not supported for technical reasons. If you need to reduce storage, please create a support ticket. You will always be billed the prorated rate of your plan over the period it was used.
 
@@ -72,7 +72,7 @@ The basic plan (Development) starts at $10 per month, and includes 4 environment
 You can not map a custom domain name to a development plan
 {{< /note >}}
 
-Development environments have less resources than production environments.
+Development environments default to the Standard size, but they can be increased to match your production environment if needed. Go to the "Edit plan" administration section for your project, and at the bottom of the page you can modify the dropdown under **Development Application Size** to increase the default size for the project. The new size will increase the cost of your plan, which you can accept by clicking "Update plan".
 
 ## Production
 
@@ -90,7 +90,7 @@ A Medium plan, for example, can support 3 Apps with a MySQL instance and a Redis
 
 If you wonder if a specific setup would fit in a plan, don't hesitate to contact our support.
 
-## Dedicated Instances
+## Dedicated Generation 3
 
 For a price lower than traditional managed hosting, you get included development and staging environments, as well as triple redundancy on every element of the stack with:
 
@@ -99,6 +99,8 @@ For a price lower than traditional managed hosting, you get included development
 
 24/7 White Glove On-boarding and Support
 {{< /note >}}
+
+Learn more about [Dedicated Generation 3](/dedicated-gen-3/overview).
 
 Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
 
@@ -116,11 +118,4 @@ We offer three tiers for agencies with many perks.
 
 [Learn more and join today...](https://platform.sh/solutions/agency)
 
-## German Cloud Pricing
-
-
-The prices for Germany are currently set at 10% above the EU and US plan prices. Thus, a "Production Standard" environment on the Sovereign German Cloud will be $55 instead of $50.
-
-Our estimation page (which you can reach by clicking on your account dashboard on the edit link for a project) does reflect these new options.
-
-If you have any questions don't hesitate to [contact our sales department](https://platform.sh/contact/).
+If you have any questions, don't hesitate to [contact our sales department](https://platform.sh/contact/).

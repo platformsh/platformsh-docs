@@ -3,7 +3,7 @@ title: "Going live"
 layout: single
 toc: false
 description: |
-  You've set up a project on Platform.sh by either [pushing your code](/gettingstarted/own-code.html) directly or by [setting up an integration](/gettingstarted/integrations.html) to an external repository. Now it's time to take your site live.
+  You've set up a project on Platform.sh by either [pushing your code](/gettingstarted/introduction/own-code/_index.md) directly or by [setting up an integration](/gettingstarted/next-steps/integrations.md) to an external repository. Now it's time to take your site live.
 aliases:
   - "/gettingstarted/going-live.html"
 ---

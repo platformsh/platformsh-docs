@@ -5,21 +5,25 @@ weight: 1
 
 ## Let's Encrypt
 
-All environments on Platform.sh support both HTTP and HTTPS automatically.  Production SSL certificates are provided by [Let's Encrypt](https://letsencrypt.org/).  You may alternatively provide your own SSL certificate from a 3rd party issuer of your choice at no charge from us.
+All environments on Platform.sh support both HTTP and HTTPS automatically.  Production TLS certificates are provided by [Let's Encrypt](https://letsencrypt.org/).  You may alternatively provide your own TLS certificate from a 3rd party issuer of your choice at no charge from us.
+
+Let’s Encrypt TLS Certificates are valid for 90 days and Platform.sh will automatically renew them 28 days before expiration to avoid HTTPS interruptions.  If a renewal is available and needed, the environment will automatically redeploy to renew the certificate.  As no new build is required the process should take at most a few seconds. The deploy and post-deploy hook will be run during this process.
 
 {{< note >}}
-Let's Encrypt certificate renewals are attempted each time your environment is deployed. If your project does not receive regular code commits, you will need to manually issue a re-deployment to ensure the certificate remains valid. We suggest that you do so when your project doesn't receive any updates for over 1 month. This can be done by pushing a code change via git or issuing the following command from your **local** environment:
-
-```sh
-platform redeploy
-```
-
-Alternatively, see the [section below]({{< relref "#automated-ssl-certificate-renewal-using-cron" >}}) on automatically redeploying the site in order to renew the certificate.
+Platform.sh provides managed service and runtime containers for your projects - security and system upgrades to those containers are applied automatically by us in the background. Whether or not an upgrade needs to be applied is judged during redeploys, but also during this renewal process. That means that most of the time renewals take a few seconds *unless* upgrades are available for your containers. In those cases, containers will be rebooted and the process will take a little longer. 
 {{< /note >}}
+
+If you are using a custom TLS certificate, seven days before it expires Platform.sh will issue a Let's Encrypt certificate and replace the custom certificate with it in order to avoid interruption in service.  If you wish to continue using the custom certificate, replace it with an updated certificate more than seven days before it expires.
+
+{{< note >}}
+TLS certificates are often still called SSL certificates.  TLS is a newer encryption system that has replaced SSL, but the name SSL is still widely recognized.  In practice, they mean the same thing today, but TLS is the more correct term.
+{{</ note >}}
+
+## Using HTTPS
 
 Platform.sh recommends using HTTPS requests for all sites exclusively.  Doing so provides better security, access to certain features that web browsers only permit over HTTPS, and access to HTTP/2 connections on all sites which can greatly improve performance.
 
-How HTTPS redirection is handled depends on the routes you have defined.  Platform.sh recommends specifying all HTTPS routes in your `routes.yaml` file.  That will result in all pages being served over SSL, and any requests for an HTTP URL will automatically be redirected to HTTPS.
+How HTTPS redirection is handled depends on the routes you have defined.  Platform.sh recommends specifying all HTTPS routes in your `routes.yaml` file.  That will result in all pages being served over TLS, and any requests for an HTTP URL will automatically be redirected to HTTPS.
 
 ```yaml
 "https://{default}/":
@@ -53,7 +57,11 @@ Although Platform.sh does not recommend it, you can also redirect HTTPS requests
     to: "http://{default}/"
 ```
 
-Of course, more complex routing logic is possible if the situation calls for it. However, we recommend defining HTTPS routes exclusively.
+More complex routing logic is also possible if the situation calls for it.
+
+{{< note >}}
+Let's Encrypt has a limit of 100 TLS certificates per environment.  If you define both a `{default}` and `www.{default}` route for each domain you use, that will give you a limit of 50 domains.  Adding more than that will result in a warning on deploy and some domains will not be issued a TLS certificate.  If you need more than that, we recommend obtaining additional certificates or a wildcard certificate from another TLS provider.  Alternatively, consider splitting your project up into multiple discrete Platform.sh projects.
+{{< /note >}}
 
 ## TLS configuration
 
@@ -69,19 +77,15 @@ https://{default}/:
 
 ### `min_version`
 
-{{< note >}}
-This directive was put into place when Platform.sh supported older versions of TLS for customers.
-Currently only TLS v1.2 is supported. Support for TLS v1.3 will be added in the near future.
-{{< /note >}}
-
 Setting a minimum version of TLS will cause the server to automatically reject any connections using an older version of TLS.  Rejecting older versions with known security vulnerabilities is necessary for some security compliance processes.
 
 ```yaml
 tls:
-    min_version: TLSv1.2
+    min_version: TLSv1.3
 ```
 
-The above configuration will result in requests using older TLS versions to be rejected.  Legal values are `TLSv1.2`.
+The above configuration will result in requests using older TLS versions to be rejected. Legal values are `TLSv1.2` and `TLSv1.3`.
+TLS versions older than 1.2 are not supported by Platform.sh and will be rejected regardless of the setting here.
 
 Note that if multiple routes for the same domain have different `min_version`s specified, the highest specified will be used for the whole domain.
 
@@ -111,7 +115,7 @@ Note: If multiple routes for the same domain specify different HSTS settings, th
 
 In some non-browser applications (such as mobile applications, IoT devices, or other restricted-client-list use cases), it is beneficial to restrict access to selected devices using TLS.  This process is known as client-authenticated TLS, and functions effectively as a more secure alternative to HTTP Basic Auth.
 
-By default, any valid SSL cert issued by one of the common certificate issuing authorities will be accepted.  Alternatively, you can restrict access to SSL certs issued by just those certificate authorities you specify, including a custom authority.  (The latter is generally only applicable if you are building a mass-market IoT device or similar.)  To do so, set `client_authentication` required and then provide a list of the certificates of the certificate authorities you wish to allow.
+By default, any valid TLS cert issued by one of the common certificate issuing authorities will be accepted.  Alternatively, you can restrict access to TLS certs issued by just those certificate authorities you specify, including a custom authority.  (The latter is generally only applicable if you are building a mass-market IoT device or similar.)  To do so, set `client_authentication` required and then provide a list of the certificates of the certificate authorities you wish to allow.
 
 ```yaml
 tls:
@@ -141,38 +145,7 @@ tls:
             -----END CERTIFICATE-----
 ```
 
-## Automated SSL certificate renewal using Cron
-
-If the Let's Encrypt certificate is due to expire in less than one month then it will be renewed automatically during a deployment.  That makes it feasible to set up regular auto-renewal of the Let's Encrypt certificate.  The caveat is that, like any deploy, there is a very brief downtime (a few seconds, usually) so it's best to do during off-hours.
-
-You will first need to install the CLI in your application container.  See the section on [API tokens]({{< relref "/development/cli/api-tokens.md" >}}) for instructions on how to do so.
-
-{{< note >}}
-Automated SSL certificate renewal using cron requires you to [get an API token and install the CLI in your application container]({{< relref "/development/cli/api-tokens.md" >}}).
-{{< /note >}}
-
-Once the CLI is installed in your application container and an API token configured you can add a cron task to run twice a month to trigger a redeploy. For example:
-
-```yaml
-crons:
-    renewcert:
-        # Force a redeploy at 10 am (UTC) on the 1st and 15th of every month.
-        spec: '0 10 1,15 * *'
-        cmd: |
-            if [ "$PLATFORM_BRANCH" = master ]; then
-                platform redeploy --yes --no-wait
-            fi
-```
-
-The above cron task will run on the 1st and 15th of the month at 10 am (UTC), and, if the current environment is the master branch, it will run `platform redeploy` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the redeploy to complete.  We recommend adjusting the cron schedule to whenever is off-peak time for your site, and to random days within the month.
-
-{{< note theme="warning" >}}
-It is very important to include the `--no-wait` flag.  If you do not, the cron process will block waiting on the deployment to finish, but the deployment will be blocked by the running cron task.  That will take your site offline until you log in and manually terminate the running cron task.  You want the `--no-wait` flag.  We're not joking.
-{{< /note >}}
-
-The certificate will not renew unless it has less than one month remaining; trying twice a month is sufficient to ensure a certificate is never less than 2 weeks from expiring.  As the redeploy does cause a momentary pause in service we recommend running during non-peak hours for your site.
-
-## Let's Encrypt limits and branch names
+## Let's Encrypt limits, errors, and branch names
 
 You may encounter Let's Encrypt certificates failing to provision after the build hook has completed:
 
@@ -186,7 +159,7 @@ W: Missing certificate for domain www.<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.
 W: Missing certificate for domain <PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
 ```
 
-One reason that this can happen has to do with the limits of Let's Encrypt itself, which caps off at 64 characters for URLS. If your TLS certificates are not being provisioned, it's possible that the names of your branches are too long, and the environment's generated URL goes over that limit.
+One reason that this can happen has to do with the limits of Let's Encrypt itself, which caps off at 64 characters for URLs. If your TLS certificates are not being provisioned, it's possible that the names of your branches are too long, and the environment's generated URL goes over that limit.
 
 At this time, generated URLs have the following pattern:
 
@@ -201,3 +174,30 @@ At this time, generated URLs have the following pattern:
 * extra characters (`.` & `-`) = 4 characters
 
 This breakdown leaves you with 21-23 characters to work with naming your branches (`PLATFORM_BRANCH`) without going over the 64 character limit, dependent on the region. Since this pattern for generated URLs will remain similar, but could change slightly over time, it's our recommendation to use branch names with a maximum length between 15 and 20 characters.
+
+### DNS Challenge
+
+To be able to provide a valid SSL-certificate, Let's Encrypt needs to make sure that the requester is entitled to receive the SSL-certificate it asked for (usually through the presence of a specific token on the DNS zone of that domain).
+
+This ownership verification is achieved through the so called _Challenge_ step, more background information can be found in the [Let's Encrypt Documentation](https://letsencrypt.org/docs/challenge-types/).
+
+By default, Platform.sh will check that both the `some-example.platform.sh` and `www.some-example.platform.sh` domains are pointing to your project.
+The certificate will also encompass both these domains.
+Please make sure that both your apex domain and it's `www` subdomain are pointing to your project, more information can be found in out go live [step-by-step guide](gettingstarted/next-steps/going-live/configure-dns.md).
+
+Sometimes, that verification fails which will result in the following error-message:
+`Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
+
+For the DNS challenge to work, domains and subdomains should point directly to your Platform.sh cluster (unless using a CDN). Otherwise, you will see the following error:
+
+```text
+  E: Error validating domain www.some-example.platform.sh: Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
+  Unable to validate domains www.some-example.platform.sh, will retry in the background.
+```
+Note that DNS changes can take up to 24-48 hours to propagate. See the [step-by-step guide](/domains/steps/_index.md) for more information. If you have waited the 24-48 hours, properly configured the subdomain, and are still seeing an error of this type, [redeploying](/development/troubleshoot.md#force-a-redeploy) the impacted environment will usually solve the issue.
+
+Please also make sure that no conflicting DNS records exist for the domain.
+For example a conflicting AAAA (IPv6) DNS record, will usually result in a `[HTTP01: The client lacks sufficient authorization]` error.
+
+If the certificate generation issue persists, you could also verify if an outage is currently ongoing on [let's encrypt's side](https://letsencrypt.status.io/).
+If that is not the case, please open a support ticket.

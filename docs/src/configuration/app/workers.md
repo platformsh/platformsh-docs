@@ -4,7 +4,7 @@ weight: 11
 sidebarTitle: "Worker configuration"
 ---
 
-Every application may also define zero or more worker instances.  A worker instance runs as its own container independently of the web instance and has no Nginx instance running.  The router service cannot direct public requests to it, either, so running your own web server on a worker (using Node.js or Go) is not useful.
+Every application may also define zero or more worker instances.  A worker instance runs as its own container independently of the web instance and has no Nginx instance running.  The router service cannot direct public requests to it, either, so running your own web server on a worker is not useful.
 
 A worker instance is the exact same code and compilation output as a web instance.  The container image is built only once, and then deployed multiple times if needed.  That is, the `build` hook and `dependencies` may not vary from one instance to another.  What may vary is how the container is then configured and how resources are allocated.
 
@@ -18,10 +18,10 @@ workers:
         size: S
         commands:
             start: |
-                php worker.php
+                ./worker.sh
 ```
 
-That defines a single worker named `queue`, which will be a "small" container, and wil run the command `php worker.php` on startup.  If `worker.php` ever exits it will be automatically restarted.
+That defines a single worker named `queue`, which will be a "small" container, and will run the command `./worker.sh` on startup.  If `worker` ever exits it will be automatically restarted.
 
 Any number of workers may be defined with their own distinct name, subject to available resources on your plan. For resource allocation reasons, using workers in your project requires a Medium plan or larger.
 
@@ -55,6 +55,12 @@ To connect to a worker called `queue` (as in the example above) you would use an
 ssh 3seb7f2j6ogbm-master-7rqtwti--app--queue@ssh.us-2.platform.sh
 ```
 
+## Stopping a worker
+
+If a worker instance needs to be updated during a new deployment, a `SIGTERM` signal will first be sent to the worker process to allow it to shut down gracefully.  If your worker process cannot be interrupted mid-task, make sure it reacts to `SIGTERM` to pause its work gracefully.
+
+If the process is still running after 15 seconds, a `SIGKILL` message will be sent that force-terminates the worker process, allowing the container to be shut down and restarted.
+
 ## Workers vs Cron
 
 Both worker instances and cron tasks address similar use cases: They both address out-of-band work that an application needs to do but that should not or cannot be done as part of a normal web request.  They do so in different ways, however, and so are fit for different use cases.
@@ -80,11 +86,11 @@ The `commands` key defines the command to launch the worker application.  For no
 
 The `start` key specifies the command to use to launch your worker application.  It may be any valid shell command, although most often it will run a command in your application in the language of your application.  If the command specified by the `start` key terminates it will be restarted automatically.
 
-Note that [`deploy` and `post_deploy` hooks]({{< relref "/configuration/app/build.md" >}}), as well as [`cron` commands]({{< relref "/configuration/app/cron.md" >}}), will run only on the [`web`]({{< relref "/configuration/app/web.md" >}}) container, not on workers.
+Note that [`deploy` and `post_deploy` hooks](/configuration/app/build.md), as well as [`cron` commands](/configuration/app/cron.md), will run only on the [`web`](/configuration/app/web.md) container, not on workers.
 
 ## Inheritance
 
-Any top-level definitions for [`size`]({{< relref "/configuration/app/size.md" >}}), [`relationships`]({{< relref "/configuration/app/relationships.md" >}}), [`access`]({{< relref "/configuration/app/access.md" >}}), [`disk` and `mount`]({{< relref "/configuration/app/storage.md" >}}), and [`variables`]({{< relref "/configuration/app/variables.md" >}}) will be inherited by every worker, unless overridden explicitly.
+Any top-level definitions for [`size`](/configuration/app/size.md), [`relationships`](/configuration/app/relationships.md), [`access`](/configuration/app/access.md), [`disk` and `mount`](/configuration/app/storage.md), and [`variables`](/configuration/app/variables.md) will be inherited by every worker, unless overridden explicitly.
 
 That means, for example, that the following two `.platform.app.yaml` definitions produce identical workers.
 
@@ -224,7 +230,7 @@ workers:
 
 There's a lot going on here, but it's all reasonably straightforward.  This configuration will take a single Python 3.7 code base from your repository, download all dependencies in `requirements.txt`, and the install Gunicorn.  That artifact (your code plus the downloaded dependencies) will be deployed as three separate container instances, all running Python 3.7.
 
-The `web` instance will start a gunicorn process to serve a web application.  
+The `web` instance will start a gunicorn process to serve a web application.
 
 * It will run the gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application` definition.
 * It will have an environment variable named `TYPE` with value `web`.

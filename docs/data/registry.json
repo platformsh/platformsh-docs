@@ -88,17 +88,46 @@
       ],
       "supported": [
         "6.5",
-        "7.2"
+        "6.8",
+        "7.2",
+        "7.5",
+        "7.7",
+        "7.9"
       ]
     },
     "versions-dedicated": {
       "supported": [
         "5.2",
-        "6.5"
+        "5.6",
+        "6.5",
+        "6.8",
+        "7.2",
+        "7.5",
+        "7.6",
+        "7.7",
+        "7.9"
       ],
       "deprecated" : [
         "1.7",
         "2.4"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [
+        "0.9",
+        "1.4",
+        "1.7",
+        "2.4",
+        "5.2",
+        "5.4"
+      ],
+      "supported": [
+        "6.5",
+        "6.8",
+        "7.2",
+        "7.5",
+        "7.7",
+        "7.9"
       ]
     }
   },
@@ -140,7 +169,8 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "1.9"
+        "1.9",
+        "1.10"
       ]
     }
   },
@@ -188,7 +218,8 @@
         "1.11",
         "1.12",
         "1.13",
-        "1.14"
+        "1.14",
+        "1.15"
       ]
     }
   },
@@ -211,7 +242,8 @@
       "supported": [
         "1.2",
         "1.3",
-        "1.7"
+        "1.7",
+        "1.8"
       ]
     }
   },
@@ -244,7 +276,8 @@
         "11",
         "12",
         "8",
-        "13"
+        "13",
+        "14"
       ]
     }
   },
@@ -268,7 +301,8 @@
         "2.1",
         "2.2",
         "2.3",
-        "2.4"
+        "2.4",
+        "2.5"
       ]
     }
   },
@@ -316,9 +350,47 @@
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
-    "name": "MariaDB",
+    "name": "MariaDB/MySQL",
     "runtime": false,
     "type": "mariadb",
+    "versions": {
+      "deprecated": [
+        "5.5"
+      ],
+      "supported": [
+        "10.0",
+        "10.1",
+        "10.2",
+        "10.3",
+        "10.4",
+        "10.5"
+      ]
+    },
+    "versions-dedicated": {
+      "supported": [
+        "10.0 Galera",
+        "10.1 Galera",
+        "10.2 Galera",
+        "10.3 Galera",
+        "10.4 Galera",
+        "10.5 Galera"
+      ]
+    }
+  },
+  "mysql": {
+    "description": "A manufacture-based container for MariaDB",
+    "repo_name": "mariadb",
+    "disk": true,
+    "docs": {
+      "relationship_name": "database",
+      "service_name": "db",
+      "url": "/configuration/services/mysql.html"
+    },
+    "endpoint": "mysql",
+    "min_disk_size": 256,
+    "name": "MariaDB/MySQL",
+    "runtime": false,
+    "type": "mysql",
     "versions": {
       "deprecated": [
         "5.5"
@@ -335,7 +407,19 @@
       "supported": [
         "10.0 Galera",
         "10.1 Galera",
-        "10.2 Galera"
+        "10.2 Galera",
+        "10.3 Galera",
+        "10.4 Galera",
+        "10.5 Galera"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "supported": [
+        "10.1 Galera",
+        "10.2 Galera",
+        "10.3 Galera",
+        "10.4 Galera",
+        "10.5 Galera"
       ]
     }
   },
@@ -408,6 +492,12 @@
       "supported": [
         "1.0"
       ]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [],
+      "supported": [
+        "2.0"
+      ]
     }
   },
   "nodejs": {
@@ -442,11 +532,16 @@
         "6",
         "8",
         "10",
-        "12"
+        "12",
+        "14"
       ]
     },
     "versions-dedicated": {
-      "supported": ["10"],
+      "supported": [
+        "10",
+        "12",
+        "14"
+      ],
       "deprecated": ["9.8"]
     }
   },
@@ -510,7 +605,8 @@
     "versions-dedicated": {
       "supported": [
         "7.2",
-        "7.3"
+        "7.3",
+        "7.4"
       ],
       "deprecated": [
         "5.6",
@@ -524,12 +620,13 @@
         "5.5",
         "5.6",
         "7.0",
-        "7.1"
+        "7.1",
+        "7.2"
       ],
       "supported": [
-        "7.2",
         "7.3",
-        "7.4"
+        "7.4",
+        "8.0"
       ]
     }
   },
@@ -555,7 +652,8 @@
         "9.6",
         "10",
         "11",
-        "12"
+        "12",
+        "13"
       ]
     }
   },
@@ -596,7 +694,8 @@
         "3.5",
         "3.6",
         "3.7",
-        "3.8"
+        "3.8",
+        "3.9"
       ]
     }
   },
@@ -610,11 +709,23 @@
       "url": "/configuration/services/rabbitmq.html"
     },
     "endpoint": "rabbitmq",
-    "min_disk_size": 256,
+    "min_disk_size": 512,
     "name": "RabbitMQ",
     "runtime": false,
     "type": "rabbitmq",
     "versions": {
+      "deprecated": [],
+      "supported": [
+        "3.5",
+        "3.6",
+        "3.7",
+        "3.8"
+      ]
+    },
+    "versions-dedicated": {
+      "supported": ["3.7", "3.8"]
+    },
+    "versions-dedicated-gen-3": {
       "deprecated": [],
       "supported": [
         "3.5",
@@ -646,12 +757,25 @@
       "supported": [
         "3.2",
         "4.0",
-        "5.0"
+        "5.0",
+        "6.0"
       ]
     },
     "versions-dedicated": {
-      "supported": ["5.0"],
+      "supported": ["5.0","6.0"],
       "deprecated": ["3.2"]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [
+        "2.8",
+        "3.0"
+      ],
+      "supported": [
+        "3.2",
+        "4.0",
+        "5.0",
+        "6.0"
+      ]
     }
   },
   "ruby": {
@@ -720,16 +844,18 @@
     "runtime": false,
     "type": "solr",
     "versions": {
-      "deprecated": [],
-      "supported": [
+      "deprecated": [
         "3.6",
-        "4.1",
+        "4.10",
         "6.3",
         "6.6",
-        "7.6",
+        "7.6"
+      ],
+      "supported": [
         "7.7",
         "8.0",
-        "8.4"
+        "8.4",
+        "8.6"
       ]
     },
     "versions-dedicated": {
@@ -737,7 +863,15 @@
         "4.10",
         "6.3",
         "6.6",
-        "8.0"
+        "7.7",
+        "8.0",
+        "8.6"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "supported": [
+        "6.6",
+        "8.6"
       ]
     }
   },
@@ -747,7 +881,7 @@
     "disk": false,
     "docs": {
       "relationship_name": "varnishstats",
-      "service_name": "proxy",
+      "service_name": "varnish",
       "url": "/configuration/services/varnish.html"
     },
     "endpoint": "http+stats",

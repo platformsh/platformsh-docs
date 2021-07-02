@@ -10,9 +10,9 @@ As configured on Platform.sh, it avoids any runtime overhead for non-debug reque
 
 ## Setting up Xdebug
 
-Xdebug is not enabled the same way as other extensions, as it should not be active on most requests.  Xdebug has a substantial impact on performance and should not be run in production.
+Xdebug is not enabled the same way as other extensions, as it should not be active on most requests.  Xdebug has a substantial impact on performance and should not be run in a production process.  Instead, Platform.sh runs a second PHP-FPM process with Xdebug that is used only for debug requests, leaving the normal process unaffected.
 
-Instead, Xdebug can be enabled by adding the following configuration to the application's `.platform.app.yaml` file:
+Enable Xdebug by adding the following configuration to the application's `.platform.app.yaml` file:
 
 ```yaml
 runtime:
@@ -24,7 +24,17 @@ The `idekey` value can be any arbitrary alphanumeric string, as long as it match
 
 When that key is defined, Platform.sh will start a second PHP-FPM process on the container that is identically configured but also has Xdebug enabled.  Only incoming requests that have an Xdebug cookie or query parameter set will be forwarded to the debug PHP-FPM process.  All other requests will be directed to the normal PHP-FPM process and thus have no performance impact.
 
-Xdebug has numerous other configuration options available.  They are all set as `php.ini` values, and can be configured the same way as any other [`php.ini` setting]({{< relref "/languages/php/ini.md" >}}).  Consult the [Xdebug documentation](https://xdebug.org/docs/) for a full list of available options, although in most cases the default configuration is sufficient.
+Xdebug has numerous other configuration options available.  They are all set as `php.ini` values, and can be configured the same way as any other [`php.ini` setting](/languages/php/ini.md).  Consult the [Xdebug documentation](https://xdebug.org/docs/) for a full list of available options, although in most cases the default configuration is sufficient.
+
+If you have the [router cache](/configuration/routes/cache.md) enabled, you will also need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie whitelist.  Depending on the cookies you already have listed there the result should look similar to this:
+
+```yaml
+"https://{default}/":
+    # ...
+    cache:
+      enabled: true
+      cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
+```
 
 ## Using Xdebug
 
@@ -35,6 +45,10 @@ From your local checkout of your application, run `platform environment:xdebug` 
 By default, Xdebug operates on port 9000.  Generally, it is best to configure your IDE to use that port.  If you wish to use an alternate port use the `--port` flag.
 
 To close the tunnel and terminate the debug connection, press `Ctrl-C`.
+
+{{< note title="On Dedicated Generation 3" >}}
+Note that because you have several VMs running but your tunnel is connected to only one of them, your requests won't always reach the same host. 
+{{< /note >}}
 
 ### Install an Xdebug helper
 
@@ -66,7 +80,7 @@ In your PHPStorm Settings window, go to `Languages & Frameworks` > `PHP` > `Serv
 
 Add a new server for your Platform.sh environment.  The "Host" should be the hostname of the environment on Platform.sh you will be debugging.  The "Port" should always be 443 and the "Debugger" set to Xdebug.  Ensure that "Use path mappings" is checked, which will make available a tree of your project with a column to configure the remote path that it should map to.
 
-This page lets you define what remote paths on the server correspond to what path on your local machine.  In the majority of cases you can just define the root of your application (either the repository root or the root of your PHP code base specifically in a multi-app setup) to map to `app`, as in the example below.
+This page lets you define what remote paths on the server correspond to what path on your local machine.  In the majority of cases you can just define the root of your application (either the repository root, or the root of your PHP code base specifically in a multi-app setup) to map to `app`, as in the example below.
 
 ![PHP server configuration](/images/xdebug/xdebug-servers.png "0.6")
 

@@ -8,9 +8,9 @@ sidebarTitle: "MongoDB"
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="mongodb" status="supported" environment="grid" >}} | {{< image-versions image="mongodb" status="supported" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="mongodb" status="supported" environment="grid" >}} | {{< image-versions image="mongodb" status="supported" environment="dedicated" >}} | {{< image-versions image="mongodb" status="supported" environment="dedicated-gen-3" >}} |
 
 {{< note >}}
 Downgrades of MongoDB are not supported. MongoDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
@@ -18,11 +18,9 @@ Downgrades of MongoDB are not supported. MongoDB will update its own datafiles t
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable]({{< relref "/development/variables.md#platformsh-provided-variables" >}}):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/mongodb" >}}
-{{< /highlight >}}
+{{< relationship "mongodb" >}}
 
 ## Usage example
 

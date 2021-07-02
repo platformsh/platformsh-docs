@@ -26,7 +26,7 @@ From the `Status` tab, you can activate or deactivate an environment.
 
 The `Deactivate & Delete Data` action will
 
-* Deactivate the environment. Unless is is re-activated, it will no longer deploy and it will not be accessible from the web or via SSH.
+* Deactivate the environment. Unless it is re-activated, it will no longer deploy and it will not be accessible from the web or via SSH.
 * Destroy all services running on this environment.
 * Delete all data specific to the environment. If the environment is reactivated, it will sync data from its parent environment.
 
@@ -37,7 +37,7 @@ git push origin :BRANCH-NAME
 ```
 
 {{< note >}}
-Deleting the Master environment is forbidden.
+The Master environment is protected. It cannot be deleted through the management console or the CLI, and should not be deleted through the API unless you are planning on configuring another branch to become the `default_branch` to replace it. See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information. 
 {{< /note >}}
 
 ### Outgoing emails
@@ -64,21 +64,16 @@ By default, Platform.sh includes an additional `X-Robots-Tag` header on all non-
 X-Robots-Tag: noindex, nofollow
 ```
 
-That tells search engines to not index sites on non-production environments entirely nor traverse links from those sites, even if they are publicly visible.  That keeps non-production sites out of search engine indexes that would dilute the SEO of the production site.  To disable that feature for a non-production environment, use the [Platform.sh CLI]({{< relref "/development/cli/_index.md" >}}) command below:
+That tells search engines to not index sites on non-production environments entirely nor traverse links from those sites, even if they are publicly visible.  That keeps non-production sites out of search engine indexes that would dilute the SEO of the production site, and it cannot be disabled on non-production environments.
 
-```
-platform environment:info restrict_robots false
-```
+On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled automatically and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`](/configuration/app/web.md#locations).
 
-Or to disable it for a specific environment other than the one that is currently checked out, execute the following:
+
+To enable the search-blocker `X-Robots-Tag` header on a production environment, use the [Platform.sh CLI](/development/cli/_index.md) command below:
 
 ```bash
-platform environment:info -e ENVNAME restrict_robots false
+platform environment:info restrict_robots true
 ```
-
-where `ENVNAME` is the name of the environment.
-
-On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`]({{< relref "/configuration/app/web.md#locations" >}}).
 
 ### HTTP access control
 
@@ -133,4 +128,4 @@ The `Routes` screen describes the configuration features that define the routes 
 
 ![Configure Platform.sh environment routes](/images/management-console/routes.png "0.7")
 
-Consult the documentation for more information about properly configuring [Routes]({{< relref "/configuration/routes/_index.md" >}}) for your project.
+Consult the documentation for more information about properly configuring [Routes](/configuration/routes/_index.md) for your project.

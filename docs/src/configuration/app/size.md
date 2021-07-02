@@ -16,7 +16,30 @@ Every application container as well as every service in `.platform/services.yaml
 
 Legal values for the `size` key are `AUTO` (the default), `S`, `M`, `L`, `XL`, `2XL`, `4XL`.
 
-Note that in a development environment this value is ignored and always set to `S`.  It will only take effect in a production deployment (a master branch with an associated domain).  If the total resources requested by all apps and services is larger than what the plan size allows then a production deployment will fail with an error.
+If the total resources requested by all apps and services is larger than what the plan size allows then a production deployment will fail with an error.
+
+Note that in a development environment this value is ignored.  Service containers are always set to size `S` in development environments.  The application container is always set to the "Development Application Size" as configured on the plan.  That defaults to `S` but you can increase it on your plan settings page for a fee.
+
+## How to modify my Platform.sh project plan and its resources
+
+1. [Login to your account](https://accounts.platform.sh/user) to view the accessible projects.  For the projects that you are the Account Owner for, you will see three vertical dots.  Click those dots to pull up a drop-down menu and select edit to modify that project’s configuration.
+
+2. Update the plan's settings according to you needs
+
+From there you'll be able to update several settings such as the:
+
+* plan size
+* number of environments
+* development environments application size
+* storage sizing
+
+The pricing will be displayed and updated according to the changes.
+
+If you made a change that you wish to apply, click the Update Plan button on the bottom of the page.
+
+{{< note >}}
+Note: Production-sized Platform.sh subscriptions cannot be downgraded to a Development plan due to potential feature conflicts. If looking to downgrade a plan, [please file a support ticket.](https://accounts.platform.sh/platform/support)
+{{< /note >}}
 
 ## How do I make a background processing container smaller to save resources?
 
@@ -25,7 +48,7 @@ Simply set the `size` key to `S` to ensure that the container gets fewer resourc
 ```yaml
 name: processing
 
-type: nodejs:6.11
+type: nodejs:14
 size: S
 
 ...

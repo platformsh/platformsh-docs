@@ -9,12 +9,16 @@ The network storage service enables a new kind of `mount` that refers to a share
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}} |
 
+This service is a reference to a version of our network storage implementation, not to a version of a 3rd party application. `network-storage` 2.0 will *not* work on the Grid. We recommend using version 1.0 unless you are a [Dedicated Generation 3](dedicated-gen-3/overview.md) user. 
 
-(This is a reference to a version of our network storage implementation, not to a version of a 3rd party application.)
+{{< note theme="warning">}}
+It is not possible to upgrade or downgrade the network storage service version while keeping existing data in place. Changing the service version will require the service to be reinitialized. Any change to the service version will result in existing data becoming inaccessible.
+{{< /note >}}
+
 
 ## Supported regions
 
@@ -23,7 +27,7 @@ The Network storage service is available on all regions except:
 * `eu.platform.sh`
 * `us.platform.sh`
 
-If you are on one of those and require the service we suggest you [migrate]({{< relref "/tutorials/region-migration.md#region-migration" >}}) your project to one of the newer regions (such as eu-2, us-2, ca, au, fr-1 or de-2).
+If you are on one of those and require the service we suggest you [migrate](/guides/general/region-migration.md#region-migration) your project to one of the newer regions (such as eu-2, us-2, ca, au, fr-1 or de-2).
 
 ## Define the service
 
@@ -57,7 +61,13 @@ It is also possible to have one application mount a `source_path` that is a subd
 
 `app1`:
 
-{{< readFile file="src/registry/images/examples/full/network-storage.app.yaml" highlight="yaml" >}}
+```yaml
+mounts:
+    'web/uploads':
+        source: service
+        service: files
+        source_path: uploads
+```
 
 `app2`:
 
@@ -77,7 +87,7 @@ In this example, `app1` will have access to the entire `uploads` directory by wr
 
 ## Worker instances
 
-When defining a [Worker]({{< relref "/configuration/app/workers.md" >}}) instance it is important to keep in mind what mount behavior is desired.  Unless the `mounts` block is defined within the `web` and `workers` sections separately, a top level `mounts` block will apply to both instances.  However, `local` mounts will be a separate storage area for each instance while `service` mounts will refer to the same file system.  For example:
+When defining a [Worker](/configuration/app/workers.md) instance it is important to keep in mind what mount behavior is desired.  Unless the `mounts` block is defined within the `web` and `workers` sections separately, a top level `mounts` block will apply to both instances.  However, `local` mounts will be a separate storage area for each instance while `service` mounts will refer to the same file system.  For example:
 
 ```yaml
 name: app
@@ -247,4 +257,4 @@ And want to move that to a network storage mount.  The following approximate ste
 
 The `network-storage` service is only available on our newer regions.  If you are running on the older `us` or `eu` regions and try to create a `network-storage` service you will receive this error.
 
-To make use of `network-storage` you will need to migrate to the newer `us-2` or `eu-2` regions.  See our [tutorial on how to migrate regions]({{< relref "/tutorials/region-migration.md" >}}) for more information.
+To make use of `network-storage` you will need to migrate to the newer `us-2` or `eu-2` regions.  See our [tutorial on how to migrate regions](/guides/general/region-migration.md) for more information.

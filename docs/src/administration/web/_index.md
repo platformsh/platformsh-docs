@@ -10,7 +10,7 @@ description: |
 
 ![Management Console](/images/management-console/project.png "0.5")
 
-Everything you can do with the management console you can also achieve with the  [CLI (Command Line Interface)]({{< relref "/development/cli/_index.md" >}}).
+Everything you can do with the management console you can also achieve with the [CLI (Command Line Interface)](/development/cli/_index.md).
 
 ## Environment List
 
@@ -78,11 +78,9 @@ Synchronization performs a merge from a parent into a child environment, and the
 You have the option of performing a Sync on only the code, replacing the data (i.e. databases) of that environment from its parent, or both.
 These options are provided in a separate dialog box that will appear when you click the `Sync` button, along with the Platform.sh CLI commands that perform the same action.
 
-Be aware that sync uses the [Snapshot]({{< relref "/administration/backup-and-restore.md#backups-and-downtime" >}}) mechanism and will have the same caveats.
-
 ![sync confirmation cli](/images/management-console/header-sync-box.png "0.4")
 
-Be aware that sync uses the [Backup]({{< relref "/administration/backup-and-restore.md#backups-and-downtime" >}}) mechanism and will have the same caveats.
+Be aware that sync uses the [Backup](/administration/backup-and-restore.md#backups-and-downtime) mechanism and will have the same caveats.
 
 Note that `Sync` is only available if your branch has no unmerged commits, and can be fast-forwarded.
 
@@ -90,7 +88,7 @@ It is good practice to take a backup of your environment before performing a syn
 
 #### Backup
 
-Creating a backup for an environment means saving a copy of the database so that it can be restored. You will see the backup in the activity feed of you environment in the Platform.sh management console where you can trigger the restore by clicking on the `restore` link.
+Creating a backup for an environment means saving a copy of the environment so that it can be restored. You will see the backup in the activity feed of your environment in the Platform.sh management console where you can trigger the restore by clicking on the `restore` link. For more information please refer [here](/administration/backup-and-restore.md).
 
 After clicking `Backup` a dialog box will appear that will provide commands to execute future merges from the command line using the Platform.sh CLI.
 
@@ -116,7 +114,9 @@ The URLs pull-down exposes the domains that can be used to access application en
 
 #### GIT
 
-The Git pull-down displays the commands to use to clone the codebase via Git.
+The "Git" pull-down displays the commands to use to clone the codebase via Git. If you are using Platform.sh as your primary remote repository, the command shown will clone from the project. Otherwise if you have set up an [external integration](/integrations/source/_index.md), the command will clone directly from the integrated remote repository.
+
+If the project uses an external integration to a repository that you have not been given access to, you will not be able to clone until your access has been updated. See [User access and integrations](/administration/users.md#user-access-and-integrations) for more information.
 
 #### CLI
 
@@ -165,3 +165,11 @@ The "Configuration" tab provides an overview of the service configuration that h
 ![Service tab - Routes](/images/management-console/service-tab/routes.png "0.7")
 
 Each route will appear when you select the Routes tab on the left and describe its type and whether caching and SSI have been enabled for it.
+
+## Display settings
+
+You are able to personalize the accessibility display settings for the management console, which can be updated on the first page of your account settings. Your account can be presented in one of three ways:
+
+* Light mode (default)
+* High contrast mode
+* Dark mode

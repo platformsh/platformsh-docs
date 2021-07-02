@@ -14,6 +14,10 @@ description: |
 
 ## Setup
 
+{{< note >}}
+If the repository you are trying to integrate with a Platform.sh project has a default branch that is not `master` (e.g. `main`), there are a few additional steps you will need to perform to setup the integration. See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
+{{< /note >}}
+
 ### 1. Generate a token
 
 To integrate your Platform.sh project with an existing GitHub repository, you first need to generate a token on your GitHub user profile. Simply go to your Settings, then select `Developer settings` and click `Personal access tokens`. Here you can [Generate a new token](https://github.com/settings/tokens/new).
@@ -24,6 +28,7 @@ Give it a description and then ensure the token has the following scopes:
 * To integrate with your own private repositories: `repo`
 * To integrate with your organization's private repositories: `repo`
     and `read:org`
+* To automatically create web hooks: `admin:repo_hook`
 
 Copy the token and make a note of it (temporarily).
 
@@ -55,6 +60,7 @@ Optional parameters:
 * `--fetch-branches`: Track and deploy branches (true by default)
 * `--prune-branches`: Delete branches that do not exist in the remote GitHub repository (true by default)
 * `--build-pull-requests`: Track and deploy pull-requests (true by default)
+* `--build-draft-pull-requests`: If set to `true`, [draft pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) will also have an environment created.  If false they will be ignored.  If `--build-pull-requests` is `false` this value is ignored.  (`true` by default)
 * `--build-pull-requests-post-merge`: `false` to have Platform.sh build the branch specified in a PR. `true` to build the result of merging the PR.  (`false` by default)
 * `--pull-requests-clone-parent-data`: Set to `false` to disable cloning of parent environment data when creating a PR environment, so each PR environment starts with no data. (`true` by default)
 * `--base-url`: Only set if using GitHub Enterprise, hosted on your own server.  If so, set this to the base URL of your private server (the part before the user and repository name).
@@ -77,7 +83,7 @@ Note that if you have created your account using the GitHub oAuth Login then in 
 
 ### 4. Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI]({{< relref "/integrations/overview.md#validating-integrations" >}}) command
+You can then verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validating-integrations) command
 
 ```bash
 platform integration:validate
@@ -88,3 +94,9 @@ platform integration:validate
 Environments based on GitHub **pull requests** will have the correct 'parent' environment on Platform.sh; they will be activated automatically with a copy of the parent's data.
 
 However, environments based on (non-pull-request) **branches** cannot have parents; they will inherit directly from `master` and start inactive by default.
+
+## Clones and commits
+
+When you run `platform get <projectID>` or use the clone command shown in the "Git" dropdown in the management console to clone the project, you will actually be cloning from your remote integrated repository, so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations).
+
+Your GitHub repository is considered by Platform.sh to be the "source of truth" for the project. The project is only a mirror of that repository, and all commits should be pushed only to GitHub.

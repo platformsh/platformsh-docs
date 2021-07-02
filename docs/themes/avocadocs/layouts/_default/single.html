@@ -6,7 +6,7 @@
         <div class="col-xl-12 order-xl-1 duik-content">
 
           <!-- Platform.sh tier-gated features -->
-          {{ partial "tiered-feature.html" . }}
+          {{ partial "tiered-features/banner.html" . }}
 
           <div class="mb-7">
             <div class="edit-page">
@@ -19,9 +19,6 @@
           </div>
 
           <div class="mb-7">
-
-            <div class="page-wrapper">
-
               <!-- Page title -->
               <div class="page-title">
                 <h1>{{ .Title }}</h1>
@@ -36,9 +33,6 @@
               {{ end }}
 
               <br>
-
-            </div>
-
           </div>
 
           <!-- Page content, anchorized -->

@@ -8,8 +8,6 @@ Drush is a command-line shell and scripting interface for Drupal, a veritable Sw
 
 You can use the CLI to set up Drush aliases, to easily run Drush commands on specific remote Platform.sh environments.
 
-See the [documentation on Drush in Drupal 8]({{< relref "/frameworks/drupal8/drush.md" >}}) for installation, drush aliases, and other general information.  The installation procedure is the same for both Drupal 7 and 8.
-
 ## Drush make
 
 Platform.sh can automatically build your Drupal 7 site using Drush make files. This allows you to easily test specific versions, apply patches and keep your site up to date. It also keeps your working directory much cleaner as since it only contains your custom code.

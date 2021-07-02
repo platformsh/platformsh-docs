@@ -9,21 +9,15 @@ The `.platform.app.yaml` file provides a number of ways to control how an applic
 
 The `build` defines what happens when building the application.  Its only property is `flavor`, which specifies a default set of build tasks to run. Flavors are language-specific.
 
-### PHP (`composer` by default)
+See what the build flavor is for your language:
+- [Node.js](/languages/nodejs#build-flavor)
+- [PHP](/languages/php#build-flavor)
 
-`composer` will run `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
-
-`drupal` will run `drush make` automatically in one of a few different ways.  See the [Drupal 7]({{< relref "/frameworks/drupal7/_index.md" >}}) documentation for more details. We recommend only using this build mode for Drupal 7.
-
-### Node.js (`default` by default)
-
-`default` will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
-
-In all languages you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js); as the name suggests it will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom Composer command or use an alternate Node.js package manager.
+In all languages, you can also specify a flavor of `none` (which is the default for any language other than PHP and Node.js); as the name suggests it will take no action at all. That is useful when you want complete control over your build steps, such as to run a custom Composer command or use an alternate Node.js package manager.
 
 ```yaml
 build:
-    flavor: composer
+    flavor: none
 ```
 
 ## Build dependencies
@@ -63,7 +57,7 @@ dependencies:
   ruby: # Specify one Bundler package per line.
     sass: '3.4.7'
   nodejs: # Specify one NPM package per line.
-    grunt-cli: '~0.1.13'
+    pm2: '^4.5.0'
 ```
 
 Note that the package name format for each language is defined by the package manager used; similarly, the version constraint string will be interpreted by the package manager.  Consult the appropriate package manager's documentation for the supported formats.
@@ -96,17 +90,17 @@ Hooks are executed using the dash shell, not the bash shell used by normal SSH l
 
 ### Build hook
 
-The `build` hook is run after the build flavor (if any).  At this point no services (such as a database) are available nor any persistent file mounts, as the application has not yet been deployed. Environment variables that exist only at runtime such as `PLATFORM_BRANCH`, `PLATFORM_DOCUMENT_ROOT` etc. are not available during this phase. The full list of build time and runtime variables is available on the [variables page]({{< relref "/development/variables.md#platformsh-provided-variables" >}}).  There are three writeable directories at this time:
+The `build` hook is run after the build flavor (if any).  At this point no services (such as a database) are available nor any persistent file mounts, as the application has not yet been deployed. Environment variables that exist only at runtime such as `PLATFORM_BRANCH`, `PLATFORM_DOCUMENT_ROOT` etc. are not available during this phase. The full list of build time and runtime variables is available on the [variables page](/development/variables.md#platformsh-provided-variables).  There are three writeable directories at this time:
 
 * `$PLATFORM_APP_DIR` - This is where your code is checked out, and is the working directory when the build hook starts.  The contents of this directory after the build hook is what will be "the application" that gets deployed.  (This directory is always `/app`, but it's better to use the variable or rely on the working directory than to hard code that.)  Most of the time, this is the only directory you use.
 * `$PLATFORM_CACHE_DIR` - This directory persists between builds, but is NOT deployed as part of your application.  It's a good place for temporary build artifacts, such as downloaded `.tar.gz` or `.zip` files, that can be reused between builds.  Note that it is shared by all builds on all branches, so if using the cache directory make sure your build code accounts for that.
 * `/tmp` - The temp directory is also useful for writing files that are not needed in the final application, but it will be wiped between each build.
 
-There are no constraints on what can be downloaded during your build hook except for the amount of disk available at that time. Independent of the mounted disk size you have allocated for deployment, build environments (the application plus the cache directory) and therefore application images are limited to 4 GB during the build phase. If you exceed this limit you will receive a `No space left on device` error. It is possible to increase this limit in certain situations, but it will be necessary to open a support ticket in order to do so. Consult the [Troubleshooting]({{< relref "/development/troubleshoot.md#no-space-left-on-device" >}}) guide for more information on this topic.
+There are no constraints on what can be downloaded during your build hook except for the amount of disk available at that time. Independent of the mounted disk size you have allocated for deployment, build environments (the application plus the cache directory) and therefore application images are limited to 4 GB during the build phase. If you exceed this limit you will receive a `No space left on device` error. It is possible to increase this limit in certain situations, but it will be necessary to open a support ticket in order to do so. Consult the [Troubleshooting](/development/troubleshoot.md#no-space-left-on-device) guide for more information on this topic.
 
 ### Deploy hook
 
-The `deploy` hook is run after the application container has been started, but before it has started accepting requests.  You can access other services at this stage (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.  Note that the deploy hook will only run on a [`web`]({{< relref "/configuration/app/web.md" >}}) instance, not on a [`worker`]({{< relref "/configuration/app/workers.md" >}}) instance.
+The `deploy` hook is run after the application container has been started, but before it has started accepting requests.  You can access other services at this stage (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.  Note that the deploy hook will only run on a [`web`](/configuration/app/web.md) instance, not on a [`worker`](/configuration/app/workers.md) instance.
 
 Be aware: The deploy hook blocks the site accepting new requests.  If your deploy hook is only a few seconds then incoming requests in that time are paused and will continue when the hook completes, effectively appearing as the site just took a few extra seconds to respond.  If it takes too long, however, requests cannot be held and will appear as dropped connections.  Only run tasks in your deploy hook that have to be run exclusively, such as database schema updates or some types of cache clear.  A post-deploy task that can safely run concurrently with new incoming requests should be run as a `post_deploy` hook instead.
 
@@ -122,6 +116,12 @@ Performed update: my_custom_profile_update_7001
 Finished performing updates.
 ```
 
+Your `deploy` hook is tied to commits in the same way as your builds. That is, once a commit has been pushed and a new build image has been created, the result of both the `build` and `deploy` hooks will be resused, until there is a new git commit. 
+
+Redeploys trigger only the `post_deploy` hook to run again from the beginning, and a committed change to the application is needed to rerun the `build` and `deploy` hooks. 
+
+This means that adding variables, changing access permissions, or even running a `redeploy` using the CLI or management console will not cause the `deploy `hook to run again for the current commit. 
+
 ### Post-Deploy hook
 
 The `post_deploy` hook functions exactly the same as the `deploy` hook, but after the container is accepting connections.  That is, it will run concurrently with normal incoming traffic.  That makes it well suited to any updates that do not require exclusive database access.
@@ -130,45 +130,42 @@ What is "safe" to run in a `post_deploy` hook vs. in a `deploy` hook will vary b
 
 The `post_deploy` hook logs to its own file in addition to the activity log, `/var/log/post-deploy.log`.
 
+The `post_deploy` hook is the only hook provided that will run from the beginning during a redeploy. 
+
 ## How do I compile Sass files as part of a build?
 
-As a good example of combining dependencies and hooks, you can compile your SASS files using Grunt.
+As a good example of combining dependencies and hooks, you can compile your Sass files.
 
-Let's assume that your application has Sass source files (Sass being a Ruby tool) in the `web/styles` directory.  That directory also contains a `package.json` file for npm and `Gruntfile.js` for Grunt (a Node.js tool).
+Let's assume that your application has Sass source files in the `web/styles` directory. That directory also contains a `package.json` file for npm.
 
-The following blocks will download a specific version of Sass and Grunt pre-build, then during the build step will use them to install any Grunt dependencies and then run the grunt command.  This assumes that your Grunt command includes the Sass compile command.
+The following blocks will download a specific version of Sass, then during the build step will call a `build-css` npm script to proceed with the Sass files compilation. This assumes that you have a `build-css` npm script set up to run `sass`, be it with a tool such as webpack or using the binary directly.
 
 ```yaml
 dependencies:
-  ruby:
-    sass: '3.4.7'
   nodejs:
-    grunt-cli: '~0.1.13'
+    sass: "^1"
 
 hooks:
   build: |
-    cd web/styles
     npm install
-    grunt
+    npm run build-css
 ```
 
 ## How can I run certain commands only on certain environments?
 
-The `deploy` and `post_deploy` hooks have access to all of the same [environment variables]({{< relref "/development/variables.md" >}}) as the application does normally, which makes it possible to vary those hooks based on the environment.  A common example is to enable certain modules only in non-production environments.  Because the hook is simply a shell script we have full access to all shell scripting capabilities, such as `if/then` directives.
+The `deploy` and `post_deploy` hooks have access to all of the same [environment variables](/development/variables.md) as the application does normally, which makes it possible to vary those hooks based on the environment.  A common example is to enable certain modules only in non-production environments.  Because the hook is simply a shell script we have full access to all shell scripting capabilities, such as `if/then` directives.
 
-The following Drupal example checks the `$PLATFORM_BRANCH` variable to see if we're in a production environment (the `master` branch) or not.  If so, it forces the `devel` module to be disabled.  If not, it forces the `devel` module to be enabled, and also uses the `drush` Drupal command line tool to strip user-specific information from the database.
+The following example checks the `$PLATFORM_BRANCH` variable to see if we're in a production environment (the `master` branch) or not.
 
 ```yaml
 hooks:
     deploy: |
         if [ "$PLATFORM_BRANCH" = master ]; then
-            # Use Drush to disable the Devel module on the Master environment.
-            drush dis devel -y
+            # Run commands only when deploying on master
         else
-            # Use Drush to enable the Devel module on other environments.
-            drush en devel -y
-            # Sanitize your database and get rid of sensitive information from Master environment.
-            drush -y sql-sanitize --sanitize-email=user_%uid@example.com --sanitize-password=custompassword
+            # Run commands only when deploying on dev environments
         fi
-        drush -y updatedb
+        # Commands to run regardless of the environment
 ```
+
+(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)

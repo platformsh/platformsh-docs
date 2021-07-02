@@ -1,6 +1,6 @@
 ---
 title: "Deployment"
-weight: 3
+weight: 1
 sidebarTitle: "Deploying"
 ---
 
@@ -25,7 +25,7 @@ When deploying to the Dedicated Cluster the process is slightly different than w
 
 The deploy usually takes approximately 30-90 seconds, although that is highly dependent on how long the deploy hook takes to run.
 
-During the deploy process the cluster is unavailable.  However, nearly all Platform.sh Dedicated instances are fronted by a Content Delivery Network (CDN).  Most CDNs can be configured to allow a "grace period", that is, requests to the origin that fail will be served from the existing cache, even if that cache item is stale.  We strongly recommend configuring the CDN with a grace period longer than a typical deployment.  That means anonymous users should see no interruption in service at all.  Authenticated traffic that cannot be served by the CDN will still see a brief interruption.
+During the deploy process the cluster is unavailable.  However, nearly all Platform.sh Dedicated instances are fronted by the Fastly Content Delivery Network (CDN).  Fastly can be configured to allow a "grace period," that is, requests to the origin that fail will be served from the existing cache, even if that cache item is stale.  We configure a default grace period that is longer than a typical deployment, and can extend that time upon request.  That means anonymous users should see no interruption in service at all.  Authenticated traffic that cannot be served by the CDN will still see a brief interruption.
 
 ## Deployment philosophy
 

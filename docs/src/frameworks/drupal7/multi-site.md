@@ -6,7 +6,7 @@ sidebarTitle: "Multi-site"
 sidebarIgnore: true
 ---
 
-Platform.sh supports running [multiple applications in the same project]({{< relref "/bestpractices/oneormany.md" >}})
+Platform.sh supports running [multiple applications in the same project](/bestpractices/oneormany.md)
 and these can be two or more Drupal site. But, they would be separate Drupal
 instances , they will have their assets separate and live their lives apart and
 it would be much better for them not to share the same database (though they
@@ -14,10 +14,10 @@ could).
 
 Note, that the same Drupal instance can also use multiple databases (just add
 multiple instances to services.yaml and use  db_select) you will need to
-override settings.php [as described here]({{< relref "/frameworks/drupal7/customizing-settings-php.md" >}}) and
+override settings.php [as described here](/frameworks/drupal7/customizing-settings-php.md) and
 add the other databases you could then use `db_select` to switch between those.
 
-# Old Style "Mutlisite" and Platform.sh
+# Old Style "Multisite" and Platform.sh
 
 Platform.sh actively discourages running Drupal in "multisite" mode. Doing so
 eliminates many of the advantages Platform.sh offers, such as isolation, safe
@@ -32,11 +32,11 @@ the various "single instance" options available such as [Domain Access](https://
 [Organic Groups](https://www.drupal.org/project/og), or [Workbench Access](https://www.drupal.org/project/workbench_access).
 
 ## Using Domain Access
-Of course Platform.sh supports the Domain Access module, as it supports anything Drupal.
+Platform.sh has broad support for custom Drupal modules, including the Domain Access module.
 
 If the multiple sites are part of the same project this makes sense.
 
-Because of the dynamic nature of routes in Platform.sh you will need to implement
+Because of the dynamic nature of routes in Platform.sh, you'll need to implement
 some logic (here you would replace MYMODULE with a convenient name of your own
 and include it in your custom modules for your Drupal installation).
 

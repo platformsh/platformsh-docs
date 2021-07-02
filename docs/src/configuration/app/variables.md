@@ -4,7 +4,7 @@ weight: 8
 toc: false
 ---
 
-Platform.sh provides a number of ways to set [variables]({{< relref "/development/variables.md" >}}), either globally or specific to a single environment.  For values that should be consistent between different environments (because they're configuring the application or runtime itself, generally) the easiest way to control them is to set them in the `.platform.app.yaml` file.
+Platform.sh provides a number of ways to set [variables](/development/variables.md), either globally or specific to a single environment.  For values that should be consistent between different environments (because they're configuring the application or runtime itself, generally) the easiest way to control them is to set them in the `.platform.app.yaml` file.
 
 Only prefixed variables may be set from the `.platform.app.yaml` file.  Some prefixes have specific meaning while others are only significant to a particular application.  Nested variables will be automatically converted into a nested array or list structure as appropriate to the language.
 
@@ -66,7 +66,6 @@ file=none
 highlight=php
 markdownify=false
 ---
-
 <?php
 var_dump($_ENV['BASIC']);
 // string(8) "a string"
@@ -111,25 +110,49 @@ file=none
 highlight=python
 markdownify=false
 ---
-
 import os
 import json
 import base64
 
 print os.getenv('BASIC')
-// a string
+# a string
 
 print os.getenv('INGREDIENTS')
-// ["peanut butter", "jelly"]
+# ["peanut butter", "jelly"]
 
 print os.getenv('QUANTITIES')
-// {"milk": "1 liter", "cookies": "1 kg"}
+# {"milk": "1 liter", "cookies": "1 kg"}
 
 variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode('utf-8'))
 
 print variables['stuff:STEPS']
-// [u'un', u'deux', u'trois']
+# [u'un', u'deux', u'trois']
 print variables['stuff:COLORS']
-// {u'blue': u'#0000FF', u'green': u'#00FF00', u'red': u'#FF0000'}
+# {u'blue': u'#0000FF', u'green': u'#00FF00', u'red': u'#FF0000'}
+
+<--->
+
+---
+title=Node.js
+file=none
+highlight=javascript
+markdownify=false
+---
+const { BASIC, INGREDIENTS, QUANTITIES, PLATFORM_VARIABLES } = process.env;
+
+const { "stuff:COLORS": stuffColors, "stuff:STEPS": stuffSteps } = JSON.parse(
+  Buffer.from(PLATFORM_VARIABLES, "base64").toString()
+);
+
+console.log(BASIC);
+// "a string"
+console.log(INGREDIENTS);
+// ["peanut butter", "jelly"]
+console.log(QUANTITIES);
+// {"cookies": "1 kg", "milk": "1 liter"}
+console.log(stuffColors);
+// { blue: '#0000FF', green: '#00FF00', red: '#FF0000' }
+console.log(stuffSteps);
+// [ 'un', 'deux', 'trois' ]
 
 {{< /codetabs >}}

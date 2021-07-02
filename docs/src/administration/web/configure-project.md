@@ -37,11 +37,15 @@ The `Account owner` is locked and you can't change its permissions.
 
 ## Domains
 
+{{< note theme="warning">}}
+ Do not add a custom domain to your project until you are fully ready to change your DNS. Until that time, continue working with the Platform.sh generated URLs.
+{{< /note >}}
+
 The `Domains` screen allows you to manage your domains that your project will be accessible at.
 
 ![project domain](/images/management-console/settings-domains.png "0.7")
 
-More information on how to [setup your domain](/golive/steps.html).
+More information on how to [setup your domain](/domains/steps/_index.md).
 
 {{< note >}}
 Platform.sh expects an ASCII representation of the domain here. In case you want to use an internationalized domain name you can use the [conversion tool provided by Verisign](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-conversion-tool/index.xhtml) to convert your IDN domain to ASCII.
@@ -57,8 +61,9 @@ You can view current certificates by hovering over one on the list and clicking 
 
 ![add certs](/images/management-console/add-cert.png "0.7")
 
-All projects get TLS certificates provided by [Let's Encrypt]({{< relref "/configuration/routes/https.md#lets-encrypt" >}}) automatically. In most cases no user action is required. You will only need to add certificates on this page if you are using TLS certificates provided by a third party.
+All projects get TLS certificates provided by [Let's Encrypt](/configuration/routes/https.md#lets-encrypt) automatically. In most cases no user action is required. You will only need to add certificates on this page if you are using TLS certificates provided by a third party.
 
+A more in-depth guide regarding [how to set up custom certificates can be found here](https://docs.platform.sh/domains/steps/tls.html).
 
 ## Deploy Key
 

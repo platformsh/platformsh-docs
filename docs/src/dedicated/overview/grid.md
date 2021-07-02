@@ -3,7 +3,7 @@ title: "Differences from Platform.sh on the Grid"
 weight: 5
 sidebarTitle: "Differences from the Grid"
 description: |
-  When using Platform.sh Dedicated, a few configuration options and tools function differently from Platform.sh on the Grid, aka the Development Environment.
+  When using Platform.sh Dedicated, a few configuration options and tools function differently from Platform.sh on the Grid, or the Development Environment.
 ---
 
 {{< description >}}
@@ -58,7 +58,7 @@ Specifically:
 
 ### Cron
 
-Cron tasks may run up to once per minute.  (They are limited to once every 5 minutes on Platform.sh Grid.)
+Cron tasks may run up to once per minute (They are limited to once every 5 minutes on Platform.sh Professional plans).
 
 Cron tasks are always interpreted in UTC time.
 

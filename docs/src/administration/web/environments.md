@@ -3,23 +3,27 @@ title: "Platform.sh environments"
 weight: 2
 sidebarTitle: "Environments"
 description: |
-  Platform.sh helps a coder with the development workflow by making it easy to manage multiple environments, including the Master environment which runs the production website. It's precisely like a "development" or a "staging" server, except they are created on the fly, and they are absolutely identical copies of their parent environments.
+  An environment on Platform.sh is a logically separate instance of an application, complete with all of the services that application requires. You can think of an environment as a complete working website, related to, but safely isolated from others in the project.
 ---
 
 {{< description >}}
 
-An environment is tied to a Git branch, plus all the services that are serving that branch. You can see that as a **complete working website**. With Bitbucket and GitHub integrations you can even get a "development server" for each and every pull request.
+Each project includes multiple environments--typically the production environment and three or more additional environments which can be used for development, testing, staging, review, etc. 
+
+New environments can be created in moments through a Git clone, via the [Platform.sh Command Line Interface](/development/cli/_index.md), or via the [Platform.sh web console](/administration/web/_index.md), and will be an exact replica of their parent environments. This means new environments will have all of the data, as well as the services (like databases, network storage, queues, routing, etc.) instantly cloned. 
+
+The relationships between environments is hierarchical, and can be organized in any way that suits your organization, rather than mandating a strict development → staging → production workflow. An environment is tied to a Git branch and can be created on demand. With Bitbucket and GitHub integrations you can even get a "development server" automatically for each and every pull request.
 
 You can have branches that are not tied to a running instance of your application; these are what we call "inactive environments".
 
-## Master environment
+## Default branch
 
 Every Platform.sh project starts with a Master environment which corresponds to the Master branch in Git.
 
 If you subscribed to a production plan, this environment is your **live site** and can be mapped to a domain name and a custom SSL certificate.
 
 {{< note >}}
-Your project must have a `master` branch: it will not function properly without one.
+Your project must have a default branch, but you can configure it to be a different branch than `master`. See the ["Renaming a project's root environment"](/guides/general/default-branch.md) guide for more details.
 {{< /note >}}
 
 

@@ -10,25 +10,23 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}} |
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="solr" status="deprecated" environment="grid" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="solr" status="deprecated" environment="grid" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}} |
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable]({{< relref "/development/variables.md#platformsh-provided-variables" >}}):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< highlight json >}}
-{{< remote url="https://examples.docs.platform.sh/relationships/solr" >}}
-{{< /highlight >}}
+{{< relationship "solr" >}}
 
 ## Usage example
 
@@ -93,7 +91,7 @@ For Solr 4, Platform.sh supports only a single core per server called `collectio
 You must provide your own Solr configuration via a `core_config` key in your ``.platform/services.yaml``:
 
 ```yaml
-search:
+searchsolr:
     type: solr:4.10
     disk: 1024
     configuration:
@@ -103,7 +101,7 @@ search:
 The `directory` parameter points to a directory in the Git repository, in or below the `.platform/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.  For example, place them in `.platform/solr/conf/` such that the `schema.xml` file is located at `.platform/solr/conf/schema.xml`.   You can then reference that path like this -
 
 ```yaml
-search:
+searchsolr:
     type: solr:4.10
     disk: 1024
     configuration:
@@ -115,7 +113,7 @@ search:
 For Solr 6 and later Platform.sh supports multiple cores via different endpoints.  Cores and endpoints are defined separately, with endpoints referencing cores.  Each core may have its own configuration or share a configuration.  It is best illustrated with an example.
 
 ```yaml
-search:
+searchsolr:
     type: solr:8.4
     disk: 1024
     configuration:
@@ -139,8 +137,8 @@ Each endpoint is then available in the relationships definition in `.platform.ap
 
 ```yaml
 relationships:
-    solrsearch1: 'search:main'
-    solrsearch2: 'search:extra'
+    solrsearch1: 'searchsolr:main'
+    solrsearch2: 'searchsolr:extra'
 ```
 
 That is, the application's environment would include a `solr1` relationship that connects to the `main` endpoint, which is the `mainindex` core, and a `solr2` relationship that connects to the `extra` endpoint, which is the `extraindex` core.
@@ -170,10 +168,10 @@ The relationships array would then look something like the following:
 
 ### Configsets
 
-For even more customizability, it's also possible to define Solr configsets.  For example, the following snippet would define one configset, which would be used by all cores.  Specific details can then be overriden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
+For even more customizability, it's also possible to define Solr configsets.  For example, the following snippet would define one configset, which would be used by all cores.  Specific details can then be overridden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
 ```yaml
-search:
+searchsolr:
     type: solr:8.4
     disk: 1024
     configuration:
@@ -195,7 +193,7 @@ search:
                 core: arabic_index
 ```
 
-In this example, the directory `.platform/configsets/solr8` contains the configuration definition for multiple cores.  There are then two cores created: `english_index` uses the defined configset, but specifically the `.platform/configsets/solr6/english/schema.xml` file, while `arabic_index` is identical except for using the `.platform/configsets/solr6/arabic/schema.xml` file.  Each of those cores is then exposed as its own endpoint.
+In this example, `.platform/configsets/solr8` contains the configuration definition for multiple cores.  There are then two cores created: `english_index` uses the defined configset, but specifically the `.platform/configsets/solr8/english/schema.xml` file, while `arabic_index` is identical except for using the `.platform/configsets/solr8/arabic/schema.xml` file.  Each of those cores is then exposed as its own endpoint.
 
 Note that not all core.properties features make sense to specify in the core_properties. Some keys, such as name and dataDir, are not supported, and may result in a solrconfig that fails to work as intended, or at all.
 
@@ -204,12 +202,11 @@ Note that not all core.properties features make sense to specify in the core_pro
 If no configuration is specified, the default configuration is equivalent to:
 
 ```yaml
-search:
+searchsolr:
     type: solr:8.4
     configuration:
         cores:
-            collection1:
-                conf_dir: '{}'  # This will pick up the default Drupal 8 configuration
+            collection1: {}
         endpoints:
             solr:
                 core: collection1
@@ -234,7 +231,7 @@ platform tunnel:open
 That will open an SSH tunnel to all services on the current environment, and give an output similar to:
 
 ```bash
-SSH tunnel opened on port 30000 to relationship: solr
+SSH tunnel opened on port 30000 to relationship: solrsearch
 SSH tunnel opened on port 30001 to relationship: database
 Logs are written to: /home/myuser/.platformsh/tunnels.log
 

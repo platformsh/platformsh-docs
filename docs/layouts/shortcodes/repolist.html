@@ -1,0 +1,64 @@
+{{ $lang := .Get "lang" }}
+
+{{ if isset .Site.Data.templates $lang }}
+
+  {{ $templates := index .Site.Data.templates $lang }}
+
+  <div class="accordion" id="accordion{{ $lang }}">
+
+  {{ range sort $templates "name" }}
+
+    <!-- Adds a unique id so both listings don't open when listed under muliple languages (multi-apps). -->
+    {{ $id := sha1 ( printf "%s%s" $lang .shortname ) }}
+
+    <div class="card">
+      <div class="card-header-template" id="heading{{ $id }}">
+        <h5 class="template-card">
+          <span class="icon"><img class="chevron-template js-rotate-if-collapsed" aria-hidden="true" src="/images/icons/chevrons.svg" /></span>
+          <button class="btn-template" type="button" data-toggle="collapse" data-target="#collapse{{ $id }}" aria-expanded="false" aria-controls="collapse{{ $id }}">
+            {{ .name }}
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapse{{ $id }}" class="collapse" aria-labelledby="heading{{ $id }}" data-parent="#accordion{{ $lang }}">
+        <div class="card-body">
+          <!-- <p align="center"> -->
+            <img {{ printf "src=%q" .image | safeHTMLAttr }} style="max-height:150px; max-width:250px;" alt="{{ .name }}">
+          <!-- </p> -->
+          <h2>{{ .name }}</h2>
+          {{ .description | safeHTML }}
+
+          {{ $content:= split .content "<br/>" }}
+
+          <h3>Features:</h3>
+          <ul>
+            {{ range $content}}
+              {{ $content2 := split . "<br />" }}
+              {{ range $content2}}
+                {{ if gt ( len . ) 1 }}
+                  <li>{{ . }}</li>
+                {{ end}}
+              {{ end }}
+            {{ end }}
+          </ul>
+          <p><a href="{{ .repo }}">View the repository</a> on GitHub.</p>
+          <p align="center">
+            <a href="{{ .deploy }}">
+                <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" height="50px"/>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  {{ end }}
+  </div>
+
+  <br />
+
+  {{ else }}
+
+  <em>Templates in development.</em>
+
+{{ end }}

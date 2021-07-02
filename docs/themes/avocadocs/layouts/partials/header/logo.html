@@ -13,7 +13,7 @@
     <img class="mr-0" src="{{ .Site.Params.logo | relURL }}" style="max-width: 175px;" {{ if isset .Site.Params.meta "sitename" }}alt="{{ .Site.Params.meta.sitename }}"{{ end }}>
 
     <!-- Version badge -->
-    {{ if ( isset .Site.Params "showversionbadge" ) and ( isset .Site.Params "version" ) }}
+    {{ if and ( isset .Site.Params "showversionbadge" ) ( isset .Site.Params "version" ) }}
       <span class="small">
         <span class="badge badge-light text-space-1">{{ .Site.Params.version }}</span>
       </span>

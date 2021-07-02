@@ -3,10 +3,12 @@ title: "User administration"
 weight: 1
 sidebarTitle: "Users"
 description: |
-  Every Platform.sh user has a role which controls access and improves security on your project. Different roles are authorized to do different things with your applications, environments and users. You can use your collection of Roles to manage how users interact with Platform.sh.
+  Every Platform.sh user has a role that controls access and improves security on your project. Different roles are authorized to do different things with your applications, environments and users. You can use your collection of Roles to manage how users interact with Platform.sh.
 ---
 
 {{< description >}}
+
+Any user added to a project or an environment on Platform.sh will need to [register for an account](https://auth.api.platform.sh/register) before they can contribute. If you need to delete your account at any time you can [transfer ownership](/administration/users.md#transfer-ownership) of your existing projects and then open a [support ticket](/development/troubleshoot.md#deleting-your-platformsh-account) to request your account be deleted.  
 
 ## User roles
 
@@ -28,8 +30,10 @@ User roles can also be granted to the entire project:
 {{< note theme="warning" title="Important" >}}
 After a user is added to (or removed from) an environment type, all environments of this type will be automatically redeployed, after which the new permissions will be fully updated.
 
-When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger a redeployments to update permissions for each environment. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
+When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
 {{< /note >}}
+
+Accessing the project through SSH may differ depending on the [configuration of the project or environment](/configuration/app/access.md).
 
 ------------------------------------------------------------------------
 
@@ -38,6 +42,7 @@ When a development team works on a project, the team leader can be the project a
 If you want your users to be able to see everything (Project Viewer), but only commit to environments of a certain type, change their permission on that environment type to "Contributor".
 
 {{< note theme="info" title="SSH Access Control">}}
+
 A contributor can push code to the environment and has SSH access to the environment. You can change this by [specifying user types]({{< relref "/configuration/app/access.md" >}}) with SSH access.
 {{< /note >}}
 
@@ -123,6 +128,40 @@ platform user:role alice@example.com --type development --role contributor
 ```
 
 Use `platform list` to get the full list of commands.
+
+## User access and integrations
+
+If you have setup an [external integration](/integrations/source/_index.md) to GitHub, GitLab, or Bitbucket, this adds an additional layer of access control to the project that you will need to be aware of. It is, for example, possible that a user that has been given admininstrator privileges to a project on Platform.sh is [unable to clone the project](/administration/web/_index.md#git) locally if they have not also been given access to the repository on GitHub. 
+
+They could use the CLI
+
+```bash
+$ platform get <projectID>
+```
+
+or the command visible from the "Git" dropdown in the management console
+
+```bash
+$ git clone git@github.com:user/github-repo.git Project Name
+```
+
+and both would give
+
+```bash
+Failed to connect to the Git repository: git@github.com:user/github-repo.git
+
+Please make sure you have the correct access rights and the repository exists.
+```
+
+despite their `Admin` access to the project.
+
+This is a good thing, as the project functions as a read-only mirror of your remote repository. Otherwise, changes pushed directly to the project would be overwritten or deleted when commits are pushed via the integration. Platform.sh considers your integrated remote repository to be the "source of truth" as soon as it has been configured, and this caveat ensures that all commits go through the integration.
+
+The best course of action is to have your access updated on the integrated repository. If for some reason that is not a quick change, you can still clone through the project using the legacy pattern (which will set the *project* as its remote), but again, it is not recommended that you commit to the project once you have done so:
+
+```bash
+$ git clone <project>@git.<region>.platform.sh:<project>.git
+```
 
 ## Transfer ownership
 

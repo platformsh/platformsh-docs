@@ -8,12 +8,12 @@ description: |
 {{< description >}}
 
 {{< note >}}
-Remember that you must have `admin` access to a project in order to add or modify an integration.  See [User administration roles]({{< relref "/administration/users.md#user-roles" >}}) for more details.
+Remember that you must have `admin` access to a project in order to add or modify an integration.  See [User administration roles](/administration/users.md#user-roles) for more details.
 {{< /note >}}
 
 ## Default low-disk email notifications
 
-When you create a new project, Platform.sh creates a default [low-disk email notification]({{< relref "#low-disk-warning" >}}) for all [Project Admins]({{< relref "/administration/users.md#user-roles" >}}).
+When you create a new project, Platform.sh creates a default [low-disk email notification](#low-disk-warning) for all [Project Admins](/administration/users.md#user-roles).
 
 {{< note >}}
 All projects created prior to 6 April 2020 that did not have any health notifications enabled had an email notification added for admin users.
@@ -33,7 +33,7 @@ Notifications are generated every 5 minutes, so there may be a brief delay betwe
 
 ## Configuring notifications
 
-Health notifications can be set up via the [Platform.sh CLI]({{< relref "/development/cli/_index.md" >}}), through a number of different channels.
+Health notifications can be set up via the [Platform.sh CLI](/development/cli/_index.md), through a number of different channels.
 
 ### Email notifications
 
@@ -68,10 +68,13 @@ The `recipients` field may be any valid email address, or one of the following s
 To add a new email notification, register a `health.email` integration as follows:
 
 ```bash
-platform integration:add --type health.email --from-address you@example.com --recipients them@example.com --recipients others@example.com
+platform integration:add --type health.email --recipients them@example.com --recipients others@example.com
 ```
 
-The `from-address` is whatever address you want the email to appear to be from.  You must specify one or more `recipients`, each as its own switch.  It is completely fine to use the same email address for both `from-address` and `recipients`.
+The default `from-address` points to the "Platform.sh Bot". You must specify one or more `recipients`, each as its own switch.
+
+You can also configure a custom `--from-address`. The `--from-address` is whatever address you want the email to appear to be from. It is completely fine to use the same email address for both `from-address` and `recipients`. Note that depending on the configuration of the recipient mail server (including SPF and DKIM DNS entries) when using a custom `from-address`, the email can be marked as spam or lost.
+
 
 ### Slack notifications
 
@@ -157,7 +160,7 @@ Please refer to the [JOSE Cookbook](https://github.com/ietf-jose/cookbook) for e
 
 ## Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI]({{< relref "/integrations/overview.md#validating-integrations" >}}) command
+You can then verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validating-integrations) command
 
 ```bash
 $ platform integration:validate

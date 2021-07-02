@@ -4,17 +4,25 @@
 name: 'docs'
 
 # The type key specifies the language and version for your application.
-type: 'nodejs:12'
+type: 'nodejs:14'
+
+# Specify the Hugo version as an env variable.
+variables:
+    env:
+        HUGOVERSION: 0.82.0
+
+relationships:
+    search: "search:http"
 
 # The hooks that will be triggered when the package is deployed.
 hooks:
     # Build hooks can modify the application files on disk but not access any services like databases.
-    build: !include
+    build: |
+        ./build_examples.sh
+        ./build_docs.sh
+    deploy: !include
       type: string
-      path: build.sh
-    deploy: |
-      cp data/templates.yaml public/scripts/xss/dist/config/templates.yaml
-      cp public/index.json public/scripts/xss/dist/config/index.json
+      path: deploy.sh
 
 # The configuration of the application when it is exposed to the web.
 web:
@@ -25,7 +33,7 @@ web:
         '/':
             # The public directory of the application relative to its root.
             root: 'public'
-            passthru: true
+            passthru: false
             index: ['index.html']
             scripts: false
             allow: true
@@ -38,7 +46,6 @@ disk: 1024
 
 mounts:
   "public/scripts/xss/dist/config":
-      source: service
-      service: files
-      source_path: config
+      source: local
+      source_path: "config"
 

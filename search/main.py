@@ -2,26 +2,31 @@ import os
 import glob
 import json
 import meilisearch
+from platformshconfig import Config
 
-class XSSearch:
+class Search:
     def __init__(self):
-        self.localhost = "http://127.0.0.1"
-        self.default_port = "7700"
-        self.host = self.get_host()
+        self.default = {
+            "host": "http://127.0.0.1",
+            "key": None,
+            "port": 7700
+        }
 
         self.scrape_dir = "output"
-        # self.scrape_dir = "final"
         self.scrape_config = "config/scrape.json"
-
-        self.public_key_file = "config/config.json"
-
         self.docs_index = "docs"
         self.primaryKey = "documentId"
         self.index_name = "Docs"
 
-        self.displayed_attributes = ['title', 'text', 'url', 'site', 'section']
-        self.searchable_attributes = ['title', 'subsections', 'text', 'section']
+        # Below are Platform.sh custom settings for how the search engine functions.
 
+        # Data available to the dropdown React app in docs, used to fill out autocomplete results.
+        self.displayed_attributes = ['title', 'text', 'url', 'site', 'section']
+        # Data actually searchable by our queries.
+        self.searchable_attributes = ['title', 'text', 'section']
+
+        # Show results for one query with the listed pages, when they by default would not show up as best results. Note: these
+        # are not automatically two-way, so that's why they all appear to be defined twice.
         self.synonyms = {
             "routes.yaml": ["routes"],
             "routes": ["routes.yaml"],
@@ -33,7 +38,9 @@ class XSSearch:
             "applications.yaml": ["application", "multi-app"],
             "multi-app": ["applications.yaml"],
             "regions": ["public ip addresses"],
-            "public ip addresses": ["regions"]
+            "public ip addresses": ["regions"],
+            "ssl": ["https", "tls"],
+            "https": ["ssl"],
         }
 
         # Ranking rules:
@@ -56,86 +63,74 @@ class XSSearch:
             "displayedAttributes": self.displayed_attributes
         }
 
-    def get_host(self):
+        self.distinct_attribute = "url"
+
+    def getConnectionString(self):
         """
         Sets the Meilisearch host string, depending on the environment.
 
         Returns:
             string: Meilisearch host string.
         """
-        port = 7700
-        if self.env() == 'prod' or os.environ.get('PORT'):
-            port = os.environ['PORT']
-        return "{}:{}".format(self.localhost, port)
-
-    def env(self):
-        """
-        Sets the Meilisearch environment, depending on the presence of a master key.
-
-        Returns:
-            string: 'prod' if MEILI_MASTER_KEY is set, 'dev' otherwise.
-        """
-        if os.environ.get('MEILI_MASTER_KEY')==None:
-            return 'dev'
-        elif os.environ.get('PORT')==None:
-            os.environ['PORT'] = self.default_port
-            return 'prod'
+        if os.environ.get('PORT'):
+            return "{}:{}".format(self.default["host"], os.environ['PORT'])
         else:
-            return 'prod'
+            return "{}:{}".format(self.default["host"], self.default["port"])
+
+    def getMasterKey(self):
+        """
+        Retrieves the Meilisearch master key, either from the Platform.sh environment or locally.
+        """
+        config = Config()
+        if config.is_valid_platform():
+            return config.projectEntropy
+        elif os.environ.get("MEILI_MASTER_KEY"):
+            return os.environ["MEILI_MASTER_KEY"]
+        else:
+            return self.default["key"]
+
+    def add_documents(self, index):
+        """
+        Cycle through the individual site indexes in /outputs so their individual documents can be added to Meilisearch.
+        """
+        documents = [f for f in glob.glob("{}/*.json".format(self.scrape_dir))]
+        for doc in documents:
+            self.add(doc, index)
+
+    def add(self, doc, index):
+        """
+        Add an individual site's index to the Meilisearch service.
+        """
+        with open(doc) as scraped_index:
+            data = json.load(scraped_index)
+            index.add_documents(data)
 
     def update(self):
         """
         Updates the Meilisearch index.
         """
-
-        print("- Updating index...")
-        print("     * Meilisearch server: {}".format(self.host))
-        print("     * Environment: {}".format(self.env()))
-
-        # Forego master and search keys during local dev.
-
-        # Production
-        if self.env() == 'prod':
-            # Define the client
-            client = meilisearch.Client(self.host, os.environ['MEILI_MASTER_KEY'])
-
-            # Retrieve the search only api key and write to the config.json file
-            config = {}
-            config["public_api_key"]=client.get_keys()["public"]
-            with open(self.public_key_file, 'w') as outfile:
-                json.dump(config, outfile)
-
-        # Local dev
-        else:
-            # Define the client
-            client = meilisearch.Client(self.host)
+        # Create a Meilisearch client.
+        client = meilisearch.Client(self.getConnectionString(), self.getMasterKey())
 
         # Delete previous index
         if len(client.get_indexes()):
             client.get_index(self.docs_index).delete()
 
         # Create a new index
-        index = client.create_index(uid=self.docs_index, primary_key=self.primaryKey, name=self.index_name)
+        index = client.create_index(uid=self.docs_index, options={'primaryKey': self.primaryKey, 'name': self.index_name})
 
         # Add synonyms for the index
         index.update_synonyms(self.synonyms)
 
-        # Update its settings: what can be searched, what's displyable, and how results should be ranked.
+        # Update its settings: what can be searched, what's displayable, and how results should be ranked.
         index.update_settings(self.updated_settings)
+
+        # Update distinct attribute.
+        index.update_distinct_attribute(self.distinct_attribute)
 
         # Add documents to the index
         self.add_documents(index)
 
-    def add_documents(self, index):
-        documents = [f for f in glob.glob("{}/*.json".format(self.scrape_dir))]
-        for docs in documents:
-            self.add(docs, index)
-
-    def add(self, docs, index):
-        with open(docs) as scraped_index:
-            data = json.load(scraped_index)
-            response = index.add_documents(data)
-
-
-xss = XSSearch()
-xss.update()
+if __name__ == "__main__":
+    meili = Search()
+    meili.update()

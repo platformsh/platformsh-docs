@@ -16,7 +16,7 @@ Hugo (which we use for documentation) uses Markdown as its file format.
 * Longer code samples should be denoted with triple backticks before and after, with no extra whitespace between the backticks and the code block. Always specify the language of the code block.  See the [highlight.js docs](https://highlightjs.org/static/demo/) for available language options.  (`yaml`, `bash`, and `php` are the most common we're likely to see).
 * Always use inline links.
 * Do not hard-wrap prose text. Set your text editor to soft wrapping.
-* Internal links should be absolute (starting with `/`), and should use Hugo's built-in [`relref`](https://gohugo.io/functions/relref/) shortcode syntax. Using `relref` ensures that internal links are always valid by explicitly defining the file that should be linked, and tying all internal links to the documentation's build. That is, if you write a link to an non-existent file, the build will fail. Single pages should be specified by its page (i.e. `{{< relref "/configuration/services/elasticsearch.md#some-subsection" >}}`) and list pages to that section's index file (i.e. `{{< relref "/configuration/services/php/_index.md#some-subsection" >}}`).
+* Internal links should be absolute (starting with `/`) using normal Markdown syntax. All internal links go through a link [Render Hook](https://gohugo.io/getting-started/configuration-markup#markdown-render-hooks) during build, which uses Hugo's built in [`relref`](https://gohugo.io/functions/relref/) function to ensure that those pages actually exist. This prevents against broken links getting added to the documentation, by explicitly defining the file that should be linked and tying all internal links to the documentation's build. That is, if you write a link to an non-existent file, the build will fail. Single pages should be specified by its page (i.e. `[link text](/configuration/services/elasticsearch.md#some-subsection)`) and list pages to that section's index file (i.e. `[link text](configuration/services/php/_index.md#some-subsection)`).
 
 ## Hugo: Front matter
 
@@ -187,6 +187,12 @@ The first tab *Elasticsearch* will read from a local file and highlight it for P
 `markdownify` is `false` by default, although everything placed below `---` will be Markdown-rendered properly. This attribute really only needs to be `true` in cases where the `file` you are using for the tab's content is itself a `.md` file.
 
 Not all of these parameters need to be present for `codetabs` to function properly.  The only required properties are `title` and `highlight`.
+
+### Other special cases
+
+#### Security reports
+
+See [#1788](https://github.com/platformsh/platformsh-docs/pull/1788) for instructions to add new reports.
 
 ## Content
 
