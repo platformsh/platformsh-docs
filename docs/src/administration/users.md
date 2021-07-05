@@ -30,42 +30,20 @@ You can also define user access per environment type (Production, Staging, Devel
 
 
 {{< note theme="warning" title="Important" >}}
-<<<<<<< HEAD
-<<<<<<< HEAD
-After a user is added to (or removed from) an environment type, all environments of this type will be automatically redeployed, after which the new permissions will be fully updated.
-
-When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
-=======
-After a user's permissions are updated, redeployments do not occur automatically, and you will need to trigger redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
->>>>>>> 07e8fc086372a8dbbaa13beb53d2307ee6c01f96
-=======
 After you add or remove a user from a project or an environment type, you will need to trigger a redeploy to propagate the access changes to each environment.
 You can redeploy by using the CLI command `platform redeploy` or the management console button **Redeploy**. 
->>>>>>> 5ab6093e... update environment types and language around access and permissions
 {{< /note >}}
 
-If you want contributors to be able to see everything across the project, but only commit to environments of a certain type, set their permission as **Project Viewer** for the whole project and their permission on that environment type to **Contributor**.
+If you want your contributors to be able to see everything, but only commit to environments of a certain type, set their permission as **Project Viewer** for the whole project and update their permission on that environment type to **Contributor**.
 
 {{< note >}}
-**Project Owner** - is the person licensed to use Platform.sh and whom the project belongs to. A project owner has a project administrator role and is the only person who can delete the project.
+**Project Owner** - is the person licensed to use Platform.sh and whom the project belongs to. A project owner has a project administrator role and is the only role who can delete the project.
 {{< /note >}}
 
-<<<<<<< HEAD
-If you want your users to be able to see everything (Project Viewer), but only commit to environments of a certain type, change their permission on that environment type to `Contributor`.
-
-{{< note theme="info" title="SSH Access Control">}}
-<<<<<<< HEAD
-
-=======
->>>>>>> 07e8fc086372a8dbbaa13beb53d2307ee6c01f96
-A contributor can push code to the environment and has SSH access to the environment. You can change this by [specifying user types]({{< relref "/configuration/app/access.md" >}}) with SSH access.
-{{< /note >}}
-=======
 
 ## SSH Access
 
-By default, everyone with access equal or greater than `Contributor` can access the project through SSH. 
->>>>>>> 5ab6093e... update environment types and language around access and permissions
+By default, everyone with access equal or greater than **Contributor** can access the project through SSH. 
 
 You can customize who can SSH, by setting the `access` key in your `.platform.app.yaml` file. [See SSH Access restrictions](/configuration/app/access.md).
 
@@ -91,7 +69,7 @@ If the user already has an account, they will receive an email with a link to ac
 
 ## Manage users permissions with the CLI
 
-You can use the Platform.sh command line interface to fully manage your users and integrate this with any other automated system.
+You can use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md). to fully manage your users and integrate with any automated system.
 
 Available commands:
 
@@ -104,15 +82,20 @@ Available commands:
 * `user:role`
   * View or change a user's role
 
-For example, the following command would add the 'Project admin' role to `alice@example.com` in the current project.
+For example, the following command would add `alice@example.com` with **Project Admin** role in the current project.
 
 ```bash
 platform user:add alice@example.com -r admin
 ```
 
-Once this has been done, the user will receive an invitation email asking her to confirm her details and register an account.
+After adding `alice@example.com`, Alice will receive an invitation email asking to confirm her details and optionally, register for a Platform.sh account.
 
-To give Bob the `viewer` role to the Production environment, the `contributor` role to all Staging environments, and the `admin` role to all Development environments, you could run:
+To give Bob different levels of access depending on the project type: 
+-  **Viewer** role to the **Production environment**
+-  **Contributor** role to **all Staging type environments**
+-  **Admin** role to all Development environments
+
+You would run:
 
 ```bash
 platform user:role bob@example.com -r production:viewer -r staging:contributor -r development:admin
@@ -122,22 +105,24 @@ Use `platform list` to get the full list of commands.
 
 ## User access and integrations
 
-If you have setup an [external integration](/integrations/source/_index.md) to GitHub, GitLab, or Bitbucket, this adds an additional layer of access control to the project that you will need to be aware of. It is, for example, possible that a user that has been given admininstrator privileges to a project on Platform.sh is [unable to clone the project](/administration/web/_index.md#git) locally if they have not also been given access to the repository on GitHub. 
+If you have setup an [external integration](/integrations/source/_index.md) to GitHub, GitLab, or Bitbucket, this adds an additional layer of access control to the project that you will need to be aware of.
 
-They could use the CLI
+For example, if you invite a user with **Project Admin** role to a project on Platform.sh, but you haven't invited them to the remote repository on GitHub / GitLab, they might be [unable to clone the project](/administration/web/_index.md#git) locally.
+
+In this example, using either `platform get` with the CLI:
 
 ```bash
 $ platform get <projectID>
 
 ```
 
-or the command visible from the "Git" dropdown in the management console
+or the `git clone` command visible from the "Git" dropdown in the management console
 
 ```bash
 $ git clone git@github.com:user/github-repo.git Project Name
 ```
 
-and both would give
+both would error with
 
 ```bash
 Failed to connect to the Git repository: git@github.com:user/github-repo.git
@@ -145,9 +130,9 @@ Failed to connect to the Git repository: git@github.com:user/github-repo.git
 Please make sure you have the correct access rights and the repository exists.
 ```
 
-despite their `Admin` access to the project.
+despite their **Project Admin** access to the project.
 
-This is a good thing, as the project functions as a read-only mirror of your remote repository. Otherwise, changes pushed directly to the project would be overwritten or deleted when commits are pushed via the integration. Platform.sh considers your integrated remote repository to be the "source of truth" as soon as it has been configured, and this caveat ensures that all commits go through the integration.
+This enhaces consistency over your source code, as the Platform.sh project functions as a read-only mirror of your remote repository. Otherwise, changes pushed directly to the project would be overwritten or deleted when commits are pushed via the integration. Platform.sh considers your integrated remote repository to be the "source of truth" as soon as it has been configured, and this caveat ensures that all commits go through the integration.
 
 The best course of action is to have your access updated on the integrated repository. If for some reason that is not a quick change, you can still clone through the project using the legacy pattern (which will set the *project* as its remote), but again, it is not recommended that you commit to the project once you have done so:
 
