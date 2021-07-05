@@ -28,9 +28,13 @@ User roles can also be granted to the entire project:
 * **Project Viewer** - A project viewer can view all environments of the project.
 
 {{< note theme="warning" title="Important" >}}
+<<<<<<< HEAD
 After a user is added to (or removed from) an environment type, all environments of this type will be automatically redeployed, after which the new permissions will be fully updated.
 
 When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
+=======
+After a user's permissions are updated, redeployments do not occur automatically, and you will need to trigger redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
+>>>>>>> 07e8fc086372a8dbbaa13beb53d2307ee6c01f96
 {{< /note >}}
 
 Accessing the project through SSH may differ depending on the [configuration of the project or environment](/configuration/app/access.md).
@@ -39,10 +43,13 @@ Accessing the project through SSH may differ depending on the [configuration of 
 
 When a development team works on a project, the team leader can be the project administrator and decide which roles to give team members. One team member can contribute to one environment type (e.g Staging), another member can administer a different environment type (e.g Development) and the customer can be a viewer of the Production environment type.
 
-If you want your users to be able to see everything (Project Viewer), but only commit to environments of a certain type, change their permission on that environment type to "Contributor".
+If you want your users to be able to see everything (Project Viewer), but only commit to environments of a certain type, change their permission on that environment type to `Contributor`.
 
 {{< note theme="info" title="SSH Access Control">}}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 07e8fc086372a8dbbaa13beb53d2307ee6c01f96
 A contributor can push code to the environment and has SSH access to the environment. You can change this by [specifying user types]({{< relref "/configuration/app/access.md" >}}) with SSH access.
 {{< /note >}}
 
@@ -88,43 +95,15 @@ Available commands:
 For example, the following command would add the 'Project admin' role to `alice@example.com` in the current project.
 
 ```bash
-platform user:add
-```
-
-This will present you with an interactive wizard that will allow you to choose precisely what rights you want to give the new user.
-
-```bash
-$ platform user:add
-
-Email address: alice@example.com
-The user's project role can be 'viewer' ('v') or 'admin' ('a').
-Project role [V/a]:
-The user's environment-level roles can be 'viewer', 'contributor', or 'admin'.
-development environment role [V/c/a]:
-sprint1 environment role [V/c/a]:
-hot-fix environment role [V/c/a]:
-master environment role [V/c/a]:
-pr-2 environment role [V/c/a]:
-pr-3 environment role [V/c/a]:
-Summary:
-    Email address: alice@example.com
-    Project role: viewer
-    development: viewer
-    sprint1: viewer
-    hot-fix: viewer
-    pr-2: viewer
-    pr-3: viewer
-Adding users can result in additional charges.
-Are you sure you want to add this user? [Y/n]
-User alice@example.com created
+platform user:add alice@example.com -r admin
 ```
 
 Once this has been done, the user will receive an invitation email asking her to confirm her details and register an account.
 
-To give Alice the 'contributor' role on all Development environments, you could run:
+To give Bob the `viewer` role to the Production environment, the `contributor` role to all Staging environments, and the `admin` role to all Development environments, you could run:
 
 ```bash
-platform user:role alice@example.com --type development --role contributor
+platform user:role bob@example.com -r production:viewer -r staging:contributor -r development:admin
 ```
 
 Use `platform list` to get the full list of commands.
@@ -137,6 +116,7 @@ They could use the CLI
 
 ```bash
 $ platform get <projectID>
+
 ```
 
 or the command visible from the "Git" dropdown in the management console
