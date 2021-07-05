@@ -91,7 +91,7 @@ platform user:add alice@example.com -r admin
 
 Once this has been done, the user will receive an invitation email asking her to confirm her details and register an account.
 
-To give Alice the `viewer` role to the Production environment, the `contributor` role to all Staging environments, and the `admin` role to all Development environments, you could run:
+To give Bob the `viewer` role to the Production environment, the `contributor` role to all Staging environments, and the `admin` role to all Development environments, you could run:
 
 ```bash
 platform user:role bob@example.com -r production:viewer -r staging:contributor -r development:admin
@@ -107,6 +107,7 @@ They could use the CLI
 
 ```bash
 $ platform get <projectID>
+
 ```
 
 or the command visible from the "Git" dropdown in the management console
