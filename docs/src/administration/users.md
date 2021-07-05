@@ -28,9 +28,8 @@ User roles can also be granted to the entire project:
 * **Project Viewer** - A project viewer can view all environments of the project.
 
 {{< note theme="warning" title="Important" >}}
-After a user is added to (or removed from) an environment type, all environments of this type will be automatically redeployed, after which the new permissions will be fully updated.
-
-When adding users at the **project level**, however, redeployments do not occur automatically, and you will need to trigger redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
+After a user's permissions are updated, redeployments do not occur automatically, and you will need to trigger redeployments to update those settings for each environment using the CLI command `platform redeploy`. Otherwise, user access will not be updated on those environments until after the next build and deploy commit.
+{{< /note >}}
 
 Accessing the project through SSH may differ depending on the [configuration of the project or environment](/configuration/app/access.md).
 
@@ -38,7 +37,7 @@ Accessing the project through SSH may differ depending on the [configuration of 
 
 When a development team works on a project, the team leader can be the project administrator and decide which roles to give his team members.  One team member can contribute to one environment type (e.g Staging), another member can administer a different environment type (e.g Development) and the customer can be a viewer of the Production environment type.
 
-If you want your users to be able to see everything (Project Viewer), but only commit to environments of a certain type, change their permission on that environment type to "Contributor".
+If you want your users to be able to see everything (Project Viewer), but only commit to environments of a certain type, change their permission on that environment type to `Contributor`.
 
 {{< note theme="info" title="SSH Access Control">}}
 A contributor can push code to the environment and has SSH access to the environment. You can change this by [specifying user types]({{< relref "/configuration/app/access.md" >}}) with SSH access.
