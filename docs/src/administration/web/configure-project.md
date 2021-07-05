@@ -29,7 +29,7 @@ Selecting a user will allow you to either edit that user's permissions or delete
 
 ![Manage users of your Platform.sh project](/images/management-console/edit-user.png "0.7")
 
-If you check the `Project admin` box, this user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment.
+If you check the `Project admin` box, this user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment type.
 
 {{< note >}}
 The `Account owner` is locked and you can't change its permissions.
