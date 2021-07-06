@@ -31,7 +31,7 @@ You can also define user access per environment type (Production, Staging, Devel
 
 {{< note theme="warning" title="Important" >}}
 After you add or remove a user from a project or an environment type, you will need to trigger a redeploy to propagate the access changes to each environment.
-You can redeploy by using the CLI command `platform redeploy` or the management console button **Redeploy**. 
+You can redeploy by using the CLI command `platform redeploy` or the `Redeploy` button in the management console. 
 {{< /note >}}
 
 If you want your contributors to be able to see everything, but only commit to environments of a certain type, set their permission as **Project Viewer** for the whole project and update their permission on that environment type to **Contributor**.
@@ -90,10 +90,11 @@ platform user:add alice@example.com -r admin
 
 After adding `alice@example.com`, Alice will receive an invitation email asking to confirm her details and optionally, register for a Platform.sh account.
 
-To give Bob different levels of access depending on the project type: 
+To give Bob different levels of access depending on the environment type, in the current project:
+ 
 -  **Viewer** role to the **Production environment**
 -  **Contributor** role to **all Staging type environments**
--  **Admin** role to all Development environments
+-  **Admin** role to **all Development type environments**
 
 You would run:
 
