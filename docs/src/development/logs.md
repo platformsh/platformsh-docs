@@ -51,22 +51,25 @@ On a PHP container, the `php.access.log` contains a record of all requests to th
 These requests are split in several parts into the logs.
 
 The `php.access.log` may look similar the following:
-```
+
+```txt
 2021-07-01T13:57:12Z HEAD 200 284.288 ms 10240 kB 38.69% /
 2021-07-01T13:57:13Z POST 200 162.106 ms 10240 kB 61.69% /wp-cron.php?doing_wp_cron=0123456.789
 2021-07-01T14:02:13Z HEAD 200 305.745 ms 10240 kB 39.25% /
 2021-07-01T14:02:13Z POST 200 168.507 ms 10240 kB 65.28% /wp-cron.php?doing_wp_cron=0123457.789
 ```
+
 It is consisting of several parts. 
-Let's have a look first, at how the log is formatted.
-We can get this information in the php settings.
-```
+Let's have a look first, at how the log is formatted, which we can get from PHP's settings.
+
+```bash
 web@app.0:~$ cat -n /etc/php/7.4-zts/fpm/pool.d/www.conf  | grep "access.format"
    319	;access.format = "%R - %u %t \"%m %r%Q%q\" %s %f %{mili}d %{kilo}M %C%%"
 ```
-Please note that the path may change based on the php version you are using. 
+Please note that the path may change based on the version of PHP you are using. 
 
-In the detail these would be:
+The final `access.format` value contains the following:
+
 - `%R` : remote IP address
 - `%u` : remote user
 - `%t` : server time of receiving request (timestamp)
