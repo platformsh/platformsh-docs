@@ -70,7 +70,7 @@ On top of the above ruleset, the Platform.sh WAF implements a number of addition
 
 - **File upload limit**
 
-    File upload limits are enforced, but are configured by the application's configuration in `.platform.app.yaml` using the `max_requst_size` attribute in [`web.locations`](/configuration/app/web.md#locations). Note that this limit is set by default at 250MB if not set to something different. 
+    File upload limits are enforced, but are configured by the application's configuration in `.platform.app.yaml` using the `max_request_size` attribute in [`web.locations`](/configuration/app/web.md#locations). Note that this limit is set by default at 250MB if not set to something different. 
 
 - **File extension restriction**
 
