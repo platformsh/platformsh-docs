@@ -4,12 +4,8 @@
 set -e
 
 # Download Hugo
-printenv
-echo "Download Hugo - $HUGOVERSION"
 DOWNLOAD=https://github.com/gohugoio/hugo/releases/download/v$HUGOVERSION/hugo_${HUGOVERSION}_Linux-64bit.tar.gz
-# wget --quiet -c $DOWNLOAD -O - | tar -xz
-wget $DOWNLOAD
-tar -xf hugo_${HUGOVERSION}_Linux-64bit.tar.gz
+wget --quiet -c $DOWNLOAD -O - | tar -xz
 
 # Build Interface app for search/autocomplete.
 cd $PLATFORM_APP_DIR/static/scripts/xss
