@@ -42,7 +42,7 @@ An environment contributor can push code to the environment and has SSH access t
 {{< /note >}}
 
 {{< note >}}
-The project owner - the person licensed to use Platform.sh - doesn't have special powers. A project owner usually has a project administrator role.
+The project owner - the person licensed to use Platform.sh - has the project administrator role. The project owner is the only user that can make changes to the project plan. 
 {{< /note >}}
 
 ## Manage user permissions at the project level
