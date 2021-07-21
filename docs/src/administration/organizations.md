@@ -1,6 +1,6 @@
 ---
 title: "Organizations"
-weight: 0
+weight: -1
 sidebarTitle: "Organizations"
 description: |
   Organizations allow to manage Platform.sh projects, users and billing.
@@ -27,7 +27,7 @@ You can use the Platform.sh command line interface to fully manage users within 
 
 Available commands:
 
-* `organization:create``
+* `organization:create`
   * Create a new organization.
 * `organization:info`   
   * View or change a single organization.
