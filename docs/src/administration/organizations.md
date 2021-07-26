@@ -8,9 +8,17 @@ description: |
 
 {{< description >}}
 
-## Organization roles
+## Organization settings
 
-As an organization owner, you can invite users to your organization and give them the following permissions:
+As an organization owner, you can manage basic settings of your organization, like its name and URL.
+
+## Organization billing
+
+As an organization owner, or as an organization user with the `manage billing` role, you can access and download the invoices, or edit billing information like the credit card, the billing address...
+
+## Organization users & roles
+
+As an organization owner, or as an organization user with the `manage users` role, you can invite other users to your organization and grant them the following roles:
 
 * **Manage plans**: Add, remove and edit plans and plan options for your existing projects. (Change plan, change storage, change the number of environments, change the number of user licenses)
 * **Manage billing**: Add, remove and edit billing information. Access invoices and vouchers.
@@ -21,20 +29,30 @@ As an organization owner, you can invite users to your organization and give the
 A user with **manage users** permission can add, edit, or remove anyone’s manage plans, manage billing or create projects permissions using the Platform.sh CLI.
 {{< /note >}}
 
-## Manage organization users with the CLI
+## Manage organizations with the CLI
 
-You can use the Platform.sh command line interface to fully manage users within your organization.
+You can use the Platform.sh command line interface to fully manage your organizations.
 
 Available commands:
 
 * `organization:create`
   * Create a new organization.
-* `organization:info`   
-  * View or change a single organization.
-* `organization:list`   
-  * List organizations.
+* `organization:info`
+  * View or edit an organization.
+* `organization:list`
+  * List all the organizations that you have access to.
+* `organization:user:list`
+  * List all users within an organization.
+* `organization:user:add`
+  * Invite a user to an organization.
+* `organization:user:get`
+  * Get information about a user in an organization.
+* `organization:user:update`
+  * Update permissions of a user in an organization.
+* `organization:user:delete`
+  * Remove a user from an organization.
 
-## Transfer ownership
+## Transfer a project ownership
 
 If you want to transfer ownership of a project to a different organization, submit a support ticket from the current project to ask for the transfer.
 
