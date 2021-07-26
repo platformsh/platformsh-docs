@@ -2,7 +2,7 @@
 title: "Variables"
 weight: 5
 description: |
-  Platform.sh allows a high degree of control over both the build process and the runtime environment of a project.  Part of that control comes in the form of *variables* that are set independently of the project's code base but available either at build or runtime for your code to leverage.
+  Platform.sh allows a high degree of control over both the build process and the runtime environment of a project.  Part of that control comes in the form of *variables* that are set independently of the project's code base, but available either at build or runtime for your code to use.
 ---
 
 {{< description >}}

@@ -44,7 +44,7 @@ composer require drupal/redis
 
 Then commit the resulting changes to your `composer.json` and `composer.lock` files.
 
-Note that the Redis module does not need to be enabled in Drupal except for diagnostic purposes.  The configuration below is sufficient to leverage its functionality.
+Note that the Redis module does not need to be enabled in Drupal except for diagnostic purposes.  The configuration below is sufficient to make use of its functionality.
 
 ## Configuration
 
@@ -78,7 +78,7 @@ if ($platformsh->hasRelationship('redis') && !\Drupal\Core\Installer\InstallerKe
   $settings['redis.connection']['host'] = $redis['host'];
   $settings['redis.connection']['port'] = $redis['port'];
 
-  // Apply changes to the container configuration to better leverage Redis.
+  // Apply changes to the container configuration to make better use of Redis.
   // This includes using Redis for the lock and flood control systems, as well
   // as the cache tag checksum. Alternatively, copy the contents of that file
   // to your project-specific services.yml file, modify as appropriate, and
