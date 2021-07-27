@@ -27,7 +27,7 @@ Similarly, while it is possible to download arbitrary additional files during th
 
 ## Environment-specific configuration
 
-Once an application has been deployed, it has access to more environment variables.  That includes Platform.sh variables such as `PLATFORM_RELATIONSHIPS` and `PLATFORM_ROUTES` as well as any [variables](/development/variables.md) you define.  These variables can and will vary between environments, and your application is welcome to leverage them as appropriate.  You can access them directly or via the Platform.sh Configuration Reader libraries, which are available for a number of languages.
+Once an application has been deployed, it has access to more environment variables.  That includes Platform.sh variables such as `PLATFORM_RELATIONSHIPS` and `PLATFORM_ROUTES` as well as any [variables](/development/variables.md) you define.  These variables can and will vary between environments, and your application is welcome to make use of that as appropriate.  You can access them directly, or via the Platform.sh Configuration Reader libraries, which are available for a number of languages.
 
 Many applications have some configuration that should vary between different environment types.  They generally break down into three categories.
 
