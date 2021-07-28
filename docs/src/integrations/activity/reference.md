@@ -64,6 +64,8 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.cron`: A cron task just completed.
 * `environment.source-operation`: A source operation triggered and has completed.
 ---
+* `environment.certificate.renewal`: An environment's SSL certificate has been renewed.
+---
 * `integration.bitbucket.fetch`: Changes in BitBucket repository have been pulled.
 * `integration.bitbucket.register_hooks`: Integration hook have been registered on BitBucket.
 * `integration.bitbucket_server.fetch`: Changes in BitBucket repository have been pulled.
