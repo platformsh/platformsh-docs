@@ -65,13 +65,13 @@ You can use the [Platform.sh CLI (Command Line Interface)](/development/cli/_ind
 
 Available commands:
 
-* `user:add`
+* `platform user:add`
   * Add a user to the project
-* `user:delete`
+* `platform user:delete`
   * Delete a user
-* `user:list` (`users`)
+* `platform user:list` (`users`)
   * List project users
-* `user:role`
+* `platform user:role`
   * View or change a user's role
 
 For example, the following command would add `alice@example.com` with **Project Admin** role in the current project.
