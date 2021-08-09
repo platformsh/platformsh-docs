@@ -11,7 +11,7 @@ description: |
 
 Platform.sh supports [multi-app configuration](/configuration/app/multi-app.md) on projects - that is, including code for two separate sites that are deployed on their own containers within a single project cluster. 
 
-These days, an increasingly common pattern is to decouple content resources from a frontend Gatsby site. Decoupled sites leverage Gatsby's source plugin ecosystem to pull external content resources into the build, where those resources (a headless CMS, for example) are typically located on a server elsewhere. 
+These days, an increasingly common pattern is to decouple content resources from a frontend Gatsby site. Decoupled sites use Gatsby's source plugin ecosystem to pull external content resources into the build, where those resources (a headless CMS, for example) are typically located on a server elsewhere. 
 
 Platform.sh's multi-app configuration gets around this, placing both frontend and backend sites on the same server by keeping the code for both sites in the same repository. Gatsby would reside in a subdirectory alongside another that contains the code for the backend resource. For example, a Gatsby site pulling content from a Drupal site could be kept in a single repository that looks like the snippet below:
 

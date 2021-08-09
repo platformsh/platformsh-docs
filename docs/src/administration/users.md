@@ -12,22 +12,15 @@ Any user added to a project or an environment type on Platform.sh will need to [
 
 ## User roles
 
-
 Grant user permissions to the entire project:
-
 * **Project Viewer** - A project viewer can view all environments of the project.
 * **Project Administrator** - A project administrator can change settings, push code and execute actions on all environments of the project.
-
-{{< note theme="warning" title="Important" >}}
-Over the next 6 weeks, we're updating environment access controls, so that you can update users' access to groups of environments. You'll see environment types available in the management console and CLI once it's live. 
-{{< /note >}}
 
 You can also define user access per environment type (Production, Staging, Development). Each permission level progressively increases access to the environments part of a given environment type:
 
 * **Viewer** - Viewer can view all environments of this type.
 * **Contributor** - Contributor can push code and branch all environments of this type.
 * **Administrator** - Administrator can change settings and execute actions on all environments of this type.
-
 
 {{< note theme="warning" title="Important" >}}
 After you add or remove a user from a project or an environment type, you will need to trigger a redeploy to propagate the access changes to each environment.
@@ -37,9 +30,8 @@ You can redeploy by using the CLI command `platform redeploy` or the `Redeploy` 
 If you want your contributors to be able to see everything, but only commit to environments of a certain type, set their permission as **Project Viewer** for the whole project and update their permission on that environment type to **Contributor**.
 
 {{< note >}}
-**Project Owner** - is the person licensed to use Platform.sh and whom the project belongs to. A project owner has a project administrator role and is the only role who can delete the project.
+The project owner - the person licensed to use Platform.sh - has the project administrator role. The project owner is the only user that can make changes to the project plan. 
 {{< /note >}}
-
 
 ## SSH Access
 

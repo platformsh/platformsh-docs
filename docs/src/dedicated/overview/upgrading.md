@@ -51,7 +51,7 @@ After converting your project, the hierarchical relationships appear in your Pro
 
 ## Before you upgrade
 
-When we add Staging and Production access to the Project Web Interface, we leverage the user accounts, branch user permissions, and environment variables from your Development master environment.
+When we add Staging and Production access to the Project Web Interface, we use the user accounts, branch user permissions, and environment variables from your Development master environment.
 
 To prepare, verify that your settings and environment variables are correct.
 
