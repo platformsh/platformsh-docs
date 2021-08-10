@@ -53,15 +53,17 @@ Project variables may also be marked `--sensitive true`.  That flag will mark th
 Environment-level variables can also be set [through the management console](/administration/web/configure-environment.md#settings), or using the CLI. Environment variables are bound to a specific environment or branch.  An environment will also inherit variables from its parent environment, unless it has a variable defined with the same name.  That allows you to define your development variables only once, and use them on all the child environments.  For instance, to create an environment variable "foo" with the value "bar" on the currently checked out environment/branch, run:
 
 ```bash
-$ platform variable:create --level environment --name foo --value bar
+$ platform variable:create --level environment --name foo --value bar  --visible-build true --visible-runtime false
 ```
 
 That will set a variable on the currently active environment (that is, the branch you have checked out).  To set a variable on a different environment include the `-e` switch to specify the environment name.
 
-There are two additional flags available on environment variables: `--inheritable` and `--sensitive`.
+There are a few additional flags available on environment variables:
 
 * Setting `--inheritable false` will cause the variable to not be inherited by child environments.  That is useful for setting production-only values on the `master` branch, and allowing all other environments to use a project-level variable of the same name.
 * Setting `--sensitive true` flag will mark the variable to not be readable through the management console once it is set.  That makes it somewhat more private as requests through the Platform.sh CLI will not be able to view the variable.  However, it will still be readable from within the application container like any other variable.
+* The `--visible-runtime` (default: `true`) flag defines that variable as accessible during runtime. 
+* The `--visible-build` (default: `true`) flag defines that variable as accessible at build time. Build visible environment variables change the application's build configuration ID, and triggers a rebuild of the application in the same way that a commit would. 
 
 For example, the following command will allow you to set a PayPal secret value on the master branch only; other environments will not inherit it and either get a project variable of the same name if it exists or no value at all.  It will also not be readable through the API.
 
@@ -73,25 +75,57 @@ If you omit the variable `--value` from the command line as above, you will be p
 
 Changing an environment variable will cause that environment to be redeployed so that it gets the new value.  However, it will *not* redeploy any child environments. If you want those to get the new value you will need to redeploy them yourself.
 
-Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" runtime toggle, etc.
+Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" runtime toggle, etc. 
+
+Build variables (using the `--visible_build` flag) can be a useful place to put those variables which are used to modify your application's build in an environment-dependent way. One example would be to define a Node.js application's build on a production branch using `NODE_ENV=production`, but in development mode (`NODE_ENV=development`) for each of your development environments. Assuming that there is a production, staging, and then a number of development environments that are children of staging, you can do this with the following commands:
+
+```bash
+$ platform variable:create -l environment -e master --prefix env: --name NODE_ENV --value production --visible_build true --inheritable false
+$ platform variable:create -l environment -e staging --prefix env: --name NODE_ENV --value development --visible_build true --inheritable true
+```
+
+With these two commands, while `NODE_ENV` will be `production` on the default branch, it will be `development` on staging as well as each of its child environments. Note that build visible environment variables change the application's build configuration ID - value updates will trigger a rebuild of the application in the same way that a commit would. 
 
 ### Platform.sh-provided variables
 
 Platform.sh also provides a series of variables by default.  These inform an application about its runtime configuration.  The most important of these is relationship information, which tells the application how to connect to databases and other services defined in `services.yaml`.  They are always prefixed with `PLATFORM_*` to differentiate them from user-provided values.
 
+#### Variables available only at build time
+
 The following variables are only available at build time, and may be used in a build hook:
 
 * **PLATFORM_OUTPUT_DIR**: The output directory for compiled languages at build time. Will be equivalent to `PLATFORM_APP_DIR` in most cases.
 
+#### Variables available during builds and at runtime
+
 The following variables are available at both runtime and at build time, and may be used in a build hook:
 
-* **PLATFORM_APP_DIR**: The absolute path to the application directory.
-* **PLATFORM_APPLICATION**: A base64-encoded JSON object that describes the application. It maps the content of the `.platform.app.yaml` that you have in Git and it has a few subkeys.
-* **PLATFORM_APPLICATION_NAME**: The name of the application, as configured in the `.platform.app.yaml` file.
 * **PLATFORM_PROJECT**: The ID of the project.
 * **PLATFORM_TREE_ID**: The ID of the tree the application was built from. It's essentially the SHA hash of the tree in Git.  If you need a unique ID for each build for whatever reason this is the value you should use.
 * **PLATFORM_VARIABLES**: A base64-encoded JSON object which keys are variables names and values are variable values (see below).  Note that the values available in this structure may vary between build and runtime depending on the variable type as described above.
 * **PLATFORM_PROJECT_ENTROPY**: A random, 56-character value created when the project is first created, which is then stable throughout the project's life. This can be used for Drupal hash salt, Symfony secret, or other similar values in other frameworks.
+* **PLATFORM_APP_DIR**: The absolute path to the application directory.
+* **PLATFORM_APPLICATION_NAME**: The name of the application, as configured in the `.platform.app.yaml` file.
+* **PLATFORM_APPLICATION**: A base64-encoded JSON object that describes the application. It maps certain attributes from the `.platform.app.yaml` that you have in Git and it has a few subkeys.
+
+`PLATFORM_APPLICATION` is a special case to keep in mind in how it differs between the build and runtime container. Every environment's build is associated with a configuration ID that uniquely identifies it. It's this ID which allows us to reuse builds on merges. The ID itself is a product of your application code, as well as its configuration for Platform.sh in `.platform.app.yaml`. 
+
+Not every attribute in `.platform.app.yaml` is relevant to builds - that is, only a subset of those attributes will result in a full rebuild of the application when an update to them is committed. Because of this, not all attributes defined in your `.platform.app.yaml` file will be accessible at build time from `PLATFORM_APPLICATION`, only those actually relevant to builds. Some of those attributes that will **not** be available in `PLATFORM_APPLICATION` during builds include:
+
+- everything under `resources`
+- `size`
+- `disk`
+- everything under `access`
+- everything under `relationship`
+- everything under `firewall`
+- `hooks.deploy` and `hooks.post_deploy`
+- everything under `crons`
+- everything under  `web`, except `web.mounts`
+- everything under `workers`, except `workers.mounts`
+
+The above attributes are not visible during build because they are not included as a part of the configuration component of the build slug. That is, modifying any of these values in `.platform.app.yaml` will not trigger a rebuild of the application, only a redeploy. For more information, please read more about [how build works](/bestpractices/environment-build.md#how-build-works) on Platform.sh.
+
+#### Variables available only at runtime
 
 The following variables exist *only* at runtime.  If used in a build hook they will evaluate to an empty string like any other unset variable:
 
@@ -161,7 +195,7 @@ $ platform variables
 
 ### At build time
 
-Only Project variables are available at build time.  They will be listed together in a single JSON array and exposed in the `$PLATFORM_VARIABLES` Unix environment variable.
+Only Project variables and environment variables set with build visibility (`--visible-build`) are available at build time.  They will be listed together in a single JSON array and exposed in the `$PLATFORM_VARIABLES` Unix environment variable.
 
 They can also be accessed from within a non-shell script via the language's standard way of accessing environment variables.  For instance, in PHP you would use `getenv('PLATFORM_VARIABLES')`. Remember that in some cases they may be base64 JSON strings and will need to be unpacked.  To do so from the shell, for instance, you would do:
 
