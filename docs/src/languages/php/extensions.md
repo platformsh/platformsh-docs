@@ -29,7 +29,6 @@ The following extensions are enabled by default:
 * interbase (7.1 and later)
 * intl
 * json (5.6 and later)
-* ldap (7.1 and later)
 * mbstring (7.1 and later)
 * mcrypt (5.6 and earlier)
 * mysql
