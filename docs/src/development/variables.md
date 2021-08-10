@@ -110,17 +110,20 @@ The following variables are available at both runtime and at build time, and may
 
 `PLATFORM_APPLICATION` is a special case to keep in mind in how it differs between the build and runtime container. Every environment's build is associated with a configuration ID that uniquely identifies it. It's this ID which allows us to reuse builds on merges. The ID itself is a product of your application code, as well as its configuration for Platform.sh in `.platform.app.yaml`. 
 
-Not every attribute in `.platform.app.yaml` is relevant to builds - that is, only a subset of those attributes will result in a full rebuild of the application when an update to them is committed. Because of this, not all attributes defined in your `.platform.app.yaml` file will be accessible at build time from `PLATFORM_APPLICATION`, only those actually relevant to builds. Some of those attributes that will **not** be available in `PLATFORM_APPLICATION` during buids include:
+Not every attribute in `.platform.app.yaml` is relevant to builds - that is, only a subset of those attributes will result in a full rebuild of the application when an update to them is committed. Because of this, not all attributes defined in your `.platform.app.yaml` file will be accessible at build time from `PLATFORM_APPLICATION`, only those actually relevant to builds. Some of those attributes that will **not** be available in `PLATFORM_APPLICATION` during builds include:
 
+- everything under `resources`
 - `size`
 - `disk`
-- `access`
-- `relationship`
-- `firewall`
+- everything under `access`
+- everything under `relationship`
+- everything under `firewall`
 - `hooks.deploy` and `hooks.post_deploy`
-- `crons`
-- all of `web`, except `web.mounts`
-- all of workers, except `workers.mounts`
+- everything under `crons`
+- everything under  `web`, except `web.mounts`
+- everything under `workers`, except `workers.mounts`
+
+The above attributes are not visible during build because they are not included as a part of the configuration component of the build slug. That is, modifying any of these values in `.platform.app.yaml` will not trigger a rebuild of the application, only a redeploy. For more information, please read more about [how build works](/bestpractices/environment-build.md#how-build-works) on Platform.sh.
 
 #### Variables available only at runtime
 

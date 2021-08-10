@@ -12,7 +12,9 @@ description: |
 
 The Platform.sh build process is run independently of any given environment.  That's because the built application image is reusable in multiple environments.
 
-During the build process, each application (defined by a `.platform.app.yaml` file) is built independently, and the output cached based on its Git tree ID.  That corresponds to a hash of the contents of all files in that directory.  The result is that a given application image is only ever rebuilt if something has changed.  If nothing in Git has changed, the corresponding application image can be reused.
+During the build process, each application (defined by a `.platform.app.yaml` file) is built independently, and the output cached based on its Git tree ID and its build time configuration ID (which can include build environment variables). Together these result in a final build slug, a hash that describes that specific build. 
+
+As a result, a given application image is only ever rebuilt if something has changed.  If nothing in Git has changed, and if its build time configuration hasn't changes, then the corresponding application image can be reused.
 
 That offers two key advantages.
 
@@ -27,7 +29,7 @@ Similarly, while it is possible to download arbitrary additional files during th
 
 ## Environment-specific configuration
 
-Once an application has been deployed, it has access to more environment variables.  That includes Platform.sh variables such as `PLATFORM_RELATIONSHIPS` and `PLATFORM_ROUTES` as well as any [variables](/development/variables.md) you define.  These variables can and will vary between environments, and your application is welcome to make use of that as appropriate.  You can access them directly, or via the Platform.sh Configuration Reader libraries, which are available for a number of languages.
+Once an application has been deployed, it has access to more environment variables.  That includes Platform.sh variables such as `PLATFORM_RELATIONSHIPS` and `PLATFORM_ROUTES` as well as any [variables](/development/variables.md) you define. There will also be additional features of your `.platform.app.yaml` file that will now be accessible in `PLATFORM_APPLICATION`. These variables can and will vary between environments, and your application is welcome to make use of that as appropriate.  You can access them directly, or via the Platform.sh Configuration Reader libraries, which are available for a number of languages.
 
 Many applications have some configuration that should vary between different environment types.  They generally break down into three categories.
 
