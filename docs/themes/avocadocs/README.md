@@ -92,7 +92,7 @@ Here, the only thing that designates a section to become its own "book" is its i
 
 This is a current solution, but perhaps if there is a stronger way of converting **permalinks** for sections labelled `book-faq` for example, that's the way to go in the long run. In the following array, each entry becomes it's own separate "book". Its sections are hidden from the main sidebar, and visiting the page associated with that book will present its own sidebar specific for its content. By default, everything in the root content directory that has not been specified in the `book` array parameter is included in the "main" book at `/`.
 
-Part of the goal here is to have each book leverage individual variants of the theme (which will come with its own challenges). This includes 3/4 DocsUIKit docs themes, FAQ, Articles, and our Platformsh theme.
+Part of the goal here is to have each book use individual variants of the theme (which will come with its own challenges). This includes 3/4 DocsUIKit docs themes, FAQ, Articles, and our Platformsh theme.
 
 - User Documentation (`*`): Main/default theme, which in this case is `docs2` (priority 1a)
 - Shortcodes/Help (`/help`): `docs1`

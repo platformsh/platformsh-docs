@@ -9,13 +9,16 @@ description: |
 
 ## 2021
 
+* **May 2021**
+  * Elasticsearch 6.8: We now support [Elasticsearch 6.8](/configuration/services/elasticsearch.md).
+---
 * **April 2021**
   * WAF: [a new page was added](/security/waf.md) describing the filtering rulesets and protections that come with the Platform.sh WAF.
   * [Build environment variables](/development/variables.md#project-variables): environment variables can now accept the same `--visible-build` and `--visible-runtime` flags as project variables when created through the CLI. Build-visible variables are now a part of the build image ID, and therefore triggers a rebuild of the application when the value is updated. 
   * **Breaking change**: The logic by which the build image ID has changed in order to support build environment variables above. Previously, every attribute in `.platform.app.yaml` was included in the build image, used to create the unique build ID, and *accessible* via the `PLATFORM_APPLICATION` environment variable at build time. This is no longer the case, and only a subset of `.platform.app.yaml` attributes are now accessible from `PLATFORM_APPLICATION` at build time. See the [Platform.sh-provided variables](/development/variables.md#variables-available-during-builds-and-at-runtime) section for more information.
 ---
 * **March 2021**
-  * Observability: [a new page was added](/dedicated/architecture/metrics.md) describing observability and metrics available on Dedicated projects. 
+  * Observability: [a new page was added](/dedicated/architecture/metrics.md) describing observability and metrics available on Dedicated projects.
   * Node.js debugging: [a new page was added](/languages/nodejs/debug.md) that includes tips for debugging Node.js applications.
   * Parallel activities: [project activities](/integrations/activity/reference.md#maximum-activities-and-parallelism) have been split into separate queues, allowing for up to two activities across environments to occur simultaneously.
   * Python 3.9: We now support [Python 3.9](/languages/python.md).
@@ -320,7 +323,7 @@ description: |
   * Read more about this release in our [blog post](https://platform.sh/blog/2014/caching-custom-php-build-dependencies).
   * HTTP caching per route: Support for HTTP caching at the web server level, finely configurable on a per-route basis.
   * Custom PHP configurations: Support for tweaking the PHP configuration, by enabling / disabling extensions and shipping your own php.ini.
-  * Build dependencies: Support for specifying build dependencies, i.e. PHP, Python, Ruby or Node.js tools (like sass, grunt, uglifyjs and more) that you want to leverage to build your PHP application.
+  * Build dependencies: Support for specifying build dependencies, i.e. PHP, Python, Ruby or Node.js tools (like sass, grunt, uglifyjs and more) that you want to use to build your PHP application.
   * Elasticsearch 0.90, 1.4 & 1.7: Service is [documented here](/configuration/services/elasticsearch.md).
 ---
 

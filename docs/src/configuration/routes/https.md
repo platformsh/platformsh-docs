@@ -181,6 +181,10 @@ To be able to provide a valid SSL-certificate, Let's Encrypt needs to make sure 
 
 This ownership verification is achieved through the so called _Challenge_ step, more background information can be found in the [Let's Encrypt Documentation](https://letsencrypt.org/docs/challenge-types/).
 
+By default, Platform.sh will check that both the `some-example.platform.sh` and `www.some-example.platform.sh` domains are pointing to your project.
+The certificate will also encompass both these domains.
+Please make sure that both your apex domain and it's `www` subdomain are pointing to your project, more information can be found in out go live [step-by-step guide](gettingstarted/next-steps/going-live/configure-dns.md).
+
 Sometimes, that verification fails which will result in the following error-message:
 `Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
 
@@ -192,5 +196,8 @@ For the DNS challenge to work, domains and subdomains should point directly to y
 ```
 Note that DNS changes can take up to 24-48 hours to propagate. See the [step-by-step guide](/domains/steps/_index.md) for more information. If you have waited the 24-48 hours, properly configured the subdomain, and are still seeing an error of this type, [redeploying](/development/troubleshoot.md#force-a-redeploy) the impacted environment will usually solve the issue.
 
-If the issue persists, you could also verify if an outage is currently ongoing on [let's encrypt's side](https://letsencrypt.status.io/).
+Please also make sure that no conflicting DNS records exist for the domain.
+For example a conflicting AAAA (IPv6) DNS record, will usually result in a `[HTTP01: The client lacks sufficient authorization]` error.
+
+If the certificate generation issue persists, you could also verify if an outage is currently ongoing on [let's encrypt's side](https://letsencrypt.status.io/).
 If that is not the case, please open a support ticket.

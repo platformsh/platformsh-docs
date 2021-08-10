@@ -19,6 +19,12 @@ platform redeploy
 
 Please note that the redeploy will happen after any scheduled builds in either "Running" or "Pending" state. 
 
+{{< note >}}
+Despite the name, triggering a redeploy will not cause the `deploy` hook to rerun for your application. Both your `build` and `deploy` hook are tied to individual commits and are resused until another commit is pushed to the environment. 
+
+Triggering a redeploy can be useful for updating environment access to a new developer and adding custom TLS certificates, but when you do it is only the `post_deploy` hook that runs from the beginning. If you want to rerun the `deploy` hook, you will need to commit and push some small change to your application to do so. 
+{{< /note >}}
+
 ## Clear the build cache
 
 In rare circumstances the build cache, used to speed up the build process, may become corrupted.  That may happen if, for example, code is being downloaded from a 3rd party language service like Packagist or NPM while that service is experiencing issues.  To flush the build cache entirely run the following command:
@@ -358,6 +364,20 @@ Here are a few tips that can help you solve the issues you are experiencing.
 Invisible errors during the build and deploy phase can cause increased wait times, failed builds and other problems. Investigating each log and fixing errors is essential.
 
 Related documentation: [Accessing logs](/development/logs.md#accessing-logs)
+
+### Resource temporarily unavailable
+
+If you encounter the message `connect() to unix:/run/app.sock failed (11: Resource temporarily unavailable)` in `/var/log/error.log`, it is caused by all of the PHP workers being busy.
+This can be because too many requests are coming in at once, or the requests are taking too long to be processed (such as with calls to external third party servers without timeouts).
+
+To address the issue, you can: 
+
+- Lower the memory consumption of each request, so that the amount of PHP workers gets automatically raised. This can be customized with the `runtime.sizing_hints.request_memory` key in your `.platform.app.yaml` file. Consult the [PHP-FPM sizing documentation](/languages/php/fpm.md) for more details.
+- Adding a [CDN](/domains/cdn/_index.md).
+- Set up [caching](/bestpractices/http-caching.md).
+- Following the global [performance tuning recommendations](languages/php/tuning.md).
+- Removing stale plugins and extensions when using a CMS.
+- Upgrading the container size to get more resources.
 
 ### Build and deploy hooks
 

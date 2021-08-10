@@ -2,7 +2,7 @@
 title: "Variables"
 weight: 5
 description: |
-  Platform.sh allows a high degree of control over both the build process and the runtime environment of a project.  Part of that control comes in the form of *variables* that are set independently of the project's code base but available either at build or runtime for your code to leverage.
+  Platform.sh allows a high degree of control over both the build process and the runtime environment of a project.  Part of that control comes in the form of *variables* that are set independently of the project's code base, but available either at build or runtime for your code to use.
 ---
 
 {{< description >}}
@@ -139,6 +139,10 @@ On a Dedicated instance, the following additional variables are available at run
 * **PLATFORM_CLUSTER**: Set to the cluster ID.
 * **PLATFORM_PROJECT**: Set to the document root.  This is typically the same as your cluster name for the production environment, while staging will have `_stg` or similar appended.
 
+{{< note >}}
+The `PLATFORM_CLUSTER`, and `PLATFORM_PROJECT` environment variables are not yet available on [Dedicated Generation 3](/dedicated-gen-3/overview.md). If your application contains logic that depends on whether it is running on a Dedicated Generation 3 host, use `PLATFORM_MODE`.
+{{< /note >}}
+
 Since values can change over time, the best thing is to inspect the variable at runtime then use it to configure your application. For example:
 
 ```bash
@@ -189,11 +193,6 @@ $ platform variables
 ### At build time
 
 Only Project variables and environment variables set with build visibility (`--visible-build`) are available at build time.  They will be listed together in a single JSON array and exposed in the `$PLATFORM_VARIABLES` Unix environment variable.
-
-```bash
-echo $PLATFORM_VARIABLES | base64 --decode
-{"my_var": "this is a value"}
-```
 
 They can also be accessed from within a non-shell script via the language's standard way of accessing environment variables.  For instance, in PHP you would use `getenv('PLATFORM_VARIABLES')`. Remember that in some cases they may be base64 JSON strings and will need to be unpacked.  To do so from the shell, for instance, you would do:
 
@@ -273,7 +272,7 @@ Check the individual documentation pages for accessing environment variables for
 * [PHP: the getenv() function](http://php.net/manual/en/function.getenv.php)
 * [Node.js: the process.env object](https://nodejs.org/api/process.html#process_process_env)
 * [Python: the os.environ object](https://docs.python.org/3/library/os.html#os.environ)
-* [Ruby: the ENV accessor](https://ruby-doc.org/core-2.1.4/ENV.html)
+* [Ruby: the ENV accessor](https://ruby-doc.org/core/ENV.html)
 * [Java: the java.lang.System accessor](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
 
 {{< codetabs >}}

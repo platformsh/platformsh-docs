@@ -46,6 +46,10 @@ By default, Xdebug operates on port 9000.  Generally, it is best to configure yo
 
 To close the tunnel and terminate the debug connection, press `Ctrl-C`.
 
+{{< note title="On Dedicated Generation 3" >}}
+Note that because you have several VMs running but your tunnel is connected to only one of them, your requests won't always reach the same host. 
+{{< /note >}}
+
 ### Install an Xdebug helper
 
 While Xdebug can be triggered from the browser by adding a special query parameter, the preferred way is to use a browser plugin helper.  One is available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/xdebug-helper-for-firefox/) and for [Chrome](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc).  Their respective plugin pages document how to trigger them when needed.

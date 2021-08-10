@@ -3,7 +3,7 @@ title: "Upgrading to the Integrated UI"
 weight: 6
 sidebarTitle: "Upgrading"
 description: |
-  Older Platform.sh Dedicated projects (created prior to October 2017) used a separate Git repository for Production and Staging.  That also necessitated running most configuration changes through a ticket, and maintaining separate SSH credentials for each environment.
+    Platform.sh Dedicated Generation 1 projects (created prior to October 2017) used a separate Git repository for Production and Staging.  That also necessitated running most configuration changes through a ticket, and maintaining separate SSH credentials for each environment.
 ---
 
 {{< description >}}
@@ -51,7 +51,7 @@ After converting your project, the hierarchical relationships appear in your Pro
 
 ## Before you upgrade
 
-When we add Staging and Production access to the Project Web Interface, we leverage the user accounts, branch user permissions, and environment variables from your Development master environment.
+When we add Staging and Production access to the Project Web Interface, we use the user accounts, branch user permissions, and environment variables from your Development master environment.
 
 To prepare, verify that your settings and environment variables are correct.
 

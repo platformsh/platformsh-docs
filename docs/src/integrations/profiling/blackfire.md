@@ -141,7 +141,7 @@ If you are using one of those, you will need them to let Blackfire access your s
 
 ### HTTP Cache configuration
 
-If you are using the HTTP cache with cookies , please update in your `.platform.app.yaml` the cookies that are allowed to go through the cache. You need to allow the `__blackfire` cookie name.
+If you are using the HTTP cache with cookies , please update in your `.platform/routes.yaml` the cookies that are allowed to go through the cache. You need to allow the `__blackfire` cookie name.
 
 Something like:
 

@@ -14,6 +14,7 @@ Any user added to a project or an environment on Platform.sh will need to [regis
 
 At the project level:
 
+* **Project Owner** - A project owner has full administrator priviledges, and is the only user that can delete the project and modify its plan.
 * **Project Administrator** - A project administrator can change settings and execute actions in any environment.
 * **Project Viewer** - A project reader can view all environments within a project through the management console but cannot execute any actions on them. Note that a user must be granted access to at least one environment before they can be given project-wide viewer access.
 
@@ -42,7 +43,7 @@ An environment contributor can push code to the environment and has SSH access t
 {{< /note >}}
 
 {{< note >}}
-The project owner - the person licensed to use Platform.sh - doesn't have special powers. A project owner usually has a project administrator role.
+The project owner - the person licensed to use Platform.sh - has the project administrator role. The project owner is the only user that can make changes to the project plan. 
 {{< /note >}}
 
 ## Manage user permissions at the project level
