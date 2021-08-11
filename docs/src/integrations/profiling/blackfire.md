@@ -62,17 +62,18 @@ Blackfire enables to have a fine grained configuration of server credentials acr
 Configuring server credentials on your master branch will enable you to make sure you can profile any other branch:
 
 ```bash
-platform variable:create -e master env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
-platform variable:create -e master env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
+platform variable:create -e master --json=false --visible-build=false --level=project env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
+platform variable:create -e master --json=false --visible-build=false --sensitive=true --level=project env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
 ```
 
 #### Configuring server credentials per branch
 
 A recommendation is to have a [Blackfire environment](https://blackfire.io/docs/reference-guide/environments#documentation) for production, another one for staging, and another one for development/integration. That can be mapped in Platform.sh to one Blackfire environment for the production branch, one for the staging branch, and one for all feature branches.
 
+
 ```bash
-platform variable:create -e=<insert your branch name> env:BLACKFIRE_SERVER_ID <insert your Server ID>
-platform variable:create -e=<insert your branch name> env:BLACKFIRE_SERVER_TOKEN <insert your Server Token>
+platform variable:create -e=<insert your branch name> --json=false --visible-build=false --level=environment env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
+platform variable:create -e=<insert your branch name> --json=false --visible-build=false --sensitive=true --level=environment env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
 ```
 
 ### 4. Confirm it's running
@@ -80,16 +81,25 @@ platform variable:create -e=<insert your branch name> env:BLACKFIRE_SERVER_TOKEN
 Login via SSH to your container and confirm that Blackfire is running as follows:
 
 ```text
-php --ri blackfire
+php --ri blackfire | head
 
 blackfire
 
-blackfire => enabled
-blackfire => 1.16.1
-Timing measurement => gtod
+Blackfire => enabled
+Blackfire => 1.64.0~linux-x64-zts80
+Timing measurement => cgt
+Sessions support => enabled
 Num of CPU => 8
-...
+Profiling heap memory => 0 Kb
+Main instance trigger mode => CLI autotriggered
+
 ```
+
+{{< note >}}
+Make sure you use 2 dashes in the command above. `--ri` will `Show configuration for extension <name>.`
+But `-ri` is something completely different since it will be expanded into `-r` and `-i` (run code and show full extension list).
+{{< /note >}}
+
 
 ## On a Dedicated cluster
 
