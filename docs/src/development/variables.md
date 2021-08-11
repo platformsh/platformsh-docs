@@ -77,11 +77,11 @@ Changing an environment variable will cause that environment to be redeployed so
 
 Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for 3rd party services, mode settings if your application has a separate "Dev" and "Prod" runtime toggle, etc. 
 
-Build variables (using the `--visible_build` flag) can be a useful place to put those variables which are used to modify your application's build in an environment-dependent way. One example would be to define a Node.js application's build on a production branch using `NODE_ENV=production`, but in development mode (`NODE_ENV=development`) for each of your development environments. Assuming that there is a production, staging, and then a number of development environments that are children of staging, you can do this with the following commands:
+Build variables (using the `--visible-build` flag) can be a useful place to put those variables which are used to modify your application's build in an environment-dependent way. One example would be to define a Node.js application's build on a production branch using `NODE_ENV=production`, but in development mode (`NODE_ENV=development`) for each of your development environments. Assuming that there is a production, staging, and then a number of development environments that are children of staging, you can do this with the following commands:
 
 ```bash
-$ platform variable:create -l environment -e master --prefix env: --name NODE_ENV --value production --visible_build true --inheritable false
-$ platform variable:create -l environment -e staging --prefix env: --name NODE_ENV --value development --visible_build true --inheritable true
+$ platform variable:create -l environment -e master --prefix env: --name NODE_ENV --value production --visible-build true --inheritable false
+$ platform variable:create -l environment -e staging --prefix env: --name NODE_ENV --value development --visible-build true --inheritable true
 ```
 
 With these two commands, while `NODE_ENV` will be `production` on the default branch, it will be `development` on staging as well as each of its child environments. Note that build visible environment variables change the application's build configuration ID - value updates will trigger a rebuild of the application in the same way that a commit would. 
