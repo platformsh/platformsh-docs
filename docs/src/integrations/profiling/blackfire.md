@@ -62,7 +62,7 @@ Blackfire enables to have a fine grained configuration of server credentials acr
 Configuring server credentials on your master branch will enable you to make sure you can profile any other branch:
 
 ```bash
-platform variable:create -e master --json=false --visible-build=false --sensitive=true --level=project env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
+platform variable:create -e master --json=false --visible-build=false --level=project env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
 platform variable:create -e master --json=false --visible-build=false --sensitive=true --level=project env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
 ```
 
