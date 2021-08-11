@@ -98,24 +98,6 @@ For example, the following configuration will only allow the 1.2.3.4 IP to acces
 0.0.0.0/0 deny
 ```
 
-
-## Access
-
-The `Access` screen allows you to manage the users' access on your project.
-
-You can invite new users to a specific environment by clicking the `Add` button and entering their email address, or modify permissions of existing users by clicking the `Edit` link when hovering the user.
-
-![Manage users of your Platform.sh environments](/images/management-console/settings-environment-access.png "0.7")
-
-{{< note >}}
-Currently, permission changes that grant or revoke SSH access to an environment take effect only after the next time that environment is deployed.
-{{< /note >}}
-
-Selecting a user will allow you to either edit or remove access to that environment.
-
-You can also manage access to users on multiple environments using the project configuration screen.
-
-
 ## Variables
 
 The `Variables` screen allows you to define the variables that will be available on a specific environment.
