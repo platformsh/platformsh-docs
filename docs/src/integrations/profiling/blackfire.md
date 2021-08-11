@@ -72,7 +72,7 @@ A recommendation is to have a [Blackfire environment](https://blackfire.io/docs/
 
 
 ```bash
-platform variable:create -e=<insert your branch name> --json=false --visible-build=false --sensitive=true --level=environment env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
+platform variable:create -e=<insert your branch name> --json=false --visible-build=false --level=environment env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
 platform variable:create -e=<insert your branch name> --json=false --visible-build=false --sensitive=true --level=environment env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
 ```
 
