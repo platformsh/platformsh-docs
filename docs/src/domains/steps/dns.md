@@ -29,7 +29,7 @@ There's a [detailed thread](https://serverfault.com/questions/613829/why-cant-a-
 
 You can access the CNAME target from your terminal by using the CLI and the command:
 
-```
+```bash
 platform environment:info edge_hostname
 ```
 
