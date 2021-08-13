@@ -1,6 +1,6 @@
 ---
 title: "Delete a project"
-weight: 5
+weight: 4
 sidebarTitle: "Deleting a project"
 toc: false
 ---
