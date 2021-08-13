@@ -25,6 +25,14 @@ The DNS specification was originally published in 1987 in [RFC 1034](https://too
 
 There's a [detailed thread](https://serverfault.com/questions/613829/why-cant-a-cname-record-be-used-at-the-apex-aka-root-of-a-domain) on the subject that provides more technical detail.
 
+## Where should the CNAME point to?
+
+You can access the CNAME target from your terminal by using the CLI and the command:
+
+```bash
+platform environment:info edge_hostname
+```
+
 ## Handling Apex domains
 
 There are a number of ways of handling the CNAME-on-Apex limitation of DNS.
@@ -68,4 +76,4 @@ This process has a few limitations:
 For that reason using A records is _strongly discouraged_ and should only be used as a last resort.
 {{< /note >}}
 
-See the [Public IP](/development/public-ips.md) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request.
+See the [Public IP](/development/public-ips.md) list for the 3 Inbound addresses for your region.  In your DNS provider, configure 3 separate A records for your domain, one for each of those IP addresses.  Incoming requests will then pick one of those IPs at random to use for that request (the so-called DNS round-robin).
