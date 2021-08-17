@@ -464,13 +464,13 @@
     "runtime": false,
     "type": "mongodb",
     "versions": {
-      "deprecated": [],
-      "supported": [
+      "deprecated": [
         "3.0",
         "3.2",
         "3.4",
         "3.6"
-      ]
+      ],
+      "supported": []
     }
   },
   "network-storage": {

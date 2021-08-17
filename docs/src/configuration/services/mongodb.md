@@ -8,13 +8,19 @@ sidebarTitle: "MongoDB"
 
 ## Supported versions
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="mongodb" status="supported" environment="grid" >}} | {{< image-versions image="mongodb" status="supported" environment="dedicated" >}} | {{< image-versions image="mongodb" status="supported" environment="dedicated-gen-3" >}} |
+We're working on adding more versions.
 
 {{< note >}}
 Downgrades of MongoDB are not supported. MongoDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
 {{< /note >}}
+
+## Deprecated versions
+
+The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+
+| **Grid** |
+|----------------------------------|
+|  {{< image-versions image="mongodb" status="deprecated" environment="grid" >}} |
 
 ## Relationship
 
