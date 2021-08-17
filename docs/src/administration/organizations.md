@@ -55,7 +55,7 @@ Available commands:
 For example, the following command would invite `alice@example.com` with the **Billing**, **Plans** and **Projects create** permissions to the `my-organization-name` organization.
 
 ```bash
-platform organization:user:add alice@example.com --name=my-organization-name --permission=billing,plans,projects:create
+platform organization:user:add alice@example.com --org=my-organization-name --permission=billing,plans,projects:create
 ```
 
 After inviting `alice@example.com`, Alice will receive an invitation email asking to confirm her details and optionally, register for a Platform.sh account.
@@ -63,7 +63,7 @@ After inviting `alice@example.com`, Alice will receive an invitation email askin
 To update Alice permissions in your organization, simply run:
 
 ```bash
-platform organization:user:update alice@example.com --name=my-organization-name --permission=billing
+platform organization:user:update alice@example.com --org=my-organization-name --permission=billing
 ```
 
 This command would remove all previously granted permissions from Alice, and only grant the **Billing** permission.
