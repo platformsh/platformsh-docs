@@ -1,5 +1,6 @@
 ---
-title: "Content Delivery Networks"
+title: "Content Delivery Networks (CDNs)"
+sidebarTitle: "Content Delivery Networks"
 weight: 3
 layout: single
 ---

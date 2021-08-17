@@ -1,5 +1,5 @@
 {{- $allDocuments := slice -}}
-{{- range .Site.RegularPages -}}
+{{- range .Site.Pages -}}
   {{- $pageDocuments := partial "meilindex/page" . | transform.Unmarshal -}}
   {{- range $index, $document := $pageDocuments -}}
     {{- $allDocuments = $allDocuments | append $document -}}
