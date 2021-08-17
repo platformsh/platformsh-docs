@@ -39,10 +39,6 @@ description: |
 * Platform.sh [Drupal 8 Development Workflow](https://github.com/JohnatasJMO/platformsh-development-workflow) by @JohnatasJMO
 * Syslogging is not supported on Platform.sh, instead, you can [Log using Monolog](https://gist.github.com/janstoeckler/7f251bf10fedbfb7f752b61ee5d2ef5e) to keep log files out of the database (and/or use whatever processors & handlers you want)
 
-### Magento
-
-* [Deploying Magento 2 with Redis on Platform.sh](https://rafaelstz.github.io/magento2/Deploying-Magento2-Redis-Platformsh.html) by [@rafaelcgstz](https://twitter.com/rafaelcgstz)
-
 ### Sylius
 
 * The [Sylius documentation](https://docs.sylius.com/en/latest/cookbook/deployment/platform-sh.html) has a solid set of instructions for setting up Sylius with Platform.sh.
