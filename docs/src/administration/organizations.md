@@ -60,7 +60,7 @@ platform organization:user:add alice@example.com --org=my-organization-name --pe
 
 After inviting `alice@example.com`, Alice will receive an invitation email asking to confirm her details and optionally, register for a Platform.sh account.
 
-To update Alice permissions in your organization, simply run:
+To update Alice's permissions in your organization, run:
 
 ```bash
 platform organization:user:update alice@example.com --org=my-organization-name --permission=billing
