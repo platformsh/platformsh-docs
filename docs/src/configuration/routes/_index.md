@@ -1,5 +1,5 @@
 ---
-title: "Configure routes"
+title: "Routes"
 weight: 2
 description: |
   Platform.sh allows you to define the routes used in your environments.

@@ -1,5 +1,5 @@
 ---
-title: "Configure services"
+title: "Services"
 weight: 3
 description: |
   Platform.sh allows you to completely define and configure the topology and services you want to use on your project.
