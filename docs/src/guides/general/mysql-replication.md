@@ -25,7 +25,7 @@ db:
         endpoints:
             # Restate the default user to be used by your application.
             mysql:
-                default:schema: main
+                default_schema: main
                 privileges:
                     main: admin
             replicator:
