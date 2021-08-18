@@ -8,13 +8,19 @@ sidebarTitle: "MongoDB"
 
 ## Supported versions
 
-| **Grid** | **Dedicated** | **Dedicated Generation 3** |
-|----------------------------------|---------------|---------------|
-|  {{< image-versions image="mongodb" status="supported" environment="grid" >}} | {{< image-versions image="mongodb" status="supported" environment="dedicated" >}} | {{< image-versions image="mongodb" status="supported" environment="dedicated-gen-3" >}} |
+We're working on adding more versions. Alternative versions are available in your projects (and are listed below), but they are at their [end of life](https://www.mongodb.com/support-policy) and are no longer receiving security updates from upstream. 
 
 {{< note >}}
 Downgrades of MongoDB are not supported. MongoDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
 {{< /note >}}
+
+## Deprecated versions
+
+The following versions are available but are not receiving security updates from [upstream](https://www.mongodb.com/support-policy), so their use is not recommended. They will be removed at some point in the future.
+
+| **Grid** |
+|----------------------------------|
+|  {{< image-versions image="mongodb" status="deprecated" environment="grid" >}} |
 
 ## Relationship
 
@@ -26,7 +32,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml`:
 
-{{< readFile file="src/registry/images/examples/full/mongodb.services.yaml" highlight="yaml" >}}
+```yaml
+dbmongo:
+    type: mongodb:3.6
+    disk: 512
+```
 
 The minimum disk size for MongoDB is `512` (MB).
 
