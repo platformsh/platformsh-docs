@@ -19,7 +19,11 @@ This guide only covers the *addition* of a MongoDB service configuration to an e
 
 In your `.platform/services.yaml` file, include MongoDB with a [valid supported version](/configuration/services/mongodb.md):
 
-{{< readFile file="src/registry/images/examples/full/mongodb.services.yaml" highlight="yaml" >}}
+```yaml
+dbmongo:
+    type: mongodb:3.6
+    disk: 512
+```
 
 ## 2. Grant access to MongoDb through a relationship
 
