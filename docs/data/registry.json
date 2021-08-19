@@ -213,9 +213,9 @@
     "type": "golang",
     "versions": {
       "deprecated": [
-        "1.10",
         "1.8",
-        "1.9"
+        "1.9",
+        "1.10"
       ],
       "supported": [
         "1.11",
@@ -276,9 +276,9 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "8",
         "11",
         "12",
-        "8",
         "13",
         "14"
       ]
