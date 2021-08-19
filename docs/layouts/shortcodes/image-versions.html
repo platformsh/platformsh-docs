@@ -15,7 +15,7 @@
 
 {{ if isset (index .Site.Data.registry $image $environment) $status  }}
   <ul>
-  {{ range sort ( index .Site.Data.registry $image $environment $status ) }}
+  {{ range index .Site.Data.registry $image $environment $status }}
     <li>{{ . }}</li>
   {{ end }}
   </ul>
