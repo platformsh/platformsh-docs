@@ -20,3 +20,4 @@ The ideal `.platform.app.yaml` file will vary from project project, and you are 
 
 * [Symfony 3](https://github.com/platformsh-templates/symfony3)
 * [Symfony 4](https://github.com/platformsh-templates/symfony4)
+* [Symfony 5](https://github.com/platformsh-templates/symfony5)
