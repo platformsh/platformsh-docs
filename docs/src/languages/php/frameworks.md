@@ -57,7 +57,6 @@ Symfony FAQs, how-to guides and other tutorials right on [Platform.sh Community]
 
 ### Templates
 
-* [Symfony 3](https://github.com/platformsh-templates/symfony3)
 * [Symfony 4](https://github.com/platformsh-templates/symfony4)
 
 ## TYPO3
