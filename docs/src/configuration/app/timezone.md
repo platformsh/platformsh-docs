@@ -23,12 +23,12 @@ For example:
 timezone: "America/New_York"
     
 crons:
-  backup:
-    spec: '25 1 * * *'
-    cmd: |
-      if [ "$PLATFORM_BRANCH" = master ]; then
-          platform backup:create --yes --no-wait
-      fi
+    backup:
+        spec: '25 1 * * *'
+        cmd: |
+            if [ "$PLATFORM_BRANCH" = master ]; then
+                platform backup:create --yes --no-wait
+            fi
 ```
 
 ## Setting an application runtime timezone

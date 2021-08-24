@@ -199,12 +199,12 @@ Both values can be adjusted at the server level in `services.yaml`:
 
 ```yaml
 db:
-  type: mariadb:10.5
-  disk: 2048
-  configuration:
-    properties:
-      default_charset: utf8mb4
-      default_collation: utf8mb4_unicode_ci
+    type: mariadb:10.5
+    disk: 2048
+    configuration:
+        properties:
+            default_charset: utf8mb4
+            default_collation: utf8mb4_unicode_ci
 ```
 
 Note that the effect of this setting is to set the character set and collation of any tables created once those properties are set.  Tables created prior to when those settings are changed will be unaffected by changes to the `services.yaml` configuration.  However, you can change your own table's character set and collation through `ALTER TABLE` commands.  For example:

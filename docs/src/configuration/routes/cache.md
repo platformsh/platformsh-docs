@@ -199,22 +199,22 @@ If you need fine-grained caching, you can set up caching rules for several route
 
 ```yaml
 https://{default}/:
-  type: upstream
-  upstream: app:http
-  cache:
-    enabled: true
+    type: upstream
+    upstream: app:http
+    cache:
+        enabled: true
 
 https://{default}/foo/:
-  type: upstream
-  upstream: app:http
-  cache:
-    enabled: false
+    type: upstream
+    upstream: app:http
+    cache:
+        enabled: false
 
 https://{default}/foo/bar/:
-  type: upstream
-  upstream: app:http
-  cache:
-    enabled: true
+    type: upstream
+    upstream: app:http
+    cache:
+        enabled: true
 ```
 
 With this configuration, the following routes are cached:
@@ -238,8 +238,8 @@ Some applications use cookies to invalidate cache responses, but expect other co
 
 ```yaml
 cache:
-  enabled: true
-  cookies: ["MYCOOKIE"]
+    enabled: true
+    cookies: ["MYCOOKIE"]
 ```
 
 ### Cache HTTP and HTTPS separately using the `Vary` header
