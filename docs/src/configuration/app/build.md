@@ -48,6 +48,7 @@ You can specify those dependencies as shown below:
 dependencies:
   php: # Specify one Composer package per line.
     drush/drush: '8.0.0'
+    composer/composer: '^2'
   python: # Specify one Python 2 package per line.
     behave: '*'
   python2: # Specify one Python 2 package per line.
