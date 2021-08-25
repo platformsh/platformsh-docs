@@ -33,7 +33,7 @@ function writeFileFromTarget(target, destination) {
         console.log(`-->${destination}`)
         console.log(typeof body)
         console.log(error)
-        console.log(response.statusCode)
+        console.log(response)
         console.log(body)
         fs.writeFileSync(destination, body);
     })
