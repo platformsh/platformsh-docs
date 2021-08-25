@@ -26,6 +26,8 @@ function ensureSubdir(savePath) {
 // Function to place the request and write to the file.
 function writeFileFromTarget(target, destination) {
     // Get the file.
+    console.log(`\n-->${target}`)
+    console.log(`-->${destination}`)
     request.get(target, (error, response, body) => {
         // Write the file.
         fs.writeFileSync(destination, body);
