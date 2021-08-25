@@ -1,5 +1,6 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
+const { type } = require('os');
 const request = require("request");
 
 // Example file data.
@@ -26,10 +27,11 @@ function ensureSubdir(savePath) {
 // Function to place the request and write to the file.
 function writeFileFromTarget(target, destination) {
     // Get the file.
-    console.log(`\n-->${target}`)
-    console.log(`-->${destination}`)
     request.get(target, (error, response, body) => {
         // Write the file.
+        console.log(`\n-->${target}`)
+        console.log(`-->${destination}`)
+        console.log(typeof body)
         fs.writeFileSync(destination, body);
     })
 }
@@ -52,14 +54,12 @@ function fetchFilesExamples(data) {
     // Ensure that the examples subdirectory exists.
     ensureSubdir(data["savePath"]);
     for ( language in data["paths"] ) {
-        console.log(`-------${language}--------`)
         // Format target and destination for each language.
         var languageTargetDir = `${data["root"]}/${language}`;
         var languageDestDir = `${data["savePath"]}/${language}`;
         // Ensure the language subdirectory exists.
         ensureSubdir(languageDestDir)
         for ( service in data["paths"][language] ) {
-            console.log(data["paths"][language][service])
             // Format target and destination for each service.
             var target = `${languageTargetDir}/${data["paths"][language][service]}`;
             var destination = process.cwd() + `${languageDestDir}/${data["paths"][language][service]}`;
@@ -95,7 +95,6 @@ function fetch(exampleGroup) {
 // Main run function.
 function run(){
     for ( exampleGroup in dataDirectories ){
-        console.log(exampleGroup)
         fetch(exampleGroup)
     }
 }
