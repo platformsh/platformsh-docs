@@ -2,6 +2,3 @@ node_modules
 public
 resources
 hugo
-static/template-builder
-static/files/fetch copy
-static/files/fetch-new/*
