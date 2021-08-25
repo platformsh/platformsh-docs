@@ -55,8 +55,8 @@ Each rule under `paths` is defined by its key describing the expression to match
        redirects:
            paths:
                '^/foo/(.*)/bar':
-                    to: 'https://example.com/$1'
-                    regexp: true
+                   to: 'https://example.com/$1'
+                   regexp: true
    ```
    Note that special arguments in the `to` statement are also valid when `regexp` is set to `true`:
     * `$is_args` will evaluate to `?` or empty string
@@ -118,11 +118,11 @@ Each rule under `paths` is defined by its key describing the expression to match
        redirects:
            expires: 1d
            paths:
-             '/from':
-                 to: 'https://example.com/'
-             '/here':
-                 to: 'https://example.com/there'
-                 expires: 2w
+               '/from':
+                   to: 'https://example.com/'
+               '/here':
+                   to: 'https://example.com/there'
+                   expires: 2w
    ```
    In this example, redirects from `/from` would be set to expire in one day, but redirects from `/here` would expire in two weeks.
 

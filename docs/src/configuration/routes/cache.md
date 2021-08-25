@@ -109,8 +109,8 @@ For example, if the `headers` key is the following, Platform.sh will cache a dif
 
 ```yaml
 cache:
-  enabled: true
-  headers: ["Accept"]
+    enabled: true
+    headers: ["Accept"]
 ```
 
 {{< note title="none">}}
@@ -145,8 +145,8 @@ For example, for the cache key to depend on the value of the `foo` cookie in the
 
 ```yaml
 cache:
-  enabled: true
-  cookies: ["foo"]
+    enabled: true
+    cookies: ["foo"]
 ```
 
 {{< note title="none">}}
@@ -162,8 +162,8 @@ A cookie value may also be a regular expression.  An entry that begins and ends 
 
 ```yaml
 cache:
-  enabled: true
-  cookies: ['/^SS?ESS/']
+    enabled: true
+    cookies: ['/^SS?ESS/']
 ```
 
 Will cause all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.  Other cookies will be ignored for caching.  If your site uses a session cookie as well as 3rd party cookies, say from an analytics service, this is the recommended approach.

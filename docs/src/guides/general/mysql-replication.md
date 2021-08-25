@@ -21,7 +21,7 @@ db:
     disk: 1024
     configuration:
         schemas:
-          - main
+            - main
         endpoints:
             # Restate the default user to be used by your application.
             mysql:

@@ -115,10 +115,10 @@ variables:
 
 hooks:
     build: |
-      mvn clean package
-      rm -rf newrelic
-      curl -O $NEW_RELIC_URL
-      unzip newrelic-java.zip
+        mvn clean package
+        rm -rf newrelic
+        curl -O $NEW_RELIC_URL
+        unzip newrelic-java.zip
 
 web:
     commands:

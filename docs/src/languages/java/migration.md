@@ -62,11 +62,11 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 # .platform/routes.yaml
 
 "https://{default}/":
-  type: upstream
-  upstream: [1]
+    type: upstream
+    upstream: [1]
 "https://www.{default}/":
-  type: redirect
-  to: "https://{default}/"
+    type: redirect
+    to: "https://{default}/"
 ```
 
 1. It defines the application will link in the route, e.g.: `"app:http"`

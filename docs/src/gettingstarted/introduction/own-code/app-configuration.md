@@ -105,19 +105,19 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
       ```yaml
       web:
-        locations:
-          '/':
-              passthru: true
+          locations:
+              '/':
+                  passthru: true
       ```
 
       The above configuration forwards all requests to `/*` to the process started by `web.commands.start`. In the case of PHP containers, `passthru` must specify what PHP file to forward the request to, as well as the docroot under which the file lives. For example,
 
       ```yaml
       web:
-        locations:
-            '/':
-                root: 'web'
-                passthru: '/app.php'
+          locations:
+              '/':
+                  root: 'web'
+                  passthru: '/app.php'
       ```
 * `mounts`: Configuring mounts are not required, unless part of your application requires write-access. By default, Platform.sh provided a *read-only* filesystem for your projects so that you can be confident in the health and security of your application once it has deployed.
 
@@ -125,9 +125,9 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
   ```yaml
   mounts:
-    'web/uploads':
-        source: local
-        source_path: uploads
+      'web/uploads':
+          source: local
+          source_path: uploads
   ```
 
   In this case, the application will be able to write to a mount that is visible in the `/app/web/uploads` directory of the application container, and which has a local source at `/mnt/uploads`. Consult the [mounts documentation](/configuration/app/storage.md#mounts) for a more thorough discussion of how these attributes should be written.

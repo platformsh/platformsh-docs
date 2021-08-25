@@ -68,7 +68,7 @@ Each entry of the `locations` block is an absolute URI path (with leading `/`) a
 web:
     locations:
         '/':
-           # Rules for all requests that don't otherwise match.
+            # Rules for all requests that don't otherwise match.
             ...
         '/sites/default/files':
             # Rules for any requests that begin with /sites/default/files.
@@ -110,12 +110,12 @@ A full list of the possible subkeys for `locations` is below.
 
     ```yaml
     web:
-      locations:
-        '/':
-          passthru: true
-          request_buffering:
-            enabled: true
-            max_request_size: 250m
+        locations:
+            '/':
+                passthru: true
+                request_buffering:
+                    enabled: true
+                    max_request_size: 250m
     ```
 
     If the application server can already efficiently handle chunked requests, the `request_buffering` subkey can be modified to disable it entirely (`enabled: false`). Additionally, applications that frequently deal with uploads greater than 250MB in size can update the `max_request_size` key to the application's needs. Note that modifications to `request_buffering` will need to be specified at each location where it is desired.

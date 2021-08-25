@@ -22,8 +22,8 @@ The SimpleSAML client uses additional cookies besides the Drupal session cookie 
     type: upstream
     upstream: "app:http"
     cache:
-      enabled: true
-      cookies: ['/^SS?ESS/', '/^Drupal.visitor/', 'SimpleSAMLSessionID', 'SimpleSAMLAuthToken']
+        enabled: true
+        cookies: ['/^SS?ESS/', '/^Drupal.visitor/', 'SimpleSAMLSessionID', 'SimpleSAMLAuthToken']
 ```
 
 Commit this change to the Git repository.
