@@ -4,10 +4,6 @@ const request = require("request");
 
 // Example file data.
 const dataDirectories = {
-    "templates": {
-        dir: 'data/remote-examples/templates/',
-        fetchFunc: fetchFilesTemplates,
-    },
     "language-examples": {
         dir: 'data/remote-examples/language-examples/',
         fetchFunc: fetchFilesExamples
@@ -30,19 +26,6 @@ function writeFileFromTarget(target, destination) {
         // Write the file.
         fs.writeFileSync(destination, body);
     })
-}
-
-// Function to parse out an example file's target and destination before request is made.
-function fetchFilesTemplates(data) {
-    for ( repo in data["repos"] ) {
-        // Format target and destination.
-        var target = `${data["root"]}/${data["repos"][repo]}/${data["branch"]}/${data["file"]}`;
-        var destination = process.cwd() + `${data["savePath"]}/${data["repos"][repo]}`
-        // Ensure subdirectory exists.
-        ensureSubdir(data["savePath"])
-        // Place the request and write the file.
-        writeFileFromTarget(target, destination);
-    }
 }
 
 // Function to parse out an example file's target and destination before request is made.

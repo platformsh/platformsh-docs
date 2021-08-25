@@ -25,7 +25,7 @@ An example `.platform.app.yaml` looks like this:
 
 ---
 title=Go
-file=static/files/fetch/appyaml/golang
+file=static/files/fetch/templates/templates/golang/files/.platform.app.yaml
 highlight=yaml
 markdownify=false
 ---
@@ -34,7 +34,7 @@ markdownify=false
 
 ---
 title=Node.js
-file=static/files/fetch/appyaml/nodejs
+file=static/files/fetch/templates/templates/nodejs/files/.platform.app.yaml
 highlight=yaml
 markdownify=false
 ---
@@ -43,7 +43,7 @@ markdownify=false
 
 ---
 title=PHP
-file=static/files/fetch/appyaml/php
+file=static/files/fetch/templates/templates/php/files/.platform.app.yaml
 highlight=yaml
 markdownify=false
 ---
@@ -52,7 +52,7 @@ markdownify=false
 
 ---
 title=Python
-file=static/files/fetch/appyaml/python3
+file=static/files/fetch/templates/templates/python3/files/.platform.app.yaml
 highlight=yaml
 markdownify=false
 ---

@@ -107,4 +107,5 @@ The ideal `.platform.app.yaml` file will vary from project project, and you are 
 Your database for Drupal must be named "database" in the `relationships`.
 {{< /note >}}
 
-{{< readFile file="static/files/fetch/appyaml/drupal7" highlight="yaml" >}}
+{{< readFile file="static/files/fetch/templates/archived/drupal7/files/.platform.app.yaml" highlight="yaml" >}}
+

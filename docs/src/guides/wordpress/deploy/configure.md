@@ -23,7 +23,7 @@ Each service entry has a name (`db` in the example below), as well as a `type` t
 
 If a service stores persistent data then it will also have a `disk` key, which specifies the amount of storage to give it, in MB.
 
-{{< readFile file="static/files/fetch/servicesyaml/wordpress-composer" highlight="yaml" >}}
+{{< template-file template="wordpress-composer" file=".platform/services.yaml" highlight="yaml" >}}
 
 ## Application container: `.platform.app.yaml`
 

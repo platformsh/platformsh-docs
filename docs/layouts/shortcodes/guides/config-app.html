@@ -3,5 +3,5 @@
 
 <p>{{ .Inner | markdownify }}</p>
 
-{{ $file := printf "static/files/fetch/appyaml/%s" (.Get "template" ) }}
+{{ $file := printf "static/files/fetch/templates/templates/%s/files/.platform.app.yaml" ( .Get "template" ) }}
 {{ highlight ( readFile $file ) "yaml" ""}}

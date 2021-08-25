@@ -1,0 +1,2 @@
+{{ $file := printf "static/files/fetch/templates/templates/%s/files/%s" ( .Get "template" ) ( .Get "file" )}}
+{{ highlight ( readFile $file ) ( .Get "highlight" ) ""}}

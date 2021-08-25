@@ -19,7 +19,7 @@ The `services.yaml` file lists the pre-packaged services you need for your appli
 
 Deploying Micronaut does not in itself require you to configure a database or another service, but in all likelihood you will want to add one at some point. Below is the example configuration for adding a MariaDB (named `db`) and Redis (named `cache`) container to your cluster. 
 
-{{< readFile file="static/files/fetch/servicesyaml/drupal9" highlight="yaml" >}}
+{{< template-file template="drupal9" file=".platform/services.yaml" highlight="yaml" >}}
 
 You can add [other services](/configuration/services/_index.md) if desired, such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md). You will need to configure Micronaut to use those services as well once the service is enabled.
 

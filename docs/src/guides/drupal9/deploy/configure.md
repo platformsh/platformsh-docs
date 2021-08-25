@@ -25,7 +25,7 @@ Each service entry has a name (`db` and `cache` in the example below), as well a
 
 If a service stores persistent data then it will also have a `disk` key, which specifies the amount of storage to give it, in MB.
 
-{{< readFile file="static/files/fetch/servicesyaml/drupal9" highlight="yaml" >}}
+{{< template-file template="drupal9" file=".platform/services.yaml" highlight="yaml" >}}
 
 ## Application container: `.platform.app.yaml`
 

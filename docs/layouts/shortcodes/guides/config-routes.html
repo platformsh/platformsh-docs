@@ -10,5 +10,5 @@
 
 <p>Don't worry about unencrypted HTTP routes. All requests on Platform.sh are TLS-enabled, and we automatically redirect HTTP requests to HTTPS.</p>
 
-{{ $file := printf "static/files/fetch/routesyaml/%s" (.Get "template" ) }}
+{{ $file := printf "static/files/fetch/templates/templates/%s/files/.platform/routes.yaml" ( .Get "template" ) }}
 {{ highlight ( readFile $file ) "yaml" ""}}
