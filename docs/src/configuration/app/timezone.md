@@ -23,12 +23,12 @@ For example:
 timezone: "America/New_York"
     
 crons:
-  backup:
-    spec: '25 1 * * *'
-    cmd: |
-      if [ "$PLATFORM_BRANCH" = master ]; then
-          platform backup:create --yes --no-wait
-      fi
+    backup:
+        spec: '25 1 * * *'
+        cmd: |
+            if [ "$PLATFORM_BRANCH" = master ]; then
+                platform backup:create --yes --no-wait
+            fi
 ```
 
 ## Setting an application runtime timezone
@@ -39,8 +39,8 @@ The underlying mechanism on how to set that timezone however depends on the runt
 
   ```yaml
   variables:
-     php:
-         "date.timezone": "Europe/Paris"
+      php:
+          "date.timezone": "Europe/Paris"
   ``` 
 * Node.js runtime - You can change the timezone by starting the server with `env TZ='<timezone>' node server.js`.
 * Python runtime - You can change the timezone by starting the server with `env TZ='<timezone>' python server.py`.

@@ -34,20 +34,20 @@ At the end of the `build` hook in your `.platform.app.yaml`, create a `newrelic`
 
 ```yaml
 hooks:
-  # ... your hooks
-  build: |
-    # ... your build hook
-    mkdir $PLATFORM_APP_DIR/newrelic
+    # ... your hooks
+    build: |
+        # ... your build hook
+        mkdir $PLATFORM_APP_DIR/newrelic
 ```
 
 Now add this directory to your mounts:
 
 ```yaml
 mounts:
-  # ... your mounts
-  '/newrelic/':
-    source: local
-    source_path: newrelic
+    # ... your mounts
+    '/newrelic/':
+        source: local
+        source_path: newrelic
 ```
 
 We now need to tell New Relic to use this file. To do that, create a new project level variable called `NEW_RELIC_LOG`:

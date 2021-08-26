@@ -32,8 +32,8 @@ If you have the [router cache](/configuration/routes/cache.md) enabled, you will
 "https://{default}/":
     # ...
     cache:
-      enabled: true
-      cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
+        enabled: true
+        cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
 ```
 
 ## Using Xdebug

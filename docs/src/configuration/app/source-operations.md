@@ -64,7 +64,7 @@ The following Source Operation syncronizes your branch with an upstream Git repo
 
 2. In your  `.platform.app.yaml` file, define a Source Operation to fetch from that upstream repository:
 
-  ```
+  ```yaml
   source:
       operations:
           upstream-update:
@@ -87,7 +87,7 @@ The following Source Operation will revert the last commit pushed to the Git rep
 
 In your  `.platform.app.yaml` file, define a Source Operation to revert the last commit:
 
-```
+```yaml
 source:
     operations:
         revert:
@@ -103,7 +103,7 @@ The following source operation will use Composer to update Drupal Core.
 
 1. In your  `.platform.app.yaml` file, define a Source Operation to update Drupal Core:
 
-```
+```yaml
 source:
     operations:
         update-drupal-core:
@@ -126,7 +126,7 @@ The following Source Operation will download a Drupal extension. You can define
 
 1. In your  `.platform.app.yaml` file, define a Source Operation to update Drupal Core:
 
-```
+```yaml
 source:
     operations:
         download-drupal-extension:

@@ -46,19 +46,19 @@ You can specify those dependencies as shown below:
 
 ```yaml
 dependencies:
-  php: # Specify one Composer package per line.
-    drush/drush: '8.0.0'
-    composer/composer: '^2'
-  python: # Specify one Python 2 package per line.
-    behave: '*'
-  python2: # Specify one Python 2 package per line.
-    requests: '*'
-  python3: # Specify one Python 3 package per line.
-    numpy: '*'
-  ruby: # Specify one Bundler package per line.
-    sass: '3.4.7'
-  nodejs: # Specify one NPM package per line.
-    pm2: '^4.5.0'
+    php: # Specify one Composer package per line.
+        drush/drush: '8.0.0'
+        composer/composer: '^2'
+    python: # Specify one Python 2 package per line.
+        behave: '*'
+    python2: # Specify one Python 2 package per line.
+        requests: '*'
+    python3: # Specify one Python 3 package per line.
+        numpy: '*'
+    ruby: # Specify one Bundler package per line.
+        sass: '3.4.7'
+    nodejs: # Specify one NPM package per line.
+        pm2: '^4.5.0'
 ```
 
 Note that the package name format for each language is defined by the package manager used; similarly, the version constraint string will be interpreted by the package manager.  Consult the appropriate package manager's documentation for the supported formats.
@@ -143,13 +143,13 @@ The following blocks will download a specific version of Sass, then during the b
 
 ```yaml
 dependencies:
-  nodejs:
-    sass: "^1"
+    nodejs:
+        sass: "^1"
 
 hooks:
-  build: |
-    npm install
-    npm run build-css
+    build: |
+        npm install
+        npm run build-css
 ```
 
 ## How can I run certain commands only on certain environments?

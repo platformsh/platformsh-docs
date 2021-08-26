@@ -49,32 +49,32 @@ The following example configures an environment to serve the static content fold
 
 ```yaml
 web:
-  locations:
-    "/":
-      root: "wwwroot"
-      allow: true
-      passthru: true
-      rules:
-        # Serve these common asset types with customs cache headers.
-        \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
-          allow: true
-          expires: 300s
+    locations:
+        "/":
+            root: "wwwroot"
+            allow: true
+            passthru: true
+            rules:
+                # Serve these common asset types with customs cache headers.
+                \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
+                    allow: true
+                    expires: 300s
 
-  commands:
-    start: "dotnet WebApplication1.dll"
+    commands:
+        start: "dotnet WebApplication1.dll"
 ```
 
 You can also route all requests to the application unconditionally:
 
 ```yaml
 web:
-  locations:
-    "/":
-      allow: false
-      passthru: true
+    locations:
+        "/":
+            allow: false
+            passthru: true
 
-  commands:
-    start: "dotnet WebApplication1.dll"
+    commands:
+        start: "dotnet WebApplication1.dll"
 ```
 
 ## Project templates
