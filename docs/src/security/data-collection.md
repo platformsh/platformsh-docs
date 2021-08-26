@@ -43,4 +43,4 @@ Access by Customers and Platform.sh support personnel to customer environments i
 
 ## Vendor data sharing
 
-We have identified and mapped all data we collect and share with vendors. We know what categories of data are collected and to which geographical destinations such data is transferred. All of our vendors have been assessed for security and GDPR compliance.  We have enacted contract amendments and Data Processing Agreements (DPAs) where applicable.
+We have identified and mapped all data we collect and share with vendors. We know what categories of data are collected and to which geographical destinations such data is transferred. All of our vendors have been assessed for security and GDPR compliance.  We have the relevant Standard Contractual Clauses (SCCs) and Data Processing Agreemeents (DPAs) in place where applicable.
