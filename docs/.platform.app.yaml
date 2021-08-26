@@ -18,6 +18,7 @@ relationships:
 hooks:
     # Build hooks can modify the application files on disk but not access any services like databases.
     build: |
+        set -e
         ./build_examples.sh
         ./build_docs.sh
     deploy: !include
