@@ -70,12 +70,12 @@ An example of a minimalist `.platform.app.yaml` file for PHP, heavily commented,
 name: 'app'
 
 # The type key specifies the language and version for your application.
-type: 'php:7.0'
+type: 'php:8.0'
 
-# On PHP, there are multiple build flavors available. Pretty much everyone
-# except Drupal 7 users will want the composer flavor.
-build:
-    flavor: composer
+# By default, composer 1 will be used. Specify composer 2 in the dependencies to get the latest version
+dependencies:
+    php:
+        composer/composer: '^2'
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
