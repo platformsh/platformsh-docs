@@ -75,7 +75,6 @@ Framework  | Credit | Date added
 [**Mouf framework** example](https://github.com/xhuberty/RhMachine)|[The Coding Machine](https://github.com/xhuberty)|May 2017
 [**Flow Framework** support package](https://github.com/ttreeagency/FlowPlatformSh)|Dominique Feyer|Jul 2017
 [**Neos CMS** support package](https://github.com/ttreeagency/NeosPlatformSh)|Dominique Feyer|Jul 2017
-[**Silex** example](https://github.com/JGrubb/platformsh-silex-intro)|[@JGrubb](https://github.com/JGrubb)|May 2017
 [**Silverstripe** example](https://github.com/gmoigneu/platformsh-example-silverstripe)|[@gmoigneu](https://github.com/gmoigneu)|May 2017
 [**Thunder** example](https://github.com/md-systems/platformsh-example-thunder)|[maintained by the MD Systems team](https://github.com/md-systems)|May 2017
 [**WooCommerce** example](https://github.com/liip/woocommerce-demo)|[@Liip](https://github.com/liip)|May 2017
