@@ -17,7 +17,7 @@ To specify a Go container, use the `type` property in your `.platform.app.yaml`.
 
 ## Deprecated versions
 
-The following container versions are also available.  However, due to their lack of [Go module](https://golang.org/cmd/go/#hdr-Modules__module_versions__and_more) support and the difficulties in supporting the GOPATH during the Platform.sh build they are not recommended.
+The following container versions are also available.  However, they are not maintained upstream and as a consequence not recommended to use.
 
 {{< image-versions image="golang" status="deprecated" >}}
 

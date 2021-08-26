@@ -14,5 +14,5 @@ The following block in `.platform.app.yaml` will restrict SSH access to just tho
 
 ```yaml
 access:
-  ssh: admin
+    ssh: admin
 ```

@@ -43,8 +43,8 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
 
    ```yaml
    dependencies:
-     nodejs:
-       pm2: "^4.5.0"
+       nodejs:
+           pm2: "^4.5.0"
    ```
 
    These are the global dependencies of your project (the ones you would have installed with `npm install -g`). Here we specify the `pm2` process manager that will allow us to run the node process.
@@ -53,8 +53,8 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
 
    ```yaml
    web:
-     commands:
-       start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
+       commands:
+           start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
    ```
 
    If there is a package.json file present at the root of your repository, Platform.sh will automatically install the dependencies. We suggest including the `platformsh-config` helper npm module, which makes it trivial to access the running environment.
@@ -84,24 +84,24 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
 
    ```yaml
    hooks:
-     build: |
-       npm install
-       npm run build
+       build: |
+           npm install
+           npm run build
    ```
 
 6. Setup the routes to your Node.js application in `.platform/routes.yaml`.
 
    ```yaml
    "https://{default}/":
-     type: upstream
-     upstream: "app:http"
+       type: upstream
+       upstream: "app:http"
    ```
 
 7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor](/configuration/app/build.md#build), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
 
    ```yaml
    build:
-     flavor: none
+       flavor: none
    ```
 
    Consult the documentation specific to [Node.js builds](/configuration/app/build.html#nodejs-npm-by-default) for more information.
@@ -114,26 +114,26 @@ name: node
 type: nodejs:14
 
 web:
-  commands:
-    start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
-    #in this setup you will find your application stdout and stderr in /app/run/logs
-  locations:
-    "/public":
-      passthru: false
-      root: "public"
-      # Whether to allow files not matching a rule or not.
-      allow: true
-      rules:
-        '\.png$':
-          allow: true
-          expires: -1
+    commands:
+        start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
+        #in this setup you will find your application stdout and stderr in /app/run/logs
+    locations:
+        "/public":
+            passthru: false
+            root: "public"
+            # Whether to allow files not matching a rule or not.
+            allow: true
+            rules:
+                '\.png$':
+                    allow: true
+                    expires: -1
 dependencies:
-  nodejs:
-    pm2: "^4.5.0"
+    nodejs:
+        pm2: "^4.5.0"
 mounts:
-   run:
-       source: local
-       source_path: run
+    run:
+        source: local
+        source_path: run
 disk: 512
 ```
 

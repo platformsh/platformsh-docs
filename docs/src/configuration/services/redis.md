@@ -136,7 +136,7 @@ On the Ephemeral `redis` service it is also possible to select the key eviction 
 cache:
     type: redis:5.0
     configuration:
-      maxmemory_policy: allkeys-lru
+        maxmemory_policy: allkeys-lru
 ```
 
 The default value if not specified is `allkeys-lru`, which will simply remove the oldest cache item first.  Legal values are:
@@ -180,7 +180,7 @@ Using the same configuration but with your Redis relationship named `sessionstor
 
 ```yaml
 relationships:
-  sessionstorage: "data:redis"
+    sessionstorage: "data:redis"
 
 variables:
     php:

@@ -68,11 +68,11 @@ Here is an example of a basic `.platform/routes.yaml` file:
 
 ```yaml
 "https://{default}/":
-  type: upstream
-  upstream: "app:http"
+    type: upstream
+    upstream: "app:http"
 "https://www.{default}/":
-  type: redirect
-  to: "https://{default}/"
+    type: redirect
+    to: "https://{default}/"
 ```
 
 In this example, we will route both the apex domain and the www subdomain to an [application called "app"](/configuration/app/name.md), the www subdomain being redirected to the apex domain using an HTTP 301 `Moved Permanently` response.
@@ -257,9 +257,9 @@ You will also need to [disable request buffering](/configuration/app/web.md#loca
 
 ```yaml
 web:
-  locations:
-    '/':
-      passthru: true
-      request_buffering:
-        enabled: false
+    locations:
+        '/':
+            passthru: true
+            request_buffering:
+                enabled: false
 ```
