@@ -107,8 +107,8 @@ This functionality is generally not required if Elasticsearch is not exposed on 
 
 ```yaml
 "https://es.{default}":
-  type: upstream
-  upstream: search:elasticsearch
+    type: upstream
+    upstream: search:elasticsearch
 ```
 
 ## Plugins

@@ -21,13 +21,13 @@ The `firewall` property defines one or more allowed entries for outbound request
 
 ```yaml
 firewall:
-  outbound:
-    - protocol: tcp
-      domains: ["google.com", "facebook.com"]
-      ports: [80, 443]
-    - protocol: tcp
-      ips: ["1.2.3.4/32"]
-      ports: [22]
+    outbound:
+        - protocol: tcp
+            domains: ["google.com", "facebook.com"]
+            ports: [80, 443]
+      - protocol: tcp
+            ips: ["1.2.3.4/32"]
+            ports: [22]
 ```
 
 The above example allows two outbound rules over TCP.  All other outbound requests will be blocked and will time out eventually (usually after 30 seconds).
@@ -36,9 +36,9 @@ If no rules are specified, the default `firewall` configuration is equivalent to
 
 ```yaml
 firewall:
-  outbound:
-    - protocol: tcp
-      ips: ["0.0.0.0/0"]
+    outbound:
+        - protocol: tcp
+            ips: ["0.0.0.0/0"]
 ```
 
 That is, all outbound TCP traffic is allowed on all ports (aside from port 25, which is always blocked without exception).  In the majority of cases the default is sufficient for most applications.
@@ -83,10 +83,10 @@ That means that, for this configuration:
 
 ```yaml
 firewall:
-  outbound:
-    - ips: ["1.2.3.4/32"]
-      ports: [443]
-    - ports: [80]
+    outbound:
+        - ips: ["1.2.3.4/32"]
+            ports: [443]
+        - ports: [80]
 ```
 
 Requests to port 80 on any IP will be allowed, and requests to 1.2.3.4 on either port 80 or 443 will be allowed, even though the first rule only lists port 443.

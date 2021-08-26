@@ -109,8 +109,8 @@ For example, you can use [amqp-utils](https://github.com/dougbarth/amqp-utils/) 
 
  ```yaml
 dependencies:
-  ruby:
-    amqp-utils: "0.5.1"
+    ruby:
+        amqp-utils: "0.5.1"
 ```
 
 Then, when you SSH into your container, you can simply type any `amqp-` command available to manage your queues.
@@ -123,10 +123,10 @@ You can configure additional [virtual hosts](https://www.rabbitmq.com/vhosts.htm
 
 ```yaml
 rabbitmq:
-  type: rabbitmq:3.8
-  disk: 512
-  configuration:
-    vhosts:
-      - foo
-      - bar
+    type: rabbitmq:3.8
+    disk: 512
+    configuration:
+        vhosts:
+            - foo
+            - bar
 ```

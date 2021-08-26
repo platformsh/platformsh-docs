@@ -27,10 +27,10 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
    ```yaml
    hooks:
-     build: |
-       pip install -r requirements.txt
-       pip install -e .
-       pip install gunicorn
+       build: |
+           pip install -r requirements.txt
+           pip install -e .
+           pip install gunicorn
    ```
 
    These are installed as global dependencies in your environment.
@@ -39,8 +39,8 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
    ```yaml
    web:
-     commands:
-       start: "gunicorn -b 0.0.0.0:$PORT project.wsgi:application"
+       commands:
+           start: "gunicorn -b 0.0.0.0:$PORT project.wsgi:application"
    ```
 
    This assumes the WSGI file is `project/wsgi.py` and the WSGI application object is named `application` in the WSGI file.
@@ -49,14 +49,14 @@ In this example, we use Gunicorn to run our WSGI application.  Configure the `.p
 
    ```yaml
    web:
-     locations:
-       "/":
-         root: ""
-         passthru: true
-         allow: false
-       "/static":
-         root: "static/"
-         allow: true
+       locations:
+           "/":
+               root: ""
+               passthru: true
+               allow: false
+           "/static":
+               root: "static/"
+               allow: true
    ```
 
    This configuration asks our web server to handle HTTP requests at "/static" to serve static files stored in `/app/static/` folder while everything else is forwarded to your application server.
@@ -79,8 +79,8 @@ Then, set up the routes to your application in `.platform/routes.yaml`.
 
    ```yaml
    "https://{default}/":
-     type: upstream
-     upstream: "app:http"
+       type: upstream
+       upstream: "app:http"
    ```
 
 Here is the complete `.platform.app.yaml` file:
@@ -90,22 +90,22 @@ name: app
 type: python:2.7
 
 web:
-  commands:
-    start: "gunicorn -b $PORT project.wsgi:application"
-  locations:
-    "/":
-      root: ""
-      passthru: true
-      allow: false
-    "/static":
-      root: "static/"
-      allow: true
+    commands:
+        start: "gunicorn -b $PORT project.wsgi:application"
+    locations:
+        "/":
+            root: ""
+            passthru: true
+            allow: false
+        "/static":
+            root: "static/"
+            allow: true
 
 hooks:
-  build: |
-    pip install -r requirements.txt
-    pip install -e .
-    pip install gunicorn
+    build: |
+        pip install -r requirements.txt
+        pip install -e .
+        pip install gunicorn
 
 mounts:
    tmp:
@@ -127,18 +127,18 @@ The above Gunicorn based WSGI example can be modified to use the Python 3.5+ asy
 
    ```yaml
    web:
-     commands:
-       start: "gunicorn -b $PORT -k gaiohttp project.wsgi:application"
+       commands:
+           start: "gunicorn -b $PORT -k gaiohttp project.wsgi:application"
    ```
 
 3. Add `aiohttp` as pip dependency in your build hook.
 
    ```yaml
    hooks:
-     build: |
-       pip install -r requirements.txt
-       pip install -e .
-       pip install gunicorn aiohttp
+       build: |
+           pip install -r requirements.txt
+           pip install -e .
+           pip install gunicorn aiohttp
    ```
 
 ## Accessing services

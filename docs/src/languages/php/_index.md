@@ -171,8 +171,8 @@ If you want to inspect what's going on with PHP-FPM, you can install this [small
 
 ```yaml
 dependencies:
-  php:
-    wizaplace/php-fpm-status-cli: "^1.0"
+    php:
+        wizaplace/php-fpm-status-cli: "^1.0"
 ```
 
 Then when you are connected to your project over SSH you can run:

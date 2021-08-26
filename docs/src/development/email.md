@@ -80,10 +80,10 @@ In Symfony, if you use the default `SwiftMailer` service, we recommend the follo
 
 ```yaml
 parameters:
-  mailer_transport: smtp
-  mailer_host: "%env(PLATFORM_SMTP_HOST)%"
-  mailer_user: null
-  mailer_password: null
+    mailer_transport: smtp
+    mailer_host: "%env(PLATFORM_SMTP_HOST)%"
+    mailer_user: null
+    mailer_password: null
 ```
 
 If you are using a file spool facility, you will probably need to setup a read/write mount for it in `.platform.app.yaml`, for example:

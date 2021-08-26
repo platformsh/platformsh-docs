@@ -165,7 +165,7 @@ type: "python:3.7"
 disk: 2048
 
 hooks:
-   build: |
+    build: |
        pip install -r requirements.txt
        pip install -e .
        pip install gunicorn

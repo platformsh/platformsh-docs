@@ -30,8 +30,8 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
 
     ```yaml
     hooks:
-      build: bundle install --without development test
-      deploy: RACK_ENV=production bundle exec rake db:migrate
+        build: bundle install --without development test
+        deploy: RACK_ENV=production bundle exec rake db:migrate
     ```
 
     These are installed as your project dependencies in your environment. You can also use the `dependencies` key to install global dependencies theses can be Ruby, Python, NodeJS or PHP libraries.
@@ -127,8 +127,8 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
     disk: 2048
 
     hooks:
-      build: bundle install --without development test
-      deploy: RACK_ENV=production bundle exec rake db:migrate
+        build: bundle install --without development test
+        deploy: RACK_ENV=production bundle exec rake db:migrate
 
     mounts:
         tmp:
@@ -145,8 +145,8 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
 
     ```yaml
     database:
-      type: mysql:10.4
-      disk: 2048
+        type: mysql:10.4
+        disk: 2048
     ```
 
 ## Connecting to services
