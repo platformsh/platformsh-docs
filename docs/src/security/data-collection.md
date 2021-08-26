@@ -11,7 +11,7 @@ The following list describes the categories of data we collect in GDPR terms:
 
 * Article 4 "personal data": Our accounts system contains some "personal data" (name, address, phone, etc.) to allow us to bill your account appropriately.  This information can be verified, changed, and deleted by [logging into your account](https://accounts.platform.sh/).
 * Article 9 "special categories": We do not collect nor store any "special categories of personal data" (race, religion, sexual orientation, etc.) or any other attributes that are irrelevant to our business.
-* Article 30 "records of processing activities": The only "records" we collect are IP addresses and Log files. These reside on AWS/Azure/Orange, depending on your hosting, and may be sent to Sentry.io if there are crashes.
+* Article 30 "records of processing activities": The only "records" we collect are IP addresses and Log files.
 
 ## Application logs
 
@@ -43,4 +43,4 @@ Access by Customers and Platform.sh support personnel to customer environments i
 
 ## Vendor data sharing
 
-We have identified and mapped all data we collect and share with vendors (such as AWS, Azure, and Orange). We know what categories of data are collected and to which geographical destinations such data is transferred. All of our vendors have been assessed for security and GDPR compliance.  We have enacted contract amendments and Data Processing Agreements (DPAs) where applicable.
+We have identified and mapped all data we collect and share with vendors. We know what categories of data are collected and to which geographical destinations such data is transferred. All of our vendors have been assessed for security and GDPR compliance.  We have the relevant Standard Contractual Clauses (SCCs) and Data Processing Agreements (DPAs) in place where applicable.
