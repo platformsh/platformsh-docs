@@ -1,7 +1,7 @@
 ---
 title: "Blackfire"
 description: |
-  Platform.sh supports [Blackfire.io](https://blackfire.io/). Blackfire is a PHP profiler and automated performance testing tool that can be used in the development Integration, Staging, and Production environments.
+  Platform.sh recommends [Blackfire.io](https://blackfire.io/). Blackfire is a full continous observability solution (monitoring, profiler and automated performance testing tool). It can be used in the development Integration, Staging, and Production environments. Blackfire supports PHP, Python and Go (Profiler only).
 ---
 
 {{< description >}}
@@ -31,75 +31,9 @@ Go to your Dashboard and create a new environment [under the Environments tab](h
 
 ![Blackfire environments](/images/integrations/blackfire/blackfire-environments.png "0.4")
 
-You will need to store the server credentials for further configuration. You can find them any time under the "Settings" tab of your environment in Blackfire.
+### 2. Enable Blackfire
 
-![Blackfire credentials](/images/integrations/blackfire/blackfire-credentials.png "0.4")
-
-### 2. Enable the Blackfire extension
-
-Configure the extension in your `.platform.app.yaml` as follows:
-
-```yaml
-runtime:
-    extensions:
-        - blackfire
-```
-
-Push the changes to your Platform environment to enable Blackfire as follows:
-
-```bash
-git add .platform.app.yaml
-git commit -m "Enable Blackfire."
-git push
-```
-
-### 3. Configure your server credentials
-
-Blackfire enables to have a fine grained configuration of server credentials across branches and environments on Platform.sh.
-
-#### Configuring global server credentials
-
-Configuring server credentials on your master branch will enable you to make sure you can profile any other branch:
-
-```bash
-platform variable:create -e master --json=false --visible-build=false --sensitive=false --level=project env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
-platform variable:create -e master --json=false --visible-build=false --sensitive=false --level=project env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
-```
-
-#### Configuring server credentials per branch
-
-A recommendation is to have a [Blackfire environment](https://blackfire.io/docs/reference-guide/environments#documentation) for production, another one for staging, and another one for development/integration. That can be mapped in Platform.sh to one Blackfire environment for the production branch, one for the staging branch, and one for all feature branches.
-
-
-```bash
-platform variable:create -e=<insert your branch name> --json=false --visible-build=false --sensitive=false --level=environment env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
-platform variable:create -e=<insert your branch name> --json=false --visible-build=false --sensitive=false --level=environment env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
-```
-
-### 4. Confirm it's running
-
-Login via SSH to your container and confirm that Blackfire is running as follows:
-
-```text
-php --ri blackfire | head
-
-blackfire
-
-Blackfire => enabled
-Blackfire => 1.64.0~linux-x64-zts80
-Timing measurement => cgt
-Sessions support => enabled
-Num of CPU => 8
-Profiling heap memory => 0 Kb
-Main instance trigger mode => CLI autotriggered
-
-```
-
-{{< note >}}
-Make sure you use 2 dashes in the command above. `--ri` will `Show configuration for extension <name>.`
-But `-ri` is something completely different since it will be expanded into `-r` and `-i` (run code and show full extension list).
-{{< /note >}}
-
+Follow [the step-by-step instructions](https://blackfire.io/docs/integrations/paas/platformsh) to enable Blackfire on your PHP or Python applications.
 
 ## On a Dedicated cluster
 
@@ -129,11 +63,11 @@ blackfire --config /etc/platform/$USER/blackfire.ini <command>
 
 Blackfire also enables to:
 
+* monitor your applications and get instant and actionable insights on where to look for the most impactful optimization
 * collaborate with the rest of your team
 * write performance tests
 * automate profiling with periodic builds
 * integrate further with Platform.sh by enabling to automate profiling as each code commit
-* integrate with New Relic for combined benefits of monitoring and profiling
 * integrate with GitHub, Bitbucket and GitLab to show the results of Blackfire builds at the commit status level
 
 Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for more information.
@@ -142,12 +76,12 @@ Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for mo
 Those features may require a Premium or an Enterprise subscription. We offer attractive bundles of Platform.sh and Blackfire.io subscriptions. Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
 {{< /note >}}
 
-## Enable Blackfire Application Performance Management (APM)
+## Enable Blackfire Monitoring
 
-Blackfire Application Performance Management is installed but not activated by default on Platform.sh.
+Blackfire Monitoring is installed but not activated by default on Platform.sh.
 To use Blackfire APM, you will need to add the `BLACKFIRE_APM_ENABLED` [environment variable](/development/variables.md) with a value of `1`.
 
-In the management console, view the environment you would like to enable Blackfire APM on and add the variable `env:BLACKFIRE_APM_ENABLED` with the value `1`. 
+In the management console, view the environment you would like to enable Blackfire Monitoring on and add the variable `env:BLACKFIRE_APM_ENABLED` with the value `1`. 
 Otherwise, you can use the CLI command `platform variable:create --level environment --name BLACKFIRE_APM_ENABLED --value 1`
 
 ## Troubleshooting

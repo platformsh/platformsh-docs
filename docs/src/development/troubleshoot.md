@@ -298,7 +298,7 @@ The following command will identify the 20 slowest requests in the last hour, wh
 grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20
 ```
 
-If you see that the processing time of certain requests is slow (e.g. taking more than 1000ms), you may wish to consider using a profiler like [Blackfire](/integrations/profiling/blackfire.md) to debug the performance issue.
+If you see that the processing time of certain requests is slow (e.g. taking more than 1000ms), we recommend considering a continuous observability solution like [Blackfire](/integrations/observability/blackfire.md) to monitor your application and help you improve its performance issue.
 
 Otherwise, you may check if the following options are applicable:
 
