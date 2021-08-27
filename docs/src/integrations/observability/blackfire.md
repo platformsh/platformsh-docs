@@ -1,7 +1,11 @@
 ---
 title: "Blackfire"
 description: |
+<<<<<<< HEAD:docs/src/integrations/observability/blackfire.md
   Platform.sh recommends [Blackfire.io](https://blackfire.io/). Blackfire is a full continuous observability solution (monitoring, profiler and automated performance testing tool). It can be used in the development Integration, Staging, and Production environments. Blackfire supports PHP and Python.
+=======
+  Platform.sh recommends [Blackfire.io](https://blackfire.io/). Blackfire is a full continous observability solution (monitoring, profiler and automated performance testing tool). It can be used in the development Integration, Staging, and Production environments. Blackfire supports PHP, Python and Go (Profiler only).
+>>>>>>> Update Blackfire and other observability tools documentation:docs/src/integrations/profiling/blackfire.md
 ---
 
 {{< description >}}
@@ -34,6 +38,7 @@ Go to your Dashboard and create a new environment [under the Environments tab](h
 ![Blackfire environments](/images/integrations/blackfire/blackfire-environments.png "0.4")
 
 ### 2. Enable Blackfire
+<<<<<<< HEAD:docs/src/integrations/observability/blackfire.md
 
 Follow [the step-by-step instructions](https://blackfire.io/docs/integrations/paas/platformsh) to enable Blackfire on your PHP or Python applications.
 
@@ -76,6 +81,16 @@ Main instance trigger mode => CLI autotriggered
 ### Other Dedicated Infrastructure
 
 Open a support ticket with the Backfire Server ID, Server Token, Client ID, Client Token. Our support team will install it for you.
+=======
+
+Follow [the step-by-step instructions](https://blackfire.io/docs/integrations/paas/platformsh) to enable Blackfire on your PHP or Python applications.
+
+## On a Dedicated cluster
+
+**Sign up for the free 15 days Premium trial** at [blackfire.io](https://blackfire.io/pricing) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld) or [Firefox](https://addons.mozilla.org/firefox/addon/blackfire/)).
+
+Then open a support ticket with the Backfire server ID and token.  The client ID and token is optional.  Our support team will install it for you.
+>>>>>>> Update Blackfire and other observability tools documentation:docs/src/integrations/profiling/blackfire.md
 
 Note, Blackfire integration works only on profiling your cluster via the URL to the origin. Do not profile your site going through the CDN.
 
@@ -99,12 +114,20 @@ blackfire --config /etc/platform/$USER/blackfire.ini <command>
 
 Blackfire also enables to:
 
+<<<<<<< HEAD:docs/src/integrations/observability/blackfire.md
 * [monitor your applications](https://blackfire.io/docs/monitoring-cookbooks/index) and get instant and [actionable insights](https://blackfire.io/docs/testing-cookbooks/recommendations) on where to look for the most impactful optimization
+=======
+* monitor your applications and get instant and actionable insights on where to look for the most impactful optimization
+>>>>>>> Update Blackfire and other observability tools documentation:docs/src/integrations/profiling/blackfire.md
 * collaborate with the rest of your team
 * [write performance tests](https://blackfire.io/docs/testing-cookbooks/tests)
 * automate profiling with [periodic builds](https://blackfire.io/docs/builds-cookbooks/index)
 * integrate further with Platform.sh by enabling to automate profiling as each code commit
+<<<<<<< HEAD:docs/src/integrations/observability/blackfire.md
 * integrate with [GitHub](https://blackfire.io/docs/integrations/git/github), [Bitbucket](https://blackfire.io/docs/integrations/git/bitbucket) and [GitLab](https://blackfire.io/docs/integrations/git/gitlab) to show the results of Blackfire builds at the commit status level
+=======
+* integrate with GitHub, Bitbucket and GitLab to show the results of Blackfire builds at the commit status level
+>>>>>>> Update Blackfire and other observability tools documentation:docs/src/integrations/profiling/blackfire.md
 
 Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for more information.
 

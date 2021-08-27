@@ -24,9 +24,13 @@ A third-party availability monitoring system is configured for every Dedicated p
 
 Platform.sh does not provide application-level performance monitoring.  However, we strongly recommend that customers configure application monitoring for themselves.
 
+<<<<<<< HEAD
 Platform.sh owns and recommends [Blackfire.io](/integrations/observability/blackfire.md#on-a-dedicated-cluster). By using Blackfire on Platform.sh, you will benefit from an enhanced experience and support, as well as upcoming unique features. You can contact your sales representative to get a quote for whatever size cluster is running your application.
 
 Platform.sh also [supports New Relic APM](/integrations/observability/new-relic/_index.md#on-a-dedicated-cluster). After you have signed up with New Relic and gotten your license key, open a support ticket so that it can be installed on your project. New Relic infrastructure monitoring is not supported.
+=======
+Platform.sh is a [Blackfire.io](/integrations/observability/blackfire.md#on-a-dedicated-cluster) reseller. You can contact your sales representative to get a quote for whatever size cluster is running your application. Platform.sh also [supports New Relic APM](/integrations/observability/new-relic/_index.md#on-a-dedicated-cluster). After you have signed up with New Relic and gotten your license key, open a support ticket so that it can be installed on your project. New Relic infrastructure monitoring is not supported.
+>>>>>>> Update Blackfire and other observability tools documentation
 
 ## Availability incident handling procedure
 

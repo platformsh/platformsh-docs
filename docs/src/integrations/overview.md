@@ -11,9 +11,13 @@ description: |
 
 Platform.sh supports native integrations with multiple services, first and foremost Git hosting services such as GitHub, GitLab, or Bitbucket.  You can continue to use those tools for your development workflow, and have Platform.sh environments created automatically for your pull requests and branches.
 
+<<<<<<< HEAD
 You can also add native integrations with performance monitoring tools. Platform.sh recommends [Blackfire](/integrations/observability/blackfire.md), which is part of the standard Platform.sh Observability Suite.
 
 Platform.sh also supports [New Relic](/integrations/observability/new-relic/_index.md), or [Tideways](/integrations/observability/tideways.md), as well as setting up [health notifications](/integrations/notifications.md).  Or create your [own integration using our webhooks](/integrations/activity/webhooks.md).
+=======
+You can also add our native integrations with performance monitoring tools such as [Blackfire](/integrations/observability/blackfire.md), [New Relic](/integrations/observability/new-relic/_index.md), or [Tideways](/integrations/observability/tideways.md), as well as setting up [health notifications](/integrations/notifications.md).  Or create your [own integration using our webhooks](/integrations/activity/webhooks.md).
+>>>>>>> Update Blackfire and other observability tools documentation
 Be aware that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.  See [User administration](/administration/users.md) for more details.
 
 ## Listing active integrations
