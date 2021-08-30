@@ -228,7 +228,7 @@ Because Solr uses HTTP for both its API and admin interface it's possible to acc
 platform tunnel:open
 ```
 
-That will open an SSH tunnel to all services on the current environment, and give an output similar to:
+That opens an SSH tunnel to all services on the current environment and gives an output similar to:
 
 ```bash
 SSH tunnel opened on port 30000 to relationship: solrsearch

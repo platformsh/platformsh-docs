@@ -108,14 +108,14 @@ First, open an SSH tunnel with the Platform.sh CLI:
 platform tunnel:open
 ```
 
-That will open an SSH tunnel to all services on your current environment, and produce output something like the following:
+That opens an SSH tunnel to all services on your current environment and produce output like the following:
 
 ```bash
 SSH tunnel opened on port 30000 to relationship: database
 SSH tunnel opened on port 30001 to relationship: redis
 ```
 
-The port may vary in your case.  You will also need to obtain the user, password, and database name from the relationships array, as above.
+The port may vary in your case.  You also need to obtain the user, password, and database name from the relationships array, as above.
 
 Then, simply connect to that port locally using `mongodump` (or your favorite MongoDB tools) to export all data in that server:
 

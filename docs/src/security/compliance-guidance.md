@@ -49,5 +49,5 @@ Customers are responsible for:
 * **Configuration Management** - Customers are responsible for the secure configuration of their application, including Platform.sh configuration and routes managed through YAML files.
 * **Awareness and Training** - Customers are responsible for training their own employees and users on secure software practices.
 * **Capacity Management** - Customers are responsible for ensuring their application containers have sufficient resources for their selected tasks.
-* **Access Control** - Customers are responsible for effectively leveraging available access control mechanisms, including proper access control settings, secrets management, ssh keys management, and the use of two-factor authentication.
+* **Access Control** - Customers are responsible for effectively leveraging available access control mechanisms, including proper access control settings, secrets management, SSH key management, and the use of two-factor authentication.
 * **Backups** - On Platform.sh, Professional customers are responsible for all application and database backups.

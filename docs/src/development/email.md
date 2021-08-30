@@ -50,17 +50,17 @@ Changing the SMTP status will not take effect immediately.  You will need to iss
 - Port 465 and 587 should be used to send email to your own external email server.
 - Port 25 should be used to send through PLATFORM_SMTP_HOST. (this is the default in most mailers).
 
-We proxy your emails through our own smtp host, and encrypt them over port 465 before sending them through to the outside world.
+We proxy your emails through our own SMTP host, and encrypt them over port 465 before sending them through to the outside world.
 
 ## Testing the email service
 
 Before testing that the email service is working, please make sure that:
 
 - E-mail has been [enabled](#enablingdisabling-email) on the environment
-- the environment has been redeployed
-- you have SSH'd into the environment and verified that the `PLATFORM_SMTP_HOST` environment variable is visible
+- The environment has been redeployed
+- You have accessed the environment using SSH and verified that the `PLATFORM_SMTP_HOST` environment variable is visible
 
-To test the email service, first connect to your cluster through [ssh](/development/ssh.md) using the [cli](/development/cli/_index.md) command `platform ssh`. Substitute the email addresses and run the following snippet in the terminal:
+To test the email service, first connect to your cluster through [SSH](/development/ssh.md) using the [CLI](/development/cli/_index.md) command `platform ssh`. Run the following snippet in the terminal (replacing the email addresses with the ones you want):
 
 ```bash
 $ php -r 'mail("mail@example.com", "test message", "just testing", "From: tester@example.com");'
@@ -70,7 +70,7 @@ After a couple minutes you should receive the "test message" in your mailbox.
 
 ## Sending email in PHP
 
-When you send email, you can simply use the built-in `mail()` function in PHP. The PHP runtime is configured to send email automatically via the assigned SendGrid sub-account.  Note that the `From` header is required; email will not send if that header is missing.
+When you send email, you can use the built-in `mail()` function in PHP. The PHP runtime is configured to send email automatically via the assigned SendGrid sub-account.  Note that the `From` header is required; email will not send if that header is missing.
 
 Beware of the potential security problems when using the `mail()` function, which arise when using user-supplied input in the fifth (`$additional_parameters`) argument. See the [PHP `mail()` documentation](http://php.net/manual/en/function.mail.php) for more information.
 

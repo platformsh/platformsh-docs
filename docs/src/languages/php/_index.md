@@ -175,7 +175,7 @@ dependencies:
         wizaplace/php-fpm-status-cli: "^1.0"
 ```
 
-Then when you are connected to your project over SSH you can run:
+Then when you are connected to your project over SSH, you can run:
 
 ```shell
 $ php-fpm-status --socket=unix://$SOCKET --path=/-/status --full

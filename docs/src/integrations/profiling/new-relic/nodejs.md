@@ -79,7 +79,7 @@ $ git commit -m "Enable New Relic"
 $ git push
 ```
 
-Once your environment is delployed and you've generated some traffic, you need to wait a little bit for your New Relic dashboard to be created.
+Once your environment is deployed and you've generated some traffic, you need to wait a little bit for your New Relic dashboard to be created.
 
 ## Troubleshoot
 

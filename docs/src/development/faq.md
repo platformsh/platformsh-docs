@@ -57,7 +57,7 @@ No.  Changes to the code can only be made through deploying new Git commits.  Th
 
 When you `git push` new code, Platform.sh rebuilds and redeploys the application.  What shows on the command line is the output of your build process (composer, pip, bundler, etc. plus your own build hook) followed by the deploy process.  It ends with a description of what was just deployed and the URLs that are now active.
 
-To supress the output, run `platform push -W`.  The `-W` means `--no-wait`, and will disconnect the connection once the commits are pushed so that you can continue to use your local terminal.  The exact same output is also available in the Web Management Console.
+To suppress the output, run `platform push -W`.  The `-W` means `--no-wait`, and will disconnect the connection once the commits are pushed so that you can continue to use your local terminal.  The exact same output is also available in the Web Management Console.
 
 ## What Linux distribution is Platform.sh using?
 

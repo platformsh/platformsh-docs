@@ -1,0 +1,10 @@
+[Cc]ron
+Blackfire
+Drush
+Fastly
+hostname
+multifactor
+Nginx
+rsync
+Symfony
+Xdebug

@@ -3,7 +3,7 @@ title: "Upgrading to the Integrated UI"
 weight: 6
 sidebarTitle: "Upgrading"
 description: |
-    Platform.sh Dedicated Generation 1 projects (created prior to October 2017) used a separate Git repository for Production and Staging.  That also necessitated running most configuration changes through a ticket, and maintaining separate SSH credentials for each environment.
+    Platform.sh Dedicated Generation 1 projects (created prior to October 2017) used a separate Git repository for Production and Staging.  That also necessitated running most configuration changes through a ticket and maintaining separate SSH credentials for each environment.
 ---
 
 {{< description >}}

@@ -6,7 +6,7 @@ aliases:
   - "/gettingstarted/local-development/next-steps.html"
 ---
 
-In this guide you opened an SSH tunnel to your Platform.sh project and built your application locally.
+In this guide, you opened an SSH tunnel to your Platform.sh project and built your application locally.
 
 Don't stop now! There are far more features that make Platform.sh profoundly helpful to developers that you have left to explore.
 

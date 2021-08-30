@@ -61,7 +61,7 @@ InfluxDB includes its own [export mechanism](https://docs.influxdata.com/influxd
 platform tunnel:open
 ```
 
-That will open an SSH tunnel to all services on your current environment, and produce output something like the following:
+That opens an SSH tunnel to all services on your current environment and produce output like the following:
 
 ```bash
 SSH tunnel opened on port 30000 to relationship: influxtimedb

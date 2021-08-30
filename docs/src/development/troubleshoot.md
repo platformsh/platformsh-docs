@@ -350,8 +350,8 @@ For a blocked _build_ (when you don't find the `Re-deployment environment ...` l
 
 When a _deployment_ is blocked, you should try the following:
 
-1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id shown by `ps afx`.
-2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.mds) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
+1. Use [SSH](/development/ssh.md) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id shown by `ps afx`.
+2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH](/development/ssh.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
 
 ## Slow or failing build or deployment
 
@@ -385,7 +385,7 @@ Hooks are frequently the cause of long build time. If they run into problem they
 
 The build hook can be tested in your local environment.  Because the deployed environment on Platform.sh is read-only the build hooks cannot be rerun there.
 
-Deploy hooks can be tested either locally or by logging into the application over SSH and running them there.  They should execute safely but be aware that depending on what your scripts are doing they may have an adverse impact on the running application (e.g., flushing all caches).
+Deploy hooks can be tested either locally or by logging into the application over [SSH](/development/ssh.md) and running them there.  They should execute safely but be aware that depending on what your scripts are doing they may have an adverse impact on the running application (e.g., flushing all caches).
 
 Furthermore, you can test your hooks with these Linux commands to help figure out any problems:
 
