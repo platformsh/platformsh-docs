@@ -33,31 +33,29 @@ If you want your contributors to be able to see everything, but only commit to e
 The project owner - the person licensed to use Platform.sh - has the project administrator role. The project owner is the only user that can make changes to the project plan. 
 {{< /note >}}
 
-## SSH Access
+## SSH access
 
 By default, everyone with access equal or greater than **Contributor** can access the project through SSH. 
 
-You can customize who can SSH, by setting the `access` key in your `.platform.app.yaml` file. [See SSH Access restrictions](/configuration/app/access.md).
+To customize who can use SSH, [set the `access` key](/configuration/app/access.md) in your `.platform.app.yaml` file.
 
-## Manage user permissions with Console
+## Manage user permissions in the console
 
-From your list of projects, select the project where you want to view or edit user permissions. Click the Settings tab at the top of the page, then click the `Access` tab on the left to show the project-level users and their roles.
+From your list of projects, select the project where you want to view or edit user permissions. Click the Settings tab at the top of the page, then click the `Access` tab on the left to see the users in the project and their roles.
 
 ![Project user management screenshot](/images/management-console/settings-project-access.png)
 
-The `Access` tab shows project-level users and their roles.
+Selecting a user to edit that user's permissions or delete the user's access to the project entirely.
 
-Selecting a user will allow you either to edit that user's permissions or delete the user's access to the project entirely.
+To add a new user, click the `Add` button.
 
-Add a new user by clicking on the `Add` button.
+You can either grant the `Project admin` role to the user, which will give them `Admin` access to every environment in the project, or grant specific permissions for each environment type.
 
-You can either grant the `Project admin` role to the user, which will give them `Admin` access to every environment in the project, or grant specific permissions on each environment type.
+After inviting a new user, users without a Platform.sh account receive an invitation email asking to confirm their details and register an account.
 
-After inviting a new user, if the user does not have a Platform.sh account, they will receive an invitation email asking to confirm their details and register an account.
+In order to push and pull code (or to SSH into one of the project's environments), the user needs to add an SSH key or use the Platform CLI.
 
-In order to push and pull code (or to SSH to one of the project's environments) the user will need to add an SSH key or use the Platform CLI.
-
-If the user already has an account, they will receive an email with a link to access the project.
+If the user already has an account, they receive an email with a link to access the project.
 
 ## Manage users permissions with the CLI
 

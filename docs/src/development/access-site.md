@@ -23,15 +23,15 @@ Generally there will be two URLs created per route in your `routes.yaml` file: O
 
 ## Accessing the application with SSH
 
-Most interactions with Platform.sh require SSH key authentication, and you will need to [set up your SSH keys](/development/ssh.md) before working on a site.
+Most interactions with Platform.sh require SSH authentication. You need to [set up SSH keys](/development/ssh.md) or log in via the CLI before working on a site.
 
-Once that's done, you can easily access the command line on your application over SSH. To log in to the environment that corresponds to your current branch, simply type:
+Then, you can access the command line on your application over SSH. To log in to the environment that corresponds to your current branch, run:
 
 ```bash
 platform ssh
 ```
 
-To log in to some other environment, use the `-e` flag to specify the environment.  
+To log in to a different environment, use the `-e` flag with the environment name.  
 
 The application container is a fully working Linux environment using the `bash` shell.  Most of the system consists of a read-only file system (either the underlying container image or your built application image), so you cannot edit code live, but otherwise the full system is available to read and peruse. Any file [mounts](/configuration/app/storage.md) you have declared in your `.platform.app.yaml` will be writable.
 
@@ -55,7 +55,7 @@ Mounts in the app drupal (environment master):
 +-------------------------+----------------------+
 ```
 
-The CLI also helps transferring files to and from a mount, using the `mount:upload` and `mount:download` commands. These commands use the `rsync` utility, which in turn uses SSH.
+The CLI also helps in transferring files to and from a mount using the `mount:upload` and `mount:download` commands. These commands use the `rsync` utility, which in turn uses SSH.
 
 For example, to download files from the 'private' mount:
 
@@ -93,9 +93,9 @@ The upload completed successfully.
 
 ## Using SSH clients
 
-Many applications and protocols run on top of SSH, including SFTP, scp, and rsync.
+Many applications and protocols run on top of SSH, including SFTP, SCP, and rsync.
 
-To obtain the SSH connection details for the environment either copy them out of the Platform.sh management console (under the "Access site" dropdown) or run:
+To obtain the SSH connection details for the environment, either copy them out of the Platform.sh management console (under the **SSH** dropdown) or run:
 
 ```bash
 platform ssh --pipe
@@ -109,7 +109,7 @@ SFTP is another way to upload and download files to and from a remote environmen
 
 ### SCP
 
-SCP is a simple command-line utility to copy files to and from a remote environment.
+SCP is a basic command-line utility to copy files to and from a remote environment.
 
 For example, this command:
 
@@ -121,7 +121,7 @@ will copy the file named `diagram.png` in the `web/uploads` directory (relative 
 
 ### Rsync
 
-For copying files to and from a remote environment, `rsync` is the best tool available. It is a little more complicated to use than `scp`, but it can also be a lot more efficient, especially if you are simply updating files that are already partially copied.
+For copying files to and from a remote environment, `rsync` is the best tool available. It is a little more complicated to use than `scp`, but it can also be a lot more efficient, especially if you are only updating files that are already partially copied.
 
 The Platform.sh CLI `mount:upload` and `mount:download` commands (described above) are helpful wrappers around `rsync` that make it a little easier to use.
 

@@ -150,7 +150,8 @@ Predis
 ```
 
 ### Verifying Redis is running
-Run this command in a SSH session in your environment `redis-cli -h redis.internal info`. You should run it before you push all this new code to your repository.
+
+Run this command in a [SSH](/development/ssh.md) session in your environment `redis-cli -h redis.internal info`. You should run it before you push all this new code to your repository.
 
 This should give you a baseline of activity on your Redis installation. There should be very little memory allocated to the Redis cache.
 

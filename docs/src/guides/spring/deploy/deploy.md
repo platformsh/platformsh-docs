@@ -29,9 +29,9 @@ That will connect to the database service on the `master` environment, through a
 
 ### Importing files
 
-You will first need to download your files from your current hosting environment, whatever that is.  The easiest way is likely with `rsync`, but consult your old host's documentation.  For this guide, we'll assume that you have already downloaded all of your user files to your local `files/user` directory, and your public files to `files/public`, but adjust accordingly for their actual locations.
+You will first need to download your files from your current hosting environment, whatever that is. The easiest way is likely with `rsync`, but consult your old host's documentation. For this guide, we'll assume that you have already downloaded all of your user files to your local `files/user` directory, and your public files to `files/public`, but adjust accordingly for their actual locations.
 
-The `platform mount:upload` command provides a simple, straightforward way to upload an entire directory to your site at once.  Under the hood it uses an SSH tunnel and `rsync`, so it will be as efficient as possible.  (There is also a `platform mount:download` command you can use to download files later.)  Run the following from your local Git repository root (modifying the `--source` path if needed).
+The `platform mount:upload` command provides a straightforward way to upload an entire directory to your site at once. Under the hood it uses an SSH tunnel and `rsync`, so it will be as efficient as possible. (There is also a `platform mount:download` command you can use to download files later.) Run the following from your local Git repository root (modifying the `--source` path if needed).
 
 ```bash
 $ platform mount:upload -e master --mount src/main/resources/files/user --source ./files/user

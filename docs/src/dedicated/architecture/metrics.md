@@ -40,7 +40,7 @@ From the taskbar you can also filter out individual hosts.
 ![Metrics - sampling](/images/management-console/metrics/sampling.png "0.4")
 
 {{< note >}}
-You will notice on the per-host dropdown above, a Host ID is listed of the form `Host i-XXXXXXXXX`. If you navigate to the production environment's overview in the management console, however, you will also see that this Host ID does *not* match identifiers used in interacting with a host, such as the SSH dropdown options for each host on that envirnoment.
+You may notice in the per-host dropdown above that a Host ID is listed of the form `Host i-XXXXXXXXX`. If you navigate to the production environment's overview in the management console, however, you also see that this Host ID does *not* match the identifiers used in interacting with a host, such as the SSH dropdown options for each host on that environment.
 
 | Host ID on Metrics page      | SSH connection string on Overview page                                |
 | :--------------------------- | :-------------------------------------------------------------------- |
@@ -48,7 +48,7 @@ You will notice on the per-host dropdown above, a Host ID is listed of the form 
 | `Host i-04d1ac8319`          | `ssh 2.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh`   |
 | `Host i-0b1e1b96cf`          | `ssh 1.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh`   |
 
-In the table above, host IDs and SSH addresses in the same row do not necessarily point to the same host, and do not themselves have naming conventions that could easily resolve one to the other. Observing a host's metrics and then SSHing into that host to investigate a potential problem first requires an intermediate step. In this case, it is to simply SSH into a host, and then verify the Host ID after the fact. 
+In the table above, host IDs and SSH addresses in the same row do not necessarily point to the same host and do not have naming conventions that could easily resolve one to the other. Observing a host's metrics and then SSHing into that host to investigate a potential problem first requires an intermediate step. In this case, it is to simply to SSH into a host and then verify the Host ID after the fact. 
 
 ```bash
 $ ssh 3.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh
@@ -66,7 +66,7 @@ $ ssh 3.ent-abcde3clusterID-production-qwerty8@ssh.us-4.platform.sh
 abcde3clusterID@i-04d1ac8319f6ab9a6:~$ 
 ```
 
-Once you have connected to a host over SSH (above snippet) you can see the host identifier (`abcde3clusterID@i-04d1ac8319f6ab9a6`) contains the hash for `Host i-04d1ac8319` after the `@`, lettting you know that investigating metrics for that host requires you to SSH into host `3`.
+Once you have connected to a host over SSH, you can see the host identifier (`abcde3clusterID@i-04d1ac8319f6ab9a6`) contains the hash for `Host i-04d1ac8319` after the `@`, letting you know that to investigate metrics for that host you need to SSH into host `3`.
 {{< /note >}}
 
 Standard Dedicated environments will have a single cluster of three hosts, with each additional cluster adding at least three additional hosts to the project. Dedicated environments with two clusters have a split architecture, and their metrics are displayed in two separate groups: one for the web hosts that handle web requests and one for the service hosts that handle database, cache, and other services. 

@@ -33,7 +33,7 @@ For security reasons we recommend creating a dedicated machine user to run autom
 
 Like human users, every machine user account needs its own unique email address.
 
-The machine user can be given a very restrictive set of permissions limited to just its needed tasks. Backups, for instance, require `Admin` access but no SSH key, while checking out code from a CI server to run tests on it would require an SSH key but only `Reader` access.
+The machine user can be given a very restrictive set of permissions limited to just its needed tasks. For example, backups require `Admin` access but no SSH key, while checking out code from a CI server to run tests on it would require an SSH key but only `Reader` access.
 
 It will also show up in logs and activity streams as a separate entry from human users.
 

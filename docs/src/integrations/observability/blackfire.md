@@ -53,8 +53,24 @@ env:BLACKFIRE_SERVER_TOKEN = ...
 ```env
 env:BLACKFIRE_CLIENT_ID = ...
 ```
-```env
-env:BLACKFIRE_CLIENT_TOKEN = ...
+
+### 4. Confirm it's running
+
+Log in via SSH to your container and confirm that Blackfire is running as follows:
+
+```text
+php --ri blackfire | head
+
+blackfire
+
+Blackfire => enabled
+Blackfire => 1.64.0~linux-x64-zts80
+Timing measurement => cgt
+Sessions support => enabled
+Num of CPU => 8
+Profiling heap memory => 0 Kb
+Main instance trigger mode => CLI autotriggered
+
 ```
 
 ### Other Dedicated Infrastructure
