@@ -132,6 +132,7 @@ To access an environment via the CLI:
 
 1. In a terminal, run `platform ssh`.
 1. (If not currently in a project directory) enter the number of the project you want to access.
+1. (If there are multiple environments) enter the ID of the environment you want to access.
 1. (If there are multiple apps) enter the number of the app you want to access.
 
 You can also find the details in the management console:
