@@ -6,11 +6,12 @@ description: |
     Platform.sh is WCAG 2.0 compliant
 ---
 
-Please refer to our [Compliance Guidance](https://docs.platform.sh/security/compliance-guidance.html) page for an overview of our compliance program, including security & compensating controls, and a general allocation of responsibility.
+Platform.sh has made a [commitment to providing an accessible experience](https://platform.sh/wcag/). Part of that commitment is meeting the 
+Web Content Accessibility Guidelines (WCAG).
 
 ## Overview
 
-Web Content Accessibility Guidelines (WCAG) are developed with the goal of providing a single shared standard for web content accessibility that meets the needs of individuals, organizations, and governments internationally. The WCAG documents explain how to make web content more accessible to people with disabilities. 
+The WCAG are developed with the goal of providing a single shared standard for web content accessibility that meets the needs of individuals, organizations, and governments internationally. The WCAG documents explain how to make web content more accessible to people with disabilities. 
 
 Platform.sh is committed to building inclusive and easy-to-use websites that are accessible to all users.
 
