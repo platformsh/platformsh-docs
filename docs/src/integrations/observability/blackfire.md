@@ -1,10 +1,12 @@
 ---
 title: "Blackfire"
 description: |
-  Platform.sh recommends [Blackfire.io](https://blackfire.io/). Blackfire is a full continous observability solution (monitoring, profiler and automated performance testing tool). It can be used in the development Integration, Staging, and Production environments. Blackfire supports PHP, Python and Go (Profiler only).
+  Platform.sh recommends [Blackfire.io](https://blackfire.io/). Blackfire is a full continuous observability solution (monitoring, profiler and automated performance testing tool). It can be used in the development Integration, Staging, and Production environments. Blackfire supports PHP and Python.
 ---
 
 {{< description >}}
+
+{{< youtube bS4dzuzkir0 >}}
 
 It grants details information on your PHP code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
 
@@ -63,12 +65,12 @@ blackfire --config /etc/platform/$USER/blackfire.ini <command>
 
 Blackfire also enables to:
 
-* monitor your applications and get instant and actionable insights on where to look for the most impactful optimization
+* [monitor your applications](https://blackfire.io/docs/monitoring-cookbooks/index) and get instant and [actionable insights](https://blackfire.io/docs/testing-cookbooks/recommendations) on where to look for the most impactful optimization
 * collaborate with the rest of your team
-* write performance tests
-* automate profiling with periodic builds
+* [write performance tests](https://blackfire.io/docs/testing-cookbooks/tests)
+* automate profiling with [periodic builds](https://blackfire.io/docs/builds-cookbooks/index)
 * integrate further with Platform.sh by enabling to automate profiling as each code commit
-* integrate with GitHub, Bitbucket and GitLab to show the results of Blackfire builds at the commit status level
+* integrate with [GitHub](https://blackfire.io/docs/integrations/git/github), [Bitbucket](https://blackfire.io/docs/integrations/git/bitbucket) and [GitLab](https://blackfire.io/docs/integrations/git/gitlab) to show the results of Blackfire builds at the commit status level
 
 Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for more information.
 
@@ -78,11 +80,12 @@ Those features may require a Premium or an Enterprise subscription. We offer att
 
 ## Enable Blackfire Monitoring
 
-Blackfire Monitoring is installed but not activated by default on Platform.sh.
-To use Blackfire APM, you will need to add the `BLACKFIRE_APM_ENABLED` [environment variable](/development/variables.md) with a value of `1`.
+Blackfire Monitoring is [enabled by default](https://blackfire.io/docs/monitoring-cookbooks/configuration#activating-monitoring-on-an-environment) for Monitoring customers.
 
-In the management console, view the environment you would like to enable Blackfire Monitoring on and add the variable `env:BLACKFIRE_APM_ENABLED` with the value `1`. 
-Otherwise, you can use the CLI command `platform variable:create --level environment --name BLACKFIRE_APM_ENABLED --value 1`
+To disable Blackfire Monitoring, you will need to add the `BLACKFIRE_APM_ENABLED` [environment variable](/development/variables.md) with a value of `0`.
+
+In the management console, view the environment you would like to disable Blackfire Monitoring on and add the variable `env:BLACKFIRE_APM_ENABLED` with the value `0`.
+Otherwise, you can use the CLI command `platform variable:create --level environment --name BLACKFIRE_APM_ENABLED --value 0`
 
 ## Troubleshooting
 
