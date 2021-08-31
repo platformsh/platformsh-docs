@@ -173,3 +173,5 @@ You are able to personalize the accessibility display settings for the managemen
 * Light mode (default)
 * High contrast mode
 * Dark mode
+
+To meet our [commitment to accessibility](/security/wcag.md), all three options are compliant with level AA of the Web Content Accessibility Guidelines 2.0.
