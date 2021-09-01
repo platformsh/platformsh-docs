@@ -40,7 +40,7 @@ It serves as a wrapper that allows you to run console commands from within the c
 
 ### eZ Launchpad installation
 
-eZ Launchpad's approach is to stay as decoupled as possible from your development machine and your remote hosting whether you are Linux or Mac OSX. To install run:
+eZ Launchpad's approach is to stay as decoupled as possible from your development machine and your remote hosting whether you are Linux or macOS. To install run:
 
 ```bash
 curl -fLSs https://ezsystems.github.io/launchpad/install_curl.bash | bash
