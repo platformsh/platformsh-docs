@@ -14,20 +14,30 @@ With all of the requirements met, install the CLI to start developing with Platf
 
 1. **Install the CLI**
 
-    In your terminal run the following command:
+    In your terminal, run the following command depending on your operating system:
 
-    * **Installing on OSX or Linux**
+{{< codetabs >}}
+---
+title=Linux/macOS
+file=none
+highlight=bash
+markdownify=false
+---
 
-       ```bash
-       curl -fsS https://platform.sh/cli/installer | php
-       ```
+curl -fsS https://platform.sh/cli/installer | php
 
-    * **Installing on Windows**
+<--->
 
-       ```bash
-       curl -f https://platform.sh/cli/installer -o cli-installer.php
-       php cli-installer.php
-       ```
+---
+title=Windows
+file=none
+highlight=bash
+markdownify=false
+---
+
+curl -f https://platform.sh/cli/installer -o cli-installer.php
+php cli-installer.php
+{{< /codetabs >}}
 
 2. **Authenticate and Verify**
 

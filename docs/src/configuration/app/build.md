@@ -121,7 +121,7 @@ Your `deploy` hook is tied to commits in the same way as your builds. Once a com
 
 Redeploys trigger only the `post_deploy` hook to run again from the beginning, and a committed change to the application is needed to rerun the `build` and `deploy` hooks. 
 
-This means that adding variables, changing access permissions, or even running a `redeploy` using the CLI or management console will not cause the `deploy `hook to run again for the current commit. 
+This means that adding variables, changing access permissions, or even running a `redeploy` using the CLI or management console will not cause the `deploy` hook to run again for the current commit. 
 
 ### Post-Deploy hook
 

@@ -12,11 +12,11 @@ In the previous steps, you checked that the requirements on your computer were m
 
 1. **Install the CLI**
 
-    In your terminal run the following command depending on your operating system:
+    In your terminal, run the following command depending on your operating system:
 
 {{< codetabs >}}
 ---
-title=OSX or Linux
+title=Linux/macOS
 file=none
 highlight=bash
 markdownify=false
