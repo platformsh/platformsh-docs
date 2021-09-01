@@ -44,7 +44,7 @@ the issue. Ballooning MySQL storage can be caused by a number of items:
 ## Why do I get "MySQL cannot connect to the database server"?
 
 If you are having a problem connecting to the database server, you will
-need force a re-deployment of the database container. To do so, you can
+need force a redeployment of the database container. To do so, you can
 edit the service definition to add or remove a small amount of storage and
 then push.
 
