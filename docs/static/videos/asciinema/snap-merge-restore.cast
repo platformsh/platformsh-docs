@@ -46,7 +46,7 @@
 [47.005935, "o", "  [>---------------------------] < 1 sec (pending)"]
 [48.174397, "o", "\r\u001b[2K  [->--------------------------] 2 secs (in progress)"]
 [49.384003, "o", "\r\u001b[2K  [-->-------------------------] 3 secs (in progress)\r\u001b[2K\r\n\u001b[1A"]
-[49.384211, "o", "    Preparing to merge environment 'dev' into master\r\n    Merge successful\r\n    Found 1 new commit\r\n    \r\n    Building application 'app' (runtime type: python:3.7, tree: 2b1b6fd)\r\n      Reusing existing build for this tree ID\r\n    \r\n    Provisioning certificates\r\n      Environment certificates\r\n      - certificate 320c9af: expiring on 2019-07-30 14:13:57+00:00, covering {,www}.master-7rqtwti-32ldnujngz2hk.us-2.platformsh.site\r\n    \r\n    \r\n    Re-deploying environment 32ldnujngz2hk-master-7rqtwti\r\n\r\u001b[2K  [--->------------------------] 3 secs (in progress)"]
+[49.384211, "o", "    Preparing to merge environment 'dev' into master\r\n    Merge successful\r\n    Found 1 new commit\r\n    \r\n    Building application 'app' (runtime type: python:3.7, tree: 2b1b6fd)\r\n      Reusing existing build for this tree ID\r\n    \r\n    Provisioning certificates\r\n      Environment certificates\r\n      - certificate 320c9af: expiring on 2019-07-30 14:13:57+00:00, covering {,www}.master-7rqtwti-32ldnujngz2hk.us-2.platformsh.site\r\n    \r\n    \r\n    Redeploying environment 32ldnujngz2hk-master-7rqtwti\r\n\r\u001b[2K  [--->------------------------] 3 secs (in progress)"]
 [50.547957, "o", "\r\u001b[2K  [---->-----------------------] 4 secs (in progress)"]
 [51.728023, "o", "\r\u001b[2K  [----->----------------------] 5 secs (in progress)"]
 [52.887736, "o", "\r\u001b[2K  [------>---------------------] 6 secs (in progress)"]

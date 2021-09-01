@@ -2,7 +2,7 @@
 title: "Using SSH"
 weight: 12
 description: |
-  Platform.sh uses Secure Shell (SSH) to help keep things secure. You can interact with your deployed environments or use the Platform.sh CLI, and both of these features rely on SSH.
+  Platform.sh uses Secure Shell (SSH) to help keep your project and apps secure. You can interact with your deployed environments or use the Platform.sh CLI, and both of these features rely on SSH.
 sidebarTitle: "SSH"
 ---
 
