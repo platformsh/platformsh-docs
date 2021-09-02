@@ -64,7 +64,7 @@ rebuilt](https://www.drupal.org/project/registry_rebuild). To rebuild
 the Drupal registry on your Platform.sh instance, you will need to do
 the following:
 
-First, [SSH](/development/ssh.md) into your web container.
+First, [SSH](/development/ssh/_index.md) into your web container.
 
 ```bash
 $ ssh [SSH-URL]

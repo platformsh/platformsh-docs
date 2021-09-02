@@ -23,7 +23,7 @@ Generally there will be two URLs created per route in your `routes.yaml` file: O
 
 ## Accessing the application with SSH
 
-Most interactions with Platform.sh require SSH authentication. You need to [set up SSH keys](/development/ssh.md) or log in via the CLI before working on a site.
+Most interactions with Platform.sh require SSH authentication. You need to [set up SSH keys](/development/ssh/_index.md) or log in via the CLI before working on a site.
 
 Then, you can access the command line on your application over SSH. To log in to the environment that corresponds to your current branch, run:
 
