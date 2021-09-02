@@ -10,7 +10,7 @@ To run the CLI from such a tool or on an app container, such as via a cron hook,
 
 ## Create a machine user
 
-For security reasons, we recommend creating a dedicated machine user to run automation tasks such as taking backups, renewing SSL certificates, and triggering source operations. We also strongly recommend creating a unique machine user for each project to be automated.
+For security reasons, we recommend creating a dedicated machine user to run automation tasks such as taking backups and triggering source operations. We also strongly recommend creating a unique machine user for each project to be automated.
 
 Like human users, every machine user account needs its own unique email address.
 

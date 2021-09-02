@@ -2,7 +2,7 @@
 title: "Troubleshoot SSH"
 ---
 
-While trying use SSH, you may get a response indicating permission is denied. Or if you get an error with a code of 255, it means there's a problem with your SSH connection.
+While trying to use SSH, you may get a response indicating permission is denied. Or if you get an error with a code of 255, it means there's a problem with your SSH connection.
 
 ```txt
 The command failed with the exit code: 255
@@ -98,4 +98,4 @@ $ GIT_SSH_COMMAND="ssh -v" git clone [REPO-URL]
 
 You can use this information to make one last check of the private key file.
 
-If you're still stuck, don't hesitate to submit a support ticket. We'll help you solve your problem.
+If you're still stuck, don't hesitate to [submit a support ticket](https://console.platform.sh/-/users/:user/tickets). We'll help you solve your problem.

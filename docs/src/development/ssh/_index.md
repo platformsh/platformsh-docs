@@ -3,6 +3,7 @@ title: "Connecting securely with SSH"
 weight: 12
 description: |
   Keep your project and apps safe by connecting with SSH when you're interacting with your deployed environments or using the Platform.sh CLI.
+layout: single
 sidebarTitle: "SSH"
 ---
 
@@ -12,17 +13,17 @@ So you can securely log in to your deployed server to troubleshoot and read logs
 
 There are three basic ways to authenticate with Platform.sh:
 
-* Through the CLI
+* [Through the CLI](#authenticate-with-the-platformsh-cli)
   * The fastest and easiest method.
   * Supports multifactor authentication.
   * Automatically generates new certificates to keep your connection safe.
   * Necessary when using the CLI and when your organization has multifactor authentication set up.
-* Using SSH keys
+* [Using SSH keys](#authenticate-with-SSH-keys)
   * Requires more setup on your part.
   * Represents only a single authentication method.
   * Requires you to regularly change the keys to maintain security.
   * Useful for checking out code as part of an automated process.
-* Using [API tokens](/development/cli/api-tokens.md)
+* [Using API tokens](/development/cli/api-tokens.md)
   * Good for letting automation tools use the CLI.
   * Requires you to regularly change the tokens to maintain security.
 
@@ -50,7 +51,7 @@ This process requires two keys:
 
 A key pair is valid for as long as you have access to the private key on the system from which you are connecting. If you have a key pair available, you are not prompted to login.
 
-To keep connection secure, you need to regularly update the keys you use. A well-encrypted key is no substitute for 
+To keep connection secure, you need to regularly update the keys you use. A well-encrypted key is no substitute for regular key rotation.
 
 If you used GitHub to sign up for your Platform.sh account, your public keys from GitHub are automatically synced to your Platform.sh account. So you can use them already with the CLI or to [connect to a server](#connect-to-your-server-with-SSH).
 
@@ -62,7 +63,7 @@ You may have already generated SSH keys before. Tech Republic has a guide to [fi
 
 If you haven't used SSH keys before or it's been a while since you created the key, skip right to [generating new keys](#generate-new-keys).
 
-A public key file has a name ending in `.pub`. It contains seemingly random lines of characters, like this example of a public [RSA key](https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29):
+A public key file has a name ending in `.pub`. It contains seemingly random lines of characters, like this example of a public [RSA key](https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29) (note the email address at the end, which wouldn't be present in a private key):
 
 ```text
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2nDRLgPANWParTiaGIgySG+thTtnqFGI1tMWyqDdfvH+5hL91w2tK9PzaP+NJ5hA/cOyh30YRFb52Y64toU16Ko5K1mLqNFJajjWEI5Y4VukG6betrWfqdQ7XBr/s7nBuDOFQ5+eKbvug4rRSCSo8CsEI1eI0VNQkC9HJWYK28k7KurMdTN7X/Z/4vknM4/Rm2bnMk2idoORQgomeZS1p3GkG8dQs/c0j/b4H7azxnqdcCaR4ahbytX3d49BN0WwE84C+ItsnkCt1g5tVADPrab+Ywsm/FTnGY3cJKKdOAHt7Ls5lfpyyug2hNAFeiZF0MoCekjDZ2GH2xdFc7AX/ your_email_address@example.com
@@ -108,7 +109,7 @@ If you're logged in using the [Platform.sh CLI](#authenticate-with-the-platforms
 
    ```bash
    $ eval $(ssh-agent)
-   $ ssh-add 'PATH_TO_YOUR_KEY`
+   $ ssh-add 'PATH_TO_YOUR_KEY'
    ```
 
 To generate a key otherwise, GitHub has a good [walk-through for creating SSH key pairs](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) on various operating systems. Then you need to [add it to your Platform.sh account](#add-an-ssh-key-to-your-platform-account).
@@ -143,12 +144,12 @@ To connect using SSH keys, find the details in the management console:
 1. Select a project.
 1. In the **Environment** dropdown, select the environment you want to access.
 1. Click the **SSH** dropdown.
-1. Copy the ssh command for the app you want.
+1. Copy the ssh command for the app you want. (Example: `ssh abcdefghi5k-master-7rqtwti--app@ssh.region.url`)
 1. Enter the command into a terminal.
 
 Note that if you have just added your SSH key, you need to [redeploy your environment](#redeploy-your-environment) before you can access it using SSH keys. 
 
-Either way, you get a response like this:
+Once you've used either method, you get a response like this:
 
 ```bash
    ___ _      _    __
