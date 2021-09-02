@@ -20,7 +20,7 @@ platform redeploy
 Please note that the redeploy will happen after any scheduled builds in either "Running" or "Pending" state. 
 
 {{< note >}}
-Despite the name, triggering a redeploy will not cause the `deploy` hook to rerun for your application. Both your `build` and `deploy` hooks are tied to individual commits and are resused until another commit is pushed to the environment. 
+Despite the name, triggering a redeploy will not cause the `deploy` hook to rerun for your application. Both your `build` and `deploy` hooks are tied to individual commits and are reused until another commit is pushed to the environment. See [more about the deploy hook](/configuration/app/build.md#deploy-hook) and its reuse.
 
 Triggering a redeploy can be useful for updating environment access for a new developer and adding custom TLS certificates, but when you do it is only the `post_deploy` hook that runs from the beginning. If you want to rerun the `deploy` hook, you will need to commit and push some small change to your application to do so. 
 {{< /note >}}
