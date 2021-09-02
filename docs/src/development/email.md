@@ -60,7 +60,7 @@ Before testing that the email service is working, please make sure that:
 - The environment has been redeployed
 - You have accessed the environment using SSH and verified that the `PLATFORM_SMTP_HOST` environment variable is visible
 
-To test the email service, first connect to your cluster through [SSH](/development/ssh.md) using the [CLI](/development/cli/_index.md) command `platform ssh`. Run the following snippet in the terminal (replacing the email addresses with the ones you want):
+To test the email service, first connect to your cluster through [SSH](/development/ssh/_index.md) using the [CLI](/development/cli/_index.md) command `platform ssh`. Run the following snippet in the terminal (replacing the email addresses with the ones you want):
 
 ```bash
 $ php -r 'mail("mail@example.com", "test message", "just testing", "From: tester@example.com");'
