@@ -78,7 +78,7 @@ platform variable:create -e=<insert your branch name> --json=false --visible-bui
 
 ### 4. Confirm it's running
 
-Login via SSH to your container and confirm that Blackfire is running as follows:
+Log in via SSH to your container and confirm that Blackfire is running as follows:
 
 ```text
 php --ri blackfire | head

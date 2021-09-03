@@ -6,7 +6,7 @@ sidebarTitle: "Xdebug"
 
 [Xdebug](https://xdebug.org/) is a real-time debugger extension for PHP.  While usually used for local development, it can also be helpful for debugging aberrant behavior on the server.  It is available on Platform.sh Grid instances running PHP 7.2 and higher.
 
-As configured on Platform.sh, it avoids any runtime overhead for non-debug requests, even in production, and only allows SSH-tunneled connections to avoid any security issues.
+As configured on Platform.sh, it avoids any runtime overhead for non-debug requests, even in production, and only allows connections via SSH tunnels to avoid any security issues.
 
 ## Setting up Xdebug
 

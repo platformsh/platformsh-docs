@@ -8,9 +8,9 @@ The `access` key in `.platform.app.yaml` defines the user roles who can log in v
 
 Possible values are `admin`, `contributor`, and `viewer`.  The default is `contributor`.
 
-## How do I restrict SSH access only to project administrators?
+## Restrict SSH access to specific roles
 
-The following block in `.platform.app.yaml` will restrict SSH access to just those users with "admin" privileges on the project or on the specific deployed environment.
+The following block in `.platform.app.yaml` restricts SSH access to just those users with `admin` privileges in the project or the specific deployed environment.
 
 ```yaml
 access:

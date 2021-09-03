@@ -144,7 +144,7 @@ Many applications have adopted a convention of using a file named `.env` in the 
 
 If the application needs a different set of environment variable names than the variables set by Platform.sh (which is common for database connections) they can be mapped over from Platform.sh's variable names to those required by the application.  That can be done in the application with the help of the Config Reader libraries, if it offers a place to do so, or via a shell script.
 
-For example, the following `.environment` script, located in the application root, will run automatically on every shell invocation (application startup or SSH login), and variables it exports will be visible to the application.  It uses the `jq` library, which is included in all application containers for this purpose.
+For example, the following `.environment` script, located in the application root, runs automatically on every shell invocation (application startup or SSH login), and variables it exports are visible to the application.  It uses the `jq` library, which is included in all application containers for this purpose.
 
 ```bash
 # .environment

@@ -15,7 +15,7 @@ A number of different log files are available depending on the application conta
 
 Although the files in `/var/log` are writable, they should not be written to directly. Only write to it via standard logging mechanisms, such as your application's logging facility.  If your application has its own logging mechanism that should be written to a dedicated logs mount in your application.
 
-All log files are trimmed to 100 MB automatically. But if you need to have complete logs, you can set up cron which will upload them to third-party storage. [Contextual Code](https://www.contextualcode.com/) made a [simple and well-described example](https://gitlab.com/contextualcode/platformsh-store-logs-at-s3) how to achieve it.
+All log files are trimmed to 100 MB automatically. But if you need to have complete logs, you can set up cron which will upload them to third-party storage. [Contextual Code](https://www.contextualcode.com/) made a [basic and well-described example](https://gitlab.com/contextualcode/platformsh-store-logs-at-s3) how to achieve it.
 
 ## `access.log`
 

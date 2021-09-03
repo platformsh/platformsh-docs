@@ -20,9 +20,9 @@ platform redeploy
 Please note that the redeploy will happen after any scheduled builds in either "Running" or "Pending" state. 
 
 {{< note >}}
-Despite the name, triggering a redeploy will not cause the `deploy` hook to rerun for your application. Both your `build` and `deploy` hook are tied to individual commits and are resused until another commit is pushed to the environment. 
+Despite the name, triggering a redeploy will not cause the `deploy` hook to rerun for your application. Both your `build` and `deploy` hooks are tied to individual commits and are reused until another commit is pushed to the environment. See [more about the deploy hook](/configuration/app/build.md#deploy-hook) and its reuse.
 
-Triggering a redeploy can be useful for updating environment access to a new developer and adding custom TLS certificates, but when you do it is only the `post_deploy` hook that runs from the beginning. If you want to rerun the `deploy` hook, you will need to commit and push some small change to your application to do so. 
+Triggering a redeploy can be useful for updating environment access for a new developer and adding custom TLS certificates, but when you do it is only the `post_deploy` hook that runs from the beginning. If you want to rerun the `deploy` hook, you will need to commit and push some small change to your application to do so. 
 {{< /note >}}
 
 ## Clear the build cache
@@ -341,17 +341,17 @@ If you see a build or deployment running longer than expected, that may be one o
 To determine if your environment is being stuck in the build or the deployment, you can look at the build log available in the management console.  If you see a line similar to the following:
 
 ```text
-Re-deploying environment w6ikvtghgyuty-drupal8-b3dsina.
+Redeploying environment w6ikvtghgyuty-drupal8-b3dsina.
 ```
 
 It means the build has completed successfully and the system is trying to deploy.  If that line never appears then it means the build is stuck.
 
-For a blocked _build_ (when you don't find the `Re-deployment environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed.  In most regions the build will self-terminate after one hour.  In older regions (US and EU) the build will need to be killed by our support team.
+For a blocked _build_ (when you don't find the `Redeploying environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed.  In most regions the build will self-terminate after one hour.  In older regions (US and EU) the build will need to be killed by our support team.
 
 When a _deployment_ is blocked, you should try the following:
 
-1. Use [SSH](/development/access-site.md) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id shown by `ps afx`.
-2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH](/development/access-site.mds) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
+1. Use [SSH](/development/ssh/_index.md) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id shown by `ps afx`.
+2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH](/development/ssh/_index.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
 
 ## Slow or failing build or deployment
 
@@ -385,7 +385,7 @@ Hooks are frequently the cause of long build time. If they run into problem they
 
 The build hook can be tested in your local environment.  Because the deployed environment on Platform.sh is read-only the build hooks cannot be rerun there.
 
-Deploy hooks can be tested either locally or by logging into the application over SSH and running them there.  They should execute safely but be aware that depending on what your scripts are doing they may have an adverse impact on the running application (e.g., flushing all caches).
+Deploy hooks can be tested either locally or by logging into the application over [SSH](/development/ssh/_index.md) and running them there.  They should execute safely but be aware that depending on what your scripts are doing they may have an adverse impact on the running application (e.g., flushing all caches).
 
 Furthermore, you can test your hooks with these Linux commands to help figure out any problems:
 

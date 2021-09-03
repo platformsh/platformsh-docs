@@ -105,7 +105,7 @@ The `deploy` hook is run after the application container has been started, but b
 
 Be aware: The deploy hook blocks the site accepting new requests.  If your deploy hook is only a few seconds then incoming requests in that time are paused and will continue when the hook completes, effectively appearing as the site just took a few extra seconds to respond.  If it takes too long, however, requests cannot be held and will appear as dropped connections.  Only run tasks in your deploy hook that have to be run exclusively, such as database schema updates or some types of cache clear.  A post-deploy task that can safely run concurrently with new incoming requests should be run as a `post_deploy` hook instead.
 
-After a Git push, in addition to the log shown in the activity log, you can see the results of the `deploy` hook in the `/var/log/deploy.log` file when logged in to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
+After a Git push, in addition to the log shown in the activity log, you can see the results of the `deploy` hook in the `/var/log/deploy.log` file when logged in to the environment via SSH. This file contains a log of the execution of the deployment hook. For example:
 
 ```bash
 [2014-07-03 10:03:51.100476] Launching hook 'cd public ; drush -y updatedb'.
@@ -117,11 +117,11 @@ Performed update: my_custom_profile_update_7001
 Finished performing updates.
 ```
 
-Your `deploy` hook is tied to commits in the same way as your builds. That is, once a commit has been pushed and a new build image has been created, the result of both the `build` and `deploy` hooks will be resused, until there is a new git commit. 
+Your `deploy` hook is tied to commits in the same way as your builds. Once a commit has been pushed and a new build image has been created, the result of both the `build` and `deploy` hooks are reused until there is a new git commit. 
 
 Redeploys trigger only the `post_deploy` hook to run again from the beginning, and a committed change to the application is needed to rerun the `build` and `deploy` hooks. 
 
-This means that adding variables, changing access permissions, or even running a `redeploy` using the CLI or management console will not cause the `deploy `hook to run again for the current commit. 
+This means that adding variables, changing access permissions, or even running a `redeploy` using the CLI or management console will not cause the `deploy` hook to run again for the current commit. 
 
 ### Post-Deploy hook
 

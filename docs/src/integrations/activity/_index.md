@@ -123,7 +123,7 @@ Several of the utility functions below work by pulling out common portions of th
 
 ### `project`
 
-The `project` global variable includes information about the project subscription itself.  That includes its ID and name, how many users are associated with the project, it's SSH public key and various other values.  An example of this object is below:
+The `project` global variable includes information about the project subscription itself.  That includes its ID and name, how many users are associated with the project, its SSH public key, and various other values.  An example of this object is below:
 
 ```json
 {

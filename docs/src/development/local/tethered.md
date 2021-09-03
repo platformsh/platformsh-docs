@@ -19,14 +19,14 @@ Note that other Platform.sh environment configuration such as the routes or appl
 
 For the local web server the approach will vary depending on your language.
 
-* For a self-serving language (Go or Node.js), simply run the program locally.
-* For PHP, you may install your own copy of Nginx (or Apache) and PHP-FPM, or simply use the built-in PHP web server.  Be aware however that by default the PHP web server will ignore environment variables by default.  You will need to explicitly instruct it to read them, like so: `php -S -d variables_order=EGPCS localhost:8001`.  That will start a basic web server capable of running PHP, serving the current directory, on port 8001, using available environment variables.  See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
+* For a self-serving language (Go or Node.js), just run the program locally.
+* For PHP, you may install your own copy of Nginx (or Apache) and PHP-FPM, or just use the built-in PHP web server. Be aware however that by default the PHP web server will ignore environment variables by default. You will need to explicitly instruct it to read them, like so: `php -S -d variables_order=EGPCS localhost:8001`. That will start a basic web server capable of running PHP, serving the current directory, on port 8001, using available environment variables. See the [PHP manual](https://www.php.net/manual/en/features.commandline.webserver.php) for more information.
 * For other languages it is recommended that you install your own copy of Nginx or Apache.
 * A virtual machine or Docker image is also a viable option.
 
 ## SSH tunneling
 
-Now that the code is running, it needs to connect it to its services.  For that, open an SSH tunnel to the current project.
+Now that the code is running, it needs to connect it to its services. For that, open an SSH tunnel to the current project.
 
 ```bash
 $ platform tunnel:open
@@ -82,7 +82,7 @@ export PLATFORM_RELATIONSHIPS="$(platform tunnel:info --encode)"
 
 That will create a `PLATFORM_RELATIONSHIPS` environment variable locally that looks exactly the same as the one you'd see on Platform.sh, but pointing to the locally mapped SSH tunnels.  Whatever code you have that looks for and decodes the relationship information from that variable (which is what runs on Platform.sh) will detect it and use it just as if you were running on Platform.sh.
 
-Note that the environment variable is set globally so you cannot use this mechanism to load mutiple tethered Platform.sh projects at the same time.  If you need to run multiple tethered environments at once you will have to read the relationships information for each one from the application code, like so:
+Note that the environment variable is set globally so you cannot use this mechanism to load multiple tethered Platform.sh projects at the same time.  If you need to run multiple tethered environments at once you will have to read the relationships information for each one from the application code, like so:
 
 {{< codetabs >}}
 

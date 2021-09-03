@@ -26,7 +26,7 @@ From the `Status` tab, you can activate or deactivate an environment.
 
 The `Deactivate & Delete Data` action will
 
-* Deactivate the environment. Unless it is re-activated, it will no longer deploy and it will not be accessible from the web or via SSH.
+* Deactivate the environment. Unless it is re-activated, it will no longer deploy and it is not accessible from the web or via SSH.
 * Destroy all services running on this environment.
 * Delete all data specific to the environment. If the environment is reactivated, it will sync data from its parent environment.
 
@@ -46,7 +46,7 @@ From this tab, you can allow your application to send emails via a SendGrid SMTP
 
 ![env email](/images/management-console/env-email.png "0.75")
 
-Changing this setting will temporarily list the environment's status as "Building", as the project re-builds with the new setting. Once it has re-deployed, it will appear once again as "Active" in your settings.
+Changing this setting will temporarily list the environment's status as "Building", as the project re-builds with the new setting. Once it has redeployed, it will appear once again as "Active" in your settings.
 
 
 ### Search engine visibility

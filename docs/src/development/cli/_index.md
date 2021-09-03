@@ -110,7 +110,7 @@ platform project:info
 Once installed, the `platform` CLI tool provides tab auto-completion for commands, options, and even some values (your projects, valid regions).
 
 {{< note >}}
-Your system must include the `bash-completion` package or equivalent. This is not available by default on OSX, but can be installed via `brew`. Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell. `platform self:install` will attempt a reinstall of this utility if it's needed.
+Your system must include the `bash-completion` package or equivalent. This is not available by default on macOS, but can be installed via `brew`. Check your home directory and ensure that the file `~/.platformsh/autocompletion.sh` is being included by your shell. `platform self:install` will attempt a reinstall of this utility if it's needed.
 {{< /note >}}
 
 ## Installing the CLI on Windows 10

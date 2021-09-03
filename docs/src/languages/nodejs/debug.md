@@ -23,7 +23,7 @@ $ platform branch debug-branch
 $ platform ssh
 ```
 
-In a multi-application project, you will be prompted to chose which application to ssh into. You can also specifiy the application you want by using the `--app` option:
+In a multi-application project, you will be prompted to chose which application to SSH into. You can also specify the application you want using the `--app` option:
 
 ```sh
 $ platform ssh --app=my-app-name
@@ -41,6 +41,7 @@ $ node --inspect <js_file>
 `app_name` being the name of your application as defined in your `.platform.app.yaml` and `js_file` being your application entrypoint.
 
 You should see something like:
+
 ```sh
 web@app.0:~$ node --inspect index.js 
 Debugger listening on ws://127.0.0.1:9229/10701e5d-d627-4180-a967-d47a924c93c0
@@ -51,6 +52,7 @@ Listening on port 8888
 ### Forward the debugger port locally
 
 In another terminal, create an SSH tunnel that forwards the 9229 port:
+
 ```sh
 $ ssh -N -L9229:127.0.0.1:9229  $(platform  ssh --pipe)
 ```

@@ -235,7 +235,7 @@ INSERT INTO <existing> SELECT * from <old>;
 
 ## Access your MariaDB service
 
-Assuming your MariaDB relationship is named `database`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `database.internal` and `3306`. Open an [SSH session](/development/ssh.md) and run the MySQL command line client.
+Assuming your MariaDB relationship is named `database`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `database.internal` and `3306`. Open an [SSH session](/development/ssh/_index.md) and run the MySQL command line client.
 
 ```bash
 mysql -h database.internal -P 3306 -u user main

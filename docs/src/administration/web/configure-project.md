@@ -22,14 +22,14 @@ You can invite new users to your project by clicking the `Add` button and enteri
 ![Project configure icon](/images/management-console/settings-project-access.png "0.7")
 
 {{< note >}}
-Currently, permissions changes that grant or revoke SSH access to an environment take effect only after the next time that environment is deployed.
+Permissions changes that grant or revoke SSH access to an environment take effect only after the next time that environment is deployed.
 {{< /note >}}
 
 Selecting a user will allow you to either edit that user's permissions or delete the user's access to the project entirely.
 
 ![Manage users of your Platform.sh project](/images/management-console/edit-user.png "0.7")
 
-If you check the `Project admin` box, this user will be an administrator of the project and will have fulll access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment type.
+If you check the `Project admin` box, this user will be an administrator of the project and will have full access on all environments. If you uncheck the box, you'll have the option of adjusting the user's permissions on each environment type.
 
 {{< note >}}
 The `Account owner` is locked and you can't change its permissions.
@@ -67,7 +67,7 @@ A more in-depth guide regarding [how to set up custom certificates can be found 
 
 ## Deploy Key
 
-The `Deploy Key` page provides the SSH key that Platform.sh will use when trying to access external private Git repository during the build process.
+The `Deploy Key` page provides the SSH key that Platform.sh will use when trying to access the external private Git repository during the build process.
 
 This is useful if you want to reuse some code components across multiple projects and manage those components as dependencies of your project.
 
