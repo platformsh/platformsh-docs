@@ -3,7 +3,7 @@ title: "Compliance guidance"
 weight: 11
 
 description: |
- 
+
 ---
 
 {{< description >}}
@@ -23,7 +23,7 @@ Basic compliance questions can be handled by our support team via a ticket. For 
 
 * Because customers can use our PaaS in a variety of ways, the best approach with auditors is to focus on “What do I (the customer) control/configure, and how is it managed in a compliant manner?”
 
-* The `OVH-FR-2` region is excluded from our PCI and SOC2 certifications.
+* The `FR-1` and `FR-3` regions are excluded from our PCI and SOC2 certifications.
 
 * HIPAA workloads are strictly run on our US-4 region.
 
