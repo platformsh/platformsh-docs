@@ -41,6 +41,7 @@ These errors indicate your application (or application runner, like PHP-FPM) is 
 
 * Your `.platform.app.yaml` configuration has an error and the process is not starting or requests are not able to be forwarded to it correctly.  Check your `web.commands.start` entry or that your `passthru` configuration is correct.
 * The amount of traffic coming to your site exceeds the processing power of your application.
+  * You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
 * Certain code path(s) in your application are too slow and timing out.
 * A PHP process is crashing because of a segmentation fault (see below).
 * A PHP process is killed by the kernel out-of-memory killer (see below).
