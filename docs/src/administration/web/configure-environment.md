@@ -77,26 +77,28 @@ platform environment:info restrict_robots true
 
 ### HTTP access control
 
-You should not expose your development environments to the whole wide world. Platform.sh allows you to simply implement access control, either by login/password (the equivalent to .htaccess) or by filtering IP addresses or a network using the [CIDR format](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).  That is, `4.5.6.7` and `4.5.6.0/8` are both legal formats.
+You should not expose your development environments to the whole wide world. Platform.sh allows you to implement access control either by login/password (the equivalent to .htaccess) or filtering IP addresses or a network using the [CIDR format](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). So both`4.5.6.7` and `4.5.6.0/8` are legal formats.
 
 {{< note >}}
-Changing access control will trigger a new deploy of the current environment. However, the changes will not propagate to child environments until they are manually redeployed.
+Changing access control will trigger a new deploy of the current environment. However, the changes will not propagate to child environments until those are manually redeployed.
 {{< /note >}}
 
-These settings get inherited by branches below the one you are on. That means if you create a `staging` environment, and you create branches from this one, they will all inherit the same authentication information and you only have to set-it up once.
+These settings get inherited by branches below the one you are on. That means if you create a `staging` environment and you create branches from it, they all inherit the same authentication information that you only have to set up once.
 
-You can also setup authentication with the CLI using the following command `platform environment:http-access` which also allows you to read the current setup. This eases the integration of CI jobs with Platform.sh as you will not need to hardcode the values in the CI.
+You can also set up authentication with the CLI by running `platform environment:http-access`, which also allows you to read the current setup. This eases the integration of CI jobs with Platform.sh as you will not need to hard code the values in the CI.
 
-You can allow or deny access to specific IPs or IP ranges. First switch the access control section to ON. Then add one or more IPs or CIDR IP masks, followed by allow or deny. See the example below. Note that allow entries should come before deny entries in case both of them would match.
+You can allow or deny access to specific IPs or IP ranges. First, switch the access control section to ON. Then add one or more IPs or CIDR IP masks followed by `allow` or `deny`. See the example below. Note that `allow` entries should come before `deny` entries in case they both match.
 
-![Allowing or denying specific ips to project settings](/images/management-console/settings-basics-access-control.png "0.6")
+![Allowing and denying specific IPs in project settings](/images/management-console/settings-basics-access-control.png "0.6")
 
-For example, the following configuration will only allow the 1.2.3.4 IP to access your website.
+For example, the following configuration allows only the IP `198.51.100.0` to access your website.
 
 ```bash
-1.2.3.4/32 allow
+198.51.100.0 allow
 0.0.0.0/0 deny
 ```
+
+If you want set access instructions for bots such as search crawlers, look into how [adjusting a `robots.txt` file could help](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792) and when you'd need to restrict IP addresses directly.
 
 ## Variables
 
