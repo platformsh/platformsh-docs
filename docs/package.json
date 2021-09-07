@@ -41,6 +41,7 @@
     "imagemin-jpeg-recompress": "^7.0.0",
     "imagemin-pngquant": "^9.0.2",
     "is-svg": "^4.3.1",
+    "js-yaml": "^3.14.1",
     "normalize-url": "^7.0.1",
     "p-limit": "^4.0.0",
     "postcss": "^8.3.6",
