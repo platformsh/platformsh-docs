@@ -86,7 +86,7 @@ class Search extends Component {
 
     return (
       <form>
-
+        <label class="sr-only" for="searchwicon">Search our docs</label>
         <input
           id="searchwicon"
           placeholder="Search Platform.sh"
@@ -95,12 +95,17 @@ class Search extends Component {
           className="searchinput"
           autoComplete="off"
         />
-        <input
-          type="submit"
-          className="clearinput"
-          value={ ( this.state.query && this.state.query.length > 1 ) ? "+" : ""}
-          onClick={ this.clearInputFunc }
-        />
+        {this.state.query && this.state.query.length > 1 &&
+        <span>
+          <label class="sr-only" for="clearsearch">Clear search</label>
+          <input
+            id="clearsearch"
+            type="submit"
+            className="clearinput"
+            value="+"
+            onClick={ this.clearInputFunc }
+          />
+        </span>}
         { ( this.state.query && this.state.query.length > 1 ) ? allResults : noQuery }
       </form>
     )
