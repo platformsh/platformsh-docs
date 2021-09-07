@@ -24,7 +24,7 @@ If you spot a problem, send us a pull request to fix it!  If you're not sure how
 Requires:
 
 * Hugo >= 0.68.3
-* Node.js 12
+* Node.js >= 14
 * [Poetry](https://python-poetry.org/docs/)
 
 ### Running locally without search
