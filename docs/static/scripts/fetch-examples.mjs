@@ -45,7 +45,7 @@ async function fetchFilesTemplates(data) {
         // Ensure subdirectory exists.
         ensureSubdir(data["savePath"])
         // Place the request and write the file.
-        fetches.push(fetchConcurrency(writeFileFromTarget, target, destination));
+        fetches.push(fetchConcurrency(() => writeFileFromTarget(target, destination)));
     }
 
     await Promise.all(fetches);
@@ -68,7 +68,7 @@ async function fetchFilesExamples(data) {
             var target = `${languageTargetDir}/${data["paths"][language][service]}`;
             var destination = process.cwd() + `${languageDestDir}/${data["paths"][language][service]}`;
             // Place the request and write the file.
-            fetches.push(fetchConcurrency(writeFileFromTarget, target, destination));
+            fetches.push(fetchConcurrency(() => writeFileFromTarget(target, destination)));
         }
 
         await Promise.all(fetches);
