@@ -10,8 +10,6 @@
   "main": "gulpfile.js",
   "author": "Platform.sh",
   "scripts": {
-    "scss-build": "gulp scss",
-    "scss-watch": "gulp watch",
     "assets-dist": "gulp dist",
     "hugo-watch-dev": "hugo server --watch --verbose --buildDrafts --cleanDestinationDir --disableFastRender",
     "hugo-watch-prod": "./hugo",
@@ -19,8 +17,7 @@
     "registry-files": "node static/scripts/updateExampleConfigFiles.js",
     "build-searchapp": "cd static/scripts/xss && npm install && npm run-script build",
     "dev": "npm run fetch-files && npm run registry-files",
-    "build": "npm run fetch-files && npm run registry-files && npm run build-searchapp",
-    "prod": "npm run fetch-files && npm run registry-files && npm run scss-build"
+    "build": "npm run fetch-files && npm run registry-files && npm run build-searchapp"
   },
   "devDependencies": {
     "pshregistry-parser": "^1.2.0"
