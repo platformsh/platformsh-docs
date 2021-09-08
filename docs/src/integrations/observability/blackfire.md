@@ -41,7 +41,25 @@ Follow [the step-by-step instructions](https://blackfire.io/docs/integrations/pa
 
 **Sign up for the free 15 days Premium trial** at [blackfire.io](https://blackfire.io/pricing) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld) or [Firefox](https://addons.mozilla.org/firefox/addon/blackfire/)).
 
-Then open a support ticket with the Backfire server ID and token.  The client ID and token is optional.  Our support team will install it for you.
+### Dedicated Generation 3
+Define new Project Variables with your Blackfire Server ID, Server Token, Client ID and Client Token.
+
+```env
+env:BLACKFIRE_SERVER_ID = ...
+```
+```env
+env:BLACKFIRE_SERVER_TOKEN = ...
+```
+```env
+env:BLACKFIRE_CLIENT_ID = ...
+```
+```env
+env:BLACKFIRE_CLIENT_TOKEN = ...
+```
+
+### Other Dedicated Infrastructure
+
+Open a support ticket with the Backfire Server ID, Server Token, Client ID, Client Token. Our support team will install it for you.
 
 Note, Blackfire integration works only on profiling your cluster via the URL to the origin. Do not profile your site going through the CDN.
 
