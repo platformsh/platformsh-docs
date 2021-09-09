@@ -61,6 +61,8 @@ https://{default}/:
       # PR 1602
       "/frameworks/wordpress.html": { "to": "/guides/wordpress/deploy.html", "code": 301, "prefix": false }
       "/frameworks/wordpress/redis.html": { "to": "/guides/wordpress/redis.html", "code": 301, "prefix": false }
+      # Redirect requests without a suffix (no dot in path), assuming they need .html suffix
+      "^\/([^.]*)\/$": { "to": '/$1.html', "regexp": true }
 
 "https://www.{default}/":
     type: redirect
