@@ -59,11 +59,11 @@ Blackfire enables to have a fine grained configuration of server credentials acr
 
 #### Configuring global server credentials
 
-Configuring server credentials on your master branch will enable you to make sure you can profile any other branch:
+Configuring server credentials on your main branch will enable you to make sure you can profile any other branch:
 
 ```bash
-platform variable:create -e master --json=false --visible-build=false --sensitive=false --level=project env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
-platform variable:create -e master --json=false --visible-build=false --sensitive=false --level=project env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
+platform variable:create -e main --json=false --visible-build=false --sensitive=false --level=project env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
+platform variable:create -e main --json=false --visible-build=false --sensitive=true --level=project env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
 ```
 
 #### Configuring server credentials per branch
@@ -73,7 +73,7 @@ A recommendation is to have a [Blackfire environment](https://blackfire.io/docs/
 
 ```bash
 platform variable:create -e=<insert your branch name> --json=false --visible-build=false --sensitive=false --level=environment env:BLACKFIRE_SERVER_ID --value <insert your Server ID>
-platform variable:create -e=<insert your branch name> --json=false --visible-build=false --sensitive=false --level=environment env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
+platform variable:create -e=<insert your branch name> --json=false --visible-build=false --sensitive=true --level=environment env:BLACKFIRE_SERVER_TOKEN --value <insert your Server Token>
 ```
 
 ### 4. Confirm it's running
