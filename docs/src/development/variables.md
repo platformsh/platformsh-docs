@@ -213,7 +213,7 @@ Variable availability depends on the type and configuration. Variables available
 
 ### In your application
 
-To access environment variables in your app, check documentation page for your given language.
+To access environment variables in your app, check the documentation page for your given language.
 
 * [Shell: The `jq` utility](https://stedolan.github.io/jq/)
 * [PHP: The `getenv()` function](http://php.net/manual/en/function.getenv.php)
