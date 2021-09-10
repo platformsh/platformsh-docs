@@ -20,7 +20,7 @@ Platform.sh has SOC 2 Type 2 and PCI certifications. As a part of those third-pa
 
 Covered Entities who want to run healthcare workloads on Platform.sh must agree to the following:
 
-* The Covered Entity must sign up for Elite tier.
+* The Covered Entity must sign up for our Dedicated offering.
 * The Covered Entity must sign a Business Associate Agreement with Platform.sh.
 * The Covered Entity implements the relevant controls contained in the [Platform.sh HIPAA Shared Responsibility Matrix](https://docs.google.com/spreadsheets/d/1Wsve74Bn8ljfE2vJbN1g8vZA4Jd5_lokmZxgUPcJ98k/edit?usp=sharing) (Excel). This document provides guidance on shared responsibilities required to achieve HIPAA compliance. 
 * The Covered Entity is solely responsible for any of its applications' security.
