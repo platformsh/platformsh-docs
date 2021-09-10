@@ -34,6 +34,7 @@
     "bl": "^2.2.1",
     "browserify": "^16.5.2",
     "cssnano": "^5.0.6",
+    "express": "^4.17.1",
     "glob-parent": "^5.1.2",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
