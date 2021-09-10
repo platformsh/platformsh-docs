@@ -82,7 +82,7 @@ Some CLI commands (especially many within the `environment` namespace) have some
 
 For all of them, you don't need to configure a Git remote. It is enough to have a project ID.
 
-An example of how this affects commands, when you run `platform merge`, it doesn't affect your local codebase. You don't even need the code locally. The code is merged between environments remotely.
+An example of how this affects commands is that when you run `platform merge`, it doesn't affect your local codebase. You don't even need the code locally. The code is only merged between environments remotely.
 
 ## CLI features
 
