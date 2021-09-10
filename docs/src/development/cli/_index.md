@@ -15,7 +15,7 @@ Find detailed information on [setting up a local development environment](/getti
 
 ## Installation
 
-You can install the CLI easily using this command:
+Install the CLI using this command:
 
 ```bash
 curl -fsS https://platform.sh/cli/installer | php
@@ -25,7 +25,7 @@ You can find the system requirements and more information in the [installation i
 
 ## Authentication
 
-The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will authenticate you with Platform.sh and show your projects. Just type this command to start:
+The [Platform.sh CLI](https://github.com/platformsh/platformsh-cli) will authenticate you with Platform.sh and show your projects. Run this command to start:
 
 ```bash
 platform
@@ -38,12 +38,12 @@ When you are logged in, a list of your projects appears, along with some tips fo
 **Your command-line tools are now ready to use with Platform.sh.**
 
 {{< note >}}
-Please consult [the full documentation on CLI Authentication](https://github.com/platformsh/platformsh-cli#authentication) on the public CLI Github repository for further details.
+Please consult [the full documentation on CLI Authentication](https://github.com/platformsh/platformsh-cli#authentication) on the public CLI GitHub repository for further details.
 {{< /note >}}
 
 ## Usage
 
-The CLI uses Platform.sh API to trigger commands (*Branch, Merge...*) on your projects.
+The CLI uses the Platform.sh API to trigger commands (such as *branch*, *merge*) on your projects.
 
 It's also very useful when you work locally since it can simulate a local build of your codebase as if you were pushing a change to Platform.sh.
 
@@ -76,13 +76,21 @@ Options:
  --shell (-s)          Launch the shell
 ```
 
+### Comparison with Git commands
+
+Some CLI commands (especially many within the `environment` namespace) have some overlap with Git commands. Generally, they offer more options than the Git commands alone. For example, `platform push` offers options such as `--activate` (to active an environment before pushing) and `--no-wait` (so you can continue working without waiting for the push to complete).
+
+For all of them, you don't need to configure a Git remote. It is enough to have a project ID.
+
+An example of how this affects commands, when you run `platform merge`, it doesn't affect your local codebase. You don't even need the code locally. The code is merged between environments remotely.
+
 ## CLI features
 
 Additional settings to control the operation of the Platform.sh CLI can be managed in the configuration file (`.platform/local/project.yaml`) or environment variables. See the [`README` for the CLI for details](https://github.com/platformsh/platformsh-cli/blob/master/README.md#usage).
 
 ## Auto-selecting your project
 
-When your shell's working directory is inside a local checkout of your project repository, the CLI will autodetect your project ID and environment so you don't need to list them as parameters each time.
+When your shell's working directory is inside a local checkout of your project repository, the CLI will automatically detect your project ID and environment so you don't need to list them as parameters each time.
 
 In your home directory, for example, you need to provide the project ID as an argument each time:
 
