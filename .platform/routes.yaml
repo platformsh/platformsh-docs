@@ -64,15 +64,7 @@ https://{default}/:
       # Redirect requests ending in a slash to have a .html suffix
       "^\/([^.]*)\/$": { "to": '/$1.html', "regexp": true }
 
-"https://www.{default}/":
-    type: redirect
-    to: "https://{default}/"
-
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"
     id: "search"
-
-"https://www.search.{default}/":
-    type: redirect
-    to: "https://search.{default}/"
