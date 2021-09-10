@@ -23,10 +23,10 @@ As an organization owner, or as an organization user with the **manage users** p
 * **Manage plans** (`plans`): Add, remove and edit plans and plan options for your existing projects. (Change plan, change storage, change the number of environments, change the number of user licenses)
 * **Manage billing** (`billing`): Add, remove and edit billing information. Access invoices and vouchers.
 * **Create projects** (`projects:create`): Create new projects within the organization.
-* **Manage users** (`users`): Add, remove and edit organization-level users and permissions, including your own.
+* **Manage users** (`members`): Add, remove and edit organization-level users and permissions, including your own.
 
 {{< note theme="warning" title="Important" >}}
-A user with the **manage users** permission can add, edit, or remove any user's permissions to manage plans, manage billing or create projects using the Platform.sh CLI.
+A user with the **manage users** (`members`) permission can add, edit, or remove any user's permissions to manage plans, manage billing or create projects using the Platform.sh CLI.
 {{< /note >}}
 
 ## Manage organizations with the CLI
@@ -50,10 +50,10 @@ Available commands for the "organization" namespace:
   organization:user:update                                      Update an organization user
 ```
 
-For example, the following command would invite `alice@example.com` with the **Billing**, **Plans** and **Projects create** permissions to the `acme-corp` organization.
+For example, the following command would invite `alice@example.com` with the **Manage users**, **Billing**, **Plans** and **Projects create** permissions to the `acme-corp` organization.
 
 ```bash
-platform organization:user:add alice@example.com --org=acme-corp --permission=billing,plans,projects:create
+platform organization:user:add alice@example.com --org=acme-corp --permission=members,billing,plans,projects:create
 ```
 
 After inviting `alice@example.com`, Alice will receive an invitation email asking to confirm her details and optionally, register for a Platform.sh account.
