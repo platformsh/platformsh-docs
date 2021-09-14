@@ -62,6 +62,15 @@ https://{default}/:
       "/frameworks/wordpress.html": { "to": "/guides/wordpress/deploy.html", "code": 301, "prefix": false }
       "/frameworks/wordpress/redis.html": { "to": "/guides/wordpress/redis.html", "code": 301, "prefix": false }
 
+      # PR 1897
+      "/integrations/profiling.html": { "to": "/integrations/observability.html", "code": 301, "prefix": false }
+      "/integrations/profiling/blackfire.html": { "to": "/integrations/observability/blackfire.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic.html": { "to": "/integrations/observability/new-relic.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic/java.html": { "to": "/integrations/observability/new-relic/java.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic/nodejs.html": { "to": "/integrations/observability/new-relic/nodejs.html", "code": 301, "prefix": false }
+      "/integrations/profiling/new-relic/php.html": { "to": "/integrations/observability/new-relic/php.html", "code": 301, "prefix": false }
+      "/integrations/profiling/tideways.html": { "to": "/integrations/observability/tideways.html", "code": 301, "prefix": false }
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"
