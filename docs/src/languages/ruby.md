@@ -90,7 +90,8 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
             mkdir -p "$RAILS_TMP/cache/webpacker"
             [ -d "$PLATFORM_CACHE_DIR/webpacker" ] && \
               rsync -az --delete "$PLATFORM_CACHE_DIR/webpacker/" $RAILS_TMP/cache/webpacker/
-            bundle exec rails assets:precompile
+            # We dont need secret here https://github.com/rails/rails/issues/32947
+            SECRET_KEY_BASE=1 bundle exec rails assets:precompile
             rsync -az --delete $RAILS_TMP/cache/webpacker/ "$PLATFORM_CACHE_DIR/webpacker/"
         deploy: bundle exec rake db:migrate
     ```
@@ -232,7 +233,8 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
             mkdir -p "$RAILS_TMP/cache/webpacker"
             [ -d "$PLATFORM_CACHE_DIR/webpacker" ] && \
               rsync -az --delete "$PLATFORM_CACHE_DIR/webpacker/" $RAILS_TMP/cache/webpacker/
-            bundle exec rails assets:precompile
+            # We dont need secret here https://github.com/rails/rails/issues/32947
+            SECRET_KEY_BASE=1 bundle exec rails assets:precompile
             rsync -az --delete $RAILS_TMP/cache/webpacker/ "$PLATFORM_CACHE_DIR/webpacker/"
         deploy: bundle exec rake db:migrate
 
