@@ -1,7 +1,7 @@
 ---
 title: "Blackfire"
 description: |
-  Platform.sh recommends [Blackfire.io](https://blackfire.io/). Blackfire is a full continuous observability solution (monitoring, profiler and automated performance testing tool). It can be used in the development Integration, Staging, and Production environments. Blackfire supports PHP and Python.
+  Platform.sh recommends [Blackfire.io](https://blackfire.io/). Blackfire is a full continuous observability solution (monitoring, profiling, and automated performance testing tool). It can be used in the development Integration, Staging, and Production environments. Blackfire supports PHP and Python.
 ---
 
 {{< description >}}
