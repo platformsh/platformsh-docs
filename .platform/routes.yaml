@@ -69,7 +69,6 @@ https://{default}/:
       "/integrations/profiling/new-relic/java.html": { "to": "/integrations/observability/new-relic/java.html", "code": 301, "prefix": false }
       "/integrations/profiling/new-relic/nodejs.html": { "to": "/integrations/observability/new-relic/nodejs.html", "code": 301, "prefix": false }
       "/integrations/profiling/new-relic/php.html": { "to": "/integrations/observability/new-relic/php.html", "code": 301, "prefix": false }
-      "/integrations/profiling/new-relic/java.html": { "to": "/integrations/observability/new-relic/java.html", "code": 301, "prefix": false }
       "/integrations/profiling/tideways.html": { "to": "/integrations/observability/tideways.html", "code": 301, "prefix": false }
 
 "https://search.{default}/":
