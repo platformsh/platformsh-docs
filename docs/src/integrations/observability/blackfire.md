@@ -81,7 +81,7 @@ blackfire --config /etc/platform/$USER/blackfire.ini <command>
 
 ## Going further with Blackfire
 
-Blackfire also enables to:
+Blackfire also enables you to:
 
 * [monitor your applications](https://blackfire.io/docs/monitoring-cookbooks/index) and get instant and [actionable insights](https://blackfire.io/docs/testing-cookbooks/recommendations) on where to look for the most impactful optimization
 * collaborate with the rest of your team
