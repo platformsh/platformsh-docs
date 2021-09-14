@@ -318,6 +318,17 @@ or, using the [platformsh-rails-helper
 gem](https://github.com/platformsh/platformsh-rails-helper) by adding it to your
 `Gemfile` and comment the production block on the `config/database.yml`.
 
+## Other tips
+
+* To speed up boot you can use [bootsnap gem](https://github.com/Shopify/bootsnap)
+and configure it with the local `/tmp`:
+
+```
+Bootsnap.setup(cache_dir: "/tmp/cache")
+```
+
+* For garbage collection tuning you can read [this article](https://shopify.engineering/17489064-tuning-rubys-global-method-cache) and look for [discourse configurations](https://github.com/discourse/discourse_docker/blob/b259c8d38e0f42288fd279c9f9efd3cefbc2c1cb/templates/web.template.yml#L8)
+
 ## Project templates
 
 A number of project templates for Ruby applications and typical configurations are available on GitHub. Not all of them are proactively maintained but all can be used as a starting point or reference for building your own website or web application.
