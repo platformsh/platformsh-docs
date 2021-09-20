@@ -20,7 +20,7 @@ Make sure to provide enough context, potentially by linking to existing resource
 
 ## Style defaults
 
-This style guide does not aim to cover every possible situation.
+This style guide doesn't aim to cover every possible situation.
 If you come across something not addressed here,
 look for guidance in the [Google developer documentation style guide](https://developers.google.com/style).
 For a quick summary of that guide, see the [Google style guide highlights](https://developers.google.com/style/highlights).
@@ -29,7 +29,7 @@ Platform.sh docs should be in standard U.S. spelling,
 with reference to the [Merriam-Webster dictionary](https://www.merriam-webster.com/).
 
 The name of the company is always written as "Platform.sh", not only "Platform".
-It should not be used as a link.
+It shouldn't be used as a link.
 
 ## Address the reader directly
 
@@ -92,7 +92,7 @@ This includes people who don't see and people who have images off in their brows
 Use alternative text for images that add content to a page that isn't otherwise there.
 Imagine what you would write if you couldn't include the image.
 
-In situations where the image is for decoration or repeats text that is already present,
+In situations where the image is for decoration or repeats text that's already present,
 use blank alternative text to show that.
 
 See the [proper format for images](./markup-format.md#images).
@@ -104,13 +104,13 @@ Crop the screenshot so it only shows what users need to get the context.
 This helps keep the images fresh if other parts of the UI change.
 
 Use your browser's developer tools to ensure your name
-and any other project-specific data is not included.
+and any other project-specific data isn't included.
 
-Name the file descriptively so that it relates to what is being shown.
+Name the file descriptively so that it relates to what's being shown.
 
 ## Use the present tense
 
-Readers are often using the documentation they are reading at that moment.
+Readers are often using the documentation they're reading at that moment.
 Even if they might be using the code in the future,
 writing about the present is clearer and more direct.
 
@@ -143,10 +143,10 @@ This command returns what its name is. | This command returns what it's name is.
 ## Explain abbreviations
 
 Too many abbreviations can be confusing to readers.
-Make sure to explain any abbreviations that might be unfamiliar the first time they are used.
+Make sure to explain any abbreviations that might be unfamiliar the first time they're used.
 
 Avoid abbreviations for Latin terms, such as `i.e.`, `e.g.`, and `etc.`.
-as these are not always understood correctly.
+as these aren't always understood correctly.
 
 Use                                                                         | Avoid 
 ----------------------------------------------------------------------------|-------
@@ -161,13 +161,36 @@ Don't use too many in one place or they lose their value.
 
 There are three types of notes:
 
-* Note: For neutral information that is worth taking into consideration.
+* Note: For neutral information that's worth taking into consideration.
 * Info: For helpful information that might save the reader time
   or otherwise benefit them.
-* Warning: For information that is serious and must be taken into account.
+* Warning: For information that's serious and must be taken into account.
   Ignoring a warning could cause things to break or data to disappear.
 
 Each type of note has its type as the default title.
 You can override the title to anything, but keep it short.
 
 See [how to format notes](./markup-format.md#notes).
+
+## Guidance enforcement
+
+Some of the rules are enforced with [Vale](https://docs.errata.ai/vale/about), a linter for prose.
+
+Because writing style is subjective and no checking tool is perfect,
+the rules are mostly set to warnings rather than errors.
+So checks note when something might be wrong,
+but use your common sense and ignore them when appropriate.
+
+One exception is spelling, which returns errors.
+If there's a word that's been falsely flagged as a misspelling,
+add it to the list in `styles/Vocab/Platform/accept.txt`.
+
+<!-- vale Platform.condescending = NO-->
+Another exception is words like `simply`, which can come off as condescending.
+For more, see an [article on words to avoid](https://css-tricks.com/words-avoid-educational-writing/)
+or a [video on not saying 'simply'](https://www.writethedocs.org/videos/prague/2018/don-t-say-simply-jim-fisher/).
+<!-- vale Platform.condescending = YES-->
+
+To get the most out of the rules, [install Vale](https://docs.errata.ai/vale/install)
+and run it locally with the command `lint-prose` from the repository root.
+Or use it in your IDE, such as with [Vale for VS Code](https://github.com/errata-ai/vale-vscode).

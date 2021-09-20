@@ -27,7 +27,7 @@ pngcrush
 progs
 Pthreads
 plaintext
-rsync
+[Rr]sync
 runtimes
 shortcode
 Symfony
