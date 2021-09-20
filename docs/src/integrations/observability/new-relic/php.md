@@ -2,6 +2,12 @@
 title: "PHP"
 ---
 
+{{< note title="PHP version">}}
+
+New Relic is not supported for PHP v8.0+. To use New Relic with PHP, specify `type: 'php:7.4'` in your `.platform.app.yaml` file.
+
+{{< /note >}}
+
 ## Get your license key
 
 Sign up at https://newrelic.com and get your license key.
