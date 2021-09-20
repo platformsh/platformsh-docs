@@ -2,22 +2,31 @@
 
 This repository holds the public user documentation for Platform.sh.
 
-Our documentation site ([docs.platform.sh](https://docs.platform.sh/)) is itself hosted on Platform.sh, and built using our powerful build-and-deploy system.
+THe documentation site ([docs.platform.sh](https://docs.platform.sh/)) is itself hosted on Platform.sh
+and built using the powerful Platform.sh build-and-deploy system.
 
-Every pull request is automatically built on Platform.sh, and a link provided to a fully built environment just for that PR.  Have a look in any open pull request at the Checks section, on the Platform.sh row, then click on the "Details" link on the right side of the row.  That will take you to a fully functional site based on the changes in the PR.  We offer the same functionality to all of our customers!
+Every pull request (PR) is automatically built on Platform.sh
+and provided with a link to a fully built environment just for that request.
+Each PR against the default branch of this repository has a Platform.sh check.
+Click **Details** on an open PR to see a fully functional site based on the changes in the PR.
+(You can have the same functionality for your repository.)
 
 ## Tools
 
-Our documentation site is build using [Hugo](https://gohugo.io), a Go static site generator. We rerun the build script on every deploy to produce a fresh static site instance. As we transition to Hugo from Gitbook, currently the site's layouts are built on top of [DocsUIKit](https://github.com/htmlstreamofficial/docs-ui-kit).
+The documentation site is build using [Hugo](https://gohugo.io), a Go static site generator.
+The build script is rerun on every deploy to produce a fresh static site instance.
 
-Our cross-site search in the documentation is built in a separate application on Platform.sh in `search` using [Meilisearch](https://www.meilisearch.com/).
-
+The cross-site search in the documentation is built as a separate Platform.sh app
+from the files in the `search` directory using [MeiliSearch](https://www.meilisearch.com/).
 
 ## Contributing
 
-Our documentation is public because we want your help in improving and maintaining it.  See our [Contributing guidelines](CONTRIBUTING.md) for guidelines on filing pull requests.  All documentation is released under the [Creative Commons Attribution](LICENSE.md) license.
+Our documentation is public because we want your help in improving and maintaining it.
+See our [contribution guidelines](CONTRIBUTING.md) for how to make changes.
+All documentation is released under a [Creative Commons Attribution](LICENSE.md) license.
 
-If you spot a problem, send us a pull request to fix it!  If you're not sure how, you can also file an issue and we'll try to get to it ourselves.
+If you spot a problem, open a pull request to fix it!
+If you're not sure how, you can also open an issue and we can look into it.
 
 ## Running locally
 
@@ -25,13 +34,15 @@ Requires:
 
 * Hugo >= 0.68.3
 * Node.js >= 14
-* [Poetry](https://python-poetry.org/docs/)
 
 ### Running locally without search
 
-The documentation and the Meilisearch search service are separate applications. It is not necessary to run the Meilisearch app to build the docs locally, but the field will not appear in the sidebar either.
+The documentation and the MeiliSearch search service are separate applications.
+It is not necessary to run the MeiliSearch app to build the docs locally,
+but if you don't, the search field does not appear in the sidebar.
 
-Clone this repo, then install its dependencies and download its example files:
+To run the docs alone, clone this repository
+and then install its dependencies and download its example files:
 
 ```bash
 cd docs
@@ -47,13 +58,19 @@ hugo serve
 
 ### Running locally with search
 
-If you would like to test the search server, you can run it by exporting the `MEILI_MASTER_KEY` environment variable and installing Meilisearch locally:
+In addition to the above requirements, search also requires:
+
+* [Poetry](https://python-poetry.org/docs/)
+* [MeiliSearch](https://www.meilisearch.com/) (see below for installation)
+
+If you would like to test the search server,
+you can run it by exporting the `MEILI_MASTER_KEY` environment variable and installing MeiliSearch locally:
 
 ```bash
 cd search
-# Install dependencies for communicating with Meilisearch.
+# Install dependencies for communicating with MeiliSearch.
 poetry install
-# Download Meilisearch.
+# Download MeiliSearch.
 curl -L https://install.meilisearch.com | sh
 # Set a master key.
 export MEILI_MASTER_KEY=test
@@ -74,13 +91,13 @@ hugo
 
 > **Note:**
 >
-> If you receive an error about the Webpack CLI missing, you will need to install it on your local machine:
+> If you receive an error about missing the Webpack CLI, you need to install it on your local machine:
 >
 > ```bash
 > npm install webpack-cli -g
 > ```
 
-Then update the Meilisearch server:
+Then update the MeiliSearch server:
 
 ```bash
 cd ../search
@@ -90,7 +107,7 @@ export MEILI_MASTER_KEY=test
 ./post_deploy.sh
 ```
 
-Then finally, build the site:
+Finally, run the site:
 
 ```bash
 cd ../docs

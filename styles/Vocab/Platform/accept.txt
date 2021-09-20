@@ -11,6 +11,7 @@ denylist
 Drush
 Fastly
 glibc
+Goldmark
 hostname
 Httpoxy
 imagetragick
@@ -30,4 +31,5 @@ rsync
 runtimes
 shortcode
 Symfony
+transclusion
 Xdebug
