@@ -1,9 +1,10 @@
 ---
-title: Vault
+title: Vault key management service
+sidebarTitle: Vault KMS
 weight: 14
 ---
 
-Vault provides key management and access control for your secrets. The Platform.sh Vault service offers the transit secrets engine to sign, verify, encrypt, decrypt, and rewrap information.
+The Vault key management service (KMS) provides key management and access control for your secrets. The Platform.sh Vault KMS offers the transit secrets engine to sign, verify, encrypt, decrypt, and rewrap information.
 
 ## Supported versions
 
@@ -39,7 +40,7 @@ vault:
 What this includes:
 
 * `<ENDPOINT_ID>` is an identifier you choose for the endpoint, such as `demo-app`. 
-* `<KEY_NAME>` is the name of the key to be stored in the vault, such as `signing-key`.
+* `<KEY_NAME>` is the name of the key to be stored in the Vault KMS, such as `signing-key`.
 * Select a [policy](#policies) based on what you want to accomplish.
 * The `type` is one of:
 
@@ -96,15 +97,15 @@ relationships:
     vault_sign: "vault:sign_and_verify"
 ```
 
-## Use Vault
+## Use Vault KMS
 
-To connect your app to the Vault service, use a token that is defined in the `$PLATFORM_RELATIONSHIPS` environment variable. With this token for authentication, you can use any of the policies you [defined in your `.platform/services.yaml` file](#add-the-service).
+To connect your app to the Vault KMS, use a token that is defined in the `$PLATFORM_RELATIONSHIPS` environment variable. With this token for authentication, you can use any of the policies you [defined in your `.platform/services.yaml` file](#add-the-service).
 
 The following examples use cURL as an example, which you could do in a hook or after SSHing into your app environment. Adapt the examples for your app's language.
 
 ### Get the token
 
-In order to make any calls to Vault, you need your token. Get it from the `$PLATFORM_RELATIONSHIPS` environment variable:
+In order to make any calls to the Vault KMS, you need your token. Get it from the `$PLATFORM_RELATIONSHIPS` environment variable:
 
 ```bash
 echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".<SERVICE_NAME>[0].password"
@@ -124,7 +125,7 @@ A given token is valid for one year from its creation.
 
 ### Get the right URL
 
-The `$PLATFORM_RELATIONSHIPS` environment variable also contains the information you need to construct a URL for contacting the Vault service: the `host` and `port`.
+The `$PLATFORM_RELATIONSHIPS` environment variable also contains the information you need to construct a URL for contacting the Vault KMS: the `host` and `port`.
 
 Assign it to a variable as follows:
 
@@ -170,7 +171,7 @@ curl \
   --data "{\"input\": \"$(echo SECRET | base64)\"}"
 ```
 
-The string at the end of the URL denotes the specific [hash algorithm used by Vault](https://www.vaultproject.io/api/secret/transit#hash_algorithm).
+The string at the end of the URL denotes the specific [hash algorithm used by the Vault KMS](https://www.vaultproject.io/api/secret/transit#hash_algorithm).
 
 You get back a JSON object that includes the signature for the payload:
 
