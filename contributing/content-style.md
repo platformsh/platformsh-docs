@@ -1,4 +1,4 @@
-# Platform.sh Docs Content Style Guide
+# Platform.sh Docs content style guide
 
 ## Introduction
 

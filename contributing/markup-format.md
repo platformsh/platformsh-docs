@@ -32,6 +32,8 @@ top-level headings in the document should be H2 (`##`).
 You can add sub-headings at the next lower level,
 just be sure not to skip any levels.
 
+Headings should be in sentence case (only the first word capitalized).
+
 ## Line wrapping
 
 For the reasons outlined at the [Semantic Line Breaks website](https://sembr.org/),

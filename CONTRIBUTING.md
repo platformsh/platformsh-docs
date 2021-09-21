@@ -6,16 +6,18 @@ These contribution guides should help you keep the docs clear and consistent.
 They're intended for use by all contributors,
 from Platform.sh engineers to people from the community.
 
+For style and formatting guidance, see:
+
+* [Content style guide](contributing/content-style.md)
+* [Markup reference](contributing/markup-format.md)
+
 ## Adding pages
 
-List pages are made using `_index.md` files in every subdirectory, whereas single pages are generated from every other page without that name.
+All file names should end in `.md`.
+They should be all lowercase
+and match the page title or a short version of it.
 
-Additionally, single and list pages are built differently depending on their `layout`, which is defined in `layouts/_default/(single|list).html`. For our documentation, list pages by default generate buttons for each page in that subdirectory, whereas single pages are built from the contents of that file and include a table of contents.
-
-
-* All files should end in `.md`. They should be all-lower-case and match the title of the page, or in some cases an abbridged version of it.
-
-If you wanted to add a new page for a runtime to the **Languages** section, you would add the following file:
+To add a page to an existing section such as **Languages**, add the following file:
 
 ```text
 src/
@@ -25,22 +27,10 @@ src/
       new_language.md
 ```
 
-`new_language.md` should contain at least the following in its front matter at the top of the page.
+Make sure that you give it the required [front matter](contributing/markup-format.md#front-matter).
 
-```
----
-title: "New language"
-weight: 4
----
-```
-
-`title` sets the `<h1>` header for the page title, and weight defines in what order items in this subsection should be listed in the sidebar. Lower weights appear higher up in the sidebar. Here the new page will appear fourth under the **Languages** section.
-
-The new page will have the link `/languages/new_language.html`
-
-### Adding subsections with pages
-
-If you are adding a new *subsection* to **Languages** section, you would instead need to add:
+To add a new subsection that contains multiple pages under an existing section,
+add a directory and an `_index.md` file:
 
 ```text
 src/
@@ -52,46 +42,12 @@ src/
         specific_page.md
 ```
 
-`_index.md` is a list page for the `new_language` subsection, and it will still be found at `/languages/new_language.html` like above. If you would like a new subsection's list page to be build to the list default, you can define the front matter the same as listed above for the single page.
+By default, the `_index.md` file has a `list` layout,
+which means it contains buttons linking to all pages in its directory.
+To override this and include content from the `_index.md` file itself,
+set the `layout` to `single` in the [front matter](contributing/markup-format.md#front-matter).
 
-Chances are, however, you don't want `_index.md` to be a list of that subdirectory's pages (especially if it's a new language), but rather that it's treated as a single page would: display content and contain a table of contents. You can tell Hugo to do this by including the `layout` attribute in its front matter.
-
-```
----
-title: "New language"
-weight: 6
-layout: single
----
-```
-
-`_index.md` will now use the layout for single pages (`layouts/_default/single.html`).
-
-### Sidebar and pages
-
-If you would like the title of a given page to appear differently in the sidebar &mdash; say, a shorter title there, but a more descriptive title on the page &mdash; you can use the `sidebarTitle` attribute in the front matter to define it, while the regular `title` attribute will only be used on the page itself.
-
-```
----
-title: "New language support details"    # Title on page
-sidebarTitle: "New language"             # How title appears in sidebar
-weight: 6
-layout: single
----
-```
-
-### Disabling table of contents
-
-By default, all pages that use the `single` layout will generate a table of contents beneath their title. If you would like to disable it, add `toc` attribute to your front matter:
-
-```
----
-title: "New language"
-weight: 4
-toc: false
----
-```
-
-## Adding security reports
+### Adding security reports
 
 To add a security transparency report for a new year (after receiving the data):
 
@@ -116,22 +72,19 @@ To add a security transparency report for a new year (after receiving the data):
 
 The report text is in `docs/data/transparency-reports.yaml`.
 
-## Structure
+## Review process
 
-* Favor short titles for pages and sections.
-* Titles of pages and sections should use Sentence case. That is, capitalize the first word and proper nouns only.
-* Never have a page in the outline that is more than 2 levels deep. That is, never have a sub-sub item. That ensures all pages are at most 2 clicks away from any other page.
-* Each page should cover one topic, but should completely cover that topic. Do not break topics across multiple pages needlessly.
-* The use of asides should be sparing. If used, they must begin with a `**bolded**` header of "note" or "warning", as appropriate. Most text simply belongs as part of the prose, however.
+<!-- vale Platform.first-person = NO -->
+Our default branch is protected, so you can't push directly to it
+and pull requests require approval from someone with write access.
 
-## Process
+We're happy to review your suggested changes.
+We generally review for:
 
-* Favor many small PRs over larger ones.
-* Never push directly to the master branch.
-* Never merge your own PR, unless not doing so would result in customer data loss.
-* Any member of the Developer Relations team may merge a PR they didn't write, although consulting with other members of the team on larger or more consequential PRs is encouraged.
-* Typographic, formatting, and spelling fixes made through GitHub's "suggestion" feature do not count as "writing the PR", and may be merged by the reviewer if the PR author is someone outside the DevRel team.
-* If your PR relates to new support for runtime or service images, include a complementary line addressing that upgrade in the [Changelog](/src/changelog.md).
+* Accuracy
+* Clarity
+* Consistency with our [style guide](contributing/content-style.md)
 
-conventional commits?
-semantic versioning?
+To speed the process along, we may merge small changes such as spelling and formatting
+into your branch.
+Otherwise, we make suggestions and work with you to finalize the changes.
