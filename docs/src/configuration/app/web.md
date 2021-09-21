@@ -14,9 +14,11 @@ The `web` key defines how the application is exposed to the web (in HTTP). Here 
 
 ## Commands
 
-The `commands` key defines the command to launch the application.  For now there is only a single command, `start`, but more will be added in the future.
+The `commands` key defines the command to launch the application. For now there is only a single command, `start`, but more will be added in the future.
 
-The `start` key specifies the command to use to launch your application.  That could be running a uwsgi command for a Python application or a unicorn command for a Ruby application, or simply running your compiled Go application.  If the command specified by the `start` key terminates it will be restarted automatically.
+The `start` key specifies the command to use to launch your application. That could be running a uwsgi command for a Python application, a unicorn command for a Ruby application, or your compiled Go application. If the command specified by the `start` key terminates it will be restarted automatically.
+
+This command runs every time your app is restarted, regardless of whether or not new code is deployed. So it can be useful for things like clearing ephermal cache.
 
 ```yaml
 web:
