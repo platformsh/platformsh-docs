@@ -46,6 +46,12 @@ Next, download the template                      | Next, let's download the temp
 To get started quickly, use the default settings | We recommend that you use the default settings to get started quickly
 Once you add the file to your repository         | Once we've added the file to our repository
 
+Part of this directness is also avoiding using `please`.
+Only use `please` if you're asking for something that benefits Platform.sh
+or inconveniences the reader.
+
+So it's OK in phrases like `If you get an error, please open a support ticket.`
+
 ## Use inclusive language
 
 In keeping with the Platform.sh value of being diverse,

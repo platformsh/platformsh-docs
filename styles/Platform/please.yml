@@ -1,0 +1,7 @@
+extends: existence
+message: "Try to avoid using '%s'."
+link: 'https://github.com/platformsh/platformsh-docs/contributing/content-style.md#address-the-reader-directly'
+level: warning
+ignorecase: true
+tokens:
+  - please
