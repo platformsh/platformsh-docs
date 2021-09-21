@@ -194,3 +194,5 @@ or a [video on not saying 'simply'](https://www.writethedocs.org/videos/prague/2
 To get the most out of the rules, [install Vale](https://docs.errata.ai/vale/install)
 and run it locally with the command `lint-prose` from the repository root.
 Or use it in your IDE, such as with [Vale for VS Code](https://github.com/errata-ai/vale-vscode).
+
+All pull requests against the default branch are also checked by Vale automatically.

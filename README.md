@@ -91,7 +91,7 @@ hugo
 
 > **Note:**
 >
-> If you receive an error about missing the Webpack CLI, you need to install it on your local machine:
+> If you receive an error about missing the webpack CLI, you need to install it on your local machine:
 >
 > ```bash
 > npm install webpack-cli -g

@@ -32,4 +32,5 @@ runtimes
 shortcode
 Symfony
 transclusion
+webpack
 Xdebug
