@@ -38,7 +38,7 @@ When you are logged in, a list of your projects appears, along with some tips fo
 **Your command-line tools are now ready to use with Platform.sh.**
 
 {{< note >}}
-Please consult [the full documentation on CLI Authentication](https://github.com/platformsh/platformsh-cli#authentication) on the public CLI GitHub repository for further details.
+For further details, consult the [Platform.sh CLI docs on Authentication](https://github.com/platformsh/platformsh-cli#authentication).
 {{< /note >}}
 
 ## Usage
