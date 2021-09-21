@@ -61,6 +61,8 @@ https://{default}/:
       # PR 1602
       "/frameworks/wordpress.html": { "to": "/guides/wordpress/deploy.html", "code": 301, "prefix": false }
       "/frameworks/wordpress/redis.html": { "to": "/guides/wordpress/redis.html", "code": 301, "prefix": false }
+      # Redirect requests ending in a slash to have a .html suffix
+      "^\/([^.]*)\/$": { "to": '/$1.html', "regexp": true }
 
       # PR 1897
       "/integrations/profiling.html": { "to": "/integrations/observability.html", "code": 301, "prefix": false }
