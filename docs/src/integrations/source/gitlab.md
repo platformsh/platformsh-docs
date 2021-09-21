@@ -20,19 +20,17 @@ If the repository you are trying to integrate with a Platform.sh project has a d
 
 ### 1. Generate a token
 
-To integrate your Platform.sh project with an existing GitLab repository, you first need to generate a token on your GitLab user profile. Simply go to your Settings page on GitLab and click `Access Tokens`.
+To integrate your Platform.sh project with an existing GitLab repository, generate a [project access token](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html) (you can use a personal access token but a project access token has more limited permissions). Note that for the integration to work, your GitLab user needs push access to the repository.
 
-Fill the `Name` field for example with "Platform.sh Integration" and optionally set an expiration time.
-
-Give it a description and then ensure the token has the following scopes:
-
- * `api`  - Access your API
- * `read_user` - Read user information
- * `read_repository` - Read repositories
-
-Copy the token and make a note of it (temporarily).
-
-Note that for the integration to work, your GitLab user needs to have permission to push code to the repository.
+1. In GitLab, navigate to the project you want to integrate.
+1. In the **Settings** menu, choose **Access Tokens**.
+1. Give the token a name such as "Platform.sh Integration".
+1. (Optional) set an expiration date.
+1. Ensure the token has the following scopes:
+   * `api` (to access your API)
+   * `read_repository` (to read the repository)
+1. Create the token.
+1. Copy the token and save it somewhere (you won't be able to see it again.).
 
 ### 2. Enable the integration
 
@@ -47,8 +45,8 @@ platform integration:add --type=gitlab --token=GITLAB-ACCESS-TOKEN --base-url=TH
 where
 * `PLATFORMSH_PROJECT_ID` is the project ID for your Platform.sh project
 * `GITLAB-ACCESS-TOKEN` is the token you generated in step 1
-* `THE-URL-OF-YOUR-GITLAB` is the base URL to call the Gitlab API; it should be `https://gitlab.com` if your project is hosted on Gitlab, or the URL for your own Gitlab instance otherwise. It should **not** include your namespace and project name.
-* `MY-NAMESPACE/MY-PROJECTNAME` describes the namespace of your GitLab project, not including the base url.
+* `THE-URL-OF-YOUR-GITLAB` is the base URL to call the GitLab API; it should be `https://gitlab.com` if your project is hosted on GitLab, or the URL for your own GitLab instance otherwise. It should **not** include your namespace and project name.
+* `MY-NAMESPACE/MY-PROJECTNAME` describes the namespace of your GitLab project, not including the base URL.
 
 For example, if your repository is located at `https://gitlab.com/sandbox/my_application`, the integration command would be
 
