@@ -178,6 +178,20 @@ You can override the title to anything, but keep it short.
 
 See [how to format notes](./markup-format.md#notes).
 
+## Add short descriptions
+
+Each page should ideally have a description that can be reused in other places.
+
+`description` is of the options in the [front matter](./markup-format.md#front-matter).
+It allows you to set a meta tag for search optimization
+and text to appear on listing pages.
+
+Add a description of what the page contains,
+something that makes sense out of the context of the rest of the page.
+
+Remember to keep it short.
+If possible, it should be no more than about 160 characters.
+
 ## Guidance enforcement
 
 Some of the rules are enforced with [Vale](https://docs.errata.ai/vale/about), a linter for prose.
