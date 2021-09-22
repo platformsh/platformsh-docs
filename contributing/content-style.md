@@ -61,8 +61,8 @@ Use                                                      | Avoid
 ---------------------------------------------------------|-------
 After you invite someone, they can access your project   | After you invite someone, he can access your project
 If they have the `plans` permission, they can add a plan | If he/she has the `plans` permission, he/she can add a plan 
-blacklist                                                | denylist
-whitelist                                                | allowlist
+denylist                                                 | blacklist
+allowlist                                                | whitelist
 
 ### Resources for inclusive language
 
