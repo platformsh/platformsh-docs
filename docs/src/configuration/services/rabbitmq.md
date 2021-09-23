@@ -39,14 +39,6 @@ You can then use the service in a configuration file of your application with so
 {{< codetabs >}}
 
 ---
-title=Go
-file=static/files/fetch/examples/golang/rabbitmq
-highlight=go
----
-
-<--->
-
----
 title=Java
 file=static/files/fetch/examples/java/rabbitmq
 highlight=java
