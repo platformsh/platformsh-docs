@@ -10,6 +10,8 @@ Cloudwatt
 denylist
 Drush
 Fastly
+Galera
+geocod[er|ing]
 glibc
 Goldmark
 hostname
@@ -19,8 +21,10 @@ jpegoptim
 Magento
 Mailchimp
 Memcache
+middleware
 multifactor
 multithread[ed|ing]
+namespace
 [Nn]ginx
 optipng
 pngcrush
