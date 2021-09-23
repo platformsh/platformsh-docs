@@ -1,5 +1,20 @@
 # Markup reference for Platform.sh docs
 
+## Table of contents
+
+- [Markdown](#markdown)
+- [Front matter](#front-matter)
+- [Headings](#headings)
+- [Line wrapping](#line-wrapping)
+- [Links](#links)
+- [Notes](#notes)
+- [Images](#images)
+- [Videos & asciinema](#videos--asciinema)
+- [Code](#code)
+  - [Indentation](#indentation)
+- [Code tabs](#code-tabs)
+- [Reusing content](#reusing-content)
+
 ## Markdown
 
 These docs are written in Markdown with [GitHub Flavored Markdown](https://github.github.com/gfm/) syntax supported.
