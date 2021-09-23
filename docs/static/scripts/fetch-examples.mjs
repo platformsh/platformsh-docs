@@ -31,8 +31,11 @@ function ensureSubdir(savePath) {
 async function writeFileFromTarget(target, destination) {
     // Get the file.
     console.log("Fetching", target);
-    const res = await axios.get(target, {responseType: 'arraybuffer'});
-    await fsPromises.writeFile(destination, res.data);
+    const res = await axios.get(target, {responseType: 'arraybuffer'})
+    .catch(error => console.error(`The target ${target} returned an error with code ${error.response.status} and text ${error.response.statusText}`));
+    if (res && res.data){
+        await fsPromises.writeFile(destination, res.data);
+    }
 }
 
 // Function to parse out an example file's target and destination before request is made.

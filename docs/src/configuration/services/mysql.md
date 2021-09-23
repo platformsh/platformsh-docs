@@ -62,14 +62,6 @@ You can then use the service in a configuration file of your application with so
 {{< codetabs >}}
 
 ---
-title=Go
-file=static/files/fetch/examples/golang/mysql
-highlight=go
----
-
-<--->
-
----
 title=Java
 file=static/files/fetch/examples/java/mysql
 highlight=java
@@ -226,12 +218,18 @@ Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charse
 
 We recommend using the InnoDB storage engine wherever possible. MyISAM is only properly supported in Grid environments. In dedicated cluster environments there is no replication of MyISAM tables.
 
-If MyISAM tables are inadvertently created or imported in a dedicated environment they can be converted to use the InnoDB storage engine using the following procedure:
+If MyISAM tables have been inadvertently created or imported in a dedicated environment (if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE <existing_table>`), convert them to use the InnoDB storage engine as follows:
 
-```sql
-RENAME TABLE <existing> <old>;
-INSERT INTO <existing> SELECT * from <old>;
-```
+1. Rename the existing table.
+   ```sql
+   RENAME TABLE <existing_table> <table_old>;
+   ```
+1. Create a new table from the data in the existing table.
+   ```sql
+   CREATE TABLE <existing_table> SELECT * from <table_old>;
+   ```
+
+Now when you run `SHOW CREATE TABLE <existing_table>`, you see `ENGINE=InnoDB`.
 
 ## Access your MariaDB service
 
