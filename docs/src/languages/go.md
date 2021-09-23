@@ -92,6 +92,66 @@ disk: 1024
 
 Note that there will still be an Nginx proxy server sitting in front of your application.  If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Go application unconditionally, as in the example above.
 
+## Accessing services
+
+To access various [services](/configuration/services/_index.md) with Go, see the following examples. The individual service pages have more information on configuring each service.
+
+{{< codetabs >}}
+
+---
+title=Memcached
+file=static/files/fetch/examples/golang/memcached
+highlight=go
+markdownify=false
+---
+
+<--->
+
+---
+title=MongoDB
+file=static/files/fetch/examples/golang/mongodb
+highlight=golang
+markdownify=false
+---
+
+<--->
+
+---
+title=MySQL
+file=static/files/fetch/examples/golang/mysql
+highlight=golang
+markdownify=false
+---
+
+<--->
+
+---
+title=PostgreSQL
+file=static/files/fetch/examples/golang/postgresql
+highlight=golang
+markdownify=false
+---
+
+<--->
+
+---
+title=RabbitMQ
+file=static/files/fetch/examples/golang/rabbitmq
+highlight=golang
+markdownify=false
+---
+
+<--->
+
+---
+title=Solr
+file=static/files/fetch/examples/golang/solr
+highlight=golang
+markdownify=false
+---
+
+{{< /codetabs >}}
+
 ## Project templates
 
 Platform.sh offers a project templates for Go applications using the structure described above.  It can be used as a starting point or reference for building your own website or web application.
