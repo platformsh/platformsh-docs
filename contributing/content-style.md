@@ -1,13 +1,28 @@
 # Platform.sh Docs content style guide
 
-## Introduction
-
 Thank you for your interest in contributing to the Platform.sh docs!
 It's nice to share the goal of having clear and up-to-date documentation.
 
 This content style guide should help make sure the Platform.sh docs are clear and consistent.
 It's intended for use by all contributors,
 from Platform.sh engineers to people from the community.
+
+## Table of contents
+
+- [About the audience](#about-the-audience)
+- [Style defaults](#style-defaults)
+- [Address the reader directly](#address-the-reader-directly)
+- [Use inclusive language](#use-inclusive-language)
+  - [Resources for inclusive language](#resources-for-inclusive-language)
+  - [Use meaningful link text](#use-meaningful-link-text)
+  - [Include alt text](#include-alt-text)
+- [Format screenshots for sustainability](#format-screenshots-for-sustainability)
+- [Use the present tense](#use-the-present-tense)
+- [Use contractions](#use-contractions)
+- [Explain abbreviations](#explain-abbreviations)
+- [Use notes appropriately](#use-notes-appropriately)
+- [Add short descriptions](#add-short-descriptions)
+- [Guidance enforcement](#guidance-enforcement)
 
 ## About the audience
 
