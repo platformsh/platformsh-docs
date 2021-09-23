@@ -59,14 +59,6 @@ You can then use the service in a configuration file of your application with so
 {{< codetabs >}}
 
 ---
-title=Go
-file=static/files/fetch/examples/golang/mongodb
-highlight=go
----
-
-<--->
-
----
 title=Java
 file=static/files/fetch/examples/java/mongodb
 highlight=java
