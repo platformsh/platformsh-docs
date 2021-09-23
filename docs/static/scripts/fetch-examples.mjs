@@ -10,10 +10,10 @@ const dataDirectories = {
         dir: 'data/remote-examples/templates/',
         fetchFunc: fetchFilesTemplates,
     },
-    "language-examples": {
-        dir: 'data/remote-examples/language-examples/',
-        fetchFunc: fetchFilesExamples
-    }
+    // "language-examples": {
+    //     dir: 'data/remote-examples/language-examples/',
+    //     fetchFunc: fetchFilesExamples
+    // }
 }
 
 const fetchConcurrency = pLimit(10);
