@@ -45,14 +45,6 @@ You can then use the service in a configuration file of your application with so
 {{< codetabs >}}
 
 ---
-title=Go
-file=static/files/fetch/examples/golang/solr
-highlight=go
----
-
-<--->
-
----
 title=Java
 file=static/files/fetch/examples/java/solr
 highlight=java

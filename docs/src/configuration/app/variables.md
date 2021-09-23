@@ -4,11 +4,11 @@ weight: 8
 toc: false
 ---
 
-Platform.sh provides a number of ways to set [variables](/development/variables.md), either globally or specific to a single environment.  For values that should be consistent between different environments (because they're configuring the application or runtime itself, generally) the easiest way to control them is to set them in the `.platform.app.yaml` file.
+Platform.sh provides a number of ways to set [variables](/development/variables.md), either globally or specific to a single environment. For non-secret values that should be consistent across all environments (because they're configuring the application itself), you can set them in the `.platform.app.yaml` file.
 
-Only prefixed variables may be set from the `.platform.app.yaml` file.  Some prefixes have specific meaning while others are only significant to a particular application.  Nested variables will be automatically converted into a nested array or list structure as appropriate to the language.
+All variables in the `.platform.app.yaml` file must have a prefix. Some [prefixes have specific meanings](/development/variables.md#variable-prefixes), while others are only significant to a particular application. Nested variables are automatically converted into a nested array or list structure as appropriate to the language.
 
-For example, the following section in `.platform.app.yaml` will set a single variable named `env:AUTHOR` to the value `Juan`.
+For example, the following section in `.platform.app.yaml` sets a single variable named `env:AUTHOR` with the value `Juan`.
 
 ```yaml
 variables:
@@ -16,13 +16,13 @@ variables:
         AUTHOR: 'Juan'
 ```
 
-That will have the exact same runtime effect as setting a project variable via the CLI as follows, except it will be versioned along with the code:
+This has the exact same effect as setting a project variable via the CLI as follows except it is versioned along with the code:
 
 ```bash
 $ platform variable:create env:AUTHOR --level project --value Juan
 ```
 
-The variable name may itself have punctuation in it.  For example, to set a Drupal 8 configuration override (assuming you're using the recommended `settings.platformsh.php` file) you can do the following:
+The variable name may itself have punctuation in it. For example, to set a Drupal 8 configuration override (assuming you're using the recommended `settings.platformsh.php` file), you can do the following:
 
 ```yaml
 variables:
@@ -30,11 +30,11 @@ variables:
         "system.site:name": 'My site rocks'
 ```
 
-This will create a Platform.sh variable, that is, an item in the `$PLATFORM_VARIABLES` environment variable, named `d8config:system.site:name` with value "My site rocks".
+This creates a Platform.sh variable (an item in the `$PLATFORM_VARIABLES` environment variable) named `d8config:system.site:name` with the value `My site rocks`.
 
 ## Complex values
 
-The value for a variable may be more than just a string; it may also be a nested structure.  If the variable is in the `env` namespace, it will be mapped to a Unix environment variable as a JSON string.  If not, it will be included in the `PLATFORM_VARIABLES` environment variable.
+Variable values don't have to be only strings. They can also have nested structures. Structured variables with an `env:` prefix are mapped to environment variables with JSON strings for values. Other variables are included in the `PLATFORM_VARIABLES` environment variable.
 
 For example, the following variable definitions:
 
@@ -56,9 +56,37 @@ variables:
             blue: '#0000FF'
 ```
 
-Would appear this way in various languages:
+Would appear as follows:
 
 {{< codetabs >}}
+
+---
+title=Shell
+file=none
+highlight=bash
+markdownify=false
+---
+
+$ echo $BASIC
+a string
+$ echo $INGREDIENTS
+["peanut butter", "jelly"]
+$ echo $QUANTITIES
+{"cookies": "1 kg", "milk": "1 liter"}
+$ echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:STEPS"'
+[
+  "un",
+  "deux",
+  "trois"
+]
+$ echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:COLORS"'
+{
+  "blue": "#0000FF",
+  "green": "#00FF00",
+  "red": "#FF0000"
+}
+
+<--->
 
 ---
 title=PHP
@@ -140,7 +168,7 @@ markdownify=false
 ---
 const { BASIC, INGREDIENTS, QUANTITIES, PLATFORM_VARIABLES } = process.env;
 
-const { "stuff:COLORS": stuffColors, "stuff:STEPS": stuffSteps } = JSON.parse(
+const { "stuff:STEPS": stuffSteps, "stuff:COLORS": stuffColors } = JSON.parse(
   Buffer.from(PLATFORM_VARIABLES, "base64").toString()
 );
 
@@ -150,9 +178,9 @@ console.log(INGREDIENTS);
 // ["peanut butter", "jelly"]
 console.log(QUANTITIES);
 // {"cookies": "1 kg", "milk": "1 liter"}
-console.log(stuffColors);
-// { blue: '#0000FF', green: '#00FF00', red: '#FF0000' }
 console.log(stuffSteps);
 // [ 'un', 'deux', 'trois' ]
+console.log(stuffColors);
+// { blue: '#0000FF', green: '#00FF00', red: '#FF0000' }
 
 {{< /codetabs >}}
