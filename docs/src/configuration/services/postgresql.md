@@ -151,7 +151,7 @@ Taking a backup or a database export before doing so is strongly recommended.
 
 ## Multiple databases
 
-If you are using version `13` or later of this service it is possible to define multiple databases as well as multiple users with different permissions. To do so requires defining multiple endpoints. Under the `configuration` key of your service there are two additional keys:
+If you are using version `10` `11` `12` `13` or later of this service it is possible to define multiple databases as well as multiple users with different permissions. To do so requires defining multiple endpoints. Under the `configuration` key of your service there are two additional keys:
 
 * `databases`:  This is a YAML array listing the databases that should be created. If not specified, a single database named `main` will be created.
 * `endpoints`: This is a nested YAML object defining different credentials. Each endpoint may have access to one or more schemas (databases), and may have different levels of permission for each. The valid permission levels are:
