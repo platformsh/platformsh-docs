@@ -188,9 +188,9 @@ This example creates a single PostgreSQL service named `dbpostgres`. The server 
 
 * `admin`: has full access to both databases.
 * `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
-* `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It does not have access to `main`. 
+* `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It does not have access to `main`.
 
-If a given endpoint has access to multiple databases you should also specify which will be listed by default in the relationships array. If one isn't specified, the `path` property of the relationship will be `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the Platform.sh CLI will not be able to access the database on that relationship. For that reason, defining the `default_database` property is always recommended. 
+If a given endpoint has access to multiple databases you should also specify which will be listed by default in the relationships array. If one isn't specified, the `path` property of the relationship will be `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the Platform.sh CLI will not be able to access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
 
 Once these endpoints are defined, you will need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `.platform.app.yaml` might look like:
 
@@ -229,7 +229,7 @@ Alternatively, if you define multiple databases but no endpoints, a single user 
 
 ```yaml
 configuration:
-    databases: 
+    databases:
         - firstdb
         - seconddb
         - thirddb
