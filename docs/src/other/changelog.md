@@ -12,6 +12,7 @@ description: |
 * **September 2021**
   * Organizations: Switched to [organizations](/administration/organizations.md) for managing Platform.sh projects, users, and billing.
   * Vault: Added [Vault service](/configuration/services/vault.md).
+  * .Net: We now support [.Net 5.0](/languages/dotnet.md).
 * **May 2021**
   * Elasticsearch 6.8: We now support [Elasticsearch 6.8](/configuration/services/elasticsearch.md).
 ---
