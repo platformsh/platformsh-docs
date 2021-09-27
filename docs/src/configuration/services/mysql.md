@@ -4,7 +4,7 @@ weight: 7
 sidebarTitle: "MariaDB/MySQL"
 ---
 
-Platform.sh supports both MariaDB and Oracle MySQL.  While there are some differences at the application level for developers, they function nearly identically from an infrastructure point of view.
+Platform.sh supports both MariaDB and Oracle MySQL. While there are some differences at the application level for developers, they function nearly identically from an infrastructure point of view.
 
 See the [MariaDB documentation](https://mariadb.org/learn/) or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more information.
 
@@ -22,7 +22,7 @@ Only MariaDB is available on Dedicated and Dedicated Generation 3 environments, 
 {{< image-versions image="mariadb" status="supported" environment="dedicated" >}}
 
 {{< note >}}
-Downgrades of MySQL or MariaDB are not supported. Both will update their own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
+Downgrades of MySQL or MariaDB are not supported. Both will update their own data files to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
 
 Dedicated environments do not support any storage engine other than InnoDB. Tables created using the MyISAM storage engine on dedicated environments will not replicate between cluster nodes.
 {{< /note >}}
@@ -62,6 +62,14 @@ You can then use the service in a configuration file of your application with so
 {{< codetabs >}}
 
 ---
+title=Go
+file=static/files/fetch/examples/golang/mysql
+highlight=go
+---
+
+<--->
+
+---
 title=Java
 file=static/files/fetch/examples/java/mysql
 highlight=java
@@ -99,10 +107,10 @@ MySQL schema names can not use system reserved namespace. (mysql, information_sc
 
 ## Multiple databases
 
-If you are using version `10.0` or later of this service it is possible to define multiple databases as well as multiple users with different permissions.  To do so requires defining multiple endpoints.  Under the `configuration` key of your service there are two additional keys:
+If you are using version `10.0` or later of this service it is possible to define multiple databases as well as multiple users with different permissions. To do so requires defining multiple endpoints. Under the `configuration` key of your service there are two additional keys:
 
-* `schemas`:  This is a YAML array listing the databases that should be created.  If not specified, a single database named `main` will be created.
-* `endpoints`: This is a nested YAML array defining different credentials.  Each endpoint may have access to one or more schemas (databases), and may have different levels of permission on each.  The valid permission levels are:
+* `schemas`:  This is a YAML array listing the databases that should be created. If not specified, a single database named `main` will be created.
+* `endpoints`: This is a nested YAML array defining different credentials. Each endpoint may have access to one or more schemas (databases), and may have different levels of permission on each. The valid permission levels are:
   * `ro`: Using this endpoint only SELECT queries are allowed.
   * `rw`: Using this endpoint SELECT queries as well INSERT/UPDATE/DELETE queries are allowed.
   * `admin`: Using this endpoint all queries are allowed, including DDL queries (CREATE TABLE, DROP TABLE, etc.).
@@ -132,11 +140,11 @@ db:
                     legacy: rw
 ```
 
-This example creates a single MySQL/MariaDB service named `mysqldb`.  That server will have two databases, `main` and `legacy`.  There will be three endpoints created.  The first, named `admin`, will have full access to both databases.  The second, `reporter`, will have SELECT query access to the `main` DB but no access to `legacy` at all.  The `importer` user will have SELECT/INSERT/UPDATE/DELETE access (but not DDL access) to the `legacy` database but no access to `main`.
+This example creates a single MySQL/MariaDB service named `mysqldb`. That server will have two databases, `main` and `legacy`. There will be three endpoints created. The first, named `admin`, will have full access to both databases. The second, `reporter`, will have SELECT query access to the `main` DB but no access to `legacy` at all. The `importer` user will have SELECT/INSERT/UPDATE/DELETE access (but not DDL access) to the `legacy` database but no access to `main`.
 
-If a given endpoint has access to multiple databases you should also specify which will be listed by default in the relationships array.  If one isn't specified the `path` property of the relationship will be null.  While that may be acceptable for an application that knows the name of the database to connect to, it would mean that automated tools such as the Platform CLI will not be able to access the database on that relationship. For that reason the `default_schema` property is always recommended.
+If a given endpoint has access to multiple databases you should also specify which will be listed by default in the relationships array. If one isn't specified the `path` property of the relationship will be null. While that may be acceptable for an application that knows the name of the database to connect to, it would mean that automated tools such as the Platform CLI will not be able to access the database on that relationship. For that reason the `default_schema` property is always recommended.
 
-Once those endpoints are defined, you need to expose them to your application as a relationship.  Continuing with our example, this would be a possible corresponding block from `.platform.app.yaml`:
+Once those endpoints are defined, you need to expose them to your application as a relationship. Continuing with our example, this would be a possible corresponding block from `.platform.app.yaml`:
 
 ```yaml
 relationships:
@@ -145,7 +153,7 @@ relationships:
     imports: "db:importer"
 ```
 
-This block defines three relationships, `database`, `reports`, and `imports`.  They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials.  You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+This block defines three relationships, `database`, `reports`, and `imports`. They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
 
 If no `configuration` block is specified at all, it is equivalent to the following default:
 
@@ -168,7 +176,7 @@ For MariaDB 10.1 and later Oracle MySQL 8.0 and later, a select few configuratio
 
 ### Packet and connection sizing
 
-This value defaults to `16` (in MB).  Legal values are from `1` to `100`.
+This value defaults to `16` (in MB). Legal values are from `1` to `100`.
 
 ```yaml
 db:
@@ -179,7 +187,7 @@ db:
             max_allowed_packet: 64
 ```
 
-The above code will increase the maximum allowed packet size (the size of a query or response) to 64 MB.  However, increasing the size of the maximum packet will also automatically decrease the `max_connections` value.  The number of connections allowed will depend on the packet size and the memory available to the service.  In most cases leaving this value at the default is recommended.
+The above code will increase the maximum allowed packet size (the size of a query or response) to 64 MB. However, increasing the size of the maximum packet will also automatically decrease the `max_connections` value. The number of connections allowed will depend on the packet size and the memory available to the service. In most cases leaving this value at the default is recommended.
 
 ## Character encoding
 
@@ -199,7 +207,7 @@ db:
             default_collation: utf8mb4_unicode_ci
 ```
 
-Note that the effect of this setting is to set the character set and collation of any tables created once those properties are set.  Tables created prior to when those settings are changed will be unaffected by changes to the `services.yaml` configuration.  However, you can change your own table's character set and collation through `ALTER TABLE` commands.  For example:
+Note that the effect of this setting is to set the character set and collation of any tables created once those properties are set. Tables created prior to when those settings are changed will be unaffected by changes to the `services.yaml` configuration. However, you can change your own table's character set and collation through `ALTER TABLE` commands. For example:
 
 ```text
 # To change defaults when creating new tables:
@@ -249,7 +257,7 @@ Outside the application container, you can use Platform CLI `platform sql`.
 
 ## Exporting data
 
-The easiest way to download all data in a MariaDB instance is with the Platform.sh CLI.  If you have a single SQL database, the following command will export all data using the `mysqldump` command to a local file:
+The easiest way to download all data in a MariaDB instance is with the Platform.sh CLI. If you have a single SQL database, the following command will export all data using the `mysqldump` command to a local file:
 
 ```bash
 platform db:dump
@@ -281,7 +289,7 @@ The easiest way to load data into a database is to pipe an SQL dump through the 
 platform sql < my_database_backup.sql
 ```
 
-That will run the database backup against the SQL database on Platform.sh.  That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database).  As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
+That will run the database backup against the SQL database on Platform.sh. That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database). As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
 platform sql --relationship database -e master < my_database_backup.sql
@@ -294,9 +302,9 @@ Taking a backup or a database export before doing so is strongly recommended.
 
 ## Replication
 
-On-site primary/replica support is not available on Grid plans.  On a Dedicated environment, it is provided automatically as part of the default configuration.
+On-site primary/replica support is not available on Grid plans. On a Dedicated environment, it is provided automatically as part of the default configuration.
 
-In abnormal cases you may also enable [remote replication](/guides/general/mysql-replication.md) to your own replica data.  This is an advanced configuration not appropriate for most circumstances (and the replica will not be available to your application), but may be useful for certain backup purposes.
+In abnormal cases you may also enable [remote replication](/guides/general/mysql-replication.md) to your own replica data. This is an advanced configuration not appropriate for most circumstances (and the replica will not be available to your application), but may be useful for certain backup purposes.
 
 ## Troubleshooting
 

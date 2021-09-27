@@ -39,6 +39,14 @@ You can then use the service in a configuration file of your application with so
 {{< codetabs >}}
 
 ---
+title=Go
+file=static/files/fetch/examples/golang/rabbitmq
+highlight=go
+---
+
+<--->
+
+---
 title=Java
 file=static/files/fetch/examples/java/rabbitmq
 highlight=java
@@ -91,7 +99,7 @@ In case you want to access the browser-based UI, you have to use an SSH tunnel. 
 ssh -L 15672:rabbitmqqueue.internal:15672 <projectid>-<branch_ID>@ssh.eu.platform.sh
 ```
 
-After you successfully established a connection, you should be able to open http://localhost:15672 in your browser. You'll find the credentials like mentioned above.
+After you successfully established a connection, you should be able to open `http://localhost:15672` in your browser. You'll find the credentials like mentioned above.
 
 ### From the application container
 
@@ -105,7 +113,7 @@ dependencies:
         amqp-utils: "0.5.1"
 ```
 
-Then, when you SSH into your container, you can simply type any `amqp-` command available to manage your queues.
+Then, when you SSH into your container, you can type any `amqp-` command available to manage your queues.
 
 ## Configuration
 
