@@ -9,11 +9,14 @@ description: |
 
 ## 2021
 
+* **September 2021**
+  * Organizations: Switched to [organizations](/administration/organizations.md) for managing Platform.sh projects, users, and billing.
+  * Vault: Added [Vault service](/configuration/services/vault.md).
 * **May 2021**
   * Elasticsearch 6.8: We now support [Elasticsearch 6.8](/configuration/services/elasticsearch.md).
 ---
 * **April 2021**
-  * WAF: [a new page was added](/security/waf.md) describing the filtering rulesets and protections that come with the Platform.sh WAF.
+  * WAF: [a new page was added](/security/waf.md) describing the filtering rule sets and protections that come with the Platform.sh WAF.
   * [Build environment variables](/development/variables.md#project-variables): environment variables can now accept the same `--visible-build` and `--visible-runtime` flags as project variables when created through the CLI. Build-visible variables are now a part of the build image ID, and therefore triggers a rebuild of the application when the value is updated. 
   * **Breaking change**: The logic by which the build image ID has changed in order to support build environment variables above. Previously, every attribute in `.platform.app.yaml` was included in the build image, used to create the unique build ID, and *accessible* via the `PLATFORM_APPLICATION` environment variable at build time. This is no longer the case, and only a subset of `.platform.app.yaml` attributes are now accessible from `PLATFORM_APPLICATION` at build time. See the [Platform.sh-provided variables](/development/variables.md#variables-available-during-builds-and-at-runtime) section for more information.
 ---
@@ -186,11 +189,11 @@ description: |
 
 * **June 2017**
   * Memcache 1.4: [Memcache 1.4](/configuration/services/memcached.md) is now available as a caching backend.
-  * Custom static headers in .platform.app.yaml: Added support for setting custom headers for static files in `.platform.app.yaml`.  [See the example](/configuration/app/web.md#how-can-i-control-the-headers-sent-with-my-files) for more information.
+  * Custom static headers in `.platform.app.yaml`: Added support for setting custom headers for static files in `.platform.app.yaml`.  [See the example](/configuration/app/web.md#how-can-i-control-the-headers-sent-with-my-files) for more information.
 ---
 
 * **May 2017**
-  * Code-driven variables in .platform.app.yaml: Added support for setting [environment variables via `.platform.app.yaml`](/configuration/app/variables.md).
+  * Code-driven variables in `.platform.app.yaml`: Added support for setting [environment variables via `.platform.app.yaml`](/configuration/app/variables.md).
   * Python 3.6, Ruby 2.4, Node.js 6.10: Added support for updated versions of several languages.
 ---
 
@@ -200,7 +203,7 @@ description: |
 ---
 
 * **March 2017**
-  * Elasticsearch 2.4 and 5.2 with support for plugins: Elasticsearch 2.4 and 5.2 are now available.  Both have a number of optional plugins avaialble.  See the [Elasticsearch documentation](/configuration/services/elasticsearch.md) for more information.
+  * Elasticsearch 2.4 and 5.2 with support for plugins: Elasticsearch 2.4 and 5.2 are now available.  Both have a number of optional plugins available.  See the [Elasticsearch documentation](/configuration/services/elasticsearch.md) for more information.
   * InfluxDB 1.2: A new service type is available for InfluxDB 1.2, a time-series database.  See the [InfluxDB documentation](/configuration/services/influxdb.md) for more information.
 ---
 
@@ -218,7 +221,7 @@ description: |
 ## 2016
 
 * **December 2016**
-  * Support Async PHP: Deploy applications like ReactPHP and Amp which allow PHP to run as a single-process asynchronous process.  Read more on our [blog post](https://platform.sh/2016/12/php-71).
+  * Support async PHP: Deploy applications like ReactPHP and Amp which allow PHP to run as a single-process asynchronous process.  Read more on our [blog post](https://platform.sh/2016/12/php-71).
   * Pthreads: Multithreaded PHP: Our PHP 7.1 containers are running PHP 7.1 ZTS, and include the Pthreads extension. Read more on our [blog post](https://platform.sh/2016/12/php-71/).
   * PHP 7.1: Service is [documented here](/languages/php/_index.md).
   * Support .environment files: This file will get sourced as a bash script by the system when a container boots up, as well as on all SSH logins. Feature is [documented here](/development/variables.md#shell-variables).
@@ -241,7 +244,7 @@ description: |
 ---
 
 * **August 2016**
-  * Support Gitflow: Read more in our [blog post](https://platform.sh/2016/08/gitflow-is-now-supported/).
+  * Support GitFlow: Read more in our [blog post](https://platform.sh/2016/08/gitflow-is-now-supported/).
 ---
 
 * **July 2016**
@@ -310,7 +313,7 @@ description: |
 ---
 
 * **February 2015**
-  * Blackfire integration: PHP applications come pre-installed with the [Blackfire Profiler](https://blackfire.io/) developed by [SensioLabs](https://sensiolabs.com/).  Read more in our [blog post](https://platform.sh/blackfire-integration).
+  * Blackfire integration: PHP applications come pre-installed with [Blackfire](https://blackfire.io/) developed by [SensioLabs](https://sensiolabs.com/).  Read more in our [blog post](https://platform.sh/blackfire-integration).
 ---
 
 * **January 2015**
@@ -323,7 +326,7 @@ description: |
   * Read more about this release in our [blog post](https://platform.sh/blog/2014/caching-custom-php-build-dependencies).
   * HTTP caching per route: Support for HTTP caching at the web server level, finely configurable on a per-route basis.
   * Custom PHP configurations: Support for tweaking the PHP configuration, by enabling / disabling extensions and shipping your own php.ini.
-  * Build dependencies: Support for specifying build dependencies, i.e. PHP, Python, Ruby or Node.js tools (like sass, grunt, uglifyjs and more) that you want to use to build your PHP application.
+  * Build dependencies: Support for specifying build dependencies, i.e. PHP, Python, Ruby or Node.js tools (like SASS, Grunt, UglifyJS, and more) that you want to use to build your PHP application.
   * Elasticsearch 0.90, 1.4 & 1.7: Service is [documented here](/configuration/services/elasticsearch.md).
 ---
 
