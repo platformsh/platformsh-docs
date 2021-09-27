@@ -10,7 +10,7 @@ sidebarTitle: "Memcached"
 
 See the [Memcached](https://memcached.org) for more information.
 
-Both Memcached and Redis can be used for application caching.  As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust.  Platform.sh recommends using Redis if possible but Memcached is fully supported if an application favors that cache service."
+Both Memcached and Redis can be used for application caching. As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust. Platform.sh recommends using Redis if possible but Memcached is fully supported if an application favors that cache service."
 
 ## Supported versions
 
@@ -44,7 +44,7 @@ runtime:
         - memcached
 ```
 
-For Python you will need to include a dependency for a Memcached library, either via your requirements.txt file or a global dependency.  As a global dependency you would add the following to `.platform.app.yaml`:
+For Python, you need to include a dependency for a Memcached library, either via your requirements.txt file or a global dependency. As a global dependency you would add the following to `.platform.app.yaml`:
 
 ```yaml
 dependencies:
@@ -55,6 +55,14 @@ dependencies:
 You can then use the service in a configuration file of your application with something like:
 
 {{< codetabs >}}
+
+---
+title=Go
+file=static/files/fetch/examples/golang/memcached
+highlight=go
+---
+
+<--->
 
 ---
 title=Java
@@ -90,7 +98,7 @@ highlight=python
 
 ## Accessing Memcached directly
 
-To access the Memcached service directly you can simply use `netcat` as Memcached does not have a dedicated client tool.  Assuming your Memcached relationship is named `cache`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
+To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool. Assuming your Memcached relationship is named `cache`, the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
 
 ```bash
 netcat cache.internal 11211

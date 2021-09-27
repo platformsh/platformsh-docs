@@ -59,6 +59,14 @@ You can then use the service in a configuration file of your application with so
 {{< codetabs >}}
 
 ---
+title=Go
+file=static/files/fetch/examples/golang/postgresql
+highlight=go
+---
+
+<--->
+
+---
 title=Java
 file=static/files/fetch/examples/java/postgresql
 highlight=java
@@ -92,7 +100,7 @@ highlight=python
 
 ## Exporting data
 
-The easiest way to download all data in a PostgreSQL instance is with the Platform CLI.  If you have a single SQL database, the following command will export all data using the `pg_dump` command to a local file:
+The easiest way to download all data in a PostgreSQL instance is with the Platform CLI. If you have a single SQL database, the following command will export all data using the `pg_dump` command to a local file:
 
 ```bash
 platform db:dump
@@ -130,7 +138,7 @@ The easiest way to load data into a database is to pipe an SQL dump through the 
 platform sql < my_database_backup.sql
 ```
 
-That will run the database backup against the SQL database on Platform.sh.  That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database).  As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
+That will run the database backup against the SQL database on Platform.sh. That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database). As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
 platform sql --relationship database -e master < my_database_backup.sql
@@ -143,10 +151,10 @@ Taking a backup or a database export before doing so is strongly recommended.
 
 ## Multiple databases
 
-If you are using version `13` or later of this service it is possible to define multiple databases as well as multiple users with different permissions.  To do so requires defining multiple endpoints.  Under the `configuration` key of your service there are two additional keys:
+If you are using version `13` or later of this service it is possible to define multiple databases as well as multiple users with different permissions. To do so requires defining multiple endpoints. Under the `configuration` key of your service there are two additional keys:
 
-* `databases`:  This is a YAML array listing the databases that should be created.  If not specified, a single database named `main` will be created.
-* `endpoints`: This is a nested YAML object defining different credentials.  Each endpoint may have access to one or more schemas (databases), and may have different levels of permission for each. The valid permission levels are:
+* `databases`:  This is a YAML array listing the databases that should be created. If not specified, a single database named `main` will be created.
+* `endpoints`: This is a nested YAML object defining different credentials. Each endpoint may have access to one or more schemas (databases), and may have different levels of permission for each. The valid permission levels are:
   * `ro`: Using this endpoint only `SELECT` queries are allowed.
   * `rw`: Using this endpoint `SELECT` queries as well as `INSERT`/`UPDATE`/`DELETE` queries are allowed.
   * `admin`: Using this endpoint all queries are allowed, including DDL queries (`CREATE TABLE`, `DROP TABLE`, etc.).
@@ -193,7 +201,7 @@ relationships:
     imports: "dbpostgres:importer"
 ```
 
-Each database will be accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials.  You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+Each database will be accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
 
 A service configuration without the `configuration` block defined is equivalent to the following default values:
 
@@ -234,7 +242,7 @@ configuration:
 
 ## Extensions
 
-Platform.sh supports a number of PostgreSQL extensions.  To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
+Platform.sh supports a number of PostgreSQL extensions. To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
 
 ```yaml
 db:
@@ -253,59 +261,59 @@ In this case you will have `pg_trgm` installed, providing functions to determine
 The following is the extensive list of supported extensions. Note that you cannot currently add custom
 extensions not listed here.
 
-* **address_standardizer** - Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
-* **address_standardizer_data_us** - Address Standardizer US dataset example
-* **adminpack** - administrative functions for PostgreSQL
-* **autoinc** - functions for autoincrementing fields
-* **bloom** - bloom access method - signature file based index (requires 9.6 or higher)
-* **btree_gin** - support for indexing common datatypes in GIN
-* **btree_gist** - support for indexing common datatypes in GiST
-* **chkpass** - data type for auto-encrypted passwords
-* **citext** - data type for case-insensitive character strings
-* **cube** - data type for multidimensional cubes
-* **dblink** - connect to other PostgreSQL databases from within a database
-* **dict_int** - text search dictionary template for integers
-* **dict_xsyn** - text search dictionary template for extended synonym processing
-* **earthdistance** - calculate great-circle distances on the surface of the Earth
-* **file_fdw** - foreign-data wrapper for flat file access
-* **fuzzystrmatch** - determine similarities and distance between strings
-* **hstore** - data type for storing sets of (key, value) pairs
-* **insert_username** - functions for tracking who changed a table
-* **intagg** - integer aggregator and enumerator (obsolete)
-* **intarray** - functions, operators, and index support for 1-D arrays of integers
-* **isn** - data types for international product numbering standards
-* **lo** - Large Object maintenance
-* **ltree** - data type for hierarchical tree-like structures
-* **moddatetime** - functions for tracking last modification time
-* **pageinspect** - inspect the contents of database pages at a low level
-* **pg_buffercache** - examine the shared buffer cache
-* **pg_freespacemap** - examine the free space map (FSM)
-* **pg_prewarm** - prewarm relation data (requires 9.6 or higher)
-* **pg_stat_statements** - track execution statistics of all SQL statements executed
-* **pg_trgm** - text similarity measurement and index searching based on trigrams
-* **pg_visibility** - examine the visibility map (VM) and page-level visibility info (requires 9.6 or higher)
-* **pgcrypto** - cryptographic functions
-* **pgrouting** - pgRouting Extension (requires 9.6 or higher)
-* **pgrowlocks** - show row-level locking information
-* **pgstattuple** - show tuple-level statistics
-* **plpgsql** - PL/pgSQL procedural language
-* **postgis** - PostGIS geometry, geography, and raster spatial types and functions
-* **postgis_sfcgal** - PostGIS SFCGAL functions
-* **postgis_tiger_geocoder** - PostGIS tiger geocoder and reverse geocoder
-* **postgis_topology** - PostGIS topology spatial types and functions
-* **postgres_fdw** - foreign-data wrapper for remote PostgreSQL servers
-* **refint** - functions for implementing referential integrity (obsolete)
-* **seg** - data type for representing line segments or floating-point intervals
-* **sslinfo** - information about SSL certificates
-* **tablefunc** - functions that manipulate whole tables, including crosstab
-* **tcn** - Triggered change notifications
-* **timetravel** - functions for implementing time travel
-* **tsearch2** - compatibility package for pre-8.3 text search functions (obsolete, only available for 9.6 and 9.3)
-* **tsm_system_rows** - TABLESAMPLE method which accepts number of rows as a limit (requires 9.6 or higher)
-* **tsm_system_time** - TABLESAMPLE method which accepts time in milliseconds as a limit (requires 9.6 or higher)
-* **unaccent** - text search dictionary that removes accents
-* **uuid-ossp** - generate universally unique identifiers (UUIDs)
-* **xml2** - XPath querying and XSLT
+* `address_standardizer` - Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
+* `address_standardizer_data_us` - For standardizing addresses based on US dataset example
+* `adminpack` - administrative functions for PostgreSQL
+* `autoinc` - functions for auto-incrementing fields
+* `bloom` - bloom access method - signature file based index (requires 9.6 or higher)
+* `btree_gin` - support for indexing common data types in GIN
+* `btree_gist` - support for indexing common data types in GiST
+* `chkpass` - data type for auto-encrypted passwords
+* `citext` - data type for case-insensitive character strings
+* `cube` - data type for multidimensional cubes
+* `dblink` - connect to other PostgreSQL databases from within a database
+* `dict_int` - text search dictionary template for integers
+* `dict_xsyn` - text search dictionary template for extended synonym processing
+* `earthdistance` - calculate great-circle distances on the surface of the Earth
+* `file_fdw` - foreign-data wrapper for flat file access
+* `fuzzystrmatch` - determine similarities and distance between strings
+* `hstore` - data type for storing sets of (key, value) pairs
+* `insert_username` - functions for tracking who changed a table
+* `intagg` - integer aggregator and enumerator (obsolete)
+* `intarray` - functions, operators, and index support for 1-D arrays of integers
+* `isn` - data types for international product numbering standards
+* `lo` - Large Object maintenance
+* `ltree` - data type for hierarchical tree-like structures
+* `moddatetime` - functions for tracking last modification time
+* `pageinspect` - inspect the contents of database pages at a low level
+* `pg_buffercache` - examine the shared buffer cache
+* `pg_freespacemap` - examine the free space map (FSM)
+* `pg_prewarm` - prewarm relation data (requires 9.6 or higher)
+* `pg_stat_statements` - track execution statistics of all SQL statements executed
+* `pg_trgm` - text similarity measurement and index searching based on trigrams
+* `pg_visibility` - examine the visibility map (VM) and page-level visibility info (requires 9.6 or higher)
+* `pgcrypto` - cryptographic functions
+* `pgrouting` - pgRouting Extension (requires 9.6 or higher)
+* `pgrowlocks` - show row-level locking information
+* `pgstattuple` - show tuple-level statistics
+* `plpgsql` - PL/pgSQL procedural language
+* `postgis` - PostGIS geometry, geography, and raster spatial types and functions
+* `postgis_sfcgal` - PostGIS SFCGAL functions
+* `postgis_tiger_geocoder` - PostGIS tiger geocoder and reverse geocoder
+* `postgis_topology` - PostGIS topology spatial types and functions
+* `postgres_fdw` - foreign-data wrapper for remote PostgreSQL servers
+* `refint` - functions for implementing referential integrity (obsolete)
+* `seg` - data type for representing line segments or floating-point intervals
+* `sslinfo` - information about SSL certificates
+* `tablefunc` - functions that manipulate whole tables, including `crosstab`
+* `tcn` - Triggered change notifications
+* `timetravel` - functions for implementing time travel
+* `tsearch2` - compatibility package for pre-8.3 text search functions (obsolete, only available for 9.6 and 9.3)
+* `tsm_system_rows` - TABLESAMPLE method which accepts number of rows as a limit (requires 9.6 or higher)
+* `tsm_system_time` - TABLESAMPLE method which accepts time in milliseconds as a limit (requires 9.6 or higher)
+* `unaccent` - text search dictionary that removes accents
+* `uuid-ossp` - generate universally unique identifiers (UUIDs)
+* `xml2` - XPath querying and XSLT
 
 {{< note >}}
 Upgrading to PostgreSQL 12 using the `postgis` extension is not currently supported. Attempting to upgrade with this extension enabled will result in a failed deployment that will require support intervention to fix.
@@ -317,13 +325,13 @@ See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-
 
 ### Could not find driver
 
-If you see this error: `Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'`, this means you are missing the `pdo_pgsql` PHP extension. You simply need to enable it in your `.platform.app.yaml` (see above).
+If you see this error: `Fatal error: Uncaught exception 'PDOException' with message 'could not find driver'`, this means you are missing the `pdo_pgsql` PHP extension. You need to enable it in your `.platform.app.yaml` (see above).
 
 ## Upgrading
 
-PostgreSQL 10 and later include an upgrade utility that can convert databases from previous versions to version 10 or later.  If you upgrade your service from a previous version of PostgreSQL to version 10 or above (by modifying the `services.yaml` file) the upgrader will run automatically.
+PostgreSQL 10 and later include an upgrade utility that can convert databases from previous versions to version 10 or later. If you upgrade your service from a previous version of PostgreSQL to version 10 or above (by modifying the `services.yaml` file), it upgrades automatically.
 
-The upgrader does not work to upgrade to PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 are not supported.  Upgrade straight to version 11 instead.
+The utility can't upgrade PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 are not supported. Upgrade straight to version 11 instead.
 
 {{< note theme="warning" >}}
 Make sure you first test your migration on a separate branch.

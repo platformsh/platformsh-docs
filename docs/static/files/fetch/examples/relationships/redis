@@ -1,0 +1,18 @@
+{
+    "username": null,
+    "scheme": "redis",
+    "service": "redis6",
+    "fragment": null,
+    "ip": "169.254.25.97",
+    "hostname": "7mnenhdiz7ecraovljrba6pmiy.redis6.service._.eu-3.platformsh.site",
+    "public": false,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "redis.internal",
+    "rel": "redis",
+    "query": [],
+    "path": null,
+    "password": null,
+    "type": "redis:6.0",
+    "port": 6379,
+    "host_mapped": false
+}

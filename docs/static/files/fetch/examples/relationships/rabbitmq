@@ -1,0 +1,18 @@
+{
+    "username": "guest",
+    "scheme": "amqp",
+    "service": "rabbitmq38",
+    "fragment": null,
+    "ip": "169.254.232.78",
+    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq38.service._.eu-3.platformsh.site",
+    "public": false,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "rabbitmq.internal",
+    "rel": "rabbitmq",
+    "query": [],
+    "path": null,
+    "password": "guest",
+    "type": "rabbitmq:3.8",
+    "port": 5672,
+    "host_mapped": false
+}
