@@ -2,6 +2,12 @@
 title: "PHP"
 ---
 
+{{< note title="PHP version">}}
+
+Due to New Relic [dropping support for Zend Thread Safe (ZTS) versions](https://docs.newrelic.com/docs/release-notes/agent-release-notes/php-release-notes/php-agent-9170300/), you can't use New Relic with PHP v8.0+. To use New Relic with PHP, specify `type: 'php:7.4'` in your `.platform.app.yaml` file.
+
+{{< /note >}}
+
 ## Get your license key
 
 Sign up at https://newrelic.com and get your license key.
