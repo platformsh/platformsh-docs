@@ -26,7 +26,7 @@ Platform.sh adds a number of response headers automatically to assist in debuggi
 * `X-Platform-Cluster`: The ID of the cluster that received the request. The cluster name is formed from the project ID and environment ID.
 * `X-Platform-Processor`: The ID of the container that generated the response. The container ID is the cluster ID plus the container name.
 * `X-Platform-Router`: The ID of the router that served the request. The router ID is the processor ID of the router container, specifically.
-* `X-Debug-Info`: This is a header added by the edge layer. It doesn't contain any sensitive information or anything that could be misused. It has no relation to the `php` debugging tool [Xdebug](https://xdebug.org).
+* `X-Debug-Info`: This is a header added by the edge layer. It doesn't contain any sensitive information or anything that could be misused. It has no relation to the PHP debugging tool [Xdebug](https://xdebug.org).
 
 ## Custom headers
 
