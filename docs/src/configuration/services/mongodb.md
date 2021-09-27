@@ -59,6 +59,14 @@ You can then use the service in a configuration file of your application with so
 {{< codetabs >}}
 
 ---
+title=Go
+file=static/files/fetch/examples/golang/mongodb
+highlight=go
+---
+
+<--->
+
+---
 title=Java
 file=static/files/fetch/examples/java/mongodb
 highlight=java
@@ -92,7 +100,7 @@ highlight=python
 
 ## Exporting data
 
-The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and simply export the data directly using MongoDB's tools.
+The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and export the data directly using MongoDB's tools.
 
 First, open an SSH tunnel with the Platform.sh CLI:
 
@@ -107,9 +115,9 @@ SSH tunnel opened on port 30000 to relationship: database
 SSH tunnel opened on port 30001 to relationship: redis
 ```
 
-The port may vary in your case.  You also need to obtain the user, password, and database name from the relationships array, as above.
+The port may vary in your case. You also need to obtain the user, password, and database name from the relationships array, as above.
 
-Then, simply connect to that port locally using `mongodump` (or your favorite MongoDB tools) to export all data in that server:
+Then, connect to that port locally using `mongodump` (or your favorite MongoDB tools) to export all data in that server:
 
 ```bash
 mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
@@ -119,7 +127,7 @@ mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
 
 As with any other shell command it can be piped to another command to compress the output or redirect it to a specific file.
 
-For further references please see the [official mongodump documentation](https://docs.mongodb.com/manual/reference/program/mongodump/#bin.mongodump).
+For further references, see the [official `mongodump` documentation](https://docs.mongodb.com/manual/reference/program/mongodump/#bin.mongodump).
 
 ## Upgrading
 

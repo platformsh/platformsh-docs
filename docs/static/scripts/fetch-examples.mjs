@@ -31,8 +31,17 @@ function ensureSubdir(savePath) {
 async function writeFileFromTarget(target, destination) {
     // Get the file.
     console.log("Fetching", target);
-    const res = await axios.get(target, {responseType: 'arraybuffer'})
-    .catch(error => console.error(`The target ${target} returned an error with code ${error.response.status} and text ${error.response.statusText}`));
+    const res = await axios.get(target, {responseType: 'arraybuffer', timeout: 60000}) // wait 1 minute for a response
+    .catch(error => {
+        // If there's a response from the server, such as 404 or 502
+        if (error.response) {
+            console.error(`The target ${target} returned an error with the code ${error.response.status} and the text '${error.response.statusText}'.`)
+        }
+        // If the request times out or has some other failure
+        else {
+            console.error(`The request to ${target} failed for this reason: ${error.message}.`)
+        }
+    });
     if (res && res.data){
         await fsPromises.writeFile(destination, res.data);
     }
