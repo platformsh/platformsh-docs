@@ -138,7 +138,7 @@ foreach ($regex as $key => $file) {
 ```
 
 {{< note >}}
-Preloading all `.php` files may not be optimal for your application, and may even introduce errors.  Your application framework may provide recommendations or a pre-made presload script to use instead.  Determining an optimal preloading strategy is the user's responsibility.
+Preloading all `.php` files may not be optimal for your application, and may even introduce errors.  Your application framework may provide recommendations or a pre-made preload script to use instead.  Determining an optimal preloading strategy is the user's responsibility.
 {{< /note >}}
 
 ## FFI
