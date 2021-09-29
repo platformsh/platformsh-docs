@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting"
 description: |
-  Source integration troubleshooting
+  In the following section you'll find troubleshooting guidance on source integration.
 ---
 
 {{< description >}}
