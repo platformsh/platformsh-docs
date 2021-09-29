@@ -1,20 +1,19 @@
-   ---
+---
 title: "User administration"
 weight: 1
-sidebarTitle: "Users administration"
+sidebarTitle: "User administration"
 description: |
   Every Platform.sh user has a set of permissions. Depending on your role, you'll be able to access different levels of the application, environments and projects. If you want to add a user to a project or an environment type, the user has to create an account before they can contribute to the project.
 ---
 
 {{< description >}}
 
-If you want to add a user to a project or an environment type, the user has to [register for an account](https://auth.api.platform.sh/register) before they can contribute. If you need to delete your account at any time you can [transfer ownership](/administration/users.md#transfer-ownership) of your existing projects and then open a [support ticket](/development/troubleshoot.md#deleting-your-platformsh-account) to request your account deletion.  
-
 ### User roles
 
-| Project owner | The organization where the project was created in the first place. There is only one and can create multiple project administrators. You can delete your account any time by [transfer ownership](/administration/users.md#transfer-ownership) of your existing projects. Once you transfer ownership, open a [support ticket](/development/troubleshoot.md#deleting-your-platformsh-account) to request your account deletion. Note that transferring a project automatically transfers the upcoming subscription charges to the new owner.   |
-| Project admin   | Users who can configure project settings, administer environment permissions, push code, and execute actions on all project environments. |
-
+Project role  | Description                                                                                                                                                                                           
+---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Project owner | The organization where the project was created in the first place. There is only one and can create multiple project administrators. You can delete your account any time by [transfer ownership](/administration/users.md#transfer-ownership) of your existing projects. Once you transfer ownership, open a [support ticket](/development/troubleshoot.md#deleting-your-platformsh-account) to request your account deletion. Note that transferring a project automatically transfers the upcoming subscription charges to the new owner.
+ Project Admin | Users who can configure project settings, administer environment permissions, push code, and execute actions on all project environments.                                                                                                                                                                                                               
 
 #### Permissions per environment type
 
