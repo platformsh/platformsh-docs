@@ -24,9 +24,12 @@ If variables have the same names at different levels, the [variables are given p
 
 ### Use application-provided variables
 
-Set variables [in code](/configuration/app/variables.md) using the `.platform.app.yaml` file. These values will be the same across all environments and present in the Git repository, which makes them a poor fit for API keys and other such secrets.
+Set variables [in code](/configuration/app/variables.md) using the `.platform.app.yaml` file.
+These values are the same across all environments and present in the Git repository,
+which makes them a poor fit for API keys and other such secrets.
 
-They are better fits for uses such as configuration for consistent builds across every environment, including setting [PHP configuration values](#php-specific-variables).
+They're better fits for uses such as configuration for consistent builds across every environment,
+including setting [PHP configuration values](#php-specific-variables).
 
 Application variables are available at both build time and runtime.
 
@@ -49,7 +52,7 @@ Variables have several Boolean options you can set in the console or the CLI:
 | Option    | CLI flag            | Default | Description |
 | --------- | ------------------- | ------- | ----------- |
 | JSON      | `--json`            | `false` | Whether the variable is a JSON-serialized value (`true`) or a string (`false`). |
-| Sensitive | `--sensitive`       | `false` | If set to `true`, the variable's value is hidden in the console and in CLI responses for added security. It is still readable within the app container. |
+| Sensitive | `--sensitive`       | `false` | If set to `true`, the variable's value is hidden in the console and in CLI responses for added security. It's still readable within the app container. |
 | Runtime   | `--visible-runtime` | `true`  | Whether the variable is available at runtime. |
 | Build     | `--visible-build`   | `true`  | Whether the variable is available at build time. |
 
@@ -97,7 +100,9 @@ $ platform variable:create -e main --name paypal_id --inheritable false --sensit
 
 Other environments don't inherit it and get either a project variable of the same name if it exists or no value at all. 
 
-Note that changing an environment variable causes that environment to be redeployed so the new value is available. However, child environments are *not* redeployed. To make the new value accessible to those environments, redeploy them manually.
+Note that changing an environment variable causes that environment to be redeployed so the new value is available.
+However, child environments are *not* redeployed.
+To make the new value accessible to those environments, redeploy them manually.
 
 #### Example environment variable
 
@@ -110,15 +115,21 @@ $ platform variable:create -l environment -e main --prefix env: --name NODE_ENV 
 $ platform variable:create -l environment -e staging --prefix env: --name NODE_ENV --value development --visible-build true --inheritable true
 ```
 
-Now `NODE_ENV` is `production` on the default branch but `development` on staging and each of its child environments. Note that build visible environment variables change the application's build configuration ID: value updates will trigger a rebuild of the application in the same way that a commit would. 
+Now `NODE_ENV` is `production` on the default branch but `development` on staging and each of its child environments.
+Note that build visible environment variables change the application's build configuration ID:
+value updates trigger a rebuild of the application in the same way that a commit would. 
 
 ### Use Platform.sh-provided variables
 
-Platform.sh also provides a series of variables by default that inform an application about its runtime configuration. They are always prefixed with `PLATFORM_*` to differentiate them from user-provided values and you can't set or update them directly.
+Platform.sh also provides a series of variables by default that inform an application about its runtime configuration.
+They're always prefixed with `PLATFORM_*` to differentiate them from user-provided values
+and you can't set or update them directly.
 
-The most important of these variables is relationship information, which tells the application how to connect to databases and other services defined in `services.yaml`. 
+The most important of these variables is relationship information,
+which tells the application how to connect to databases and other services defined in `services.yaml`. 
 
-The following table presents the available variables and whether they are available during builds and at runtime.
+The following table presents the available variables 
+and whether they're available during builds and at runtime.
 
 | Variable name             | Build | Runtime | Description |
 | ------------------------- | ----- | ------- | ----------- |
@@ -147,16 +158,20 @@ Dedicated instances also have the following variables available:
 | PLATFORM_PROJECT | No    | Yes     | The document root. Typically the same as your cluster name for the production environment, while staging environments have `_stg` or similar appended. |
 
 {{< note >}}
-The `PLATFORM_CLUSTER`, and `PLATFORM_PROJECT` environment variables are not yet available on [Dedicated Generation 3](/dedicated-gen-3/overview.md). If your application contains logic that depends on whether it is running on a Dedicated Generation 3 host, use `PLATFORM_MODE`.
+The `PLATFORM_CLUSTER`, and `PLATFORM_PROJECT` environment variables aren't yet available on [Dedicated Generation 3](/dedicated-gen-3/overview.md).
+If your application contains logic that depends on whether it is running on a Dedicated Generation 3 host, use `PLATFORM_MODE`.
 {{< /note >}}
 
 #### `PLATFORM_APPLICATION`
 
 `PLATFORM_APPLICATION` is a special case to keep in mind in how it differs between the build and runtime. Each environment's build is associated with a configuration ID that uniquely identifies it. This ID enables reusing builds on merges. The ID itself is a product of your application code and some of its configuration for Platform.sh in `.platform.app.yaml`. 
 
-Not every attribute in `.platform.app.yaml` is relevant to builds -- only some of these attributes result in a full app rebuild when they are updated. So not all of the attributes defined in your `.platform.app.yaml` file are accessible at build time from `PLATFORM_APPLICATION`, only those actually relevant to builds are.
+Not every attribute in `.platform.app.yaml` is relevant to builds --
+only some of these attributes result in a full app rebuild when they're updated.
+So not all of the attributes defined in your `.platform.app.yaml` file are accessible at build time from `PLATFORM_APPLICATION`,
+only those actually relevant to builds.
 
-Some attributes that are **not** available in `PLATFORM_APPLICATION` during builds are:
+Some attributes that are **not** available in `PLATFORM_APPLICATION` during builds:
 
 - everything under `resources`
 - `size`
@@ -169,7 +184,10 @@ Some attributes that are **not** available in `PLATFORM_APPLICATION` during buil
 - everything under  `web`, except `web.mounts`
 - everything under `workers`, except `workers.mounts`
 
-The above attributes are not visible during build because they are not included as a part of the configuration component of the build slug. So modifying any of these values in `.platform.app.yaml` does not trigger an app rebuild, only a redeploy. For more information, please read more about [how builds work](/bestpractices/environment-build.md#how-build-works) on Platform.sh.
+The above attributes aren't visible during build
+because they aren't included as a part of the configuration component of the build slug.
+So modifying any of these values in `.platform.app.yaml` doesn't trigger an app rebuild, only a redeploy.
+For more information, read more about [how builds work](/bestpractices/environment-build.md#how-build-works).
 
 ## Accessing variables
 
