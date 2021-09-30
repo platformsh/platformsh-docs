@@ -62,16 +62,16 @@ Available commands:
 
  **Example**
 
- Add `user@example.com` to the project with Project Admin permissions:
+ Add `user1@example.com` to the project with Project Admin permissions:
 
 ```bash
-platform user:add alice@example.com -r admin
+platform user:add user1@example.com -r admin
 ```
 Once you add the user to the project, they receive an invitation email to confirm their details and a registration link.
 
 **Example**
 
-To give Bob different levels of access depending on the environment type, in the current project:
+To give User2 different levels of access depending on the environment type in the current project:
 
 -  **Viewer** role to the **Production environment**
 -  **Contributor** role to **all Staging type environments**
