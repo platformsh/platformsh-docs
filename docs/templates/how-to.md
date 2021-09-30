@@ -17,39 +17,44 @@ How to use
 -->
 
 Introduce the topic in 1 or 2 sentences.
-Include reasons why a person might want to do it
+Include reasons why the reader might want to do it
 (the most common use cases).
 Also include what the goal of the task is.
 
 ## Before you begin
 
 Include here any terms the reader might need
-(either defined here or linked to a definition).
-Also any prerequisites they might need to install/know,
+that they might not be familiar with
+(like terms specific to Platform.sh).
+Either define them here or link to a definition elsewhere in the docs.
+
+Also include any prerequisites they might need to install/know,
 such as having the CLI installed or having created a project.
+
 For tasks like installing the CLI,
 link to instructions rather than including them here.
 
-## 1. Do this first
+## 1. Do this step first
 
-This starts the list of steps readers must do in order.
-Order them with numbers.
+This starts the list of steps readers must do in order
+(each step is a separate section in the document).
+Order the steps with numbers.
 The titles should be bare infinitives: https://developers.google.com/style/headings?hl=en
 
 Introduce the purpose of this step very briefly.
 
-Then use an ordered list for the actions to take:
+Then use an ordered list for the actions to take to complete the step:
 
-1. Do this first.
-1. Do this next.
-1. Do this third.
-1. Do this fourth.
+1. Do this action first.
+1. Do this action next.
+1. Do this action third.
+1. Do this action fourth.
 
 Include a short example of what the expected outcome of this step is,
 such as a code example, a description of what the user can do now,
 or (if absolutely necessary) a screenshot.
 
-## 2. Do this second
+## 2. Do this step second
 
 Split into separate steps when there are more than 5--7 actions in a step.
 Also when each separate step has an outcome that be described or shown.
@@ -68,10 +73,10 @@ file=none
 highlight=false
 ---
 
-1. Do this first with the CLI.
-1. Do this next with the CLI.
-1. Do this third with the CLI.
-1. Do this fourth with the CLI.
+1. Do this action first with the CLI.
+1. Do this action next with the CLI.
+1. Do this action third with the CLI.
+1. Do this action fourth with the CLI.
 
 <--->
 
@@ -81,10 +86,10 @@ file=none
 highlight=false
 ---
 
-1. Do this first in the console.
-1. Do this next in the console.
-1. Do this third in the console.
-1. Do this fourth in the console.
+1. Do this action first in the console.
+1. Do this action next in the console.
+1. Do this action third in the console.
+1. Do this action fourth in the console.
 
 {{< /codetabs >}}
 
