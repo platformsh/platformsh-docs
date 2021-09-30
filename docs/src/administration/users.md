@@ -30,11 +30,11 @@ A few things to consider:
 |Role    | Description|
 ------------------------- |-------------
 |Viewer                    | Viewers can view all environments of this type.|
-|Contributor               | This role includes the viewer permissions. Contributors can push code and branch all environments of this type. By default, everyone with access equal or greater than Contributor can access the environment through SSH. To customize who can use SSH, [set the access key]([support ticket](/development/troubleshoot.md#deleting-your-platformsh-account)) in your platform.app.yaml|
-|Admin                     | This role includes viewer and contributor permissions. Administrators can change settings and execute actions on all environments of this type. By default, everyone with access equal or greater than Contributor can access the environment through SSH. To customize who can use SSH [set the access key]([support ticket](/development/troubleshoot.md#deleting-your-platformsh-account)) in your platform.app.yaml|
+|Contributor               | This role includes the viewer permissions. Contributors can push code and branch all environments of this type. By default, everyone with access equal or greater than Contributor can access the environment through SSH. To customize who can use SSH, [set the access key]([support ticket](/development/troubleshoot.md#deleting-your-platformsh-account)) in your platform.app.yaml |
+|Admin                     | This role includes viewer and contributor permissions. Administrators can change settings and execute actions on all environments of this type. By default, everyone with access equal or greater than Contributor can access the environment through SSH. To customize who can use SSH [set the access key]([support ticket](/development/troubleshoot.md#deleting-your-platformsh-account)) in your platform.app.yaml |
 
 {{< note theme="warning" title="Warning" >}}
-Once you add or remove a user from a project or environment, you must trigger a redeploy to propagate SSH access changes to each environment. Redeploy using the CLI command `platform redeploy` or in the management console, click <strong>Redeploy</strong>.
+Once you add or remove a user from a project or environment, you must trigger a redeploy to propagate SSH access changes to each environment. Redeploy using the CLI command `platform redeploy` or in the management console, click **Redeploy**.
 {{< /note >}}
 
 #### Add users from the console
@@ -62,12 +62,12 @@ Available commands:
 
  **Example**
 
- Let's add `alice@example.com` to the project with Project Admin permissions:
+ Add `user@example.com` to the project with Project Admin permissions:
 
 ```bash
 platform user:add alice@example.com -r admin
 ```
-Alice will receive an invitation email to confirm her details and a registration link.
+Once you add the user to the project, they receive an invitation email to confirm their details and a registration link.
 
 **Example**
 
