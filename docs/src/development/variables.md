@@ -133,6 +133,7 @@ The following table presents the available variables and whether they are availa
 | PLATFORM_BRANCH           | No    | Yes     | The name of the Git branch. |
 | PLATFORM_DOCUMENT_ROOT    | No    | Yes     | The absolute path to the web document root, if applicable. |
 | PLATFORM_ENVIRONMENT      | No    | Yes     | The name of the Platform.sh environment. |
+| PLATFORM_ENVIRONMENT_TYPE | No    | Yes     | The type of the Platform.sh environment (development, staging or production). |
 | PLATFORM_SMTP_HOST        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
 | PLATFORM_RELATIONSHIPS    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined for each [service](/configuration/services/_index.md). |
 | PLATFORM_ROUTES           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of the `.platform/routes.yaml` file. |
@@ -460,30 +461,16 @@ export PATH=/app/vendor/bin:$PATH
 
 Note that the file is sourced after all other environment variables above are defined, so they will be available to the script. That also means the `.environment` script has the "last word" on environment variable values and can override anything it wants to.
 
-## Make scripts behave differently on a dedicated cluster and development
+## Make scripts behave differently on production, staging and development
 
-The following sample shell script will output a different value on the Dedicated cluster than in a development environment.
-
-```bash
-if [ "$PLATFORM_MODE" = "enterprise" ] ; then
-    echo "Hello from the Enterprise"
-else
-    echo "We're on Development"
-fi
-```
-
-## Make scripts behave differently on production and staging
-
-While both production and staging Dedicated environments have `enterprise` for the `PLATFORM_MODE` variable, you can distinguish them by branch name. So assuming the production branch is named `production`, use a test like the following:
+While both production and staging Dedicated environments have `enterprise` for the `PLATFORM_MODE` variable, you can distinguish them by environment type. Make sure that the environment types are set correctly via the CLI or the Management Console.
 
 ```bash
-if [ "$PLATFORM_MODE" = "enterprise" ] ; then
-    if [ "$PLATFORM_BRANCH" = "production" ] ; then
-        echo "This is live on production"
-    else
-        echo "This is on staging"
-    fi
+if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ] ; then
+    echo "This is live on production"
+else if [ "$PLATFORM_ENVIRONMENT_TYPE" = staging ] ; then
+    echo "This is on staging"
 else
-    echo "We're on Development"
+    echo "We're on development"
 fi
 ```
