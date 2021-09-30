@@ -17,7 +17,7 @@ description: |
 
 #### Permissions per environment type
 
-Environment types offer a way to group environments (production, staging and development) together. If you group your environments, you can grant user permissions per environment type at the project level.
+Environment types offer a way to group environments (production, staging, and development) together. If you group your environments, you can grant user permissions per environment type at the project level.
 
 A few things to consider:
 
