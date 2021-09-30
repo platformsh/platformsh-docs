@@ -65,23 +65,21 @@ Automated backups using cron requires you to [get an API token and install the C
 
 We ask that you not schedule a backup task more than once a day to minimize data usage.
 
-Once the CLI is installed in your application container and an API token configured you can add a cron task to run once a day and trigger a backup.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on. In most cases such backups are only useful on the `master` production environment.
+Once the CLI is installed in your application container and an API token configured you can add a cron task to run once a day and trigger a backup.  The CLI will read the existing environment variables in the container and default to the project and environment it is running on. In most cases such backups are only useful on the production environment.
 
-A common cron specification for a daily backup on the `master` environment looks like this:
+A common cron specification for a daily backup on the production environment looks like this:
 
 ```yaml
 crons:
     backup:
         spec: '0 5 * * *'
         cmd: |
-            if [ "$PLATFORM_BRANCH" = master ]; then
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
                 platform backup:create --yes --no-wait
             fi
 ```
 
-(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)
-
-The above cron task will run once a day at 5 am (UTC), and, if the current environment is the master branch, it will run `platform backup:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the backup to complete.
+The above cron task will run once a day at 5 am (UTC), and, if the current environment is the production environment, it will run `platform backup:create` on the current project and environment.  The `--yes` flag will skip any user-interaction.  The `--no-wait` flag will cause the command to complete immediately rather than waiting for the backup to complete.
 
 {{< note >}}
 It is very important to include the `--no-wait` flag.  If you do not, the cron process will block and you will be unable to deploy new versions of the site until the backup creation process is complete.
