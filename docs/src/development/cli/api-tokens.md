@@ -93,7 +93,7 @@ crons:
     backup:
         spec: '0 5 * * *'
         cmd: |
-            if [ "$PLATFORM_BRANCH" = master ]; then
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
                 platform backup:create --yes --no-wait
             fi
 ```

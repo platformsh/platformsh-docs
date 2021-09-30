@@ -158,17 +158,15 @@ hooks:
 
 The `deploy` and `post_deploy` hooks have access to all of the same [environment variables](/development/variables.md) as the application does normally, which makes it possible to vary those hooks based on the environment.  A common example is to enable certain modules only in non-production environments.  Because the hook is simply a shell script we have full access to all shell scripting capabilities, such as `if/then` directives.
 
-The following example checks the `$PLATFORM_BRANCH` variable to see if we're in a production environment (the `master` branch) or not.
+The following example checks the `$PLATFORM_ENVIRONMENT_TYPE` variable to see if we're in a production environment or not.
 
 ```yaml
 hooks:
     deploy: |
-        if [ "$PLATFORM_BRANCH" = master ]; then
-            # Run commands only when deploying on master
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+            # Run commands only when deploying to production
         else
-            # Run commands only when deploying on dev environments
+            # Run commands only when deploying on development or staging environments
         fi
         # Commands to run regardless of the environment
 ```
-
-(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)
