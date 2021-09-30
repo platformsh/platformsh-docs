@@ -47,7 +47,7 @@ Click **+Add**.
 
 ### Manage users permissions with the CLI
 
-You can use the [Platform.sh CLI (Command Line Interface](https://docs.platform.sh/development/cli.html) to fully manage your users and integrate with any automated system.
+You can use the [Platform.sh CLI (Command Line Interface)](https://docs.platform.sh/development/cli.html) to fully manage your users and integrate with any automated system.
 
 Available commands:
 
@@ -80,7 +80,7 @@ To give User2 different levels of access depending on the environment type in th
 You would run:
 
 ```bash
-platform user:role bob@example.com -r production:viewer -r staging:contributor -r development:admin
+platform user:role user2@example.com -r production:viewer -r staging:contributor -r development:admin
 ```
 
 Use `platform list` to get the full list of commands.
