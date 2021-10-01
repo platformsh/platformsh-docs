@@ -140,8 +140,7 @@ mysql> CHANGE MASTER TO
   MASTER_PORT=3306,
   MASTER_LOG_FILE='binlogs.000002',
   MASTER_LOG_POS=1036,
-  MASTER_CONNECT_RETRY=10,
-  MASTER_USE_GTID = slave_pos;
+  MASTER_CONNECT_RETRY=10;
 ```
 
 Where `<the.host>` will vary depending on the SSH tunneling configuration you have, and the `<your_replicator_password>` can be obtained by running `platform relationships`.
