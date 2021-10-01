@@ -7,7 +7,8 @@ description: |
     Add some helpful dependencies, and modify your WordPress site to read from a Platform.sh environment.
 ---
 
-Deploying WordPress without Composer on Platform.sh is not recommended, but should you wish to do so there are a few additional modifications you will need to make to your repository.
+Deploying WordPress without Composer on Platform.sh isn't recommended,
+but should you wish to do so there are a few additional modifications you need to make to your repository.
 
 ## Place WordPress core into a subdirectory
 
@@ -15,7 +16,9 @@ Deploying WordPress without Composer on Platform.sh is not recommended, but shou
 If starting from scratch, you can skip to the section covering [`wp-config.php`](#wp-configphp) below.
 {{< /note >}}
 
-Keeping WordPress core up-to-date is made much easier when it resides in a subdirectory of your repository, and it will make the recommended transition to using Composer simpler. It also will make defining WordPress as a submodule possible if you choose to do so. 
+Keeping WordPress core up-to-date is made much easier when it resides in a subdirectory of your repository
+and it makes the recommended transition to using Composer simpler.
+It also makes defining WordPress as a submodule possible if you choose to do so. 
 
 Place all code for WordPress core into a subdirectory called `wordpress`, including your `wp-config.php` file.
 
@@ -25,13 +28,19 @@ You can name the WordPress core subdirectory whatever you would like - the most 
 
 ### Core, themes, and plugins can also be submodules
 
-Platform.sh validates and retrieves submodules in the first stages of its build process, so it is possible to manage your code entirely this way. This will, of course, modify the update steps from what is listed below, so visit the [Git submodules](/development/submodules.md) documentation for more information.
+Platform.sh validates and retrieves submodules in the first stages of its build process,
+so it's possible to manage your code entirely this way.
+This modifies the update steps from what's listed below,
+so visit the [Git submodules](/development/submodules.md) documentation for more information.
 
 ## `.environment`
 
 Platform.sh provides multiple *environments* for your projects, that can be customized (with different values for staging and development), but that inherit features from the production environment. One clear case where this can be useful is environment variables. Each environment on Platform.sh comes with a set of [pre-defined variables](/development/variables.html#platformsh-provided-variables) that provide information about the branch you are working on, the application's configuration, and the credentials to connect to each service defined in `services.yaml`. 
 
-Service credentials reside in a base64 encoded JSON object variable called `PLATFORM_RELATIONSHIPS`, and it is from this variable that you can define your database connection to the MariaDB container. To make each property (username, password, etc.) more easily accessible to `wp-config.php`, you can use the pre-installed `jq` package to clean the object into individual variables.
+Service credentials reside in a base64 encoded JSON object variable called `PLATFORM_RELATIONSHIPS`,
+which you can use to define your database connection to the MariaDB container.
+To make each property (username, password, and so on) more accessible to `wp-config.php`,
+you can use the pre-installed `jq` package to clean the object into individual variables.
 
 ```text
 # .environment
@@ -52,7 +61,8 @@ else
 fi
 ```
  
-As you can see above, you can define a number of environment-specific or project-wide variable settings in this file that will be applied when deployed on Platform.sh but not locally. 
+As you can see above, you can define a number of environment-specific or project-wide variable settings in this file
+that are applied when deployed on Platform.sh but not locally. 
 
 ## `wp-config.php`
 
@@ -60,7 +70,7 @@ Now that your database credentials have been cleaned up and `WP_HOME` defined, y
 
 Below is the `wp-config.php` file from the [WordPress template](https://github.com/platformsh-templates/wordpress-vanilla) using the variables defined in the previous section. Many other WordPress settings are pre-defined in this file for you, so consult the inline comments for more information.
 
-{{< github repo="platformsh-templates/wordpress-vanilla" file="wordpress/wp-config.php" lang="php" >}}
+{{< readFile file="static/files/fetch/config-examples/wordpress-vanilla" highlight="php" >}}
 
 Up to this point, this guide should give you the following project structure:
 

@@ -24,8 +24,7 @@
 
 <p>You will notice that this is made easier by using Platform.sh&rsquo;s <a href="https://github.com/platformsh/config-reader-nodejs" target="_blank" rel="noopener">Config Reader library for Node.js</a>, so be sure to install this to the Gatsby dependencies first when replicating. When used, Gatsby pulls the information to communicate with the {{ .Get "name" }} container <em>on the current branch</em>.</p>
 
-{{ $dataJ := getJSON "https://api.github.com/repos/platformsh-templates/"  (.Get "template")  "/contents/" "gatsby/gatsby-config.js"  }}
-{{ $con := base64Decode $dataJ.content }}
-{{ highlight $con "js" (.Get "options") }}
+{{ $file := printf "static/files/fetch/gatsby/%s" (.Get "template" ) }}
+{{ highlight ( readFile $file ) "js" ""}}
 
 <p>Lastly, the Gatsby application itself needs to include <a href="https://www.gatsbyjs.com/docs/reference/graphql-data-layer/" target="_blank" rel="noopener">GraphQL</a> queries to handle the data coming from {{ .Get "name" }} and turn it into frontend content pages. The most important files in the template you should consult are:</p>

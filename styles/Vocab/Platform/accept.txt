@@ -19,6 +19,7 @@ hostname
 Httpoxy
 imagetragick
 jpegoptim
+Lando
 Magento
 Mailchimp
 Memcache
@@ -28,6 +29,7 @@ multithread[ed|ing]
 namespace
 [Nn]ginx
 optipng
+Packagist
 pngcrush
 progs
 Pthreads
