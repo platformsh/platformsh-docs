@@ -39,7 +39,7 @@ Ensure you have the correct access rights for the external integration repositor
 Clone the repository from Platform.sh, which offers a read-only mirror repository of the external integration repository.
 
 ```bash
-$ git clone <project>@git.<region>.platform.sh:<project>.git
+$ git clone <PROJECT_ID>@git.<REGION>.platform.sh:<PROJECT_ID>.git
 ```
 
 {{< note theme="warning" title="Warning" >}}
