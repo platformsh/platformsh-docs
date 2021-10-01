@@ -36,7 +36,7 @@ Ensure you have the correct access rights for the external integration repositor
 
 ### Solution 2
 
-Clone the repository from Platform.sh, which is a repository is an read-only mirror of the external integration repository.
+Clone the repository from Platform.sh, which offers a read-only mirror repository of the external integration repository.
 
 ```bash
 $ git clone <project>@git.<region>.platform.sh:<project>.git
