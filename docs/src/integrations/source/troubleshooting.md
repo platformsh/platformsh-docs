@@ -45,5 +45,7 @@ $ git clone <PROJECT_ID>@git.<REGION>.platform.sh:<PROJECT_ID>.git
 {{< note theme="warning" title="Warning" >}}
 
 Changes pushed to the Platform.sh mirror repository are overwritten when other changes are pushed to the external integration repository.
+So this method works to clone the repository,
+but you should not rely on it for making changes.
 
 {{< /note >}}
