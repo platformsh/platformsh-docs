@@ -145,7 +145,14 @@ tls:
             -----END CERTIFICATE-----
 ```
 
-## Let's Encrypt limits, errors, and branch names
+## Troubleshooting
+
+For easier troubleshooting, feel free to use [the certificate checker tool](https://certcheck.pltfrm.sh/).
+This tool assists finding out where your domain is pointing to and provide some generic guidance.
+It will also assist when a CDN (Fastly, Cloudflare, ...) is used.
+It's good practice to check both the apex and the `www` domain to ensure both point to the cluster.
+
+### Let's Encrypt limits, errors, and branch names
 
 You may encounter Let's Encrypt certificates failing to provision after the build hook has completed:
 
@@ -183,7 +190,7 @@ This ownership verification is achieved through the so called _Challenge_ step, 
 
 By default, Platform.sh will check that both the `some-example.platform.sh` and `www.some-example.platform.sh` domains are pointing to your project.
 The certificate will also encompass both these domains.
-Please make sure that both your apex domain and it's `www` subdomain are pointing to your project, more information can be found in out go live [step-by-step guide](gettingstarted/next-steps/going-live/configure-dns.md).
+Make sure that both your apex domain and it's `www` subdomain are pointing to your project, more information can be found in out go live [step-by-step guide](gettingstarted/next-steps/going-live/configure-dns.md).
 
 Sometimes, that verification fails which will result in the following error-message:
 `Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]`
@@ -194,6 +201,14 @@ For the DNS challenge to work, domains and subdomains should point directly to y
   E: Error validating domain www.some-example.platform.sh: Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
   Unable to validate domains www.some-example.platform.sh, will retry in the background.
 ```
+or
+
+```text
+  W: Failed to verify the challenge at the gateway for the domain 'www.some-example.platform.sh'
+  E: Error validating domain www.some-example.platform.sh: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
+```
+
+Please make sure that both the apex domain and it's `www` subdomain are both pointing to the cluster.
 Note that DNS changes can take up to 24-48 hours to propagate. See the [step-by-step guide](/domains/steps/_index.md) for more information. If you have waited the 24-48 hours, properly configured the subdomain, and are still seeing an error of this type, [redeploying](/development/troubleshoot.md#force-a-redeploy) the impacted environment will usually solve the issue.
 
 Please also make sure that no conflicting DNS records exist for the domain.
