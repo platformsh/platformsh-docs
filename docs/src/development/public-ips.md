@@ -214,8 +214,9 @@ Inbound IPs (gw.ca-1.platformsh.site):
 * 35.182.59.77
 * 52.60.219.22
 
+## Australia
 
-## Australia (au.platform.sh)
+### South East (au.platform.sh)
 
 Outbound IPs:
 
@@ -228,3 +229,17 @@ Inbound IPs (gw.au.platformsh.site):
 * 13.54.88.239
 * 13.55.140.143
 * 13.54.222.56
+
+### East (au-2.platform.sh)
+
+Outbound IPs:
+
+* 20.92.240.74
+* 20.191.224.199
+* 20.92.240.236
+
+Inbound IPs (gw.au-2.platformsh.site):
+
+* 20.92.240.74
+* 20.191.224.199
+* 20.92.240.236
