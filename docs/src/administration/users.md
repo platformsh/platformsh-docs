@@ -8,7 +8,7 @@ description: |
 
 {{< description >}}
 
-If you are an owner or a Project admin wanting to add a user to a project or an environment, the user has to create an account before they can contribute to the project.
+If you are an organization or a Project admin wanting to add a user to a project or an environment, the user has to create an account before they can contribute to the project.
 
 ## User roles
 
@@ -19,15 +19,15 @@ If you are an owner or a Project admin wanting to add a user to a project or an 
 
 ### Transfer a project ownership
 
-If you’re the owner of a project and want to transfer ownership to a different user, first invite that user as a Project admin and then, submit a support ticket from your owner account to ask for the transfer. Transferring a project automatically transfers the upcoming subscription charges to the new owner. Once you transfer ownership, open a [support ticket](/development/troubleshoot.html) to request your account deletion.                                                                                                      
+As an organization owner, or as an organization user with the **manage plans** permission, you can transfer project ownership to a different organization, first invite that organization owner as a **Project admin** and then, submit a support ticket from your organization owner account to ask for the transfer. Transferring a project automatically transfers the upcoming subscription charges to the new owner. Once you transfer ownership, open a [support ticket](https://console.platform.sh/-/users/~/tickets) to request your account deletion.                                                                                                     
 
 ## Environment types
 
-Platform.sh offers three types of environment groups: Production, Staging and
-Development. You can assign permissions to each user per environment so for each environment type, users will always have the same set of permissions across all environments of the same type.
+Platform.sh offers three types of environment groups: Production, Staging, and
+Development. You can assign permissions to each user per environment so for each environment type, users always have the same set of permissions across all environments of the same type.
 
 For example, if you assign user1 **Admin** permissions for Development environments,  
-**Contributor** permissions for Staging environments and **Viewer** for the Production environment. User1 will have **Admin** permissions to all development environments, **Contributor** permissions to all staging environments and **Viewer** permissions to the Production environment.
+**Contributor** permissions for Staging environments and **Viewer** for the Production environment. User1 effectively has **Admin** permissions to all development environments, **Contributor** permissions to all staging environments and **Viewer** permissions to the Production environment.
 
 A few things to consider:
 
