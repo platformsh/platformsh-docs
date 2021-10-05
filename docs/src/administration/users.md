@@ -3,51 +3,58 @@ title: "User administration"
 weight: 1
 sidebarTitle: "User administration"
 description: |
-  Every Platform.sh user has a set of permissions. Depending on your role, you'll be able to access different levels of the application, environments and projects. If you want to add a user to a project or an environment type, the user has to create an account before they can contribute to the project.
+  Every Platform.sh user has a role that controls their access and permission levels.
 ---
 
 {{< description >}}
 
-### User roles
+If you are an owner or a Project admin wanting to add a user to a project or an environment, the user has to create an account before they can contribute to the project.
+
+## User roles
 
 | User role    | Description |
 | ------------ |-------------|
-| Project owner                   | The organization where the project was created in the first place. There is only one and can create multiple project administrators. If you’re the owner of a project, and want to transfer it to a different user, first invite that user as a project administrator and then, submit a support ticket from your owner account to ask for the transfer. Transferring a project automatically transfers the upcoming subscription charges to the new owner. Once you transfer ownership, open a [support ticket](https://docs.platform.sh/development/troubleshoot.html) to request your account deletion. Note that transferring a project automatically transfers the upcoming subscription charges to the new owner. |
-|Project Admin | Users who can configure project settings, administer environment permissions, push code, and execute actions on all project environments.|                                                                                                                                                                                      
+|Project owner| There is only one and they can create multiple Project admins.  |
+|Project admin | Users who can configure project settings, manage other users,  administer environment permissions, push code, and execute actions on all project environments.|
 
-### Permissions per environment type
+### Transfer a project ownership
 
-Environment types offer a way to group environments (production, staging, and development) together. If you group your environments, you can grant user permissions per environment type at the project level.
+If you’re the owner of a project and want to transfer ownership to a different user, first invite that user as a Project admin and then, submit a support ticket from your owner account to ask for the transfer. Transferring a project automatically transfers the upcoming subscription charges to the new owner. Once you transfer ownership, open a [support ticket](/development/troubleshoot.html) to request your account deletion. Note that transferring a project automatically transfers the upcoming subscription charges to the new owner.                                                                                                        
+
+## Environment types
+
+Platform.sh offers three types of environment groups: Production, Staging and
+Development. You can assign permissions to each user per environment so for each environment type, users will always have the same set of permissions across all environments of the same type.
+
+For example, if you assign user1 **Admin** permissions for Development environments,  
+**Contributor** permissions for Staging environments and **Viewer** for the Production environment. User1 will have **Admin** permissions to all development environments, **Contributor** permissions to all staging environments and **Viewer** permissions to the Production environment.
 
 A few things to consider:
 
-* Environments can share the same type.
-* Environments can change their type from Staging to Development and the other way around.
-* After you add or remove a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by using the CLI command platform redeploy or the Redeploy button in the management console.
+* Only one environment per project can have Production type.
+* Environments can share the same Staging and Development type.
+* After you add or remove a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by using the CLI command platform `redeploy` or by clicking **Redeploy** in the management console.
 
 
-
-| Role                     | Description |
+| Environment permission   | Description |
 |------------------------- |-------------|
-|Viewer                    | Viewers can view all environments of this type.|
-|Contributor               | This role includes the viewer permissions. Contributors can push code and branch all environments of this type. By default, everyone with access equal or greater than Contributor can access the environment through SSH. To customize who can use SSH, [set the access key](https://docs.platform.sh/configuration/app/access.html) in your platform.app.yaml |
-|Admin                     | This role includes viewer and contributor permissions. Administrators can change settings and execute actions on all environments of this type. By default, everyone with access equal or greater than Contributor can access the environment through SSH. To customize who can use SSH [set the access key](https://docs.platform.sh/configuration/app/access.html) in your platform.app.yaml|
+|Viewer                    | Viewers can view all environments of this type. This role includes the Viewer permissions.|
+|Contributor               | Contributors can push code and branch all environments of this type
+|Admin                     | This role includes Viewer and Contributor permissions. Admins can change settings and execute actions on all environments of this type. To customize who can use SSH [set the access key](/configuration/app/access.html) in your platform.app.yaml|
 
-{{< note theme="warning" title="Warning" >}}
-Once you add or remove a user from a project or environment, you must trigger a redeploy to propagate SSH access changes to each environment. Redeploy using the CLI command `platform redeploy` or in the management console, click **Redeploy**.
-{{< /note >}}
+## Managing users
 
-### Add users from the console
+### Add a user from the console
 
 1. Go to your console and select the project where you want to change the user permissions.
-2. Under **Settings**, click **Access** on the left-hand side of the console.
-Click **+Add**.
-3. Add the user details and choose the permissions.
+2. Under **Settings**, click **Access**.
+Click **+ Add** and add the user details and choose the permissions.
 4. Click **Save**.
+Once you add the user to the project, they receive an invitation email to confirm their details and a registration link
 
-### Manage users permissions with the CLI
+### Add a user with the CLI
 
-You can use the [Platform.sh CLI (Command Line Interface)](https://docs.platform.sh/development/cli.html) to fully manage your users and integrate with any automated system.
+You can use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md) to fully manage your users and integrate with any automated system.
 
 Available commands:
 
@@ -60,8 +67,6 @@ Available commands:
 * `platform user:role`
   * View or change a user's role
 
- **Example**
-
  Add `user1@example.com` to the project with Project Admin permissions:
 
 ```bash
@@ -69,18 +74,12 @@ platform user:add user1@example.com -r admin
 ```
 Once you add the user to the project, they receive an invitation email to confirm their details and a registration link.
 
-**Example**
+Say you wanted to give User2 the following roles in different environment types:
 
-To give User2 different levels of access depending on the environment type in the current project:
+-  **Viewer** role in the **Production environment**
+-  **Contributor** role in **all staging environments**
+-  **Admin** role in **all development environments**
 
--  **Viewer** role to the **Production environment**
--  **Contributor** role to **all Staging type environments**
--  **Admin** role to **all Development type environments**
-
-You would run:
-
-```bash
-platform user:role user2@example.com -r production:viewer -r staging:contributor -r development:admin
-```
+Once you add the user to the project, they receive an invitation email to confirm their details and a registration link.
 
 Use `platform list` to get the full list of commands.
