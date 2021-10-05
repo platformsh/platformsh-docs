@@ -1,5 +1,5 @@
 ---
-title: "User administration"
+title: "Users"
 weight: 1
 sidebarTitle: "User administration"
 description: |
@@ -19,7 +19,7 @@ If you are an owner or a Project admin wanting to add a user to a project or an 
 
 ### Transfer a project ownership
 
-If you’re the owner of a project and want to transfer ownership to a different user, first invite that user as a Project admin and then, submit a support ticket from your owner account to ask for the transfer. Transferring a project automatically transfers the upcoming subscription charges to the new owner. Once you transfer ownership, open a [support ticket](/development/troubleshoot.html) to request your account deletion. Note that transferring a project automatically transfers the upcoming subscription charges to the new owner.                                                                                                        
+If you’re the owner of a project and want to transfer ownership to a different user, first invite that user as a Project admin and then, submit a support ticket from your owner account to ask for the transfer. Transferring a project automatically transfers the upcoming subscription charges to the new owner. Once you transfer ownership, open a [support ticket](/development/troubleshoot.html) to request your account deletion.                                                                                                      
 
 ## Environment types
 
