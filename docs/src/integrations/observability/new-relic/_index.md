@@ -18,3 +18,6 @@ The configuration for New Relic varies a bit by language. See the pages below fo
 - [Java](/integrations/observability/new-relic/java.html)
 - [Node.js](/integrations/observability/new-relic/nodejs.html)
 - [PHP](/integrations/observability/new-relic/php.html)
+
+For more languages, check the [New Relic Documentation directly](https://docs.newrelic.com/docs/agents/).
+Installation takes place in the [build hook](https://docs.platform.sh/configuration/app/build.html#hooks)
