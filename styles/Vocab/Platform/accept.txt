@@ -3,6 +3,7 @@ advancecomp
 allowlist
 asciinema
 async
+autoload[ing|er]?
 Blackfire
 blockquote
 Cloudwatt
@@ -27,8 +28,10 @@ multifactor
 multithread[ed|ing]
 namespace
 [Nn]ginx
+OPcache
 optipng
 pngcrush
+preload[ing]?
 progs
 Pthreads
 plaintext
@@ -39,3 +42,4 @@ Symfony
 transclusion
 webpack
 Xdebug
+Zend
