@@ -11,6 +11,7 @@ denylist
 Drush
 Fastly
 Galera
+Gemfile
 geocod[er|ing]
 glibc
 Goldmark
