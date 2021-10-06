@@ -13,6 +13,8 @@ For style and formatting guidance, see:
 
 ## Adding pages
 
+To get a head start on your page, copy one of the [templates](/docs/templates).
+
 All file names should end in `.md`.
 They should be all lowercase
 and match the page title or a short version of it.
