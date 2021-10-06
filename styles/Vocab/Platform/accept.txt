@@ -5,6 +5,7 @@ asciinema
 async
 Blackfire
 blockquote
+[Bb]undler
 Cloudwatt
 [Cc]onfig
 [Cc]ron
@@ -27,11 +28,14 @@ multifactor
 multithread[ed|ing]
 namespace
 [Nn]ginx
+npm
 optipng
 pngcrush
+preprocessor
 progs
 Pthreads
 plaintext
+recertification
 [Rr]sync
 runtimes
 shortcode
