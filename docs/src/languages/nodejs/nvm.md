@@ -5,7 +5,7 @@ toc: false
 description: See how to manage different Node.js versions in your Platform.sh containers.
 ---
 
-You may have instances where you need to use a specific version of Node.js that isn't available as a Platform.sh container.
+You may have instances where you need to use a specific version of Node.js that isn't available in an application container.
 For example, a container might have a long-term support version,
 while you want the latest version.
 Or you want to use specific Node.js version inside a container for another language, such as PHP.
