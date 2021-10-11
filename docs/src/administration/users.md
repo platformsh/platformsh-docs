@@ -15,7 +15,7 @@ If you are an organization or a Project admin wanting to add a user to a project
 | User role    | Description |
 | ------------ |-------------|
 |Project owner| There is only one and they can create multiple Project admins.  |
-|Project admin | Users who can configure project settings, manage other users,  administer environment permissions, push code, and execute actions on all project environments.|
+| Project admin | Users who can configure project settings, manage other users, administer environment permissions, push code, and execute actions on all project environments. |
 
 ### Transfer a project ownership
 
