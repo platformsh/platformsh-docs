@@ -28,6 +28,7 @@ Httpoxy
 Ibexa
 imagetragick
 jpegoptim
+Lando
 Magento
 Mailchimp
 Memcache

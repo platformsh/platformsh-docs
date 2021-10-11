@@ -46,8 +46,6 @@
     "normalize-url": "^7.0.1",
     "p-limit": "^4.0.0",
     "postcss": "^8.3.6",
-    "request": "^2.88.2",
-    "request-promise": "^4.2.6",
     "trim-newlines": "^4.0.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"

@@ -12,6 +12,7 @@ description: |
 * **September 2021**
   * Organizations: Switched to [organizations](/administration/organizations.md) for managing Platform.sh projects, users, and billing.
   * Vault: Added [Vault service](/configuration/services/vault.md).
+  * .Net: We now support [.Net 5.0](/languages/dotnet.md).
 * **May 2021**
   * Elasticsearch 6.8: We now support [Elasticsearch 6.8](/configuration/services/elasticsearch.md).
 ---
@@ -149,8 +150,8 @@ description: |
 ---
 
 * **June 2018**
-  * Node.js 10: We now offer [Node.js version 10](/languages/nodejs/_index.md).  All releases in the 10.x series will be included in that container.
-  * MongoDB 3.6: We now offer [MongoDB 3.2, 3.4, and 3.6](/configuration/services/mongodb.md).  Note that upgrading from MongoDB 3.0 requires upgrading through all intermediary versions.
+  * Node.js 10: We now offer [Node.js version 10](/languages/nodejs/_index.md). All releases in the 10.x series will be included in that container.
+  * MongoDB 3.6: We now offer [MongoDB 3.2, 3.4, and 3.6](/configuration/services/mongodb.md). Note that upgrading from MongoDB 3.0 requires upgrading through all intermediary versions.
 ---
 
 * **March 2018**
@@ -166,7 +167,7 @@ description: |
   * New project subdomains: The routes generated for subdomains and literal domains in development environments will now use `.` instead of translating them to `---`, for projects created after this date.
   * `!include` tag support in YAML files: All YAML configuration files now support a generic [`!include`](/configuration/yaml.md) tag that can be used to embed one file within another.
   * Extended mount definitions: A new syntax has been added for defining [mount points](/configuration/app/storage.md) that is more self-descriptive and makes future extension easier.
-  * Blocking older TLS versions: It is now possible to disable support for [HTTPS requests](/configuration/routes/https.md) using older versions of TLS.  TLS 1.0 is known to be insecure in some circumstances and some compliance standards require a higher minimum supported version.
+  * Blocking older TLS versions: It is now possible to disable support for [HTTPS requests](/configuration/routes/https.md) using older versions of TLS. TLS 1.0 is known to be insecure in some circumstances and some compliance standards require a higher minimum supported version.
   * `{all}` placeholder for routes: A new placeholder is available in [`routes.yaml`](/configuration/routes/_index.md) files that matches all configured domains.
   * GitLab source code integration: Synchronize Git repository host on [GitLab](/integrations/source/gitlab.md) to Platform.sh.
 ---
@@ -189,7 +190,7 @@ description: |
 
 * **June 2017**
   * Memcache 1.4: [Memcache 1.4](/configuration/services/memcached.md) is now available as a caching backend.
-  * Custom static headers in `.platform.app.yaml`: Added support for setting custom headers for static files in `.platform.app.yaml`.  [See the example](/configuration/app/web.md#how-can-i-control-the-headers-sent-with-my-files) for more information.
+  * Custom static headers in `.platform.app.yaml`: Added support for setting custom headers for static files in `.platform.app.yaml`. [See the example](/configuration/app/web.md#how-can-i-control-the-headers-sent-with-my-files) for more information.
 ---
 
 * **May 2017**
@@ -198,13 +199,13 @@ description: |
 ---
 
 * **April 2017**
-  * Support for automatic SSL certificates: All production environments are now issued an SSL certificate automatically through Let's Encrypt.  See the [routing documentation](/configuration/routes/https.md) for more information.
-  * MariaDB 10.1: MariaDB 10.1 is now available (accessible as `mysql:10.1`).  Additionally, both MariaDB 10.0 and 10.1 now use the Barracuda file format with `innodb_large_prefix` enabled, which allows for much longer indexes and resolves issues with some UTF-8 MB use cases.
+  * Support for automatic SSL certificates: All production environments are now issued an SSL certificate automatically through Let's Encrypt. See the [routing documentation](/configuration/routes/https.md) for more information.
+  * MariaDB 10.1: MariaDB 10.1 is now available (accessible as `mysql:10.1`). Additionally, both MariaDB 10.0 and 10.1 now use the Barracuda file format with `innodb_large_prefix` enabled, which allows for much longer indexes and resolves issues with some UTF-8 MB use cases.
 ---
 
 * **March 2017**
-  * Elasticsearch 2.4 and 5.2 with support for plugins: Elasticsearch 2.4 and 5.2 are now available.  Both have a number of optional plugins available.  See the [Elasticsearch documentation](/configuration/services/elasticsearch.md) for more information.
-  * InfluxDB 1.2: A new service type is available for InfluxDB 1.2, a time-series database.  See the [InfluxDB documentation](/configuration/services/influxdb.md) for more information.
+  * Elasticsearch 2.4 and 5.2 with support for plugins: Elasticsearch 2.4 and 5.2 are now available. Both have a number of optional plugins available. See the [Elasticsearch documentation](/configuration/services/elasticsearch.md) for more information.
+  * InfluxDB 1.2: A new service type is available for InfluxDB 1.2, a time-series database. See the [InfluxDB documentation](/configuration/services/influxdb.md) for more information.
 ---
 
 * **February 2017**
@@ -212,24 +213,24 @@ description: |
 ---
 
 * **January 2017**
-  * Support for Multiple MySQL databases and restricted users: MySQL now supports multiple databases, and restricted users per MySQL service.  See the [MySQL documentation](/configuration/services/mysql.md) for details or read our [blog post](https://platform.sh/2017/02/multi-mysql).
-  * Support for Persistent Redis services: Added a `redis-persistent` service that is appropriate for persistent key-value data. The `redis` service is still available for caching.  See the [Redis documentation](/configuration/services/redis.md) for details.
-  * Support Apache Solr 6.3 with multiple cores: Added an Apache 6.3 service, which can be configured with multiple cores.  See the [Solr documentation](/configuration/services/solr.md) for details.
-  * Support for HTTP/2: Any site configured with HTTPS will now automatically support HTTP/2.  Read more on our [blog post](https://platform.sh/2017/1/http2).
+  * Support for Multiple MySQL databases and restricted users: MySQL now supports multiple databases, and restricted users per MySQL service. See the [MySQL documentation](/configuration/services/mysql.md) for details or read our [blog post](https://platform.sh/2017/02/multi-mysql).
+  * Support for Persistent Redis services: Added a `redis-persistent` service that is appropriate for persistent key-value data. The `redis` service is still available for caching. See the [Redis documentation](/configuration/services/redis.md) for details.
+  * Support Apache Solr 6.3 with multiple cores: Added an Apache 6.3 service, which can be configured with multiple cores. See the [Solr documentation](/configuration/services/solr.md) for details.
+  * Support for HTTP/2: Any site configured with HTTPS will now automatically support HTTP/2. Read more on our [blog post](https://platform.sh/2017/1/http2).
 ---
 
 ## 2016
 
 * **December 2016**
-  * Support async PHP: Deploy applications like ReactPHP and Amp which allow PHP to run as a single-process asynchronous process.  Read more on our [blog post](https://platform.sh/2016/12/php-71).
+  * Support async PHP: Deploy applications like ReactPHP and Amp which allow PHP to run as a single-process asynchronous process. Read more on our [blog post](https://platform.sh/2016/12/php-71).
   * Pthreads: Multithreaded PHP: Our PHP 7.1 containers are running PHP 7.1 ZTS, and include the Pthreads extension. Read more on our [blog post](https://platform.sh/2016/12/php-71/).
   * PHP 7.1: Service is [documented here](/languages/php/_index.md).
   * Support .environment files: This file will get sourced as a bash script by the system when a container boots up, as well as on all SSH logins. Feature is [documented here](/development/variables.md#shell-variables).
-  * Support web.commands.start for PHP: That option wasn't available for PHP as PHP only has one applicable application runner, PHP-FPM. It is now available for PHP.  Read more on our [blog post](https://platform.sh/2016/12/app-updates-php/).
+  * Support web.commands.start for PHP: That option wasn't available for PHP as PHP only has one applicable application runner, PHP-FPM. It is now available for PHP. Read more on our [blog post](https://platform.sh/2016/12/app-updates-php/).
 ---
 
 * **November 2016**
-  * Customizable build flavor: Added a `none` build flavor which will not run any specific command during the build process.  Use it if your application requires a custom build process which can be defined in your build hook. Read more in our [blog post](https://platform.sh/2016/11/fully-customizable-build-flavors/).
+  * Customizable build flavor: Added a `none` build flavor which will not run any specific command during the build process. Use it if your application requires a custom build process which can be defined in your build hook. Read more in our [blog post](https://platform.sh/2016/11/fully-customizable-build-flavors/).
 ---
 
 * **October 2016**
@@ -267,7 +268,7 @@ description: |
 ---
 
 * **April 2016**
-  * White label capabilities (Magento Enterprise Cloud Edition): Support for Platform.sh white label offering.  First launch at [Magento Imagine 2016](http://imagine.magento.com/) in Las Vegas of [Magento Enterprise Cloud Edition](https://magento.com/products/enterprise-cloud-edition).
+  * White label capabilities (Magento Enterprise Cloud Edition): Support for Platform.sh white label offering. First launch at [Magento Imagine 2016](http://imagine.magento.com/) in Las Vegas of [Magento Enterprise Cloud Edition](https://magento.com/products/enterprise-cloud-edition).
 ---
 
 * **March 2016**
@@ -285,7 +286,7 @@ description: |
 ---
 
 * **November 2015**
-  * Java Ant & Maven build scripts: Java Ant and Maven build scripts is supported for PHP 5.6 and up.  Your application can pull and use most of Java dependency. Read more in our [blog post](https://platform.sh/2015/11/support-maven-and-ant)
+  * Java Ant & Maven build scripts: Java Ant and Maven build scripts is supported for PHP 5.6 and up. Your application can pull and use most of Java dependency. Read more in our [blog post](https://platform.sh/2015/11/support-maven-and-ant)
 ---
 
 * **October 2015**
@@ -295,7 +296,7 @@ description: |
 
 * **September 2015**
   * PHP 5.4, 5.5 & 5.6: Read more in our [blog post](https://platform.sh/2015/09/release-php)
-  * RabbitMQ 3.5: Service is [documented here](/configuration/services/rabbitmq.md).  Read more in our [blog post](https://platform.sh/2015/09/release-rabbitmq)
+  * RabbitMQ 3.5: Service is [documented here](/configuration/services/rabbitmq.md). Read more in our [blog post](https://platform.sh/2015/09/release-rabbitmq)
   * HHVM 3.9 & 3.12: Read more in our [blog post](https://platform.sh/2015/09/release-hhvm)
 ---
 
@@ -304,7 +305,7 @@ description: |
 ---
 
 * **June 2015**
-  * Bitbucket integration: This add-on allows you to deploy any branch or pull request on a fully isolated Platform.sh environment with a dedicated URL.  Read more in Bitbucket's [blog post](https://bitbucket.org/blog/bitbucket-platform-sh-remove-the-middle-man-between-your-code-and-your-deployment).
+  * Bitbucket integration: This add-on allows you to deploy any branch or pull request on a fully isolated Platform.sh environment with a dedicated URL. Read more in Bitbucket's [blog post](https://bitbucket.org/blog/bitbucket-platform-sh-remove-the-middle-man-between-your-code-and-your-deployment).
   * PostgreSQL 9.3: Service is [documented here](/configuration/services/postgresql.md).
 ---
 
@@ -313,7 +314,7 @@ description: |
 ---
 
 * **February 2015**
-  * Blackfire integration: PHP applications come pre-installed with [Blackfire](https://blackfire.io/) developed by [SensioLabs](https://sensiolabs.com/).  Read more in our [blog post](https://platform.sh/blackfire-integration).
+  * Blackfire integration: PHP applications come pre-installed with [Blackfire](https://blackfire.io/) developed by [SensioLabs](https://sensiolabs.com/). Read more in our [blog post](https://platform.sh/blackfire-integration).
 ---
 
 * **January 2015**
@@ -331,7 +332,7 @@ description: |
 ---
 
 * **October 2014**
-  * Automated protective block: Platform.sh provides a unique approach to protect your applications from known security issues.  An automated protective blocking system which works a bit like an antivirus: it compares the code you deploy on Platform.sh with a database of signatures of known security issues in open source projects. This feature is [documented here](/security/protective-block.md).  Read more in our [blog post](https://platform.sh/2014/10/21/protecting-your-apps).
+  * Automated protective block: Platform.sh provides a unique approach to protect your applications from known security issues. An automated protective blocking system which works a bit like an antivirus: it compares the code you deploy on Platform.sh with a database of signatures of known security issues in open source projects. This feature is [documented here](/security/protective-block.md). Read more in our [blog post](https://platform.sh/2014/10/21/protecting-your-apps).
   * Solr 4.10: Service is [documented here](/configuration/services/solr.md).
 ---
 
