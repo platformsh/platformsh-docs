@@ -157,6 +157,6 @@ You have to be the organization owner or an organization user with the **manage 
 Once the transfer is completed, the new organization can administer all project settings, billing, and gets the subscription charges.
 
 
-##Troubleshooting
+## Troubleshooting
 
 [Source Integrations](integrations/source/troubleshooting.html)
