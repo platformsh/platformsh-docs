@@ -51,7 +51,7 @@ A few things to consider:
 1. Click **+ Add**
 1. Add the user's details and choose their permissions.
 4. Click **Save**.
-Once you add the user to the project, they receive an invitation email to confirm their details and a registration link
+Once you add the user to the project, they receive an invitation email to confirm their details and a registration link.
 
 ### Add a user with the CLI
 
