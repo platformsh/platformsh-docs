@@ -6,20 +6,16 @@ toc: false
 
 Now your application has been taken live!
 
-As mentioned before, it may take a little time for the DNS to fully propagate, depending on the registrar. Otherwise, your domain should now point to the `master` production environment of your project.
+As mentioned before, it may take a little time for the DNS to fully propagate, depending on the registrar.
+Otherwise, your domain should now point to the production environment of your project.
 
 ### Additional information
 
-If through the following steps your project did not successfully configure to your domain, you can consult the Troubleshooting guide here:
+If through the following steps your project didn't successfully configure to your domain,
+you can consult the [troubleshooting guide](/domains/troubleshoot.md).
 
-* [Going Live: Troubleshooting](/domains/troubleshoot.md)
+Consider using the [Fastly CDN](/domains/cdn/fastly.md) for increased performance and more control over caching.
 
-Consider using the Fastly CDN for increased performance and more control over caching:
-
-* [Going Live: Fastly](/domains/cdn/fastly.md)
-
-Consider using Cloudflare's TLS/SSL service to secure your site via HTTPS when using a CDN:
-
-* [Going Live: Cloudflare](/domains/cdn/cloudflare.md)
+Consider using [Cloudflare's TLS/SSL service](/domains/cdn/cloudflare.md) to secure your site via HTTPS when using a CDN.
 
 {{< guide-buttons type="last">}}

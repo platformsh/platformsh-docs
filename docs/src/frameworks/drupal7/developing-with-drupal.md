@@ -8,38 +8,35 @@ weight: 1
 Here, we'll see how to make code changes to an environment.
 
 {{< note >}}
-You should never be working on the Master branch since it's supposed to be your production environment.
+
+You should never be working on your default branch since it's supposed to be your production environment.
+
 {{< /note >}}
 
-Make sure you're on a working environment. In this example we're on the
-*sprint1* branch:
+Make sure you're on a working environment. In this example we're on the *sprint1* branch:
 
 ```bash
 $ git checkout sprint1
 ```
 
-Now that you're set up on your working branch, you can start developing
-on your website by making code changes and pushing those changes to
-Platform to test them live.
+Now that you're set up on your working branch,
+you can start developing on your website by making code changes and pushing those changes to Platform to test them live.
 
 There are three common ways you will be making code changes to Platform:
 
-1.  Add contributed modules, themes, distributions, third-party
-    libraries in the make file
-2.  Create custom code (*modules, themes, profiles, libraries*) and
-    commit them to your Platform codebase
+1.  Add contributed modules, themes, distributions, third-party libraries in the make file
+2.  Create custom code (*modules, themes, profiles, libraries*) and commit them to your Platform codebase
 3.  Modify the services grid configuration
 
 ### Add contributed projects
 
-Each time you push a commit, Platform.sh will rebuild your environment
-and run the Drush make command if a proper make file has been found.
+Each time you push a commit,
+Platform.sh rebuilds your environment and run the Drush make command if a proper make file has been found.
 
 #### Add a Drupal module
 
-Each Drupal module you want to install on your project should be
-included in the make file. For example, if you want to add Drupal
-Commerce, you need to add the following lines to your `project.make`:
+Each Drupal module you want to install on your project should be included in the make file.
+For example, if you want to add Drupal Commerce, you need to add the following lines to your `project.make`:
 
 ```ini
 ; Modules
@@ -64,8 +61,8 @@ projects[views][subdir] = "contrib"
 
 #### Add a Drupal theme
 
-You'd do the same if you want to add a theme. Add the following lines to
-your `project.make`:
+You'd do the same if you want to add a theme.
+Add the following lines to your `project.make`:
 
 ```ini
 ; Zen Theme
@@ -74,9 +71,9 @@ projects[] = zen
 
 #### Add a third-party library
 
-You'd do the same if you want to add a third-party library. For our
-example here, we're adding the HTML5 Boilerplate library. Add the
-following lines to your `project.make`:
+You'd do the same if you want to add a third-party library.
+In this example, you add the HTML5 Boilerplate library.
+Add the following lines to your `project.make`:
 
 ```ini
 ; Libraries
@@ -86,9 +83,8 @@ libraries[html5bp][download][url] = "http://github.com/h5bp/html5-boilerplate/zi
 
 ### Add custom code
 
-To commit your custom modules, themes or libraries, you need to commit
-them under a `modules`, `themes` or `libraries` folder at the root of
-your Git repository.
+To commit your custom modules, themes, or libraries,
+you need to commit them under a `modules`, `themes`, or `libraries` folder at the root of your Git repository.
 
 ```bash
 $ ls
@@ -98,22 +94,18 @@ $ ls
   themes/
 ```
 
-When you push your code, Platform will build your environment and move
-your modules, themes, libraries to the correct location on your site
-(usually `sites/default/`).
+When you push your code, Platform will build your environment and move your modules, themes, and libraries
+to the correct location on your site (usually `sites/default/`).
 
 ### Change the services configuration
 
-You can change and define the topology of the services used in an
-environment, by modifying the configuration files.
+You can change and define the topology of the services used in an environment, by modifying the configuration files.
 
-This means that you're able to define and configure the services you
-want to use.
+This means that you're able to define and configure the services you want to use.
 
 ### Push your changes
 
-When you're done, commit your changes to test them on your online
-environment.
+When you're done, commit your changes to test them on your online environment.
 
 ```bash
 $ git add .
@@ -121,32 +113,35 @@ $ git commit -m "Made changes to my make file."
 $ git push
 ```
 
-You will see that Platform has found a make file and is starting to
-rebuild your environment.
+You will see that Platform has found a make file and is starting to rebuild your environment.
 
-When it's completed, you can see your changes on your site by clicking
-`View this website` under the name of **Sprint1** environment on the
-Platform.sh management console.
+When it's completed, you can see your changes on your site by clicking `View this website`
+under the name of **Sprint1** environment on the Platform.sh management console.
 
 {{< note >}}
-The Drush Make processing doesn't create any file in your Git repository. Your Git repository is the *input* of the process and not the *output*. You can see the directory structure that has been created by connecting to the environment via SSH. See the information in the `Access information` below the title of the environment.
+
+The Drush Make processing doesn't create any file in your Git repository.
+Your Git repository is the *input* of the process and not the *output*.
+You can see the directory structure that has been created by connecting to the environment via SSH.
+See the information in the `Access information` below the title of the environment.
+
 {{< /note >}}
 
-## Merge code changes to Master
+## Merge code changes to production
 
-Once you've got a branch with some changes, you'll want to be able to
-push those changes up to your live environment. Platform.sh has a great
-button called `Merge` that you can click on and it will push the
-appropriate changes to master.
+Once you've got a branch with some changes,
+you'll want to be able to push those changes up to your live environment.
+Platform.sh has a great button called `Merge` that you can click
+and it will push the appropriate changes to your production environment.
 
 ![Merge your changes.](/images/management-console/header.png "0.3")
 
-A dialog box will appear that will provide commands to execute future merges from the command line using the [Platform.sh CLI](/development/cli/_index.md).
+A dialog box appears that provides commands to execute future merges from the command line using the [Platform.sh CLI](/development/cli/_index.md).
 
 ![Merge confirmation CLI](/images/management-console/header-merge-box.png "0.4")
 
-Just click on the "Merge" button again and all of the commits you made on your
-branch will be merged into the master environment.
+Just click on the "Merge" button again
+and all of the commits you made on your branch are merged into the production environment.
 
 ## Synchronizing data
 
@@ -160,12 +155,11 @@ With the Drush aliases (depending on how yours are set up), you
 could use a command similar to this:
 
 ```bash
-$ drush sql-sync @platform.master @platform._local
+$ drush sql-sync @platform.main @platform._local
 ```
 
-An alternate method that is appropriate for larger databases is to use
-the pipe | to stream the data, instead of making copies.
+An alternate method that's appropriate for larger databases is to use a pipe (`|`) to stream the data instead of making copies.
 
 ```bash
-$ drush @platform.master sql-dump | drush @platform._local sqlc
+$ drush @platform.main sql-dump | drush @platform._local sqlc
 ```

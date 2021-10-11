@@ -3,14 +3,19 @@ title: "Upgrading to the Integrated UI"
 weight: 6
 sidebarTitle: "Upgrading"
 description: |
-    Platform.sh Dedicated Generation 1 projects (created prior to October 2017) used a separate Git repository for Production and Staging.  That also necessitated running most configuration changes through a ticket and maintaining separate SSH credentials for each environment.
+    Platform.sh Dedicated Generation 1 projects (created prior to October 2017) used a separate Git repository for Production and Staging.
+    That also necessitated running most configuration changes through a ticket and maintaining separate SSH credentials for each environment.
 ---
 
 {{< description >}}
 
-These older projects can be upgraded to the new Integrated UI, which eliminates the extra Git repositories, many "must be a ticket" configuration changes, and makes the Production and Staging environments available in the UI.
+These older projects can be upgraded to the new Integrated UI, which eliminates the extra Git repositories,
+many "must be a ticket" configuration changes, and makes the Production and Staging environments available in the UI.
 
-To add these environments to the Project Web Interface, review this entire document, complete a few preparatory steps, and submit a ticket. Your ticket is added to a queue for updating existing Dedicated projects.  The process may take time to complete, so check your ticket for details, timing, and other important information.
+To add these environments to the Project Web Interface, review this entire document,
+complete a few preparatory steps, and submit a ticket.
+Your ticket is added to a queue for updating existing Dedicated projects.
+The process may take time to complete, so check your ticket for details, timing, and other important information.
 
 We recommend this upgrade for all users.
 
@@ -43,15 +48,16 @@ You cannot perform the following:
 
 ### Branching hierarchy
 
-Before converting your project, the branches include a repository for Development, Staging, and Production. Each repository has a master branch with deployment targets configured for Staging and Production.
+Before converting your project, the branches include a repository for Development, Staging, and Production.
+Each repository has deployment targets configured for Staging and Production.
 
-After converting your project, the hierarchical relationships appear in your Project Web Interface with two, main environment branches for Staging and Production:
-
-![Production and Staging are special children of master](/images/dedicated/wings-branches.png "0.3")
+After converting your project, the hierarchical relationships appear in your Project Web Interface
+with two main environment branches for Staging and Production.
 
 ## Before you upgrade
 
-When we add Staging and Production access to the Project Web Interface, we use the user accounts, branch user permissions, and environment variables from your Development master environment.
+When we add Staging and Production access to the Project Web Interface,
+we use the user accounts, branch user permissions, and environment variables from your main Development environment.
 
 To prepare, verify that your settings and environment variables are correct.
 
@@ -61,40 +67,58 @@ To prepare, verify that your settings and environment variables are correct.
 
 ### Verify code
 
-We strongly recommend working in your local development environment, deploying to Development, deploying to Staging, and, finally, deploying to Production. All code should match 100% across each of these environments. Before submitting a ticket, make sure you sync your code. This process creates a new branch of code for Staging and Production environments.
+We strongly recommend working in your local development environment,
+deploying to Development, deploying to Staging, and, finally, deploying to Production.
+All code should match 100% across each of these environments.
+Before submitting a ticket, make sure you sync your code.
+This process creates a new branch of code for Staging and Production environments.
 
-If you have additional code, such as new extensions in your Production environment without following this workflow, then deployments from Integration or Staging overwrite your Production code.
+If you have additional code, such as new extensions in your Production environment without following this workflow,
+then deployments from Integration or Staging overwrite your Production code.
 
 ### Verify user account access
 
-We recommend verifying your user account access and permissions set in the Integration environment. When adding Staging and Production to the Project Web Interface, the process includes all user accounts and settings. You can modify the settings and values for these environments after they are added.
+We recommend verifying your user account access and permissions set in the Integration environment.
+When adding Staging and Production to the Project Web Interface, the process includes all user accounts and settings.
+You can modify the settings and values for these environments after they are added.
 
 1. Log in to your Platform.sh account.
-2. From your project, click Master to view the environment information and settings.
+2. From your project, click your default branch to view the environment information and settings.
 3. Click ![configure your project](/images/dedicated/edit-project-gear.png "0.01-inline") Configure environment.
 4. Click the Users tab to review the user accounts and permission configurations.
 5. Add, delete, or update users, if needed.
 
 ### Prepare variables
 
-When we convert your project to the new Project Web Interface, we add variables from Development environment to the Staging and Production environments. You can review, modify, and add variables through the current Project Web Interface prior to conversion.
+When we convert your project to the new Project Web Interface,
+we add variables from Development environment to the Staging and Production environments.
+You can review, modify, and add variables through the current Project Web Interface prior to conversion.
 
 1. Log in to your Platform.sh account.
-2. From your project, click the master branch to view the environment information and settings.
+2. From your project, click your default branch to view the environment information and settings.
 3. Click ![configure your project](/images/dedicated/edit-project-gear.png "0.01-inline") Configure environment.
 4. On the Variables tab, review the environment variables.
 5. To create a new variable, click Add Variable.
 6. To update an existing variable, click Edit next to the variable.
 
-For environment-specific variables, including sensitive data and values, you can add those variables after we update your Project Web Interface. Environment variables defined in `.platform.app.yaml` or a `.environment` file will continue to work. You can add and manage these variables via SSH and CLI commands directly into the Staging and Production environments.
+For environment-specific variables, including sensitive data and values,
+you can add those variables after we update your Project Web Interface.
+Environment variables defined in `.platform.app.yaml` or a `.environment` file will continue to work.
+You can add and manage these variables via SSH and CLI commands directly into the Staging and Production environments.
 
 ## Enter a ticket for updating the Project Web Interface
 
-Enter a Support ticket with the suggested title “Connect Stg / Prod to Project’s UI”. In the ticket, request to have your project enabled with Staging and Production in the UI and confirm that you've taken the steps above to prepare your project.
+Enter a Support ticket with the suggested title "Connect Stg / Prod to Project’s UI".
+In the ticket, request to have your project enabled with Staging and Production in the UI
+and confirm that you've taken the steps above to prepare your project.
 
-We will review the infrastructure and settings, create user and environment variables for Staging and Production environments, and update the ticket with results.
+We will review the infrastructure and settings,
+create user and environment variables for Staging and Production environments,
+and update the ticket with results.
 
-Once started the process usually takes less than an hour.  There should be no downtime on your production site, although you should not push any code to Git while the upgrade is in progress.
+Once started the process usually takes less than an hour.
+There should be no downtime on your production site,
+although you should not push any code to Git while the upgrade is in progress.
 
 When done, you can access review your project through the Project Web Interface.
 

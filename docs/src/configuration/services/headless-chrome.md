@@ -26,7 +26,7 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
     "service": "headless",
     "ip": "169.254.73.96",
     "hostname": "3rxha4e2w4yv36lqlypy7qlkza.headless.service._.eu-3.platformsh.site",
-    "cluster": "moqwtrvgc63mo-master-7rqtwti",
+    "cluster": "moqwtrvgc63mo-main-7rqtwti",
     "host": "headless.internal",
     "rel": "http",
     "scheme": "http",

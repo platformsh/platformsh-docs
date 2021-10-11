@@ -3,35 +3,47 @@ title: "Sending E-mail"
 weight: 8
 sidebarTitle: "E-mail"
 description: |
-  By default only the master environment can send emails.  For the non-master environments, you can configure outgoing emails via the [management console](/administration/web/configure-environment.md#outgoing-emails). Emails from Platform.sh are sent via a SendGrid-based SMTP proxy.
+  By default only your production environment can send emails. For non-production environments, you can configure outgoing emails via the [management console](/administration/web/configure-environment.md#outgoing-emails). Emails from Platform.sh are sent via a SendGrid-based SMTP proxy.
 ---
 
 {{< description >}}
 
-Each Platform.sh project is provisioned as a SendGrid sub-account. These SendGrid sub-accounts are capped at 12k emails per month.  You can use `/usr/sbin/sendmail` on your application container to send emails with the assigned SendGrid sub-account. Alternatively, you can use the `PLATFORM_SMTP_HOST` environment variable to use in your SMTP configuration."
+Each Platform.sh project is provisioned as a SendGrid sub-account. These SendGrid sub-accounts are capped at 12k emails per month.
+You can use `/usr/sbin/sendmail` on your application container to send emails with the assigned SendGrid sub-account.
+Alternatively, you can use the `PLATFORM_SMTP_HOST` environment variable to use in your SMTP configuration."
 
-We do not guarantee the deliverability of emails, and we do not support white-labeling them.  Our SMTP proxy is intended as a zero-configuration, best effort service.  If needed, you can instead use your own SMTP server or email delivery service provider. In that case, please bear in mind that TCP port 25 is blocked for security reasons; use TCP port 465 or 587 instead.
+We do not guarantee the deliverability of emails, and we do not support white-labeling them.
+Our SMTP proxy is intended as a zero-configuration, best effort service.
+If needed, you can instead use your own SMTP server or email delivery service provider.
+In that case, bear in mind that TCP port 25 is blocked for security reasons; use TCP port 465 or 587 instead.
 
 {{< note>}}
+
 You may follow SendGrid's SPF setup guidelines to improve email deliverability with our SMTP proxy, by including the following TXT record to the domain's DNS records:
 
 ```txt
 >v=spf1 include:sendgrid.net -all
 ```
 
-However, as we do not support white-labeling of emails, DKIM is not provided for our standard email handling (meaning that DMARC can't be set up either). Thus, for maximum deliverability you should use your own mail service.
+However, as we do not support white-labeling of emails
+ DKIM is not provided for our standard email handling (meaning that DMARC can't be set up either).
+ Thus, for maximum deliverability you should use your own mail service.
 
-[SendGrid's current SPF setup guidelines](https://sendgrid.com/docs/glossary/spf/) specify that your TXT record includes your subuser account ID:
+[SendGrid's current SPF setup guidelines](https://docs.sendgrid.com/ui/account-and-settings/spf-records#custom-spf-records)
+specify that your TXT record includes your account ID:
 
 ```txt
 >v=spf1 include:u17504801.wl.sendgrid.net -all
 ```
-This ID is only available on Dedicated projects. Use the previous format above when configuring for Grid projects.
+This ID is only available on Dedicated projects.
+Use the previous format above when configuring for Grid projects.
 {{< /note >}}
 
 ## Enabling/disabling email
 
-Email support can be enabled/disabled per-environment.  By default, it is enabled on the `master` environment and disabled elsewhere.  That can be toggled in through the management console or via the command line, like so:
+Email support can be enabled/disabled per-environment.
+By default, it's enabled on your production environment and disabled elsewhere.
+That can be toggled in through the management console or via the command line, like so:
 
 ```bash
 platform environment:info enable_smtp true
@@ -39,10 +51,17 @@ platform environment:info enable_smtp true
 platform environment:info enable_smtp false
 ```
 
-When SMTP support is enabled the environment variable `PLATFORM_SMTP_HOST` will be populated with the address of the SMTP host that should be used.  When SMTP support is disabled that environment variable will be empty.
+When SMTP support is enabled,
+the environment variable `PLATFORM_SMTP_HOST` will be populated with the address of the SMTP host that should be used.
+When SMTP support is disabled,
+that environment variable will be empty.
 
 {{< note >}}
-Changing the SMTP status will not take effect immediately.  You will need to issue a new *build*, not just a new deploy, for the changes to take effect. That means making a trivial change to some file in Git for the application.
+
+Changing the SMTP status will not take effect immediately.
+You will need to issue a new *build*, not just a new deploy, for the changes to take effect.
+That means making a trivial change to some file in Git for the application.
+
 {{< /note >}}
 
 ## Ports
@@ -54,13 +73,15 @@ We proxy your emails through our own SMTP host, and encrypt them over port 465 b
 
 ## Testing the email service
 
-Before testing that the email service is working, please make sure that:
+Before testing that the email service is working, make sure that:
 
 - E-mail has been [enabled](#enablingdisabling-email) on the environment
 - The environment has been redeployed
 - You have accessed the environment using SSH and verified that the `PLATFORM_SMTP_HOST` environment variable is visible
 
-To test the email service, first connect to your cluster through [SSH](/development/ssh/_index.md) using the [CLI](/development/cli/_index.md) command `platform ssh`. Run the following snippet in the terminal (replacing the email addresses with the ones you want):
+To test the email service, first connect to your cluster through [SSH](/development/ssh/_index.md)
+using the [CLI](/development/cli/_index.md) command `platform ssh`.
+Run the following command (replacing the email addresses with the ones you want):
 
 ```bash
 $ php -r 'mail("mail@example.com", "test message", "just testing", "From: tester@example.com");'
@@ -70,13 +91,18 @@ After a couple minutes you should receive the "test message" in your mailbox.
 
 ## Sending email in PHP
 
-When you send email, you can use the built-in `mail()` function in PHP. The PHP runtime is configured to send email automatically via the assigned SendGrid sub-account.  Note that the `From` header is required; email will not send if that header is missing.
+When you send email, you can use the built-in `mail()` function in PHP.
+The PHP runtime is configured to send email automatically via the assigned SendGrid sub-account.
+Note that the `From` header is required; email will not send if that header is missing.
 
-Beware of the potential security problems when using the `mail()` function, which arise when using user-supplied input in the fifth (`$additional_parameters`) argument. See the [PHP `mail()` documentation](http://php.net/manual/en/function.mail.php) for more information.
+Beware of the potential security problems when using the `mail()` function,
+which arise when using user-supplied input in the fifth (`$additional_parameters`) argument.
+See the [PHP `mail()` documentation](http://php.net/manual/en/function.mail.php) for more information.
 
 ### SwiftMailer
 
-In Symfony, if you use the default `SwiftMailer` service, we recommend the following settings in your `app/config/parameters.yaml`:
+In Symfony, if you use the default `SwiftMailer` service,
+we recommend the following settings in your `app/config/parameters.yaml`:
 
 ```yaml
 parameters:
@@ -97,13 +123,12 @@ mounts:
 
 ## Sending email in Java
 
-JavaMail is a Java API used to send and receive email via SMTP, POP3 and IMAP. JavaMail is built into the [Jakarta EE](https://jakarta.ee/) platform, but also provides an optional package for use in Java SE.
+JavaMail is a Java API used to send and receive email via SMTP, POP3, and IMAP.
+JavaMail is built into the [Jakarta EE](https://jakarta.ee/) platform, but also provides an optional package for use in Java SE.
 
 Jakarta Mail defines a platform-independent and protocol-independent framework to build mail and messaging applications.
 
 Below the sample code that uses [Jakarta Mail](https://projects.eclipse.org/projects/ee4j.mail):
-
-
 
 ```java
 import sh.platform.config.Config;
@@ -156,7 +181,8 @@ public class JavaEmailSender {
 
 
 
-There is plenty of additional documentation about using JavaMail,  like this one, [that shows how to send email with HTML formatting and attachments](https://mkyong.com/java/java-how-to-send-email/).
+There is plenty of additional documentation about using JavaMail,
+like this one [that shows how to send email with HTML formatting and attachments](https://mkyong.com/java/java-how-to-send-email/).
 
 ### References
 

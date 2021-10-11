@@ -19,7 +19,8 @@ To specify a PHP container, use the `type` property in your `.platform.app.yaml`
 
 ## Deprecated versions
 
-The following versions are available but aren't receiving security updates from upstream, so their use isn't recommended. They will be removed at some point in the future.
+The following versions are available but aren't receiving security updates from upstream, so their use isn't recommended.
+They will be removed at some point in the future.
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -27,7 +28,8 @@ The following versions are available but aren't receiving security updates from 
 
 ## Support libraries
 
-While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-php) Composer library which handles decoding of service credential information for you.
+While it is possible to read the environment directly from your application,
+it is generally easier and more robust to use the [`platformsh/config-reader`](https://github.com/platformsh/config-reader-php) Composer library which handles decoding of service credential information for you.
 
 ## Alternate start commands
 
@@ -75,17 +77,17 @@ The standard format:
 ```yaml
 dependencies:
     php:
-        "platformsh/client": "dev-master"
+        "platformsh/client": "2.x-dev"
 ```
 
-is equivalent to `composer require platform/client dev-master`.
+is equivalent to `composer require platform/client 2.x-dev`.
  However, you can also specify explicit `require` and `repositories` blocks:
 
 ```yaml
 dependencies:
     php:
         require:
-            "platformsh/client": "dev-master"
+            "platformsh/client": "2.x-dev"
         repositories:
             - type: vcs
               url: "git@github.com:platformsh/platformsh-client-php.git"
@@ -103,7 +105,7 @@ In other words, it's equivalent to the following `composer.json` file:
         }
     ],
     "require": {
-        "platformsh/client": "dev-master"
+        "platformsh/client": "2.x-dev"
     }
 }
 ```
