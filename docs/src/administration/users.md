@@ -17,7 +17,7 @@ If you are an organization or a Project admin wanting to add a user to a project
 |Project owner| There is only one and they can create multiple Project admins.  |
 | Project admin | Users who can configure project settings, manage other users, administer environment permissions, push code, and execute actions on all project environments. |
 
-### Transfer a project ownership
+### Transfer project ownership
 
 As an organization owner, or as an organization user with the **manage plans** permission, you can transfer project ownership to a different organization, first invite that organization owner as a **Project admin** and then, submit a support ticket from your organization owner account to ask for the transfer. Transferring a project automatically transfers the upcoming subscription charges to the new owner. Once you transfer ownership, open a [support ticket](https://console.platform.sh/-/users/~/tickets) to request your account deletion.                                                                                                     
 
