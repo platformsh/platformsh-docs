@@ -3,7 +3,7 @@ title: "Users"
 weight: 1
 sidebarTitle: "User administration"
 description: |
-  Learn how to add and delete users, as well as how to assign user permissions per environment type.
+  Learn how to add and delete users and assign user permissions per environment type.
 ---
 
 {{< description >}}
