@@ -22,7 +22,7 @@ If you are an organization owner, or an organization user with **manage plan** p
 ## Environment types
 
 Each environment type groups one or more environments together so that you can manage access for all environments of a certain type.
-Platform.sh offers three types of environment groups: Production, Staging, and Development.
+Platform.sh offers three environment types: Production, Staging, and Development.
 You can assign user permissions for each environment type.
 Any permissions you assign to an environment type apply to all environments of that type.
 
