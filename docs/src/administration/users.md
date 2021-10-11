@@ -26,7 +26,7 @@ Platform.sh offers three types of environment groups: Production, Staging, and D
 You can assign user permissions for each environment type.
 Any permissions you assign to an environment type apply to all environments of that type.
 
-For example, if you assign user1 **Admin** permissions for Development environments, User1 effectively has **Admin** permissions to all development environments.
+For example, if you assign User1 **Admin** permissions for Development environments, User1 effectively has **Admin** permissions to all development environments.
 
 A few things to consider:
 
