@@ -45,7 +45,6 @@ The following extensions are enabled by default:
 * recode (7.1 and later)
 * snmp (7.1 and later)
 * soap (7.1 and later)
-* sodium (7.2)
 * sqlite3
 * sockets (7.0 and later)
 * sybase (7.1 and later)
