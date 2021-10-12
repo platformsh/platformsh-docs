@@ -10,7 +10,8 @@ description: |
 
 ## How build works
 
-The Platform.sh build process is run independently of any given environment.  That's because the built application image is reusable in multiple environments.
+The Platform.sh build process is run independently of any given environment.
+That's because the built application image is reusable in multiple environments.
 
 During the build process, each application (defined by a `.platform.app.yaml` file) is built independently, and the output cached based on its Git tree ID and its build time configuration ID (which can include build environment variables). Together these result in a final build slug, a hash that describes that specific build. 
 
