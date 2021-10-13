@@ -6,22 +6,22 @@ description: |
   Learn how to add and delete users and assign user permissions per environment type.
 ---
 
-{{< description >}}
+In the following page, you'll learn about user roles and environment types, how to add and delete users, and assign user permissions per environment type.
 
 ## User roles
 
 Every Platform.sh user has a role that controls their access and permission levels.
-If you are an organization owner, or an organization user with **manage plan** permissions wanting to add a user to a project or an environment, the user has to create an account before they can contribute to the project.
 
 | User role    | Description |
 | ------------ |-------------|
 |Project Owner| There is only one and they can create multiple Project Admins.  |
-|Project Admin | Users who can configure project settings, manage other users, administer environment permissions, push code, and execute actions on all project environments.|
+|Project Admin | Users who can configure project settings, add and remove users, administer environment permissions, push code, and execute actions on all project environments.|
 
 
 ## Environment types
 
-Each environment type groups one or more environments together so that you can manage access for all environments of a certain type.
+Each environment type groups one or more environments together so that you can manage access for all environments of a certain type. This allows you to set permissions for multiple environments at once based on their purpose.
+
 Platform.sh offers three environment types: Production, Staging, and Development.
 You can assign user permissions for each environment type.
 Any permissions you assign to an environment type apply to all environments of that type.
@@ -31,15 +31,20 @@ For example, if you assign User1 **Admin** permissions for Development environme
 A few things to consider:
 
 * Only one environment per project can be the Production type. It's set automatically as the default branch and can't be overridden separately.
-* You can change an environment type and have multiple Staging or Development environments.
-* To customize who can use SSH, [set the access key](/configuration/app/access.html) in your platform.app.yaml
+* You can change an environment's type and have multiple Staging or Development environments.
 
 
-| Environment permission   | Description |
-|------------------------- |-------------|
-|Viewer                    | Viewers can view all environments of this type.|
-|Contributor               | Contributors can push code and branch all environments of this type. This role includes the Viewer permissions.
-|Admin                     | Admins can change settings and execute actions on all environments of this type. This role includes the Viewer and Contributor permissions.
+| Role | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
+| ---- | ---------------- | --------- | ------------------ | ---------- | --------------- | --------------- |
+| Environment Type Viewer
+ | Yes | No |  No |  No |  No |  No |
+| Environment Type Contributor
+ | Yes | Yes | Yes | Yes | No | No |
+| Environment Type Admin
+ | Yes | Yes | Yes | Yes | Yes | Yes |
+
+To customize who can use SSH, [set the access key](/configuration/app/access.md) in your `platform.app.yaml` file.
+
 
 ## Manage users
 
@@ -54,12 +59,18 @@ file=none
 highlight=false
 ---
 
-1. Go to your console and select the project where you want to add a new user.
+1. In the console, select the project where you want to add a new user.
 2. Under **Settings**, click **Access**.
-1. Click **+ Add**
-1. Add the user's details and choose their permissions.
-4. Click **Save**.
-5. After you add a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by clicking **Redeploy** in the console.
+3. Click **+ Add**
+4. Add the user's details and choose their permissions.
+5. Click **Save**.
+
+{{< note theme="warning">}}
+
+If you are an organization owner, or an organization user with [manage plan](/administration/organizations.md#organization-permissions) or [manage users](/administration/organizations.md#organization-permissions) permissions wanting to add a user to a project or an environment, the user has to create an account before they can contribute to the project.
+
+{{< /note >}}
+
 <--->
 ---
 title=Using the CLI
@@ -78,11 +89,10 @@ platform user:add user1@example.com -r admin
 ```
 Once you add the user to the project, they receive an invitation email to join the project.
 
-Use `platform list` to get the full list of commands.
-
 {{< /codetabs >}}
 
 Once you add a user to a project, they receive an invitation to join the project.
+For SSH access changes to apply after you add a user to a project, you have to redeploy each environment by either clicking **Redeploy** in the console or running `platform redeploy`.
 
 ## Manage existing users
 
@@ -92,70 +102,71 @@ To delete a user from a project, follow these steps:
 
 {{< codetabs >}}
 ---
-title="In the console"
+title=In the console
+file=none
+highlight=false
 ---
-1. Go to your console and select the project where you want to delete a user.
+1. In the console, select the project where you want to delete a user.
 2. Under **Settings**, click **Access**.
-3. Select the user you want to delete and click **Delete**
+3. Select the user you want to delete and click **Delete**.
 4. Click **Save**.
-5. After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by clicking **Redeploy** in the console.
+
+<--->
 ---
-title="Using the CLI"
+title=Using the CLI
+file=none
+highlight=false
 ---
 Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md) to delete existing users.
 
-* `platform user:delete`
+`platform user:delete`
 
   ```bash
   platform user:delete user1@example.com
   ```
 
-  Use `platform list` to get the full list of commands.
-
-  After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by using the CLI command platform `redeploy`.
+  After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by using the CLI command `platform redeploy`.
 
 {{< /codetabs >}}
 
-Once you delete a user, they won't be able to access the project anymore.
+Once you delete a user, they can no longer access the project anymore.
+After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by clicking **Redeploy** in the console.
 
 
-### Change user permissions from the console
+### Change existing permissions for environment types
 
-To change the user permissions, follow the steps:
+To change the user permissions, follow these steps:
 
 {{< codetabs >}}
 ---
-title="In the console"
+title=In the console
+file=none
+highlight=false
 ---
 1. Go to your console and select the project where you want to change the user permissions.
 2. Under **Settings**, click **Access**.
 3. Select a user and change the permissions.
 4. Click **Save**.
-5. After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by clicking **Redeploy** in the console.
+
 ---
 title="Using the CLI"
 ---
 Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md)to change user permissions.
 
-* `platform user:role`
+`platform user:role`
 
   ```bash
   platform user:role user1@example.com -r contributor
   ```
 
-Use `platform list` to get the full list of commands.
-
-After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by using the CLI command platform `redeploy`.
+After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by using the CLI command `platform redeploy`.
 
 {{< /codetabs >}}
 
 
-### Transfer a project ownership
+### Transfer project ownership
 
-You can transfer your plan ownership to a different [organization](https://docs.platform.sh/administration/organizations.html) anytime.
-
-#### Before you begin
-
+You can transfer your plan ownership to a different [organization](/administration/organizations.md) anytime.
 You have to be the organization owner or an organization user with the **manage plans** permission.
 
 1. Invite the new organization owner as a **Project Admin**.
@@ -166,4 +177,4 @@ Once the transfer is completed, the new organization can administer all project 
 
 ## Troubleshooting
 
-[Source Integrations](integrations/source/troubleshooting.html)
+If you have setup an external integration to GitHub, GitLab or Bitbucket and your users can't clone the project locally, select [Source Integrations](integrations/source/troubleshooting.md)
