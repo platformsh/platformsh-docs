@@ -49,17 +49,24 @@ To add a user to a project, follow these steps:
 
 {{< codetabs >}}
 ---
-title="In the console"
+title=In the console
+file=none
+highlight=false
 ---
+
 1. Go to your console and select the project where you want to add a new user.
 2. Under **Settings**, click **Access**.
 1. Click **+ Add**
 1. Add the user's details and choose their permissions.
 4. Click **Save**.
 5. After you add a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by clicking **Redeploy** in the console.
+<--->
 ---
-title="Using the CLI"
+title=Using the CLI
+file=none
+highlight=false
 ---
+
 You can use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md) to create new users.
 
 * `platform user:add`
