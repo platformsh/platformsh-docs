@@ -8,7 +8,10 @@ description: |
 
 ## Adding plugins and themes without Composer
 
-As previously mentioned, Composer is strongly recommended, but it is possible to use some non-Composer plugins and themes in your site, provided that they do not require write access at runtime. In your build hook, include:
+As previously mentioned, Composer is strongly recommended,
+but it's possible to use some non-Composer plugins and themes in your site,
+provided that they don't require write access at runtime.
+In your build hook, include:
 
 ```yaml
 hooks:
@@ -16,7 +19,12 @@ hooks:
         rsync -a plugins/* wordpress/wp-content/plugins/
 ```
 
-Here, you can commit plugins to the repository in a `plugins` subdirectory, which will then be placed into the WordPress installation during the build. It is assumed that these packages stick to best practices and do not write to the file system at runtime and when enabling them. You can get around this issue by defining a [mount](/configuration/app/storage.md#basic-mounts) where a plugin requires write access, but you will have to remember that the contents at that mount location will be wiped when deployment begins, so you will need to copy and re-copy accordingly.  
+Here, you can commit plugins to the repository in a `plugins` subdirectory,
+which are placed into the WordPress installation during the build.
+It's assumed that these packages stick to best practices and don't write to the file system at runtime and when enabling them.
+You can get around this issue by defining a [mount](/configuration/app/storage.md#basic-mounts) where a plugin requires write access,
+but you need to remember that the contents at that mount location are wiped when deployment begins,
+so you need to copy and re-copy accordingly.  
 
 ## Adding public plugins and themes via Composer
 
@@ -29,11 +37,16 @@ $ composer require wpackagist-plugin/cache-control
 $ composer require wpackagist-theme/neve
 ```
 
-This will update your `composer.json` and `composer.lock` files, and once you push the change to Platform.sh the package will be downloaded during WordPress's build. All that is left is to sign in to the administration dashboard on your deployed site and enable plugins and themes from the Plugins and Appearance settings, respectively. 
+This updates your `composer.json` and `composer.lock` files.
+Once you push the change to Platform.sh, the package is downloaded during the WordPress build.
+All that's left is to sign in to the administration dashboard on your deployed site
+and enable plugins and themes from the Plugins and Appearance settings, respectively. 
 
 ## Set up a WooCommerce site
 
-Platform.sh maintains a [WooCommerce template](https://github.com/platformsh-templates/wordpress-woocommerce) that you can deploy quickly from the button in its README, but using Composer you can quickly install WooCommerce yourself:
+Platform.sh maintains a [WooCommerce template](https://github.com/platformsh-templates/wordpress-woocommerce)
+that you can deploy quickly from the button in its README,
+but using Composer you can quickly install WooCommerce yourself:
 
 ```bash
 $ composer require woocommerce/woocommerce
@@ -43,7 +56,8 @@ Push those changes on a new environment and configure your store through the adm
 
 ## Adding private plugins and themes via Composer
 
-If your plugins are not accessible from WPPackagist or packagist, but are still valid packages, you can use them in your project by defining local `repositories` for them in your `composer.json` file. 
+If your plugins aren't accessible from WPPackagist or Packagist, but are still valid packages,
+you can use them in your project by defining local `repositories` for them in your `composer.json` file. 
 
 ```json
 "repositories":[
@@ -68,22 +82,25 @@ If your plugins are not accessible from WPPackagist or packagist, but are still 
 ]
 ```
 
-In the snippet above, other packages can still be downloaded from WPPackagist, but now two custom `path` repositories have been defined from `/custom/[themes|plugins]` locally. Adding packages from these sources then only require `composer require author/custom_plugin` to ensure that the plugin at `/custom/plugin/author/custom_plugin` is installed by Platform.sh when WordPress is built. 
+In the snippet above, other packages can still be downloaded from WPPackagist,
+but now two custom `path` repositories have been defined from `/custom/[themes|plugins]` locally.
+Adding packages from these sources then only requires `composer require author/custom_plugin`
+to ensure that the plugin at `/custom/plugin/author/custom_plugin` is installed by Platform.sh when WordPress is built. 
 
 ## Updating WordPress, plugins, and themes
 
-Your WordPress site is fully managed by Composer, which means so are updates to WordPress core itself. Run `composer update` periodically to get new versions of WordPress core, as well as any plugins or themes your have installed. Commit the resulting changes to your `composer.lock` file and push again to Platform.sh 
+Your WordPress site is fully managed by Composer,
+which means so are updates to WordPress core itself.
+Run `composer update` periodically to get new versions of WordPress core, as well as any plugins or themes your have installed.
+Commit the resulting changes to your `composer.lock` file and push again to Platform.sh 
 
 The [Composer documentation](https://getcomposer.org/doc/) has more information on options to update individual modules or perform other tasks.
 
-Note that updating modules or core through the WordPress UI is not possible, as the file system is read-only.  All updates should be done through Composer to update the lock file, and then push to Git.
+Note that updating modules or core through the WordPress UI isn't possible, as the file system is read-only.
+All updates should be done through Composer to update the lock file, and then push to Git.
 
 ## Local development with Lando
 
-{{< guides/lando repo="platformsh-templates/wordpress-composer" >}}
-
-This Landofile is also the place where you can configure access to tools that would normally be available within a Platform.sh app container (such as the WordPress CLI), that you would also want access to locally. 
-
-{{< /guides/lando >}}
+{{< guides/lando repo="wordpress-composer" >}}
 
 {{< guide-buttons type="last" >}}

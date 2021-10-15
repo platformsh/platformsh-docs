@@ -3,6 +3,7 @@ advancecomp
 allowlist
 asciinema
 async
+autoload[ing|er]?
 Blackfire
 blockquote
 [Bb]undler
@@ -20,6 +21,7 @@ hostname
 Httpoxy
 imagetragick
 jpegoptim
+Lando
 Magento
 Mailchimp
 Memcache
@@ -29,9 +31,12 @@ multithread[ed|ing]
 namespace
 [Nn]ginx
 npm
+OPcache
 optipng
+Packagist
 pngcrush
 preprocessor
+preload[ing]?
 progs
 Pthreads
 plaintext
@@ -43,3 +48,4 @@ Symfony
 transclusion
 webpack
 Xdebug
+Zend
