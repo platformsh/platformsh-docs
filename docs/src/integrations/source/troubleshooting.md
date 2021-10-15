@@ -4,34 +4,26 @@ description: |
   Troubleshooting source integrations.
 ---
 
-{{< description >}}
+## Unable to clone a repository
 
-## Errors when cloning a repository
+If you add a user with Project Admin role to a project on Platform.sh, but you haven’t added them to the remote repository on GitHub, GitLab, or Bitbucket, they won't be able to clone the project locally.
 
-If you invite a user with Project Administrator role to a project on Platform.sh, but you haven’t invited them to the remote repository on GitHub/ GitLab/Bitbucket, they won't be able to clone the project locally.
-
-In the following example, using either `platform get` with the CLI:
+If the user you added to a project is using `platform get` with the CLI:
 ```
 $ platform get <projectID>
 ```
-or the `git clone` command visible from the **Git** dropdown in the management console
-
-```
-$ git clone git@github.com:user/github-repo.git Project Name
-```
-
-both would error with
+it would return the following error:
 
 ```
 Failed to connect to the Git repository: git@github.com:user/github-repo.git
 Please make sure you have the correct access rights and the repository exists.
 ```
 
-### Solution 1 (Recommended)
+### Check the external repository access rights (recommended solution)
 
-Ensure you have the correct access rights for the external integration repository.
+Ensure the user has the correct access rights for the external integration repository.
 
-### Solution 2
+### Clone Platform.sh repository
 
 Clone the repository from Platform.sh, which offers a read-only mirror repository of the external integration repository.
 
