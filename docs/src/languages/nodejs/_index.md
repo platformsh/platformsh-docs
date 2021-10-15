@@ -13,7 +13,7 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated" >}} |
 
-If you need other versions or a version in a non-Node container,
+If you need other versions or a version in a non-Node.js container,
 [use a version manager like `nvm`](/languages/nodejs/nvm.md).
 
 ## Deprecated versions
