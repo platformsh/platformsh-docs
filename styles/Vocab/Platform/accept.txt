@@ -6,6 +6,7 @@ async
 autoload[ing|er]?
 Blackfire
 blockquote
+[Bb]undler
 Cloudwatt
 [Cc]onfig
 [Cc]ron
@@ -29,14 +30,17 @@ multifactor
 multithread[ed|ing]
 namespace
 [Nn]ginx
+npm
 OPcache
 optipng
 Packagist
 pngcrush
+preprocessor
 preload[ing]?
 progs
 Pthreads
 plaintext
+recertification
 [Rr]sync
 runtimes
 shortcode
