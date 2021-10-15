@@ -13,11 +13,13 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated" >}} |
 
-If you need other versions, take a look at our [options for installing them with NVM](/languages/nodejs/nvm.md).
+If you need other versions or a version in a non-Node.js container,
+[use a version manager like `nvm`](/languages/nodejs/nvm.md).
 
 ## Deprecated versions
 
-Some versions with a minor (such as 8.9) are available but are not receiving security updates from upstream, so their use is not recommended.
+Some versions with a minor (such as 8.9) are available but aren't receiving security updates from upstream,
+so their use isn't recommended.
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -25,15 +27,18 @@ Some versions with a minor (such as 8.9) are available but are not receiving sec
 
 ## Build flavor
 
-Node.js images use the `default` build flavor, which will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
+Node.js images use the `default` build flavor, which runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
 
 ## Support libraries
 
-While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformsh-config`](https://github.com/platformsh/config-reader-nodejs) NPM library which handles decoding of service credential information for you.
+While it's possible to read the environment directly from your application,
+it's generally easier and more robust to use the [`platformsh-config`](https://github.com/platformsh/config-reader-nodejs) NPM library,
+which handles decoding of service credential information for you.
 
 ## Configuration
 
-To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file with a few key settings, as described here (a complete example is included at the end).
+To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file with a few key settings,
+as described here (a complete example is included at the end).
 
 1. Specify the language of your application (available versions are listed above):
 
@@ -47,9 +52,11 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
            pm2: "^4.5.0"
    ```
 
-   These are the global dependencies of your project (the ones you would have installed with `npm install -g`). Here we specify the `pm2` process manager that will allow us to run the node process.
+   These are the global dependencies of your project (the ones you would have installed with `npm install -g`).
+   This specifies the `pm2` process manager to run the node process.
 
-3. Configure the command you use to start serving your application (this must be a foreground-running process) under the `web` section, e.g.:
+3. Configure the command you use to start serving your application (this must be a foreground-running process) under the `web` section,
+   such as:
 
    ```yaml
    web:
@@ -57,7 +64,10 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
            start: "PM2_HOME=/app/run pm2 start index.js --no-daemon"
    ```
 
-   If there is a package.json file present at the root of your repository, Platform.sh will automatically install the dependencies. We suggest including the `platformsh-config` helper npm module, which makes it trivial to access the running environment.
+   If there is a package.json file present at the root of your repository,
+   Platform.sh automatically installs the dependencies.
+   We suggest including the `platformsh-config` helper NPM module,
+   which makes it trivial to access the running environment.
 
    ```json
    {
@@ -97,7 +107,7 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
        upstream: "app:http"
    ```
 
-7. (Optional) If Platform.sh detects a `package.json` file in your repository, it will automatically include a `default` [`build` flavor](/configuration/app/build.md#build), that will run `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
+7. (Optional) If Platform.sh detects a `package.json` file in your repository, it automatically includes a `default` [`build` flavor](/configuration/app/build.md#build), that runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
 
    ```yaml
    build:
@@ -107,7 +117,7 @@ To use Platform.sh and Node.js together, configure the `.platform.app.yaml` file
    Consult the documentation specific to [Node.js builds](/configuration/app/build.html#nodejs-npm-by-default) for more information.
 
 
-Here's a complete example that also serves static assets (.png from the `/public` directory):
+Here's a complete example that also serves static assets (PNGs from the `/public` directory):
 
 ```yaml
 name: node
@@ -139,7 +149,10 @@ disk: 512
 
 ## In your application...
 
-Finally, make sure your Node.js application is configured to listen over the port given by the environment (here we use the platformsh helper and get it from `config.port`) that is available in the environment variable ``PORT``.  Here's an example:
+Finally, make sure your Node.js application is configured to listen over the port given by the environment
+(here using the `platformsh-config` helper and getting it from `config.port`),
+which is available in the environment variable ``PORT``.
+Here's an example:
 
 ```js
 // Load the http module to create an http server.
@@ -158,7 +171,8 @@ server.listen(config.port);
 
 ## Accessing services
 
-To access various [services](/configuration/services/_index.md) with Node.js, see the following examples.  The individual service pages have more information on configuring each service.
+To access various [services](/configuration/services/_index.md) with Node.js, see the following examples.
+The individual service pages have more information on configuring each service.
 
 {{< codetabs >}}
 
