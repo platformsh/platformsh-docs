@@ -30,7 +30,7 @@ If you have multiple projects, your subscription continues until you don't have 
 ## How do I delete my Platform.sh account?
 
 If you would like to delete your Platform.sh account,
-log in and select "Support" from the dropdown options when you click on your avatar in the management console.
+log in and select **Support** from the dropdown options when you click on your avatar in the management console.
 Create a new ticket and request for your account to be deleted in the form provided there.
 A support agent will receive your request and delete your account shortly thereafter. 
 
