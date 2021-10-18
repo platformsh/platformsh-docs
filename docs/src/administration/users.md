@@ -164,7 +164,7 @@ Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md)to
   platform user:role user1@example.com -r contributor
   ```
 
-After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by using the CLI command `platform redeploy`.
+After you change a user's role for an environment type, you must trigger a redeploy each environment to propagate access changes. You can redeploy using the CLI command `platform redeploy`.
 
 {{< /codetabs >}}
 
