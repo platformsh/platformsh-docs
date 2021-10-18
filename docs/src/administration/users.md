@@ -32,7 +32,8 @@ For example, if you assign User1 **Admin** permissions for Development environme
 A few things to consider:
 
 * Only one environment per project can be the Production type. It's set automatically as the default branch and can't be overridden separately.
-* You can change an environment's type and have multiple Staging or Development environments.
+* You can change an environment's type (if it's not Production).
+* You can have multiple Staging and Development environments.
 
 
 | Role | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
