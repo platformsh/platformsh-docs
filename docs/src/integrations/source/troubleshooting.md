@@ -10,7 +10,7 @@ If you [add](/administration/users.md#add-a-user-to-a-project) a user with the P
 but you haven’t added them to the remote repository on GitHub, GitLab, or Bitbucket,
 they can't clone the project locally.
 
-If the user you added to a project is using `platform get` with the CLI:
+If that user tries to use `platform get` with the CLI:
 ```
 $ platform get <projectID>
 ```
