@@ -5,20 +5,22 @@ description: |
 
 ## Unable to clone a repository
 
-If you [add](/administration/users.md#add-a-user-to-a-project) a user with **Project Admin** role to a project on Platform.sh, but you haven’t added them to the remote repository on GitHub, GitLab, or Bitbucket, they won't be able to clone the project locally.
+If you [add](/administration/users.md#add-a-user-to-a-project) a user with the Project Admin role to a project on Platform.sh,
+but you haven’t added them to the remote repository on GitHub, GitLab, or Bitbucket,
+they can't clone the project locally.
 
-If the user you added to a project is using `platform get` with the CLI:
+If that user tries to use `platform get` with the CLI:
 ```
 $ platform get <projectID>
 ```
-it would return the following error:
+it returns the following error:
 
 ```
 Failed to connect to the Git repository: git@github.com:user/github-repo.git
 Please make sure you have the correct access rights and the repository exists.
 ```
 
-### Check the external repository access rights (recommended solution)
+### Check external repository access rights (recommended solution)
 
 Ensure the user has the correct access rights for the external integration repository.
 
