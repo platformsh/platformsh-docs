@@ -14,7 +14,7 @@ If the user you added to a project is using `platform get` with the CLI:
 ```
 $ platform get <projectID>
 ```
-it would return the following error:
+it returns the following error:
 
 ```
 Failed to connect to the Git repository: git@github.com:user/github-repo.git
