@@ -1,6 +1,5 @@
 ---
 title: "Troubleshooting"
-description: |
 ---
 
 ## Unable to clone a repository
