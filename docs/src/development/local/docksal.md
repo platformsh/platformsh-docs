@@ -40,20 +40,21 @@ To use the tool and pull a project locally, make sure you have uploaded your SSH
 Once that's done and a `SECRET_PLATFORMSH_CLI_TOKEN` has been added using the above step,
 you can set up your project with the following instructions.
 
-Note: Replace `PROJECT_ID` with your project's ID, which can found within the Platform.sh dashboard.
-Replace `PROJECT_DIRECTORY` with the name of the local directory you'd like the project cloned into.
+Note: Replace `<PROJECT_ID>` with your project's ID, which can found within the Platform.sh dashboard.
+Replace `<PROJECT_DIRECTORY>` with the name of the local directory you'd like the project cloned into.
+Replace `<BRANCH_NAME>` with the name of the environment you're working on.
 
 If you do not already have Platform.sh CLI installed locally, you can use the one in the CLI image.
 The advantage of this would mean that the tool would never have to be installed locally and therefore is one less dependency.
 
 ```bash
-fin run-cli 'platform get PROJECT_ID -e main PROJECT_DIRECTORY'
+fin run-cli 'platform get <PROJECT_ID> -e <BRANCH_NAME> <PROJECT_DIRECTORY>'
 ```
 
 If you already have Platform.sh CLI installed locally, you can use that instead.
 
 ```bash
-platform get PROJECT_ID -e main PROJECT_DIRECTORY
+platform get <PROJECT_ID> -e <BRANCH_NAME> <PROJECT_DIRECTORY>
 ```
 
 ## Initializing a Platform.sh project

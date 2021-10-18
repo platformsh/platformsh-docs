@@ -45,7 +45,7 @@ You can also use the management console for that.
 As soon as you do, Platform.sh will no longer serve `main-def456-abc123.eu-2.platformsh.site` at all.
 Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywhere it appears when generating routes to respond to.
 
-You can still access the original internal domain by running `platform environment:info edge_hostname -e main`.
+You can still access the original internal domain by running `platform environment:info edge_hostname -e <BRANCH_NAME>`.
 
 {{< note >}}
 If you are planning on using subdomains across multiple projects, [the setup will differ slightly](/domains/steps/subdomains.md).

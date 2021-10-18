@@ -102,7 +102,7 @@ the most convenient approach is to set the "other" version as a [project-level v
 2. Set the production variable on the production branch
 
     ````bash
-    platform variable:create -e main --name env:API_CREDS --inheritable false --sensitive true --value some_other_hash_key
+    platform variable:create -e <BRANCH_NAME> --name env:API_CREDS --inheritable false --sensitive true --value some_other_hash_key
     ````
 
     The `--inheritable false` flag means the variable is set on that one environment only

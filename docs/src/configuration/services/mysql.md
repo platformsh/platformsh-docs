@@ -337,19 +337,19 @@ The easiest way to load data into a database is to pipe an SQL dump through the 
 platform sql < my_database_backup.sql
 ```
 
-That will run the database backup against the SQL database on Platform.sh.
-That will work for any SQL file, so the usual caveats about importing an SQL dump apply
+That runs the database backup against the SQL database on Platform.sh.
+That works for any SQL file, so the usual caveats about importing an SQL dump apply
 (for example, it's best to run against an empty database).
 As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-platform sql --relationship database -e main < my_database_backup.sql
+platform sql --relationship database -e <BRANCH_NAME> < my_database_backup.sql
 ```
 
 {{< note >}}
 
 Importing a database backup is a destructive operation.
-It will overwrite data already in your database.
+It overwrites data already in your database.
 Taking a backup or a database export before doing so is strongly recommended.
 
 {{< /note >}}

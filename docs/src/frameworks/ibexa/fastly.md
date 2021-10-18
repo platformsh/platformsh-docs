@@ -35,7 +35,8 @@ Follow the steps there to prepare Ibexa DXP for Fastly.
 The best way to provide the Fastly credentials and configuration to Ibexa DXP on Platform.sh is via environment variables.
 That way private credentials are never stored in Git.
 
-Using the CLI, run the following commands to set the configuration on your production environment.
+Using the CLI, run the following commands to set the configuration on your production environment
+(assumed to be `main` below, but change it to fit your setup).
 (Note that they inherit to all other environments by default unless overridden.)
 
 ```bash

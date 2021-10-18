@@ -81,7 +81,7 @@ Set the token as the [top-level](/development/variables.md#top-level-environment
 either [through the management console](/administration/web/configure-environment.html#variables) or via the CLI, like so:
 
 ```bash
-platform variable:create -e main --level environment --name env:PLATFORMSH_CLI_TOKEN --sensitive true --value 'your API token'
+platform variable:create -e <BRANCH_NAME> --level environment --name env:PLATFORMSH_CLI_TOKEN --sensitive true --value '<YOUR_API_TOKEN>'
 ```
 
 {{< note >}}
