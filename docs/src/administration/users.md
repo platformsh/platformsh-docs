@@ -12,9 +12,11 @@ In the following page, you'll learn about user roles and environment types, how 
 
 Every Platform.sh user has a role that controls their access and permission levels.
 
+In the following table you can see the available project-wide roles.
+
 | User role    | Description |
 | ------------ |-------------|
-|Project Owner| There is only one and they can create multiple Project Admins.  |
+|Project Owner | There is only one and they can create multiple Project Admins.  |
 |Project Admin | Users who can configure project settings, add and remove users, administer environment permissions, push code, and execute actions on all project environments.|
 
 
@@ -36,6 +38,7 @@ A few things to consider:
 * You can change an environment's type (if it's not Production).
 * You can have multiple Staging and Development environments.
 
+In the following table you can see the available environment roles.
 
 | Role | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
 | ---- | ---------------- | --------- | ------------------ | ---------- | --------------- | --------------- |
@@ -159,10 +162,11 @@ highlight=false
 ---
 Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md)to change user permissions.
 
-`platform user:role`
+`platform user:update`
 
   ```bash
-  platform user:role user1@example.com -r contributor
+  platform user:update user1@example.com -r production:v,development:c
+
   ```
 
 After you change a user's role for an environment type, you must trigger a redeploy each environment to propagate access changes. You can redeploy using the CLI command `platform redeploy`.
@@ -173,9 +177,9 @@ After you change a user's role for an environment type, you must trigger a redep
 ### Transfer project ownership
 
 You can transfer your plan ownership to a different [organization](/administration/organizations.md) anytime.
-You have to be the organization owner or an organization user with the **manage plans** permission.
+You have to be the organization owner, or an organization user with [manage plan](/administration/organizations.md#organization-permissions) or [manage users](/administration/organizations.md#organization-permissions) permissions.
 
-1. Invite the new organization owner as a Project Admin.
+1. Invite the new organization owner as a **Project Admin**.
 2. Submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from your organization owner's account to ask for the transfer.
 
 Once the transfer is completed, the new organization can administer all project settings, billing, and gets the subscription charges.
