@@ -126,7 +126,7 @@ In most cases, that makes no difference, but it may impact some more involved sc
 The `build` hook is run after the build flavor (if any).
 At this point no services (such as a database) are available nor any persistent file mounts,
 as the application hasn't yet been deployed.
-Environment variables that exist only at runtime such as `PLATFORM_BRANCH` and `PLATFORM_DOCUMENT_ROOT` anre't available during this phase.
+Environment variables that exist only at runtime such as `PLATFORM_BRANCH` and `PLATFORM_DOCUMENT_ROOT` aren't available during this phase.
 See the full list of provided [build time and runtime variables](/development/variables.md#platformsh-provided-variables).
 There are three writeable directories at this time:
 
