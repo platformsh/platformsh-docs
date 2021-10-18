@@ -182,4 +182,4 @@ Once the transfer is completed, the new organization can administer all project 
 
 ## Troubleshooting
 
-If you have setup an external integration to GitHub, GitLab, or Bitbucket, and your users can't clone the project locally, select [Source Integrations](integrations/source/troubleshooting.md).
+If you have setup an external integration to GitHub, GitLab, or Bitbucket, and your users can't clone the project locally, see how to [troubleshoot source integrations](integrations/source/troubleshooting.md).
