@@ -6,7 +6,7 @@ description: |
   Learn how to add and delete users and assign user permissions per environment type.
 ---
 
-In the following page, you'll learn about user roles and environment types, how to add and delete users, and assigning user permissions per environment type.
+In the following page, you'll learn about user roles and environment types, how to add and delete users, and how to assign user permissions per environment type.
 
 ## User roles
 
