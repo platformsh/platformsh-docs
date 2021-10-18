@@ -21,7 +21,7 @@ Failed to connect to the Git repository: git@github.com:user/github-repo.git
 Please make sure you have the correct access rights and the repository exists.
 ```
 
-### Check the external repository access rights (recommended solution)
+### Check external repository access rights (recommended solution)
 
 Ensure the user has the correct access rights for the external integration repository.
 
