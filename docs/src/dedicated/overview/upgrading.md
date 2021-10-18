@@ -9,15 +9,16 @@ description: |
 
 {{< description >}}
 
-These older projects can be upgraded to the new Integrated UI, which eliminates the extra Git repositories,
-many "must be a ticket" configuration changes, and makes the Production and Staging environments available in the UI.
+These older projects can be upgraded to the new Integrated UI,
+which eliminates the extra Git repositories and many "must be a ticket" configuration changes,
+and makes the Production and Staging environments available in the UI.
 
-To add these environments to the Project Web Interface, review this entire document,
-complete a few preparatory steps, and submit a ticket.
+To add these environments to the Project Web Interface,
+review this entire document, complete a few preparatory steps, and submit a ticket.
 Your ticket is added to a queue for updating existing Dedicated projects.
 The process may take time to complete, so check your ticket for details, timing, and other important information.
 
-We recommend this upgrade for all users.
+This upgrade is recommended for all users.
 
 ## New Features
 
@@ -40,7 +41,7 @@ You must still submit a support ticket to update and modify the following in the
 * Managing PHP extensions
 * Managing mounts
 
-You cannot perform the following:
+You can't perform the following:
 
 * Branch from the Staging and Production environments
 * Synchronize data from the Staging and Production environments
@@ -80,7 +81,7 @@ then deployments from Integration or Staging overwrite your Production code.
 
 We recommend verifying your user account access and permissions set in the Integration environment.
 When adding Staging and Production to the Project Web Interface, the process includes all user accounts and settings.
-You can modify the settings and values for these environments after they are added.
+You can modify the settings and values for these environments after they're added.
 
 1. Log in to your Platform.sh account.
 2. From your project, click your default branch to view the environment information and settings.
@@ -103,7 +104,7 @@ You can review, modify, and add variables through the current Project Web Interf
 
 For environment-specific variables, including sensitive data and values,
 you can add those variables after we update your Project Web Interface.
-Environment variables defined in `.platform.app.yaml` or a `.environment` file will continue to work.
+Environment variables defined in `.platform.app.yaml` or a `.environment` file continue to work.
 You can add and manage these variables via SSH and CLI commands directly into the Staging and Production environments.
 
 ## Enter a ticket for updating the Project Web Interface
@@ -112,13 +113,11 @@ Enter a Support ticket with the suggested title "Connect Stg / Prod to Projectâ€
 In the ticket, request to have your project enabled with Staging and Production in the UI
 and confirm that you've taken the steps above to prepare your project.
 
-We will review the infrastructure and settings,
-create user and environment variables for Staging and Production environments,
+We will review the infrastructure and settings, create user and environment variables for Staging and Production environments,
 and update the ticket with results.
 
 Once started the process usually takes less than an hour.
-There should be no downtime on your production site,
-although you should not push any code to Git while the upgrade is in progress.
+There should be no downtime on your production site, although you shouldn't push any code to Git while the upgrade is in progress.
 
 When done, you can access review your project through the Project Web Interface.
 
