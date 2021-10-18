@@ -1,7 +1,6 @@
 ---
 title: "Troubleshooting"
 description: |
-  Troubleshooting source integrations.
 ---
 
 ## Unable to clone a repository
@@ -28,7 +27,7 @@ Ensure the user has the correct access rights for the external integration repos
 Clone the repository from Platform.sh, which offers a read-only mirror repository of the external integration repository.
 
 ```bash
-$ git clone <PROJECT_ID>@git.<REGION>.platform.sh:<PROJECT_ID>.git
+$ git clone <PROJECT_ID>@git.<REGION>.platform.sh:<PROJECT_ID>.git <PROJECT_NAME>
 ```
 
 {{< note theme="Warning" >}}
