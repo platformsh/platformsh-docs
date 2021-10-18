@@ -30,6 +30,8 @@ these are called "inactive environments".
 ## Default branch
 
 By default, Platform.sh projects start with a `main` environment.
+Your default environment is a Production environment,
+which you can use to [manage user permissions](/administration/users.md)
 
 If you subscribed to a production plan, this environment is your **live site**
 and can be mapped to a domain name and a custom SSL certificate.
