@@ -2,7 +2,7 @@ name: Linting
 on:
   push:
     branches-ignore:
-      - main
+      - master
 
 jobs:
   prose:
