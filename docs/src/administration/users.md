@@ -179,7 +179,7 @@ After you change a user's role for an environment type, you must trigger a redep
 You can transfer your plan ownership to a different [organization](/administration/organizations.md) anytime.
 You have to be the organization owner, or an organization user with [manage plan](/administration/organizations.md#organization-permissions) or [manage users](/administration/organizations.md#organization-permissions) permissions.
 
-1. Invite the new organization owner as a **Project Admin**.
+1. Invite the new organization owner as a Project Admin.
 2. Submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from your organization owner's account to ask for the transfer.
 
 Once the transfer is completed, the new organization can administer all project settings, billing, and gets the subscription charges.
