@@ -150,8 +150,9 @@ Project activities are distributed across separate queues, which enables **two**
 * `cron`: cron activities.
 
 Production activities are prioritized across all queues.
-While it is still possible for a non-production environment activity to block production activities,
-it is temporary and unlikely, since the moment that production activity is triggered it will jump to the top of the queue automatically.
+While it's still possible for a non-production environment activity to block production activities,
+it's temporary and unlikely,
+since the moment that production activity is triggered it will jump to the top of the queue automatically.
 
 ## Example activity
 
