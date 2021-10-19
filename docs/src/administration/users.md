@@ -56,7 +56,7 @@ To customize who can use SSH, [set the access key](/configuration/app/access.md)
 
 ### Add a user to a project
 
-To add a user to a project, follow these steps:
+If you are an organization owner, or an organization user with [manage plan](/administration/organizations.md#organization-permissions) or [manage users](/administration/organizations.md#organization-permissions) permissions wanting to add a user to a project or an environment, follow these steps:
 
 {{< codetabs >}}
 ---
@@ -71,11 +71,6 @@ highlight=false
 4. Add the user's details and choose their permissions.
 5. Click **Save**.
 
-{{< note theme="warning">}}
-
-If you are an organization owner, or an organization user with [manage plan](/administration/organizations.md#organization-permissions) or [manage users](/administration/organizations.md#organization-permissions) permissions wanting to add a user to a project or an environment, the user has to create an account before they can contribute to the project.
-
-{{< /note >}}
 
 <--->
 ---
@@ -84,11 +79,14 @@ file=none
 highlight=false
 ---
 
-You can use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md) to create new users.
 
 * `platform user:add`
 
+<<<<<<< Updated upstream
 Say you want to add `user1@example.com` to the project with a Project Admin role:
+=======
+Say you want to add `user1@example.com` to the project with a **Project Admin** roles:
+>>>>>>> Stashed changes
 
 ```bash
 platform user:add user1@example.com -r admin
@@ -96,6 +94,7 @@ platform user:add user1@example.com -r admin
 
 {{< /codetabs >}}
 
+The user has to create an account before they can contribute to the project.
 Once you add a user to a project, they receive an email with instructions.
 For SSH access changes to apply after you add a user to a project, you have to redeploy each environment by either clicking **Redeploy** in the console or running `platform redeploy`.
 
@@ -162,12 +161,11 @@ highlight=false
 ---
 Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md)to change user permissions.
 
-`platform user:update`
 
-  ```bash
-  platform user:update user1@example.com -r production:v,development:c
+```bash
+platform user:update user1@example.com -r production:v,development:c
 
-  ```
+```
 
 After you change a user's role for an environment type, you must trigger a redeploy each environment to propagate access changes. You can redeploy using the CLI command `platform redeploy`.
 
