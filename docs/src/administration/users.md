@@ -129,18 +129,17 @@ Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md) t
   platform user:delete user1@example.com
   ```
 
-  After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment. You can redeploy by using the CLI command `platform redeploy`.
 
 {{< /codetabs >}}
 
 Once you delete a user, they can no longer access the project.
 After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment.
-You can redeploy by clicking **Redeploy** in the console.
+You can redeploy by clicking **Redeploy** in the console or  using the CLI command `platform redeploy`.
 
 
 ### Change existing permissions for environment types
 
-To change the user permissions, follow these steps:
+To change user permissions, follow these steps:
 
 {{< codetabs >}}
 ---
@@ -148,7 +147,7 @@ title=In the console
 file=none
 highlight=false
 ---
-1. Go to your console and select the project where you want to change the user permissions.
+1. In the console, select the project where you want to change the user permissions.
 2. Under **Settings**, click **Access**.
 3. Select a user and change the permissions.
 4. Click **Save**.
