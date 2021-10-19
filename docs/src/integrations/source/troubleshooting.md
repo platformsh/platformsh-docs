@@ -1,10 +1,11 @@
 ---
 title: "Troubleshooting"
+description: In this page you'll learn how to troubleshoot problems related to access rights when cloning repositories.
 ---
 
 ## Unable to clone a repository
 
-If you [add](/administration/users.md#add-a-user-to-a-project) a user with the Project Admin role to a project on Platform.sh,
+If you [add a user](/administration/users.md#add-a-user-to-a-project) with the **Project Admin** or **Contributor** role to a project on Platform.sh,
 but you haven’t added them to the remote repository on GitHub, GitLab, or Bitbucket,
 they can't clone the project locally.
 
@@ -30,6 +31,7 @@ Clone the repository from Platform.sh, which offers a read-only mirror repositor
 ```bash
 $ git clone <PROJECT_ID>@git.<REGION>.platform.sh:<PROJECT_ID>.git <PROJECT_NAME>
 ```
+To find your variables, go to your console, choose the project and under **Overview**, check the panel with the variables. Note that the REGION id must be written in lower case. [Check the list](/development/public-ips.md) of regions.
 
 {{< note theme="Warning" >}}
 
