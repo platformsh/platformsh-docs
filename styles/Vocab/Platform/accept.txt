@@ -18,6 +18,7 @@ Gemfile
 geocod[er|ing]
 glibc
 Goldmark
+Gradle
 hostname
 Httpoxy
 imagetragick
