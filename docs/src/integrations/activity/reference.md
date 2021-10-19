@@ -16,14 +16,18 @@ A unique opaque value to identify the activity.
 
 ### `project`
 
-The Project ID for which the activity was triggered.  Use this value if you want to have multiple projects POST to the same URL.
+The Project ID for which the activity was triggered.
+Use this value if you want to have multiple projects POST to the same URL.
 
 ### `type`
 
-The `type` property specifies the event that happened.  Its value is one of:
+The `type` property specifies the event that happened.
+Its value is one of:
 
 * `project.modify.title`: The human-friendly title of the project has been changed.
-* `project.create`: A project has been created.  Although it will appear in the activity feed exactly once, it will not be sent via a webhook as it will always happen before a webhook can be configured.
+* `project.create`: A project has been created.
+  Although it will appear in the activity feed exactly once,
+  it will not be sent via a webhook as it will always happen before a webhook can be configured.
 * `project.domain.create`: A new domain has been added to the project.
 * `project.domain.delete`: A domain associated with the project has been removed.
 * `project.domain.update`: A domain associated with the project has been updated, including modifying it's SSL certificate.
@@ -39,7 +43,8 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.backup.delete`: A user deleted a [backup](/administration/backup-and-restore.md)
 ---
 * `environment.push`: A user has pushed code to a branch, either existing or new.
-* `environment.branch`: A new branch has been created via the management console. (A branch created via a push will show up only as an `environment.push`.)
+* `environment.branch`: A new branch has been created via the management console.
+  (A branch created via a push shows up only as an `environment.push`.)
 * `environment.activate`: A branch has been "activated", and an environment created for it.
 * `environment.initialize`: The master branch of the project has just been initialized with its first commit.
 * `environment.deactivate`: A branch has been "deactivated". The code is still there, but the environment was destroyed.
@@ -48,9 +53,12 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.redeploy`: An environment was redeployed.
 * `environment.delete`: A branch was deleted.
 ---
-* `environment.route.create`: A new route has been created through the management console. This will not fire for route edits made to the `routes.yaml` file directly.
-* `environment.route.delete`: A route has been deleted through the management console. This will not fire for route edits made to the `routes.yaml` file directly.
-* `environment.route.update`: A route has been modified through the management console. This will not fire for route edits made to the `routes.yaml` file directly.
+* `environment.route.create`: A new route has been created through the management console.
+  This doesn't fire for route edits made to the `routes.yaml` file directly.
+* `environment.route.delete`: A route has been deleted through the management console.
+  This doesn't fire for route edits made to the `routes.yaml` file directly.
+* `environment.route.update`: A route has been modified through the management console.
+  This doesn't fire for route edits made to the `routes.yaml` file directly.
 ---
 * `environment.variable.create`: A new variable has been created.
 * `environment.variable.delete`: A variable has been deleted.
@@ -59,7 +67,8 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `environment.update.http_access`: HTTP access rules for an environment have been modified.
 * `environment.update.smtp`: Sending of emails has been enabled/disabled for an environment.
 * `environment.update.restrict_robots`: The block-all-robots feature has been enabled/disabled.
-* `environment.subscription.update`: The master environment has been resized because the subscription has changed.  There are no content changes.
+* `environment.subscription.update`: The master environment has been resized because the subscription has changed.
+  There are no content changes.
 ---
 * `environment.cron`: A cron task just completed.
 * `environment.source-operation`: A source operation triggered and has completed.
@@ -73,10 +82,10 @@ The `type` property specifies the event that happened.  Its value is one of:
 * `integration.github.fetch`: Changes in GitHub repository have been pulled.
 * `integration.gitlab.fetch`: Changes in GitLab repository have been pulled.
 * `integration.health.email`: Health event sent by email.
-* `integration.health.pagerduty`: Health event sent to pagerduty.
-* `integration.health.slack`: Health event sent to slack.
+* `integration.health.pagerduty`: Health event sent to PagerDuty.
+* `integration.health.slack`: Health event sent to Slack.
 * `integration.webhook`: Webhook triggered.
-* `integration.hipchat`: Event sent to hipchat.
+* `integration.hipchat`: Event sent to HipChat.
 * `integration.script`: An activity script has run.
 
 ### `environments`
@@ -89,15 +98,18 @@ Whether the activity was completed successfully or not. It should be `success` i
 
 ### `created_at`, `started_at`, `completed_at`
 
-These values are all timestamps in UTC.  If you need only a point in time when the action happened, use `completed_at`.  You can also combine it with `started_at` to see how long the activity took.
+These values are all timestamps in UTC.  If you need only a point in time when the action happened, use `completed_at`.
+You can also combine it with `started_at` to see how long the activity took.
 
 ### `log`
 
-A text description of the action that happened.  This is a human-friendly string that may be displayed to a user but should not be parsed for data as its structure is not guaranteed.
+A text description of the action that happened.
+This is a human-friendly string that may be displayed to a user but should not be parsed for data as its structure is not guaranteed.
 
 ### `payload.environment`
 
-This block contains information about the environment itself, after the action has taken place.  The most notable properties of this key are
+This block contains information about the environment itself, after the action has taken place.
+The most notable properties of this key are
 
 * `name` (the name of the branch)
 * `machine_name` (the name of the environment)
@@ -109,30 +121,42 @@ The Platform.sh user that triggered the activity.
 
 ### `deployment`
 
-This large block details all information about all services in the environment.  That includes the resulting configuration objects derived from [`routes.yaml`](/configuration/routes/_index.md), [`services.yaml`](/configuration/services/_index.md), and [`.platform.app.yaml`](/configuration/app/_index.md).
+This large block details all information about all services in the environment.
+That includes the resulting configuration objects derived from [`routes.yaml`](/configuration/routes/_index.md),
+[`services.yaml`](/configuration/services/_index.md), and [`.platform.app.yaml`](/configuration/app/_index.md).
 
-Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.  Note that some will be redirects.  To find those that are live URLs filter to those objects whose `type` property is `upstream`.
+Most notably, the `deployment.routes` object's keys are all of the URLs made available by the environment.
+Note that some will be redirects.
+To find those that are live URLs filter to those objects whose `type` property is `upstream`.
 
 ## Cancelling activities
 
-All activities with a status of `pending` or `in_progress` can be cancelled through the CLI using the command `platform activity:cancel ACTIVITY_ID`. You can retrieve an individual activity's ID by listing them (`platform activity:list`). If an ID is not included, you will be prompted to select one from a list of incomplete activities. In the management console, open the dropdown for that activity and select the **Stop run** option to cancel it. 
+All activities with a status of `pending` or `in_progress` can be cancelled through the CLI using the command `platform activity:cancel ACTIVITY_ID`.
+You can retrieve an individual activity's ID by listing all activities (`platform activity:list`).
+If an ID isn't included, you are prompted to select one from a list of incomplete activities.
+In the management console, open the dropdown for that activity and select the **Stop run** option to cancel it. 
 
-For crons, you can specify a stop command that will be used to cancel that activity. See the [cron documentation](/configuration/app/cron.md) for more details. For all other activities, the default behavior is to send a `SIGTERM` signal to the process.
+For crons, you can specify a stop command that is used to cancel that activity.
+See the [cron documentation](/configuration/app/cron.md) for more details.
+For all other activities, the default behavior is to send a `SIGTERM` signal to the process.
 
 ## Maximum activities and parallelism
 
 Project activities are distributed across separate queues, which enables **two** simultaneous activities to occur in parallel across your environments. For a given environment, only one activity can run at a time. Those queues include:
 
-* `default`: these include the most common activities on repositories (pushes, merges) and environments (syncs, redeployments).
+* `default`: these include the most common activities on repositories (push, merge) and environments (sync, redeployment).
 * `integrations`: source and webhook integration activities.
 * `backup`: backup activities.
 * `cron`: cron activities.
 
-Production activities are prioritized across all queues. While it is still possible for a non-production environment activity to block production activities, it is temporary and unlikely, since the moment that production activity is triggered it will jump to the top of the queue automatically.
+Production activities are prioritized across all queues.
+While it is still possible for a non-production environment activity to block production activities,
+it is temporary and unlikely, since the moment that production activity is triggered it will jump to the top of the queue automatically.
 
 ## Example activity
 
-The following is an example of a webhook message.  Specifically, this one was created by a "push" event.
+The following is an example of a webhook message.
+Specifically, this one was created by a "push" event.
 
 ```json
 {

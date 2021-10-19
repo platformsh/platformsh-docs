@@ -3,7 +3,7 @@ title: "Upgrading"
 weight: 14
 ---
 
-## Changes in version 2021.04
+## Changes in version 2021.10
 
 * The cron `cmd` syntax is now deprecated in favor of `commands`.  If you have a cron definition similar to this:
 
@@ -14,7 +14,7 @@ weight: 14
             cmd: cd public && send-pending-emails.sh
     ```
 
-    it can now be written like:
+    it should now be written like this:
 
     ```yaml
     crons:
@@ -25,15 +25,18 @@ weight: 14
                 shutdown_timeout: 10
     ```
 
-    The new syntax offers greater flexibility and configuration.  See the [cron documentation](/configuration/app/cron.md) for more details.
+    The new syntax offers greater flexibility and configuration.
+    See the [cron documentation](/configuration/app/cron.md) for more details.
 
 ## Changes in version 2019.05
 
-* The `!archive` tag in YAML has been un-deprecated, and is now favored over the `!include` option. `!include` is still available for other include types (`yaml`, `binary`, and `string`).
+* The `!archive` tag in YAML has been un-deprecated, and is now favored over the `!include` option.
+  `!include` is still available for other include types (`yaml`, `binary`, and `string`).
 
 ## Changes in version 2017.11 (2017-11-09)
 
-* The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/configuration/yaml.md).  For example, the following `services.yaml` snippet:
+* The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/configuration/yaml.md).
+  For example, the following `services.yaml` snippet:
 
     ```yaml
     mysearch:
@@ -55,7 +58,9 @@ weight: 14
                 path: "myconfdir"
     ```
 
-* The syntax for the `mounts` key in `.platform.app.yaml` has changed.  Rather than a parsed string, the value of each mount is a [multi-key definition](/configuration/app/storage.md).  That is, the following example:
+* The syntax for the `mounts` key in `.platform.app.yaml` has changed.
+  Rather than a parsed string, the value of each mount is a [multi-key definition](/configuration/app/storage.md).
+  That is, the following example:
 
     ```yaml
     mounts:
@@ -79,7 +84,8 @@ weight: 14
 ## Changes in version 2016.6 (2016-11-18)
 
 * Application containers now include the latest LTS version of Node.js, 6.9.1. The previously included version was 4.6.1.
-* Composer was briefly called with `--no-dev`, but as of 2016-11-21 this change has been reverted, because of the unintended effect it had on projects using the Symfony framework.
+* Composer was briefly called with `--no-dev`, but as of 2016-11-21 this change has been reverted,
+  because of the unintended effect it had on projects using the Symfony framework.
 
 ## Changes in version 2016.5
 
@@ -91,7 +97,7 @@ response, which meant that client side caching behaviour was left undefined.
 To ensure consistent behaviour that doesn't depend on which browser the client
 is using, the new default behaviour is to set these headers to values that
 disable client-side caching. This change only affects static files served
-directly by the web server. Responses served from passthru URLs continue to use
+directly by the web server. Responses served from `passthru` URLs continue to use
 whatever caching headers were set by the application..
 
 To enable caching on your static files, make sure you include an `expires` key in your [web configuration](/configuration/app/web.md), as shown below:
@@ -119,9 +125,14 @@ web:
 
 ## Changes in version 2016.4
 
-As of July 2016, we no longer create default configuration files if one is not provided.  The defaults we used to provide were tailored specifically for Drupal 7, which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites.  They also defaulted to software versions that are no longer current and recommended.  Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `.platform/services.yaml` files.
+As of July 2016, we no longer create default configuration files if one is not provided.
+The defaults we used to provide were tailored specifically for Drupal 7,
+which is now a legacy-support version with the release of Drupal 8 and not especially useful for non-Drupal or non-PHP sites.
+They also defaulted to software versions that are no longer current and recommended.
+Instead, you must provide your own `.platform.app.yaml`, `.platform/routes.yaml`, and `.platform/services.yaml` files.
 
-Additionally, a version for a language or service should always be specified as well. That allows you to control when you upgrade from one version to another without relying on a network default.
+Additionally, a version for a language or service should always be specified as well.
+That allows you to control when you upgrade from one version to another without relying on a network default.
 
 The previous default files, for reference, are:
 
@@ -185,7 +196,9 @@ crons:
 
 ## Changes in version 2016.3
 
-As we are aiming to always provide you more control and flexibility on how to deploy your applications, the `.platform.app.yaml` format has been greatly improved. It is now way more flexible, and also much more explicit to describe what you want to do.
+As we are aiming to always provide you more control and flexibility on how to deploy your applications,
+the `.platform.app.yaml` format has been greatly improved.
+It is now way more flexible, and also much more explicit to describe what you want to do.
 
 The `web` key is now a set of `locations` where you can define very precisely the behavior of each URL prefix.
 
@@ -230,7 +243,8 @@ web:
 
 ### Backward compatibility
 
-We generally try to keep backward compatibility with previous configuration formats. Here is what happens if you don't upgrade your configuration:
+We generally try to keep backward compatibility with previous configuration formats.
+Here is what happens if you don't upgrade your configuration:
 
 ```yaml
 # The following parameters are automatically moved as a "/" block in the
@@ -246,9 +260,10 @@ expires: 3d                   # Converted to [locations][/][expires]
 
 ## Changes in version 2015.7
 
-The `.platform.app.yaml` configuration file now allows for a much clearer syntax, which you can (and should) start using now.
+The `.platform.app.yaml` configuration file now allows for a much clearer syntax,
+which you can (and should) start using now.
 
-The old format had a single string to identify the 'toolstack' you use:
+The old format had a single string to identify the `toolstack` you use:
 
 ```yaml
 toolstack: "php:drupal"
