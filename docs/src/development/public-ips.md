@@ -9,18 +9,22 @@ description: |
 {{< description >}}
 
 {{< note >}}
+
 These IP addresses are stable, but not guaranteed to never change.
 Prior to any future change, all affected customers will receive ample warning.
+
 {{< /note >}}
 
 Use the inbound IP addresses if you have a corporate firewall which blocks outgoing SSH connections.
 In that case, add the following IP addresses for inbound traffic to your allow list.
 
 {{< note title="Region availability" >}}
+
 While this list contains IP addresses for data centers in every Platform.sh region,
 only those regions listed during provisioning are actually available to new projects.
 Those regions that are no longer open are included here as reference for existing projects and for Enterprise customers.
 Enterprise tier projects can continue to create projects on these "closed" regions when appropriate.  
+
 {{< /note >}}
 
 ## Europe
