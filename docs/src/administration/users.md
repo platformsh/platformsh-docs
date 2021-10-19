@@ -12,7 +12,7 @@ In the following page, you'll learn about user roles and environment types, how 
 
 Every Platform.sh user has a role that controls their access and permission levels.
 
-In the following table you can see the available project-wide roles.
+The following table shows the available project-wide roles.
 
 | User role    | Description |
 | ------------ |-------------|
