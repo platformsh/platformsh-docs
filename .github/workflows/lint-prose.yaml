@@ -1,0 +1,23 @@
+name: Linting
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  prose:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Vale
+      uses: errata-ai/vale-action@v1.4.2
+      with:
+        # Switch to this when the number of errors goes down
+        # files: __onlyModified
+        # For now, only lint modified lines
+        onlyAnnotateModifiedLines: true
+      env:
+        # Required
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

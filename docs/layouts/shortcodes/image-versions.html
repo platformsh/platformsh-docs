@@ -2,17 +2,27 @@
 {{ $status := .Get "status" }}
 {{ $envParam := .Get "environment" }}
 
-{{ $environment := "versions" }}
-{{ if eq $envParam "dedicated" }}
+{{ $environment := "" }}
+{{ if or (eq $envParam "grid") (eq $envParam "") }}
+  {{ $environment = "versions" }}
+{{ else if eq $envParam "dedicated" }}
   {{ $environment = "versions-dedicated" }}
+{{ else if eq $envParam "dedicated-gen-3" }}
+  {{ $environment = "versions-dedicated-gen-3" }}
+{{ else }}
+  {{ errorf "Incorrect environment param: %q. Possible values are grid, dedicated and dedicated-gen-3. Empty defaults to \"grid\". Image: %s" $envParam $image }}
 {{ end }}
 
 {{ if isset (index .Site.Data.registry $image $environment) $status  }}
   <ul>
-  {{ range sort ( index .Site.Data.registry $image $environment $status ) }}
+  {{ range index .Site.Data.registry $image $environment $status }}
     <li>{{ . }}</li>
   {{ end }}
   </ul>
 {{ else }}
-  None available
+  {{ if and (eq $envParam "dedicated-gen-3") (eq $status "supported") }}
+    Working on it!
+  {{ else }}
+    None available
+  {{ end }}
 {{ end }}

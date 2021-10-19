@@ -26,7 +26,7 @@ From the `Status` tab, you can activate or deactivate an environment.
 
 The `Deactivate & Delete Data` action will
 
-* Deactivate the environment. Unless is is re-activated, it will no longer deploy and it will not be accessible from the web or via SSH.
+* Deactivate the environment. Unless it is re-activated, it will no longer deploy and it is not accessible from the web or via SSH.
 * Destroy all services running on this environment.
 * Delete all data specific to the environment. If the environment is reactivated, it will sync data from its parent environment.
 
@@ -46,7 +46,7 @@ From this tab, you can allow your application to send emails via a SendGrid SMTP
 
 ![env email](/images/management-console/env-email.png "0.75")
 
-Changing this setting will temporarily list the environment's status as "Building", as the project re-builds with the new setting. Once it has re-deployed, it will appear once again as "Active" in your settings.
+Changing this setting will temporarily list the environment's status as "Building", as the project re-builds with the new setting. Once it has redeployed, it will appear once again as "Active" in your settings.
 
 
 ### Search engine visibility
@@ -64,12 +64,11 @@ By default, Platform.sh includes an additional `X-Robots-Tag` header on all non-
 X-Robots-Tag: noindex, nofollow
 ```
 
-That tells search engines to not index sites on non-production environments entirely nor traverse links from those sites, even if they are publicly visible.  That keeps non-production sites out of search engine indexes that would dilute the SEO of the production site, and it cannot be disabled on non-production environments.
+That tells search engines to not index sites on non-production environments entirely and not traverse links from those sites, even if the sites are publicly visible.  This keeps non-production sites out of search engine indexes, which otherwise would dilute the SEO of the production site. It cannot be disabled on non-production environments.
 
-On a production instance (the master branch, after a domain has been assigned) the search-blocker is disabled automatically and your application can serve a `robots.txt` file as normal.  However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`](/configuration/app/web.md#locations).
+In live production environments (those that have domains assigned), the block of search engines is turned off automatically and your app can serve a `robots.txt` file as normal. However, you must ensure that the file is in your project's web root (the directory where the `/` location maps to) and your application is configured to serve it.  See [the location section in `.platform.app.yaml`](/configuration/app/web.md#locations).
 
-
-To enable the search-blocker `X-Robots-Tag` header on a production environment, use the [Platform.sh CLI](/development/cli/_index.md) command below:
+To block search engines with the `X-Robots-Tag` header on a production environment, run the following [Platform.sh CLI](/development/cli/_index.md) command:
 
 ```bash
 platform environment:info restrict_robots true
@@ -77,44 +76,28 @@ platform environment:info restrict_robots true
 
 ### HTTP access control
 
-You should not expose your development environments to the whole wide world. Platform.sh allows you to simply implement access control, either by login/password (the equivalent to .htaccess) or by filtering IP addresses or a network using the [CIDR format](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).  That is, `4.5.6.7` and `4.5.6.0/8` are both legal formats.
+You should not expose your development environments to the whole wide world. Platform.sh allows you to implement access control either by login/password (the equivalent to .htaccess) or filtering IP addresses or a network using the [CIDR format](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). So both`4.5.6.7` and `4.5.6.0/8` are legal formats.
 
 {{< note >}}
-Changing access control will trigger a new deploy of the current environment. However, the changes will not propagate to child environments until they are manually redeployed.
+Changing access control will trigger a new deploy of the current environment. However, the changes will not propagate to child environments until those are manually redeployed.
 {{< /note >}}
 
-These settings get inherited by branches below the one you are on. That means if you create a `staging` environment, and you create branches from this one, they will all inherit the same authentication information and you only have to set-it up once.
+These settings get inherited by branches below the one you are on. That means if you create a `staging` environment and you create branches from it, they all inherit the same authentication information that you only have to set up once.
 
-You can also setup authentication with the CLI using the following command `platform environment:http-access` which also allows you to read the current setup. This eases the integration of CI jobs with Platform.sh as you will not need to hardcode the values in the CI.
+You can also set up authentication with the CLI by running `platform environment:http-access`, which also allows you to read the current setup. This eases the integration of CI jobs with Platform.sh as you will not need to hard code the values in the CI.
 
-You can allow or deny access to specific IPs or IP ranges. First switch the access control section to ON. Then add one or more IPs or CIDR IP masks, followed by allow or deny. See the example below. Note that allow entries should come before deny entries in case both of them would match.
+You can allow or deny access to specific IPs or IP ranges. First, switch the access control section to ON. Then add one or more IPs or CIDR IP masks followed by `allow` or `deny`. See the example below. Note that `allow` entries should come before `deny` entries in case they both match.
 
-![Allowing or denying specific ips to project settings](/images/management-console/settings-basics-access-control.png "0.6")
+![Allowing and denying specific IPs in project settings](/images/management-console/settings-basics-access-control.png "0.6")
 
-For example, the following configuration will only allow the 1.2.3.4 IP to access your website.
+For example, the following configuration allows only the IP `198.51.100.0` to access your website.
 
 ```bash
-1.2.3.4/32 allow
+198.51.100.0 allow
 0.0.0.0/0 deny
 ```
 
-
-## Access
-
-The `Access` screen allows you to manage the users' access on your project.
-
-You can invite new users to a specific environment by clicking the `Add` button and entering their email address, or modify permissions of existing users by clicking the `Edit` link when hovering the user.
-
-![Manage users of your Platform.sh environments](/images/management-console/settings-environment-access.png "0.7")
-
-{{< note >}}
-Currently, permission changes that grant or revoke SSH access to an environment take effect only after the next time that environment is deployed.
-{{< /note >}}
-
-Selecting a user will allow you to either edit or remove access to that environment.
-
-You can also manage access to users on multiple environments using the project configuration screen.
-
+If you want set access instructions for bots such as search crawlers, look into how [adjusting a `robots.txt` file could help](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792) and when you'd need to restrict IP addresses directly.
 
 ## Variables
 

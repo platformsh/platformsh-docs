@@ -46,6 +46,6 @@ Each language and framework may have additional attributes that you will need to
 
 {{< /note >}}
 
-In the next step, you will be able to see how Platform.sh leverages environment variables to make connecting your application to its services simple.   
+In the next step, you'll be able to see how Platform.sh uses environment variables to simplify the process of connecting your application to its services.
 
 {{< guide-buttons next="I've configured my routes">}}

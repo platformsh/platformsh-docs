@@ -59,7 +59,8 @@
         "2.0",
         "2.1",
         "2.2",
-        "3.1"
+        "3.1",
+        "5.0"
       ]
     }
   },
@@ -88,10 +89,12 @@
       ],
       "supported": [
         "6.5",
+        "6.8",
         "7.2",
         "7.5",
         "7.7",
-        "7.9"
+        "7.9",
+        "7.10"
       ]
     },
     "versions-dedicated": {
@@ -99,15 +102,36 @@
         "5.2",
         "5.6",
         "6.5",
+        "6.8",
         "7.2",
         "7.5",
         "7.6",
         "7.7",
-        "7.9"
+        "7.9",
+        "7.10"
       ],
       "deprecated" : [
         "1.7",
         "2.4"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [
+        "0.9",
+        "1.4",
+        "1.7",
+        "2.4",
+        "5.2",
+        "5.4"
+      ],
+      "supported": [
+        "6.5",
+        "6.8",
+        "7.2",
+        "7.5",
+        "7.7",
+        "7.9",
+        "7.10"
       ]
     }
   },
@@ -190,16 +214,18 @@
     "type": "golang",
     "versions": {
       "deprecated": [
-        "1.10",
         "1.8",
-        "1.9"
-      ],
-      "supported": [
+        "1.9",
+        "1.10",
         "1.11",
         "1.12",
         "1.13",
         "1.14",
         "1.15"
+      ],
+      "supported": [
+        "1.16",
+        "1.17"
       ]
     }
   },
@@ -253,9 +279,9 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "8",
         "11",
         "12",
-        "8",
         "13",
         "14"
       ]
@@ -330,7 +356,7 @@
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
-    "name": "MariaDB",
+    "name": "MariaDB/MySQL",
     "runtime": false,
     "type": "mariadb",
     "versions": {
@@ -368,7 +394,7 @@
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
-    "name": "MariaDB",
+    "name": "MariaDB/MySQL",
     "runtime": false,
     "type": "mysql",
     "versions": {
@@ -386,6 +412,15 @@
     "versions-dedicated": {
       "supported": [
         "10.0 Galera",
+        "10.1 Galera",
+        "10.2 Galera",
+        "10.3 Galera",
+        "10.4 Galera",
+        "10.5 Galera"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "supported": [
         "10.1 Galera",
         "10.2 Galera",
         "10.3 Galera",
@@ -435,13 +470,13 @@
     "runtime": false,
     "type": "mongodb",
     "versions": {
-      "deprecated": [],
-      "supported": [
+      "deprecated": [
         "3.0",
         "3.2",
         "3.4",
         "3.6"
-      ]
+      ],
+      "supported": []
     }
   },
   "network-storage": {
@@ -462,6 +497,12 @@
       "deprecated": [],
       "supported": [
         "1.0"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [],
+      "supported": [
+        "2.0"
       ]
     }
   },
@@ -498,7 +539,8 @@
         "8",
         "10",
         "12",
-        "14"
+        "14",
+        "16"
       ]
     },
     "versions-dedicated": {
@@ -689,6 +731,15 @@
     },
     "versions-dedicated": {
       "supported": ["3.7", "3.8"]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [],
+      "supported": [
+        "3.5",
+        "3.6",
+        "3.7",
+        "3.8"
+      ]
     }
   },
   "redis": {
@@ -720,6 +771,18 @@
     "versions-dedicated": {
       "supported": ["5.0","6.0"],
       "deprecated": ["3.2"]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [
+        "2.8",
+        "3.0"
+      ],
+      "supported": [
+        "3.2",
+        "4.0",
+        "5.0",
+        "6.0"
+      ]
     }
   },
   "ruby": {
@@ -769,7 +832,8 @@
         "2.4",
         "2.5",
         "2.6",
-        "2.7"
+        "2.7",
+        "3.0"
       ]
     }
   },
@@ -811,6 +875,12 @@
         "8.0",
         "8.6"
       ]
+    },
+    "versions-dedicated-gen-3": {
+      "supported": [
+        "6.6",
+        "8.6"
+      ]
     }
   },
   "varnish": {
@@ -830,8 +900,41 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "5.6",
-        "6.0"
+        "5.1",
+        "5.2",
+        "6.0",
+        "6.3"
+      ]
+    }
+  },
+  "vault": {
+    "description": "",
+    "disk": false,
+    "docs": {
+      "relationship_name": "vault_service",
+      "service_name": "vault",
+      "url": "/configuration/services/vault.html"
+    },
+    "endpoint": "demo-app",
+    "min_disk_size": null,
+    "name": "Vault",
+    "repo_name": "vault",
+    "runtime": false,
+    "type": "vault-kms",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "1.6"
+      ]
+    },
+    "versions-dedicated": {
+      "supported": [
+        "1.6"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "supported": [
+        "1.6"
       ]
     }
   }

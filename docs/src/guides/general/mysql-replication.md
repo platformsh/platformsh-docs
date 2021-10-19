@@ -21,11 +21,11 @@ db:
     disk: 1024
     configuration:
         schemas:
-          - main
+            - main
         endpoints:
             # Restate the default user to be used by your application.
             mysql:
-                default:schema: main
+                default_schema: main
                 privileges:
                     main: admin
             replicator:
@@ -116,16 +116,16 @@ And reload the replica instance for the changes to take an effect.
 
 ### Set up SSH tunneling
 
-You will need to set up an SSH tunnel from the replica server to the primary, tunneled through the application.  To do so using the Platform.sh CLI, use
+You will need to set up an SSH tunnel from the replica server to the primary, tunneled through the application. To do so using the Platform.sh CLI, run:
 
 ```bash
 platform tunnel:open -p your-project-id -e master
 ```
 
-Which will open local SSH tunnels to all services accessible from the application.  In practice, you may be better served by setting up the tunnel manually using SSH.  Consult the SSH documentation for the best way to do so.
+This opens local SSH tunnels to all services accessible from the application. In practice, you may be better served by setting up the tunnel manually using SSH. Consult the SSH documentation for the best way to do so.
 
 {{< note >}}
-The SSH connection will be interrupted every time the environment redeploys.  For replication to continue you must setup an auto-restart for the connection.  There are many ways to do so that are out of the scope of this documentation.
+The SSH connection is interrupted every time the environment redeploys. For replication to continue you must setup an auto-restart for the connection. There are many ways to do so that are out of the scope of this documentation.
 {{< /note >}}
 
 ### Starting the Replica
@@ -140,8 +140,7 @@ mysql> CHANGE MASTER TO
   MASTER_PORT=3306,
   MASTER_LOG_FILE='binlogs.000002',
   MASTER_LOG_POS=1036,
-  MASTER_CONNECT_RETRY=10,
-  MASTER_USE_GTID = slave_pos;
+  MASTER_CONNECT_RETRY=10;
 ```
 
 Where `<the.host>` will vary depending on the SSH tunneling configuration you have, and the `<your_replicator_password>` can be obtained by running `platform relationships`.

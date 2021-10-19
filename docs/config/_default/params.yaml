@@ -46,7 +46,7 @@ books:
 meta:
   sitename: "Platform.sh User Documentation"
   description: Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
-  image: "images/avocadocs/Platformsh_icon_black.svg"
+  image: "https://docs.platform.sh/images/logos/docs_social_2021.jpg"
   url: "https://docs.platform.sh"
   twittercard:
     card: "summary_large_image"
@@ -54,7 +54,7 @@ meta:
     title: "Platform.sh User Documentation"
     description: "Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
     creator: "@platformsh"
-    image: "https://docs.platform.sh/images/logos/docs_social.jpg"
+    image: "https://docs.platform.sh/images/logos/docs_social_2021.jpg"
   keywords:
     - PaaS
     - cloud hosting

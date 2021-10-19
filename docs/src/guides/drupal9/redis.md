@@ -6,7 +6,9 @@ description: |
 weight: -70
 ---
 
-If you are using the Platform.sh-provided Drupal template, most of this work is already done for you.  Redis is already configured and will be enabled after the installatoin is complete.
+If you are using the Platform.sh-provided Drupal template, most of this work is already done for you.  Redis is already configured and will be enabled after the installation is complete.
+
+Note that this Redis service is ephemeral, meaning it does not persist if the container moves or is shut down. Your app must treat it as ephemeral and not rely on it being there. One way to do this is regenerating cache in the `start` key in [your web configuration](/configuration/app/web.md#commands) so the cache is regenerated each time your app starts.
 
 If you are working from an older repository or migrating a pre-built site to Platform.sh, see the instructions below.
 
@@ -44,11 +46,11 @@ composer require drupal/redis
 
 Then commit the resulting changes to your `composer.json` and `composer.lock` files.
 
-Note that the Redis module does not need to be enabled in Drupal except for diagnostic purposes.  The configuration below is sufficient to leverage its functionality.
+Note that the Redis module does not need to be enabled in Drupal except for diagnostic purposes.  The configuration below is sufficient to make use of its functionality.
 
 ## Configuration
 
-Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize it further.  Also review the `README.txt` file that comes with the redis module, as it has a great deal more information on possible configuration options. For instance, you may wish to not use Redis for the persistent lock if you have a custom module that needs locks to persist for more than a few seconds.
+Place the following at the end of `settings.platformsh.php`. Note the inline comments, as you may wish to customize it further.  Also review the `README.txt` file that comes with the Redis module, as it has a great deal more information on possible configuration options. For instance, you may wish to not use Redis for the persistent lock if you have a custom module that needs locks to persist for more than a few seconds.
 
 The example below is intended as a "most common case".  (Note: This example assumes Drupal 8.8/Drupal 9.0 and later.)
 
@@ -78,7 +80,7 @@ if ($platformsh->hasRelationship('redis') && !\Drupal\Core\Installer\InstallerKe
   $settings['redis.connection']['host'] = $redis['host'];
   $settings['redis.connection']['port'] = $redis['port'];
 
-  // Apply changes to the container configuration to better leverage Redis.
+  // Apply changes to the container configuration to make better use of Redis.
   // This includes using Redis for the lock and flood control systems, as well
   // as the cache tag checksum. Alternatively, copy the contents of that file
   // to your project-specific services.yml file, modify as appropriate, and

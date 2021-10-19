@@ -5,11 +5,11 @@ weight: 4
 
 There are two ways to customize `php.ini` values for your application. The recommended method is to use the [`variables` property](/configuration/app/variables.md) of `.platform.app.yaml` to set ini values using the `php` prefix. For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
 
- ```yaml
- variables:
+```yaml
+variables:
     php:
-        memory_limit: 256M
- ```
+        memory_limit: "256M"
+```
 
 It's also possible to provide a custom `php.ini` file in the repository in the root of the application (where your `.platform.app.yaml` file is).
 
@@ -21,11 +21,11 @@ memory_limit = 256M
 
 Another example is to set the timezone of the PHP runtime (though, the timezone settings of containers/services would remain in UTC):
 
- ```yaml
- variables:
+```yaml
+variables:
     php:
-        "date.timezone": "Europe/Paris"
- ```
+        date.timezone: "Europe/Paris"
+```
 
 or
 
@@ -41,11 +41,11 @@ Environment-specific `php.ini` configuration directives can be provided via envi
 
 A common recommendation for securing a PHP installation is to disable certain built-in functions that are frequently used in remote attacks.  By default, Platform.sh does not disable any functions as they all do have some legitimate use in various applications.  However, you may wish to disable them yourself if you know they are not needed.  For example, to disable `pcntl_exec` and `pcntl_fork` (which are not usable in a web request anyway):
 
- ```yaml
- variables:
+```yaml
+variables:
     php:
-        "disable_functions": "pcntl_exec,pcntl_fork"
- ```
+        disable_functions: "pcntl_exec,pcntl_fork"
+```
 
 Common functions to disable include:
 

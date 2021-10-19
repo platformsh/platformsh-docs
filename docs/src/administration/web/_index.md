@@ -124,7 +124,7 @@ The CLI pull-down displays the commands to get your project set up locally with 
 
 #### SSH
 
-The SSH pull-down display the commands to access your project over SSH.
+The SSH pull-down displays the commands to access your project using SSH.
 
 ### Configuration settings
 
@@ -138,7 +138,7 @@ Select the application container on the left to show more detailed information f
 
 ![Service tab - App Overview](/images/management-console/service-tab/app-overview.png "0.7")
 
-The "Overview" tab gives you metadata information regarding the application. It tells you what size container it has been configured for, the amount of persistent disk, the number of active workers and cron jobs, as well as the command to ssh into that container.
+The "Overview" tab gives you metadata information regarding the application. It tells you what size container it has been configured for, the amount of persistent disk, the number of active workers and cron jobs, and the command to SSH into that container.
 
 ![Service tab - App Crons](/images/management-console/service-tab/app-crons.png "0.7")
 
@@ -173,3 +173,5 @@ You are able to personalize the accessibility display settings for the managemen
 * Light mode (default)
 * High contrast mode
 * Dark mode
+
+To meet our [commitment to accessibility](/security/wcag.md), all three options are compliant with level AA of the Web Content Accessibility Guidelines 2.0.

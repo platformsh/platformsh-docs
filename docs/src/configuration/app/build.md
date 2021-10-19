@@ -46,18 +46,19 @@ You can specify those dependencies as shown below:
 
 ```yaml
 dependencies:
-  php: # Specify one Composer package per line.
-    drush/drush: '8.0.0'
-  python: # Specify one Python 2 package per line.
-    behave: '*'
-  python2: # Specify one Python 2 package per line.
-    requests: '*'
-  python3: # Specify one Python 3 package per line.
-    numpy: '*'
-  ruby: # Specify one Bundler package per line.
-    sass: '3.4.7'
-  nodejs: # Specify one NPM package per line.
-    pm2: '^4.5.0'
+    php: # Specify one Composer package per line.
+        drush/drush: '8.0.0'
+        composer/composer: '^2'
+    python: # Specify one Python 2 package per line.
+        behave: '*'
+    python2: # Specify one Python 2 package per line.
+        requests: '*'
+    python3: # Specify one Python 3 package per line.
+        numpy: '*'
+    ruby: # Specify one Bundler package per line.
+        sass: '3.4.7'
+    nodejs: # Specify one NPM package per line.
+        pm2: '^4.5.0'
 ```
 
 Note that the package name format for each language is defined by the package manager used; similarly, the version constraint string will be interpreted by the package manager.  Consult the appropriate package manager's documentation for the supported formats.
@@ -100,11 +101,13 @@ There are no constraints on what can be downloaded during your build hook except
 
 ### Deploy hook
 
-The `deploy` hook is run after the application container has been started, but before it has started accepting requests.  You can access other services at this stage (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point.  Note that the deploy hook will only run on a [`web`](/configuration/app/web.md) instance, not on a [`worker`](/configuration/app/workers.md) instance.
+The `deploy` hook is run after the application container has been started, but before it has started accepting requests. You can access other services at this stage (MySQL, Solr, Redis, etc.). The disk where the application lives is read-only at this point. Note that the deploy hook will only run on a [`web`](/configuration/app/web.md) instance, not on a [`worker`](/configuration/app/workers.md) instance.
 
-Be aware: The deploy hook blocks the site accepting new requests.  If your deploy hook is only a few seconds then incoming requests in that time are paused and will continue when the hook completes, effectively appearing as the site just took a few extra seconds to respond.  If it takes too long, however, requests cannot be held and will appear as dropped connections.  Only run tasks in your deploy hook that have to be run exclusively, such as database schema updates or some types of cache clear.  A post-deploy task that can safely run concurrently with new incoming requests should be run as a `post_deploy` hook instead.
+This hook should be used when something needs to run once for all instances of an app when deploying new code. It is not run when a host is restarted (such as during region maintenance), so anything that needs to run each time an app starts (regardless of whether there's new code) should go in the `start` key in [your web configuration](/configuration/app/web.md#commands).
 
-After a Git push, in addition to the log shown in the activity log, you can see the results of the `deploy` hook in the `/var/log/deploy.log` file when logged in to the environment via SSH. It contains the log of the execution of the deployment hook. For example:
+Be aware: The deploy hook blocks the site accepting new requests. If your deploy hook is only a few seconds then incoming requests in that time are paused and will continue when the hook completes, effectively appearing as the site just took a few extra seconds to respond. If it takes too long, however, requests cannot be held and will appear as dropped connections. Only run tasks in your deploy hook that have to be run exclusively, such as database schema updates or some types of cache clear (those where the code must match what's on the disk). A post-deploy task that can safely run concurrently with new incoming requests should be run as a `post_deploy` hook instead.
+
+After a Git push, in addition to the log shown in the activity log, you can see the results of the `deploy` hook in the `/var/log/deploy.log` file when logged in to the environment via SSH. This file contains a log of the execution of the deployment hook. For example:
 
 ```bash
 [2014-07-03 10:03:51.100476] Launching hook 'cd public ; drush -y updatedb'.
@@ -116,6 +119,12 @@ Performed update: my_custom_profile_update_7001
 Finished performing updates.
 ```
 
+Your `deploy` hook is tied to commits in the same way as your builds. Once a commit has been pushed and a new build image has been created, the result of both the `build` and `deploy` hooks are reused until there is a new git commit. 
+
+Redeploys trigger only the `post_deploy` hook to run again from the beginning, and a committed change to the application is needed to rerun the `build` and `deploy` hooks. 
+
+This means that adding variables, changing access permissions, or even running a `redeploy` using the CLI or management console will not cause the `deploy` hook to run again for the current commit. 
+
 ### Post-Deploy hook
 
 The `post_deploy` hook functions exactly the same as the `deploy` hook, but after the container is accepting connections.  That is, it will run concurrently with normal incoming traffic.  That makes it well suited to any updates that do not require exclusive database access.
@@ -123,6 +132,8 @@ The `post_deploy` hook functions exactly the same as the `deploy` hook, but afte
 What is "safe" to run in a `post_deploy` hook vs. in a `deploy` hook will vary by the application.  Often times content imports, some types of cache warmups, and other such tasks are good candidates for a `post_deploy` hook.
 
 The `post_deploy` hook logs to its own file in addition to the activity log, `/var/log/post-deploy.log`.
+
+The `post_deploy` hook is the only hook provided that will run from the beginning during a redeploy. 
 
 ## How do I compile Sass files as part of a build?
 
@@ -134,30 +145,28 @@ The following blocks will download a specific version of Sass, then during the b
 
 ```yaml
 dependencies:
-  nodejs:
-    sass: "^1"
+    nodejs:
+        sass: "^1"
 
 hooks:
-  build: |
-    npm install
-    npm run build-css
+    build: |
+        npm install
+        npm run build-css
 ```
 
 ## How can I run certain commands only on certain environments?
 
 The `deploy` and `post_deploy` hooks have access to all of the same [environment variables](/development/variables.md) as the application does normally, which makes it possible to vary those hooks based on the environment.  A common example is to enable certain modules only in non-production environments.  Because the hook is simply a shell script we have full access to all shell scripting capabilities, such as `if/then` directives.
 
-The following example checks the `$PLATFORM_BRANCH` variable to see if we're in a production environment (the `master` branch) or not.
+The following example checks the `$PLATFORM_ENVIRONMENT_TYPE` variable to see if we're in a production environment or not.
 
 ```yaml
 hooks:
     deploy: |
-        if [ "$PLATFORM_BRANCH" = master ]; then
-            # Run commands only when deploying on master
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+            # Run commands only when deploying to production
         else
-            # Run commands only when deploying on dev environments
+            # Run commands only when deploying on development or staging environments
         fi
         # Commands to run regardless of the environment
 ```
-
-(If you have [renamed the default branch](/guides/general/default-branch.md) from `master` to something else, modify the above example accordingly.)

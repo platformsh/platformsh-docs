@@ -69,21 +69,16 @@ Next, place the following code in the `wp-config.php` file, somewhere before the
 ```php
 <?php
 
-if (!empty($_ENV['PLATFORM_RELATIONSHIPS']) && extension_loaded('redis')) {
-    $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), true);
+if ($config->hasRelationship('redis') && extension_loaded('redis')) {
+		$credentials = $config->credentials('redis');
 
-    $relationship_name = 'redis';
-
-    if (!empty($relationships[$relationship_name][0])) {
-        $redis = $relationships[$relationship_name][0];
-        define('WP_REDIS_CLIENT', 'pecl');
-        define('WP_REDIS_HOST', $redis['host']);
-        define('WP_REDIS_PORT', $redis['port']);
-    }
-}
+		define('WP_REDIS_CLIENT', 'pecl');
+		define('WP_REDIS_HOST', $credentials['host']);
+		define('WP_REDIS_PORT', $credentials['port']);
+	}
 ```
 
-That will define 3 constants that the WP-Redis extension will look for in order to connect to the Redis server.  If you used a different name for the relationship above, change `$relationship_name` accordingly.  This code will have no impact when run on a local development environment.
+That will define 3 constants that the WP-Redis extension will look for in order to connect to the Redis server.  If you used a different name for the relationship above, change it accordingly.  This code will have no impact when run on a local development environment.
 
 That's it.  There is no Plugin to enable through the WordPress administrative interface.  Commit the above changes and push.
 

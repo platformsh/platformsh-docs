@@ -1,5 +1,5 @@
 ---
-title: "Configure your application"
+title: "Apps"
 weight: 4
 description: |
   You control your application and the way it will be built and deployed on Platform.sh via a single configuration file, `.platform.app.yaml`, located at the root of your application folder inside your Git repository.
@@ -33,7 +33,7 @@ The following properties can be set at the top level of the `.platform.app.yaml`
 * [`size`](/configuration/app/size.md) - Sets an explicit sizing hint for the application.
 * [`relationships`](/configuration/app/relationships.md) - Defines connections to other services and applications.
 * [`access`](/configuration/app/access.md) - Restricts SSH access with more granularity than the management console.
-* [`disk` and `mounts`](/configuration/app/storage.md) *(required)* - Defines writable file directories for the application.
+* [`disk` and `mounts`](/configuration/app/storage.md) - Defines writable file directories for the application.
 * [`variables`](/configuration/app/variables.md) - Sets environment variables that control application behavior.
 * [`firewall`](/configuration/app/firewall.md) - Defines outbound firewall rules for the application.
 
@@ -70,12 +70,12 @@ An example of a minimalist `.platform.app.yaml` file for PHP, heavily commented,
 name: 'app'
 
 # The type key specifies the language and version for your application.
-type: 'php:7.0'
+type: 'php:8.0'
 
-# On PHP, there are multiple build flavors available. Pretty much everyone
-# except Drupal 7 users will want the composer flavor.
-build:
-    flavor: composer
+# By default, composer 1 will be used. Specify composer 2 in the dependencies to get the latest version
+dependencies:
+    php:
+        composer/composer: '^2'
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed

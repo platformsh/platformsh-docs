@@ -27,29 +27,29 @@ Any number of workers may be defined with their own distinct name, subject to av
 
 ## Accessing the Worker Container
 
-Like with any other application container Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
+Like with any other application container, Platform.sh allows you to connect to the worker instance through SSH to inspect logs and interact with it.
 
-Using the Platform CLI you would use the `--worker` switch, like so:
+Use the `--worker` switch in the Platform.sh CLI, like so:
 
 ```bash
 platform ssh --worker=queue
 ```
 
-To output the SSH command you can use:
+To output the SSH command, run:
 
 ```bash
 platform ssh --worker=queue --pipe
 ```
 
-You will see the url is the name of the worker added to the user name after the application name part of the SSH url preceded by a double dash (`--`).
+You see the URL is the name of the worker added to the user name after the application name part of the SSH URL preceded by a double dash (`--`).
 
-For example given a project with id `3seb7f2j6ogbm` you would connect to its master environment for an app called `app` with a url such as:
+For example, given a project with the id `3seb7f2j6ogbm`, you would connect to its master environment for an app called `app` with a URL such as:
 
 ```bash
 ssh 3seb7f2j6ogbm-master-7rqtwti--app@ssh.us-2.platform.sh
 ```
 
-To connect to a worker called `queue` (as in the example above) you would use an SSH url that would look as follows:
+To connect to a worker called `queue` (as in the example above), you would use an SSH URL such as:
 
 ```bash
 ssh 3seb7f2j6ogbm-master-7rqtwti--app--queue@ssh.us-2.platform.sh
@@ -165,7 +165,7 @@ type: "python:3.7"
 disk: 2048
 
 hooks:
-   build: |
+    build: |
        pip install -r requirements.txt
        pip install -e .
        pip install gunicorn

@@ -10,24 +10,29 @@ description: |
 
 ## How build works
 
-The Platform.sh build process is run independently of any given environment.  That's because the built application image is reusable in multiple environments.
+The Platform.sh build process is run independently of any given environment.
+That's because the built application image is reusable in multiple environments.
 
-During the build process, each application (defined by a `.platform.app.yaml` file) is built independently, and the output cached based on its Git tree ID.  That corresponds to a hash of the contents of all files in that directory.  The result is that a given application image is only ever rebuilt if something has changed.  If nothing in Git has changed, the corresponding application image can be reused.
+During the build process, each application (defined by a `.platform.app.yaml` file) is built independently, and the output cached based on its Git tree ID and its build time configuration ID (which can include build environment variables). Together these result in a final build slug, a hash that describes that specific build. 
+
+As a result, a given application image is only ever rebuilt if something has changed.
+If nothing in Git has changed and if its build time configuration hasn't changes,
+then the corresponding application image can be reused.
 
 That offers two key advantages.
 
-1. It improves build performance, as there is no need to rebuild images that are already cached.  (That skips downloading dependencies, generating code, compiling to binaries, generating CSS or JS files, etc.)
+1. It improves build performance, as there is no need to rebuild images that are already cached.  That skips downloading dependencies, generating code, compiling to binaries, generating CSS or JS files, etc.
 2. In case of a fast-forward merge from a feature branch to production, the same application image can be reused.  That means what is deployed to production is not "similar to" what was in a testing branch but is the same exact bits on disk.  That is the closest it's possible to get to "staging is the same as production" and provides the best possible guarantee that the production deployment will be successful.
 
 In order to achieve that, the build process can depend only on input reflected in the tree ID, that is, the files in Git.  The tree ID does not reflect the Git branch it is on, because a given commit may be on many branches at different times.  For that reason, Platform.sh also does not expose any branch-specific or environment-specific environment variables in the build process.  Using those as inputs to the build process would fail as soon as the application image is reused.
 
-That is also why dependencies should be downloaded based on a lock file only, which should be committed to Git.  The lock file guarantees precisely what verions will be downloaded.  Downloading from a definition file (`composer.json`, `Pipfile`, `package.json`, etc.) may result in different dependency versions being installed at different times, and thus unpredictable results.
+That is also why dependencies should be downloaded based on a lock file only, which should be committed to Git.  The lock file guarantees precisely what versions will be downloaded.  Downloading from a definition file (`composer.json`, `Pipfile`, `package.json`, etc.) may result in different dependency versions being installed at different times, and thus unpredictable results.
 
 Similarly, while it is possible to download arbitrary additional files during the build process, we strongly recommend doing so only on pinned, fixed versions of a downloaded file, not a "latest" marker or similar.  Doing so could result in unpredictable build output.
 
 ## Environment-specific configuration
 
-Once an application has been deployed, it has access to more environment variables.  That includes Platform.sh variables such as `PLATFORM_RELATIONSHIPS` and `PLATFORM_ROUTES` as well as any [variables](/development/variables.md) you define.  These variables can and will vary between environments, and your application is welcome to leverage them as appropriate.  You can access them directly or via the Platform.sh Configuration Reader libraries, which are available for a number of languages.
+Once an application has been deployed, it has access to more environment variables.  That includes Platform.sh variables such as `PLATFORM_RELATIONSHIPS` and `PLATFORM_ROUTES` as well as any [variables](/development/variables.md) you define. There will also be additional features of your `.platform.app.yaml` file that will now be accessible in `PLATFORM_APPLICATION`. These variables can and will vary between environments, and your application is welcome to make use of that as appropriate.  You can access them directly, or via the Platform.sh Configuration Reader libraries, which are available for a number of languages.
 
 Many applications have some configuration that should vary between different environment types.  They generally break down into three categories.
 
@@ -73,9 +78,9 @@ For variables that should vary between production and "other" environments, such
 
 ### Static file configuration
 
-A few applications, unfortunately, require configuration values to be specified in a static, non-executable file (such as a `.ini`, `.xml`, or `.yaml` file) and do not support reading from environment variables.  These files cannot be populated at build time as environment-specific values are not available, but cannot be written to in deploy as the file system is read only.  That is a design flaw in the application, and you should file a bug with the application or framework author.
+A few applications require configuration values to be specified in a static, non-executable file (such as a `.ini`, `.xml`, or `.yaml` file) and do not support reading from environment variables.  These files cannot be populated at build time as environment-specific values are not available, but cannot be written to in deploy as the file system is read only.
 
-A possible workaround is to symlink the file to a writeable location, then use a deploy hook script to write files out to that file.  The details of this process will vary by the application, but an outline of this process is shown below.
+This restriction is not the case for environment variables that have been explicitly set to be [visible at build time](/development/variables.md#environment-variables) (`--visible-build`), so it doesn't apply to variables you can set yourself. For other Platform.sh-provided variables (such as `PLATFORM_RELATIONSHIPS`), a possible workaround is to symlink the file to a writeable location, then use a deploy hook script to write files out to that file.  The details of this process will vary by the application, but an outline of this process is shown below.
 
 First, create a non-web-accessible mount point in your `.platform.app.yaml` file:
 
@@ -142,7 +147,7 @@ Many applications have adopted a convention of using a file named `.env` in the 
 
 If the application needs a different set of environment variable names than the variables set by Platform.sh (which is common for database connections) they can be mapped over from Platform.sh's variable names to those required by the application.  That can be done in the application with the help of the Config Reader libraries, if it offers a place to do so, or via a shell script.
 
-For example, the following `.environment` script, located in the application root, will run automatically on every shell invocation (application startup or SSH login), and variables it exports will be visible to the application.  It uses the `jq` library, which is included in all application containers for this purpose.
+For example, the following `.environment` script, located in the application root, runs automatically on every shell invocation (application startup or SSH login), and variables it exports are visible to the application.  It uses the `jq` library, which is included in all application containers for this purpose.
 
 ```bash
 # .environment

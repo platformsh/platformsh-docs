@@ -63,10 +63,10 @@ A `service` mount works like so:
 
 ```yaml
 mounts:
-  'web/uploads':
-    source: service
-    service: files
-    source_path: uploads
+    'web/uploads':
+        source: service
+        service: files
+        source_path: uploads
 ```
 
 This assumes that a `network-storage` service named `files` has already been defined.  See the [Network Storage](/configuration/services/network-storage.md) page for more details and examples.
@@ -120,9 +120,9 @@ Platform.sh ignores YAML keys that start with a dot. This causes a mount like `.
 
 ```yaml
 mounts:
-  '/.myhiddenfolder':
-    source: local
-    source_path: 'myhiddenfolder'
+    '/.myhiddenfolder':
+        source: local
+        source_path: 'myhiddenfolder'
 ```
 
 ## How do I setup overlapping mount paths?

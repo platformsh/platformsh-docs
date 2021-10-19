@@ -9,9 +9,9 @@ However, it is possible to configure a Varnish instance as part of an applicatio
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="varnish" status="supported" environment="grid" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="varnish" status="supported" environment="grid" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}} |
 
 ## How it works
 
@@ -136,6 +136,6 @@ You can then access the `varnishstats` relationship over HTTP at the following p
 Note that because of the circular relationship issue noted above this cannot be done on the application that Varnish is forwarding to.  It will need to be run on a separate application container.
 
 To access the Varnish endpoint:
-- Connect to your cluster [using ssh](/development/ssh.md) or through the CLI `platform ssh -p <project id>`,
+- Connect to your cluster [using ssh](/development/ssh/_index.md) or through the CLI: `platform ssh -p <project id>`,
 - Display the [relationships array](/configuration/app/relationships.md) with `echo $PLATFORM_RELATIONSHIPS | base64 -d | jq '.'`,
 - Query Varnish with `curl varnishstats.internal:8081/stats`, for example, to access the statistics directly. Be sure to update the request according to the name of the relationship.

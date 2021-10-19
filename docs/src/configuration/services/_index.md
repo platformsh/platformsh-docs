@@ -1,5 +1,5 @@
 ---
-title: "Configure services"
+title: "Services"
 weight: 3
 description: |
   Platform.sh allows you to completely define and configure the topology and services you want to use on your project.
@@ -19,12 +19,12 @@ Here is an example of a `.platform/services.yaml` file:
 
 ```yaml
 database1:
-  type: mysql:10.1
-  disk: 2048
+    type: mysql:10.1
+    disk: 2048
 
 database2:
-  type: postgresql:9.6
-  disk: 1024
+    type: postgresql:9.6
+    disk: 1024
 ```
 
 ## Configuration
@@ -50,7 +50,9 @@ E: Error parsing configuration files:
 ```
 
 Service types and their supported versions include:
-
+<!--
+To update the versions in this table, use docs/data/registry.json
+-->
 {{< readFile file="src/registry/images/tables/services_supported.md" markdownify="true">}}
 
 ### Disk
@@ -166,6 +168,6 @@ To get the values to use, the easiest way is to run `platform ssh --pipe`.  That
 
 `jyu7waly36ncj-master-7rqtwti--app@ssh.us.platform.sh`
 
-In this case, the username is `jyu7waly36ncj-master-7rqtwti--app` and the host is `ssh.us.platform.sh`.  Note that the host will vary per region, and the username will vary per-*environment*.
+In this case, the username is `jyu7waly36ncj-master-7rqtwti--app` and the host is `ssh.us.platform.sh`.  Note that the host will vary per region, and the username will vary per *environment*.
 
-In this example, we would configure our database application to setup a tunnel to `ssh.us.platform.sh` as user `jyu7waly36ncj-master-7rqtwti--app`, and then connect to the database on host `database.internal`, username `user`, empty password, and database name `main`.
+In this example, we would configure our database application to set up a tunnel to `ssh.us.platform.sh` as user `jyu7waly36ncj-master-7rqtwti--app`, and then connect to the database on host `database.internal`, username `user`, empty password, and database name `main`.

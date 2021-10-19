@@ -62,9 +62,9 @@ That will run a `mysqldump` command on the server, compress it using gzip, and s
 
 ## Synchronizing files from dev to staging/production
 
-To transfer data into either the staging or production environments, you can either download it from your Platform.sh Development environment to your local system first or transfer it directly between environments using SSH based tools (e.g. SCP, Rsync).
+To transfer data into either the staging or production environments, you can either download it from your Platform.sh Development environment to your local system first or transfer it directly between environments using SSH-based tools (e.g. SCP, rsync).
 
-First, set up [SSH forwarding](/development/ssh.html#forwarding-keys-by-default) by default for Platform.sh domains.
+First, set up [SSH forwarding](/development/ssh/_index.md#forwarding-keys-by-default) by default for Platform.sh domains.
 
 Then run `platform ssh` with the `master` branch checked out to connect to the master dev environment.  Files are the easier data to transfer, and can be done with `rsync`.
 
@@ -78,7 +78,7 @@ Replace `pub/static` with the path to your files on system, such as `web/sites/d
 
 The database can be copied directly from the development environment to staging or production, but doing so requires noting the appropriate credentials first on both systems.
 
-First, login to the production environment over SSH:
+First, log in to the production environment over SSH:
 
 ```bash
 ssh <USERNAME>@<CLUSTER_NAME>.ent.platform.sh
@@ -113,7 +113,7 @@ Which should give a JSON output containing something like this:
 
 The part we want is the host, user, password, and the "path", which is the database name.  Ignore the rest.
 
-Now, in a separate terminal login to the development instance using `platform ssh`.  Run the same `echo` command as above to get the credentials for the database on the development instance.  (The JSON will be slightly different but again we're only interested in the user, password, host, and "path"/database name).
+Now, in a separate terminal log in to the development instance using `platform ssh`.  Run the same `echo` command as above to get the credentials for the database on the development instance.  (The JSON will be slightly different but again we're only interested in the user, password, host, and "path"/database name).
 
 With the credentials from both databases we can construct a command that will export data from the dev server and write it directly to the Dedicated cluster's server.
 
@@ -123,4 +123,8 @@ mysqldump -u <dev_user> -p<dev_password> -h <dev_host> <dev_dbname> --single-tra
 
 That will dump all data from the database as a stream of queries that will get run on the production database without ever having to create an intermediary file.  The `-C` on the SSH command tells SSH to compress the connection to save time.
 
-(Be aware, this is a destructive operation that overwrites data.  Backup first.)
+{{< note theme="warning" >}}
+
+Be aware that this is a destructive operation that overwrites data.  Backup first.
+
+{{< /note >}}

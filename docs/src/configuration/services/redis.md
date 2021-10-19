@@ -8,22 +8,21 @@ Redis is a high-performance in-memory object store, well-suited for application 
 
 See the [Redis documentation](https://redis.io/documentation) for more information.
 
-Platform.sh supports two different Redis configurations: One persistent (useful for key-value application data) and one ephemeral (in-memory only, useful for application caching).  Aside from that distinction they are identical.
+Platform.sh supports two different Redis configurations: One persistent (useful for key-value application data) and one ephemeral (in-memory only, useful for application caching). Aside from that distinction they are identical.
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated" >}} |
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}} |
 
 ### Deprecated versions
 
 The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="redis" status="deprecated" environment="grid" >}} | {{< image-versions image="redis" status="deprecated" environment="dedicated" >}} |
-
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="redis" status="deprecated" environment="grid" >}} | {{< image-versions image="redis" status="deprecated" environment="dedicated" >}} | {{< image-versions image="redis" status="deprecated" environment="dedicated-gen-3" >}} |
 
 {{< note >}}
 Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database.
@@ -33,11 +32,15 @@ Versions 3.0 and higher support up to 64 different databases per instance of the
 
 The `redis` service type is configured to serve as an LRU cache; its storage is not persistent.  It is not suitable for use except as a disposable cache.
 
-To add an Ephemeral Redis service, specify it in your `.platform/services.yaml` file like so:
+To add an ephemeral Redis service, specify it in your `.platform/services.yaml` file like so:
 
 {{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
 
-Data in an Ephemeral Redis instance is stored only in memory, and thus requires no disk space.  When the service hits its memory limit it will automatically evict old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
+Data in an Ephemeral Redis instance is stored only in memory and thus requires no disk space. When the service hits its memory limit it will automatically evict old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
+
+Your app must not treat ephemeral Redis as permanent. Instead, the cache needs to be regenerated as necessary. For example, if a container is moved for a reason such as region maintenance, the `deploy` and `post_depoly` hooks won't be run and an app that treats the cache as permanent will show errors. The cache should be cleared each time the app is restarted, in the `start` key in [your web configuration](/configuration/app/web.md#commands).
+
+If your app needs to treat the cache as permanent, use [persistent Redis](#persistent-redis), which will save data to its volume even when the container is shut down.
 
 ## Persistent Redis
 
@@ -137,7 +140,7 @@ On the Ephemeral `redis` service it is also possible to select the key eviction 
 cache:
     type: redis:5.0
     configuration:
-      maxmemory_policy: allkeys-lru
+        maxmemory_policy: allkeys-lru
 ```
 
 The default value if not specified is `allkeys-lru`, which will simply remove the oldest cache item first.  Legal values are:
@@ -163,7 +166,7 @@ and `services.yaml`
 
 {{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
 
-The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `applicationcache.internal` and `6379`. Open an [SSH session](/development/ssh.md) and access the Redis server using the `redis-cli` tool as follows:
+The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `applicationcache.internal` and `6379`. Open an [SSH session](/development/ssh/_index.md) and access the Redis server using the `redis-cli` tool as follows:
 
 ```bash
 redis-cli -h applicationcache.internal -p 6379
@@ -181,7 +184,7 @@ Using the same configuration but with your Redis relationship named `sessionstor
 
 ```yaml
 relationships:
-  sessionstorage: "data:redis"
+    sessionstorage: "data:redis"
 
 variables:
     php:

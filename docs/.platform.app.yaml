@@ -9,7 +9,7 @@ type: 'nodejs:14'
 # Specify the Hugo version as an env variable.
 variables:
     env:
-        HUGOVERSION: 0.82.0
+        HUGOVERSION: 0.83.1
 
 relationships:
     search: "search:http"
@@ -18,6 +18,7 @@ relationships:
 hooks:
     # Build hooks can modify the application files on disk but not access any services like databases.
     build: |
+        set -e
         ./build_examples.sh
         ./build_docs.sh
     deploy: !include
@@ -27,13 +28,13 @@ hooks:
 # The configuration of the application when it is exposed to the web.
 web:
     commands:
-      # Run a no-op process that uses no CPU resources, since this is a static site.
-      start: sleep infinity
+      # Run (404) error handler 
+      start: node 404.js
     locations:
         '/':
             # The public directory of the application relative to its root.
             root: 'public'
-            passthru: false
+            passthru: true
             index: ['index.html']
             scripts: false
             allow: true

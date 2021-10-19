@@ -8,13 +8,19 @@ sidebarTitle: "MongoDB"
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="mongodb" status="supported" environment="grid" >}} | {{< image-versions image="mongodb" status="supported" environment="dedicated" >}} |
+We're working on adding more versions. Alternative versions are available in your projects (and are listed below), but they are at their [end of life](https://www.mongodb.com/support-policy) and are no longer receiving security updates from upstream. 
 
 {{< note >}}
 Downgrades of MongoDB are not supported. MongoDB will update its own datafiles to a new version automatically but cannot downgrade them. If you want to experiment with a later version without committing to it use a non-master environment.
 {{< /note >}}
+
+## Deprecated versions
+
+The following versions are available but are not receiving security updates from [upstream](https://www.mongodb.com/support-policy), so their use is not recommended. They will be removed at some point in the future.
+
+| **Grid** |
+|----------------------------------|
+|  {{< image-versions image="mongodb" status="deprecated" environment="grid" >}} |
 
 ## Relationship
 
@@ -26,7 +32,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 In your `.platform/services.yaml`:
 
-{{< readFile file="src/registry/images/examples/full/mongodb.services.yaml" highlight="yaml" >}}
+```yaml
+dbmongo:
+    type: mongodb:3.6
+    disk: 512
+```
 
 The minimum disk size for MongoDB is `512` (MB).
 
@@ -90,7 +100,7 @@ highlight=python
 
 ## Exporting data
 
-The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and simply export the data directly using MongoDB's tools.
+The most straightforward way to export data from a MongoDB database is to open an SSH tunnel to it and export the data directly using MongoDB's tools.
 
 First, open an SSH tunnel with the Platform.sh CLI:
 
@@ -98,16 +108,16 @@ First, open an SSH tunnel with the Platform.sh CLI:
 platform tunnel:open
 ```
 
-That will open an SSH tunnel to all services on your current environment, and produce output something like the following:
+That opens an SSH tunnel to all services on your current environment and produce output like the following:
 
 ```bash
 SSH tunnel opened on port 30000 to relationship: database
 SSH tunnel opened on port 30001 to relationship: redis
 ```
 
-The port may vary in your case.  You will also need to obtain the user, password, and database name from the relationships array, as above.
+The port may vary in your case. You also need to obtain the user, password, and database name from the relationships array, as above.
 
-Then, simply connect to that port locally using `mongodump` (or your favorite MongoDB tools) to export all data in that server:
+Then, connect to that port locally using `mongodump` (or your favorite MongoDB tools) to export all data in that server:
 
 ```bash
 mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
@@ -117,7 +127,7 @@ mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
 
 As with any other shell command it can be piped to another command to compress the output or redirect it to a specific file.
 
-For further references please see the [official mongodump documentation](https://docs.mongodb.com/manual/reference/program/mongodump/#bin.mongodump).
+For further references, see the [official `mongodump` documentation](https://docs.mongodb.com/manual/reference/program/mongodump/#bin.mongodump).
 
 ## Upgrading
 

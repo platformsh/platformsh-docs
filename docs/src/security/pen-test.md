@@ -8,10 +8,14 @@ description: |
 
 {{< description >}}
 
+Currently, we do not offer the possibility to activate/deactivate the Intrusion Prevention System (IPS) on demand.
+On Platform.sh's side, there is no automatic ip or range blocking. Blocking IP's (or not) is usually left to the appreciation of the Oncall engineer based on the specific circumstances.
+
 ## Approved Activities
 
 * Vulnerability scanning of your web application. You are free to perform this as often as required without approval from Platform.sh.
 * Web application penetration tests that do not result in high network load.  You are free to perform this as often as required without approval from Platform.sh.
+* Application level load testing that do not result in high network load. If the load test may result in the application to be down, we ask to open an urgent ticket as a courtesy 30 to 60 minutes before the load test begins. Typically application level load tests will trigger one or many NodePing alerts. Knowing that a load test is in progress will allow the on-call engineer to immediately snooze alerts.
 
 ## Approved Activities by Prior Arrangement
 
@@ -20,7 +24,7 @@ description: |
 ## Prohibited Activities
 
 * Vulnerability scanning of web applications which you do not own.
-* Denial of Service tests and any other type of testing which results in heavy network load.
+* Denial of Service tests and any other type of load testing which results in heavy network load.
 * Social engineering tests of Platform.sh services including falsely representing yourself as a Platform.sh employee.
 * Infrastructure penetration tests for non-Dedicated-Enterprise customers. This includes SSH and database testing.
 

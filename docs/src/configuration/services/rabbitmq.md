@@ -10,11 +10,9 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 ## Supported versions
 
-| **Grid** | **Dedicated** |
-|----------------------------------|---------------|
-|  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated" >}} |
-
-
+| **Grid** | **Dedicated** | **Dedicated Generation 3** |
+|----------------------------------|---------------|---------------|
+|  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} |
 
 ## Relationship
 
@@ -101,7 +99,7 @@ In case you want to access the browser-based UI, you have to use an SSH tunnel. 
 ssh -L 15672:rabbitmqqueue.internal:15672 <projectid>-<branch_ID>@ssh.eu.platform.sh
 ```
 
-After you successfully established a connection, you should be able to open http://localhost:15672 in your browser. You'll find the credentials like mentioned above.
+After you successfully established a connection, you should be able to open `http://localhost:15672` in your browser. You'll find the credentials like mentioned above.
 
 ### From the application container
 
@@ -111,11 +109,11 @@ For example, you can use [amqp-utils](https://github.com/dougbarth/amqp-utils/) 
 
  ```yaml
 dependencies:
-  ruby:
-    amqp-utils: "0.5.1"
+    ruby:
+        amqp-utils: "0.5.1"
 ```
 
-Then, when you SSH into your container, you can simply type any `amqp-` command available to manage your queues.
+Then, when you SSH into your container, you can type any `amqp-` command available to manage your queues.
 
 ## Configuration
 
@@ -125,10 +123,10 @@ You can configure additional [virtual hosts](https://www.rabbitmq.com/vhosts.htm
 
 ```yaml
 rabbitmq:
-  type: rabbitmq:3.8
-  disk: 512
-  configuration:
-    vhosts:
-      - foo
-      - bar
+    type: rabbitmq:3.8
+    disk: 512
+    configuration:
+        vhosts:
+            - foo
+            - bar
 ```
