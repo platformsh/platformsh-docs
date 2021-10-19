@@ -38,7 +38,7 @@ A few things to consider:
 * You can change an environment's type (if it's not Production).
 * You can have multiple Staging and Development environments.
 
-In the following table you can see the available environment roles.
+The following table shows the available roles for environment types.
 
 | Role | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
 | ---- | ---------------- | --------- | ------------------ | ---------- | --------------- | --------------- |
