@@ -124,7 +124,6 @@ highlight=false
 ---
 Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md) to delete existing users.
 
-`platform user:delete`
 
   ```bash
   platform user:delete user1@example.com
