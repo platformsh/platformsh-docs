@@ -8,7 +8,7 @@ tokens:
   - we
   - ours?
   - us
-  - let's
+  - let's(?! Encrypt)
   - (?:^|\s)I\s
   - (?:^|\s)I,\s
   - I'm

@@ -10,15 +10,18 @@ description: |
 
 ## How build works
 
-The Platform.sh build process is run independently of any given environment.  That's because the built application image is reusable in multiple environments.
+The Platform.sh build process is run independently of any given environment.
+That's because the built application image is reusable in multiple environments.
 
 During the build process, each application (defined by a `.platform.app.yaml` file) is built independently, and the output cached based on its Git tree ID and its build time configuration ID (which can include build environment variables). Together these result in a final build slug, a hash that describes that specific build. 
 
-As a result, a given application image is only ever rebuilt if something has changed.  If nothing in Git has changed, and if its build time configuration hasn't changes, then the corresponding application image can be reused.
+As a result, a given application image is only ever rebuilt if something has changed.
+If nothing in Git has changed and if its build time configuration hasn't changes,
+then the corresponding application image can be reused.
 
 That offers two key advantages.
 
-1. It improves build performance, as there is no need to rebuild images that are already cached.  (That skips downloading dependencies, generating code, compiling to binaries, generating CSS or JS files, etc.)
+1. It improves build performance, as there is no need to rebuild images that are already cached.  That skips downloading dependencies, generating code, compiling to binaries, generating CSS or JS files, etc.
 2. In case of a fast-forward merge from a feature branch to production, the same application image can be reused.  That means what is deployed to production is not "similar to" what was in a testing branch but is the same exact bits on disk.  That is the closest it's possible to get to "staging is the same as production" and provides the best possible guarantee that the production deployment will be successful.
 
 In order to achieve that, the build process can depend only on input reflected in the tree ID, that is, the files in Git.  The tree ID does not reflect the Git branch it is on, because a given commit may be on many branches at different times.  For that reason, Platform.sh also does not expose any branch-specific or environment-specific environment variables in the build process.  Using those as inputs to the build process would fail as soon as the application image is reused.

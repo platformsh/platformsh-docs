@@ -23,7 +23,7 @@ With the Configuration Reader library installed, add or update a `wp-config.php`
 
 Many other WordPress settings are pre-defined in this file for you, so consult the inline comments for more information.
 
-{{< github repo="platformsh-templates/wordpress-composer" file="wp-config.php" lang="php" >}}
+{{< readFile file="static/files/fetch/config-examples/wordpress-composer" highlight="php" >}}
 
 ## Setting up Composer
 
