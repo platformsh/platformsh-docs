@@ -134,7 +134,7 @@ Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md) t
 
 {{< /codetabs >}}
 
-Once you delete a user, they can no longer access the project anymore.
+Once you delete a user, they can no longer access the project.
 After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment.
 You can redeploy by clicking **Redeploy** in the console.
 
