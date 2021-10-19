@@ -182,7 +182,7 @@ You have to be the organization owner, or an organization user with [manage plan
 1. Invite the new organization owner as a Project Admin.
 2. Submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from your organization owner's account to ask for the transfer.
 
-Once the transfer is completed, the new organization can administer all project settings, billing, and gets the subscription charges.
+Once the transfer is completed, the new organization can administer all project settings and billing and receives future invoices.
 
 
 ## Troubleshooting
