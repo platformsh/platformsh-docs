@@ -239,7 +239,7 @@ Outbound IPs:
 * 20.92.240.236
 * 20.191.224.199
 
-Inbound IPs (gw.au.platformsh.site):
+Inbound IPs (gw.au-2.platformsh.site):
 
 * 20.92.240.74
 * 20.92.240.236
