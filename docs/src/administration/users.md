@@ -88,7 +88,7 @@ You can use the [Platform.sh CLI (Command Line Interface)](/development/cli/_ind
 
 * `platform user:add`
 
-Say you want to add `user1@example.com` to the project with **Project Admin** permissions:
+Say you want to add `user1@example.com` to the project with a Project Admin role:
 
 ```bash
 platform user:add user1@example.com -r admin
