@@ -5,7 +5,7 @@ description: Learn how to troubleshoot problems related to access rights when cl
 
 ## Unable to clone a repository
 
-If you [add a user](/administration/users.md#add-a-user-to-a-project) with the **Project Admin** or **Contributor** role to a project on Platform.sh,
+If you [add a user](/administration/users.md#add-a-user-to-a-project) to a project on Platform.sh,
 but you haven’t added them to the remote repository on GitHub, GitLab, or Bitbucket,
 they can't clone the project locally.
 
