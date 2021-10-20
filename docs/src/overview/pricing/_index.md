@@ -87,7 +87,7 @@ you would pay an extra $30 a month.
 ## Development
 
 The basic plan (Development) starts at $10 per month
-and includes 4 environments: 3 staging/development and 1 future production).
+and includes 4 environments: 3 staging/development and 1 future production.
 
 {{< note theme="info" title="none" >}}
 
@@ -95,10 +95,11 @@ You can not map a custom domain name to a Development plan.
 
 {{< /note >}}
 
-Development environments default to the Standard size,
+Application containers on development environments default to the Standard size,
 but they can be increased to match your production environment if needed.
 Go to the **Edit plan** administration section for your project
 and select your desired size under **Environments application size**.
+This increases the size for all application containers (but doesn't affect service containers).
 The new size increases the cost of your plan,
 which you can accept by clicking **Upgrade plan**.
 
