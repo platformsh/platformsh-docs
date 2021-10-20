@@ -116,10 +116,12 @@ And reload the replica instance for the changes to take an effect.
 
 ### Set up SSH tunneling
 
-You will need to set up an SSH tunnel from the replica server to the primary, tunneled through the application. To do so using the Platform.sh CLI, run:
+You need to set up an SSH tunnel from the replica server to the primary, tunneled through the application.
+To do so using the Platform.sh CLI, run the following
+(replacing `<BRANCH_NAME>` with the name of your production branch):
 
 ```bash
-platform tunnel:open -p your-project-id -e master
+platform tunnel:open -p your-project-id -e <BRANCH_NAME>
 ```
 
 This opens local SSH tunnels to all services accessible from the application. In practice, you may be better served by setting up the tunnel manually using SSH. Consult the SSH documentation for the best way to do so.
@@ -140,8 +142,7 @@ mysql> CHANGE MASTER TO
   MASTER_PORT=3306,
   MASTER_LOG_FILE='binlogs.000002',
   MASTER_LOG_POS=1036,
-  MASTER_CONNECT_RETRY=10,
-  MASTER_USE_GTID = slave_pos;
+  MASTER_CONNECT_RETRY=10;
 ```
 
 Where `<the.host>` will vary depending on the SSH tunneling configuration you have, and the `<your_replicator_password>` can be obtained by running `platform relationships`.

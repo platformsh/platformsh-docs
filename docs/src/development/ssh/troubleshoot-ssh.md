@@ -20,7 +20,7 @@ If you have just added your SSH key or made changes to [access rules](/administr
 
 ```bash
 $ git commit --allow-empty -m 'chore: force redeploy'
-$ git push origin master
+$ git push origin main
 ```
 
 ## Check your public key

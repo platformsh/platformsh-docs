@@ -18,20 +18,33 @@ All Platform.sh plans include:
 * multiple Backend services (MySQL, PostgreSQL, Elasticsearch, Redis, Solr..)
 * support
 
-Our full pricing information is available at: https://platform.sh/pricing/
+Full pricing information is available at: https://platform.sh/pricing/
 
-You can switch between plans (downgrade or upgrade) freely, but note that reducing storage is currently not supported for technical reasons. If you need to reduce storage, please create a support ticket. You will always be billed the prorated rate of your plan over the period it was used.
+You can switch between plans (downgrade or upgrade) freely,
+but note that reducing storage is currently not supported for technical reasons.
+If you need to reduce storage, please create a support ticket.
+You are always billed the prorated rate of your plan over the period it was used.
 
-You may cancel your plan at any time and you will only be billed for the actual period used.
+You may cancel your plan at any time and are only billed for the actual period used.
 
-For Elite, Enterprise and Agency Plans you can pay by purchase order. For all other plans you need to add a credit card to your account.
+For Elite, Enterprise, and Agency Plans you can pay by purchase order.
+For all other plans, you need to add a credit card to your account.
 
-We offer a free trial period so you can test the service and see how great it is. If ever you need more time to evaluate Platform.sh, please contact our sales representatives. They can issue you an extra voucher to prolong your test.
+We offer a free trial period so you can test the services.
+If ever you need more time to evaluate Platform.sh,
+please contact our sales representatives.
+They can issue you an extra voucher to prolong your test.
 
 {{< note theme="info" title="none">}}
-Prices below are listed in US Dollars.  You will be billed in US Dollars, Euros, or British Pounds depending on where your billing address is. For a list of current prices please refer to https://platform.sh/pricing
 
-Euro Prices are presented excluding VAT.  In your bill, as appropriate we will include the correct VAT rate.
+Prices below are listed in US Dollars.
+You are billed in US Dollars, Euros, or British Pounds
+depending on where your billing address is.
+For a list of current prices, refer to https://platform.sh/pricing.
+
+Euro Prices are presented excluding VAT.
+Your bill, includes the correct VAT rate as appropriate.
+
 {{< /note >}}
 
 ## Extras
@@ -39,70 +52,99 @@ Euro Prices are presented excluding VAT.  In your bill, as appropriate we will i
 All extra consumption is prorated to the time it was actually used.
 
 {{< note theme="info" title="none" >}}
-For example, if you added an extra developer for 10 days you would be billed around $3 extra at the end of the month (based on the then-current price of an extra developer seat).
+
+For example, if you added an extra developer for 10 days,
+you would be billed around 1/3 of the current price for an extra developer seat.
+
 {{< /note >}}
 
 ### Extra developers
 
-Adding a developer to your project will add a monthly per project per user fee unless you have an agency or an enterprise account.
+Adding a developer to your project adds a monthly per project per user fee
+unless you have an Agency or Enterprise account.
 
 ### Extra environments
 
 You can add extra staging/development environments to any plan by multiples of 3.
 
-{{< note theme="info" title="none" >}}
-For example, if you want to have 12 staging environments you would pay additional $63 per month on top of your basic plan price.
-{{< /note >}}
-
 ### Extra storage
 
-You can add additional storage at $2.50 per 5GB  per staging/development environment.
+You can add additional storage at $2.50 per 5GB
+per staging/development environment.
 
 {{< note theme="info" title="none" >}}
-For example, if you have the default plan (with 3 staging environments) and you add 10GB (for a total of 15GB per environment), you would pay an extra $15 a month.
 
-If you added 3 extra environments (for a total of 6 staging environments) and you added 10GB (for a total of 15GB per environment), you would pay an extra $30 a month.
+For example, if you have the default plan (with 3 staging environments)
+and you add 10GB (for a total of 15GB per environment),
+you would pay an extra $15 a month.
+
+If you added 3 extra environments (for a total of 6 staging environments)
+and you added 10GB (for a total of 15GB per environment),
+you would pay an extra $30 a month.
+
 {{< /note >}}
 
 ## Development
 
-The basic plan (Development) starts at $10 per month, and includes 4 environments: 3 staging/development and 1 future production).
+The basic plan (Development) starts at $10 per month
+and includes 4 environments: 3 staging/development and 1 future production.
 
 {{< note theme="info" title="none" >}}
-You can not map a custom domain name to a development plan
+
+You can not map a custom domain name to a Development plan.
+
 {{< /note >}}
 
-Development environments default to the Standard size, but they can be increased to match your production environment if needed. Go to the "Edit plan" administration section for your project, and at the bottom of the page you can modify the dropdown under **Development Application Size** to increase the default size for the project. The new size will increase the cost of your plan, which you can accept by clicking "Update plan".
+Application containers on development environments default to the Standard size,
+but they can be increased to match your production environment if needed.
+Go to the **Edit plan** administration section for your project
+and select your desired size under **Environments application size**.
+This increases the size for all application containers (but doesn't affect service containers).
+The new size increases the cost of your plan,
+which you can accept by clicking **Upgrade plan**.
 
 ## Production
 
-The live environment (master) of a production plan has more resources than the development environments of the project. https://platform.sh/pricing lists the resources available per plan (these are always only the production environment resources) the development environment have their own resources, and are not counted towards the limit.
-You can map domain names to your master environment. SSL support is always included.
+The live environment of a production plan has more resources than the project's development environments.
+https://platform.sh/pricing lists the resources available per plan
+(these are always only the production environment resources).
+Development environment have their own resources
+and aren't counted towards the limit.
+You can map domain names to your production environment.
+SSL support is always included.
 
+### Multiple applications in a single project
 
-### Multiple Applications in a single project
+All Platform.sh plans support multiple applications in a single cluster,
+but they share the global resources of the cluster.
 
-All Platform.sh plans support multiple applications in a single cluster, but they share the global resources of the cluster.
+The resources of a **Standard plan aren't sufficient to run more than one application** in the same cluster
+if there is also a MySQL database as a service.
+Useful multi-apps start at Medium.
 
-The resources of a **Standard plan are not sufficient to run more than one application** in the same cluster if there is also a MySQL database as a Service. Useful multi-apps start at Medium.
+A Medium plan, for example, can support 3 apps
+with a MySQL instance and a Redis instance.
 
-A Medium plan, for example, can support 3 Apps with a MySQL instance and a Redis instance.
-
-If you wonder if a specific setup would fit in a plan, don't hesitate to contact our support.
+If you wonder if a specific setup would fit in a plan,
+don't hesitate to contact support.
 
 ## Dedicated Generation 3
 
-For a price lower than traditional managed hosting, you get included development and staging environments, as well as triple redundancy on every element of the stack with:
+For a price lower than traditional managed hosting,
+you get included development and staging environments
+as well as triple redundancy on every element of the stack with:
 
 {{< note theme="info" title="none" >}}
+
 99.99% Uptime Guaranteed
 
 24/7 White Glove On-boarding and Support
+
 {{< /note >}}
 
 Learn more about [Dedicated Generation 3](/dedicated-gen-3/overview).
 
-Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
+[Contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
 
 ## Agencies
 
@@ -118,4 +160,5 @@ We offer three tiers for agencies with many perks.
 
 [Learn more and join today...](https://platform.sh/solutions/agency)
 
-If you have any questions, don't hesitate to [contact our sales department](https://platform.sh/contact/).
+If you have any questions,
+don't hesitate to [contact our sales department](https://platform.sh/contact/).

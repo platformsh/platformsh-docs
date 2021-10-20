@@ -190,6 +190,7 @@ highlight=php
 
 ---
 title=Memcached
+file=none
 highlight=python
 ---
 
@@ -201,8 +202,8 @@ from jwcrypto import jws, jwk
 Property    | Description
 ------------|-----------
 `title`     | The title that appears on the tab.
-`highlight` | The language to use for highlighting, as in [code blocks](#code).
-`file`      | Optional. If present, the displayed code comes from the specified local file.
+`highlight` | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
+`file`      | If not set to `none`, the displayed code comes from the specified local file.
 
 ## Reusing content
 

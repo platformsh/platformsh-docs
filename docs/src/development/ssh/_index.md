@@ -144,7 +144,7 @@ To connect using SSH keys, find the details in the management console:
 1. Select a project.
 1. In the **Environment** dropdown, select the environment you want to access.
 1. Click the **SSH** dropdown.
-1. Copy the ssh command for where you want access. (Example: `ssh abcdefghi5k-master-7rqtwti--app@ssh.region.url`)
+1. Copy the ssh command for where you want access. (Example: `ssh abcdefghi5k-main-7rqtwti--app@ssh.region.url`)
 1. Enter the command into a terminal.
 
 Note that if you have just added your SSH key, you need to [redeploy your environment](#redeploy-your-environment) before you can access it using SSH keys. 
@@ -159,10 +159,10 @@ Once you've used either method, you get a response like this:
 
  Welcome to Platform.
 
- This is environment master
+ This is environment main
  of project wk5fqz6qoo123.
 
-web@wk5fqz6qoo123-master--php:~$
+web@wk5fqz6qoo123-main--php:~$
 ```
 
 Now you can interact with the environment as you want.

@@ -17,18 +17,20 @@ The `--project` flag is not needed if you are running the `platform` command fro
 
 1. **Create a backup**
 
-    Before you merge the `dev` feature into `master`, create a [backup](/administration/backup-and-restore.md) of the `master` environment. The backup will preserve both the code and all of its data.
+    Before you merge the `dev` feature into your production environment,
+    create a [backup](/administration/backup-and-restore.md) of the production environment.
+    The backup preserves both the code and all of its data.
 
     ```bash
-    platform backup --project <project id>
+    platform backup --project <PROJECT_ID> -e <ENVIRONMENT_NAME>
     ```
 
-    Select `master` as the environment you want to back up.
+    Make sure to specify your production environment's name.
 
 2. **Merge feature into production**
 
     ```bash
-    git checkout master
+    git checkout main
     git merge dev
     git push
     ```

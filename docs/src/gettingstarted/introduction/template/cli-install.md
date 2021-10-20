@@ -16,7 +16,9 @@ With all of the requirements met, install the CLI to start developing with Platf
 
     In your terminal, run the following command depending on your operating system:
 
+<!-- vale Vale.Spelling = NO -->
 {{< codetabs >}}
+
 ---
 title=Linux/macOS
 file=none
@@ -37,7 +39,9 @@ markdownify=false
 
 curl -f https://platform.sh/cli/installer -o cli-installer.php
 php cli-installer.php
+
 {{< /codetabs >}}
+<!-- vale Vale.Spelling = YES -->
 
 2. **Authenticate and Verify**
 
@@ -48,10 +52,14 @@ php cli-installer.php
    ```
 
    {{< note >}}
-   If you opened your free trial account using another login (i.e. GitHub), you will not be able to authenticate with this command until you setup your account password with Platform.sh in the console.
+
+   If you opened your free trial account using another login (such as GitHub),
+   you can't authenticate with this command until you setup your account password with Platform.sh in the console.
+
    {{< /note >}}
 
-   You should now be able to see a list of your Platform.sh projects, including the template you made in this guide. You can copy its *project ID* hash, and then download a local copy of the repository with the command
+   You should now see a list of your Platform.sh projects, including the template you made in this guide.
+   You can copy its *project ID* hash, and then download a local copy of the repository with this command:
 
    ```bash
    platform get <project ID>
@@ -60,11 +68,13 @@ php cli-installer.php
    With a local copy, you can create branches, commit to them, and push your changes to Platform.sh right away!
 
    ```bash
-   git push platform master
+   git push platform main
    ```
 
-   Take a minute to explore some of the commands available with the CLI by using the command `platform list`.
+   Take a minute to explore some of the commands available with the CLI using the command `platform list`.
 
-That's it! Now that you have the management console set up and the CLI installed on your computer, you're well on your way to exploring all of the ways that Platform.sh can improve your development workflow.
+That's it!
+Now that you have the management console set up and the CLI installed on your computer,
+you're well on your way to exploring all of the ways that Platform.sh can improve your development workflow.
 
 {{< guide-buttons next="I've installed the CLI" >}}
