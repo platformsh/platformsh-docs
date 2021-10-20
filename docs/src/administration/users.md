@@ -14,11 +14,10 @@ Every Platform.sh user has a role that controls their access and permission leve
 
 The following table shows the available project-wide roles.
 
-| User role    | Description |
-| ------------ |-------------|
-|Project Owner | There is only one and they can create multiple Project Admins.  |
-|Project Admin | Users who can configure project settings, add and remove users, administer environment permissions, push code, and execute actions on all project environments.|
-
+| User role     | Description |
+| ------------- |-------------|
+| Project Owner | There is only one and they can create multiple Project Admins.  |
+| Project Admin | Users who can configure project settings, add and remove users, administer environment permissions, push code, and execute actions on all project environments.|
 
 ## Environment types
 
@@ -50,7 +49,6 @@ The following table shows the available roles for environment types.
  | Yes | Yes | Yes | Yes | Yes | Yes |
 
 To customize who can use SSH, [set the access key](/configuration/app/access.md) in your `platform.app.yaml` file.
-
 
 ## Manage users
 
@@ -105,29 +103,31 @@ For SSH access changes to apply after you add a user to a project, you have to r
 To delete a user from a project, follow these steps:
 
 {{< codetabs >}}
+
 ---
 title=In the console
 file=none
 highlight=false
 ---
+
 1. In the console, select the project where you want to delete a user.
 2. Under **Settings**, click **Access**.
 3. Select the user you want to delete and click **Delete**.
 4. Click **Save**.
 
 <--->
+
 ---
 title=Using the CLI
 file=none
 highlight=false
 ---
-Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md) to delete existing users.
 
+Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md) to delete existing users.
 
   ```bash
   platform user:delete user1@example.com
   ```
-
 
 {{< /codetabs >}}
 
@@ -135,30 +135,32 @@ Once you delete a user, they can no longer access the project.
 After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment.
 You can redeploy by clicking **Redeploy** in the console or  using the CLI command `platform redeploy`.
 
-
 ### Change existing permissions for environment types
 
 To change user permissions, follow these steps:
 
 {{< codetabs >}}
+
 ---
 title=In the console
 file=none
 highlight=false
 ---
+
 1. In the console, select the project where you want to change the user permissions.
 2. Under **Settings**, click **Access**.
 3. Select a user and change the permissions.
 4. Click **Save**.
 
 <--->
+
 ---
 title=Using the CLI
 file=none
 highlight=false
 ---
-Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md)to change user permissions.
 
+Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md)to change user permissions.
 
 ```bash
 platform user:update user1@example.com -r production:v,development:c
@@ -169,7 +171,6 @@ After you change a user's role for an environment type, you must trigger a redep
 
 {{< /codetabs >}}
 
-
 ### Transfer project ownership
 
 You can transfer your plan ownership to a different [organization](/administration/organizations.md) anytime.
@@ -179,7 +180,6 @@ You have to be the organization owner, or an organization user with [manage plan
 2. Submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from your organization owner's account to ask for the transfer.
 
 Once the transfer is completed, the new organization can administer all project settings and billing and receives future invoices.
-
 
 ## Troubleshooting
 
