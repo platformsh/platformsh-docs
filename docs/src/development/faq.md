@@ -15,13 +15,12 @@ A project may contain multiple applications that run in their own isolated conta
 Each branch of a project may be deployed in its own environment.
 
 An environment is a standalone copy of your site, complete with code, data, and running services.
-The `master` branch is the production environment,
-while any other branch can be setup as an otherwise identical testing environment.
+Your default branch is the production environment, while any other branch can be setup as an otherwise identical testing environment.
 
 ## How can I cancel my subscription?
 
-If you want to delete your project and cancel your subscription,
-go to your user profile and click on **Edit plan** on the project you want to delete.
+If you want to delete a project and cancel your subscription,
+go to the project settings and click **Edit plan**.
 Then click **Delete project**.
 
 This delete your project and stops invoicing for this project.
@@ -30,16 +29,17 @@ If you have multiple projects, your subscription continues until you don't have 
 ## How do I delete my Platform.sh account?
 
 If you would like to delete your Platform.sh account,
-log in and select **Support** from the dropdown options when you click on your avatar in the management console.
-Create a new ticket and request for your account to be deleted in the form provided there.
-A support agent will receive your request and delete your account shortly thereafter. 
+log in and select **Support** from the dropdown options when you click your name in the management console.
+Create a new ticket, and request for your account to be deleted in the form provided there.
+A support agent receives your request and deletes your account shortly thereafter. 
 
 ## Does branching an environment duplicate services?
 
-Yes! Branching an environment creates an exact copy (snapshot) of the parent environment, containing the files, the database, and code.
+Yes! Branching an environment creates an exact copy (snapshot) of the parent environment,
+containing the files, the database, and code.
 Each environment runs independently of every other,
-so if you have four active environments then you have four copies of your application,
-four copies of your database, four copies of your files, and so on.
+so if you have four active environments,
+you have four copies of your application, four copies of your database, four copies of your files, and so on.
 
 ## Do you have a local writable file-system?
 
@@ -47,8 +47,9 @@ Yes! Platform.sh supports non-ephemeral storage.
 When you configure your application you can tell it what directories you want to be read/write.
 (These are called [mounts](/configuration/app/storage.md).)
 These are mounted on a distributed file system (which is transparent for you).
-When you backup your environment they will be backed up as well.
-When you create a new staging environment, these mounts are cloned with the rest of your data.
+When you backup your environment, they are backed up as well.
+When you create a new staging environment,
+these mounts are cloned with the rest of your data.
 
 ## What happens if I push a local branch to my project?
 
@@ -57,14 +58,16 @@ you create what's called an `inactive environment`, an environment that isn't de
 
 This means there aren't any services attached to this branch.
 
-You are able to convert an `inactive environment` into an `active environment` and vice versa back from the environment configuration page or using the CLI with `platform environment:activate`.
+You are able to convert an `inactive environment` into an `active environment`
+and vice versa back from the environment configuration page
+or using the CLI with `platform environment:activate`.
 
-## How does Master (the live site) scale?
+## How does my live site scale?
 
-The `master` environment gets a pool of resources based on your plan size,
+Your production environment gets a pool of resources based on your plan size,
 which is then split up between the applications and services you have defined.
-(For example, PHP 40%, MySQL 30%, Redis 10%, Solr 20%, etc).
-Increasing your plan size will increase the pool of CPU and RAM that gets split between each container.
+(For example, PHP 40%, MySQL 30%, Redis 10%, Solr 20%).
+Increasing your plan size increases the pool of CPU and RAM that gets split among all of the containers.
 
 All containers on development plans are "small" containers.
 See the [sizing configuration page](/configuration/app/size.md) for more details.
@@ -79,7 +82,7 @@ but almost all of the disk is read-only, with the exception of mounts you have d
 
 No. Changes to the code can only be made through deploying new Git commits.
 That ensures that "hot patches" don't get lost in the net update, that all changes can be audited,
-and that if a security break-in happens the attacker still cannot modify your application code.
+and that if a security break-in happens the attacker still can't modify your application code.
 
 ## What do I see when I push code?
 
@@ -100,16 +103,17 @@ Platform.sh is built on Debian.
 
 No. The Development plan provides all the tools to build your website.
 You can create as many development profiles as you wish for yourself and for your team. 
-However, it doesn't allow for full production-level resources on the `master` branch
+However, it doesn't allow for full production-level resources on the production branch
 and doesn't allow you to configure a custom domain name.
 
 Once your project is complete and ready for production, you can choose another plan to go live.
 These plans are available on the [pricing page](https://platform.sh/pricing).
 
-## I am getting weird errors when I push (something with `paramiko`)
+## I am getting weird errors when I push (something with `paramiko`..)
 
-Please validate the syntax of your YAML file.
-Don't use tabs. If all fails, contact support.
+Validate the syntax of your YAML file.
+Don't use tabs.
+If all else fails, contact support.
 
 ## Which geographic zones does Platform.sh cover?
 
@@ -124,13 +128,14 @@ Dedicated projects can deploy production to any public AWS or Azure region.
 
 'sh' is the short version of shell.
 
-According to Wikipedia™, in computing, a [shell](https://en.wikipedia.org/wiki/Shell_(computing)) is a user interface for access to an operating system's services.
+According to Wikipedia™, in computing
+a [shell](https://en.wikipedia.org/wiki/Shell_(computing)) is a user interface for access to an operating system's services.
 Generally, operating system shells use either a [command-line interface ](https://en.wikipedia.org/wiki/Command-line_interface) (CLI)
 or [graphical user interface](https://en.wikipedia.org/wiki/Graphical_user_interface) (GUI).
 This is exactly what Platform.sh is about:
 Giving developers tools to build, test, deploy, and run great websites!
 
-".sh" is also the TLD for Saint Helena that looks like a lovely island,
+".sh" is also the top-level domain for Saint Helena, which looks like a lovely island
 and whose motto is: "Loyal and Unshakeable", which we also strive to be.
 
 ## IDE Specific Tips
@@ -149,13 +154,16 @@ For more details visit [MAMP Pro documentation page](https://documentation.mamp.
 ```
 
 {{< note >}}
-When you specify your document root, MAMP will follow the symlink and substitute the actual build folder path.
+
+When you specify your document root,
+MAMP follows the symlink and substitutes the actual build folder path.
 This means that when you rebuild your project locally,
-you need to repoint the docroot to the symlink again so that it will refresh the build path.
+you need to point the document root to the symlink again so that it refreshes the build path.
+
 {{< /note >}}
 
 ## Do you support MFA/2FA/TFA authentication?
 
-Yes. We support multi-factor authentication (MFA), and encourage its use.
-To do so, in the management console, go to **My profile** under your name.
+Yes. We support multi-factor authentication (MFA) and encourage its use.
+To use it, in the management console, go to **My profile** under your name.
 Then click **Security**, where you can set up an **MFA Application**.

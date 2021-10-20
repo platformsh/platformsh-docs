@@ -18,7 +18,9 @@ Platform.sh supports the deployment of isolated development environments from yo
     platform branch dev
     ```
 
-    This command will create a new branch `dev` from `master`, as well as a local `dev` branch for you to work on. `dev` will be a clone of `master`, including an exact-copy of all of its data and files.
+    This command creates a new branch `dev` from your default branch
+    as well as a local `dev` branch for you to work on.
+    The `dev` branch is a clone of your default branch, including an exact-copy of all of its data and files.
 
     Make changes to your code, commit them, and push to the Platform.sh remote.
 
@@ -29,25 +31,32 @@ Platform.sh supports the deployment of isolated development environments from yo
     ```
 
     {{< note >}}
-  If you create a new branch with Git (i.e. `git checkout -b new-feature`), when you push its commits to Platform.sh that branch will not automatically build. `new-feature` is an *inactive environment*, because Platform.sh does not assume that every branch should be associated with an active environment, since your plan will limit the number of active environments you are allowed.
 
-  If you want to activate the `new-feature` environment after it has been pushed, you can do so with the command
+    If you create a new branch with Git (`git checkout -b new-feature`),
+    when you push its commits to Platform.sh that branch isn't automatically built.
+    The new branch (`new-feature`) is an *inactive environment*
+    because Platform.sh doesn't assume that every branch should be associated with an active environment,
+    since your plan limits the number of active environments you are allowed.
 
-  ```bash
-  platform environment:activate new-feature
-  ```
+    If you want to activate the `new-feature` environment after it has been pushed, you can do so with the command
+
+    ```bash
+    platform environment:activate new-feature
+    ```
     {{< /note >}}
 
 
 2. **Verify**
 
-    After Platform.sh has built and deployed the environment, verify that it has been activated by visiting its new url:
+    After Platform.sh has built and deployed the environment, verify that it has been activated by visiting its new URL:
 
     ```bash
     platform url
     ```
 
-    The command will provide a list of the generated routes for the application according to how the [routes](/configuration/routes/_index.md) were configured. The structure will be:
+    The command provides a list of the generated routes for the application
+    according to how the [routes](/configuration/routes/_index.md) were configured.
+    The structure is:
 
     ```text
     Enter a number to open a URL

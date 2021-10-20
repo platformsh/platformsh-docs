@@ -138,10 +138,13 @@ The easiest way to load data into a database is to pipe an SQL dump through the 
 platform sql < my_database_backup.sql
 ```
 
-That will run the database backup against the SQL database on Platform.sh. That will work for any SQL file, so the usual caveats about importing an SQL dump apply (e.g., it's best to run against an empty database). As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
+That runs the database backup against the SQL database on Platform.sh.
+That works for any SQL file, so the usual caveats about importing an SQL dump apply
+(for example, it's best to run against an empty database).
+As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-platform sql --relationship database -e master < my_database_backup.sql
+platform sql --relationship database -e <BRANCH_NAME> < my_database_backup.sql
 ```
 
 {{< note >}}
@@ -334,11 +337,13 @@ PostgreSQL 10 and later include an upgrade utility that can convert databases fr
 The utility can't upgrade PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 are not supported. Upgrade straight to version 11 instead.
 
 {{< note theme="warning" >}}
+
 Make sure you first test your migration on a separate branch.
 {{< /note >}}
 
 {{< note theme="warning" >}}
-Be sure to take a backup of your master environment **before** you merge this change.
+
+Be sure to take a backup of your production environment **before** you merge this change.
 {{< /note >}}
 
 Downgrading is not supported. If you want, for whatever reason, to downgrade you should dump to SQL, remove the service, recreate the service, and import your dump.
