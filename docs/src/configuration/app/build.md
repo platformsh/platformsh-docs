@@ -212,6 +212,32 @@ The `post_deploy` hook logs to its own file in addition to the activity log, `/v
 
 The `post_deploy` hook is the only hook provided that runs from the beginning during a redeploy. 
 
+## Manually trigger builds
+
+To increase performance and keep applications the same across environments,
+Platform.sh reuses built applications if its code and build time configuration remain the same.
+
+There may be times where you want to force your application to be built again without changing its code,
+for example to test an issue in a build hook or when external dependencies change.
+To force a rebuild without changing the code,
+use an [environment variable](/development/variables.md#create-environment-variables).
+
+Assuming you want to do this for your `main` environment,
+first create a `REBUILD_COUNTER` environment variable:
+
+```bash
+platform variable:create -l environment -e main --prefix env: --name REBUILD_COUNTER --value 1 --visible-build true
+```
+
+This triggers a build right away to propagate the variable.
+To force a rebuild at any time, update the variable with a new value:
+
+```bash
+platform variable:update -e main --value 2 "env:REBUILD_COUNTER"
+```
+
+This forces your application to be built even if no code has changed.
+
 ## Compile Sass files as part of a build
 
 As a good example of combining dependencies and hooks, you can compile your Sass files.

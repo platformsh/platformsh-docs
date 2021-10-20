@@ -13,22 +13,36 @@ description: |
 The Platform.sh build process is run independently of any given environment.
 That's because the built application image is reusable in multiple environments.
 
-During the build process, each application (defined by a `.platform.app.yaml` file) is built independently, and the output cached based on its Git tree ID and its build time configuration ID (which can include build environment variables). Together these result in a final build slug, a hash that describes that specific build. 
+During the build process, each application (defined by a `.platform.app.yaml` file) is built independently,
+and the output cached based on its Git tree ID and its build time configuration ID (which can include build environment variables).
+Together these result in a final build slug, a hash that describes that specific build. 
 
 As a result, a given application image is only ever rebuilt if something has changed.
-If nothing in Git has changed and if its build time configuration hasn't changes,
+If nothing in Git has changed and the build time configuration hasn't changed,
 then the corresponding application image can be reused.
 
 That offers two key advantages.
 
-1. It improves build performance, as there is no need to rebuild images that are already cached.  That skips downloading dependencies, generating code, compiling to binaries, generating CSS or JS files, etc.
-2. In case of a fast-forward merge from a feature branch to production, the same application image can be reused.  That means what is deployed to production is not "similar to" what was in a testing branch but is the same exact bits on disk.  That is the closest it's possible to get to "staging is the same as production" and provides the best possible guarantee that the production deployment will be successful.
+1. It improves build performance, as there is no need to rebuild images that are already cached.
+   That skips tasks such as downloading dependencies, generating code, compiling to binaries, and generating CSS or JS files.
+2. In case of a fast-forward merge from a feature branch to production, the same application image can be reused.
+   That means what's deployed to production isn't "similar to" what was in a testing branch but is the same exact bits on disk.
+   That's the closest it's possible to get to "staging is the same as production"
+   and provides the best possible guarantee that the production deployment is successful.
 
-In order to achieve that, the build process can depend only on input reflected in the tree ID, that is, the files in Git.  The tree ID does not reflect the Git branch it is on, because a given commit may be on many branches at different times.  For that reason, Platform.sh also does not expose any branch-specific or environment-specific environment variables in the build process.  Using those as inputs to the build process would fail as soon as the application image is reused.
+To override this, you can [trigger builds manually](/configuration/app/build.md#manually-trigger-builds).
 
-That is also why dependencies should be downloaded based on a lock file only, which should be committed to Git.  The lock file guarantees precisely what versions will be downloaded.  Downloading from a definition file (`composer.json`, `Pipfile`, `package.json`, etc.) may result in different dependency versions being installed at different times, and thus unpredictable results.
+In order to achieve the reuse, the build process can depend only on input reflected in the tree ID, meaning the files in Git.
+The tree ID doesn't reflect the Git branch it's on because a given commit may be on many branches at different times.
 
-Similarly, while it is possible to download arbitrary additional files during the build process, we strongly recommend doing so only on pinned, fixed versions of a downloaded file, not a "latest" marker or similar.  Doing so could result in unpredictable build output.
+That's why dependencies should be downloaded based on a lock file only, which should be committed to Git.
+The lock file guarantees precisely what versions are downloaded.
+Downloading from a definition file (`composer.json`, `Pipfile`, `package.json`, etc.)
+may result in different dependency versions being installed at different times, and thus unpredictable results.
+
+Similarly, while it's possible to download arbitrary additional files during the build process,
+we strongly recommend doing so only on pinned, fixed versions of a downloaded file, not a "latest" marker or similar.
+Doing so could result in unpredictable build output.
 
 ## Environment-specific configuration
 
