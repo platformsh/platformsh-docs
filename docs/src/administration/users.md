@@ -154,7 +154,6 @@ and the Contributor role for Development environments:
 
 ```bash
 platform user:update user1@example.com -r production:v,development:c
-
 ```
 
 After you change a user's role for an environment type, you must trigger a redeploy each environment to propagate access changes. You can redeploy using the CLI command `platform redeploy`.
