@@ -7,12 +7,15 @@ description: |
 {{< description >}}
 
 {{< note theme="warning">}}
- Do not add a custom domain to your project until you are fully ready to change your DNS. Until that time, continue working with the Platform.sh generated URLs.  
+ Do not add a custom domain to your project until you are fully ready to change your DNS. Until that time, continue working with the Platform.sh generated URLs.
+
 {{< /note >}}
 
 
 {{< note>}}
-Custom domains can only be added to the `master` environment on production plans (Standard or larger).
+
+Custom domains can only be added to the default environment on production plans (Standard or larger).
+
 {{< /note >}}
 
 
@@ -23,12 +26,13 @@ Custom domains can only be added to the `master` environment on production plans
 * Optional: [use a CDN](domains/cdn/_index.md)
 * Update your [DNS](domains/steps/dns.md)
 
-In this short section we will give you a simple, typical example. See the [Step by step guide](domains/steps/_index.md) for more complex cases.
+This short section gives a basic typical example.
+See the [Step by step guide](domains/steps/_index.md) for more complex cases.
 
 
 ## Set your domain
 
-Now, add a single domain to your Platform.sh project for `mysite.com`.  
+Now, add a single domain to your Platform.sh project for `mysite.com`.
 
 Using the CLI type:
 
@@ -38,9 +42,10 @@ platform domain:add mysite.com
 
 You can also use the management console for that.
 
-As soon as you do, Platform.sh will no longer serve `master-def456-abc123.eu-2.platformsh.site` at all.  Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywhere it appears when generating routes to respond to.
+As soon as you do, Platform.sh will no longer serve `main-def456-abc123.eu-2.platformsh.site` at all.
+Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywhere it appears when generating routes to respond to.
 
-You can still access the original internal domain by running `platform environment:info edge_hostname -e master`.
+You can still access the original internal domain by running `platform environment:info edge_hostname -e <BRANCH_NAME>`.
 
 {{< note >}}
 If you are planning on using subdomains across multiple projects, [the setup will differ slightly](/domains/steps/subdomains.md).
@@ -50,8 +55,8 @@ If you are planning on using subdomains across multiple projects, [the setup wil
 
 On your DNS provider, you would create two CNAMEs:
 
-`mysite.com` should be an ALIAS/CNAME/ANAME  to `master-def456-abc123.eu-2.platformsh.site`.
-`www.mysite.com` should be a CNAME to `master-def456-abc123.eu-2.platformsh.site`.
+`mysite.com` should be an ALIAS/CNAME/ANAME  to `main-def456-abc123.eu-2.platformsh.site`.
+`www.mysite.com` should be a CNAME to `main-def456-abc123.eu-2.platformsh.site`.
 
 {{< note >}}
 Both point to the same name. See the note above regarding how different registrars handle dynamic apex domains.
@@ -59,12 +64,19 @@ Both point to the same name. See the note above regarding how different registra
 
 ## Result
 
-Here's what will now happen under the hood.  Assume for a moment that all caches everywhere are empty.  An incoming request for `mysite.com` will result in the following:
+Here's what will now happen under the hood.
+Assume for a moment that all caches everywhere are empty.
+An incoming request for `mysite.com` will result in the following:
 
-1. Your browser asks the DNS network for `mysite.com`'s DNS A record (the IP address of this host).  It responds with "it's an alias for `www.master-def456-abc123.eu-2.platformsh.site`" (the CNAME) which itself resolves to the A record with IP address `1.2.3.4`  (Or whatever the actual address is). By default DNS requests by browsers are recursive, so there is no performance penalty for using CNAMEs.
+1. Your browser asks the DNS network for `mysite.com`'s DNS A record (the IP address of this host).
+   It responds with "it's an alias for `www.main-def456-abc123.eu-2.platformsh.site`" (the CNAME),
+   which itself resolves to the A record with IP address `1.2.3.4` (or whatever the actual address is).
+   By default DNS requests by browsers are recursive, so there is no performance penalty for using CNAMEs.
 3. Your browser sends a request to `1.2.3.4` for domain `mysite.com`.
 4. Your router responds with an HTTP 301 redirect to `www.mysite.com` (because that's what `routes.yaml` specified).
-5. Your browser looks up `www.mysite.com` and, as above, gets an alias for `www.master-def456-abc123.eu-2.platformsh.site`, which is IP `1.2.3.4`.
-6. Your browser sends a request to `1.2.3.4` for domain `www.mysite.com`.  Your router passes the request through to your application which in turn responds with whatever it's supposed to do.
+5. Your browser looks up `www.mysite.com` and, as above, gets an alias for `www.main-def456-abc123.eu-2.platformsh.site`, which is IP `1.2.3.4`.
+6. Your browser sends a request to `1.2.3.4` for domain `www.mysite.com`.
+   Your router passes the request through to your application which in turn responds with whatever it's supposed to do.
 
-On subsequent requests, your browser will know to simply connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.  The entire process takes only a few milliseconds.
+On subsequent requests, your browser knows to connect to `1.2.3.4` for domain `www.mysite.com` and skip the rest.
+The entire process takes only a few milliseconds.

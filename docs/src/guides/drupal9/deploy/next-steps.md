@@ -9,7 +9,10 @@ description: |
 
 ## Adding modules and themes
 
-3rd party modules and themes can be installed and managed using Composer.  All packages on Drupal.org are registered with Drupal's own Packagist clone.  It should be included in the `composer.json` that comes with Drupal, but in case it isn't you can add the following block to the file:
+3rd party modules and themes can be installed and managed using Composer.
+All packages on Drupal.org are registered with Drupal's own Packagist clone.
+It should be included in the `composer.json` that comes with Drupal,
+but in case it isn't you can add the following block to the file:
 
 ```json
 "repositories": [
@@ -28,27 +31,35 @@ Once that's there, you can install any module or theme with the following comman
 $ composer require drupal/devel
 ```
 
-Replace `devel` with the name of the module or theme you're installing.  Do *not* commit the `web/modules/contrib` directory to Git.  The build process will re-download the correct version for you based on the `composer.json` and `composer.lock` files, which should be committed to Git.
+Replace `devel` with the name of the module or theme you're installing.
+Do *not* commit the `web/modules/contrib` directory to Git.
+The build process re-downloads the correct version for you based on the `composer.json` and `composer.lock` files, which should be committed to Git.
 
 ## Custom modules and themes
 
-Site-specific custom modules and themes can be written directly in the `web/modules/custom` and `web/themes/custom` directories.  They should be committed to Git as normal.
+Site-specific custom modules and themes can be written directly in the `web/modules/custom` and `web/themes/custom` directories.
+They should be committed to Git as normal.
 
 ## Updating Drupal core and modules
 
-Drupal is fully managed via Composer, which means so are updates to Drupal core itself.  Run `composer update` periodically to get new versions of both Drupal core and any modules or themes you have installed via Composer.  Commit the resulting changes to your `composer.lock` file and push again.
+Drupal is fully managed via Composer, which means so are updates to Drupal core itself.
+Run `composer update` periodically to get new versions of both Drupal core
+and any modules or themes you have installed via Composer.
+Commit the resulting changes to your `composer.lock` file and push again.
 
 The [Composer documentation](https://getcomposer.org/doc/) has more information on options to update individual modules or perform other tasks.
 
-Note that updating modules or core through the Drupal UI is not possible, as the file system is read-only.  All updates should be done through composer to update the lock file, and then pushed to Git.
+Note that updating modules or core through the Drupal UI isn't possible, as the file system is read-only.
+All updates should be done through composer to update the lock file, and then pushed to Git.
 
-## Use drush aliases
+## Use Drush aliases
 
 ### Create Drush aliases
 
-[Drush aliases](http://drush.readthedocs.org/en/master/usage/index.html#site-aliases) make it easy to manage your development websites.
+[Drush site aliases](https://www.drush.org/latest/site-aliases/) help you manage your development websites.
 
-The Platform.sh CLI can generate Drush aliases for you automatically when you clone a project using the `platform get <PROJECT_ID>` command.
+The Platform.sh CLI can generate Drush aliases for you automatically
+when you clone a project using the `platform get <PROJECT_ID>` command.
 
 To see the aliases that are created, run `platform drush-aliases` and you should get output similar to that below:
 
@@ -56,14 +67,14 @@ To see the aliases that are created, run `platform drush-aliases` and you should
 $ platform drush-aliases
 Aliases for My Site (tqmd2kvitnoly):
     @my-site._local
-    @my-site.master
+    @my-site.main
     @my-site.staging
     @my-site.sprint1
 ```
 
 ### Recreating Drush aliases
 
-To recreate existing aliases, or after pushing a new branch via git to create the new alias, run:
+To recreate existing aliases or to create a new alias after pushing a new branch via git, run:
 
 ```bash
 platform drush-aliases -r

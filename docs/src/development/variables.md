@@ -95,7 +95,7 @@ Environment variables share all of the [options available for project variables]
 This option is useful for  setting production-only values such as credentials. For example, to set a PayPal secret value for only the `main` branch and have it not be readable elsewhere, run:
 
 ```bash
-$ platform variable:create -e main --name paypal_id --inheritable false --sensitive true
+platform variable:create -e main --name paypal_id --inheritable false --sensitive true
 ```
 
 Other environments don't inherit it and get either a project variable of the same name if it exists or no value at all. 
@@ -108,14 +108,17 @@ To make the new value accessible to those environments, redeploy them manually.
 
 Environment variables are a good place to store values that apply only on Platform.sh and not on your local development environment. This includes API credentials for third-party services, mode settings, and which server (development vs. production) to use. 
 
-One example would be to define a Node.js application's build on a production branch (`NODE_ENV=production`), but use development mode (`NODE_ENV=development`) for each of your development environments. Assuming you have a production environment and then a staging environment with more child environments for development, run the following commands:
+One example would be to define a Node.js application's build on a production branch (`NODE_ENV=production`),
+but use development mode (`NODE_ENV=development`) for each of your development environments.
+Assuming you have a `main` environment for production and then a `staging` environment with more child environments for development,
+run the following commands:
 
 ```bash
 $ platform variable:create -l environment -e main --prefix env: --name NODE_ENV --value production --visible-build true --inheritable false
 $ platform variable:create -l environment -e staging --prefix env: --name NODE_ENV --value development --visible-build true --inheritable true
 ```
 
-Now `NODE_ENV` is `production` on the default branch but `development` on staging and each of its child environments.
+Now `NODE_ENV` is `production` on the default branch but `development` on `staging` and each of its child environments.
 Note that build visible environment variables change the application's build configuration ID:
 value updates trigger a rebuild of the application in the same way that a commit would. 
 
