@@ -1,6 +1,6 @@
 ---
 title: "Troubleshooting"
-description: In this page you'll learn how to troubleshoot problems related to access rights when cloning repositories.
+description: Learn how to troubleshoot problems related to access rights when cloning repositories.
 ---
 
 ## Unable to clone a repository
