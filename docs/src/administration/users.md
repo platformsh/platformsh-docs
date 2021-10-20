@@ -6,7 +6,7 @@ description: |
   Learn how to add and delete users and assign user permissions per environment type.
 ---
 
-In the following page, you'll learn about user roles and environment types, how to add and delete users, and how to assign user permissions per environment type.
+Learn about user roles and environment types, how to add and delete users, and how to assign user permissions per environment type.
 
 ## User roles
 
@@ -42,12 +42,9 @@ The following table shows the available roles for environment types.
 
 | Role | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
 | ---- | ---------------- | --------- | ------------------ | ---------- | --------------- | --------------- |
-| Environment Type Viewer
- | Yes | No |  No |  No |  No |  No |
-| Environment Type Contributor
- | Yes | Yes | Yes | Yes | No | No |
-| Environment Type Admin
- | Yes | Yes | Yes | Yes | Yes | Yes |
+| Viewer | Yes | No |  No |  No |  No |  No |
+| Contributor | Yes | Yes | Yes | Yes | No | No |
+| Admin| Yes | Yes | Yes | Yes | Yes | Yes |
 
 To customize who can use SSH, [set the access key](/configuration/app/access.md) in your `platform.app.yaml` file.
 
@@ -79,14 +76,7 @@ file=none
 highlight=false
 ---
 
-
-* `platform user:add`
-
-<<<<<<< Updated upstream
 Say you want to add `user1@example.com` to the project with a Project Admin role:
-=======
-Say you want to add `user1@example.com` to the project with a **Project Admin** roles:
->>>>>>> Stashed changes
 
 ```bash
 platform user:add user1@example.com -r admin
@@ -121,12 +111,12 @@ title=Using the CLI
 file=none
 highlight=false
 ---
-Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md) to delete existing users.
+To delete existing users:
 
 
-  ```bash
-  platform user:delete user1@example.com
-  ```
+```bash
+platform user:delete user1@example.com
+```
 
 
 {{< /codetabs >}}
@@ -157,8 +147,8 @@ title=Using the CLI
 file=none
 highlight=false
 ---
-Use the [Platform.sh CLI (Command Line Interface)](/development/cli/_index.md)to change user permissions.
-
+Say you want `user1@example.com` to have the Viewer role for Production environments
+and the Contributor role for Development environments:
 
 ```bash
 platform user:update user1@example.com -r production:v,development:c
@@ -183,4 +173,4 @@ Once the transfer is completed, the new organization can administer all project 
 
 ## Troubleshooting
 
-If you have setup an external integration to GitHub, GitLab, or Bitbucket and your users can't clone the project locally, see how to [troubleshoot source integrations](integrations/source/troubleshooting.md).
+If you have setup an external integration to GitHub, GitLab, or Bitbucket and your users can't clone the project locally, see how to [troubleshoot source integrations](/integrations/source/troubleshooting.md).
