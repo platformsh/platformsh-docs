@@ -190,13 +190,13 @@ Finished performing updates.
 
 Your `deploy` hook is tied to commits in the same way as your builds.
 Once a commit has been pushed and a new build image has been created,
-the result of both the `build` and `deploy` hooks are reused until there is a new git commit. 
+the result of both the `build` and `deploy` hooks are reused until there is a new git commit.
 
 Redeploys trigger only the `post_deploy` hook to run again from the beginning,
-and a committed change to the application is needed to rerun the `build` and `deploy` hooks. 
+and a committed change to the application is needed to rerun the `build` and `deploy` hooks.
 
 This means that adding variables, changing access permissions, or even running a `redeploy` using the CLI or management console
-don't cause the `deploy` hook to run again for the current commit. 
+don't cause the `deploy` hook to run again for the current commit.
 
 ### Post-Deploy hook
 
@@ -210,7 +210,7 @@ Often times content imports, some types of cache warmups, and other such tasks a
 
 The `post_deploy` hook logs to its own file in addition to the activity log, `/var/log/post-deploy.log`.
 
-The `post_deploy` hook is the only hook provided that runs from the beginning during a redeploy. 
+The `post_deploy` hook is the only hook provided that runs from the beginning during a redeploy.
 
 ## Manually trigger builds
 
@@ -223,17 +223,17 @@ To force a rebuild without changing the code,
 use an [environment variable](/development/variables.md#create-environment-variables).
 
 Assuming you want to do this for your `main` environment,
-first create a `REBUILD_COUNTER` environment variable:
+first create a `REBUILD_DATE` environment variable:
 
 ```bash
-platform variable:create -l environment -e main --prefix env: --name REBUILD_COUNTER --value 1 --visible-build true
+platform variable:create -l environment -e main --prefix env: --name REBUILD_DATE --value "$(date)" --visible-build true
 ```
 
 This triggers a build right away to propagate the variable.
 To force a rebuild at any time, update the variable with a new value:
 
 ```bash
-platform variable:update -e main --value 2 "env:REBUILD_COUNTER"
+platform variable:update -e main --value "$(date)" "env:REBUILD_DATE"
 ```
 
 This forces your application to be built even if no code has changed.
