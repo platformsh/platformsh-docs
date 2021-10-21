@@ -6,7 +6,7 @@ description: A short description (up to ~160 characters) of the article that sho
 
 <!-- 
 When to use
-  To document all of the details about a subject.
+  To document details about a subject without describing its purpose.
   For people who already understand the general concept and just need to refer to some details.
   Only for information, not for usage instructions or explanations.
   https://diataxis.fr/reference/
