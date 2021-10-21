@@ -54,6 +54,7 @@ To customize who can use SSH, [set the access key](/configuration/app/access.md)
 If you are an organization owner, or an organization user with [manage plan](/administration/organizations.md#organization-permissions) or [manage users](/administration/organizations.md#organization-permissions) permissions wanting to add a user to a project or an environment, follow these steps:
 
 {{< codetabs >}}
+
 ---
 title=In the console
 file=none
@@ -62,10 +63,9 @@ highlight=false
 
 1. In the console, select the project where you want to add a new user.
 2. Under **Settings**, click **Access**.
-3. Click **+ Add**
+3. Click **+ Add**.
 4. Add the user's details and choose their permissions.
 5. Click **Save**.
-
 
 <--->
 ---
@@ -114,11 +114,9 @@ highlight=false
 ---
 To delete existing users:
 
-
 ```bash
 platform user:delete user1@example.com
 ```
-
 {{< /codetabs >}}
 
 Once you delete a user, they can no longer access the project.
