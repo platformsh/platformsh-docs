@@ -10,7 +10,7 @@ Due to New Relic [dropping support for Zend Thread Safe (ZTS) versions](https://
 
 ## Get your license key
 
-Sign up at https://newrelic.com and get your license key.
+Sign up at https://newrelic.com and get your [license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#ingest-license-key).
 
 ## Add your license key
 
