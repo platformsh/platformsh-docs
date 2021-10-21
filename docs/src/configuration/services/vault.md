@@ -303,30 +303,7 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-```json
-"vault_service" : [
-    {
-        "ip" : "169.254.107.96",
-        "username" : "",
-        "service" : "vault",
-        "public" : false,
-        "scheme" : "http",
-        "query" : {
-            "is_master" : true
-        },
-        "type" : "vault-kms:1.6",
-        "password" : "b.AAAAAQKhMVMBtu2f1HwLdCCA_13hXizMFKoPFYNSyoTlXMUbmI6brKbzp6trV2uF9QHeEplDBTscX7f_Hp2pdgZgvMhacH-6JB8vuKttIRSOJstEC9bBY7B68Pdflon_gHyVh3CHuAnRP20EonqgsgSsrCGzoy7gvtXt5TA3rMNeqTMSI7Cvq3S84bpGjNjZ5lPGmugzgmQyW0KCdTm2_qwvQDgQDjggEjs6yFlGR-PFG1z7cQtFdyOaK_H1Gg",
-        "hostname" : "no6z32qomkw7ujl5l5si6fkivi.vault.service._.eu-3.platformsh.site",
-        "cluster" : "7trekjlmvvh34-main-bvxea6i",
-        "path" : "/",
-        "host_mapped" : false,
-        "host" : "vault_service.internal",
-        "port" : 8200,
-        "rel" : "demo-app",
-        "fragment" : ""
-    }
-]
-```
+{{< relationship "vault" >}}
 
 ## Policies
 

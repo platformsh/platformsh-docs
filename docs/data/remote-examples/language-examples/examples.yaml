@@ -59,3 +59,4 @@ paths:
         - rabbitmq
         - redis
         - solr
+        - vault
