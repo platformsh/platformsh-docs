@@ -86,8 +86,6 @@ The user has to create an account before they can contribute to the project.
 Once you add a user to a project, they receive an email with instructions.
 For SSH access changes to apply after you add a user to a project, you have to redeploy each environment by either clicking **Redeploy** in the console or running `platform redeploy`.
 
-## Manage existing users
-
 ### Delete a user from a project
 
 To delete a user from a project, follow these steps:
@@ -165,7 +163,7 @@ After you change a user's role for an environment type, you must trigger a redep
 You can transfer your plan ownership to a different [organization](/administration/organizations.md) anytime.
 You have to be the organization owner, or an organization user with [manage plan](/administration/organizations.md#organization-permissions) or [manage users](/administration/organizations.md#organization-permissions) permissions.
 
-1. Invite the new organization owner as a Project Admin.
+1. Make the new organization owner a Project Admin.
 2. Submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from your organization owner's account to ask for the transfer.
 
 Once the transfer is completed, the new organization can administer all project settings and billing and receives future invoices.
