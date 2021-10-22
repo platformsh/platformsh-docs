@@ -8,7 +8,7 @@ description: |
 
 {{< description >}}
 
-Each Platform.sh project is provisioned as a SendGrid sub-account. These SendGrid sub-accounts are capped at 12k emails per month.
+Each Platform.sh project is provisioned as a SendGrid sub-account.
 You can use `/usr/sbin/sendmail` on your application container to send emails with the assigned SendGrid sub-account.
 Alternatively, you can use the `PLATFORM_SMTP_HOST` environment variable to use in your SMTP configuration."
 
