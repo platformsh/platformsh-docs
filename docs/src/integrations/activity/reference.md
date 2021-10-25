@@ -86,7 +86,6 @@ Its value is one of:
 * `integration.health.pagerduty`: Health event sent to PagerDuty.
 * `integration.health.slack`: Health event sent to slack.
 * `integration.webhook`: Webhook triggered.
-* `integration.hipchat`: Event sent to HipChat.
 * `integration.script`: An activity script has run.
 
 ### `environments`
