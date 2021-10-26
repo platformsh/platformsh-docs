@@ -11,6 +11,14 @@ For style and formatting guidance, see:
 * [Content style guide](contributing/content-style.md)
 * [Markup reference](contributing/markup-format.md)
 
+
+## Table of contents
+
+- [Adding pages](#adding-pages)
+  - [Adding security reports](#adding-security-reports)
+- [Commit messages](#commit-messages)
+- [Review process](#review-process)
+
 ## Adding pages
 
 To get a head start on your page, copy one of the [templates](/docs/templates).
@@ -73,6 +81,30 @@ To add a security transparency report for a new year (after receiving the data):
    Save the file as `<YEAR>_platformsh_transparency_report.pdf` (replacing `<YEAR>` with the current year).
 
 The report text is in `docs/data/transparency-reports.yaml`.
+
+## Commit messages
+
+To help understand why changes happened and not repeat work already done,
+we want to keep a meaningful history of changes to the project.
+This means we ask you to use meaningful commit messages (not just `Updated file.md`).
+
+The pattern we use is:
+
+```txt
+:GITMOJI: Verb + action
+
+Optional extra context
+```
+
+Where `GITMOJI` is the [gitmoji](https://gitmoji.dev/) that corresponds to what the change is. For example:
+
+```txt
+:sparkles: Add documentation for organizations
+
+Added new pages to describe how organizations at Platform.sh work.
+```
+
+To help with the process, you can install the [gitmoji CLI](https://github.com/carloscuesta/gitmoji-cli).
 
 ## Review process
 
