@@ -12,12 +12,8 @@ Learn about user roles and environment types, how to add and delete users, and h
 
 Every Platform.sh user has a role that controls their access and permission levels.
 
-The following table shows the available project-wide roles.
-
-| User role     | Description |
-| ------------- |-------------|
-| Project Owner | There is only one and they can create multiple Project Admins.  |
-| Project Admin | Users who can configure project settings, add and remove users, administer environment permissions, push code, and execute actions on all project environments.|
+* Project Admin: Users who can configure project settings, add and remove users, administer environment permissions, push code, and execute actions on all project environments.
+* Project Viewer: Any user with access to environment types automatically gets this role.
 
 ## Environment types
 
@@ -159,10 +155,10 @@ After you change a user's role for an environment type, you must trigger a redep
 ### Transfer project ownership
 
 You can transfer your plan ownership to a different [organization](/administration/organizations.md) anytime.
-You have to be the organization owner, or an organization user with [manage plan](/administration/organizations.md#organization-permissions) or [manage users](/administration/organizations.md#organization-permissions) permissions.
+You have to be an organization owner or an organization user with [manage plan](/administration/organizations.md#organization-permissions) permissions.
 
-1. Make the new organization owner a Project Admin.
-2. Submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from your organization owner's account to ask for the transfer.
+1. Make the new organization owner a Project Admin for the project you want to transfer.
+2. Submit a [support ticket](https://console.platform.sh/-/users/~/tickets) from your organization account to ask for the transfer.
 
 Once the transfer is completed, the new organization can administer all project settings and billing and receives future invoices.
 
