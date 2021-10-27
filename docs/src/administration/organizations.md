@@ -37,17 +37,16 @@ Available commands (get the full list with 'platform list organization')
 
 ```
 Available commands for the "organization" namespace:
-  organization:billing:address                                  View or change an organization's billing address
-  organization:billing:profile                                  View or change an organization's billing profile
-  organization:create                                           Create a new organization
-  organization:info                                             View or change organization details
-  organization:list (orgs, organizations)                       List organizations
-  organization:subscription:list (organization:subscriptions)   List subscriptions within an organization
-  organization:user:add                                         Invite a user to an organization
-  organization:user:delete                                      Remove a user from an organization
-  organization:user:get                                         View an organization user
-  organization:user:list (organization:users)                   List organization users
-  organization:user:update                                      Update an organization user
+      organization:info              View or change organization details
+      organization:list              List organizations
+      organization:subscription:list List subscriptions within an organization
+      organization:billing:address   View or change an organization's billing address
+      organization:billing:profile   View or change an organization's billing profile
+      organization:user:add          Invite a user to an organization
+      organization:user:delete       Remove a user from an organization
+      organization:user:get          View an organization user
+      organization:user:list         List organization users
+      organization:user:update       Update an organization user
 ```
 
 For example, the following command would invite `alice@example.com` with the **Manage users**, **Billing**, **Plans** and **Projects create** permissions to the `acme-corp` organization.
