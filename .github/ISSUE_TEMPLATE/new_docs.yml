@@ -1,5 +1,5 @@
 name: New docs
-about: For adding documentation that doesn't yet exist, such as for a new feature.
+description: For adding documentation that doesn't yet exist, such as for a new feature.
 title: ":sparkles: "
 labels:
   - ungroomed
