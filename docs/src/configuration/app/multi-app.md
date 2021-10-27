@@ -144,6 +144,35 @@ The `admin` instance will also be fixed at an `S` size container, while `main` w
 The primary use case for this configuration is defining multiple applications with different configuration off of the same source code
 or when the source code is downloaded during the build phase.
 
+#### Multiple applications based on the same source code
+
+Sometimes you want to use the same codebase but run it in multiple ways (with different build parameters or a different start command for example). Multiple applications can designate the same source path as follows:
+
+```yaml
+# .platform/applications.yaml
+-   name: main
+    type: golang:1.14
+    source:
+        root: "/"
+    hooks:
+        build: |
+            go build -o bin/app
+    web:
+        commands:
+            start: ./bin/app
+-   name: api
+    type: golang:1.14
+    source:
+        root: "/"
+    hooks:
+        build: |
+            go build -o bin/app
+    web:
+        commands:
+            start: ./bin/app --api
+```
+Here, the common code is in the root of the repository. Each application will have its own build hook and run its own build process. Unlike Worker instances, there is no inheritance here and you have to explicitly specify the configuration for each. Also in this case a change to the source code will provoke a build of each of the applications.
+
 ## Submodules
 
 Platform.sh supports Git submodules, so each application can be in a separate repository.
