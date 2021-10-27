@@ -6,7 +6,7 @@ description: A short description (up to ~160 characters) of the article that sho
 
 <!-- 
 When to use
-  When there is a single outcome a user wants to archieve.
+  When there is a single outcome a user wants to achieve.
   When you want to explain how to get to the outcome in ordered steps.
   https://diataxis.fr/how-to-guides/ 
 
