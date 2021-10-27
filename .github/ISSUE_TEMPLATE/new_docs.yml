@@ -1,6 +1,5 @@
 name: New docs
 description: For adding documentation that doesn't yet exist, such as for a new feature.
-title: ":sparkles: "
 labels:
   - ungroomed
 body:
