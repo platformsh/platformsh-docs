@@ -20,6 +20,7 @@ Fastly
 Galera
 Gemfile
 geocod[er|ing]
+gitmoji
 glibc
 Goldmark
 Gradle
