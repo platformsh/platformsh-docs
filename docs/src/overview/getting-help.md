@@ -1,25 +1,52 @@
 ---
-title: "Getting help"
+title: "Contact Customer Support"
 weight: 4
 toc: false
 description: |
-  If you're facing any issue with Platform.sh, you can submit a support ticket from the Platform.sh management console.
+  If you're experiencing a problem with Platform.sh, you can submit a ticket to Customer Support.
 ---
 
 {{< description >}}
 
-![Support Ticket](/images/management-console/support-ticket-pulldown.png "0.15")
 
-You will be redirected to a list of your support tickets, and you can click to open a 'New ticket' at the top of the page.
+## Create a Customer Support ticket
 
-![Empty Support Ticket](/images/management-console/support-empty.png "0.5")
+To create a support ticket from the console, follow these steps:
 
-File your issues in the fields for the new ticket and Submit.
+Before you begin
 
-![New Support Ticket](/images/management-console/support-tickets-new.png "0.5")
+* You need to have a Platform.sh account.
+* You must be logged into your account.
 
-You can also open a support ticket directly from your [user account](https://accounts.platform.sh/support).
+Steps
 
-You are more than welcome to hop-on to our [public Slack chat channel](https://chat.platform.sh/).
+1. Log into Platform.sh.
+2. In the console, click your **user profile** > **Support**.
+Now you are on the **Support tickets** page.
+Here you can see the list of issues created over time by users in your organization.
+![List of support tickets](/images/management-console/support-tickets-new.png "0.5")
 
-And you are [always invited to drop us a line at our contact form](https://platform.sh/contact).
+If the page shows no tickets, it means you're the first user in your organization creating a ticket.
+![List of support tickets](/images/management-console/support-tickets-new.png "0.5")
+
+3. Click **+ New ticket**.
+4. Fill in the ticket fields and click **Submit**.
+
+Note that once you submit the ticket you won't be able to modify or delete the submission.
+
+## Other ways to get support
+
+### Slack
+
+Our customers and engineers hang out on our [public Slack channel](https://chat.platform.sh/) where you can get tips on using Platform.sh.
+Mention `@platform. to grab our team's attention.
+
+### Community
+
+The [Platform.sh Community Site](https://community.platform.sh/) contains plenty of how-to guides.
+
+### Contact us
+
+Get in touch with our [Sales and Support teams](https://platform.sh/contact/).
+
+---
