@@ -1,15 +1,15 @@
 ---
-title: "Contact Customer Support"
+title: " Get support"
 weight: 4
 toc: false
 description: |
-  If you're experiencing a problem with Platform.sh, you can submit a ticket to our Customer Support team.
+  If you're experiencing a problem with Platform.sh, you can submit a support ticket, join the Slack channel, or checkout the Platform.sh Community.
 ---
 
 {{< description >}}
 
 
-## Create a Customer Support ticket
+## Create a support ticket
 
 To create a ticket from the console, follow these steps:
 
@@ -20,7 +20,7 @@ Before you begin
 
 Steps
 
-1. Log into Platform.sh.
+1. [Log in to Platform.sh](https://auth.api.platform.sh/)
 2. In the console, click your **user profile** > **Support**.
 
 Now you are on the **Support tickets** page.
@@ -37,8 +37,8 @@ If you have any additional information you can add it to the ticket as a reply.
 
 ### Slack
 
-Our customers and engineers hang out on our [public Slack channel](https://chat.platform.sh/) where you can get tips on using Platform.sh.
-Mention `@platform` to grab our team's attention.
+Hang out with customers and engineers on the [public Slack channel](https://chat.platform.sh/)
+Mention `@platform` to get the team attention.
 
 ### Community
 
@@ -46,6 +46,6 @@ The [Platform.sh Community Site](https://community.platform.sh/) contains plenty
 
 ### Contact us
 
-Get in touch with our [Sales and Support teams](https://platform.sh/contact/).
+Get in touch with the [Sales and Support teams](https://platform.sh/contact/).
 
 ---
