@@ -79,7 +79,7 @@ highlight=false
 Run the following command (replacing `<PROJECT_ID>` and `<BRANCH_ID>` with the correct values):
 
 ```bash
-platform repdeploy -p <PROJECT_ID> -e <BRANCH_ID>
+platform redeploy -p <PROJECT_ID> -e <BRANCH_ID>
 ```
 
 {{< /codetabs >}}
