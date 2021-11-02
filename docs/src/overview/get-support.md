@@ -16,7 +16,7 @@ description: |
 3. Click **+ New ticket**.
 4. Fill in the ticket fields and click **Submit**.
 
-In the future, you can [access the ticket list](https://console.platform.sh/-/users/~/tickets) or [open a ticket directly](https://console.platform.sh/-/users/~/tickets/open) using the shortcuts.
+Or use these shortcuts to [access all support tickets](https://console.platform.sh/-/users/~/tickets) or [open a new ticket](https://console.platform.sh/-/users/~/tickets/open).
 
 Once you submit a ticket, you can see it on the list alongside tickets created by users in your organization over time.
 Note that once you submit the ticket you won't be able to modify or delete the submission.
