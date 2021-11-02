@@ -30,7 +30,7 @@ If you want to chat with engineers and other customers you can join the [public 
 
 ## Community
 
-In the [Platform.sh Community Site](https://community.platform.sh/) you can find plenty of how-to guides that contains suggestions on how to make the most out of Platform.
+The [Platform.sh Community site](https://community.platform.sh/) has how-to guides with suggestions on how to get the most out of Platform.sh.
 
 
 ## Contact Sales
