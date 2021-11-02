@@ -11,6 +11,8 @@ description: |
 
 ## Create a support ticket
 
+Create a support ticket when you're experiencing issues related to the proper functioning of the Platform.sh infrastructure, application container software, build processes, possible bugs and general questions.
+
 1. [Open the Management Console](https://console.platform.sh/)
 2. Select **User menu** (your name) > **Support**.
 3. Click **+ New ticket**.
@@ -26,7 +28,7 @@ If you have any additional information, you can select the submitted ticket and 
 
 ## Slack
 
-If you want to chat with engineers and other customers you can join the [public Slack channel](https://chat.platform.sh/).
+If you want to talk to with engineers and other customers you can join the [public Slack channel](https://chat.platform.sh/).
 
 ## Community
 
@@ -36,4 +38,3 @@ The [Platform.sh Community site](https://community.platform.sh/) has how-to guid
 ## Contact Sales
 
 If you have questions about pricing or need help figuring out if Platform.sh is the right solution for your team, get in touch with [Sales](https://platform.sh/contact/).
-
