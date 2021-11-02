@@ -28,7 +28,7 @@ If you have any additional information, you can select the submitted ticket and 
 
 ## Slack
 
-If you want to talk to with engineers and other customers you can join the [public Slack channel](https://chat.platform.sh/).
+To talk with engineers and other customers, join the [public Slack channel](https://chat.platform.sh/).
 
 ## Community
 
