@@ -37,4 +37,3 @@ In the [Platform.sh Community Site](https://community.platform.sh/) you can find
 
 If you have questions about pricing or need help figuring out if Platform.sh is the right solution for your team, get in touch with [Sales](https://platform.sh/contact/).
 
----
