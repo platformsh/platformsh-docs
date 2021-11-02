@@ -35,6 +35,6 @@ In the [Platform.sh Community Site](https://community.platform.sh/) you can find
 
 ## Contact Sales
 
-If you have questions with regards pricing or if you need help figuring out if Platform.sh is the right solution for your team, get in touch with [Sales](https://platform.sh/contact/).
+If you have questions about pricing or need help figuring out if Platform.sh is the right solution for your team, get in touch with [Sales](https://platform.sh/contact/).
 
 ---
