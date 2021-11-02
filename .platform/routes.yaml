@@ -73,6 +73,10 @@ https://{default}/:
       "/integrations/profiling/new-relic/php.html": { "to": "/integrations/observability/new-relic/php.html", "code": 301, "prefix": false }
       "/integrations/profiling/tideways.html": { "to": "/integrations/observability/tideways.html", "code": 301, "prefix": false }
 
+      # PR 1963
+      "/overview/getting-help.html": { "to": "/overview/get-support.html", "code": 301, "prefix": false }
+
+
 "https://search.{default}/":
     type: upstream
     upstream: "search:http"
