@@ -28,7 +28,7 @@ If you have any additional information, you can select the submitted ticket and 
 
 ## Slack
 
-To talk with engineers and other customers, join the [public Slack channel](https://chat.platform.sh/).
+To talk about app development or framework-related questions, join other customers and engineers in the  [public Slack channel](https://chat.platform.sh/).
 
 ## Community
 
