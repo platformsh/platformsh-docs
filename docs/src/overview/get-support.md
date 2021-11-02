@@ -18,7 +18,7 @@ description: |
 
 In the future, you can [access the ticket list](https://console.platform.sh/-/users/~/tickets) or [open a ticket directly](https://console.platform.sh/-/users/~/tickets/open) using the shortcuts.
 
-Once you submit a ticket you can see it on the ticket list alongside tickets created by users in your organization over time.
+Once you submit a ticket, you can see it on the list alongside tickets created by users in your organization over time.
 Note that once you submit the ticket you won't be able to modify or delete the submission.
 If you have any additional information, you can select the submitted ticket and write a message.
 
