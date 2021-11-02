@@ -3,7 +3,7 @@ title: " Get support"
 weight: 4
 toc: false
 description: |
-  Find out how to get help If you're experiencing an issue with Platform.sh.
+  Find out how to get help if you're experiencing issues with Platform.sh.
 ---
 
 {{< description >}}
