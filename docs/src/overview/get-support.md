@@ -11,7 +11,7 @@ description: |
 
 ## Create a support ticket
 
-Create a support ticket when you're experiencing issues related to the proper functioning of the Platform.sh infrastructure, application container software, build processes, possible bugs and general questions.
+Create a support ticket when you're experiencing issues related to the proper functioning of the Platform.sh infrastructure, application container software, build processes, possible bugs or if you have general questions.
 
 1. [Open the Management Console](https://console.platform.sh/)
 2. Select **User menu** (your name) > **Support**.
