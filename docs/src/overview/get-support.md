@@ -3,7 +3,7 @@ title: " Get support"
 weight: 4
 toc: false
 description: |
-  If you're experiencing a problem with Platform.sh, you can submit a support ticket, join the Slack channel, or checkout the Platform.sh Community.
+  Find out how to get help If you're experiencing an issue with Platform.sh.
 ---
 
 {{< description >}}
@@ -11,41 +11,26 @@ description: |
 
 ## Create a support ticket
 
-To create a ticket from the console, follow these steps:
-
-Before you begin
-
-* You need to have a Platform.sh account.
-* You must be logged into your account.
-
-Steps
-
-1. [Log in to Platform.sh](https://auth.api.platform.sh/)
-2. In the console, click your **user profile** > **Support**.
-
-Now you are on the **Support tickets** page.
-Here you can see the list of tickets created by users in your organization over time.
-If the page has no tickets, it means you're the first user in your organization creating one.
-
+1. [Open the Management Console](https://console.platform.sh/)
+2. Select **User menu** (your name) > **Support**.
 3. Click **+ New ticket**.
 4. Fill in the ticket fields and click **Submit**.
 
+Once you submit a ticket you can see it on the ticket list alongside tickets created by users in your organization over time.
 Note that once you submit the ticket you won't be able to modify or delete the submission.
-If you have any additional information you can add it to the ticket as a reply.
+If you have any additional information, you can select the submitted ticket and write a message.
 
-## Other ways to get support
+## Slack
 
-### Slack
+If you want to chat with engineers and other customers you can join the [public Slack channel](https://chat.platform.sh/).
 
-Hang out with customers and engineers on the [public Slack channel](https://chat.platform.sh/)
-Mention `@platform` to get the team attention.
+## Community
 
-### Community
+In the [Platform.sh Community Site](https://community.platform.sh/) you can find plenty of how-to guides that contains suggestions on how to make the most out of Platform.
 
-The [Platform.sh Community Site](https://community.platform.sh/) contains plenty of how-to guides and a Q&A section.
 
-### Contact us
+## Contact Sales
 
-Get in touch with the [Sales and Support teams](https://platform.sh/contact/).
+If you have questions with regards pricing or if you need help figuring out if Platform.sh is the right solution for your team, get in touch with [Sales](https://platform.sh/contact/).
 
 ---
