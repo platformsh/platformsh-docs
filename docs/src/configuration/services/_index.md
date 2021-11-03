@@ -62,7 +62,11 @@ The `disk` attribute is the size of the persistent disk (in MB) allocated to the
 For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between your application (as defined in `.platform.app.yaml`) and each of its services.  For memory-resident-only services such as `memcache` or `redis`, the `disk` key is not available and will generate an error if present.
 
 {{< note >}}
-Currently we do not support downsizing the persistent disk of a service in [eu.platform.sh](/guides/general/region-migration.md) and [us.platform.sh](/guides/general/region-migration.md) regions.
+
+Downsizing a service's persistent disk isn't currently supported
+in the [`eu.platform.sh`](/guides/general/region-migration.md)
+and [`us.platform.sh`](/guides/general/region-migration.md) regions.
+
 {{< /note >}}
 
 ### Size
