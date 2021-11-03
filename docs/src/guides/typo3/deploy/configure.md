@@ -15,7 +15,7 @@ description: |
 
 ## Service configuration: `services.yaml`
 
-{{% guides/config-service %}}
+{{% guides/config-service framework=TYPO3 %}}
 
 We recommend the latest [MariaDB](/configuration/services/mysql.md) version for TYPO3,
 although you can also use Oracle MySQL or [PostgreSQL](/configuration/services/postgresql.md) if you prefer.
