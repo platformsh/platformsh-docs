@@ -15,7 +15,7 @@ description: |
 
 ## Service configuration: `services.yaml`
 
-{{% guides/config-service %}}
+{{% guides/config-service framework=Drupal %}}
 
 We recommend the latest [MariaDB](/configuration/services/mysql.md) version for Drupal,
 although you can also use Oracle MySQL or [PostgreSQL](/configuration/services/postgresql.md) if you prefer.
