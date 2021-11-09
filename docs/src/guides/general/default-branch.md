@@ -2,10 +2,11 @@
 title: "Renaming the default branch"
 sidebarTitle: "Rename the default branch"
 description: |
-    Platform.sh considers `master` to be the default branch for all projects, making Master the default production environment. Soon you will be able to select your default branch during the project creation steps, but until that time this guide will show you how to manually make the switch yourself. 
+    See how to change the name of your default/production branch after creating a project. 
 ---
 
-{{< description >}}
+You can set the name of your default/production branch when creating a project.
+To change it after project creation, follow the steps below.
 
 You can complete some of these steps through the management console,
 but since all can be completed with the CLI those commands alone are listed.
