@@ -55,8 +55,9 @@ If you experience authentication issues or want to force a login, run the comman
 
 ## 3. Use
 
-You can now run actions on your projects such as branching and merging
-and also simulate a local build of your codebase as if you were pushing a change to Platform.sh.
+Now you can run actions on your projects such as branching and merging.
+You can also simulate a local build of your codebase as if you were pushing a change to Platform.sh,
+including your services and data.
 
 To see all available commands, run `platform list`.
 To get more information on a particular command, preface that command with `help`:
