@@ -74,7 +74,7 @@ If any are flagged, correct the error and try again.
 
 You need to have a dump or backup of the database you wish to start from.
 The process is essentially the same for each type of persistent data service.
-See the [MySQL](/configuration/services/mysql.md), [PostgreSQL](/configuration/services/postgresql.md),
+See the [MySQL](/configuration/services/mysql/_index.md), [PostgreSQL](/configuration/services/postgresql.md),
 and [MongoDB](/configuration/services/mongodb.md) documentation as appropriate.
 
 ## Import your files

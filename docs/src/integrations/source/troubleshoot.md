@@ -1,5 +1,6 @@
 ---
-title: "Troubleshooting"
+title: Troubleshoot source integrations
+sidebarTitle: Troubleshoot
 description: Learn how to troubleshoot problems related to access rights when cloning repositories.
 ---
 

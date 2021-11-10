@@ -188,7 +188,7 @@ class BucketManagerProducer {
 
 ### MySQL
 
-[MySQL](/configuration/services/mysql.md) is an open-source relational database technology, and Jakarta EE supports a robust integration with it: [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
+[MySQL](/configuration/services/mysql/_index.md) is an open-source relational database technology, and Jakarta EE supports a robust integration with it: [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
 
 The first step is to choose the database that you would like to use in your project. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java) and the Java dependencies. Then determine the DataSource client programmatically:
 
@@ -248,7 +248,7 @@ You can use the same MySQL driver for MariaDB as well if you wish to do so.
 
 ### MariaDB
 
-[MariaDB](/configuration/services/mysql.md) is an open-source relational database technology, and Jakarta EE supports a robust integration with it: [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
+[MariaDB](/configuration/services/mysql/_index.md) is an open-source relational database technology, and Jakarta EE supports a robust integration with it: [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
 
 The first step is to choose the database that you would like to use in your project. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client) and the Java dependencies. Then determine the DataSource client programmatically:
 

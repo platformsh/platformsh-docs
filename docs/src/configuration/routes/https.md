@@ -200,26 +200,23 @@ This tool assists in finding out where your domain is pointing to and provides s
 It also assists when a CDN (Fastly, Cloudflare, ...) is used.
 It's good practice to check both the apex and the `www` domain to ensure that both point to the cluster.
 
-## Let's Encrypt limits, errors, and branch names
+### Error provisioning certificates
 
 You may encounter Let's Encrypt certificates failing to provision after the build hook has completed:
 
 ```bash
 Provisioning certificates
-  Validating 2 new domains
+  Validating 1 new domain
   E: Error provisioning the new certificate, will retry in the background.
-  (Next refresh will be at 2020-02-13 14:29:22.860563+00:00.)
+  (Next refresh will be at 2022-02-13 14:29:22.860563+00:00.)
   Environment certificates
-W: Missing certificate for domain www.<PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
-W: Missing certificate for domain <PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
+W: Missing certificate for domain a-new-and-really-awesome-feature-abc1234-defghijk56789.eu3.platformsh.site
 ```
+The renewal may fail because of the 64 character limit Let's Encrypt places on URLs.
+If you have a branch with a long name, the environment URL is over this limit and the certificate is rejected.
+Shortening the branch name to fewer than 20 characters should solve the issue.
 
-One reason that this can happen has to do with the limits of Let's Encrypt itself,
-which caps off at 64 characters for URLs.
-If your TLS certificates aren't being provisioned,
-it's possible that the names of your branches are too long and the environment's generated URL goes over that limit.
-
-At this time, generated URLs have the following pattern:
+Generated URLs have the following pattern:
 
 ```
 <PLATFORM_ENVIRONMENT>-<PLATFORM_PROJECT>.<REGION>.platformsh.site
@@ -231,9 +228,10 @@ At this time, generated URLs have the following pattern:
 * `platformsh.site` = 15 characters
 * extra characters (`.` & `-`) = 4 characters
 
-This breakdown leaves you with 21-23 characters to work with naming your branches (`PLATFORM_BRANCH`) without going over the 64 character limit, dependent on the region.
-Since this pattern for generated URLs will remain similar but could change slightly over time,
-it's recommended to use branch names with a maximum length between 15 and 20 characters.
+This leaves you with 21--23 characters for your branch name (`PLATFORM_BRANCH`) without going over the 64 character limit,
+depending on the region.
+Since this pattern for generated URLs should remain similar even if it may change slightly,
+your branch names should be no more than 20 characters.
 
 ### DNS Challenge
 

@@ -1,422 +1,183 @@
 ---
-title: "Troubleshooting"
+title: Troubleshoot development
+sidebarTitle: Troubleshoot
 weight: 16
+description: See some common solutions to issues you might run into in development.
 ---
 
-## Force a redeploy
+## Common tools
 
-There are times where you might want to trigger a redeployment of your application. 
+### Force a redeploy
 
-You can redeploy each environment in the management console by clicking the "Redeploy" button on the top right corner.
+There are times where you might want to trigger a redeployment of your application,
+such as to update environment access for a new developer or add custom TLS certificates.
+A redeploy reuses your built app and services.
+
+To trigger a redeploy, follow these steps:
+
+{{< codetabs >}}
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+1. In the management console, navigate to the environment you want to redeploy.
+1. Click **Redeploy**.
 
 ![Redeploy button in Console](/images/troubleshoot/platformsh-redeploy-button.png "0.5")
 
-Redeploys are also available using the following Platform.sh CLI command:
+<--->
+
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Run the following command:
 
 ```sh
 platform redeploy
 ```
 
-Please note that the redeploy will happen after any scheduled builds in either "Running" or "Pending" state. 
+{{< /codetabs >}}
+
+The redeploy takes place after any scheduled activities (either *Running* or *Pending*). 
 
 {{< note >}}
-Despite the name, triggering a redeploy will not cause the `deploy` hook to rerun for your application. Both your `build` and `deploy` hooks are tied to individual commits and are reused until another commit is pushed to the environment. See [more about the deploy hook](/configuration/app/build.md#deploy-hook) and its reuse.
 
-Triggering a redeploy can be useful for updating environment access for a new developer and adding custom TLS certificates, but when you do it is only the `post_deploy` hook that runs from the beginning. If you want to rerun the `deploy` hook, you will need to commit and push some small change to your application to do so. 
+Despite the name, redeployment doesn't rerun the `deploy` hook, only the `post_deploy` hook.
+Both your `build` and `deploy` hooks are tied to individual commits in code.
+They're reused until another commit is pushed to the environment.
+See [more about hooks](../configuration/app/build.md#hooks) and their reuse.
+
+To rerun the `build` and `deploy` hooks, [manually trigger a build](../configuration/app/build.md#manually-trigger-builds).
+
 {{< /note >}}
 
-## Clear the build cache
+### Clear the build cache
 
-In rare circumstances the build cache, used to speed up the build process, may become corrupted.  That may happen if, for example, code is being downloaded from a 3rd party language service like Packagist or NPM while that service is experiencing issues.  To flush the build cache entirely run the following command:
+You may find that you need to clear the build cache,
+such as when it's grown too big or, in rare circumstances, when it's corrupted.
+It may get corrupted when code is downloaded from a third-party language service like Packagist or npm
+while that service is experiencing issues.
+
+To clear the build cache, run the following command:
 
 ```sh
-platform project:clear-build-cache
+platform project:clear-build-cache -p <PROJECT_ID>
 ```
 
-That will wipe the build cache for the current project entirely.  Naturally the next build for each environment will likely be longer as the cache rebuilds.
+The next build for each environment is likely to take longer as the cache rebuilds.
 
 ## HTTP responses 502 Bad Gateway or 503 Service Unavailable
 
-These errors indicate your application (or application runner, like PHP-FPM) is crashing or unavailable.  Typical causes include:
+If you see these errors when accessing your application,
+it indicates your application is crashing or unavailable.
 
-* Your `.platform.app.yaml` configuration has an error and the process is not starting or requests are not able to be forwarded to it correctly.  Check your `web.commands.start` entry or that your `passthru` configuration is correct.
+Typical causes and potential solutions include:
+
+* Your `.platform.app.yaml` configuration has an error and a process isn't starting
+  or requests can't be forwarded to it correctly.
+  * Check your `web.commands.start` entry or your `passthru` configuration.
 * The amount of traffic coming to your site exceeds the processing power of your application.
   * You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
-* Certain code path(s) in your application are too slow and timing out.
-* A PHP process is crashing because of a segmentation fault (see below).
-* A PHP process is killed by the kernel out-of-memory killer (see below).
+  * Alternatively, you may need to [increase your plan size](../overview/pricing/_index.md).
+* Certain code paths in your application are too slow and timing out.
+  * Check your code is running smoothly.
+  * Consider adding an [observability solution](../integrations/observability/_index.md) to get a better view of your application.
+* A PHP process is crashing because of a segmentation fault.
+  * See [how to deal with crashed processes](../languages/php/troubleshoot.md#php-process-crashed).
+* A PHP process is killed by the kernel out-of-memory killer.
+  * See [how to deal with killed processes](../languages/php/troubleshoot.md#php-process-is-killed).
 
-## Large file upload failing (10MB limit)
+## Large JSON file upload failing
 
-When trying to upload a large JSON file to your API you might see a 400 response code (`Malformed request`).
+When trying to upload a large JSON file to your API, you might see a 400 response code (`Malformed request`).
 
-Platform.sh enforces a 10MB limit on sending files with the `application/json` Content-Type header. If you want to send large files through, you will have to send them with `multipart/form-data` instead:
+Platform.sh enforces a 10&nbsp;MB limit on files with the `application/json` `Content-Type` header.
+To send large files, use the `multipart/form-data` header instead:
 
 ```bash
 $ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' -F file=large_file.json
 ```
 
-## Claimed domains
+## Permission error creating a database
 
-The error 
+If you try to use a user to create a database, you get an error saying `permission denied to create database`.
+The database is created for you
+and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment variable](./variables.md).
 
-```text
-This domain is already claimed by another project. If this is incorrect or you are trying to add a subdomain, please open a ticket with support.
-``` 
+## Can't write to file system
 
-is related to Platform.sh's [subdomain highjacking prevention](/domains/steps/subdomains.md#subdomain-hijacking-protection) assumptions, and likely occurred during an attempt to assign subdomains across multiple projects. Consult the documentation linked above for instructions for how to modify your DNS records to bypass some those assumptions regarding project domain ownership. 
+If you attempt to write to disk outside a `build` hook, you may encounter a `read-only file system` error.
+Except where you define it, the file system is all read-only, with code changes necessary through git.
+This gives you benefits like repeatable deployments, consistent backups, and traceability.
 
-## Error provisioning the new certificate
-
-One reason [Let's Encrypt certificates](/configuration/routes/https.md#lets-encrypt) may fail to provision on your environments has to do with the 64 character limit Let's Encrypt places on URLs. If the names of your branches are too long, the Platform.sh generated environment URL will go over this limit, and the certificate will be rejected.
-
-See [Let's Encrypt limits and branch names](/configuration/routes/https.md#lets-encrypt-limits-and-branch-names) for a more detailed breakdown of this issue.  
-
-## Total disk usage exceeds project maximum
-
-One of the billable parameters in your project's settings is Storage.  This global storage pool is allocated among the various services and application containers in your project via the `disk` parameter.  The sum of all `disk` parameters in your project's YAML config files must be less than or equal to the global project storage number.
-
-```text
-Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing a service, or add more storage to your plan
-```
-
-This means that you have allocated, for example, `disk: 4096` in a MySQL service in `services.yaml` and also `disk: 4096` in the `.platform.app.yaml` for your application, while only having the minimum default of 5GB storage for your project as a whole.  The solution is either to lower the `disk` parameters to within the limits of 5GB of storage, or raise the global storage parameter on your project's settings to at least 10GB.  
-
-Because storage is a billable component of your project, only the project's owner can make this change.
-
-## Low disk space
-
-When you receive a [low-disk space notification](/integrations/notifications.md) for your application container:
-
-### Check your application's disk space
-
-Run `platform ssh` within your project folder to login to the container's shell.  Then use the `df` command to check the available writable space for your application.
-
-```bash
-df -h -x tmpfs -x squashfs | grep -v /run/shared
-```
-
-This command will show the writable mounts on the system, similar to:
-
-```text
-Filesystem                                                       Size  Used Avail Use% Mounted on
-/dev/mapper/platform-syd7waxqy4n5q--master--7rqtwti----app       2.0G   37M  1.9G   2% /mnt
-/dev/mapper/platform-tmp--syd7waxqy4n5q--master--7rqtwti----app  3.9G   42M  3.8G   2% /tmp
-```
-
-The first line shows the storage device that is shared by all of your [persistent disk mounts](/configuration/app/storage.md#mounts).  All defined mounts use a common storage pool.  In this example, the application container has allocated 2 GB of the total disk space. Of those 2GB, 2% (37 MB) is used by all defined mounts.
-
-The second line is the operating system `temporary directory`, which is always the same size.
-  While you can write to the `/tmp` directory files there are not guaranteed to persist and may be deleted on deploy.
-
-### Increase the disk space available
-
-The sum of all disk keys defined in your project's `.platform.app.yaml` and `.platform/services.yaml` files must be equal or less than the available storage in your plan.
-
-1. Buy extra storage for your project
-
-  Each project comes with 5GB of Disk Storage available to each environment. To increase the disk space available for your project, click on "Edit Plan" to increase your storage in bulks of 5GB.  See [Extra Storage](/overview/pricing/_index.md#external-storage) for more information.
-
-2. Increase your application and services disk space
-
-  Once you have enough storage available, you can increase the disk space allocated for your application and services using `disk` keys in your `.platform.app.yaml` and `.platform/services.yaml`.
-
-  Check the following resources for more details:
-
-   - [Application's disk space](/configuration/app/storage.md#disk)
-   - [Services' disk space](/configuration/services/_index.md#disk)
-
-### Check your database disk space
-
-For a MariaDB database, the command `platform db:size` will give approximate disk usage as reported by MariaDB.  However, be aware that due to the way MySQL/MariaDB store and pack data this number is not always accurate, and may be off by as much as 10 percentage points.
-
-```text
-+--------------+--------+
-| Property     | Value  |
-+--------------+--------+
-| max          | 2048MB |
-| used         | 189MB  |
-| percent_used | 9%     |
-+--------------+--------+
-```
-
-For the most reliable disk usage warnings, we strongly recommend all customers enable [Health notifications](/integrations/notifications.md) on all projects.  That will provide you with a push-notification through your choice of channel when the available disk space on any service drops too low.
-
-## No space left on device
-
-During the build hook, you may run into the following error depending on the size of your application:
-
-```text
-W: [Errno 28] No space left on device: ...
-```
-
-The cause of this issue has to do with the amount of disk provided to the build container before it is deployed. Application images are restricted to 4 GB during build, no matter how much writable disk has been set aside for the deployed application.
-
-Some build tools (yarn/npm) store cache for different versions of their modules. This can cause the build cache to grow over time beyond the maximum of 4GB. Try [clearing the build cache](/development/troubleshoot.md#clear-the-build-cache) and redeploying. In most cases, this will resolve the issue.
-
-If for some reason your application requires more than 4 GB during build, you can open a support ticket to have this limit increased.  The most disk space available during build still caps off at 8 GB in these cases.
-
-## MySQL lock wait timeout
-
-If you receive MySQL error messages like this:
-
-```text
-SQLSTATE[HY000]: General error: 1205 Lock wait timeout exceeded;
-```
-
-This means a process running in your application acquired a lock from MySQL for a long period of time.  That is typically caused by one of the following:
-
-* There are multiple places acquiring locks in different order. For example, code path 1 first locks record A and then locks record B.  Code path 2, in contrast, first locks record B and then locks record A.
-* There is a long running background process executed by your application that holds the lock until it ends.
-
-If you're using [MariaDB 10+](/configuration/services/mysql.md), you can use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.  Find output like the following, and start debugging.
-
-```text
-< skipped >
-Command: Query
-Time: ...
-State: Waiting for table metadata lock
-Info: SELECT ...
-< skipped >
-```
-
-To find active background processes, run `ps aufx` on your application container.
-
-Also, please make sure that locks are acquired in a pre-defined order and released as soon as possible.
-
-
-## MySQL: definer/invoker of view lack rights to use them
-
-There is a single MySQL user, so you can not use "DEFINER" Access Control mechanism for Stored Programs and Views.
-
-When creating a `VIEW`, you may need to explicitly set the `SECURITY` parameter to `INVOKER`:
-
-```text
-CREATE OR REPLACE SQL SECURITY INVOKER
-VIEW `view_name` AS
-SELECT
-```
-
-## MySQL server has gone away
-
-### Disk space issues
-
-Errors such as "PDO Exception 'MySQL server has gone away'" are usually simply the result of exhausting your existing diskspace. Be sure you have sufficient space allocated to the service in [.platform/services.yaml](/configuration/services/_index.md).
-
-The current disk usage can be checked using the CLI command `platform db:size`. Because of issues with the way InnoDB reports its size, this can out by up to 20%. As table space can grow rapidly, *it is usually advisable to make your database mount size twice the size reported by the `db:size` command*.
-
-You are encouraged to add a [low-disk warning notification](/integrations/notifications.md#low-disk-warning) to proactively warn of low disk space before it becomes an issue.
-
-### Worker timeout
-
-Another possible cause of "MySQL server has gone away" errors is a server timeout.  MySQL has a built-in timeout for idle connections, which defaults to 10 minutes.  Most typical web connections end long before that is ever approached, but it's possible that a long-running worker may idle and not need the database for longer than the timeout.  In that case the same "server has gone away" message may appear.
-
-If that's the case, the best way to handle it is to wrap your connection logic in code that detects a "server has gone away" exception and tries to re-establish the connection.
-
-Alternatively, if your worker is idle for too long it can self-terminate.  Platform.sh will automatically restart the worker process, and the new process can establish its own new database connection.
-
-### Packet size limitations
-
-Another cause of the "MySQL server has gone away" errors can be the size of the database packets. If that is the case, the logs may show warnings like  "Error while sending QUERY packet" before the error. One way to resolve the issue is to use the `max_allowed_packet` parameter described [above](/configuration/services/mysql.md#adjusting-mariadb-configuration).
-
-## ERROR: permission denied to create database
-
-The provided user does not have permission to create databases.   
-The database is created for you and can be found in the `path` field of the `$PLATFORM_RELATIONSHIPS` environment variable.
-
-## "Read-only file system" error
-
-Everything will be read-only, except the writable [mounts](/configuration/app/storage.md) you declare.  Writable mounts are there for your data: for file uploads, logs and temporary files. Not for your code.  In order to change code on Platform.sh you have to go through Git.
-
-This is what gives you all of the benefits of having repeatable deployments, consistent backups, traceability, and the magically fast creation of new staging/dev environments.
-
-In Platform.sh, you cannot just "hack production".  It is a constraint, but it is a good constraint.
-
-During the [build phase](/overview/build-deploy.md#building-the-application) of your application, the main filesystem is writable.  So you can do whatever you want (e.g. compile code or generate anything you need).  But during and after the [deploy phase](/overview/build-deploy.md#deploying-the-application), the main filesystem will be read-only.
-
-## Failed to connect to the Git repository
-
-If you have been granted access to a Platform.sh project, but are unable to clone the repository via the management console or with the CLI command `platform get <projectID>`, this is likely due to the fact that 1) the project has an external repository integration configured to GitHub, GitLab, or Bitbucket, and 2) you have not been granted access to that integrated repository. 
-
-It will be necessary to update your access settings on the integrated repository before you can clone and commit to the project. See [User access and integrations](/administration/users.md#user-access-and-integrations) for more information.
-
-## RootNotFoundException from the CLI
-
-If you check out a project via Git directly and not using the `platform get` command, you may end up with the CLI unable to determine what project it's in.  If you run a CLI command from within the project directory you've checked out but get an error like this:
-
-```text
-[RootNotFoundException] Project root not found. This can only be run from inside a project directory.
-```
-
-Then the CLI hasn't been able to determine the project to use.  To fix that, run:
-
-```bash
-platform project:set-remote <project_id>
-```
-
-where `<project_id>` is the random-character ID of the project.  That can be found by running `platform projects` from the command line to list all accessible projects.  Alternatively, it can be found in the management console after the `platform get` command shown or in the URL of the management console or project domain.
-
-## "File not found" in Drupal
-
-If you see a bare "File not found" error when accessing your Drupal site with a browser, this means that you've pushed your code as a vanilla project but no *index.php* has been found.
-
-Make sure your repository contains an *index.php* file in the [web location root](/configuration/app/_index.md#locations), or that your [Drush](/frameworks/drupal7/drush.md) make files are properly named.
-
-
-## PHP-specific error messages
-
-### server reached max_children
-
-You may see a line like the following in the `/var/log/app.log` file:
-
-```text
-WARNING: [pool web] server reached max_children setting (2), consider raising it
-```
-
-That indicates that the server is receiving more concurrent requests than it has PHP processes allocated, which means some requests will have to wait until another finishes.  In this example there are 2 PHP processes that can run concurrently.
-
-Platform.sh sets the number of workers based on the available memory of your container and the estimated average memory size of each process.  There are two ways to increase the number of workers:
-
-* Adjust the [worker sizing hints](/languages/php/fpm.md) for your project.
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
-
-
-### Execution timeout
-
-If your PHP application is not able to handle the amount of traffic or it is slow, you should see log lines from `/var/log/app.log` like any of the below:
-
-```text
-WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /index.php") execution timed out (358.009855 sec), terminating
-```
-
-That means your PHP process is running longer than allowed.  You can adjust the `max_execution_time` value in `php.ini`, but there is still a 5 minute hard cap on any web request that cannot be adjusted.
-
-The most common cause of a timeout is either an infinite loop (which is a bug that you should fix) or the work itself requires a long time to complete. For the latter case, you should consider putting the task into a background job.
-
-The following command will identify the 20 slowest requests in the last hour, which can provide an indication of what code paths to investigate.
-
-```bash
-grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20
-```
-
-If you see that the processing time of certain requests is slow (e.g. taking more than 1000ms), we recommend considering a continous observability solution like [Blackfire](/integrations/observability/blackfire.md) to monitor your application and help you improve the performance issue.
-
-Otherwise, you may check if the following options are applicable:
-
-* Find the most visited pages and see if they can be cached and/or put behind a CDN.  You may refer to [how caching works](/configuration/routes/cache.md).
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project subscription.
-
-### PHP process crashed
-
-If your PHP process crashed with a segmentation fault, you should see log lines in `/var/log/app.log` like below:
-
-```text
-WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 seconds from start
-```
-
-This is complicated, either a PHP extension is hitting a segmentation fault or your PHP application code is crashing. You should review recent changes in your application and try to find the cause of it, probably with the help of XDebug.
-
-### PHP process is killed
-
-If your PHP process is killed by the kernel, you should see log lines in `/var/log/app.log` like this:
-
-```text
-WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 seconds from start
-```
-
-That means the memory usage of your container exceeds the limit allowed on your plan so the kernel kills the offending process. You should try the following:
-
-* Check if the memory usage of your application is expected and try to optimize it.
-* Use [sizing hints](/languages/php/fpm.md) to reduce the amount of PHP workers which reduces the memory footprint.
-* Upgrade your subscription on Platform.sh to get more computing resources. To do so, log into your [account](https://accounts.platform.sh) and edit the project.
+You can write to disk a `build` hook to generate anything you need later.
+Or you can declare writable [mounts](../configuration/app/storage.md#mounts), which are writable even during and after deploy.
+They can be used for your data: file uploads, logs, and temporary files.
 
 ## Stuck build or deployment
 
-If you see a build or deployment running longer than expected, that may be one of the following cases:
+If you see a build or deployment running longer than expected, it may be one of the following cases:
 
-1. The build is blocked by a process in your build hook.
-2. The deployment is blocked by a long running process in your deploy hook.
-3. The deployment is blocked by a long running cron job in the environment.
-4. The deployment is blocked by a long running cron job in the parent environment.
+* The build is blocked by a process in your `build` hook.
+* The deployment is blocked by a long running process in your `deploy` hook.
+* The deployment is blocked by a long running cron job in the environment.
+* The deployment is blocked by a long running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment, you can look at the build log available in the management console.  If you see a line similar to the following:
+To determine if your environment is being stuck in the build or the deployment,
+look at the activities log available in the management console or by running `platform act`.
 
-```text
-Redeploying environment w6ikvtghgyuty-drupal8-b3dsina.
-```
+If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
+If the result is still `running`, the build is stuck.
 
-It means the build has completed successfully and the system is trying to deploy.  If that line never appears then it means the build is stuck.
-
-For a blocked _build_ (when you don't find the `Redeploying environment ...` line), create a [support ticket](https://platform.sh/support) to have the build killed.  In most regions the build will self-terminate after one hour.  In older regions (US and EU) the build will need to be killed by our support team.
+In most regions, stuck builds terminate after one hour.
+In older regions (`us` and `eu`), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open) to have the build killed.
 
 When a _deployment_ is blocked, you should try the following:
 
-1. Use [SSH](/development/ssh/_index.md) to connect to your environment. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`. Once you have identified the long running process on the environment, kill it with `kill <PID>`. PID stands for the process id shown by `ps afx`.
-2. If you're performing "Sync" or "Activate" on an environment and the process is stuck, use [SSH](/development/ssh/_index.md) to connect to the parent environment and identify any long running cron jobs with `ps afx`. Kill the job(s) if you see any.
+1. Connect to your environment using [SSH](./ssh/_index.md).
+1. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
+1. Kill any long running processes with `kill <PID>`.
+  Replace `<PID>` with the process ID shown by `ps afx`.
+
+If a `sync` of `activate` process is stuck, try the above on the parent environment.
 
 ## Slow or failing build or deployment
 
-Builds that take long time or fail is a common problem. Most of the time it's related to an application issue and they can be hard to troubleshoot without guidance.
-
-Here are a few tips that can help you solve the issues you are experiencing.
+Builds can take long time or fail.
+Most of the time, it's related to an application issue.
+Here are a few tips that can help you find the exact cause.
 
 ### Check for errors in the logs
 
-Invisible errors during the build and deploy phase can cause increased wait times, failed builds and other problems. Investigating each log and fixing errors is essential.
-
-Related documentation: [Accessing logs](/development/logs.md#accessing-logs)
-
-### Resource temporarily unavailable
-
-If you encounter the message `connect() to unix:/run/app.sock failed (11: Resource temporarily unavailable)` in `/var/log/error.log`, it is caused by all of the PHP workers being busy.
-This can be because too many requests are coming in at once, or the requests are taking too long to be processed (such as with calls to external third party servers without timeouts).
-
-To address the issue, you can: 
-
-- Lower the memory consumption of each request, so that the amount of PHP workers gets automatically raised. This can be customized with the `runtime.sizing_hints.request_memory` key in your `.platform.app.yaml` file. Consult the [PHP-FPM sizing documentation](/languages/php/fpm.md) for more details.
-- Adding a [CDN](/domains/cdn/_index.md).
-- Set up [caching](/bestpractices/http-caching.md).
-- Following the global [performance tuning recommendations](languages/php/tuning.md).
-- Removing stale plugins and extensions when using a CMS.
-- Upgrading the container size to get more resources.
+Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems. Investigate [each log](/development/logs.md#accessing-logs) and fix any errors you find.
 
 ### Build and deploy hooks
 
-Hooks are frequently the cause of long build time. If they run into problem they can cause the build to fail or hang indefinitely.
+[`build` and `deploy` hooks](/configuration/app/build.md#hooks) can cause long build times.
+If they run into issues, they can cause the build to fail or hang indefinitely.
 
-The build hook can be tested in your local environment.  Because the deployed environment on Platform.sh is read-only the build hooks cannot be rerun there.
+`build` hooks can be tested in your local environment.
+`deploy` hooks can be tested either locally
+or by logging into the application over [SSH](./ssh/_index.md) and running them there.
+Be careful not to test the scripts on production environments.
 
-Deploy hooks can be tested either locally or by logging into the application over [SSH](/development/ssh/_index.md) and running them there.  They should execute safely but be aware that depending on what your scripts are doing they may have an adverse impact on the running application (e.g., flushing all caches).
-
-Furthermore, you can test your hooks with these Linux commands to help figure out any problems:
+You can also test your hooks with these Linux commands to help debug issues:
 
 ```text
 time $cmd # Print execution time
 strace -T $cmd # Print a system call report
 ```
 
-Related documentation: [Build and deploy hooks](/configuration/app/build.md#hooks)
-
 ### Cron jobs
 
-Containers cannot be shutdown while long-running tasks are active.  That means long-running cron jobs will block a container from being shut down to make way for a new deploy.
+Containers can't be shutdown while long-running [cron jobs and scheduled tasks](/configuration/app/cron.md#cron-jobs) are active.
+That means long-running cron jobs block a container from being shut down to make way for a new deploy.
 
-For that reason, make sure your custom cron jobs execution times are low and that they are running properly.  Be aware that cron jobs may invoke other services in unexpected ways, which can increase execution time.
-
-**note**
-Drupal's `drush core-cron` run installed module's cron task. Those can be, for example; evicting invalid cache, updating database records, regenerating assets. Be sure to frequently benchmark the `drush core-cron` command in all your environments, as it is a common source of performance issues.
-
-Related documentation: [Cron and scheduled tasks](/configuration/app/cron.md#cron-jobs)
-
-## This project does not support source operations
-
-[Source Operations](/configuration/app/source-operations.md) are a feature only available to [Elite and Enterprise](https://platform.sh/pricing/) customers, and you should [contact the Platform.sh sales team](https://platform.sh/contact/) if you would like access.
-
-For existing Elite and Enterprise customers receiving this error message:
-
-```text
-[ApiFeatureMissingException] 
-This project does not support source operations.
-```
-
-it is due to the fact that the feature is [not currently supported on pull request environments](/configuration/app/source-operations.md#external-integrations).
+Make sure your custom cron jobs run quickly and properly.
+Cron jobs may invoke other services in unexpected ways, which can increase execution time.
