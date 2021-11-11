@@ -11,7 +11,7 @@ The [configuration reader library](https://github.com/platformsh/config-reader-j
 
 ### MySQL
 
-[MySQL](/configuration/services/mysql.md) is an open-source relational database technology. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java), and the Java dependencies. Then determine the SessionFactory client programmatically:
+[MySQL](/configuration/services/mysql/_index.md) is an open-source relational database technology. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java), and the Java dependencies. Then determine the SessionFactory client programmatically:
 
 ```java
 import org.hibernate.Session;
@@ -44,7 +44,7 @@ You can use the same MySQL driver for MariaDB as well if you wish to do so.
 
 ### MariaDB
 
-[MariaDB](/configuration/services/mysql.md) is an open-source relational database technology. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client), and the Java dependencies. Then determine the SessionFactory client programmatically:
+[MariaDB](/configuration/services/mysql/_index.md) is an open-source relational database technology. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client), and the Java dependencies. Then determine the SessionFactory client programmatically:
 
 ```java
 import org.hibernate.Session;

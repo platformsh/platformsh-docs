@@ -25,6 +25,7 @@ glibc
 Goldmark
 Gradle
 Gunicorn
+highjack
 hostname
 [Hh]otfix
 Httpoxy
