@@ -18,6 +18,11 @@ The service types `mariadb` and `mysql` both refer to MariaDB for compatibility 
 The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
 Other than the type, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
 
+Note that changing the service type leads to data removal.
+To switch between these service types, first [export your data](#exporting-data).
+Then remove the old service and create a new one.
+Then [import your data](#importing-data) to the new service.
+
 
 | **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
 |----------------------------------|---------------|-------------------------|
