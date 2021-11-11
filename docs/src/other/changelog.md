@@ -63,7 +63,7 @@ description: |
 ---
 * **February 2020**
   * Memcached 1.5: We now support [Memcached 1.5](/configuration/services/memcached.md).
-  * Character set and collation are now configurable on [MySQL/MariaDB](/configuration/services/mysql.md).
+  * Character set and collation are now configurable on [MySQL/MariaDB](/configuration/services/mysql/_index.md).
 ---
 * **January 2020**
   * RabbitMQ: We now support [RabbitMQ virtual host configuration](/configuration/services/rabbitmq.md#virtual-hosts)
@@ -222,7 +222,7 @@ description: |
 
 * **January 2017**
   * Support for Multiple MySQL databases and restricted users: MySQL now supports multiple databases, and restricted users per MySQL service.
-    See the [MySQL documentation](/configuration/services/mysql.md) for details or read our [blog post](https://platform.sh/2017/02/multi-mysql).
+    See the [MySQL documentation](/configuration/services/mysql/_index.md) for details or read our [blog post](https://platform.sh/2017/02/multi-mysql).
   * Support for Persistent Redis services:
     Added a `redis-persistent` service that is appropriate for persistent key-value data.
     The `redis` service is still available for caching.
@@ -325,7 +325,7 @@ description: |
 ---
 
 * **October 2015**
-  * MariaDB/MySQL 10.0: Service is [documented here](/configuration/services/mysql.md).
+  * MariaDB/MySQL 10.0: Service is [documented here](/configuration/services/mysql/_index.md).
   * MongoDB 3.0: Service is [documented here](/configuration/services/mongodb.md).
 ---
 
@@ -377,6 +377,6 @@ description: |
 ---
 
 * **July 2014**
-  * MariaDB/MySQL 5.5: Service is [documented here](/configuration/services/mysql.html).
+  * MariaDB/MySQL 5.5: Service is [documented here](/configuration/services/mysql/_index.md).
   * Solr 3.6: Service is [documented here](/configuration/services/solr.md).
 ---

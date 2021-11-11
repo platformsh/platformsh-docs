@@ -130,6 +130,26 @@ You can always specify the project and environment in two ways:
 In [multi-app](../../configuration/app/multi-app.md) projects, this applies also to selecting the right app
 (the environment variable would be `PLATFORM_APPLICATION_NAME`).
 
+#### RootNotFoundException
+
+If you check out a project via Git directly and not using the `platform get` command,
+the CLI may be unable to determine what project it's in.
+You might run a CLI command from within a project directory you've checked out and get an error like this:
+
+```text
+[RootNotFoundException] Project root not found. This can only be run from inside a project directory.
+```
+
+Then the CLI hasn't been able to determine the project to use.
+To fix this, run:
+
+```bash
+platform project:set-remote <PROJECT_ID>
+```
+
+Replace `<PROJECT_ID>` with the ID of your project.
+You can find that in the management console or by running `platform projects` to list all accessible projects.
+
 ### Choose between the CLI and Git commands
 
 Some CLI commands (especially many within the `environment` namespace) have some overlap with Git commands.

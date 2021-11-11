@@ -2,6 +2,7 @@
 title: "MariaDB/MySQL (Database service)"
 weight: 7
 sidebarTitle: "MariaDB/MySQL"
+layout: single
 ---
 
 Platform.sh supports both MariaDB and Oracle MySQL.
@@ -364,8 +365,6 @@ This is an advanced configuration not appropriate for most circumstances
 (and the replica will not be available to your application),
 but may be useful for certain backup purposes.
 
-## Troubleshooting
+## Troubleshoot
 
-* [MySQL lock wait timeout](/development/troubleshoot.md#mysql-lock-wait-timeout)
-* [definer/invoker of view lack rights to use them](/development/troubleshoot.md#mysql-definerinvoker-of-view-lack-rights-to-use-them)
-* [MySQL server has gone away](/development/troubleshoot.md#mysql-server-has-gone-away)
+If you run into issues, [troubleshoot MySQL](./troubleshoot.md).

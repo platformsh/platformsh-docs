@@ -109,7 +109,7 @@ public class RedisConfig {
 
 ### MySQL
 
-[MySQL](/configuration/services/mysql.md) is an open-source relational database technology. Spring has robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
+[MySQL](/configuration/services/mysql/_index.md) is an open-source relational database technology. Spring has robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
 
 The first step is to choose the database that you would like to use in your project. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java) and the Java dependencies, then determine the DataSource client programmatically:
 
@@ -140,7 +140,7 @@ You can use the same MySQL driver for MariaDB as well if you wish to do so.
 
 ### MariaDB
 
-[MariaDB](/configuration/services/mysql.md) is an open-source relational database technology. Spring has robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
+[MariaDB](/configuration/services/mysql/_index.md) is an open-source relational database technology. Spring has robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
 
 The first step is to choose the database that you would like to use in your project. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client) and the Java dependencies, then determine the DataSource client programmatically:
 

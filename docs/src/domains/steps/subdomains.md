@@ -91,3 +91,15 @@ Then you can't set up a second project with the bare domain (`example.com`) or a
 
 If that happens, open a support ticket and our support team can remove the protection for that domain.
 Include the project ID of the project that already has the domain.
+
+## Claimed domains
+
+If you try to use a domain that's claimed, you see an error like the following: 
+
+```text
+This domain is already claimed by another project. If this is incorrect or you are trying to add a subdomain, please open a ticket with support.
+``` 
+
+This relates to the [subdomain highjacking prevention](#subdomain-hijacking-protection).
+It's likely the result of an attempt to assign subdomains across multiple projects.
+See the [solution above](#quick-solution).
