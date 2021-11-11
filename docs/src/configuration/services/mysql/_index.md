@@ -204,7 +204,7 @@ configuration:
                 main: admin
 ```
 
-If either schemas or endpoints are defined, then no default will be applied and you must specify the full configuration.
+If neither schemas nor endpoints are defined, then no default will be applied, and you must specify the full configuration.
 
 ## Adjusting database configuration
 
