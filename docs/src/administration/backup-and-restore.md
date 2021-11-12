@@ -147,6 +147,20 @@ In most cases when creating regular backups the list should match up as expected
 but depending on their age some backups may no longer be available as per the [data retention policy](https://docs.platform.sh/administration/backup-and-restore.html#restore).
 As a rule, backup often and use the most recent in your restores.
 
+Using the Platform.sh CLI and [`jq`](https://stedolan.github.io/jq/manual/), you can filter the list of backups returned for a particular environment for those that are actually `restorable`.
+
+```bash
+$ platform project:curl -p PROJECT_ID /environments/ENVIRONMENT/backups | jq '.[] | select(.restorable=true) | {id, created_at}'
+{
+  "id": "mmzqoffpcpxnmy6zas55jjjdaq",
+  "created_at": "2021-11-12T19:30:07.680746+00:00"
+}
+{
+  "id": "pkxj46necupbzw627bmoeciz4q",
+  "created_at": "2021-11-12T19:25:39.895401+00:00"
+}
+```
+
 {{< /note >}}
 
 You can then restore a specific backup with the CLI as follows:
