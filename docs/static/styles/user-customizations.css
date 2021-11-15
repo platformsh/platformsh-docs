@@ -33,7 +33,7 @@
 .btn2 {
   border: 0px solid transparent;
   border-radius: 0rem;
-  font-weight: bold;s
+  font-weight: bold;
   letter-spacing: 0.05em;
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -236,3 +236,59 @@
   width: 300px !important;
 }
 
+/* Links to console and trial */
+.console_links {
+  display: none;
+}
+
+
+
+@media (min-width: 768px) {
+  .console_links  {
+    float: right;
+    margin-right: 30px;
+    height: 80px;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 200;
+  }
+}
+.console_links__wrapper {
+  display:flex;
+  flex-direction:row;
+  height:100%;
+  align-items:center;
+  cursor:pointer
+}
+
+.console_links__login {
+  padding: 0 30px;
+  margin: 5px 0;
+  text-decoration: none;
+  color: #fff;
+}
+
+.console_links__login:hover,.console_links__login:focus {
+  text-decoration: none !important;
+  color: #fff;
+}
+
+.console_links__free-trial {
+  padding:0 15px;
+  background:#fff;
+  border:none;
+  border-radius:4px;
+  margin:5px 0;
+  color:#1f82e5;
+  text-decoration:none;
+  height:34px;
+  line-height:34px;
+  font-weight: 700;
+  transition:background-color 0.25s,color 0.25s
+}
+
+.console_links__free-trial:hover,.console_links__free-trial:focus{
+  text-decoration: none !important;
+  background-color:#28d8b2;
+  color:#fff
+}
