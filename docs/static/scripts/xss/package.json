@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "dev": "webpack-dev-server --config webpack.dev.js --env.API_KEY=$(echo $API_KEY)"
+    "dev": "webpack-dev-server --config webpack.dev.js --env API_KEY=$(echo $API_KEY)"
   },
   "author": "Stefan Age",
   "license": "ISC",
@@ -20,7 +20,8 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.1",
     "styled-components": "^5.2.1",
-    "webpack-cli": "^3.3.12",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0",
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
