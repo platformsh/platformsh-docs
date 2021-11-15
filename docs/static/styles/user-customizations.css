@@ -268,7 +268,7 @@
   color: #fff;
 }
 
-.console_links__login:hover,:focus {
+.console_links__login:hover,.console_links__login:focus {
   text-decoration: none !important;
   color: #fff;
 }
@@ -287,7 +287,7 @@
   transition:background-color 0.25s,color 0.25s
 }
 
-.console_links__free-trial:hover,:focus{
+.console_links__free-trial:hover,.console_links__free-trial:focus{
   text-decoration: none !important;
   background-color:#28d8b2;
   color:#fff
