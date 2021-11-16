@@ -113,7 +113,7 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
         upstream:
             socket_family: unix
         commands:
-            start: "unicorn -l $SOCKET"
+            start: "bundle exec unicorn -l $SOCKET"
     ```
 
     This assumes you have Unicorn as a dependency in your Gemfile
@@ -253,7 +253,7 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
         upstream:
             socket_family: unix
         commands:
-            start: "unicorn -l $SOCKET"
+            start: "bundle exec unicorn -l $SOCKET"
 
         locations:
             "/":
