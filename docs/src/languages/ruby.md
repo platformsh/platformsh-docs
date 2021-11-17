@@ -34,7 +34,7 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
     variables:
         env:
             BUNDLE_CACHE_ALL: '1' # going to be default
-            BUNDLE_CLEAN: '1' # going to be default
+            BUNDLE_CLEAN: '1' # /!\ if you are working with ruby<2.7 this does not work well
             BUNDLE_DEPLOYMENT: '1' # going to be default
             BUNDLE_ERROR_ON_STDERR: '1' # going to be default
             BUNDLE_WITHOUT: 'development:test'
@@ -183,7 +183,7 @@ Configure the `.platform.app.yaml` file with a few key settings as listed below,
     variables:
         env:
             BUNDLE_CACHE_ALL: '1'
-            BUNDLE_CLEAN: '1'
+            BUNDLE_CLEAN: '1' # /!\ if you are working with ruby<2.7 this does not work well
             BUNDLE_DEPLOYMENT: '1'
             BUNDLE_ERROR_ON_STDERR: '1'
             BUNDLE_WITHOUT: 'development:test'
