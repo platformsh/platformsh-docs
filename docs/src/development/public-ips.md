@@ -13,6 +13,14 @@ description: |
 
 {{< description >}}
 
+## Glossary
+
+**Data Location Guarantee:** Some of the regions below our indicated as including a *Data location guarantee*, which comes with the following assurances:
+
+- customer data never leaves the region
+- all customer data is encrypted
+- all technical logs are handled with strict GDPR compliance
+
 ## Region availability
 
 While this page contains IP addresses for data centers in every Platform.sh region,
