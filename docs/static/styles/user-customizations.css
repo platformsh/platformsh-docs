@@ -292,3 +292,67 @@
   background-color:#28d8b2;
   color:#fff
 }
+
+
+/* Public IP Region Tables */
+.region-table {
+  font-family: Overpass, sans-serif;
+  color: #444344;
+  border-collapse: collapse;
+  border-spacing: 2px;
+}
+.region-table-body {
+  font-family: Overpass, sans-serif;
+}
+.region-table-header {
+  border: none !important;
+}
+.region-table-body > tr > th {
+  font-family: Overpass,Arial;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  line-height: 1.5;
+  padding: 20px 40px 10px;
+}
+.region-table-body > tr, td {
+  border: none;
+}
+.region-table-body > tr {
+  text-align: center;
+  border: none;
+  border-top: 1px solid #DEE2E6;
+}
+.region-table-body > td {
+  text-align: center;
+  border: none;
+  border-top: 1px solid #DEE2E6;
+  padding: 20px 40px;
+}
+.region-subtable {
+  margin-bottom: 0;
+}
+.region-subtable-body {
+  font-family: Overpass, sans-serif;
+}
+.region-subtable-body > tr > td {
+  border: none; 
+  text-align: center;
+}
+.region-subtable-body > tr > td > h4 {
+  margin-bottom: 0; 
+  padding-top: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 1.32;
+}
+.region-subtable-body > tr > td > h4 > a {
+  color: #444344;;
+  scroll-margin-top: 6.5em;
+}
+.guarantee-note {
+  font-size: 0.9rem;
+  font-weight: 700;
+}

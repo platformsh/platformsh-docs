@@ -1,0 +1,81 @@
+<!-- INDIVIDUAL REGION TABLE SHORTCODE -->
+{{ $region := .Get "region" }}
+{{ $data := index $.Site.Data.regions $region }}
+<!-- Main region table -->
+<table class="region-table">
+    <tbody class="region-table-body">
+      <!-- Header -->
+      <tr class="region-table-header">
+        <th>Region</th>
+        <th>Outbound IPs</th>
+        <th>Inbound IPs</th>
+      </tr>
+      <!-- List individual regions -->
+      {{ range $data }}
+      <!-- Give the region a row -->
+      <tr>
+        <!-- Region overview -->
+        <td style="background: #f4f2f3;">
+            <!-- Name, region identifier, location guarantee -->
+            <table class="region-subtable">
+                <tbody class="region-subtable-body">
+                    <tr>
+                        {{ $regionAnchor := anchorize ( printf "%s %s" .name .label ) }}
+                        <td>
+                            <h4><a href="#{{ $regionAnchor }}" id="{{ $regionAnchor }}" aria-label="Anchor">{{ .name }}</a></h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code style="background: white;">{{ .label }}</code></td>
+                    </tr>
+                    <!-- Data location guarantee when relevant -->
+                    {{ if .location_guarantee }}
+                    <tr>
+                        <td class="guarantee-note">(Data location guarantee)</td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>     
+        </td>
+        <!-- Outbound ips -->
+        <td>
+            <table class="region-subtable">
+                <tbody class="region-subtable-body">
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr style="border: none;  text-align: center;">
+                    <td style="border: none; display: inline-block; text-align: left;">
+                        <ul style="list-style: none; padding-inline-start: 0 !important;">
+                            {{ range .outbound_ips }}
+                            <li>{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <!-- Inbound ips -->
+        <td>
+            <table class="region-subtable">
+                <tbody class="region-subtable-body">
+                    <tr>
+                        <td><code>{{ .inbound_location }}</code></td>
+                    </tr>
+                    <tr style="border: none;  text-align: center;">
+                    <td style="border: none; display: inline-block; text-align: left;">
+                        <ul style="list-style: none; padding-inline-start: 0 !important;">
+                            {{ range .inbound_ips }}
+                            <li>{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+      </tr>
+     {{ end }}
+    </tbody>
+</table>
