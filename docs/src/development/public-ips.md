@@ -15,7 +15,7 @@ description: |
 
 ## Glossary
 
-**Data Location Guarantee:** Some of the regions below our indicated as including a *Data location guarantee*, which comes with the following assurances:
+**Data Location Guarantee:** Some of the regions below are indicated as including a *Data location guarantee*, which comes with the following assurances:
 
 - customer data never leaves the region
 - all customer data is encrypted
