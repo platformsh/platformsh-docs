@@ -100,6 +100,10 @@
   margin-bottom: 1rem;
 }
 
+.search-page-results {
+  max-width: 105ch;
+}
+
 .suggestions-primary {
   /* display: none !important; */
   background-color: #F5F7FA !important;

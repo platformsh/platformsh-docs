@@ -4,8 +4,10 @@
 
   <div class="searcharea">
 
-    <!-- Sidebar search -->
-    {{ partial "navigation/sidebar/search" . }}
+    {{ if (not (.Scratch.Get "SearchOff")) }}
+      <!-- Sidebar search -->
+      {{ partial "navigation/sidebar/search" . }}
+    {{ end }}
 
     <!-- Sidebar Responsive Toggle (mobile) -->
     {{ partial "navigation/sidebar/hamburger" . }}

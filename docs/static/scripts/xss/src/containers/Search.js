@@ -1,27 +1,41 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import Suggestions from 'components/Suggestions'
 import SuggestionsPrimary from 'components/SuggestionsPrimary'
 
-let config = {}
-const request = async () => {
+const getConfig = async () => {
   // Primary configuration occurs here, which allows the Search bar in docs to communicate with the Meilisearch service.
   // The `config.json` file does not exist at build time, but is built later during the deploy hook when the `search`
   // container becomes available. Webpack isn't a fan of reading from `config-reader-nodejs` or environment variables
   // here if they are not yet set, but a file works just fine. The mount `public/scripts/xss/dist/config` has been defined
   // to support this.
   const response = await fetch("/scripts/xss/dist/config/config.json");
-  config = await response.json();
+  return await response.json();
 }
-request();
 
-const Search = () => {
+const Search = ({ fullPage }) => {
   const [query, setQuery] = useState('')
   const [hits, setHits] = useState({ docs: [], templates: [], community: [], website: [], apidocs: [] })
+  const [config, setConfig] = useState({
+    index: "",
+    public_api_key: "",
+    url: ""
+  })
+  const urlQuery = new URLSearchParams(window.location.search).get('q');
 
-  const getInfo = () => {
-    axios.get(`${config["url"]}indexes/${config["index"]}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${query}&limit=7&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': config["public_api_key"] } })
+  useEffect(() => {
+    getConfig().then(value => {
+      setConfig(value)
+      setQuery(urlQuery);
+      getInfo(value)
+    })
+  }, [setQuery, urlQuery])
+
+  const limit = fullPage ? "&limit=10" : "&limit=7"
+
+  const getInfo = (config) => {
+    axios.get(`${config["url"]}indexes/${config["index"]}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${query}${limit}&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': config["public_api_key"] } })
       .then(({ data }) => {
 
         setHits({
@@ -45,7 +59,7 @@ const Search = () => {
     if (query && query.length > 1) {
       // this.showDropdown()
       if (query.length % 2 === 0) {
-        getInfo()
+        getInfo(config)
       }
     } else if (!query) {
       setHits({
@@ -68,7 +82,7 @@ const Search = () => {
   const noPrimaryResults = (hits.docs.length == 0 && summedSecondary > 0) ? <div className="suggestions suggestions-primary"><h4 className="section">{"Documentation"}</h4><div className="hits"><ul>{"Sorry, no documentation matched your search."}</ul> </div> </div> : ''
   const secondaryResults = summedSecondary > 0 ? <div className="suggestions"><h4 className="section section-secondary">Other resources from Platform.sh</h4></div> : ''
 
-  const allResults = <div className="search-all-result">{docs}{noPrimaryResults}{secondaryResults}{templates}{community}{website}{apidocs}</div>
+  const allResults = <div className={fullPage ? "search-page-results" : "search-all-results"}>{docs}{noPrimaryResults}{secondaryResults}{templates}{community}{website}{apidocs}</div>
   const noQuery = ""
 
 
@@ -77,6 +91,7 @@ const Search = () => {
       <label class="sr-only" for="searchwicon">Search our docs</label>
       <input
         id="searchwicon"
+        value={query}
         placeholder="Search Platform.sh"
         onChange={handleInputChange}
         className="searchinput"
