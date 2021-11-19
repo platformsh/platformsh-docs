@@ -16,7 +16,7 @@ It could be compiling Sass files, running a bundler, rearranging files on disk o
 
 **Deploy hook**: Any number of shell commands including clearing caches, running database migrations, and so on.
 
-**Artifact**: A custom-built  snapshot of your application that is reliable and repeatable.
+**Artifact**: A custom-built  snapshot of your application that's reliable and repeatable.
 
 
 ## The build
@@ -35,17 +35,17 @@ If your application requires writing to the filesystem, you can specify the dire
 
 **Validate configuration**: The configuration is checked by validating the shared `.platform` directory (routes and services), as well scanning the repository for all `.platform.app.yaml files` present to validate them individually.
 
-**Install dependencies**: If you have specified additional dependencies required by your build hook such as Saas, Webpack, or Drupal Console, and have provided valid versions, the dependencies get downloaded downloaded during this step.
+**Install dependencies**: If you have specified additional dependencies required by your build hook such as SaaS, webpack, or Drupal Console, and have provided valid versions, the dependencies get downloaded during this step.
 
 **Run build flavor commands**: The build runs a series of standard commands based on the build flavor specified in the configuration file.
-It is possible to override this behavior and skipping the step.
+It's possible to override this behavior and skipping the step.
 
-**Run build hook**: The committed build hook runs in the build container. During this time, commands have write access to the file system, but services (including other applications in your cluster) are not yet available.
+**Run build hook**: The committed build hook runs in the build container. During this time, commands have write access to the file system, but services (including other applications in your cluster) aren't yet available.
 
 **Freeze app container**: Once the previous steps are completed, the file system gets freezed and produce a read-only container image, which is the final build artifact.
 The container configuration for both your application and its underlying services is exclusively based on your configuration files.
 A container has a 1:1 relationship with a Git commit.
-This means that builds are repeatable and that if the system detects that there are not changes for a container,
+This means that builds are repeatable and that if the system detects that there aren't changes for a container,
 it reuses the existing container image skipping the build step and saving time.
 
 
