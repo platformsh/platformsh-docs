@@ -55,21 +55,7 @@ const Search = ({ fullPage }) => {
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
-
-    if (query && query.length > 1) {
-      // this.showDropdown()
-      if (query.length % 2 === 0) {
-        getInfo(config)
-      }
-    } else if (!query) {
-      setHits({
-        docs: [],
-        templates: [],
-        community: [],
-        website: [],
-        apidocs: [],
-      })
-    }
+    getInfo(config)
   }
 
   const docs = hits.docs.length > 0 ? <SuggestionsPrimary title="Documentation" hits={hits.docs} /> : ''
