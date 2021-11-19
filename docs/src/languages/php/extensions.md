@@ -146,8 +146,9 @@ There are also built-in modules that are always on:
 
 To see a complete list of extensions in your environment:
 
-1. [SSH](../) into the environment.
-2. Run the command `php -m`.
+```bash
+platform ssh -p <PROJECT_ID> -e <ENVIRONMENT_ID> 'php -m'
+```
 
 ## Custom PHP extensions
 
