@@ -67,7 +67,7 @@ Note that these shouldn't be directories with code since it would be a security 
 Expose services
 : The system opens the networking connections between the various containers that were specified in the configuration files (using the `relationships` key).
 That helps with security, as only the specified connections exist.
-The connection information for each service is available in an application as environment variables.
+The connection information for each service is available in each application in environment variables.
 
 Run start commands
 : It’s technically optional for all runtimes. The only requirement is that you must have `web.commands.start` or `web.locations` and `hooks.deploy`.
