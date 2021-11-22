@@ -77,4 +77,4 @@ Run deploy hook
 However, the file system where your code lives is now read-only.
 
 Serve request
-: In this las step, the system allows the incoming requests to your newly deployed application.
+: In this last step, the system allows incoming requests to your newly deployed application.
