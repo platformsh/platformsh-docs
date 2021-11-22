@@ -12,7 +12,7 @@ Both processes are triggered by a push to a live branch or by activating an [env
 ## The build
 
 The build step is environment-independent to ensure development environments are perfect copies of production.
-This means you can not connect to services (like the database) during the build.
+This means you can't connect to services (like databases) during the build.
 The final built application is read-only.
 If your application requires writing to the filesystem, you can specify the directories that require Read/Write access.
 
