@@ -26,8 +26,6 @@ highlight=false
 1. In the management console, navigate to the environment you want to redeploy.
 1. Click **Redeploy**.
 
-![Redeploy button in Console](/images/troubleshoot/platformsh-redeploy-button.png "0.5")
-
 <--->
 
 ---
@@ -44,7 +42,7 @@ platform redeploy
 
 {{< /codetabs >}}
 
-The redeploy takes place after any scheduled activities (either *Running* or *Pending*). 
+The redeploy takes place after any scheduled activities (either *Running* or *Pending*).
 
 {{< note >}}
 

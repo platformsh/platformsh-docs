@@ -36,9 +36,9 @@ The management console displays all the activity happening on your environments.
 
 ### Header
 
-Within a project's environment, the management console exposes 4 main actions and 4 drop-down command options that you can use to interface with your environments.
+Within a project's environment, the management console exposes 4 main actions (Redeploy, Branch, Merge, and Sync) and 3 drop-down command options (URLs, SSH, and Code) that you can use to interface with your environments.
 
-![Header](/images/management-console/header-new.png "0.5")
+![Header](/images/management-console/header-new.png "0.3")
 
 #### Branch
 
@@ -112,19 +112,24 @@ to restore an existing backup.
 
 The URLs pull-down exposes the domains that can be used to access application environments from the web.
 
-#### GIT
+#### SSH
+
+The SSH pull-down displays the commands to access your project using SSH.
+
+#### Code
+
+CLI
+
+The CLI pull-down displays the commands to get your project set up locally with the Platform.sh CLI.
+
+GIT
 
 The "Git" pull-down displays the commands to use to clone the codebase via Git. If you are using Platform.sh as your primary remote repository, the command shown will clone from the project. Otherwise if you have set up an [external integration](/integrations/source/_index.md), the command will clone directly from the integrated remote repository.
 
 If the project uses an external integration to a repository that you have not been given access to, you will not be able to clone until your access has been updated. See [User access and integrations](/administration/users.md#user-access-and-integrations) for more information.
 
-#### CLI
 
-The CLI pull-down displays the commands to get your project set up locally with the Platform.sh CLI.
 
-#### SSH
-
-The SSH pull-down displays the commands to access your project using SSH.
 
 ### Configuration settings
 
