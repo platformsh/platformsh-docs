@@ -54,14 +54,14 @@ and some commands may not function correctly otherwise.
 The second is **Commit & push**, which includes a command to push code:
 
 ```bash
-git push -u platform master
+git push -u platform main
 ```
 
-This pushes your repository's `master` branch to the Platform.sh `master` branch.
+This pushes your repository's `main` branch to the Platform.sh `main` branch.
 
 {{< note >}}
 
-Projects are currently always automatically set up with the `master` branch as the default.
+Projects are currently always automatically set up with the `main` branch as the default.
 Until this changes, see how to [rename your default branch](/guides/general/default-branch.md).
 
 {{< /note >}}
