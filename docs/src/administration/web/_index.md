@@ -114,7 +114,7 @@ The URLs drop-down exposes the domains that can be used to access application en
 
 #### SSH
 
-The SSH pull-down displays the commands to access your project using SSH.
+The SSH drop-down displays the commands to access your project using SSH.
 
 #### Code
 
