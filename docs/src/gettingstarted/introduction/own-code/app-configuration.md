@@ -6,7 +6,8 @@ aliases:
   - "/gettingstarted/own-code/app-configuration.html"
 ---
 
-You will next need to include information that defines how you want your [application](/configuration/app/_index.md) to behave each time it is built and deployed on Platform.sh in a `.platform.app.yaml` file.
+You next need to include information that defines how you want your [application](/configuration/app/_index.md) to behave
+each time it's built and deployed on Platform.sh in a `.platform.app.yaml` file.
 
 With the following project structure:
 
