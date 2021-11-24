@@ -120,7 +120,7 @@ The SSH drop-down displays the commands to access your project using SSH.
 
 ##### CLI
 
-The CLI pull-down displays the commands to get your project set up locally with the Platform.sh CLI.
+The **CLI** tab displays the command to get your project set up locally with the Platform.sh CLI.
 
 ##### GIT
 
