@@ -1,6 +1,5 @@
 ---
 title: "Upgrading"
-weight: 14
 ---
 
 ## Changes in version 2019.05

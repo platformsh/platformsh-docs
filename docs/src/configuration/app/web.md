@@ -1,6 +1,5 @@
 ---
 title: "Configure what's served"
-weight: 10
 ---
 
 ## How do I setup a basic PHP application with front-controller?

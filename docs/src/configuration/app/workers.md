@@ -1,6 +1,5 @@
 ---
 title: "Work with workers"
-weight: 11
 ---
 
 ## Accessing the Worker Container

@@ -1,6 +1,5 @@
 ---
 title: "Multiple applications"
-weight: 13
 ---
 
 Platform.sh supports building multiple applications per project

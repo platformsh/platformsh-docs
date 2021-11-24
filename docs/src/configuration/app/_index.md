@@ -1,132 +1,101 @@
 ---
-title: "Apps"
+title: Create apps
 weight: 4
 description: |
-  You control your application and the way it will be built and deployed on Platform.sh via a single configuration file, `.platform.app.yaml`, located at the root of your application folder inside your Git repository.
-sidebarTitle: "Apps (.platform.app.yaml)"
-layout: single
+  Control your apps and how they're built and deployed on Platform.sh with YAML configuration.
 aliases:
   - "/configuration/app-containers.html"
+layout: single
 ---
 
 {{< description >}}
 
 ![Applications](/images/config-diagrams/applications.png "0.50")
 
-The `.platform.app.yaml` file is extremely flexible.  Depending on your needs it could be less than 10 lines long or over 100.  The only required keys are `name`, `type`, `disk`, and at least one "instance definition", either a `web` or `worker` block.  All others are optional.
+Within a single project, you can have one or more app and each app can have multiple instances.
+All of the apps and instances are configured with the same syntax.
+You can find a [complete reference](./app-reference.md) of all possible settings.
 
-Your application code can generate one or more application instances. Web instances can be accessed from the outside world, while workers cannot and just run a persistent background process. Otherwise they are very similar.
+## Basic setup
 
-Different configuration properties can be applied to individual web and worker instances, or globally to all of them.  In the most typical case, with one web instance and no workers, it's common to just list each of the configuration directives below as a top-level property.  However, they can also be specified within the `web` or `worker` blocks to apply to just those instances.
+To create a very basic app, you need a few things:
 
-The following properties apply only at the global level, and cannot be replicated inside an instance definition.
+* A unique `name` not shared by any other app in the project.
+* The runtime `type` defining what language it uses.
+* A `disk` size for your deployed files.
+* A definition of how to handle requests from the outside `web`.
 
-* [`name`](/configuration/app/name.md) *(required)* - Sets the unique name of the application container.
-* [`type`](/configuration/app/type.md) *(required)* - Sets the container base image to use, including application language.
-* [`timezone`](/configuration/app/timezone.md) - Sets the timezone of cron tasks in application container.
-* [`build`, `dependencies`, and `hooks`](/configuration/app/build.md) - Control how the application gets compiled.  Note that this compilation happens before the application is copied into different instances, so any steps here will apply to all web and worker instances.
-* [`cron`](/configuration/app/cron.md) - Defines scheduled tasks for the application.  Cron tasks will, technically, run as part of the web instance regardless of how many workers are defined.
-* [`source.root`](/configuration/app/multi-app.md) - This nested value specifies the path where all code for the application lives.  It defaults to the directory where the `.platform.app.yaml` file is defined.  It is rarely needed except in advanced configurations.
-
-The following properties can be set at the top level of the `.platform.app.yaml` file and apply to all application instances, or set within a given instance definition and apply just to that one.  If set in both places then the instance-specific one will take precedence, and completely replace the global one.  That is, if you want to make a change to just one sub-property of one of the following keys you need to replicate the entire block.
-
-* [`size`](/configuration/app/size.md) - Sets an explicit sizing hint for the application.
-* [`relationships`](/configuration/app/relationships.md) - Defines connections to other services and applications.
-* [`access`](/configuration/app/access.md) - Restricts SSH access with more granularity than the management console.
-* [`disk` and `mounts`](/configuration/app/storage.md) - Defines writable file directories for the application.
-* [`variables`](/configuration/app/variables.md) - Sets environment variables that control application behavior.
-* [`firewall`](/configuration/app/firewall.md) - Defines outbound firewall rules for the application.
-
-The `.platform.app.yaml` file needs at least one of the following to define an instance, but may define both.
-
-* [`web`](/configuration/app/web.md) - Controls how the web application is served.
-* [`worker`](/configuration/app/workers.md) - Defines alternate copies of the application to run as background processes.
-
-## Available resources
-
-Each web or worker instance is its own running container, which takes its own resources.  The `size` key allows some control over how many resources each container gets and if omitted the system will select one of a few fixed sizes for each container automatically.  All application and service containers are given resources out of a common pool defined by your plan size.  That means the more containers you define, the fewer resources each one will get and you may need to increase your plan size.
-
-## Compression
-
-Platform.sh does not compress any dynamic responses generated by your application due to a [well known security issue](https://en.wikipedia.org/wiki/BREACH_%28security_exploit%29).  While your application can compress its own response, doing so when the response includes any user-specific information, including a session cookie, opens up an attack vector over SSL/TLS connections.  For that reason we recommend against compressing any generated responses.
-
-Requests for static files that are served directly by Platform.sh are compressed automatically using either gzip or brotli compression if:
-
-* The request headers for the file support gzip or brotli.
-* The file is served directly from disk by Platform.sh, not passed through your application.
-* The file would be served with a cache expiration time in the future.
-* The file type is one of: html, javascript, json, pdf, postscript, svg, css, csv, plain text, or XML.
-
-Additionally, if a file with a ".gz" or ".br" extension exists that will be served instead for the appropriate compression type regardless of the file type.  That is, a request for `styles.css` that accepts a gzipped file (according to the request headers) will automatically return the contents of `styles.css.gz` if it exists.  This approach supports any file type and offers some CPU optimization, especially if the cache lifetime is short.
-
-## Example configuration
-
-An example of a minimalist `.platform.app.yaml` file for PHP, heavily commented, is below:
+The following example shows such a basic setup for PHP:
 
 ```yaml
-# .platform.app.yaml
-
-# The name of this application, which must be unique within a project.
+# The name of this application, which must be unique within the project.
 name: 'app'
 
-# The type key specifies the language and version for your application.
+# The language and version for your app.
 type: 'php:8.0'
 
-# By default, composer 1 will be used. Specify composer 2 in the dependencies to get the latest version
-dependencies:
-    php:
-        composer/composer: '^2'
-
-# The relationships of the application with services or other applications.
-# The left-hand side is the name of the relationship as it will be exposed
-# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
-# side is in the form `<service name>:<endpoint name>`.
-relationships:
-    database: 'mysqldb:mysql'
-
-# The hooks that will be triggered when the package is deployed.
-hooks:
-    # Build hooks can modify the application files on disk but not access any services like databases.
-    build: |
-        rm web/app_dev.php
-    # Deploy hooks can access services but the file system is now read-only.
-    deploy: |
-        app/console --env=prod cache:clear
-
-
-# The size of the persistent disk of the application (in MB).
+# The size of the app's persistent disk (in MB).
 disk: 2048
 
-# The 'mounts' describe writable, persistent filesystem mounts in the application.
-# The keys are directory paths relative to the application root. The values are a
-# mount definition. In this case, `web-files` is just a unique name for the mount.
-mounts:
-    'web/files':
-        source: local
-        source_path: 'web-files'
-
-# The configuration of the application when it is exposed to the web.
+# The app's configuration when it's exposed to the web.
 web:
     locations:
         '/':
-            # The public directory of the application relative to its root.
+            # The public directory relative to the app root.
             root: 'web'
-            # The front-controller script which determines where to send
-            # non-static requests.
-            passthru: '/app.php'
-        # Allow uploaded files to be served, but do not run scripts.
-        # Missing files get mapped to the front controller above.
-        '/files':
-            root: 'web/files'
-            scripts: false
-            allow: true
+            # The front-controller script which determines where to send non-static requests.
             passthru: '/app.php'
 ```
 
-{{< note >}}
-This configuration file is specific to one application. If you have multiple applications inside your Git repository (such as a RESTful web service and a front-end, or a main web site and a blog), you need `.platform.app.yaml` at the root of each application. See the [Multi-app](/configuration/app/multi-app.md) documentation.
-{{< /note >}}
+## Use multiple apps
 
-## Upgrading from previous versions of the configuration file.
+You might have multiple apps you want to run from a single Git repository,
+such as a RESTful web service and a front-end or a main website and a blog.
+In such cases, you need to set configuration separately for each app.
+See the various ways to set up a [multi-app project](./multi-app.md).
 
-Although we make an effort to always maintain backward compatibility in the `.platform.app.yaml` format, we do from time to time [upgrade the file](/configuration/app/upgrading.md) and encourage you to upgrade as well.
+## Connect to services
+
+If you want to use one of the [services Platform.sh provides](../services/_index.md), you need to set up that connection.
+First, configure the service based on the documentation for that service.
+Then use the information from that service inside your app's [`relationships` definition](./app-reference.md#relationships)
+to configure how your app communicates with the service.
+
+## Control the build process
+
+Your app generally needs to undergo some steps to be turned from a Git repository into a running app.
+If you're running a PHP or Node.js app, this starts with the [build flavor](./app-reference.md#build),
+which runs a default set of tasks.
+Then any [global dependencies](./app-reference.md#dependencies) can be installed.
+
+Once these optional tasks are done, you can run [hooks](./hooks.md) at various points in the process.
+These are places for your custom scripts to control how your app is built.
+
+## Configure what's served
+
+Once your app is built, it needs a defined way to communicate with the outside world.
+Define its behavior with a [`web` instance](./app-reference.md#web).
+There you can set what command runs every time your app is restarted,
+how dynamic requests are handled, and how to respond with static files.
+
+## Compression
+
+Dynamic responses generated by your app aren't compressed because of a [general security issue](https://en.wikipedia.org/wiki/BREACH_%28security_exploit%29).
+While your application can compress its own response,
+doing so when the response includes any user-specific information, including a session cookie,
+opens up an attack vector over SSL/TLS connections.
+For that reason, you generally shouldn't compress generated responses.
+
+Requests for static files that are served directly by Platform.sh are compressed automatically
+using either gzip or Brotli compression if:
+
+* The request headers for the file support gzip or Brotli compression.
+* The file is served directly from disk by Platform.sh and not passed through your application.
+* The file would be served with a cache expiration time in the future.
+* The file type is one of: HTML, JavaScript, JSON, PDF, PostScript, SVG, CSS, CSV, plain text, or XML.
+
+Also, if there is a request for a file and another file exists with the same name plus a `.gz` or `.br` extension,
+the compressed file is served regardless of the original file type.
+So a request for `styles.css` that accepts a gzipped file (according to the request headers)
+automatically returns a `styles.css.gz` file if it exists.
+This approach supports any file type and offers some CPU optimization, especially if the cache lifetime is short.

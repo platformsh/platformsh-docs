@@ -1,6 +1,5 @@
 ---
 title: "App runtime timezone"
-weight: 4
 sidebarTitle: "Runtime timezone"
 ---
 

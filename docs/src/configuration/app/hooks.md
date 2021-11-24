@@ -1,6 +1,5 @@
 ---
 title: "Use hooks"
-weight: 9
 ---
 
 ## Hooks

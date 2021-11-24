@@ -10,6 +10,8 @@ For single-app projects, the configuration is all done in a `.platform.app.yaml`
 usually located at the root of your app folder in your Git repository.
 [Multi-app projects](./multi-app.md) can be set up in various ways.
 
+See a [log of changes to app configuration](./upgrading.md).
+
 ## Top-level properties
 
 The following table presents all properties available at the top level of the YAML for the app.
