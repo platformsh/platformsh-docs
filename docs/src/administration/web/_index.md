@@ -124,7 +124,9 @@ The CLI pull-down displays the commands to get your project set up locally with 
 
 GIT
 
-The "Git" pull-down displays the commands to use to clone the codebase via Git. If you are using Platform.sh as your primary remote repository, the command shown will clone from the project. Otherwise if you have set up an [external integration](/integrations/source/_index.md), the command will clone directly from the integrated remote repository.
+The **Git** tab displays the command to clone the codebase via Git.
+If you're using Platform.sh as your primary remote repository, the command clones from the project.
+If you have set up an [external integration](/integrations/source/_index.md), the command clones directly from the integrated remote repository.
 
 If the project uses an external integration to a repository that you have not been given access to, you will not be able to clone until your access has been updated. See [User access and integrations](/administration/users.md#user-access-and-integrations) for more information.
 
