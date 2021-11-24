@@ -122,7 +122,7 @@ CLI
 
 The CLI pull-down displays the commands to get your project set up locally with the Platform.sh CLI.
 
-GIT
+##### GIT
 
 The **Git** tab displays the command to clone the codebase via Git.
 If you're using Platform.sh as your primary remote repository, the command clones from the project.
