@@ -133,9 +133,10 @@ even if specifically set to true.
 
 ## Clones and commits
 
-When you run `platform get <projectID>` or use the clone command shown in the "Git" dropdown in the console to clone the project,
-you are actually cloning from your remote integrated repository,
-so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations). 
+You can clone your codebase by going to Console > Code > GIT and using the git clone command, or you can run `platform get <projectID>` with the CLI.
+
+When you perform this action, you are actually cloning from your remote integrated repository,
+so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations).
 
 Your Bitbucket repository is considered by Platform.sh to be the "source of truth" for the project.
 The project is only a mirror of that repository, and all commits should be pushed only to Bitbucket.
