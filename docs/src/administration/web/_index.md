@@ -110,7 +110,7 @@ to restore an existing backup.
 
 #### URLs
 
-The URLs pull-down exposes the domains that can be used to access application environments from the web.
+The URLs drop-down exposes the domains that can be used to access application environments from the web.
 
 #### SSH
 
