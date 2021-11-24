@@ -71,7 +71,22 @@ and [`us.platform.sh`](/guides/general/region-migration.md) regions.
 
 ### Size
 
-By default, Platform.sh will allocate CPU and memory resources to each container automatically.  Some services are optimized for high CPU load, some for high memory load.  By default, Platform.sh will try to allocate the largest "fair" size possible to all services, given the available resources on the plan.  That is not always optimal, however, and you can customize that behavior on any service or on any application container.  See the [application sizing](/configuration/app/size.md) page for more details.
+By default, Platform.sh allocates CPU and memory resources to each service container automatically.
+Some services are optimized for high CPU load, some for high memory load.
+The largest "fair" size possible is allocated to all services given the available resources on the plan.
+You can customize that behavior for a specific service in production environments.
+
+To do so, set `size` to one of the following values:
+* `S`
+* `M`
+* `L`
+* `XL`
+* `2XL`
+* `4XL`
+
+The total resources allocated across all apps and services can't exceed what's in [your plan](../../overview/pricing/_index.md).
+
+Note that service containers in development environments are always set to size `S`.
 
 ## Service timezones
 

@@ -18,6 +18,7 @@ exceptions:
   - DOM
   - DPI
   - FAQ
+  - FPM
   - GCC
   - GDB
   - GET
@@ -58,6 +59,7 @@ exceptions:
   - URI
   - URL
   - USB
+  - UTC
   - UTF
   - XML
   - XSS

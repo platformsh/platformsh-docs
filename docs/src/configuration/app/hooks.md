@@ -1,90 +1,7 @@
 ---
-title: "Build and deploy"
+title: "Use hooks"
 weight: 9
 ---
-
-The `.platform.app.yaml` file provides a number of ways to control
-how an application gets turned from a directory in Git into a running application.
-There are three blocks that control different parts of the process: the build flavor, dependencies, and hooks.
-The build process runs the build flavor, then install dependencies, then run the user-provided build hook.
-The deploy process runs the deploy hook.
-
-## Build
-
-The `build` defines what happens when building the application.
-Its only property is `flavor`, which specifies a default set of build tasks to run. Flavors are language-specific.
-
-See what the build flavor is for your language:
-
-- [Node.js](/languages/nodejs#build-flavor)
-- [PHP](/languages/php#build-flavor)
-
-In all languages, you can also specify a flavor of `none`
-(which is the default for any language other than PHP and Node.js).
-As the name suggests, this takes no action at all.
-That's useful when you want complete control over your build steps,
-such as to run a custom Composer command or use an alternate Node.js package manager.
-
-```yaml
-build:
-    flavor: none
-```
-
-## Build dependencies
-
-It's also possible to install additional system-level dependencies as part of the build process.
-These can be installed before the `build` hook runs using the native package manager for several web-focused languages.
-
-Platform.sh supports pulling any dependencies for the following languages:
-
-* PHP (via [Composer](https://getcomposer.org/))
-* Python 2 and 3 (via [Pip](https://packaging.python.org/tutorials/installing-packages/))
-* Ruby (via [Bundler](https://bundler.io/))
-* Node.js (via [npm](https://www.npmjs.com/))
-* Java (via [Apache Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), or [Apache Ant](https://ant.apache.org/))
-
-### Python dependencies
-
-Applications can have both Python 2 and Python 3 dependencies,
-using the version of each that's packaged with the most recent Debian distribution.
-The format of Python dependencies complies with [PEP 394](https://www.python.org/dev/peps/pep-0394/).
-So specifying a dependency in a `python` or `python2` block uses `pip2` and Python 2,
-while specifying a dependency in a `python3` block uses `pip3` and Python 3.
-
-It's best to specify your dependencies with the specific version of Python you wish to use (either `python2` or `python3`),
-rather than with the generic `python` declaration,
-to ensure your application functions normally if Debian's default version of Python changes.
-
-### Specifying dependencies
-
-Build dependencies are independent of the eventual dependencies of your application
-and are available in the `PATH` during the build process and in the runtime environment of your application.
-Note that in many cases a given package can be installed either as a global dependency
-or as part of your application's own dependencies.
-In such cases it's up to you which one to use.
-
-You can specify those dependencies as shown below:
-
-```yaml
-dependencies:
-    php: # Specify one Composer package per line.
-        drush/drush: '8.0.0'
-        composer/composer: '^2'
-    python: # Specify one Python 2 package per line.
-        behave: '*'
-    python2: # Specify one Python 2 package per line.
-        requests: '*'
-    python3: # Specify one Python 3 package per line.
-        numpy: '*'
-    ruby: # Specify one Bundler package per line.
-        sass: '3.4.7'
-    nodejs: # Specify one NPM package per line.
-        pm2: '^4.5.0'
-```
-
-Note that the package name format for each language is defined by the package manager used;
-similarly, the version constraint string is interpreted by the package manager.
-Consult the appropriate package manager's documentation for the supported formats.
 
 ## Hooks
 
@@ -128,18 +45,16 @@ At this point no services (such as a database) are available nor any persistent 
 as the application hasn't yet been deployed.
 Environment variables that exist only at runtime such as `PLATFORM_BRANCH` and `PLATFORM_DOCUMENT_ROOT` aren't available during this phase.
 See the full list of provided [build time and runtime variables](/development/variables.md#platformsh-provided-variables).
-There are three writeable directories at this time:
+
+During the `build` hook, there are three writeable directories:
 
 * `$PLATFORM_APP_DIR`:
-  This is where your code is checked out and is the working directory when the build hook starts.
+  This is where your code is checked out and is the working directory when the `build` hook starts.
   The contents of this directory after the build hook is the application that gets deployed.
-  (This directory is always `/app`, but it's better to use the variable or rely on the working directory than to hard code that.)
-  Most of the time, this is the only directory you use.
 * `$PLATFORM_CACHE_DIR`:
-  This directory persists between builds, but is NOT deployed as part of your application.
-  It's a good place for temporary build artifacts, such as downloaded `.tar.gz` or `.zip` files, that can be reused between builds.
-  Note that it's shared by all builds on all branches,
-  so if using the cache directory make sure your build code accounts for that.
+  This directory persists between builds, but isn't deployed as part of your application.
+  It's a good place for temporary build artifacts that can be reused between builds.
+  It's shared by all builds on all branches.
 * `/tmp`:
   The temp directory is also useful for writing files that aren't needed in the final application,
   but it's wiped between each build.
@@ -150,20 +65,20 @@ build environments (the application plus the cache directory) and therefore appl
 If you exceed this limit, you receive a `No space left on device` error.
 It's possible to increase this limit in certain situations,
 but it's necessary to open a support ticket to do so.
-Consult the [troubleshooting guide](/development/troubleshoot.md#no-space-left-on-device) for more information on this topic.
+Consult the [troubleshooting guide](./troubleshoot-disks.md#no-space-left-on-device) for more information on this topic.
 
 ### Deploy hook
 
 The `deploy` hook is run after the application container has been started, but before it has started accepting requests.
 You can access other services at this stage (such as MySQL, Solr, Redis).
 The disk where the application lives is read-only at this point.
-Note that the deploy hook only runs on a [`web`](/configuration/app/web.md) instance,
-not a [`worker`](/configuration/app/workers.md) instance.
+Note that the deploy hook only runs on a [`web` instance](./app-reference.md#web),
+not a [`worker` instance](./app-reference.md#workers).
 
 This hook should be used when something needs to run once for all instances of an app when deploying new code.
 It isn't run when a host is restarted (such as during region maintenance),
 so anything that needs to run each time an app starts (regardless of whether there's new code)
-should go in the `start` key in [your web configuration](/configuration/app/web.md#commands).
+should go in the `start` key in [your web configuration](./app-reference.md#commands).
 
 Be aware: The deploy hook blocks the site accepting new requests.
 If your deploy hook is only a few seconds then incoming requests in that time are paused and continues when the hook completes,

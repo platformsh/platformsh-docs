@@ -21,7 +21,7 @@ In your `.platform/services.yaml` file, include a SQL database service. Make sur
 
 ## 2. Grant access to the service through a relationship
 
-Your `.platform.app.yaml` file will require a [`relationship`](/configuration/app/relationships.md) in order to have access to the new service. 
+Your `.platform.app.yaml` file requires a [`relationship`](../../configuration/app/app-reference.md#relationships) in order to have access to the new service. 
 
 {{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" >}}
 

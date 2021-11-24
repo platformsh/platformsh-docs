@@ -336,7 +336,7 @@ Here is an example to define a route that serves WebSocket:
         enabled: false
 ```
 
-You will also need to [disable request buffering](/configuration/app/web.md#locations) in the `.platform.app.yaml`.
+You will also need to [disable request buffering](/configuration/app/app-reference.md#locations) in the `.platform.app.yaml`.
 
 ```yaml
 web:

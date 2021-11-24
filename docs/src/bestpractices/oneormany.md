@@ -27,7 +27,7 @@ If you are uncertain how your needs map to projects, it probably means they shou
 
 A clustered application is one where your project requires multiple "app services", written by you, but are all part of the same conceptual project.  That is, removing one of the app services would render the others broken.
 
-In a clustered application, you either have [multiple `.platform.app.yaml`](/configuration/app/multi-app.md) files in different directories with separate code bases that deploy separately or you have a single application that spawns one or more [worker instances](/configuration/app/workers.md) that run background processes.  (See the link for details on how to set those up.)
+In a clustered application, you either have [multiple `.platform.app.yaml`](/configuration/app/multi-app.md) files in different directories with separate code bases that deploy separately or you have a single application that spawns one or more [worker instances](/configuration/app/app-reference.md#workers) that run background processes.  (See the link for details on how to set those up.)
 
 A Clustered application requires at least a Medium plan.
 

@@ -43,7 +43,7 @@ To log in to a different environment, use the `-e` flag with the environment nam
 The application container is a fully working Linux environment using the `bash` shell.
 Most of the system consists of a read-only file system (either the underlying container image or your built application image),
 so you cannot edit code live, but otherwise the full system is available to read and peruse.
-Any file [mounts](/configuration/app/storage.md) you have declared in your `.platform.app.yaml` will be writable.
+Any file [mounts](/configuration/app/app-reference.md#mounts) you have declared in your `.platform.app.yaml` will be writable.
 
 Additionally, you will be logged in as the same user that the web server runs as;
 that means you needn't worry about the common problem of editing a file from the command line and from your application
@@ -52,7 +52,7 @@ resulting in inconsistent and broken file ownership and permissions.
 ## Uploading and downloading files
 
 The writable static files in an application (including uploads and temporary and private files)
-are stored in [mounts](/configuration/app/storage.md).
+are stored in [mounts](/configuration/app/app-reference.md#mounts).
 
 The Platform.sh CLI can list mounts inside an application:
 

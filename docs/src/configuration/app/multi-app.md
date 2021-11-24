@@ -207,7 +207,7 @@ Assuming a domain name of `example.com`, that will result in:
 There is no requirement that an application be web-accessible.
 If it is not specified in `routes.yaml` then it will not be web-accessible at all.
 However, if you are building a non-routable application off of the same code base as another application,
-you should probably consider defining it as a [`worker`](/configuration/app/workers.md) instead.
+you should probably consider defining it as a [`worker`](/configuration/app/app-reference.md#workers) instead.
 The net result is the same but it is much easier to manage.
 
 ## Relationships
