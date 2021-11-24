@@ -133,7 +133,7 @@ even if specifically set to true.
 
 ## Clones and commits
 
-You can clone your codebase by going to Console > Code > GIT and using the git clone command, or you can run `platform get <projectID>` with the CLI.
+You can clone your codebase by running `platform get <projectID>` or in your project in the console going to Code > Git and running the `git clone` command.
 
 When you perform this action, you are actually cloning from your remote integrated repository,
 so long as you have the [appropriate access to do so](/administration/users.md#user-access-and-integrations).
