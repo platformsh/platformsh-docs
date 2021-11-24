@@ -97,7 +97,9 @@ All services have their system timezone set to UTC by default.  In most cases th
 
 ## Using the services
 
-In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [.platform.app.yaml](/configuration/app/_index.md) file which configures the *relationships* between applications and services.
+In order for a service to be available to an application in your project
+(Platform.sh supports not only multiple backends but also multiple applications in each project),
+you need to refer to it in [your app configuration for relationships](../app/app-reference.md#relationships).
 
 ## Endpoints
 

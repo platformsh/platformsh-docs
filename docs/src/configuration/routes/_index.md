@@ -100,7 +100,7 @@ Here is an example of a basic `.platform/routes.yaml` file:
     to: "https://{default}/"
 ```
 
-In this example, we will route both the apex domain and the `www` subdomain to an [application called "app"](/configuration/app/name.md),
+In this example, we will route both the apex domain and the `www` subdomain to an [application called "app"](../app/app-reference.md),
 the `www` subdomain being redirected to the apex domain using an HTTP 301 `Moved Permanently` response.
 
 In the following example, we are not redirecting from the `www` subdomain to the apex domain but serving from both:

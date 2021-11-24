@@ -28,10 +28,12 @@ A container application cannot be bigger than **8 GB** of memory, see  [tunning]
 
 ## Monolith/Single Application
 
-To start a Java application, you need to understand the [Platform.sh structure](/overview/structure.md).  At minimum you will need three [YAML files](/configuration/yaml.md):
+To start a Java application, you need to understand the [Platform.sh structure](/overview/structure.md).
+At minimum, you to configure your [application](../../configuration/app/_index.md)
+and have two [YAML files](../../configuration/yaml.md) (though they can be blank if you don't need them):
 
-1. [Application](/configuration/app/_index.md)
-2. [Route](/configuration/routes/_index.md)
+* [Routes](../../configuration/routes/_index.md)
+* [Services](../../configuration/services/_index.md)
 
 ### Application
 
@@ -85,8 +87,8 @@ You have the option to use several languages in microservices. If you're using J
 
 [Platform.sh supports multiple applications](/configuration/app/multi-app.md) and there are two options:
 
-* [One application YAML file to each application](/configuration/app/_index.md)
-* [Aggregate all applications in a single file with applications.yaml](/configuration/app/multi-app.md#applicationsyaml)
+* One application YAML file to each application
+* Aggregate all applications in a single file with an `applications.yaml` file
 
 | Article                                                      | Content                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
