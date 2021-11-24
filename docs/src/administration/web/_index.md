@@ -118,7 +118,7 @@ The SSH drop-down displays the commands to access your project using SSH.
 
 #### Code
 
-CLI
+##### CLI
 
 The CLI pull-down displays the commands to get your project set up locally with the Platform.sh CLI.
 
