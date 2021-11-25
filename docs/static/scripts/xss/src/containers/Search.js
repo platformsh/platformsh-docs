@@ -32,7 +32,7 @@ const Search = ({ fullPage }) => {
     })
   }, [setQuery, urlQuery])
 
-  const limit = fullPage ? 100 : 7
+  const limit = fullPage ? 15 : 7
 
   const getInfo = (config,infoQuery) => {
     axios.get(`${config["url"]}indexes/${config["index"]}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${infoQuery}&limit=${limit}&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': config["public_api_key"] } })
