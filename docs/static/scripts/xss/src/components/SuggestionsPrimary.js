@@ -6,7 +6,7 @@ import renderHTML from 'react-render-html';
 // via the index's `rank` attribute.
 const SuggestionsPrimary = (props) => {
   const results = props.hits.map(r => (
-    <li key={r.relurl}>
+    <li key={r.url}>
       <h5> <a href={r.url}><b>{r.section}  |  </b>{r.title}</a></h5>
       {r.text}
     </li>

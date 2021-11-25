@@ -63,7 +63,8 @@ class Search:
             "displayedAttributes": self.displayed_attributes
         }
 
-        self.distinct_attribute = "url"
+        # Group results by page
+        self.distinct_attribute = "pageUrl"
 
     def getConnectionString(self):
         """
