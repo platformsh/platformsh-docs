@@ -34,17 +34,17 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 ## Usage example
 
-In your `.platform/services.yaml`:
+{{% endpoint-description type="elasticsearch" %}}
+
+Service definition:
 
 {{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" >}}
 
-In your `.platform.app.yaml`:
+App configuration:
 
 {{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" >}}
 
-{{< endpoint-description "elasticsearch" >}}
-
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 

@@ -12,17 +12,17 @@ Platform.sh recommends using Redis for caching with Drupal over Memcached, as Re
 
 ### Add a Memcached service
 
-First you need to create a  Memcached service.  In your `.platform/services.yaml` file, add or uncomment the following:
+{{% endpoint-description type="memcached" noApp=true %}}
 
-In your ``.platform/services.yaml``:
+Service definition:
 
 {{< readFile file="src/registry/images/examples/full/memcached.services.yaml" highlight="yaml" >}}
 
-Now add a relationship in your `.platform.app.yaml` file:
+App configuration:
 
 {{< readFile file="src/registry/images/examples/full/memcached.app.yaml" highlight="yaml" >}}
 
-{{< endpoint-description "memcached" >}}
+{{% /endpoint-description %}}
 
 ### Add the Memcached PHP extension
 

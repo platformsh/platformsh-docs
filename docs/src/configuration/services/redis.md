@@ -64,22 +64,25 @@ The format is identical regardless of whether it's a persistent or ephemeral ser
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+{{% endpoint-description type="redis" %}}
+
+Service definition:
 
 {{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
 
-If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php/extensions.md) in your `.platform.app.yaml`.
+App configuration:
+
+{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" >}}
+
+If you are using PHP,  enable the [PHP redis extension](../../languages/php/extensions.md):
 
 ```yaml
 runtime:
     extensions:
         - redis
-
-relationships:
-    rediscache: "cacheredis:redis"
 ```
 
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 

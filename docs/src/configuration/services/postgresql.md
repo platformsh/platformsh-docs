@@ -36,15 +36,15 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## Usage example
 
-In your `.platform/services.yaml` add:
+{{% endpoint-description type="postgresql" %}}
+
+Service definition:
 
 {{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml">}}
 
-Add a relationship to the service in your ``.platform.app.yaml``:
+App configuration:
 
 {{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" >}}
-
-{{< endpoint-description "postgresql" >}}
 
 For PHP, in your `.platform.app.yaml` add:
 
@@ -54,7 +54,7 @@ runtime:
         - pdo_pgsql
 ```
 
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 

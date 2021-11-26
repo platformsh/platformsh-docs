@@ -32,7 +32,9 @@ If you are using the latest version of Search API Solr and running Drupal 8.8 or
 
 ### 1. Add a default Solr service
 
-In your `.platform/services.yaml`:
+{{% endpoint-description type="solr" sectionLink="#solr-6-and-later" multipleText="cores" noApp=true %}}
+
+Service definition:
 
 ```yaml
 search:
@@ -46,14 +48,14 @@ search:
                 core: maincore
 ```
 
-In your `.platform.app.yaml`:
+App configuration:
 
 ```yaml
 relationships:
     solrsearch: "search:main"
 ```
 
-{{< endpoint-description "solr" "#solr-6-and-later" "cores" >}}
+{{% /endpoint-description %}}
 
 The above definition defines a single Solr server.  That server has 1 core defined: `maincore`, which will use a default configuration.  (The default configuration is not suitable for production but will allow the module to connect to it.)
 

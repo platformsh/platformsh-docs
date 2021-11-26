@@ -34,7 +34,9 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## Usage example
 
-In your `.platform/services.yaml`:
+{{% endpoint-description type="mongodb" %}}
+
+Service definition:
 
 ```yaml
 dbmongo:
@@ -44,9 +46,9 @@ dbmongo:
 
 The minimum disk size for MongoDB is `512` (MB).
 
-{{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" >}}
+App configuration:
 
-{{< endpoint-description "mongodb" >}}
+{{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" >}}
 
 For PHP, in your `.platform.app.yaml` add:
 
@@ -58,7 +60,7 @@ runtime:
 
 (Before PHP 7, use `mongo` instead.)
 
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 

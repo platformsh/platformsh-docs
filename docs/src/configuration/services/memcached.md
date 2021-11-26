@@ -26,15 +26,15 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+{{% endpoint-description type="memcached" %}}
+
+Service definition:
 
 {{< readFile file="src/registry/images/examples/full/memcached.services.yaml" highlight="yaml" >}}
 
-Now add a relationship in your `.platform.app.yaml` file:
+App configuration:
 
 {{< readFile file="src/registry/images/examples/full/memcached.app.yaml" highlight="yaml" >}}
-
-{{< endpoint-description "memcached" >}}
 
 If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php/extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 
@@ -52,7 +52,7 @@ dependencies:
         python-memcached: '*'
 ```
 
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 
