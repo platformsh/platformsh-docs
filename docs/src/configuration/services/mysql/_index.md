@@ -7,7 +7,7 @@ layout: single
 ---
 
 Platform.sh supports both MariaDB and Oracle MySQL to manage your relational databases.
-Their infrastructure setup is is nearly identical, though they differ in some features.
+Their infrastructure setup is nearly identical, though they differ in some features.
 See the [MariaDB documentation](https://mariadb.org/learn/)
 or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more information.
 
@@ -29,6 +29,7 @@ On Dedicated and Dedicated Generation 3 environments, only MariaDB is available 
 
 Dedicated environments don't support any storage engine other than InnoDB.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between cluster nodes.
+See how to [convert the engine for tables](#storage-engine).
 
 ### Switching type and version
 
@@ -47,29 +48,33 @@ To experiment with a later version without committing to it, use a non-productio
 |----------------------------------|---------------|-------------------------|
 |  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
-## Relationship
-
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
-
-{{< relationship "mysql" >}}
-
 ## Usage example
 
-For MariaDB your `.platform/services.yaml` use `mariadb` service type:
+Configure your service with at least 256 MB in disk space.
+
+{{% endpoint-description type="mariadb" sectionLink="#multiple-databases" multipleText="databases" %}}
+
+### MariaDB example configuration
+
+Service definition:
 
 {{< readFile file="src/registry/images/examples/full/mariadb.services.yaml" highlight="yaml" >}}
 
-Oracle-mysql uses the `oracle-mysql` service type:
+App configuration:
+
+{{< readFile file="src/registry/images/examples/full/mariadb.app.yaml" highlight="yaml" >}}
+
+### Oracle MySQL example configuration
+
+Service definition:
 
 {{< readFile file="src/registry/images/examples/full/oracle-mysql.services.yaml" highlight="yaml" >}}
 
-Note that the minimum disk size for `mysql`/`oracle-mysql` is 256MB.
+App configuration:
 
-Despite these service type differences, MariaDB and Oracle MySQL both use the `mysql` endpoint in their configuration.
+{{< readFile file="src/registry/images/examples/full/oracle-mysql.app.yaml" highlight="yaml" >}}
 
-{{< endpoint-description "mariadb" "#multiple-databases" "databases" >}}
-
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 
@@ -113,29 +118,90 @@ highlight=python
 
 {{< /codetabs >}}
 
-{{< note >}}
+## `$PLATFORM_RELATIONSHIPS` reference
 
-MySQL schema names can not use system reserved namespaces (such as `mysql`, `information_schema`).
+The information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< /note >}}
+### MariaDB reference
+
+{{< relationship "mysql" >}}
+
+### Oracle MySQL reference
+
+{{< relationship "oraclemysql" >}}
+
+## Access the service directly
+
+You can access the service using the Platform CLI by running `platform sql`.
+
+You can also access it from you app container via [SSH](../../../development/ssh/_index.md).
+From your `$PLATFORM_RELATIONSHIPS` variable, you need: `host`, `port`, `user`, `path`.
+Then run the following command:
+
+```bash
+mysql -h <HOST> -P <PORT> -u <USER> <PATH>
+```
+
+Assuming the values from the [MariaDB reference](#mariadb-reference), that would be:
+
+```bash
+mysql -h mysql.internal -P 3306 -u user main
+```
+
+If your database relationship has a password, pass the `-p` switch and enter the password when prompted:
+
+```bash
+mysql -h mysql.internal -P 3306 -u user -p main
+```
 
 ## Multiple databases
 
-If you are using version `10.0` or later of this service,
-it is possible to define multiple databases as well as multiple users with different permissions.
-To do so requires defining multiple endpoints.
-Under the `configuration` key of your service there are two additional keys:
+With version `10.0` or later, you can define multiple databases and multiple users with different permissions.
+To do so, define multiple endpoints using the `configuration` key for your service.
 
-* `schemas`:  This is a YAML array listing the databases that should be created.
-  If not specified, a single database named `main` will be created.
-* `endpoints`: This is a nested YAML array defining different credentials.
-  Each endpoint may have access to one or more schemas (databases), and may have different levels of permission on each.
-  The valid permission levels are:
-  * `ro`: Using this endpoint only SELECT queries are allowed.
-  * `rw`: Using this endpoint SELECT queries as well INSERT/UPDATE/DELETE queries are allowed.
-  * `admin`: Using this endpoint all queries are allowed, including DDL queries (such as `CREATE TABLE`, `DROP TABLE`).
+It has the following relevant properties (plus [`properties` for other configuration](#configure-the-database)):
 
-Consider the following illustrative example:
+| Name        | Type                      | Required | Description |
+| ----------- | ------------------------- | -------- | ----------- |
+| `schemas`   | An array of `string`s     |          | All databases to be created. Defaults to a single `main` database. |
+| `endpoints` | A dictionary of endpoints |          | The endpoints with their permissions. | 
+
+You need to define each endpoint with a unique name and give it the following properties:
+
+| Name             | Type                     | Required | Description |
+| ---------------- | ------------------------ | -------- | ----------- |
+| `default_schema` | `string`                 |          | Which of the schemas defined above to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the Platform CLI can't access the relationship. |
+| `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. | 
+
+Possible permissions:
+
+* `ro`: Only SELECT queries are allowed.
+* `rw`: SELECT queries and INSERT/UPDATE/DELETE queries are allowed.
+* `admin`: All queries are allowed including data definition language (DDL) queries (such as `CREATE TABLE`, `DROP TABLE`).
+
+If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
+
+```yaml
+configuration:
+    schemas:
+        - main
+    endpoints:
+        mysql:
+            default_schema: main
+            privileges:
+                main: admin
+```
+
+If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
+
+### Multiple databases example
+
+The following configuration example creates a single MariaDB service named `mysqldb` with two databases, `main` and `legacy`.
+Access to the database is defined through three endpoints:
+
+* `admin` has full access to both databases.
+* `reporter` has SELECT query access to `main` but no access to `legacy`.
+* `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
 ```yaml
 db:
@@ -160,22 +226,7 @@ db:
                     legacy: rw
 ```
 
-This example creates a single MySQL/MariaDB service named `mysqldb`.
-That server will have two databases, `main` and `legacy`.
-There will be three endpoints created
- The first, named `admin`, will have full access to both databases.
- The second, `reporter`, will have SELECT query access to the `main` DB but no access to `legacy` at all.
- The `importer` user will have SELECT/INSERT/UPDATE/DELETE access (but not DDL access) to the `legacy` database but no access to `main`.
-
-If a given endpoint has access to multiple databases,
-you should also specify which will be listed by default in the relationships array.
-If one isn't specified the `path` property of the relationship will be null.
-While that may be acceptable for an application that knows the name of the database to connect to,
-it would mean that automated tools such as the Platform CLI will not be able to access the database on that relationship.
-For that reason the `default_schema` property is always recommended.
-
-Once those endpoints are defined, you need to expose them to your application as a relationship.
-Continuing with our example, this would be a possible corresponding block from `.platform.app.yaml`:
+Expose these endpoints to your app as relationships in your [app configuration](../../app/_index.md):
 
 ```yaml
 relationships:
@@ -184,31 +235,24 @@ relationships:
     imports: "db:importer"
 ```
 
-This block defines three relationships, `database`, `reports`, and `imports`. They'll be available in the `PLATFORM_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+These relationships are then available in the [`PLATFORM_RELATIONSHIPS` environment variable](#platform_relationships-reference).
+Each has its own credentials you can use to connect to the given database.
 
-If no `configuration` block is specified at all, it is equivalent to the following default:
+## Configure the database
 
-```yaml
-configuration:
-    schemas:
-        - main
-    endpoints:
-        mysql:
-            default_schema: main
-            privileges:
-                main: admin
-```
+For MariaDB 10.1 and later and Oracle MySQL 8.0 and later, you can set some configuration properties
+(equivalent to using a `my.cnf` file).
 
-If either schemas or endpoints are defined, then no default will be applied and you must specify the full configuration.
+In your settings, add the `properties` key to the `configuration` key.
+It offers the following properties:
 
-## Adjusting database configuration
+| Name        | Type               | Default                                                      | Description |
+| ----------- | ------------------ | ------------------------------------------------------------ | ----------- |
+| `max_allowed_packet` | `integer` | `16`                                                         | The maximum size for packets in MB. Can be from `1` to `100`. |
+| `default_charset`    | `string`  | `latin1` before February 2020 and `utf8mb4` after            | The default character set. Affects any tables created after it's set. |
+| `default_collation`  | `string`  | `latin1` before February 2020 and `utf8mb4_unicode_ci` after | The default collation. Affects any tables created after it's set. |
 
-For MariaDB 10.1 and later and Oracle MySQL 8.0 and later,
-a select few configuration properties from the `my.cnf` file are available for adjustment.
-
-### Packet and connection sizing
-
-This value defaults to `16` (in MB). Legal values are from `1` to `100`.
+An example of setting these properties:
 
 ```yaml
 db:
@@ -217,36 +261,11 @@ db:
     configuration:
         properties:
             max_allowed_packet: 64
-```
-
-The above code will increase the maximum allowed packet size (the size of a query or response) to 64 MB.
-However, increasing the size of the maximum packet will also automatically decrease the `max_connections` value.
-The number of connections allowed will depend on the packet size and the memory available to the service.
-In most cases leaving this value at the default is recommended.
-
-## Character encoding
-
-For services created prior to February 2020, the default character set and collation is `latin1`,
-which is the default in most MySQL/MariaDB.
-
-For services created after February 2020, the default character set is `utf8mb4` and the default collation is `utf8mb4_unicode_ci`.
-
-Both values can be adjusted at the server level in `services.yaml`:
-
-```yaml
-db:
-    type: mariadb:10.5
-    disk: 2048
-    configuration:
-        properties:
             default_charset: utf8mb4
             default_collation: utf8mb4_unicode_ci
 ```
 
-Note that the effect of this setting is to set the character set and collation of any tables created once those properties are set.
-Tables created prior to when those settings are changed will be unaffected by changes to the `services.yaml` configuration.
-However, you can change your own table's character set and collation through `ALTER TABLE` commands.
-For example:
+You can also change a table's character set and collation through `ALTER TABLE` commands:
 
 ```text
 # To change defaults when creating new tables:
@@ -263,11 +282,11 @@ Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charse
 
 ## Storage Engine
 
-We recommend using the InnoDB storage engine wherever possible.
-MyISAM is only properly supported in Grid environments.
-In dedicated cluster environments there is no replication of MyISAM tables.
+It's best to the InnoDB storage engine wherever possible.
+MyISAM is only properly supported in non-Dedicated environments.
+In Dedicated environments, there is no replication of MyISAM tables.
 
-If MyISAM tables have been inadvertently created or imported in a dedicated environment
+If MyISAM tables have been inadvertently created or imported in a Dedicated environment
 (if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE <existing_table>`),
 convert them to use the InnoDB storage engine as follows:
 
@@ -282,49 +301,35 @@ convert them to use the InnoDB storage engine as follows:
 
 Now when you run `SHOW CREATE TABLE <existing_table>`, you see `ENGINE=InnoDB`.
 
-## Access your MariaDB service
-
-Assuming your MariaDB relationship is named `database`,
-the host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `database.internal` and `3306`.
-Open an [SSH session](/development/ssh/_index.md) and run the MySQL command line client.
-
-```bash
-mysql -h database.internal -P 3306 -u user main
-```
-
-If your database relationship has a password, you need to pass the `-p` switch and enter the password when prompted:
-
-```bash
-mysql -h database.internal -P 3306 -u user -p main
-```
-
-Outside the application container, you can use Platform CLI `platform sql`.
-
 ## Exporting data
 
-The easiest way to download all data in a MariaDB instance is with the Platform.sh CLI.
-If you have a single SQL database, the following command will export all data using the `mysqldump` command to a local file:
+To download all data in a MariaDB instance, use the Platform.sh CLI.
+If you have a single SQL database, the following command exports all data to a local file:
 
 ```bash
 platform db:dump
 ```
 
-If you have multiple SQL databases it will prompt you which one to export.
-You can also specify one by relationship name explicitly:
+If you have multiple SQL databases, you are prompted for which one to export.
+You can also specify it explicitly by its relationship name:
 
 ```bash
-platform db:dump --relationship database
+platform db:dump --relationship <RELATIONSHIP_NAME>
 ```
 
-By default the file will be uncompressed.
-If you want to compress it, use the `--gzip` (`-z`) option:
+### Compression
+
+By default, the file is uncompressed.
+To compress it, use the `--gzip` (`-z`) option:
 
 ```bash
 platform db:dump --gzip
 ```
 
-You can use the `--stdout` option to pipe the result to another command.
-For example, if you want to create a bzip2-compressed file, you can run:
+### Using the output in bash
+
+To pipe the result to another command, use the `--stdout` option.
+For example, to create a bzip2-compressed file, run:
 
 ```bash
 platform db:dump --stdout | bzip2 > dump.sql.bz2
@@ -332,7 +337,7 @@ platform db:dump --stdout | bzip2 > dump.sql.bz2
 
 ## Importing data
 
-The easiest way to load data into a database is to pipe an SQL dump through the `platform sql` command, like so:
+To load data into a database, pipe an SQL dump through the `platform sql` command, like so:
 
 ```bash
 platform sql < my_database_backup.sql
@@ -341,29 +346,30 @@ platform sql < my_database_backup.sql
 That runs the database backup against the SQL database on Platform.sh.
 That works for any SQL file, so the usual caveats about importing an SQL dump apply
 (for example, it's best to run against an empty database).
-As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
+
+As with exporting, you can specify a specific environment and a specific database relationship to use:
 
 ```bash
-platform sql --relationship database -e <BRANCH_NAME> < my_database_backup.sql
+platform sql --relationship <RELATIONSHIP_NAME> -e <BRANCH_NAME> < my_database_backup.sql
 ```
 
 {{< note >}}
 
 Importing a database backup is a destructive operation.
 It overwrites data already in your database.
-Taking a backup or a database export before doing so is strongly recommended.
+It's best to run it against an empty database.
+If not, make a backup or do a database export before importing.
 
 {{< /note >}}
 
 ## Replication
 
-On-site primary/replica support is not available on Grid plans.
-On a Dedicated environment, it is provided automatically as part of the default configuration.
+In non-Dedicated environments, there is no on-site primary/replica supports.
+In Dedicated environments, it's provided automatically as part of the default configuration.
 
-In abnormal cases you may also enable [remote replication](/guides/general/mysql-replication.md) to your own replica data.
-This is an advanced configuration not appropriate for most circumstances
-(and the replica will not be available to your application),
-but may be useful for certain backup purposes.
+In rare cases (such as for certain backup purposes),
+you can also enable [remote replication](../../../guides/general/mysql-replication.md) to your own replica data.
+The replica isn't available to your application.
 
 ## Troubleshoot
 

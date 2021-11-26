@@ -39,6 +39,8 @@ If available, include examples in various languages using the service in an app
 
 ## `$PLATFORM_RELATIONSHIPS` reference
 
+The information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#platformsh-provided-variables):
+
 <!-- A yaml file taken from https://examples.docs.platform.sh/ that contains all the properties people need to access/use the service. -->
 {{< relationship "<SERVICE_NAME>" >}}
 
