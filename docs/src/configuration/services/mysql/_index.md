@@ -1,52 +1,47 @@
 ---
-title: "MariaDB/MySQL (Database service)"
+title: "MariaDB/MySQL (database service)"
 weight: 7
 sidebarTitle: "MariaDB/MySQL"
+description: See how to configure a MariaDB/MySQL server to store your data.
 layout: single
 ---
 
-Platform.sh supports both MariaDB and Oracle MySQL.
-While there are some differences at the application level for developers,
-they function nearly identically from an infrastructure point of view.
-
+Platform.sh supports both MariaDB and Oracle MySQL to manage your relational databases.
+Their infrastructure setup is is nearly identical, though they differ in some features.
 See the [MariaDB documentation](https://mariadb.org/learn/)
 or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more information.
 
 ## Supported versions
 
-The service types `mariadb` and `mysql` both refer to MariaDB for compatibility reasons.
+The service types `mariadb` and `mysql` both refer to MariaDB.
 The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
-Other than the type, MySQL and MariaDB are otherwise identical and the rest of this page refers to both equally.
-
-Note that changing the service type leads to data removal.
-To switch between these service types, first [export your data](#exporting-data).
-Then remove the old service and create a new one.
-Then [import your data](#importing-data) to the new service.
-
+Other than the type, MySQL and MariaDB are identical and the rest of this page refers to both equally.
 
 | **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|----------------------------------|---------------|-------------------------|
+|---------------|-------------|--------------------|
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
-Only MariaDB is available on Dedicated and Dedicated Generation 3 environments, using Galera for replication:
+### Supported versions on Dedicated environments
+
+On Dedicated and Dedicated Generation 3 environments, only MariaDB is available with Galera for replication:
 
 {{< image-versions image="mariadb" status="supported" environment="dedicated" >}}
 
-{{< note >}}
+Dedicated environments don't support any storage engine other than InnoDB.
+Tables created on Dedicated environments using the MyISAM storage engine don't replicate between cluster nodes.
 
-Downgrades of MySQL or MariaDB are not supported.
-Both will update their own data files to a new version automatically but cannot downgrade them.
-If you want to experiment with a later version without committing to it use a non-production environment.
+### Switching type and version
 
-Dedicated environments do not support any storage engine other than InnoDB.
-Tables created using the MyISAM storage engine on dedicated environments will not replicate between cluster nodes.
+If you change the service type, your data is removed.
+To switch  service types, first [export your data](#exporting-data).
+Then remove the old service and create a new one.
+Then [import your data](#importing-data) to the new service.
 
-{{< /note >}}
+You can't downgrade either MySQL or MariaDB.
+Both update their data files to a new version automatically but can't downgrade them.
+To experiment with a later version without committing to it, use a non-production environment.
 
-### Deprecated versions
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended.
-They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
 |----------------------------------|---------------|-------------------------|

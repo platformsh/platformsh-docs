@@ -17,10 +17,7 @@ To specify a PHP container, use the `type` property in your `.platform.app.yaml`
 
 {{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" >}}
 
-## Deprecated versions
-
-The following versions are available but aren't receiving security updates from upstream, so their use isn't recommended.
-They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
