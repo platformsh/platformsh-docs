@@ -2,7 +2,7 @@
     "username": "main",
     "scheme": "pgsql",
     "service": "postgresql12",
-    "ip": "169.254.114.234",
+    "ip": "169.254.154.243",
     "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.platformsh.site",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "postgresql.internal",

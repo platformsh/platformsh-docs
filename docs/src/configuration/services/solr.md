@@ -28,17 +28,17 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## Usage example
 
-In your `.platform/services.yaml`:
+{{% endpoint-description type="solr" sectionLink="#solr-6-and-later" multipleText="cores" %}}
+
+Service definition:
 
 {{< readFile file="src/registry/images/examples/full/solr.services.yaml" highlight="yaml" >}}
 
-In your `.platform.app.yaml`:
+App configuration:
 
 {{< readFile file="src/registry/images/examples/full/solr.app.yaml" highlight="yaml" >}}
 
-{{< endpoint-description "solr" "#solr-6-and-later" "cores" >}}
-
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 
