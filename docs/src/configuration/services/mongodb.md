@@ -20,11 +20,7 @@ If you want to experiment with a later version without committing to it use a no
 
 {{< /note >}}
 
-## Deprecated versions
-
-The following versions are available but are not receiving security updates from [upstream](https://www.mongodb.com/support-policy),
-so their use is not recommended.
-They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** |
 |----------------------------------|
