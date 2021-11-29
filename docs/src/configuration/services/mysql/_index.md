@@ -118,6 +118,37 @@ highlight=python
 
 {{< /codetabs >}}
 
+### Configure connections
+
+There may be cases where you want to configure a connection manually.
+For example, when using a framework like Symfony Flex that expects the database connection as an environment variable.
+
+To get the URL to connect to the database, run the following command
+(replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with your values):
+
+```bash
+platform relationships -p <PROJECT_ID> <ENVIRONMENT_NAME>
+```
+
+The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
+Use the `url` property as your connection.
+Note that it can change if you modify the relationship or add additional databases.
+
+If you only need the connection information at runtime and not during the build,
+you can also use the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#use-platformsh-provided-variables).
+
+For example, to set a `DATABASE_URL` environment variable during a [`deploy` hook](../../app/build.md#hooks),
+add something like the following to your [app configuration](../../app/_index.md):
+
+```yaml
+hooks:
+    deploy: |
+        export DATABASE_RELATIONSHIP=$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq '.mysql[0]')
+        export DATABASE_URL=$(echo "$DATABASE_RELATIONSHIP" | jq -r '. | .rel + "://" + .username + ":" + .password + "@" + .host + ":" + (.port|tostring) + "/" + .path' )
+```
+
+You can also access the [variable in scripts in other languages](../../../development/variables.md#in-your-application).
+
 ## Relationship reference
 
 Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#use-platformsh-provided-variables)
