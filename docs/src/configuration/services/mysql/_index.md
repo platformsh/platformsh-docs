@@ -118,9 +118,10 @@ highlight=python
 
 {{< /codetabs >}}
 
-## `$PLATFORM_RELATIONSHIPS` reference
+## Relationship reference
 
-The information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#platformsh-provided-variables):
+Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#use-platformsh-provided-variables)
+or by running `platform relationships`:
 
 ### MariaDB reference
 
@@ -135,7 +136,7 @@ The information available through the [`$PLATFORM_RELATIONSHIPS` environment var
 You can access the service using the Platform CLI by running `platform sql`.
 
 You can also access it from you app container via [SSH](../../../development/ssh/_index.md).
-From your `$PLATFORM_RELATIONSHIPS` variable, you need: `host`, `port`, `user`, `path`.
+From your [relationship data](#relationship-reference), you need: `host`, `port`, `user`, `path`.
 Then run the following command:
 
 ```bash
@@ -151,7 +152,7 @@ mysql -h mysql.internal -P 3306 -u user main
 If your database relationship has a password, pass the `-p` switch and enter the password when prompted:
 
 ```bash
-mysql -h mysql.internal -P 3306 -u user -p main
+mysql -p -h mysql.internal -P 3306 -u user main
 ```
 
 ## Multiple databases

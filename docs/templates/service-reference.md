@@ -37,9 +37,10 @@ Can be structured like [how to steps](./how-to.md#1-do-this-step-first).
 If available, include examples in various languages using the service in an app
 (taken from https://examples.docs.platform.sh/).
 
-## `$PLATFORM_RELATIONSHIPS` reference
+## Relationship reference
 
-The information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#platformsh-provided-variables):
+Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#use-platformsh-provided-variables)
+or by running `platform relationships`:
 
 <!-- A yaml file taken from https://examples.docs.platform.sh/ that contains all the properties people need to access/use the service. -->
 {{< relationship "<SERVICE_NAME>" >}}
