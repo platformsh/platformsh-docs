@@ -339,6 +339,7 @@
 .region-subtable-body > tr > td {
   border: none; 
   text-align: center;
+  display: inline-block;
 }
 .region-subtable-body > tr > td > h4 {
   margin-bottom: 0; 
@@ -356,3 +357,19 @@
   font-size: 0.9rem;
   font-weight: 700;
 }
+.region-overview {
+  background: #f4f2f3;
+}
+.region-identifier {
+  background: white;
+}
+
+.region-subtable-body > tr {
+  border: none;  
+  text-align: center;
+}
+.region-subtable-body > tr > td > ul {
+  list-style: none; 
+  padding-inline-start: 0 !important;
+}
+

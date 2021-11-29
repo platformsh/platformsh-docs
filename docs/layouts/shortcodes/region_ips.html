@@ -15,8 +15,8 @@
       <!-- Give the region a row -->
       <tr>
         <!-- Region overview -->
-        <td style="background: #f4f2f3;">
-            <!-- Name, region identifier, location guarantee -->
+        <td class="region-overview">
+            <!-- Name, region identifier -->
             <table class="region-subtable">
                 <tbody class="region-subtable-body">
                     <tr>
@@ -26,14 +26,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><code style="background: white;">{{ .label }}</code></td>
+                        <td><code class="region-identifier">{{ .label }}</code></td>
                     </tr>
-                    <!-- Data location guarantee when relevant -->
-                    {{ if .location_guarantee }}
-                    <tr>
-                        <td class="guarantee-note">(<a href="#glossary">Data location guarantee</a>)</td>
-                    </tr>
-                    {{ end }}
                 </tbody>
             </table>     
         </td>
@@ -44,8 +38,8 @@
                     <tr>
                         <td></td>
                     </tr>
-                    <tr style="border: none;  text-align: center;">
-                    <td style="border: none; display: inline-block; text-align: left;">
+                    <tr>
+                    <td>
                         <ul style="list-style: none; padding-inline-start: 0 !important;">
                             {{ range .outbound_ips }}
                             <li>{{ . }}</li>
@@ -63,9 +57,9 @@
                     <tr>
                         <td><code>{{ .inbound_location }}</code></td>
                     </tr>
-                    <tr style="border: none;  text-align: center;">
-                    <td style="border: none; display: inline-block; text-align: left;">
-                        <ul style="list-style: none; padding-inline-start: 0 !important;">
+                    <tr>
+                    <td>
+                        <ul>
                             {{ range .inbound_ips }}
                             <li>{{ . }}</li>
                             {{ end }}

@@ -1,7 +1,6 @@
 europe:
     "eu":
         "name": "West"
-        "location_guarantee": false
         "label": "eu.platform.sh"
         "outbound_ips": 
             - "54.72.94.105"
@@ -14,7 +13,6 @@ europe:
             - "54.76.136.188"
     "eu-2":
         "name": "West 2"
-        "location_guarantee": false
         "label": "eu-2.platform.sh"
         "outbound_ips": 
             - "52.208.123.9"
@@ -27,7 +25,6 @@ europe:
             - "52.210.208.94"
     "eu-4":
         "name": "West 4"
-        "location_guarantee": false
         "label": "eu-4.platform.sh"
         "outbound_ips": 
             - "18.200.158.188"
@@ -40,7 +37,6 @@ europe:
             - "18.200.179.139"
     "eu-5":
         "name": "North 5"
-        "location_guarantee": false
         "label": "eu-5.platform.sh"
         "outbound_ips": 
             - "13.48.116.14"
@@ -51,7 +47,6 @@ europe:
             - "13.51.62.86"
     "de-2":
         "name": "Germany 2"
-        "location_guarantee": true
         "label": "de-2.platform.sh"
         "outbound_ips": 
             - "35.246.248.138"
@@ -64,7 +59,6 @@ europe:
             - "35.242.229.239"
     "fr-1":
         "name": "France 1"
-        "location_guarantee": false
         "label": "fr-1.platform.sh"
         "outbound_ips": 
             - "90.84.47.148"
@@ -77,7 +71,6 @@ europe:
             - "90.84.46.40"
     "fr-3":
         "name": "France 3"
-        "location_guarantee": false
         "label": "fr-3.platform.sh"
         "outbound_ips": 
             - "135.125.91.125"
@@ -88,7 +81,6 @@ europe:
             - "94.23.123.122"
     "fr-4":
         "name": "France 4"
-        "location_guarantee": false
         "label": "fr-4.platform.sh"
         "outbound_ips": 
             - "20.74.41.190"
@@ -101,7 +93,6 @@ europe:
             - "20.74.42.30"
     "uk-1":
         "name": "United Kingdom 1"
-        "location_guarantee": true
         "label": "uk-1.platform.sh"
         "outbound_ips": 
             - "35.242.142.110"
@@ -115,7 +106,6 @@ europe:
 us:
     "us":
         "name": "East"
-        "location_guarantee": false
         "label": "us.platform.sh"
         "outbound_ips": 
             - "54.88.149.31"
@@ -128,7 +118,6 @@ us:
             - "54.88.225.116"
     "us-2":
         "name": "East 2"
-        "location_guarantee": false
         "label": "us-2.platform.sh"
         "outbound_ips": 
             - "34.238.64.193"
@@ -141,7 +130,6 @@ us:
             - "54.89.106.200"
     "us-3":
         "name": "West 3"
-        "location_guarantee": false
         "label": "us-3.platform.sh"
         "outbound_ips": 
             - "52.137.90.183"
@@ -154,7 +142,6 @@ us:
             - "51.143.107.76"
     "us-4":
         "name": "East 4"
-        "location_guarantee": true
         "label": "us-4.platform.sh"
         "outbound_ips": 
             - "34.73.189.215"
@@ -182,7 +169,6 @@ canada:
 australia:
     "au":
         "name": "Australia"
-        "location_guarantee": false
         "label": "au.platform.sh"
         "outbound_ips": 
             - "13.55.135.0"
@@ -195,7 +181,6 @@ australia:
             - "13.54.222.56"
     "au-2":
         "name": "Australia 2"
-        "location_guarantee": false
         "label": "au-2.platform.sh"
         "outbound_ips": 
             - "20.92.240.74"
