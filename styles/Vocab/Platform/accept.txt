@@ -65,6 +65,7 @@ shortcode
 Symfony
 transclusion
 unencrypted
+[Uu]nmount
 webpack
 Xdebug
 Zend

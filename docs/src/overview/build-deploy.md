@@ -1,80 +1,83 @@
 ---
-title: "Build and deploy"
+title: Build and deploy
 weight: 2
-description: |
-
+description: See how applications get built and deployed with Platform.sh.
 ---
-The build process looks through the configuration files in your repository and assembles the necessary containers on every Git push.
-The deploy process makes those containers live, replacing the previous versions, with virtually no interruption in service.
-Both processes are triggered by a push to a live branch or by activating an [environment](/administration/web/environments.md) for a branch.
-![Build pipeline](/images/workflow/build-pipeline.svg "0.50")
+
+Each time you push a change to your app through Git or activate an [environment](../administration/web/environments.md),
+your app goes through a process to be built and deployed.
+If your app is redeployed with no changes, the output of the previous build and deploy process is used.
+
+The build process looks through the configuration files in your repository and assembles the necessary containers.
+The deploy process makes those containers live, replacing any previous versions, with minimal interruption in service.
+
+![The steps in the build and deploy process](/images/workflow/build-pipeline.svg "0.50")
+
+## Glossary
+
+Hooks
+: Hooks are points in the build and deploy process where you can inject a custom script.
 
 ## The build
 
-The build step is environment-independent to ensure development environments are perfect copies of production.
-This means you can't connect to services (like databases) during the build.
-The final built application is read-only.
-If your application requires writing to the filesystem, you can specify the directories that require Read/Write access.
+The outcome of the build process is designed to be repeatable and reusable.
+Each app in a project is built separately.
 
+Container configuration depends exclusively on your configuration files.
+So each container is tied to a specific Git commit.
+If there are no new changes for a given container, the existing container can be reused.
+This saves you the time of the build step.
+
+This means the build is independent of the given environment and development environments are perfect copies of production.
+
+This independence does mean you can't connect to services (like databases) during the build.
+Once the app has gone through all of the build steps, it can connect to services in the deploy process.
 
 ### Build steps
 
-Git push
-
-Pull container image
-: It pulls container images that might be already in the project.
-
-Validate configuration**
-: The configuration is checked by validating the shared `.platform` directory (routes and services), as well scanning the repository for all `.platform.app.yaml files` present to validate them individually.
-
-Install dependencies
-: If you have specified additional dependencies required by your build hook such as SaaS, webpack, or Drupal Console, and have provided valid versions, the dependencies get downloaded during this step.
-
-Run build flavor commands
-: The build runs a series of standard commands based on the build flavor specified in the configuration file.
-It's possible to override this behavior and skipping the step.
-
-Run build hook
-: The build hook comprises one or more shell commands that you write to finish creating your production code base.
-It could be compiling Sass files, running a bundler, rearranging files on disk or compiling an application in a compiled language.The committed build hook runs in the build container. During this time, commands have write access to the file system, but services (including other applications in your cluster) aren't yet available.
-
-Freeze app container
-: Once the previous steps are completed, the file system gets freezed and produce a read-only container image, which is the final build artifact. An artifact is a custom-built snapshot of your application that's reliable and repeatable.
-The container configuration for both your application and its underlying services is exclusively based on your configuration files.
-A container has a 1:1 relationship with a Git commit.
-This means that builds are repeatable and that if the system detects that there aren't changes for a container,
-it reuses the existing container image skipping the build step and saving time.
-
+1. **Validate configuration**:
+   The configuration is checked by validating the `.platform` directory and scanning the repository for any app configurations to validate individually.
+1. **Pull container images**:
+   Any container images that have been built before and that don't have any changes are pulled to be reused.
+1. **Install dependencies**:
+   If you have specified additional global dependencies, they're downloaded during this step.
+   This is useful for commands you may need in the build hook.
+1. **Run build flavor commands**:
+   For some languages (NodeJS, PHP), a series of standard commands are run based on the build flavor.
+   You can change the flavor or skip the commands by specifying it in your app configuration file.
+1. **Run build hook**:
+   The `build` hook comprises one or more shell commands that you write to finish creating your production code base.
+   It could be compiling Sass files, running a bundler, rearranging files on disk, or compiling.
+   The committed build hook runs in the build container.
+   During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
+1. **Freeze app container**:
+   The file system is frozen and produces a read-only container image, which is the final build artifact.
 
 ## The deploy
-The deploy process makes those containers live, replacing the previous versions, with virtually no interruption in service.
 
+The deploy process connects each container from the build process and any services.
+The connections are defined in your app and services configuration.
+
+So unlike the build process, you can now access other containers,
+but the file system is read-only.
 
 ### Deploy steps
 
-Hold requests
-: The system holds incoming requests so there is no service interruption.
+1. **Hold requests**:
+   Incoming requests are held to prevent service interruption.
+1. **Unmount current containers**:
+   Any previous containers are disconnected from their file system mounts.
+1. **Mount file systems**:
+   The file system is connected to the new containers.
+   New branches have file systems cloned from their parent.
+1. **Expose services**:
+   Networking connections are opened between any containers specified in your app and services configurations.
+1. **Run start commands**:
+   The commands necessary to start your app are run.
+1. **Run deploy hook**:
+   The `deploy` hook is any number of shell commands you can run to finish your deployment.
+   This can include clearing caches, running database migrations, and setting configuration that requires relationship information.
+1. **Serve requests**:
+  Incoming requests to your newly deployed application are allowed.
 
-Unmount current containers
-: The containers gets disconnected from their file system mounts.
-
-Mount file systems
-: The containers that were disconnected in the previous step, connect the file system to the new containers.
-
-If it's a new branch and doesn't have an existing file system, it gets cloned from the parent branch.
-Note that these shouldn't be directories with code since it would be a security risk.
-
-Expose services
-: The system opens the networking connections between the various containers that were specified in the configuration files (using the `relationships` key).
-That helps with security, as only the specified connections exist.
-The connection information for each service is available in each application in environment variables.
-
-Run start commands
-: It’s technically optional for all runtimes. The only requirement is that you must have `web.commands.start` or `web.locations` and `hooks.deploy`.
-
-Run deploy hook
-: The deploy hook is any number of shell commands including clearing caches, running database migrations, and so on. At this point you can access all services again since the application is up and running.
-However, the file system where your code lives is now read-only.
-
-Serve request
-: In this last step, the system allows incoming requests to your newly deployed application.
+After the deploy process is over, any commands in your `post_deploy` hook are run.
