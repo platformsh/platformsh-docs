@@ -20,7 +20,7 @@
 
 <p>After creating an account, you will be prompted to create your first project.  Since you'll be providing your own code, use the "Blank project" option.  You will be able to give the project a title and choose a region closest to the visitors of your site. You also have the option to select more resources for your project, although the <code>development</code> plan should be enough for you to get started.</p>
 
-{{ .Inner | markdownify }}
+{{ .Inner | .Page.RenderString }}
 
 <p>Then, add a Git remote for the Platform.sh project you just created.  The easiest way to get the ID of the project is to run just <code>plaform</code> on its own, which lists all of your projects.  As you have only one project, you can copy its ID.  Then in your Git repository run</p>
 
