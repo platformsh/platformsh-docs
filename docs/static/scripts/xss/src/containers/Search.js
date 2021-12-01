@@ -59,6 +59,13 @@ const Search = ({ fullPage }) => {
     getInfo(config, value)
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    if (!fullPage) {
+      window.location = `${window.location.origin}/search.html?q=${query}`
+    }
+  }
+
   const docs = hits.docs.length > 0 ? <SuggestionsPrimary title="Documentation" hits={hits.docs} /> : ''
   const templates = hits.templates.length > 0 ? <Suggestions title="Templates" hits={hits.templates} /> : ''
   const community = hits.community.length > 0 ? <Suggestions title="Community" hits={hits.community} /> : ''
@@ -74,7 +81,7 @@ const Search = ({ fullPage }) => {
 
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label class="sr-only" for="searchwicon">Search our docs</label>
       <input
         id="searchwicon"
@@ -85,16 +92,15 @@ const Search = ({ fullPage }) => {
         autoComplete="off"
       />
       {query && query.length > 1 &&
-        <span>
-          <label class="sr-only" for="clearsearch">Clear search</label>
-          <input
+          <button
+            type="button"
             id="clearsearch"
-            type="submit"
             className="clearinput"
             value="+"
             onClick={clearInputFunc}
-          />
-        </span>}
+          >
+            <span class="sr-only">Clear search</span>
+          </button>}
       { (query && query.length > 1) ? allResults : noQuery}
     </form>
   )

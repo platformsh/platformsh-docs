@@ -72,11 +72,13 @@
   display: inline;
   background-color: transparent;
   border: none;
-  color: #98A0AB !important;
-  font-size: 1.25rem !important;
-  transform: rotate(45deg);
   line-height: 23px;
 }
+.clearinput::before {
+  content: "⨉";
+  line-height: 23px;
+}
+
 
 .searchContainer input:focus {
   outline: none;
