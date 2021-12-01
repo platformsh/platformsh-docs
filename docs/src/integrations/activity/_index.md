@@ -130,8 +130,8 @@ as well as the following libraries, APIs, and global variables to facilitate bui
 
 ### `underscore.js`
 
-Underscore.js 1.9.2 is available out-of-the-box to make writing Activity scripts more pleasant.
-See [Underscore's documentation](https://cdn.rawgit.com/jashkenas/underscore/1.9.2/index.html) for available functions and utilities.
+[`Underscore.js`](https://github.com/jashkenas/underscore) 1.13.1 is available out-of-the-box to make writing Activity scripts more pleasant.
+See [Underscore's documentation](https://underscorejs.org/) for available functions and utilities.
 
 ### `activity`
 
