@@ -79,6 +79,20 @@
   line-height: 23px;
 }
 
+button.extraSearchResults {
+  margin-bottom: 1em;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition-duration: 0.25s;
+  transition-property: color, border-color, box-shadow, background-color;
+  background-color: transparent;
+  padding: 0px 1em;
+  line-height: 2em;
+}
+
+button.extraSearchResults:hover, button.extraSearchResults:focus {
+  background-color: #eee;
+}
 
 .searchContainer input:focus {
   outline: none;

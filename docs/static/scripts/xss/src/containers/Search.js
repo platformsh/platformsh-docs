@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import axios from 'axios'
 
 import Suggestions from 'components/Suggestions'
@@ -15,8 +15,10 @@ const getConfig = async () => {
 }
 
 const Search = ({ fullPage }) => {
+  const basicMaxResults = 7
   const [query, setQuery] = useState('')
   const [hits, setHits] = useState({ docs: [], templates: [], community: [], website: [], apidocs: [] })
+  const [maxResults, setMaxResults] = useState(basicMaxResults)
   const [config, setConfig] = useState({
     index: "",
     public_api_key: "",
@@ -27,14 +29,14 @@ const Search = ({ fullPage }) => {
   useEffect(() => {
     getConfig().then(value => {
       setConfig(value)
-      setQuery(urlQuery);
-      getInfo(value,urlQuery)
+      if (!query) setQuery(urlQuery);
+      getInfo(value, urlQuery)
     })
-  }, [setQuery, urlQuery])
+  }, [maxResults, setQuery, urlQuery])
 
-  const limit = fullPage ? 15 : 7
+  const limit = fullPage ? maxResults : 7
 
-  const getInfo = (config,infoQuery) => {
+  const getInfo = (config, infoQuery) => {
     axios.get(`${config["url"]}indexes/${config["index"]}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${infoQuery}&limit=${limit}&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': config["public_api_key"] } })
       .then(({ data }) => {
 
@@ -51,6 +53,7 @@ const Search = ({ fullPage }) => {
 
   const clearInputFunc = () => {
     setQuery('')
+    URLSearchParams.set("search", "")
   }
 
   const handleInputChange = (event) => {
@@ -65,6 +68,7 @@ const Search = ({ fullPage }) => {
       window.location = `${window.location.origin}/search.html?q=${query}`
     }
   }
+  console.log(hits.docs.length)
 
   const docs = hits.docs.length > 0 ? <SuggestionsPrimary title="Documentation" hits={hits.docs} /> : ''
   const templates = hits.templates.length > 0 ? <Suggestions title="Templates" hits={hits.templates} /> : ''
@@ -81,28 +85,40 @@ const Search = ({ fullPage }) => {
 
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label class="sr-only" for="searchwicon">Search our docs</label>
-      <input
-        id="searchwicon"
-        value={query}
-        placeholder="Search Platform.sh"
-        onChange={handleInputChange}
-        className="searchinput"
-        autoComplete="off"
-      />
-      {query && query.length > 1 &&
+    <Fragment>
+      <form onSubmit={handleSubmit}>
+        <label class="sr-only" for="searchwicon">Search our docs</label>
+        <input
+          id="searchwicon"
+          value={query}
+          placeholder="Search Platform.sh"
+          onChange={handleInputChange}
+          className="searchinput"
+          autoComplete="off"
+        />
+        {query && query.length > 1 &&
           <button
             type="button"
             id="clearsearch"
             className="clearinput"
-            value="+"
             onClick={clearInputFunc}
           >
             <span class="sr-only">Clear search</span>
           </button>}
-      { (query && query.length > 1) ? allResults : noQuery}
-    </form>
+      </form>
+      {fullPage && hits.docs.length >= basicMaxResults && query && query.length > 1 &&
+        <button
+          type="button"
+          class="extraSearchResults"
+          onClick={() => {
+            if (maxResults === basicMaxResults) setMaxResults(200)
+            else setMaxResults(basicMaxResults)
+          }}
+        >
+          {maxResults === basicMaxResults ? "Show all results" : "Hide extra results"}
+        </button>}
+      {(query && query.length > 1) ? allResults : noQuery}
+    </Fragment>
   )
 }
 
