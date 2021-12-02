@@ -669,6 +669,15 @@
         "12",
         "13"
       ]
+    },
+    "versions-dedicated": {
+      "deprecated": [
+        "9.3"
+      ],
+      "supported": [
+        "9.6*",
+        "11*"
+      ]
     }
   },
   "python": {
