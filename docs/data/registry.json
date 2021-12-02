@@ -660,7 +660,9 @@
     "type": "postgresql",
     "versions": {
       "deprecated": [
-        "9.3"
+        "9.3",
+        "9.4",
+        "9.5"
       ],
       "supported": [
         "9.6",
@@ -668,6 +670,17 @@
         "11",
         "12",
         "13"
+      ]
+    },
+    "versions-dedicated": {
+      "deprecated": [
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "supported": [
+        "9.6*",
+        "11*"
       ]
     }
   },
