@@ -29,7 +29,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "babel-loader": "^8.2.3",
-    "babel-polyfill": "^6.26.0",
     "buffer": "^5.7.1",
     "path-browserify": "^1.0.1",
     "platformsh-config": "^2.4.1",
