@@ -45,8 +45,4 @@ web:
 
 disk: 1024
 
-mounts:
-  "public/scripts/xss/dist/config":
-      source: local
-      source_path: "config"
-
+size: S
