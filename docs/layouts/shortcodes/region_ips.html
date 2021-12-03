@@ -3,73 +3,43 @@
 {{ $data := index $.Site.Data.regions $region }}
 <!-- Main region table -->
 <table class="region-table">
-    <tbody class="region-table-body">
-      <!-- Header -->
-      <tr class="region-table-header">
-        <th>Region</th>
-        <th>Outbound IPs</th>
-        <th>Inbound IPs</th>
-      </tr>
-      <!-- List individual regions -->
-      {{ range $data }}
-      <!-- Give the region a row -->
-      <tr>
-        <!-- Region overview -->
-        <td class="region-overview">
-            <!-- Name, region identifier -->
-            <table class="region-subtable">
-                <tbody class="region-subtable-body">
-                    <tr>
-                        {{ $regionAnchor := anchorize ( printf "%s %s" .name .label ) }}
-                        <td>
-                            <h4><a href="#{{ $regionAnchor }}" id="{{ $regionAnchor }}" aria-label="Anchor">{{ .name }}</a></h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><code class="region-identifier">{{ .label }}</code></td>
-                    </tr>
-                </tbody>
-            </table>     
-        </td>
-        <!-- Outbound ips -->
-        <td>
-            <table class="region-subtable">
-                <tbody class="region-subtable-body">
-                    <tr>
-                        <td></td>
-                    </tr>
-                    <tr>
-                    <td>
-                        <ul style="list-style: none; padding-inline-start: 0 !important;">
-                            {{ range .outbound_ips }}
-                            <li>{{ . }}</li>
-                            {{ end }}
-                        </ul>
-                    </td>
-                    </tr>
-                </tbody>
-            </table>
-        </td>
-        <!-- Inbound ips -->
-        <td>
-            <table class="region-subtable">
-                <tbody class="region-subtable-body">
-                    <tr>
-                        <td><code>{{ .inbound_location }}</code></td>
-                    </tr>
-                    <tr>
-                    <td>
-                        <ul>
-                            {{ range .inbound_ips }}
-                            <li>{{ . }}</li>
-                            {{ end }}
-                        </ul>
-                    </td>
-                    </tr>
-                </tbody>
-            </table>
-        </td>
-      </tr>
-     {{ end }}
+    <tbody>
+        <!-- Header -->
+        <tr class="region-table-header">
+            <th>Region</th>
+            <th>Outbound IPs</th>
+            <th>Inbound IPs</th>
+        </tr>
+        <!-- List individual regions -->
+        {{ range $data }}
+        <!-- Give the region a row -->
+        <tr>
+            <!-- Region overview -->
+            <td class="region-overview">
+                <!-- Name, region identifier -->
+                {{ $regionAnchor := anchorize ( printf "%s %s" .name .label ) }}
+                <h4><a href="#{{ $regionAnchor }}" id="{{ $regionAnchor }}" aria-label="Anchor">{{ .name }}</a></h4>
+                <code class="region-identifier">{{ .label }}</code>
+            </td>
+            <!-- Outbound ips -->
+            <td class="region-subtable">
+                <ul>
+                    {{ range .outbound_ips }}
+                    <li>{{ . }}</li>
+                    {{ end }}
+                </ul>
+            </td>
+            <!-- Inbound ips -->
+            <td class="region-subtable">
+                <code>{{ .inbound_location }}</code>
+
+                <ul>
+                    {{ range .inbound_ips }}
+                    <li>{{ . }}</li>
+                    {{ end }}
+                </ul>
+            </td>
+        </tr>
+        {{ end }}
     </tbody>
 </table>
