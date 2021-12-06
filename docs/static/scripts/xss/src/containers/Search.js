@@ -68,7 +68,6 @@ const Search = ({ fullPage }) => {
       window.location = `${window.location.origin}/search.html?q=${query}`
     }
   }
-  console.log(hits.docs.length)
 
   const docs = hits.docs.length > 0 ? <SuggestionsPrimary title="Documentation" hits={hits.docs} /> : ''
   const templates = hits.templates.length > 0 ? <Suggestions title="Templates" hits={hits.templates} /> : ''
