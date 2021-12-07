@@ -1,7 +1,11 @@
 ---
 title: "Extensions"
 weight: 1
+description: See what PHP extensions are available with each PHP version on Platform.sh.
 ---
+
+PHP has a number of [extensions](https://pecl.php.net/) developed by members of the community.
+Some of them are available for Platform.sh containers.
 
 You can define the PHP extensions you want to enable or disable:
 
