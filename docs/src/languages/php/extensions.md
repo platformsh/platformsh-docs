@@ -42,20 +42,20 @@ and turn off those on by default with the `disabled_extensions` key.
 | `dba`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `dom`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `enchant`         | Avail | Avail | Avail | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `event`           |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
+| `event`           |       |       |       |       | Avail | Avail | Avail | Avail | Avail |       |
 | `exif`            |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `ffi`             |       |       |       |       |       |       |       | Avail | Avail | Avail |
 | `fileinfo`        |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `ftp`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `gd`              | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `gearman`         | Avail | Avail | Avail |       |       |       |       |       |       |       |
-| `geoip`           | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
+| `geoip`           | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |       |
 | `gettext`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `gmp`             | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `http`            | Avail | Avail |       |       |       |       | Avail | Avail | Avail | Avail |
 | `iconv`           |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `igbinary`        |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
-| `imagick`         | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |       |
+| `imagick`         | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `imap`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `interbase`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `intl`            | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
@@ -68,7 +68,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `memcache`        | Avail | Avail | Avail |       |       |       |       |       |       |       |
 | `memcached`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `mongo`           | Avail | Avail | Avail |       |       |       |       |       |       |       |
-| `mongodb`         |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
+| `mongodb`         |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `msgpack`         |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `mssql`           | Avail | Avail | Avail |       |       |       |       |       |       |       |
 | `mysql`           | Def   | Def   | Def   |       |       |       |       |       |       |       |
@@ -107,13 +107,13 @@ and turn off those on by default with the `disabled_extensions` key.
 | `spplus`          | Avail | Avail |       |       |       |       |       |       |       |       |
 | `sqlite3`         | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `sqlsrv`          |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |       |
-| `ssh2`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |       |
+| `ssh2`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `sybase`          |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
 | `sysvmsg`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `sysvsem`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `sysvshm`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `tideways`        |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
-| `tideways-xhprof` |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
+| `tideways-xhprof` |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
 | `tidy`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `tokenizer`       |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `uuid`            |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
