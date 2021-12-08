@@ -10,7 +10,7 @@ The Vault key management service (KMS) provides key management and access contro
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
-|  {{< image-versions image="vault" status="supported" environment="grid" >}} | {{< image-versions image="vault" status="supported" environment="dedicated" >}} | {{< image-versions image="vault" status="supported" environment="dedicated-gen-3" >}} |
+|  {{< image-versions image="vault-kms" status="supported" environment="grid" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-3" >}} |
 
 ## Add Vault
 
@@ -19,7 +19,7 @@ The Vault key management service (KMS) provides key management and access contro
 In your `.platform/services.yaml` file, add the service:
 
 ```yaml
-vault:
+vault-kms:
     type: vault-kms:1.6
     disk: 2048
 
@@ -52,7 +52,7 @@ What this includes:
 You can also split the service into multiple endpoints, such as to have key management be separate from key use:
 
 ```yaml
-vault:
+vault-kms:
     type: vault-kms:1.6
     disk: 2048
 
@@ -77,7 +77,7 @@ In your `.platform.app.yaml` file, add the relationship between your app and thi
 
 ```yaml
 relationships:
-    <SERVICE_NAME>: "vault:<ENDPOINT_ID>"
+    <SERVICE_NAME>: "vault-kms:<ENDPOINT_ID>"
 ```
 
 `<SERVICE_NAME>` is a name to identify the service later, such as `vault_service`
@@ -93,8 +93,8 @@ name: 'app'
 type: golang:1.13
 
 relationships:
-    vault_manage: "vault:management"
-    vault_sign: "vault:sign_and_verify"
+    vault_manage: "vault-kms:management"
+    vault_sign: "vault-kms:sign_and_verify"
 ```
 
 ## Use Vault KMS
@@ -181,7 +181,7 @@ You get back a JSON object that includes the signature for the payload:
   ...
   "data": {
     "key_version": 1,
-    "signature": "vault:v1:MEUCIAiN4UtXh..."
+    "signature": "vault-kms:v1:MEUCIAiN4UtXh..."
   },
   ...
 }
@@ -237,7 +237,7 @@ You get back a JSON object that includes your encrypted data:
   "request_id": "690d634a-a4fb-bdd6-9947-e895578b79d5",
   ...
   "data": {
-    "ciphertext": "vault:v1:LEtOWSwh3N...",
+    "ciphertext": "vault-kms:v1:LEtOWSwh3N...",
     "key_version": 1
   },
   ...
@@ -292,7 +292,7 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 {
   ...
   "data": {
-    "ciphertext": "vault:v2:ICRi0yAlH...",
+    "ciphertext": "vault-kms:v2:ICRi0yAlH...",
     "key_version": 2
   },
   ...
@@ -303,7 +303,7 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
 
-{{< relationship "vault" >}}
+{{< relationship "vault-kms" >}}
 
 ## Policies
 
