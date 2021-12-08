@@ -216,7 +216,7 @@ If either `schemas` or `endpoints` are defined, no default is applied and you ha
 
 ### Multiple databases example
 
-The following configuration example creates a single MariaDB service named `mysqldb` with two databases, `main` and `legacy`.
+The following configuration example creates a single MariaDB service named `db` with two databases, `main` and `legacy`.
 Access to the database is defined through three endpoints:
 
 * `admin` has full access to both databases.
