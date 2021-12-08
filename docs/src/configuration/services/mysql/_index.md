@@ -133,21 +133,9 @@ platform relationships -p <PROJECT_ID> <ENVIRONMENT_NAME>
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
 Use the `url` property as your connection.
 Note that it can change if you modify the relationship or add additional databases.
+So always check it each time your app starts.
 
-If you only need the connection information at runtime and not during the build,
-you can also use the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#use-platformsh-provided-variables).
-
-For example, to set a `DATABASE_URL` environment variable during a [`deploy` hook](../../app/build.md#hooks),
-add something like the following to your [app configuration](../../app/_index.md):
-
-```yaml
-hooks:
-    deploy: |
-        export DATABASE_RELATIONSHIP=$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq '.mysql[0]')
-        export DATABASE_URL=$(echo "$DATABASE_RELATIONSHIP" | jq -r '. | .rel + "://" + .username + ":" + .password + "@" + .host + ":" + (.port|tostring) + "/" + .path' )
-```
-
-You can also access the [variable in scripts in other languages](../../../development/variables.md#in-your-application).
+You can also see a guide on how to [convert the `PLATFORM_RELATIONSHIPS` environment variable to a different form](https://community.platform.sh/t/convert-platform-relationships-to-database-url/841).
 
 ## Relationship reference
 
