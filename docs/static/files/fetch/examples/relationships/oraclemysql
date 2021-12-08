@@ -1,0 +1,17 @@
+{
+    "username": "mysql",
+    "scheme": "mysql",
+    "service": "oraclemysql",
+    "ip": "169.254.100.245",
+    "hostname": "7q5hllmmhoeuthu6th7qovoone.oraclemysql.service._.eu-3.platformsh.site",
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "oraclemysql.internal",
+    "rel": "mysql",
+    "path": "main",
+    "query": {
+        "is_master": true
+    },
+    "password": "67fd28dc43c0398b7013682425d67a7a",
+    "type": "oracle-mysql:8.0",
+    "port": 3306
+}

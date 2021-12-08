@@ -1,6 +1,6 @@
 {
     "service": "solr86",
-    "ip": "169.254.251.226",
+    "ip": "169.254.197.233",
     "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.platformsh.site",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "solr.internal",
