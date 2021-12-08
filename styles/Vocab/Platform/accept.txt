@@ -62,6 +62,7 @@ redeployment
 reindex
 [Rr]sync
 runtimes
+scp
 shard
 shortcode
 Symfony
