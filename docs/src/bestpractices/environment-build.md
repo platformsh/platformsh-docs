@@ -16,9 +16,9 @@ That's because the built application image is reusable in multiple environments.
 During the build process, each application (defined by a `.platform.app.yaml` file) is built independently,
 and the output cached based on its Git tree ID and its build time configuration ID
 (which can include build environment variables).
-Together these result in a final build slug, a hash that describes that specific build. 
+Together these result in a final build slug, a hash that describes that specific build.
 
-As a result, a given application image is only ever rebuilt if something has changed.
+As a result, a given application image is only ever rebuilt if something has changed. dfdfdf
 If nothing in Git has changed and the build time configuration hasn't changed,
 then the corresponding application image can be reused.
 
