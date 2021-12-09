@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import regeneratorRuntime from 'regenerator-runtime'; // eslint-disable-line no-unused-vars
 
 import Suggestions from 'components/Suggestions'
 import SuggestionsPrimary from 'components/SuggestionsPrimary'
