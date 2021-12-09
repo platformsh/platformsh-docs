@@ -11,6 +11,8 @@ For style and formatting guidance, see:
 * [Content style guide](contributing/content-style.md)
 * [Markup reference](contributing/markup-format.md)
 
+For structure and layout, see:
+* [Templates](/docs/templates)
 
 ## Table of contents
 
