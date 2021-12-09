@@ -1,106 +1,129 @@
 ---
-title: "Services"
+title: Add services
 weight: 3
-description: |
-  Platform.sh allows you to completely define and configure the topology and services you want to use on your project.
-sidebarTitle: "Services (services.yaml)"
+description: See how to add services such as databases, cache, and search engines and configure them to suit your needs.
 layout: single
 ---
 
-{{< description >}}
+Platform.sh includes many services, so you don't have to subscribe to external cache or search engine services.
+Because the services are included in your project, you can manage them through Git
+and they're backed up together with the rest of your project.
 
-Unlike other PaaS services, Platform.sh is **batteries included** which means that you don't need to subscribe to an external service to get a cache or a search engine. And that those services are managed. When you back up your project, all of the services are backed-up. **Services** are configured through the `.platform/services.yaml` file you will need to commit to your Git repository. This section describes specifics you might want to know about for each service."
-
-If you do not need additional services, you can leave the `.platform/services.yaml` file empty. This is the recommended approach for a static website.
+Your project requires a service configuration file named `services.yaml` in the `.platform` directory.
+If you don't need any services (such as for a static website), you can leave the file blank.
+Read on to see how to add services.
 
 ![Services](/images/management-console/relationships.png "0.50")
 
-Here is an example of a `.platform/services.yaml` file:
+## Add a service
+
+Adding a service is a two-step process.
+
+## 1. Configure the service
+
+All service configuation happens in the configuration file (`.platform/services.yaml`) in your Git repository.
+
+Configure your service in the following pattern:
+
+```yaml
+<SERVICE_NAME>:
+    type: <SERVICE_TYPE>:<VERSION>
+    # Other options...
+```
+
+An example service configuration for two databases might look like this:
 
 ```yaml
 database1:
-    type: mysql:10.1
+    type: mariadb:10.5
     disk: 2048
-
 database2:
-    type: postgresql:9.6
+    type: postgresql:13
     disk: 1024
 ```
 
-## Configuration
-
-### Name
-
-The `name` you want to give to your service. You are free to name each service as you wish (*lowercase alphanumeric only*).
+This YAML file is a dictionary defining all of the services you want to use.
+The top-level key is the service name, which you use to identify the service in step 2.
+You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
 {{< note >}}
-Because we support multiple services of the same type (you can have 3 different MySQL instances), changing the name of the service in `services.yaml` will be interpreted as destroying the existing service and creating a new one. This will make **all the data in that service disappear forever**. Remember to always back up your environment in which you have important data before modifying this file.
+
+Changing the service name is interpreted as creating an entirely new service.
+This **removes all data in that service**.
+Always back up your data before changing the file.
+
 {{< /note >}}
 
-### Type
+### Service options
 
-The `type` of your service. It's using the format `type:version`.
+The following table presents the keys you can define for each service:
 
-If you specify a version number which is not available, you'll see this error when pushing your changes:
+| Name            | Type        | Required          | Description |
+| --------------- | ----------- | ----------------- | ----------- |
+| `type`          | `string`    | Yes               | One of the [available services](#available-services) in the format `type:version`. |
+| `disk`          | `integer`   | For some services | The size in MB of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. |
+| `size`          | `string`    |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO` (default), `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. |
+| `configuration` | dictionary  |                   | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
 
-```bash
-Validating configuration files.
-E: Error parsing configuration files:
-    - services.mysql.type: 'mysql:5.6' is not a valid service type.
-```
+Both `disk` and `size` are limited by your plan settings.
 
-Service types and their supported versions include:
-<!--
-To update the versions in this table, use docs/data/registry.json
--->
-{{< readFile file="src/registry/images/tables/services_supported.md" markdownify="true">}}
-
-### Disk
-
-The `disk` attribute is the size of the persistent disk (in MB) allocated to the service.
-
-For example, the current default storage amount per project is 5GB (meaning 5120MB) which you can distribute between your application (as defined in `.platform.app.yaml`) and each of its services.
-For memory-resident-only services such as `memcache` or `redis`, the `disk` key is not available and will generate an error if present.
-
-{{< note >}}
+#### Disk
 
 Downsizing a service's persistent disk isn't currently supported
-in the [`eu.platform.sh`](/guides/general/region-migration.md)
-and [`us.platform.sh`](/guides/general/region-migration.md) regions.
+in the `eu.platform.sh` and `us.platform.sh` regions.
+If necessary, [migrate your project](../../guides/general/region-migration.md).
 
-{{< /note >}}
+#### Size
 
-### Size
-
-By default, Platform.sh will allocate CPU and memory resources to each container automatically.
+By default, Platform.sh allocates CPU and memory resources to each container automatically given the available resources on the plan.
 Some services are optimized for high CPU load, some for high memory load.
-By default, Platform.sh will try to allocate the largest "fair" size possible to all services, given the available resources on the plan.
-That is not always optimal, however, and you can customize that behavior on any service or on any application container.
-See the [application sizing](/configuration/app/size.md) page for more details.
+If your plan is sufficiently large, you can customize the size of your service container.
+
+### 2. Connect the service
+
+Once you have configured a service, you need to create a relationship to connect it to an app.
+This is done in your [app configuration](../app/_index.md) under the `relationships` key.
+
+The relationship follows this pattern:
+
+```yaml
+relationships:
+    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT>"
+```
+
+An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
+
+```yaml
+relationships:
+    mysql_database: "database1:mysql"
+    postgresql_database: "database2:postgresql"
+```
+
+As with the service name, you can give the relationship any name you want
+with lowercase alphanumeric characters, hyphens, and underscores.
+It helps if the service name and relationship name are different, but it isn't required.
+
+Each service offers one or more endpoints for connections, depending on the service.
+An endpoint is a named set of credentials to give access to other apps and services in your project.
+If you don't specify one in the [service configuration](#service-options), a default endpoint is created.
+The default varies by service, generally being its type (such as `mysql` or `solr`).
+
+## Available services
+
+The following table presents the available service types and their versions.
+Add them to the `type` key of the [service configuration](#1-configure-the-service) in the format `type:version`.
+
+<!-- To update the versions in this table, use docs/data/registry.json -->
+{{< readFile file="src/registry/images/tables/services_supported.md" markdownify="true">}}
 
 ## Service timezones
 
 All services have their system timezone set to UTC by default.
-In most cases that is the best option.
-For some applications it's possible to change the application timezone, which will affect only the running application itself.
+For some services, you can change the timezone for the running service
+(this doesn't affect the container itself and so logs are still in UTC).
 
-* MySQL - You can change the per-connection timezone by running SQL `SET time_zone = <timezone>;`.
-* PostgreSQL - You can change the timezone of current session by running SQL `SET TIME ZONE <timezone>;`.
-
-## Using the services
-
-In order for a service to be available to an application in your project (Platform.sh supports not only multiple backends but also multiple applications in each project) you will need to refer to it in the [`.platform.app.yaml`](/configuration/app/_index.md) file which configures the *relationships* between applications and services.
-
-## Endpoints
-
-All services offer one or more `endpoints`.
-An endpoint is a named set of credentials that can be used to give access to other applications and services in your project to that service.
-Only some services support multiple user-defined endpoints.
-If you do not specify one then one will be created with a standard defined name, generally the name of the service type (e.g., `mysql` or `solr`).
-An application container, defined by a `.platform.app.yaml` file, always exposes an endpoint named `http` to allow the [router](/configuration/routes/_index.md) to forward requests to it.
-
-When defining relationships in a configuration file you will always address a service as `<servicename>`:`<endpoint>`.
-See the appropriate service page for details on how to configure multiple endpoints for each service that supports it.
+* [MySQL](./mysql/_index.md#service-timezone)
+* [PostgreSQL](./postgresql.md#service-timezone)
 
 ## Connect to a service
 

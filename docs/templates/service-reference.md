@@ -31,11 +31,51 @@ A brief introduction (1--2 sentences) to what this service is used for.
 
 ## Usage example
 
-Short steps on how to add the service to `services.yaml` and `.app.platform.yaml`.
-Can be structured like [how to steps](./how-to.md#1-do-this-step-first).
+<!--
+  Include the general template for usage examples.
+  Replace `<SERVICE_TYPE>` with the type.
 
-If available, include examples in various languages using the service in an app
-(taken from https://examples.docs.platform.sh/).
+  If the service allows multiple endpoints, also include following parameter:
+  sectionLink="#<SECTION_ON_PAGE_WITH_DESCRIPTION>" multipleText="<NOUN_THAT_CAN_BE_MULTIPLE"
+  Example for MariaDB:
+  sectionLink="#multiple-databases" multipleText="databases" 
+
+  If the service doesn't have examples of usage in an app taken from https://examples.docs.platform.sh/
+  include the following parameter:
+  noApp=true
+-->
+{{% endpoint-description type="<SERVICE_TYPE>" %}}
+
+Service definition:
+
+{{< readFile file="src/registry/images/examples/full/<SERVICE_TYPE>.services.yaml" highlight="yaml" >}}
+
+App configuration:
+
+{{< readFile file="src/registry/images/examples/full/<SERVICE_TYPE>.app.yaml" highlight="yaml" >}}
+
+{{% /endpoint-description %}}
+
+{{< codetabs >}}
+
+---
+title=<LANGUAGE>
+file=static/files/fetch/examples/<LANGUAGE_NAME>/<SERVICE_TYPE>
+highlight=<LANGUAGE>
+---
+
+<--->
+<!-- Repeat above for more languages -->
+{{< /codetabs >}}
+
+<!-- If the service has options in the `configuration` key -->
+## Configuration options
+
+You can configure your <SERVICE_NAME> service in the [services configuration](./_index.md) with the following options:
+
+| Name   | Type     | Required | Description |
+| ------ | -------- | -------- | ----------- |
+| `type` | `string` | Yes      | What it does. |
 
 ## Relationship reference
 

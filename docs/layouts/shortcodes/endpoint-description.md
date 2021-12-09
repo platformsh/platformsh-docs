@@ -7,6 +7,7 @@
 
 {{ $data := index .Site.Data.registry ( $type )}}
 
+### 1. Configure the service
 
 <!-- Clarify the `type` that should be used. -->
 <!-- mysql.md is special, so change the sentence slightly to show all `type`s for the single endpoint. -->
@@ -19,16 +20,18 @@ Use {{ if eq ($type) "mariadb" }}
 <!-- Create a dummy example services.yaml file from the registry's example naming in `.docs` -->
 {{ partial "examples/servicedefn" $data }}
 
+### 2. Add the relationship
+
 <!-- Clarify the endpoint that should be used. -->
 <!-- If a link and text have been set, adds exception that directs users to the subsection that describes explicit endpoints. -->
-Then use the `{{ $data.endpoint }}` endpoint to define the relationship {{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }}(unless you have [multiple {{$multipleText}}]({{ $sectionLink }})):
+Use the `{{ $data.endpoint }}` endpoint to define the relationship {{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }}(unless you have [multiple {{$multipleText}}]({{ $sectionLink }})):
 {{ end }}
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
 {{ partial "examples/relationship" $data }}
 
 <!-- Adds a note about naming conventions between relationship and service names. Keep em unique. -->
-You can define `service_name` and `relationship_name` as you like, but it's best if they're distinct.
+You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's best if they're distinct.
 
 <!-- Add example heading for all but MariaDB/Oracle MySQL, which need two -->
 {{ if ne ($type) "mariadb" }}

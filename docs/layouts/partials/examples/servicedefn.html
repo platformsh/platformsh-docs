@@ -3,8 +3,8 @@
     To use this partial, pass the image data as the context (Ex: partial "examples/servicedefn" $data)
 -->
 {{ $comment := "# .platform/services.yaml"}}
-{{ $l1 := "service_name:" }}
-{{ $l2 := printf "    type: %s:version" .type }}
+{{ $l1 := "<SERVICE_NAME>:" }}
+{{ $l2 := printf "    type: %s:<VERSION>" .type }}
 {{ $l3 := ""}}
 {{ if .disk }}
   {{ if .min_disk_size }}
