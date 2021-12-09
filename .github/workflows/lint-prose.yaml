@@ -18,6 +18,7 @@ jobs:
         # files: __onlyModified
         # For now, only lint modified lines
         onlyAnnotateModifiedLines: true
+        files: docs/src/administration
       env:
         # Required
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
