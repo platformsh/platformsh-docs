@@ -43,7 +43,7 @@ by creating an [OAuth consumer](https://confluence.atlassian.com/bitbucket/oauth
 6. After you have saved, you will see your consumer listed in the "OAuth consumers" section.
    If you open that item, it exposes two variables that you need to complete the integration using the Platform.sh CLI: `Key` and `Secret`.
 
-### 2. Enable the integration
+### 2. Enable the Cloud integration
 
 Retrieve a `PROJECT_ID` for an existing project with `platform project:list`
 or create a new project with `platform project:create`.
@@ -67,16 +67,12 @@ where
 
 To integrate your Platform.sh project with a repository on a Bitbucket Server instance,
 you first need to create an access token associated with your account.
-Click the avatar icon in the top right-hand corner, and then select "Manage account".
-From your account settings go to "Personal access tokens", and then "Create a token".
 
-Name the token, and give it at least "Read" access to projects and "Write" access to repositories.
-
-![Bitbucket server token](/images/integrations/bitbucket_server.png "0.3")
-
+[Generate a token](https://confluence.atlassian.com/display/BitbucketServer/HTTP+access+tokens).
+and give it at least read access to projects and write access to repositories.
 Copy the token and make a note of it (temporarily).
 
-### 2. Enable the integration
+### 2. Enable the Server integration
 
 Retrieve a `PROJECT_ID` for an existing project with `platform project:list`
 or create a new project with `platform project:create`.
