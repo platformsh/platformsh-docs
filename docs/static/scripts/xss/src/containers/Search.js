@@ -136,7 +136,7 @@ const Search = ({ fullPage }) => {
         && (
         <button
           type="button"
-          className="extraSearchResults"
+          className="secondarySearch"
           onClick={() => {
             if (maxResults === basicMaxResults) setMaxResults(200)
             else setMaxResults(basicMaxResults)
@@ -145,6 +145,14 @@ const Search = ({ fullPage }) => {
           {maxResults === basicMaxResults ? 'Show all results' : 'Hide extra results'}
         </button>
         )}
+      <a
+        className="secondarySearch"
+        href={`https://community.platform.sh/search?q=${query}`}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Search Community site
+      </a>
       {(query && query.length > 1) ? allResults : noQuery}
     </>
   )

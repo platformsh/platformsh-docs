@@ -79,19 +79,29 @@
   line-height: 23px;
 }
 
-button.extraSearchResults {
+.secondarySearch {
   margin-bottom: 1em;
   border: 1px solid transparent;
   text-decoration: none;
   transition-duration: 0.25s;
   transition-property: color, border-color, box-shadow, background-color;
   background-color: transparent;
-  padding: 0px 1em;
   line-height: 2em;
+  color: inherit;
 }
 
-button.extraSearchResults:hover, button.extraSearchResults:focus {
+.secondarySearch:hover, .secondarySearch:focus {
   background-color: #eee;
+  color: inherit;
+  text-decoration: none;
+}
+
+button.secondarySearch {
+  padding: 0.25em 1em;
+}
+
+a.secondarySearch {
+  padding: 0.5em 1em;
 }
 
 .searchContainer input:focus {
