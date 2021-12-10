@@ -15,9 +15,11 @@
 <link rel="stylesheet" href="{{"styles/asciinema-player.css" | relURL}}">
 
 <!-- Print stylesheets -->
-{{- if eq .File.Dir "security/transparency/" -}}
-<link rel="stylesheet" media="print" href="{{"styles/print.css" | relURL}}">
-{{- end -}}
+{{ with .File }}
+  {{- if eq .Dir "security/transparency/" -}}
+  <link rel="stylesheet" media="print" href="{{"styles/print.css" | relURL}}">
+  {{- end -}}
+{{ end }}
 
 <!-- User cusomizations -->
 <link rel="stylesheet" href="{{"styles/user-customizations.css" | relURL}}">

@@ -10,7 +10,7 @@ If you are using MySQL/MariaDB, then the [`mysqldump` command](https://mariadb.c
 Save your dump file as `database.sql`.
 (Or any name, really, as long as it's the same as you use below.)
 
-{{ .Inner }}
+{{ .Inner | .Page.RenderString }}
 
 Next, import the database into your Platform.sh site.
 The easiest way to do so is with the Platform.sh CLI.

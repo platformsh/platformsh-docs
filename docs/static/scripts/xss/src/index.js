@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'styles/searchbox.css'
-import { injectGlobal } from 'styled-components'
 
 import App from 'App'
 
@@ -14,11 +13,11 @@ if (document.getElementById('xssroot')) {
 
 if (document.getElementById('xssSearchPage')) {
   ReactDOM.render(
-    <App fullPage={true} />,
+    <App fullPage />,
     document.getElementById('xssSearchPage')
   )
 }
 
-if (module.hot) {
-  module.hot.accept(App)
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept(App)
 }

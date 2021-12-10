@@ -15,7 +15,7 @@ Platform.sh removes this stress considerably by providing *live development envi
 
 This guide assumes that you have already:
 
-* Signed up for a [free trial account](https://accounts.platform.sh/platform/trial/general/setup) with Platform.sh.
+* Signed up for a [free trial account](https://auth.api.platform.sh/register) with Platform.sh.
 * Started either a [template project](/gettingstarted/introduction/template/_index.md) or [pushed your own code](/gettingstarted/introduction/own-code/_index.md) to Platform.sh.
 
 If you have not completed these steps by now, click the links and do so before you begin.

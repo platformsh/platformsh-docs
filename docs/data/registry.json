@@ -640,7 +640,8 @@
       "supported": [
         "7.3",
         "7.4",
-        "8.0"
+        "8.0",
+        "8.1"
       ]
     }
   },
@@ -660,7 +661,9 @@
     "type": "postgresql",
     "versions": {
       "deprecated": [
-        "9.3"
+        "9.3",
+        "9.4",
+        "9.5"
       ],
       "supported": [
         "9.6",
@@ -668,6 +671,17 @@
         "11",
         "12",
         "13"
+      ]
+    },
+    "versions-dedicated": {
+      "deprecated": [
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "supported": [
+        "9.6*",
+        "11*"
       ]
     }
   },
@@ -914,18 +928,18 @@
       ]
     }
   },
-  "vault": {
+  "vault-kms": {
     "description": "",
     "disk": false,
     "docs": {
       "relationship_name": "vault_service",
-      "service_name": "vault",
+      "service_name": "vault-kms",
       "url": "/configuration/services/vault.html"
     },
     "endpoint": "demo-app",
     "min_disk_size": null,
-    "name": "Vault",
-    "repo_name": "vault",
+    "name": "Vault KMS",
+    "repo_name": "vault-kms",
     "runtime": false,
     "type": "vault-kms",
     "versions": {

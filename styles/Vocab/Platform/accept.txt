@@ -8,6 +8,7 @@ auditable
 autoload[ing|er]?
 Blackfire
 blockquote
+Bootsnap
 [Bb]undler
 Cloudwatt
 [Cc]onfig

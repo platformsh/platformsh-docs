@@ -2,7 +2,7 @@ The `services.yaml` file lists the pre-packaged services you need for your appli
 You pick the major version of the service and Platform.sh updates the patch version periodically
 so that you always get the newest version when you deploy.
 
-{{ .Inner }}
+{{ .Inner | .Page.RenderString }}
 
 You can add [other services](/configuration/services/_index.md) if desired,
 such as [Solr](/configuration/services/solr.md) or [Elasticsearch](/configuration/services/elasticsearch.md).

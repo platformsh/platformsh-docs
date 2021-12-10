@@ -81,7 +81,7 @@ dependencies:
 ```
 
 is equivalent to `composer require platform/client 2.x-dev`.
- However, you can also specify explicit `require` and `repositories` blocks:
+You can also specify explicit `require` and `repositories` blocks:
 
 ```yaml
 dependencies:
@@ -117,19 +117,14 @@ That allows you to install a forked version of a global dependency from a custom
 PHP images use the `composer` build flavor by default,
 which runs `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
 
-Note that by default, all PHP containers include the latest Composer 1.x release. If you wish to use Composer 2.x, add it as a `dependency` (see the section below).
+Note that by default, all PHP containers include the latest Composer 1.x release.
+If you wish to use Composer 2.x, add it as a `dependency`:
 
 ```yaml
 dependencies:
     php:
         composer/composer: '^2'
 ```
-
-You still see a message in the build output warning you about the availability of a new Composer version;
-that is the pre-packaged Composer 1 running to download Composer 2.
-You can safely ignore it.
-As Composer 2 performs considerably better than Composer 1,
-you should really upgrade unless your application has a Composer plugin dependency that hasn't yet been updated.
 
 `drupal` runs `drush make` automatically in one of a few different ways.
 See the [Drupal 7](/frameworks/drupal7/_index.md) documentation for more details.

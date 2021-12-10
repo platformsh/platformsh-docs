@@ -2,7 +2,7 @@
 
 This repository holds the public user documentation for Platform.sh.
 
-THe documentation site ([docs.platform.sh](https://docs.platform.sh/)) is itself hosted on Platform.sh
+The documentation site ([docs.platform.sh](https://docs.platform.sh/)) is itself hosted on Platform.sh
 and built using the powerful Platform.sh build-and-deploy system.
 
 Every pull request (PR) is automatically built on Platform.sh
@@ -33,13 +33,13 @@ If you're not sure how, you can also open an issue and we can look into it.
 Requires:
 
 * Hugo >= 0.68.3
-* Node.js >= 14
+* Node.js >= 16
 
 ### Running locally without search
 
 The documentation and the MeiliSearch search service are separate applications.
-It is not necessary to run the MeiliSearch app to build the docs locally,
-but if you don't, the search field does not appear in the sidebar.
+It isn't necessary to run the MeiliSearch app to build the docs locally,
+but if you don't, the search field doesn't appear in the sidebar.
 
 To run the docs alone, clone this repository
 and then install its dependencies and download its example files:
