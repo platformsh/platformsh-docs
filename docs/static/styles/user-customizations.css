@@ -302,7 +302,7 @@
   border-spacing: 2px;
 }
 
-.region-table > tr, td, th {
+.region-table tr, .region-table td, .region-table th {
   border: none;
   text-align: center;
 }
