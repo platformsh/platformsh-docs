@@ -11,17 +11,19 @@ For style and formatting guidance, see:
 * [Content style guide](contributing/content-style.md)
 * [Markup reference](contributing/markup-format.md)
 
+The docs are generally structured based on the [Diátaxis framework](https://diataxis.fr/).
+For how that structure is applied to different types of docs in this project, see the [templates](docs/templates).
 
 ## Table of contents
 
-- [Adding pages](#adding-pages)
-  - [Adding security reports](#adding-security-reports)
-- [Commit messages](#commit-messages)
-- [Review process](#review-process)
+* [Adding new pages](#adding-new-pages)
+  * [Adding security reports](#adding-security-reports)
+* [Commit messages](#commit-messages)
+* [Review process](#review-process)
 
-## Adding pages
+## Adding new pages
 
-To get a head start on your page, copy one of the [templates](/docs/templates).
+To get a head start on your page, copy one of the [templates](docs/templates).
 
 All file names should end in `.md`.
 They should be all lowercase
@@ -66,11 +68,13 @@ To add a security transparency report for a new year (after receiving the data):
    ```bash
    cp -R docs/layouts/shortcodes/tranparency-reports/tables/2020/ docs/layouts/shortcodes/tranparency-reports/tables/2021
    ```
+
 1. Copy the template from the previous year:
 
    ```bash
    cp docs/src/security/transparency/2020_report.md docs/src/security/transparency/2021_report.md
    ```
+
 1. Update instances of the year in the new `.md` file:
 
    * In the front matter (`title`, `sidebarTitle`, and `file`)
@@ -85,10 +89,10 @@ The report text is in `docs/data/transparency-reports.yaml`.
 ## Commit messages
 
 To help understand why changes happened and not repeat work already done,
-we want to keep a meaningful history of changes to the project.
-This means we ask you to use meaningful commit messages (not just `Updated file.md`).
+the aim is to keep a meaningful history of changes to the project.
+This means you should use meaningful commit messages (not just `Updated file.md`).
 
-The pattern we use is:
+The pattern for the project is:
 
 ```txt
 :GITMOJI: Verb + action
