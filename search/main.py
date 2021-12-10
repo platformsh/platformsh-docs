@@ -25,8 +25,8 @@ class Search:
         # Data actually searchable by our queries.
         self.searchable_attributes = ['title', 'pageUrl', 'text', 'url', 'section']
 
-        # Show results for one query with the listed pages, when they by default would not show up as best results. Note: these
-        # are not automatically two-way, so that's why they all appear to be defined twice.
+        # Show results for one query with the listed pages, when they by default would not show up as best results.
+        # Note: these aren't automatically two-way, which is why they're all defined twice.
         self.synonyms = {
             "routes.yaml": ["routes"],
             "routes": ["routes.yaml"],

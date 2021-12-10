@@ -94,7 +94,7 @@ const Search = ({ fullPage }) => {
   const secondaryResults = summedSecondary > 0 ? <div className="suggestions"><h4 className="section section-secondary">Other resources from Platform.sh</h4></div> : ''
 
   const allResults = (
-    <div className="search-all-results">
+    <div className={fullPage ? 'search-page-results' : 'search-all-results'}>
       {docs}
       {noPrimaryResults}
       {secondaryResults}

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import Search from 'containers/Search'
 
-const App = ({ fullPage = false }) => (
+const App = ({ fullPage }) => (
   <Div className="searchContainer">
     <Search fullPage={fullPage} />
   </Div>
