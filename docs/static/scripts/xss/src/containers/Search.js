@@ -75,6 +75,7 @@ const Search = ({ fullPage }) => {
     }
   }
 
+  console.log(hits.docs)
   const docs = hits.docs.length > 0 ? <SuggestionsPrimary title="Documentation" hits={hits.docs} /> : ''
   const templates = hits.templates.length > 0 ? <Suggestions title="Templates" hits={hits.templates} /> : ''
   const community = hits.community.length > 0 ? <Suggestions title="Community" hits={hits.community} /> : ''
@@ -131,7 +132,7 @@ const Search = ({ fullPage }) => {
           </button>
           )}
       </form>
-      {fullPage && hits.docs.length >= basicMaxResults && query && query.length > 1
+      {fullPage && hits.docs.length >= (basicMaxResults - 1) && query && query.length > 1
         && (
         <button
           type="button"
