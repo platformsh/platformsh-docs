@@ -75,7 +75,6 @@ const Search = ({ fullPage }) => {
     }
   }
 
-  console.log(hits.docs)
   const docs = hits.docs.length > 0 ? <SuggestionsPrimary title="Documentation" hits={hits.docs} /> : ''
   const templates = hits.templates.length > 0 ? <Suggestions title="Templates" hits={hits.templates} /> : ''
   const community = hits.community.length > 0 ? <Suggestions title="Community" hits={hits.community} /> : ''
