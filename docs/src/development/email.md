@@ -56,14 +56,6 @@ the environment variable `PLATFORM_SMTP_HOST` will be populated with the address
 When SMTP support is disabled,
 that environment variable will be empty.
 
-{{< note >}}
-
-Changing the SMTP status will not take effect immediately.
-You will need to issue a new *build*, not just a new deploy, for the changes to take effect.
-That means making a trivial change to some file in Git for the application.
-
-{{< /note >}}
-
 ## Ports
 
 - Port 465 and 587 should be used to send email to your own external email server.
