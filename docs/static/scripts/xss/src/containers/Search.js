@@ -31,7 +31,7 @@ const Search = ({ fullPage }) => {
     url: ''
   })
 
-  const urlQuery = new URLSearchParams(window.location.search).get('q');
+  const urlQuery = fullPage ? new URLSearchParams(window.location.search).get('q') : '';
 
   const limit = fullPage ? maxResults : 7
 
@@ -111,25 +111,27 @@ const Search = ({ fullPage }) => {
       <form onSubmit={handleSubmit}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="sr-only" htmlFor="searchwicon">Search our docs</label>
-        <input
-          id="searchwicon"
-          value={query}
-          placeholder="Search Platform.sh"
-          onChange={handleInputChange}
-          className="searchinput"
-          autoComplete="off"
-        />
-        {query && query.length > 1
-          && (
-          <button
-            type="button"
-            id="clearsearch"
-            className="clearinput"
-            onClick={clearInputFunc}
-          >
-            <span className="sr-only">Clear search</span>
-          </button>
-          )}
+        <div className="searchInputHolder">
+          <input
+            id="searchwicon"
+            value={query}
+            placeholder="Search Platform.sh"
+            onChange={handleInputChange}
+            className="searchinput"
+            autoComplete="off"
+          />
+          {query && query.length > 1
+            && (
+            <button
+              type="button"
+              id="clearsearch"
+              className="clearinput"
+              onClick={clearInputFunc}
+            >
+              <span className="sr-only">Clear search</span>
+            </button>
+            )}
+        </div>
       </form>
       {fullPage && hits.docs.length >= (basicMaxResults - 1) && query && query.length > 1
         && (
@@ -141,17 +143,9 @@ const Search = ({ fullPage }) => {
             else setMaxResults(basicMaxResults)
           }}
         >
-          {maxResults === basicMaxResults ? 'Show all results' : 'Hide extra results'}
+          <span>{maxResults === basicMaxResults ? 'Show all results' : 'Hide extra results'}</span>
         </button>
         )}
-      <a
-        className="secondarySearch"
-        href={`https://community.platform.sh/search?q=${query}`}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        Search Community site
-      </a>
       {(query && query.length > 1) ? allResults : noQuery}
     </>
   )
