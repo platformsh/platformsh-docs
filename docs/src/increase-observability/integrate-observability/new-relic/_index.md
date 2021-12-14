@@ -18,9 +18,9 @@ On Grid plans, configure your project.
 The configuration for New Relic varies a bit by language.
 See language-specific instructions:
 
-- [Java](/integrations/observability/new-relic/java.md)
-- [Node.js](/integrations/observability/new-relic/nodejs.md)
-- [PHP](/integrations/observability/new-relic/php.md)
+- [Java](./java.md)
+- [Node.js](./nodejs.md)
+- [PHP](./php.md)
 
 For more languages, see the [New Relic Documentation](https://docs.newrelic.com/docs/agents/).
 Install the specific agent in the [build hook](/configuration/app/build.md#hooks).

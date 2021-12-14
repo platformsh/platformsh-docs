@@ -85,7 +85,7 @@ Typical causes and potential solutions include:
   * Alternatively, you may need to [increase your plan size](../overview/pricing/_index.md).
 * Certain code paths in your application are too slow and timing out.
   * Check your code is running smoothly.
-  * Consider adding an [observability solution](../integrations/observability/_index.md) to get a better view of your application.
+  * Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
 * A PHP process is crashing because of a segmentation fault.
   * See [how to deal with crashed processes](../languages/php/troubleshoot.md#php-process-crashed).
 * A PHP process is killed by the kernel out-of-memory killer.
@@ -153,7 +153,7 @@ Here are a few tips that can help you find the exact cause.
 
 ### Check for errors in the logs
 
-Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems. Investigate [each log](/development/logs.md#accessing-logs) and fix any errors you find.
+Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems. Investigate [each log](../increase-observability/logs.md#accessing-logs) and fix any errors you find.
 
 ### Build and deploy hooks
 

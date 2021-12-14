@@ -46,6 +46,7 @@ npm
 onboarding
 OPcache
 optipng
+overutilize
 Packagist
 Pixelant
 pngcrush

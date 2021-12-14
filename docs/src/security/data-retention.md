@@ -19,7 +19,9 @@ System level access and security logs are maintained by Platform.sh for diagnost
 
 ## Application logs
 
-Application logs on each customer environment are retained with the environment.  Individual log files are truncated at 100 MB, regardless of their age.  See the [accessing logs](/development/logs.md) page for instructions on how to access them.
+Application logs on each customer environment are retained with the environment.
+Individual log files are truncated at 100 MB, regardless of their age.
+See how to [get logs](../increase-observability/logs.md).
 
 When an environment is deleted, its application logs are deleted as well.
 

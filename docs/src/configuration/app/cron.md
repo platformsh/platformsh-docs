@@ -24,7 +24,10 @@ If an application defines both a `web` instance and a `worker` instance, cron ta
 If running the cron task in a specific timezone that is different than UTC is required, you will need to [configure that timezone](/configuration/app/timezone.md) explicitly.
 
 {{< note >}}
-Cron log output is captured in the at `/var/log/cron.log`.  See the [Log page](/development/logs.md) for more information on logging.
+
+Cron log output is captured in the at `/var/log/cron.log`.
+See how to [get logs](../../increase-observability/logs.md).
+
 {{< /note >}}
 
 ## How do I setup Cron for a typical Drupal site?
