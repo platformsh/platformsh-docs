@@ -30,18 +30,22 @@ You may follow SendGrid's SPF setup guidelines to improve email deliverability w
 
 {{< tiered-feature "Enterprise" >}}
 
-Enterprise or Elite customers can request to enable DKIM on their domain. 
+Enterprise or Elite customers can request for DomainKeys Identified Mail (DKIM) to be enabled on their domain.
 
-DKIM improves the delivery rate as an email sender, and can be enabled on either your Dedicated or Grid sites.
+DKIM improves the delivery rate as an email sender and can be enabled on either your Dedicated or Grid sites.
 
 ### Enable DKIM on your domain
 
-1. Open a support ticket with the domain that you wish to enable DKIM on.
-2. Update your DNS configuration with the `CNAME` and `TXT` records (for SPF) that our Support team will provide in the ticket.
-3. Our automation tools will check every 15 minutes for the expected DNS records, before proceeding with validation.
+To have DKIM enabled for your domain:
+
+1. Open a support ticket with the domain where you want DKIM.
+2. Update your DNS configuration with the `CNAME` and `TXT` records that you get in the ticket.
+3. Checks for the expected DNS records run every 15 minutes before validation.
 
 {{< note>}}
-The TXT record to include your account ID (see [SendGrid's SPF setup guidelines](https://docs.sendgrid.com/ui/account-and-settings/spf-records#custom-spf-records) will look like this:
+
+The TXT record to include your account ID (see [SendGrid's SPF setup guidelines](https://docs.sendgrid.com/ui/account-and-settings/spf-records#custom-spf-records))
+looks similar to the following:
 
 ```txt
 >v=spf1 include:u17504801.wl.sendgrid.net -all
