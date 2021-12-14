@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@master
 
     - name: Vale
-      uses: errata-ai/vale-action@v1.4.2
+      uses: errata-ai/vale-action@v1.4.3
       with:
         # Switch to this when the number of errors goes down
         # files: __onlyModified
