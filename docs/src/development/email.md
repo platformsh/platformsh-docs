@@ -24,19 +24,33 @@ You may follow SendGrid's SPF setup guidelines to improve email deliverability w
 ```txt
 >v=spf1 include:sendgrid.net -all
 ```
+{{< /note >}}
 
-However, as we do not support white-labeling of emails
- DKIM is not provided for our standard email handling (meaning that DMARC can't be set up either).
- Thus, for maximum deliverability you should use your own mail service.
+## Email domain validation
 
-[SendGrid's current SPF setup guidelines](https://docs.sendgrid.com/ui/account-and-settings/spf-records#custom-spf-records)
-specify that your TXT record includes your account ID:
+{{< tiered-feature "Enterprise" >}}
+
+Enterprise or Elite customers can request for DomainKeys Identified Mail (DKIM) to be enabled on their domain.
+
+DKIM improves the delivery rate as an email sender and can be enabled on either your Dedicated or Grid sites.
+
+### Enable DKIM on your domain
+
+To have DKIM enabled for your domain:
+
+1. Open a support ticket with the domain where you want DKIM.
+2. Update your DNS configuration with the `CNAME` and `TXT` records that you get in the ticket.
+3. Checks for the expected DNS records run every 15 minutes before validation.
+
+{{< note>}}
+
+The TXT record to include your account ID (see [SendGrid's SPF setup guidelines](https://docs.sendgrid.com/ui/account-and-settings/spf-records#custom-spf-records))
+looks similar to the following:
 
 ```txt
 >v=spf1 include:u17504801.wl.sendgrid.net -all
 ```
-This ID is only available on Dedicated projects.
-Use the previous format above when configuring for Grid projects.
+
 {{< /note >}}
 
 ## Enabling/disabling email
