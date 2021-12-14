@@ -38,7 +38,7 @@ DKIM improves the delivery rate as an email sender, and can be enabled on either
 
 1. Open a support ticket with the domain that you wish to enable DKIM on.
 2. Update your DNS configuration with the `CNAME` and `TXT` records (for SPF) that our Support team will provide in the ticket.
-3. Our automation tools will check every 15 minutes the expected DNS records, before proceeding with validation.
+3. Our automation tools will check every 15 minutes for the expected DNS records, before proceeding with validation.
 
 {{< note>}}
 The TXT record to include your account ID (see [SendGrid's SPF setup guidelines](https://docs.sendgrid.com/ui/account-and-settings/spf-records#custom-spf-records) will look like this:
