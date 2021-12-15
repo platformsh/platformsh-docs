@@ -99,6 +99,7 @@
   max-height: 50vh;
   overflow-y: scroll;
   margin-bottom: 1rem;
+  z-index: 1;
 }
 
 .search-page-results {
