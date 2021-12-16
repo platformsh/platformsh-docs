@@ -39,6 +39,13 @@ Note that for the integration to work, your GitLab user needs push access to the
 1. Create the token.
 1. Copy the token and save it somewhere (you won't be able to see it again.).
 
+{{< note >}}
+
+In order to even see the **Access Tokens** option under **Settings**, you need to have a paid licence tier on GitLab. A free trial does not suffice. 
+Alternatively, you can create a [personal access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token), but is not advised for sustainable reasons. 
+
+{{< /note >}}
+
 ### 2. Enable the integration
 
 Note that only `project owner` or `project admin` can manage the integrations.
