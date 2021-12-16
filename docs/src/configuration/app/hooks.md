@@ -1,8 +1,7 @@
 ---
-title: "Use hooks"
+title: Use build and deploy hooks
+description: See how to add custom scripts at different stages in the build and deploy process.
 ---
-
-## Hooks
 
 Platform.sh supports three "hooks", or points in the deployment of a new version of an application that you can inject a custom script into.
 Each runs at a different stage of the process.
@@ -34,7 +33,7 @@ hooks:
 The `|` character tells YAML that the lines that follow should be interpreted literally as a newline-containing string
 rather than as multiple lines of YAML properties.
 
-Hooks are executed using the dash shell, not the bash shell used by normal SSH logins.
+Hooks are executed using the dash shell, not the bash shell used by SSH logins.
 In most cases, that makes no difference, but it may impact some more involved scripts.
 
 ### Build hook

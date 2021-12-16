@@ -4,7 +4,7 @@ title: "Troubleshoot disks"
 
 ## Exceeding plan storage limit
 
-Plans can vary in how much storage they have to allocate.
+Professional plans come with a default amount of storage that you can [change with your plan](../../overview/pricing/_index.md).
 The storage is allocated among your services and applications using the `disk` parameter in their configuration files.
 
 You might accidentally set the sum of all `disk` parameters in the files to exceed your plans storage limit.
@@ -26,9 +26,10 @@ To fix the error, do one of the following:
 ## Low disk space
 
 If you have set up [health notifications](../../integrations/notifications.md),
-you may receive a notification of low disk space. 
+you may receive a notification of low disk space.
 
 To solve this issue:
+
 * [Check mount usage](#check-the-size-of-mounts)
 * [Check your database disk space](#check-your-database-disk-space) (if applicable)
 * [Increase the available disk space](#increase-available-disk-space) (if necessary)
@@ -49,7 +50,7 @@ This returns an estimate such as the following:
 Keep in mind that this estimate doesn't represent the exact real size on disk.
 But if you notice that the usage percentage is high, you may need to increase the available space.
 
-### Increase available disk space 
+### Increase available disk space
 
 If you find that your application or service is running out of disk space,
 you can increase the available storage.

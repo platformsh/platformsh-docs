@@ -6,7 +6,7 @@ description: See all of the options for controlling your apps and how they're bu
 
 {{< description >}}
 
-For single-app projects, the configuration is all done in a `.platform.app.yaml` file, 
+For single-app projects, the configuration is all done in a `.platform.app.yaml` file,
 usually located at the root of your app folder in your Git repository.
 [Multi-app projects](./multi-app.md) can be set up in various ways.
 
@@ -61,6 +61,7 @@ Most of the time, this automatic sizing is enough.
 You can set sizing suggestions for production environments when you know a given container has specific needs.
 Such as a worker that doesn't need much and can free up resources for other apps.
 To do so, set `size` to one of the following values:
+
 * `S`
 * `M`
 * `L`
@@ -111,7 +112,7 @@ relationships:
 
 The maximum total space available to all applications and services is set by the storage in your plan settings.
 When deploying your project, the sum of all `disk` keys defined in app and service configurations
-must be *equal or less* than the plan storage size. 
+must be *equal or less* than the plan storage size.
 
 So if your _plan storage size_ is 5 GB, you can, for example, assign it in one of the following ways:
 
@@ -174,7 +175,7 @@ Defaults may vary with a different [image `type`](#types).
 | ------- | -------- | ----------------------------- | ----------- |
 | `start` | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately. |
 
-Example: 
+Example:
 
 ```yaml
 web:
@@ -326,7 +327,6 @@ workers:
 
 For resource allocation, using workers in your project requires a [Medium plan or larger](https://platform.sh/pricing/).
 
-
 ## Access
 
 The `access` dictionary has one allowed key:
@@ -353,7 +353,7 @@ All variables set in your app configuration must have a prefix.
 Some [prefixes have specific meanings](../../development/variables.md#variable-prefixes).
 
 Variables with the prefix `env` are available as a separate environment variable.
-All other variables are available in the `$PLATFORM_VARIABLES` environment variable.
+All other variables are available in the [`$PLATFORM_VARIABLES` environment variable](../../development/variables.md#use-platformsh-provided-variables).
 
 The following example sets two variables:
 
@@ -405,7 +405,7 @@ firewall:
 
 ### Multiple rules
 
-Multiple firewall rules can be specified. 
+Multiple firewall rules can be specified.
 In such cases, a given outbound request is allowed if it matches _any_ of the defined rules.
 
 So in the following example requests to any IP on port 80 are allowed
@@ -421,7 +421,7 @@ firewall:
 
 ### Outbound traffic to CDNs
 
-Be aware that many services are behind a content delivery network (CDN). 
+Be aware that many services are behind a content delivery network (CDN).
 For most CDNs, routing is done via domain name, not IP address,
 so thousands of domain names may share the same public IP addresses at the CDN.
 If you allow the IP address of a CDN, you are usually allowing many or all of the other customers hosted behind that CDN.
@@ -433,8 +433,8 @@ Flavors are language-specific.
 
 See what the build flavor is for your language:
 
-- [Node.js](../../languages/nodejs/_index.md#build-flavor)
-- [PHP](../../languages/php#build-flavor)
+* [Node.js](../../languages/nodejs/_index.md#build-flavor)
+* [PHP](../../languages/php#build-flavor)
 
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).
@@ -598,7 +598,6 @@ crons:
 
 The following table presents the various possible modifications to your PHP or Lisp runtime:
 
-
 | Name                        | Type                                                       | Language | Description |
 | --------------------------- | ---------------------------------------------------------- | -------- | ----------- |
 | `extensions`                | List of `string`s OR [extensions definitions](#extensions) | PHP      | [PHP extensions](../../languages/php/extensions.md) to enable. |
@@ -639,7 +638,7 @@ The following table shows the properties that can be set in `sizing_hints`:
 
 | Name              | Type      | Default | Minimum | Description |
 | ----------------- | --------- | ------- | ------- | ----------- |
-| `request_memory`  | `integer` | 45      | 10      | The average memory consumed per request in MB. | 
-| `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB. | 
+| `request_memory`  | `integer` | 45      | 10      | The average memory consumed per request in MB. |
+| `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB. |
 
 See more about [PHP-FPM workers and sizing](../../languages/php/fpm.md).
