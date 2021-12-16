@@ -30,7 +30,7 @@ generate a [project access token](https://docs.gitlab.com/ee/user/project/settin
 Note that for the integration to work, your GitLab user needs push access to the repository.
 
 1. In GitLab, navigate to the project you want to integrate.
-1. In the **Settings** menu, choose **Access Tokens**.
+1. In the **Settings** menu, choose **Repository** and expand the **Deploy Tokens** selection.
 1. Give the token a name such as "Platform.sh Integration".
 1. (Optional) set an expiration date.
 1. Ensure the token has the following scopes:
