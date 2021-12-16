@@ -4,7 +4,7 @@ description: See how to add custom scripts at different stages in the build and 
 ---
 
 Platform.sh supports three "hooks", or points in the deployment of a new version of an application that you can inject a custom script into.
-Each runs at a different stage of the process.
+Each runs at a different stage of the [build and deploy process](../../overview/build-deploy.md).
 
 Each hook is executed as a single script, so they're considered to have failed only if the final command in them fails.
 To cause them to fail on the first failed command, add `set -e` to the beginning of the hook.
