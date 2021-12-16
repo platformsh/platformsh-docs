@@ -74,7 +74,7 @@ and [`us.platform.sh`](/guides/general/region-migration.md) regions.
 By default, Platform.sh allocates CPU and memory resources to each service container automatically.
 Some services are optimized for high CPU load, some for high memory load.
 The largest "fair" size possible is allocated to all services given the available resources on the plan.
-You can customize that behavior for a specific service in production environments.
+You can customize the size for a specific service in production environments.
 
 To do so, set `size` to one of the following values:
 * `S`

@@ -389,7 +389,7 @@ variables:
             blue: '#0000FF'
 ```
 
-You could access these as follows:
+You could access these nested variables as follows:
 
 {{< codetabs >}}
 

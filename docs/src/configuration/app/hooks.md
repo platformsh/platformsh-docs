@@ -63,7 +63,7 @@ build environments (the application plus the cache directory) and therefore appl
 If you exceed this limit, you receive a `No space left on device` error.
 It's possible to increase this limit in certain situations,
 but it's necessary to open a support ticket to do so.
-Consult the [troubleshooting guide](./troubleshoot-disks.md#no-space-left-on-device) for more information on this topic.
+Consult the [disk space troubleshooting guide](./troubleshoot-disks.md#no-space-left-on-device) for more information on this topic.
 
 ### Deploy hook
 
