@@ -6,7 +6,7 @@ description: See how applications get built and deployed with Platform.sh.
 
 Each time you push a change to your app through Git or activate an [environment](../administration/web/environments.md),
 your app goes through a process to be built and deployed.
-If your app is redeployed with no changes, the output of the previous build and deploy process is used.
+If your app is redeployed with no changes to its codebase, the output of the previous build and deploy process is reused.
 
 The build process looks through the configuration files in your repository and assembles the necessary containers.
 The deploy process makes those containers live, replacing any previous versions, with minimal interruption in service.
@@ -26,11 +26,13 @@ Each app in a project is built separately.
 Container configuration depends exclusively on your configuration files.
 So each container is tied to a specific Git commit.
 If there are no new changes for a given container, the existing container can be reused.
-This saves you the time of the build step.
+This saves you the time the build step would take.
 
 This means the build is independent of the given environment and development environments are perfect copies of production.
+If you use environment variables to set up different build configuration options for different environments,
+your build step isn't reused and your development environments may differ from production.
 
-This independence does mean you can't connect to services (like databases) during the build.
+You can't connect to services (like databases) during the build step.
 Once the app has gone through all of the build steps, it can connect to services in the deploy process.
 
 ### Build steps
@@ -81,3 +83,8 @@ but the file system is read-only.
   Incoming requests to your newly deployed application are allowed.
 
 After the deploy process is over, any commands in your `post_deploy` hook are run.
+
+## What's next
+
+* See how to [configure your app](../configuration/app/_index.md) for the entire process.
+* Learn more about [using build and deploy hooks](../configuration/app/build.md).
