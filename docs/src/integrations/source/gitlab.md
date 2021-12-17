@@ -16,8 +16,8 @@ description: |
 
 {{< note >}}
 
-If the repository you are trying to integrate with a Platform.sh project has a default branch that is not `master` (such as `main`),
-there are a few additional steps you will need to perform to setup the integration.
+If the repository you are trying to integrate with a Platform.sh project has a default branch that isn't `master` (such as `main`),
+there are a few additional steps you need to perform to setup the integration.
 See the [Renaming the default branch guide](/guides/general/default-branch.md) for more information.
 
 {{< /note >}}
@@ -37,7 +37,16 @@ Note that for the integration to work, your GitLab user needs push access to the
    * `api` (to access your API)
    * `read_repository` (to read the repository)
 1. Create the token.
-1. Copy the token and save it somewhere (you won't be able to see it again.).
+1. Copy the token and save it somewhere (you can't see it again.).
+
+{{< note >}}
+
+To create a project access token, you need to have a [sufficient GitLab license tier](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html).
+If you don't see **Access Tokens** under **Settings**, upgrade your GitLab tier.
+Alternatively, you can create a [personal access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html),
+but that's attached to a specific user rather than the project as a whole.
+
+{{< /note >}}
 
 ### 2. Enable the integration
 
@@ -51,6 +60,7 @@ platform integration:add --type=gitlab --token=GITLAB-ACCESS-TOKEN --base-url=TH
 ```
 
 where
+
 * `PLATFORMSH_PROJECT_ID` is the project ID for your Platform.sh project
 * `GITLAB-ACCESS-TOKEN` is the token you generated in step 1
 * `THE-URL-OF-YOUR-GITLAB` is the base URL to call the GitLab API;
@@ -66,21 +76,22 @@ platform integration:add --type=gitlab --token=GITLAB-ACCESS-TOKEN --base-url=ht
 ```
 
 Optional parameters:
+
 * `--build-merge-requests`: Track and deploy merge-requests (true by default)
 * `--build-wip-merge-requests`: If set to `true`,
-  [WIP merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/work_in_progress_merge_requests.html)
-  will also have an environment created.
-  If false, they will be ignored.
+  [draft merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/drafts.html)
+  also have an environment created.
+  If false, they're ignored.
   If `--build-merge-requests` is `false`, this value is ignored.
   (`true` by default)
 * `--merge-requests-clone-parent-data`: Should merge requests clone the data from the parent environment (true by default)
 * `--fetch-branches`: Track and deploy branches (true by default)
-* `--prune-branches`: Delete branches that do not exist in the remote GitLab repository (true by default)
+* `--prune-branches`: Delete branches that don't exist in the remote GitLab repository (true by default)
 * `--base-url`: Only set if using self-hosted GitLab on your own server.
   If so, set this to the base URL of your private server (the part before the user and repository name).
 
 Note that the `--prune-branches` option depends on `--fetch-branches` being enabled.
-If `--fetch-branches` is disabled, `--prune-branches` will automatically be set to false, even if specifically set to true.
+If `--fetch-branches` is disabled, `--prune-branches` is automatically be set to false, even if specifically set to true.
 
 ### 3. Add the webhook
 
@@ -100,9 +111,8 @@ If you see the message `Failed to read or write webhooks`, you need to add a web
    In the Triggers section choose Push events, Tag push events and Merge Request events.
    Click on Add webhook.
 
-
 You can now start pushing code, creating new branches or opening merge requests directly on your GitLab repository.
-You will see environments get automatically created and updated on the Platform.sh side.
+You see environments get automatically created and updated on the Platform.sh side.
 
 ### 4. Validate the integration
 
@@ -114,12 +124,12 @@ platform integration:validate
 
 ## Types of environments
 
-Environments based on GitLab **merge requests** will have the correct 'parent' environment on Platform.sh;
-they will be activated automatically with a copy of the parent's data
+Environments based on GitLab **merge requests** have the correct 'parent' environment on Platform.sh;
+they're activated automatically with a copy of the parent's data
 (unless you have set the option `merge-requests-clone-parent-data` to false).
 
-However, environments based on (non-merge-request) **branches** cannot have parents;
-they will inherit directly from your default branch and start inactive by default.
+However, environments based on (non-merge-request) **branches** can't have parents;
+they inherit directly from your default branch and start inactive by default.
 
 ## Clones and commits
 
