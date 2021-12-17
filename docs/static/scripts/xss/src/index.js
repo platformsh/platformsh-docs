@@ -4,10 +4,19 @@ import 'styles/searchbox.css'
 
 import App from 'App'
 
-ReactDOM.render(
-  <App className="App searchbox" />,
-  document.getElementById('xssroot')
-)
+if (document.getElementById('xssroot')) {
+  ReactDOM.render(
+    <App className="App searchbox" />,
+    document.getElementById('xssroot')
+  )
+}
+
+if (document.getElementById('xssSearchPage')) {
+  ReactDOM.render(
+    <App fullPage />,
+    document.getElementById('xssSearchPage')
+  )
+}
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept(App)

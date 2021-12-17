@@ -5,7 +5,6 @@
 <!-- Get site data -->
 {{- $site := .Site.Params.site -}}
 {{- $rank := .Site.Params.rank -}}
-{{- $rootURL := .Site.Params.rooturl -}}
 <!-- Set defaults for the first document on the page -->
 {{- $section := chomp ( partial "meilindex/fields/section" . ) -}}
 {{- $subections := "" -}}
@@ -23,14 +22,13 @@
     {{- $line := split  . "id=\"" -}}
     <!-- New subsection header found. -->
     {{- if and ( gt ( len $line ) 1 ) ( gt ( len $checkHeaderPresent ) 1  ) -}}
-      {{- $finalRelURL := "" -}}
+      {{- $finalFullURL := "" -}}
       {{- if eq ( len $currentHeadingAnchor ) 0 -}}
-        {{- $finalRelURL = $url -}}
+        {{- $finalFullURL = $url -}}
         <!-- append the anchorized string for subsections -->
       {{- else -}}
-        {{- $finalRelURL = printf "%s#%s" $url $currentHeadingAnchor -}}
+        {{- $finalFullURL = printf "%s#%s" $url $currentHeadingAnchor -}}
       {{- end -}}
-      {{- $finalFullURL := $finalRelURL -}}
       <!-- Create a documentID for the subsection -->
       {{- $documentId := sha1 $finalFullURL -}}
       <!-- Subsection "sections" should be the title of the page they're on. -->
@@ -40,7 +38,7 @@
       <!-- Clean up the text field. -->
       {{- $runningText = replace $runningText "\n" " " -}}
       <!-- Build the document -->
-      {{- $documents = $documents | append ( dict "title" $currentHeadingTitle "site" $site "rank" $rank "relurl" $finalRelURL "url" $finalFullURL "text" ( $runningText | plainify | safeHTML ) "documentId" $documentId "section" $section ) -}}
+      {{- $documents = $documents | append ( dict "title" $currentHeadingTitle "site" $site "rank" $rank "url" $finalFullURL "pageUrl" $url "text" ( $runningText | plainify | safeHTML ) "documentId" $documentId "section" $section ) -}}
       <!-- Reset the text. -->
       {{- $runningText = "" -}}
       <!-- Reset the current anchor. -->
@@ -49,19 +47,18 @@
       {{- $currentHeadingTitle = . | plainify -}}
     <!-- Final subsection on the page. -->
     {{- else if eq $count (len $splitContent) -}}
-      {{- $finalRelURL := "" -}}
+      {{- $finalFullURL := "" -}}
       {{- if eq ( len $currentHeadingAnchor ) 0 -}}
-        {{- $finalRelURL = $url -}}
+        {{- $finalFullURL = $url -}}
       {{- else -}}
-        {{- $finalRelURL = printf "%s#%s" $url $currentHeadingAnchor -}}
+        {{- $finalFullURL = printf "%s#%s" $url $currentHeadingAnchor -}}
       {{- end -}}
-      {{- $finalFullURL := $finalRelURL -}}
       {{- $documentId := sha1 $finalFullURL -}}
       {{- if ne $currentHeadingTitle $pageTitle -}}
         {{- $section = $pageTitle -}}
       {{- end -}}
       {{- $runningText = replace $runningText "\n" " " -}}
-      {{- $documents = $documents | append ( dict "title" $currentHeadingTitle "site" $site "rank" $rank "relurl" $finalRelURL "url" $finalFullURL "text" ( $runningText | plainify | safeHTML ) "documentId" $documentId "section" $section ) -}}
+      {{- $documents = $documents | append ( dict "title" $currentHeadingTitle "site" $site "rank" $rank "url" $finalFullURL "pageUrl" $url "text" ( $runningText | plainify | safeHTML ) "documentId" $documentId "section" $section ) -}}
     <!-- Append the running text field. -->
     {{- else -}}
       {{- $runningText = printf "%s %s" $runningText . -}}

@@ -10,7 +10,7 @@
     font-size:12px !important;
     line-height: 22px !important;
     list-style: none;
-    z-index: 9999;
+    z-index: 1;
     margin: 1rem;
     background: white;
 }
@@ -49,3 +49,64 @@
 div.suggestions  div > ul > li {
     list-style-type: none;
     list-style-position: none;}
+
+#xssSearchPage .searchInputHolder {
+  margin-bottom: 1em;
+  width: fit-content;
+  background-color: rgb(244, 242, 243);
+}
+
+#xssSearchPage .searchInputHolder .searchinput {
+  background-color: rgb(244, 242, 243);
+}
+
+#xssSearchPage .searchInputHolder:focus-within, #xssSearchPage .searchInputHolder .searchinput:focus {
+  background-color: rgb(255, 255, 255);
+}
+
+/* Secondary buttons under input on full page search*/
+
+.secondarySearch {
+  margin-bottom: 1em;
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.25;
+  border: medium none;
+  box-shadow: rgb(23, 23, 25) -0.125rem -0.125rem 0px 0px inset, rgb(23, 23, 25) 0.125rem 0.125rem 0px 0px inset;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: transparent none repeat scroll 0% 0%;
+  color: rgb(23, 23, 25);
+  letter-spacing: 0.062rem;
+  transition: color 0.3s ease 0s;
+  text-align: center;
+  appearance: none;
+  cursor: pointer;
+}
+
+.secondarySearch span {
+  position: relative;
+}
+
+.secondarySearch::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  width: 0px;
+  background: rgb(23, 23, 25);
+  transition: all 0.3s ease 0s;
+}
+
+.secondarySearch:focus::before,.secondarySearch:hover::before {
+  left: 0%;
+  width: 100%;
+}
+
+.secondarySearch:hover, .secondarySearch:focus {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}

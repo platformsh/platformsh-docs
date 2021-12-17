@@ -9,7 +9,6 @@ const SuggestionsPrimary = ({ hits, title }) => {
   const results = hits.map((r) => (
     <li key={r.relurl}>
       <h5>
-        {' '}
         <a href={r.url}>
           <b>
             {r.section}
