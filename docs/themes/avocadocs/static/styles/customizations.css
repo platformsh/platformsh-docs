@@ -1083,6 +1083,12 @@ td, th {
   padding: 8px;
 }
 
+th {
+  position: sticky;
+  top: calc(1.5rem * 3);
+  background-color: var(--primary);
+}
+
 blockquote {
   color: #333;
   border: none;
