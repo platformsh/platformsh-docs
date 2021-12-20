@@ -118,6 +118,19 @@ You can write to disk a `build` hook to generate anything you need later.
 Or you can declare writable [mounts](../configuration/app/storage.md#mounts), which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
+## Git push fails due to lack of disk space
+
+If you see the following message when attempting to do a `git push`:
+`There is not enough free space to complete the push`
+
+It usually indicates that large files are present in the repository.
+Media, dependencies, database or large data files shouldn't be present in the repository.
+Make sure the paths for those are correctly set in the `.gitignore` file.
+An open-source tool like [git-sizer](https://github.com/github/git-sizer) can help locate large files and provide general guidance.
+
+If large files are already in the repository, the open-source [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/) can assist cleaning up the repository by purging olders commits, removing unecessary files, ...
+Create a [support ticket](https://console.platform.sh/-/users/~/tickets/open) to have the disk space temporarily increased.
+
 ## Stuck build or deployment
 
 If you see a build or deployment running longer than expected, it may be one of the following cases:
