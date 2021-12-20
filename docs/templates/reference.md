@@ -41,6 +41,6 @@ Sections
 
 | Name       | Type     | Required | Description |
 | ---------- | -------- | -------- | ----------- |
-| `upsteam`  | `string` | No       | Serves an application. More explanation.      |
+| `upstream`  | `string` | No       | Serves an application. More explanation.      |
 | `redirect` | `string` | No       | Redirects to another route. More explanation. |
 
