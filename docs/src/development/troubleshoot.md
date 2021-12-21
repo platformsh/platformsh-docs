@@ -123,7 +123,7 @@ They can be used for your data: file uploads, logs, and temporary files.
 You might see the following message when attempting to run `git push`:
 `There is not enough free space to complete the push`
 
-It usually indicates that large files are present in the repository (where they shouldn't be).
+This usually indicates that large files are present in the repository (where they shouldn't be).
 Make sure that the paths for media files, dependencies, or databases, ... are set to be ignored in the `.gitignore` file.
 
 If large files are already in the repository, the open-source [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/) can assist in cleaning up the repository by purging older commits, removing unnecessary files, ...
