@@ -31,7 +31,7 @@ That offers two key advantages.
    That's the closest it's possible to get to "staging is the same as production"
    and provides the best possible guarantee that the production deployment is successful.
 
-To override this, you can [trigger builds manually](/configuration/app/build.md#manually-trigger-builds).
+To override this, you can [trigger builds manually](/configuration/app/hooks.md#manually-trigger-builds).
 
 In order to achieve the reuse, the build process can depend only on input reflected in the tree ID, meaning the files in Git.
 The tree ID doesn't reflect the Git branch it's on because a given commit may be on many branches at different times.

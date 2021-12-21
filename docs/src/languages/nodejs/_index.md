@@ -27,7 +27,30 @@ so their use isn't recommended.
 
 ## Build flavor
 
-Node.js images use the `default` build flavor, which runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
+Node.js images use the `default` build flavor,
+which runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected.
+Note that this also allows you to provide a custom `.npmrc` file in the root of your application
+(as a sibling of the `.platform.app.yaml` file.)
+
+### Use yarn as a package manager
+
+The default build flavor uses npm as a package manager.
+To switch to yarn to manage dependencies, you need to switch to a build flavor of `none` and add yarn as a dependency.
+You can then install dependencies in the `build` hook:
+
+```yaml
+build:
+    flavor: none
+
+dependencies:
+    nodejs:
+        yarn: "1.22.17"
+
+hooks:
+    build: |
+        yarn
+        yarn build
+```
 
 ## Support libraries
 
@@ -107,14 +130,9 @@ as described here (a complete example is included at the end).
        upstream: "app:http"
    ```
 
-7. (Optional) If Platform.sh detects a `package.json` file in your repository, it automatically includes a `default` [`build` flavor](/configuration/app/build.md#build), that runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
+7. (Optional) If Platform.sh detects a `package.json` file in your repository, it automatically includes a `default` [`build` flavor](../../configuration/app/app-reference.md#build), that runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`.
 
-   ```yaml
-   build:
-       flavor: none
-   ```
-
-   Consult the documentation specific to [Node.js builds](/configuration/app/build.html#nodejs-npm-by-default) for more information.
+   See how to use [yarn as a package manager](#use-yarn-as-a-package-manager) or specify a different manager.
 
 
 Here's a complete example that also serves static assets (PNGs from the `/public` directory):

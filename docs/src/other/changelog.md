@@ -161,14 +161,14 @@ description: |
 ---
 
 * **February 2018**
-  * `post_deploy` hook added: Projects can now run commands on deploy but [without blocking new requests](/configuration/app/build.md#post-deploy-hook).
+  * `post_deploy` hook added: Projects can now run commands on deploy but [without blocking new requests](/configuration/app/hooks.md#post-deploy-hook).
 
 ## 2017
 
 * **December 2017**
   * New project subdomains: The routes generated for subdomains and literal domains in development environments will now use `.` instead of translating them to `---`, for projects created after this date.
   * `!include` tag support in YAML files: All YAML configuration files now support a generic [`!include`](/configuration/yaml.md) tag that can be used to embed one file within another.
-  * Extended mount definitions: A new syntax has been added for defining [mount points](/configuration/app/storage.md) that is more self-descriptive and makes future extension easier.
+  * Extended mount definitions: A new syntax has been added for defining [mount points](/configuration/app/app-reference.md#mounts) that is more self-descriptive and makes future extension easier.
   * Blocking older TLS versions: It is now possible to disable support for [HTTPS requests](/configuration/routes/https.md) using older versions of TLS. TLS 1.0 is known to be insecure in some circumstances and some compliance standards require a higher minimum supported version.
   * `{all}` placeholder for routes: A new placeholder is available in [`routes.yaml`](/configuration/routes/_index.md) files that matches all configured domains.
   * GitLab source code integration: Synchronize Git repository host on [GitLab](/integrations/source/gitlab.md) to Platform.sh.
@@ -183,7 +183,7 @@ description: |
 ---
 
 * **August 2017**
-  * Worker instances: Applications now support [worker instances](/configuration/app/workers.md).
+  * Worker instances: Applications now support [worker instances](/configuration/app/app-reference.md#workers).
 ---
 
 * **July 2017**
@@ -196,7 +196,7 @@ description: |
 ---
 
 * **May 2017**
-  * Code-driven variables in `.platform.app.yaml`: Added support for setting [environment variables via `.platform.app.yaml`](/configuration/app/variables.md).
+  * Code-driven variables in `.platform.app.yaml`: Added support for setting [environment variables via `.platform.app.yaml`](/configuration/app/app-reference.m#variables).
   * Python 3.6, Ruby 2.4, Node.js 6.10: Added support for updated versions of several languages.
 ---
 

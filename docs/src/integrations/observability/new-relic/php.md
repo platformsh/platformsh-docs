@@ -36,7 +36,7 @@ Repeat these two steps for every environment you want to monitor, making sure yo
 
 Enable the New Relic extension in your `.platform.app.yaml` as follows:
 
-```bash
+```yaml
 runtime:
     extensions:
         - newrelic

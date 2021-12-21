@@ -172,6 +172,17 @@ web:
 Keep the top-level key visible so readers can understand the code in context.
 (For example, don't leave out `web:` in the example above.)
 
+### Code block location
+
+If it's helpful to note where the code should be placed (such as in a `.platform.app.yaml` file),
+note that as an attribute of that block and it will appear in a tab:
+
+```markdown
+```yaml {location=".platform.app.yaml"}
+relationships:
+    database: 'mysqldb:db
+```
+
 ## Code tabs
 
 Display code examples in multiple languages with code tabs.

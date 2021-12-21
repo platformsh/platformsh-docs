@@ -38,7 +38,7 @@ The router cache obeys whatever cache headers your application sends,
 so send it good ones.
 
 Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.
-See the [`web.locations`](/configuration/app/web.md#locations) documentation for more details.
+See the [`web.locations`](/configuration/app/app-reference.md#locations) documentation for more details.
 
 ## Optimize the FPM worker count
 

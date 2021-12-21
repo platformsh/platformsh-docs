@@ -76,6 +76,18 @@ https://{default}/:
       # PR 1963
       "/overview/getting-help.html": { "to": "/overview/get-support.html", "code": 301, "prefix": false }
 
+      # Restructure of app reference
+      "/configuration/app/access.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/build.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/cron.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/firewall.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/name.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/relationships.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/size.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/storage.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/type.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
+      "/configuration/app/variables.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
+
 
 "https://search.{default}/":
     type: upstream
