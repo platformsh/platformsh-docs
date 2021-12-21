@@ -128,7 +128,7 @@ Make sure that the paths for files like media files, dependencies, and databases
 
 If large files are already in the repository, the open-source tool [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
 can assist in cleaning up the repository by purging older commits, removing unnecessary files, and more
-Create a [support ticket](https://console.platform.sh/-/users/~/tickets/open) to have the disk space temporarily increased.
+To have the disk space temporarily increased, create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
 
 ## Stuck build or deployment
 
