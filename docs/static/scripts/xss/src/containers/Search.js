@@ -50,16 +50,19 @@ const Search = ({ fullPage }) => {
   }
 
   useEffect(() => {
-    if (!query) setQuery(urlQuery);
     getConfig().then((value) => {
       setConfig(value)
-      getInfo(value, query)
+      if (!query) {
+        setQuery(urlQuery)
+        getInfo(value, urlQuery)
+      } else {
+        getInfo(value, query)
+      }
     })
   }, [maxResults, urlQuery])
 
   const clearInputFunc = () => {
     setQuery('')
-    URLSearchParams.set('search', '')
   }
 
   const handleInputChange = (event) => {
