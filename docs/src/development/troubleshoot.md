@@ -120,7 +120,7 @@ They can be used for your data: file uploads, logs, and temporary files.
 
 ## Git push fails due to lack of disk space
 
-If you see the following message when attempting to do a `git push`:
+You might see the following message when attempting to run `git push`:
 `There is not enough free space to complete the push`
 
 It usually indicates that large files are present in the repository (where they shouldn't be).
