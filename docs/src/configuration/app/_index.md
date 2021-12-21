@@ -29,7 +29,7 @@ To create a very basic app, you need a few things:
 
 The following example shows such a basic setup for PHP:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 # The name of this application, which must be unique within the project.
 name: 'app'
 
@@ -67,7 +67,7 @@ set it up by following these steps:
 
 ## Control the build and deploy process
 
-Your app generally needs to undergo some steps to be turned from a Git repository into a running app.
+Your app generally needs to undergo some steps to be turned from the code in your Git repository into a running app.
 If you're running a PHP or Node.js app, this starts with the [build flavor](./app-reference.md#build),
 which runs a default set of tasks.
 Then any [global dependencies](./app-reference.md#dependencies) can be installed.
@@ -104,3 +104,65 @@ the compressed file is served regardless of the original file type.
 So a request for `styles.css` that accepts a gzipped file (according to the request headers)
 automatically returns a `styles.css.gz` file if it exists.
 This approach supports any file type and offers some CPU optimization, especially if the cache lifetime is short.
+
+## Comprehensive example
+
+The following example shows a setup for a PHP app with comments to explain the settings.
+
+```yaml {location=".platform.app.yaml"}
+# The name of this application, which must be unique within a project.
+name: 'app'
+
+# The type key specifies the language and version for your application.
+type: 'php:8.0'
+
+# By default, composer 1 will be used. Specify composer 2 in the dependencies to get the latest version
+dependencies:
+    php:
+        composer/composer: '^2'
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+    database: 'mysqldb:mysql'
+
+# The hooks that will be triggered when the package is deployed.
+hooks:
+    # Build hooks can modify the application files on disk but not access any services like databases.
+    build: |
+                rm web/app_dev.php
+    # Deploy hooks can access services but the file system is now read-only.
+    deploy: |
+                app/console --env=prod cache:clear
+
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The 'mounts' describe writable, persistent filesystem mounts in the application.
+# The keys are directory paths relative to the application root. The values are a
+# mount definition. In this case, `web-files` is just a unique name for the mount.
+mounts:
+    'web/files':
+        source: local
+        source_path: 'web-files'
+
+# The configuration of the application when it is exposed to the web.
+web:
+    locations:
+        '/':
+            # The public directory of the application relative to its root.
+            root: 'web'
+            # The front-controller script which determines where to send
+            # non-static requests.
+            passthru: '/app.php'
+        # Allow uploaded files to be served, but do not run scripts.
+        # Missing files get mapped to the front controller above.
+        '/files':
+            root: 'web/files'
+            scripts: false
+            allow: true
+            passthru: '/app.php'
+```

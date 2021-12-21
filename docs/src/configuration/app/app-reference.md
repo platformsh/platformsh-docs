@@ -10,7 +10,8 @@ For single-app projects, the configuration is all done in a `.platform.app.yaml`
 usually located at the root of your app folder in your Git repository.
 [Multi-app projects](./multi-app.md) can be set up in various ways.
 
-See a [log of changes to app configuration](./upgrading.md).
+See a [comprehensive example](./_index.md#comprehensive-example) of a configuration in a `.platform.app.yaml` file.
+For reference, see a [log of changes to app configuration](./upgrading.md).
 
 ## Top-level properties
 
@@ -100,7 +101,7 @@ you can define additional explicit endpoints for multiple databases and cores in
 The following example shows a single MySQL service named `mysqldb` offering two databases,
 a Redis cache service named `rediscache`, and an Elasticsearch service named `searchserver`.
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 relationships:
     database: 'mysqldb:db1'
     database2: 'mysqldb:db2'
@@ -127,7 +128,7 @@ You need to either increase your plan's storage or decrease the `disk` values yo
 
 Mounts define directories that are writable even after the build is complete.
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 mounts:
     '<DIRECTORY>':
         source: <SOURCE_LOCATION>
@@ -145,7 +146,7 @@ If it already exists, its contents are masked by the writable mount and inaccess
 
 Basic example:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 mounts:
     'web/uploads':
         source: local
@@ -177,7 +178,7 @@ Defaults may vary with a different [image `type`](#types).
 
 Example:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 web:
     commands:
         start: 'uwsgi --ini conf/server.ini'
@@ -217,7 +218,7 @@ For all other containers, the default for `protocol` is `http`.
 
 The following example is the default on non-PHP containers:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 web:
     upstream:
         socket_family: tcp
@@ -265,7 +266,7 @@ Each key can set all of the other possible [`locations` properties](#locations).
 In the following example, the `allow` key disallows requests for static files anywhere in the site.
 This is overridden by a rule that explicitly allows common image file formats.
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         '/':
@@ -292,7 +293,7 @@ The following table shows the keys in the `request_buffering` dictionary:
 
 The default configuration would look like this:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 web:
     locations:
         '/':
@@ -316,7 +317,7 @@ _except_ for the `build` and `dependencies` properties, which must be the same.
 
 A worker named `queue` that was small and had a different start command could look like this:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 workers:
     queue:
         size: S
@@ -338,7 +339,7 @@ The `access` dictionary has one allowed key:
 In the following example, only users with `admin` permissions for the given [environment type](../../administration/users.md#environment-types)
 can access the deployed environment via SSH:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 access:
     ssh: admin
 ```
@@ -361,7 +362,7 @@ The following example sets two variables:
 * A variable named `d8config:system.site:name` with the value `My site rocks`
   that's available in the `$PLATFORM_VARIABLES` environment variable
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 variables:
     env:
         AUTHOR: 'Juan'
@@ -397,7 +398,7 @@ Each rule has the following properties where at least one is required and `ips` 
 
 The default settings would look like this:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 firewall:
     outbound:
         - ips: ["0.0.0.0/0"]
@@ -411,7 +412,7 @@ In such cases, a given outbound request is allowed if it matches _any_ of the de
 So in the following example requests to any IP on port 80 are allowed
 and requests to 1.2.3.4 on either port 80 or 443 are allowed:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 firewall:
     outbound:
         - ips: ["1.2.3.4/32"]
@@ -439,7 +440,7 @@ See what the build flavor is for your language:
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 build:
     flavor: none
 ```
@@ -464,7 +465,7 @@ The format for package names and version constraints are defined by the specific
 
 An example of dependencies in multiple languages:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 dependencies:
     php: # Specify one Composer package per line.
         drush/drush: '8.0.0'
@@ -611,7 +612,7 @@ The following table presents the various possible modifications to your PHP or L
 
 You can enable [PHP extensions](../../languages/php/extensions.md) just with a list of extensions:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 runtime:
   extensions:
     - geoip
@@ -620,7 +621,7 @@ runtime:
 
 Alternatively, if you need to include configuration options, use a dictionary for that extension:
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 runtime:
   extensions:
     - geoip
