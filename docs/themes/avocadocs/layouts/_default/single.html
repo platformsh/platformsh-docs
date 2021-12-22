@@ -10,25 +10,29 @@
 
           {{ partial "editpagebutton.html" . }}
 
-          <div class="mb-7">
-              <!-- Page title -->
-              <div class="page-title">
-                <h1>{{ .Title }}</h1>
-              </div>
-
-              <!-- Table of contents -->
-              {{ if ne .Params.toc false }}
-                <div class="toc">
-                  <h4>Contents:</h4>
-                  {{ .TableOfContents }}
-                </div>
-              {{ end }}
-
-              <br>
+          <!-- Page title -->
+          <div class="page-title">
+            <h1>{{ .Title }}</h1>
           </div>
 
-          <!-- Page content, anchorized -->
-          {{ partial "headline-hash.html" .Content }}
+          <div class="content-grid">
+
+            <!-- Table of contents -->
+            {{ if ne .Params.toc false }}
+              <div class="order-2">
+                <div class="toc">
+                  <h3>Contents:</h3>
+                  {{ .TableOfContents }}
+                </div>
+              </div>
+            {{ end }}
+
+            <div class="content-wrapper">
+              <!-- Page content, anchorized -->
+              {{ partial "headline-hash.html" .Content }}
+            </div>
+
+          </div>
 
         </div>
       </div>

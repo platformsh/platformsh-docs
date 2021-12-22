@@ -1,6 +1,4 @@
 node_modules
--W
-http:
 dist/bundle.js
 dist/bundle.js.LICENSE.txt
-src/config/config.json
+dist/config/*

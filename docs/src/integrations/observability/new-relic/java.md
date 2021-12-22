@@ -79,7 +79,7 @@ Unzip `newrelic-java.zip` by configuring `maven-dependency-plugin` in your `pom.
     </plugin>
 ```
 
-The next step is to configure the [`.platform.app.yaml`](/configuration/app/_index.md) file to set the agent in the JVM parameters:
+The next step is to [configure your app](../../../configuration/app/_index.md) to set the agent in the JVM parameters:
 
 ```yaml
 name: app

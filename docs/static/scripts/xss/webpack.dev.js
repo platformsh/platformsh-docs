@@ -13,19 +13,17 @@ module.exports = (env) => {
   return merge(common, {
     mode: 'development',
     devServer: {
-      contentBase: path.join(__dirname, 'dist'),
+      static: path.join(__dirname, 'dist'),
       compress: true,
       historyApiFallback: true,
       hot: true,
       host: '0.0.0.0',
-      disableHostCheck: true,
       open: true,
       // port: process.env.PORT,
-      stats: 'minimal'
+      allowedHosts: 'all',
     },
     devtool: 'eval',
     plugins: [
-      new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.DefinePlugin({
         'process.env.API_KEY': JSON.stringify(env.API_KEY)

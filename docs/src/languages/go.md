@@ -83,7 +83,7 @@ web:
         /:
             # Route all requests to the Go app, unconditionally.
             # If you want some files served directly by the web server without hitting Go, see
-            # https://docs.platform.sh/configuration/app/web.html
+            # https://docs.platform.sh/configuration/app/app-reference.html
             allow: false
             passthru: true
 

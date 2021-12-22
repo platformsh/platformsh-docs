@@ -33,13 +33,13 @@ If you're not sure how, you can also open an issue and we can look into it.
 Requires:
 
 * Hugo >= 0.68.3
-* Node.js >= 14
+* Node.js >= 16
 
 ### Running locally without search
 
 The documentation and the MeiliSearch search service are separate applications.
-It is not necessary to run the MeiliSearch app to build the docs locally,
-but if you don't, the search field does not appear in the sidebar.
+It isn't necessary to run the MeiliSearch app to build the docs locally,
+but if you don't, the search field doesn't appear in the sidebar.
 
 To run the docs alone, clone this repository
 and then install its dependencies and download its example files:
@@ -63,53 +63,46 @@ In addition to the above requirements, search also requires:
 * [Poetry](https://python-poetry.org/docs/)
 * [MeiliSearch](https://www.meilisearch.com/) (see below for installation)
 
-If you would like to test the search server,
-you can run it by exporting the `MEILI_MASTER_KEY` environment variable and installing MeiliSearch locally:
+If you would like to test the search server, follow these steps:
 
-```bash
-cd search
-# Install dependencies for communicating with MeiliSearch.
-poetry install
-# Download MeiliSearch.
-curl -L https://install.meilisearch.com | sh
-# Set a master key.
-export MEILI_MASTER_KEY=test
-# Run it.
-./meilisearch
-```
+1. Export the `MEILI_MASTER_KEY` environment variable and install and use MeiliSearch:
 
-In another terminal window, build the React app interface so that search can be pulled into the Hugo site:
+   ```bash
+   cd search
+   # Install dependencies for communicating with MeiliSearch.
+   poetry install
+   # Download MeiliSearch.
+   curl -L https://install.meilisearch.com | sh
+   # Set a master key.
+   export MEILI_MASTER_KEY=test
+   # Run it.
+   ./meilisearch
+    ```
 
-```bash
-cd ../docs
-npm install
-npm run dev
-npm run build-searchapp
-hugo
-./deploy.sh
-```
+2. In another terminal window, build the search interface:
 
-> **Note:**
->
-> If you receive an error about missing the webpack CLI, you need to install it on your local machine:
->
-> ```bash
-> npm install webpack-cli -g
-> ```
+   ```bash
+   cd ../docs
+   npm install
+   npm run dev
+   npm run build-searchapp
+   hugo
+   ./deploy.sh
+   ```
 
-Then update the MeiliSearch server:
+3. Update the MeiliSearch server:
 
-```bash
-cd ../search
-# Export again in this terminal window.
-export MEILI_MASTER_KEY=test
-# Update the index
-./post_deploy.sh
-```
+   ```bash
+   cd ../search
+   # Export again in this terminal window.
+   export MEILI_MASTER_KEY=test
+   # Update the index
+   ./post_deploy.sh
+   ```
 
-Finally, run the site:
+4. Run the site:
 
-```bash
-cd ../docs
-hugo serve
-```
+   ```bash
+   cd ../docs
+   hugo serve
+   ```

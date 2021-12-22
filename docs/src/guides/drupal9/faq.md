@@ -38,5 +38,5 @@ For Drupal sites, the name of the session cookie is based on a hash of the domai
 If you see a bare "File not found" error when accessing your Drupal site with a browser,
 you've pushed your code as a vanilla project but no `index.php` has been found.
 
-Make sure your repository contains an `index.php` file in the [web location root](../../configuration/app/web.md#locations)
+Make sure your repository contains an `index.php` file in the [web location root](../../configuration/app/app-reference.md#locations)
 or that your [Drush](../../frameworks/drupal7/drush.md) make files are properly named.

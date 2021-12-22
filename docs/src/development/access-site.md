@@ -31,7 +31,7 @@ See how to [access apps with SSH](./ssh/_index.md#connect-to-apps)
 
 The application container is a fully working Linux environment using the `bash` shell.
 Most of the system consists of a read-only file system so you can't edit code, but the full system is available to read.
-Any file [mounts](../configuration/app/storage.md) you have declared in your [app configuration](../configuration/app/_index.md) are writable.
+Any file [mounts](../configuration/app/app-reference.md#mounts) you have declared in your [app configuration](../configuration/app/_index.md) are writable.
 
 Additionally, you are logged in as the same user that the web server runs as.
 So you don't have to worry about editing a file from the command line and from your application
@@ -40,7 +40,7 @@ resulting in inconsistent and broken file ownership and permissions.
 ## Uploading and downloading files
 
 The writable static files in an application (including uploads and temporary and private files)
-are stored in [mounts](../configuration/app/storage.md).
+are stored in [mounts](/configuration/app/app-reference.md#mounts).
 
 The Platform.sh CLI can list mounts inside an application:
 

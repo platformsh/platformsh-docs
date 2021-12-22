@@ -38,7 +38,7 @@ To add an ephemeral Redis service, specify it in your `.platform/services.yaml` 
 
 Data in an Ephemeral Redis instance is stored only in memory and thus requires no disk space. When the service hits its memory limit it will automatically evict old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
 
-Your app must not treat ephemeral Redis as permanent. Instead, the cache needs to be regenerated as necessary. For example, if a container is moved for a reason such as region maintenance, the `deploy` and `post_depoly` hooks won't be run and an app that treats the cache as permanent will show errors. The cache should be cleared each time the app is restarted, in the `start` key in [your web configuration](/configuration/app/web.md#commands).
+Your app must not treat ephemeral Redis as permanent. Instead, the cache needs to be regenerated as necessary. For example, if a container is moved for a reason such as region maintenance, the `deploy` and `post_depoly` hooks won't be run and an app that treats the cache as permanent will show errors. The cache should be cleared each time the app is restarted, in the `start` key in [your web configuration](/configuration/app/app-reference.md#commands).
 
 If your app needs to treat the cache as permanent, use [persistent Redis](#persistent-redis), which will save data to its volume even when the container is shut down.
 
