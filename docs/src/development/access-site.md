@@ -34,7 +34,7 @@ Most of the system consists of a read-only file system so you can't edit code, b
 Any file [mounts](../configuration/app/storage.md) you have declared in your [app configuration](../configuration/app/_index.md) are writable.
 
 Additionally, you are logged in as the same user that the web server runs as.
-So you don't have to worry about the common problem of editing a file from the command line and from your application
+So you don't have to worry about editing a file from the command line and from your application
 resulting in inconsistent and broken file ownership and permissions.
 
 ## Uploading and downloading files
