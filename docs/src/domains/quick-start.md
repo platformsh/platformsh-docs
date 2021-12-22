@@ -7,17 +7,19 @@ description: |
 {{< description >}}
 
 {{< note theme="warning">}}
- Do not add a custom domain to your project until you are fully ready to change your DNS. Until that time, continue working with the Platform.sh generated URLs.
+
+Adding a custom domain means your existing automatically generated URLs stop working.
+
+Don't add a custom domain to your project until you're fully ready to change your DNS.
+Until that time, continue working with the Platform.sh generated URLs.
 
 {{< /note >}}
-
 
 {{< note>}}
 
 Custom domains can only be added to the default environment on production plans (Standard or larger).
 
 {{< /note >}}
-
 
 ## Summary of steps
 
@@ -28,7 +30,6 @@ Custom domains can only be added to the default environment on production plans 
 
 This short section gives a basic typical example.
 See the [Step by step guide](domains/steps/_index.md) for more complex cases.
-
 
 ## Set your domain
 
