@@ -41,7 +41,7 @@ If you are using the latest version of Search API Solr and running Drupal 8.8 or
 
 {{% endpoint-description type="solr" sectionLink="#solr-6-and-later" multipleText="cores" noApp=true %}}
 
-Service definition:
+[Service definition](../../configuration/services/_index.md):
 
 ```yaml
 search:
@@ -55,7 +55,7 @@ search:
                 core: maincore
 ```
 
-App configuration:
+[App configuration](../../configuration/app/app-reference.md):
 
 ```yaml
 relationships:

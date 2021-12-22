@@ -14,11 +14,11 @@ Platform.sh recommends using Redis for caching with Drupal over Memcached, as Re
 
 {{% endpoint-description type="memcached" noApp=true %}}
 
-Service definition:
+[Service definition](../../configuration/services/_index.md):
 
 {{< readFile file="src/registry/images/examples/full/memcached.services.yaml" highlight="yaml" >}}
 
-App configuration:
+[App configuration](../../configuration/app/app-reference.md):
 
 {{< readFile file="src/registry/images/examples/full/memcached.app.yaml" highlight="yaml" >}}
 

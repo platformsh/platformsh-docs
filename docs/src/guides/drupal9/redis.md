@@ -18,11 +18,11 @@ If you are working from an older repository or migrating a pre-built site to Pla
 
 {{% endpoint-description type="redis" noApp=true %}}
 
-Service definition:
+[Service definition](../../configuration/services/_index.md):
 
 {{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
 
-App configuration:
+[App configuration](../../configuration/app/app-reference.md):
 
 {{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" >}}
 

@@ -7,7 +7,6 @@
 
 {{ $data := index .Site.Data.registry ( $type )}}
 
-
 <!-- Clarify the `type` that should be used. -->
 <!-- mysql.md is special, so change the sentence slightly to show all `type`s for the single endpoint. -->
 Use {{ if eq ($type) "mariadb" }}
@@ -21,8 +20,7 @@ Use {{ if eq ($type) "mariadb" }}
 
 <!-- Clarify the endpoint that should be used. -->
 <!-- If a link and text have been set, adds exception that directs users to the subsection that describes explicit endpoints. -->
-Then use the `{{ $data.endpoint }}` endpoint to define the relationship {{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }}(unless you have [multiple {{$multipleText}}]({{ $sectionLink }})):
-{{ end }}
+Then use the `{{ $data.endpoint }}` endpoint to [define the relationship](/configuration/app/app-reference.md){{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }} (unless you have [multiple {{$multipleText}}]({{ $sectionLink }})){{ end }}:
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
 {{ partial "examples/relationship" $data }}

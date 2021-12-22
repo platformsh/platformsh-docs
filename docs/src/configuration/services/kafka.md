@@ -26,11 +26,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 {{% endpoint-description type="kafka" %}}
 
-Service definition:
+[Service definition](./_index.md):
 
 {{< readFile file="src/registry/images/examples/full/kafka.services.yaml" highlight="yaml" >}}
 
-App configuration:
+[App configuration](../app/app-reference.md):
 
 {{< readFile file="src/registry/images/examples/full/kafka.app.yaml" highlight="yaml" >}}
 

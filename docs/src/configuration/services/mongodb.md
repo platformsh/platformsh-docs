@@ -36,7 +36,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 {{% endpoint-description type="mongodb" %}}
 
-Service definition:
+[Service definition](./_index.md):
 
 ```yaml
 dbmongo:
@@ -46,7 +46,7 @@ dbmongo:
 
 The minimum disk size for MongoDB is `512` (MB).
 
-App configuration:
+[App configuration](../app/app-reference.md):
 
 {{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" >}}
 

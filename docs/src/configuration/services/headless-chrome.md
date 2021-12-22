@@ -49,11 +49,11 @@ It will be necessary to upgrade the version of Node.js in other language contain
 
 {{% endpoint-description type="chrome-headless" %}}
 
-Service definition:
+[Service definition](./_index.md):
 
 {{< readFile file="src/registry/images/examples/full/chrome-headless.services.yaml" highlight="yaml" >}}
 
-App configuration:
+[App configuration](../app/app-reference.md):
 
 {{< readFile file="src/registry/images/examples/full/chrome-headless.app.yaml" highlight="yaml" >}}
 

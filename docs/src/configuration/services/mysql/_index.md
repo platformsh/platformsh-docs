@@ -15,7 +15,8 @@ or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more info
 
 The service types `mariadb` and `mysql` both refer to MariaDB.
 The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
-Other than the type, MySQL and MariaDB are identical and the rest of this page refers to both equally.
+Other than the value for their `type`,
+MySQL and MariaDB have the same behavior and the rest of this page applies to both of them.
 
 | **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
 |---------------|-------------|--------------------|
@@ -27,20 +28,24 @@ On Dedicated and Dedicated Generation 3 environments, only MariaDB is available 
 
 {{< image-versions image="mariadb" status="supported" environment="dedicated" >}}
 
-Dedicated environments don't support any storage engine other than InnoDB.
-Tables created on Dedicated environments using the MyISAM storage engine don't replicate between cluster nodes.
-See how to [convert the engine for tables](#storage-engine).
+Dedicated environments only support the InnoDB storage engine.
+Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
+See how to [convert tables to the InnoDB engine](#storage-engine).
 
 ### Switching type and version
 
 If you change the service type, your data is removed.
-To switch  service types, first [export your data](#exporting-data).
-Then remove the old service and create a new one.
-Then [import your data](#importing-data) to the new service.
 
-You can't downgrade either MySQL or MariaDB.
+To switch service types:
+
+1. [Export your data](#exporting-data).
+1. Remove the old service from your [service configuration](../_index.md)
+1. Specify a new service type.
+1. [Import your data](#importing-data) into the new service.
+
+You can't downgrade either MySQL or MariaDB to a previous version.
 Both update their data files to a new version automatically but can't downgrade them.
-To experiment with a later version without committing to it, use a non-production environment.
+To experiment with a new version without committing to it, use a non-production environment.
 
 {{% deprecated-versions %}}
 
@@ -56,21 +61,21 @@ Configure your service with at least 256 MB in disk space.
 
 ### MariaDB example configuration
 
-Service definition:
+[Service definition](../_index.md):
 
 {{< readFile file="src/registry/images/examples/full/mariadb.services.yaml" highlight="yaml" >}}
 
-App configuration:
+[App configuration](../../app/app-reference.md):
 
 {{< readFile file="src/registry/images/examples/full/mariadb.app.yaml" highlight="yaml" >}}
 
 ### Oracle MySQL example configuration
 
-Service definition:
+[Service definition](../_index.md):
 
 {{< readFile file="src/registry/images/examples/full/oracle-mysql.services.yaml" highlight="yaml" >}}
 
-App configuration:
+[App configuration](../../app/app-reference.md):
 
 {{< readFile file="src/registry/images/examples/full/oracle-mysql.app.yaml" highlight="yaml" >}}
 
@@ -120,8 +125,8 @@ highlight=python
 
 ### Configure connections
 
-There may be cases where you want to configure a connection manually.
-For example, when using a framework like Symfony Flex that expects the database connection as an environment variable.
+There may be cases where you want to configure a database connection manually.
+For example, when using a framework like Symfony Flex that expects the connection as an environment variable.
 
 To get the URL to connect to the database, run the following command
 (replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with your values):
@@ -132,7 +137,7 @@ platform relationships -p <PROJECT_ID> <ENVIRONMENT_NAME>
 
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
 Use the `url` property as your connection.
-Note that it can change if you modify the relationship or add additional databases.
+Note that `url` can change if you modify the relationship or add additional databases.
 So always check it each time your app starts.
 
 You can also see a guide on how to [convert the `PLATFORM_RELATIONSHIPS` environment variable to a different form](https://community.platform.sh/t/convert-platform-relationships-to-database-url/841).
@@ -176,7 +181,8 @@ mysql -p -h mysql.internal -P 3306 -u user main
 
 ## Multiple databases
 
-With version `10.0` or later, you can define multiple databases and multiple users with different permissions.
+With version `10.0` or later of either MariaDB or Oracle MySQL,
+you can define multiple databases and multiple users with different permissions.
 To do so, define multiple endpoints using the `configuration` key for your service.
 
 It has the following relevant properties (plus [`properties` for other configuration](#configure-the-database)):
@@ -311,10 +317,13 @@ If MyISAM tables have been inadvertently created or imported in a Dedicated envi
 convert them to use the InnoDB storage engine as follows:
 
 1. Rename the existing table.
+
    ```sql
    RENAME TABLE <existing_table> <table_old>;
    ```
+
 1. Create a new table from the data in the existing table.
+
    ```sql
    CREATE TABLE <existing_table> SELECT * from <table_old>;
    ```
@@ -323,7 +332,7 @@ Now when you run `SHOW CREATE TABLE <existing_table>`, you see `ENGINE=InnoDB`.
 
 ## Exporting data
 
-To download all data in a MariaDB instance, use the Platform.sh CLI.
+To download all data from your SQL database, use the Platform.sh CLI.
 If you have a single SQL database, the following command exports all data to a local file:
 
 ```bash
@@ -331,7 +340,7 @@ platform db:dump
 ```
 
 If you have multiple SQL databases, you are prompted for which one to export.
-You can also specify it explicitly by its relationship name:
+You can also specify a database by its relationship name:
 
 ```bash
 platform db:dump --relationship <RELATIONSHIP_NAME>

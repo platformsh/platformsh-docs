@@ -2,8 +2,7 @@
   Note: This will only replace the endpoint and service type for demonstration purposes.
         To use this partial, pass the image data as the context (Ex: partial "examples/relationship" $data)
  -->
-{{ $comment := "# .platform.app.yaml"}}
 {{ $l1 := "relationships:" }}
 {{ $l2 := printf "    relationship_name: \"service_name:%s\"" .endpoint}}
 
-{{ return (highlight (printf "%s\n%s\n%s" $comment $l1 $l2) "yaml" "") }}
+{{ return (highlight (printf "%s\n%s" $l1 $l2) "yaml" "") }}

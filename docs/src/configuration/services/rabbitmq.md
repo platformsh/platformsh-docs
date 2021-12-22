@@ -24,13 +24,13 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 {{% endpoint-description type="rabbitmq" %}}
 
-Service definition:
+[Service definition](./_index.md):
 
 {{< readFile file="src/registry/images/examples/full/rabbitmq.services.yaml" highlight="yaml" >}}
 
 The minimum disk size for RabbitMQ is `512` (MB).
 
-App configuration:
+[App configuration](../app/app-reference.md):
 
 {{< readFile file="src/registry/images/examples/full/rabbitmq.app.yaml" highlight="yaml" >}}
 

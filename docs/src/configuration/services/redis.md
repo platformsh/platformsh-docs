@@ -66,11 +66,11 @@ The format is identical regardless of whether it's a persistent or ephemeral ser
 
 {{% endpoint-description type="redis" %}}
 
-Service definition:
+[Service definition](./_index.md):
 
 {{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
 
-App configuration:
+[App configuration](../app/app-reference.md):
 
 {{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" >}}
 
