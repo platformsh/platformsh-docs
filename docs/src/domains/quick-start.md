@@ -10,7 +10,7 @@ description: |
 
 Adding a custom domain means your existing automatically generated URLs stop working.
 
-Don't add a custom domain to your project until you're fully ready to change your DNS.
+Don't add a custom domain to your project until you're fully ready to change your DNS settings.
 Until that time, continue working with the Platform.sh generated URLs.
 
 {{< /note >}}
