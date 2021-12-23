@@ -127,8 +127,7 @@ This usually indicates that large files are present in the repository (where the
 Make sure that the paths for files like media files, dependencies, and databases are set to be ignored in your `.gitignore` file.
 
 If large files are already in the repository, the open-source tool [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
-can assist in cleaning up the repository by purging older commits, removing unnecessary files, and more
-To have the disk space temporarily increased, create a [support ticket](https://console.platform.sh/-/users/~/tickets/open).
+can assist in cleaning up the repository by purging older commits, removing unnecessary files, and more.
 
 ## Stuck build or deployment
 
