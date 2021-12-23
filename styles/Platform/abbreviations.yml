@@ -14,9 +14,11 @@ exceptions:
   - CSS
   - CSV
   - DEBUG
+  - DNS
   - DOM
   - DPI
   - FAQ
+  - FPM
   - GCC
   - GDB
   - GET

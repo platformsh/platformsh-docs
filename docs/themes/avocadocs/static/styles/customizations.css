@@ -348,7 +348,7 @@ MAIN
   text-align: right;
 }
 
-@media (min-width: 1030px) {
+@media (min-width: 992px) {
   .btn-edit-page {
     margin: 0rem 0rem .25rem 0rem;
   }
@@ -626,7 +626,7 @@ h6 {
 
 
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
     .mobile-only {
         display:none !important;
     }
@@ -658,19 +658,6 @@ body {
   color: var(--brand-font-color-black);
   text-align: left;
   background-color: #fff;
-}
-
-.toc {
-  padding: .25rem 2rem 1rem 2rem;
-  border: 1px solid var(--sidebar-bg-color);
-}
-
-.toc nav li {
-  list-style: none;
-}
-
-.toc nav a {
-  color: var(--brand-color-primary-blue);
 }
 
 .page-item {
@@ -725,7 +712,7 @@ body {
   border-bottom-right-radius: 0rem;
 }
 
-@media (min-width: 1030px) {
+@media (min-width: 992px) {
   .previous-page {
     display: inline;
   }
@@ -735,11 +722,11 @@ body {
 }
 
 
-@media (min-width: 825px) {
+@media (min-width: 768px) {
   .duik-content {
     min-height: calc(100vh - 5rem - 5.5rem);
     /* top | right | bottom | left */
-    padding: 3rem 3rem 3rem 9rem;
+    padding: 0rem 2rem 3rem 2rem;
   }
 /*
   .duik-sidebar {
@@ -747,11 +734,11 @@ body {
   } */
 }
 
-@media (min-width: 1030px) {
+@media (min-width: 992px) {
   .duik-content {
     min-height: calc(100vh - 5rem - 5.5rem);
     /* top | right | bottom | left */
-    padding: 0rem 7rem 3rem 7rem;
+    padding: 0rem 3rem 3rem 7rem;
   }
   /* .duik-sidebar {
     padding: 5rem 0 0 0;
@@ -762,7 +749,14 @@ body {
   } */
 }
 
-@media (max-width: 769px) {
+@media (min-width: 1200px) {
+  .duik-content {
+    /* top | right | bottom | left */
+    padding: 0rem 7rem 3rem 7rem;
+  }
+}
+
+@media (max-width: 768px) {
 
   .book-links {
     display: none !important;
@@ -775,7 +769,7 @@ body {
 
 }
 
-@media (min-width: 1185px) {
+@media (min-width: 1200px) {
 
   .book-links {
     /* display: none !important; */
@@ -783,7 +777,7 @@ body {
   }
 }
 
-@media (min-width: 1186px) {
+@media (min-width: 1200px) {
 
   .book-links {
     /* display: none !important; */
@@ -1089,6 +1083,12 @@ td, th {
   padding: 8px;
 }
 
+th {
+  position: sticky;
+  top: calc(1.5rem * 3);
+  background-color: var(--primary);
+}
+
 blockquote {
   color: #333;
   border: none;
@@ -1160,7 +1160,7 @@ blockquote p {
   border-top: 2px solid #fff !important;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
 
   .duik-sidebar {
     padding-top: 3rem !important;
@@ -1173,4 +1173,53 @@ blockquote p {
 
 .duik-sidebar-sticky {
   overflow: hidden !important;
+}
+
+/* Table of contents */
+.toc {
+  padding: .25rem 2rem 1rem 2rem;
+  border: 1px solid var(--sidebar-bg-color);
+  margin-bottom: 1rem;
+}
+
+.toc h3 {
+  padding-top: 1rem;
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.toc ul {
+  padding: 0;
+  margin: 0;
+}
+
+.toc ul ul {
+  padding-left: 1.5rem;
+}
+
+.toc nav li {
+  list-style: none;
+}
+
+.toc nav a {
+  color: var(--brand-color-primary-blue);
+}
+
+/* Sticky table of contents */
+@media (min-width: 768px) {
+  .content-grid {
+    display: grid;
+    grid-template-columns: minmax(20rem,80%) minmax(10rem,20%);
+  }
+
+  .toc {
+    position: sticky;
+    top: 84px;
+    padding: 0 1rem 0.5rem 1rem;
+    border: 1px solid var(--sidebar-bg-color);
+    margin-left: 1rem;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
 }

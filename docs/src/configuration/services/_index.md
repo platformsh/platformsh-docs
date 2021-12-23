@@ -75,14 +75,17 @@ If necessary, [migrate your project](../../guides/general/region-migration.md).
 
 #### Size
 
-By default, Platform.sh allocates CPU and memory resources to each container automatically given the available resources on the plan.
+By default, Platform.sh allocates CPU and memory resources to each container automatically
+given the available resources in [your plan](../../overview/pricing/_index.md).
 Some services are optimized for high CPU load, some for high memory load.
 If your plan is sufficiently large for bigger containers, you can increase the size of your service container.
+
+Note that service containers in development environments are always set to size `S`.
 
 ### 2. Connect the service
 
 Once you have configured a service, you need to create a relationship to connect it to an app.
-This is done in your [app configuration](../app/_index.md) under the `relationships` key.
+This is done in your [app configuration for relationships](../app/app-reference.md#relationships).
 
 The relationship follows this pattern:
 

@@ -9,6 +9,7 @@ autoload[ing|er]?
 Blackfire
 blockquote
 Bootsnap
+Brotli
 [Bb]undler
 Cloudwatt
 [Cc]onfig
@@ -26,6 +27,7 @@ glibc
 Goldmark
 Gradle
 Gunicorn
+gzip
 highjack
 hostname
 [Hh]otfix
@@ -68,6 +70,7 @@ shortcode
 Symfony
 transclusion
 unencrypted
+[Uu]nmount
 webpack
 Xdebug
 Zend

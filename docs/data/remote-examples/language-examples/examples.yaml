@@ -61,4 +61,4 @@ paths:
         - rabbitmq
         - redis
         - solr
-        - vault
+        - vault-kms

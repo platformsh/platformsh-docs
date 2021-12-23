@@ -49,9 +49,9 @@ The redeploy takes place after any scheduled activities (either *Running* or *Pe
 Despite the name, redeployment doesn't rerun the `deploy` hook, only the `post_deploy` hook.
 Both your `build` and `deploy` hooks are tied to individual commits in code.
 They're reused until another commit is pushed to the environment.
-See [more about hooks](../configuration/app/build.md#hooks) and their reuse.
+See [more about hooks](../configuration/app/hooks.md) and their reuse.
 
-To rerun the `build` and `deploy` hooks, [manually trigger a build](../configuration/app/build.md#manually-trigger-builds).
+To rerun the `build` and `deploy` hooks, [manually trigger a build](../configuration/app/hooks.md#manually-trigger-builds).
 
 {{< /note >}}
 
@@ -115,7 +115,7 @@ Except where you define it, the file system is all read-only, with code changes 
 This gives you benefits like repeatable deployments, consistent backups, and traceability.
 
 You can write to disk a `build` hook to generate anything you need later.
-Or you can declare writable [mounts](../configuration/app/storage.md#mounts), which are writable even during and after deploy.
+Or you can declare writable [mounts](../configuration/app/app-reference.md#mounts#mounts), which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
 ## Stuck build or deployment
@@ -157,7 +157,7 @@ Invisible errors during the build and deploy phase can cause increased wait time
 
 ### Build and deploy hooks
 
-[`build` and `deploy` hooks](/configuration/app/build.md#hooks) can cause long build times.
+[`build` and `deploy` hooks](/configuration/app/hooks.md) can cause long build times.
 If they run into issues, they can cause the build to fail or hang indefinitely.
 
 `build` hooks can be tested in your local environment.
@@ -174,7 +174,7 @@ strace -T $cmd # Print a system call report
 
 ### Cron jobs
 
-Containers can't be shutdown while long-running [cron jobs and scheduled tasks](/configuration/app/cron.md#cron-jobs) are active.
+Containers can't be shutdown while long-running [cron jobs and scheduled tasks](../configuration/app/app-reference.md#crons) are active.
 That means long-running cron jobs block a container from being shut down to make way for a new deploy.
 
 Make sure your custom cron jobs run quickly and properly.

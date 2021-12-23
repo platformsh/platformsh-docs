@@ -1,118 +1,90 @@
 ---
-title: "Build & Deploy"
+title: Build and deploy
 weight: 2
+description: See how applications get built and deployed with Platform.sh.
 ---
 
-Every time you push to a live branch (a git branch with an active environment attached to it)
-or activate an [environment](/administration/web/environments.md) for a branch,
-there are two main processes that happen: **Build** and **Deploy**.
+Each time you push a change to your app through Git or activate an [environment](../administration/web/environments.md),
+your app goes through a process to be built and deployed.
+If your app is redeployed with no changes to its codebase, the output of the previous build and deploy process is reused.
 
-1. The build process looks through the configuration files in your repository and assembles the necessary containers.  
-2. The deploy process makes those containers live, replacing the previous versions, with virtually no interruption in service.
+The build process looks through the configuration files in your repository and assembles the necessary containers.
+The deploy process makes those containers live, replacing any previous versions, with minimal interruption in service.
 
-![Build pipeline](/images/workflow/build-pipeline.svg "0.50")
+![The steps in the build and deploy process](/images/workflow/build-pipeline.svg "0.50")
 
-## Always Be Compiling
+## Glossary
 
-Interpreted languages like PHP or Node.js may not seem like they have to be compiled,
-but with modern package management tools like Composer and npm as well as the growing use of CSS preprocessors such as Sass,
-most modern web applications need a "build" step between their source code and their production execution code.
-The Platform.sh build step includes the entire application container
-(from language version to build tools to your code), rebuilt every time.
+Hooks
+: Hooks are points in the build and deploy process where you can inject a custom script.
 
-That build process is under your control and runs on every Git push.
-Every Git push is a validation not only of your code, but of your build process.
-Whether that's installing packages using Composer or Bundler, compiling TypeScript or Sass,
-or building your application code in Go or Java,
-your build process is vetted every time you push.
+## The build
 
-Whenever possible, you should avoid committing build assets to your repository that can be regenerated at build time.
-Depending on your application,
-that may include third-party libraries and frameworks, generated and optimized CSS and JS files, and generated source code.
+The outcome of the build process is designed to be repeatable and reusable.
+Each app in a project is built separately.
 
-The following two constraints make sure you have fast, repeatable builds:
+Container configuration depends exclusively on your configuration files.
+So each container is tied to a specific Git commit.
+If there are no new changes for a given container, the existing container can be reused.
+This saves you the time the build step would take.
 
-1. **The build step should be environment-independent.**
-   This is paramount to ensure development environments are truly perfect copies of production.
-   This means you can not connect to services (like the database) during the build.
-2. **The final built application must be read-only.**
-   If your application requires writing to the filesystem, you can specify the directories that require Read/Write access.
-   These shouldn't be directories that have code, because that would be a security risk.
+This means the build is independent of the given environment and development environments are perfect copies of production.
+If you use environment variables to set up different build configuration options for different environments,
+your build step isn't reused and your development environments may differ from production.
 
-## Building the application
+You can't connect to services (like databases) during the build step.
+Once the app has gone through all of the build steps, it can connect to services in the deploy process.
 
-After you push your code, the first build step is to validate your configuration files
-(`.platform.app.yaml`, `.platform/services.yaml`, and `.platform/routes.yaml`).
-The Git server issues an error if validation fails, and nothing happens on the server.
+### Build steps
 
-{{< note >}}
+1. **Validate configuration**:
+   The configuration is checked by validating the `.platform` directory and scanning the repository for any app configurations to validate individually.
+1. **Pull container images**:
+   Any container images that have been built before and that don't have any changes are pulled to be reused.
+1. **Install dependencies**:
+   If you have specified additional global dependencies, they're downloaded during this step.
+   This is useful for commands you may need in the build hook.
+1. **Run build flavor commands**:
+   For some languages (NodeJS, PHP), a series of standard commands are run based on the build flavor.
+   You can change the flavor or skip the commands by specifying it in your app configuration file.
+1. **Run build hook**:
+   The `build` hook comprises one or more shell commands that you write to finish creating your production code base.
+   It could be compiling Sass files, running a bundler, rearranging files on disk, or compiling.
+   The committed build hook runs in the build container.
+   During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
+1. **Freeze app container**:
+   The file system is frozen and produces a read-only container image, which is the final build artifact.
 
-While most projects have a single `.platform.app.yaml` file,
-Platform.sh supports multiple applications in a single project.
-It scans the repository for `.platform.app.yaml` files in subdirectories
-and each directory containing one is built as an independent application.
-A built application doesn't contain any directories above the one in which it's found.
-The system is smart enough not to rebuild applications that have already been built,
-so if you have multiple applications, only changed applications are rebuilt and redeployed.
+## The deploy
 
-{{< /note >}}
+The deploy process connects each container from the build process and any services.
+The connections are defined in your app and services configuration.
 
-The live environment is composed of multiple containers&mdash;both for your applications and for the services it depends on.
-It also has a virtual network connecting them as well as a router to route incoming requests to the appropriate application.
+So unlike the build process, you can now access other containers,
+but the file system is read-only.
 
-Based on your application type, the system selects one of the pre-built container images and runs the following:
+### Deploy steps
 
-1. First, any dependencies specified in the `.platform.app.yaml` file are installed.
-   Those include tools like Sass, webpack, and Drupal Console.
-2. Then, depending on the build flavor specified in the configuration file, a series of standard commands is run.
-   The default for PHP containers, for example, is running `composer install`.
+1. **Hold requests**:
+   Incoming requests are held to prevent service interruption.
+1. **Unmount current containers**:
+   Any previous containers are disconnected from their file system mounts.
+1. **Mount file systems**:
+   The file system is connected to the new containers.
+   New branches have file systems cloned from their parent.
+1. **Expose services**:
+   Networking connections are opened between any containers specified in your app and services configurations.
+1. **Run start commands**:
+   The commands necessary to start your app are run.
+1. **Run deploy hook**:
+   The `deploy` hook is any number of shell commands you can run to finish your deployment.
+   This can include clearing caches, running database migrations, and setting configuration that requires relationship information.
+1. **Serve requests**:
+  Incoming requests to your newly deployed application are allowed.
 
-3. Finally, the build hook from the configuration file is run.
-   The build hook comprises one or more shell commands that you write to finish creating your production code base.
-   That could be compiling Sass files, running a bundler, rearranging files on disk,
-   compiling an application in a compiled language, or whatever else you want.
-   Note that, at this point, all you are able to access is the file system; there are no services or other databases available.
+After the deploy process is over, any commands in your `post_deploy` hook are run.
 
-Once all of that is completed, we freeze the file system and produce a read-only container image.
-That image is the final build artifact:
-a reliable, repeatable snapshot of your application, built the way you want, with the environment you want.
+## What's next
 
-Because container configuration (for both your application and its underlying services) is exclusively based on your configuration files
-and your configuration files are managed through Git,
-we know that a given container has a 1:1 relationship with a Git commit.
-That means builds are always repeatable.
-It also means that if we detect that there are no changes that would affect a given container,
-we can skip the build step entirely and reuse the existing container image, saving a great deal of time.
-
-In practice, the entire build process usually takes less than a minute.
-
-## Deploying the application
-
-Deploying the application also has several steps, although they're much quicker.
-
-First, we pause all incoming requests and hold them so that there's no interruption of service.
-Then we disconnect the current containers from their file system mounts, if any,
-and connect the file systems to the new containers instead.
-If it's a new branch and there is no existing file system, we clone it from the parent branch.
-
-We then open networking connections between the various containers,
-but only those that were specified in the configuration files (using the `relationships` key).
-No configuration, no connection.
-That helps with security, as only those connections that are actually needed even exist.
-The connection information for each service is available in an application as environment variables.
-
-Now that we have working, running containers there are two more steps to run.
-First, if there is a `start` command specified in your `.platform.app.yaml` file to start the application, we run that.
-(With PHP, this is optional.)
-
-Then we run your deploy hook.
-Just like the build hook, the deploy hook is any number of shell commands you need to prepare your application.
-Usually this includes clearing caches, running database migrations, and so on.
-You have complete access to all services here as your application is up and running,
-but the file system where your code lives is now read-only.
-
-Finally, once the deploy hooks are done,
-we open the floodgates and let incoming requests through to your newly deployed application.
-You're done!
-
-In practice, the deploy process takes only a few seconds, plus whatever time is required for your deploy hook, if any.
+* See how to [configure your app](../configuration/app/_index.md) for the entire process.
+* Learn more about [using build and deploy hooks](../configuration/app/hooks.md).
