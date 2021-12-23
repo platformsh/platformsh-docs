@@ -83,7 +83,7 @@ https://{default}/:
       "/configuration/app/firewall.html": { "to": "/configuration/app/app-reference.html#firewall", "code": 301, "prefix": false }
       "/configuration/app/name.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
       "/configuration/app/relationships.html": { "to": "/configuration/app/app-reference.html#relationships", "code": 301, "prefix": false }
-      "/configuration/app/size.html": { "to": "/configuration/app/app-reference.html#size", "code": 301, "prefix": false }
+      "/configuration/app/size.html": { "to": "/configuration/app/app-reference.html#sizes", "code": 301, "prefix": false }
       "/configuration/app/storage.html": { "to": "/configuration/app/app-reference.html", "code": 301, "prefix": false }
       "/configuration/app/type.html": { "to": "/configuration/app/app-reference.html#types", "code": 301, "prefix": false }
       "/configuration/app/variables.html": { "to": "/configuration/app/app-reference.html#variables", "code": 301, "prefix": false }
