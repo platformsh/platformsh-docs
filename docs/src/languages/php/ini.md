@@ -38,7 +38,8 @@ or
 date.timezone = "Europe/Paris"
 ```
 
-Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code. See the note in the [Environment variables](/development/variables.md#php-specific-variables) section.
+Environment-specific `php.ini` configuration directives can be provided via environment variables separately from the application code.
+See the note on [environment variables](../../development/variables/_index.md#php-specific-variables).
 
 ## Disabling functions
 
