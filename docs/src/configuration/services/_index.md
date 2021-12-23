@@ -21,7 +21,7 @@ Adding a service is a two-step process.
 
 ## 1. Configure the service
 
-All service configuation happens in the configuration file (`.platform/services.yaml`) in your Git repository.
+All service configuration happens in the configuration file (`.platform/services.yaml`) in your Git repository.
 
 Configure your service in the following pattern:
 
@@ -43,14 +43,14 @@ database2:
 ```
 
 This YAML file is a dictionary defining all of the services you want to use.
-The top-level key is the service name, which you use to identify the service in step 2.
+The top-level key is a custom service name, which you use to identify the service in step 2.
 You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
 {{< note >}}
 
 Changing the service name is interpreted as creating an entirely new service.
 This **removes all data in that service**.
-Always back up your data before changing the file.
+Always back up your data before changing existing services in your `.platform/services.yaml` file.
 
 {{< /note >}}
 
@@ -77,7 +77,7 @@ If necessary, [migrate your project](../../guides/general/region-migration.md).
 
 By default, Platform.sh allocates CPU and memory resources to each container automatically given the available resources on the plan.
 Some services are optimized for high CPU load, some for high memory load.
-If your plan is sufficiently large, you can customize the size of your service container.
+If your plan is sufficiently large for bigger containers, you can increase the size of your service container.
 
 ### 2. Connect the service
 
@@ -106,7 +106,7 @@ It helps if the service name and relationship name are different, but it isn't r
 Each service offers one or more endpoints for connections, depending on the service.
 An endpoint is a named set of credentials to give access to other apps and services in your project.
 If you don't specify one in the [service configuration](#service-options), a default endpoint is created.
-The default varies by service, generally being its type (such as `mysql` or `solr`).
+The default endpoint varies by service, generally being its type (such as `mysql` or `solr`).
 
 ## Available services
 
@@ -134,7 +134,7 @@ The structure of each is documented on the appropriate service's page along with
 The keys in the `PLATFORM_RELATIONSHIPS` variable are fixed, but the values may change on deployment or restart.
 So you should check the environment variable every time your script or app starts.
 
-Access to the database or other services is only available from within the cluster.
+Access to the database or other services is only available from your apps.
 For security reasons, they can't be accessed directly.
 
 To connect to a service, you need the [service credentials](#obtain-service-credentials).
@@ -171,10 +171,11 @@ database:
 
 With this example, you can connect to the `database` relationship
 with the user `user`, an empty password, and the database name `main` (from the `path`).
+Find a full database connection in the `url` property.
 
-### Connect to the tunnel
+### Connect to an SSH tunnel
 
-Once you have [opened a tunnel](../../development/ssh/_index.md#connect-to-services), you can use it to connect to your service.
+Once you have [opened an SSH tunnel](../../development/ssh/_index.md#connect-to-services), you can use it to connect to your service.
 
 If you have a direct tunnel, you might connect to `127.0.0.1:30000` to the `main` database with the username `user` and an empty password.
 
