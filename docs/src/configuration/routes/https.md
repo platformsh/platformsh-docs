@@ -81,15 +81,9 @@ The use cases for this configuration are few.
 More complex routing logic is also possible if the situation calls for it.
 
 {{< note >}}
-
-Let's Encrypt has a limit of 100 hostnames per certificate.
-Each of your environments can have 1 Let's Encrypt certificate.
-If you define both a `{default}` and `www.{default}` route for each domain you use, you have a limit of 50 hostnames.
-Adding more than that results in a warning on deploy and no new TLS certificates are issued.
-
-If you need more hostnames than that, obtain additional certificates or a wildcard certificate from another TLS provider.
-Alternatively, consider splitting your project up into multiple Platform.sh projects.
-
+{{% reuse_le_limitations %}}
+If you need more than that, we recommend obtaining additional certificates or a wildcard certificate from another TLS provider.
+Alternatively, consider splitting your project up into multiple discrete Platform.sh projects.
 {{< /note >}}
 
 ## TLS configuration
