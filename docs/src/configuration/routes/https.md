@@ -81,7 +81,8 @@ The use cases for this configuration are few.
 More complex routing logic is also possible if the situation calls for it.
 
 {{< note >}}
-{{% reuse_le_limitations %}}
+{{% lets_encrypt_limitations %}}
+
 If you need more than that, we recommend obtaining additional certificates or a wildcard certificate from another TLS provider.
 Alternatively, consider splitting your project up into multiple discrete Platform.sh projects.
 {{< /note >}}
