@@ -218,9 +218,58 @@ Property    | Description
 
 ## Reusing content
 
-To reuse content in multiple places, you can save it as a shortcode
-and then use [transclusion](https://en.wikipedia.org/wiki/Transclusion) to include it elsewhere.
-For this, use the `readFile` shortcode.
+To reuse Markdown content in multiple places,
+use [transclusion](https://en.wikipedia.org/wiki/Transclusion) to include it.
+
+1. Create a new `.md` file in the `docs/layouts/shortcodes` directory.
+   Make sure the context is clear from the name, for example `reuse_markdown.md`.
+1. Fill it with the content you want to repeat.
+1. Include the file in the other locations like so:
+
+   ```markdown
+   {{% reuse_markdown %}}
+   ```
+
+### Variables in the file
+
+You can pass variables to the file:
+
+```markdown
+{{% reuse_markdown FileName="1" %}}
+```
+
+Use the variable in the file:
+
+```markdown
+The file's name is: {{ .Get "FileName" }}
+```
+
+### Inner content
+
+For longer content specific to each file, you can put content inside the shortcode:
+
+```markdown
+{{% reuse_markdown %}}
+
+This is longer content that only appears for the file it's in
+and not all files that use the shortcode.
+
+{{% /reuse_markdown %}}
+```
+
+Use the inner content in the file:
+
+```markdown
+Here is some content before the inner content.
+
+{{ .Inner | .Page.RenderString }}
+
+Here is some content after the inner content.
+```
+
+### Static files
+
+For static files that have already been created, use the `readFile` shortcode:
 
 ```markdown
 {{< readFile file="src/registry/images/tables/runtimes_supported.md" markdownify="true">}}
