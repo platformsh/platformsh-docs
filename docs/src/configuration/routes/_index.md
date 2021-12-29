@@ -68,12 +68,9 @@ In the future, Platform.sh will support multiple endpoints per application.
 
 ## Route limits
 
-1. Non-default ports (other than `80` and `443`) aren't supported and can't be included in routes configuration.
+- {{% reuse_le_limitations %}}
 
-1. You can use one [Let's Encrypt certificate per environment](/configuration/routes/https.md). Let’s Encrypt has a limit of 100 hostnames per certificate.
-If you try to add more than that some of them will fail to get an SSL certificate.
-
-1. As a general rule we recommend keeping the defined routes under 100.
+- As a general rule we recommend keeping the defined routes under 100. 
 
 The full list of generated route information is often much larger than what's literally specified in the `routes.yaml` file.
 By default all HTTPS routes will be duplicated to create also an HTTP to HTTPS redirect route.
@@ -84,6 +81,9 @@ If your `routes.yaml` file would result in too large of a route information valu
 Should you find your `routes.yaml` file rejected due to an excessive size,
 the best alternative is to move any redirect routes to the application rather than relying on the router,
 or collapsing them into a [regular expression-based redirect](/configuration/routes/redirects.md#partial-redirects) within a route definition.
+
+- Non-default ports (other than `80` and `443`) aren't supported and can't be included in routes configuration.
+
 
 ## Routes examples
 
