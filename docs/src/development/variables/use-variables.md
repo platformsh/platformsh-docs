@@ -18,7 +18,9 @@ Variables on the project Example (abcdef123456), environment main:
 
 ## Access variables in a shell
 
-Project and environment variables with the [prefix](./_index.md#top-level-environment-variables) `env:` are available as Unix environment variables in all caps. Access these variables and Platform.sh-provided variables directly like this:
+Project and environment variables with the [prefix](./_index.md#top-level-environment-variables) `env:`
+are available as Unix environment variables in all caps.
+Access these variables and Platform.sh-provided variables directly like this:
 
 ```bash
 $ echo $FOO
@@ -27,7 +29,8 @@ $ echo $PLATFORM_APPLICATION_NAME
 Sample Project
 ```
 
-Other project and environment variables are listed together in the `$PLATFORM_VARIABLES` variable as a JSON array. Access them like this:
+Other project and environment variables are listed together in the `PLATFORM_VARIABLES` variable as a base64-encoded JSON object.
+Access them like this:
 
 ```bash
 $ echo $PLATFORM_VARIABLES | base64 --decode
@@ -41,7 +44,8 @@ $ echo $PLATFORM_VARIABLES | base64 --decode | jq '.theanswer'
 "42"
 ```
 
-Variable availability depends on the type and configuration. Variables available during builds can be accessed in `build` hooks and those available at runtime can be accessed in `deploy` hooks.
+Variable availability depends on the type and configuration.
+Variables available during builds can be accessed in `build` hooks and those available at runtime can be accessed in `deploy` hooks.
 
 ## Access variables in your app
 
@@ -80,7 +84,7 @@ markdownify=false
 // A simple variable.
 $projectId = getenv('PLATFORM_PROJECT');
 
-// A JSON-encoded value.
+// An encoded JSON object.
 $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), TRUE);
 
 <--->
@@ -99,7 +103,7 @@ import base64
 # A simple variable.
 project_id = os.getenv('PLATFORM_PROJECT')
 
-# A JSON-encoded value.
+# An encoded JSON object.
 variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode('utf-8'))
 
 <--->
@@ -125,7 +129,7 @@ function read_base64_json(varName) {
 // A simple variable.
 const projectId = env.PLATFORM_PROJECT;
 
-// A JSON-encoded value.
+// An encoded JSON object.
 const variables = read_base64_json('PLATFORM_VARIABLES');
 
 <--->
@@ -140,7 +144,7 @@ markdownify=false
 # A simple variable.
 project_id = ENV["PLATFORM_PROJECT"] || nil
 
-# A JSON-encoded value.
+# An encoded JSON object.
 variables = JSON.parse(Base64.decode64(ENV["PLATFORM_VARIABLES"]))
 
 <--->
@@ -166,7 +170,7 @@ public class App {
     public static void main(String[] args) throws IOException {
         // A simple variable.
         final String project = getenv("PLATFORM_PROJECT");
-        // A JSON-encoded value.
+        // An encoded JSON object.
         ObjectMapper mapper = new ObjectMapper();
         final Map<String, Object> variables = mapper.readValue(
                 String.valueOf(getDecoder().decode(getenv("PLATFORM_VARIABLES"))), Map.class);
@@ -175,10 +179,10 @@ public class App {
 
 {{< /codetabs >}}
 
-## Access complex values
+### Access complex values
 
-Variable values can have nested structures. 
-The following example shows nested structures introduced in an [app configuration](../../configuration/app/app-reference.md#variables):
+Variables can have nested structures.
+The following example shows nested structures in an [app configuration](../../configuration/app/app-reference.md#variables):
 
 ```yaml
 variables:
@@ -198,7 +202,7 @@ variables:
             blue: '#0000FF'
 ```
 
-You could access these nested variables as follows:
+You can access these nested variables as follows:
 
 {{< codetabs >}}
 
@@ -329,79 +333,57 @@ console.log(stuffColors);
 
 ## Use Platform.sh-provided variables
 
-Platform.sh also provides a series of variables by default that inform an application about its runtime configuration.
-They're always prefixed with `PLATFORM_*` to differentiate them from user-provided values
-and you can't set or update them directly.
+Platform.sh also provides a series of variables to inform your app about its runtime configuration.
+They're always prefixed with `PLATFORM_` to differentiate them from user-provided values.
+You can't set or update them directly.
 
-The most important of these variables is relationship information,
-which tells the application how to connect to databases and other services defined in `services.yaml`.
+The most important of these variables is the relationship information in `PLATFORM_RELATIONSHIPS`,
+which tells the app how to connect to databases and other services defined in `services.yaml`.
 
 The following table presents the available variables
 and whether they're available during builds and at runtime.
 
 | Variable name             | Build | Runtime | Description |
 | ------------------------- | ----- | ------- | ----------- |
-| PLATFORM_OUTPUT_DIR       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
-| PLATFORM_VARIABLES        | Some  | Some    | A base64-encoded JSON object with all project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values the values. Availability during builds and at runtime depends on the specific variable settings. |
-| PLATFORM_PROJECT          | Yes   | Yes     | The project ID |
-| PLATFORM_TREE_ID          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build |
-| PLATFORM_PROJECT_ENTROPY  | Yes   | Yes     | A random, 56-character value created when the project is created and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
-| PLATFORM_APP_DIR          | Yes   | Yes     | The absolute path to the application directory. |
-| PLATFORM_APPLICATION_NAME | Yes   | Yes     | The application name as set in the `.platform.app.yaml` file. |
-| PLATFORM_APPLICATION      | Yes   | Yes     | A base64-encoded JSON object that describes the application. It maps certain attributes from your `.platform.app.yaml` file, some with more structure. See [notes](#platform_application). |
+| PLATFORM_APP_DIR          | Yes   | Yes     | The absolute path to the app directory. |
+| PLATFORM_APPLICATION      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](../../configuration/app/_index.md), some with more structure. See [notes](#platform_application). |
+| PLATFORM_APPLICATION_NAME | Yes   | Yes     | The app name as set in your [app configuration](../../configuration/app/_index.md). |
 | PLATFORM_BRANCH           | No    | Yes     | The name of the Git branch. |
 | PLATFORM_DOCUMENT_ROOT    | No    | Yes     | The absolute path to the web document root, if applicable. |
 | PLATFORM_ENVIRONMENT      | No    | Yes     | The name of the Platform.sh environment. |
-| PLATFORM_ENVIRONMENT_TYPE | No    | Yes     | The type of the Platform.sh environment (development, staging or production). |
+| PLATFORM_ENVIRONMENT_TYPE | No    | Yes     | The environment type of the Platform.sh environment (`development`, `staging`, or `production`). |
+| PLATFORM_OUTPUT_DIR       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
+| PLATFORM_PROJECT          | Yes   | Yes     | The project ID. |
+| PLATFORM_PROJECT_ENTROPY  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
+| PLATFORM_RELATIONSHIPS    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../configuration/services/_index.md). |
+| PLATFORM_ROUTES           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../configuration/routes/_index.md). |
 | PLATFORM_SMTP_HOST        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
-| PLATFORM_RELATIONSHIPS    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined for each [service](/configuration/services/_index.md). |
-| PLATFORM_ROUTES           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of the `.platform/routes.yaml` file. |
+| PLATFORM_TREE_ID          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
+| PLATFORM_VARIABLES        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. |
 
-Dedicated instances also have the following variables available:
+### Variables on Dedicated environments
+
+[Dedicated instances](../../dedicated/overview/_index.md) also have the following variables available:
 
 | Variable name    | Build | Runtime | Description |
 | ---------------- | ----- | ------- | ----------- |
-| PLATFORM_MODE    | No    | Yes     | `enterprise` in all production and staging Dedicated environments. Note that an Enterprise support plan doesn't always imply a Dedicated environment, but a Dedicated environment always implies an Enterprise support plan. |
+| PLATFORM_MODE    | No    | Yes     | `enterprise` in all Dedicated production and staging environments. Note that an Enterprise support plan doesn't always imply a Dedicated environment, but a Dedicated environment always implies an Enterprise support plan. |
 | PLATFORM_CLUSTER | No    | Yes     | The cluster ID. |
 | PLATFORM_PROJECT | No    | Yes     | The document root. Typically the same as your cluster name for the production environment, while staging environments have `_stg` or similar appended. |
 
 {{< note >}}
 
-The `PLATFORM_CLUSTER`, and `PLATFORM_PROJECT` environment variables aren't yet available on [Dedicated Generation 3](/dedicated-gen-3/overview.md).
+The `PLATFORM_CLUSTER`, and `PLATFORM_PROJECT` environment variables aren't yet available on [Dedicated Generation 3](../../dedicated-gen-3/overview.md).
 If your application contains logic that depends on whether it's running on a Dedicated Generation 3 host, use `PLATFORM_MODE`.
 
 {{< /note >}}
 
-### `PLATFORM_APPLICATION`
+#### Distinguish Dedicated environment types
 
-`PLATFORM_APPLICATION` is a special case to keep in mind in how it differs between the build and runtime. Each environment's build is associated with a configuration ID that uniquely identifies it. This ID enables reusing builds on merges. The ID itself is a product of your application code and some of its configuration for Platform.sh in `.platform.app.yaml`.
-
-Not every attribute in `.platform.app.yaml` is relevant to builds --
-only some of these attributes result in a full app rebuild when they're updated.
-So not all of the attributes defined in your `.platform.app.yaml` file are accessible at build time from `PLATFORM_APPLICATION`,
-only those actually relevant to builds.
-
-Some attributes that are **not** available in `PLATFORM_APPLICATION` during builds:
-
-* everything under `resources`
-* `size`
-* `disk`
-* everything under `access`
-* everything under `relationship`
-* everything under `firewall`
-* `hooks.deploy` and `hooks.post_deploy`
-* everything under `crons`
-* everything under  `web`, except `web.mounts`
-* everything under `workers`, except `workers.mounts`
-
-The above attributes aren't visible during build
-because they aren't included as a part of the configuration component of the build slug.
-So modifying any of these values in your [app configuration](../../configuration/app/_index.md) doesn't trigger an app rebuild, only a redeploy.
-For more information, read more about [how builds work](../../overview/build-deploy.md#the-build).
-
-### Make scripts behave differently on production, staging and development
-
-While both production and staging Dedicated environments have `enterprise` for the `PLATFORM_MODE` variable, you can distinguish them by environment type. Make sure that the environment types are set correctly via the CLI or the Management Console.
+While both production and staging Dedicated environments have `enterprise` for the `PLATFORM_MODE` variable,
+you can distinguish them by environment type.
+Make sure that the environment type is set correctly via the CLI or management console.
+Then run different code based on the type:
 
 ```bash
 if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ] ; then
@@ -413,83 +395,93 @@ else
 fi
 ```
 
+### `PLATFORM_APPLICATION`
+
+The `PLATFORM_APPLICATION` variable is available both at build time and in the runtime environment.
+But the specific attributes it contains differ in each case.
+
+Each environment's build is associated with a configuration ID that identifies it uniquely so builds can be reused.
+The ID is a product of your app code and some of its [configuration for Platform.sh](../../configuration/app/_index.md).
+Not every attribute your app configuration is relevant to the build.
+Only those attributes that are relevant to builds are accessible at build time from `PLATFORM_APPLICATION`.
+
+Attributes that are **not** available in `PLATFORM_APPLICATION` during builds:
+
+* Everything under `resources`
+* `size`
+* `disk`
+* Everything under `access`
+* Everything under `relationship`
+* Everything under `firewall`
+* `hooks.deploy` and `hooks.post_deploy`
+* Everything under `crons`
+* Everything under  `web`, except `web.mounts`
+* Everything under `workers`, except `workers.mounts`
+
+These attributes aren't visible during build because they aren't included as a part of the configuration component of the build slug.
+So modifying these values in your [app configuration](../../configuration/app/_index.md) doesn't trigger an app rebuild, only a redeploy.
+For more information, read about [how builds work](../../overview/build-deploy.md#the-build).
+
 ## Use variables in static files
 
-A few applications require configuration values to be specified in a static, non-executable file (such as a `.ini`, `.xml`, or `.yaml` file)
-and do not support reading from environment variables.
-These files cannot be populated at build time as environment-specific values are not available,
-but cannot be written to in deploy as the file system is read only.
+Some apps require configuration values to be specified in a static, non-executable file (such as a `.ini`, `.xml`, or `.yaml` file)
+and don't support reading from environment variables.
 
-This restriction is not the case for environment variables
-that have been explicitly set to be [visible at build time](/development/variables/_index.md#environment-variables) (`--visible-build`),
-so it doesn't apply to variables you can set yourself.
-For other Platform.sh-provided variables (such as `PLATFORM_RELATIONSHIPS`),
-a possible workaround is to symlink the file to a writeable location,
-then use a deploy hook script to write files out to that file.
-The details of this process will vary by the application, but an outline of this process is shown below.
+To populate these files with variables you set yourself,
+make sure the variables are set to be [visible at build time](./set-variables.md#environment-variables).
 
-First, create a non-web-accessible mount point in your `.platform.app.yaml` file:
+The files can't be populated with Platform.sh-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
+You also can't write to them in a `deploy` hook as the file system is read only.
 
-```yaml
-# .platform.app.yaml
+One workaround is to create a symbolic link to a writable location and then write to it in a [`deploy` hook](../../configuration/app/hooks.md).
+The following example shows the process, though you have to modify it to fit your needs.
 
-mounts:
-    /config:
-        source: local
-        source_path: config
-```
+1. Create a mount that isn't accessible to the web in your [app configuration](../../configuration/app/_index.md):
 
-Second, create a symbolic link from the config file the application wants to a location in that mount.
-For example:
+   ```yaml
+   mounts:
+       /config:
+           source: local
+           source_path: config
+   ```
 
-```bash
-# From the application root...
+1. Create a symbolic link from the config file the application wants to a location in that mount:
 
-ln -s config/db.yaml db.yaml
-```
+   ```bash
+   # From the application root...
 
-The above assumes that `db.yaml` in the root of the application
-is where the application expects to find its configuration file containing database credentials.
-That will almost certainly be different for your application so modify it as appropriate.
-Ensure that the `db.yaml` symbolic link is committed to Git.
+   ln -s config/db.yaml db.yaml
+   ```
 
-The file `config/db.yaml` does not need to exist.
-In fact, that directory should be empty in Git, as it will be created by the file mount.
+   This example assumes the app wants a `db.yaml` file in its root for configuration.
+1. Commit the symbolic link and an empty `config` directory to Git.
+1. Configure a script to read from environment variables and write to `config/db.yaml`.
+   Create a file with a shell script similar to this:
 
-Third, configure a script that will read from the environment configuration and write out `config/db.yaml`.
-That script will run from the `deploy` hook, and can be written in whatever language you prefer.
-A basic shell script version could look like this:
+   ```bash {location="export-config.sh"}
+   #!/bin/bash
 
-```bash
-#!/bin/bash
+   # Ensure the file is empty.
+   cat '' > config/db.yaml
 
-# Empty out the file.
-cat '' > config/db.yaml
+   # Map the database information from the PLATFORM_RELATIONSHIPS variable into the YAML file.
+   # Adjust the structure to fit your app's needs.
 
-# Use the jq library to extract database information from the
-# PLATFORM_RELATIONSHIPS structure and write out each property
-# as one line in the YAML file.  Your application almost certainly
-# will need an alternate structure; this is only an example.
+   printf "host: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host") >> config/db.yaml
+   printf "port: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].port") >> config/db.yaml
+   printf "name: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].path") >> config/db.yaml
+   printf "user: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username") >> config/db.yaml
+   printf "pass: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].password") >> config/db.yaml
+   ```
 
-printf "host: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host") >> config/db.yaml
-printf "port: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].port") >> config/db.yaml
-printf "name: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].path") >> config/db.yaml
-printf "user: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username") >> config/db.yaml
-printf "pass: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].password") >> config/db.yaml
-```
+1. Call the script from the `deploy` hook your [app configuration](../../configuration/app/_index.md):
 
-Save the above script in a file named `export-config.sh`.  Then call it from the `deploy` hook in `.platform.app.yaml`:
+   ```yaml
+   hooks:
+       deploy: |
+           bash export-config.sh
+   ```
 
-```yaml
-hooks:
-    deploy: |
-        bash export-config.sh
-```
-
-Now, when the application starts and attempts to parse `db.yaml`,
-the symbolic link will redirect it to the writeable `config/db.yaml` instead.
-That file is written to on each deploy with updated information by your script.
-The application will read the exported values and proceed as expected.
-
-Again, this approach should be viewed as a workaround to the bug in the application
-that provides no better alternative for enviroment-sensitive configuration.
+Now, when your app starts and attempts to parse `db.yaml`, the symbolic link redirects it to `config/db.yaml`.
+Your script writes to that file on each deploy with updated information.
+Your app reads the exported values and proceeds as expected.

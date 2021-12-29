@@ -132,7 +132,7 @@ export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".databas
 | [Payara JPA](https://community.platform.sh/t/how-to-overwrite-variables-to-payara-jpa-access-platform-sh-sql-services/519) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/blob/master/payara/README.md) |
 
 To reduce the number of lines in the application file and to make it cleaner,
-you have the option to move the variable environment to another file: a [`.environment` file](../../development/variables/_index.md#shell-variables).
+you have the option to move the variable environment to another file: a [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script).
 
 E.g.:
 

@@ -240,17 +240,19 @@ description: |
 * **December 2016**
   * Support async PHP:
     Deploy applications like ReactPHP and Amp which allow PHP to run as a single-process asynchronous process.
-    Read more on our [blog post](https://platform.sh/2016/12/php-71).
+    Read a [blog post about PHP 7.1](https://platform.sh/2016/12/php-71).
   * Pthreads: Multithreaded PHP:
-    Our PHP 7.1 containers are running PHP 7.1 ZTS, and include the Pthreads extension.
-    Read more on our [blog post](https://platform.sh/2016/12/php-71/).
-  * PHP 7.1: Service is [documented here](/languages/php/_index.md).
-  * Support .environment files:
-    This file will get sourced as a bash script by the system when a container boots up, as well as on all SSH logins.
-    See [more on .environment files](../development/variables/_index.md#shell-variables).
-  * Support web.commands.start for PHP:
+    PHP 7.1 containers are running PHP 7.1 ZTS, and include the Pthreads extension.
+    Read a [blog post about multithreaded PHP](https://platform.sh/2016/12/php-71/#pthreads-multithreaded-php).
+  * PHP 7.1: See [documentation for PHP](../languages/php/_index.md).
+  * Support `.environment` files:
+    This file is sourced as a bash script when a container boots up and on all SSH logins.
+    See [more on `.environment` files](../development/variables/set-variables.md#set-variables-via-script).
+  * Support `web.commands.start` for PHP:
     That option wasn't available for PHP as PHP only has one applicable application runner, PHP-FPM.
-    It is now available for PHP.  Read more on our [blog post](https://platform.sh/2016/12/app-updates-php/).
+    It's now available for PHP.
+    Read more at the [blog post](https://platform.sh/2016/12/app-updates-php/).
+
 ---
 
 * **November 2016**

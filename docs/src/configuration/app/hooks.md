@@ -133,7 +133,7 @@ Platform.sh reuses built applications if its code and build time configuration r
 There may be times where you want to force your application to be built again without changing its code,
 for example to test an issue in a build hook or when external dependencies change.
 To force a rebuild without changing the code,
-use an [environment variable](../../development/variables/set-variables.md#create-environment-variables).
+use an [environment variable](../../development/variables/set-variables.md#create-environment-specific-variables).
 
 Assuming you want to do this for your `main` environment,
 first create a `REBUILD_DATE` environment variable:
