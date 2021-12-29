@@ -69,21 +69,17 @@ In the future, Platform.sh will support multiple endpoints per application.
 ## Route limits
 
 - {{% reuse_le_limitations %}}
+- Non-default ports (other than `80` and `443`) aren't supported and can't be included in routes configuration.
 
-- As a general rule we recommend keeping the defined routes under 100. 
+- As a general rule it is recommended to keep the defined routes under 100. 
 
 The full list of generated route information is often much larger than what's literally specified in the `routes.yaml` file.
 By default all HTTPS routes will be duplicated to create also an HTTP to HTTPS redirect route.
 Also, the `{all}` placeholder will create two routes (one HTTP, one HTTPS) for each domain that is configured.
 
-If your `routes.yaml` file would result in too large of a route information value it will be rejected.
-
-Should you find your `routes.yaml` file rejected due to an excessive size,
-the best alternative is to move any redirect routes to the application rather than relying on the router,
-or collapsing them into a [regular expression-based redirect](/configuration/routes/redirects.md#partial-redirects) within a route definition.
-
-- Non-default ports (other than `80` and `443`) aren't supported and can't be included in routes configuration.
-
+Should your `routes.yaml` file be rejected due to an excessive size, either:
+- move any redirect routes to the application,
+- collapse the route definitions into a [regular expression-based redirect](/configuration/routes/redirects.md#partial-redirects).
 
 ## Routes examples
 
