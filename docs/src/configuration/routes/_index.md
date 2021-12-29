@@ -68,24 +68,22 @@ In the future, Platform.sh will support multiple endpoints per application.
 
 ## Route limits
 
-Although there is no fixed limit on the number of routes that can be defined,
-there is a cap on the size of generated route information.
-This limitation comes from the Linux kernel, which caps the size of environment variables.
-The kernel limit on environment variables is 32 pages. Each page is 4k on x86 processors,
-resulting in a maximum environment variable length of 131072 bytes.
-If your `routes.yaml` file would result in too large of a route information value it will be rejected.
+1. Non-default ports (other than `80` and `443`) aren't supported and can't be included in routes configuration.
+
+1. You can use one [Let's Encrypt certificate per environment](/configuration/routes/https.md). Let’s Encrypt has a limit of 100 hostnames per certificate.
+If you try to add more than that some of them will fail to get an SSL certificate.
+
+1. As a general rule we recommend keeping the defined routes under 100.
 
 The full list of generated route information is often much larger than what's literally specified in the `routes.yaml` file.
-For example, by default all HTTPS routes will be duplicated to create an HTTP redirect route.
+By default all HTTPS routes will be duplicated to create also an HTTP to HTTPS redirect route.
 Also, the `{all}` placeholder will create two routes (one HTTP, one HTTPS) for each domain that is configured.
 
-As a general rule we recommend keeping the defined routes under 100.
+If your `routes.yaml` file would result in too large of a route information value it will be rejected.
+
 Should you find your `routes.yaml` file rejected due to an excessive size,
 the best alternative is to move any redirect routes to the application rather than relying on the router,
 or collapsing them into a [regular expression-based redirect](/configuration/routes/redirects.md#partial-redirects) within a route definition.
-
-Let's Encrypt also limits an environment to 100 configured domains.
-If you try to add more than that some of them will fail to get an SSL certificate.
 
 ## Routes examples
 
