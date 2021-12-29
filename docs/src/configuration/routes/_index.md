@@ -68,7 +68,7 @@ In the future, Platform.sh will support multiple endpoints per application.
 
 ## Route limits
 
-- {{% reuse_le_limitations %}}
+- {{% lets_encrypt_limitations %}}
 - Non-default ports (other than `80` and `443`) aren't supported and can't be included in routes configuration.
 
 - As a general rule it is recommended to keep the defined routes under 100. 
