@@ -17,16 +17,10 @@ Going through the steps below you will have two options:
 
 ## Tools
 
-{{< guides/tools >}}
+{{% guides/tools %}}
 
 ## Sign up for Platform.sh and initialize your project
 
-{{< guides/signup name="Gatsby" template="gatsby" >}}
-
-```bash
-$ git clone https://github.com/gatsbyjs/gatsby-starter-blog.git
-```
-
-{{< /guides/signup >}}
+{{% guides/signup name="Gatsby" template="gatsby" /%}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}
