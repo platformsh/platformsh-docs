@@ -21,19 +21,21 @@ If you have a TYPO3 site that is not using Composer, there is a useful guide in 
 
 ## Tools
 
-{{< guides/tools >}}
+{{% guides/tools %}}
 
 ## Sign up for Platform.sh and initialize your project
 
-{{< guides/signup name="TYPO3" template="typo3" >}}
+{{% guides/signup name="TYPO3" template="typo3" %}}
 
-```bash
-$ composer create-project typo3/cms-base-distribution <PROJECT_NAME> ^10
-$ cd <PROJECT_NAME>
-$ git init
-$ git add . && git commit -m "Init TYPO3 from upstream."
-```
+3. Initialize your project:
 
-{{< /guides/signup >}}
+   ```bash
+   composer create-project typo3/cms-base-distribution <PROJECT_NAME> ^10
+   cd <PROJECT_NAME>
+   git init
+   git add . && git commit -m "Init TYPO3 from upstream."
+    ```
+
+{{% /guides/signup %}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

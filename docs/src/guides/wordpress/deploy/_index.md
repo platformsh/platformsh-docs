@@ -27,18 +27,19 @@ An alternative approach is shown in Platform.sh's [Bedrock template](https://git
 
 ## Tools
 
-{{< guides/tools >}}
+{{% guides/tools %}}
 
 ## Sign up for Platform.sh and initialize your project
 
-{{< guides/signup name="WordPress" template="wordpress-composer" >}}
+{{% guides/signup name="WordPress" template="wordpress-composer" %}}
 
-Then initialize or clone your Git repository with existing code, or create a new Composer-based project from scratch. The commands below will create a brand new WordPress project using Composer, which you can then modify according to the rest of this guide.
+3. Initialize or clone your Git repository with existing code or create a new Composer-based project from scratch.
+   The commands below create a brand new WordPress project using Composer, which you can then modify according to the rest of this guide.
 
-```bash
-$ git clone https://github.com/johnpbloch/wordpress && cd wordpress
-```
+   ```bash
+   git clone https://github.com/johnpbloch/wordpress && cd wordpress
+   ```
 
-{{< /guides/signup >}}
+{{% /guides/signup %}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

@@ -35,7 +35,7 @@ Drupal is just one example of a backend CMS that can be used with this pattern, 
 
 ## Tools
 
-{{< guides/tools >}}
+{{% guides/tools %}}
 
 ## Signing up for Platform.sh
 
