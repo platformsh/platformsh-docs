@@ -65,14 +65,17 @@ you can invite other users to your organization and grant them the following per
 * **Manage users** (`members`):
   Add, remove and edit organization-level users and permissions, including your own.
 
-Users
+{{< note theme="warning" >}}
 
-{{< note theme="warning" title="Important" >}}
-
-A user with the **manage users** (`members`) permission can add, edit, or remove any user's permissions
-to manage plans, manage billing, or create projects.
+A user with the **manage users** (`members`) permission can add, edit, or remove _any_ user's permissions.
 
 {{< /note >}}
+
+Users who are a part of an organization can see all projects in that organization at the organization's URL,
+which takes the form `https://console.platform.sh/<ORGANIZATION_NAME>`.
+
+They can access only projects where they're an admin or have permissions for at least one environment type.
+For more on access control for projects, see [user administration](./users.md).
 
 ## Manage organizations with the CLI
 
