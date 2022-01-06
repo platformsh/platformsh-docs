@@ -34,10 +34,10 @@ file=none
 highlight=false
 ---
 
-Say you want to make the organization label `Great Org` and its URL `greatest`:
+Say you want to set the organization label to `Great Org` and its URL to `greatest`:
 
 ```bash
-platform organization:info -p <PROJECT_ID> label "Great Org" name 
+platform organization:info label "Great Org" name greatest
 ```
 
 To verify the changes, run `platform organization:info`.
