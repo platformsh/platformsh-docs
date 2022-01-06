@@ -16,8 +16,11 @@ Within a project, each user has a role that controls their access and permission
 * Project Viewer: Any user with access to environment types automatically gets this role.
 
 These control who has access to projects.
-Users can still see projects that they can't access if they are a member of an organization.
+Users can still see projects that they can't access if they're a member of an organization.
 See more on access control for [organizations](./organizations.md).
+
+To see all projects you have a role in, from the main console page
+click **All projects&nbsp;<span aria-label="and then">></span> All projects**.
 
 ## Environment types
 

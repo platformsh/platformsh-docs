@@ -75,6 +75,8 @@ Users who are a part of an organization can see all projects in that organizatio
 which takes the form `https://console.platform.sh/<ORGANIZATION_NAME>`.
 
 They can access only projects where they're an admin or have permissions for at least one environment type.
+To see all projects you have access to, from the main console page
+click **All projects&nbsp;<span aria-label="and then">></span> All projects**.
 For more on access control for projects, see [user administration](./users.md).
 
 ## Manage organizations with the CLI
