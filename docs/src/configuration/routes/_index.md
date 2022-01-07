@@ -5,6 +5,8 @@ description: |
   Platform.sh allows you to define the routes used in your environments.
 sidebarTitle: "Routes (routes.yaml)"
 layout: single
+keywords:
+  - "routes.yaml"
 ---
 
 {{< description >}}

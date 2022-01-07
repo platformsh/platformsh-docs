@@ -21,9 +21,9 @@ class Search:
         # Below are Platform.sh custom settings for how the search engine functions.
 
         # Data available to the dropdown React app in docs, used to fill out autocomplete results.
-        self.displayed_attributes = ['title', 'text', 'url', 'site', 'section']
+        self.displayed_attributes = ['title', 'text', 'url', 'keywords', 'site', 'section']
         # Data actually searchable by our queries.
-        self.searchable_attributes = ['title', 'pageUrl', 'text', 'url', 'section']
+        self.searchable_attributes = ['title', 'pageUrl', 'keywords', 'text', 'url', 'section']
 
         # Show results for one query with the listed pages, when they by default would not show up as best results.
         # Note: these aren't automatically two-way, which is why they're all defined twice.
