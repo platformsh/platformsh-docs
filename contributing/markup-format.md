@@ -74,6 +74,10 @@ and also makes it easier to track changes in version control systems.
 Always use inline links (in the format: `[link text](link-location)`).
 Remember to [use meaningful link text](./content-style.md#use-meaningful-link-text).
 
+Same page links use the lowercase name of the heading you want to link to. 
+If spaces are present in the heading name they will be replaced by a dash `-`.
+For example: linking to `### Code block location` will result in `[Code block location](code-block-location)`.
+
 Internal links (links to other docs pages) should be relative to the `src` directory and start with `/`.
 Link to the specific `.md` file, for example: `[available services](/configuration/services/_index.md#type`).
 
