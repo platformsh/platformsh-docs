@@ -19,6 +19,15 @@ const SuggestionsPrimary = ({ hits, title }) => {
           {r.title}
         </a>
       </h5>
+      {/* Add keywords if present */}
+      {r.keywords
+        && (
+        <p>
+          <strong>Keywords:</strong>
+          {/* Separate the keywords by commas, except the last one */}
+          {r.keywords.map((keyword, index, keywords) => `${keyword}${keywords.length - 1 > index ? ', ' : ''}`)}
+        </p>
+        )}
       {r.text}
     </li>
   ))
@@ -38,6 +47,7 @@ const SuggestionsPrimary = ({ hits, title }) => {
 SuggestionsPrimary.propTypes = {
   hits: PropTypes.arrayOf(
     PropTypes.shape({
+      keywords: PropTypes.arrayOf(PropTypes.string),
       section: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired
