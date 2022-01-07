@@ -7,10 +7,13 @@ weight: 1
 
 All environments on Platform.sh support both HTTP and HTTPS automatically.
 Production TLS certificates are provided by [Let's Encrypt](https://letsencrypt.org/).
-You may alternatively provide your own TLS certificate from a 3rd party issuer of your choice at no charge from us.
+You may alternatively [provide your own TLS certificate from a 3rd party issuer](/domains/steps/tls.md) of your choice at no charge from us.
 
-Let’s Encrypt TLS Certificates are valid for 90 days
-and Platform.sh automatically renews them 28 days before expiration to avoid HTTPS interruptions.
+The default Let’s Encrypt TLS Certificates are:
+
+- valid for 90 days
+- automatically renewed 28 days before expiration (which will trigger a redeployment of the environment).
+
 If a renewal is available and needed, the environment is automatically redeployed to renew the certificate.
 As no new build is required the process should take at most a few seconds.
 The deploy and post-deploy hook are run during this process.
@@ -33,6 +36,15 @@ TLS certificates are often still called SSL certificates.
 TLS is a newer encryption system that has replaced SSL, but the name SSL is still widely recognized.
 In practice, they mean the same thing today, but TLS is the more correct term.
 {{</ note >}}
+
+### Limitations
+
+{{% lets_encrypt_limitations %}}
+
+If you need more hostnames than that, obtain additional certificates or a wildcard certificate from another TLS provider. 
+Alternatively, consider splitting your project up into multiple Platform.sh projects.
+
+Your hostnames, for which the certificate is being generated, need to be available for the [DNS Challenge](#dns-challenge).
 
 ## Using HTTPS
 
@@ -79,13 +91,6 @@ The use cases for this configuration are few.
 ```
 
 More complex routing logic is also possible if the situation calls for it.
-
-{{< note >}}
-{{% lets_encrypt_limitations %}}
-
-If you need more than that, we recommend obtaining additional certificates or a wildcard certificate from another TLS provider.
-Alternatively, consider splitting your project up into multiple discrete Platform.sh projects.
-{{< /note >}}
 
 ## TLS configuration
 
