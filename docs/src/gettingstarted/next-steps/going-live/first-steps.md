@@ -27,7 +27,7 @@ Before you take your site live, there are a few steps that will help you prepare
     If you want to use a [third-party SSL certificate](../../../domains/steps/tls.md) instead,
     make sure that you have purchased it and that it's active prior to going live.
 
-     If your application uses [wildcard routes](../../../domains/steps/tls.md), it requires custom certificates for them.
+    If your application uses [wildcard routes](../../../domains/steps/tls.md), it requires custom certificates for them.
     
     You can manually generate the custom certificates through Let's Encrypt or purchase them separately.
     
