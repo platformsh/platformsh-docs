@@ -9,7 +9,7 @@ All environments on Platform.sh support both HTTP and HTTPS automatically.
 Production TLS certificates are provided by [Let's Encrypt](https://letsencrypt.org/).
 You may alternatively [provide your own TLS certificate from a third-party issuer](../../domains/steps/tls.md) of your choice at no charge from us.
 
-The default Let’s Encrypt TLS Certificates are:
+The Let’s Encrypt TLS Certificates are:
 
 - valid for 90 days
 - automatically renewed 28 days before expiration
@@ -43,8 +43,6 @@ In practice, they mean the same thing today, but TLS is the more correct term.
 
 If you need more hostnames than that, obtain additional certificates or a wildcard certificate from another TLS provider. 
 Alternatively, consider splitting your project up into multiple Platform.sh projects.
-
-Your hostnames, for which the certificate is being generated, need to be available for the [DNS Challenge](#dns-challenge).
 
 ## Using HTTPS
 
