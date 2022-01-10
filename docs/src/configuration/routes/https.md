@@ -7,7 +7,7 @@ weight: 1
 
 All environments on Platform.sh support both HTTP and HTTPS automatically.
 Production TLS certificates are provided by [Let's Encrypt](https://letsencrypt.org/).
-You may alternatively [provide your own TLS certificate from a 3rd party issuer](/domains/steps/tls.md) of your choice at no charge from us.
+You may alternatively [provide your own TLS certificate from a third-party issuer](../../domains/steps/tls.md) of your choice at no charge from us.
 
 The default Let’s Encrypt TLS Certificates are:
 
