@@ -74,7 +74,7 @@ and also makes it easier to track changes in version control systems.
 Always use inline links (in the format: `[link text](link-location)`).
 Remember to [use meaningful link text](./content-style.md#use-meaningful-link-text).
 
-Internal links (links to other docs pages) should be relative to file they're in.
+Internal links (links to other docs pages) should be relative to the file they're in.
 That way, they work in the docs and on GitHub and locally in a cloned repository.
 Link to the specific `.md` file, for example: `[available services](../docs/src/configuration/services/_index.md`).
 
@@ -88,7 +88,7 @@ The check is done in a [template with a render hook](../docs/themes/avocadocs/la
 See the [Hugo docs on render hooks](https://gohugo.io/getting-started/configuration-markup#markdown-render-hooks)
 and the [`relref`](https://gohugo.io/functions/relref/) function that does the check.
 
-### Link to headers
+### Links to headers
 
 To link to a header, use `#` plus the lowercase heading name.
 Special characters are removed and spaces replaced by hyphens.
