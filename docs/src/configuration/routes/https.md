@@ -12,7 +12,7 @@ You may alternatively [provide your own TLS certificate from a third-party issue
 The default Let’s Encrypt TLS Certificates are:
 
 - valid for 90 days
-- automatically renewed 28 days before expiration (which will trigger a redeployment of the environment).
+- automatically renewed 28 days before expiration
 
 If a renewal is available and needed, the environment is automatically redeployed to renew the certificate.
 As no new build is required the process should take at most a few seconds.
@@ -37,7 +37,7 @@ TLS is a newer encryption system that has replaced SSL, but the name SSL is stil
 In practice, they mean the same thing today, but TLS is the more correct term.
 {{</ note >}}
 
-### Limitations
+### Limits
 
 {{% lets_encrypt_limitations %}}
 
