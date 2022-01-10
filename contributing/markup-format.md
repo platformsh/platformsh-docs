@@ -74,15 +74,25 @@ and also makes it easier to track changes in version control systems.
 Always use inline links (in the format: `[link text](link-location)`).
 Remember to [use meaningful link text](./content-style.md#use-meaningful-link-text).
 
-Internal links (links to other docs pages) should be relative to the `src` directory and start with `/`.
-Link to the specific `.md` file, for example: `[available services](/configuration/services/_index.md#type`).
+Internal links (links to other docs pages) should be relative to the file they're in.
+That way, they work in the docs and on GitHub and locally in a cloned repository.
+Link to the specific `.md` file, for example: `[available services](../docs/src/configuration/services/_index.md`).
 
-This helps prevent broken links in the docs by putting them through a check to see if the page exists.
+If you are linking from a [file for reuse](#reuse-content), link relative to the `src` directory and start with `/`.
+For example: `[available services](/configuration/services/_index.md`).
+
+Both of these ways help prevent broken links in the docs by putting them through a check to see if the page exists.
 If the page doesn't exist, the build fails.
 
 The check is done in a [template with a render hook](../docs/themes/avocadocs/layouts/_default/_markup/render-link.html).
 See the [Hugo docs on render hooks](https://gohugo.io/getting-started/configuration-markup#markdown-render-hooks)
 and the [`relref`](https://gohugo.io/functions/relref/) function that does the check.
+
+### Links to headers
+
+To link to a header, use `#` plus the lowercase heading name.
+Special characters are removed and spaces replaced by hyphens.
+So to link to a heading with the text `Code & Style` on the same page, use `[link-text](#code--style)`.
 
 ## Notes
 
@@ -216,8 +226,7 @@ Property    | Description
 `highlight` | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
 `file`      | If not set to `none`, the displayed code comes from the specified local file.
 
-## Reusing content
-
+## Reuse content
 
 To reuse Markdown content in multiple places,
 use [transclusion](https://en.wikipedia.org/wiki/Transclusion) to include it.
