@@ -63,21 +63,21 @@ Configure your service with at least 256 MB in disk space.
 
 [Service definition](../_index.md):
 
-{{< readFile file="src/registry/images/examples/full/mariadb.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/mariadb.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 [App configuration](../../app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/mariadb.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/mariadb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ### Oracle MySQL example configuration
 
 [Service definition](../_index.md):
 
-{{< readFile file="src/registry/images/examples/full/oracle-mysql.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/oracle-mysql.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 [App configuration](../../app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/oracle-mysql.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/oracle-mysql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 {{% /endpoint-description %}}
 

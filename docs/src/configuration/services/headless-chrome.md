@@ -51,11 +51,11 @@ It will be necessary to upgrade the version of Node.js in other language contain
 
 [Service definition](./_index.md):
 
-{{< readFile file="src/registry/images/examples/full/chrome-headless.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/chrome-headless.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 [App configuration](../app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/chrome-headless.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/chrome-headless.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 {{% /endpoint-description %}}
 

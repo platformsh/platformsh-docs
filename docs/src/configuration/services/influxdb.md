@@ -32,7 +32,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 [App configuration](../app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/influxdb.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/influxdb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 {{% /endpoint-description %}}
 

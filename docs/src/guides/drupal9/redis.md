@@ -20,11 +20,11 @@ If you are working from an older repository or migrating a pre-built site to Pla
 
 [Service definition](../../configuration/services/_index.md):
 
-{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 [App configuration](../../configuration/app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 {{% /endpoint-description %}}
 

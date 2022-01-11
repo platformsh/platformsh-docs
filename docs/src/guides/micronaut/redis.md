@@ -15,15 +15,15 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add the Redis service
 
-In your `.platform/services.yaml` file, include Persistent Redis with a [valid supported version](/configuration/services/redis.md#persistent-redis):
+In your [service configuration](../../configuration/services/_index.md), include Persistent Redis with a [valid supported version](/configuration/services/redis.md#persistent-redis):
 
-{{< readFile file="src/registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 ## 2. Add the Redis relationship
 
-In your `.platform.app.yaml` file, use the service name `redisdata` to grant the application access to Elasticsearch via a relationship:
+In your [app configuration](../../configuration/app/app-reference.md), use the service name `redisdata` to grant the application access to Elasticsearch via a relationship:
 
-{{< readFile file="src/registry/images/examples/full/redis-persistent.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/redis-persistent.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 

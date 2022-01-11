@@ -30,11 +30,11 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 [Service definition](./_index.md):
 
-{{< readFile file="src/registry/images/examples/full/memcached.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/memcached.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 [App configuration](../app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/memcached.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/memcached.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php/extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 

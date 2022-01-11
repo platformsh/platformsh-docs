@@ -5,4 +5,5 @@
 {{ $l1 := "relationships:" }}
 {{ $l2 := printf "    relationship_name: \"service_name:%s\"" .endpoint}}
 
-{{ return (highlight (printf "%s\n%s" $l1 $l2) "yaml" "") }}
+<div class="highlight-location">.platform.app.yaml</div>
+{{ highlight (printf "%s\n%s" $l1 $l2) "yaml" "" }}

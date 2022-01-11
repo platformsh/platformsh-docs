@@ -24,7 +24,7 @@ A complete example is included at the end of this section.
 
 1. Specify the language of your application (available versions are listed above):
 
-    {{< readFile file="/registry/images/examples/full/ruby.app.yaml" highlight="yaml" >}}
+    {{< readFile file="/registry/images/examples/full/ruby.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 2. Setup environment variables.
 

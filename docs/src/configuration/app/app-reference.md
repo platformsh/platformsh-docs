@@ -51,7 +51,7 @@ Available languages and their supported versions:
 
 These are used in the format `runtime:version`:
 
-{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## Sizes
 
