@@ -25,7 +25,7 @@ All service configuration happens in the configuration file (`.platform/services
 
 Configure your service in the following pattern:
 
-```yaml
+```yaml {location=".platform/services.yaml"}
 <SERVICE_NAME>:
     type: <SERVICE_TYPE>:<VERSION>
     # Other options...
@@ -33,7 +33,7 @@ Configure your service in the following pattern:
 
 An example service configuration for two databases might look like this:
 
-```yaml
+```yaml {location=".platform/services.yaml"}
 database1:
     type: mariadb:10.5
     disk: 2048
@@ -89,14 +89,14 @@ This is done in your [app configuration for relationships](../app/app-reference.
 
 The relationship follows this pattern:
 
-```yaml
+```yaml {location=".platform/services.yaml"}
 relationships:
     <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT>"
 ```
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
-```yaml
+```yaml {location=".platform/services.yaml"}
 relationships:
     mysql_database: "database1:mysql"
     postgresql_database: "database2:postgresql"
