@@ -25,7 +25,7 @@ To override any part of a property, you have to provide the entire property.
 | `type`          | A [type](#types)                                | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`. |
 | `size`          | A [size](#sizes)                                |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments. |
 | `relationships` | A dictionary of [relationships](#relationships) |          | Yes              | Connections to other services and apps. |
-| `disk`          | `integer` or `null`                          |          | Yes              | The size of the disk space for the app in MB. Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space) |
+| `disk`          | `integer` or `null`                             |          | Yes              | The size of the disk space for the app in MB. Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space) |
 | `mounts`        | A dictionary of [mounts](#mounts)               |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required. |
 | `web`           | A [web instance](#web)                          |          | N/A              | How the web application is served. |
 | `workers`       | A [worker instance](#workers)                   |          | N/A              | Alternate copies of the application to run as background processes. |
@@ -502,7 +502,7 @@ The process is ordered as:
 1. The `post_deploy` hook is run.
 
 Note that if an environment changes by no code changes, only the last step is run.
-If you want the entire process to run, see how to [manually trigger builds](./hooks.md#manually-trigger-builds).
+If you want the entire process to run, see how to [manually trigger builds](../../development/troubleshoot.md#manually-trigger-builds).
 
 ### Writable directories during build
 

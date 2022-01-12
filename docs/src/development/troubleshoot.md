@@ -49,11 +49,37 @@ The redeploy takes place after any scheduled activities (either *Running* or *Pe
 Despite the name, redeployment doesn't rerun the `deploy` hook, only the `post_deploy` hook.
 Both your `build` and `deploy` hooks are tied to individual commits in code.
 They're reused until another commit is pushed to the environment.
-See [more about hooks](../configuration/app/hooks.md) and their reuse.
+See [more about hooks](../configuration/app/hooks/_index.md) and their reuse.
 
-To rerun the `build` and `deploy` hooks, [manually trigger a build](../configuration/app/hooks.md#manually-trigger-builds).
+To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-trigger-builds).
 
 {{< /note >}}
+
+### Manually trigger builds
+
+To increase performance and keep applications the same across environments,
+Platform.sh reuses built applications if its code and build time configuration (variables and such) remain the same.
+
+There may be times where you want to force your application to be built again without changing its code,
+for example to test an issue in a build hook or when external dependencies change.
+To force a rebuild without changing the code,
+use an [environment variable](./variables.md#create-environment-variables).
+
+Assuming you want to do this for your `main` environment,
+first create a `REBUILD_DATE` environment variable:
+
+```bash
+platform variable:create -l environment -e main --prefix env: --name REBUILD_DATE --value "$(date)" --visible-build true
+```
+
+This triggers a build right away to propagate the variable.
+To force a rebuild at any time, update the variable with a new value:
+
+```bash
+platform variable:update -e main --value "$(date)" "env:REBUILD_DATE"
+```
+
+This forces your application to be built even if no code has changed.
 
 ### Clear the build cache
 
@@ -170,7 +196,7 @@ Invisible errors during the build and deploy phase can cause increased wait time
 
 ### Build and deploy hooks
 
-[`build` and `deploy` hooks](/configuration/app/hooks.md) can cause long build times.
+[`build` and `deploy` hooks](/configuration/app/hooks/_index.md) can cause long build times.
 If they run into issues, they can cause the build to fail or hang indefinitely.
 
 `build` hooks can be tested in your local environment.

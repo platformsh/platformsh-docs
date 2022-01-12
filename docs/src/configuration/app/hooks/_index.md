@@ -1,6 +1,7 @@
 ---
 title: Use build and deploy hooks
 description: See how to add custom scripts at different stages in the build and deploy process.
+layout: single
 ---
 
 Platform.sh supports three "hooks", or points in the deployment of a new version of an application that you can inject a custom script into.
@@ -124,72 +125,3 @@ Often times content imports, some types of cache warmups, and other such tasks a
 The `post_deploy` hook logs to its own file in addition to the activity log, `/var/log/post-deploy.log`.
 
 The `post_deploy` hook is the only hook provided that runs from the beginning during a redeploy.
-
-## Manually trigger builds
-
-To increase performance and keep applications the same across environments,
-Platform.sh reuses built applications if its code and build time configuration remain the same.
-
-There may be times where you want to force your application to be built again without changing its code,
-for example to test an issue in a build hook or when external dependencies change.
-To force a rebuild without changing the code,
-use an [environment variable](/development/variables.md#create-environment-variables).
-
-Assuming you want to do this for your `main` environment,
-first create a `REBUILD_DATE` environment variable:
-
-```bash
-platform variable:create -l environment -e main --prefix env: --name REBUILD_DATE --value "$(date)" --visible-build true
-```
-
-This triggers a build right away to propagate the variable.
-To force a rebuild at any time, update the variable with a new value:
-
-```bash
-platform variable:update -e main --value "$(date)" "env:REBUILD_DATE"
-```
-
-This forces your application to be built even if no code has changed.
-
-## Compile Sass files as part of a build
-
-As a good example of combining dependencies and hooks, you can compile your Sass files.
-
-Assume that your application has Sass source files in the `web/styles` directory.
-That directory also contains a `package.json` file for npm.
-
-The following blocks download a specific version of Sass,
-then during the build step call a `build-css` npm script to proceed with compiling the Sass files.
-This assumes that you have a `build-css` npm script set up to run `sass`,
-either with a tool such as webpack or using the binary directly.
-
-```yaml
-dependencies:
-    nodejs:
-        sass: "^1"
-
-hooks:
-    build: |
-        npm install
-        npm run build-css
-```
-
-## Run certain commands only on certain environments
-
-The `deploy` and `post_deploy` hooks have access to all of the same [environment variables](/development/variables.md) as the application does normally,
-which makes it possible to vary those hooks based on the environment.
-A common example is to enable certain modules only in non-production environments.
-Because the hook is a shell script, you have full access to all shell scripting capabilities, such as `if/then` directives.
-
-The following example checks the `$PLATFORM_ENVIRONMENT_TYPE` variable to see if it's in a production environment.
-
-```yaml
-hooks:
-    deploy: |
-        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-            # Run commands only when deploying to production
-        else
-            # Run commands only when deploying on development or staging environments
-        fi
-        # Commands to run regardless of the environment
-```
