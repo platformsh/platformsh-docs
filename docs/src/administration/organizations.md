@@ -10,24 +10,74 @@ description: |
 
 ## Organization settings
 
-As an organization owner you can manage basic settings of your organization such as its name and URL.
+As an organization owner, you can manage the basic settings for your organization such as its name and URL.
+
+
+{{< codetabs >}}
+
+---
+title=In the console
+file=none
+highlight=false
+---
+
+1. Navigate to the organization you want to manage (or a project in it).
+1. Open the user menu (your name or profile picture).
+1. Click **Settings**.
+1. Click **Edit** to edit the label or click in the **Organization URL** field to edit the URL.
+1. Click **Save**.
+
+<--->
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+Say you want to set the organization label to `Great Org` and its URL to `greatest`:
+
+```bash
+platform organization:info label "Great Org" name greatest
+```
+
+To verify the changes, run `platform organization:info`.
+
+{{< /codetabs >}}
 
 ## Organization billing
 
-As an organization owner, or as an organization user with the **manage billing** permission, you can access and download invoices, edit billing information such as the stored credit card, the billing address etc. 
+As an organization owner or an organization user with the **manage billing** permission,
+you can access and download invoices and edit billing information such as the stored credit card and billing address.
 
 ## Organization permissions
 
-As an organization owner, or as an organization user with the **manage users** permission, you can invite other users to your organization and grant them the following permissions:
+As an organization owner or an organization user with the **manage users** permission,
+you can invite other users to your organization and grant them the following permissions:
 
-* **Manage plans** (`plans`): Add, remove and edit plans and plan options for your existing projects. (Change plan, change storage, change the number of environments, change the number of user licenses)
-* **Manage billing** (`billing`): Add, remove and edit billing information. Access invoices and vouchers.
-* **Create projects** (`projects:create`): Create new projects within the organization.
-* **Manage users** (`members`): Add, remove and edit organization-level users and permissions, including your own.
+* **Manage plans** (`plans`):
+  Add, remove, and edit plans and plan options for your existing projects.
+  (Change plan, change storage, change the number of environments, change the number of user licenses)
+* **Manage billing** (`billing`):
+  Add, remove and edit billing information.
+  Access invoices and vouchers.
+* **Create projects** (`projects:create`):
+  Create new projects within the organization.
+* **Manage users** (`members`):
+  Add, remove and edit organization-level users and permissions, including your own.
 
-{{< note theme="warning" title="Important" >}}
-A user with the **manage users** (`members`) permission can add, edit, or remove any user's permissions to manage plans, manage billing or create projects using the Platform.sh CLI.
+{{< note theme="warning" >}}
+
+A user with the **manage users** (`members`) permission can add, edit, or remove _any_ user's permissions.
+
 {{< /note >}}
+
+Users who are a part of an organization can see all projects in that organization at the organization's URL,
+which takes the form `https://console.platform.sh/<ORGANIZATION_NAME>`.
+
+They can access only projects where they're an admin or have permissions for at least one environment type.
+To see all projects you have access to, from the main console page
+click **All projects&nbsp;<span aria-label="and then">></span> All projects**.
+For more on access control for projects, see [user administration](./users.md).
 
 ## Manage organizations with the CLI
 
@@ -35,7 +85,7 @@ You can use the Platform.sh command line interface to manage your organizations.
 
 Available commands (get the full list with 'platform list organization')
 
-```
+```txt
 Available commands for the "organization" namespace:
       organization:info              View or change organization details
       organization:list              List organizations

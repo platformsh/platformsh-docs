@@ -17,20 +17,22 @@ Going through the steps below you will have two options:
 
 ## Tools
 
-{{< guides/tools >}}
+{{% guides/tools %}}
 
 ## Sign up for Platform.sh and initialize your project
 
-{{< guides/signup name="WordPress" template="wordpress-vanilla" >}}
+{{% guides/signup name="WordPress" template="wordpress-vanilla" %}}
 
-In the next pages, you will see that Platform.sh recommends placing WordPress core into a subdirectory, rather than the project root. The following command will set that up for you with a fresh project level repository initialized:
+3. Initialize your project.
+   In the next steps, you see that Platform.sh recommends placing WordPress core into a subdirectory rather than the project root.
+   The following command sets that up for you with a fresh project level repository initialized:
 
-```bash
-$ mkdir wordpress-psh && cd wordpress-psh
-$ git clone https://github.com/WordPress/WordPress.git wordpress && rm -rf wordpress/.git
-$ git init
-```
+   ```bash
+   mkdir wordpress-psh && cd wordpress-psh
+   git clone https://github.com/WordPress/WordPress.git wordpress && rm -rf wordpress/.git
+   git init
+   ```
 
-{{< /guides/signup >}}
+{{% /guides/signup %}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

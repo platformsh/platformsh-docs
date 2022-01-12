@@ -17,12 +17,10 @@ Going through the steps below you will have two options:
 
 ## Tools
 
-{{< guides/tools >}}
+{{% guides/tools %}}
 
 ## Sign up for Platform.sh and initialize your project
 
-{{< guides/signup name="Quarkus" template="quarkus" >}}
-
-{{< /guides/signup >}}
+{{% guides/signup name="Quarkus" template="quarkus" /%}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}
