@@ -19,7 +19,7 @@ Read on to see how to add services.
 
 Adding a service is a two-step process.
 
-## 1. Configure the service
+### 1. Configure the service
 
 All service configuration happens in the configuration file (`.platform/services.yaml`) in your Git repository.
 
@@ -54,7 +54,7 @@ Always back up your data before changing existing services in your `.platform/se
 
 {{< /note >}}
 
-### Service options
+#### Service options
 
 The following table presents the keys you can define for each service:
 
@@ -67,13 +67,13 @@ The following table presents the keys you can define for each service:
 
 Both `disk` and `size` are limited by your plan settings.
 
-#### Disk
+##### Disk
 
 Downsizing a service's persistent disk isn't currently supported
 in the `eu.platform.sh` and `us.platform.sh` regions.
 If necessary, [migrate your project](../../guides/general/region-migration.md).
 
-#### Size
+##### Size
 
 By default, Platform.sh allocates CPU and memory resources to each container automatically
 given the available resources in [your plan](../../overview/pricing/_index.md).
