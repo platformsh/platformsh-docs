@@ -21,7 +21,7 @@ Adding a service is a two-step process.
 
 ### 1. Configure the service
 
-All service configuration happens in the configuration file (`.platform/services.yaml`) in your Git repository.
+All service configuration happens in the services configuration file (`.platform/services.yaml`) in your Git repository.
 
 Configure your service in the following pattern:
 
