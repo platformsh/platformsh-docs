@@ -42,6 +42,8 @@ The `build` hook runs only when the app or its runtime (variables and such) have
 Redeploys with no changes trigger only the `post_deploy` hook.
 If you need the `build` hook to run, [manually trigger a build](../../../development/troubleshoot.md#manually-trigger-builds).
 
+Each hook is executed as a single script, so they're considered to have failed only if the final command in them fails.
+To cause them to fail on the first failed command, add `set -e` to the beginning of the hook.
 If a `build` hook fails for any reason, the build is aborted and the deploy doesn't happen.
 Note that this only works for `build` hooks.
 If other hooks fail, the deploy still happens.
