@@ -29,7 +29,6 @@ class Search:
         # Note: these aren't automatically two-way, which is why they're all defined twice.
         self.synonyms = {
             "cron": ["crons"],
-            "crons": ["cron"],
             "routes.yaml": ["routes"],
             "routes": ["routes.yaml"],
             "services": ["services.yaml"],
