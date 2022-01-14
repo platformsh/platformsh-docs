@@ -28,6 +28,8 @@ class Search:
         # Show results for one query with the listed pages, when they by default would not show up as best results.
         # Note: these aren't automatically two-way, which is why they're all defined twice.
         self.synonyms = {
+            "cron": ["crons"],
+            "crons": ["cron"],
             "routes.yaml": ["routes"],
             "routes": ["routes.yaml"],
             "services": ["services.yaml"],
