@@ -36,7 +36,7 @@ NoSQL Databases ([MongoDB](../configuration/services/mongodb/_index.md), ...) ca
 
 You'll need:
 - a project set up that uses a [MySQL database](../configuration/services/mysql/_index.md)
-- The [Platform CLI](/development/cli.md#cli-command-line-interface) installed locally
+- The [Platform CLI](/development/cli/_index.md#cli-command-line-interface) installed locally
 
 {{< codetabs >}}
 
