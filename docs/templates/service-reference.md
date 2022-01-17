@@ -23,10 +23,7 @@ A brief introduction (1--2 sentences) to what this service is used for.
 |  {{< image-versions image="<SERVICE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated-gen-3" >}} |
 
 <!-- If there are any deprecated versions. -->
-### Deprecated versions 
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended.
-They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
@@ -40,7 +37,10 @@ Can be structured like [how to steps](./how-to.md#1-do-this-step-first).
 If available, include examples in various languages using the service in an app
 (taken from https://examples.docs.platform.sh/).
 
-## `$PLATFORM_RELATIONSHIPS` reference
+## Relationship reference
+
+Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#use-platformsh-provided-variables)
+or by running `platform relationships`:
 
 <!-- A yaml file taken from https://examples.docs.platform.sh/ that contains all the properties people need to access/use the service. -->
 {{< relationship "<SERVICE_NAME>" >}}

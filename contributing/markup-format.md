@@ -13,7 +13,7 @@
 - [Code](#code)
   - [Indentation](#indentation)
 - [Code tabs](#code-tabs)
-- [Reusing content](#reusing-content)
+- [Reuse content](#reuse-content)
 
 ## Markdown
 
@@ -282,8 +282,9 @@ Here is some content after the inner content.
 For static files that have already been created, use the `readFile` shortcode:
 
 ```markdown
-{{< readFile file="src/registry/images/tables/runtimes_supported.md" markdownify="true">}}
+{{< readFile file="src/registry/images/tables/runtimes_supported.md" markdownify="true" >}}
 {{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 ```
 
 Property      | Description
@@ -291,3 +292,4 @@ Property      | Description
 `file`        | The location of the file to include relative to the `docs` root.
 `markdownify` | Optional. For when you are using a `.md` file and want to include markdown.
 `highlight`   | Optional. For when you're including code examples. The language to use for highlighting, as in [code blocks](#code).
+`location`    | Optional. To mark where the included code should be placed, for example `.platform.app.yaml`.

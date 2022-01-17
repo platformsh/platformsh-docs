@@ -1,1 +1,20 @@
-No such service: vault-kms
+{
+    "username": "",
+    "scheme": "http",
+    "service": "vault-kms",
+    "fragment": "",
+    "ip": "169.254.114.135",
+    "hostname": "ckmpv2fz7jtdmpkmrun7yfgut4.vault-kms.service._.eu-3.platformsh.site",
+    "public": false,
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "host": "vault-kms.internal",
+    "rel": "sign",
+    "query": {
+        "is_master": true
+    },
+    "path": "\/",
+    "password": "b.AAAAAQLoDTQ3HgKyzb-7XwGqWKyrB0HZMCq6i7exp3X7i5MDIVBvra70JtsMZ0ztqbylCiyevqfX7IYw2C4C9iQFoTTgf7j5UdY6Cc__wxpin85BTGAZYFIUTZRi_Rr7V8FOKZHXJumVmPvuEoih1VXDgj559lk8ZcIzNM2xgO0HalYS8_jZAo0cDkzEqPkMVFsDSq10uTZXD96KfYvZeqMSj7A7mfQzQ-ttMIAIAg",
+    "type": "vault-kms:1.6",
+    "port": 8200,
+    "host_mapped": false
+}

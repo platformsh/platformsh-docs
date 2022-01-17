@@ -12,9 +12,9 @@ description: |
 |----------------------------------|---------------|
 |  {{< image-versions image="dotnet" status="supported" environment="grid" >}} | {{< image-versions image="dotnet" status="supported" environment="dedicated" >}} |
 
-To specify a .NET Core container, use the `type` property in your `.platform.app.yaml`.
+To specify a .NET Core container, use the `type` property in your [app configuration](../configuration/app/app-reference.md).
 
-{{< readFile file="src/registry/images/examples/full/dotnet.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/dotnet.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## Building the application
 

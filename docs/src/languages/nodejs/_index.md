@@ -16,10 +16,7 @@ layout: single
 If you need other versions or a version in a container running something other than Node.js,
 [use a version manager like `nvm`](/languages/nodejs/nvm.md).
 
-## Deprecated versions
-
-Some versions with a minor (such as 8.9) are available but aren't receiving security updates from upstream,
-so their use isn't recommended.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -65,7 +62,7 @@ as described here (a complete example is included at the end).
 
 1. Specify the language of your application (available versions are listed above):
 
-    {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" >}}
+    {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 2. Specify your dependencies under the `nodejs` key, like this:
 
