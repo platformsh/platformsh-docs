@@ -18,7 +18,7 @@ How to use
 
 When using the branching feature on platform.sh, your production database gets copied to each new branch.
 This is very helpful to test directly if your latest code changes work as expected.
-However, in some cases, branching or copying data from production to non-production (staging, ...) environments might require sanitizing the database.
+However, in some cases, branching, or copying data from production to non-production (staging, ...) environments might require sanitizing the database.
 
 Sanitizing a database has several benefits: 
 - Removing Personally Identifiable Information (PII) from the database avoids unauthorized access to sensitive data.
@@ -27,7 +27,7 @@ Sanitizing a database has several benefits:
 ## Before you begin
 
 This guide is about sanitizing databases.
-This guide doesn't address input validation and sanitization, however it is a topic worth checking out.
+This guide doesn't address input validation and sanitization, however it's a topic worth checking out.
 The [Open Web Application Security Project (OWASP) cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#goals-of-input-validation) offers a (free) introduction on that topic. 
 The `log4j` security vulnerability is an example of what missing input sanitization can cause as issues.
 
@@ -52,7 +52,7 @@ Assumptions:
 
 1. Take a [database dump](../configuration/services/mysql.html#exporting-data). In this guide production data won't be altered, see it merely as a safety precaution. Run `platform db:dump -e production` to get a database dump of your production environment,
 1. Connect to the `staging` database with `platform sql -e staging`,
-1. <ADD EXAMPLES OF QUERY TO RUN> -> Can we do these in a script?
+1. <ADD EXAMPLES OF QUERY TO RUN>
 1. Add the sanitization of the database in [your hook](../user_guide/reference/platform-app-yaml.html#hooks) for the non-production environment. 
 ```yaml
 deploy: |
@@ -103,10 +103,10 @@ deploy: |
 ## What's next
 
 In this guide you learned how to remove sensitive data from a database. 
-To keep meaningful data that is not PII-relevant, you could add a `faker` into the process.
-A `faker` is a program that will generate fake data that looks "real". 
+To keep meaningful data that's not PII-relevant, you could add a `faker` into the process.
+A `faker` is a program that generates fake data that looks "real". 
 Many OpenSource Fakers are available online.
-Having meaning full PII-free data will allow you to keep your current Q and A processes, external reviews, ...
+Having meaning full PII-free data allows you to keep your current Q and A processes, external reviews, ...
 
 To add a faker, consider adapting the queries ran previously.
 
