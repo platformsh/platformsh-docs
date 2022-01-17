@@ -30,7 +30,7 @@ and turn off those on by default with the `disabled_extensions` key.
 
 | Extension         | 5.4   | 5.5   | 5.6   | 7.0   | 7.1   | 7.2   | 7.3   | 7.4   | 8.0   | 8.1   |
 | ----------------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| `amqp`            |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
+| `amqp`            |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `apc`             | Avail | Avail |       |       |       |       |       |       |       |       |
 | `apcu`            | Avail |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `apcu_bc`         |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
