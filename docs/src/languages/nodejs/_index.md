@@ -62,7 +62,7 @@ as described here (a complete example is included at the end).
 
 1. Specify the language of your application (available versions are listed above):
 
-    {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" >}}
+    {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 2. Specify your dependencies under the `nodejs` key, like this:
 

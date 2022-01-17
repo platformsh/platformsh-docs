@@ -12,13 +12,13 @@ weight: -100
 
 {{% endpoint-description type="elasticsearch" noApp=true %}}
 
-Service definition:
+[Service definition](../../configuration/services/_index.md):
 
-{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
-App configuration:
+[App configuration](../../configuration/app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 {{% /endpoint-description %}}
 
