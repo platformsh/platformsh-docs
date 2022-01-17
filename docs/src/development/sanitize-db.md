@@ -31,12 +31,12 @@ This guide doesn't address input validation and sanitization, however it's a top
 The [Open Web Application Security Project (OWASP) cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#goals-of-input-validation) offers a (free) introduction on that topic. 
 The `log4j` security vulnerability is an example of what missing input sanitization can cause as issues.
 
-Prior experience using git and [MySQL databases](../configuration/services/mysql.html) is recommended.
-NoSQL Databases ([MongoDB](../configuration/services/mongodb.html), ...) can benefit from sanitization but for the sake of simplicity, these use cases won't be covered in this guide.
+Prior experience using git and [MySQL databases](../configuration/services/mysql.md) is recommended.
+NoSQL Databases ([MongoDB](../configuration/services/mongodb.md), ...) can benefit from sanitization but for the sake of simplicity, these use cases won't be covered in this guide.
 
 You'll need:
-- a project set up that uses a [MySQL database](../configuration/services/mysql.html)
-- The [Platform CLI](/development/cli.html#cli-command-line-interface) installed locally
+- a project set up that uses a [MySQL database](../configuration/services/mysql.md)
+- The [Platform CLI](/development/cli.md#cli-command-line-interface) installed locally
 
 {{< codetabs >}}
 
@@ -50,7 +50,7 @@ Assumptions:
 - `staging` is the name of the non-production database that you want to sanitize.
 - The `staging` database is a 1:1 copy of your production database.
 
-1. Take a [database dump](../configuration/services/mysql.html#exporting-data). In this guide production data won't be altered, see it merely as a safety precaution. Run `platform db:dump -e production` to get a database dump of your production environment,
+1. Take a [database dump](../configuration/services/mysql.md#exporting-data). In this guide production data won't be altered, see it merely as a safety precaution. Run `platform db:dump -e production` to get a database dump of your production environment,
 1. Connect to the `staging` database with `platform sql -e staging`,
 1. <ADD EXAMPLES OF QUERY TO RUN>
 1. Add the sanitization of the database in [your hook](../user_guide/reference/platform-app-yaml.html#hooks) for the non-production environment. 
