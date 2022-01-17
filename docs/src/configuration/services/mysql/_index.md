@@ -142,6 +142,34 @@ So always check it each time your app starts.
 
 You can also see a guide on how to [convert the `PLATFORM_RELATIONSHIPS` environment variable to a different form](https://community.platform.sh/t/convert-platform-relationships-to-database-url/841).
 
+## Configuration options
+
+You can configure your MySQL service in the [services configuration](../_index.md) with the following options:
+
+| Name         | Type                    | Version                            | Description |
+| ------------ | ----------------------- | ---------------------------------- | ----------- |
+| `schemas`    | An array of `string`s   | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
+| `endpoints`  | An endpoints dictionary | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
+| `properties` | A properties dictionary | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
+
+Example configuration:
+
+```yaml {location=".platform/services.yaml"}
+db:
+    type: mariadb:10.5
+    disk: 2048
+    configuration:
+        schemas:
+            - main
+        endpoints:
+            mysql:
+                default_schema: main
+                privileges:
+                    main: admin
+        properties:
+            max_allowed_packet: 64
+```
+
 ## Relationship reference
 
 Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#use-platformsh-provided-variables)
@@ -181,23 +209,15 @@ mysql -p -h mysql.internal -P 3306 -u user main
 
 ## Multiple databases
 
-With version `10.0` or later of either MariaDB or Oracle MySQL,
-you can define multiple databases and multiple users with different permissions.
-To do so, define multiple endpoints using the `configuration` key for your service.
+With version `10.0` or later, you can define multiple databases and multiple users with different permissions.
+To do so, define multiple endpoints in your [service configuration](#configuration-options).
 
-It has the following relevant properties (plus [`properties` for other configuration](#configure-the-database)):
-
-| Name        | Type                      | Required | Description |
-| ----------- | ------------------------- | -------- | ----------- |
-| `schemas`   | An array of `string`s     |          | All databases to be created. Defaults to a single `main` database. |
-| `endpoints` | A dictionary of endpoints |          | The endpoints with their permissions. | 
-
-You need to define each endpoint with a unique name and give it the following properties:
+For each endpoint you add, you can define the following properties:
 
 | Name             | Type                     | Required | Description |
 | ---------------- | ------------------------ | -------- | ----------- |
 | `default_schema` | `string`                 |          | Which of the schemas defined above to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the Platform CLI can't access the relationship. |
-| `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. | 
+| `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. |
 
 Possible permissions:
 
@@ -207,15 +227,15 @@ Possible permissions:
 
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
-```yaml
-configuration:
-    schemas:
-        - main
-    endpoints:
-        mysql:
-            default_schema: main
-            privileges:
-                main: admin
+```yaml {location=".platform/services.yaml"}
+    configuration:
+        schemas:
+            - main
+        endpoints:
+            mysql:
+                default_schema: main
+                privileges:
+                    main: admin
 ```
 
 If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
@@ -229,7 +249,7 @@ Access to the database is defined through three endpoints:
 * `reporter` has SELECT query access to `main` but no access to `legacy`.
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
-```yaml
+```yaml {location=".platform/services.yaml"}
 db:
     type: mariadb:10.5
     disk: 2048
@@ -254,7 +274,7 @@ db:
 
 Expose these endpoints to your app as relationships in your [app configuration](../../app/_index.md):
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 relationships:
     database: "db:admin"
     reports: "db:reporter"
@@ -280,7 +300,7 @@ It offers the following properties:
 
 An example of setting these properties:
 
-```yaml
+```yaml {location=".platform/services.yaml"}
 db:
     type: mariadb:10.5
     disk: 2048
@@ -329,6 +349,10 @@ convert them to use the InnoDB storage engine as follows:
    ```
 
 Now when you run `SHOW CREATE TABLE <existing_table>`, you see `ENGINE=InnoDB`.
+
+## Service timezone
+
+To change the timezone for a given connection, run `SET time_zone = <timezone>;`.
 
 ## Exporting data
 

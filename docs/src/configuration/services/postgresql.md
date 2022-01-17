@@ -243,6 +243,10 @@ configuration:
             thirddb: admin
 ```
 
+## Service timezone
+
+To change the timezone for the current session, run `SET TIME ZONE <timezone>;`.
+
 ## Extensions
 
 Platform.sh supports a number of PostgreSQL extensions. To enable them, list them under the `configuration.extensions` key in your `services.yaml` file, like so:
