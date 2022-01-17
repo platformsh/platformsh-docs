@@ -140,10 +140,9 @@ So you should check the environment variable every time your script or app start
 Access to the database or other services is only available from your apps.
 For security reasons, they can't be accessed directly.
 
-To connect to a service, you need the [service credentials](#obtain-service-credentials).
-Then you can connect with an [SSH tunnel](../../development/ssh/_index.md#connect-to-services).
+Connecting to a service is a two-step process.
 
-### Obtain service credentials
+### 1. Obtain service credentials
 
 To get the credentials for a given service, run the following command
 (replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with appropriate values):
@@ -176,11 +175,13 @@ With this example, you can connect to the `database` relationship
 with the user `user`, an empty password, and the database name `main` (from the `path`).
 Find a full database connection in the `url` property.
 
-### Connect to an SSH tunnel
+### 2. Connect to an SSH tunnel
 
-Once you have [opened an SSH tunnel](../../development/ssh/_index.md#connect-to-services), you can use it to connect to your service.
+Once you have [opened an SSH tunnel](../../development/ssh/_index.md#connect-to-services),
+you can use it to connect to your service.
 
-If you have a direct tunnel, you might connect to `127.0.0.1:30000` to the `main` database with the username `user` and an empty password.
+If you have a direct tunnel,
+you might connect to `127.0.0.1:30000` to the `main` database with the username `user` and an empty password.
 
 If you have an app tunnel, you might SSH to `ssh.us.platform.sh` as user `jyu7waly36ncj-main-7rqtwti--app`
 and then connect to host `database.internal` to the `main` database with the username `user` and an empty password.
