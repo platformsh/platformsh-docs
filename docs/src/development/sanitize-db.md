@@ -42,7 +42,7 @@ You'll need:
 
 ---
 title=Using a customised sanitizing script
-file=nonex
+file=none
 highlight=false
 ---
 
