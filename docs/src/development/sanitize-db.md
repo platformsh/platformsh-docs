@@ -31,7 +31,7 @@ This guide doesn't address input validation and sanitization, however it's a top
 The [Open Web Application Security Project (OWASP) cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#goals-of-input-validation) offers a (free) introduction on that topic. 
 The `log4j` security vulnerability is an example of what missing input sanitization can cause as issues.
 
-Prior experience using git and [MySQL databases](/configuration/services/mysql.md) is recommended.
+Prior experience using git and [MySQL databases](../configuration/services/mysql/_index.md) is recommended.
 NoSQL Databases ([MongoDB](/configuration/services/mongodb.md), ...) can benefit from sanitization but for the sake of simplicity, these use cases won't be covered in this guide.
 
 You'll need:
