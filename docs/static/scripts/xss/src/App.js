@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react'
-import styled from 'styled-components'
 
 import Search from 'containers/Search'
 
 const App = ({ fullPage }) => (
-  <Div className="searchContainer">
+  <div className="searchContainer">
     <Search fullPage={fullPage} />
-  </Div>
+  </div>
 )
 
 App.propTypes = {
@@ -17,7 +16,4 @@ App.defaultProps = {
   fullPage: false,
 }
 
-const Div = styled.div`
-  padding: 0rem;
-`
 export default App
