@@ -49,11 +49,33 @@ highlight=false
 Assumptions:
 - `staging` is the name of the non-production database that you want to sanitize.
 - The `staging` database is a 1:1 copy of your production database.
+- `user` is the table where all your PII is stored.
 
-1. Take a [database dump](../configuration/services/mysql.md#exporting-data). In this guide production data won't be altered, see it merely as a safety precaution. Run `platform db:dump -e production` to get a database dump of your production environment,
+1. Take a [database dump](../configuration/services/mysql.md#exporting-data). In this guide production data won't be altered, see it merely as a safety precaution. Run `platform db:dump -e production` to get a database dump of your production environment, do the same for `staging`,
 1. Connect to the `staging` database with `platform sql -e staging`,
-1. <ADD EXAMPLES OF QUERY TO RUN>
-1. Add the sanitization of the database in [your hook](../user_guide/reference/platform-app-yaml.html#hooks) for the non-production environment. 
+1. Display all fields from your `user` database with `SELECT * FROM users;`, which could result in something along the lines of:
+```sql
+MariaDB [main]> SELECT * FROM users;
++----+------------+---------------+---------------------------+---------------+
+| ID | first_name | last_name     | user_email                | display_name  |
++----+------------+---------------+---------------------------+---------------+
+|  1 | admin      | admin         | admin@yourcompany.com     | admin         |
+|  2 | john       | doe           | john.doe@gmail.com        | john          |
+|  3 | jane       | doe           | janedoe@ymail.com         | jane          |
++----+------------+---------------+---------------------------+---------------+
+3 rows in set (0.00 sec)
+```
+1. Change the fields where PII Data is contained with [`UPDATE` Queries](https://dev.mysql.com/doc/refman/8.0/en/update.html). 
+For example, to change the first name of an user when the email address is not using the company domain:
+```sql
+UPDATE user
+SET first_name='redacted'
+WHERE email NOT LIKE '%@yourcompany%'
+```
+Repeat this for all necessary fields.
+Once you found out where the PII Data is located and you managed to redact the data, you can create a script to automate that process.
+
+Add the sanitization of the database script in [your hook](../user_guide/reference/platform-app-yaml.html#hooks) for the non-production environment. 
 ```yaml
 deploy: |
   cd /app/public
@@ -61,7 +83,7 @@ deploy: |
     # Do whatever you want on the production site.
   else
     # The sanitization of the database should happen here (since it's non-production)
-    <ADD EXAMPLES OF QUERY TO RUN>
+    # add the script here
   fi
 ```
 
