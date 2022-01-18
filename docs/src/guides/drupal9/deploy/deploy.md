@@ -20,7 +20,7 @@ and the installer is smart enough to not ask for them again.
 
 Once the installer is complete you will be presented with your new site. 
 
-{{% guides/data-migration %}}
+{{< guides/data-migration >}}
 
 Drupal has a number of database tables that are entirely useless when migrating
 and you're better off excluding their data.
@@ -33,7 +33,7 @@ and you're better off excluding their data.
 While you can trim the data out of these tables post-migration,
 that's wasteful of both time and disk space, so it's better to exclude that data to begin with.
 
-{{% /guides/data-migration %}}
+{{< /guides/data-migration >}}
 
 Go forth and Deploy (even on Friday)!
 
