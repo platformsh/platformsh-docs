@@ -240,6 +240,14 @@ use [transclusion](https://en.wikipedia.org/wiki/Transclusion) to include it.
    {{% reuse_markdown %}}
    ```
 
+Note that if your files have HTML characters (`<`, `>`, `&`, `'`, and `"`) inside a code block,
+the characters are escaped (appear as `&lt;` and so on).
+Avoid this problem by writing HTML files (`reuse_html.html`) instead of Markdown files and including them like so:
+
+```markdown
+{{< reuse_html >}}
+```
+
 ### Variables in the file
 
 You can pass variables to the file:
