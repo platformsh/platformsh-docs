@@ -1,7 +1,7 @@
 ---
 title: Define routes
 weight: 2
-description: Set things up so requests to your app are sent to the right locations.
+description: Set your project up so HTTP requests to your app are sent to the right locations.
 layout: single
 ---
 
@@ -21,7 +21,7 @@ These examples show how to define routes.
 
 In a basic situation, you have one app to direct traffic to.
 Say its name is `myapp`.
-And say you want to direct requests from `https://www.example.com` to `https://example.com`.
+And say you want to redirect requests from `https://www.example.com` to `https://example.com`.
 
 Define your routes like this:
 
@@ -33,6 +33,8 @@ Define your routes like this:
     type: redirect
     to: "https://{default}/"
 ```
+
+This affects your [default domain](#default).
 
 You have one route that serves content (the one with the `upstream`)
 and one that redirects to the first (the one with the `redirect`).
@@ -57,25 +59,8 @@ you could define your routes like this:
 ```
 
 The route for the `api` app could be anything in the domain, even a subdomain like `https://api.{default}/`.
-But having it as a path rather than a subdomain can [cut your traffic in half](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/).
-
-## Route configuration
-
-Each route can be configured separately.
-It can have the following properties:
-
-| Name         | Type      | Required                | Description |
-| ------------ | --------- | ----------------------- | ----------- |
-| `type`       | `string`  | Yes                     | Either `upstream` or `redirect`. `upstream` means content is served at that route by an app and requires the `upstream` property to be set. `redirect` means the route is redirected elsewhere and requires the `to` property. |
-| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](../app/_index.md)) followed by `:http`. Example: `app:http` |
-| `to`         | `string`  | If `type` is `redirect` | The absolute URL or other route to which the given route should be redirected with an HTTP 301 status code. |
-| `ssi`        | `boolean` | No                      | Whether [server side includes](./ssi.md) are enabled. |
-| `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](./redirects.md). |
-| `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](./cache.md). |
-| `id`         | `string`  | No                      | A unique identifier for the route. See [route identifiers](#route-identifiers). |
-| `primary`    | `boolean` | No                      | Whether the route is the primary route for the project. Can only be `true` for one route in the configuration file, but if you use the [`{all}` placeholder](#all), it can be `true` for multiple final routes. Defaults to the first defined `upstream` route. |
-| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#tls-configuration). |
-| `attributes` | Object    | No                      | Any key-value pairs you want to make available to your app. See [route attributes](#route-attributes). |
+Be aware that using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
+so consider using a path like `https://{default}/api` instead.
 
 ## Route templates
 
@@ -85,14 +70,14 @@ Each route in your configuration file is defined in one of two ways:
 * A URL template such as `https://{default}/blog`
 
 The templates include a placeholder, either `{default}` or `{all}`,
-to stand in for [custom domains](../../domains/quick-start.md) you've defined for the project.
-These domains can be just the top level (`example.com`) or include subdomains (`app.example.com`).
+to stand in for [custom domains](../../domains/quick-start.md) you've defined in your project.
+These domains can be top level domains (`example.com`) or subdomains (`app.example.com`).
 
 ### `{default}`
 
 `{default}` represents your default custom domain.
 If you have set your default domain to `example.com`,
-these two methods resolve exactly the same for your production environment.
+`example.com` and `{default}` in your `.platform.routes.yaml` file have the same meaning for your production environment.
 
 Each development environment gets its own domain with a unique identifier.
 If you use the URL template on a `feature` branch, you get something like the following:
@@ -101,7 +86,7 @@ If you use the URL template on a `feature` branch, you get something like the fo
 https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
 ```
 
-If you use the absolute URL method, that domain looks similar to this:
+If you use the absolute URL method (like `example.com`), that domain looks similar to this:
 
 ```txt
 https://example.com.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
@@ -131,14 +116,27 @@ The second route means that `https://www.example.com` redirects to `https://exam
 _and_ `https://www.example.net` redirects to `https://example.net`.
 
 If your project has no domains or only one, `{all}` behaves exactly like `{default}`.
+
 If you have two routes sharing the same HTTP scheme, domain, and path
 and the first route is using `{default}` and the second is using `{all}`,
 the route using `{default}` takes precedence.
+Say you have two apps named `app1` and `app2` and define two routes like this:
+
+```yaml {location=".platform/routes.yaml"}
+"https://{default}/":
+    type: upstream
+    upstream: "app1:http"
+"https://{all}/":
+    type: upstream
+    upstream: "app2:http"
+```
+
+Requests to your default domain are served by `app1`.
 
 ## Wildcard routes
 
 Platform.sh supports wildcard routes, so you can map multiple subdomains to the same application.
-This works both for `redirect` and `upstream` routes.
+Both `redirect` and `upstream` routes support wildcard routes.
 Prefix a route with an asterisk (`*`), for example `*.{default}`.
 If you have configured `example.com` as your default domain,
 HTTP requests to `www.example.com`, `blog.example.com`, and `us.example.com` are all routed to the same endpoint.
@@ -165,14 +163,15 @@ Doing so may change the domain name that your production domain name should CNAM
 
 ## Route identifiers
 
-When routes are generated, all placeholders (`{default}` and `{all}`) are replaced with appropriate domain names
+When your project has deployed and routes are generated,
+all placeholders (`{default}` and `{all}`) are replaced with appropriate domain names
 and any additional routes (such as redirecting HTTP to HTTPS) are created.
 This means the final generated routes differ by environment and so shouldn't be hard coded in your app.
 These routes are available in the `PLATFORM_ROUTES` environment variable as a base64-encoded JSON object.
 
 To locate routes in a standardized fashion in any environment,
 you may specify an `id` for on each route.
-This identifier is the same for all environments.
+This identifier is the same across all environments.
 
 Say you have two apps, `app1` and `app2`, that you want to serve at two subdomains, `site1` and `site2`.
 
@@ -275,7 +274,7 @@ If your `routes.yaml` file would result in too large of a route information valu
 
 The full list of generated route information is often much larger than what's specified in the `routes.yaml` file.
 For example, by default all HTTPS routes (and all uses of `{all}`) are duplicated to create HTTP redirect routes.
-As a general rule, you should keep to under 100 defined routes.
+As a general rule, you should keep to your defined routes under 100.
 
 If your `routes.yaml` file is rejected for being too big,
 the best alternative is to move redirect routes to the application rather than relying on the router.
@@ -285,6 +284,23 @@ Let's Encrypt has a limit of 100 hostnames per certificate and
 each of your environments can have 1 Let's Encrypt certificate.
 If you define both a `{default}` and `www.{default}` route for each domain you use, you have a limit of 50 hostnames.
 Adding more than that results in a warning on deploy and no new TLS certificates are issued.
+
+## Route configuration reference
+
+You can configure each route separately with the following properties:
+
+| Name         | Type      | Required                | Description |
+| ------------ | --------- | ----------------------- | ----------- |
+| `type`       | `string`  | Yes                     | Either `upstream` or `redirect`.<ul><li>`upstream` means content is served at that route by an app and requires the `upstream` property to be set.</li><li>`redirect` means the route is redirected elsewhere and requires the `to` property.</li></ul> |
+| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](../app/_index.md)) followed by `:http`. Example: `app:http` |
+| `to`         | `string`  | If `type` is `redirect` | The absolute URL or other route to which the given route should be redirected with an HTTP 301 status code. |
+| `ssi`        | `boolean` | No                      | Whether [server side includes](./ssi.md) are enabled. |
+| `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](./redirects.md). |
+| `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](./cache.md). |
+| `id`         | `string`  | No                      | A unique identifier for the route. See [route identifiers](#route-identifiers). |
+| `primary`    | `boolean` | No                      | Whether the route is the primary route for the project. Can only be `true` for one route in the configuration file, but if you use the [`{all}` placeholder](#all), it can be `true` for multiple final routes. Defaults to the first defined `upstream` route. |
+| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#tls-configuration). |
+| `attributes` | Object    | No                      | Any key-value pairs you want to make available to your app. See [route attributes](#route-attributes). |
 
 ## CLI access
 
