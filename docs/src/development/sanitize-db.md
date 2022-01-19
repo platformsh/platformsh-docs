@@ -1,33 +1,34 @@
 ---
-title: Sanitize databases on non-production environments
-sidebarTitle: Sanitize databases
-description: Find out how to sanitize databases on non-production environments.
+title: Sanitize databases
+description: Remove sensitive information from databases on non-production environments to control access.
 ---
 
 When creating or pushing a branch to Platform.sh, both the code and the database get inherited to a new branch.
 Depending on your processes, internal or external teams may check the code changes on that new branch.
 
-Databases of live websites often contain Personally Identifiable Information (PII) such as full name, mailing addresses, ... .
+Databases of live websites often contain personally identifiable information (PII)
+such as full names, mailing addresses, and phone numbers.
 To avoid any unauthorized access to PII on the development environment, you can sanitize the database.
 
 ## Before you begin
 
 This guide is about sanitizing databases.
-This guide doesn't address neither input validation nor input sanitization, an introduction to these topics can be found in the (free) [Open Web Application Security Project (OWASP) cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#goals-of-input-validation).
+This guide doesn't address input validation or input sanitization.
+See an introduction to these topics in the [Open Web Application Security Project cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#goals-of-input-validation).
 The `log4j` security vulnerability is an example of what missing input sanitization can cause.
 
 NoSQL Databases ([MongoDB](../configuration/services/mongodb/_index.md), ...) can benefit from sanitization but for the sake of simplicity, 
 these use cases won't be covered in this guide.
 
-You'll need:
+You need:
 
-- a project that uses a [MySQL database](../configuration/services/mysql/_index.md),
-- the [Platform CLI](/development/cli/_index.md#cli-command-line-interface) installed locally.
+- A project with a [MySQL database](../configuration/services/mysql/_index.md)
+- The [Platform CLI](/development/cli/_index.md#cli-command-line-interface) installed locally
 
-## Sanitize the Database
+## Sanitize the database
 
-Make sure that the sanitization only runs on the development environments and **never** on the production environment.
-Otherwise you will loose most — if not all — of the relevant data stored in your database.
+Make sure that you only sanitize development environments and **never** on the production environment.
+Otherwise you may lose most or even all of the relevant data stored in your database.
 
 {{< codetabs >}}
 
@@ -44,9 +45,9 @@ Assumptions:
 - `user` is the table where all your PII is stored.
 
 1. As a safety precaution, take a [database dump](../configuration/services/mysql.md#exporting-data). Run `platform db:dump -e staging` to get a database dump of your staging environment,
-1. Connect to the `staging` database with `platform sql -e staging`,
+1. Connect to the `staging` database with `platform sql -e staging`.
 1. Display all fields from your `user` database with `SELECT * FROM users;`.
-   Which could result in something along the lines of:
+   This results in something like the following:
 
    ```sql
    MariaDB [main]> SELECT * FROM users;
@@ -69,8 +70,9 @@ Assumptions:
    WHERE email NOT LIKE '%@yourcompany%'
    ```
 
-   Adapt and run that query for all fields that need to be sanitized.
-   If you modified fields that shouldn't have been altered, [you can restore them from the previously taken dump](../administration/backup-and-restore.md#restore).
+   Adapt and run that query for all fields that you need to sanitized.
+   If you modify fields that you shouldn't alter,
+   [you can restore them](../administration/backup-and-restore.md#restore) from the dump you took in step 1.
 
    You can create a script to automate the sanitization process to be able to run it in [your deployment hook](../user_guide/reference/platform-app-yaml.html#hooks):
 
@@ -93,7 +95,7 @@ highlight=false
 ---
 
 1. Take a [database dump](../configuration/services/mysql/_index.md#exporting-data). In this guide production data won't be altered, consider it merely as a safety precaution. Run `platform db:dump -e staging` to get a database dump of your staging environment,
-1. With Drupal, you can use [the `drush sql-sanitize` command](https://www.drupal.org/project/database_sanitize) to sanitize your database and get rid of sensitive, live, information.
+To sanitize your database and get rid of sensitive, live information, use [the `drush sql-sanitize` command](https://www.drupal.org/project/database_sanitize).
 Add the sanitization of the database script in [your hook](../user_guide/reference/platform-app-yaml.html#hooks) for the non-production environment:
 
   ```yaml
@@ -120,12 +122,12 @@ Add the sanitization of the database script in [your hook](../user_guide/referen
 In this guide you learned how to remove sensitive data from a database.
 
 To keep meaningful data, you could add a `faker` in the process.
-A `faker` is a program that generates fake data that looks "real".
+A `faker` is a program that generates fake data that looks real.
 It can be used to replace sensitive data with fake data.
-Having meaning full PII-free data allows you to keep your current Q&A processes, external reviews, ...
-To add a faker, consider adapting the queries ran previously to replace each value that contains PII by a new value generated by the faker.
+Having meaningful PII-free data allows you to keep your current Q&A, external reviews, and other processes.
+To add a faker, adapt your sanitizing queries to replace each value that contains PII with a new value generated by the faker.
 
 You might also want to make sure that you [implement input validation](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#goals-of-input-validation).
 
-If your database contains a lot of data, consider using the `OPTIMIZE TABLE` query to reduce it's size,
-as recommended in [MySQL's reference manual](https://dev.mysql.com/doc/refman/8.0/en/optimize-table.html)
+If your database contains a lot of data, consider using the `OPTIMIZE TABLE` query to reduce its size,
+as recommended in [MySQL's reference manual](https://dev.mysql.com/doc/refman/8.0/en/optimize-table.html).
