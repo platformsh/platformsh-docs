@@ -40,11 +40,13 @@ If you are using Hex to manage your dependencies, it is necessary to specify a s
 ```yaml
 variables:
     env:
-        SECRET_KEY_BASE: $PLATFORM_PROJECT_ENTROPY
         MIX_ENV: 'prod'
 ```
 
 Include in your build hook the steps to retrieve a local Hex and `rebar`, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
+
+Environment variable `SECRET_KEY_BASE` will be generated based on the
+`PLATFORM_PROJECT_ENTROPY` and can be still changed.
 
 {{< readFile file="src/registry/images/examples/full/elixir.hooks.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
@@ -71,7 +73,6 @@ type: elixir:1.9
 variables:
     env:
         MIX_ENV: 'prod'
-        SECRET_KEY_BASE: $PLATFORM_PROJECT_ENTROPY
 
 hooks:
     build: |

@@ -36,6 +36,9 @@ A complete example is included at the end of this section.
    You can change the Rails/Bundler via those environment variables,
    some of which are defaults on Platform.sh.
 
+    Environment variable `SECRET_KEY_BASE` will be generated based on the
+    `PLATFORM_PROJECT_ENTROPY` and can be still changed.
+
     ```yaml
     variables:
         env:
