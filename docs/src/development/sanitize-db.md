@@ -4,18 +4,6 @@ sidebarTitle: Sanitize databases
 description: Find out how to sanitize databases on non-production environments.
 ---
 
-<!-- 
-When to use
-  When there is a single outcome a user wants to achieve.
-  When you want to explain how to get to the outcome in ordered steps.
-  https://diataxis.fr/how-to-guides/ 
-
-How to use
-  1. Copy this template into the right directory in /src/docs/.
-  2. Rename it to match the title.
-  3. Replace the following content with your own.
--->
-
 When creating or pushing a branch to Platform.sh, both the code and the database get inherited to a new branch.
 Depending on your processes, internal or external teams may check the code changes on that new branch.
 
