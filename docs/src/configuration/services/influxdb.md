@@ -24,17 +24,17 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 ## Usage example
 
-In your `.platform/services.yaml`:
+{{% endpoint-description type="influxdb" %}}
+
+[Service definition](./_index.md):
 
 {{< readFile file="src/registry/images/examples/full/influxdb.services.yaml"  highlight="yaml" >}}
 
-In your `.platform.app.yaml`:
+[App configuration](../app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/influxdb.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/influxdb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-{{< endpoint-description "influxdb" >}}
-
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 ```php
 <?php

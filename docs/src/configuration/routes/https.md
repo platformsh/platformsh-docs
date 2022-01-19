@@ -7,10 +7,13 @@ weight: 1
 
 All environments on Platform.sh support both HTTP and HTTPS automatically.
 Production TLS certificates are provided by [Let's Encrypt](https://letsencrypt.org/).
-You may alternatively provide your own TLS certificate from a 3rd party issuer of your choice at no charge from us.
+You may alternatively [provide your own TLS certificate from a third-party issuer](../../domains/steps/tls.md) of your choice at no charge from us.
 
-Let’s Encrypt TLS Certificates are valid for 90 days
-and Platform.sh automatically renews them 28 days before expiration to avoid HTTPS interruptions.
+The Let’s Encrypt TLS Certificates are:
+
+- valid for 90 days
+- automatically renewed 28 days before expiration
+
 If a renewal is available and needed, the environment is automatically redeployed to renew the certificate.
 As no new build is required the process should take at most a few seconds.
 The deploy and post-deploy hook are run during this process.
@@ -33,6 +36,13 @@ TLS certificates are often still called SSL certificates.
 TLS is a newer encryption system that has replaced SSL, but the name SSL is still widely recognized.
 In practice, they mean the same thing today, but TLS is the more correct term.
 {{</ note >}}
+
+### Limits
+
+{{% lets_encrypt_limitations %}}
+
+If you need more hostnames than that, obtain additional certificates or a wildcard certificate from another TLS provider. 
+Alternatively, consider splitting your project up into multiple Platform.sh projects.
 
 ## Using HTTPS
 
@@ -79,18 +89,6 @@ The use cases for this configuration are few.
 ```
 
 More complex routing logic is also possible if the situation calls for it.
-
-{{< note >}}
-
-Let's Encrypt has a limit of 100 hostnames per certificate.
-Each of your environments can have 1 Let's Encrypt certificate.
-If you define both a `{default}` and `www.{default}` route for each domain you use, you have a limit of 50 hostnames.
-Adding more than that results in a warning on deploy and no new TLS certificates are issued.
-
-If you need more hostnames than that, obtain additional certificates or a wildcard certificate from another TLS provider.
-Alternatively, consider splitting your project up into multiple Platform.sh projects.
-
-{{< /note >}}
 
 ## TLS configuration
 

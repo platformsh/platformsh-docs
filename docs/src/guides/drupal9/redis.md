@@ -16,15 +16,17 @@ If you are working from an older repository or migrating a pre-built site to Pla
 
 ### Add a Redis service
 
-In your ``.platform/services.yaml``:
+{{% endpoint-description type="redis" noApp=true %}}
 
-{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
+[Service definition](../../configuration/services/_index.md):
 
-Now add a relationship in your `.platform.app.yaml` file:
+{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
-{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" >}}
+[App configuration](../../configuration/app/app-reference.md):
 
-{{< endpoint-description "redis" >}}
+{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+
+{{% /endpoint-description %}}
 
 ### Add the Redis PHP extension
 

@@ -11,9 +11,9 @@ description: Platform.sh supports building and deploying applications written in
 |----------------------------------|---------------|
 |  {{< image-versions image="elixir" status="supported" environment="grid" >}} | {{< image-versions image="elixir" status="supported" environment="dedicated" >}} |
 
-To specify an Elixir container, use the `type` property in your `.platform.app.yaml`.
+To specify an Elixir container, use the `type` property in your [app configuration](../configuration/app/app-reference.md).
 
-{{< readFile file="src/registry/images/examples/full/elixir.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/elixir.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## Platform.sh variables
 
@@ -46,7 +46,7 @@ variables:
 
 Include in your build hook the steps to retrieve a local Hex and rebar, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
 
-{{< readFile file="src/registry/images/examples/full/elixir.hooks.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/elixir.hooks.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 {{< note >}}
 The above build hook will work for most cases, and assumes that your `mix.exs` file is located at the root of your application.
@@ -123,7 +123,7 @@ The services configuration is available in the environment variable `PLATFORM_RE
 
 Given a relationship defined in `.platform.app.yaml`:
 
-{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 Assuming you have in `mix.exs` the Poison library to parse JSON:
 

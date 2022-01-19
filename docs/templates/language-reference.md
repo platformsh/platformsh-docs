@@ -23,10 +23,7 @@ A brief introduction (1--2 sentences) to the language.
 |  {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="dedicated" >}} | {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="dedicated-gen-3" >}} |
 
 <!-- If there are any deprecated versions. -->
-### Deprecated versions 
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended.
-They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|

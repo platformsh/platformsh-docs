@@ -22,9 +22,7 @@ Upgrading to PostgreSQL 12 using the `postgis` extension is not currently suppor
 See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 {{< /note >}}
 
-### Deprecated versions
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -38,15 +36,15 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 ## Usage example
 
-In your `.platform/services.yaml` add:
+{{% endpoint-description type="postgresql" %}}
+
+[Service definition](./_index.md):
 
 {{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml">}}
 
-Add a relationship to the service in your ``.platform.app.yaml``:
+[App configuration](../app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" >}}
-
-{{< endpoint-description "postgresql" >}}
+{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 For PHP, in your `.platform.app.yaml` add:
 
@@ -56,7 +54,7 @@ runtime:
         - pdo_pgsql
 ```
 
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 
@@ -244,6 +242,10 @@ configuration:
             seconddb: admin
             thirddb: admin
 ```
+
+## Service timezone
+
+To change the timezone for the current session, run `SET TIME ZONE <timezone>;`.
 
 ## Extensions
 

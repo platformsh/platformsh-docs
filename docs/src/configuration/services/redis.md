@@ -16,9 +16,7 @@ Platform.sh supports two different Redis configurations: One persistent (useful 
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}} |
 
-### Deprecated versions
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
@@ -30,25 +28,34 @@ Versions 3.0 and higher support up to 64 different databases per instance of the
 
 ## Ephemeral Redis
 
-The `redis` service type is configured to serve as an LRU cache; its storage is not persistent.  It is not suitable for use except as a disposable cache.
+The `redis` service type is configured to serve as an LRU cache; its storage isn't persistent.
+It is not suitable for use except as a disposable cache.
 
-To add an ephemeral Redis service, specify it in your `.platform/services.yaml` file like so:
+To add an ephemeral Redis service, specify it like so:
 
-{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
-Data in an Ephemeral Redis instance is stored only in memory and thus requires no disk space. When the service hits its memory limit it will automatically evict old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
+Data in an Ephemeral Redis instance is stored only in memory and thus requires no disk space.
+When the service hits its memory limit,
+it automatically evicts old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
 
-Your app must not treat ephemeral Redis as permanent. Instead, the cache needs to be regenerated as necessary. For example, if a container is moved for a reason such as region maintenance, the `deploy` and `post_depoly` hooks won't be run and an app that treats the cache as permanent will show errors. The cache should be cleared each time the app is restarted, in the `start` key in [your web configuration](/configuration/app/app-reference.md#commands).
+Your app must not treat ephemeral Redis as permanent.
+Instead, the cache needs to be regenerated as necessary.
+For example, if a container is moved for a reason such as region maintenance,
+the `deploy` and `post_depoly` hooks don't run and an app that treats the cache as permanent shows errors.
+The cache should be cleared each time the app is restarted,
+in the `start` key in [your web configuration](/configuration/app/app-reference.md#commands).
 
-If your app needs to treat the cache as permanent, use [persistent Redis](#persistent-redis), which will save data to its volume even when the container is shut down.
+If your app needs to treat the cache as permanent, use [persistent Redis](#persistent-redis),
+which saves data to its volume even when the container is shut down.
 
 ## Persistent Redis
 
 The `redis-persistent` service type is configured for persistent storage. That makes it a good choice for fast application-level key-value storage.
 
-To add a Persistent Redis service, specify it in your `.platform/services.yaml` file like so:
+To add a Persistent Redis service, specify it like so:
 
-{{< readFile file="src/registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 The `disk` key is required for redis-persistent to tell Platform.sh how much disk space to reserve for Redis' persistent data.
 
@@ -66,22 +73,25 @@ The format is identical regardless of whether it's a persistent or ephemeral ser
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+{{% endpoint-description type="redis" %}}
 
-{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
+[Service definition](./_index.md):
 
-If you are using PHP, configure a relationship and enable the [PHP redis extension](/languages/php/extensions.md) in your `.platform.app.yaml`.
+{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
+
+[App configuration](../app/app-reference.md):
+
+{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+
+If you are using PHP,  enable the [PHP redis extension](../../languages/php/extensions.md):
 
 ```yaml
 runtime:
     extensions:
         - redis
-
-relationships:
-    rediscache: "cacheredis:redis"
 ```
 
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 
@@ -158,13 +168,13 @@ See the [Redis documentation](https://redis.io/topics/lru-cache#eviction-policie
 
 ## Using redis-cli to access your Redis service
 
-Assuming a Redis relationship named `applicationcache` defined in `.platform.app.yaml`
+Assuming a Redis relationship named `applicationcache` defined in your app configuration:
 
-{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-and `services.yaml`
+and your service definition:
 
-{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 The host name and port number obtained from `PLATFORM_RELATIONSHIPS` would be `applicationcache.internal` and `6379`. Open an [SSH session](/development/ssh/_index.md) and access the Redis server using the `redis-cli` tool as follows:
 
@@ -176,9 +186,7 @@ redis-cli -h applicationcache.internal -p 6379
 
 Using the same configuration but with your Redis relationship named `sessionstorage`:
 
-`.platform/services.yaml`
-
-{{< readFile file="src/registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 `.platform.app.yaml`
 

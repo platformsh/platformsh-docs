@@ -13,7 +13,7 @@
 - [Code](#code)
   - [Indentation](#indentation)
 - [Code tabs](#code-tabs)
-- [Reusing content](#reusing-content)
+- [Reuse content](#reuse-content)
 
 ## Markdown
 
@@ -74,15 +74,25 @@ and also makes it easier to track changes in version control systems.
 Always use inline links (in the format: `[link text](link-location)`).
 Remember to [use meaningful link text](./content-style.md#use-meaningful-link-text).
 
-Internal links (links to other docs pages) should be relative to the `src` directory and start with `/`.
-Link to the specific `.md` file, for example: `[available services](/configuration/services/_index.md#type`).
+Internal links (links to other docs pages) should be relative to the file they're in.
+That way, they work in the docs and on GitHub and locally in a cloned repository.
+Link to the specific `.md` file, for example: `[available services](../docs/src/configuration/services/_index.md`).
 
-This helps prevent broken links in the docs by putting them through a check to see if the page exists.
+If you are linking from a [file for reuse](#reuse-content), link relative to the `src` directory and start with `/`.
+For example: `[available services](/configuration/services/_index.md`).
+
+Both of these ways help prevent broken links in the docs by putting them through a check to see if the page exists.
 If the page doesn't exist, the build fails.
 
 The check is done in a [template with a render hook](../docs/themes/avocadocs/layouts/_default/_markup/render-link.html).
 See the [Hugo docs on render hooks](https://gohugo.io/getting-started/configuration-markup#markdown-render-hooks)
 and the [`relref`](https://gohugo.io/functions/relref/) function that does the check.
+
+### Links to headers
+
+To link to a header, use `#` plus the lowercase heading name.
+Special characters are removed and spaces replaced by hyphens.
+So to link to a heading with the text `Code & Style` on the same page, use `[link-text](#code--style)`.
 
 ## Notes
 
@@ -216,15 +226,73 @@ Property    | Description
 `highlight` | The language to use for highlighting, as in [code blocks](#code). If set to `false`, content renders as Markdown.
 `file`      | If not set to `none`, the displayed code comes from the specified local file.
 
-## Reusing content
+## Reuse content
 
-To reuse content in multiple places, you can save it as a shortcode
-and then use [transclusion](https://en.wikipedia.org/wiki/Transclusion) to include it elsewhere.
-For this, use the `readFile` shortcode.
+To reuse Markdown content in multiple places,
+use [transclusion](https://en.wikipedia.org/wiki/Transclusion) to include it.
+
+1. Create a new `.md` file in the `docs/layouts/shortcodes` directory.
+   Make sure the context is clear from the name, for example `reuse_markdown.md`.
+1. Fill it with the content you want to repeat.
+1. Include the file in the other locations like so:
+
+   ```markdown
+   {{% reuse_markdown %}}
+   ```
+
+Note that if your files have HTML characters (`<`, `>`, `&`, `'`, and `"`) inside a code block,
+the characters are escaped (appear as `&lt;` and so on).
+Avoid this problem by writing HTML files (`reuse_html.html`) instead of Markdown files and including them like so:
 
 ```markdown
-{{< readFile file="src/registry/images/tables/runtimes_supported.md" markdownify="true">}}
+{{< reuse_html >}}
+```
+
+### Variables in the file
+
+You can pass variables to the file:
+
+```markdown
+{{% reuse_markdown FileName="1" %}}
+```
+
+Use the variable in the file:
+
+```markdown
+The file's name is: {{ .Get "FileName" }}
+```
+
+### Inner content
+
+For longer content specific to each file, you can put content inside the shortcode:
+
+```markdown
+{{% reuse_markdown %}}
+
+This is longer content that only appears for the file it's in
+and not all files that use the shortcode.
+
+{{% /reuse_markdown %}}
+```
+
+Use the inner content in the file:
+
+```markdown
+Here is some content before the inner content.
+
+{{ .Inner | .Page.RenderString }}
+
+Here is some content after the inner content.
+```
+
+### Static files
+
+For static files that have already been created, use the `readFile` shortcode:
+
+```markdown
+{{< readFile file="src/registry/images/tables/runtimes_supported.md" markdownify="true" >}}
 {{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 ```
 
 Property      | Description
@@ -232,3 +300,4 @@ Property      | Description
 `file`        | The location of the file to include relative to the `docs` root.
 `markdownify` | Optional. For when you are using a `.md` file and want to include markdown.
 `highlight`   | Optional. For when you're including code examples. The language to use for highlighting, as in [code blocks](#code).
+`location`    | Optional. To mark where the included code should be placed, for example `.platform.app.yaml`.

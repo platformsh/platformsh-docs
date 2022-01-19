@@ -11,7 +11,7 @@ description: |
 
 {{< guides/deployment >}}
 
-{{% guides/data-migration WordPress=true /%}}
+{{< guides/data-migration WordPress=true />}}
 
 Go forth and Deploy (even on Friday)!
 
