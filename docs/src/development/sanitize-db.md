@@ -12,7 +12,7 @@ Depending on your processes, internal or external teams may interact with the de
 
 Databases of live websites often contain personally identifiable information (PII)
 such as full names, mailing addresses, and phone numbers.
-To avoid any unauthorized access to PII on the development environment, you can sanitize the database.
+To ensure people reviewing the code changes can't access information they shouldn't, sanitize the database of any PII that it may contain.
 
 ## Before you begin
 
@@ -20,6 +20,11 @@ You need:
 
 - A project with a [MySQL database](../configuration/services/mysql/_index.md)
 - The [Platform CLI](/development/cli/_index.md#cli-command-line-interface) installed locally
+
+Alternatively, if you are using Drupal, you will need:
+
+- A project with a [MySQL database](../configuration/services/mysql/_index.md)
+- [Drush](https://www.drush.org/latest/install/) installed
 
 This guide is about sanitizing MySQL databases.
 
