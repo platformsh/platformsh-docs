@@ -8,15 +8,14 @@ description: |
 
 {{< description >}}
 
-## Organization settings
+## Manage your organization settings
 
 As an organization owner, you can manage the basic settings for your organization such as its name and URL.
-
 
 {{< codetabs >}}
 
 ---
-title=In the console
+title=Using the Console
 file=none
 highlight=false
 ---
@@ -34,24 +33,42 @@ file=none
 highlight=false
 ---
 
-Say you want to set the organization label to `Great Org` and its URL to `greatest`:
+To change the name and label of the `Acme` organization, run:
 
 ```bash
-platform organization:info label "Great Org" name greatest
+platform organization:info --org acme label "Acme Corp" name acme-corp
 ```
 
-To verify the changes, run `platform organization:info`.
+To verify the changes, run:
+
+```bash
+platform organization:info --org acme-corp
+```
 
 {{< /codetabs >}}
 
-## Organization billing
+## Manage your organization billing
 
-As an organization owner or an organization user with the **manage billing** permission,
+As an organization owner, or an organization user with the **Manage billing** permission,
 you can access and download invoices and edit billing information such as the stored credit card and billing address.
 
-## Organization permissions
+{{< codetabs >}}
 
-As an organization owner or an organization user with the **manage users** permission,
+---
+title=Using the Console
+file=none
+highlight=false
+---
+
+1. Navigate to the organization you want to manage (or a project in it).
+1. Open the user menu (your name or profile picture) on the top right of the screen.
+1. Click **Billing**.
+
+{{< /codetabs >}}
+
+## Manage your organization users
+
+As an organization owner, or an organization user with the **Manage users** permission,
 you can invite other users to your organization and grant them the following permissions:
 
 * **Manage plans** (`plans`):
@@ -67,42 +84,33 @@ you can invite other users to your organization and grant them the following per
 
 {{< note theme="warning" >}}
 
-A user with the **manage users** (`members`) permission can add, edit, or remove _any_ user's permissions.
+A user with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions.
 
 {{< /note >}}
 
-Users who are a part of an organization can see all projects in that organization at the organization's URL,
-which takes the form `https://console.platform.sh/<ORGANIZATION_NAME>`.
+{{< codetabs >}}
 
-They can access only projects where they're an admin or have permissions for at least one environment type.
-To see all projects you have access to, from the main console page
-click **All projects&nbsp;<span aria-label="and then">></span> All projects**.
-For more on access control for projects, see [user administration](./users.md).
+---
+title=Using the Console
+file=none
+highlight=false
+---
 
-## Manage organizations with the CLI
+1. Navigate to the organization you want to manage (or a project in it).
+1. Open the user menu (your name or profile picture) on the top right of the screen.
+1. Click **Users**.
 
-You can use the Platform.sh command line interface to manage your organizations.
+<--->
+---
+title=Using the CLI
+file=none
+highlight=false
+---
 
-Available commands (get the full list with 'platform list organization')
-
-```txt
-Available commands for the "organization" namespace:
-      organization:info              View or change organization details
-      organization:list              List organizations
-      organization:subscription:list List subscriptions within an organization
-      organization:billing:address   View or change an organization's billing address
-      organization:billing:profile   View or change an organization's billing profile
-      organization:user:add          Invite a user to an organization
-      organization:user:delete       Remove a user from an organization
-      organization:user:get          View an organization user
-      organization:user:list         List organization users
-      organization:user:update       Update an organization user
-```
-
-For example, the following command would invite `alice@example.com` with the **Manage users**, **Billing**, **Plans** and **Projects create** permissions to the `acme-corp` organization.
+Say you want to invite `alice@example.com` with the **Manage users**, **Billing**, **Plans** and **Projects create** permissions to the `acme` organization.
 
 ```bash
-platform organization:user:add alice@example.com --org=acme-corp --permission=members,billing,plans,projects:create
+platform organization:user:add alice@example.com --org=acme --permission=members,billing,plans,projects:create
 ```
 
 After inviting `alice@example.com`, Alice will receive an invitation email asking to confirm her details and optionally, register for a Platform.sh account.
@@ -110,10 +118,92 @@ After inviting `alice@example.com`, Alice will receive an invitation email askin
 To update Alice's permissions in your organization, run:
 
 ```bash
-platform organization:user:update alice@example.com --org=acme-corp --permission=billing
+platform organization:user:update alice@example.com --org=acme --permission=billing
 ```
 
 This command would remove all previously granted permissions from Alice, and only grant the **Billing** permission.
+
+{{< /codetabs >}}
+
+Users who are a part of an organization can see all projects in that organization at the organization's URL,
+which takes the form `https://console.platform.sh/<ORGANIZATION_NAME>`.
+
+However, they can only access the projects where they have been explicit invited to by a project admin.
+
+To see all the projects that you have access to, go to the main console page at `https://console.platform.sh`, or click the **All projects** link on the top left of the screen. For more information on access control for projects, see [user administration](./users.md).
+
+## Create a new organization
+
+As a Platform.sh user, when you create a new project, if you do not have an organization, one will be created for you automatically.
+
+However, you can still create a new organization with a different payment method and billing address, and organize your projects the way you want.
+
+{{< codetabs >}}
+
+---
+title=Using the Console
+file=none
+highlight=false
+---
+
+1. Navigate to organization menu on the top left of the page.
+1. Click **Create a new organization**.
+1. Enter the required information (label, URL, country).
+1. Click **Save**.
+
+<--->
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+To create an organization with the label `Acme` and the URL `acme`, run:
+
+```bash
+platform organization:create --label "Acme" --name acme --country "United States"
+```
+
+To verify the changes, run:
+
+```bash
+platform organization:info --org acme
+```
+
+{{< /codetabs >}}
+
+## Delete an existing organization
+
+As an organization owner, you can delete your own organization.
+
+Note that if your organization owns projects, or owes remaining invoices, you can not delete it, and you need to contact our Support. 
+
+{{< codetabs >}}
+
+---
+title=Using the Console
+file=none
+highlight=false
+---
+
+1. Navigate to organization menu on the top left of the page.
+1. Select the organization you want to delete.
+1. Click **Delete the organization**.
+
+<--->
+---
+title=Using the CLI
+file=none
+highlight=false
+---
+
+To delete the organization `acme`:
+
+```bash
+platform organization:delete --org acme
+```
+
+{{< /codetabs >}}
 
 ## Transfer project ownership
 
