@@ -20,9 +20,7 @@ To update the versions in this table, use docs/data/registry.json
 
 Elasticsearch 7.9 is not available in the EU-1 and US-1 regions. Please consider [region migration](/guides/general/region-migration.md) if your project is in those regions.
 
-### Deprecated versions
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
@@ -36,17 +34,17 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/deve
 
 ## Usage example
 
-In your `.platform/services.yaml`:
+{{% endpoint-description type="elasticsearch" %}}
 
-{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" >}}
+[Service definition](./_index.md):
 
-In your `.platform.app.yaml`:
+{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
-{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" >}}
+[App configuration](../app/app-reference.md):
 
-{{< endpoint-description "elasticsearch" >}}
+{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 

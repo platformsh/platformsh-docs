@@ -25,7 +25,7 @@ To override any part of a property, you have to provide the entire property.
 | `type`          | A [type](#types)                                | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`. |
 | `size`          | A [size](#sizes)                                |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments. |
 | `relationships` | A dictionary of [relationships](#relationships) |          | Yes              | Connections to other services and apps. |
-| `disk`          | `integer` or `boolean`                          |          | Yes              | The size of the disk space for the app in MB. Minimum value is `128`. Defaults to `false`, meaning no disk is available. See [note on available space](#available-disk-space) |
+| `disk`          | `integer` or `null`                          |          | Yes              | The size of the disk space for the app in MB. Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space) |
 | `mounts`        | A dictionary of [mounts](#mounts)               |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required. |
 | `web`           | A [web instance](#web)                          |          | N/A              | How the web application is served. |
 | `workers`       | A [worker instance](#workers)                   |          | N/A              | Alternate copies of the application to run as background processes. |
@@ -51,7 +51,7 @@ Available languages and their supported versions:
 
 These are used in the format `runtime:version`:
 
-{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## Sizes
 

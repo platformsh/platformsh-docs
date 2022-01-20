@@ -27,9 +27,4 @@ Otherwise, it will be necessary to download a local copy of your project first.
 
 Next you can now connect to its services and build it on your machine.
 
-<div class="buttons">
-  <a class="button-link prev" onclick="gitbook.navigation.goPrev()">Back</a>
-  <a class="button-link next" onclick="gitbook.navigation.goNext()">I have a local copy of my code</a>
-</div>
-
 {{< guide-buttons next="I have a local copy of my code" >}}

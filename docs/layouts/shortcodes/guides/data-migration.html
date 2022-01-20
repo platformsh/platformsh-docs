@@ -1,0 +1,51 @@
+<!-- This page is an HTML file so that the < in the codeblock isn't escaped -->
+<h2>Data migration</h2>
+
+<p>If you are moving an existing site to Platform.sh, then in addition to code you also need to migrate your data.
+That means your database and your files.</p>
+
+<h3>Importing the database</h3>
+
+<p>First, obtain a database dump from your current site.
+If you are using MySQL/MariaDB, then the <a href="https://mariadb.com/kb/en/mysqldump/"><code>mysqldump</code> command</a> is all you need.
+Save your dump file as <code>database.sql</code>.
+(Or any name, really, as long as it's the same as you use below.)</p>
+
+{{ .Inner | .Page.RenderString }}
+
+<p>Next, import the database into your Platform.sh site.
+The easiest way to do so is with the Platform.sh CLI.</p>
+
+{{ highlight "platform sql -e production < database.sql" "bash" "" }}
+
+<p>That connects to the database service on the <code>production</code> environment, through an SSH tunnel, and runs the SQL import.</p>
+
+<h3>Importing files</h3>
+
+<p>You first need to download your files from your current hosting environment, whatever that is.
+The easiest way is likely with <code>rsync</code>, but consult your old host's documentation.
+This guide assumes that you have already downloaded {{ if .Get "WordPress" }}
+all of your uploaded files to your local <code>wordpress/wp-content/uploads</code> directory
+{{ else }}
+all of your user files to your local <code>files/user</code> directory and your public files to <code>files/public</code>
+{{ end }}, but adjust accordingly for their actual locations.</p>
+
+<p>The <code>platform mount:upload</code> command provides a straightforward way to upload an entire directory to your site at once.
+Under the hood, it uses an SSH tunnel and <code>rsync</code>, so it is as efficient as possible.
+(There is also a <code>platform mount:download</code> command you can use to download files later.)
+Run the following from your local Git repository root
+(modifying the <code>--source</code> path if needed
+and setting <code><BRANCH_NAME></code> to the branch you are using).</p>
+
+{{ if .Get "WordPress" }}
+{{ highlight "platform mount:upload -e <BRANCH_NAME> --mount wordpress/wp-content/uploads --source ./wordpress/wp-content/uploads" "bash" "" }}
+{{ else }}
+{{ highlight "$ platform mount:upload -e <BRANCH_NAME> --mount src/main/resources/files/user --source ./files/user\n$ platform mount:upload -e <BRANCH_NAME> --mount src/main/resources/files/public --source ./files/public" "bash" "" }}
+{{ end }}
+
+<p>Note that <code>rsync</code> is picky about its trailing slashes, so be sure to include those.</p>
+
+<p>Your files and database are now loaded onto your Platform.sh production environment.
+When you make a new branch environment off of it,
+all of your data will be fully cloned to that new environment
+so you can test with your complete dataset without impacting production.</p>

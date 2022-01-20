@@ -10,15 +10,17 @@ weight: -100
 
 ### Add an Elasticsearch service
 
-In your `.platform/services.yaml`:
+{{% endpoint-description type="elasticsearch" noApp=true %}}
 
-{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" >}}
+[Service definition](../../configuration/services/_index.md):
 
-In your `.platform.app.yaml`:
+{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
-{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" >}}
+[App configuration](../../configuration/app/app-reference.md):
 
-{{< endpoint-description "elasticsearch" >}}
+{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+
+{{% /endpoint-description %}}
 
 ### Add the Drupal modules
 

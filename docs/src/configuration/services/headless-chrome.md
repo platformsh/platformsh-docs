@@ -47,15 +47,17 @@ It will be necessary to upgrade the version of Node.js in other language contain
 
 ## Usage example
 
-In your `.platform/services.yaml`:
+{{% endpoint-description type="chrome-headless" %}}
 
-{{< readFile file="src/registry/images/examples/full/chrome-headless.services.yaml" highlight="yaml" >}}
+[Service definition](./_index.md):
 
-In your `.platform.app.yaml`:
+{{< readFile file="src/registry/images/examples/full/chrome-headless.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
-{{< readFile file="src/registry/images/examples/full/chrome-headless.app.yaml" highlight="yaml" >}}
+[App configuration](../app/app-reference.md):
 
-{{< endpoint-description "chrome-headless" >}}
+{{< readFile file="src/registry/images/examples/full/chrome-headless.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+
+{{% /endpoint-description %}}
 
 After configuration, include Puppeteer as a dependency in your `package.json`:
 

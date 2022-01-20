@@ -31,9 +31,9 @@ If you are on one of those and require the service we suggest you [migrate](/gui
 
 ## Define the service
 
-First, declare a new service in the `services.yaml` file like so:
+First, declare a new service like so:
 
-{{< readFile file="src/registry/images/examples/full/network-storage.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/network-storage.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 This example creates a service named `files` that is of type `network-storage`, and gives it 256 MB of storage total.
 
@@ -41,7 +41,7 @@ This example creates a service named `files` that is of type `network-storage`, 
 
 Second, add the following entry to your mounts list:
 
-{{< readFile file="src/registry/images/examples/full/network-storage.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/network-storage.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 This block will declare a writeable mount on the application container at the path `my/files`, which will be provided by the `files` service defined above.  The `source_path` specifies the path within the network service that the mount points to.  It is often easiest to have it match the name of the mount point itself but that is not required.
 
