@@ -48,7 +48,7 @@ highlight=false
 
 Assumptions:
 
-- `user` is the table where all your PII is stored.
+- `user` is the table where all of your PII is stored.
 - `user` is a part of the `staging` development database.
 - `staging` is an exact copy of your production database.
 
