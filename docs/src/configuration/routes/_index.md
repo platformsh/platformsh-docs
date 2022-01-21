@@ -276,14 +276,14 @@ The full list of generated route information is often much larger than what's sp
 For example, by default all HTTPS routes (and all uses of `{all}`) are duplicated to create HTTP redirect routes.
 As a general rule, you should keep to your defined routes under 100.
 
-If your `routes.yaml` file is rejected for being too big,
-the best alternative is to move redirect routes to the application rather than relying on the router.
-You can also collapse multiple routes into a [regular expression-based redirect](./redirects.md#partial-redirects).
+If your `routes.yaml` file is rejected for being too big, do one of the following:
 
-Let's Encrypt has a limit of 100 hostnames per certificate and
-each of your environments can have 1 Let's Encrypt certificate.
-If you define both a `{default}` and `www.{default}` route for each domain you use, you have a limit of 50 hostnames.
-Adding more than that results in a warning on deploy and no new TLS certificates are issued.
+* Move redirect routes to the application.
+* Collapse the route definitions into a [regular expression-based redirect](./redirects.md#partial-redirects).
+
+{{% lets_encrypt_limitations %}}
+
+Non-default ports (other than `80` and `443`) aren't supported and can't be included in routes configuration.
 
 ## Route configuration reference
 
