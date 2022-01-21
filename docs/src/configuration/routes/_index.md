@@ -276,7 +276,7 @@ The full list of generated route information is often much larger than what's sp
 For example, by default all HTTPS routes (and all uses of `{all}`) are duplicated to create HTTP redirect routes.
 As a general rule, you should keep to your defined routes under 100.
 
-If your `routes.yaml` file is rejected due for being too big, do one of the following:
+If your `routes.yaml` file is rejected for being too big, do one of the following:
 
 * Move redirect routes to the application.
 * Collapse the route definitions into a [regular expression-based redirect](./redirects.md#partial-redirects).
