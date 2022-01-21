@@ -7,7 +7,7 @@ When working on a new feature on your website, you want to use a new branch.
 Using a new branch makes sure that you don't risk breaking your live, production website.
 
 Creating a branch on Platform.sh copies both the code and the database to that new development branch.
-These code and database changes need to be tested before being merged to the production website.
+These code and database changes need to be tested before being merged into production.
 Depending on your processes, internal or external teams may interact with the development environment branch.
 
 Databases of live websites often contain personally identifiable information (PII)
@@ -18,13 +18,9 @@ To ensure people reviewing the code changes can't access information they should
 
 You need:
 
-- A project with a [MySQL database](../configuration/services/mysql/_index.md)
-- The [Platform CLI](/development/cli/_index.md#cli-command-line-interface) installed locally
-
-Alternatively, if you are using Drupal, you will need:
-
-- A project with a [MySQL database](../configuration/services/mysql/_index.md)
-- [Drush](https://www.drush.org/latest/install/) installed
+- A project with a [MySQL database](../configuration/services/mysql/_index.md).
+- if you aren't using Drupal, you will need the [Platform CLI](/development/cli/_index.md#cli-command-line-interface) installed locally.
+- if you are using Drupal, you will need [Drush](https://www.drush.org/latest/install/) installed.
 
 This guide is about sanitizing MySQL databases.
 
@@ -61,34 +57,34 @@ Assumptions:
    In a very basic database, this can be achieved with the `SELECT * FROM users;` MySQL query:
 
    ```sql
-   MariaDB [main]> SELECT * FROM users;
-   +----+------------+---------------+---------------------------+---------------+
-   | ID | first_name | last_name     | user_email                | display_name  |
-   +----+------------+---------------+---------------------------+---------------+
-   |  1 | admin      | admin         | admin@yourcompany.com     | admin         |
-   |  2 | john       | doe           | john.doe@gmail.com        | john          |
-   |  3 | jane       | doe           | janedoe@ymail.com         | jane          |
-   +----+------------+---------------+---------------------------+---------------+
-   3 rows in set (0.00 sec)
+    MariaDB [main]> SELECT * FROM users;
+    +----+------------+---------------+---------------------------+---------------+
+    | ID | first_name | last_name     | user_email                | display_name  |
+    +----+------------+---------------+---------------------------+---------------+
+    |  1 | admin      | admin         | admin@yourcompany.com     | admin         |
+    |  2 | john       | doe           | john.doe@gmail.com        | john          |
+    |  3 | jane       | doe           | janedoe@ymail.com         | jane          |
+    +----+------------+---------------+---------------------------+---------------+
+    3 rows in set (0.00 sec)
    ```
 
 1. Change the fields where PII Data is contained with the [`UPDATE` statement](https://dev.mysql.com/doc/refman/8.0/en/update.html).
    For example, changing the first name of an user, when the email address is not using the company domain, would result in the following query:
 
    ```sql
-   UPDATE user
-   SET first_name='redacted'
-   WHERE email NOT LIKE '%@yourcompany%'
+    UPDATE user
+    SET first_name='redacted'
+    WHERE email NOT LIKE '%@yourcompany%'
    ```
 
    Adapt and run that query for all fields that you need to sanitized.
    If you modify fields that you shouldn't alter,
-   [you can restore them](../administration/backup-and-restore.md#restore) from the dump you took in step 1.
+   [you can restore them](../administration/backup-and-restore.html#restore) from the dump you took in step 1.
 
    You can create a script to automate the sanitization process to be run automatically on each new deployment.
-   Once you have a working script, add your script to sanitize the database to [a `deploy` hook](../user_guide/reference/platform-app-yaml.html#hooks):
+   Once you have a working script, add your script to sanitize the database to [a `deploy` hook](../configuration/app/hooks.html#deploy-hook):
 
-    ```yaml
+   ```yaml
     deploy: |
       cd /app/public
       if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
@@ -97,7 +93,7 @@ Assumptions:
         # The sanitization of the database should happen here (since it's non-production)
         sanitize_the_database.sh
       fi
-    ```
+   ```
 
 <--->
 
@@ -111,14 +107,14 @@ highlight=false
    Add your script to sanitize the database to [a `deploy` hook](../user_guide/reference/platform-app-yaml.html#hooks) for non-production environments:
 
   ```yaml
-  deploy: |
-    cd /app/public
-    if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-      # Do whatever you want on the production site.
-    else
-      drush -y sql:sanitize
-    fi
-    drush -y updatedb
+    deploy: |
+      cd /app/public
+      if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+        # Do whatever you want on the production site.
+      else
+        drush -y sql:sanitize
+      fi
+      drush -y updatedb
   ```
 
 More options are available. These are described in [Drush's documentation](https://www.drush.org/latest/commands/sql_sanitize/).
