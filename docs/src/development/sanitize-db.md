@@ -69,7 +69,7 @@ Assumptions:
    ```
 
 1. Change the fields where PII Data is contained with the [`UPDATE` statement](https://dev.mysql.com/doc/refman/8.0/en/update.html).
-   For example, changing the first name of an user, when the email address is not using the company domain, would result in the following query:
+   For example, to change the first name of users with an email address not in your company's domain, run the following query::
 
    ```sql
     UPDATE user
