@@ -57,24 +57,24 @@ Assumptions:
    In a very basic database, this can be achieved with the `SELECT * FROM users;` MySQL query:
 
    ```sql
-    MariaDB [main]> SELECT * FROM users;
-    +----+------------+---------------+---------------------------+---------------+
-    | ID | first_name | last_name     | user_email                | display_name  |
-    +----+------------+---------------+---------------------------+---------------+
-    |  1 | admin      | admin         | admin@yourcompany.com     | admin         |
-    |  2 | john       | doe           | john.doe@gmail.com        | john          |
-    |  3 | jane       | doe           | janedoe@ymail.com         | jane          |
-    +----+------------+---------------+---------------------------+---------------+
-    3 rows in set (0.00 sec)
+   MariaDB [main]> SELECT * FROM users;
+   +----+------------+---------------+---------------------------+---------------+
+   | ID | first_name | last_name     | user_email                | display_name  |
+   +----+------------+---------------+---------------------------+---------------+
+   |  1 | admin      | admin         | admin@yourcompany.com     | admin         |
+   |  2 | john       | doe           | john.doe@gmail.com        | john          |
+   |  3 | jane       | doe           | janedoe@ymail.com         | jane          |
+   +----+------------+---------------+---------------------------+---------------+
+   3 rows in set (0.00 sec)
    ```
 
 1. Change the fields where PII Data is contained with the [`UPDATE` statement](https://dev.mysql.com/doc/refman/8.0/en/update.html).
    For example, to change the first name of users with an email address not in your company's domain, run the following query::
 
    ```sql
-    UPDATE user
-    SET first_name='redacted'
-    WHERE email NOT LIKE '%@yourcompany%'
+   UPDATE user
+   SET first_name='redacted'
+   WHERE email NOT LIKE '%@yourcompany%'
    ```
 
    Adapt and run that query for all fields that you need to sanitized.
@@ -85,14 +85,14 @@ Assumptions:
    Once you have a working script, add your script to sanitize the database to [a `deploy` hook](../configuration/app/hooks.html#deploy-hook):
 
    ```yaml
-    deploy: |
-      cd /app/public
-      if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-        # Do whatever you want on the production site.
-      else
-        # The sanitization of the database should happen here (since it's non-production)
-        sanitize_the_database.sh
-      fi
+   deploy: |
+       cd /app/public
+       if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+           # Do whatever you want on the production site.
+       else
+           # The sanitization of the database should happen here (since it's non-production)
+           sanitize_the_database.sh
+       fi
    ```
 
 <--->
@@ -107,12 +107,12 @@ highlight=false
    Add your script to sanitize the database to [a `deploy` hook](../user_guide/reference/platform-app-yaml.html#hooks) for non-production environments:
 
   ```yaml
-    deploy: |
+  deploy: |
       cd /app/public
       if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-        # Do whatever you want on the production site.
+          # Do whatever you want on the production site.
       else
-        drush -y sql:sanitize
+          drush -y sql:sanitize
       fi
       drush -y updatedb
   ```
@@ -132,4 +132,5 @@ To add a faker, adapt your sanitizing queries to replace each value that contain
 
 You might also want to make sure that you [implement input validation](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#goals-of-input-validation).
 
-If your database contains a lot of data, consider using the [`OPTIMIZE TABLE` statement](https://dev.mysql.com/doc/refman/8.0/en/optimize-table.html) to reduce its size and help improve performance.
+If your database contains a lot of data, consider using the [`OPTIMIZE TABLE` statement](https://dev.mysql.com/doc/refman/8.0/en/optimize-table.html)
+to reduce its size and help improve performance.
