@@ -26,7 +26,7 @@ This guide is about sanitizing MySQL databases.
 
 This guide doesn't address:
 
-- Sanitizing NoSQL Databases ([MongoDB](../configuration/services/mongodb/_index.md), ...)
+- Sanitizing NoSQL Databases (such as [MongoDB](../configuration/services/mongodb/_index.md))
 - Input validation and input sanitization, which both help prevent security vulnerabilities
 
 ## Sanitize the database
@@ -35,7 +35,8 @@ Make sure that you only sanitize development environments and **never** the prod
 Otherwise you may lose most or even all of the relevant data stored in your database.
 
 First, take a [database dump](../configuration/services/mysql/_index.md#exporting-data) of your development environment.
-You won't alter your production data. This is just a safety precaution.
+You won't alter your production data.
+This is just a safety precaution.
 To get a database dump, run: `platform db:dump -e <DEVELOPMENT_ENVIRONMENT_NAME>`.
 
 {{< codetabs >}}
@@ -68,8 +69,8 @@ Assumptions:
    3 rows in set (0.00 sec)
    ```
 
-1. Change the fields where PII Data is contained with the [`UPDATE` statement](https://dev.mysql.com/doc/refman/8.0/en/update.html).
-   For example, to change the first name of users with an email address not in your company's domain, run the following query::
+1. Change the fields where PII is contained with the [`UPDATE` statement](https://dev.mysql.com/doc/refman/8.0/en/update.html).
+   For example, to change the first name of users with an email address not in your company's domain, run the following query:
 
    ```sql
    UPDATE user
@@ -104,7 +105,8 @@ highlight=false
 ---
 
 1. To sanitize your database and get rid of sensitive, live information, use the `drush sql:sanitize` command.
-   Add your script to sanitize the database to [a `deploy` hook](../user_guide/reference/platform-app-yaml.html#hooks) for non-production environments:
+   Add your script to sanitize the database to [a `deploy` hook](../user_guide/reference/platform-app-yaml.html#hooks)
+   for non-production environments:
 
   ```yaml
   deploy: |
@@ -117,7 +119,8 @@ highlight=false
       drush -y updatedb
   ```
 
-More options are available. These are described in [Drush's documentation](https://www.drush.org/latest/commands/sql_sanitize/).
+More options are available.
+These are described in [Drush's documentation](https://www.drush.org/latest/commands/sql_sanitize/).
 
 {{< /codetabs >}}
 
