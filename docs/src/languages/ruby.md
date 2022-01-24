@@ -175,7 +175,7 @@ A complete example is included at the end of this section.
         upstream: "app:http"
     ```
 
-### Complete app configuration 
+### Complete app configuration
 
 Here is a complete `.platform.app.yaml` file:
 
@@ -355,3 +355,17 @@ that simplify presenting environment information to your application.
 They aren't required to run Ruby applications on Platform.sh but are recommended.
 
 {{< repolist lang="ruby" >}}
+
+## Troubleshooting
+
+We recently switched our deployment default to `BUNDLE_DEPLOYMENT=1` to ensure
+projects have a `Gemfile.lock` file. Its safer for versions yank issues and
+other version upgrade breakage. If you have an error like that on build:
+
+```
+  W: bundler: failed to load command: rake (/app/.global/bin/rake)
+    W: /app/.global/gems/bundler-2.3.5/lib/bundler/resolver.rb:268:in `block in verify_gemfile_dependencies_are_found!': Could not find gem 'rails (= 5.2.6)' in locally installed gems. (Bundler::GemNotFound)
+```
+
+Just run `bundle install` with same `ruby` and `bundler` versions you have
+defined on your `.platform.app.yaml` and push the `Gemfile.lock`.
