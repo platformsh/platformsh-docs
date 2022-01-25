@@ -49,6 +49,8 @@ Note that you do *not* need to add a relationship to point to the `files` servic
 
 The application container can now read from and write to the `my/files` path just as if it were a local writeable mount.
 
+User data that has been written to `/tmp` will not be automatically deleted. To avoid a full disk, regularly delete that data.
+
 {{< note >}}
 There is a small performance hit for using a network mount over a local mount.  In most cases it should not be noticeable.  However, high-volume sequential file creation (that is, creating a large number of small files in rapid succession) may see a more significant performance hit.  If that is something your application does regularly then a local mount will be more effective.
 {{< /note >}}
