@@ -19,8 +19,9 @@ To ensure people reviewing the code changes can't access information they should
 You need:
 
 - A project with a [MySQL database](../configuration/services/mysql/_index.md).
-- if you aren't using Drupal, you will need the [Platform CLI](/development/cli/_index.md#cli-command-line-interface) installed locally.
-- if you are using Drupal, you will need [Drush](https://www.drush.org/latest/install/) installed.
+- A command interface installed:
+  - With Drupal: [Drush](https://www.drush.org/latest/install/)
+  - Without Drupal: the [Platform CLI](/development/cli/_index.md#cli-command-line-interface)
 
 This guide is about sanitizing MySQL databases.
 
@@ -55,10 +56,15 @@ Assumptions:
 
 1. Connect to the `staging` database by running `platform sql -e staging`.
 1. Display all fields from your `user` table, to select which ones need to be redacted.
-   In a very basic database, this can be achieved with the `SELECT * FROM users;` MySQL query:
+   Run the following MySQL query:
 
    ```sql
    MariaDB [main]> SELECT * FROM users;
+   ```
+
+   You see output like the following:
+
+   ```sql
    +----+------------+---------------+---------------------------+---------------+
    | ID | first_name | last_name     | user_email                | display_name  |
    +----+------------+---------------+---------------------------+---------------+
