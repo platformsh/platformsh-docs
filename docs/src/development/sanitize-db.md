@@ -50,12 +50,11 @@ highlight=false
 
 Assumptions:
 
-- `user` is the table where all of your PII is stored.
-- `user` is a part of the `staging` development database.
+- `users` is the table where all of your PII is stored in the `staging` development database.
 - `staging` is an exact copy of your production database.
 
 1. Connect to the `staging` database by running `platform sql -e staging`.
-1. Display all fields from your `user` table, to select which ones need to be redacted.
+1. Display all fields from your `users` table, to select which ones need to be redacted.
    Run the following MySQL query:
 
    ```sql
@@ -79,7 +78,7 @@ Assumptions:
    For example, to change the first name of users with an email address not in your company's domain, run the following query:
 
    ```sql
-   UPDATE user
+   UPDATE users
    SET first_name='redacted'
    WHERE email NOT LIKE '%@yourcompany%'
    ```
