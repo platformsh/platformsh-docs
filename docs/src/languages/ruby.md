@@ -28,17 +28,17 @@ A complete example is included at the end of this section.
 
 2. Setup environment variables.
 
-    Rails runs by default on a development environment.
-    You can change the Rails/Bundler via those environment variables,
-    some of which will be defaults at some point on Platform.sh.
+   Rails runs by default on a development environment.
+   You can change the Rails/Bundler via those environment variables,
+   some of which are defaults on Platform.sh.
 
     ```yaml
     variables:
         env:
-            BUNDLE_CACHE_ALL: '1' # will be default
+            BUNDLE_CACHE_ALL: '1' # default
             BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby<2.7 this does not work well
-            BUNDLE_DEPLOYMENT: '1' # will be default
-            BUNDLE_ERROR_ON_STDERR: '1' # will be default
+            BUNDLE_DEPLOYMENT: '1' # default
+            BUNDLE_ERROR_ON_STDERR: '1' # default
             BUNDLE_WITHOUT: 'development:test'
             DEFAULT_BUNDLER_VERSION: "2.2.26" # in case none is mentioned in Gemfile.lock
             EXECJS_RUNTIME: 'Node'
@@ -47,8 +47,8 @@ A complete example is included at the end of this section.
             NVM_VERSION: v0.38.0
             RACK_ENV: 'production'
             RAILS_ENV: 'production'
-            RAILS_LOG_TO_STDOUT: '1' # will be default (log to /var/log/app.log)
-            RAILS_TMP: '/tmp' # will be default
+            RAILS_LOG_TO_STDOUT: '1' # default (log to /var/log/app.log)
+            RAILS_TMP: '/tmp' # default
     ```
 
 3. Build your application with the build hook.
@@ -102,7 +102,7 @@ A complete example is included at the end of this section.
     You can also use the `dependencies` key to install global dependencies.
     These can be Ruby, Python, NodeJS, or PHP libraries.
 
-    If you have assets, it's more likely that you need NodeJS/yarn.
+    If you have assets, it's likely that you need NodeJS/yarn.
 
     ```yaml
     dependencies:
@@ -120,7 +120,7 @@ A complete example is included at the end of this section.
             start: "bundle exec unicorn -l $SOCKET"
     ```
 
-    This assumes you have Unicorn as a dependency in your Gemfile
+    This assumes you have Unicorn as a dependency in your Gemfile:
 
      ```ruby
     # Use Unicorn as the app server
@@ -278,21 +278,20 @@ web:
 
 ## Configuring services
 
-8. This example assumes there is a MySQL instance.
-To configure it, create a `.platform/services.yaml` such as the following:
+This example assumes there is a MySQL instance.
+To configure it, [create a service](../configuration/services/_index.md) such as the following:
 
-    ```yaml
-    database:
-        type: mysql:10.4
-        disk: 2048
-    ```
+```yaml {location=".platform/services.yaml"}
+database:
+    type: mysql:10.4
+    disk: 2048
+```
 
 ## Connecting to services
 
-You can [define services](/configuration/services/_index.md) in your environment.
-And then link to the services using `.platform.app.yaml`:
+Once you have a service, link to it in your [app configuration](../configuration/app/_index.md):
 
-```yaml
+```yaml {location=".platform.app.yaml"}
 relationships:
     database: "database:mysql"
 ```
@@ -305,7 +304,7 @@ require "json"
 relationships= JSON.parse(Base64.decode64(ENV['PLATFORM_RELATIONSHIPS']))
 ```
 
-Which should give you something like:
+This should give you something like the following:
 
 ```json
 {
@@ -330,16 +329,17 @@ For Rails, you have two choices:
 
 * Use the standard Rails `config/database.yml` with the values found with the snippet provided before
 * Use the [platformsh-rails-helper gem](https://github.com/platformsh/platformsh-rails-helper)
-  by adding it to your `Gemfile` and commenting the production block in `config/database.yml`.
+  by adding it to your `Gemfile` and commenting the production block in `config/database.yml`
 
 ## Other tips
 
 * To speed up boot you can use the [Bootsnap gem](https://github.com/Shopify/bootsnap)
   and configure it with the local `/tmp`:
 
-  ```
+  ```ruby
   Bootsnap.setup(cache_dir: "/tmp/cache")
   ```
+
 * For garbage collection tuning, you can read [this article](https://shopify.engineering/17489064-tuning-rubys-global-method-cache)
   and look for [discourse configurations](https://github.com/discourse/discourse_docker/blob/b259c8d38e0f42288fd279c9f9efd3cefbc2c1cb/templates/web.template.yml#L8)
 
@@ -358,14 +358,17 @@ They aren't required to run Ruby applications on Platform.sh but are recommended
 
 ## Troubleshooting
 
-We recently switched our deployment default to `BUNDLE_DEPLOYMENT=1` to ensure
-projects have a `Gemfile.lock` file. Its safer for versions yank issues and
-other version upgrade breakage. If you have an error like that on build:
+By default, deployments have `BUNDLE_DEPLOYMENT=1` to ensure projects have a `Gemfile.lock` file.
+This is safer for version yank issues and other version upgrade breakages.
 
-```
+You may encounter an error like the following during a build:
+
+```txt
   W: bundler: failed to load command: rake (/app/.global/bin/rake)
     W: /app/.global/gems/bundler-2.3.5/lib/bundler/resolver.rb:268:in `block in verify_gemfile_dependencies_are_found!': Could not find gem 'rails (= 5.2.6)' in locally installed gems. (Bundler::GemNotFound)
 ```
 
-Just run `bundle install` with same `ruby` and `bundler` versions you have
-defined on your `.platform.app.yaml` and push the `Gemfile.lock`.
+To resolve this error:
+
+1. Run `bundle install` with the same `ruby` and `bundler` versions defined in your `.platform.app.yaml` file.
+1. Push the `Gemfile.lock` to your repository.
