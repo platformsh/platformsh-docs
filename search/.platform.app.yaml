@@ -37,3 +37,5 @@ mounts:
     "data":
         source: local
         source_path: "data"
+
+size: M
