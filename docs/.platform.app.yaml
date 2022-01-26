@@ -50,3 +50,4 @@ mounts:
       source: local
       source_path: "config"
 
+size: S
