@@ -38,4 +38,4 @@ mounts:
         source: local
         source_path: "data"
 
-size: M
+size: L
