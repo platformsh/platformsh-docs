@@ -83,7 +83,7 @@ Assumptions:
    WHERE email NOT LIKE '%@yourcompany%'
    ```
 
-   Adapt and run that query for all fields that you need to sanitized.
+   Adapt and run that query for all fields that you need to sanitize.
    If you modify fields that you shouldn't alter,
    [you can restore them](../administration/backup-and-restore.html#restore) from the dump you took in step 1.
 
