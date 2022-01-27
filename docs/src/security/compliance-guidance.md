@@ -1,5 +1,5 @@
 ---
-title: "Compliance guidance"
+title: "Compliance Guidance and Shared Responsibilities"
 weight: 11
 ---
 
