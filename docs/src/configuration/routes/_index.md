@@ -1,254 +1,250 @@
 ---
-title: "Routes"
+title: Define routes
 weight: 2
-description: |
-  Platform.sh allows you to define the routes used in your environments.
-sidebarTitle: "Routes (routes.yaml)"
+description: Set your project up so HTTP requests to your app are sent to the right locations.
 layout: single
 ---
 
-{{< description >}}
+You might need to control how people access your web applications,
+for example when you have [multiple apps](../app/multi-app.md) in one project.
+Or you might just want to direct requests to specific places, such as removing the `www` at the start of all requests.
 
-A route describes how an incoming HTTP request is going to be processed by Platform.sh.
-The routes are defined using the `.platform/routes.yaml` file in your Git repository.
-
-If you don't have one, use the commands below to create it:
-
-```bash
-$ mkdir .platform
-$ touch .platform/routes.yaml
-```
+Control where external requests are directed by defining routes in a `.platform/routes.yaml` file in your Git repository.
 
 ![Routes](/images/config-diagrams/routes-basic.png "0.5")
 
-## Route templates
+## Examples
 
-The YAML file is composed of a list of routes and their configuration.
-A route can either be an absolute URL or a URL template that looks like:
-`http://www.{default}/` or `https://{default}/blog`,
-where `{default}` will be substituted by the default fully qualified domain name configured in the project.
-So if your default domain is `example.com`,
-these routes will be resolved to `http://www.example.com/` and `https://example.com/blog` in the production environment.
+These examples show how to define routes.
 
-Platform.sh will also generate a domain for every active development environment.
-It will receive a domain name based on the region, project ID, branch name, and a per-environment random string.
-The domain name itself is not guaranteed stable, although the pattern is consistent.
+### Basic route definition
 
-{{< note >}}
+In a basic situation, you have one app to direct traffic to.
+Say its name is `myapp`.
+And say you want to redirect requests from `https://www.example.com` to `https://example.com`.
 
-Platform.sh supports running multiple applications per environment.
-The `.platform/routes.yaml` file defines how to route requests to different applications.
+Define your routes like this:
 
-{{< /note >}}
-
-## Route configuration
-
-Each route can be configured separately. It has the following properties
-
-* `type` can be:
-  * `upstream` serves an application
-    * It will then also have an `upstream` property which will be the name of the application (as defined in `.platform.app.yaml`),
-      followed by `:http` (see examples below).
-  * `redirect` redirects to another route
-    * It will then be followed by a `to` property, this defines a HTTP 301 redirect to any URL or another route (see examples below).
-* `cache` controls [caching behavior of the route](/configuration/routes/cache.md).
-* `ssi` controls whether Server Side Includes are enabled. For more information: see [SSI](/configuration/routes/ssi.md).
-* `redirects` controls [redirect rules](/configuration/routes/redirects.md) associated with the route.
-
-![Routes files](/images/config-diagrams/routes-configs.png "0.5")
-
-{{< note >}}
-
-For the moment, the value of upstream is always in the form: `<application-name>:http`.
-`<application-name>` is the `name` defined in `.platform.app.yaml` file.
-`:php` is a deprecated application endpoint; use `:http` instead.
-In the future, Platform.sh will support multiple endpoints per application.
-
-{{< /note >}}
-
-## Route limits
-
-Although there is no fixed limit on the number of routes that can be defined,
-there is a cap on the size of generated route information.
-This limitation comes from the Linux kernel, which caps the size of environment variables.
-The kernel limit on environment variables is 32 pages. Each page is 4k on x86 processors,
-resulting in a maximum environment variable length of 131072 bytes.
-If your `routes.yaml` file would result in too large of a route information value it will be rejected.
-
-The full list of generated route information is often much larger than what's literally specified in the `routes.yaml` file.
-For example, by default all HTTPS routes will be duplicated to create an HTTP redirect route.
-Also, the `{all}` placeholder will create two routes (one HTTP, one HTTPS) for each domain that is configured.
-
-As a general rule we recommend keeping the defined routes under 100.
-Should you find your `routes.yaml` file rejected due to an excessive size,
-the best alternative is to move any redirect routes to the application rather than relying on the router,
-or collapsing them into a [regular expression-based redirect](/configuration/routes/redirects.md#partial-redirects) within a route definition.
-
-Let's Encrypt also limits an environment to 100 configured domains.
-If you try to add more than that some of them will fail to get an SSL certificate.
-
-## Routes examples
-
-Here is an example of a basic `.platform/routes.yaml` file:
-
-```yaml
+```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
 "https://www.{default}/":
     type: redirect
     to: "https://{default}/"
 ```
 
-In this example, we will route both the apex domain and the `www` subdomain to an [application called "app"](../app/app-reference.md),
-the `www` subdomain being redirected to the apex domain using an HTTP 301 `Moved Permanently` response.
+This affects your [default domain](#default).
 
-In the following example, we are not redirecting from the `www` subdomain to the apex domain but serving from both:
+You have one route that serves content (the one with the `upstream`)
+and one that redirects to the first (the one with the `redirect`).
 
-```yaml
+Redirects from `http` to `https` are generally included by default and don't need to be listed.
+
+![The name of the app in your app configuration determines the value for the redirect.](/images/config-diagrams/routes-configs.png "0.5")
+
+### Multi-app route definition
+
+You can define routes for multiple apps per environment.
+For example, if you have a front-end app with the name `app` and another app with the name `api`,
+you could define your routes like this:
+
+```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
     upstream: "app:http"
+"https://{default}/api":
+    type: upstream
+    upstream: "api:http"
+```
 
-"https://www.{default}/":
+The route for the `api` app could be anything in the domain, even a subdomain like `https://api.{default}/`.
+Be aware that using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
+so consider using a path like `https://{default}/api` instead.
+
+## Route templates
+
+Each route in your configuration file is defined in one of two ways:
+
+* An absolute URL such as `https://example.com/blog`
+* A URL template such as `https://{default}/blog`
+
+The templates include a placeholder, either `{default}` or `{all}`,
+to stand in for [custom domains](../../domains/quick-start.md) you've defined in your project.
+These domains can be top level domains (`example.com`) or subdomains (`app.example.com`).
+
+### `{default}`
+
+`{default}` represents your default custom domain.
+If you have set your default domain to `example.com`,
+`example.com` and `{default}` in your `.platform.routes.yaml` file have the same meaning for your production environment.
+
+Each development environment gets its own domain with a unique identifier.
+If you use the URL template on a `feature` branch, you get something like the following:
+
+```txt
+https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
+```
+
+If you use the absolute URL method (like `example.com`), that domain looks similar to this:
+
+```txt
+https://example.com.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/blog
+```
+
+### `{all}`
+
+You can also set up multiple domains for a single project.
+To define rules for all of them, use `{all}` in your template.
+
+Say you have both `example.com` and `example.net` as domains in a project.
+You can then define the following routes:
+
+```yaml {location=".platform/routes.yaml"}
+"https://{all}/":
     type: upstream
     upstream: "app:http"
+"https://www.{all}/":
+    type: redirect
+    to: "https://{all}/"
 ```
 
-## Route placeholders
+The first route means you're serving the same content at multiple domains:
+your app runs at both `https://example.com` and `https://example.net`.
 
-You can configure any number of domains on a project when you are ready to make it live.
-Only one of them may be set as the "default" domain.
-In the `routes.yaml` file a route can be defined either literally or using one of two special placeholders: `{default}` and `{all}`.
+The second route means that `https://www.example.com` redirects to `https://example.com`
+_and_ `https://www.example.net` redirects to `https://example.net`.
 
-The magic value `{default}` will be replaced with the production domain name configured as the default on your account in the production branch.
-In a non-production branch it will be replaced with the project ID and environment ID so that it is always unique.
+If your project has no domains or only one, `{all}` behaves exactly like `{default}`.
 
-The magic value `{all}` will be replaced by all of the domain names configured on the account.
-That is, if two domains `example1.com` and `example2.com` are configured,
-then a route named `https://www.{all}/` will result in two routes in production:
-`https://www.example1.com` and `https://www.example2.com`.
-That can be useful in cases when a single application is serving two different websites simultaneously.
-In a non-production branch it will be replaced with the project ID and environment ID for each domain,
-in the same fashion as a static route below.
-
-If there are no domains defined on a project (as is typical in development before launch),
-then the `{all}` placeholder will behave exactly like the `{default}` placeholder.
-
-It's also entirely possible to use an absolute URL in the route.
-In that case, it will be used as-is in a production environment.
-On a development environment it will be mangled to include the project ID and environment name.
-For example:
-
-```yaml
-"https://www.example.com/":
-    type: upstream
-    upstream: "app:http"
-"https://blog.example.com/":
-    type: upstream
-    upstream: "blog:http"
-```
-
-In this case, there are two application containers `app` and `blog`.
-In a production environment, they would be accessible at `www.example.com` and `blog.example.com`, respectively.
-On a development branch named `sprint`, however, they would be accessible at URLs something like:
-
-```bash
-https://www.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platformsh.site/
-https://blog.example.com.sprint-7onpvba-tvh56f275i3um.eu-2.platformsh.site/
-```
-
-If your project involves only a single apex domain with one app or multiple apps under subdomains,
-it's generally best to use the `{default}` placeholder.
-If you are running [multiple applications](/configuration/app/multi-app.md) on different apex domains,
-then you will need to use a static domain for all but one of them.
-
-Note that when there are two routes sharing the same HTTP scheme, domain, and path,
-where the first route is using the `{default}` placeholder and the other is using the `{all}` placeholder,
+If you have two routes sharing the same HTTP scheme, domain, and path
+and the first route is using `{default}` and the second is using `{all}`,
 the route using `{default}` takes precedence.
+Say you have two apps named `app1` and `app2` and define two routes like this:
+
+```yaml {location=".platform/routes.yaml"}
+"https://{default}/":
+    type: upstream
+    upstream: "app1:http"
+"https://{all}/":
+    type: upstream
+    upstream: "app2:http"
+```
+
+Requests to your default domain are served by `app1`.
+
+## Wildcard routes
+
+Platform.sh supports wildcard routes, so you can map multiple subdomains to the same application.
+Both `redirect` and `upstream` routes support wildcard routes.
+Prefix a route with an asterisk (`*`), for example `*.{default}`.
+If you have configured `example.com` as your default domain,
+HTTP requests to `www.example.com`, `blog.example.com`, and `us.example.com` are all routed to the same endpoint.
+
+It also works on development environments.
+If you have a `feature` branch, it's `{default}` domain looks something like:
+`feature-def123-vmwklxcpbi6zq.us.platform.sh` (depending on the project's region).
+So requests to `blog.feature-def123-vmwklxcpbi6zq.us.platform.sh` and `us.feature-def123-vmwklxcpbi6zq.eu.platform.sh`
+are both routed to the same endpoint.
+
+Let's Encrypt wildcard certificates aren't supported (they would need DNS validation).
+So if you want to use a wildcard route and protect it with HTTPS,
+you need to provide a [custom TLS certificate](../../domains/steps/tls.md).
+
+{{< note >}}
+
+In projects created before November 2017, the `.` in subdomains was replaced with a triple hyphen (`---`).
+It was switched to preserve `.` to simplify SSL handling and improve support for longer domains.
+If your project was created before November 2017, it still uses `---` to the left of the environment name.
+If you wish to switch to dotted-domains, please file a support ticket and we can do that for you.
+Doing so may change the domain name that your production domain name should CNAME to.
+
+{{< /note >}}
 
 ## Route identifiers
 
-All routes defined for an environment are available to the application in its `PLATFORM_ROUTES` environment variable,
-which contains a base64-encoded JSON object.
-This object can be parsed by the language of your choice to give your application access to the generated routes.
+When your project has deployed and routes are generated,
+all placeholders (`{default}` and `{all}`) are replaced with appropriate domain names
+and any additional routes (such as redirecting HTTP to HTTPS) are created.
+This means the final generated routes differ by environment and so shouldn't be hard coded in your app.
+These routes are available in the `PLATFORM_ROUTES` environment variable as a base64-encoded JSON object.
 
-When routes are generated, all placeholders will be replaced with appropriate domains names,
-and, depending on your configuration, additional route entries may be generated (e.g. automatic HTTP to HTTPS redirects).
-To make it easier to locate routes in a standardized fashion,
-you may specify an `id` key on each route which remains stable across environments.
-You may also specify a single route as `primary`,
-which will cause it to be highlighted in the web management console but will have no impact on the runtime environment.
+To locate routes in a standardized fashion in any environment,
+you may specify an `id` for on each route.
+This identifier is the same across all environments.
 
-Consider this `routes.yaml` configuration example:
+Say you have two apps, `app1` and `app2`, that you want to serve at two subdomains, `site1` and `site2`.
 
-```yaml
+You can define your routes like this:
+
+```yaml {location=".platform/routes.yaml"}
 "https://site1.{default}/":
     type: upstream
-    upstream: 'site1:http'
+    upstream: 'app1:http'
 
 "https://site2.{default}/":
     type: upstream
     id: 'the-second'
-    upstream: 'site2:http'
+    upstream: 'app2:http'
 ```
 
-This example defines two routes, on two separate subdomains, pointing at two separate app containers.
-(However, they could also be pointing at the same container.)
-On a branch named `test`, the JSON object that would be base64-encoded in the `PLATFORM_ROUTES` environment variable would look like this:
+To see the generated routes on your `feature` environment, run:
+
+```bash
+platform ssh -e feature 'echo $PLATFORM_ROUTES | base64 --decode | jq .'
+```
+
+The result is something like this:
 
 ```json
 {
-    "https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
-        "primary": 1,
+    "https://site1.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+        "primary": true,
         "id": null,
+        "attributes": {},
         "type": "upstream",
-        "upstream": "site1",
+        "upstream": "app1",
         "original_url": "https://site1.{default}/"
-        // ...
     },
-    "https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+    "https://site2.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
         "primary": null,
         "id": "the-second",
+        "attributes": {},
         "type": "upstream",
-        "upstream": "site2",
+        "upstream": "app2",
         "original_url": "https://site2.{default}/"
-        // ...
     },
-    "http://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
-        "to": "https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/",
+    "http://site1.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+        "to": "https://site1.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/",
         "original_url": "http://site1.{default}/",
         "type": "redirect",
         "primary": null,
-        "id": null
+        "id": null,
+        "attributes": {}
     },
-    "http://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
-        "to": "https://site2.test-t6dnbai-abcdef1234567.us-2.platformsh.site/",
+    "http://site2.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+        "to": "https://site2.feature-t6dnbai-abcdef1234567.us-2.platformsh.site/",
         "original_url": "http://site2.{default}/",
         "type": "redirect",
         "primary": null,
-        "id": null
+        "id": null,
+        "attributes": {},
     }
 }
 ```
 
-(Some keys omitted for space.)
- Note that the `site2` HTTPS route has an `id` specified as `the-second` while other routes have no ID.
- Furthermore, because we did not specify a `primary` route,
- the first non-redirect route defined is marked as the primary route by default.
- In each case, the `original_url` specified in the configuration file is accessible if desired.
-
-That makes it straightforward to look up the domain of a particular route, given its `id`,
-regardless of what branch it's on, from within application code.
-That could be used, for example, for specifically allowing inbound requests.
+The `site2` HTTPS route has an `id` specified as `the-second`, while the other routes have `null` for their `id`.
+You can use this `id` to look up the domain of the route in every environment.
 
 ## Route attributes
 
-Route attributes are an arbitrary key/value pair attached to a route.
-This metadata does not have any impact on Platform.sh,
-but will be available in the route definition structure in `$PLATFORM_ROUTES`.
+You might want to add extra information to routes to identify them in your app.
+Route `attributes` are arbitrary key-value pairs attached to a route.
+This metadata has no impact on Platform.sh, but is available in the `PLATFORM_ROUTES` environment variable.
 
-```yaml
+So you can define a route like this:
+
+```yaml {location=".platform/routes.yaml"}
 "http://{default}/":
     type: upstream
     upstream: "app:http"
@@ -256,93 +252,102 @@ but will be available in the route definition structure in `$PLATFORM_ROUTES`.
         "foo": "bar"
 ```
 
-Attributes will appear in the routes data like so:
+The attributes appear in the routes data like so:
 
 ```json
-"https://site1.test-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
-    "primary": 1,
+"https://feature-t6dnbai-abcdef1234567.us-2.platformsh.site/": {
+    "primary": true,
     "id": null,
-    "type": "upstream",
-    "upstream": "site1",
-    "original_url": "https://site1.{default}/",
     "attributes": {
         "foo": "bar"
     },
-    // ...
+    "type": "upstream",
+    "upstream": "app",
+    "original_url": "https://{default}/"
 }
 ```
 
-These extra attributes may be used to "tag" routes in more complex scenarios that can then be read by your application.
+## Route limits
 
-## Configuring routes on the management console
+The maximum size of the routes document is 128&nbsp;KB, which should fit around 300 different routes.
+If your `routes.yaml` file would result in too large of a route information value, it's rejected.
 
-Routes can also be configured using the management console
-in the [routes section](/administration/web/configure-environment.md#routes) of the environment settings.
-If you have edited the routes via the management console, you will have to `git pull` the updated `.platform/routes.yaml` file from us.
+The full list of generated route information is often much larger than what's specified in the `routes.yaml` file.
+For example, by default all HTTPS routes (and all uses of `{all}`) are duplicated to create HTTP redirect routes.
+As a general rule, you should keep to your defined routes under 100.
 
-## CLI Access
+If your `routes.yaml` file is rejected for being too big, do one of the following:
 
-You can get a list of the configured routes of an environment by running `platform environment:routes`.
+* Move redirect routes to the application.
+* Collapse the route definitions into a [regular expression-based redirect](./redirects.md#partial-redirects).
 
-![Platform Routes CLI](/images/cli/platform-routes-cli.png "0.3")
+{{% lets_encrypt_limitations %}}
 
-If you need to see more detailed info, such as cache and SSI, use `platform route:get`
+Non-default ports (other than `80` and `443`) aren't supported and can't be included in routes configuration.
 
+## Route configuration reference
 
-## Wildcard routes
+You can configure each route separately with the following properties:
 
-Platform.sh supports wildcard routes, so you can map multiple subdomains to the same application.
-This works both for redirect and upstream routes.
-You can prefix the route with a star (`*`), for example `*.example.com`,
-and HTTP requests to `www.example.com`, `blog.example.com`, `us.example.com` all get routed to the same endpoint.
+| Name         | Type      | Required                | Description |
+| ------------ | --------- | ----------------------- | ----------- |
+| `type`       | `string`  | Yes                     | Either `upstream` or `redirect`.<ul><li>`upstream` means content is served at that route by an app and requires the `upstream` property to be set.</li><li>`redirect` means the route is redirected elsewhere and requires the `to` property.</li></ul> |
+| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](../app/_index.md)) followed by `:http`. Example: `app:http` |
+| `to`         | `string`  | If `type` is `redirect` | The absolute URL or other route to which the given route should be redirected with an HTTP 301 status code. |
+| `ssi`        | `boolean` | No                      | Whether [server side includes](./ssi.md) are enabled. |
+| `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](./redirects.md). |
+| `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](./cache.md). |
+| `id`         | `string`  | No                      | A unique identifier for the route. See [route identifiers](#route-identifiers). |
+| `primary`    | `boolean` | No                      | Whether the route is the primary route for the project. Can only be `true` for one route in the configuration file, but if you use the [`{all}` placeholder](#all), it can be `true` for multiple final routes. Defaults to the first defined `upstream` route. |
+| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#tls-configuration). |
+| `attributes` | Object    | No                      | Any key-value pairs you want to make available to your app. See [route attributes](#route-attributes). |
 
-For your production environment, this would function as a catch-all domain
-once you [added the parent domain](/administration/web/configure-project.md#domains) to the project settings.
+## CLI access
 
-For development environments, we will also be able to handle this. Here is how:
+The [Platform.sh CLI](../../development/cli/_index.md) can show you the routes you have configured for an environment.
+These are the routes as defined in the `.platform/routes.yaml` file with the [placeholders](#route-templates)
+plus the default redirect from HTTP to HTTPS.
+They aren't the final generated routes.
 
-Let's say we have a project on the EU cluster whose ID is "vmwklxcpbi6zq" and we created a branch called "add-theme".
-It's environment name will be similar to `add-theme-def123`.
-The generated apex domain of this environment will be `add-theme-def123-vmwklxcpbi6zq.eu.platform.sh`.
-If we have a `http://*.{default}/` route defined, the generated route will be `http://*.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/`. This means you could put any subdomain before the left-most `.` to reach your application.
-HTTP requests to both `http://foo.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` and `http://bar.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/`
-are routed to your application properly.
-However, requests to `http://*.add-theme-def123-vmwklxcpbi6zq.eu.platform.sh/` aren't routed since it isn't a legitimate domain name.
+```bash
+$ platform environment:routes 
+Routes on the project Example (abcdef123456), environment main (type: production):
++---------------------------+----------+---------------------------+
+| Route                     | Type     | To                        |
++---------------------------+----------+---------------------------+
+| https://app.{default}/    | upstream | app:http                  |
+| https://app.{default}/api | upstream | api:http                  |
+| http://app.{default}/     | redirect | https://app.{default}/    |
+| http://app.{default}/api  | redirect | https://app.{default}/api |
++-----------------------+----------+-------------------------------+
 
-Be aware, however, that we do not support Let's Encrypt wildcard certificates (they would need DNS validation).
-That means if you want to use a wildcard route and protect it with HTTPS you will need to provide a [custom TLS certificate](/domains/steps/tls.md).
+To view a single route, run: platform route:get <route>
+```
 
-{{< note >}}
-
-In projects created before November 2017 the `.` in subdomains was replaced with a triple dash (`---`).
-It was switched to preserve `.` to simplify SSL handling and improve support for longer domains.
-If your project was created before November 2017 then it will still use `---` to the left of the environment name.
-If you wish to switch to dotted-domains please file a support ticket and we can do that for you.
-Be aware that doing so may change the domain name that your production domain name should CNAME to.
-
-{{< /note >}}
+Viewing a single route gives you more detailed info, such as its cache and SSI settings.
 
 ## WebSocket routes
 
-To use WebSocket on a route, `cache` must be disabled because WebSocket is incompatible with buffering,
-which is a requirement of caching on our router.
-Here is an example to define a route that serves WebSocket:
+To use the WebSocket protocol on a route, `cache` must be disabled because WebSocket is incompatible with buffering,
+which is a requirement for the router caching.
 
-```yaml
-"https://{default}/ws":
-    type: upstream
-    upstream: "app:http"
-    cache:
-        enabled: false
-```
+1. Define a route that serves WebSocket:
 
-You will also need to [disable request buffering](/configuration/app/app-reference.md#locations) in the `.platform.app.yaml`.
+   ```yaml {location=".platform/routes.yaml"}
+   "https://{default}/ws":
+       type: upstream
+       upstream: "ws-app:http"
+       cache:
+           enabled: false
+   ```
 
-```yaml
-web:
-    locations:
-        '/':
-            passthru: true
-            request_buffering:
-                enabled: false
-```
+2. [Disable request buffering](../app/app-reference.md#locations) in your app configuration.
+
+   ```yaml {location=".platform.app.yaml"}
+   web:
+       locations:
+           '/':
+               passthru: true
+               request_buffering:
+                   enabled: false
+    ```

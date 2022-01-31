@@ -64,6 +64,7 @@ redeployment
 reindex
 [Rr]sync
 runtimes
+sanitization
 scp
 shard
 shortcode

@@ -187,6 +187,14 @@ web:
 This command runs every time your app is restarted, regardless of whether or not new code is deployed.
 So it can be useful for things like clearing ephemeral cache.
 
+```yaml {location=".platform.app.yaml"}
+web:
+    commands:
+        start: 'redis-cli -h redis.internal flushall; sleep infinity'
+        # For a Dedicated environment use:
+        # start: 'redis-cli flushall ; sleep infinity'
+```
+
 {{< note >}}
 
 Never "background" a start process using `&`.
@@ -248,7 +256,7 @@ The following table presents possible properties for each location:
 | `passthru`          | `boolean` or  `string`                               | `false`   | Whether to forward disallowed and missing resources from this location to the app. A string is a path with a leading `/` to the controller, such as `/index.php`. |
 | `index`             | Array of `string`s or `null`                         |           | Files to consider when serving a request for a directory. When set, requires access to the files through the `allow` or `rules` keys. |
 | `expires`           | `string`                                             | `-1`      | How long static assets are cached. The default means no caching. Setting it to a value enables the `Cache-Control` and `Expires` headers. Times can be suffixed with `ms` = milliseconds, `s` = seconds, `m` = minutes, `h` = hours, `d` = days, `w` = weeks, `M` = months/30d, or `y` = years/365d. |
-| `allows`            | `boolean`                                            | `true`    | Whether to allow serving files which don't match a rule. |
+| `allow`             | `boolean`                                            | `true`    | Whether to allow serving files which don't match a rule. |
 | `scripts`           | `string`                                             |           | Whether to allow loading scripts in that location. Meaningful only on PHP containers. |
 | `headers`           | A headers dictionary                                 |           | Any additional headers to apply to static assets, mapping header names to values. Responses from the app aren't affected. |
 | `request_buffering` | A [request buffering dictionary](#request-buffering) | See below | Handling for chunked requests. |
@@ -549,6 +557,8 @@ For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 5 minutes or the cron frequency, whichever is smaller.
+Crons are also paused while activities such as [backups](../../dedicated/overview/backups.md) are running.
+The crons are queued to run after the other activity finishes.
 
 If an application defines both a `web` instance and `worker` instances, cron jobs run only on the `web` instance.
 
