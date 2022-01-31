@@ -87,6 +87,8 @@ If you would like to test the search server, follow these steps:
    npm run dev
    npm run build-searchapp
    hugo
+   # Export master key again in this terminal.
+   export MEILI_MASTER_KEY=test
    ./deploy.sh
    ```
 
@@ -94,8 +96,6 @@ If you would like to test the search server, follow these steps:
 
    ```bash
    cd ../search
-   # Export again in this terminal window.
-   export MEILI_MASTER_KEY=test
    # Update the index
    ./post_deploy.sh
    ```
