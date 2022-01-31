@@ -3,20 +3,8 @@ title: Set variables
 description: See how to set variables that you can later use to take control over your app's environment.
 ---
 
-To set variables, determine which type of variable to use.
-They all can be strings or base64-encoded JSON-serialized values.
-
-| Type                                               | Definer     | Scope       | Precedence | Build | Runtime  | Uses |
-| -------------------------------------------------- | ----------- | ----------- | ---------- | ----- | -------- |----- |
-| [Application](#use-application-provided-variables) | Application | Application | 4          | Yes   | Yes      | Non-secret values that are the same across all environments |
-| [Project](#create-project-variables)               | User        | Project     | 3          | Yes   | Yes      | Secret values that are the same across all environments, such as database credentials |
-| [Environment](#create-environment-specific-variables)       | User        | Environment | 2          | Some  | Yes      | Values that vary by environment, such as which database to connect to or which payment API keys to use |
-| [Platform.sh](./use-variables.md#use-platformsh-provided-variables)  | Pre-defined | Environment | 1          | Some  | Yes      | For information about your Platform.sh project |
-
-If there are conflicts between variables with the same name, variables [take precedence](./_index.md#overrides) from 1 down.
-So Platform.sh-provided values override environment variables, which override project variables,
-which override application-provided variables.
-
+To set variables, determine which [type of variable](./_index.md#variable-types) to use.
+Remember to take into account the order of precedence.
 All of the variables can also be [overridden via script](#set-variables-via-script).
 
 ## Set variables in your app
@@ -75,6 +63,8 @@ Note that any changes to project variables require you to deploy your environmen
 ## Create environment-specific variables
 
 Set variables for specific environments using [the management console](../../administration/web/configure-environment.md#variables) or the CLI.
+Variables can be inherited or overridden from parent environments and project variables.
+See [more on overriding values](./_index.md#overrides)
 
 For example, to create the environment variable `foo` with the value `bar` on the current environment, run:
 
