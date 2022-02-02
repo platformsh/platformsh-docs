@@ -2,7 +2,7 @@
     "username": "mysql",
     "scheme": "mysql",
     "service": "oraclemysql",
-    "ip": "169.254.100.245",
+    "ip": "169.254.237.53",
     "hostname": "7q5hllmmhoeuthu6th7qovoone.oraclemysql.service._.eu-3.platformsh.site",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "oraclemysql.internal",
