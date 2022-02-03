@@ -26,6 +26,18 @@ Elasticsearch 7.9 is not available in the EU-1 and US-1 regions. Please consider
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-3" >}} |
 
+## Use a framework
+
+If you use one of the frameworks, follow the guide there:
+
+- [Drupal 9](../../guides/drupal9/elasticsearch.md)
+- [Micronaut](../../guides/micronaut/elasticsearch.md)
+- [Quarkus](../../guides/quarkus/elasticsearch.md)
+- [Jakarta EE](../../frameworks/jakarta.md#elasticsearch)
+- [Spring](../../guides/spring/elasticsearch.md)
+
+For more implementation ideas, consult our [templates](../../development/templates.md).
+
 ## Relationship
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):

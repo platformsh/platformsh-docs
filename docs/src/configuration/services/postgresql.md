@@ -28,6 +28,16 @@ See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-
 |----------------------------------|---------------|
 |  {{< image-versions image="postgresql" status="deprecated" environment="grid" >}} | {{< image-versions image="postgresql" status="deprecated" environment="dedicated" >}} |
 
+## Use a framework
+
+If you use one of the frameworks, follow the guide there:
+
+- [Hibernate](../../frameworks/hibernate.md#postgresql)
+- [Jakarta EE](../../frameworks/jakarta.md#postgresql)
+- [Spring](../../frameworks/spring.md#postgresql)
+
+For more implementation ideas, consult our [templates](../../development/templates.md).
+
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):

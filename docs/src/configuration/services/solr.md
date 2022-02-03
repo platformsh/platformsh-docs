@@ -20,6 +20,18 @@ Solr search with generic schemas provided, and a custom schema is also supported
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="solr" status="deprecated" environment="grid" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated" >}} | {{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}} |
 
+## Use a framework
+
+If you use one of the frameworks, follow the guide there:
+
+- [Drupal 7](../../frameworks/drupal7/apachesolr-module.md)
+- [Drupal 9](../../guides/drupal9/solr.md)
+- [Ibexa DXP / eZ Launchpad](../../frameworks/ibexa/_index.md#solr-specificity)
+- [Jakarta EE](../../frameworks/jakarta.md#apache-solr)
+- [Spring](../../frameworks/spring.md#apache-solr)
+
+For more implementation ideas, consult our [templates](../../development/templates.md).
+
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
