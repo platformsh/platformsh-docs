@@ -1,31 +1,19 @@
 ---
 title: "January 2022"
+subtitle: "Alerts, activities, and integrations"
 sidebarTitle: "January"
-subtitle: "Lenis tibi undis mediam omnia reus spumantis"
-date: "2022-02-01"
+date: "2022-02-03"
 video: "DDTRNSfTICM"
 description: |
-  January 2022 product changes and resource updates.
+  January 2022 came with new service containers and templates, plus Monitoring Alerts with Blackfire.io.
 highlights:
-  - Pretium oculos refert excidit morsibus retinebat cuspide
-  - Ulixes adsuetus ventoque iactu et Buten in
-  - Flet palmas humanum
-  - Imagine in negata mercede aetatis fatigat virtuti
-  - Dummodo moenia clivo
-  - Eurus Ille propinquos murmure implevit insomni confundas
+  - "**Blackfire:** Monitoring Alerts released"
+  - "**Services:** PHP 8.1 and Redis 6.2 now available"
+  - "**Blog:** FastAPI and asynchronous profiling, Laravel integrations, and shareable activities"
+  - "**Templates:** New Symfony and Strapi v4 templates"
 ---
 
-Lenis tibi undis mediam omnia reus spumantis *comes*. Signa *qua* ducentem
-**imbribus trepidamque** aula indicet post mater, nostris, Harpyia. Et cum et
-quantusque et dixerat et arbore corpora primumque iunget altissima perstat.
-
-Postponere illius, ingenium coma mihi ululatibus planxerunt forma; aere adducto
-probat. Ignarus sonus haec cupidine; si non venisset
-[poterat](http://humo.org/artus.aspx)?
-
-{{< youtube "DDTRNSfTICM" >}}
-
-{{< changelog/header "01 February 2022" >}}
+{{< changelog/header >}}
 
 ## Product
 
@@ -103,11 +91,10 @@ probat. Ignarus sonus haec cupidine; si non venisset
 
 {{< changelog/descriptions "events" >}}
 
-<p style="text-align: center; font-family: Overpass mono"><a href="https://platform.sh/events/"><strong>View upcoming events</strong></a></p>
+{{< changelog/events >}}
 
 ### Forum
 
 {{< changelog/descriptions "forum" >}}
 
 {{< changelog/forum year="2022" month="01" >}}
-
