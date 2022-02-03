@@ -39,7 +39,7 @@
   {{ $randomID := ( index ( split ( index ( split ( now.AddDate -2 0 0 ) " ") 1 ) "." ) 1 ) }}
 
   <!-- Buttons -->
-    <ul class="nav nav-tabs nav-justified" id="pills-tab" role="tablist">
+    <ul class="nav nav-tabs" id="pills-tab" role="tablist">
       {{ $ariaselected := "true" }}
       {{ $tabclass := "nav-link active"}}
       {{ $id := 0 }}
