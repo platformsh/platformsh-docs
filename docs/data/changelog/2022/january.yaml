@@ -1,0 +1,172 @@
+api: 
+  changed:
+    - '[Source operations](/configuration/app/source-operations.html) can now also be run on _inactive environments_.'
+    - '[Enabling email by updating the SMTP status on an environment](/development/email.html#enablingdisabling-email) no longer requires a separate rebuild commit.'
+blackfire:
+    added:
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+      - description: 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+        items: 
+          - 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+          - 'Donec eget accumsan nulla, ac finibus massa.'
+          - 'Vivamus quis sapien at nulla efficitur sollicitudin a sed quam.'
+    changed:
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+      - '**BREAKING:** Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+    deprecated:
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+    removed:
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+    fixed:
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+    security:
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+blog:
+    observability:
+      - '[Feature Focus: “Metrics Resurrections”, Episode 4](https://blog.blackfire.io/getting-more-precision-with-arguments-capturing.html)<br/>Learn how to use Arguments Capturing in Blackfire, so that they can be displayed in the Call-Graph view.'
+      - description: 'The Challenges of Async Python Observability series.'
+        items: 
+          - '[Introduction to FastAPI and asyncio 1/3](https://blog.blackfire.io/the-challenges-of-async-python-observability-introduction-to-fastapi-and-asyncio-1-3.html)<br/>Asynchronous Python is getting trendy these days. What is it about and what are the implied challenges in terms of Observability?'
+          - '[Profiling asynchronous code 2/3](https://blog.blackfire.io/the-challenges-of-async-python-observability-profiling-asynchronous-code-2-3.html)<br/>How does Profiling fit into asynchronous Python apps using asyncio and FastAPI?'
+          - '[Blackfire to the Rescue 3/3](https://blog.blackfire.io/the-challenges-of-async-python-observability-blackfire-to-the-rescue-3-3.html)<br/>Profiles generated with Blackfire on async Python apps provide consistent metrics.'
+      - '[Support for Laravel Tests](https://blog.blackfire.io/support-for-laravel-tests.html)<br/>Blackfire PHP SDK now integrates with Laravel Tests.'
+    features:
+      - description: 'Shareable activities and GitHub actions series'
+        items:
+          - '[Share your failures, fix them faster with shareable activities](https://platform.sh/blog/2021/share-your-failures-fix-them-faster/)<br/>Feature announcement for shareable activities.'
+          - '[Share your failures with robots: surfacing activities with GitHub actions](https://platform.sh/blog/2021/share-your-activities-with-robots-surfacing-activities-with-github-actions/)<br/>Surface the newly available shareable activity links within your GitHub workflow using an existing integration.'
+          - '[Measuring the success of a deployment with GitHub actions](https://platform.sh/blog/2021/measuring-the-success-of-a-deployment-with-githubactions/)<br/>Expands on the previous GitHub action workflow to run basic status check and Lighthouse audit on the deployed pull request environment.'
+    security:
+      - '[CVE-2021-44228 Apache Log4j vulnerability](https://platform.sh/blog/2021/platformsh-protects-from-apache-log4j/)<br/>Details the [CVE-2021-44228](https://nvd.nist.gov/vuln/detail/CVE-2021-45105) Apache Log4j vulnerability that affected Elasticsearch, Opensearch and Solr services, and Platform.sh efforts to apply project upgrades in response.'
+    releases:
+      - '[PHP 8.1 lays new ground on Platform.sh](https://platform.sh/blog/2021/php-81-lays-new-ground-at-platformsh/)<br/>An in-depth look at the major changes with the newly available PHP 8.1 runtime container. '
+      - '[Monitoring Alerts](https://blog.blackfire.io/monitoring-alerts.html)<br/>Get alerts where you need, when you need to detect issues in your production application or site with Blackfire monitoring.'
+    news:
+      - '[Platform.sh Announces Microsoft Azure Support for the Australian Market](https://platform.sh/blog/2022/platformsh-announces-microsoft-azure-support-australian-market/)<br/>`au-2` region announcement.'
+    benefits:
+      - '[The secrets to managing multiple websites](https://platform.sh/blog/2022/managing-multiple-website/)<br/>Develop a unified DevOps strategy with Platform.sh.'
+      - '[PaaS: a better alternative to Kubernetes](https://platform.sh/blog/2022/kubernetes-alternative/)<br/>Platform.sh against Kubernetes for Fleet management strategies.'
+cli:
+    added:
+      - 'Display the organization in the project list ([v3.72.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.72.0)).'
+      - 'Hidden `env:curl` command to make raw requests to the current environments API ([v3.73.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.73.0)).'
+      - 'Pagination to the `projects (project:list)` command ([v3.73.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.73.0)).'
+      - 'Also add a new optional `created_at` column ([v3.73.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.73.0)).'
+      - 'Allow unsetting the remote project in the `project:set-remote` command (`project: set-remote`) ([v3.73.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.73.0)).'
+      - 'Delimiter to read environment variables over SSH without pollution from other messages ([v3.73.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.73.0)).'
+      - 'Search the docs site directly for the `docs` command ([v3.73.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.73.0)).'
+      - 'Show release notes for each version on update ([v3.73.1](https://github.com/platformsh/platformsh-cli/releases/tag/v3.73.1)).'
+      - 'Support `require` and `repositories` keys for PHP dependencies ([v3.73.2](https://github.com/platformsh/platformsh-cli/releases/tag/v3.73.2)).'
+      - '`org:create` and `org:delete` commands (though marked as beta/alpha currently) ([v3.74.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.74.0)).'
+      - '`auth:info id --no-auto-login` as a convenience for scripts to check if already logged in ([v3.74.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.74.0)).'
+      - '`repo:read` (`read`) command to read a file or directory in the projects hosted Git repository (combining `repo:ls` and `repo:cat`) ([v3.75.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.75.0)).'
+      - 'Bundled `cacert.pem` to the phar build ([v3.75.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.75.0)).'
+    changed:
+      - 'Send PHP errors to `stderr` not `stdout` ([v3.73.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.73.0)).'
+      - 'Disable deprecation notices by default ([v3.72.1](https://github.com/platformsh/platformsh-cli/releases/tag/v3.72.1)).'
+      - 'No longer generate an alias for an inactive DG2 target ([v3.72.2](https://github.com/platformsh/platformsh-cli/releases/tag/v3.72.2)).'
+      - 'Warn when an API token is set on the container ([v3.72.2](https://github.com/platformsh/platformsh-cli/releases/tag/v3.72.2)).'
+      - 'Use `composer/ca-bundle` to find a CA bundle automatically (for TLS certificate verification on systems without a CA bundle configured) ([v3.75.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.75.0)).'
+      - 'Avoid prompting to create an SSH config file, if the file is not writable ([v3.75.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.75.0)).'
+      - 'Avoid printing all release notes when upgrading from a dev version ([v3.75.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.75.0)).'
+      - 'Avoid using the cache for finding an environment by machine name ([v3.75.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.75.0)).'
+      - 'Print default environment/organization selection to `stderr` ([v3.75.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.75.0)).'
+      - description: 'Use Composers CA bundle detection in additional places ([v3.73.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.73.0)):'
+        items: 
+          - 'the credential helper download'
+          - 'the self-updater (`up` command)'
+          - 'the installer script (detection only, without the failback bundle)'
+    removed:
+      - 'Remove workaround for an older PHP `pcre.jit` bug (fixed since PHP 7.3.11) ([v3.75.2](https://github.com/platformsh/platformsh-cli/releases/tag/v3.75.2))'
+    fixed:
+      - 'Fix TypeError in `domain:add` command error handling in PHP 8+ ([v3.73.0](https://github.com/platformsh/platformsh-cli/releases/tag/v3.73.0)).'
+      - '`ConsoleLogger TypeError` in `Api` class due to `null` `stdErr` property ([v3.75.3](https://github.com/platformsh/platformsh-cli/releases/tag/v3.75.3)).'
+console:
+    added:
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+      - description: 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+        items: 
+          - 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+          - 'Donec eget accumsan nulla, ac finibus massa.'
+          - 'Vivamus quis sapien at nulla efficitur sollicitudin a sed quam.'
+    changed:
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+      - '**BREAKING:** Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+    removed:
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+    fixed:
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+docs:
+    updated:
+      - 'The default value of `disk` was updated to `null` instead of `false` in the 
+      [top-level properties table](/configuration/app/app-reference.html#top-level-properties) for configuring `.platform.app.yaml` files 
+      ([#2073](https://github.com/platformsh/platformsh-docs/pull/2073)).'
+      - 'Instructions and requirements for generating [project access tokens to establish GitLab source integrations](/integrations/source/gitlab.html#1-generate-a-token) 
+      were extended ([#2056](https://github.com/platformsh/platformsh-docs/pull/2056)).'
+      - '[Lets Encrypt TLS certificate limits](/configuration/routes/https.html#limits) were clarified with respect to hostsnames, 
+      environments, and your `routes.yaml` configuration ([#2064](https://github.com/platformsh/platformsh-docs/pull/2064)).'
+      - 'The [Organizations](/administration/organizations.html) page was cleaned up, especially regarding permissions ([#2074](https://github.com/platformsh/platformsh-docs/pull/2074)).'
+      - 'The [application performance monitoring](/dedicated/overview/monitoring.html#application-performance-monitoring) Enterprise offering section was updated to detail the 
+      Observability Suite using Blackfire.io ([#2077](https://github.com/platformsh/platformsh-docs/pull/2077)).'
+      - 'The app reference page was updated related to crons: nameley that [crons are paused while activities such as backups are running](/configuration/app/app-reference.html#crons) 
+      ([#2085](https://github.com/platformsh/platformsh-docs/pull/2085)).'
+      - 'Documentation of our [data deletion policy](/security/data-deletion.html) regarding encrupted volumes was updated to include OVH ([#2097](https://github.com/platformsh/platformsh-docs/pull/2097)).'
+      - 'Definitions around [encryption, specifically data at rest](/security/encryption.html#data-at-rest), were updated with respect to `FR-1` and `FR-3` regions
+      ([#2100](https://github.com/platformsh/platformsh-docs/pull/2100)).'
+      - 'Network Storage documentation was updated to include a [tip about preventing full disk warnings from `/tmp`](/configuration/services/network-storage.html#declare-the-mount) ([#2102](https://github.com/platformsh/platformsh-docs/pull/2102)).'
+    added:
+      - 'Instructions added for Enterprise or Elite customers to request DomainKeys Identified Mail (DKIM) 
+      [enabled on domains](/development/email.html#email-domain-validation) ([#2053](https://github.com/platformsh/platformsh-docs/pull/2053)).'
+      - '[Troubleshooting entry](/development/troubleshoot.html#git-push-fails-due-to-lack-of-disk-space) for 
+      `There is not enough free space to complete the push` error, which indicates large committed files ([#2057](https://github.com/platformsh/platformsh-docs/pull/2057)).'
+      - '`PLATFORM_SOURCE_DIR` was added to the [Platform.sh-provided variables table](/development/variables.html#use-platformsh-provided-variables), 
+      which is equivalent to `PLATFORM_APP_DIR` in the context of a running source operation ([#2073](https://github.com/platformsh/platformsh-docs/pull/2073)).'
+      - 'A guide was added related to [sanitizing databases](/development/sanitize-db.html) of personally identifiable information (PII) while 
+      working on development environments ([#2089](https://github.com/platformsh/platformsh-docs/pull/2089)).'
+      - 'A [troubleshooting section for Ruby](/languages/ruby.html#troubleshooting) was added that includes a tip for using `bundle` to overcome errors when 
+      using the default value of the `BUNDLE_DEPLOYMENT` environment variable ([#2101](https://github.com/platformsh/platformsh-docs/pull/2089)).'
+      - 'A [guide was added for WordPress](/guides/wordpress/redis.html), with instructions for setting up and configuring the WP-Redis and Redis Object Cache plugins 
+      ([#2111](https://github.com/platformsh/platformsh-docs/pull/2111)).'
+events:
+    upcoming:
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+      - 'Enim longo, peto subiectaque virgo. Quae dividite et sub Troiana hamo ignis pressa hunc; super nata, sed obliquo [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).'
+services:
+    added:
+      - '[PHP 8.1](https://platform.sh/blog/2021/php-81-lays-new-ground-at-platformsh/) is now available on all Grid regions.'
+      - '[Redis 6.2](/configuration/services/redis.html) is now available on all Grid regions.'
+    deprecated:
+      - '[Elasticsearch](/configuration/services/elasticsearch.html#deprecated-versions) 5.4, 6.5, 6.8, 7.2, 7.5, and 7.7 
+      have reached [End of Life](https://www.elastic.co/support/eol) and are now considered deprecated.'
+templates:
+    community:
+      - 'A new [Symfony template](https://github.com/symfonycorp/platformsh-symfony-template) provided by the Symfony team has become available. It will, going forward, act as our official Symfony template. This template contains multiple branches for major versions of Symfony 5.4 and 6.0 for PHP 8.0 and 8.1 on Platform.sh.'
+    new:
+      - 'A new template for [Strapi v4](https://github.com/platformsh-templates/strapi4) has been released. The legacy [Strapi v3](https://github.com/platformsh-templates/strapi) template has also been updated, and will remain available. '
+    deprecated:
+      - 'The [Symfony 4](https://github.com/platformsh-templates/symfony4) and [Symfony 5](https://github.com/platformsh-templates/symfony5) templates have been archived on GitHub, and will no longer receive upstream updates from our template maintenance tooling. The repos will continue to exist on GitHub for now, but will be removed later this year.'
+videodemos:
+    agencies:
+      - '[Building ecommerce solutions with Platform.sh](https://www.youtube.com/watch?v=Bk9hlUfBHqQ). Ecommerce experts at digital agency Adapt share how Platform.sh helps them build robust, high-performance solutions for clients like Interflora.'
+    webcasts:
+      - description: '[Deploy Friday (E83) Why is typescript taking over the world?](https://www.youtube.com/watch?v=GkN15uEWxII)'
+        items:
+          - '**Host**:<br/>Robert Douglass, VP Channel Development, Platform.sh'
+          - '**Guests**:<br/>Alexandre Santos, Engineering, KI challengers<br/>Apurv Khare, Software engineer III, Walmart'
+      - description: '[Deploy Friday (E84) How WeWeb rapidly incorporated user feedback into their product](https://www.youtube.com/watch?v=DDTRNSfTICM)'
+        items:
+          - '**Host**:<br/>Robert Douglass, VP Channel Development, Platform.sh'
+          - '**Guests**:<br/>Raphaël Goldsztejn, CEO, WeWeb.io<br/>Florian Briou, CPO, WeWeb.io'
+website:
+    marketplace:
+      - '[Landing page for Strapi](https://platform.sh/marketplace/strapi/) was updated to launch the new Strapi v4 template.'
+    pricing:
+      - '[Pricing for additional users](https://platform.sh/pricing/) updated for AUS and GBP currencies.'
+    security:
+      - '[Platform.sh trust center](https://platform.sh/trust-center/) launched, which contains all compliance certifications, as well as privacy and legal information.'
+    tos:
+      - '**Section 11 - Intellectual property, DMCA take down policy and other limitations**
+      <br/>Updated language regarding sanctions and restricted countries list ([v 2.7, 11 January 2022]((https://platform.sh/tos/#section-11---intellectual-property-dmca-take-down-policy-and-other-limitations)))
+      <br/>Fixed wording in sanctions and restricted countries paragraph ([v 2.7.1, 13 January 2022]((https://platform.sh/tos/#section-11---intellectual-property-dmca-take-down-policy-and-other-limitations)))'
+      - '[Law Enforcement Requests Guidelines](https://platform.sh/law-enforcement-requests-guidelines/) page added.'

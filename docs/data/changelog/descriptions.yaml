@@ -1,0 +1,67 @@
+api: |
+  Everything you use to interact with your projects and environments is built on top of the Platform.sh API. 
+  You can place requests directly against `https://api.platform.sh/` once you have [authenticated with an OAuth2 token](https://api.platform.sh/docs/#section/Authentication).
+  <br/><br/>
+  Consult the [API documentation](https://api.platform.sh/docs/) and the [OpenAPI specification](https://api.platform.sh/docs/openapispec-platformsh.json) for more details.
+blackfire: |
+  [Blackfire.io](https://blackfire.io/docs) is a code performance observability solution, and a part of Platform.sh since 2021.
+  It is composed of a profiling, application performance monitoring, and performance testing toolset that enables you to develop a 
+  comprehensive continuous observability strategy for your applications.
+  <br/><br/>
+  Existing Blackfire accounts can be configured any Professional or Dedicated project on Platform.sh, or it can be added to any project in our Elite and Enterprise tiers. 
+  See our [documentation](/integrations/observability/blackfire.md) for details on getting started, and the [Blackfire documentation](https://blackfire.io/docs/introduction) 
+  for a more comprehensive introduction.
+changelog: |
+  If you're specifically looking for changes to the documentation, see the [section for those](#documentation).
+  Otherwise the remaining sections below break down all of the major changes in the Platform.sh ecosystem for
+cli: |
+  The Platform.sh CLI is a unified tool for managing your projects from the command line.
+  You can [install to use it locally](/development/cli.md), or [create an API token](/development/cli/api-tokens.md#get-a-token) to attach to 
+  [machine users](/development/cli/api-tokens.md#create-a-machine-user) or to [run within your environments](/development/cli/api-tokens.md#on-a-platformsh-environment).
+  Report issues [on GitHub](https://github.com/platformsh/platformsh-cli) and consult the [contributing guide](https://github.com/platformsh/platformsh-cli/blob/3.x/CONTRIBUTING.md) to open a pull request. 
+console: |
+  Platform.sh provides a repsonsible management console which allows you to interact with your projects and manage your environments.
+  You can access the management console at [`console.platform.sh`](https://console.platform.sh).
+  Consult the [documentation](/administration/web.html) for more details.
+services: |
+  You are able to add a number of [built-in services](/configuration/services.html) to your projects with minimal configuration. 
+  Services on Platform.sh are considered "managed", in that you have the ability to commit specific minor versions in most cases, while patch versions and security fixes are updated
+  automatically by Platform.sh between deployments as they become available. 
+blog: |
+  The Platform.sh Blog contains the latest updates around major news, product announcements, case studies, and interesting experiments we've found internally working with Platform.sh. 
+  You can find the blog [on our website](https://platform.sh/blog/), and you can subscribe to updates by [joining our newsletter](https://platform.sh/preferences/).
+docs: |
+  Our public user documentation serves as the primary reference for getting started with Platform.sh, migrating your existing application, 
+  and for long-term development for projects of all tiers. 
+  It also contains important information regarding our data and security policies that influence compliance.
+  <br/><br/>
+  You can open issues [on the GitHub repository](https://github.com/platformsh/platformsh-docs), and take a look at the 
+  [contributing guide](https://github.com/platformsh/platformsh-docs/blob/main/CONTRIBUTING.md) for more information about making updates.
+templates: |
+  Platform.sh maintains a number of template repositories that can serve as references or starting points for deploying a number of frameworks on our platform.
+  All templates can be used directly from the management console when creating a new project, and are available [on GitHub](https://github.com/platformsh-templates).
+  <br/><br/>
+  Open issues directly [on the individual repositories](https://github.com/platformsh-templates); contributions and recommendations are welcome.
+  If you would like to add your own software project to [the marketplace](https://platform.sh/marketplace/) and to the catalog seen by users in the management console, see the 
+  [External Templates Project](https://github.com/platformsh/templates-external) to learn how to contribute.
+website: |
+  Our website is constantly evolving to better reflect our community, our partnerships, our resources, and our plans for the future.
+  There you can find [company news](https://platform.sh/company/press/), [technical articles](https://platform.sh/blog/), [case studies](https://platform.sh/customers/), 
+  [whitepapers](https://platform.sh/downloads/), and important information regarding our [security procedures](https://platform.sh/security/) 
+  and [compliance certifications](https://platform.sh/trust-center).
+  You can also find helpful resources about [pricing](https://platform.sh/pricing/), [joining our Partner Program](https://platform.sh/solutions/digital-agencies/), 
+  as well as our [list of current job openings](https://platform.sh/company/careers/).
+  <br/><br/>
+  If you're specifically looking for blogs published on our site, see the [Blog section](#blog) of updated resources.
+videosdemos: |
+  Platform.sh uploads onboarding materials, demos, livestreams, webinars, and recent talks to our 
+  [YouTube channel](https://www.youtube.com/channel/UCkFKfPy8Cqpuv4Iif6UNuow) throughout the year.
+contributions: |
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent auctor quam massa, nec finibus arcu laoreet in.<br/><br/>
+  Vivamus venenatis tellus eu lorem ultrices, ut pulvinar odio consectetur. Mauris vel mi dui. Donec eget accumsan nulla, ac finibus massa. Curabitur laoreet lacinia malesuada.
+  [Acoetes umbra](http://www.puerpondus.net/uniuslevi.aspx).
+events: |
+  Platform.sh sponsors and attends events throughout the year where you can connect with our Developer Relations and Sales teams. 
+  Visit the [Events page](https://platform.sh/events) of our website for the most up-to-date list of recent and upcoming events.
+forum: |
+  Our Discourse [Community site](https://community.platform.sh) is the primary place to ask questions and share tips you've discovered working with Platform.sh.
