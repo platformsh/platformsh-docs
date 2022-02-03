@@ -119,6 +119,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `tidy`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `tokenizer`       |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `uuid`            |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
+| `webp`            |       |       |       |       |       |       |       |       | Avail | Avail |
 | `wddx`            |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
 | `xdebug`          |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
 | `xcache`          | Avail | Avail |       |       |       |       |       |       |       |       |
