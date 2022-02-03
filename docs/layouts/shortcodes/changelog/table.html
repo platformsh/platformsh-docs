@@ -1,0 +1,33 @@
+{{ $year := .Get "year" }}
+{{ $month := .Get "month" }}
+{{ $section := .Get "section" }}
+
+
+{{ $changes := index .Site.Data.changelog $year $month $section }}
+
+<table style="font-family: Overpass; border: none">
+    <tbody>
+        {{ range $index, $data := $changes }}
+        <tr style="border-bottom: 1px solid #E7E7E7;">
+            <td style="vertical-align: text-top; font-family: Overpass mono; color: #145CC6; border: none;">{{ $index }}</td>
+            <td style="border: none">
+                <ul>
+                    {{ range $data }}
+                        {{ if lt (len .) 3 }}
+                        <li>{{ .description | markdownify }}
+                            <ul>
+                                {{ range .items }}
+                                    <li>{{ . | markdownify }}</li>
+                                {{ end }}
+                            </ul>
+                        </li>
+                        {{ else }}
+                        <li>{{ . | markdownify }}</li>
+                        {{ end }}
+                    {{ end }}
+                </ul>
+            </td>
+        </tr>
+        {{ end }}
+    </tbody>
+</table>

@@ -1,0 +1,8 @@
+<div style="margin: 1em;">
+    <p style="text-decoration: underline;"><strong>Highlights:</strong></p>
+    <ul>
+        {{ range .Params.highlights }}
+            <li>{{ . | markdownify }}</li>
+        {{ end }}
+    </ul>
+</div>

@@ -1,0 +1,42 @@
+<!-- Grab variables -->
+{{ $year := .Get "year"}}
+{{ $month := .Get "month" }}
+{{ $baseurl := "https://community.platform.sh/t/"}}
+<!-- Generate row from community categories -->
+{{ $categories := slice "how-to" }}
+<table style="font-family: Overpass; border: none">
+    <tbody>
+    {{ range $categories }}
+        {{ $category := . }}
+        <!-- Get data -->
+        {{ $communityurl := printf "https://community.platform.sh/c/%s.json" . }}
+        {{ $data := getJSON $communityurl }}
+        {{ $topics := index $data "topic_list" "topics" }}
+        <!-- Set empty data variables -->
+        {{ $entries := newScratch }}
+        {{ $entrykeys := slice }}
+        <!-- Find matching topics in given month, i.e. "01" -->
+        {{ range $topics}}
+            {{ $date := split .created_at "-"}}
+            {{ if and ( eq (index $date 0) $year ) (eq (index $date 1) $month ) }}
+                {{ $entries.Set ( string .id ) . }}
+                {{ $entrykeys = $entrykeys | append (string .id) }}
+            {{ end }}
+        {{ end }}
+        <!-- Show topic list -->
+        {{ if gt ( len $entrykeys) 0 }}
+        <tr style="border-bottom: 1px solid #E7E7E7;">
+            <td style="vertical-align: text-top; font-family: Overpass mono; color: #145CC6; border: none;">{{ $category }}</td>
+            <td style="border: none">
+                <ul>
+                {{ range $entrykeys }}
+                    {{ $entry := $entries.Get . }}
+                    <li><a href="{{ printf "%s%s" $baseurl $entry.slug }}">{{ $entry.title }}</a></li>
+                {{ end }}
+                </ul>
+            </td>
+        </tr>
+        {{ end }}
+    {{ end }}
+    </tbody>
+</table>

@@ -1,0 +1,20 @@
+{{ $video := default "none" ( .Page.Params.video )}}
+<p>{{ .Page.Description }}</p>
+{{ if ne $video "none" }}
+    {{ partial "youtube.html" $video }}
+{{ end }}
+<div>
+    <p style="text-decoration: underline;"><strong>Highlights:</strong></p>
+    <ul>
+        {{ range .Page.Params.highlights }}
+            <li>{{ . | markdownify }}</li>
+        {{ end }}
+    </ul>
+</div>
+
+{{ $description := index .Site.Data.changelog "descriptions" "changelog" }}
+<p style="font-size: 0.9rem; text-align: right;"><strong>Published:</strong> {{ .Page.PublishDate.Format "2 January 2006" }}</p>
+<hr style="border-top: 1.5px solid black; margin-left: 0px; margin-right: 0px;">
+<div class="alert alert-primary" role="alert">
+    <p><strong>About:</strong></p><p class="alert-text">{{ $description | markdownify }} {{ .Page.Title }}.</p>
+</div>

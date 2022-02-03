@@ -1,0 +1,2 @@
+{{ $description := index .Site.Data.changelog "descriptions" ( .Get 0 ) }}
+<p>{{ $description | markdownify }}</p>

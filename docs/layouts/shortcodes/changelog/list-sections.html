@@ -1,0 +1,9 @@
+{{ $currentYear := .Get 0 }}
+<br/>
+<ul>
+    {{ range .Page.Pages.Reverse }}
+        {{ if ne .Params.sidebartitle $currentYear }}
+            <li><a href="{{ .RelPermalink }}">{{ .Params.sidebartitle }}</a></li>
+        {{ end }}
+    {{ end }}   
+</ul>

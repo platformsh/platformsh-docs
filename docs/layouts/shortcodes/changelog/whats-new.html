@@ -1,0 +1,47 @@
+{{ $currentYear := .Page.Params.currentyear }}
+{{ $latest := 1 }}
+{{ $home := default "false" ( .Get "home" ) }}
+
+{{ range .Page.Pages }}
+
+    <!-- Homepage -->
+    {{ if eq .Params.sidebartitle $currentYear }}
+
+        {{ range .Pages }}
+            {{ .Scratch.Set "home" $home }}
+            {{ .Scratch.Set "latest" $latest }}
+            {{ if eq $home "true" }}
+                {{ if $latest }}
+                    {{ partial "changelog/card.html" . }}
+                    {{ $latest = 0 }}
+                {{ end }}
+            {{ else }}
+                {{ partial "changelog/card.html" . }}
+            {{ end }}
+
+
+        {{ end }}
+
+    <!-- Sections -->
+    {{ else }}
+        {{ .Scratch.Set "home" $home }}
+        {{ .Scratch.Set "latest" $latest }}
+        {{ if eq $home "true" }}
+            {{ if $latest }}
+                {{ partial "changelog/card.html" . }}
+                {{ $latest = 0 }}
+            {{ end }}
+        {{ else }}
+            {{ partial "changelog/card.html" . }}
+        {{ end }}
+    {{ end }}
+
+{{ end }}
+
+
+{{ if eq $home "true" }}
+<div style="margin: 3em; text-align: center; font-size: 20px; line-height: 20px; font-weight: 900;">
+    {{ $currentyearurl := printf "/other/changelog/%s.html" $currentYear }}
+    <a style="color: #302F45" href="{{ $currentyearurl }}">View all the changes from 2022</a>
+</div>
+{{ end }}
