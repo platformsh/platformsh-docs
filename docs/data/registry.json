@@ -180,7 +180,9 @@
       "deprecated": [],
       "supported": [
         "1.9",
-        "1.10"
+        "1.10",
+        "1.11",
+        "1.12"
       ]
     }
   },
@@ -979,17 +981,20 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "1.6"
+        "1.6",
+        "1.8"
       ]
     },
     "versions-dedicated": {
       "supported": [
-        "1.6"
+        "1.6",
+        "1.8"
       ]
     },
     "versions-dedicated-gen-3": {
       "supported": [
-        "1.6"
+        "1.6",
+        "1.8"
       ]
     }
   }
