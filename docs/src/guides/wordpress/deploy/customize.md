@@ -79,4 +79,12 @@ Finally, install `wp-cli` and `psy/psych` using Composer. With these packages in
 $ composer require wp-cli/wp-cli-bundle psy/psysh --ignore-platform-reqs
 ```
 
+Once you've pushed that commit, you will be able to use the CLI within an application container from the `vendor` directory:
+
+```bash
+$ ./vendor/bin/wp plugin list
+```
+
+If receive an error of the type `This does not seem to be a WordPress installation.`, you may still need to provide the `--path` flag that points to your WordPress install path. 
+
 {{< guide-buttons next="Deploy WordPress" >}}
