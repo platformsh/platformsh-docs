@@ -30,15 +30,15 @@ The most common issue is not allowing the right cookies as part of the router ca
 Some cookies, such as session cookies, need to be allowed,
 whereas others, such as marketing and analytics cookies,
 usually shouldn't be allowed to be part of the cache key.
-See the [router cache](../../configuration/routes/cache.md) documentation
-and the [cookie entry](../../configuration/routes/cache.md#cookies).
+See more about [router cache](../../configuration/routes/cache.md)
+and [cookie entry](../../configuration/routes/cache.md#cookies).
 
 You also need to ensure that your application is sending the correct `cache-control` header.
 The router cache obeys whatever cache headers your application sends,
 so send it good ones.
 
 Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.
-See the [`web.locations`](../../configuration/app/app-reference.md#locations) documentation for more details.
+See the [`web.locations` documentation](../../configuration/app/app-reference.md#locations) for more details.
 
 ## Optimize the FPM worker count
 
