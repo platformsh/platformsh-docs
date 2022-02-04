@@ -82,6 +82,8 @@ composer require wp-cli/wp-cli-bundle psy/psysh --ignore-platform-reqs
 
 If you've installed the WordPress CLI as a dependency as in the [previous step](./configure.md#application-container-platformappyaml),
 you can use it directly.
+(As long as you have only `wp-cli/wp-cli-bundle` as a dependency and not `wp-cli/wp-cli`.)
+
 Otherwise, commit the changes from composer and push.
 Then you can use the WordPress CLI within an application container from the `vendor` directory:
 
