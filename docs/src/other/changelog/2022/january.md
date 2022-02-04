@@ -11,6 +11,7 @@ highlights:
   - "**Services:** PHP 8.1 and Redis 6.2 now available"
   - "**Blog:** FastAPI and asynchronous profiling, Laravel integrations, and shareable activities"
   - "**Templates:** New Symfony and Strapi v4 templates"
+  - "**Documentation:** New guides for Ruby troubleshooting and sanitizing databases of PII, plus updates to the WordPress Redis guide."
 ---
 
 {{< changelog/header >}}
