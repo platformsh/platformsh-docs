@@ -136,6 +136,8 @@ services:
     added:
       - '[PHP 8.1](https://platform.sh/blog/2021/php-81-lays-new-ground-at-platformsh/) is now available on all Grid regions.'
       - '[Redis 6.2](/configuration/services/redis.html) is now available on all Grid regions.'
+      - '[Elixir 1.11 and 1.12](/languages/elixir.html) are now available on all Grid regions.'
+      - '[Vault KMS 1.8](/configuration/services/vault.html) is now available on all Grid regions.'
     deprecated:
       - '[Elasticsearch](/configuration/services/elasticsearch.html#deprecated-versions) 5.4, 6.5, 6.8, 7.2, 7.5, and 7.7 
       have reached [End of Life](https://www.elastic.co/support/eol) and are now considered deprecated.'
