@@ -58,6 +58,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `iconv`           |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `igbinary`        |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `imagick`         | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
+| `imagick-webp`  |       |       |       |       |       |       |       |       | Avail | Avail |
 | `imap`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `interbase`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `intl`            | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
@@ -119,7 +120,6 @@ and turn off those on by default with the `disabled_extensions` key.
 | `tidy`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `tokenizer`       |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `uuid`            |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
-| `webp`            |       |       |       |       |       |       |       |       | Avail | Avail |
 | `wddx`            |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
 | `xdebug`          |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
 | `xcache`          | Avail | Avail |       |       |       |       |       |       |       |       |
