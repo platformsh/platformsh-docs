@@ -139,7 +139,7 @@ To create a footnote use the following syntax: `[^<name of the footnote>]`, e.g:
 A footnote[^1].
 ```
 
-To link to the previously created footnote, use the following syntax `[^<name of the footnote>]: `, for e.g: 
+To link to the previously created footnote, use the following syntax `[^<name of the footnote>]: `, e.g: 
 ```
 [^1]: A reference.
 ```
