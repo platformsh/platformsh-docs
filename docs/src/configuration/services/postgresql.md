@@ -22,9 +22,7 @@ Upgrading to PostgreSQL 12 using the `postgis` extension is not currently suppor
 See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-with-the-postgis-extension) section below for more details.
 {{< /note >}}
 
-### Deprecated versions
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended. They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -38,15 +36,15 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## Usage example
 
-In your `.platform/services.yaml` add:
+{{% endpoint-description type="postgresql" %}}
+
+[Service definition](./_index.md):
 
 {{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml">}}
 
-Add a relationship to the service in your ``.platform.app.yaml``:
+[App configuration](../app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" >}}
-
-{{< endpoint-description "postgresql" >}}
+{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 For PHP, in your `.platform.app.yaml` add:
 
@@ -56,7 +54,7 @@ runtime:
         - pdo_pgsql
 ```
 
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 
@@ -156,7 +154,10 @@ Taking a backup or a database export before doing so is strongly recommended.
 
 ## Multiple databases
 
-If you are using version `13` or later of this service it is possible to define multiple databases as well as multiple users with different permissions. To do so requires defining multiple endpoints. Under the `configuration` key of your service there are two additional keys:
+If you are using version `10`, `11`, `12`, `13`, or later of this service,
+it's possible to define multiple databases as well as multiple users with different permissions.
+To do so requires defining multiple endpoints.
+Under the `configuration` key of your service there are two additional keys:
 
 * `databases`:  This is a YAML array listing the databases that should be created. If not specified, a single database named `main` will be created.
 * `endpoints`: This is a nested YAML object defining different credentials. Each endpoint may have access to one or more schemas (databases), and may have different levels of permission for each. The valid permission levels are:
@@ -193,9 +194,9 @@ This example creates a single PostgreSQL service named `dbpostgres`. The server 
 
 * `admin`: has full access to both databases.
 * `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
-* `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It does not have access to `main`. 
+* `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It does not have access to `main`.
 
-If a given endpoint has access to multiple databases you should also specify which will be listed by default in the relationships array. If one isn't specified, the `path` property of the relationship will be `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the Platform.sh CLI will not be able to access the database on that relationship. For that reason, defining the `default_database` property is always recommended. 
+If a given endpoint has access to multiple databases you should also specify which will be listed by default in the relationships array. If one isn't specified, the `path` property of the relationship will be `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the Platform.sh CLI will not be able to access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
 
 Once these endpoints are defined, you will need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `.platform.app.yaml` might look like:
 
@@ -234,7 +235,7 @@ Alternatively, if you define multiple databases but no endpoints, a single user 
 
 ```yaml
 configuration:
-    databases: 
+    databases:
         - firstdb
         - seconddb
         - thirddb
@@ -244,6 +245,10 @@ configuration:
             seconddb: admin
             thirddb: admin
 ```
+
+## Service timezone
+
+To change the timezone for the current session, run `SET TIME ZONE <timezone>;`.
 
 ## Extensions
 

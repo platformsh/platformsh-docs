@@ -22,11 +22,22 @@ A third-party availability monitoring system is configured for every Dedicated p
 
 ## Application performance monitoring
 
-Platform.sh does not provide application-level performance monitoring.  However, we strongly recommend that customers configure application monitoring for themselves.
+Platform.sh offers application performance monitoring (APM) packaged with infrastructure monitoring in the Platform.sh Observability Suite.
+This APM relies on [Blackfire.io](../../increase-observability/integrate-observability/blackfire.md#on-a-dedicated-cluster),
+which uniquely combines monitoring, profiling, and performance testing technologies.
 
-Platform.sh owns and recommends [Blackfire.io](../../increase-observability/integrate-observability/blackfire.md#on-a-dedicated-cluster). By using Blackfire on Platform.sh, you will benefit from an enhanced experience and support, as well as upcoming unique features. You can contact your sales representative to get a quote for whatever size cluster is running your application.
+The Observability Suite is currently offered only to Enterprise, Elite, and Fleet customers.
+Pro customers can purchase a [Blackfire subscription separately](https://www.blackfire.io/pricing)
+and benefit from all of its features on Platform.sh.
+The Observability Suite package includes all Blackfire features, support, and usage that scales with your needs.
 
-Platform.sh also [supports New Relic APM](../../increase-observability/integrate-observability/new-relic/_index.md#on-a-dedicated-cluster). After you have signed up with New Relic and gotten your license key, open a support ticket so that it can be installed on your project. New Relic infrastructure monitoring is not supported.
+By using Blackfire on Platform.sh, you benefit from an enhanced experience and support as well as upcoming unique features.
+You can contact your sales representative to get a quote for whatever size cluster is running your application.
+
+Platform.sh also [supports New Relic APM](../../increase-observability/integrate-observability/new-relic/_index.md#on-a-dedicated-cluster)
+ After you have signed up with New Relic and gotten your license key,
+ open a support ticket so that it can be installed on your project.
+ New Relic infrastructure monitoring isn't supported.
 
 ## Availability incident handling procedure
 

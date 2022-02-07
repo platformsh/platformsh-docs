@@ -1,6 +1,6 @@
 europe:
     eu:
-        name: Dublin
+        name: Ireland
         label: eu.platform.sh
         outbound_ips: 
             - "54.72.94.105"
@@ -12,7 +12,7 @@ europe:
             - "54.76.137.151"
             - "54.76.136.188"
     eu-2:
-        name: Paris
+        name: Ireland 2
         label: eu-2.platform.sh
         outbound_ips: 
             - "52.208.123.9"
@@ -24,7 +24,7 @@ europe:
             - "34.241.191.143"
             - "52.210.208.94"
     eu-4:
-        name: Paris 2
+        name: Ireland 3
         label: eu-4.platform.sh
         outbound_ips: 
             - "18.200.158.188"
@@ -46,7 +46,7 @@ europe:
         inbound_ips:
             - "13.51.62.86"
     de-2:
-        name: Berlin
+        name: Germany
         label: de-2.platform.sh
         outbound_ips: 
             - "35.246.248.138"

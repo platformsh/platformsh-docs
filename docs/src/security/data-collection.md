@@ -25,8 +25,6 @@ Platform.sh records routine system logs.  We do not access Customer-specific sys
 3. to prevent an outage, or
 4. to comply with a legal obligation.
 
-In the future, we will be rolling out improved log segregation to facilitate Customer access to their own logs for diagnostic purposes.
-
 ## Access logs
 
 There are two main types of access logs: Web and SSH.

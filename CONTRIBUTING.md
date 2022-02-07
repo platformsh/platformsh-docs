@@ -66,13 +66,13 @@ To add a security transparency report for a new year (after receiving the data):
 1. Copy the tables from the previous year:
 
    ```bash
-   cp -R docs/layouts/shortcodes/tranparency-reports/tables/2020/ docs/layouts/shortcodes/tranparency-reports/tables/2021
+   cp -R docs/layouts/shortcodes/tranparency-reports/tables/2021 docs/layouts/shortcodes/tranparency-reports/tables/2022
    ```
 
 1. Copy the template from the previous year:
 
    ```bash
-   cp docs/src/security/transparency/2020_report.md docs/src/security/transparency/2021_report.md
+   cp docs/src/security/transparency/2021_report.md docs/src/security/transparency/2022_report.md
    ```
 
 1. Update instances of the year in the new `.md` file:
@@ -82,7 +82,7 @@ To add a security transparency report for a new year (after receiving the data):
 1. Run the docs locally and navigate to the new page _using Firefox_.
 1. Print the page as a PDF and save in `docs/static/files/reports/transparency-abuse/`.
 
-   Save the file as `<YEAR>_platformsh_transparency_report.pdf` (replacing `<YEAR>` with the current year).
+   Save the file as `<YEAR>_platformsh_transparency_report.pdf` (replacing `<YEAR>` with the respective year).
 
 The report text is in `docs/data/transparency-reports.yaml`.
 

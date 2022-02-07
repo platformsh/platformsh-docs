@@ -24,17 +24,17 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/de
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+{{% endpoint-description type="kafka" %}}
 
-{{< readFile file="src/registry/images/examples/full/kafka.services.yaml" highlight="yaml" >}}
+[Service definition](./_index.md):
 
-In your ``.platform.app.yaml``:
+{{< readFile file="src/registry/images/examples/full/kafka.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
-{{< readFile file="src/registry/images/examples/full/kafka.app.yaml" highlight="yaml" >}}
+[App configuration](../app/app-reference.md):
 
-{{< endpoint-description "kafka" >}}
+{{< readFile file="src/registry/images/examples/full/kafka.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 

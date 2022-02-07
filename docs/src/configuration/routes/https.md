@@ -7,10 +7,13 @@ weight: 1
 
 All environments on Platform.sh support both HTTP and HTTPS automatically.
 Production TLS certificates are provided by [Let's Encrypt](https://letsencrypt.org/).
-You may alternatively provide your own TLS certificate from a 3rd party issuer of your choice at no charge from us.
+You may alternatively [provide your own TLS certificate from a third-party issuer](../../domains/steps/tls.md) of your choice at no charge from us.
 
-Let’s Encrypt TLS Certificates are valid for 90 days
-and Platform.sh automatically renews them 28 days before expiration to avoid HTTPS interruptions.
+The Let’s Encrypt TLS Certificates are:
+
+- valid for 90 days
+- automatically renewed 28 days before expiration
+
 If a renewal is available and needed, the environment is automatically redeployed to renew the certificate.
 As no new build is required the process should take at most a few seconds.
 The deploy and post-deploy hook are run during this process.
@@ -33,6 +36,13 @@ TLS certificates are often still called SSL certificates.
 TLS is a newer encryption system that has replaced SSL, but the name SSL is still widely recognized.
 In practice, they mean the same thing today, but TLS is the more correct term.
 {{</ note >}}
+
+### Limits
+
+{{% lets_encrypt_limitations %}}
+
+If you need more hostnames than that, obtain additional certificates or a wildcard certificate from another TLS provider. 
+Alternatively, consider splitting your project up into multiple Platform.sh projects.
 
 ## Using HTTPS
 
@@ -79,14 +89,6 @@ The use cases for this configuration are few.
 ```
 
 More complex routing logic is also possible if the situation calls for it.
-
-{{< note >}}
-Let's Encrypt has a limit of 100 TLS certificates per environment.
-If you define both a `{default}` and `www.{default}` route for each domain you use, that will give you a limit of 50 domains.
-Adding more than that will result in a warning on deploy and some domains will not be issued a TLS certificate.
-If you need more than that, we recommend obtaining additional certificates or a wildcard certificate from another TLS provider.
-Alternatively, consider splitting your project up into multiple discrete Platform.sh projects.
-{{< /note >}}
 
 ## TLS configuration
 
@@ -242,7 +244,8 @@ Let's Encrypt needs to make sure that the requester is entitled to receive the S
 This ownership verification is achieved through the so called _Challenge_ step,
 more background information can be found in the [Let's Encrypt Documentation](https://letsencrypt.org/docs/challenge-types/).
 
-By default, Platform.sh checks that both the `some-example.platform.sh` and `www.some-example.platform.sh` domains are pointing to your project.
+If you include them in your [routes definition](./_index.md),
+Platform.sh checks that both the `example.platform.sh` and `www.example.platform.sh` domains are pointing to your project.
 The certificate also encompasses both these domains.
 Make sure that both your apex domain and it's `www` subdomain are pointing to your project,
 more information can be found in out go live [step-by-step guide](gettingstarted/next-steps/going-live/configure-dns.md).

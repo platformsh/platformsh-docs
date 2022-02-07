@@ -10,10 +10,17 @@ Learn about user roles and environment types, how to add and delete users, and h
 
 ## User roles
 
-Every Platform.sh user has a role that controls their access and permission levels.
+Within a project, each user has a role that controls their access and permission levels.
 
 * Project Admin: Users who can configure project settings, add and remove users, administer environment permissions, push code, and execute actions on all project environments.
 * Project Viewer: Any user with access to environment types automatically gets this role.
+
+These control who has access to projects.
+Users can still see projects that they can't access if they're a member of an organization.
+See more on access control for [organizations](./organizations.md).
+
+To see all projects you have a role in, from the main console page
+click **All projects&nbsp;<span aria-label="and then">></span> All projects**.
 
 ## Environment types
 
@@ -41,7 +48,7 @@ The following table shows the available roles for environment types.
 | Contributor | Yes | Yes | Yes | Yes | No | No |
 | Admin| Yes | Yes | Yes | Yes | Yes | Yes |
 
-To customize who can use SSH, [set the access key](/configuration/app/access.md) in your `platform.app.yaml` file.
+To customize who can use SSH, [set the access key](/configuration/app/app-reference.md#access) in your `platform.app.yaml` file.
 
 ## Manage users
 

@@ -8,15 +8,15 @@
 <ul>
     <li>
         <p><code>relationships</code></p>
-        <p>Access to another service or application container in the cluster is given through <a href="/configuration/app/relationships.html"><code>relationships</code></a>, and in this case one has been defined to the backend {{ .Get "name" }} container using it&rsquo;s <code>name</code>.</p>
+        <p>Access to another service or application container in the cluster is given through <a href="/configuration/app/app-reference.html#relationships"><code>relationships</code></a>, and in this case one has been defined to the backend {{ .Get "name" }} container using it&rsquo;s <code>name</code>.</p>
     </li>
     <li>
         <p><code>post_deploy</code></p>
-        <p>Platform.sh containers reside in separate build containers at build time, before their images are moved to the final application container at deploy time. These build containers are isolated, and therefore Gatsby does not have access to {{ .Get "name" }} during the build hook, where you would normally run <a href="https://github.com/platformsh-templates/gatsby/blob/master/.platform.app.yaml#L21" target="_blank" rel="noopener"><code>gatsby build</code></a>. {{ .Get "name" }} will not be available until after the deploy hook, and so Gatsby&rsquo;s build is postponed until the <a href="/configuration/app/build.html#post-deploy-hook"><code>post_deploy</code></a> hook below.</p>
+        <p>Platform.sh containers reside in separate build containers at build time, before their images are moved to the final application container at deploy time. These build containers are isolated, and therefore Gatsby does not have access to {{ .Get "name" }} during the build hook, where you would normally run <a href="https://github.com/platformsh-templates/gatsby/blob/master/.platform.app.yaml#L21" target="_blank" rel="noopener"><code>gatsby build</code></a>. {{ .Get "name" }} will not be available until after the deploy hook, and so Gatsby&rsquo;s build is postponed until the <a href="/configuration/app/hooks.html#post-deploy-hook"><code>post_deploy</code></a> hook below.</p>
     </li>
     <li>
         <p><code>mounts</code></p>
-        <p>To the point above, there are additional consequences to postponing the Gatsby build, namely that you will only have write access to the container this late in the build-deploy pipeline. In order to allow Gatsby to write to <code>public</code>, that directory has been defined as a <a href="/configuration/app/storage.html">mount</a>.</p>
+        <p>To the point above, there are additional consequences to postponing the Gatsby build, namely that you will only have write access to the container this late in the build-deploy pipeline. In order to allow Gatsby to write to <code>public</code>, that directory has been defined as a <a href="/configuration/app/app-reference.html#mounts">mount</a>.</p>
     </li>
 </ul>
 

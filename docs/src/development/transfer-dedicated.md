@@ -71,7 +71,7 @@ To transfer data into either the staging or production environments,
 you can either download it from your Platform.sh development environment to your local system first
 or transfer it directly between environments using SSH-based tools (such as SCP, rsync).
 
-First, set up [SSH forwarding](/development/ssh/_index.md#forwarding-keys-by-default) by default for Platform.sh domains.
+First, set up [SSH forwarding](./ssh/ssh-keys.md#forwarding-keys-by-default) by default for Platform.sh domains.
 
 Then run `platform ssh` with the production branch checked out to connect to the default development environment.
 Files are the easier data to transfer, and can be done with `rsync`.

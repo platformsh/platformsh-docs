@@ -1,6 +1,5 @@
 ---
 title: "[Beta] Source operations"
-weight: 13
 toc: false
 sidebarTitle: "Source operations"
 tier:

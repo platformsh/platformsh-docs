@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react'
 import regeneratorRuntime from 'regenerator-runtime'; // eslint-disable-line no-unused-vars
 
 import Suggestions from 'components/Suggestions'
 import SuggestionsPrimary from 'components/SuggestionsPrimary'
 
-let config = {}
-const request = async () => {
+const getConfig = async () => {
   // Primary configuration occurs here,
   // which allows the Search bar in docs to communicate with the Meilisearch service.
   // The `config.json` file does not exist at build time,
@@ -15,129 +15,150 @@ const request = async () => {
   // here if they are not yet set, but a file works just fine.
   // The mount `public/scripts/xss/dist/config` has been defined to support this.
   const response = await fetch('/scripts/xss/dist/config/config.json');
-  config = await response.json();
+  return response.json();
 }
-request();
 
-class Search extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      query: '',
-      hits: {
-        docs: [], templates: [], community: [], website: [], apidocs: []
-      }
-    }
-  }
+const Search = ({ fullPage }) => {
+  const basicMaxResults = 7
+  const [query, setQuery] = useState('')
+  const [hits, setHits] = useState({
+    docs: [], templates: [], community: [], website: [], apidocs: []
+  })
+  const [maxResults, setMaxResults] = useState(basicMaxResults)
+  const [config, setConfig] = useState({
+    index: '',
+    public_api_key: '',
+    url: ''
+  })
 
-  getInfo = () => {
-    axios.get(`${config.url}indexes/${config.index}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${this.state.query}&limit=7&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': config.public_api_key } })
+  const urlQuery = fullPage ? new URLSearchParams(window.location.search).get('q') : '';
+
+  const limit = fullPage ? maxResults : 7
+
+  const getInfo = (infoConfig, infoQuery) => {
+    axios.get(`${infoConfig.url}indexes/${infoConfig.index}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text&q=${infoQuery}&limit=${limit}&attributesToRetrieve=title,text,url,site,section`, { params: {}, headers: { 'X-Meili-Api-Key': infoConfig.public_api_key } })
       .then(({ data }) => {
-        this.setState({
-          hits: {
-            docs: data.hits.filter((hit) => hit.site === 'docs'),
-            templates: data.hits.filter((hit) => hit.site === 'templates'),
-            community: data.hits.filter((hit) => hit.site === 'community'),
-            website: data.hits.filter((hit) => hit.site === 'website'),
-            apidocs: data.hits.filter((hit) => hit.site === 'apidocs'),
-          }
+        setHits({
+          docs: data.hits.filter((hit) => hit.site === 'docs'),
+          templates: data.hits.filter((hit) => hit.site === 'templates'),
+          community: data.hits.filter((hit) => hit.site === 'community'),
+          website: data.hits.filter((hit) => hit.site === 'website'),
+          apidocs: data.hits.filter((hit) => hit.site === 'apidocs'),
         })
       })
       .catch((err) => console.error(err))
   }
 
-  clearInputFunc = () => {
-    this.search = ''
-  }
-
-  handleInputChange = () => {
-    this.setState({
-      query: this.search.value
-    }, () => {
-      if (this.state.query && this.state.query.length > 1) {
-        // this.showDropdown()
-        if (this.state.query.length % 2 === 0) {
-          this.getInfo()
-        }
-      } else if (!this.state.query) {
-        this.setState({
-          hits: {
-            docs: [],
-            templates: [],
-            community: [],
-            website: [],
-            apidocs: [],
-          }
-        })
+  useEffect(() => {
+    getConfig().then((value) => {
+      setConfig(value)
+      if (!query) {
+        setQuery(urlQuery)
+        getInfo(value, urlQuery)
+      } else {
+        getInfo(value, query)
       }
     })
+  }, [maxResults, urlQuery])
+
+  const clearInputFunc = () => {
+    setQuery('')
   }
 
-  render() {
-    const docs = this.state.hits.docs.length > 0 ? <SuggestionsPrimary title="Documentation" hits={this.state.hits.docs} /> : ''
-    const templates = this.state.hits.templates.length > 0 ? <Suggestions title="Templates" hits={this.state.hits.templates} /> : ''
-    const community = this.state.hits.community.length > 0 ? <Suggestions title="Community" hits={this.state.hits.community} /> : ''
-    const website = this.state.hits.website.length > 0 ? <Suggestions title="Main Site" hits={this.state.hits.website} /> : ''
-    const apidocs = this.state.hits.apidocs.length > 0 ? <Suggestions title="API Docs" hits={this.state.hits.apidocs} /> : ''
+  const handleInputChange = (event) => {
+    const { value } = event.target
+    setQuery(value);
+    getInfo(config, value)
+  }
 
-    const summedSecondary = this.state.hits.community.length + this.state.hits.website.length
-      + this.state.hits.apidocs.length + this.state.hits.templates.length
-    const noPrimaryResults = (this.state.hits.docs.length === 0 && summedSecondary > 0) ? (
-      <div className="suggestions suggestions-primary">
-        <h4 className="section">Documentation</h4>
-        <div className="hits">
-          <ul>Sorry, no documentation matched your search.</ul>
-          {' '}
-        </div>
-        {' '}
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    if (!fullPage) {
+      window.location = `${window.location.origin}/search.html?q=${query}`
+    }
+  }
 
+  const docs = hits.docs.length > 0 ? <SuggestionsPrimary title="Documentation" hits={hits.docs} /> : ''
+  const templates = hits.templates.length > 0 ? <Suggestions title="Templates" hits={hits.templates} /> : ''
+  const community = hits.community.length > 0 ? <Suggestions title="Community" hits={hits.community} /> : ''
+  const website = hits.website.length > 0 ? <Suggestions title="Main Site" hits={hits.website} /> : ''
+  const apidocs = hits.apidocs.length > 0 ? <Suggestions title="API Docs" hits={hits.apidocs} /> : ''
+
+  const summedSecondary = hits.community.length + hits.website.length
+        + hits.apidocs.length + hits.templates.length
+  const noPrimaryResults = (hits.docs.length === 0 && summedSecondary > 0) ? (
+    <div className="suggestions suggestions-primary">
+      <h4 className="section">Documentation</h4>
+      <div className="hits">
+        <ul>Sorry, no documentation matched your search.</ul>
       </div>
-    ) : ''
-    const secondaryResults = summedSecondary > 0 ? <div className="suggestions"><h4 className="section section-secondary">Other resources from Platform.sh</h4></div> : ''
+    </div>
+  ) : ''
+  const secondaryResults = summedSecondary > 0 ? <div className="suggestions"><h4 className="section section-secondary">Other resources from Platform.sh</h4></div> : ''
 
-    const allResults = (
-      <div className="search-all-results">
-        {docs}
-        {noPrimaryResults}
-        {secondaryResults}
-        {templates}
-        {community}
-        {website}
-        {apidocs}
-      </div>
-    )
-    const noQuery = ''
+  const allResults = (
+    <div className={fullPage ? 'search-page-results' : 'search-all-results'}>
+      {docs}
+      {noPrimaryResults}
+      {secondaryResults}
+      {templates}
+      {community}
+      {website}
+      {apidocs}
+    </div>
+  )
+  const noQuery = ''
 
-    return (
-      <form>
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="sr-only" htmlFor="searchwicon">Search our docs</label>
-        <input
-          id="searchwicon"
-          placeholder="Search Platform.sh"
-          ref={(input) => this.search = input}
-          onChange={this.handleInputChange}
-          className="searchinput"
-          autoComplete="off"
-        />
-        {this.state.query && this.state.query.length > 1
-          && (
-            <span>
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-              <label className="sr-only" htmlFor="clearsearch">Clear search</label>
-              <input
-                id="clearsearch"
-                type="submit"
-                className="clearinput"
-                value="+"
-                onClick={this.clearInputFunc}
-              />
-            </span>
-          )}
-        { (this.state.query && this.state.query.length > 1) ? allResults : noQuery}
+        <div className="searchInputHolder">
+          <input
+            id="searchwicon"
+            value={query}
+            placeholder="Search Platform.sh"
+            onChange={handleInputChange}
+            className="searchinput"
+            autoComplete="off"
+          />
+          {query && query.length > 1
+            && (
+            <button
+              type="button"
+              id="clearsearch"
+              className="clearinput"
+              onClick={clearInputFunc}
+            >
+              <span className="sr-only">Clear search</span>
+            </button>
+            )}
+        </div>
       </form>
-    )
-  }
+      {fullPage && hits.docs.length >= (basicMaxResults - 1) && query && query.length > 1
+        && (
+        <button
+          type="button"
+          className="secondarySearch"
+          onClick={() => {
+            if (maxResults === basicMaxResults) setMaxResults(200)
+            else setMaxResults(basicMaxResults)
+          }}
+        >
+          <span>{maxResults === basicMaxResults ? 'Show all results' : 'Hide extra results'}</span>
+        </button>
+        )}
+      {(query && query.length > 1) ? allResults : noQuery}
+    </>
+  )
+}
+
+Search.propTypes = {
+  fullPage: PropTypes.bool,
+}
+Search.defaultProps = {
+  fullPage: false,
 }
 
 export default Search
