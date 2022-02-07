@@ -87,7 +87,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `pdo_odbc`        | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `pdo_pgsql`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `pdo_sqlite`      | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `pdo_sqlsrv`      |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |       |
+| `pdo_sqlsrv`      |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `pgsql`           | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `Phar`            |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `pinba`           | Avail | Avail | Avail |       |       |       |       |       |       |       |
@@ -108,7 +108,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `sourceguardian`  |       |       |       | Avail | Avail |       |       |       |       |       |
 | `spplus`          | Avail | Avail |       |       |       |       |       |       |       |       |
 | `sqlite3`         | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `sqlsrv`          |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |       |
+| `sqlsrv`          |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `ssh2`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `sybase`          |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
 | `sysvmsg`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
