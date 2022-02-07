@@ -7,6 +7,11 @@ description: |
 
 {{< description >}}
 
+## 2022
+
+* **January 2022**
+  * OpenSearch: Added [OpenSearch service](../configuration/services/opensearch.md)
+
 ## 2021
 
 * **October 2021**
