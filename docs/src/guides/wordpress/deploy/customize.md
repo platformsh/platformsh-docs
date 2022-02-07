@@ -73,10 +73,25 @@ Lastly, to prevent committing WordPress Core when it is installed via Composer, 
 
 ## Additional packages
 
-Finally, install `wp-cli` and `psy/psych` using Composer. With these packages included, the WordPress CLI will be available to you when you SSH into the application container. 
+Finally, install `wp-cli` and `psy/psych` using Composer.
+With these packages included, the WordPress CLI is available when you SSH into the application container.
 
 ```bash
-$ composer require wp-cli/wp-cli-bundle psy/psysh --ignore-platform-reqs
+composer require wp-cli/wp-cli-bundle psy/psysh --ignore-platform-reqs
 ```
+
+If you've installed the WordPress CLI as a dependency as in the [previous step](./configure.md#application-container-platformappyaml),
+you can use it directly.
+(As long as you have only `wp-cli/wp-cli-bundle` as a dependency and not `wp-cli/wp-cli`.)
+
+Otherwise, commit the changes from composer and push.
+Then you can use the WordPress CLI within an application container from the `vendor` directory:
+
+```bash
+./vendor/bin/wp plugin list
+```
+
+If receive an error stating `This does not seem to be a WordPress installation.`,
+try providing the `--path` flag and point to your WordPress install path.
 
 {{< guide-buttons next="Deploy WordPress" >}}
