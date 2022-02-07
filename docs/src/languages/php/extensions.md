@@ -57,7 +57,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `http`            | Avail | Avail |       |       |       |       | Avail | Avail | Avail | Avail |
 | `iconv`           |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `igbinary`        |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
-| `imagick`[^1]     | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
+| `imagick`         | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail[^1]  | Avail[^1]  |
 | `imap`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `interbase`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `intl`            | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
