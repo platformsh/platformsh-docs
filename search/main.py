@@ -23,11 +23,14 @@ class Search:
         # Data available to the dropdown React app in docs, used to fill out autocomplete results.
         self.displayed_attributes = ['title', 'text', 'url', 'keywords', 'site', 'section']
         # Data actually searchable by our queries.
-        self.searchable_attributes = ['title', 'pageUrl', 'keywords', 'text', 'url', 'section']
+        self.searchable_attributes = ['title', 'pageUrl', 'keywords', 'section', 'text', 'url']
 
         # Show results for one query with the listed pages, when they by default would not show up as best results.
         # Note: these aren't automatically two-way, which is why they're all defined twice.
         self.synonyms = {
+            "cron": ["crons"],
+            "crons": ["cron tasks", "cron jobs"],
+            "e-mail": ["email"],
             "routes.yaml": ["routes"],
             "routes": ["routes.yaml"],
             "services": ["services.yaml"],
@@ -45,17 +48,17 @@ class Search:
 
         # Ranking rules:
         #
-        #   - Default order: ["typo", "words", "proximity", "attribute", "wordsPosition", "exactness"]
+        #   - Default order: ["words", "typo", "proximity", "attribute", "sort", "exactness"]
         #
-        #   - typo: fewer typos > more typos
         #   - words: number of times query is in document (greater number gets priority)
+        #   - typo: fewer typos > more typos
         #   - proximity: smaller distance between multiple occurences of query in same document > larger distances
         #   - attribute: sorted according to order of importance of attributes (searchable_attributes). terms in
         #       more important attributes first.
-        #   - wordsPosition: query terms earlier in document > later in document
+        #   - sort: queries are sorted at query time
         #   - exactness: similarity of matched words in document with query
 
-        self.ranking_rules = ["asc(rank)", "attribute", "typo", "words", "proximity", "wordsPosition", "exactness"]
+        self.ranking_rules = ["rank:asc", "attribute", "typo", "words", "proximity", "exactness"]
 
         self.updated_settings = {
             "rankingRules": self.ranking_rules,

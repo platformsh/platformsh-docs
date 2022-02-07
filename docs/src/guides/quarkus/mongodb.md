@@ -17,7 +17,7 @@ This guide only covers the *addition* of a MongoDB service configuration to an e
 
 ## 1. Add the MongoDB service
 
-In your `.platform/services.yaml` file, include MongoDB with a [valid supported version](/configuration/services/mongodb.md):
+In your [service configuration](../../configuration/services/_index.md), include MongoDB with a [valid supported version](/configuration/services/mongodb.md):
 
 ```yaml
 dbmongo:
@@ -27,9 +27,9 @@ dbmongo:
 
 ## 2. Grant access to MongoDb through a relationship
 
-In your `.platform.app.yaml` file, use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
+In your [app configuration](../../configuration/app/app-reference.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
 
-{{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 ## 3. Export connection credentials to the environment
 

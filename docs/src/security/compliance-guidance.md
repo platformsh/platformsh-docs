@@ -1,5 +1,5 @@
 ---
-title: "Compliance guidance"
+title: "Compliance Guidance and Shared Responsibilities"
 weight: 11
 ---
 
@@ -22,7 +22,7 @@ For more advanced questions, including help with an audit, please contact your P
 * Because customers can use our PaaS in a variety of ways,
   the best approach with auditors is to focus on "What do I (the customer) control/configure, and how is it managed in a compliant manner?"
 * The `FR-1` and `FR-3` regions are excluded from our PCI and SOC2 certifications.
-* HIPAA workloads are strictly run on our US-4 region.
+* HIPAA workloads are strictly run on our `US-4` region.
 
 ## Responsibility
 

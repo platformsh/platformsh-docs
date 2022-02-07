@@ -11,13 +11,11 @@ description: Platform.sh supports building and deploying applications written in
 |----------------------------------|---------------|
 |  {{< image-versions image="golang" status="supported" environment="grid" >}} | {{< image-versions image="golang" status="supported" environment="dedicated" >}} |
 
-To specify a Go container, use the `type` property in your `.platform.app.yaml`.
+To specify a Go container, use the `type` property in your [app configuration](../configuration/app/app-reference.md).
 
-{{< readFile file="src/registry/images/examples/full/golang.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/golang.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-## Deprecated versions
-
-The following container versions are also available. However, they are not maintained upstream and as a consequence not recommended to use.
+{{% deprecated-versions %}}
 
 {{< image-versions image="golang" status="deprecated" >}}
 

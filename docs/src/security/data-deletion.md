@@ -8,7 +8,7 @@ description: |
 
 {{< description >}}
 
-All projects, except those hosted on Orange Cloud for Business, utilize encrypted volumes. The encryption key is destroyed when we release the volume back to the provider, adding another layer of protection.
+All projects, except those hosted on OVH or Orange Cloud for Business, utilize encrypted volumes. The encryption key is destroyed when we release the volume back to the provider, adding another layer of protection.
 
 ## Media destruction
 
