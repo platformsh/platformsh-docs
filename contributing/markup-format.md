@@ -19,7 +19,7 @@
 
 These docs are written in Markdown with [GitHub Flavored Markdown](https://github.github.com/gfm/) syntax supported.
 It also supports [definition lists](https://michelf.ca/projects/php-markdown/extra/#def-list),
-[footnotes](https://michelf.ca/projects/php-markdown/extra/#footnotes),
+[footnotes](#footnotes),
 and [smart typography](https://daringfireball.net/projects/smartypants/).
 Plus the modifications noted below.
 
@@ -127,24 +127,30 @@ See the [content guidelines for notes](./content-style.md#use-notes-appropriatel
 
 ### Footnotes
 
-Footnotes are supported.
+To add a footnote, add two parts:
 
-They consist of two parts:
-- The footnote itself,
-- The reference you want to refer to.
+1. Mark the spot in the text where you want to add a note:
 
-To create a footnote use the following syntax: `[^<name of the footnote>]`, e.g:
+   ```markdown
+   This text will have a note.[^<FOOTNOTE_NAME>]
+   ```
 
-```
-A footnote[^1].
-```
+   The name can be anything as long as it's unique within the document.
+   Don't use numbers as the notes are numbered automatically.
+1. Add the note at the end of the document:
 
-To link to the previously created footnote, use the following syntax `[^<name of the footnote>]: `, e.g: 
-```
-[^1]: A reference.
-```
+   ```markdown
+   [^<FOOTNOTE_NAME>]: Here is the note about the text above.
+   ```
 
-For more information [about the bracket syntax, consult GitHub's documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#footnotes).
+   To have multiple paragraphs in the note, align them with four spaces at the start:
+
+   ```markdown
+   [^<FOOTNOTE_NAME>]:
+       This is the first paragraph.
+
+       This is the second paragraph.
+   ```
 
 ## Images
 
