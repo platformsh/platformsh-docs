@@ -57,8 +57,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `http`            | Avail | Avail |       |       |       |       | Avail | Avail | Avail | Avail |
 | `iconv`           |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `igbinary`        |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
-| `imagick`         | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
-| `imagick-webp`  |       |       |       |       |       |       |       |       | Avail | Avail |
+| `imagick`[^1]     | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `imap`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `interbase`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `intl`            | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
@@ -134,6 +133,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `zendopcache`     | Def   | *     | *     | *     | *     | *     | *     | *     | *     | *     |
 | `zip`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 
+
 There are also built-in modules that are always on:
 
 - `date`
@@ -174,3 +174,7 @@ work:
    ```ini
    extension=/app/spiffy.so
    ```
+
+## Exceptions
+
+[^1]: `webp` support is only available for PHP 8.0 and higher.
