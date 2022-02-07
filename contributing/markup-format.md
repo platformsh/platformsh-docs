@@ -125,6 +125,27 @@ Be careful!
 
 See the [content guidelines for notes](./content-style.md#use-notes-appropriately).
 
+### Footnotes
+
+Footnotes are supported.
+
+They consist of two parts:
+- The footnote itself,
+- The reference you want to refer to.
+
+To create a footnote use the following syntax: `[^<name of the footnote>]`, e.g:
+
+```
+A footnote[^1].
+```
+
+To link to the previously created footnote, use the following syntax `[^<name of the footnote>]: `, for e.g: 
+```
+[^1]: A reference.
+```
+
+For more information [about the bracket syntax, consult GitHub's documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#footnotes).
+
 ## Images
 
 You can add images using the standard Markdown syntax,
