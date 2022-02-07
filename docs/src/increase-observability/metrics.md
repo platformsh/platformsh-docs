@@ -15,13 +15,13 @@ Within the console, metrics can be found for an environment under **Metrics**:
 The Metrics tab shows [usage metrics](#examples-of-how-to-read-metrics) for CPU, RAM, and disk space for:
 
 * [Dedicated environments](../dedicated/overview/_index.md):
-  each of the three hosts in your [N+1 configuration](/dedicated/architecture/_index.md) and their average
-* Development environments: for the average of your service and app containers
+  each of the three hosts in your [N+1 configuration](../dedicated/architecture/_index.md) and their average
+* Grid environments: for the average of your service and app containers
 
 For each property, usage that crosses an _80% threshold_ triggers a warning message on the graph.
 Usage that crosses _90%_ results in a critical message.
 
-On Development environments, if your usage goes over _100%_ and resources are overutilized, a **burst** message is shown.
+On Grid environments, if your usage goes over _100%_ and resources are overutilized, a **burst** message is shown.
 
 A burst is a good indication that you need to optimize your app,
 potentially adding more resources or storage to your project to comfortably run your app.
@@ -35,7 +35,7 @@ In the primary three views, averages are shown over larger intervals.
 | :--------------------------- | :-------------------------------- | :--------------------------- |
 | The last 15 minutes (*15m*)  | 10 seconds                        | 10:00:10, 10:00:20, 10:00:30 |
 | The last hour (*1hr*)        | 1 minute                          | 10:00, 10:01, 10:02          |
-| The last 24 hours (*24hr*) for Dedicated environments and 8 hours (*8hr*) for Development | 20 minutes for Dedicated, 10 minutes for Development | 10:00, 10:20, 10:40, 11:00 |
+| The last 24 hours (*24hr*) for Dedicated environments and 8 hours (*8hr*) for Grid | 20 minutes for Dedicated, 10 minutes for Grid | 10:00, 10:20, 10:40, 11:00 |
 
 You can select specific ranges in a graph to zoom in on smaller sample intervals.
 
@@ -99,9 +99,9 @@ one for the web hosts that handle web requests and one for the service hosts tha
 
 ![Metrics split into Web hosts and Service hosts](/images/metrics/split-arch.png "0.75")
 
-## Development environments
+## Grid environments
 
-Development environments consist of:
+Grid environments consist of:
 
 * App containers: one or more [app containers](../configuration/app/_index.md)
 * Service containers: zero or more [service containers](../configuration/services/_index.md)
@@ -148,7 +148,7 @@ The upper limit in the graph is 3.62&nbsp;GB because 0.38&nbsp;GB of memory are 
 #### Disk
 
 Disk represents the plan space for all services and mounts,
-which for Dedicated production environments is [50&nbsp;GB](/dedicated/architecture/_index.md).
+which for Dedicated production environments is [50&nbsp;GB](../dedicated/architecture/_index.md).
 
 This example has the following persistent disk space configured:
 
@@ -169,22 +169,22 @@ Next to this space comes the other defined directories: for the MySQL service an
 
 ![A closeup of the metrics for the MySQL service disk](/images/metrics/disk-single.png "0.4")
 
-### Development environment example
+### Grid environment example
 
-Metrics for Development environments show the resource usage per container within the project.
+Metrics for Grid environments show the resource usage per container within the project.
 
 This reference project has configured a single application and two services: Redis and MariaDB.
 The plan size for this project is [X-Large](https://platform.sh/pricing/),
 which has guaranteed resources of 8.22 vCPU/12.2&nbsp;GB RAM.
-The appropriate resources have been [allocated automatically](../configuration/app/size.md) for each container
+The appropriate resources have been [allocated automatically](../configuration/app/app-reference.md#sizes) for each container
 based on the number and type of containers for this plan size.
 The graphs show the current average usage in relation to the allocated resources.
 
 #### App container
 
 The app container has been granted 0.75&nbsp;GB of memory and 5.00 CPU.
-The persistent disk has been configured in the [app configuration](../configuration/app/_index.md) at 144.12&nbsp;GB,
-while the temporary disk is 3.99&nbsp;GB by default.
+The persistent disk has been configured in the [app configuration](../configuration/app/app-reference.md#top-level-properties)
+at 144.12&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 ![All of the metrics for the app container](/images/metrics/app-container.png)
 
