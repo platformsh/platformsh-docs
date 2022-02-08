@@ -174,7 +174,3 @@ work:
    ```ini
    extension=/app/spiffy.so
    ```
-
-## Exceptions
-
-[^1]: `webp` support is only available for PHP 8.0 and higher.
