@@ -105,3 +105,23 @@ GIT_SSH_COMMAND="ssh -v" git clone [REPO-URL]
 You can use this information to make one last check of the private key file.
 
 If you're still stuck, [submit a support ticket](https://console.platform.sh/-/users/:user/tickets) to get help solving your issue.
+
+## Use SSH with multi-factor authentication (MFA)
+
+If you try to SSH into a project that enforces MFA when you don’t personally have MFA enabled,
+you see an error like the following:
+
+```txt
+Hello <NAME> (UUID: <USER_ID>), you successfully authenticated, but could not connect to service <ENVIRONMENT_ID>--app
+(reason: access requires MFA)
+<ENVIRONMENT_ID>@ssh.<REGION>.platform.sh: Permission denied (publickey)
+```
+
+To resolve this:
+
+1. In the console, open the user menu (your name or profile picture).
+1. Click **Security**.
+1. Click **Set up application**.
+1. Follow the instructions for the chosen MFA app.
+1. Click **Verify & save**.
+1. Refresh your SSH credentials by running `platform login -f` in the CLI.
