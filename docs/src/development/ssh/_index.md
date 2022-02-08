@@ -134,3 +134,23 @@ There are three basic ways to authenticate with Platform.sh:
 * [Using API tokens](../cli/api-tokens.md)
   * Good for letting automation tools use the CLI.
   * Requires you to regularly change the tokens to maintain security.
+
+{{< tiered-feature "Enterprise" >}}
+
+### Multi-factor authentication (MFA) over SSH for Enterprise and Elite.
+
+To enhance security, Multi-factor authentication (MFA) is now enabled automatically on every new Enterprise and Elite project.  
+This means any contributors to your project must enable MFA in their account in order to SSH into the environments.  
+MFA will not be enforced on your older projects, but may be enabled upon request.
+
+If a user tries to SSH into a project with Multi-Factor Authentication enabled but they don’t have MFA enabled themselves, 
+they will see the following error in the CLI:
+
+```
+Hello YourName (UUID: your-user-id), you successfully authenticated, but could not connect to service id-of-environment--app
+(reason: access requires MFA)
+id-of-environment@ssh.eu-3.platform.sh: Permission denied (publickey)
+```
+
+To resolve this, the user should visit their Account settings page, click on the Security tab, enable the TFA Application and 
+refresh their login by running `platform login -f` in the CLI.
