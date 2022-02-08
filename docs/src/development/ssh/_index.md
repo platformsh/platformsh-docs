@@ -137,21 +137,10 @@ There are three basic ways to authenticate with Platform.sh:
 
 ## Multi-factor authentication (MFA) over SSH
 
-{{< tiered-feature "Enterprise" >}}
+{{< tiered-feature "Enterprise and Elite" >}}
 
-To enhance security, Multi-factor authentication (MFA) is now enabled automatically on every new Enterprise and Elite project.  
-This means that every contributor to your project must enable MFA in their account in order to SSH into the environments.  
+To enhance security, MFA is enabled automatically on every new Enterprise and Elite project.
+This means that every contributor to your project must enable MFA in their account in order to SSH into an environment.  
+Note that MFA isn't enforced on older projects automatically, but you can enable it by submitting a support request.
 
-Note that MFA will not be enforced on your older projects, but may be enabled upon Support request.
-
-If a user tries to SSH into a project with MFA enabled but they don’t have MFA enabled themselves, 
-they will see the following error:
-
-```
-Hello YourName (UUID: your-user-id), you successfully authenticated, but could not connect to service id-of-environment--app
-(reason: access requires MFA)
-id-of-environment@ssh.eu-3.platform.sh: Permission denied (publickey)
-```
-
-To resolve this, the user should visit their Account settings page, click on the Security tab, enable the MFA Application and 
-refresh their login by running `platform login -f` in the CLI.
+If you have trouble accessing an environment, see how to [use SSH with MFA](./troubleshoot-ssh.md#use-ssh-with-multi-factor-authentication-mfa).
