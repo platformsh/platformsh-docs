@@ -15,6 +15,6 @@ Choose your current service, and this guide will take you through the steps to m
 
 These steps assume that you have already:
 
-* Signed up for a [free trial account](https://accounts.platform.sh/platform/trial/general/setup) with Platform.sh.
+* Signed up for a [free trial account](https://auth.api.platform.sh/register) with Platform.sh.
 
 If you have not completed these steps by now, click the links and do so before you begin.

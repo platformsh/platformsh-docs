@@ -15,7 +15,7 @@ description: |
 
 ## Service configuration: `services.yaml`
 
-{{% guides/config-service %}}
+{{% guides/config-service framework=Spring %}}
 
 Deploying Spring does not in itself require you to configure a database or another service,
 but in all likelihood you will want to add one at some point.

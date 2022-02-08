@@ -16,10 +16,7 @@ layout: single
 If you need other versions or a version in a container running something other than Node.js,
 [use a version manager like `nvm`](/languages/nodejs/nvm.md).
 
-## Deprecated versions
-
-Some versions with a minor (such as 8.9) are available but aren't receiving security updates from upstream,
-so their use isn't recommended.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -27,7 +24,30 @@ so their use isn't recommended.
 
 ## Build flavor
 
-Node.js images use the `default` build flavor, which runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected. Note that this also allows you to provide a custom `.npmrc` file in the root of your application (as a sibling of the `.platform.app.yaml` file.)
+Node.js images use the `default` build flavor,
+which runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc` if a `package.json` file is detected.
+Note that this also allows you to provide a custom `.npmrc` file in the root of your application
+(as a sibling of the `.platform.app.yaml` file.)
+
+### Use yarn as a package manager
+
+The default build flavor uses npm as a package manager.
+To switch to yarn to manage dependencies, you need to switch to a build flavor of `none` and add yarn as a dependency.
+You can then install dependencies in the `build` hook:
+
+```yaml
+build:
+    flavor: none
+
+dependencies:
+    nodejs:
+        yarn: "1.22.17"
+
+hooks:
+    build: |
+        yarn
+        yarn build
+```
 
 ## Support libraries
 
@@ -42,7 +62,7 @@ as described here (a complete example is included at the end).
 
 1. Specify the language of your application (available versions are listed above):
 
-    {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" >}}
+    {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 2. Specify your dependencies under the `nodejs` key, like this:
 
@@ -78,7 +98,7 @@ as described here (a complete example is included at the end).
    ```
 
    {{< note >}}
-  If using the `pm2` process manager to start your application, it is recommended that you do so directly in `web.commands.start` as described above, rather than by calling a separate script the contains that command. Calling `pm2 start` at `web.commands.start` from within a script, even with the `--no-daemon` flag, has been found to daemonize itself and block other processes (such as backups) with continuous respawns.
+  If using the `pm2` process manager to start your application, it is recommended that you do so directly in `web.commands.start` as described above, rather than by calling a separate script that contains the command. Calling `pm2 start` at `web.commands.start` from within a script, even with the `--no-daemon` flag, has been found to daemonize itself and block other processes (such as backups) with continuous respawns.
    {{< /note >}}
 
 4. Create any Read/Write mounts. The root file system is read only. You must explicitly describe writable mounts. In (3) we set the home of the process manager to `/app/run` so this needs to be writable.
@@ -107,14 +127,9 @@ as described here (a complete example is included at the end).
        upstream: "app:http"
    ```
 
-7. (Optional) If Platform.sh detects a `package.json` file in your repository, it automatically includes a `default` [`build` flavor](/configuration/app/build.md#build), that runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`. You can modify that process to use an alternative package manager by including the following in your `.platform.app.yaml` file:
+7. (Optional) If Platform.sh detects a `package.json` file in your repository, it automatically includes a `default` [`build` flavor](../../configuration/app/app-reference.md#build), that runs `npm prune --userconfig .npmrc && npm install --userconfig .npmrc`.
 
-   ```yaml
-   build:
-       flavor: none
-   ```
-
-   Consult the documentation specific to [Node.js builds](/configuration/app/build.html#nodejs-npm-by-default) for more information.
+   See how to use [yarn as a package manager](#use-yarn-as-a-package-manager) or specify a different manager.
 
 
 Here's a complete example that also serves static assets (PNGs from the `/public` directory):

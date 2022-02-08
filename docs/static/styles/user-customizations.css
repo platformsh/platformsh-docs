@@ -33,7 +33,7 @@
 .btn2 {
   border: 0px solid transparent;
   border-radius: 0rem;
-  font-weight: bold;s
+  font-weight: bold;
   letter-spacing: 0.05em;
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -236,3 +236,128 @@
   width: 300px !important;
 }
 
+/* Links to console and trial */
+.console_links {
+  display: none;
+}
+
+
+
+@media (min-width: 768px) {
+  .console_links  {
+    float: right;
+    margin-right: 30px;
+    height: 80px;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 200;
+  }
+}
+.console_links__wrapper {
+  display:flex;
+  flex-direction:row;
+  height:100%;
+  align-items:center;
+  cursor:pointer
+}
+
+.console_links__login {
+  padding: 0 30px;
+  margin: 5px 0;
+  text-decoration: none;
+  color: #fff;
+}
+
+.console_links__login:hover,.console_links__login:focus {
+  text-decoration: none !important;
+  color: #fff;
+}
+
+.console_links__free-trial {
+  padding:0 15px;
+  background:#fff;
+  border:none;
+  border-radius:4px;
+  margin:5px 0;
+  color:#1f82e5;
+  text-decoration:none;
+  height:34px;
+  line-height:34px;
+  font-weight: 700;
+  transition:background-color 0.25s,color 0.25s
+}
+
+.console_links__free-trial:hover,.console_links__free-trial:focus{
+  text-decoration: none !important;
+  background-color:#28d8b2;
+  color:#fff
+}
+
+
+/* Public IP Region Tables */
+.region-table {
+  font-family: Overpass, sans-serif;
+  color: #444344;
+  border-collapse: collapse;
+  border-spacing: 2px;
+}
+
+.region-table tr, .region-table td, .region-table th {
+  border: none;
+  text-align: center;
+}
+
+.region-table td {
+  vertical-align: middle;
+}
+
+.region-table-header > th {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 20px 40px 10px;
+}
+
+.region-table tr:not(:first-of-type) {
+  border-top: 1px solid #DEE2E6;
+}
+
+.region-table h4 {
+  padding-top: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 1.32;
+}
+
+.region-table h4 a {
+  color: #444344;;
+  scroll-margin-top: 6.5em;
+}
+
+.region-overview {
+  background: #f4f2f3;
+}
+
+.region-identifier {
+  background: white;
+}
+
+.region-table ul {
+  list-style: none; 
+  padding-inline-start: 0 !important;
+  margin-bottom: 0;
+}
+
+.region-subtable code {
+  margin: 1em 0;
+}
+
+/* code block location labels */
+
+.highlight-location {
+  background-color: var(--primary);
+  padding: 0.5rem 1rem 0 1rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  display: inline-block;
+}

@@ -14,9 +14,11 @@ exceptions:
   - CSS
   - CSV
   - DEBUG
+  - DNS
   - DOM
   - DPI
   - FAQ
+  - FPM
   - GCC
   - GDB
   - GET
@@ -42,6 +44,7 @@ exceptions:
   - POST
   - RAM
   - REPL
+  - REST
   - RSA
   - SCM
   - SCSS
@@ -56,6 +59,7 @@ exceptions:
   - URI
   - URL
   - USB
+  - UTC
   - UTF
   - XML
   - XSS

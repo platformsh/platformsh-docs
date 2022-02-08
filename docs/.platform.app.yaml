@@ -4,7 +4,7 @@
 name: 'docs'
 
 # The type key specifies the language and version for your application.
-type: 'nodejs:14'
+type: 'nodejs:16'
 
 # Specify the Hugo version as an env variable.
 variables:
@@ -50,3 +50,4 @@ mounts:
       source: local
       source_path: "config"
 
+size: S

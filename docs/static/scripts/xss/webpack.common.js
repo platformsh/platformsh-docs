@@ -1,9 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  entry: ['babel-polyfill', 'index.js'],
+  entry: ['index.js'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -24,7 +25,8 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({ Buffer: ['buffer', 'Buffer'] }),
-    new webpack.ProvidePlugin({ process: ['process'] })
+    new webpack.ProvidePlugin({ process: ['process'] }),
+    new ESLintPlugin()
   ],
   performance: {
     hints: process.env.NODE_ENV === 'production' ? 'warning' : false

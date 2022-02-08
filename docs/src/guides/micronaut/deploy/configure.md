@@ -15,12 +15,12 @@ description: |
 
 ## Service configuration: `services.yaml`
 
-{{% guides/config-service %}}
+{{% guides/config-service framework=Micronaut %}}
 
 Deploying Micronaut does not in itself require you to configure a database or another service,
 but in all likelihood you will want to add one at some point.
 
-{{% /guides/config-service %}}
+{{% /guides/config-service%}}
 
 {{< readFile file="static/files/fetch/servicesyaml/drupal9" highlight="yaml" >}}
 

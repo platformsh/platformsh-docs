@@ -3,7 +3,10 @@ title: "PHP.ini settings"
 weight: 4
 ---
 
-There are two ways to customize `php.ini` values for your application. The recommended method is to use the [`variables` property](/configuration/app/variables.md) of `.platform.app.yaml` to set ini values using the `php` prefix. For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
+There are two ways to customize `php.ini` values for your application.
+The recommended method is to use the [`variables` property](/configuration/app/app-reference.m#variables)
+of `.platform.app.yaml` to set `ini` values using the `php` prefix.
+For example, to increase the PHP memory limit you'd put the following in `.platform.app.yaml`:
 
 ```yaml
 variables:

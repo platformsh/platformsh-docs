@@ -19,8 +19,8 @@ If your environment is inactive or the deployment has failed, you can't log in t
 If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [management console](https://console.platform.sh/), by running `platform repdeploy`, or by pushing an empty git commit:
 
 ```bash
-$ git commit --allow-empty -m 'chore: force redeploy'
-$ git push origin main
+git commit --allow-empty -m 'chore: force redeploy'
+git push origin main
 ```
 
 ## Check your public key
@@ -38,31 +38,36 @@ Check that your key is properly added to your SSH agent. This is an authenticati
     2048 12:b0:13:83:7f:56:18:9b:78:ca:54:90:a7:ff:12:69 /Users/your_username/.ssh/id_rsa (RSA)
     ```
 
-2. Check that the file exists and that the file name or comment matches your private key file.
-3. If you don't see your private key file, add your private key:
+1. Check that the file exists and that the file name or comment matches your private key file.
+1. If you don't see your private key file, add your private key:
 
     ```bash
-    $ ssh-add path-to-your-key
+    ssh-add path-to-your-key
     ```
 
 ## Specify your identity file
 
-If your identity (SSH key) associated with Platform.sh is not in a default file name (as may be explained in your SSH software manual, for example) you may have to append a specification like the one below so that the SSH software finds the correct key.
+If your identity (SSH key) associated with Platform.sh isn't in a default file name
+(as may be explained in your SSH software manual, for example),
+you may have to append a specification like the one below so that the SSH software finds the correct key.
 
 ```bash
 Host platform.sh
 IdentityFile ~/.ssh/id_platformsh
 ```
 
-Be aware that, above, `platform.sh` stands for a hostname. Each different hostname you connect to Platform.sh at may have to be specified in the host line, separated by spaces.
+Be aware that, above, `platform.sh` stands for a hostname.
+Each different hostname you connect to Platform.sh at may have to be specified in the host line, separated by spaces.
 
 ## Check your git integrations
 
-If your project is integrated with another git provider (such as GitHub), that provider controls git operations. Make sure you have added your public SSH key to your provider and that your user there has access.
+If your project is integrated with another git provider (such as GitHub), that provider controls git operations.
+Make sure you have added your public SSH key to your provider and that your user there has access.
 
 ## Add a second authentication factor
 
-If your organization has multifactor authentication set up, you may get an error like the following when trying to log into your environment with SSH keys:
+If your organization has multifactor authentication set up,
+you may get an error like the following when trying to log into your environment with SSH keys:
 
 ```bash
 Hello YourName (UUID: your-user-id), you successfully authenticated, but could not connect to service id-of-environment--app (reason: access requires MFA)
@@ -73,7 +78,8 @@ To resolve this, log in using the CLI, such as by running `platform login`.
 
 ## Generate SSH debug information
 
-If your private key and public key both look OK but you don't have any luck logging in, print debugging information. These lines often give clues about what is going wrong.
+If your private key and public key both look OK but you don't have any luck logging in, print debugging information.
+These lines often give clues about what's going wrong.
 
 Run the SSH command with the `-v` option, like this:
 
@@ -93,9 +99,9 @@ Permission denied (publickey).
 or
 
 ```bash
-$ GIT_SSH_COMMAND="ssh -v" git clone [REPO-URL]
+GIT_SSH_COMMAND="ssh -v" git clone [REPO-URL]
 ```
 
 You can use this information to make one last check of the private key file.
 
-If you're still stuck, don't hesitate to [submit a support ticket](https://console.platform.sh/-/users/:user/tickets). We'll help you solve your problem.
+If you're still stuck, [submit a support ticket](https://console.platform.sh/-/users/:user/tickets) to get help solving your issue.

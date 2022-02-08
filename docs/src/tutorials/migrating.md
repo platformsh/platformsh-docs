@@ -54,17 +54,12 @@ and some commands may not function correctly otherwise.
 The second is **Commit & push**, which includes a command to push code:
 
 ```bash
-git push -u platform master
+git push -u platform main
 ```
 
-This pushes your repository's `master` branch to the Platform.sh `master` branch.
-
-{{< note >}}
-
-Projects are currently always automatically set up with the `master` branch as the default.
-Until this changes, see how to [rename your default branch](/guides/general/default-branch.md).
-
-{{< /note >}}
+This pushes your repository's `main` branch to the Platform.sh `main` branch.
+Projects default to having the `main` branch as the default branch.
+You can change this when creating the project or [rename your default branch](../guides/general/default-branch.md) later.
 
 When you push, a new environment is created using your code and the provided configuration files.
 The system flags any errors with the configuration it can find.
@@ -74,7 +69,7 @@ If any are flagged, correct the error and try again.
 
 You need to have a dump or backup of the database you wish to start from.
 The process is essentially the same for each type of persistent data service.
-See the [MySQL](/configuration/services/mysql.md), [PostgreSQL](/configuration/services/postgresql.md),
+See the [MySQL](/configuration/services/mysql/_index.md), [PostgreSQL](/configuration/services/postgresql.md),
 and [MongoDB](/configuration/services/mongodb.md) documentation as appropriate.
 
 ## Import your files

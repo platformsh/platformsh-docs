@@ -15,9 +15,9 @@ description: |
 
 ## Service configuration: `services.yaml`
 
-{{% guides/config-service %}}
+{{% guides/config-service framework=TYPO3 %}}
 
-We recommend the latest [MariaDB](/configuration/services/mysql.md) version for TYPO3,
+We recommend the latest [MariaDB](/configuration/services/mysql/_index.md) version for TYPO3,
 although you can also use Oracle MySQL or [PostgreSQL](/configuration/services/postgresql.md) if you prefer.
 We also strongly recommend using [Redis](/configuration/services/redis.md) for TYPO3 caching.
 Our TYPO3 template comes [pre-configured to use Redis](https://github.com/platformsh-templates/typo3#customizations) for caching.

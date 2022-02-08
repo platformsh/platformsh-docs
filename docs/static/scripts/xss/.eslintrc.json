@@ -17,9 +17,11 @@
     ],
     "comma-dangle": 0,
     "jsx-a11y/anchor-is-valid": 0,
-    "no-return-assign": 0
+    "no-return-assign": 0,
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
+    "react/destructuring-assignment": 0
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "settings": {
     "ecmascript": 6,
     "jsx": true,

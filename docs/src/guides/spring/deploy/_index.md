@@ -17,12 +17,10 @@ Going through the steps below you will have two options:
 
 ## Tools
 
-{{< guides/tools >}}
+{{% guides/tools %}}
 
 ## Sign up for Platform.sh and initialize your project
 
-{{< guides/signup name="Spring" template="spring-mvc-maven-mongodb" >}}
-
-{{< /guides/signup >}}
+{{% guides/signup name="Spring" template="spring-mvc-maven-mongodb" /%}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

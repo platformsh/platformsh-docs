@@ -17,11 +17,10 @@ or anywhere else a link can go to make launching your code base as straightforwa
 ## Preparation
 
 To have a deployable template, you need to first prepare the repository.
-The Deploy on Platform.sh button will work with any Git repository that is deployable on Platform.sh;
-that is, it has the necessary [`.platform.app.yaml`](/configuration/app/_index.md),
-[`.platform/services.yaml`](/configuration/services/_index.md),
-and [`.platform/routes.yaml`](/configuration/routes/_index.md) files in place.
-See the appropriate documentation for how to define those files.
+The Deploy on Platform.sh button works with any Git repository that's deployable on Platform.sh.
+It needs [app configuration](../configuration/app/_index.md),
+[a `.platform/services.yaml` file](../configuration/services/_index.md),
+and [a `.platform/routes.yaml` file](../configuration/routes/_index.md).
 
 The repository must be available at a publicly accessible Git URL.
 That may be hosted with GitHub, GitLab, Bitbucket, your own custom Git hosting,

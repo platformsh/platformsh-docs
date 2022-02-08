@@ -32,7 +32,7 @@ Platform.sh respects the structure of branches. It's entirely up to you.
 
 ### Full stack management
 
-Managing your full stack internally gives Platform.sh some unique features:
+Managing your full stack on Platform.sh gives you the following unique features:
 
 1. **Unified Environment:** All of your services (MySQL, ElasticSearch, MongoDB, etc...) are managed inside the cluster and included in the price, with no external single-points-of-failure. When you back up an environment, you get a fully consistent snapshot of your whole application.
 2. **Multi-Services & Multi-App:** You can deploy multiple applications (for example, in a microservice-based architecture), using multiple data backends (MySQL, Postgres, Redis etc..) written in multiple frameworks (Drupal + NodeJS + Flask, for example) in multiple languages, all in the same cluster.

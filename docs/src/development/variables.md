@@ -24,7 +24,7 @@ If variables have the same names at different levels, the [variables are given p
 
 ### Use application-provided variables
 
-Set variables [in code](/configuration/app/variables.md) using the `.platform.app.yaml` file.
+Set variables [in code](../configuration/app/app-reference.md#variables) using the `.platform.app.yaml` file.
 These values are the same across all environments and present in the Git repository,
 which makes them a poor fit for API keys and other such secrets.
 
@@ -142,6 +142,7 @@ and whether they're available during builds and at runtime.
 | PLATFORM_TREE_ID          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build |
 | PLATFORM_PROJECT_ENTROPY  | Yes   | Yes     | A random, 56-character value created when the project is created and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
 | PLATFORM_APP_DIR          | Yes   | Yes     | The absolute path to the application directory. |
+| PLATFORM_SOURCE_DIR       | Yes    | No      | Equivalent to `PLATFORM_APP_DIR` in the context of a running [source operation](../configuration/app/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
 | PLATFORM_APPLICATION_NAME | Yes   | Yes     | The application name as set in the `.platform.app.yaml` file. |
 | PLATFORM_APPLICATION      | Yes   | Yes     | A base64-encoded JSON object that describes the application. It maps certain attributes from your `.platform.app.yaml` file, some with more structure. See [notes](#platform_application). |
 | PLATFORM_BRANCH           | No    | Yes     | The name of the Git branch. |
@@ -365,6 +366,159 @@ public class App {
 
 
 {{< /codetabs >}}
+
+### Accessing complex values
+
+Variable values can have nested structures. 
+The following example shows nested structures introduced in an [app configuration](../configuration/app/app-reference.md#variables):
+
+```yaml
+variables:
+    env:
+        BASIC: "a string"
+        INGREDIENTS:
+            - 'peanut butter'
+            - 'jelly'
+        QUANTITIES:
+            "milk": "1 liter"
+            "cookies": "1 kg"
+    stuff:
+        STEPS: ['un', 'deux', 'trois']
+        COLORS:
+            red: '#FF0000'
+            green: '#00FF00'
+            blue: '#0000FF'
+```
+
+You could access these nested variables as follows:
+
+{{< codetabs >}}
+
+---
+title=Shell
+file=none
+highlight=bash
+markdownify=false
+---
+
+$ echo $BASIC
+a string
+$ echo $INGREDIENTS
+["peanut butter", "jelly"]
+$ echo $QUANTITIES
+{"cookies": "1 kg", "milk": "1 liter"}
+$ echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:STEPS"'
+[
+  "un",
+  "deux",
+  "trois"
+]
+$ echo "$PLATFORM_VARIABLES" | base64 --decode | jq '."stuff:COLORS"'
+{
+  "blue": "#0000FF",
+  "green": "#00FF00",
+  "red": "#FF0000"
+}
+
+<--->
+
+---
+title=PHP
+file=none
+highlight=php
+markdownify=false
+---
+<?php
+var_dump($_ENV['BASIC']);
+// string(8) "a string"
+
+var_dump($_ENV['INGREDIENTS']);
+// string(26) "["peanut butter", "jelly"]"
+
+var_dump($_ENV['QUANTITIES']);
+// string(38) "{"milk": "1 liter", "cookies": "1 kg"}"
+
+$variables = json_decode(base64_decode($_ENV['PLATFORM_VARIABLES']), TRUE);
+
+print_r($variables['stuff:STEPS']);
+/*
+array(3) {
+  [0]=>
+  string(2) "un"
+  [1]=>
+  string(4) "deux"
+  [2]=>
+  string(5) "trois"
+}
+*/
+
+print_r($variables['stuff:COLORS']);
+/*
+array(3) {
+  ["red"]=>
+  string(7) "#FF0000"
+  ["green"]=>
+  string(7) "#00FF00"
+  ["blue"]=>
+  string(7) "#0000FF"
+}
+*/
+
+<--->
+
+---
+title=Python
+file=none
+highlight=python
+markdownify=false
+---
+import os
+import json
+import base64
+
+print os.getenv('BASIC')
+# a string
+
+print os.getenv('INGREDIENTS')
+# ["peanut butter", "jelly"]
+
+print os.getenv('QUANTITIES')
+# {"milk": "1 liter", "cookies": "1 kg"}
+
+variables = json.loads(base64.b64decode(os.getenv('PLATFORM_VARIABLES')).decode('utf-8'))
+
+print variables['stuff:STEPS']
+# [u'un', u'deux', u'trois']
+print variables['stuff:COLORS']
+# {u'blue': u'#0000FF', u'green': u'#00FF00', u'red': u'#FF0000'}
+
+<--->
+
+---
+title=Node.js
+file=none
+highlight=javascript
+markdownify=false
+---
+const { BASIC, INGREDIENTS, QUANTITIES, PLATFORM_VARIABLES } = process.env;
+
+const { "stuff:STEPS": stuffSteps, "stuff:COLORS": stuffColors } = JSON.parse(
+  Buffer.from(PLATFORM_VARIABLES, "base64").toString()
+);
+
+console.log(BASIC);
+// "a string"
+console.log(INGREDIENTS);
+// ["peanut butter", "jelly"]
+console.log(QUANTITIES);
+// {"cookies": "1 kg", "milk": "1 liter"}
+console.log(stuffSteps);
+// [ 'un', 'deux', 'trois' ]
+console.log(stuffColors);
+// { blue: '#0000FF', green: '#00FF00', red: '#FF0000' }
+
+{{< /codetabs >}}
+
 
 ### Overrides
 

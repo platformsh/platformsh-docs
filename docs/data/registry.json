@@ -16,7 +16,13 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "73"
+        "73",
+        "80",
+        "81",
+        "83",
+        "84",
+        "86",
+        "91"
       ]
     }
   },
@@ -85,20 +91,25 @@
         "1.7",
         "2.4",
         "5.2",
-        "5.4"
-      ],
-      "supported": [
+        "5.4",
         "6.5",
         "6.8",
         "7.2",
         "7.5",
         "7.7",
-        "7.9",
+        "7.9"
+      ],
+      "supported": [
         "7.10"
       ]
     },
     "versions-dedicated": {
       "supported": [
+        "7.10"
+      ],
+      "deprecated" : [
+        "1.7",
+        "2.4",
         "5.2",
         "5.6",
         "6.5",
@@ -107,12 +118,7 @@
         "7.5",
         "7.6",
         "7.7",
-        "7.9",
-        "7.10"
-      ],
-      "deprecated" : [
-        "1.7",
-        "2.4"
+        "7.9"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -122,15 +128,15 @@
         "1.7",
         "2.4",
         "5.2",
-        "5.4"
-      ],
-      "supported": [
+        "5.4",
         "6.5",
         "6.8",
         "7.2",
         "7.5",
         "7.7",
-        "7.9",
+        "7.9"
+      ],
+      "supported": [
         "7.10"
       ]
     }
@@ -553,6 +559,39 @@
       "deprecated": ["9.8"]
     }
   },
+  "opensearch": {
+    "description": "A manufacture service for OpenSearch",
+    "disk": true,
+    "docs": {
+      "relationship_name": "ossearch",
+      "service_name": "searchopen",
+      "url": "/configuration/services/opensearch.html"
+    },
+    "endpoint": "opensearch",
+    "min_disk_size": 256,
+    "name": "OpenSearch",
+    "repo_name": "opensearch",
+    "runtime": false,
+    "type": "opensearch",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "1.2"
+      ]
+    },
+    "versions-dedicated": {
+      "deprecated": [],
+      "supported": [
+        "1.2"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [],
+      "supported": [
+        "1.2"
+      ]
+    }
+  },
   "oracle-mysql": {
     "description": "Images using MySQL from Oracle instead of MariaDB still providing mysql endpoints",
     "repo_name": "oracle-mysql",
@@ -634,7 +673,8 @@
       "supported": [
         "7.3",
         "7.4",
-        "8.0"
+        "8.0",
+        "8.1"
       ]
     }
   },
@@ -654,7 +694,9 @@
     "type": "postgresql",
     "versions": {
       "deprecated": [
-        "9.3"
+        "9.3",
+        "9.4",
+        "9.5"
       ],
       "supported": [
         "9.6",
@@ -662,6 +704,17 @@
         "11",
         "12",
         "13"
+      ]
+    },
+    "versions-dedicated": {
+      "deprecated": [
+        "9.3",
+        "9.4",
+        "9.5"
+      ],
+      "supported": [
+        "9.6*",
+        "11*"
       ]
     }
   },
@@ -766,7 +819,8 @@
         "3.2",
         "4.0",
         "5.0",
-        "6.0"
+        "6.0",
+        "6.2"
       ]
     },
     "versions-dedicated": {
@@ -908,18 +962,18 @@
       ]
     }
   },
-  "vault": {
+  "vault-kms": {
     "description": "",
     "disk": false,
     "docs": {
       "relationship_name": "vault_service",
-      "service_name": "vault",
+      "service_name": "vault-kms",
       "url": "/configuration/services/vault.html"
     },
     "endpoint": "demo-app",
     "min_disk_size": null,
-    "name": "Vault",
-    "repo_name": "vault",
+    "name": "Vault KMS",
+    "repo_name": "vault-kms",
     "runtime": false,
     "type": "vault-kms",
     "versions": {

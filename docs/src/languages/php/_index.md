@@ -13,14 +13,11 @@ layout: single
 
 Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP.
 
-To specify a PHP container, use the `type` property in your `.platform.app.yaml`.
+To specify a PHP container, use the `type` property in your [app configuration](../../configuration/app/app-reference.md).
 
-{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-## Deprecated versions
-
-The following versions are available but aren't receiving security updates from upstream, so their use isn't recommended.
-They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -81,7 +78,7 @@ dependencies:
 ```
 
 is equivalent to `composer require platform/client 2.x-dev`.
- However, you can also specify explicit `require` and `repositories` blocks:
+You can also specify explicit `require` and `repositories` blocks:
 
 ```yaml
 dependencies:
@@ -117,19 +114,14 @@ That allows you to install a forked version of a global dependency from a custom
 PHP images use the `composer` build flavor by default,
 which runs `composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader` if a `composer.json` file is detected.
 
-Note that by default, all PHP containers include the latest Composer 1.x release. If you wish to use Composer 2.x, add it as a `dependency` (see the section below).
+Note that by default, all PHP containers include the latest Composer 1.x release.
+If you wish to use Composer 2.x, add it as a `dependency`:
 
 ```yaml
 dependencies:
     php:
         composer/composer: '^2'
 ```
-
-You still see a message in the build output warning you about the availability of a new Composer version;
-that is the pre-packaged Composer 1 running to download Composer 2.
-You can safely ignore it.
-As Composer 2 performs considerably better than Composer 1,
-you should really upgrade unless your application has a Composer plugin dependency that hasn't yet been updated.
 
 `drupal` runs `drush make` automatically in one of a few different ways.
 See the [Drupal 7](/frameworks/drupal7/_index.md) documentation for more details.
@@ -305,18 +297,8 @@ markdownify=false
 
 ## Runtime configuration
 
-It is possible to change the PHP-FPM runtime configuration via the `runtime` block on your `.platform.app.yaml`. The PHP-FPM options below are configurable:
-
-* `request_terminate_timeout` - The timeout for serving a single request
-  after which the PHP-FPM worker process is killed.
-  That's separate from the PHP runtime's `max_execution_time` option, which is preferred.
-  This option may be used if the PHP process is dying without cleaning up properly
-  and causing the FPM process to hang.
-
-    ```yaml
-    runtime:
-        request_terminate_timeout: 300
-    ```
+It's possible to change the PHP-FPM runtime configuration via the `runtime` property in your [app configuration](../../configuration/app/app-reference.md#runtime).
+See that reference for details on what can be changed.
 
 ## Project templates
 

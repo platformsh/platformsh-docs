@@ -15,9 +15,9 @@ description: |
 
 ## Service configuration: `services.yaml`
 
-{{% guides/config-service WordPress=true %}}
+{{% guides/config-service WordPress=true framework=WordPress %}}
 
-We recommend the latest [MariaDB](/configuration/services/mysql.md) version for WordPress.
+We recommend the latest [MariaDB](/configuration/services/mysql/_index.md) version for WordPress.
 
 {{% /guides/config-service %}}
 

@@ -6,11 +6,18 @@
 {{ with .Get "highlight"}}
   {{ $highlight = . }}
 {{ end }}
+{{ $location := "false" }}
+{{ with .Get "location" }}
+  {{ $location = . }}
+{{ end }}
 
 {{ if eq $markdown "true" }}
-{{ with .Get "file" }}{{ markdownify ( readFile . ) }}{{end}}
+  {{ with .Get "file" }}{{ markdownify ( readFile . ) }}{{end}}
 {{ else if ne $highlight "false" }}
-{{ with .Get "file" }}{{ highlight ( readFile . ) $highlight ""}}{{end}}
+  {{ if ne $location "false" }}
+<div class="highlight-location">{{ $location }}</div>
+  {{ end }}
+  {{ with .Get "file" }}{{ highlight ( readFile . ) $highlight ""}}{{end}}
 {{ else }}
-{{ with .Get "file" }}{{ safeHTML ( readFile . ) }}{{end}}
+  {{ with .Get "file" }}{{ safeHTML ( readFile . ) }}{{end}}
 {{ end }}

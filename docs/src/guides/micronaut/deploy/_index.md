@@ -21,12 +21,10 @@ Going through the steps below you will have two options:
 
 ## Tools
 
-{{< guides/tools >}}
+{{% guides/tools %}}
 
 ## Sign up for Platform.sh and initialize your project
 
-{{< guides/signup name="Micronaut" template="micronaut" >}}
-
-{{< /guides/signup >}}
+{{% guides/signup name="Micronaut" template="micronaut" /%}}
 
 {{< guide-buttons next="Configure repository" type="first" >}}

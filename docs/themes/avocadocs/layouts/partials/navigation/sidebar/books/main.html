@@ -62,8 +62,8 @@
                 {{ if not ( isset .Params "sidebarIgnore" )}}
                   <!-- SECOND LEVEL ITEM -->
                   <li class="duik-sidebar__item">
-                    <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
-                        <span style="display:inline-block; width: {{ $levelTwoIndent }};"></span>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+                    <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}" style="padding-left:calc(2em + {{ $levelTwoIndent }})">
+                        {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
                     </a>
                   </li>
                 {{ end }}
@@ -75,8 +75,8 @@
                     {{ if not ( isset .Params "sidebarIgnore" )}}
                       <!-- THIRD LEVEL ITEM -->
                       <li class="duik-sidebar__item">
-                        <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
-                            <span style="display:inline-block; width: {{ $levelThreeIndent }};"></span>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+                        <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}" style="padding-left:calc(2em + {{ $levelThreeIndent }})">
+                            {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
                         </a>
                       </li>
                     {{ end }}
@@ -94,8 +94,8 @@
                 {{ if not ( isset .Params "sidebarIgnore" )}}
                   <!-- SECOND LEVEL ITEM -->
                   <li class="duik-sidebar__item">
-                    <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}">
-                        <span style="display:inline-block; width: {{ $levelTwoIndent }};"></span>{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
+                    <a href="{{ .RelPermalink }}" class="duik-sidebar__link{{ if eq $currentPage . }} active{{ end }}" style="padding-left:calc(2em + {{ $levelTwoIndent }})">
+                        {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}
                     </a>
                   </li>
                   {{ end }}

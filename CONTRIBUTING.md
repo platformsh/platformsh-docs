@@ -11,9 +11,19 @@ For style and formatting guidance, see:
 * [Content style guide](contributing/content-style.md)
 * [Markup reference](contributing/markup-format.md)
 
-## Adding pages
+The docs are generally structured based on the [Diátaxis framework](https://diataxis.fr/).
+For how that structure is applied to different types of docs in this project, see the [templates](docs/templates).
 
-To get a head start on your page, copy one of the [templates](/docs/templates).
+## Table of contents
+
+* [Adding new pages](#adding-new-pages)
+  * [Adding security reports](#adding-security-reports)
+* [Commit messages](#commit-messages)
+* [Review process](#review-process)
+
+## Adding new pages
+
+To get a head start on your page, copy one of the [templates](docs/templates).
 
 All file names should end in `.md`.
 They should be all lowercase
@@ -56,13 +66,15 @@ To add a security transparency report for a new year (after receiving the data):
 1. Copy the tables from the previous year:
 
    ```bash
-   cp -R docs/layouts/shortcodes/tranparency-reports/tables/2020/ docs/layouts/shortcodes/tranparency-reports/tables/2021
+   cp -R docs/layouts/shortcodes/tranparency-reports/tables/2021 docs/layouts/shortcodes/tranparency-reports/tables/2022
    ```
+
 1. Copy the template from the previous year:
 
    ```bash
-   cp docs/src/security/transparency/2020_report.md docs/src/security/transparency/2021_report.md
+   cp docs/src/security/transparency/2021_report.md docs/src/security/transparency/2022_report.md
    ```
+
 1. Update instances of the year in the new `.md` file:
 
    * In the front matter (`title`, `sidebarTitle`, and `file`)
@@ -70,9 +82,33 @@ To add a security transparency report for a new year (after receiving the data):
 1. Run the docs locally and navigate to the new page _using Firefox_.
 1. Print the page as a PDF and save in `docs/static/files/reports/transparency-abuse/`.
 
-   Save the file as `<YEAR>_platformsh_transparency_report.pdf` (replacing `<YEAR>` with the current year).
+   Save the file as `<YEAR>_platformsh_transparency_report.pdf` (replacing `<YEAR>` with the respective year).
 
 The report text is in `docs/data/transparency-reports.yaml`.
+
+## Commit messages
+
+To help understand why changes happened and not repeat work already done,
+the aim is to keep a meaningful history of changes to the project.
+This means you should use meaningful commit messages (not just `Updated file.md`).
+
+The pattern for the project is:
+
+```txt
+:GITMOJI: Verb + action
+
+Optional extra context
+```
+
+Where `GITMOJI` is the [gitmoji](https://gitmoji.dev/) that corresponds to what the change is. For example:
+
+```txt
+:sparkles: Add documentation for organizations
+
+Added new pages to describe how organizations at Platform.sh work.
+```
+
+To help with the process, you can install the [gitmoji CLI](https://github.com/carloscuesta/gitmoji-cli).
 
 ## Review process
 

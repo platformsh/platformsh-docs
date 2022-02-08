@@ -49,14 +49,17 @@ paths:
         - solr
     relationships:
         - elasticsearch
+        - headlesschrome
         - influxdb
         - kafka
         - memcached
         - mongodb
         - mysql
+        - oraclemysql
+        - opensearch
         - postgresql
         - postgresql
         - rabbitmq
         - redis
         - solr
-        - vault
+        - vault-kms
