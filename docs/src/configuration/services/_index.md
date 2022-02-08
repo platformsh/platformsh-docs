@@ -89,14 +89,14 @@ This is done in your [app configuration for relationships](../app/app-reference.
 
 The relationship follows this pattern:
 
-```yaml {location=".platform/services.yaml"}
+```yaml {location=".platform.app.yaml"}
 relationships:
     <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT>"
 ```
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
-```yaml {location=".platform/services.yaml"}
+```yaml {location=".platform.app.yaml"}
 relationships:
     mysql_database: "database1:mysql"
     postgresql_database: "database2:postgresql"
