@@ -139,8 +139,9 @@ There are three basic ways to authenticate with Platform.sh:
 
 {{< tiered-feature "Enterprise and Elite" >}}
 
-To enhance security, MFA is enabled automatically on every new Enterprise and Elite project.
-This means that every contributor to your project must enable MFA in their account in order to SSH into an environment.  
-Note that MFA isn't enforced on older projects automatically, but you can enable it by submitting a support request.
+To enhance security, Enterprise and Elite customers can enforce MFA over SSH within their organization.
+When this is enabled, every project contributor within your organization must enable MFA in their account
+to run Git commands or to SSH in an environment.
+To enable this feature, open a support ticket and request for MFA over SSH to be enforced within your organization.
 
 If you have trouble accessing an environment with MFA enabled, see how to [add a second factor](./troubleshoot-ssh.md#add-a-second-authentication-factor).
