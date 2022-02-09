@@ -15,15 +15,15 @@ Or you want to use specific Node.js version inside a container for another langu
 In such cases, use a version manager to install the specific version you want to use.
 You could use one of these:
 
-* [`n`](https://github.com/tj/n)
-* [nvm](#use-nvm)
+* [`n`](#use-n)
+* [`nvm`](#use-nvm)
 
 Both of the recommendations use a `.nvmrc` file to specify the desired Node.js version.
 You could also use [environment variables](../../development/variables.md) or specify a different file.
 
 ## Use `n`
 
-The [`n` package](https://github.com/nvm-sh/nvm) works for various Unix-like systems,
+The [`n` package](https://github.com/tj/n) works for various Unix-like systems,
 including Windows Subsystem for Linux.
 
 1. Add the desired Node.js version to a `.nvmrc` file in your project's root:
@@ -93,9 +93,9 @@ hooks:
         hash -r
 ```
 
-## Use nvm
+## Use `nvm`
 
-[Node Version Manager (nvm)](https://github.com/nvm-sh/nvm))
+[Node Version Manager (`nvm`)](https://github.com/nvm-sh/nvm))
 
 You can:
 
