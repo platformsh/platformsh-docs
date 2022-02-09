@@ -164,13 +164,13 @@ The files still exist on disk until manually removed.
 Use the `web` key to configure the web server running in front of your app.
 Defaults may vary with a different [image `type`](#types).
 
-| Name        | Type                                 | Required                      | Description |
-| ----------- | ------------------------------------ | ----------------------------- | ----------- |
-| `commands`  | A [commands dictionary](#commands)   | See [note](#required-command) | The command to launch your app. |
-| `upstream`  | An [upstream dictionary](#upstream)  |                               | How the front server connects to your app. |
-| `locations` | A [locations dictionary](#locations) |                               | How the app container responds to incoming requests. |
+| Name        | Type                                         | Required                      | Description |
+| ----------- | -------------------------------------------- | ----------------------------- | ----------- |
+| `commands`  | A [web commands dictionary](#web-commands)   | See [note](#required-command) | The command to launch your app. |
+| `upstream`  | An [upstream dictionary](#upstream)          |                               | How the front server connects to your app. |
+| `locations` | A [locations dictionary](#locations)         |                               | How the app container responds to incoming requests. |
 
-### Commands
+### Web commands
 
 | Name    | Type     | Required                      | Description |
 | ------- | -------- | ----------------------------- | ----------- |
@@ -539,32 +539,34 @@ if other hooks fail, the app is still deployed.
 The keys of the `crons` definition are the names of the cron jobs.
 The names must be unique.
 
-The following table shows the properties for each job:
-
-| Name   | Type     | Required | Description |
-| ------ | -------- | -------- | ----------- |
-| `spec` | `string` | Yes      |  The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). |
-| `cmd`  | `string` | Yes      |  The command that's run. It's run in [Dash](https://en.wikipedia.org/wiki/Almquist_shell). |
-
-Minimum time between cron jobs being triggered:
-
-| Plan                | Time      |
-|-------------------- | --------- |
-| Professional        | 5 minutes |
-| Elite or Enterprise | 1 minute  |
-
-For each app container, only one cron job can run at a time.
-If a new job is triggered while another is running, the new job is paused until the other completes.
-To minimize conflicts, a random offset is applied to all triggers.
-The offset is a random number of seconds up to 5 minutes or the cron frequency, whichever is smaller.
-Crons are also paused while activities such as [backups](../../dedicated/overview/backups.md) are running.
-The crons are queued to run after the other activity finishes.
-
 If an application defines both a `web` instance and `worker` instances, cron jobs run only on the `web` instance.
 
-To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
-
 Cron jobs are [logged](../../development/logs.md) at `/var/log/cron.log`. 
+
+The following table shows the properties for each job:
+
+| Name        | Type                                         | Required | Description |
+| ----------- | -------------------------------------------- | -------- | ----------- |
+| `spec`      | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#CRON_expression). |
+| `commands`  | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job. |
+
+### Cron commands
+
+| Name               | Type      | Required | Description |
+| ------------------ | --------- | -------- | ----------- |
+| `start`            | `string`  | Yes      | The command that's run. It's run in [Dash](https://en.wikipedia.org/wiki/Almquist_shell). |
+| `stop`             | `string`  | No       | The command that's issued to give the cron command a chance to shutdown gracefully, such as to finish an active item in a list of tasks. Issued when a cron task is interrupted by a user through the CLI or management console. If not specified, a `SIGTERM` signal is sent to the process. |
+| `shutdown_timeout` | `integer` | No       | The number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds. |
+
+```yaml {location=".platform.app.yaml"}
+crons:
+    mycommand:
+        spec: '*/19 * * * *'
+        commands:
+            start: sleep 60 && echo sleep-60-finished && date
+            stop: killall sleep
+            shutdown_timeout: 18
+```
 
 ### Example cron jobs
 
@@ -581,12 +583,14 @@ crons:
     # Run Drupal's cron tasks every 19 minutes.
     drupal:
         spec: '*/19 * * * *'
-        cmd: 'cd web ; drush core-cron'
+        commands:
+            start: 'cd web ; drush core-cron'
     # But also run pending queue tasks every 7 minutes.
     # Use an odd number to avoid running at the same time as the `drupal` cron.
     drush-queue:
         spec: '*/7 * * * *'
-        cmd: 'cd web ; drush queue-run aggregator_feeds'
+        commands:
+            start: 'cd web ; drush queue-run aggregator_feeds'
 
 <--->
 
@@ -599,11 +603,30 @@ highlight=yaml
 crons:
     ruby:
         spec: '*/19 * * * *'
-        cmd: 'bundle exec rake some:task'
+        commands:
+            start: 'bundle exec rake some:task'
 
 {{< /codetabs >}}
 
 <!-- vale on -->
+
+### Cron job timing
+
+Minimum time between cron jobs being triggered:
+
+| Plan                | Time      |
+|-------------------- | --------- |
+| Professional        | 5 minutes |
+| Elite or Enterprise | 1 minute  |
+
+For each app container, only one cron job can run at a time.
+If a new job is triggered while another is running, the new job is paused until the other completes.
+To minimize conflicts, a random offset is applied to all triggers.
+The offset is a random number of seconds up to 5 minutes or the cron frequency, whichever is smaller.
+Crons are also paused while activities such as [backups](../../dedicated/overview/backups.md) are running.
+The crons are queued to run after the other activity finishes.
+
+To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
 
 ## Runtime
 
