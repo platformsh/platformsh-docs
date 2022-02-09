@@ -135,7 +135,7 @@ There are three basic ways to authenticate with Platform.sh:
   * Good for letting automation tools use the CLI.
   * Requires you to regularly change the tokens to maintain security.
 
-## Multi-factor authentication (MFA) over SSH
+## Multifactor authentication (MFA) over SSH
 
 {{< tiered-feature "Enterprise and Elite" >}}
 
@@ -143,4 +143,4 @@ To enhance security, MFA is enabled automatically on every new Enterprise and El
 This means that every contributor to your project must enable MFA in their account in order to SSH into an environment.  
 Note that MFA isn't enforced on older projects automatically, but you can enable it by submitting a support request.
 
-If you have trouble accessing an environment, see how to [use SSH with MFA](./troubleshoot-ssh.md#use-ssh-with-multi-factor-authentication-mfa).
+If you have trouble accessing an environment with MFA enabled, see how to [add a second factor](./troubleshoot-ssh.md#add-a-second-authentication-factor).

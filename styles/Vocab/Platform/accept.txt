@@ -42,7 +42,7 @@ Mailchimp
 Memcache
 middleware
 multicast
-multifactor
+[Mm]ultifactor
 multithread[ed|ing]
 namespace
 [Nn]ginx
