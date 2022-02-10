@@ -140,10 +140,10 @@ Like WordPress core itself, themes and plugins can be installed as dependencies 
     Search for your existing themes and plugins [WPackagist](https://wpackagist) and install them through Composer with `composer require`:
 
     ```bash
-    # Theme
+    # Plugin
     composer require wpackagist-plugin/wordpress-seo
 
-    # Plugin
+    # Theme
     composer require wpackagist-theme/hueman
     ```
 

@@ -30,7 +30,7 @@ and turn off those on by default with the `disabled_extensions` key.
 
 | Extension         | 5.4   | 5.5   | 5.6   | 7.0   | 7.1   | 7.2   | 7.3   | 7.4   | 8.0   | 8.1   |
 | ----------------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| `amqp`            |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
+| `amqp`            |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `apc`             | Avail | Avail |       |       |       |       |       |       |       |       |
 | `apcu`            | Avail |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `apcu_bc`         |       |       |       | Avail | Avail | Avail | Avail | Avail |       |       |
@@ -57,7 +57,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `http`            | Avail | Avail |       |       |       |       | Avail | Avail | Avail | Avail |
 | `iconv`           |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `igbinary`        |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
-| `imagick`         | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
+| `imagick`         | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail with<br />`webp`  | Avail with<br />`webp`  |
 | `imap`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `interbase`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |       |
 | `intl`            | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
@@ -87,7 +87,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `pdo_odbc`        | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `pdo_pgsql`       | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `pdo_sqlite`      | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `pdo_sqlsrv`      |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |       |
+| `pdo_sqlsrv`      |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `pgsql`           | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `Phar`            |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
 | `pinba`           | Avail | Avail | Avail |       |       |       |       |       |       |       |
@@ -108,7 +108,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `sourceguardian`  |       |       |       | Avail | Avail |       |       |       |       |       |
 | `spplus`          | Avail | Avail |       |       |       |       |       |       |       |       |
 | `sqlite3`         | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
-| `sqlsrv`          |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |       |
+| `sqlsrv`          |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `ssh2`            | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail | Avail |
 | `sybase`          |       |       |       |       | Avail | Avail | Avail | Avail | Avail | Avail |
 | `sysvmsg`         |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
@@ -132,6 +132,7 @@ and turn off those on by default with the `disabled_extensions` key.
 | `zbarcode`        |       |       |       | Avail | Avail | Avail | Avail |       |       |       |
 | `zendopcache`     | Def   | *     | *     | *     | *     | *     | *     | *     | *     | *     |
 | `zip`             |       |       |       | Def   | Def   | Def   | Def   | Def   | Def   | Def   |
+
 
 There are also built-in modules that are always on:
 

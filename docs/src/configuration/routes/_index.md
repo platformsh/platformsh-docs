@@ -77,7 +77,7 @@ These domains can be top level domains (`example.com`) or subdomains (`app.examp
 
 `{default}` represents your default custom domain.
 If you have set your default domain to `example.com`,
-`example.com` and `{default}` in your `.platform.routes.yaml` file have the same meaning for your production environment.
+`example.com` and `{default}` in your `.platform/routes.yaml` file have the same meaning for your production environment.
 
 Each development environment gets its own domain with a unique identifier.
 If you use the URL template on a `feature` branch, you get something like the following:
