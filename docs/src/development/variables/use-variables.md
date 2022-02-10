@@ -360,7 +360,7 @@ and whether they're available during builds and at runtime.
 | `PLATFORM_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
 | `PLATFORM_SOURCE_DIR`       | Yes   | No      | Equivalent to `PLATFORM_APP_DIR` in the context of a running [source operation](../../configuration/app/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
 | `PLATFORM_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
-| `PLATFORM_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. |
+| `PLATFORM_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#accessing-variables-in-a-shell). |
 
 ### Variables on Dedicated environments
 
