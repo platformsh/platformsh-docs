@@ -138,7 +138,7 @@ and whether they're available during builds and at runtime.
 | ------------------------- | ----- | ------- | ----------- |
 | PLATFORM_OUTPUT_DIR       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
 | PLATFORM_VARIABLES        | Some  | Some    | A base64-encoded JSON object with all project and environment variables that don't use a [prefix](#variable-prefixes). The keys are the variable names and the values the values. Availability during builds and at runtime depends on the specific variable settings. |
-| PLATFORM_PROJECT          | Yes   | Yes     | The project ID |
+| PLATFORM_PROJECT          | Yes   | Yes     | The project ID. |
 | PLATFORM_TREE_ID          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build |
 | PLATFORM_PROJECT_ENTROPY  | Yes   | Yes     | A random, 56-character value created when the project is created and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
 | PLATFORM_APP_DIR          | Yes   | Yes     | The absolute path to the application directory. |
@@ -158,12 +158,13 @@ Dedicated instances also have the following variables available:
 | Variable name    | Build | Runtime | Description |
 | ---------------- | ----- | ------- | ----------- |
 | PLATFORM_MODE    | No    | Yes     | `enterprise` in all production and staging Dedicated environments. Note that an Enterprise support plan doesn't always imply a Dedicated environment, but a Dedicated environment always implies an Enterprise support plan. |
-| PLATFORM_CLUSTER | No    | Yes     | The cluster ID. |
-| PLATFORM_PROJECT | No    | Yes     | The document root. Typically the same as your cluster name for the production environment, while staging environments have `_stg` or similar appended. |
+| PLATFORM_CLUSTER | No    | Yes     | The cluster ID. In older Dedicated instances, this is used to get the project ID. When several projects are linked, this provides the main project/cluster they're linked to, while `PLATFORM_PROJECT` offers the specific project ID. |
 
 {{< note >}}
-The `PLATFORM_CLUSTER`, and `PLATFORM_PROJECT` environment variables aren't yet available on [Dedicated Generation 3](/dedicated-gen-3/overview.md).
-If your application contains logic that depends on whether it is running on a Dedicated Generation 3 host, use `PLATFORM_MODE`.
+
+The `PLATFORM_CLUSTER` environment variable isn't yet available on [Dedicated Generation 3](/dedicated-gen-3/overview.md).
+If your application depends on whether it's running on a Dedicated Generation 3 host, use `PLATFORM_MODE`.
+
 {{< /note >}}
 
 #### `PLATFORM_APPLICATION`
