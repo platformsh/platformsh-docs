@@ -21,7 +21,7 @@ Application variables are available at both build time and runtime.
 ## Create project variables
 
 Add secrets for all environments in project variables
-using [the management console](/administration/web/configure-project.html#variables) or the CLI.
+using [the management console](../../administration/web/configure-project.md#variables) or the CLI.
 
 For example, to create the project variable `foo` with the value `bar`, run:
 
@@ -58,7 +58,8 @@ You can also change the variable options after you create them (except for sensi
 platform variable:update foo --visible-build false --visible-runtime true
 ```
 
-Note that any changes to project variables require you to deploy your environments to have effect.
+Note that for changes to project variables to have effect,
+you need to [redeploy](../troubleshoot.md#force-a-redeploy) your environments.
 
 ## Create environment-specific variables
 
@@ -94,7 +95,7 @@ Other environments don't inherit it and get either a project variable of the sam
 
 Note that changing an environment variable causes that environment to be redeployed so the new value is available.
 However, child environments are *not* redeployed.
-To make the new value accessible to those environments, redeploy them manually.
+To make the new value accessible to those environments, [trigger a redeploy](../troubleshoot.md#force-a-redeploy).
 
 ### Example environment variable
 
@@ -102,7 +103,7 @@ Environment variables are a good place to store values that apply only on Platfo
 
 One example would be to define a Node.js application's build on a production branch (`NODE_ENV=production`),
 but use development mode (`NODE_ENV=development`) for each of your development environments.
-Assuming you have a `main` environment for production and then a `staging` environment with more child environments for development,
+Assuming you have a `main` environment for production and a `staging` environment with more child environments for development,
 run the following commands:
 
 ```bash
@@ -135,7 +136,7 @@ This also means the `.environment` script has the last word on environment varia
 
 If your app needs different names for environment variable than those set by Platform.sh, which is common for database connections,
 map the Platform.sh's variable names to those required by the application.
-Do this in the app with the help of the Config Reader libraries or via a shell script.
+Do this in the app with the help of a [Config Reader library](https://github.com/platformsh?q=config-reader) or via a shell script.
 
 For example, the following [`.environment` script](#set-variables-via-script) exports variables that are visible to the application.
 It uses the `jq` library, which is included in all app containers for this purpose.

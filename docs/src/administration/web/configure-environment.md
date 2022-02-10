@@ -105,7 +105,7 @@ So both`4.5.6.7` and `4.5.6.0/8` are legal formats.
 {{< note >}}
 
 Changing access control triggers a new deploy of the current environment.
-However, the changes don't propagate to child environments until those are manually redeployed.
+However, the changes don't propagate to child environments until those are [manually redeployed](../../development/troubleshoot.md#force-a-redeploy).
 
 {{< /note >}}
 

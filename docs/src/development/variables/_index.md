@@ -24,8 +24,8 @@ The following table defines what types of variables are available to you:
 | [Platform.sh](./use-variables.md#use-platformsh-provided-variables)  | Pre-defined | Environment | 1          | Some  | Yes      | For information about your Platform.sh project |
 
 If there are conflicts between variables with the same name, variables [take precedence](#overrides) from 1 down.
-So Platform.sh-provided values override environment variables, which override project variables,
-which override application-provided variables.
+So Platform.sh-provided values (1) override environment variables (2), which override project variables (3),
+which override application-provided variables (4).
 
 All of the variables can also be [overridden via script](./set-variables.md#set-variables-via-script).
 
