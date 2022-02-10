@@ -43,7 +43,7 @@ file=none
 When trying to identify and resolve failures, it can often help to have another person's perspective.
 Troubleshoot collaboratively by sharing the logs of specific activities.
 
-To share a log, open the log and click **Copy URL**.
+To share a log, open the log and click {{< icon share >}} **Copy URL**.
 
 Share specific lines in the log on clicking the line number.
 Hold shift to select multiple lines.
