@@ -343,24 +343,24 @@ which tells the app how to connect to databases and other services defined in `s
 The following table presents the available variables
 and whether they're available during builds and at runtime.
 
-| Variable name             | Build | Runtime | Description |
-| ------------------------- | ----- | ------- | ----------- |
-| PLATFORM_APP_DIR          | Yes   | Yes     | The absolute path to the app directory. |
-| PLATFORM_APPLICATION      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](../../configuration/app/_index.md), some with more structure. See [notes](#platform_application). |
-| PLATFORM_APPLICATION_NAME | Yes   | Yes     | The app name as set in your [app configuration](../../configuration/app/_index.md). |
-| PLATFORM_BRANCH           | No    | Yes     | The name of the Git branch. |
-| PLATFORM_DOCUMENT_ROOT    | No    | Yes     | The absolute path to the web document root, if applicable. |
-| PLATFORM_ENVIRONMENT      | No    | Yes     | The name of the Platform.sh environment. |
-| PLATFORM_ENVIRONMENT_TYPE | No    | Yes     | The environment type of the Platform.sh environment (`development`, `staging`, or `production`). |
-| PLATFORM_OUTPUT_DIR       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
-| PLATFORM_PROJECT          | Yes   | Yes     | The project ID. |
-| PLATFORM_PROJECT_ENTROPY  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
-| PLATFORM_RELATIONSHIPS    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../configuration/services/_index.md). |
-| PLATFORM_ROUTES           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../configuration/routes/_index.md). |
-| PLATFORM_SMTP_HOST        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
-| PLATFORM_SOURCE_DIR       | Yes   | No      | Equivalent to `PLATFORM_APP_DIR` in the context of a running [source operation](../../configuration/app/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
-| PLATFORM_TREE_ID          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
-| PLATFORM_VARIABLES        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. |
+| Variable name               | Build | Runtime | Description |
+| --------------------------- | ----- | ------- | ----------- |
+| `PLATFORM_APP_DIR`          | Yes   | Yes     | The absolute path to the app directory. |
+| `PLATFORM_APPLICATION`      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](../../configuration/app/_index.md), some with more structure. See [notes](#platform_application). |
+| `PLATFORM_APPLICATION_NAME` | Yes   | Yes     | The app name as set in your [app configuration](../../configuration/app/_index.md). |
+| `PLATFORM_BRANCH`           | No    | Yes     | The name of the Git branch. |
+| `PLATFORM_DOCUMENT_ROOT`    | No    | Yes     | The absolute path to the web document root, if applicable. |
+| `PLATFORM_ENVIRONMENT`      | No    | Yes     | The name of the Platform.sh environment. |
+| `PLATFORM_ENVIRONMENT_TYPE` | No    | Yes     | The environment type of the Platform.sh environment (`development`, `staging`, or `production`). |
+| `PLATFORM_OUTPUT_DIR`       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
+| `PLATFORM_PROJECT`          | Yes   | Yes     | The project ID. |
+| `PLATFORM_PROJECT_ENTROPY`  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
+| `PLATFORM_RELATIONSHIPS`    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../configuration/services/_index.md). |
+| `PLATFORM_ROUTES`           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../configuration/routes/_index.md). |
+| `PLATFORM_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
+| `PLATFORM_SOURCE_DIR`       | Yes   | No      | Equivalent to `PLATFORM_APP_DIR` in the context of a running [source operation](../../configuration/app/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
+| `PLATFORM_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
+| `PLATFORM_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. |
 
 ### Variables on Dedicated environments
 
@@ -368,14 +368,13 @@ and whether they're available during builds and at runtime.
 
 | Variable name    | Build | Runtime | Description |
 | ---------------- | ----- | ------- | ----------- |
-| PLATFORM_MODE    | No    | Yes     | `enterprise` in all Dedicated production and staging environments. Note that an Enterprise support plan doesn't always imply a Dedicated environment, but a Dedicated environment always implies an Enterprise support plan. |
-| PLATFORM_CLUSTER | No    | Yes     | The cluster ID. |
-| PLATFORM_PROJECT | No    | Yes     | The document root. Typically the same as your cluster name for the production environment, while staging environments have `_stg` or similar appended. |
+| `PLATFORM_CLUSTER` | No    | Yes     | The cluster ID. In older Dedicated instances, this is used to get the project ID. When several projects are linked, this provides the main project/cluster they're linked to, while `PLATFORM_PROJECT` offers the specific project ID. |
+| `PLATFORM_MODE`    | No    | Yes     | `enterprise` in all Dedicated production and staging environments. Note that an Enterprise support plan doesn't always imply a Dedicated environment, but a Dedicated environment always implies an Enterprise support plan. |
 
 {{< note >}}
 
-The `PLATFORM_CLUSTER`, and `PLATFORM_PROJECT` environment variables aren't yet available on [Dedicated Generation 3](../../dedicated-gen-3/overview.md).
-If your application contains logic that depends on whether it's running on a Dedicated Generation 3 host, use `PLATFORM_MODE`.
+The `PLATFORM_CLUSTER` environment variable isn't yet available on [Dedicated Generation 3](../../dedicated-gen-3/overview.md).
+If your application depends on whether it's running on a Dedicated Generation 3 host, use `PLATFORM_MODE`.
 
 {{< /note >}}
 
