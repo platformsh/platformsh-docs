@@ -51,7 +51,7 @@ hooks:
 ## Support libraries
 
 While it's possible to read the environment directly from your application,
-it's generally easier and more robust to use the [`platformsh-config`](https://github.com/platformsh/config-reader-nodejs) package,
+it's generally easier and more robust to use the [`platformsh-config` package](https://github.com/platformsh/config-reader-nodejs),
 which handles decoding of service credential information for you.
 
 ## Configuration

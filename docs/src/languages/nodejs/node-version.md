@@ -95,7 +95,7 @@ hooks:
 
 ## Use `nvm`
 
-[Node Version Manager (`nvm`)](https://github.com/nvm-sh/nvm))
+[Node Version Manager (`nvm`)](https://github.com/nvm-sh/nvm)
 
 You can:
 
