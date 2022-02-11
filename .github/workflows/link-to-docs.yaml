@@ -72,7 +72,6 @@ jobs:
 
       - name: Get all changed files
         id: get-files
-        needs: changed-files
         run: |
           files=()
           for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; do
@@ -82,7 +81,6 @@ jobs:
       
       - name: Comment with links
         uses: actions/github-script@v5
-        needs: get-files
         if: steps.get-files.outputs.changed_files != ''
         with:
           script: |
