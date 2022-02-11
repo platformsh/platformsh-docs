@@ -41,7 +41,9 @@ Platform.sh also [supports New Relic APM](/integrations/observability/new-relic/
 
 ## Availability incident handling procedure
 
-Automated monitoring may trigger alerts that will page the on-call engineer, or the end-user may file an urgent priority ticket.  Opsgenie will page the on-call using several methods. The on-call engineer responds to the alerts and begins to triage the issue.
+Automated monitoring may trigger alerts that page the on-call engineer or the end-user may file an urgent priority ticket.
+Opsgenie pages the on-call engineer using several methods.
+The on-call engineer responds to the alerts and begins to triage the issue.
 
 Cloud infrastructure issues are handled by the customer success team. *Application problems are escalated to an application support specialist if an agreement is part of the customer subscription.  Otherwise, they are returned to the user and may be downgraded*.
 
