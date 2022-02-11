@@ -20,7 +20,7 @@ jobs:
           id: get-url
           run: |
             COMMIT_STATUS="pending"
-            sleep 20
+            sleep 60
             STATUSES=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA  | jq -r 'length')
             if [ $STATUSES == 0 ]; then
               echo "Not on a Platform.sh integrated environment. Skipping."
