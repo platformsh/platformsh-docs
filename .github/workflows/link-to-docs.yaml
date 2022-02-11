@@ -1,6 +1,6 @@
 name: Link to docs
 on:
-  pull_request:
+  push:
     paths:
       - "docs/src/**"
 
