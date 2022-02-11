@@ -465,13 +465,10 @@ The following example shows the process, though you have to modify it to fit you
    cat '' > config/db.yaml
 
    # Map the database information from the PLATFORM_RELATIONSHIPS variable into the YAML file.
-   # Adjust the structure to fit your app's needs.
+   # Use this process to use whatever variable names your app needs.
 
    printf "host: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host") >> config/db.yaml
-   printf "port: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].port") >> config/db.yaml
-   printf "name: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].path") >> config/db.yaml
    printf "user: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username") >> config/db.yaml
-   printf "pass: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].password") >> config/db.yaml
    ```
 
 1. Call the script from the `deploy` hook your [app configuration](../../configuration/app/_index.md):
