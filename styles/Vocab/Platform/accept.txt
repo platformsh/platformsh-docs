@@ -51,6 +51,7 @@ npm
 nvm
 onboarding
 OPcache
+Opsgenie
 optipng
 Packagist
 Pixelant
