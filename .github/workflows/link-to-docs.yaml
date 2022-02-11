@@ -20,11 +20,14 @@ jobs:
           id: get_env_url
           run: |
             COMMIT_STATUS="pending"
+
+            # Make sure to give enough time for the initial status to be reported as pending 
             sleep 120
             STATUSES=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA  | jq -r 'length')
             if [ $STATUSES == 0 ]; then
               echo "No integration with Platform.sh reported. Skipping."
             else
+              # Keep trying until deployment either succeeds or fails
               until [ "$COMMIT_STATUS" == "success" ] || [ "$COMMIT_STATUS" == "failure" ]; do
                 sleep 30
                 ENV_URL=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA  | jq -r '.[0].target_url')
@@ -37,6 +40,8 @@ jobs:
                 echo "Environment deployed to:"
                 echo "$ENV_URL"
               fi
+
+              # Report the final statuses to be used in future jobs
               echo "::set-output name=env_status::$COMMIT_STATUS"
               echo "::set-output name=env_url::$ENV_URL"
             fi
@@ -76,7 +81,9 @@ jobs:
         run: |
           files=()
           for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; do
-            if [[ $file = *".md"* ]]; then
+
+            # Rewrite all Markdown files in the source to be links in the final environment
+            if [[ $file = *"src/*".md" ]]; then
               files+=("$ENV_URL/${file/md/html}")
             fi
           done
@@ -87,7 +94,7 @@ jobs:
         uses: actions/github-script@v5
         if: steps.get-files.outputs.changed_files != ''
         env:
-          PAGES: ${{ steps.changed-files.outputs.changed_files }}
+          PAGES: ${{ steps.get-files.outputs.changed_files }}
         with:
           script: |
             github.rest.issues.createComment({
