@@ -100,7 +100,7 @@ Those features may require a Premium or an Enterprise subscription. We offer att
 
 Blackfire Monitoring is [enabled by default](https://blackfire.io/docs/monitoring-cookbooks/configuration#activating-monitoring-on-an-environment) for Monitoring customers.
 
-To disable Blackfire Monitoring, you will need to add the `BLACKFIRE_APM_ENABLED` [environment variable](/development/variables.md) with a value of `0`.
+To disable Blackfire Monitoring, create a `BLACKFIRE_APM_ENABLED` [environment variable](../../development/variables/set-variables.md#create-environment-specific-variables) with a value of `0`.
 
 In the management console, view the environment you would like to disable Blackfire Monitoring on and add the variable `env:BLACKFIRE_APM_ENABLED` with the value `0`.
 Otherwise, you can use the CLI command `platform variable:create --level environment --name BLACKFIRE_APM_ENABLED --value 0`

@@ -76,7 +76,8 @@ eZ Launchpad will generate the files for you and you are then totally free to fi
 
 #### Solr specificity
 
-Solr is fully functional with eZ Launchpad but it is not enabled by default on Platform.sh. You will have to set it up manually following the current documenation here: https://github.com/ezsystems/ezplatform/blob/master/.platform/services.yaml#L37.
+Solr is fully functional with eZ Launchpad but it isn't enabled by default on Platform.sh.
+You have to set it up manually following the [current documentation](https://github.com/ezsystems/ezplatform/blob/master/.platform/services.yaml#L37).
 
 Actions needed are:
 
@@ -87,7 +88,8 @@ Actions needed are:
 
 #### Environment variables (optional)
 
-eZ Launchpad allows you to define environment variables in the `provisioning/dev/docker-compose.yml` file. You may use that to set [Platform.sh variables](/development/variables.md) to match Platform.sh environments so that you can keep your environment behavior in sync.
+eZ Launchpad allows you to define environment variables in the `provisioning/dev/docker-compose.yml` file.
+You may use that to set [variables](../../development/variables/_index.md) to match Platform.sh environments so that you can keep your environment behavior in sync.
 
 Such variables have to be set in the `engine` container.
 

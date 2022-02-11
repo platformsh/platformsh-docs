@@ -9,7 +9,7 @@ To use it, paste it as-is into a `.js` file and then add it as a new [script int
 
 Second, create a new Discord webhook through your Discord administrative interface.  [Discord's documentation](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) explains how to do so.  You can name the bot however you wish, and specify the channel to which it should post messages.  Once it's created, click the "Copy Webhook URL" button to get the URL.
 
-Third, add that URL to your project as a [variable](/development/variables.md) named `DISCORD_URL`.
+Third, add that URL to your project as a [variable](../../development/variables/_index.md) named `DISCORD_URL`.
 
 ```bash
 platform variable:create --level project --name DISCORD_URL --value <Long Discord URL here>

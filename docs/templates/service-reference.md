@@ -79,7 +79,7 @@ You can configure your <SERVICE_NAME> service in the [services configuration](./
 
 ## Relationship reference
 
-Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#use-platformsh-provided-variables)
+Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-platformsh-provided-variables)
 or by running `platform relationships`:
 
 <!-- A yaml file taken from https://examples.docs.platform.sh/ that contains all the properties people need to access/use the service. -->

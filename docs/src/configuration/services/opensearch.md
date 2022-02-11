@@ -23,7 +23,7 @@ To update the versions in this table, use docs/data/registry.json
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables.md#platformsh-provided-variables):
+The format exposed in the [`$PLATFORM_RELATIONSHIPS` environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "opensearch" >}}
 

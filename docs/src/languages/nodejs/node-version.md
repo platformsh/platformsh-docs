@@ -19,7 +19,7 @@ You could use one of these:
 * [`nvm`](#use-nvm)
 
 Both of the recommendations use a `.nvmrc` file to specify the desired Node.js version.
-You could also use [environment variables](../../development/variables.md) or specify a different file.
+You could also use [environment variables](../../development/variables/_index.md) or specify a different file.
 
 ## Use `n`
 
@@ -100,7 +100,7 @@ hooks:
 You can:
 
 * Add it to the build hook to make that version available in the build
-* Control the specific versions to be installed with [environment variables](/development/variables.md),
+* Control the specific versions to be installed with [environment variables](../../development/variables/_index.md),
   meaning you can also have different versions in different environments
 * Cache `nvm` so you don't need to download it each time
 
