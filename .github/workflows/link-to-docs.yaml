@@ -1,0 +1,93 @@
+name: Link to docs
+on:
+  pull_request:
+    paths:
+      - "docs/src/**"
+    branches:
+      - main
+
+env:
+  PR_NUMBER: ${{ github.event.number }}
+
+jobs:
+  get-url:
+    runs-on: ubuntu-latest
+    name: 'Get environment URL'
+    outputs:
+        commit_status: ${{ steps.status.outputs.env_status }}
+        env_url: ${{ steps.url.outputs.env_url }}  
+    steps: 
+        - uses: actions/checkout@v2
+        - name: Get environment URL
+          id: get-url
+          run: |
+            COMMIT_STATUS="pending"
+            sleep 10
+            STATUSES=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA  | jq -r 'length')
+            if [ $STATUSES == 0 ]; then
+              echo "Not on a Platform.sh integrated environment. Skipping."
+              echo "$GITHUB_SHA"
+              echo "::set-output name=integration::none"
+            else
+              until [ "$COMMIT_STATUS" == "success" ] || [ "$COMMIT_STATUS" == "failure" ]; do
+                sleep 30
+                ENV_URL=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA  | jq -r '.[0].target_url')
+                COMMIT_STATUS=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA  | jq -r '.[0].state')
+                
+                echo "The Platform.sh environment is: "
+                echo "$COMMIT_STATUS"
+              done
+              echo "Environment deployed to:"
+              echo "$ENV_URL"
+              echo "::set-output name=env_status::$COMMIT_STATUS"
+              echo "::set-output name=env_url::$ENV_URL"
+            fi
+
+  comment-failure:
+    runs-on: ubuntu-latest
+    name: Comment with docs links
+    needs: get-url
+    if: needs.build.outputs.commit_status == 'failure'
+    steps:
+      - uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/${{ secrets.PROJECT_ID }}/pr-$PR_NUMBER"
+            })
+
+  comment-with-links:
+    runs-on: ubuntu-latest
+    name: Comment with docs links
+    needs: get-url
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v14.5
+
+      - name: Get all changed files
+        id: get-files
+        run: |
+          files=()
+          for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; do
+            arr+=("${file/md/html}")
+          done
+          echo ::set-output name=changed_files::${files[*]// /'\n'}
+      
+      - name: Comment with links
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages: ${{ steps.changed-files.outputs.changed_files }}"
+            })
