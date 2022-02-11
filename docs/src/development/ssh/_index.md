@@ -145,3 +145,7 @@ to run Git commands or to SSH in an environment.
 To enable this feature, open a support ticket and request for MFA over SSH to be enforced within your organization.
 
 If you have trouble accessing an environment with MFA enabled, see how to [add a second factor](./troubleshoot-ssh.md#add-a-second-authentication-factor).
+
+
+
+

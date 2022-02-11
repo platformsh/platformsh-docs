@@ -82,9 +82,6 @@ We proxy your emails through our own SMTP host, and encrypt them over port 465 b
 
 
 
-
-
-
 Before testing that the email service is working, make sure that:
 
 - E-mail has been [enabled](#enablingdisabling-email) on the environment

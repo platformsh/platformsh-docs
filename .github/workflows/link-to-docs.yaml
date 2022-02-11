@@ -29,12 +29,15 @@ jobs:
             else
               # Keep trying until deployment either succeeds or fails
               until [ "$COMMIT_STATUS" == "success" ] || [ "$COMMIT_STATUS" == "failure" ]; do
-                sleep 30
                 ENV_URL=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA  | jq -r '.[0].target_url')
                 COMMIT_STATUS=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA  | jq -r '.[0].state')
                 
                 echo "The Platform.sh environment is: "
                 echo "$COMMIT_STATUS"
+                
+                if [ "$COMMIT_STATUS" == "pending" ]; then
+                  sleep 30
+                fi
               done
               if [ "$COMMIT_STATUS" == "success" ]; then
                 echo "Environment deployed to:"
@@ -67,6 +70,8 @@ jobs:
     name: Comment with docs links
     needs: get_url
     if: needs.get_url.outputs.commit_status == 'success'
+    env:
+      ENV_URL: ${{ needs.get_url.outputs.env_url }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -83,12 +88,18 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; do
 
             # Rewrite all Markdown files in the source to be links in the final environment
-            if [[ $file = *"src/*".md" ]]; then
-              files+=("$ENV_URL/${file/md/html}")
+            if [[ $file = "docs/src/"*".md" ]]; then
+              # Remove file extension
+              page=${file/.md/.html}
+              # Remove initial directory
+              page=${page/"docs/src/"/}
+              # Shift index pages up a level
+              page=${page/"/_index.html"/".html"}
+              files+=("$ENV_URL$page")
             fi
           done
-          echo ${files[*]// /'\n'}
-          echo ::set-output name=changed_files::${files[*]// /'\n'}
+          echo $(printf "%s||" "${files[@]}")
+          echo ::set-output name=changed_files::$(printf "%s||" "${files[@]}")
       
       - name: Comment with links
         uses: actions/github-script@v5
@@ -101,7 +112,7 @@ jobs:
               issue_number: process.env.PR_NUMBER,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages: ${process.env.PAGES}`
+              body: `Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages:\n${process.env.PAGES.replace(/\|\|/g,"\n")}`
             })
 
       - name: Comment without links

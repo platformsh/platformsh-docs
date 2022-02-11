@@ -14,6 +14,10 @@ Its source code is hosted on [GitHub](https://github.com/platformsh/platformsh-c
 
 ## Before you begin
 
+
+
+
+
 You need to have:
 
 * PHP 5.5.9+
