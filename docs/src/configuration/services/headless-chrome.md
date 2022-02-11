@@ -43,7 +43,8 @@ Using the Platform.sh [Config Reader](https://github.com/platformsh/config-reade
 
 ### Other languages
 
-It will be necessary to upgrade the version of Node.js in other language containers before using Puppeteer. You can use [Node Version Manager](https://github.com/nvm-sh/nvm) or NVM to change or update the version available in your application container by following the instructions in the [Alternate Node.js install](/languages/nodejs/nvm.md) documentation.
+If your app container uses a language other than Node.js, upgrade the Node.js version before using Puppeteer.
+See how to [manage your Node.js version](../../languages/nodejs/node-version.md) documentation.
 
 ## Usage example
 

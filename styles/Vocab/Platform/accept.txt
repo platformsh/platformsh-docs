@@ -48,6 +48,7 @@ namespace
 [Nn]ginx
 Nori
 npm
+nvm
 onboarding
 OPcache
 optipng

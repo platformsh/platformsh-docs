@@ -37,7 +37,7 @@ Some environment variables should be the same for all environments.
 For example:
 
 * Build tool versions.
-  If you have scripts that use specific versions of build tools (such as a [specific Node.js version](../../languages/nodejs/nvm.md)),
+  If you have scripts that use specific versions of build tools (such as a [specific Node.js version](../../languages/nodejs/node-version.md)),
   You want the tools to be versioned along with your code so you can track the impact of changes.
   Set those variables [in the application](./set-variables.md#set-variables-in-your-app).
 * Credentials for common services.
