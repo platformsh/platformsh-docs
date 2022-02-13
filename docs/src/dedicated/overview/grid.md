@@ -70,4 +70,4 @@ Logs are available on the Dedicated Cluster at a different path than on Platform
 /var/log/platform/<application-name>/
 ```
 
-This folder contains the application, cron, error and deployment logs.
+This folder contains the access, application, cron, error and deployment logs. It also contains router log which includes redirects and cache hits.
