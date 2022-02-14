@@ -12,6 +12,7 @@
 - [Videos & asciinema](#videos--asciinema)
 - [Code](#code)
   - [Indentation](#indentation)
+- [Refer to the UI and keys](#refer-to-the-ui-and-keys)
 - [Code tabs](#code-tabs)
 - [Reuse content](#reuse-content)
 
@@ -218,6 +219,26 @@ note that as an attribute of that block and it will appear in a tab:
 ```yaml {location=".platform.app.yaml"}
 relationships:
     database: 'mysqldb:db
+```
+
+## Refer to the UI and keys
+
+When referring to text in the UI, use bold:
+
+```markdown
+Click **Redeploy**.
+```
+
+To refer to buttons in the UI that use icons, use the `icon` shortcode with the alternative text for the button:
+
+```markdown
+To share a log, open the log and click {{< icon share >}} **Copy URL**.
+```
+
+To refer to keys users should use on their keyboards, use `<kbd>` tags:
+
+```markdown
+To select multiple lines, hold <kbd>Shift</kbd>.
 ```
 
 ## Code tabs

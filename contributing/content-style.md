@@ -9,20 +9,21 @@ from Platform.sh engineers to people from the community.
 
 ## Table of contents
 
-- [About the audience](#about-the-audience)
-- [Style defaults](#style-defaults)
-- [Address the reader directly](#address-the-reader-directly)
-- [Use inclusive language](#use-inclusive-language)
-  - [Resources for inclusive language](#resources-for-inclusive-language)
-  - [Use meaningful link text](#use-meaningful-link-text)
-  - [Include alt text](#include-alt-text)
-- [Format screenshots for sustainability](#format-screenshots-for-sustainability)
-- [Use the present tense](#use-the-present-tense)
-- [Use contractions](#use-contractions)
-- [Explain abbreviations](#explain-abbreviations)
-- [Use notes appropriately](#use-notes-appropriately)
-- [Add short descriptions](#add-short-descriptions)
-- [Guidance enforcement](#guidance-enforcement)
+* [About the audience](#about-the-audience)
+* [Style defaults](#style-defaults)
+* [Address the reader directly](#address-the-reader-directly)
+* [Use inclusive language](#use-inclusive-language)
+  * [Resources for inclusive language](#resources-for-inclusive-language)
+  * [Use meaningful link text](#use-meaningful-link-text)
+  * [Include alt text](#include-alt-text)
+* [Format screenshots for sustainability](#format-screenshots-for-sustainability)
+* [Use the present tense](#use-the-present-tense)
+* [Use contractions](#use-contractions)
+* [Explain abbreviations](#explain-abbreviations)
+* [Use the long form of commands](#use-the-long-form-of-commands)
+* [Use notes appropriately](#use-notes-appropriately)
+* [Add short descriptions](#add-short-descriptions)
+* [Guidance enforcement](#guidance-enforcement)
 
 ## About the audience
 
@@ -83,11 +84,11 @@ allowlist                                                | whitelist
 
 Some guides to helping you make sure your writing is inclusive and accessible to everyone.
 
-- [Mailchimp guide to writing for accessibility](https://styleguide.mailchimp.com/writing-for-accessibility/)
-- [Microsoft's ideas on writing for all abilities](https://docs.microsoft.com/en-us/style-guide/accessibility/writing-all-abilities)
-- [Google suggestions for writing accessible documentation](https://developers.google.com/style/accessibility)
-- [Microsoft accessibility guidelines](https://docs.microsoft.com/en-us/style-guide/accessibility/accessibility-guidelines-requirements)
-- [The Conscious Style Guide](https://consciousstyleguide.com/)
+* [Mailchimp guide to writing for accessibility](https://styleguide.mailchimp.com/writing-for-accessibility/)
+* [Microsoft's ideas on writing for all abilities](https://docs.microsoft.com/en-us/style-guide/accessibility/writing-all-abilities)
+* [Google suggestions for writing accessible documentation](https://developers.google.com/style/accessibility)
+* [Microsoft accessibility guidelines](https://docs.microsoft.com/en-us/style-guide/accessibility/accessibility-guidelines-requirements)
+* [The Conscious Style Guide](https://consciousstyleguide.com/)
 
 ### Use meaningful link text
 
@@ -173,6 +174,20 @@ Use                                                                         | Av
 ----------------------------------------------------------------------------|-------
 It's a new key management service (KMS). You should use this KMS carefully. | It's a new KMS. You should use this KMS carefully.
 You have many service options, including Elasticsearch and Kafka.           | You have many service options, e.g. Elasticsearch, Kafka, etc.
+
+## Use the long form of commands
+
+The Platform.sh CLI has aliases for certain commands to make typing shorter.
+Some of these are semantically valid, but some might be confusing.
+
+Always use the long form of the command to show the entire context, including the namespace.
+Exception: don't both with the `auth` namespace as `login` and `logout` are clear enough without additional context.
+
+Use                                                           | Avoid
+--------------------------------------------------------------|-------
+To see all available variables, run `platform variable:list`. | To see all available variables, run `platform var`.
+To get a list of users, run `platform user:list`.             | To get a list of users, run `platform users`.
+To login, run `platform login`.                               | To login, run `platform auth:login`.
 
 ## Use notes appropriately
 
