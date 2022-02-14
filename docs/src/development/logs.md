@@ -46,7 +46,7 @@ Troubleshoot collaboratively by sharing the logs of specific activities.
 To share a log, open the log and click {{< icon share >}} **Copy URL**.
 
 Share specific lines in the log on clicking the line number.
-To select multiple lines, hold `Shift`.
+To select multiple lines, hold <kbd>Shift</kbd>.
 After selecting multiple lines,
 hovering on the next unselected line gives you the amount of time that passed between the selected lines.
 
