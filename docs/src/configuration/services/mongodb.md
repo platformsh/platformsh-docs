@@ -6,6 +6,14 @@ description: "MongoDB is a cross-platform, document-oriented database.<br><br>Fo
 sidebarTitle: "MongoDB"
 ---
 
+{{% frameworks %}}
+
+- [Jakarta EE](../../frameworks/jakarta.md#mongodb)
+- [Micronaut](../../guides/micronaut/mongodb.md)
+- [Quarkus](../../guides/quarkus/mongodb.md)
+- [Spring](../../guides/spring/mongodb.md)
+{{% /frameworks %}}
+
 ## Supported versions
 
 We're working on adding more versions.
