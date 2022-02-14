@@ -30,7 +30,7 @@ highlight=false
 file=none
 ---
 
-1. Get a list of activities by running `platform act -e <ENVIRONMENT_NAME>`.
+1. Get a list of activities by running `platform activity:list -e <ENVIRONMENT_NAME>`.
    Pass the `--start` flag to get activities from a specific date in the past.
 1. To see details about the activity's state and timing, run `platform activity:get <ACTIVITY_ID>`,
    where `<ACTIVITY_ID>` comes from the list in step 1.
@@ -46,7 +46,7 @@ Troubleshoot collaboratively by sharing the logs of specific activities.
 To share a log, open the log and click {{< icon share >}} **Copy URL**.
 
 Share specific lines in the log on clicking the line number.
-Hold shift to select multiple lines.
+To select multiple lines, hold `Shift`.
 After selecting multiple lines,
 hovering on the next unselected line gives you the amount of time that passed between the selected lines.
 
@@ -86,6 +86,8 @@ file=none
 
 1. Access the container by running `platform ssh -e <ENVIRONMENT_NAME>`.
 1. Change to the right directory by running `cd /var/log`.
+
+   If you're on a Dedicated cluster, run `/var/log/platform/<APP-NAME>/`.
 1. Read the desired log, such as by running `tail access.log`.
 
 {{< /codetabs >}}
