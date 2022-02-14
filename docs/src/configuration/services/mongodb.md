@@ -34,6 +34,17 @@ If you want to experiment with a later version without committing to it use a no
 |----------------------------------|
 |  {{< image-versions image="mongodb" status="deprecated" environment="grid" >}} |
 
+## Use a framework
+
+If you use one of the frameworks, follow the guide there:
+
+- [Micronaut](../../guides/micronaut/mongodb.md)
+- [Quarkus](../../guides/quarkus/mongodb.md)
+- [Jakarta EE](../../frameworks/jakarta.md#mongodb)
+- [Spring](../../guides/spring/mongodb.md)
+
+For more implementation ideas, consult our [templates](../../development/templates.md).
+
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):

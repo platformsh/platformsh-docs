@@ -37,6 +37,21 @@ Platform.sh supports two different Redis configurations: One persistent (useful 
 Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database.
 {{< /note >}}
 
+## Use a framework
+
+If you use one of the frameworks, follow the guide there:
+
+- [Drupal 7](../../frameworks/drupal7/redis.md)
+- [Drupal 9](../../guides/drupal9/redis.md)
+- [Wordpress](../../guides/wordpress/redis.md)
+- [Micronaut](../../guides/micronaut/redis.md)
+- [Quarkus](../../guides/quarkus/redis.md)
+- [Spring](../../guides/spring/redis.md)
+- [Ibexa DXP / eZ Launchpad](../../frameworks/ibexa/_index.md#cache-and-sessions)
+- [Jakarta EE](../../frameworks/jakarta.md#redis)
+
+For more implementation ideas, consult our [templates](../../development/templates.md).
+
 ## Ephemeral Redis
 
 The `redis` service type is configured to serve as an LRU cache; its storage isn't persistent.

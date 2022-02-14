@@ -39,6 +39,17 @@ Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
 See how to [convert tables to the InnoDB engine](#storage-engine).
 
+## Use a framework
+
+If you use one of the frameworks, follow the guide there:
+
+- [Hibernate](../../../frameworks/hibernate.md#mysql)
+- [Jakarta EE](../../../frameworks/jakarta.md#mysql)
+- [Spring](../../../frameworks/spring.md#mysql)
+- [MariaDB/MySQL External Replication](../../../guides/general/mysql-replication.md)
+
+For more implementation ideas, consult our [templates](../../../development/templates.md).
+
 ### Switching type and version
 
 If you change the service type, your data is removed.

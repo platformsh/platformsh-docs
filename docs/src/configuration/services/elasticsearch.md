@@ -41,6 +41,18 @@ To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading
 Elasticsearch 7.9 isn't available in the EU-1 and US-1 regions.
 Consider [region migration](../../guides/general/region-migration.md) if your project is in those regions.
 
+## Use a framework
+
+If you use one of the frameworks, follow the guide there:
+
+- [Drupal 9](../../guides/drupal9/elasticsearch.md)
+- [Micronaut](../../guides/micronaut/elasticsearch.md)
+- [Quarkus](../../guides/quarkus/elasticsearch.md)
+- [Jakarta EE](../../frameworks/jakarta.md#elasticsearch)
+- [Spring](../../guides/spring/elasticsearch.md)
+
+For more implementation ideas, consult our [templates](../../development/templates.md).
+
 ## Relationship
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
