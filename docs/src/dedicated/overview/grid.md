@@ -64,10 +64,10 @@ Cron tasks are always interpreted in UTC time.
 
 ## Logs
 
-Logs are available on the Dedicated Cluster at a different path than on Platform.sh Grid.  Specifically, the can be found in:
+Logs for Dedicated clusters are available at:
 
 ```bash
 /var/log/platform/<application-name>/
 ```
 
-This folder contains the access, application, cron, error and deployment logs. It also contains router log which includes redirects and cache hits.
+This folder contains access, application, cron, error, deployment, and router (redirects and cache hits) logs.
