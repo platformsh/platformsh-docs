@@ -121,8 +121,8 @@ platform user:delete user1@example.com
 {{< /codetabs >}}
 
 Once you delete a user, they can no longer access the project.
-After you delete a user from a project or an environment type, you must trigger a redeploy to propagate SSH access changes to each environment.
-You can redeploy by clicking **Redeploy** in the console or  using the CLI command `platform redeploy`.
+After you delete a user from a project or an environment type,
+you must [trigger a redeploy](../development/troubleshoot.md#force-a-redeploy) to propagate SSH access changes to each environment.
 
 ### Change existing permissions for environment types
 

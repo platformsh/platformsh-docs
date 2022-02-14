@@ -30,7 +30,7 @@ See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "postgresql" >}}
 

@@ -23,13 +23,13 @@ Custom domains can only be added to the default environment on production plans 
 
 ## Summary of steps
 
-* Describe your desired future URL structure in [.platform/routes.yaml](configuration/routes/_index.md)
-* Understand [what DNS records you will need](domains/steps/dns.md), and whether your DNS provider can support them
-* Optional: [use a CDN](domains/cdn/_index.md)
-* Update your [DNS](domains/steps/dns.md)
+* Describe your desired future URL structure in [.platform/routes.yaml](../configuration/routes/_index.md)
+* Understand [what DNS records you will need](../domains/steps/dns.md), and whether your DNS provider can support them
+* Optional: [use a CDN](../domains/cdn/_index.md)
+* Update your [DNS](../domains/steps/dns.md)
 
 This short section gives a basic typical example.
-See the [Step by step guide](domains/steps/_index.md) for more complex cases.
+See the [Step by step guide](../domains/steps/_index.md) for more complex cases.
 
 ## Set your domain
 
@@ -49,7 +49,7 @@ Instead, `{default}` in `routes.yaml` will be replaced with `mysite.com` anywher
 You can still access the original internal domain by running `platform environment:info edge_hostname -e <BRANCH_NAME>`.
 
 {{< note >}}
-If you are planning on using subdomains across multiple projects, [the setup will differ slightly](/domains/steps/subdomains.md).
+If you are planning on using subdomains across multiple projects, [the setup will differ slightly](./steps/subdomains.md).
 {{< /note >}}
 
 ## Configure your DNS provider

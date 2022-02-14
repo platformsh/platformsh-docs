@@ -88,6 +88,8 @@ https://{default}/:
       "/configuration/app/type.html": { "to": "/configuration/app/app-reference.html#types", "code": 301, "prefix": false }
       "/configuration/app/variables.html": { "to": "/configuration/app/app-reference.html#variables", "code": 301, "prefix": false }
 
+      # Restructure of variables
+      "/bestpractices/environment-build.html": { "to": "/development/variables.html", "code": 301, "prefix": false }
 
 "https://search.{default}/":
     type: upstream
