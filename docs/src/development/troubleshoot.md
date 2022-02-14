@@ -106,7 +106,7 @@ $ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/fo
 
 If you try to use a user to create a database, you get an error saying `permission denied to create database`.
 The database is created for you
-and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment variable](./variables.md).
+and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
 
 ## Can't write to file system
 

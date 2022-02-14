@@ -42,7 +42,7 @@ The `build` hook is run after the build flavor (if any).
 At this point no services (such as a database) are available nor any persistent file mounts,
 as the application hasn't yet been deployed.
 Environment variables that exist only at runtime such as `PLATFORM_BRANCH` and `PLATFORM_DOCUMENT_ROOT` aren't available during this phase.
-See the full list of provided [build time and runtime variables](/development/variables.md#platformsh-provided-variables).
+See the full list of provided [build time and runtime variables](../../development/variables/use-variables.md#use-platformsh-provided-variables).
 
 During the `build` hook, there are three writeable directories:
 
@@ -133,7 +133,7 @@ Platform.sh reuses built applications if its code and build time configuration r
 There may be times where you want to force your application to be built again without changing its code,
 for example to test an issue in a build hook or when external dependencies change.
 To force a rebuild without changing the code,
-use an [environment variable](/development/variables.md#create-environment-variables).
+use an [environment variable](../../development/variables/set-variables.md#create-environment-specific-variables).
 
 Assuming you want to do this for your `main` environment,
 first create a `REBUILD_DATE` environment variable:
@@ -176,7 +176,7 @@ hooks:
 
 ## Run certain commands only on certain environments
 
-The `deploy` and `post_deploy` hooks have access to all of the same [environment variables](/development/variables.md) as the application does normally,
+The `deploy` and `post_deploy` hooks have access to all of the same [environment variables](../../development/variables/_index.md) as the application does normally,
 which makes it possible to vary those hooks based on the environment.
 A common example is to enable certain modules only in non-production environments.
 Because the hook is a shell script, you have full access to all shell scripting capabilities, such as `if/then` directives.

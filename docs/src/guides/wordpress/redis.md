@@ -35,7 +35,7 @@ relationships:
     redis: "rediscache:redis"
 ```
 
-The key (left side) is the name that's exposed to the application in the [`PLATFORM_RELATIONSHIPS` variable](../../development/variables.md).
+The key (left side) is the name that's exposed to the application in the [`PLATFORM_RELATIONSHIPS` variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
 The value (right side) is the name of the service you specified in step 1 (`rediscache`) and the endpoint (`redis`).
 If you named the service something different in step 1, change `rediscache` to that.
 

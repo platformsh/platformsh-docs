@@ -17,7 +17,9 @@ To specify an Elixir container, use the `type` property in your [app configurati
 
 ## Platform.sh variables
 
-Platform.sh exposes relationships and other configuration as [environment variables](/development/variables.md). Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services/_index.md).
+Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+Most notably, it allows a program to determine at runtime what HTTP port it should listen on
+and what the credentials are to access [other services](../configuration/services/_index.md).
 
 To get the `PORT` environment variable (the port on which your web application is supposed to listen) you would:
 

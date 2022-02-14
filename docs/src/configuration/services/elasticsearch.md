@@ -34,7 +34,7 @@ Consider [region migration](../../guides/general/region-migration.md) if your pr
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "elasticsearch" >}}
 
