@@ -181,7 +181,9 @@ The Platform.sh CLI has aliases for certain commands to make typing shorter.
 Some of these are semantically valid, but some might be confusing.
 
 Always use the long form of the command to show the entire context, including the namespace.
-Exception: don't both with the `auth` namespace as `login` and `logout` are clear enough without additional context.
+Exception: `login` and `logout`.
+Both of these are clear enough without additional context and the `auth` namespace doesn't add value.
+So use the short form for them without `auth:`.
 
 Use                                                           | Avoid
 --------------------------------------------------------------|-------
