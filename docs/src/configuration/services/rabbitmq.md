@@ -19,14 +19,6 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} |
 
-## Use a framework
-
-If you use one of the frameworks, follow the guide there:
-
-- [Spring](../../frameworks/spring.md#rabbitmq)
-
-For more implementation ideas, consult our [templates](../../development/templates.md).
-
 ## Relationship
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):

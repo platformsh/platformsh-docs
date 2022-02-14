@@ -23,15 +23,6 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="memcached" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="memcached" environment="dedicated" >}} | {{< image-versions image="redis" status="memcached" environment="dedicated-gen-3" >}} |
 
-## Use a framework
-
-If you use one of the frameworks, follow the guide there:
-
-- [Drupal 7](../../frameworks/drupal7/memcached.md)
-- [Drupal 9](../../guides/drupal9/memcached.md)
-
-For more implementation ideas, consult our [templates](../../development/templates.md).
-
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
