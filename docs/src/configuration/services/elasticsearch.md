@@ -17,6 +17,7 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 - [Micronaut](../../guides/micronaut/elasticsearch.md)
 - [Quarkus](../../guides/quarkus/elasticsearch.md)
 - [Spring](../../guides/spring/elasticsearch.md)
+
 {{% /frameworks %}}
 
 ## Supported versions
