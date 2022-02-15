@@ -27,7 +27,7 @@ The project timezone doesn't affect:
 App runtime and cron timezone can be configured separately.
 For more information, see the [App runtime timezone](../../configuration/app/timezone.md) and the [Cron reference](../../configuration/app/app-reference.md#crons).
 
-If you subscribed to the automated backups, the backups will be scheduled at 4AM based on the project level timezone setting.
+If you subscribed to the automated backups, the backups will be scheduled between 3-5AM based on the project level timezone setting.
 
 ## Access
 
