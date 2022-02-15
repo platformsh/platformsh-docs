@@ -13,6 +13,7 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 - [Hibernate](../../../frameworks/hibernate.md#mysql)
 - [Jakarta EE](../../../frameworks/jakarta.md#mysql)
 - [Spring](../../../frameworks/spring.md#mysql)
+
 {{% /frameworks %}}
 
 ## Supported versions

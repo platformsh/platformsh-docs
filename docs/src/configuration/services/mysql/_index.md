@@ -16,6 +16,7 @@ or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more info
 - [Hibernate](../../../frameworks/hibernate.md#mysql)
 - [Jakarta EE](../../../frameworks/jakarta.md#mysql)
 - [Spring](../../../frameworks/spring.md#mysql)
+
 {{% /frameworks %}}
 
 ## Supported versions

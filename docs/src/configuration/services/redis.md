@@ -19,6 +19,7 @@ Platform.sh supports two different Redis configurations: One persistent (useful 
 - [Quarkus](../../guides/quarkus/redis.md)
 - [Spring](../../guides/spring/redis.md)
 - [WordPress](../../guides/wordpress/redis.md)
+
 {{% /frameworks %}}
 
 ## Supported versions

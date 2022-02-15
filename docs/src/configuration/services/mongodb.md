@@ -12,6 +12,7 @@ sidebarTitle: "MongoDB"
 - [Micronaut](../../guides/micronaut/mongodb.md)
 - [Quarkus](../../guides/quarkus/mongodb.md)
 - [Spring](../../guides/spring/mongodb.md)
+
 {{% /frameworks %}}
 
 ## Supported versions

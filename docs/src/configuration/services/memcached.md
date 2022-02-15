@@ -15,6 +15,7 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 {{% frameworks %}}
 
 - [Drupal](../../guides/drupal9/memcached.md)
+
 {{% /frameworks %}}
 
 ## Supported versions
