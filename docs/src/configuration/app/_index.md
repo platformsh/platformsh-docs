@@ -6,6 +6,8 @@ description: |
 aliases:
   - "/configuration/app-containers.html"
 layout: single
+keywords:
+  - ".platform.app.yaml"
 ---
 
 {{< description >}}
