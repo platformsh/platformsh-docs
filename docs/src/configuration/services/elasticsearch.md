@@ -10,6 +10,16 @@ sidebarTitle: "Elasticsearch"
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
+{{% frameworks %}}
+
+- [Drupal](../../guides/drupal9/elasticsearch.md)
+- [Jakarta EE](../../frameworks/jakarta.md#elasticsearch)
+- [Micronaut](../../guides/micronaut/elasticsearch.md)
+- [Quarkus](../../guides/quarkus/elasticsearch.md)
+- [Spring](../../guides/spring/elasticsearch.md)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 <!--

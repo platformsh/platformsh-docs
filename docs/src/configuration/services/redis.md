@@ -10,6 +10,18 @@ See the [Redis documentation](https://redis.io/documentation) for more informati
 
 Platform.sh supports two different Redis configurations: One persistent (useful for key-value application data) and one ephemeral (in-memory only, useful for application caching). Aside from that distinction they are identical.
 
+{{% frameworks %}}
+
+- [Drupal](../../guides/drupal9/redis.md)
+- [Ibexa DXP](../../frameworks/ibexa/_index.md#cache-and-sessions)
+- [Jakarta EE](../../frameworks/jakarta.md#redis)
+- [Micronaut](../../guides/micronaut/redis.md)
+- [Quarkus](../../guides/quarkus/redis.md)
+- [Spring](../../guides/spring/redis.md)
+- [WordPress](../../guides/wordpress/redis.md)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |

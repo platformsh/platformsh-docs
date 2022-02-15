@@ -11,6 +11,14 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/learn/)
 or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more information.
 
+{{% frameworks %}}
+
+- [Hibernate](../../../frameworks/hibernate.md#mysql)
+- [Jakarta EE](../../../frameworks/jakarta.md#mysql)
+- [Spring](../../../frameworks/spring.md#mysql)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 The service types `mariadb` and `mysql` both refer to MariaDB.

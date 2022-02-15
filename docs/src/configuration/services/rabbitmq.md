@@ -8,6 +8,12 @@ RabbitMQ is an open source message broker software (sometimes called message-ori
 
 See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for more information."
 
+{{% frameworks %}}
+
+- [Spring](../../frameworks/spring.md#rabbitmq)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |

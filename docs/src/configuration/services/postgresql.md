@@ -8,6 +8,14 @@ PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
 See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
+{{% frameworks %}}
+
+- [Hibernate](../../../frameworks/hibernate.md#mysql)
+- [Jakarta EE](../../../frameworks/jakarta.md#mysql)
+- [Spring](../../../frameworks/spring.md#mysql)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
