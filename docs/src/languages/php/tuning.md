@@ -65,8 +65,8 @@ If you aren't using PHP 7.4, this is a good reason to upgrade.
 
 Note that the only way to clear the preload cache is by restarting PHP-FPM.
 PHP-FPM isn't restarted on every deployment automatically,
-so you might want to add that in a [`deploy hook`](../../configuration/app/hooks.md),
-such as by including `pkill -f php-fpm`.
+so you might want to add that in a [`deploy` hook](../../configuration/app/hooks.md),
+such as by including `pkill -f php-fpm` or `sv restart app`.
 
 If you have [disabled OPcache timestamp validation](#disable-opcache-timestamp-validation),
 you need to clear the OPcache explicitly on deployment (which can be done by restarting PHP-FPM).
