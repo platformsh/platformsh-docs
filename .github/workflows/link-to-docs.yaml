@@ -105,8 +105,8 @@ jobs:
               files+=("$ENV_URL$page")
             fi
           done
-          echo $(printf "%s||" "${files[@]}")
-          echo ::set-output name=changed_files::$(printf "%s||" "${files[@]}")
+          echo $(printf "||%s" "${files[@]}")
+          echo ::set-output name=changed_files::$(printf "||%s" "${files[@]}")
       
       - name: Comment with links
         uses: actions/github-script@v5
@@ -119,7 +119,7 @@ jobs:
               issue_number: process.env.PR_NUMBER,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages:\n${process.env.PAGES.replace(/\|\|/g,"\n")}`
+              body: `Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages:\n${process.env.PAGES.replace(/\|\|/g,"\n- [ ] ")}`
             })
 
       - name: Comment without links
