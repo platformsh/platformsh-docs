@@ -123,10 +123,6 @@ dependencies:
         composer/composer: '^2'
 ```
 
-`drupal` runs `drush make` automatically in one of a few different ways.
-See the [Drupal 7](/frameworks/drupal7/_index.md) documentation for more details.
-There is no reason to use this build mode except for Drupal 7.
-
 ## OPcache preloading
 
 PHP 7.4 introduced a new feature called OPcache preloading,
