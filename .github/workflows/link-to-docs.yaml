@@ -17,24 +17,30 @@ jobs:
           id: get_env_url
           run: |
             COMMIT_STATUS="pending"
+            COMMIT_SHA=${{ github.event.pull_request.head.sha }}
 
-            # Make sure to give enough time for the initial status to be reported as pending 
-            sleep 120
-            STATUSES=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA  | jq -r 'length')
+            # Wait for the initial status to be reported as pending or 10 minutes has passed
+            STATUSES=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r 'length')
+            STATUS_TRY=0
+            until [ $STATUSES != 0 ] || [ $STATUS_TRY == 20 ]; do
+              sleep 30
+              STATUSES=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r 'length')
+              ((STATUS_TRY+=1))
+            done
+            
             if [ $STATUSES == 0 ]; then
               echo "No integration with Platform.sh reported. Skipping."
+              exit 1
             else
               # Keep trying until deployment either succeeds or fails
               until [ "$COMMIT_STATUS" == "success" ] || [ "$COMMIT_STATUS" == "failure" ]; do
-                ENV_URL=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA  | jq -r '.[0].target_url')
-                COMMIT_STATUS=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA  | jq -r '.[0].state')
+                sleep 30
+
+                ENV_URL=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r '.[0].target_url')
+                COMMIT_STATUS=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r '.[0].state')
                 
-                echo "The Platform.sh environment is: "
+                echo "The Platform.sh environment is:"
                 echo "$COMMIT_STATUS"
-                
-                if [ "$COMMIT_STATUS" == "pending" ]; then
-                  sleep 30
-                fi
               done
               if [ "$COMMIT_STATUS" == "success" ]; then
                 echo "Environment deployed to:"
