@@ -9,9 +9,25 @@ description: |
 
 ## General
 
-From the first page of the project settings, `General`, you can update the project name, or navigate to other project settings options on the left side of the screen.
+From the first page of the project settings, `General`, you can update the project name, set the timezone for the project or navigate to other project settings options on the left side of the screen.
 
 ![configure project](/images/management-console/settings-basics.png "0.7")
+
+The project timezone affects:
+
+- Automated backups.
+- Maintenance windows.
+
+The project timezone doesn't affect:
+
+- App runtime.
+- System logs.
+- Crons and any subsequent tasks (like backups set through crons).
+
+App runtime and cron timezone can be configured separately.
+For more information, see the [App runtime timezone](../../configuration/app/timezone.md) and the [Cron reference](../../configuration/app/app-reference.md#crons).
+
+If you subscribed to the automated backups, the backups will be scheduled at 4AM based on the project level timezone setting.
 
 ## Access
 
