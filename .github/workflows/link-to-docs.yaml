@@ -1,5 +1,7 @@
 name: Link to docs
-on: pull_request
+on:
+  pull_request:
+    types: [opened,reopened]
 
 env:
   PR_NUMBER: ${{ github.event.number }}
