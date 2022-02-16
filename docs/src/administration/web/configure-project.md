@@ -18,8 +18,8 @@ Changes on the automated backup schedule might affect your own maintenance windo
 
 The project timezone doesn't affect:
 
-- [App runtime](../../configuration/app/timezone.md),
-- [Crons](../../configuration/app/app-reference.md#crons) and their subsequent tasks,
+- [App runtime](../../configuration/app/timezone.md).
+- [Crons](../../configuration/app/app-reference.md#crons) and their subsequent tasks.
 - [System logs](../../development/logs.md), UTC is the default timezone for all logs.
 
 ## Access
