@@ -77,7 +77,7 @@ we urge you to use the `--no-wait` flag on any commands that may take more than 
 To allow the Platform.sh CLI to be run on an app container, such as via a cron hook, use the API token.
 The CLI is able to auto-detect the current project and environment.
 
-Set the token as the [top-level](/development/variables.md#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN`
+Set the token as the [top-level](../variables/_index.md#top-level-environment-variables) environment variable `env:PLATFORMSH_CLI_TOKEN`
 either [through the management console](/administration/web/configure-environment.html#variables) or via the CLI, like so:
 
 ```bash

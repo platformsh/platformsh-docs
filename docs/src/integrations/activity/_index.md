@@ -141,7 +141,7 @@ The `activity` variable is the same as the [webhook payload](/integrations/activ
 See the documentation there for details and a complete example.
 
 Several of the utility functions below work by pulling out common portions of the `activity` object.
-Most notably, scripts can be configured via [Project-level variables](/development/variables.md#project-variables)
+Most notably, scripts can be configured via [Project-level variables](../../development/variables/set-variables.md#create-project-variables)
 that can be accessed from the `activity` object.
 
 ### `project`

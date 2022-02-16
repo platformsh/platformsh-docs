@@ -3,6 +3,8 @@ title: Define routes
 weight: 2
 description: Set your project up so HTTP requests to your app are sent to the right locations.
 layout: single
+keywords:
+  - "routes.yaml"
 ---
 
 You might need to control how people access your web applications,

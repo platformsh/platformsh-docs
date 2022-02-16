@@ -23,27 +23,27 @@ Full pricing information is available at: https://platform.sh/pricing/
 You can switch between plans (downgrade or upgrade) freely,
 but note that reducing storage is currently not supported for technical reasons.
 If you need to reduce storage, please create a support ticket.
-You are always billed the prorated rate of your plan over the period it was used.
+You are always billed for the prorated cost of your plan over the period it was used.
 
-You may cancel your plan at any time and are only billed for the actual period used.
+You may cancel your plan at any time. You are only billed for the actual period used.
 
 For Elite, Enterprise, and Agency Plans you can pay by purchase order.
 For all other plans, you need to add a credit card to your account.
 
 We offer a free trial period so you can test the services.
-If ever you need more time to evaluate Platform.sh,
+If you ever need more time to evaluate Platform.sh,
 please contact our sales representatives.
 They can issue you an extra voucher to prolong your test.
 
 {{< note theme="info" title="none">}}
 
 Prices below are listed in US Dollars.
-You are billed in US Dollars, Euros, or British Pounds
+You are billed in US Dollars, Euros, British Pounds, or Australian Dollars
 depending on where your billing address is.
 For a list of current prices, refer to https://platform.sh/pricing.
 
 Euro Prices are presented excluding VAT.
-Your bill, includes the correct VAT rate as appropriate.
+Your bill includes the correct VAT rate as appropriate.
 
 {{< /note >}}
 
@@ -69,7 +69,7 @@ You can add extra staging/development environments to any plan by multiples of 3
 
 ### Extra storage
 
-You can add additional storage at $2.50 per 5GB
+You can add additional storage at $2.50 per month per 5GB,
 per staging/development environment.
 
 {{< note theme="info" title="none" >}}
@@ -91,7 +91,7 @@ and includes 4 environments: 3 staging/development and 1 future production.
 
 {{< note theme="info" title="none" >}}
 
-You can not map a custom domain name to a Development plan.
+You cannot map a custom domain name to a Development plan.
 
 {{< /note >}}
 
@@ -108,9 +108,9 @@ which you can accept by clicking **Upgrade plan**.
 The live environment of a production plan has more resources than the project's development environments.
 https://platform.sh/pricing lists the resources available per plan
 (these are always only the production environment resources).
-Development environment have their own resources
+Development environments have their own resources
 and aren't counted towards the limit.
-You can map domain names to your production environment.
+You can only map domain names to your production environment.
 SSL support is always included.
 
 ### Multiple applications in a single project
@@ -120,17 +120,17 @@ but they share the global resources of the cluster.
 
 The resources of a **Standard plan aren't sufficient to run more than one application** in the same cluster
 if there is also a MySQL database as a service.
-Useful multi-apps start at Medium.
+Useful multi-app projects start at Medium.
 
-A Medium plan, for example, can support 3 apps
+For example, a Medium plan can support 3 apps
 with a MySQL instance and a Redis instance.
 
-If you wonder if a specific setup would fit in a plan,
+If you aren't sure whether a specific setup would fit in a plan,
 don't hesitate to contact support.
 
 ## Dedicated Generation 3
 
-For a price lower than traditional managed hosting,
+For a lower price compared to traditional managed hosting,
 you get included development and staging environments
 as well as triple redundancy on every element of the stack with:
 
@@ -138,7 +138,7 @@ as well as triple redundancy on every element of the stack with:
 
 99.99% Uptime Guaranteed
 
-24/7 White Glove On-boarding and Support
+24/7 White Glove Onboarding and Support
 
 {{< /note >}}
 

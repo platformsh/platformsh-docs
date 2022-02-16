@@ -8,6 +8,14 @@ PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
 See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
+{{% frameworks %}}
+
+- [Hibernate](../../../frameworks/hibernate.md#mysql)
+- [Jakarta EE](../../../frameworks/jakarta.md#mysql)
+- [Spring](../../../frameworks/spring.md#mysql)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
@@ -30,7 +38,7 @@ See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "postgresql" >}}
 

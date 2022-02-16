@@ -72,7 +72,7 @@ $ platform backup:create --live
 
 ### Automated backups
 
-Backups aren't triggered automatically on Platform.sh Professional.
+Backups aren't triggered automatically on Platform.sh Professional. For Enterprise and Elite [see Backups](../../dedicated/overview/backups.md).
 
 Backups may be triggered by calling the CLI from an automated system such as Jenkins or another CI service,
 or by installing the CLI tool into your application container and triggering the backup via cron.
