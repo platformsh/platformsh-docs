@@ -25,7 +25,10 @@ The recommended way to handle Go dependencies on Platform.sh is using Go module 
 
 ## Platform.sh variables
 
-Platform.sh exposes relationships and other configuration as [environment variables](/development/variables.md). To make them easier to access you should use the provided [Config Reader library](https://github.com/platformsh/config-reader-go). Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services/_index.md).
+Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+To make them easier to access you should use the provided [Config Reader library](https://github.com/platformsh/config-reader-go).
+Most notably, it allows a program to determine at runtime what HTTP port it should listen on
+and what the credentials are to access [other services](../configuration/services/_index.md).
 
 ```go
 package main

@@ -6,6 +6,15 @@ description: "MongoDB is a cross-platform, document-oriented database.<br><br>Fo
 sidebarTitle: "MongoDB"
 ---
 
+{{% frameworks %}}
+
+- [Jakarta EE](../../frameworks/jakarta.md#mongodb)
+- [Micronaut](../../guides/micronaut/mongodb.md)
+- [Quarkus](../../guides/quarkus/mongodb.md)
+- [Spring](../../guides/spring/mongodb.md)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 We're working on adding more versions.
@@ -28,7 +37,7 @@ If you want to experiment with a later version without committing to it use a no
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "mongodb" >}}
 

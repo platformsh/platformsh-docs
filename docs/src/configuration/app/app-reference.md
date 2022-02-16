@@ -252,7 +252,7 @@ The following table presents possible properties for each location:
 
 | Name                | Type                                                 | Default   | Description |
 | ------------------- | ---------------------------------------------------- | --------- | ----------- |
-| `root`              | `string`                                             |           | The directory to serve static assets for this location relative to the app root. |
+| `root`              | `string`                                             |           | The directory to serve static assets for this location relative to the app's root directory. Must be an actual directory inside the root directory. |
 | `passthru`          | `boolean` or  `string`                               | `false`   | Whether to forward disallowed and missing resources from this location to the app. A string is a path with a leading `/` to the controller, such as `/index.php`. |
 | `index`             | Array of `string`s or `null`                         |           | Files to consider when serving a request for a directory. When set, requires access to the files through the `allow` or `rules` keys. |
 | `expires`           | `string`                                             | `-1`      | How long static assets are cached. The default means no caching. Setting it to a value enables the `Cache-Control` and `Expires` headers. Times can be suffixed with `ms` = milliseconds, `s` = seconds, `m` = minutes, `h` = hours, `d` = days, `w` = weeks, `M` = months/30d, or `y` = years/365d. |
@@ -354,15 +354,15 @@ access:
 
 ## Variables
 
-Platform.sh provides a number of ways to set [variables](../../development/variables.md).
+Platform.sh provides a number of ways to set [variables](../../development/variables/_index.md).
 Variables set in your app configuration have the lowest precedence,
 meaning they're overridden by any conflicting values provided elsewhere.
 
 All variables set in your app configuration must have a prefix.
-Some [prefixes have specific meanings](../../development/variables.md#variable-prefixes).
+Some [prefixes have specific meanings](../../development/variables/_index.md#variable-prefixes).
 
 Variables with the prefix `env` are available as a separate environment variable.
-All other variables are available in the [`$PLATFORM_VARIABLES` environment variable](../../development/variables.md#use-platformsh-provided-variables).
+All other variables are available in the [`$PLATFORM_VARIABLES` environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
 
 The following example sets two variables:
 
@@ -378,7 +378,7 @@ variables:
         "system.site:name": 'My site rocks'
 ```
 
-You can also define and access more [complex values](../../development/variables.md#accessing-complex-values)
+You can also define and access more [complex values](../../development/variables/use-variables.md#access-complex-values).
 
 ## Firewall
 

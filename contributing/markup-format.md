@@ -12,6 +12,7 @@
 - [Videos & asciinema](#videos--asciinema)
 - [Code](#code)
   - [Indentation](#indentation)
+- [Refer to the UI and keys](#refer-to-the-ui-and-keys)
 - [Code tabs](#code-tabs)
 - [Reuse content](#reuse-content)
 
@@ -19,7 +20,7 @@
 
 These docs are written in Markdown with [GitHub Flavored Markdown](https://github.github.com/gfm/) syntax supported.
 It also supports [definition lists](https://michelf.ca/projects/php-markdown/extra/#def-list),
-[footnotes](https://michelf.ca/projects/php-markdown/extra/#footnotes),
+[footnotes](#footnotes),
 and [smart typography](https://daringfireball.net/projects/smartypants/).
 Plus the modifications noted below.
 
@@ -125,6 +126,33 @@ Be careful!
 
 See the [content guidelines for notes](./content-style.md#use-notes-appropriately).
 
+### Footnotes
+
+To add a footnote, add two parts:
+
+1. Mark the spot in the text where you want to add a note:
+
+   ```markdown
+   This text will have a note.[^<FOOTNOTE_NAME>]
+   ```
+
+   The name can be anything as long as it's unique within the document.
+   Don't use numbers as the notes are numbered automatically.
+1. Add the note at the end of the document:
+
+   ```markdown
+   [^<FOOTNOTE_NAME>]: Here is the note about the text above.
+   ```
+
+   To have multiple paragraphs in the note, align them with four spaces at the start:
+
+   ```markdown
+   [^<FOOTNOTE_NAME>]:
+       This is the first paragraph.
+
+       This is the second paragraph.
+   ```
+
 ## Images
 
 You can add images using the standard Markdown syntax,
@@ -191,6 +219,26 @@ note that as an attribute of that block and it will appear in a tab:
 ```yaml {location=".platform.app.yaml"}
 relationships:
     database: 'mysqldb:db
+```
+
+## Refer to the UI and keys
+
+When referring to text in the UI, use bold:
+
+```markdown
+Click **Redeploy**.
+```
+
+To refer to buttons in the UI that use icons, use the `icon` shortcode with the alternative text for the button:
+
+```markdown
+To share a log, open the log and click {{< icon share >}} **Copy URL**.
+```
+
+To refer to keys users should use on their keyboards, use `<kbd>` tags:
+
+```markdown
+To select multiple lines, hold <kbd>Shift</kbd>.
 ```
 
 ## Code tabs

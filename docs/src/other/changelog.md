@@ -25,8 +25,8 @@ description: |
 ---
 * **April 2021**
   * WAF: [a new page was added](/security/waf.md) describing the filtering rule sets and protections that come with the Platform.sh WAF.
-  * [Build environment variables](/development/variables.md#project-variables): environment variables can now accept the same `--visible-build` and `--visible-runtime` flags as project variables when created through the CLI. Build-visible variables are now a part of the build image ID, and therefore triggers a rebuild of the application when the value is updated. 
-  * **Breaking change**: The logic by which the build image ID has changed in order to support build environment variables above. Previously, every attribute in `.platform.app.yaml` was included in the build image, used to create the unique build ID, and *accessible* via the `PLATFORM_APPLICATION` environment variable at build time. This is no longer the case, and only a subset of `.platform.app.yaml` attributes are now accessible from `PLATFORM_APPLICATION` at build time. See the [Platform.sh-provided variables](/development/variables.md#variables-available-during-builds-and-at-runtime) section for more information.
+  * [Build environment variables](../development/variables/set-variables.md#create-project-variables): environment variables can now accept the same `--visible-build` and `--visible-runtime` flags as project variables when created through the CLI. Build-visible variables are now a part of the build image ID, and therefore triggers a rebuild of the application when the value is updated. 
+  * **Breaking change**: The logic by which the build image ID has changed in order to support build environment variables above. Previously, every attribute in `.platform.app.yaml` was included in the build image, used to create the unique build ID, and *accessible* via the `PLATFORM_APPLICATION` environment variable at build time. This is no longer the case, and only a subset of `.platform.app.yaml` attributes are now accessible from `PLATFORM_APPLICATION` at build time. See the [Platform.sh-provided variables](../development/variables/use-variables.md#use-platformsh-provided-variables) section for more information.
 ---
 * **March 2021**
   * Observability: [a new page was added](../increase-observability/metrics.md) describing observability and metrics available on Dedicated projects.
@@ -245,17 +245,19 @@ description: |
 * **December 2016**
   * Support async PHP:
     Deploy applications like ReactPHP and Amp which allow PHP to run as a single-process asynchronous process.
-    Read more on our [blog post](https://platform.sh/2016/12/php-71).
+    Read a [blog post about PHP 7.1](https://platform.sh/2016/12/php-71).
   * Pthreads: Multithreaded PHP:
-    Our PHP 7.1 containers are running PHP 7.1 ZTS, and include the Pthreads extension.
-    Read more on our [blog post](https://platform.sh/2016/12/php-71/).
-  * PHP 7.1: Service is [documented here](/languages/php/_index.md).
-  * Support .environment files:
-    This file will get sourced as a bash script by the system when a container boots up, as well as on all SSH logins.
-    Feature is [documented here](/development/variables.md#shell-variables).
-  * Support web.commands.start for PHP:
+    PHP 7.1 containers are running PHP 7.1 ZTS, and include the Pthreads extension.
+    Read a [blog post about multithreaded PHP](https://platform.sh/2016/12/php-71/#pthreads-multithreaded-php).
+  * PHP 7.1: See [documentation for PHP](../languages/php/_index.md).
+  * Support `.environment` files:
+    This file is sourced as a bash script when a container boots up and on all SSH logins.
+    See [more on `.environment` files](../development/variables/set-variables.md#set-variables-via-script).
+  * Support `web.commands.start` for PHP:
     That option wasn't available for PHP as PHP only has one applicable application runner, PHP-FPM.
-    It is now available for PHP.  Read more on our [blog post](https://platform.sh/2016/12/app-updates-php/).
+    It's now available for PHP.
+    Read more at the [blog post](https://platform.sh/2016/12/app-updates-php/).
+
 ---
 
 * **November 2016**
@@ -290,7 +292,10 @@ description: |
 
 * **June 2016**
   * June update is summarized in our [blog post](https://platform.sh/2016/06/new-features-june/).
-  * New PLATFORM_PROJECT_ENTROPY variable: New variable which has a random value, stable throughout the project's life. It can be used for Drupal hash salt for example (in our [Drupal 8 example](https://github.com/platformsh-templates/drupal8)). It is [documented here](/development/variables.md#platformsh-variables)
+  * New PLATFORM_PROJECT_ENTROPY variable:
+    New variable which has a random value, stable throughout the project's life.
+    It can be used for Drupal hash salt for example (in our [Drupal 8 example](https://github.com/platformsh-templates/drupal8)).
+    See a [reference for the variable](../development/variables/use-variables.md#use-platformsh-provided-variables)
   * Extend PLATFORM_RELATIONSHIPS variable: Expose the hostname and IP address of each service in the `PLATFORM_RELATIONSHIPS` environment variable.
   * Services updates: Update MongoDB client to 3.2.7, Node.js to 4.4.5, Blackfire plugin to 1.10.6, Nginx to 1.11.1.
 ---

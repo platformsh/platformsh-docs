@@ -42,14 +42,16 @@ Mailchimp
 Memcache
 middleware
 multicast
-multifactor
+[Mm]ultifactor
 multithread[ed|ing]
 namespace
 [Nn]ginx
 Nori
 npm
+nvm
 onboarding
 OPcache
+Opsgenie
 optipng
 overutilize
 Packagist

@@ -1,30 +1,26 @@
-extends: substitution
-message: "Feel free to use '%s' instead of '%s'."
+extends: existence
+message: "Feel free to use a contraction instead of '%s'"
 link: 'https://github.com/platformsh/platformsh-docs/contributing/content-style.md#use-contractions'
 level: suggestion
 ignorecase: true
-action:
-  name: replace
-swap:
-  are not: aren't
-  cannot: can't
-  could not: couldn't
-  did not: didn't
-  do not: don't
-  does not: doesn't
-  has not: hasn't
-  have not: haven't
-  how is: how's
-  is not: isn't
-  it is: it's
-  should not: shouldn't
-  that is: that's
-  they are: they're
-  was not: wasn't
-  we are: we're
-  we have: we've
-  were not: weren't
-  what is: what's
-  when is: when's
-  where is: where's
-  will not: won't
+scope: raw
+tokens:
+  - are not
+  - cannot
+  - could not
+  - did not
+  - do not
+  - does not
+  - has not
+  - have not
+  - how is
+  - is not
+  - (?<!(?:where|how|what) )it is
+  - should not
+  - that is
+  - (?<!(?:where|how) )they are
+  - was not
+  - were not
+  - what is
+  - when is
+  - where is
