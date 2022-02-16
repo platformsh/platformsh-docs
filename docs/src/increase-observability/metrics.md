@@ -220,15 +220,14 @@ Next to this space comes the other defined directories: for the MySQL service an
 Grid environment metrics show resource usage for each app, service, and worker container.
 
 This reference project has configured a single application and two services: Redis and MariaDB.
-The plan size for this project is [X-Large](https://platform.sh/pricing/),
-which has guaranteed resources of 8.22 vCPU/12.2&nbsp;GB RAM.
+The plan size for this project is [X-Large](https://platform.sh/pricing/).
 The appropriate resources have been [allocated automatically](../configuration/app/app-reference.md#sizes) for each container
 based on the number and type of containers for this plan size.
 The graphs show the current average usage in relation to the allocated resources.
 
 #### App container
 
-The app container has been granted 0.75&nbsp;GB of memory and 5.00 CPU.
+Metrics graphs for the app container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [app configuration](../configuration/app/app-reference.md#top-level-properties)
 at 144.12&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
@@ -238,7 +237,7 @@ at 144.12&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
 ##### MySQL
 
-The MySQL service container has been granted 3.00 CPU.
+Metrics graphs for the MySQL service container show CPU and disk allocation and usage.
 The persistent disk has been configured in the [services configuration](../configuration/services/_index.md) as 4.74&nbsp;GB (5000MB),
 while the temporary disk is 3.99&nbsp;GB by default.
 
@@ -246,7 +245,7 @@ while the temporary disk is 3.99&nbsp;GB by default.
 
 ##### Redis
 
-The Redis service container has been granted 0.20 CPU.
+Metrics graphs for the Redis service container show CPU and disk allocation and usage.
 No persistent disk has been configured in the [services configuration](../configuration/services/_index.md),
 while the temporary disk is 3.99&nbsp;GB by default.
 
