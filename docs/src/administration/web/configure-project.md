@@ -14,7 +14,6 @@ From the first page of the project settings, `General`, you can update the proje
 ![configure project](/images/management-console/settings-basics.png "0.7")
 
 The project timezone affects [automated backups](../../dedicated/overview/backups.md).
-Changes on the automated backup schedule might affect your own maintenance window.
 
 The project timezone doesn't affect:
 

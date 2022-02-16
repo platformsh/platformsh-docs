@@ -50,8 +50,8 @@ See the [data retention page](/security/data-retention.md).
 Backups are stored on Binary Large OBject (BLOB) storage separate from your cluster
 (for example, projects on an AWS backed region are stored on S3).
 Blob storage is replicated over multiple data centers on different locations.
-This means that in the rare event of data center unavailability, backups are still available. 
-	
+This means that in the rare event of data center unavailability, backups are still available.
+
 In such an event, Platform.sh moves all projects to another data center.
 Disaster recovery backups are also stored on BLOB storage and replicated over multiple data centers.
 You should still schedule regular backups stored in multiple locations and/or locally alongside this process.
@@ -62,7 +62,7 @@ There is an option available to create backups in a "live" state.
 This flavor leaves the environment running and open to connections, reducing downtime while the backup is taken.
 With live backups, however, there can be inconsistent states that make restorations less reliable.
 For this reason Platform.sh recommends instead scheduling [automated backups](#automated-backups) during non-peak hours,
-when the short amount of downtime is least noticed. 
+when the short amount of downtime is least noticed.
 
 You can trigger a live backup through the CLI using the `--live` flag:
 
@@ -72,8 +72,7 @@ $ platform backup:create --live
 
 ### Automated backups
 
-Backups aren't triggered automatically on Platform.sh Professional plans.
-For Enterprise and Elite plans, see [backups](../../dedicated/overview/backups.md).
+Backups aren't triggered automatically on Platform.sh Professional. For Enterprise and Elite [see Backups](../../dedicated/overview/backups.md).
 
 Backups may be triggered by calling the CLI from an automated system such as Jenkins or another CI service,
 or by installing the CLI tool into your application container and triggering the backup via cron.
@@ -198,7 +197,7 @@ you may file a support ticket to ask that a backup be restored to a different en
 or [migrate your project](/guides/general/region-migration.md) to one of the new regions that supports this feature.
 Older regions may not appear in the management console in the same way that newer regions to,
 so to verify if this caveat applies to you,
-you can check your project's region with the CLI command `platform project:info -p PROJECT_ID`. 
+you can check your project's region with the CLI command `platform project:info -p PROJECT_ID`.
 
 {{< note >}}
 
