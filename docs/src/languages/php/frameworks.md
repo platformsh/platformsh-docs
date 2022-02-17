@@ -3,15 +3,14 @@ title: "Frameworks"
 weight: 2
 ---
 
-Full Drush support and Composer-based builds make handling dependencies and builds for PHP frameworks as simple as committing your `composer.json` to your project.
-
+Full Drush support and Composer-based builds
+so you can handle dependencies and builds for PHP frameworks by committing `composer.json` to your project.
 
 ## Drupal
 
 [Drupal](https://www.drupal.org/) is an open-source content management framework written in PHP. Since Composer comes pre-installed on Platform.sh, Drupal can be installed and updated completely using Composer. The default [build flavor](/overview/build-deploy.md#building-the-application) for PHP application runs `composer install` during build, handling all of your dependencies automatically.
 
-* [Drupal 7 Best Practices](/frameworks/drupal7/_index.md)
-* [Drupal 8/9 Guide](/guides/drupal9/_index.md)
+* [Drupal 8/9 Guide](../../guides/drupal9/_index.md)
 
 ### Community Support
 
@@ -21,8 +20,6 @@ Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](
 
 ### Templates
 
-* [Drupal 7](https://github.com/platformsh-templates/drupal7)
-* [Drupal 7 (Vanilla)](https://github.com/platformsh-templates/drupal7-vanilla)
 * [Drupal 8](https://github.com/platformsh-templates/drupal8)
 * [Drupal 9](https://github.com/platformsh-templates/drupal9)
 * [Drupal 8 (Multisite variant)](https://github.com/platformsh-templates/drupal8-multisite)
