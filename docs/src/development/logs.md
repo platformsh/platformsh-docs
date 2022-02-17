@@ -11,6 +11,7 @@ are each logged as activities.
 You can access the logs either in the console or using the CLI:
 
 {{< codetabs >}}
+
 ---
 title=In the console
 highlight=false
@@ -24,6 +25,7 @@ file=none
 ![An activity feed within an environment](/images/management-console/activity.png "0.5")
 
 <--->
+
 ---
 title=Using the CLI
 highlight=false
@@ -61,6 +63,7 @@ If your app has its own logging mechanism, use it to write to a dedicated logs m
 To access the logs of various types of events:
 
 {{< codetabs >}}
+
 ---
 title=Using the CLI
 highlight=false
@@ -78,6 +81,7 @@ To get other logs, just replace `access` with the type of log.
 To view more lines, use the `--lines` flag.
 
 <--->
+
 ---
 title=Using SSH directly
 highlight=false
@@ -127,3 +131,7 @@ Connection to ssh.<REGION>.platform.sh closed.
 ```
 
 See what [each value in this string means](https://www.php.net/manual/en/install.fpm.configuration.php#access-format).
+
+## Timezones
+
+UTC is the default timezone for all logs.

@@ -564,7 +564,7 @@ If an application defines both a `web` instance and `worker` instances, cron job
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
 
-Cron jobs are [logged](../../development/logs.md) at `/var/log/cron.log`. 
+Cron jobs are [logged](../../development/logs.md) at `/var/log/cron.log`.
 
 ### Example cron jobs
 
