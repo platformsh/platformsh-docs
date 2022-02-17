@@ -951,6 +951,8 @@
     },
     "endpoint": "http+stats",
     "min_disk_size": null,
+    "configuration": "vcl: !include\n            type: string\n            path: config.vcl",
+    "service_relationships": "application: 'app:http'",
     "name": "Varnish",
     "runtime": false,
     "type": "varnish",

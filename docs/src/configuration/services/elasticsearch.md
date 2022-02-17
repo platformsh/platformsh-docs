@@ -73,7 +73,7 @@ highlight=java
 <--->
 
 ---
-title=Nodejs
+title=Node.js
 file=static/files/fetch/examples/nodejs/elasticsearch
 highlight=js
 ---

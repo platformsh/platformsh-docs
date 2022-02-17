@@ -23,21 +23,21 @@ web -> router -> varnish -> application
                          -> application2
 ```
 
-
 ## Configuration
 
-### Add a Varnish service
+{{% endpoint-description type="varnish" noApp=true %}}
 
-Add the following to your service definition:
+[Service definition](./_index.md):
 
 {{< readFile file="src/registry/images/examples/full/varnish.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
-In the `relationships` block, define a relationship (`application`) to the application container (`app`) using the `http` endpoint.
-That allows Varnish to talk to the application container.
+[App configuration](../app/app-reference.md):
 
-The configuration block is required, and must reference a VCL file (here `config.vcl`).  The file name is relative to the `.platform` directory.
+{{< readFile file="src/registry/images/examples/full/varnish.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-### Create a VCL template file
+{{% /endpoint-description %}}
+
+### 3. Create a VCL template file
 
 The VCL file you provide has three specific requirements over and above the VCL syntax itself.
 
@@ -105,7 +105,7 @@ Platform.sh does not provide support for VCL configuration options beyond the ba
 
 {{< /note >}}
 
-### Route incoming requests to Varnish
+### 4. Route incoming requests to Varnish
 
 To enable Varnish now, edit the `.platform/routes.yaml` file to point to the Varnish service you just created.
 You also need to disable the router cache as it is now entirely redundant with Varnish.
