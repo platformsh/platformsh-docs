@@ -44,17 +44,7 @@ A brief introduction (1--2 sentences) to what this service is used for.
   include the following parameter:
   noApp=true
 -->
-{{% endpoint-description type="<SERVICE_TYPE>" %}}
-
-Service definition:
-
-{{< readFile file="src/registry/images/examples/full/<SERVICE_TYPE>.services.yaml" highlight="yaml" >}}
-
-App configuration:
-
-{{< readFile file="src/registry/images/examples/full/<SERVICE_TYPE>.app.yaml" highlight="yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="<SERVICE_TYPE>" /%}}
 
 {{< codetabs >}}
 

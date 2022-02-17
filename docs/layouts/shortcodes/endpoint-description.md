@@ -44,10 +44,34 @@ Use the {{if eq ($type) "varnish"}}`http+stats`{{ else }}`{{ $data.endpoint }}`{
 <!-- Adds a note about naming conventions between relationship and service names. Keep em unique. -->
 You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's best if they're distinct.
 
+<!-- For services with a PHP extension -->
+{{ if ( .Get "php" ) }}
+For PHP, enable the [extension](/languages/php/extensions.html) for the service:
+
+```yaml {location=".platform.app.yaml"}
+runtime:
+    extensions:
+        - {{ if ne ($type) "postgresql" }}{{$type}}{{else}}pdo_pgsql{{end}}
+```
+{{ end }}
+
+<!-- For services with a Python extension -->
+{{ if ( .Get "python" ) }}
+For Python, include the proper dependency:
+
+```yaml {location=".platform.app.yaml"}
+dependencies:
+    python:
+        python-{{$type}}: '*'
+```
+{{ end }}
+
 <!-- Add example heading for all but MariaDB/Oracle MySQL, which need two -->
 {{ if ne ($type) "mariadb" }}
 ### Example Configuration
 {{ end }}
+
+{{ partial "examples/config_links" ( dict "type" $type ) }}
 
 {{ .Inner }}
 

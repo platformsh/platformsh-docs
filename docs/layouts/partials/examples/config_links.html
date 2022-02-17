@@ -1,0 +1,44 @@
+<!-- Add additional configuration for specific services in PHP and Python-->
+{{ $l1 := "" }}
+{{ $php_types := slice "memcached" "mongodb" "postgresql" "redis" }}
+{{ if in $php_types .type}}
+  {{ $extension_name := .type}}
+  {{ if eq (.type) "postgresql" }}
+   {{ $extension_name = "pdo_pgsql" }}
+  {{ end }}
+  {{ $l1 = printf "\n\nruntime:\n    extensions:\n        - %s" $extension_name }}
+{{ end }}
+{{ $l2 := "" }}
+{{ $python_types := slice "memcached" }}
+{{ if in $python_types .type}}
+  {{ $l2 = printf "\n\ndependencies:\n    python:\n        python-%s: '*'" .type }}
+{{ end }}
+
+<!-- MariaDB gets two examples, so it needs an extra heading -->
+{{ if eq (.type) "mariadb" }}
+  <h3>MariaDB example configuration</h3>
+{{ end }}
+<a href="/configuration/services.html">Service definition</a>
+
+<div class="highlight-location">.platform/services.yaml</div>
+{{ highlight ( readFile (printf "src/registry/images/examples/full/%s.services.yaml" .type) ) "yaml" ""}}
+
+<a href="/configuration/app/app-reference.html">App configuration</a>
+
+<div class="highlight-location">.platform.app.yaml</div>
+{{ highlight ( printf "%s%s%s" (readFile (printf "src/registry/images/examples/full/%s.app.yaml" .type)) $l1 $l2 ) "yaml" ""}}
+
+<!-- Example for MySQL to go with MariaDB -->
+{{ if eq (.type) "mariadb" }}
+  <h3>Oracle MySQL example configuration</h3>
+
+  <a href="/configuration/services.html">Service definition</a>
+
+  <div class="highlight-location">.platform/services.yaml</div>
+  {{ highlight ( readFile "src/registry/images/examples/full/oracle-mysql.services.yaml" ) "yaml" ""}}
+
+  <a href="/configuration/app/app-reference.html">App configuration</a>
+
+  <div class="highlight-location">.platform.app.yaml</div>
+  {{ highlight ( readFile "src/registry/images/examples/full/oracle-mysql.app.yaml" ) "yaml" ""}}
+{{ end }}

@@ -48,17 +48,7 @@ See how to [manage your Node.js version](../../languages/nodejs/node-version.md)
 
 ## Usage example
 
-{{% endpoint-description type="chrome-headless" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/chrome-headless.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/chrome-headless.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="chrome-headless" /%}}
 
 After configuration, include Puppeteer as a dependency in your `package.json`:
 

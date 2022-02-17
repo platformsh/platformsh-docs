@@ -50,17 +50,7 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../..
 
 ## Usage example
 
-{{% endpoint-description type="elasticsearch" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="elasticsearch" /%}}
 
 {{< codetabs >}}
 

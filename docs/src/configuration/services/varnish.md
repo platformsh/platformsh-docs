@@ -25,17 +25,7 @@ web -> router -> varnish -> application
 
 ## Configuration
 
-{{% endpoint-description type="varnish" noApp=true %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/varnish.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/varnish.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="varnish" noApp=true /%}}
 
 ### 3. Create a VCL template file
 

@@ -24,17 +24,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 ## Usage example
 
-{{% endpoint-description type="influxdb" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/influxdb.services.yaml"  highlight="yaml" >}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/influxdb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="influxdb" /%}}
 
 ```php
 <?php
