@@ -1,5 +1,5 @@
 ---
-title: Vary hooks by environment
+title: Change hooks in different environments
 description: Change what runs in your hooks depending on the current environment type.
 ---
 
