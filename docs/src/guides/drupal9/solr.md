@@ -15,7 +15,7 @@ The setup process therefore depends on config-overrides in `settings.platformsh.
 
 Search API Solr requires Solr 6.6 or higher, and recommends Solr 8 or higher.
 
-Advanced Solr service configuration and implementation in other frameworks other than Drupal can be found at the [Solr services page](/configuration/services/solr.md).
+Advanced Solr service configuration and implementation in frameworks other than Drupal can be found at the [Solr services page](/configuration/services/solr.md).
 
 ## Steps
 
@@ -33,7 +33,7 @@ composer require symfony/event-dispatcher:"4.3.4 as 3.4.35"
 
 in your project root and commit the resulting change to `composer.json` and `composer.lock`.
 That will cause Composer to install the 4.3 version of Event Dispatcher.
-Once [this issue](https://www.drupal.org/project/drupal/issues/2876675) is resolved in core this step will no longer be necessary.
+Once [this issue](https://www.drupal.org/project/drupal/issues/2876675) is resolved in core, this step will no longer be necessary.
 
 If you are using the latest version of Search API Solr and running Drupal 8.8 or higher on PHP 7.2 or higher, this step is no longer necessary. You should be able to proceed directly to the next step.
 
