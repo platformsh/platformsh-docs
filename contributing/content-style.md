@@ -9,21 +9,24 @@ from Platform.sh engineers to people from the community.
 
 ## Table of contents
 
-* [About the audience](#about-the-audience)
-* [Style defaults](#style-defaults)
-* [Address the reader directly](#address-the-reader-directly)
-* [Use inclusive language](#use-inclusive-language)
-  * [Resources for inclusive language](#resources-for-inclusive-language)
-  * [Use meaningful link text](#use-meaningful-link-text)
-  * [Include alt text](#include-alt-text)
-* [Format screenshots for sustainability](#format-screenshots-for-sustainability)
-* [Use the present tense](#use-the-present-tense)
-* [Use contractions](#use-contractions)
-* [Explain abbreviations](#explain-abbreviations)
-* [Use the long form of commands](#use-the-long-form-of-commands)
-* [Use notes appropriately](#use-notes-appropriately)
-* [Add short descriptions](#add-short-descriptions)
-* [Guidance enforcement](#guidance-enforcement)
+- [Platform.sh Docs content style guide](#platformsh-docs-content-style-guide)
+  - [Table of contents](#table-of-contents)
+  - [About the audience](#about-the-audience)
+  - [Style defaults](#style-defaults)
+  - [Address the reader directly](#address-the-reader-directly)
+  - [Use inclusive language](#use-inclusive-language)
+    - [Resources for inclusive language](#resources-for-inclusive-language)
+    - [Use meaningful link text](#use-meaningful-link-text)
+    - [Minimize distractions](#minimize-distractions)
+    - [Include alt text](#include-alt-text)
+  - [Format screenshots for sustainability](#format-screenshots-for-sustainability)
+  - [Use the present tense](#use-the-present-tense)
+  - [Use contractions](#use-contractions)
+  - [Explain abbreviations](#explain-abbreviations)
+  - [Use the long form of commands](#use-the-long-form-of-commands)
+  - [Use notes appropriately](#use-notes-appropriately)
+  - [Add short descriptions](#add-short-descriptions)
+  - [Guidance enforcement](#guidance-enforcement)
 
 ## About the audience
 
@@ -104,6 +107,19 @@ offers an explanation of [why link purpose in the text alone is good](https://ww
 Use                                                        | Avoid 
 -----------------------------------------------------------|-------
 Read more information [about images](https://example.com)  | For more info on images, [click here](https://example.com)
+
+### Minimize distractions
+
+Adding links can often provide helpful context.
+It's a great way to offer additional information for those who want it,
+while letting those who know the concept skip past.
+But having many links increases the chance readers will leave the page and not return.
+
+Especially when writing how-to guides and procedures, try to mimize the number of links in the middle.
+Each link that is added gives another reason for the reader to not finish the article.
+
+If additional context is desired, add it in prerequisites at the start or next steps at the end.
+That way people can focus on completing the task.
 
 ### Include alt text
 
