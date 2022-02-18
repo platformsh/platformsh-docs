@@ -535,10 +535,6 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "1.0",
-        "2.0"
-      ],
-      "legacy": [
         "1.0"
       ]
     },
