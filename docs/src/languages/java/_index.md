@@ -14,6 +14,8 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="java" status="supported" environment="grid" >}} | {{< image-versions image="java" status="supported" environment="dedicated" >}} |
 
+{{< image-versions-legacy "java" >}}
+
 To specify a Java container, use the `type` property in your [app configuration](../../configuration/app/app-reference.md).
 
 {{< readFile file="src/registry/images/examples/full/java.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}

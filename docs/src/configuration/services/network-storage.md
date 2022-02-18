@@ -13,6 +13,8 @@ The network storage service enables a new kind of `mount` that refers to a share
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "network-storage" >}}
+
 This service is a reference to a version of our network storage implementation, not to a version of a 3rd party application. `network-storage` 2.0 will *not* work on the Grid. We recommend using version 1.0 unless you are a [Dedicated Generation 3](dedicated-gen-3/overview.md) user. 
 
 {{< note theme="warning">}}

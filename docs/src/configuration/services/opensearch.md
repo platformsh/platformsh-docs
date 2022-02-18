@@ -21,6 +21,8 @@ To update the versions in this table, use docs/data/registry.json
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="opensearch" status="supported" environment="grid" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated" >}} | {{< image-versions image="opensearch" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "opensearch" >}}
+
 ## Relationship
 
 The format exposed in the [`$PLATFORM_RELATIONSHIPS` environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):

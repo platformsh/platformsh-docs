@@ -28,6 +28,8 @@ Platform.sh supports two different Redis configurations: One persistent (useful 
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "redis" >}}
+
 {{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |

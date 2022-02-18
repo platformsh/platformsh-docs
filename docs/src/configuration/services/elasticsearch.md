@@ -29,6 +29,8 @@ To update the versions in this table, use docs/data/registry.json
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="elasticsearch" status="supported" environment="grid" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated" >}} | {{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "elasticsearch" >}}
+
 Due to a licensing change, Elasticsearch versions after 7.10 aren't supported.
 For newer versions, use [OpenSearch](./opensearch.md) instead.
 To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading).
@@ -38,9 +40,6 @@ To switch to OpenSearch, follow the same procedure as for [upgrading](#upgrading
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated" >}} | {{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-3" >}} |
-
-Elasticsearch 7.9 isn't available in the EU-1 and US-1 regions.
-Consider [region migration](../../guides/general/region-migration.md) if your project is in those regions.
 
 ## Relationship
 

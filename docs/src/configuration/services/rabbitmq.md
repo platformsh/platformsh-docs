@@ -20,6 +20,8 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="rabbitmq" status="supported" environment="grid" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated" >}} | {{< image-versions image="rabbitmq" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "rabbitmq" >}}
+
 ## Relationship
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):

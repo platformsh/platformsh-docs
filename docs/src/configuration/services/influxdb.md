@@ -16,6 +16,8 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="influxdb" status="supported" environment="grid" >}} | {{< image-versions image="influxdb" status="supported" environment="dedicated" >}} | {{< image-versions image="influxdb" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "influxdb" >}}
+
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):

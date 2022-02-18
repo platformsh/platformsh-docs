@@ -10,6 +10,7 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="php" status="supported" environment="grid" >}} | {{< image-versions image="php" status="supported" environment="dedicated" >}} |
 
+{{< image-versions-legacy "php" >}}
 
 Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP.
 

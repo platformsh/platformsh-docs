@@ -12,6 +12,8 @@ The Vault key management service (KMS) provides key management and access contro
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="vault-kms" status="supported" environment="grid" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "vault-kms" >}}
+
 ## Add Vault
 
 ### Add the service

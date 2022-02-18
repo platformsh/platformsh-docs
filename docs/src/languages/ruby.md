@@ -14,6 +14,8 @@ description: |
 |----------------------------------|---------------|
 |  {{< image-versions image="ruby" status="supported" environment="grid" >}} | {{< image-versions image="ruby" status="supported" environment="dedicated" >}} |
 
+{{< image-versions-legacy "ruby" >}}
+
 ## Unicorn based Rails configuration
 
 This example uses Unicorn to run a Ruby application.

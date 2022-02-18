@@ -22,6 +22,9 @@ A brief introduction (1--2 sentences) to the language.
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="dedicated" >}} | {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="dedicated-gen-3" >}} |
 
+<!-- To automatically check any differences in the registry with legacy regions -->
+{{< image-versions-legacy "<LANGUAGE_NAME>" >}}
+
 <!-- If there are any deprecated versions. -->
 {{% deprecated-versions %}}
 
