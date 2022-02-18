@@ -96,16 +96,15 @@
         "6.8",
         "7.2",
         "7.5",
-        "7.7"
+        "7.7",
+        "7.9"
       ],
       "supported": [
-        "7.9",
         "7.10"
       ]
     },
     "versions-dedicated": {
       "supported": [
-        "7.9",
         "7.10"
       ],
       "deprecated" : [
@@ -118,7 +117,8 @@
         "7.2",
         "7.5",
         "7.6",
-        "7.7"
+        "7.7",
+        "7.9"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -133,10 +133,10 @@
         "6.8",
         "7.2",
         "7.5",
-        "7.7"
+        "7.7",
+        "7.9"
       ],
       "supported": [
-        "7.9",
         "7.10"
       ]
     }
@@ -559,6 +559,39 @@
       "deprecated": ["9.8"]
     }
   },
+  "opensearch": {
+    "description": "A manufacture service for OpenSearch",
+    "disk": true,
+    "docs": {
+      "relationship_name": "ossearch",
+      "service_name": "searchopen",
+      "url": "/configuration/services/opensearch.html"
+    },
+    "endpoint": "opensearch",
+    "min_disk_size": 256,
+    "name": "OpenSearch",
+    "repo_name": "opensearch",
+    "runtime": false,
+    "type": "opensearch",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "1.2"
+      ]
+    },
+    "versions-dedicated": {
+      "deprecated": [],
+      "supported": [
+        "1.2"
+      ]
+    },
+    "versions-dedicated-gen-3": {
+      "deprecated": [],
+      "supported": [
+        "1.2"
+      ]
+    }
+  },
   "oracle-mysql": {
     "description": "Images using MySQL from Oracle instead of MariaDB still providing mysql endpoints",
     "repo_name": "oracle-mysql",
@@ -620,7 +653,9 @@
       "supported": [
         "7.2",
         "7.3",
-        "7.4"
+        "7.4",
+        "8.0",
+        "8.1"
       ],
       "deprecated": [
         "5.6",
@@ -786,7 +821,8 @@
         "3.2",
         "4.0",
         "5.0",
-        "6.0"
+        "6.0",
+        "6.2"
       ]
     },
     "versions-dedicated": {

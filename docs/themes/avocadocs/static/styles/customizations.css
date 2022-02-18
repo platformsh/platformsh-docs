@@ -1083,7 +1083,7 @@ td, th {
   padding: 8px;
 }
 
-th {
+table:not(.tranparency-table) th {
   position: sticky;
   top: calc(1.5rem * 3);
   background-color: var(--primary);

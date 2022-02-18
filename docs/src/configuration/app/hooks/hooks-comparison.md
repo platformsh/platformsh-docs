@@ -20,7 +20,7 @@ The `build` hook is run after any [build flavor](../app-reference.md#build).
 During this hook, no services (such as a database) or any persistent file mounts are available
 as the application hasn't yet been deployed.
 
-The `build` hook can only use [environment variables](../../../development/variables.md#platformsh-provided-variables)
+The `build` hook can only use [environment variables](../../../development/variables/use-variables.md#use-platformsh-provided-variables)
 that are available at build time.
 
 During the `build` hook, there are three writeable directories:

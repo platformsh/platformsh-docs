@@ -31,9 +31,9 @@ If you are on one of those and require the service we suggest you [migrate](/gui
 
 ## Define the service
 
-First, declare a new service in the `services.yaml` file like so:
+First, declare a new service like so:
 
-{{< readFile file="src/registry/images/examples/full/network-storage.services.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/network-storage.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 This example creates a service named `files` that is of type `network-storage`, and gives it 256 MB of storage total.
 
@@ -41,13 +41,16 @@ This example creates a service named `files` that is of type `network-storage`, 
 
 Second, add the following entry to your mounts list:
 
-{{< readFile file="src/registry/images/examples/full/network-storage.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/network-storage.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 This block will declare a writeable mount on the application container at the path `my/files`, which will be provided by the `files` service defined above.  The `source_path` specifies the path within the network service that the mount points to.  It is often easiest to have it match the name of the mount point itself but that is not required.
 
 Note that you do *not* need to add a relationship to point to the `files` service.  That is handled automatically by the system.
 
 The application container can now read from and write to the `my/files` path just as if it were a local writeable mount.
+
+User data that has been written to `/tmp` isn't automatically deleted. 
+To avoid a full disk, delete your temporary data located in `/tmp` after you've used it.
 
 {{< note >}}
 There is a small performance hit for using a network mount over a local mount.  In most cases it should not be noticeable.  However, high-volume sequential file creation (that is, creating a large number of small files in rapid succession) may see a more significant performance hit.  If that is something your application does regularly then a local mount will be more effective.

@@ -13,13 +13,9 @@ layout: single
 |----------------------------------|---------------|
 |  {{< image-versions image="nodejs" status="supported" environment="grid" >}} | {{< image-versions image="nodejs" status="supported" environment="dedicated" >}} |
 
-If you need other versions or a version in a container running something other than Node.js,
-[use a version manager like `nvm`](/languages/nodejs/nvm.md).
+To use a specific version in a container with a different language, [use a version manager](node-version.md).
 
-## Deprecated versions
-
-Some versions with a minor (such as 8.9) are available but aren't receiving security updates from upstream,
-so their use isn't recommended.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -55,7 +51,7 @@ hooks:
 ## Support libraries
 
 While it's possible to read the environment directly from your application,
-it's generally easier and more robust to use the [`platformsh-config`](https://github.com/platformsh/config-reader-nodejs) NPM library,
+it's generally easier and more robust to use the [`platformsh-config` package](https://github.com/platformsh/config-reader-nodejs),
 which handles decoding of service credential information for you.
 
 ## Configuration
@@ -65,7 +61,7 @@ as described here (a complete example is included at the end).
 
 1. Specify the language of your application (available versions are listed above):
 
-    {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" >}}
+    {{< readFile file="src/registry/images/examples/full/nodejs.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 2. Specify your dependencies under the `nodejs` key, like this:
 
@@ -89,8 +85,7 @@ as described here (a complete example is included at the end).
 
    If there is a package.json file present at the root of your repository,
    Platform.sh automatically installs the dependencies.
-   We suggest including the `platformsh-config` helper NPM module,
-   which makes it trivial to access the running environment.
+   We suggest including the `platformsh-config` package to facilitate access to the running environment.
 
    ```json
    {

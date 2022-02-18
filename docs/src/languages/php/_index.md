@@ -13,14 +13,11 @@ layout: single
 
 Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP.
 
-To specify a PHP container, use the `type` property in your `.platform.app.yaml`.
+To specify a PHP container, use the `type` property in your [app configuration](../../configuration/app/app-reference.md).
 
-{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-## Deprecated versions
-
-The following versions are available but aren't receiving security updates from upstream, so their use isn't recommended.
-They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** |
 |----------------------------------|---------------|
@@ -125,10 +122,6 @@ dependencies:
     php:
         composer/composer: '^2'
 ```
-
-`drupal` runs `drush make` automatically in one of a few different ways.
-See the [Drupal 7](/frameworks/drupal7/_index.md) documentation for more details.
-There is no reason to use this build mode except for Drupal 7.
 
 ## OPcache preloading
 

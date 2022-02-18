@@ -24,9 +24,9 @@ file: "/files/reports/transparency-abuse/2020_platformsh_transparency_report.pdf
 
 ### Requests from EU Authorities
 
-{{< tranparency-reports/tables/2020/noneu-requests >}}
+{{< tranparency-reports/tables/2020/eu-requests >}}
 
-## Report on Abuse Reports Received 
+## Report on Abuse Reports Received
 
 {{< tranparency-reports/info "abuse" >}}
 

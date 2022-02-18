@@ -11,6 +11,7 @@
 {{- $runningText := chomp ( partial "meilindex/fields/text" . ) -}}
 {{- $currentHeadingTitle := .Title -}}
 {{- $pageTitle := .Title -}}
+{{- $keywords := .Keywords -}}
 {{- $currentHeadingAnchor := "" -}}
 {{- $count := 0 -}}
 <!-- Go line by line  -->
@@ -38,7 +39,7 @@
       <!-- Clean up the text field. -->
       {{- $runningText = replace $runningText "\n" " " -}}
       <!-- Build the document -->
-      {{- $documents = $documents | append ( dict "title" $currentHeadingTitle "site" $site "rank" $rank "url" $finalFullURL "pageUrl" $url "text" ( $runningText | plainify | safeHTML ) "documentId" $documentId "section" $section ) -}}
+      {{- $documents = $documents | append ( dict "title" $currentHeadingTitle "site" $site "keywords" $keywords "rank" $rank "url" $finalFullURL "pageUrl" $url "text" ( $runningText | plainify | safeHTML ) "documentId" $documentId "section" $section ) -}}
       <!-- Reset the text. -->
       {{- $runningText = "" -}}
       <!-- Reset the current anchor. -->
@@ -58,7 +59,7 @@
         {{- $section = $pageTitle -}}
       {{- end -}}
       {{- $runningText = replace $runningText "\n" " " -}}
-      {{- $documents = $documents | append ( dict "title" $currentHeadingTitle "site" $site "rank" $rank "url" $finalFullURL "pageUrl" $url "text" ( $runningText | plainify | safeHTML ) "documentId" $documentId "section" $section ) -}}
+      {{- $documents = $documents | append ( dict "title" $currentHeadingTitle "site" $site "keywords" $keywords "rank" $rank "url" $finalFullURL "pageUrl" $url "text" ( $runningText | plainify | safeHTML ) "documentId" $documentId "section" $section ) -}}
     <!-- Append the running text field. -->
     {{- else -}}
       {{- $runningText = printf "%s %s" $runningText . -}}

@@ -23,10 +23,7 @@ A brief introduction (1--2 sentences) to what this service is used for.
 |  {{< image-versions image="<SERVICE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated-gen-3" >}} |
 
 <!-- If there are any deprecated versions. -->
-### Deprecated versions 
-
-The following versions are available but are not receiving security updates from upstream, so their use is not recommended.
-They will be removed at some point in the future.
+{{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
@@ -34,13 +31,56 @@ They will be removed at some point in the future.
 
 ## Usage example
 
-Short steps on how to add the service to `services.yaml` and `.app.platform.yaml`.
-Can be structured like [how to steps](./how-to.md#1-do-this-step-first).
+<!--
+  Include the general template for usage examples.
+  Replace `<SERVICE_TYPE>` with the type.
 
-If available, include examples in various languages using the service in an app
-(taken from https://examples.docs.platform.sh/).
+  If the service allows multiple endpoints, also include following parameter:
+  sectionLink="#<SECTION_ON_PAGE_WITH_DESCRIPTION>" multipleText="<NOUN_THAT_CAN_BE_MULTIPLE"
+  Example for MariaDB:
+  sectionLink="#multiple-databases" multipleText="databases" 
 
-## `$PLATFORM_RELATIONSHIPS` reference
+  If the service doesn't have examples of usage in an app taken from https://examples.docs.platform.sh/
+  include the following parameter:
+  noApp=true
+-->
+{{% endpoint-description type="<SERVICE_TYPE>" %}}
+
+Service definition:
+
+{{< readFile file="src/registry/images/examples/full/<SERVICE_TYPE>.services.yaml" highlight="yaml" >}}
+
+App configuration:
+
+{{< readFile file="src/registry/images/examples/full/<SERVICE_TYPE>.app.yaml" highlight="yaml" >}}
+
+{{% /endpoint-description %}}
+
+{{< codetabs >}}
+
+---
+title=<LANGUAGE>
+file=static/files/fetch/examples/<LANGUAGE_NAME>/<SERVICE_TYPE>
+highlight=<LANGUAGE>
+---
+
+<--->
+<!-- Repeat above for more languages -->
+{{< /codetabs >}}
+
+<!-- If the service has options in the `configuration` key -->
+## Configuration options
+
+You can configure your <SERVICE_NAME> service in the [services configuration](./_index.md) with the following options:
+
+| Name   | Type     | Required | Description |
+| ------ | -------- | -------- | ----------- |
+| `type` | `string` | Yes      | What it does. |
+
+## Relationship reference
+
+Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-platformsh-provided-variables)
+or by running `platform relationships`:
 
 <!-- A yaml file taken from https://examples.docs.platform.sh/ that contains all the properties people need to access/use the service. -->
 {{< relationship "<SERVICE_NAME>" >}}

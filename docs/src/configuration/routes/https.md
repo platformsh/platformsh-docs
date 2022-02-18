@@ -244,7 +244,8 @@ Let's Encrypt needs to make sure that the requester is entitled to receive the S
 This ownership verification is achieved through the so called _Challenge_ step,
 more background information can be found in the [Let's Encrypt Documentation](https://letsencrypt.org/docs/challenge-types/).
 
-By default, Platform.sh checks that both the `some-example.platform.sh` and `www.some-example.platform.sh` domains are pointing to your project.
+If you include them in your [routes definition](./_index.md),
+Platform.sh checks that both the `example.platform.sh` and `www.example.platform.sh` domains are pointing to your project.
 The certificate also encompasses both these domains.
 Make sure that both your apex domain and it's `www` subdomain are pointing to your project,
 more information can be found in out go live [step-by-step guide](gettingstarted/next-steps/going-live/configure-dns.md).
@@ -268,9 +269,9 @@ or
 
 Make sure that both the apex domain and it's `www` subdomain are both pointing to the cluster.
 Note that DNS changes can take up to 24-48 hours to propagate.
-See the [step-by-step guide](/domains/steps/_index.md) for more information.
+See the [step-by-step guide](../../domains/steps/_index.md) for more information.
 If you have waited the 24-48 hours, properly configured the subdomain, and are still seeing an error of this type,
-[redeploying](/development/troubleshoot.md#force-a-redeploy) the impacted environment usually solves the issue.
+[redeploying](../../development/troubleshoot.md#force-a-redeploy) the impacted environment usually solves the issue.
 
 Also make sure that no conflicting DNS records exist for the domain.
 For example, a conflicting AAAA (IPv6) DNS record usually results in a `[HTTP01: The client lacks sufficient authorization]` error.

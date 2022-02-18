@@ -1,7 +1,7 @@
 
 <!-- Shortcode separator strings -->
 {{ $splitTabChar := "<--->" }}
-{{ $paramFrontMatterChar := "---" }}
+{{ $paramFrontMatterChar := "\n---\n" }}
 
 {{ $allParams := newScratch }}
 {{ $allContent := newScratch}}
@@ -94,7 +94,7 @@
                 {{ if ne (.Get "file") "none" }}
                   {{  readFile ( .Get "file" ) | markdownify | chomp }}
                 {{ else }}
-                  {{ $content | markdownify }}
+                  {{ $content | $.Page.RenderString }}
                 {{ end }}
               {{ end }}
             {{ end }}

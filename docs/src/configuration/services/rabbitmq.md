@@ -8,6 +8,12 @@ RabbitMQ is an open source message broker software (sometimes called message-ori
 
 See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for more information."
 
+{{% frameworks %}}
+
+- [Spring](../../frameworks/spring.md#rabbitmq)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
@@ -16,25 +22,25 @@ See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "rabbitmq" >}}
 
 ## Usage example
 
-In your `.platform/services.yaml`:
+{{% endpoint-description type="rabbitmq" %}}
 
-{{< readFile file="src/registry/images/examples/full/rabbitmq.services.yaml" highlight="yaml" >}}
+[Service definition](./_index.md):
+
+{{< readFile file="src/registry/images/examples/full/rabbitmq.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
 The minimum disk size for RabbitMQ is `512` (MB).
 
-In your `.platform.app.yaml`:
+[App configuration](../app/app-reference.md):
 
-{{< readFile file="src/registry/images/examples/full/rabbitmq.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/rabbitmq.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
-{{< endpoint-description "rabbitmq" >}}
-
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 

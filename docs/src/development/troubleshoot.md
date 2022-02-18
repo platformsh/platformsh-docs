@@ -63,7 +63,7 @@ Platform.sh reuses built applications if its code and build time configuration (
 There may be times where you want to force your application to be built again without changing its code,
 for example to test an issue in a build hook or when external dependencies change.
 To force a rebuild without changing the code,
-use an [environment variable](./variables.md#create-environment-variables).
+use an [environment variable](./variables/set-variables.md#create-environment-specific-variables).
 
 Assuming you want to do this for your `main` environment,
 first create a `REBUILD_DATE` environment variable:
@@ -132,7 +132,7 @@ $ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/fo
 
 If you try to use a user to create a database, you get an error saying `permission denied to create database`.
 The database is created for you
-and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment variable](./variables.md).
+and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
 
 ## Can't write to file system
 

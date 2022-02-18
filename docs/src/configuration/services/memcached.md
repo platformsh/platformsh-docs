@@ -8,9 +8,15 @@ sidebarTitle: "Memcached"
 
 {{< description >}}
 
-See the [Memcached](https://memcached.org) for more information.
+See the [Memcached documentation](https://memcached.org) for more information.
 
 Both Memcached and Redis can be used for application caching. As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust. Platform.sh recommends using Redis if possible but Memcached is fully supported if an application favors that cache service."
+
+{{% frameworks %}}
+
+- [Drupal](../../guides/drupal9/memcached.md)
+
+{{% /frameworks %}}
 
 ## Supported versions
 
@@ -20,21 +26,21 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "memcached" >}}
 
 ## Usage example
 
-In your ``.platform/services.yaml``:
+{{% endpoint-description type="memcached" %}}
 
-{{< readFile file="src/registry/images/examples/full/memcached.services.yaml" highlight="yaml" >}}
+[Service definition](./_index.md):
 
-Now add a relationship in your `.platform.app.yaml` file:
+{{< readFile file="src/registry/images/examples/full/memcached.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
 
-{{< readFile file="src/registry/images/examples/full/memcached.app.yaml" highlight="yaml" >}}
+[App configuration](../app/app-reference.md):
 
-{{< endpoint-description "memcached" >}}
+{{< readFile file="src/registry/images/examples/full/memcached.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 
 If you are using PHP, configure the relationship and enable the [PHP memcached extension](/languages/php/extensions.md) in your `.platform.app.yaml`.  (Note that the `memcached` extension requires `igbinary` and `msgpack` as well, but those will be enabled automatically.)
 
@@ -52,7 +58,7 @@ dependencies:
         python-memcached: '*'
 ```
 
-You can then use the service in a configuration file of your application with something like:
+{{% /endpoint-description %}}
 
 {{< codetabs >}}
 

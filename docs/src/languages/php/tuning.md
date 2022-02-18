@@ -30,24 +30,24 @@ The most common issue is not allowing the right cookies as part of the router ca
 Some cookies, such as session cookies, need to be allowed,
 whereas others, such as marketing and analytics cookies,
 usually shouldn't be allowed to be part of the cache key.
-See the [router cache](/configuration/routes/cache.md) documentation
-and the [cookie entry](/configuration/routes/cache.md#cookies).
+See more about [router cache](../../configuration/routes/cache.md)
+and [cookie entry](../../configuration/routes/cache.md#cookies).
 
 You also need to ensure that your application is sending the correct `cache-control` header.
 The router cache obeys whatever cache headers your application sends,
 so send it good ones.
 
 Static assets cache headers are set using the `expires` key in `.platform.app.yaml`.
-See the [`web.locations`](/configuration/app/app-reference.md#locations) documentation for more details.
+See the [`web.locations` documentation](../../configuration/app/app-reference.md#locations) for more details.
 
 ## Optimize the FPM worker count
 
 PHP-FPM reserves a fixed number of simultaneous worker processes to handle incoming requests.
 If more simultaneous requests are received than the number of workers,
-then some requests will wait.
+then some requests wait.
 The default worker count is deliberately set rather conservative
 but can be improved in many cases.
-See the [PHP-FPM sizing](/languages/php/fpm.md) page
+See the [PHP-FPM sizing](./fpm.md) page
 for how to determine and set a more optimal value.
 
 ## Enable preloading
@@ -56,12 +56,20 @@ PHP 7.4 and later supports preloading code files into shared memory once at serv
 bypassing the need to include or autoload them later.
 Depending on your application doing so can result in significant improvements
 to both CPU and memory usage.
-If using PHP 7.4 or later, see the [PHP Preload instructions](/languages/php/_index.md#opcache-preloading)
-for how to configure it on Platform.sh
-and consult your application's documentation to see
+If using PHP 7.4 or later, see the [PHP Preload instructions](./_index.md#opcache-preloading)
+for how to configure it on Platform.sh.
+Consult your application's documentation to see
 if they have any recommendations for an optimal preload configuration.
 
-If you are not using PHP 7.4, this is a good reason to upgrade.
+If you aren't using PHP 7.4, this is a good reason to upgrade.
+
+Note that the only way to clear the preload cache is by restarting PHP-FPM.
+PHP-FPM isn't restarted on every deployment automatically,
+so you might want to add that in a [`deploy` hook](../../configuration/app/hooks.md),
+such as by including `pkill -f php-fpm` or `sv restart app`.
+
+If you have [disabled OPcache timestamp validation](#disable-opcache-timestamp-validation),
+you need to clear the OPcache explicitly on deployment (which can be done by restarting PHP-FPM).
 
 ## Configure OPcache
 
@@ -178,6 +186,8 @@ By default, the OPcache rechecks every file on disk every time it's required
 to see if it has changed and so needs to be reloaded and recached.
 If you know your code isn't going to change outside of a new deploy,
 you can disable that check and often get a small performance improvement.
+If you have disabled OPcache timestamp validation,
+you need to clear the OPcache explicitly on deployment (which can be done by restarting PHP-FPM).
 
 Note that some applications generate PHP code at runtime based on user configuration.
 If your application does that,

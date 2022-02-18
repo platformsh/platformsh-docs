@@ -12,14 +12,15 @@
 - [Videos & asciinema](#videos--asciinema)
 - [Code](#code)
   - [Indentation](#indentation)
+- [Refer to the UI and keys](#refer-to-the-ui-and-keys)
 - [Code tabs](#code-tabs)
-- [Reusing content](#reusing-content)
+- [Reuse content](#reuse-content)
 
 ## Markdown
 
 These docs are written in Markdown with [GitHub Flavored Markdown](https://github.github.com/gfm/) syntax supported.
 It also supports [definition lists](https://michelf.ca/projects/php-markdown/extra/#def-list),
-[footnotes](https://michelf.ca/projects/php-markdown/extra/#footnotes),
+[footnotes](#footnotes),
 and [smart typography](https://daringfireball.net/projects/smartypants/).
 Plus the modifications noted below.
 
@@ -125,6 +126,33 @@ Be careful!
 
 See the [content guidelines for notes](./content-style.md#use-notes-appropriately).
 
+### Footnotes
+
+To add a footnote, add two parts:
+
+1. Mark the spot in the text where you want to add a note:
+
+   ```markdown
+   This text will have a note.[^<FOOTNOTE_NAME>]
+   ```
+
+   The name can be anything as long as it's unique within the document.
+   Don't use numbers as the notes are numbered automatically.
+1. Add the note at the end of the document:
+
+   ```markdown
+   [^<FOOTNOTE_NAME>]: Here is the note about the text above.
+   ```
+
+   To have multiple paragraphs in the note, align them with four spaces at the start:
+
+   ```markdown
+   [^<FOOTNOTE_NAME>]:
+       This is the first paragraph.
+
+       This is the second paragraph.
+   ```
+
 ## Images
 
 You can add images using the standard Markdown syntax,
@@ -193,6 +221,26 @@ relationships:
     database: 'mysqldb:db
 ```
 
+## Refer to the UI and keys
+
+When referring to text in the UI, use bold:
+
+```markdown
+Click **Redeploy**.
+```
+
+To refer to buttons in the UI that use icons, use the `icon` shortcode with the alternative text for the button:
+
+```markdown
+To share a log, open the log and click {{< icon share >}} **Copy URL**.
+```
+
+To refer to keys users should use on their keyboards, use `<kbd>` tags:
+
+```markdown
+To select multiple lines, hold <kbd>Shift</kbd>.
+```
+
 ## Code tabs
 
 Display code examples in multiple languages with code tabs.
@@ -240,6 +288,14 @@ use [transclusion](https://en.wikipedia.org/wiki/Transclusion) to include it.
    {{% reuse_markdown %}}
    ```
 
+Note that if your files have HTML characters (`<`, `>`, `&`, `'`, and `"`) inside a code block,
+the characters are escaped (appear as `&lt;` and so on).
+Avoid this problem by writing HTML files (`reuse_html.html`) instead of Markdown files and including them like so:
+
+```markdown
+{{< reuse_html >}}
+```
+
 ### Variables in the file
 
 You can pass variables to the file:
@@ -282,8 +338,9 @@ Here is some content after the inner content.
 For static files that have already been created, use the `readFile` shortcode:
 
 ```markdown
-{{< readFile file="src/registry/images/tables/runtimes_supported.md" markdownify="true">}}
+{{< readFile file="src/registry/images/tables/runtimes_supported.md" markdownify="true" >}}
 {{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" >}}
+{{< readFile file="src/registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
 ```
 
 Property      | Description
@@ -291,3 +348,4 @@ Property      | Description
 `file`        | The location of the file to include relative to the `docs` root.
 `markdownify` | Optional. For when you are using a `.md` file and want to include markdown.
 `highlight`   | Optional. For when you're including code examples. The language to use for highlighting, as in [code blocks](#code).
+`location`    | Optional. To mark where the included code should be placed, for example `.platform.app.yaml`.

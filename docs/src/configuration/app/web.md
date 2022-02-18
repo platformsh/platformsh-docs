@@ -46,12 +46,22 @@ Although most websites today have some dynamic component, static site generators
 This documentation is built using a tool called Hugo, and served by Platform.sh as a static site.
 You can see the [entire repository](https://github.com/platformsh/platformsh-docs) on GitHub.
 The `.platform.app.yaml` file it uses is listed below.
-Note in particular the `web.commands.start` directive. There needs to be some background process so it's set to the `sleep` shell command, which blocks forever (or some really long time, as computers don't know about forever) and restart if needed.
-The file also runs the Hugo build process, and then specifies the files that are allowed to serve.
-
-If you do no require any additional service, you can leave the `.platform/services.yaml` file empty. The file itself is required, but its contents are optional.
 
 {{< readFile file="static/files/fetch/docsappyaml/platformsh-docs" highlight="yaml" >}}
+
+It does use one dynamic script in the `web.commands.start` directive for detecting and handling 404 errors.
+If you don't need this, set a background process using the `sleep` command:
+
+```yaml {location=".platform.app.yaml"}
+web:
+    commands:
+        # Run a no-op process that uses no CPU resources since this is a static site.
+        start: sleep infinity
+```
+
+This blocks as long as necessary and restarts if needed.
+If you don't require any additional services, leave your `.platform/services.yaml` file empty.
+The file itself is required, but its contents are optional.
 
 ## How can I control the headers sent with my files?
 
