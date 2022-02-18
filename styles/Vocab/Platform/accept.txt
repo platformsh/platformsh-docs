@@ -43,6 +43,7 @@ Memcache
 middleware
 multicast
 [Mm]ultifactor
+multisite
 multithread[ed|ing]
 namespace
 [Nn]ginx
@@ -51,6 +52,7 @@ npm
 nvm
 onboarding
 OPcache
+Opigno
 Opsgenie
 optipng
 Packagist

@@ -433,7 +433,7 @@ make sure the variables are set to be [visible at build time](./set-variables.md
 The files can't be populated with Platform.sh-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
 You also can't write to them in a `deploy` hook as the file system is read only.
 
-One workaround is to create a symbolic link to a writable location and then write to it in a [`deploy` hook](../../configuration/app/hooks.md).
+One workaround is to create a symbolic link to a writable location and then write to it in a [`deploy` hook](../../configuration/app/hooks/hooks-comparison.md#deploy-hook).
 The following example shows the process, though you have to modify it to fit your needs.
 
 1. Create a mount that isn't accessible to the web in your [app configuration](../../configuration/app/_index.md):

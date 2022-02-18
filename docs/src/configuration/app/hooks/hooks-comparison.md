@@ -14,7 +14,7 @@ The following table presents the main differences among the three available hook
 \* All of the hooks run with changes to the code or environment.
 This column indicates which hooks run on a redeploy without any code changes.
 
-### Build hook
+## Build hook
 
 The `build` hook is run after any [build flavor](../app-reference.md#build).
 During this hook, no services (such as a database) or any persistent file mounts are available
@@ -51,7 +51,7 @@ If a `build` hook fails for any reason, the build is aborted and the deploy does
 Note that this only works for `build` hooks.
 If other hooks fail, the deploy still happens.
 
-### Deploy hook
+## Deploy hook
 
 The `deploy` hook is run after the app container has been started but before it has started accepting requests.
 Note that the deploy hook only runs on [`web` instances](../app-reference.md#web),
@@ -94,7 +94,7 @@ the result of both the `build` and `deploy` hooks are reused until there is a ne
 Redeploys with no changes trigger only the `post_deploy` hook.
 If you need the `deploy` hook to run, [manually trigger a build](../../../development/troubleshoot.md#manually-trigger-builds).
 
-### Post-deploy hook
+## Post-deploy hook
 
 The `post_deploy` hook functions exactly the same as the `deploy` hook,
 but after the container is accepting connections.
