@@ -54,7 +54,7 @@ it automatically evicts old cache items according to the [configured eviction ru
 Your app must not treat ephemeral Redis as permanent.
 Instead, the cache needs to be regenerated as necessary.
 For example, if a container is moved for a reason such as region maintenance,
-the `deploy` and `post_depoly` hooks don't run and an app that treats the cache as permanent shows errors.
+the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
 The cache should be cleared each time the app is restarted,
 in the `start` key in [your web configuration](/configuration/app/app-reference.md#commands).
 
