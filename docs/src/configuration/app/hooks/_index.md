@@ -15,7 +15,7 @@ and [Gatsby](https://www.gatsbyjs.com/) for the frontend.
 To get the code ready, you need to run a few commands.
 The example commands are somewhat simplified, but you can find them all in the [GitHub repository](https://github.com/platformsh-templates/gatsby-drupal).
 
-In this case, you have two applications and so two [`.platform.app.yaml` configuration files](../_index.md).
+In this case, you have [two applications](../multi-app.md) and so two [`.platform.app.yaml` configuration files](../_index.md).
 Each file is in the folder for that application.
 You run two hooks in the file for Drupal and one hook in the file for Gatsby.
 
@@ -117,7 +117,7 @@ Because these steps should be done before the site accepts request, they should 
 
 1. Rebuild the cache and update the database.
    To ensure your new deployment uses only the latest data,
-   run the Drush commands to[rebuild the cache](https://www.drush.org/latest/commands/cache_rebuild/)
+   run the Drush commands to [rebuild the cache](https://www.drush.org/latest/commands/cache_rebuild/)
    and [update the database](https://www.drush.org/latest/commands/updatedb/):
 
    ```yaml {location="drupal/.platform.app.yaml"}

@@ -64,6 +64,7 @@ This hook should be used when something needs to run once for all instances of a
 It isn't run when a host is restarted (such as during region maintenance),
 so anything that needs to run each time an app starts (regardless of whether there's new code)
 should go in the `start` key in [your `web` configuration](../app-reference.md#commands).
+For example, clearing the cache for [ephemeral Redis](../../services/redis.md#ephemeral-redis).
 
 Be aware: The deploy hook blocks the site accepting new requests.
 If your `deploy` hook is only a few seconds,
