@@ -74,7 +74,7 @@ If you're running a PHP or Node.js app, this starts with the [build flavor](./ap
 which runs a default set of tasks.
 Then any [global dependencies](./app-reference.md#dependencies) can be installed.
 
-Once these optional tasks are done, you can run [hooks](./hooks.md) at various points in the process.
+Once these optional tasks are done, you can run [hooks](./hooks/_index.md) at various points in the process.
 Hooks are places for your custom scripts to control how your app is built and deployed.
 
 ## Configure what's served

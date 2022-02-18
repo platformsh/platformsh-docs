@@ -22,7 +22,7 @@ Drupal FAQs, how-to guides and other tutorials right on [Platform.sh Community](
 
 * [Drupal 8](https://github.com/platformsh-templates/drupal8)
 * [Drupal 9](https://github.com/platformsh-templates/drupal9)
-* [Drupal 8 (Multisite variant)](https://github.com/platformsh-templates/drupal8-multisite)
+* [Drupal 8 (multisite variant)](https://github.com/platformsh-templates/drupal8-multisite)
 * [Opigno](https://github.com/platformsh-templates/drupal8-opigno)
 * [GovCMS8](https://github.com/platformsh-templates/drupal8-govcms8)
 
@@ -67,18 +67,18 @@ Symfony FAQs, how-to guides and other tutorials right on [Platform.sh Community]
 
 * [TYPO3](https://github.com/platformsh-templates/typo3)
 
-## Wordpress
+## WordPress
 
-[Wordpress](https://wordpress.com/) is a PHP content management system. Platform.sh recommends using the composer-based installation method for Wordpress.
+[WordPress](https://wordpress.com/) is a PHP content management system. Platform.sh recommends using the composer-based installation method for WordPress.
 
-* [Wordpress Best Practices](/guides/wordpress/_index.md)
+* [WordPress best practices](/guides/wordpress/_index.md)
 
 ### Community Support
 
-All your Wordpress FAQs, plus how-to guides and tutorials right on [Platform.sh Community](https://community.platform.sh/).
+All your WordPress FAQs, plus how-to guides and tutorials right on [Platform.sh Community](https://community.platform.sh/).
 
-* [Wordpress on Platform.sh Community](https://community.platform.sh/search?expanded=true&q=wordpress)
+* [WordPress on Platform.sh Community](https://community.platform.sh/search?expanded=true&q=wordpress)
 
 ### Templates
 
-* [Wordpress](https://github.com/platformsh-templates/wordpress-composer)
+* [WordPress](https://github.com/platformsh-templates/wordpress-composer)

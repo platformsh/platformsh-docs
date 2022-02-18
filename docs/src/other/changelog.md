@@ -166,7 +166,7 @@ description: |
 ---
 
 * **February 2018**
-  * `post_deploy` hook added: Projects can now run commands on deploy but [without blocking new requests](/configuration/app/hooks.md#post-deploy-hook).
+  * `post_deploy` hook added: Projects can now run commands on deploy but [without blocking new requests](../configuration/app/hooks/hooks-comparison.md#post-deploy-hook).
 
 ## 2017
 

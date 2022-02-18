@@ -15,8 +15,8 @@ Or you want to use specific Node.js version inside a container for another langu
 In such cases, use a version manager to install the specific version you want to use.
 You could use one of these:
 
-* [`n`](#use-n)
-* [`nvm`](#use-nvm)
+- [Use `n`](#use-n)
+- [Use `nvm`](#use-nvm)
 
 Both of the recommendations use a `.nvmrc` file to specify the desired Node.js version.
 You could also use [environment variables](../../development/variables/_index.md) or specify a different file.
@@ -49,7 +49,7 @@ including Windows Subsystem for Linux.
            N_PREFIX: /app/.global
    ```
 
-1. Install the specified version of Node.js in a [`build` hook](../../configuration/app/hooks.md):
+1. Install the specified version of Node.js in a [`build` hook](../../configuration/app/hooks/hooks-comparison.md#build-hook):
 
    ```yaml {location=".platform.app.yaml"}
    hooks:

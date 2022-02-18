@@ -354,7 +354,6 @@
 }
 
 /* code block location labels */
-
 .highlight-location {
   background-color: var(--primary);
   padding: 0.5rem 1rem 0 1rem;
@@ -362,8 +361,12 @@
   display: inline-block;
 }
 
-/* Keyboard keys */
+/* Make unordered lists inside ordered lists stand out */
+ol ul {
+  list-style-type: disc;
+}
 
+/* Keyboard keys */
 kbd {
   padding: 0.2rem 0.4rem;
   font-size: 100%;

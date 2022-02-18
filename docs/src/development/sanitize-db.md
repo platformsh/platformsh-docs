@@ -88,7 +88,7 @@ Assumptions:
    [you can restore them](../administration/backup-and-restore.md#restore) from the dump you took in step 1.
 
    You can create a script to automate the sanitization process to be run automatically on each new deployment.
-   Once you have a working script, add your script to sanitize the database to [a `deploy` hook](../configuration/app/hooks.md#deploy-hook):
+   Once you have a working script, add your script to sanitize the database to [a `deploy` hook](../configuration/app/hooks/hooks-comparison.md#deploy-hook):
 
    ```yaml
    deploy: |
@@ -110,7 +110,7 @@ highlight=false
 ---
 
 1. To sanitize your database and get rid of sensitive, live information, use the `drush sql:sanitize` command.
-   Add your script to sanitize the database to [a `deploy` hook](../configuration/app/hooks.md#deploy-hook)
+   Add your script to sanitize the database to [a `deploy` hook](../configuration/app/hooks/hooks-comparison.md#deploy-hook)
    for non-production environments:
 
   ```yaml
