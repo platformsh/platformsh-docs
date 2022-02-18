@@ -13,9 +13,7 @@ description: Platform.sh supports building and deploying applications written in
 
 {{< image-versions-legacy "golang" >}}
 
-To specify a Go container, use the `type` property in your [app configuration](../configuration/app/app-reference.md).
-
-{{< readFile file="src/registry/images/examples/full/golang.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{% language-specification type="golang" display_name="Go" %}}
 
 {{% deprecated-versions %}}
 

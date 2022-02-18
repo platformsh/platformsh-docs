@@ -13,6 +13,8 @@ description: Platform.sh supports deploying Python applications. Your applicatio
 
 {{< image-versions-legacy "python" >}}
 
+{{% language-specification type="python" display_name="Python" %}}
+
 ## Support libraries
 
 While it is possible to read the environment directly from your application, it is generally easier and more robust to use the [`platformshconfig`](https://github.com/platformsh/config-reader-python) pip library which handles decoding of service credential information for you.

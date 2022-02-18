@@ -14,9 +14,7 @@ layout: single
 
 Note that from PHP 7.1, the images use the Zend Thread Safe (ZTS) version of PHP.
 
-To specify a PHP container, use the `type` property in your [app configuration](../../configuration/app/app-reference.md).
-
-{{< readFile file="src/registry/images/examples/full/php.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{% language-specification type="php" display_name="PHP" %}}
 
 {{% deprecated-versions %}}
 

@@ -13,9 +13,7 @@ description: Platform.sh supports building and deploying applications written in
 
 {{< image-versions-legacy "lisp" >}}
 
-To specify a Lisp container, use the `type` property in your `.platform.app.yaml`.
-
-{{< readFile file="src/registry/images/examples/full/lisp.app.yaml" highlight="yaml">}}
+{{% language-specification type="lisp" display_name="Lisp" %}}
 
 ## Assumptions
 

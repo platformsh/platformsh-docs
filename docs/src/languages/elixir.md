@@ -13,9 +13,7 @@ description: Platform.sh supports building and deploying applications written in
 
 {{< image-versions-legacy "elixir" >}}
 
-To specify an Elixir container, use the `type` property in your [app configuration](../configuration/app/app-reference.md).
-
-{{< readFile file="src/registry/images/examples/full/elixir.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{% language-specification type="elixir" display_name="Elixir" %}}
 
 ## Platform.sh variables
 

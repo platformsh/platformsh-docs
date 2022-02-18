@@ -16,6 +16,8 @@ description: |
 
 {{< image-versions-legacy "ruby" >}}
 
+{{% language-specification type="ruby" display_name="Ruby" %}}
+
 ## Unicorn based Rails configuration
 
 This example uses Unicorn to run a Ruby application.

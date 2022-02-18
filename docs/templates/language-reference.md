@@ -11,7 +11,8 @@ How to use
   1. Copy this template into /src/docs/languages/.
   2. Rename it to match the title.
   3. Replace the following content with your own.
-  4. Replace all instances of "<LANGUAGE_NAME>" in the examples with the language's name.
+  4. Replace all instances of "<LANGUAGE_TYPE>" in the examples with the language's code name (such as "nodejs").
+  5. Replace all instances of "<LANGUAGE_NAME>" in the examples with the language's name (such as "Node.js").
 -->
 
 A brief introduction (1--2 sentences) to the language.
@@ -20,17 +21,19 @@ A brief introduction (1--2 sentences) to the language.
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
-|  {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="dedicated" >}} | {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="dedicated-gen-3" >}} |
+|  {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated-gen-3" >}} |
 
 <!-- To automatically check any differences in the registry with legacy regions -->
-{{< image-versions-legacy "<LANGUAGE_NAME>" >}}
+{{< image-versions-legacy "<LANGUAGE_TYPE>" >}}
+
+{{% language-specification type="<LANGUAGE_TYPE>" display_name="<LANGUAGE_NAME>" %}}
 
 <!-- If there are any deprecated versions. -->
 {{% deprecated-versions %}}
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
-|  {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="dedicated" >}} | {{< image-versions image="<LANGUAGE_NAME>" status="supported" environment="dedicated-gen-3" >}} |
+|  {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="grid" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated" >}} | {{< image-versions image="<LANGUAGE_TYPE>" status="supported" environment="dedicated-gen-3" >}} |
 
 ## Usage example
 
@@ -60,4 +63,4 @@ Split each function
 
 A description of what templates are.
 
-{{< repolist lang="<LANGUAGE_NAME>" >}}
+{{< repolist lang="<LANGUAGE_TYPE>" >}}
