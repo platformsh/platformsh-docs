@@ -25,9 +25,9 @@ Use {{ if eq ($type) "mariadb" }}
 
 ### 2. Add the relationship
 
+<!-- Network storage services are different and handled below -->
+{{ if ne $type "network-storage" }}
 <!-- Clarify the endpoint that should be used. -->
-
-
 <!-- If a link and text have been set, adds exception that directs users to the subsection that describes explicit endpoints. -->
 <!-- The check for Varnish is a hack to get around the escaping of the + sign -->
 Use the {{if eq $type "varnish"}}`http+stats` endpoint{{ else if eq $type "vault-kms" }}endpoint
@@ -66,6 +66,24 @@ dependencies:
 <!-- Add explanation for the Vault service -->
 {{ if eq ($type) "vault-kms" }}
 If you split the service into multiple endpoints, define multiple relationships.
+{{ end }}
+
+<!-- Describe app configuration for network storage services -->
+{{ else }}
+Add the service to your app configuration:
+
+```yaml {location=services.yaml}
+mounts:
+    '<TARGET_PATH>':
+        source: service
+        service: <SERVICE_NAME>
+        source_path: <SOURCE_PATH>
+```
+
+* `<TARGET_PATH>` is where you want your service to be, the path on your app container that has a writable mount.
+* `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
+* `<SOURCE_PATH>` is the path within the service that the mounts point to.
+  Usually the same as the `<SERVICE_NAME>`.
 {{ end }}
 
 <!-- Add example heading for all but MariaDB/Oracle MySQL, which need two -->
