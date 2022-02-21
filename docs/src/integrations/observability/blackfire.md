@@ -12,9 +12,9 @@ Across all of your sites and testing pipelines, get actionable reports and insig
 
 Blackfire grants detailed information on your code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
 
-In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Python and most Open-Source frameworks.
+In addition, it can profile your code automatically and notify you whenever your application does not comply with best practices for PHP, Python and most Open-Source frameworks.
 
-Blackfire's features are especially powerful when running on Platform.sh. Watch our [full video tutorial](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
+Blackfire's features are powerful especially when running on Platform.sh. Watch our [full video tutorial](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 
 {{< note >}}
 Blackfire.io is bundled in Platform.sh subscriptions as part of the Observability Suite. Please [contact our sales department](https://platform.sh/contact/).
@@ -28,7 +28,7 @@ Follow [the step-by-step instructions](https://blackfire.io/docs/integrations/pa
 
 ### On other Dedicated Infrastructure
 
-Open a support ticket with the Backfire Server ID, Server Token. Our support team will install it for you.
+Open a support ticket with the Backfire Server ID and Server Token. Our support team will install it for you.
 
 To find your server credentials navigate to your [Organizations List](https://blackfire.io/my/organizations) > Select an Organization > Select an Environment > Go to the Settings/Environment Credentials menu.
 
@@ -51,7 +51,7 @@ Once Blackfire is configured on your cluster, navigate to your [Organizations Li
 
 ## Testing the performance of each new deployment
 
-Blackfire's native integration with Platform.sh enables you to verify the performance of your code each time you deploy a branch, in production, staging or development.
+Blackfire's native integration with Platform.sh enables you to verify the performance of your application each time you deploy a branch, in production, staging or development.
 
 1. [Setup the Blackfire Builds integration](https://blackfire.io/docs/integrations/paas/platformsh#builds-level-enterprise);
 2. Optionally, [setup the integration with your Git provider](https://blackfire.io/docs/integrations/git/index), and get commit status updates from build reports;
@@ -59,7 +59,7 @@ Blackfire's native integration with Platform.sh enables you to verify the perfor
 
 ## Profiling
 
-Blackfire lets you profile code anywhere it is deployed, including on your local development machines. Via a browser extension or CLI, profile HJTTP requests, CLI scripts, Consumers and Daemons.
+Blackfire lets you profile code anywhere it is deployed, including on your local development machines. Via a browser extension or the CLI command, profile HTTP requests, CLI scripts, Consumers and Daemons.
 
 [Read more in the Blackfire documentation](https://blackfire.io/docs/profiling-cookbooks/index).
 
