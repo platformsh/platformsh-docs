@@ -20,19 +20,9 @@ If you are working from an older repository or migrating a pre-built site to Pla
 
 ### Add a Redis service
 
-{{% endpoint-description type="redis" noApp=true /%}}
+{{% endpoint-description type="redis" noApp=true onlyLanguage="php" php=true /%}}
 
-### Add the Redis PHP extension
-
-You will need to enable the PHP Redis extension.  In your `.platform.app.yaml` file, add the following right after the `type` block:
-
-```yaml
-runtime:
-    extensions:
-        - redis
-```
-
-### Add the Drupal module
+### 3. Add the Drupal module
 
 You will need to add the [Redis](https://www.drupal.org/project/redis) module to your project.  If you are using Composer to manage your Drupal site (which we recommend), run:
 

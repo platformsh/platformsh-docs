@@ -1,17 +1,28 @@
 <!-- Add additional configuration for specific services in PHP and Python-->
 {{ $l1 := "" }}
 {{ $php_types := slice "memcached" "mongodb" "postgresql" "redis" }}
-{{ if in $php_types .type}}
+<!-- Display PHP extensions if necessary and not in a context for only a different language -->
+{{ if and ( in $php_types .type ) ( or ( not .onlyLanguage ) ( eq .onlyLanguage "php" ) ) }}
   {{ $extension_name := .type}}
   {{ if eq (.type) "postgresql" }}
    {{ $extension_name = "pdo_pgsql" }}
   {{ end }}
-  {{ $l1 = printf "\n\n# If using PHP\nruntime:\n    extensions:\n        - %s" $extension_name }}
+  {{ $comment_php := "" }}
+  <!-- Add a comment for examples that aren't only for PHP -->
+  {{ if ne .onlyLanguage "php" }}
+    {{ $comment_php = "# If using PHP\n"}}
+  {{ end }}
+  {{ $l1 = printf "\n\n%sruntime:\n    extensions:\n        - %s" $comment_php $extension_name }}
 {{ end }}
 {{ $l2 := "" }}
 {{ $python_types := slice "memcached" }}
-{{ if in $python_types .type}}
-  {{ $l2 = printf "\n\n# If using Python\ndependencies:\n    python:\n        python-%s: '*'" .type }}
+{{ if and ( in $python_types .type ) ( or ( not .onlyLanguage ) ( eq .onlyLanguage "python" ) )  }}
+  {{ $comment_python := "" }}
+  <!-- Add a comment for examples that aren't only for PHP -->
+  {{ if ne .onlyLanguage "python" }}
+    {{ $comment_python = "# If using Python\n"}}
+  {{ end }}
+  {{ $l2 = printf "\n\n%sdependencies:\n    python:\n        python-%s: '*'" $comment_python .type }}
 {{ end }}
 
 <!-- MariaDB gets two examples, so it needs an extra heading -->

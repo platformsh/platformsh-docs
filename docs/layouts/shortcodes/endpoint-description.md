@@ -1,5 +1,6 @@
 <!-- Name the parameters -->
 {{ $type := .Get "type" }}
+{{ $onlyLanguage := .Get "onlyLanguage" }}
 {{ $sectionLink := .Get "sectionLink" }} <!-- The section of the page with more detail. -->
 {{ $multipleText := .Get "multipleText" }} <!-- What the explicit endpoints define (what is multiple). -->
 
@@ -91,7 +92,7 @@ mounts:
 ### Example Configuration
 {{ end }}
 
-{{ partial "examples/config_links" ( dict "type" $type ) }}
+{{ partial "examples/config_links" ( dict "type" $type "onlyLanguage" $onlyLanguage ) }}
 
 <!-- Turn this section off for ones in Guides that continue differently-->
 {{ if not (.Get "noApp" )}}
