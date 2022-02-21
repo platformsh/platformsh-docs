@@ -8,7 +8,7 @@ description: |
 
 {{< youtube bS4dzuzkir0 >}}
 
-Across all of your sites and testing pipelines, get actionable reports and insights, which help you fix issues.
+Across all of your sites and testing pipelines, get actionable reports and insights which help you fix issues.
 
 Blackfire grants detailed information on your code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
 
@@ -17,10 +17,12 @@ In addition, it can profile your code automatically and notify you whenever your
 Blackfire's features are especially powerful when running on Platform.sh. Watch our [full video tutorial](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 
 {{< note >}}
-Blackfire.io is bundled in PLatform.sh subscriptions as part of the Observability Suite. Please [contact our sales department](https://platform.sh/contact/).
+Blackfire.io is bundled in Platform.sh subscriptions as part of the Observability Suite. Please [contact our sales department](https://platform.sh/contact/).
 {{< /note >}}
 
-## On a Grid plan or a Dedicated Generation 3 cluster
+## Getting started
+
+### On a Grid plan or a Dedicated Generation 3 cluster
 
 Follow [the step-by-step instructions](https://blackfire.io/docs/integrations/paas/platformsh) to enable Blackfire on your PHP or Python applications.
 
@@ -36,8 +38,8 @@ Note: make sure that [your CDN is configured](https://blackfire.io/docs/integrat
 
 Once Blackfire is configured on your cluster, navigate to your [Organizations List](https://blackfire.io/my/organizations) > Select an Organization > Go to the Organization Monitoring Usage menu, and activate Monitoring for the required environment.
 
-![Organization Monitoring menu](/images/integrations/blackfire/blackfire-organization-monitoring.png "0.4")
-![Monitoring Activation](/images/integrations/blackfire/blackfire-monitoring-activation.png "0.4")
+![Organization Monitoring menu](/images/integrations/blackfire/blackfire-organization-monitoring.png "0.40")
+![Monitoring Activation](/images/integrations/blackfire/blackfire-monitoring-activation.png "0.40")
 
 [Read more in the Blackfire documentation](https://blackfire.io/docs/monitoring-cookbooks/index) about:
 
