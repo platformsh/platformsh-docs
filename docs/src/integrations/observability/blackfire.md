@@ -59,7 +59,7 @@ Blackfire's native integration with Platform.sh enables you to verify the perfor
 
 ## Profiling
 
-Blackfire lets you profile code anywhere it is deployed, including on your local development machines. Via a browser extension or the CLI command, profile HTTP requests, CLI scripts, Consumers and Daemons.
+Blackfire lets you profile your application anywhere it is deployed, including on your local development machines. Via a browser extension or the CLI command, profile HTTP requests, CLI scripts, Consumers and Daemons.
 
 [Read more in the Blackfire documentation](https://blackfire.io/docs/profiling-cookbooks/index).
 
