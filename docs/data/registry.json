@@ -968,14 +968,15 @@
   },
   "vault-kms": {
     "description": "",
-    "disk": false,
+    "disk": true,
     "docs": {
       "relationship_name": "vault_service",
       "service_name": "vault-kms",
       "url": "/configuration/services/vault.html"
     },
-    "endpoint": "demo-app",
-    "min_disk_size": null,
+    "endpoint": "sign",
+    "min_disk_size": 512,
+    "configuration": "endpoints:\n            <ENDPOINT_ID>:\n                - policy: <POLICY>\n                  key: \"<KEY_NAME>\"\n                  type: <ENDPOINT_TYPE>",
     "name": "Vault KMS",
     "repo_name": "vault-kms",
     "runtime": false,

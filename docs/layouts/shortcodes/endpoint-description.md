@@ -20,23 +20,20 @@ Use {{ if eq ($type) "mariadb" }}
 <!-- Create a dummy example services.yaml file from the registry's example naming in `.docs` -->
 {{ partial "examples/servicedefn" $data }}
 
-<!-- Extra text to explain Varnish configuration-->
-{{ if eq ($type) "varnish" }}
-The `relationships` block allows Varnish to talk to your app.
-You can define `<RELATIONSHIP_NAME>` as you like.
-`<APP_NAME>` should match the name you gave your app in your [app configuration](/configuration/app/app-reference.html).
-
-The `configuration` block must reference a VCL file (`config.vcl` in this example).
-The file name is relative to the `.platform` directory.
-{{ end }}
+<!-- Extra text to explain service configuration -->
+{{ .Inner }}
 
 ### 2. Add the relationship
 
 <!-- Clarify the endpoint that should be used. -->
+
+
 <!-- If a link and text have been set, adds exception that directs users to the subsection that describes explicit endpoints. -->
 <!-- The check for Varnish is a hack to get around the escaping of the + sign -->
-Use the {{if eq ($type) "varnish"}}`http+stats`{{ else }}`{{ $data.endpoint }}`{{ end }} endpoint to define the relationship {{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }}(unless you have [multiple {{$multipleText}}]({{ $sectionLink }})):
-{{ end }}
+Use the {{if eq $type "varnish"}}`http+stats` endpoint{{ else if eq $type "vault-kms" }}endpoint
+you [defined in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}`endpoint{{ end }}
+to define the relationship{{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }}
+(unless you have [multiple {{$multipleText}}]({{ $sectionLink }})){{ end }}:
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
 {{ partial "examples/relationship" $data }}
@@ -66,14 +63,17 @@ dependencies:
 ```
 {{ end }}
 
+<!-- Add explanation for the Vault service -->
+{{ if eq ($type) "vault-kms" }}
+If you split the service into multiple endpoints, define multiple relationships.
+{{ end }}
+
 <!-- Add example heading for all but MariaDB/Oracle MySQL, which need two -->
 {{ if ne ($type) "mariadb" }}
 ### Example Configuration
 {{ end }}
 
 {{ partial "examples/config_links" ( dict "type" $type ) }}
-
-{{ .Inner }}
 
 <!-- Turn this section off for ones in Guides that continue differently-->
 {{ if not (.Get "noApp" )}}

@@ -25,7 +25,16 @@ web -> router -> varnish -> application
 
 ## Configuration
 
-{{% endpoint-description type="varnish" noApp=true /%}}
+{{% endpoint-description type="varnish" noApp=true %}}
+
+The `relationships` block allows Varnish to talk to your app.
+You can define `<RELATIONSHIP_NAME>` as you like.
+`<APP_NAME>` should match the name you gave your app in your [app configuration](../app/app-reference.md).
+
+The `configuration` block must reference a VCL file (`config.vcl` in this example).
+The file name is relative to the `.platform` directory.
+
+{{% /endpoint-description %}}
 
 ### 3. Create a VCL template file
 

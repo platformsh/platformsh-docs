@@ -42,3 +42,14 @@
   <div class="highlight-location">.platform.app.yaml</div>
   {{ highlight ( readFile "src/registry/images/examples/full/oracle-mysql.app.yaml" ) "yaml" ""}}
 {{ end }}
+
+
+<!-- Extra examples for Vault with multiple endpoints -->
+{{ if eq .type "vault-kms" }}
+  <h4>Example configuration with multiple endpoints</h4>
+  <div class="highlight-location">.platform/services.yaml</div>
+  {{ highlight ( readFile "data/local-examples/vault-multiple-endpoints/services.yaml" ) "yaml" "" }}
+
+  <div class="highlight-location">.platform.app.yaml</div>
+  {{ highlight ( readFile "data/local-examples/vault-multiple-endpoints/.platform.app.yaml" ) "yaml" "" }}
+{{ end }}
