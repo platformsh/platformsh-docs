@@ -10,7 +10,7 @@ description: |
 
 Across all of your sites and testing pipelines, get actionable reports and insights which help you fix issues.
 
-Blackfire grants detailed information on your code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
+Blackfire grants detailed information on the resources your application consumes across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
 
 In addition, it can profile your code automatically and notify you whenever your application does not comply with best practices for PHP, Python and most Open-Source frameworks.
 
