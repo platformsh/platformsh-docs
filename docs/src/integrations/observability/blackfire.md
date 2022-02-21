@@ -34,7 +34,7 @@ To find your server credentials navigate to your [Organizations List](https://bl
 
 Note: make sure that [your CDN is configured](https://blackfire.io/docs/integrations/proxies/index) to let Blackfire profile the code running on your servers.
 
-## Setting up Blackfire Monitoring
+## Setting-up Blackfire Monitoring
 
 Once Blackfire is configured on your cluster, navigate to your [Organizations List](https://blackfire.io/my/organizations) > Select an Organization > Go to the Organization Monitoring Usage menu, and activate Monitoring for the required environment.
 
