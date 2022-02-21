@@ -1,102 +1,67 @@
 ---
 title: "Blackfire"
 description: |
-  Platform.sh recommends [Blackfire.io](https://blackfire.io/). Blackfire is a full continuous observability solution (monitoring, profiling, and automated performance testing tool). It can be used on Integration, Staging, and Production environments. Blackfire supports PHP and Python.
+  Platform.sh recommends [Blackfire.io](https://blackfire.io/) for monitoring and profiling web sites and applications. From development to test, staging and production Blackfire offers a unique blend of monitoring, often called APM, and profiling features. Blackfire supports PHP and Python.
 ---
 
 {{< description >}}
 
 {{< youtube bS4dzuzkir0 >}}
 
-It grants details information on your PHP code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
+Across all of your sites and testing pipelines, get actionable reports and insights, which help you fix issues.
 
-In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Symfony, Drupal, eZPlatform, Typo3 & Magento code performance management.
+Blackfire grants detailed information on your code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
 
-For a high level overview and demo of Blackfire, check out the [full video tutorial](https://www.youtube.com/watch?v=-5icUW9pUH8).
+In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Python and most Open-Source framework's.
 
-## Version
-
-Check the latest versions of the probe and CLI tool on [Blackfire's documentation](https://blackfire.io/docs/up-and-running/upgrade#latest-versions).
-
-## On a Grid plan
-
-### 1. Get your credentials
-
-**Sign up for the free 15 days Premium trial** at [Blackfire.io](https://blackfire.io/pricing) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld) or [Firefox](https://addons.mozilla.org/firefox/addon/blackfire/)).
-
+Blackfire's features are especially powerful when running on Platform.sh. Watch our [full video tutorial](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 
 {{< note >}}
-Blackfire also offers a perpetually-free edition but it is for local development only and will not run on Platform.sh.
+Blackfire.io is bundled in PLatform.sh subscriptions as part of the Observability Suite. Please [contact our sales department](https://platform.sh/contact/).
 {{< /note >}}
 
-Go to your Dashboard and create a new environment [under the Environments tab](https://blackfire.io/my/environments).
-
-![Blackfire environments](/images/integrations/blackfire/blackfire-environments.png "0.4")
-
-### 2. Enable Blackfire
+## On a Grid plan or a Dedicated Generation 3 cluster
 
 Follow [the step-by-step instructions](https://blackfire.io/docs/integrations/paas/platformsh) to enable Blackfire on your PHP or Python applications.
 
-## On a Dedicated cluster
+### On other Dedicated Infrastructure
 
-**Sign up for the free 15 days Premium trial** at [blackfire.io](https://blackfire.io/pricing) and install the **Blackfire Companion** web browser extension ([Chrome](https://chrome.google.com/webstore/detail/blackfire-companion/miefikpgahefdbcgoiicnmpbeeomffld) or [Firefox](https://addons.mozilla.org/firefox/addon/blackfire/)).
+Open a support ticket with the Backfire Server ID, Server Token. Our support team will install it for you.
 
-### Dedicated Generation 3
-Define new Project Variables with your Blackfire Server ID, Server Token, Client ID and Client Token.
+To find your server credentials navigate to your [Organizations List](https://blackfire.io/my/organizations) > Select an Organization > Select an Environment > Go to the Settings/Environment Credentials menu.
 
-```env
-env:BLACKFIRE_SERVER_ID = ...
-```
-```env
-env:BLACKFIRE_SERVER_TOKEN = ...
-```
-```env
-env:BLACKFIRE_CLIENT_ID = ...
-```
-```env
-env:BLACKFIRE_CLIENT_TOKEN = ...
-```
+Note: make sure that [your CDN is configured](https://blackfire.io/docs/integrations/proxies/index) to let Blackfire profile the code running on your servers.
 
-### Other Dedicated Infrastructure
+## Setting up Blackfire Monitoring
 
-Open a support ticket with the Backfire Server ID, Server Token, Client ID, Client Token. Our support team will install it for you.
+Once Blackfire is configured on your cluster, navigate to your [Organizations List](https://blackfire.io/my/organizations) > Select an Organization > Go to the Organization Monitoring Usage menu, and activate Monitoring for the required environment.
 
-Note, Blackfire integration works only on profiling your cluster via the URL to the origin. Do not profile your site going through the CDN.
+![Organization Monitoring menu](/images/integrations/blackfire/blackfire-organization-monitoring.png)
+![Monitoring Activation](/images/integrations/blackfire/blackfire-monitoring-activation.png)
 
-## Profiling web requests
+[Read more in the Blackfire documentation](https://blackfire.io/docs/monitoring-cookbooks/index) about:
 
-Access your site via your browser and click `Profile` in the Blackfire Companion.
+* Configuring alerts;
+* Events API;
+* Monitoring third party calls;
+* Monitoring consumers;
+* Advanced settings.
 
-![Blackfire Companion](/images/integrations/blackfire/blackfire-companion.png "0.3")
+## Testing the performance of each new deployment
 
-That's it! Your site will be profiled and you should get all the results in your Blackfire account.
+Blackfire's native integration with Platform.sh enables you to verify the performance of your code each time you deploy a branch, in production, staging or development.
 
-## Profiling CLI commands
+1. [Setup the Blackfire Builds integration](https://blackfire.io/docs/integrations/paas/platformsh#builds-level-enterprise);
+2. Optionally, [setup the integration with your Git provider](https://blackfire.io/docs/integrations/git/index), and get commit status updates from build reports;
+3. [Write scenarios](https://blackfire.io/docs/builds-cookbooks/scenarios) to test business-critical use cases.
 
-To profile your PHP CLI scripts, use the following command line:
+## Profiling
 
-```bash
-blackfire --config /etc/platform/$USER/blackfire.ini <command>
-```
+Blackfire lets you profile code anywhere it is deployed, including on your local development machines. Via a browser extension or CLI, profile HJTTP requests, CLI scripts, Consumers and Daemons.
 
-## Going further with Blackfire
+[Read more in the Blackfire documentation](https://blackfire.io/docs/profiling-cookbooks/index).
 
-Blackfire also enables you to:
-
-* [monitor your applications](https://blackfire.io/docs/monitoring-cookbooks/index) and get instant and [actionable insights](https://blackfire.io/docs/testing-cookbooks/recommendations) on where to look for the most impactful optimization
-* collaborate with the rest of your team
-* [write performance tests](https://blackfire.io/docs/testing-cookbooks/tests)
-* automate profiling with [periodic builds](https://blackfire.io/docs/builds-cookbooks/index)
-* integrate further with Platform.sh by enabling to automate profiling as each code commit
-* integrate with [GitHub](https://blackfire.io/docs/integrations/git/github), [Bitbucket](https://blackfire.io/docs/integrations/git/bitbucket) and [GitLab](https://blackfire.io/docs/integrations/git/gitlab) to show the results of Blackfire builds at the commit status level
-
-Check [Blackfire's documentation](https://blackfire.io/docs/introduction) for more information.
-
-{{< note >}}
-Those features may require a Premium or an Enterprise subscription. We offer attractive bundles of Platform.sh and Blackfire.io subscriptions. Please [contact our sales department](https://platform.sh/contact/) to discuss how we can help you.
-{{< /note >}}
-
-## Enable Blackfire Monitoring
+## Disable Blackfire Monitoring
 
 Blackfire Monitoring is [enabled by default](https://blackfire.io/docs/monitoring-cookbooks/configuration#activating-monitoring-on-an-environment) for Monitoring customers.
 
