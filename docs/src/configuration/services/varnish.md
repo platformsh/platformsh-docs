@@ -14,6 +14,8 @@ However, it is possible to configure a Varnish instance as part of an applicatio
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="varnish" status="supported" environment="grid" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated" >}} | {{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "varnish" >}}
+
 ## How it works
 
 All incoming requests still go through the environment's router first. When using Varnish, a Varnish service sits between the router and the application server or servers.

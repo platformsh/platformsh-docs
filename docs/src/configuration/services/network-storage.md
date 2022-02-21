@@ -13,7 +13,12 @@ The network storage service enables a new kind of `mount` that refers to a share
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="network-storage" status="supported" environment="grid" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated" >}} | {{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}} |
 
-This service is a reference to a version of our network storage implementation, not to a version of a 3rd party application. `network-storage` 2.0 will *not* work on the Grid. We recommend using version 1.0 unless you are a [Dedicated Generation 3](dedicated-gen-3/overview.md) user. 
+{{< image-versions-legacy "network-storage" >}}
+
+This service is the Platform.sh network storage implementation, not to a version of a third-party application.
+Version 2.0 isn't recommended for the Grid.
+You should use version 1.0 unless you are a [Dedicated Generation 3](../../dedicated-gen-3/overview.md) user.
+Dedicated Generation 3 users can use version 2.0 even on their Development environments.
 
 {{< note theme="warning">}}
 It is not possible to upgrade or downgrade the network storage service version while keeping existing data in place. Changing the service version will require the service to be reinitialized. Any change to the service version will result in existing data becoming inaccessible.

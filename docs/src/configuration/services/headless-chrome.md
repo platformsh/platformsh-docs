@@ -17,6 +17,8 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="chrome-headless" status="supported" environment="grid" >}} | {{< image-versions image="chrome-headless" status="supported" environment="dedicated" >}} | {{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "chrome-headless" >}}
+
 ## Relationship
 
 The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):

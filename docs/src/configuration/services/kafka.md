@@ -16,6 +16,8 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="kafka" status="supported" environment="grid" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated" >}} | {{< image-versions image="kafka" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "kafka" >}}
+
 ## Relationship
 
 The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
