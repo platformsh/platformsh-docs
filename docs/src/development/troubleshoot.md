@@ -140,7 +140,7 @@ and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment
 
 ## Storage
 
-If you're having trouble with storage, you can find generic guidance on how to [troubleshoot mounts](../configuration/app/troubleshoot-mounts.md) and [disks](../configuration/app/troubleshoot-disks.md).
+If you're having trouble with storage, you can [troubleshoot mounts](../configuration/app/troubleshoot-mounts.md) and [disks](../configuration/app/troubleshoot-disks.md).
 
 ### Can't write to file system
 
@@ -229,7 +229,7 @@ Cron jobs may invoke other services in unexpected ways, which can increase execu
 
 ## Language-specific troubleshooting
 
-For more in depth troubleshooting on app-related issues, consider the following pages:
+For more in depth troubleshooting regarding app-related issues:
 
 - [PHP](../languages/php/troubleshoot.html)
 - [Node JS](../languages/nodejs/debug.html)
