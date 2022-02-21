@@ -63,7 +63,7 @@ Blackfire lets you profile code anywhere it is deployed, including on your local
 
 [Read more in the Blackfire documentation](https://blackfire.io/docs/profiling-cookbooks/index).
 
-## Disable Blackfire Monitoring
+## Disabling Blackfire Monitoring
 
 Blackfire Monitoring is [enabled by default](https://blackfire.io/docs/monitoring-cookbooks/configuration#activating-monitoring-on-an-environment) for Monitoring customers.
 
