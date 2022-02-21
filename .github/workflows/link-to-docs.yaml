@@ -73,6 +73,8 @@ jobs:
   comment-with-links:
     runs-on: ubuntu-latest
     name: Comment with docs links
+    permissions:
+      pull-requests: write
     needs: get_url
     if: needs.get_url.outputs.commit_status == 'success'
     env:
