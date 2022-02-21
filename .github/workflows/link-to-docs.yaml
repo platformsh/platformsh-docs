@@ -114,7 +114,7 @@ jobs:
       
       - name: Comment with links
         uses: actions/github-script@v5
-        if: steps.get-files.outputs.changed_files != ''
+        if: steps.get-files.outputs.changed_files != '||'
         env:
           PAGES: ${{ steps.get-files.outputs.changed_files }}
         with:
@@ -128,7 +128,7 @@ jobs:
 
       - name: Comment without links
         uses: actions/github-script@v5
-        if: steps.get-files.outputs.changed_files == ''
+        if: steps.get-files.outputs.changed_files == '||'
         with:
           script: |
             github.rest.issues.createComment({
