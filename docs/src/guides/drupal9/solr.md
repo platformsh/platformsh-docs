@@ -39,11 +39,11 @@ If you are using the latest version of Search API Solr and running Drupal 8.8 or
 
 {{% endpoint-description type="solr" sectionLink="#solr-6-and-later" multipleText="cores" noApp=true /%}}
 
-### 4. Configur the server core
+### 4. Configure the server core
 
 Update the Solr server to have a single core (`maincore`) with the default configuration.
 (This default isn't suitable for production, but enables connections.)
-And define a single enpoint (`main`) that connects to this core.
+And define a single endpoint (`main`) that connects to this core.
 
 ```yaml {location=".platform/services.yaml"}
 search:
