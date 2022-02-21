@@ -5,7 +5,7 @@ weight: 16
 description: See some common solutions to issues you might run into in development.
 ---
 
-## Common tools
+## Common tasks
 
 ### Force a redeploy
 
@@ -49,37 +49,11 @@ The redeploy takes place after any scheduled activities (either *Running* or *Pe
 Despite the name, redeployment doesn't rerun the `deploy` hook, only the `post_deploy` hook.
 Both your `build` and `deploy` hooks are tied to individual commits in code.
 They're reused until another commit is pushed to the environment.
-See [more about hooks](../configuration/app/hooks/_index.md) and their reuse.
+See [more about hooks](/configuration/app/hooks/_index.md) and their reuse.
 
-To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-trigger-builds).
+To rerun the `build` and `deploy` hooks, [manually trigger a build](/configuration/app/hooks/_index.md#manually-trigger-builds).
 
 {{< /note >}}
-
-### Manually trigger builds
-
-To increase performance and keep applications the same across environments,
-Platform.sh reuses built applications if its code and build time configuration (variables and such) remain the same.
-
-There may be times where you want to force your application to be built again without changing its code,
-for example to test an issue in a build hook or when external dependencies change.
-To force a rebuild without changing the code,
-use an [environment variable](./variables/set-variables.md#create-environment-specific-variables).
-
-Assuming you want to do this for your `main` environment,
-first create a `REBUILD_DATE` environment variable:
-
-```bash
-platform variable:create -l environment -e main --prefix env: --name REBUILD_DATE --value "$(date)" --visible-build true
-```
-
-This triggers a build right away to propagate the variable.
-To force a rebuild at any time, update the variable with a new value:
-
-```bash
-platform variable:update -e main --value "$(date)" "env:REBUILD_DATE"
-```
-
-This forces your application to be built even if no code has changed.
 
 ### Clear the build cache
 
@@ -128,23 +102,31 @@ To send large files, use the `multipart/form-data` header instead:
 $ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form-data' -F file=large_file.json
 ```
 
-## Permission error creating a database
+## Databases
+
+For MySQL specific errors, see [troubleshoot MySQL](../configuration/services/mysql/troubleshoot.md).
+
+### Permission error creating a database
 
 If you try to use a user to create a database, you get an error saying `permission denied to create database`.
 The database is created for you
 and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
 
-## Can't write to file system
+## Storage
+
+If you're having trouble with storage, you can find generic guidance on how to [troubleshoot mounts](../configuration/app/troubleshoot-mounts.md) and [disks](../configuration/app/troubleshoot-disks.md).
+
+### Can't write to file system
 
 If you attempt to write to disk outside a `build` hook, you may encounter a `read-only file system` error.
 Except where you define it, the file system is all read-only, with code changes necessary through git.
 This gives you benefits like repeatable deployments, consistent backups, and traceability.
 
-You can write to disk a `build` hook to generate anything you need later.
+You can write to disk a [`build` hook to generate anything you need later](../configuration/app/app-reference.md#writable-directories-during-build).
 Or you can declare writable [mounts](../configuration/app/app-reference.md#mounts#mounts), which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
-## Git push fails due to lack of disk space
+### Git push fails due to lack of disk space
 
 You might see the following message when attempting to run `git push`:
 `There is not enough free space to complete the push`
@@ -197,7 +179,7 @@ Invisible errors during the build and deploy phase can cause increased wait time
 ### Build and deploy hooks
 
 [`build` and `deploy` hooks](/configuration/app/hooks/_index.md) can cause long build times.
-If they run into issues, they can cause the build to fail or hang indefinitely.
+If they [run into issues](../configuration/app/app-reference.md#hook-failure), they can cause the build to fail or hang indefinitely.
 
 `build` hooks can be tested in your local environment.
 `deploy` hooks can be tested either locally
@@ -218,3 +200,10 @@ That means long-running cron jobs block a container from being shut down to make
 
 Make sure your custom cron jobs run quickly and properly.
 Cron jobs may invoke other services in unexpected ways, which can increase execution time.
+
+## Language-specific troubleshooting
+
+For more in depth troubleshooting on app-related issues, consider the following pages:
+
+- [PHP](../languages/php/troubleshoot.html)
+- [Node JS](../languages/nodejs/debug.html)
