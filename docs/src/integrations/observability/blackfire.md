@@ -12,7 +12,7 @@ Across all of your sites and testing pipelines, get actionable reports and insig
 
 Blackfire grants detailed information on your code's resources consumption across Wall-Time, CPU, I/O, Memory, Network Calls, HTTP requests and SQL queries.
 
-In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Python and most Open-Source framework's.
+In addition, it can profile your code automatically and notify you whenever your code does not comply with best practices for PHP, Python and most Open-Source frameworks.
 
 Blackfire's features are especially powerful when running on Platform.sh. Watch our [full video tutorial](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 
@@ -36,8 +36,8 @@ Note: make sure that [your CDN is configured](https://blackfire.io/docs/integrat
 
 Once Blackfire is configured on your cluster, navigate to your [Organizations List](https://blackfire.io/my/organizations) > Select an Organization > Go to the Organization Monitoring Usage menu, and activate Monitoring for the required environment.
 
-![Organization Monitoring menu](/images/integrations/blackfire/blackfire-organization-monitoring.png)
-![Monitoring Activation](/images/integrations/blackfire/blackfire-monitoring-activation.png)
+![Organization Monitoring menu](/images/integrations/blackfire/blackfire-organization-monitoring.png "0.4")
+![Monitoring Activation](/images/integrations/blackfire/blackfire-monitoring-activation.png "0.4")
 
 [Read more in the Blackfire documentation](https://blackfire.io/docs/monitoring-cookbooks/index) about:
 
