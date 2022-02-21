@@ -175,7 +175,7 @@ If the result is still `running`, the build is stuck.
 In most regions, stuck builds terminate after one hour.
 In older regions (`us` and `eu`), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open) to have the build killed.
 
-When a _deployment_ is blocked, you should try the following:
+When a *deployment* is blocked, you should try the following:
 
 1. Connect to your environment using [SSH](./ssh/_index.md).
 1. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
