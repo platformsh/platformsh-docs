@@ -46,25 +46,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 ## Usage example
 
-{{% endpoint-description type="postgresql" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml">}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-For PHP, in your `.platform.app.yaml` add:
-
-```yaml
-runtime:
-    extensions:
-        - pdo_pgsql
-```
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="postgresql" php=true /%}}
 
 {{< codetabs >}}
 

@@ -43,33 +43,7 @@ The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../
 
 ## Usage example
 
-{{% endpoint-description type="mongodb" %}}
-
-[Service definition](./_index.md):
-
-```yaml
-dbmongo:
-    type: mongodb:3.6
-    disk: 512
-```
-
-The minimum disk size for MongoDB is `512` (MB).
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/mongodb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-For PHP, in your `.platform.app.yaml` add:
-
-```yaml
-runtime:
-    extensions:
-        - mongodb
-```
-
-(Before PHP 7, use `mongo` instead.)
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="mongodb" php=true /%}}
 
 {{< codetabs >}}
 

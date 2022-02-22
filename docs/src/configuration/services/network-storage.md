@@ -5,7 +5,19 @@ weight: 8
 
 Platform.sh supports internal "storage as a service" to provide a file store that can be shared between different application containers.
 
-The network storage service enables a new kind of `mount` that refers to a shared service rather than to a local directory.  Any application can use both `local` and/or `service` mounts, or neither.
+The network storage service enables a new kind of [mount](../app/app-reference.md#mounts)
+that refers to a shared service rather than to a local directory.
+Your apps can use any combination of `local` and `service` mounts.
+
+{{< note >}}
+
+Writing to network mounts is slightly slower than to local mounts.
+In most cases, you shouldn't notice it.
+It's more significant when you employ high-volume sequential file creation
+(create a large number of small files in rapid succession).
+If your app does this regularly, a local mount is more effective.
+
+{{< /note >}}
 
 ## Supported versions
 
@@ -21,9 +33,12 @@ You should use version 1.0 unless you are a [Dedicated Generation 3](../../dedic
 Dedicated Generation 3 users can use version 2.0 even on their Development environments.
 
 {{< note theme="warning">}}
-It is not possible to upgrade or downgrade the network storage service version while keeping existing data in place. Changing the service version will require the service to be reinitialized. Any change to the service version will result in existing data becoming inaccessible.
-{{< /note >}}
 
+It isn't possible to upgrade or downgrade the network storage service version while keeping existing data in place.
+Changing the service version requires that the service be reinitialized.
+Any change to the service version results in existing data becoming inaccessible.
+
+{{< /note >}}
 
 ## Supported regions
 
@@ -32,40 +47,22 @@ The Network storage service is available on all regions except:
 * `eu.platform.sh`
 * `us.platform.sh`
 
-If you are on one of those and require the service we suggest you [migrate](/guides/general/region-migration.md#region-migration) your project to one of the newer regions (such as eu-2, us-2, ca, au, fr-1 or de-2).
+If you're on one of those and require the service,
+you should [migrate your project](/guides/general/region-migration.md#region-migration) to a newer region
+(such as `eu-2`, `us-2`, `ca`, `au`, `fr-1`, or `de-2`).
 
-## Define the service
+## Usage example
 
-First, declare a new service like so:
-
-{{< readFile file="src/registry/images/examples/full/network-storage.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-This example creates a service named `files` that is of type `network-storage`, and gives it 256 MB of storage total.
-
-## Declare the mount
-
-Second, add the following entry to your mounts list:
-
-{{< readFile file="src/registry/images/examples/full/network-storage.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-This block will declare a writeable mount on the application container at the path `my/files`, which will be provided by the `files` service defined above.  The `source_path` specifies the path within the network service that the mount points to.  It is often easiest to have it match the name of the mount point itself but that is not required.
-
-Note that you do *not* need to add a relationship to point to the `files` service.  That is handled automatically by the system.
-
-The application container can now read from and write to the `my/files` path just as if it were a local writeable mount.
-
-User data that has been written to `/tmp` isn't automatically deleted. 
-To avoid a full disk, delete your temporary data located in `/tmp` after you've used it.
-
-{{< note >}}
-There is a small performance hit for using a network mount over a local mount.  In most cases it should not be noticeable.  However, high-volume sequential file creation (that is, creating a large number of small files in rapid succession) may see a more significant performance hit.  If that is something your application does regularly then a local mount will be more effective.
-{{< /note >}}
+{{% endpoint-description type="network-storage" noApp=true /%}}
 
 ## Multi-application usage
 
-If your project contains more than one application (that is, multiple directories with their own `.platform.app.yaml` files), they can all use the same network mounts if desired.  If the `source_path` is the same in both `.platform.app.yaml` files then the files will be shared between both applications, even if the mount location is different.
+If your project contains [multiple apps](../app/multi-app.md), they can all use the same network mounts.
+If the `source_path` is the same in both `.platform.app.yaml` files,
+the files are shared between the two applications even if the mount location is different.
 
-It is also possible to have one application mount a `source_path` that is a subdirectory of another application's mount.  For example:
+It's also possible to have one app mount a `source_path` that's a subdirectory of another application's mount.
+For example:
 
 `app1`:
 
@@ -91,11 +88,20 @@ mounts:
         source_path: uploads/done
 ```
 
-In this example, `app1` will have access to the entire `uploads` directory by writing to `web/uploads`.  `app2`, by contrast, will have two mounts that it can write to: `process` and `done`.  The `process` mount will refer to the same directory as the `web/uploads/incoming` directory does on `app1`, and the `done` mount will refer to the same directory as the `web/uploads/done` directory on `app1`.
+In this example, `app1` has access to the entire `uploads` directory by writing to `web/uploads`.
+`app2` has two mounts that it can write to: `process` and `done`.
+The `process` mount refers to the same directory as the `web/uploads/incoming` directory does on `app1`,
+and the `done` mount refers to the same directory as the `web/uploads/done` directory on `app1`.
 
 ## Worker instances
 
-When defining a [Worker](/configuration/app/app-reference.md#workers) instance it is important to keep in mind what mount behavior is desired.  Unless the `mounts` block is defined within the `web` and `workers` sections separately, a top level `mounts` block will apply to both instances.  However, `local` mounts will be a separate storage area for each instance while `service` mounts will refer to the same file system.  For example:
+When defining a [worker](../app/app-reference.md#workers) instance,
+it's important to keep in mind what mount behavior is desired.
+Unless the `mounts` block is defined within the `web` and `workers` sections separately,
+a top level `mounts` block apply to both instances.
+However, `local` mounts are a separate storage area for each instance
+while `service` mounts refer to the same file system.
+For example:
 
 ```yaml
 name: app
@@ -127,14 +133,18 @@ workers:
                 php worker.php
 ```
 
-In this case, both the web instance and the `queue` worker will have two mount points: `network_dir` and `local_dir`.
+In this case, both the web instance and the `queue` worker have two mount points: `network_dir` and `local_dir`.
 
-* The `local_dir` mount on each will be independent and not connected to each other at all, and they will *each* take 1024 MB of space.
-* The `network_dir` mount on each will point to the same network storage space on the `files` service.  They will both be able to read and write to it simultaneously.  The amount of space it has available will depend on the `disk` key specified in `services.yaml`.
+* The `local_dir` mount on each is independent and not connected to each other at all
+  and they *each* take 1024 MB of space.
+* The `network_dir` mount on each points to the same network storage space on the `files` service.
+  They can both read and write to it simultaneously.
+  The amount of space it has available depends on the `disk` key specified in `services.yaml`.
 
 ## How do I give my workers access to my main application's files?
 
-The most common use case for `network-storage` is to allow a CMS-driven site to use a worker that has access to the same file mounts as the web-serving application.  For that case, all that is needed is to set the necessary file mounts as `service` mounts.
+The most common use case for `network-storage` is to allow a CMS-driven site to use a worker that has access to the same file mounts as the web-serving application.
+For that case, all that is needed is to set the necessary file mounts as `service` mounts.
 
 For example, the following `.platform.app.yaml` file (fragment) will keep Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).  (This assumes a service named `files` has already been defined in `services.yaml`.)
 

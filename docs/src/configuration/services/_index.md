@@ -60,14 +60,13 @@ Always back up your data before changing existing services in your `.platform/se
 
 The following table presents the keys you can define for each service:
 
-| Name            | Type        | Required          | Description |
-| --------------- | ----------- | ----------------- | ----------- |
-| `type`          | `string`    | Yes               | One of the [available services](#available-services) in the format `type:version`. |
-| `disk`          | `integer`   | For some services | The size in MB of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. |
-| `size`          | `string`    |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO` (default), `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. |
-| `configuration` | dictionary  |                   | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
-
-Both `disk` and `size` are limited by your plan settings.
+| Name            | Type       | Required          | Description |
+| --------------- | ---------- | ----------------- | ----------- |
+| `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`. |
+| `disk`          | `integer`  | For some services | The size in MB of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. Limited by your plan settings. |
+| `size`          | `string`   |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO` (default), `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. Limited by your plan settings. |
+| `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
+| `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](../app/app-reference.md#relationships). The `endpoint_name` for apps is always `http`. |
 
 ##### Disk
 

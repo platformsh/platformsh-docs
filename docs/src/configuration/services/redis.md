@@ -87,25 +87,7 @@ The format is identical regardless of whether it's a persistent or ephemeral ser
 
 ## Usage example
 
-{{% endpoint-description type="redis" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-If you are using PHP,  enable the [PHP redis extension](../../languages/php/extensions.md):
-
-```yaml
-runtime:
-    extensions:
-        - redis
-```
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="redis" php=true /%}}
 
 {{< codetabs >}}
 

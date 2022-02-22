@@ -30,19 +30,7 @@ The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../..
 
 ## Usage example
 
-{{% endpoint-description type="rabbitmq" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/rabbitmq.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-The minimum disk size for RabbitMQ is `512` (MB).
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/rabbitmq.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="rabbitmq" /%}}
 
 {{< codetabs >}}
 

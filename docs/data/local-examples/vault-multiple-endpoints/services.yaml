@@ -1,0 +1,17 @@
+
+vault-kms:
+    type: vault-kms:1.6
+    disk: 2048
+    configuration:
+        endpoints:
+            management:
+                - policy: admin
+                  key: admin-key
+                  type: sign
+            sign_and_verify:
+                - policy: sign
+                  key: signing-key
+                  type: sign
+                - policy: verify
+                  key: signing-key
+                  type: sign
