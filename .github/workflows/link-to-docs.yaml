@@ -39,6 +39,7 @@ jobs:
                 sleep 30
 
                 ENV_URL=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r '.[0].target_url')
+                ENV_URL=${ENV_URL/http:/https:}
                 COMMIT_STATUS=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r '.[0].state')
                 
                 echo "The Platform.sh environment is:"
