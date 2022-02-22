@@ -42,15 +42,9 @@ Template projects (repositories in the [platformsh-templates](https://github.com
 
 ## Symfony
 
-[Symfony](https://symfony.com/) is a web application framework written in PHP. Like Drupal, Symfony projects can utilize native Composer to build applications and manage dependencies.
+[Symfony](https://symfony.com/) is a web application framework written in PHP. Symfony projects utilize native Composer to build applications and manage dependencies.
 
-* [Symfony Best Practices](/frameworks/symfony/_index.md)
-
-### Community Support
-
-Symfony FAQs, how-to guides and other tutorials right on [Platform.sh Community](https://community.platform.sh/).
-
-* [Symfony on Platform.sh Community](https://community.platform.sh/search?expanded=true&q=symfony)
+* [Symfony Integration with Platform.sh](https://symfony.com/cloud)
 
 ### Templates
 
