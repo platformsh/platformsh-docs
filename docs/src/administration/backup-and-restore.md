@@ -127,44 +127,17 @@ You can list existing backups with the CLI as follows:
 ```bash
 $ platform backups
 
-Finding backups for the environment main
-+---------------------+------------+----------------------+
-| Created             | % Complete | Backup name          |
-+---------------------+------------+----------------------+
-| 2015-06-19 17:11:42 | 100        | 2ca4d90639f706283fee |
-| 2015-05-28 15:05:42 | 100        | 1a1fbcb9943849706ee6 |
-| 2015-05-21 14:38:40 | 100        | 7dbdcdb16f41f9e1c061 |
-| 2015-05-20 15:29:58 | 100        | 4997900d2804d5b2fc39 |
-| 2015-05-20 13:31:57 | 100        | c1f2c976263bec03a10e |
-| 2015-05-19 14:51:18 | 100        | 71051a8fe6ef78bca0eb |
+Backups on the project Test app (<PROJECT_ID>), environment main (type: production):
++---------------------------+----------------------------+------------+
+| Created                   | Backup ID                  | Restorable |
++---------------------------+----------------------------+------------+
+| 2021-11-15T09:48:58+01:00 | 5ouvtgo4v75axijww7sqnftste | true       |
+| 2021-12-09T14:17:17+01:00 | 7jks7dru5xpx5p5id5wtypur2y | true       |
+| 2022-02-22T18:33:29+01:00 | f3jbyxlhtmalco67fmfoxs7n4m | true       |
++---------------------------+----------------------------+------------+
 ```
 
-{{< note >}}
-
-The list of backups retrieved from the API, and therefore from the CLI and management console,
-represents a list of recent completed backup *activities*, rather than a list of those available for restoration.
-In most cases when creating regular backups the list should match up as expected,
-but depending on their age some backups may no longer be available as per the [data retention policy](https://docs.platform.sh/administration/backup-and-restore.html#restore).
-As a rule, backup often and use the most recent in your restores.
-
-Using the Platform.sh CLI and [`jq`](https://stedolan.github.io/jq/manual/),
-you can filter the list of backups returned for a particular environment to those that are actually `restorable`.
-
-```bash
-platform project:curl -p <PROJECT_ID> "/environments/<ENVIRONMENT_ID>/activities?type=environment.backup&count=10&state=complete" | jq '.[] | select((.restorable=true) and (.safe=true) and (.status="CREATED")) | {id, created_at}'
-{
-  "id": "mmzqoffpcpxnmy6zas55jjjdaq",
-  "created_at": "2021-11-12T19:30:07.680746+00:00"
-}
-{
-  "id": "pkxj46necupbzw627bmoeciz4q",
-  "created_at": "2021-11-12T19:25:39.895401+00:00"
-}
-```
-
-{{< /note >}}
-
-You can then restore a specific backup with the CLI as follows:
+You can then restore a specific restorable backup with the CLI as follows:
 
 ```bash
 $ platform backup:restore 2ca4d90639f706283fee
