@@ -1,0 +1,24 @@
+# This is called after the deployed environment is ready to be checked
+name: Check links
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-links:
+    name: Check links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v2
+        with:
+          stable: 'true'
+
+      - name: Get muffet
+        env:
+          MUFFET_VERSION: "2.4.8"
+        run: wget --quiet -c "https://github.com/raviqqe/muffet/releases/download/v$MUFFET_VERSION/muffet_${MUFFET_VERSION}_Linux_x86_64.tar.gz" -O - | tar -xz
+
+      - name: Check links
+        env:
+          URL: https://pr-2189-odiepqq-652soceglkw4u.eu-3.platformsh.site
+        run: ./muffet --buffer-size=8192 --rate-limit=1  --max-connections-per-host=10 --color=always  --header="User-Agent:Mozilla/5.0 (Windows NT 10.0) Gecko/20100101 Firefox/91.0" --exclude=https://console.platform.sh/projects/create-project https://pr-2189-odiepqq-652soceglkw4u.eu-3.platformsh.site
