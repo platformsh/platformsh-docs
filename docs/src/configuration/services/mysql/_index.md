@@ -136,7 +136,6 @@ highlight=python
 ### Configure connections
 
 There may be cases where you want to configure a database connection manually.
-For example, when using a framework like Symfony Flex that expects the connection as an environment variable.
 
 To get the URL to connect to the database, run the following command
 (replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with your values):
