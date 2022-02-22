@@ -39,6 +39,7 @@ jobs:
                 sleep 30
 
                 ENV_URL=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r '.[0].target_url')
+                ENV_URL=${ENV_URL/http:/https:}
                 COMMIT_STATUS=$(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$COMMIT_SHA  | jq -r '.[0].state')
                 
                 echo "The Platform.sh environment is:"
@@ -73,6 +74,8 @@ jobs:
   comment-with-links:
     runs-on: ubuntu-latest
     name: Comment with docs links
+    permissions:
+      pull-requests: write
     needs: get_url
     if: needs.get_url.outputs.commit_status == 'success'
     env:
@@ -112,7 +115,7 @@ jobs:
       
       - name: Comment with links
         uses: actions/github-script@v5
-        if: steps.get-files.outputs.changed_files != ''
+        if: steps.get-files.outputs.changed_files != '||'
         env:
           PAGES: ${{ steps.get-files.outputs.changed_files }}
         with:
@@ -126,7 +129,7 @@ jobs:
 
       - name: Comment without links
         uses: actions/github-script@v5
-        if: steps.get-files.outputs.changed_files == ''
+        if: steps.get-files.outputs.changed_files == '||'
         with:
           script: |
             github.rest.issues.createComment({
