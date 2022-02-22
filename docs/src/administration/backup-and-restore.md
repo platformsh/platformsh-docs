@@ -151,7 +151,7 @@ Using the Platform.sh CLI and [`jq`](https://stedolan.github.io/jq/manual/),
 you can filter the list of backups returned for a particular environment to those that are actually `restorable`.
 
 ```bash
-platform project:curl -p <PROJECT_ID> /environments/<ENVIRONMENT_ID>/backups | jq '.[] | select((.restorable=true) and (.safe=true) and (.status="CREATED")) | {id, created_at}'
+platform project:curl -p <PROJECT_ID> "environments/<ENVIRONMENT>/activities?type=environment.backup&count=10&state=complete" | jq '.[] | select((.restorable=true) and (.safe=true) and (.status="CREATED")) | {id, created_at}'
 {
   "id": "mmzqoffpcpxnmy6zas55jjjdaq",
   "created_at": "2021-11-12T19:30:07.680746+00:00"
