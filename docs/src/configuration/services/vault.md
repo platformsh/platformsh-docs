@@ -18,8 +18,8 @@ The Vault key management service (KMS) provides key management and access contro
 
 * `<SERVICE_NAME>` is the name you choose to identify the service.
 * `<VERSION>` is a supported version of the service.
-* `<ENDPOINT_ID>` is an identifier you choose for the endpoint, such as `demo-app`.
-* `<KEY_NAME>` is the name of the key to be stored in the Vault KMS, such as `signing-key`.
+* `<ENDPOINT_ID>` is an identifier you choose for the endpoint.
+* `<KEY_NAME>` is the name of the key to be stored in the Vault KMS.
 * `<POLICY>` is one of the available [policies](#policies) based on what you want to accomplish.
 * The `type` is one of:
 

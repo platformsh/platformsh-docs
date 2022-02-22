@@ -132,8 +132,8 @@ In this case, both the web instance and the `queue` worker have two mount points
 
 * The `local_dir` mount on each is independent and not connected to each other at all
   and they *each* take 1024 MB of space.
-* The `network_dir` mount on each will point to the same network storage space on the `files` service.
-  They will both be able to read and write to it simultaneously.
+* The `network_dir` mount on each points to the same network storage space on the `files` service.
+  They can both read and write to it simultaneously.
   The amount of space it has available depends on the `disk` key specified in `services.yaml`.
 
 ## How do I give my workers access to my main application's files?
