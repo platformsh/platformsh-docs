@@ -14,12 +14,24 @@
 <!-- mysql.md is special, so change the sentence slightly to show all `type`s for the single endpoint. -->
 Use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` or `mysql` type for MariaDB or the `oracle-mysql` type for Oracle MySQL
+  {{ else if eq $type "redis" }}
+  the `{{ $type }}` type for ephemeral Redis
   {{ else }}
   the `{{ $type }}` type
   {{ end }}to define the service:
 
 <!-- Create a dummy example services.yaml file from the registry's example naming in `.docs` -->
 {{ partial "examples/servicedefn" $data }}
+
+{{ if eq $type "redis" }}
+Or the `redis-persistent` type for persistent Redis:
+
+  {{ $redis_data := index .Site.Data.registry "redis-persistent" }}
+  {{ partial "examples/servicedefn" $redis_data }}
+
+Persistent Redis requires a disk to store data.
+
+{{ end }}
 
 <!-- Extra text to explain service configuration -->
 {{ .Inner }}
@@ -32,7 +44,7 @@ Use {{ if eq ($type) "mariadb" }}
 <!-- If a link and text have been set, adds exception that directs users to the subsection that describes explicit endpoints. -->
 <!-- The check for Varnish is a hack to get around the escaping of the + sign -->
 Use the {{if eq $type "varnish"}}`http+stats` endpoint{{ else if eq $type "vault-kms" }}endpoint
-you [defined in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}`endpoint{{ end }}
+you [defined in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ end }}
 to define the relationship{{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }}
 (unless you have [multiple {{$multipleText}}]({{ $sectionLink }})){{ end }}:
 
@@ -87,8 +99,9 @@ mounts:
   Usually the same as the `<SERVICE_NAME>`.
 {{ end }}
 
-<!-- Add example heading for all but MariaDB/Oracle MySQL, which need two -->
-{{ if ne ($type) "mariadb" }}
+<!-- Add example heading for all but MariaDB/Oracle MySQL and Redis, which need two -->
+{{ $skip_heading := slice "mariadb" "redis"}}
+{{ if not (in $skip_heading $type) }}
 ### Example Configuration
 {{ end }}
 
