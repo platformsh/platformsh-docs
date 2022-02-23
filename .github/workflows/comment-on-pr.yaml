@@ -30,4 +30,4 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           number: ${{ steps.pr_number.outputs.pr_number }}
-          path: pr-comment.txt
+          path: pr_comment.txt
