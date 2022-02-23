@@ -74,7 +74,7 @@ jobs:
       - name: Report environment URL
         if: steps.get_env_url.outputs.env_status == 'success'
         run: |
-          echo $ENV_URL > environment_url.txt
+          echo ${{ steps.get_env_url.outputs.env_url }} > environment_url.txt
 
       - name: Get changed files
         if: steps.get_env_url.outputs.env_status == 'success'
@@ -85,6 +85,8 @@ jobs:
       - name: Get list of changed files
         if: steps.get_env_url.outputs.env_status == 'success'
         id: get-files
+        env:
+          ENV_URL: ${{ steps.get_env_url.outputs.env_url }}
         run: |
           files=()
           for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; do
@@ -126,6 +128,8 @@ jobs:
       # with a link to general URL
       - name: Comment without links
         if: steps.get-files.outputs.changed_files == ''
+        env:
+          ENV_URL: ${{ steps.get_env_url.outputs.env_url }}
         run: |
           echo "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n$ENV_URL" > pr_comment.txt
 
