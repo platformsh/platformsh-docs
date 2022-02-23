@@ -11,6 +11,14 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/learn/)
 or [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/) for more information.
 
+{{% frameworks %}}
+
+- [Hibernate](../../../frameworks/hibernate.md#mysql)
+- [Jakarta EE](../../../frameworks/jakarta.md#mysql)
+- [Spring](../../../frameworks/spring.md#mysql)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 The service types `mariadb` and `mysql` both refer to MariaDB.
@@ -21,6 +29,8 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 | **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
 |---------------|-------------|--------------------|
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
+
+{{< image-versions-legacy "mysql" >}}
 
 ### Supported versions on Dedicated environments
 
@@ -57,29 +67,7 @@ To experiment with a new version without committing to it, use a non-production 
 
 Configure your service with at least 256 MB in disk space.
 
-{{% endpoint-description type="mariadb" sectionLink="#multiple-databases" multipleText="databases" %}}
-
-### MariaDB example configuration
-
-[Service definition](../_index.md):
-
-{{< readFile file="src/registry/images/examples/full/mariadb.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/mariadb.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-### Oracle MySQL example configuration
-
-[Service definition](../_index.md):
-
-{{< readFile file="src/registry/images/examples/full/oracle-mysql.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/oracle-mysql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="mariadb" sectionLink="#multiple-databases" multipleText="databases" /%}}
 
 {{< codetabs >}}
 
@@ -126,7 +114,6 @@ highlight=python
 ### Configure connections
 
 There may be cases where you want to configure a database connection manually.
-For example, when using a framework like Symfony Flex that expects the connection as an environment variable.
 
 To get the URL to connect to the database, run the following command
 (replacing `<PROJECT_ID>` and `<ENVIRONMENT_NAME>` with your values):
@@ -172,7 +159,7 @@ db:
 
 ## Relationship reference
 
-Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#use-platformsh-provided-variables)
+Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](../../../development/variables/use-variables.md#use-platformsh-provided-variables)
 or by running `platform relationships`:
 
 ### MariaDB reference
@@ -328,7 +315,7 @@ Consult the [MySQL documentation](https://dev.mysql.com/doc/refman/8.0/en/charse
 
 ## Storage Engine
 
-It's best to the InnoDB storage engine wherever possible.
+It's best to use the InnoDB storage engine wherever possible.
 MyISAM is only properly supported in non-Dedicated environments.
 In Dedicated environments, there is no replication of MyISAM tables.
 

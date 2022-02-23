@@ -94,10 +94,10 @@ There are a few additional keys in `.platform.app.yaml` you will likely need to 
 
    * `build`: The `build` key defines what happens during the build process using the `flavor` property. This is a common inclusion for PHP and Node.js applications, so check the [the documentation](/configuration/app/app-reference.md#build) to see if your configuration requires this key.
    * `dependencies`: This key makes it possible to install system-level [dependencies](/configuration/app/app-reference.md#dependencies) as part of the build process.
-   * `hooks`: [Hooks](/configuration/app/hooks.md) define custom scripts that you want to run at different points during the deployment process.
-      * `build`: The [build hook](/configuration/app/hooks.md#build-hook) is run after the build flavor if that is present. The file system is fully writable, but no services and only a subset of variables are available at this point. The full list of build time and runtime variables is available on the [variables section](/development/variables.md#variables) of the public documentation.
-      * `deploy`: The [deploy hook](/configuration/app/hooks.md#deploy-hook) is run after the application container has been started, but before it has started accepting requests. Services are now available, but the file system will be read-only from this point forward.
-      * `post-deploy`: The [post-deploy hook](/configuration/app/hooks.md#post-deploy-hook) functions exactly the same as the deploy hook, but after the container is accepting connections.
+   * `hooks`: [Hooks](../../../configuration/app/hooks/_index.md) define custom scripts that you want to run at different points during the deployment process.
+      * `build`: The [build hook](../../../configuration/app/hooks/hooks-comparison.md#build-hook) is run after the build flavor if that is present. The file system is fully writable, but no services and only a subset of variables are available at this point. The full list of build time and runtime variables is available on the [variables section](../../../development/variables/_index.md) of the public documentation.
+      * `deploy`: The [deploy hook](../../../configuration/app/hooks/hooks-comparison.md#deploy-hook) is run after the application container has been started, but before it has started accepting requests. Services are now available, but the file system will be read-only from this point forward.
+      * `post-deploy`: The [post-deploy hook](../../../configuration/app/hooks/hooks-comparison.md#post-deploy-hook) functions exactly the same as the deploy hook, but after the container is accepting connections.
 
 * `web`: The `web` key configures the web server through a single web instance container running a single Nginx server process, behind which runs your application.
 

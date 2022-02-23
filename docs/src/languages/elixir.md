@@ -11,13 +11,15 @@ description: Platform.sh supports building and deploying applications written in
 |----------------------------------|---------------|
 |  {{< image-versions image="elixir" status="supported" environment="grid" >}} | {{< image-versions image="elixir" status="supported" environment="dedicated" >}} |
 
-To specify an Elixir container, use the `type` property in your [app configuration](../configuration/app/app-reference.md).
+{{< image-versions-legacy "elixir" >}}
 
-{{< readFile file="src/registry/images/examples/full/elixir.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
+{{% language-specification type="elixir" display_name="Elixir" %}}
 
 ## Platform.sh variables
 
-Platform.sh exposes relationships and other configuration as [environment variables](/development/variables.md). Most notably, it allows a program to determine at runtime what HTTP port it should listen on and what the credentials are to access [other services](/configuration/services/_index.md).
+Platform.sh exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+Most notably, it allows a program to determine at runtime what HTTP port it should listen on
+and what the credentials are to access [other services](../configuration/services/_index.md).
 
 To get the `PORT` environment variable (the port on which your web application is supposed to listen) you would:
 

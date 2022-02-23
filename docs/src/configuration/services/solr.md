@@ -8,11 +8,22 @@ Apache Solr is a scalable and fault-tolerant search index.
 
 Solr search with generic schemas provided, and a custom schema is also supported. See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) for more information."
 
+{{% frameworks %}}
+
+- [Drupal](../../guides/drupal9/solr.md)
+- [Ibexa DXP](../../frameworks/ibexa/_index.md#solr-specificity)
+- [Jakarta EE](../../frameworks/jakarta.md#apache-solr)
+- [Spring](../../frameworks/spring.md#apache-solr)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="solr" status="supported" environment="grid" >}} | {{< image-versions image="solr" status="supported" environment="dedicated" >}} | {{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}} |
+
+{{< image-versions-legacy "solr" >}}
 
 {{% deprecated-versions %}}
 
@@ -22,23 +33,13 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "solr" >}}
 
 ## Usage example
 
-{{% endpoint-description type="solr" sectionLink="#solr-6-and-later" multipleText="cores" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/solr.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/solr.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="solr" sectionLink="#solr-6-and-later" multipleText="cores" /%}}
 
 {{< codetabs >}}
 

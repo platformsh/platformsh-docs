@@ -82,7 +82,7 @@ We proxy your emails through our own SMTP host, and encrypt them over port 465 b
 Before testing that the email service is working, make sure that:
 
 - E-mail has been [enabled](#enablingdisabling-email) on the environment
-- The environment has been redeployed
+- The environment has been [redeployed](./troubleshoot.md#force-a-redeploy)
 - You have accessed the environment using SSH and verified that the `PLATFORM_SMTP_HOST` environment variable is visible
 
 To test the email service, first connect to your cluster through [SSH](/development/ssh/_index.md)
@@ -104,28 +104,6 @@ Note that the `From` header is required; email will not send if that header is m
 Beware of the potential security problems when using the `mail()` function,
 which arise when using user-supplied input in the fifth (`$additional_parameters`) argument.
 See the [PHP `mail()` documentation](http://php.net/manual/en/function.mail.php) for more information.
-
-### SwiftMailer
-
-In Symfony, if you use the default `SwiftMailer` service,
-we recommend the following settings in your `app/config/parameters.yaml`:
-
-```yaml
-parameters:
-    mailer_transport: smtp
-    mailer_host: "%env(PLATFORM_SMTP_HOST)%"
-    mailer_user: null
-    mailer_password: null
-```
-
-If you are using a file spool facility, you will probably need to setup a read/write mount for it in `.platform.app.yaml`, for example:
-
-```yaml
-mounts:
-    'app/spool':
-        source: local
-        source_path: spool
-```
 
 ## Sending email in Java
 

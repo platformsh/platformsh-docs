@@ -12,90 +12,27 @@ The Vault key management service (KMS) provides key management and access contro
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="vault-kms" status="supported" environment="grid" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated" >}} | {{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "vault-kms" >}}
+
 ## Add Vault
 
-### Add the service
+{{% endpoint-description type="vault-kms" noApp=true %}}
 
-In your `.platform/services.yaml` file, add the service:
-
-```yaml
-vault-kms:
-    type: vault-kms:1.6
-    disk: 2048
-
-    configuration:
-        endpoints:
-            <ENDPOINT_ID>:
-                - policy: admin
-                  key: "<KEY_NAME>"
-                  type: sign
-                - policy: sign
-                  key: "<KEY_NAME>"
-                  type: sign
-                - policy: verify
-                  key: "<KEY_NAME>"
-                  type: sign
-```
-
-What this includes:
-
-* `<ENDPOINT_ID>` is an identifier you choose for the endpoint, such as `demo-app`. 
-* `<KEY_NAME>` is the name of the key to be stored in the Vault KMS, such as `signing-key`.
-* Select a [policy](#policies) based on what you want to accomplish.
+* `<SERVICE_NAME>` is the name you choose to identify the service.
+* `<VERSION>` is a supported version of the service.
+* `<ENDPOINT_ID>` is an identifier you choose for the endpoint.
+* `<KEY_NAME>` is the name of the key to be stored in the Vault KMS.
+* `<POLICY>` is one of the available [policies](#policies) based on what you want to accomplish.
 * The `type` is one of:
 
   * `sign`: for signing payloads, with the type `ecdsa-p256`
   * `encrypt` (for encrypt`chacha20-poly1305`).
 
-  The `type` cannot be changed after creation.
+  The `type` can't be changed after creation.
 
-You can also split the service into multiple endpoints, such as to have key management be separate from key use:
+You can create multiple endpoints, such as to have key management separate from key use.
 
-```yaml
-vault-kms:
-    type: vault-kms:1.6
-    disk: 2048
-
-    configuration:
-        endpoints:
-            management:
-                - policy: admin
-                  key: admin-key
-                  type: sign
-            sign_and_verify:
-                - policy: sign
-                  key: signing-key
-                  type: sign
-                - policy: verify
-                  key: signing-key
-                  type: sign
-```
-
-### Add the relationship
-
-In your `.platform.app.yaml` file, add the relationship between your app and this service:
-
-```yaml
-relationships:
-    <SERVICE_NAME>: "vault-kms:<ENDPOINT_ID>"
-```
-
-`<SERVICE_NAME>` is a name to identify the service later, such as `vault_service`
-
-`<ENDPOINT_ID>` is the name you [defined for the endpoint](#add-the-service) in your `.platform/services.yaml` file.
-
-
-If you split the service into multiple endpoints, define multiple relationships:
-
-```yaml
-name: 'app'
-
-type: golang:1.13
-
-relationships:
-    vault_manage: "vault-kms:management"
-    vault_sign: "vault-kms:sign_and_verify"
-```
+{{% /endpoint-description %}}
 
 ## Use Vault KMS
 
@@ -301,7 +238,7 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "vault-kms" >}}
 

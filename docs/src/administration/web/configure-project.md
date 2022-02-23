@@ -9,9 +9,17 @@ description: |
 
 ## General
 
-From the first page of the project settings, `General`, you can update the project name, or navigate to other project settings options on the left side of the screen.
+From the first page of the project settings, `General`, you can update the project name, set the project timezone, and navigate to other project settings options on the left side of the screen.
 
 ![configure project](/images/management-console/settings-basics.png "0.7")
+
+The project timezone affects [automated backups](../../dedicated/overview/backups.md).
+
+The project timezone doesn't affect:
+
+- [App runtime](../../configuration/app/timezone.md).
+- [Cron jobs](../../configuration/app/app-reference.md#crons).
+- [System logs](../../development/logs.md). UTC is the default timezone for all logs.
 
 ## Access
 

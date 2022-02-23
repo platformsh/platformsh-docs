@@ -5,7 +5,7 @@ sidebarTitle: "FAQ"
 
 ---
 
-## What is the difference between a Platform, a Project and an Environment?
+## What is the difference between a Platform, a Project, and an Environment?
 
 Platform or Platform.sh is the infrastructure which is running all your projects.
 

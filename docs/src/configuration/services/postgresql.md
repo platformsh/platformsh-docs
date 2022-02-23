@@ -8,11 +8,21 @@ PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
 See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
+{{% frameworks %}}
+
+- [Hibernate](../../../frameworks/hibernate.md#mysql)
+- [Jakarta EE](../../../frameworks/jakarta.md#mysql)
+- [Spring](../../../frameworks/spring.md#mysql)
+
+{{% /frameworks %}}
+
 ## Supported versions
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="postgresql" status="supported" environment="grid" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated" >}} | {{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}} |
+
+{{< image-versions-legacy "postgresql" >}}
 
 \* No High-Availability on Dedicated.
 
@@ -30,31 +40,13 @@ See the [Upgrading to PostgreSQL 12 with `postgis`](#upgrading-to-postgresql-12-
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "postgresql" >}}
 
 ## Usage example
 
-{{% endpoint-description type="postgresql" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/postgresql.services.yaml" highlight="yaml">}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/postgresql.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-For PHP, in your `.platform.app.yaml` add:
-
-```yaml
-runtime:
-    extensions:
-        - pdo_pgsql
-```
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="postgresql" php=true /%}}
 
 {{< codetabs >}}
 

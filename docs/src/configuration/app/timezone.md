@@ -64,3 +64,5 @@ highlight=false
 {{< /codetabs >}}
 
 Setting the application timezone only affects the application itself, not system operations such as log files.
+
+You can also set the [timezone for a project](../../administration/web/configure-project.md#general), but it doesn't affect the timezone for the app runtime.

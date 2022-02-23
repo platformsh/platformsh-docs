@@ -17,9 +17,11 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="chrome-headless" status="supported" environment="grid" >}} | {{< image-versions image="chrome-headless" status="supported" environment="dedicated" >}} | {{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-3" >}} |
 
+{{< image-versions-legacy "chrome-headless" >}}
+
 ## Relationship
 
-The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the `$PLATFORM_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 ```yaml
 {
@@ -43,21 +45,12 @@ Using the Platform.sh [Config Reader](https://github.com/platformsh/config-reade
 
 ### Other languages
 
-It will be necessary to upgrade the version of Node.js in other language containers before using Puppeteer. You can use [Node Version Manager](https://github.com/nvm-sh/nvm) or NVM to change or update the version available in your application container by following the instructions in the [Alternate Node.js install](/languages/nodejs/nvm.md) documentation.
+If your app container uses a language other than Node.js, upgrade the Node.js version before using Puppeteer.
+See how to [manage your Node.js version](../../languages/nodejs/node-version.md).
 
 ## Usage example
 
-{{% endpoint-description type="chrome-headless" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/chrome-headless.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/chrome-headless.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="chrome-headless" /%}}
 
 After configuration, include Puppeteer as a dependency in your `package.json`:
 

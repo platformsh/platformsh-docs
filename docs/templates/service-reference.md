@@ -22,6 +22,9 @@ A brief introduction (1--2 sentences) to what this service is used for.
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="<SERVICE_NAME>" status="supported" environment="grid" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated" >}} | {{< image-versions image="<SERVICE_NAME>" status="supported" environment="dedicated-gen-3" >}} |
 
+<!-- To automatically check any differences in the registry with legacy regions -->
+{{< image-versions-legacy "<SERVICE_NAME>" >}}
+
 <!-- If there are any deprecated versions. -->
 {{% deprecated-versions %}}
 
@@ -44,17 +47,7 @@ A brief introduction (1--2 sentences) to what this service is used for.
   include the following parameter:
   noApp=true
 -->
-{{% endpoint-description type="<SERVICE_TYPE>" %}}
-
-Service definition:
-
-{{< readFile file="src/registry/images/examples/full/<SERVICE_TYPE>.services.yaml" highlight="yaml" >}}
-
-App configuration:
-
-{{< readFile file="src/registry/images/examples/full/<SERVICE_TYPE>.app.yaml" highlight="yaml" >}}
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="<SERVICE_TYPE>" /%}}
 
 {{< codetabs >}}
 
@@ -79,7 +72,7 @@ You can configure your <SERVICE_NAME> service in the [services configuration](./
 
 ## Relationship reference
 
-Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables.md#use-platformsh-provided-variables)
+Example information available through the [`$PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-platformsh-provided-variables)
 or by running `platform relationships`:
 
 <!-- A yaml file taken from https://examples.docs.platform.sh/ that contains all the properties people need to access/use the service. -->

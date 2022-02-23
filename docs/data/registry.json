@@ -23,6 +23,14 @@
         "84",
         "86",
         "91"
+      ],
+      "legacy": [
+        "73",
+        "80",
+        "81",
+        "83",
+        "84",
+        "86"
       ]
     }
   },
@@ -67,6 +75,12 @@
         "2.2",
         "3.1",
         "5.0"
+      ],
+      "legacy": [
+        "2.0",
+        "2.1",
+        "2.2",
+        "3.1"
       ]
     }
   },
@@ -179,6 +193,12 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "1.9",
+        "1.10",
+        "1.11",
+        "1.12"
+      ],
+      "legacy": [
         "1.9",
         "1.10"
       ]
@@ -314,7 +334,17 @@
         "2.2",
         "2.3",
         "2.4",
-        "2.5"
+        "2.5",
+        "2.6",
+        "2.7"
+      ],
+      "legacy": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5",
+        "2.6"
       ]
     }
   },
@@ -347,7 +377,9 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "1.5"
+        "1.5",
+        "2.0",
+        "2.1"
       ]
     }
   },
@@ -576,7 +608,11 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "1.1",
         "1.2"
+      ],
+      "legacy": [
+        "1.1"
       ]
     },
     "versions-dedicated": {
@@ -653,7 +689,9 @@
       "supported": [
         "7.2",
         "7.3",
-        "7.4"
+        "7.4",
+        "8.0",
+        "8.1"
       ],
       "deprecated": [
         "5.6",
@@ -780,6 +818,13 @@
         "3.5",
         "3.6",
         "3.7",
+        "3.8",
+        "3.9"
+      ],
+      "legacy": [
+        "3.5",
+        "3.6",
+        "3.7",
         "3.8"
       ]
     },
@@ -821,6 +866,12 @@
         "5.0",
         "6.0",
         "6.2"
+      ],
+      "legacy": [
+        "3.2",
+        "4.0",
+        "5.0",
+        "6.0"
       ]
     },
     "versions-dedicated": {
@@ -889,6 +940,13 @@
         "2.6",
         "2.7",
         "3.0"
+      ],
+      "legacy": [
+        "2.3",
+        "2.4",
+        "2.5",
+        "2.6",
+        "2.7"
       ]
     }
   },
@@ -949,6 +1007,8 @@
     },
     "endpoint": "http+stats",
     "min_disk_size": null,
+    "configuration": "vcl: !include\n            type: string\n            path: config.vcl",
+    "service_relationships": "application: 'app:http'",
     "name": "Varnish",
     "runtime": false,
     "type": "varnish",
@@ -964,14 +1024,15 @@
   },
   "vault-kms": {
     "description": "",
-    "disk": false,
+    "disk": true,
     "docs": {
       "relationship_name": "vault_service",
       "service_name": "vault-kms",
       "url": "/configuration/services/vault.html"
     },
-    "endpoint": "demo-app",
-    "min_disk_size": null,
+    "endpoint": "sign",
+    "min_disk_size": 512,
+    "configuration": "endpoints:\n            <ENDPOINT_ID>:\n                - policy: <POLICY>\n                  key: \"<KEY_NAME>\"\n                  type: <ENDPOINT_TYPE>",
     "name": "Vault KMS",
     "repo_name": "vault-kms",
     "runtime": false,
@@ -979,6 +1040,10 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "1.6",
+        "1.8"
+      ],
+      "legacy": [
         "1.6"
       ]
     },

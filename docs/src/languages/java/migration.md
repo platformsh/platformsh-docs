@@ -51,7 +51,7 @@ web:
 ```
 
 1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:11`
-2. [Hooks define what happens when building the application](/configuration/app/hooks.md). This build process typically generates an executable file such as a uber-jar e.g.: `mvn clean package`
+2. [Hooks define what happens when building the application](/configuration/app/hooks/_index.md). This build process typically generates an executable file such as a uber-jar e.g.: `mvn clean package`
 3. [The commands key defines the command to launch the application](/configuration/app/app-reference.md#commands). E.g.:  `java -jar file.jar`
 4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That is trivial if your application follows the port bind principle. E.g.: `java -jar jar --port=$PORT`
 
@@ -115,7 +115,8 @@ To connect to a service from your deployed application, you will need to pass th
 
 If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you will be able to configure the application directly from environment variables.  Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
 
-The services information is available in the **PLATFORM_RELATIONSHIPS** [environment variable](/development/variables.md).  It is a base64-encoded JSON object whose keys are the relationship name and the values are arrays of relationship endpoint definitions.
+The services information is available in the [**PLATFORM_RELATIONSHIPS** environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables).
+This variable is a base64-encoded JSON object with keys of the relationship name and values of arrays of relationship endpoint definitions.
 
 Platform.sh supports [jq](https://stedolan.github.io/jq/) that allows to extract information from this JSON.
 
@@ -130,7 +131,8 @@ export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".databas
 | [Spring Data JPA](https://community.platform.sh/t/how-to-overwrite-spring-data-variable-to-access-platform-sh-services/518) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/tree/master/spring-jpa) |
 | [Payara JPA](https://community.platform.sh/t/how-to-overwrite-variables-to-payara-jpa-access-platform-sh-sql-services/519) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/blob/master/payara/README.md) |
 
-To reduce the number of lines in the application file and to make it cleaner, you have the option to move the variable environment to another file: the `.environment` [file as part of your application](/development/variables.md#shell-variables).
+To reduce the number of lines in the application file and to make it cleaner,
+you have the option to move the variable environment to another file: a [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script).
 
 E.g.:
 

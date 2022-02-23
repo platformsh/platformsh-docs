@@ -131,8 +131,7 @@
 
 .suggestions div.hits ul  em {
   padding: 0rem;
-         background-color: transparent;
-     font-style: normal;
+  background-color: transparent;
 }
 
 .suggestions div.hits ul h5 {

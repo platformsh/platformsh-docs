@@ -8,13 +8,32 @@ Redis is a high-performance in-memory object store, well-suited for application 
 
 See the [Redis documentation](https://redis.io/documentation) for more information.
 
-Platform.sh supports two different Redis configurations: One persistent (useful for key-value application data) and one ephemeral (in-memory only, useful for application caching). Aside from that distinction they are identical.
+Platform.sh supports two different Redis configurations:
+
+- Persistent: useful for key-value application data
+- Ephemeral: in-memory only, useful for application caching
+
+Otherwise, they're identical.
+
+{{% frameworks %}}
+
+- [Drupal](../../guides/drupal9/redis.md)
+- [Ibexa DXP](../../frameworks/ibexa/_index.md#cache-and-sessions)
+- [Jakarta EE](../../frameworks/jakarta.md#redis)
+- [Micronaut](../../guides/micronaut/redis.md)
+- [Quarkus](../../guides/quarkus/redis.md)
+- [Spring](../../guides/spring/redis.md)
+- [WordPress](../../guides/wordpress/redis.md)
+
+{{% /frameworks %}}
 
 ## Supported versions
 
 | **Grid** | **Dedicated** | **Dedicated Generation 3** |
 |----------------------------------|---------------|---------------|
 |  {{< image-versions image="redis" status="supported" environment="grid" >}} | {{< image-versions image="redis" status="supported" environment="dedicated" >}} | {{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}} |
+
+{{< image-versions-legacy "redis" >}}
 
 {{% deprecated-versions %}}
 
@@ -26,46 +45,44 @@ Platform.sh supports two different Redis configurations: One persistent (useful 
 Versions 3.0 and higher support up to 64 different databases per instance of the service, but Redis 2.8 is configured to support only a single database.
 {{< /note >}}
 
-## Ephemeral Redis
+## Service types
 
-The `redis` service type is configured to serve as an LRU cache; its storage isn't persistent.
-It is not suitable for use except as a disposable cache.
+There are two types of the Redis service depending on what you want to do with it.
 
-To add an ephemeral Redis service, specify it like so:
+### Ephemeral Redis
 
-{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
+The ephemeral Redis service is configured to serve as an LRU cache; its storage isn't persistent.
+It isn't suitable for use except as a disposable cache.
 
-Data in an Ephemeral Redis instance is stored only in memory and thus requires no disk space.
+Data in an ephemeral Redis instance is stored only in memory and thus requires no disk space.
 When the service hits its memory limit,
 it automatically evicts old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
 
 Your app must not treat ephemeral Redis as permanent.
 Instead, the cache needs to be regenerated as necessary.
 For example, if a container is moved for a reason such as region maintenance,
-the `deploy` and `post_depoly` hooks don't run and an app that treats the cache as permanent shows errors.
+the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
 The cache should be cleared each time the app is restarted,
-in the `start` key in [your web configuration](/configuration/app/app-reference.md#commands).
+in the `start` key in [your web configuration](../app/app-reference.md#commands).
 
 If your app needs to treat the cache as permanent, use [persistent Redis](#persistent-redis),
 which saves data to its volume even when the container is shut down.
 
-## Persistent Redis
+### Persistent Redis
 
-The `redis-persistent` service type is configured for persistent storage. That makes it a good choice for fast application-level key-value storage.
-
-To add a Persistent Redis service, specify it like so:
-
-{{< readFile file="src/registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-The `disk` key is required for redis-persistent to tell Platform.sh how much disk space to reserve for Redis' persistent data.
+The `redis-persistent` service type is configured for persistent storage.
+That makes it a good choice for fast application-level key-value storage.
 
 {{< note >}}
-Switching a service from Persistent to Ephemeral configuration is not supported at this time.  To switch between modes, use a different service with a different name.
+
+You can't switch a service from persistent to ephemeral.
+To switch between modes, use a different service with a different name.
+
 {{< /note >}}
 
 ## Relationship
 
-The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](/development/variables.md#platformsh-provided-variables):
+The format exposed in the ``$PLATFORM_RELATIONSHIPS`` [environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables):
 
 {{< relationship "redis" >}}
 
@@ -73,25 +90,7 @@ The format is identical regardless of whether it's a persistent or ephemeral ser
 
 ## Usage example
 
-{{% endpoint-description type="redis" %}}
-
-[Service definition](./_index.md):
-
-{{< readFile file="src/registry/images/examples/full/redis.services.yaml" highlight="yaml" location=".platform/services.yaml" >}}
-
-[App configuration](../app/app-reference.md):
-
-{{< readFile file="src/registry/images/examples/full/redis.app.yaml" highlight="yaml" location=".platform.app.yaml" >}}
-
-If you are using PHP,  enable the [PHP redis extension](../../languages/php/extensions.md):
-
-```yaml
-runtime:
-    extensions:
-        - redis
-```
-
-{{% /endpoint-description %}}
+{{% endpoint-description type="redis" php=true /%}}
 
 {{< codetabs >}}
 

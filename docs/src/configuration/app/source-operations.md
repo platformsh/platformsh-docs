@@ -42,7 +42,7 @@ platform source-operation:run update
 
 The `source-operation:run` command takes the command name (i.e. `update`) to run.
 Additional variables can be added to inject into the environment of the source operation.
-They will be interpreted the same way as any other [variable](/development/variables.md) set through the management console or the CLI,
+They will be interpreted the same way as any other [variable](../../development/variables/_index.md) set through the management console or the CLI,
 which means you need an `env:` prefix to expose them as a Unix environment variable.
 They can then be referenced by the source operation like any other variable.
 
