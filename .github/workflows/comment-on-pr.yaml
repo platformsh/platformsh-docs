@@ -16,16 +16,18 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Download info on PR
-        uses: actions/download-artifact@v2
+        uses: dawidd6/action-download-artifact@v2
         with:
+          workflow: get-pr-info.yaml
+          workflow_conclusion: success
           name: pr-info
 
       - name: Get PR number
         id: pr_number
-        run: echo "::set-output name=pr_number::$(cat pr_number.txt)"
+        run: echo "::set-output name=pr_number::$(cat pr-info/pr_number.txt)"
 
       - name: Post PR comment
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           number: ${{ steps.pr_number.outputs.pr_number }}
-          path: pr-comment.txt
+          path: pr-info/pr-comment.txt
