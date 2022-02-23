@@ -25,7 +25,7 @@ However, the domain used for non-production environments will always be generate
 even if your project is on a Production plan.
 {{< /note >}}
 
-Go to [your account](https://accounts.platform.sh/user), click on the small wheel next to you project's name and click on edit.
+In the [console](https://console.platform.sh), click the **More** button for your project and select **Edit plan**.
 
 ![Edit Plan](/images/management-console/edit-plan.png "0.3")
 

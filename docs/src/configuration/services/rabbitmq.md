@@ -6,7 +6,7 @@ sidebarTitle: "RabbitMQ"
 
 RabbitMQ is an open source message broker software (sometimes called message-oriented middleware) that implements the Advanced Message Queuing Protocol (AMQP).
 
-See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for more information."
+See the [RabbitMQ documentation](http://www.rabbitmq.com/documentation.html) for more information.
 
 {{% frameworks %}}
 

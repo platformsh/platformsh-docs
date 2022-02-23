@@ -8,7 +8,12 @@ Redis is a high-performance in-memory object store, well-suited for application 
 
 See the [Redis documentation](https://redis.io/documentation) for more information.
 
-Platform.sh supports two different Redis configurations: One persistent (useful for key-value application data) and one ephemeral (in-memory only, useful for application caching). Aside from that distinction they are identical.
+Platform.sh supports two different Redis configurations:
+
+- Persistent: useful for key-value application data
+- Ephemeral: in-memory only, useful for application caching
+
+Otherwise, they're identical.
 
 {{% frameworks %}}
 
