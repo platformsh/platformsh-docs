@@ -51,12 +51,11 @@ There are two types of the Redis service depending on what you want to do with i
 
 ### Ephemeral Redis
 
-The ephemeral Redis service is configured to serve as an LRU cache; its storage isn't persistent.
-It isn't suitable for use except as a disposable cache.
+The ephemeral Redis service is configured to serve as a cache; its storage isn't persistent.
 
 Data in an ephemeral Redis instance is stored only in memory and thus requires no disk space.
 When the service hits its memory limit,
-it automatically evicts old cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
+it automatically evicts cache items according to the [configured eviction rule](#eviction-policy) to make room for new ones.
 
 Your app must not treat ephemeral Redis as permanent.
 Instead, the cache needs to be regenerated as necessary.
