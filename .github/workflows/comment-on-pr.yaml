@@ -1,0 +1,31 @@
+# This PR runs separately fron the workflow that generates PR info.
+# In this way, we get info from PRs from forked repositories
+# without granting them  extra permissions,
+# but still allowing us to comment on the PRs.
+name: Comment on PR
+on:
+  workflow_run:
+    workflows: [Get info on PR]
+    types:
+      - completed
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download info on PR
+        uses: actions/download-artifact@v2
+        with:
+          name: pr-info
+
+      - name: Get PR number
+        id: pr_number
+        run: echo "::set-output name=pr_number::$(cat pr_number.txt)"
+
+      - name: Post PR comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          number: ${{ steps.pr_number.outputs.pr_number }}
+          path: pr-comment.txt
