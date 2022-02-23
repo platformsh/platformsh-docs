@@ -109,7 +109,7 @@ jobs:
 
           # If there are changed files, return a list
           # Using "\n" here creates problems in passing data to the next step, so replace there instead
-          if (( ${#key1[@]} != 0 )); then
+          if (( ${#files[@]} != 0 )); then
             echo $(printf "||%s" "${files[@]}")
             echo ::set-output name=changed_files::$(printf "||%s" "${files[@]}")
           else
