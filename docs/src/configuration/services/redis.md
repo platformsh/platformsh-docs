@@ -11,7 +11,7 @@ See the [Redis documentation](https://redis.io/documentation) for more informati
 Platform.sh supports two different Redis configurations:
 
 - Persistent: useful for key-value application data
-- Ephemeral: in-memory only, useful for application caching)
+- Ephemeral: in-memory only, useful for application caching
 
 Otherwise, they're identical.
 
