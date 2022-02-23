@@ -1,6 +1,6 @@
 <!-- Add additional configuration for specific services in PHP and Python-->
 {{ $l1 := "" }}
-{{ $php_types := slice "memcached" "mongodb" "postgresql" "redis" }}
+{{ $php_types := slice "memcached" "mongodb" "postgresql" "redis" "redis-persistent" }}
 <!-- Display PHP extensions if necessary and not in a context for only a different language -->
 {{ if and ( in $php_types .type ) ( or ( not .onlyLanguage ) ( eq .onlyLanguage "php" ) ) }}
   {{ $extension_name := .type}}
@@ -28,6 +28,9 @@
 <!-- MariaDB gets two examples, so it needs an extra heading -->
 {{ if eq (.type) "mariadb" }}
   <h3>MariaDB example configuration</h3>
+<!-- Same for Redis -->
+{{ else if eq (.type) "redis" }}
+  <h3>Ephemeral Redis example configuration</h3>
 {{ end }}
 <a href="/configuration/services.html">Service definition</a>
 
@@ -54,6 +57,20 @@
   {{ highlight ( readFile "src/registry/images/examples/full/oracle-mysql.app.yaml" ) "yaml" ""}}
 {{ end }}
 
+<!-- Example for persistent Redis -->
+{{ if eq (.type) "redis" }}
+  <h3>Persistent Redis example configuration</h3>
+
+  <a href="/configuration/services.html">Service definition</a>
+
+  <div class="highlight-location">.platform/services.yaml</div>
+  {{ highlight ( readFile "src/registry/images/examples/full/redis-persistent.services.yaml" ) "yaml" ""}}
+
+  <a href="/configuration/app/app-reference.html">App configuration</a>
+
+  <div class="highlight-location">.platform.app.yaml</div>
+  {{ highlight ( printf "%s%s%s" (readFile (printf "src/registry/images/examples/full/%s.app.yaml" "redis-persistent")) $l1 $l2 ) "yaml" ""}}
+{{ end }}
 
 <!-- Extra examples for Vault with multiple endpoints -->
 {{ if eq .type "vault-kms" }}
