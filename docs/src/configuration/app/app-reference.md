@@ -442,7 +442,7 @@ You can filter outbound traffic by domain.
 Using domains in your rules rather than IP addresses is generally more specific and secure.
 For example, if you use an IP address for a service with a CDN,
 you have to allow the IP address for the CDN.
-THis means that you allowing potentially hundreds or thousands of servers also using the CDN.
+This means that you allow potentially hundreds or thousands of other servers also using the CDN.
 
 An example rule filtering by domain:
 
