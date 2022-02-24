@@ -68,7 +68,7 @@ jobs:
       - name: Create failure report
         if: steps.get_env_url.outputs.env_status == 'failure'
         run: |
-          echo "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/652soceglkw4u/pr-$PR_NUMBER" > pr_comment.txt
+          echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/652soceglkw4u/pr-$PR_NUMBER" > pr_comment.txt
         
       # Create a list of relevant changed pages
       - name: Report environment URL
@@ -109,7 +109,7 @@ jobs:
 
           # If there are changed files, return a list
           # Using "\n" here creates problems in passing data to the next step, so replace there instead
-          if (( ${#key1[@]} != 0 )); then
+          if (( ${#files[@]} != 0 )); then
             echo $(printf "||%s" "${files[@]}")
             echo ::set-output name=changed_files::$(printf "||%s" "${files[@]}")
           else
@@ -122,7 +122,7 @@ jobs:
         env:
           PAGES: ${{ steps.get-files.outputs.changed_files }}
         run: |
-          echo "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages:\n${PAGES//||/"\n- [ ] "}` > pr_comment.txt
+          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages:\n${PAGES//||/'\n- [ ] '}" > pr_comment.txt
 
       # If there are no changed pages, create a comment
       # with a link to general URL
@@ -131,7 +131,7 @@ jobs:
         env:
           ENV_URL: ${{ steps.get_env_url.outputs.env_url }}
         run: |
-          echo "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n$ENV_URL" > pr_comment.txt
+          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n$ENV_URL" > pr_comment.txt
 
       - uses: actions/upload-artifact@v2
         with:
