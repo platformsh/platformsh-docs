@@ -2,6 +2,8 @@
 title: "Troubleshoot disks"
 ---
 
+{{% troubleshoot %}}
+
 ## Exceeding plan storage limit
 
 Professional plans come with a default amount of storage that you can [change with your plan](../../overview/pricing/_index.md).

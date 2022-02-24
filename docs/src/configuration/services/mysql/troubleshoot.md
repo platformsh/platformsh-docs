@@ -3,6 +3,8 @@ title: Troubleshoot MySQL
 sidebarTitle: Troubleshoot
 ---
 
+{{% troubleshoot %}}
+
 ## Lock wait timeout
 
 If a process running in your application acquired a lock from MySQL for a long period of time,
