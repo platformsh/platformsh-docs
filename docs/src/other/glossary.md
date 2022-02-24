@@ -36,7 +36,10 @@ You can also configure them manually.
 ## Inactive environment
 
 An environment that isn't deployed.
-You can activate an inactive environment from the environment configuration page on the Platform.sh management console.
+To activate an inactive environment:
+
+* In the console, go to the **Settings** page for that environment.
+* Using the CLI, run `platform environment:activate -e <ENVIRONMENT_ID>`.
 
 ## Live environment
 

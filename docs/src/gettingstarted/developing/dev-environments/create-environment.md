@@ -34,7 +34,7 @@ Platform.sh supports the deployment of isolated development environments from yo
 
     If you create a new branch with Git (`git checkout -b new-feature`),
     when you push its commits to Platform.sh that branch isn't automatically built.
-    The new branch (`new-feature`) is an *inactive environment*
+    The new branch (`new-feature`) is an [inactive environment](../../../other/glossary.md#inactive-environment)
     because Platform.sh doesn't assume that every branch should be associated with an active environment,
     since your plan limits the number of active environments you are allowed.
 

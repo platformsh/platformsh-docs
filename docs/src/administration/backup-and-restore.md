@@ -10,6 +10,14 @@ description: |
 Code is managed through Git and can be restored using normal Git routines.
 The built code file system isn't affected by backups or restores.
 
+{{< note title="Inactive environments" >}}
+
+Only active environments can be backed up and restored.
+To work with an [inactive environment](../other/glossary.md#inactive-environment),
+first activate it.
+
+{{< /note >}}
+
 ## Backups
 
 You need to have the "admin" role in order to create a backup of an environment.
