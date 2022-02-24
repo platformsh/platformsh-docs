@@ -384,13 +384,6 @@ You can also define and access more [complex values](../../development/variables
 
 {{< tiered-feature "Elite and Enterprise" >}}
 
-{{< note >}}
-
-Outbound firewalls are currently in Beta.
-While the syntax isn't expected to change, some behavior might in the future.
-
-{{< /note >}}
-
 Set limits in outbound traffic from your app with no impact on inbound requests.
 
 The `outbound` key is required and contains one or more rules.
@@ -402,7 +395,7 @@ Each rule has the following properties where at least one is required and `ips` 
 | --------- | ------------------- | --------------- | ----------- |
 | `ips`     | Array of `string`s  | `["0.0.0.0/0"]` | IP addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). See a [CIDR format converter](https://ipaddressguide.com/cidr). |
 | `domains` | Array of `string`s  |                 | [Fully qualified domain names](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) to specify specific destinations by hostname. |
-| `ports`   | Array of `integer`s |                 | Ports from 1 to 65535 that are allowed. If specified, unspecified ports are blocked. If no ports are specified, all ports are allowed. |
+| `ports`   | Array of `integer`s |                 | Ports from 1 to 65535 that are allowed. If any ports are specified, all unspecified ports are blocked. If no ports are specified, all ports are allowed. Port `25`, the SMTP port for sending email, is always blocked. |
 
 The default settings would look like this:
 
@@ -411,6 +404,14 @@ firewall:
     outbound:
         - ips: ["0.0.0.0/0"]
 ```
+
+### Support for rules
+
+Where outbound rules for firewalls are supported:
+
+| Grid      | Dedicated                                     | Dedicated Generation 3 |
+| --------- | --------------------------------------------- | ---------------------- |
+| Supported | Supported (contact support for configuration) | Supported              |
 
 ### Multiple rules
 
@@ -434,6 +435,51 @@ Be aware that many services are behind a content delivery network (CDN).
 For most CDNs, routing is done via domain name, not IP address,
 so thousands of domain names may share the same public IP addresses at the CDN.
 If you allow the IP address of a CDN, you are usually allowing many or all of the other customers hosted behind that CDN.
+
+### Outbound traffic by domain
+
+You can filter outbound traffic by domain.
+Using domains in your rules rather than IP addresses is generally more specific and secure.
+For example, if you use an IP address for a service with a CDN,
+you have to allow the IP address for the CDN.
+This means that you allow potentially hundreds or thousands of other servers also using the CDN.
+
+An example rule filtering by domain:
+
+```yaml {location=".platform.app.yaml"}
+firewall:
+  outbound:
+    - protocol: tcp
+      domains: ["api.stripe.com", "api.twilio.com"]
+      ports: [80, 443]
+    - protocol: tcp
+      ips: ["1.2.3.4/29","2.3.4.5"]
+      ports: [22]
+```
+
+#### Determine which domains to allow
+
+To determine which domains to include in your filtering rules,
+find the domains your site has requested the DNS to resolve.
+Run the following command to parse your server’s `dns.log` file
+and display all Fully Qualified Domain Names that have been requested:
+
+```bash
+awk '/query\[[^P]\]/ { print $6 | "sort -u" }' /var/log/dns.log
+```
+
+The output includes all DNS requests that were made, including those blocked by your filtering rules.
+It doesn't include any requests made using an IP address.
+
+Example output:
+
+```bash
+facebook.com
+fastly.com
+platform.sh
+www.google.com
+www.platform.sh
+```
 
 ## Build
 
