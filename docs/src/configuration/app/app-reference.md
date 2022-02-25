@@ -235,9 +235,12 @@ web:
 
 #### Where to listen
 
-If `socket_family` is set to `tcp`, your app should listen on the port specified by the `PORT` environment variable.
+Where to listen depends on your setting for `web.upstream.socket_family` (defaults to `tcp`).
 
-If `socket_family` is set to `unix`, your app should open the Unix socket file specified by the `SOCKET` environment variable.
+| `socket_family` | Where to listen |
+| --------------- | --------------- |
+| `tcp`           | The port specified by the [`PORT` environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables) |
+| `unix`          | The Unix socket file specified by the [`SOCKET` environment variable](../../development/variables/use-variables.md#use-platformsh-provided-variables) |
 
 If your application isn't listening at the same place that the runtime is sending requests,
 you see `502 Bad Gateway` errors when you try to connect to your website.

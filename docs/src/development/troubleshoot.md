@@ -103,6 +103,9 @@ it indicates your application is crashing or unavailable.
 
 Typical causes and potential solutions include:
 
+* Your app is listening at the wrong place.
+  * Check your app's [upstream properties](../configuration/app/app-reference.md#upstream).
+  * If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-platformsh-provided-variables).
 * Your `.platform.app.yaml` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
   * Check your `web.commands.start` entry or your `passthru` configuration.
