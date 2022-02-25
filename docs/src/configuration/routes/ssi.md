@@ -1,49 +1,90 @@
 ---
-title: "Server Side Includes"
+title: "Server Side Includes (SSI)"
 weight: 4
 toc: false
 description: |
-  Server side includes is a powerful mechanism by which you can at the same time make use of caching and serve dynamic content.
+  SSI commands enable you to include files within other pages.
 ---
 
 {{< description >}}
 
-You can activate or deactivate SSI on a per-route basis in your `.platform/routes.yaml` for example:
+At its most basic, you can include files within other ones so as not to repeat yourself.
 
-```yaml
+Start by enabling SSI:
+
+```yaml {location=".platform/routes.yaml"}
 "https://{default}/":
     type: upstream
     upstream: "app:http"
-    cache:
-        enabled: false
     ssi:
         enabled: true
-"https://{default}/time.php":
+```
+
+Then create a file you want to include elsewhere:
+
+```html {location="includes/example.html"}
+<p>This content can be reused</p>
+```
+
+And include it in another file:
+
+```html {location="index.html"}
+<body>
+  <p>This content is unique to this page.</p>
+  <!--#include virtual="includes/example.html" -->
+</body>
+```
+
+And your final rendered page includes the other file:
+
+```html {location="index.html"}
+<body>
+  <p>This content is unique to this page.</p>
+  <p>This content can be reused</p>
+</body>
+```
+
+## Caching and dynamic content
+
+You can use SSI to have caching and dynamic content in one.
+So one file is cached, while another updates dynamically.
+
+For example, you can activate SSI on one route with cache disabled and enable cache on another route:
+
+```yaml {location=".platform/routes.yaml"}
+"https://{default}/":
+    type: upstream
+    upstream: "app:http"
+    ssi:
+        enabled: true
+    cache:
+        enabled: false
+"https://{default}/cache":
     type: upstream
     upstream: "app:http"
     cache:
         enabled: true
 ```
 
-It allows you to include in your HTML response directives that will make the server "fill-in" parts of the HTML respecting the caching you setup.
+Then create a page that displays the current date and time and is cached for 60 seconds
+(the example uses PHP, but any server-side language would work):
 
-For example you could in a dynamic non-cached page include a block that would have been cached for example in the /index.php page we would have:
+```php {location="cache/example.php"}
+<?php
+header("Cache-Control: max-age=60");
+echo date(DATE_RFC2822);
+```
 
-```php
+Then you could have a page with dynamic content that includes this file: 
+
+```php {location="index.php"}
 <?php
 echo date(DATE_RFC2822);
 ?>
-<!--#include virtual="time.php" -->
+<!--#include virtual="cache/example.php" -->
 ```
 
-and in `time.php` we had
+Then you can visit `index.php` and refresh the page a few times.
+You see the first number updating to the current time, while the second (included) one only changes every 60 seconds.
 
-```php
-<?php
-header("Cache-Control: max-age=600");
-echo date(DATE_RFC2822);
-```
-
-And you visit the home page you will see, as you refresh the page, the time on the top will continue to change, while the one on the bottom will only change every 600 seconds.
-
-For more on SSI functionality see the [nginx documentation](http://nginx.org/en/docs/http/ngx_http_ssi_module.html).
+For more on SSI, see the [nginx documentation](http://nginx.org/en/docs/http/ngx_http_ssi_module.html).
