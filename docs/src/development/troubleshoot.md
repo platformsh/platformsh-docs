@@ -117,6 +117,17 @@ Typical causes and potential solutions include:
 * A PHP process is killed by the kernel out-of-memory killer.
   * See [how to deal with killed processes](../languages/php/troubleshoot.md#php-process-is-killed).
 
+## Command not found
+
+When you've added a command line tool (such as [Drush](../other/glossary.md#drush),
+you might encounter an error like the following:
+
+```bash
+-bash: <COMMAND_NAME>: command not found
+```
+
+If you see this, add the command to your path with a [`.environment` file script](./variables/set-variables.md#set-variables-via-script).
+
 ## Large JSON file upload failing
 
 When trying to upload a large JSON file to your API, you might see a 400 response code (`Malformed request`).
