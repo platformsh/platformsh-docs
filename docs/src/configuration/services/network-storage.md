@@ -42,14 +42,13 @@ Any change to the service version results in existing data becoming inaccessible
 
 ## Supported regions
 
-The Network storage service is available on all regions except:
+The Network storage service is available on all regions except the legacy regions:
 
 * `eu.platform.sh`
 * `us.platform.sh`
 
 If you're on one of those and require the service,
-you should [migrate your project](/guides/general/region-migration.md#region-migration) to a newer region
-(such as `eu-2`, `us-2`, `ca`, `au`, `fr-1`, or `de-2`).
+you should [migrate your project](/guides/general/region-migration.md#region-migration) to a newer region.
 
 ## Usage example
 
