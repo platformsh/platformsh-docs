@@ -2,19 +2,27 @@
 
 ## Table of contents
 
-- [Markdown](#markdown)
-- [Front matter](#front-matter)
-- [Headings](#headings)
-- [Line wrapping](#line-wrapping)
-- [Links](#links)
-- [Notes](#notes)
-- [Images](#images)
-- [Videos & asciinema](#videos--asciinema)
-- [Code](#code)
-  - [Indentation](#indentation)
-- [Refer to the UI and keys](#refer-to-the-ui-and-keys)
-- [Code tabs](#code-tabs)
-- [Reuse content](#reuse-content)
+- [Markup reference for Platform.sh docs](#markup-reference-for-platformsh-docs)
+  - [Table of contents](#table-of-contents)
+  - [Markdown](#markdown)
+  - [Front matter](#front-matter)
+  - [Headings](#headings)
+  - [Line wrapping](#line-wrapping)
+  - [Links](#links)
+    - [Links to headers](#links-to-headers)
+  - [Notes](#notes)
+    - [Footnotes](#footnotes)
+  - [Images](#images)
+  - [Videos & asciinema](#videos--asciinema)
+  - [Code](#code)
+    - [Indentation](#indentation)
+    - [Code block location](#code-block-location)
+  - [Refer to the UI and keys](#refer-to-the-ui-and-keys)
+  - [Code tabs](#code-tabs)
+  - [Reuse content](#reuse-content)
+    - [Variables in the file](#variables-in-the-file)
+    - [Inner content](#inner-content)
+    - [Static files](#static-files)
 
 ## Markdown
 
@@ -105,7 +113,7 @@ By default, a title of `Note:` is added.
 
 A short note.
 
-{{< /note }}
+{{< /note >}}
 ```
 
 This shortcode accepts two optional parameters:

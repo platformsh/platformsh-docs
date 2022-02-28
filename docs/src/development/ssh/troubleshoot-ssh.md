@@ -12,7 +12,10 @@ There are several places to check to try to solve such issues.
 
 ## Check your environment
 
-If your environment is inactive or the deployment has failed, you can't log in to it. To make sure the environment is active and the deployment has succeeded, check it using `platform environment:list` or in the [management console](https://console.platform.sh/) .
+If your environment is [inactive](../../other/glossary.md#inactive-environment) or the deployment has failed,
+you can't log in to it.
+To make sure the environment is active and the deployment has succeeded,
+check it using `platform environment:list` or in the [management console](https://console.platform.sh/) .
 
 ## Redeploy your environment
 
@@ -85,7 +88,7 @@ To resolve this:
 
 {{< codetabs >}}
 ---
-title=In the CLI
+title=Using the CLI
 file=none
 highlight=false
 ---
@@ -95,7 +98,7 @@ Log in using the browser by running `platform login`.
 <--->
 
 ---
-title=Using the console
+title=In the console
 file=none
 highlight=false
 ---
