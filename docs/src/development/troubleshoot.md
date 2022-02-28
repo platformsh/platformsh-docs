@@ -49,7 +49,7 @@ The redeploy takes place after any scheduled activities (either *Running* or *Pe
 Despite the name, redeployment doesn't rerun the `deploy` hook, only the `post_deploy` hook.
 Both your `build` and `deploy` hooks are tied to individual commits in code.
 They're reused until another commit is pushed to the environment.
-See [more about hooks](/configuration/app/hooks/_index.md) and their reuse.
+See [more about hooks](../configuration/app/hooks/_index.md) and their reuse.
 
 To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-trigger-builds).
 
@@ -130,7 +130,7 @@ $ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/fo
 
 ## Databases
 
-For MySQL specific errors, see [troubleshoot MySQL](../configuration/services/mysql/troubleshoot.md).
+For MySQL specific errors, see how to [troubleshoot MySQL](../configuration/services/mysql/troubleshoot.md).
 
 ### Permission error creating a database
 
@@ -140,7 +140,7 @@ and can be found in the `path` key of the `$PLATFORM_RELATIONSHIPS` [environment
 
 ## Storage
 
-If you're having trouble with storage, you can [troubleshoot mounts](../configuration/app/troubleshoot-mounts.md) and [disks](../configuration/app/troubleshoot-disks.md).
+If you're having trouble with storage, see how to [troubleshoot mounts](../configuration/app/troubleshoot-mounts.md) and [disks](../configuration/app/troubleshoot-disks.md).
 
 ### Can't write to file system
 
@@ -183,7 +183,7 @@ If the result is still `running`, the build is stuck.
 In most regions, stuck builds terminate after one hour.
 In older regions (`us` and `eu`), create a [support ticket](https://console.platform.sh/-/users/~/tickets/open) to have the build killed.
 
-When a *deployment* is blocked, you should try the following:
+When a _deployment_ is blocked, you should try the following:
 
 1. Connect to your environment using [SSH](./ssh/_index.md).
 1. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
@@ -205,7 +205,7 @@ Invisible errors during the build and deploy phase can cause increased wait time
 ### Build and deploy hooks
 
 [`build` and `deploy` hooks](/configuration/app/hooks/_index.md) can cause long build times.
-If they [run into issues](../configuration/app/app-reference.md#hook-failure), they can cause the build to fail or hang indefinitely.
+If they run into issues, they can cause the build to fail or hang indefinitely.
 
 `build` hooks can be tested in your local environment.
 `deploy` hooks can be tested either locally

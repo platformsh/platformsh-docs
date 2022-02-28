@@ -1,1 +1,1 @@
-For generic information regarding how to troubleshoot a project , see [Troubleshoot development](/development/troubleshoot.md).
+For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
