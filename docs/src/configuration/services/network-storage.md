@@ -96,120 +96,63 @@ and the `done` mount refers to the same directory as the `web/uploads/done` dire
 ## Worker instances
 
 When defining a [worker](../app/app-reference.md#workers) instance,
-it's important to keep in mind what mount behavior is desired.
-Unless the `mounts` block is defined within the `web` and `workers` sections separately,
-a top level `mounts` block apply to both instances.
-However, `local` mounts are a separate storage area for each instance
+keep in mind what mount behavior you want.
+If you don't define `mounts` separately within the `web` and `workers` sections,
+the top-level `mounts` block applies to both instances.
+
+`local` mounts are a separate storage area for each instance,
 while `service` mounts refer to the same file system.
-For example:
 
-```yaml
-name: app
+For example, you can define a network storage service:
 
-type: php:7.2
+```yaml {location=".platform/services.yaml"}
+files:
+    type: network-storage:1.0
+    disk: 2048
+```
 
-disk: 1024
+You can then use this service to  define a `network_dir` network mount and a `local_dir` local mount,
+to be used by a web instance and a `queue` worker instance:
 
+```yaml {location=".platform.app.yaml"}
 mounts:
+    # Define a network storage mount that's available to both instances together
     'network_dir':
         source: service
         service: files
         source_path: our_stuff
 
+    # Define a local mount that's available to each instance separately
     'local_dir':
         source: local
         source_path: my_stuff
 
+# Define how much space is available to local mounts
+disk: 512
+
+# Define a web instance
 web:
     locations:
         "/":
             root: "public"
-            passthru: "/index.php"
+            passthru: true
+            index: ['index.html']
 
+# Define a worker instance from the same code but with a different start
 workers:
     queue:
         commands:
-            start: |
-                php worker.php
+            start: ./start.sh
 ```
 
-In this case, both the web instance and the `queue` worker have two mount points: `network_dir` and `local_dir`.
+Both the web instance and the `queue` worker have two mount points:
 
-* The `local_dir` mount on each is independent and not connected to each other at all
-  and they *each* take 1024 MB of space.
-* The `network_dir` mount on each points to the same network storage space on the `files` service.
-  They can both read and write to it simultaneously.
-  The amount of space it has available depends on the `disk` key specified in `services.yaml`.
-
-## How do I give my workers access to my main application's files?
-
-The most common use case for `network-storage` is to allow a CMS-driven site to use a worker that has access to the same file mounts as the web-serving application.
-For that case, all that is needed is to set the necessary file mounts as `service` mounts.
-
-For example, the following `.platform.app.yaml` file (fragment) will keep Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).  (This assumes a service named `files` has already been defined in `services.yaml`.)
-
-
-```yaml
-name: 'app'
-type: 'php:7.2'
-
-relationships:
-    database: 'db:mysql'
-
-hooks:
-  # ...
-
-web:
-    locations:
-        '/':
-            # ...
-
-disk: 1024
-
-mounts:
-    # The public and private files directories are
-    # network mounts shared by web and workers.
-    'web/sites/default/files':
-        source: service
-        service: files
-        source_path: files
-    'private':
-        source: service
-        service: files
-        source_path: private
-    # The backup, temp, and cache directories for
-    # Drupal's CLI tools don't need to be shared.
-    # It wouldn't hurt anything to make them network
-    # shares, however.
-    '/.drush':
-        source: local
-        source_path: drush
-    'tmp':
-        source: local
-        source_path: tmp
-    'drush-backups':
-        source: local
-        source_path: drush-backups
-    '/.console':
-        source: local
-        source_path: console
-
-# Crons run on the web container, so they have the
-# same mounts as the web container.
-crons:
-    drupal:
-        spec: '*/20 * * * *'
-        cmd: 'cd web ; drush core-cron'
-
-# The worker defined here will also have the same 6 mounts;
-# 2 of them will be shared with the web container,
-# the other 4 will be local to the worker.
-workers:
-    queue:
-        commands:
-            start: |
-                cd web && drush queue-run myqueue
-```
+* They each have a separate `local_dir` mount.
+  These mounts aren't connected and so writing to one doesn't affect the other.
+  Each mount takes 512&nbsp;MB of space for a total of 1024&nbsp;MB.
+* They share a `network_dir` mount.
+  This is a single mount and both instances read and write to the same files.
+  It has 2048&nbsp;MB of space, as defined in the service configuration.
 
 ## How can I migrate a local storage to a network storage?
 
