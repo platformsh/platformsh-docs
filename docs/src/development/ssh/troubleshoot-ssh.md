@@ -88,7 +88,7 @@ To resolve this:
 
 {{< codetabs >}}
 ---
-title=In the CLI
+title=Using the CLI
 file=none
 highlight=false
 ---
@@ -98,7 +98,7 @@ Log in using the browser by running `platform login`.
 <--->
 
 ---
-title=Using the console
+title=In the console
 file=none
 highlight=false
 ---
