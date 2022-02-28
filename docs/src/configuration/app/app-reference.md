@@ -37,7 +37,7 @@ To override any part of a property, you have to provide the entire property.
 | `dependencies`  | A [dependencies dictionary](#dependencies)      |          | No               | What global dependencies to install before the `build` hook is run. |
 | `hooks`         | A [hooks dictionary](#hooks)                    |          | No               | What commands run at different stages in the build and deploy process. |
 | `crons`         | A [cron dictionary](#crons)                     |          | No               | Scheduled tasks for the app. |
-| `source.root`   | `string`                                        |          | No               | The path where the app code lives. Defaults to the path of the configuration file. Useful for [multi-app setups](./multi-app.md) |
+| `source`        | A [source dictionary](#source)                  |          | No               | Information on the app's source code and operations that can be run on it.  |
 | `runtime`       | A [runtime dictionary](#runtime)                |          | No               | Customizations to your PHP or Lisp runtime. |
 
 ## Types
@@ -699,3 +699,12 @@ The following table shows the properties that can be set in `sizing_hints`:
 | `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB. |
 
 See more about [PHP-FPM workers and sizing](../../languages/php/fpm.md).
+
+## Source
+
+The following table shows the properties that can be set in `source`:
+
+| Name         | Type                     | Required | Description |
+| ------------ | ------------------------ | -------- | ----------- |
+| `operations` | An operations dictionary |          |  Operations that can be applied to the source code. See [source operations](./source-operations.md) |
+| `root`       | `string`                 |          |  The path where the app code lives. Defaults to the path of the configuration file. Useful for [multi-app setups](./multi-app.md). |
