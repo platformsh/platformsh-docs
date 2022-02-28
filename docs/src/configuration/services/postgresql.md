@@ -90,6 +90,24 @@ highlight=python
 
 {{< /codetabs >}}
 
+## Access the service directly
+
+Access the service using the Platform CLI by running `platform sql`.
+
+You can also access it from your app container via [SSH](../../development/ssh/_index.md).
+From your [relationship data](#relationship), you need: `username`, `host`, and `port`.
+Then run the following command:
+
+```bash
+psql -U <USERNAME> -h <HOST> -p <PORT>
+```
+
+Using the values from the [example](#relationship), that would be:
+
+```bash
+psql -U main -h postgresql.internal -p 5432
+```
+
 ## Exporting data
 
 The easiest way to download all data in a PostgreSQL instance is with the Platform CLI. If you have a single SQL database, the following command will export all data using the `pg_dump` command to a local file:
