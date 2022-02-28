@@ -148,8 +148,9 @@ If you attempt to write to disk outside a `build` hook, you may encounter a `rea
 Except where you define it, the file system is all read-only, with code changes necessary through git.
 This gives you benefits like repeatable deployments, consistent backups, and traceability.
 
-You can write to disk a [`build` hook to generate anything you need later](../configuration/app/app-reference.md#writable-directories-during-build).
-Or you can declare writable [mounts](../configuration/app/app-reference.md#mounts#mounts), which are writable even during and after deploy.
+To generate anything you need later, [write to disk during a `build` hook](../configuration/app/app-reference.md#writable-directories-during-build).
+Or [declare mounts](../configuration/app/app-reference.md#mounts#mounts),
+which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
 ### Git push fails due to lack of disk space
@@ -229,7 +230,7 @@ Cron jobs may invoke other services in unexpected ways, which can increase execu
 
 ## Language-specific troubleshooting
 
-For more in depth troubleshooting regarding app-related issues:
+For language-specific troubleshooting for your apps:
 
 - [PHP](../languages/php/troubleshoot.html)
 - [Node JS](../languages/nodejs/debug.html)
